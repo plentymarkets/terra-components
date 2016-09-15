@@ -6,13 +6,17 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { PlentyAlert} from './alert/plenty-alert.component';
 import { PlentyTextInput } from './forms/input/text-input/plenty-text-input.component';
+import { PlentyNumberInput} from './forms/input/number-input/plenty-number-input.component';
+import { PlentyCheckbox} from './forms/checkbox/plenty-checkbox/plenty-checkbox.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PlentyAlert,
-    PlentyTextInput
+    PlentyTextInput,
+    PlentyNumberInput,
+    PlentyCheckbox
   ],
   imports: [
     BrowserModule,
