@@ -3,11 +3,8 @@ import {
     OnInit,
     Input
 } from '@angular/core';
-import {
-    PlentyLoadingBarService,
-    PlentyLoadingBarEvent,
-    PlentyLoadingBarEventType
-} from './service/plenty-loading-bar.service';
+import { PlentyLoadingBarService } from './service/plenty-loading-bar.service';
+import { PlentyLoadingBarEvent, PlentyLoadingBarEventType} from './event/plenty-loading-bar-event.ts';
 
 @Component({
                selector: 'plenty-loading-bar',
