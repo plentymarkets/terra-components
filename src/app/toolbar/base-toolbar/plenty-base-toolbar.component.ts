@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
              templateUrl: 'plenty-base-toolbar.component.html',
              styleUrls:   ['plenty-base-toolbar.component.css']
            })
-export class PlentyBaseToolbarComponent
+export class PlentyBaseToolbar
 {
   constructor()
   {

@@ -20,8 +20,9 @@ import { PlentyCheckboxTree} from './tree/checkbox-tree/plenty-checkbox-tree.com
 import { PlentyCheckbox } from './forms/checkbox/plenty-checkbox.component';
 import { PlentySelectBox } from './forms/select-box/plenty-select-box.component';
 import { PlentyDclWrapper } from './dcl-wrapper/plenty-dcl-wrapper.component';
-import { PlentyBaseToolbarComponent } from './toolbar/base-toolbar/plenty-base-toolbar.component';
+import { PlentyBaseToolbar } from './toolbar/base-toolbar/plenty-base-toolbar.component';
 import { PlentyIndicator } from './indicator/plenty-indicator.component';
+import { PlentyPagerComponent } from './pager/plenty-pager.component';
 
 @NgModule({
               declarations: [
@@ -34,8 +35,9 @@ import { PlentyIndicator } from './indicator/plenty-indicator.component';
                   PlentyCheckbox,
                   PlentySelectBox,
                   PlentyDclWrapper,
-                  PlentyBaseToolbarComponent,
-                  PlentyIndicator
+                  PlentyBaseToolbar,
+                  PlentyIndicator,
+                  PlentyPagerComponent
               ],
               imports:      [
                   BrowserModule,

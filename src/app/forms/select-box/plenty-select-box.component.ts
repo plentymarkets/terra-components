@@ -6,35 +6,38 @@ import {
     ElementRef,
     EventEmitter
 } from '@angular/core';
-import { PlentyListBoxValue } from './value/plenty-list-box-value';
+import { PlentySelectBoxValue } from './value/plenty-select-box-value';
 
 @Component({
-               selector: 'plenty-select-box',
+               selector:    'plenty-select-box',
                templateUrl: './plenty-select-box.component.html',
-               styleUrls: ['./plenty-select-box.component.css']
+               styleUrls:   ['./plenty-select-box.component.css'],
+               host:        {
+                   '(document:click)': 'clickedOutside($event)',
+               }
            })
 export class PlentySelectBox implements OnInit
 {
-    @Input() name: string;
-    @Input() isRequired: boolean;
-    @Input() disabled: boolean;
-    @Input() tooltipText: string;
-    @Input() tooltipPlacement: string;
-    @Input() listBoxValues: Array<PlentyListBoxValue>;
-    @Input() defaultSelection: number | string;
-    @Output() valueChanged = new EventEmitter<PlentyListBoxValue>();
+    @Input() name:string;
+    @Input() isRequired:boolean;
+    @Input() disabled:boolean;
+    @Input() tooltipText:string;
+    @Input() tooltipPlacement:string;
+    @Input() listBoxValues:Array<PlentySelectBoxValue>;
+    @Input() defaultSelection:number | string;
+    @Output() valueChanged = new EventEmitter<PlentySelectBoxValue>();
 
-    private selectedValue: PlentyListBoxValue;
-    private toggleOpen: boolean;
-    private hasLabel: boolean;
-    private _isValid: boolean;
-    private _regex: string;
+    private selectedValue:PlentySelectBoxValue;
+    private toggleOpen:boolean;
+    private hasLabel:boolean;
+    private _isValid:boolean;
+    private _regex:string;
 
     /**
      *
      * @param elementRef
      */
-    constructor(private elementRef: ElementRef)
+    constructor(private elementRef:ElementRef)
     {
         this.isValid = true;
         this.tooltipPlacement = 'top';
@@ -45,7 +48,7 @@ export class PlentySelectBox implements OnInit
         if(this.defaultSelection)
         {
             this.listBoxValues
-                .forEach((value: PlentyListBoxValue) =>
+                .forEach((value:PlentySelectBoxValue) =>
                          {
                              if(value.value == this.defaultSelection)
                              {
@@ -68,7 +71,7 @@ export class PlentySelectBox implements OnInit
      *
      * @param event
      */
-    private clickedOutside(event): void
+    private clickedOutside(event):void
     {
         if(!this.elementRef.nativeElement.contains(event.target))
         {
@@ -80,7 +83,7 @@ export class PlentySelectBox implements OnInit
      *
      * @param value
      */
-    private select(value: PlentyListBoxValue): void
+    private select(value:PlentySelectBoxValue):void
     {
         this.selectedValue.active = false;
         value.active = true;
@@ -92,7 +95,7 @@ export class PlentySelectBox implements OnInit
      *
      * @returns {boolean}
      */
-    public get isDisabled(): boolean
+    public get isDisabled():boolean
     {
         return this.disabled;
     }
@@ -101,7 +104,7 @@ export class PlentySelectBox implements OnInit
      *
      * @param value
      */
-    public set isDisabled(value: boolean)
+    public set isDisabled(value:boolean)
     {
         this.disabled = value;
     }
@@ -110,7 +113,7 @@ export class PlentySelectBox implements OnInit
      *
      * @returns {boolean}
      */
-    public get isValid(): boolean
+    public get isValid():boolean
     {
         return this._isValid;
     }
@@ -119,7 +122,7 @@ export class PlentySelectBox implements OnInit
      *
      * @param isValid
      */
-    public set isValid(isValid: boolean)
+    public set isValid(isValid:boolean)
     {
         this._isValid = isValid;
     }
@@ -128,7 +131,7 @@ export class PlentySelectBox implements OnInit
      *
      * @returns {string}
      */
-    public get regex(): string
+    public get regex():string
     {
         return this._regex;
     }
@@ -137,7 +140,7 @@ export class PlentySelectBox implements OnInit
      *
      * @param regex
      */
-    public set regex(regex: string)
+    public set regex(regex:string)
     {
         this._regex = regex;
     }

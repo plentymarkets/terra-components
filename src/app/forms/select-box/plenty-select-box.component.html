@@ -1,3 +1,30 @@
-<p>
-  plenty-select-box works!
-</p>
+<div class="list-box-wrapper"
+     tooltipPlacement="{{tooltipPlacement}}"
+     tooltip="{{tooltipText}}"
+     tooltipEnable="{{tooltipText}}"
+     [ngClass]="{
+                  'input-unit-v1': hasLabel,
+                  'error': !isValid,
+                  'disabled': isDisabled,
+                  'open': toggleOpen
+                }"
+     (click)="toggleOpen=!toggleOpen">
+
+
+  <label *ngIf="hasLabel" htmlFor="{{name}}">{{name}}
+    <span *ngIf="isRequired">*</span>
+  </label>
+  <i *ngIf="name">?</i>
+
+
+  <div class="list-box">
+    {{selectedValue.caption}}
+  </div>
+
+  <div class="list-box-dropdown">
+    <span *ngFor="let value of listBoxValues" (click)="select(value)" [ngClass]="{active: value.active}">
+      <span class="{{value.icon}}" *ngIf="value.icon"></span>
+      {{value.caption}}
+    </span>
+  </div>
+</div>

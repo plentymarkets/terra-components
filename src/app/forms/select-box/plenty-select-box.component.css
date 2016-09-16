@@ -1,0 +1,34 @@
+.input-unit-v1.list-box-wrapper .list-box
+{
+    border: none;
+    padding: 1.3rem 1rem .3rem 1rem;
+}
+
+.input-unit-v1.list-box-wrapper
+{
+    overflow: inherit;
+}
+
+.input-unit-v1.list-box-wrapper .list-box-dropdown
+{
+    width: auto;
+    top: inherit;
+    left: -1px;
+    right: -1px;
+}
+
+.list-box-wrapper.disabled.open .list-box-dropdown
+{
+    display: none !important;
+}
+
+.list-box-wrapper.disabled .list-box
+{
+    background-color: #f2f2f2;
+    cursor: not-allowed;
+}
+
+.list-box-wrapper.disabled:not(.input-unit-v1) .list-box
+{
+    opacity: .65;
+}

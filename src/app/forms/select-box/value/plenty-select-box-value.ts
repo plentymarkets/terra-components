@@ -1,4 +1,4 @@
-export interface PlentyListBoxValue
+export interface PlentySelectBoxValue
 {
     value:any;
     //i18n from locale_de and locale_en

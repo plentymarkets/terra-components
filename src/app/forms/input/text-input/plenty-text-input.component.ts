@@ -1,5 +1,6 @@
 import {
     Component,
+    Input,
     forwardRef
 } from '@angular/core';
 import { PlentyInputComponent } from '../plenty-input.component';
@@ -22,6 +23,18 @@ export const TEXT_INPUT_CONTROL_VALUE_ACCESSOR: any = {
            })
 export class PlentyTextInput extends PlentyInputComponent
 {
+    @Input() name: string;
+    @Input() isRequired: boolean;
+    @Input() emptyMessage: string;
+    @Input() invalidMessage: string;
+    @Input() tooltipText: string;
+    @Input() disabled: boolean;
+    @Input() tooltipPlacement: string; //top, bottom, left, right (default: top)
+    @Input() maxLength: number;
+    @Input() maxValue: number;
+    @Input() minLength: number;
+    @Input() minValue: number;
+
     constructor()
     {
         super('text', PlentyRegex.MIXED);
