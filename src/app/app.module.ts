@@ -15,13 +15,17 @@ import { AppComponent } from './app.component';
 import { PlentyTextInput } from './forms/input/text-input/plenty-text-input.component';
 import { PlentyNumberInput } from './forms/input/number-input/plenty-number-input.component';
 import { PlentyButton } from './button/plenty-button/plenty-button.component';
+import { PlentyTreeComponent } from './tree/plenty-tree.component';
+import { PlentyCheckboxTreeComponent } from './tree/checkbox-tree/plenty-checkbox-tree.component';
 
 @NgModule({
               declarations: [
                   AppComponent,
                   PlentyTextInput,
                   PlentyNumberInput,
-                  PlentyButton
+                  PlentyButton,
+                  PlentyTreeComponent,
+                  PlentyCheckboxTreeComponent
               ],
               imports:      [
                   BrowserModule,
