@@ -17,6 +17,7 @@ import { PlentyNumberInput } from './forms/input/number-input/plenty-number-inpu
 import { PlentyButton } from './button/plenty-button/plenty-button.component';
 import { PlentyCheckbox } from './forms/checkbox/plenty-checkbox.component';
 import { PlentySelectBox } from './forms/input/select-box/plenty-select-box.component';
+import { PlentyDclWrapper } from './dcl-wrapper/plenty-dcl-wrapper.component';
 
 @NgModule({
               declarations: [
@@ -25,7 +26,8 @@ import { PlentySelectBox } from './forms/input/select-box/plenty-select-box.comp
                   PlentyNumberInput,
                   PlentyButton,
                   PlentyCheckbox,
-                  PlentySelectBox
+                  PlentySelectBox,
+                  PlentyDclWrapper
               ],
               imports:      [
                   BrowserModule,
