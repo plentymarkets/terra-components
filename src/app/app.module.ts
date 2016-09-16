@@ -23,6 +23,9 @@ import { PlentyDclWrapper } from './dcl-wrapper/plenty-dcl-wrapper.component';
 import { PlentyBaseToolbar } from './toolbar/base-toolbar/plenty-base-toolbar.component';
 import { PlentyIndicator } from './indicator/plenty-indicator.component';
 import { PlentyPagerComponent } from './pager/plenty-pager.component';
+import { PlentyInfobox } from './infobox/plenty-infobox.component';
+import { PlentyTaglist } from './taglist/plenty-taglist.component';
+import { PlentyTag } from './tag/plenty-tag.component';
 
 @NgModule({
               declarations: [
@@ -37,7 +40,11 @@ import { PlentyPagerComponent } from './pager/plenty-pager.component';
                   PlentyDclWrapper,
                   PlentyBaseToolbar,
                   PlentyIndicator,
-                  PlentyPagerComponent
+                  PlentyPagerComponent,
+                  PlentyIndicator,
+                  PlentyInfobox,
+                  PlentyTaglist,
+                  PlentyTag
               ],
               imports:      [
                   BrowserModule,
