@@ -1,11 +1,22 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  Input,
+  Output,
+  AfterViewInit,
+  EventEmitter
+} from '@angular/core';
+import {
+  ModalDirective
+} from 'ng2-bootstrap/ng2-bootstrap';
 
-
+/**
+ * @author mfrank
+ */
 @Component({
-  selector: 'plenty-overlay',
-  templateUrl: './plenty-overlay.component.html',
-  styleUrls: ['./plenty-overlay.component.css']
-})
+             selector:      'overlay',
+             templateUrl:   'plenty-overlay.component.html'
+           })
 export class PlentyOverlay implements AfterViewInit
 {
   @ViewChild('overlay') public overlay:ModalDirective;
@@ -63,5 +74,4 @@ export class PlentyOverlay implements AfterViewInit
   {
     this.overlay.hide();
   }
-
 }

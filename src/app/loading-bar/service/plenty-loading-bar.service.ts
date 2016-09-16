@@ -4,7 +4,7 @@ import { Subscriber } from 'rxjs/Subscriber';
 import {
     PlentyLoadingBarEvent,
     PlentyLoadingBarEventType
-} from '../event/plenty-loading-bar-event.ts';
+} from '../event/plenty-loading-bar-event';
 
 /**
  * SlimLoadingBar service helps manage Slim Loading bar on the top of screen or parent component

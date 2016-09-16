@@ -58,15 +58,18 @@ export class PlentyPagerComponent implements OnInit
       ];
     }
 
-    this.pagingData = {
-      pagingUnit:  'Entries',
-      total:       0,
-      currentPage: 1,
-      perPage:     0,
-      lastPage:    0,
-      from:        0,
-      to:          0
-    };
+    if(!this.pagingData)
+    {
+      this.pagingData = {
+        pagingUnit:  'Entries',
+        total:       0,
+        currentPage: 1,
+        perPage:     0,
+        lastPage:    0,
+        from:        0,
+        to:          0
+      };
+    }
 
     this.updateCurrentPageInput();
   }

@@ -29,6 +29,9 @@ import { PlentyTaglist } from './taglist/plenty-taglist.component';
 import { PlentyTag } from './tag/plenty-tag.component';
 import { PlentyLoadingBar } from './loading-bar/plenty-loading-bar.component';
 import { PlentyOverlay } from './overlay/plenty-overlay.component';
+import { PlentyDataTable } from './table/data-table/plenty-data-table.component';
+import { PlentyDataTableContextMenu } from './table/data-table/context-menu/plenty-data-table-context-menu.component';
+import { PlentyDataTableContextMenuDirective } from './table/data-table/context-menu/directive/plenty-data-table-context-menu.directive';
 
 @NgModule({
               declarations: [
@@ -49,12 +52,16 @@ import { PlentyOverlay } from './overlay/plenty-overlay.component';
                   PlentyTaglist,
                   PlentyTag,
                   PlentyLoadingBar,
-                  PlentyOverlay
+                  PlentyOverlay,
+                  PlentyDataTable,
+                  PlentyDataTableContextMenu,
+                  PlentyDataTableContextMenuDirective
               ],
               imports:      [
                   BrowserModule,
                   FormsModule,
                   ReactiveFormsModule,
+                  ModalModule,
                   HttpModule,
                   Ng2BootstrapModule,
                   TooltipModule,
