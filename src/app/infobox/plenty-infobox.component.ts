@@ -3,7 +3,7 @@ import { PlentyTaglist } from '../taglist/plenty-taglist.component';
 import { PlentyButton } from '../button/plenty-button.component';
 
 @Component({
-  selector: 'plenty-plenty-infobox',
+  selector: 'plenty-infobox',
   templateUrl: './plenty-infobox.component.html',
   styleUrls: ['./plenty-infobox.component.css']
 })

@@ -1,3 +1,5 @@
-<p>
-  plenty-checkbox works!
-</p>
+<label class="input-control checkbox small-check">
+  <input type="checkbox" [(ngModel)]="value" [disabled]="isDisabled" [indeterminate]="isIndeterminate">
+  <span class="check"></span>
+</label>
+<span *ngIf="caption" [ngClass]="{'disabled': isDisabled}">{{caption}}</span>

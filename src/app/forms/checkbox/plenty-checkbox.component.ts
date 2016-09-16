@@ -18,7 +18,8 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
 @Component({
                selector:    'plenty-checkbox',
                templateUrl: './plenty-checkbox.component.html',
-               styleUrls:   ['./plenty-checkbox.component.css']
+               styleUrls:   ['./plenty-checkbox.component.css'],
+               providers:   [CHECKBOX_CONTROL_VALUE_ACCESSOR]
            })
 
 export class PlentyCheckbox implements ControlValueAccessor
