@@ -26,6 +26,7 @@ import { PlentyPagerComponent } from './pager/plenty-pager.component';
 import { PlentyInfobox } from './infobox/plenty-infobox.component';
 import { PlentyTaglist } from './taglist/plenty-taglist.component';
 import { PlentyTag } from './tag/plenty-tag.component';
+import { PlentyLoadingBar } from './loading-bar/plenty-loading-bar.component';
 
 @NgModule({
               declarations: [
@@ -44,7 +45,8 @@ import { PlentyTag } from './tag/plenty-tag.component';
                   PlentyIndicator,
                   PlentyInfobox,
                   PlentyTaglist,
-                  PlentyTag
+                  PlentyTag,
+                  PlentyLoadingBar
               ],
               imports:      [
                   BrowserModule,
