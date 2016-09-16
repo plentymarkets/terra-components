@@ -32,6 +32,7 @@ import { PlentyOverlay } from './overlay/plenty-overlay.component';
 import { PlentyDataTable } from './table/data-table/plenty-data-table.component';
 import { PlentyDataTableContextMenu } from './table/data-table/context-menu/plenty-data-table-context-menu.component';
 import { PlentyDataTableContextMenuDirective } from './table/data-table/context-menu/directive/plenty-data-table-context-menu.directive';
+import { PlentyDoubleInput } from './forms/input/double-input/plenty-double-input.component';
 
 @NgModule({
               declarations: [
@@ -55,7 +56,8 @@ import { PlentyDataTableContextMenuDirective } from './table/data-table/context-
                   PlentyOverlay,
                   PlentyDataTable,
                   PlentyDataTableContextMenu,
-                  PlentyDataTableContextMenuDirective
+                  PlentyDataTableContextMenuDirective,
+                  PlentyDoubleInput
               ],
               imports:      [
                   BrowserModule,
