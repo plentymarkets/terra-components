@@ -8,6 +8,7 @@ import { PlentyAlert} from './alert/plenty-alert.component';
 import { PlentyTextInput } from './forms/input/text-input/plenty-text-input.component';
 import { PlentyNumberInput} from './forms/input/number-input/plenty-number-input.component';
 import { PlentyCheckbox} from './forms/checkbox/plenty-checkbox/plenty-checkbox.component';
+import { PlentyButton} from './button/plenty-button/plenty-button.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { PlentyCheckbox} from './forms/checkbox/plenty-checkbox/plenty-checkbox.
     PlentyAlert,
     PlentyTextInput,
     PlentyNumberInput,
-    PlentyCheckbox
+    PlentyCheckbox,
+    PlentyButton
   ],
   imports: [
     BrowserModule,

@@ -9,23 +9,24 @@ import {
     // REACTIVE_FORM_DIRECTIVES,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-export const TEXT_INPUT_CONTROL_VALUE_ACCESSOR: any = {
+
+export const NUMBER_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     provide:     NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => PlentyTextInput),
+    useExisting: forwardRef(() => PlentyNumberInput),
     multi:       true
 };
 
 @Component({
-               selector:    'plenty-plenty-text-input',
-               templateUrl: './plenty-text-input.component.html',
-               styleUrls:   ['./plenty-text-input.component.css'],
-               providers:   [TEXT_INPUT_CONTROL_VALUE_ACCESSOR],
+               selector:    'plenty-plenty-number-input',
+               templateUrl: './plenty-number-input.component.html',
+               styleUrls:   ['./plenty-number-input.component.css'],
+               providers:   [NUMBER_INPUT_CONTROL_VALUE_ACCESSOR],
                directives:  [TooltipDirective]
            })
-export class PlentyTextInput extends PlentyInputComponent
+export class PlentyNumberInput extends PlentyInputComponent
 {
     constructor()
     {
-        super('text', PlentyRegex.MIXED);
+        super('number', PlentyRegex.NUMERIC);
     }
 }
