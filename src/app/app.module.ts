@@ -20,6 +20,7 @@ import { PlentyCheckboxTreeComponent } from './tree/checkbox-tree/plenty-checkbo
 import { PlentyCheckbox } from './forms/checkbox/plenty-checkbox.component';
 import { PlentySelectBox } from './forms/input/select-box/plenty-select-box.component';
 import { PlentyDclWrapper } from './dcl-wrapper/plenty-dcl-wrapper.component';
+import { PlentyBaseToolbarComponent } from './toolbar/base-toolbar/plenty-base-toolbar.component';
 
 @NgModule({
               declarations: [
@@ -31,7 +32,8 @@ import { PlentyDclWrapper } from './dcl-wrapper/plenty-dcl-wrapper.component';
                   PlentyCheckboxTreeComponent,
                   PlentyCheckbox,
                   PlentySelectBox,
-                  PlentyDclWrapper
+                  PlentyDclWrapper,
+                  PlentyBaseToolbarComponent
               ],
               imports:      [
                   BrowserModule,
