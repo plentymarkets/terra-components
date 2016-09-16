@@ -1,0 +1,17 @@
+<ul>
+  <template ngFor let-leaf [ngForOf]="leafList">
+    <li class="node leaf" [ngClass]="{'collapsed': !leaf.isOpen, 'active': leaf.isActive}">
+      <div class="leaf-titel" (click)="setLeafActive(leaf)">
+        <label class="input-control checkbox small-check">
+          <input type="checkbox" (change)="onCheckboxValueChange($event, leaf)" (checked)="leaf.checkboxChecked">
+          <span class="check"></span>
+        </label>
+        <span>
+          {{leaf.caption}}
+        </span>
+      </div>
+      <span class="node-toggle" *ngIf="leaf.subLeafList" (click)="toggleOpen(leaf)"></span>
+      <plenty-checkbox-tree [leafList]="leaf.subLeafList" [parentLeafList]="leafList" *ngIf="leaf.subLeafList"></plenty-checkbox-tree>
+    </li>
+  </template>
+</ul>
