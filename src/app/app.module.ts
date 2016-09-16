@@ -29,6 +29,7 @@ import { PlentyTaglist } from './taglist/plenty-taglist.component';
 import { PlentyTag } from './tag/plenty-tag.component';
 import { PlentyLoadingBar } from './loading-bar/plenty-loading-bar.component';
 import { PlentyOverlay } from './overlay/plenty-overlay.component';
+import { PlentyDoubleInput } from './forms/input/double-input/plenty-double-input.component';
 
 @NgModule({
               declarations: [
@@ -49,7 +50,8 @@ import { PlentyOverlay } from './overlay/plenty-overlay.component';
                   PlentyTaglist,
                   PlentyTag,
                   PlentyLoadingBar,
-                  PlentyOverlay
+                  PlentyOverlay,
+                  PlentyDoubleInput
               ],
               imports:      [
                   BrowserModule,
