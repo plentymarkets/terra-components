@@ -32,7 +32,7 @@ export class PlentyInputComponent implements ControlValueAccessor
     {
     };
 
-    private onChangeCallback: (_: any) => void = () =>
+    private onChangeCallback: (_: any) => void = (_) =>
     {
     };
 

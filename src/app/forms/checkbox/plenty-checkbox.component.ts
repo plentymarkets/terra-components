@@ -36,7 +36,7 @@ export class PlentyCheckbox implements ControlValueAccessor
     {
     };
 
-    private onChangeCallback: (_: any) => void = () =>
+    private onChangeCallback: (_: any) => void = (_) =>
     {
     };
 

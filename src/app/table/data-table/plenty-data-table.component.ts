@@ -281,11 +281,9 @@ export class PlentyDataTable<S extends BaseService, D extends BaseData>
 
   public doSearch(restCall:Observable<D>):void
   {
+    //TODO check
     restCall.subscribe(
-        res =>
-        {
-          this.onSuccessFunction(res);
-        },
+        this.onSuccessFunction,
         error =>
         {
           if(error.status == 401 ||
