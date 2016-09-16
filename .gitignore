@@ -34,3 +34,8 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+
+# showcase
+/src/app/app.component.html
+/src/app/app.component.ts
+
