@@ -7,6 +7,9 @@
 # dependencies
 /node_modules
 /bower_components
+/src/**/*.js
+/src/**/*.js.map
+/src/**/*.d.ts
 
 # IDEs and editors
 /.idea
