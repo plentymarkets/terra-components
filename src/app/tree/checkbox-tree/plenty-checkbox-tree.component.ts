@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PlentyBaseTreeComponent } from '../base/plenty-base-tree.component';
+import { PlentyBaseTree } from '../base/plenty-base-tree.component';
 import { PlentyLeaf } from '../leaf/plenty-leaf.component';
 
 @Component({
@@ -9,7 +9,7 @@ import { PlentyLeaf } from '../leaf/plenty-leaf.component';
 /**
  * TODO FUNKTIONIERT NOCH NICHT
  */
-export class PlentyCheckboxTreeComponent extends PlentyBaseTreeComponent{
+export class PlentyCheckboxTree extends PlentyBaseTree{
 
   /**
    * current level leaf list

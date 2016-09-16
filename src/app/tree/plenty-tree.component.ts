@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {PlentyBaseTreeComponent} from "./base/plenty-base-tree.component";
+import {PlentyBaseTree} from "./base/plenty-base-tree.component";
 import { PlentyLeaf } from './leaf/plenty-leaf.component';
 
 @Component({
@@ -7,7 +7,7 @@ import { PlentyLeaf } from './leaf/plenty-leaf.component';
              templateUrl: 'plenty-tree.component.html',
              // styleUrls: ['tree.component.css']
            })
-export class PlentyTreeComponent extends PlentyBaseTreeComponent{
+export class PlentyTree extends PlentyBaseTree{
 
   /**
    * current level leaf list
