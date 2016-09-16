@@ -45,7 +45,7 @@
   </table>
 </div>
 
-<overlay #overlayDataTableSettings [saveButtonTooltip]="saveButtonTooltip" [cancelButtonTooltip]="cancelButtonTooltip" overlayTitle="Data Table Settings" [isCloseable]="false" [isLarge]="true" [hasSaveButton]="true" [hasSecondaryButton]="true" (primaryButtonClicked)="primaryClicked($event)" (secondaryButtonClicked)="secondaryClicked($event)">
+<plenty-overlay #overlayDataTableSettings [saveButtonTooltip]="saveButtonTooltip" [cancelButtonTooltip]="cancelButtonTooltip" overlayTitle="Data Table Settings" [isCloseable]="false" [isLarge]="true" [hasSaveButton]="true" [hasSecondaryButton]="true" (primaryButtonClicked)="primaryClicked($event)" (secondaryButtonClicked)="secondaryClicked($event)">
   <h5>Spalten ein- / ausblenden</h5>
   <div>
     <template ngFor let-row [ngForOf]="rowListOverlay">
@@ -57,4 +57,4 @@
       </div>
     </template>
   </div>
-</overlay>
+</plenty-overlay>
