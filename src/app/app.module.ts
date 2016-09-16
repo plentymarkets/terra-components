@@ -18,7 +18,7 @@ import { PlentyButton } from './button/plenty-button/plenty-button.component';
 import { PlentyTree } from './tree/plenty-tree.component';
 import { PlentyCheckboxTree} from './tree/checkbox-tree/plenty-checkbox-tree.component';
 import { PlentyCheckbox } from './forms/checkbox/plenty-checkbox.component';
-import { PlentySelectBox } from './forms/input/select-box/plenty-select-box.component';
+import { PlentySelectBox } from './forms/select-box/plenty-select-box.component';
 import { PlentyDclWrapper } from './dcl-wrapper/plenty-dcl-wrapper.component';
 import { PlentyBaseToolbarComponent } from './toolbar/base-toolbar/plenty-base-toolbar.component';
 import { PlentyIndicator } from './indicator/plenty-indicator.component';
