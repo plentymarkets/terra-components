@@ -8,13 +8,14 @@ import { HttpModule } from '@angular/http';
 import {
     Ng2BootstrapModule,
     TooltipModule,
-    AlertModule
+    AlertModule,
+    ModalModule
 } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { AppComponent } from './app.component';
 import { PlentyTextInput } from './forms/input/text-input/plenty-text-input.component';
 import { PlentyNumberInput } from './forms/input/number-input/plenty-number-input.component';
-import { PlentyButton } from './button/plenty-button/plenty-button.component';
+import { PlentyButton } from './button/plenty-button.component';
 import { PlentyTree } from './tree/plenty-tree.component';
 import { PlentyCheckboxTree} from './tree/checkbox-tree/plenty-checkbox-tree.component';
 import { PlentyCheckbox } from './forms/checkbox/plenty-checkbox.component';
@@ -27,6 +28,7 @@ import { PlentyInfobox } from './infobox/plenty-infobox.component';
 import { PlentyTaglist } from './taglist/plenty-taglist.component';
 import { PlentyTag } from './tag/plenty-tag.component';
 import { PlentyLoadingBar } from './loading-bar/plenty-loading-bar.component';
+import { PlentyOverlay } from './overlay/plenty-overlay.component';
 
 @NgModule({
               declarations: [
@@ -46,7 +48,8 @@ import { PlentyLoadingBar } from './loading-bar/plenty-loading-bar.component';
                   PlentyInfobox,
                   PlentyTaglist,
                   PlentyTag,
-                  PlentyLoadingBar
+                  PlentyLoadingBar,
+                  PlentyOverlay
               ],
               imports:      [
                   BrowserModule,
@@ -55,7 +58,8 @@ import { PlentyLoadingBar } from './loading-bar/plenty-loading-bar.component';
                   HttpModule,
                   Ng2BootstrapModule,
                   TooltipModule,
-                  AlertModule
+                  AlertModule,
+                  ModalModule
               ],
               providers:    [],
               bootstrap:    [AppComponent]

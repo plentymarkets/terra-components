@@ -1,0 +1,18 @@
+<div bsModal #overlay="bs-modal" class="modal fade" tabindex="-1" role="dialog" >
+  <div class="modal-dialog modal-lg" [ngClass]="{'modal-lg': isLarge, 'modal-sm': isSmall}">
+    <div class="modal-content">
+      <div class="modal-header" *ngIf="isCloseable && overlayTitle">
+        <plenty-button *ngIf="isCloseable" [isAlignRight]="true" icon="icon-close" (clicked)="overlay.hide()"></plenty-button>
+        <h4 class="modal-title">{{overlayTitle}}</h4>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+      <div class="modal-footer" *ngIf="hasPrimaryButton || hasSecondaryButton || hasSaveButton">
+        <plenty-button *ngIf="hasPrimaryButton" [isAlignRight]="false" [isPrimary]="true" caption="Add" icon="icon-add" tooltipText="{{addButtonTooltip}}" tooltipPlacement="bottom" (clicked)="primaryClicked()"></plenty-button>
+        <plenty-button *ngIf="hasSaveButton" [isAlignRight]="false" [isPrimary]="true" caption="Save" icon="icon-save" tooltipText="{{savelButtonTooltip}}" tooltipPlacement="bottom" (clicked)="primaryClicked()"></plenty-button>
+        <plenty-button *ngIf="hasSecondaryButton" [isAlignRight]="false" [isSecondary]="true" caption="Cancel" icon="icon-cancel" tooltipText="{{cancelButtonTooltip}}" tooltipPlacement="bottom" (clicked)="secondaryClicked()"></plenty-button>
+      </div>
+    </div>
+  </div>
+</div>
