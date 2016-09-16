@@ -15,12 +15,13 @@ import { AppComponent } from './app.component';
 import { PlentyTextInput } from './forms/input/text-input/plenty-text-input.component';
 import { PlentyNumberInput } from './forms/input/number-input/plenty-number-input.component';
 import { PlentyButton } from './button/plenty-button/plenty-button.component';
-import { PlentyTreeComponent } from './tree/plenty-tree.component';
-import { PlentyCheckboxTreeComponent } from './tree/checkbox-tree/plenty-checkbox-tree.component';
+import { PlentyTree } from './tree/plenty-tree.component';
+import { PlentyCheckboxTree} from './tree/checkbox-tree/plenty-checkbox-tree.component';
 import { PlentyCheckbox } from './forms/checkbox/plenty-checkbox.component';
 import { PlentySelectBox } from './forms/input/select-box/plenty-select-box.component';
 import { PlentyDclWrapper } from './dcl-wrapper/plenty-dcl-wrapper.component';
 import { PlentyBaseToolbarComponent } from './toolbar/base-toolbar/plenty-base-toolbar.component';
+import { PlentyIndicator } from './indicator/plenty-indicator.component';
 
 @NgModule({
               declarations: [
@@ -28,12 +29,13 @@ import { PlentyBaseToolbarComponent } from './toolbar/base-toolbar/plenty-base-t
                   PlentyTextInput,
                   PlentyNumberInput,
                   PlentyButton,
-                  PlentyTreeComponent,
-                  PlentyCheckboxTreeComponent,
+                  PlentyTree,
+                  PlentyCheckboxTree,
                   PlentyCheckbox,
                   PlentySelectBox,
                   PlentyDclWrapper,
-                  PlentyBaseToolbarComponent
+                  PlentyBaseToolbarComponent,
+                  PlentyIndicator
               ],
               imports:      [
                   BrowserModule,

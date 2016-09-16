@@ -7,7 +7,7 @@ import { PlentyLeaf } from "../leaf/plenty-leaf.component";
 /**
  * @author mkunze
  */
-export class PlentyBaseTreeComponent implements OnInit
+export class PlentyBaseTree implements OnInit
 {
   /**
    * current level leaf list

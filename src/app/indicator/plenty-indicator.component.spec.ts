@@ -1,11 +1,11 @@
 // /* tslint:disable:no-unused-variable */
 //
 // import { TestBed, async } from '@angular/core/testing';
-// import { PlentyDclWrapperComponent } from './plenty-dcl-wrapper.component';
+// import { PlentyIndicatorComponent } from './plenty-indicator.component';
 //
-// describe('Component: PlentyDclWrapper', () => {
+// describe('Component: PlentyIndicator', () => {
 //   it('should create an instance', () => {
-//     let component = new PlentyDclWrapperComponent();
+//     let component = new PlentyIndicatorComponent();
 //     expect(component).toBeTruthy();
 //   });
 // });
