@@ -1,95 +1,96 @@
 import {
-    Component,
-    Input,
-    forwardRef
+  Component,
+  Input,
+  forwardRef
 } from '@angular/core';
 import {
-    ControlValueAccessor,
-    NG_VALUE_ACCESSOR
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR
 } from '@angular/forms';
 
-const noop = () => {
-};
-
-export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
-    provide:     NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => PlentyCheckbox),
-    multi:       true
-};
-
 @Component({
-               selector:    'plenty-plenty-checkbox',
-               templateUrl: './plenty-checkbox.component.html',
-               styleUrls:   ['./plenty-checkbox.component.css'],
-               providers:   [CHECKBOX_CONTROL_VALUE_ACCESSOR]
+             selector:    'plenty-checkbox',
+             templateUrl: './plenty-checkbox.component.html',
+             styleUrls:   ['./plenty-checkbox.component.css'],
+             providers:   [
+               {
+                 provide:     NG_VALUE_ACCESSOR,
+                 useExisting: forwardRef(() => PlentyCheckbox),
+                 multi:       true
+               }
+             ]
            })
 export class PlentyCheckbox implements ControlValueAccessor
 {
-    @Input() isDisabled: boolean;
-    @Input() caption: string;
-    //The internal data model
-    private _innerValue: boolean = false;
-    private _isIndeterminate = false;
+  @Input() isDisabled:boolean;
+  @Input() caption:string;
+  //The internal data model
+  private innerValue:boolean = false;
+  private _isIndeterminate = false;
 
-    //Placeholders for the callbacks which are later provided
-    //by the Control Value Accessor
-    private onTouchedCallback: () => void = noop;
+  //Placeholders for the callbacks which are later provides
+  //by the Control Value Accessor
+  private onTouchedCallback:() => void = () =>
+  {
+  };
 
-    private onChangeCallback: (v: any) => void = noop;
+  private onChangeCallback:(v:any) => void = () =>
+  {
+  };
 
-    constructor()
+  constructor()
+  {
+  }
+
+  //get accessor
+  @Input()
+  public get value():boolean
+  {
+    return this.innerValue;
+  };
+
+  //set accessor including call the onchange callback
+  public set value(v:boolean)
+  {
+    this.isIndeterminate = false;
+
+    if(v !== this.innerValue)
     {
+      this.innerValue = v;
+      this.onChangeCallback(v);
     }
+  }
 
-    //get accessor
-    @Input()
-    public get value(): boolean
+  //From ControlValueAccessor interface
+  writeValue(value:boolean)
+  {
+    if(value !== this.innerValue)
     {
-        return this._innerValue;
-    };
-
-    //set accessor including call the onchange callback
-    public set value(v: boolean)
-    {
-        this.isIndeterminate = false;
-
-        if(v !== this.value)
-        {
-            this.value = v;
-            this.onChangeCallback(v);
-        }
+      this.innerValue = value;
     }
+  }
 
-    //From ControlValueAccessor interface
-    writeValue(value: boolean)
-    {
-        if(value !== this.value)
-        {
-            this.value = value;
-        }
-    }
+  //From ControlValueAccessor interface
+  registerOnChange(fn:any)
+  {
+    this.onChangeCallback = fn;
+  }
 
-    //From ControlValueAccessor interface
-    registerOnChange(fn: any)
-    {
-        this.onChangeCallback = fn;
-    }
+  //From ControlValueAccessor interface
+  registerOnTouched(fn:any)
+  {
+    this.onTouchedCallback = fn;
+  }
 
-    //From ControlValueAccessor interface
-    registerOnTouched(fn: any)
-    {
-        this.onTouchedCallback = fn;
-    }
+  public get isIndeterminate():boolean
+  {
+    return this._isIndeterminate;
+  }
 
-    public get isIndeterminate(): boolean
-    {
-        return this._isIndeterminate;
-    }
-
-    public set isIndeterminate(value: boolean)
-    {
-        //TODO is this correct?
-        this.value = false;
-        this._isIndeterminate = value;
-    }
+  public set isIndeterminate(value:boolean)
+  {
+    //TODO is this correct?
+    this.innerValue = false;
+    this._isIndeterminate = value;
+  }
 }

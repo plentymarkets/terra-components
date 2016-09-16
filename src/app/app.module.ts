@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { TooltipModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { AppComponent } from './app.component';
 import { PlentyAlert} from './alert/plenty-alert.component';
@@ -14,7 +15,6 @@ import { PlentyButton} from './button/plenty-button/plenty-button.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PlentyAlert,
     PlentyTextInput,
     PlentyNumberInput,
     PlentyCheckbox,
@@ -23,9 +23,10 @@ import { PlentyButton} from './button/plenty-button/plenty-button.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    TooltipModule
   ],
-  providers: [],
+  providers: [PlentyAlert],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
