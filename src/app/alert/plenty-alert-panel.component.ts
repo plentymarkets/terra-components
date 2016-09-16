@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-// import { AlertComponent } from 'ng2-bootstrap/ng2-bootstrap';
 import { PlentyAlert } from "./plenty-alert.component";
 
 /**
@@ -8,8 +7,7 @@ import { PlentyAlert } from "./plenty-alert.component";
 @Component({
                moduleId:    module.id,
                selector:    'plenty-status',
-               templateUrl: 'plenty-alert-panel.html',
-               // directives:  [AlertComponent],
+               templateUrl: 'plenty-alert-panel.html'
            })
 export class PlentyAlertPanel
 {

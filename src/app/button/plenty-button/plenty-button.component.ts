@@ -4,13 +4,11 @@ import {
     Output,
     EventEmitter
 } from '@angular/core';
-import { TooltipDirective } from 'ng2-bootstrap/components/tooltip/tooltip.directive';
 
 @Component({
-               selector:    'plenty-plenty-button',
+               selector:    'plenty-button',
                templateUrl: './plenty-button.component.html',
-               styleUrls:   ['./plenty-button.component.css'],
-               directives:  [TooltipDirective]
+               styleUrls:   ['./plenty-button.component.css']
            })
 
 export class PlentyButton
