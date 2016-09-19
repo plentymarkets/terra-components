@@ -44,14 +44,12 @@ gulp.task('gitFetch', ['gitInit'], function()
   console.log('------- FETCHING DONE -------');
 });
 
-//pull data from master (TODO beta7)
 gulp.task('gitPull', ['gitCommit'], function()
 {
   console.log('------- COMMITTING DONE -------');
   console.log('------- PULLING -------');
 
-  //TODO change to beta7
-  git.pull('origin', ['master'], function (err)
+  git.pull('origin', ['stable7'], function (err)
   {
     if (err)
     {
@@ -105,7 +103,7 @@ gulp.task('gitPush', function ()
 {
   console.log('------- PUSHING -------');
 
-  git.push('origin', 'master', function (err)
+  git.push('origin', 'stable7', function (err)
   {
     if (err) throw err;
   });
