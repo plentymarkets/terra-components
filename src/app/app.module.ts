@@ -23,7 +23,7 @@ import { PlentySelectBox } from './forms/select-box/plenty-select-box.component'
 import { PlentyDclWrapper } from './dcl-wrapper/plenty-dcl-wrapper.component';
 import { PlentyBaseToolbar } from './toolbar/base-toolbar/plenty-base-toolbar.component';
 import { PlentyIndicator } from './indicator/plenty-indicator.component';
-import { PlentyPagerComponent } from './pager/plenty-pager.component';
+import { PlentyPager } from './pager/plenty-pager.component';
 import { PlentyInfobox } from './infobox/plenty-infobox.component';
 import { PlentyTaglist } from './taglist/plenty-taglist.component';
 import { PlentyTag } from './tag/plenty-tag.component';
@@ -34,10 +34,12 @@ import { PlentyDataTableContextMenu } from './table/data-table/context-menu/plen
 import { PlentyDataTableContextMenuDirective } from './table/data-table/context-menu/directive/plenty-data-table-context-menu.directive';
 import { PlentyDoubleInput } from './forms/input/double-input/plenty-double-input.component';
 import { PlentyPortlet } from './portlet/plenty-portlet.component';
+import { PlentySplitViewComponent } from './split-view/plenty-split-view.component';
 
 @NgModule({
               declarations: [
                   AppComponent,
+                  PlentyDclWrapper,
                   PlentyTextInput,
                   PlentyNumberInput,
                   PlentyButton,
@@ -45,10 +47,9 @@ import { PlentyPortlet } from './portlet/plenty-portlet.component';
                   PlentyCheckboxTree,
                   PlentyCheckbox,
                   PlentySelectBox,
-                  PlentyDclWrapper,
                   PlentyBaseToolbar,
                   PlentyIndicator,
-                  PlentyPagerComponent,
+                  PlentyPager,
                   PlentyIndicator,
                   PlentyInfobox,
                   PlentyTaglist,
@@ -59,8 +60,10 @@ import { PlentyPortlet } from './portlet/plenty-portlet.component';
                   PlentyDataTableContextMenu,
                   PlentyDataTableContextMenuDirective,
                   PlentyDoubleInput,
-                  PlentyPortlet
+                  PlentyPortlet,
+                  PlentySplitViewComponent
               ],
+              entryComponents: [ PlentyButton, PlentyPortlet ],
               imports:      [
                   BrowserModule,
                   FormsModule,
@@ -73,7 +76,7 @@ import { PlentyPortlet } from './portlet/plenty-portlet.component';
                   ModalModule
               ],
               providers:    [],
-              bootstrap:    [AppComponent]
+              bootstrap:    [AppComponent],
           })
 export class AppModule
 {

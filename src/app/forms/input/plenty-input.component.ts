@@ -5,7 +5,7 @@ import {
 } from '@angular/forms';
 import { PlentyAlert } from '../../alert/plenty-alert.component';
 
-export class PlentyInputComponent implements ControlValueAccessor
+export class PlentyInput implements ControlValueAccessor
 {
     @Input() name: string;
     @Input() isRequired: boolean;
