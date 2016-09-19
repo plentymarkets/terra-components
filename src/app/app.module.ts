@@ -170,7 +170,7 @@ import { PlentyFilter } from './filter/plenty-filter.component';
               ],
 
               providers:    [],
-              bootstrap:    [AppComponent],
+              // bootstrap:    [AppComponent],
           })
 export class AppModule
 {
