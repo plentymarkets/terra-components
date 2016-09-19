@@ -5,7 +5,6 @@ import { PlentyAlert } from "./plenty-alert.component";
  * @author mkunze
  */
 @Component({
-               moduleId:    module.id,
                selector:    'plenty-status',
                templateUrl: 'plenty-alert-panel.html'
            })
