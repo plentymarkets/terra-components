@@ -10,16 +10,11 @@ import {
              styleUrls: ['plenty-portlet.component.css'],
            })
 
-export class PlentyPortlet implements OnInit
+export class PlentyPortlet
 {
   @Input() portletHeader:string;
 
   constructor()
   {
   }
-
-  ngOnInit()
-  {
-  }
-
 }

@@ -5,7 +5,7 @@ import {
     Input,
     ComponentRef,
     ComponentFactoryResolver,
-    Compiler
+    ChangeDetectorRef
 } from '@angular/core';
 
 @Component({
@@ -20,16 +20,15 @@ export class PlentyDclWrapper
     @Input() routeData;
     @Input() identifier;
 
-    private _cmpRef: ComponentRef<any>;
-    private _isViewInitialized: boolean = false;
-    private factory;
+    private _cmpRef:ComponentRef<any>;
+    private _isViewInitialized:boolean = false;
 
-    constructor(private componentFactoryResolver: ComponentFactoryResolver,
-                private compiler: Compiler)
+    constructor(private componentFactoryResolver:ComponentFactoryResolver,
+                private cdRef:ChangeDetectorRef)
     {
     }
 
-    private updateComponent(): void
+    private updateComponent():void
     {
         if(!this._isViewInitialized)
         {
@@ -43,11 +42,8 @@ export class PlentyDclWrapper
             this._cmpRef.destroy();
         }
 
-        this.factory = this.componentFactoryResolver.resolveComponentFactory(this.type);
-        this._cmpRef = this.target.createComponent(this.factory);
-        // to access the created instance use
-        // this.compRef.instance.someProperty = 'someValue';
-        // this.compRef.instance.someOutput.subscribe(val => doSomething());
+        let factory = this.componentFactoryResolver.resolveComponentFactory(this.type);
+        this._cmpRef = this.target.createComponent(factory);
 
         if(this._cmpRef.instance.initIframe)
         {
@@ -55,15 +51,11 @@ export class PlentyDclWrapper
         }
     }
 
-    ngOnChanges()
-    {
-        this.updateComponent();
-    }
-
     ngAfterViewInit()
     {
         this._isViewInitialized = true;
         this.updateComponent();
+        this.cdRef.detectChanges();
     }
 
     ngOnDestroy()
