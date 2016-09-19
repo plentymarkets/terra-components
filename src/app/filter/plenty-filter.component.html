@@ -1,0 +1,20 @@
+<div style="border: 1px solid black; width: 200px;">
+
+  <plenty-base-toolbar>
+    <div class="btn-group" role="group">
+      <plenty-button caption="{{searchLabel}}" (click)="searchBtnClicked()"></plenty-button>
+      <plenty-button caption="{{resetLabel}}" (click)="resetBtnClicked()"></plenty-button>
+    </div>
+  </plenty-base-toolbar>
+
+  <div class="input-group-v">
+    <div *ngFor="let item of inputList" #inputList>
+      <dcl-wrapper [type]="item.template" [data]="item.data"></dcl-wrapper>
+    </div>
+  </div>
+
+</div>
+
+
+
+

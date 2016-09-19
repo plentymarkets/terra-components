@@ -35,6 +35,8 @@ import { PlentyDataTableContextMenuDirective } from './table/data-table/context-
 import { PlentyDoubleInput } from './forms/input/double-input/plenty-double-input.component';
 import { PlentyPortlet } from './portlet/plenty-portlet.component';
 import { PlentySplitViewComponent } from './split-view/plenty-split-view.component';
+import { PlentyFilter } from './filter/plenty-filter.component';
+
 
 @NgModule({
               declarations: [
@@ -61,9 +63,33 @@ import { PlentySplitViewComponent } from './split-view/plenty-split-view.compone
                   PlentyDataTableContextMenuDirective,
                   PlentyDoubleInput,
                   PlentyPortlet,
-                  PlentySplitViewComponent
+                  PlentySplitViewComponent,
+                  PlentyFilter
               ],
-              entryComponents: [ PlentyButton, PlentyPortlet ],
+              entryComponents: [
+                  PlentyTextInput,
+                  PlentyNumberInput,
+                  PlentyButton,
+                  PlentyTree,
+                  PlentyCheckboxTree,
+                  PlentyCheckbox,
+                  PlentySelectBox,
+                  PlentyBaseToolbar,
+                  PlentyIndicator,
+                  PlentyPager,
+                  PlentyIndicator,
+                  PlentyInfobox,
+                  PlentyTaglist,
+                  PlentyTag,
+                  PlentyLoadingBar,
+                  PlentyOverlay,
+                  PlentyDataTable,
+                  PlentyDataTableContextMenu,
+                  PlentyDoubleInput,
+                  PlentyPortlet,
+                  PlentySplitViewComponent,
+                  PlentyFilter
+                  ],
               imports:      [
                   BrowserModule,
                   FormsModule,
@@ -72,9 +98,9 @@ import { PlentySplitViewComponent } from './split-view/plenty-split-view.compone
                   HttpModule,
                   Ng2BootstrapModule,
                   TooltipModule,
-                  AlertModule,
-                  ModalModule
+                  AlertModule
               ],
+
               providers:    [],
               bootstrap:    [AppComponent],
           })
