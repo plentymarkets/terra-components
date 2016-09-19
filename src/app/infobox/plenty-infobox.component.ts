@@ -1,20 +1,27 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    Input
+} from '@angular/core';
 import { PlentyTaglist } from '../taglist/plenty-taglist.component';
 import { PlentyButton } from '../button/plenty-button.component';
 
 @Component({
-  selector: 'plenty-infobox',
-  templateUrl: './plenty-infobox.component.html',
-  styleUrls: ['./plenty-infobox.component.css']
-})
+               selector: 'plenty-infobox',
+               templateUrl: 'plenty-infobox.component.html',
+               styleUrls: ['plenty-infobox.component.css']
+           })
 export class PlentyInfobox implements OnInit
 {
-  @Input() tagList:Array<PlentyTaglist>;
-  @Input() buttonList:Array<PlentyButton>;
+    @Input() tagList:Array<PlentyTaglist>;
+    @Input() buttonList:Array<PlentyButton>;
 
-  constructor() { }
+    constructor()
+    {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit()
+    {
+    }
 
 }

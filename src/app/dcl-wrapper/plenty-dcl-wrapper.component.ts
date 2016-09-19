@@ -10,8 +10,8 @@ import {
 
 @Component({
                selector:    'dcl-wrapper',
-               templateUrl: './plenty-dcl-wrapper.component.html',
-               styleUrls:   ['./plenty-dcl-wrapper.component.css']
+               templateUrl: 'plenty-dcl-wrapper.component.html',
+               styleUrls:   ['plenty-dcl-wrapper.component.css']
            })
 export class PlentyDclWrapper
 {
@@ -19,7 +19,7 @@ export class PlentyDclWrapper
     @Input() type;
     @Input() routeData;
     @Input() identifier;
-    @Input() data: Array<any>;
+    @Input() data:Array<any>;
 
     private cmpRef:ComponentRef<any>;
     private isViewInitialized:boolean = false;

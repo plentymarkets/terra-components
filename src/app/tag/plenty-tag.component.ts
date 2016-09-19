@@ -6,8 +6,8 @@ import {
 
 @Component({
                selector: 'plenty-tag',
-               templateUrl: './plenty-tag.component.html',
-               styleUrls: ['./plenty-tag.component.css']
+               templateUrl: 'plenty-tag.component.html',
+               styleUrls: ['plenty-tag.component.css']
            })
 export class PlentyTag implements OnInit
 {

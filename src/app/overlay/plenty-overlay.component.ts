@@ -1,38 +1,38 @@
 import {
-  Component,
-  ViewChild,
-  Input,
-  Output,
-  AfterViewInit,
-  EventEmitter
+    Component,
+    ViewChild,
+    Input,
+    Output,
+    AfterViewInit,
+    EventEmitter
 } from '@angular/core';
 import {
-  ModalDirective
+    ModalDirective
 } from 'ng2-bootstrap/ng2-bootstrap';
 
 /**
  * @author mfrank
  */
 @Component({
-               selector: 'plenty-overlay',
-               templateUrl: './plenty-overlay.component.html',
-               styleUrls: ['./plenty-overlay.component.css']
+               selector:    'plenty-overlay',
+               templateUrl: 'plenty-overlay.component.html',
+               styleUrls:   ['plenty-overlay.component.css']
            })
 export class PlentyOverlay implements AfterViewInit
 {
     @ViewChild('overlay') public overlay:ModalDirective;
 
-    @Input() addButtonTooltip: string;
-    @Input() cancelButtonTooltip: string;
-    @Input() saveButtonTooltip: string;
-    @Input() overlayTitle: string;
-    @Input() hasPrimaryButton: boolean = false;
-    @Input() hasSecondaryButton: boolean = false;
-    @Input() hasSaveButton: boolean = false;
-    @Input() isStatic: boolean = false;
-    @Input() isCloseable: boolean = true;
-    @Input() isLarge: boolean = false;
-    @Input() isSmall: boolean = false;
+    @Input() addButtonTooltip:string;
+    @Input() cancelButtonTooltip:string;
+    @Input() saveButtonTooltip:string;
+    @Input() overlayTitle:string;
+    @Input() hasPrimaryButton:boolean = false;
+    @Input() hasSecondaryButton:boolean = false;
+    @Input() hasSaveButton:boolean = false;
+    @Input() isStatic:boolean = false;
+    @Input() isCloseable:boolean = true;
+    @Input() isLarge:boolean = false;
+    @Input() isSmall:boolean = false;
 
     @Output() primaryButtonClicked = new EventEmitter<PlentyOverlay>();
     @Output() secondaryButtonClicked = new EventEmitter<PlentyOverlay>();
@@ -56,22 +56,22 @@ export class PlentyOverlay implements AfterViewInit
         }
     }
 
-    private primaryClicked(): void
+    private primaryClicked():void
     {
         this.primaryButtonClicked.emit(this);
     }
 
-    private secondaryClicked(): void
+    private secondaryClicked():void
     {
         this.secondaryButtonClicked.emit(this);
     }
 
-    public showOverlay(): void
+    public showOverlay():void
     {
         this.overlay.show();
     }
 
-    public hideOverlay(): void
+    public hideOverlay():void
     {
         this.overlay.hide();
     }

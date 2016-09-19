@@ -10,8 +10,8 @@ import { PlentySelectBoxValue } from './value/plenty-select-box-value';
 
 @Component({
                selector:    'plenty-select-box',
-               templateUrl: './plenty-select-box.component.html',
-               styleUrls:   ['./plenty-select-box.component.css'],
+               templateUrl: 'plenty-select-box.component.html',
+               styleUrls:   ['plenty-select-box.component.css'],
                host:        {
                    '(document:click)': 'clickedOutside($event)',
                }

@@ -5,14 +5,14 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector: 'plenty-indicator',
-               templateUrl: './plenty-indicator.component.html',
-               styleUrls: ['./plenty-indicator.component.css']
+               selector:    'plenty-indicator',
+               templateUrl: 'plenty-indicator.component.html',
+               styleUrls:   ['plenty-indicator.component.css']
            })
 export class PlentyIndicator implements OnInit
 {
-    @Input() label: string;
-    @Input() type: string;
+    @Input() label:string;
+    @Input() type:string;
 
     constructor()
     {

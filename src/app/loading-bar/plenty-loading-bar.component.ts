@@ -12,16 +12,16 @@ import {
 } from './event/plenty-loading-bar-event';
 
 @Component({
-               selector: 'plenty-loading-bar',
-               templateUrl: './plenty-loading-bar.component.html',
-               styleUrls: ['./plenty-loading-bar.component.css']
+               selector:    'plenty-loading-bar',
+               templateUrl: 'plenty-loading-bar.component.html',
+               styleUrls:   ['plenty-loading-bar.component.css']
            })
 export class PlentyLoadingBar implements OnInit
 {
 
-    private animationTime: number = 0.5;
-    private _progress: string = '0%';
-    @Input() set progress(value: string)
+    private animationTime:number = 0.5;
+    private _progress:string = '0%';
+    @Input() set progress(value:string)
     {
         if(value != null)
         {
@@ -29,22 +29,22 @@ export class PlentyLoadingBar implements OnInit
         }
     }
 
-    get progress(): string
+    get progress():string
     {
         return this._progress;
     }
 
-    @Input() color: string = 'black';
-    @Input() height: string = '2px';
-    @Input() show: boolean = true;
+    @Input() color:string = 'black';
+    @Input() height:string = '2px';
+    @Input() show:boolean = true;
 
-    constructor(private service: PlentyLoadingBarService)
+    constructor(private service:PlentyLoadingBarService)
     {
     }
 
-    ngOnInit(): any
+    ngOnInit():any
     {
-        this.service.observable.subscribe((event: PlentyLoadingBarEvent) =>
+        this.service.observable.subscribe((event:PlentyLoadingBarEvent) =>
                                           {
                                               if(event.type === PlentyLoadingBarEventType.PROGRESS)
                                               {

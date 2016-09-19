@@ -1,78 +1,84 @@
-import { Component, Input } from '@angular/core';
+import {
+    Component,
+    Input
+} from '@angular/core';
 import { PlentyBaseTree } from '../base/plenty-base-tree.component';
 import { PlentyLeaf } from '../leaf/plenty-leaf.component';
 
 @Component({
-  selector: 'plenty-checkbox-tree',
-  templateUrl: 'plenty-checkbox-tree.component.html'
-})
+               selector: 'plenty-checkbox-tree',
+               templateUrl: 'plenty-checkbox-tree.component.html'
+           })
 /**
  * TODO FUNKTIONIERT NOCH NICHT
  */
-export class PlentyCheckboxTree extends PlentyBaseTree{
+export class PlentyCheckboxTree extends PlentyBaseTree
+{
 
-  /**
-   * current level leaf list
-   */
-  @Input() leafList:Array<PlentyLeaf>;
+    /**
+     * current level leaf list
+     */
+    @Input() leafList:Array<PlentyLeaf>;
 
-  /**
-   * leafs one level higher than current leaf
-   */
-  @Input() parentLeafList:Array<PlentyLeaf>;
+    /**
+     * leafs one level higher than current leaf
+     */
+    @Input() parentLeafList:Array<PlentyLeaf>;
 
-  constructor() {
-    super();
-  }
-
-  selectedLeafList:Array<PlentyLeaf> = [];
-
-  onCheckboxValueChange(event, leaf:PlentyLeaf)
-  {
-    leaf.checkboxChecked = event.currentTarget.checked;
-
-    // this.recursiveAddLeafToList(leaf);
-
-    this.recursiveCheckboxCheck(leaf);
-
-    // alert(this.selectedLeafList.length);
-  }
-
-  recursiveAddLeafToList(leaf:PlentyLeaf)
-  {
-    if(leaf.checkboxChecked)
+    constructor()
     {
-      this.selectedLeafList.push(leaf);
-    }
-    else
-    {
-      let leafIndex = this.selectedLeafList.indexOf(leaf);
-
-      this.selectedLeafList.splice(leafIndex, 1);
+        super();
     }
 
-    if(leaf.subLeafList)
+    selectedLeafList:Array<PlentyLeaf> = [];
+
+    onCheckboxValueChange(event,
+                          leaf:PlentyLeaf)
     {
-      for(let subLeaf of leaf.subLeafList)
-      {
-        this.recursiveAddLeafToList(subLeaf);
-      }
+        leaf.checkboxChecked = event.currentTarget.checked;
+
+        // this.recursiveAddLeafToList(leaf);
+
+        this.recursiveCheckboxCheck(leaf);
+
+        // alert(this.selectedLeafList.length);
     }
-  }
 
-  recursiveCheckboxCheck(leaf:PlentyLeaf)
-  {
-    if(leaf.subLeafList)
+    recursiveAddLeafToList(leaf:PlentyLeaf)
     {
-      for(let subLeaf of leaf.subLeafList)
-      {
-        subLeaf.checkboxChecked = leaf.checkboxChecked;
-
-        if(subLeaf.subLeafList)
+        if(leaf.checkboxChecked)
         {
-          this.recursiveCheckboxCheck(subLeaf);
+            this.selectedLeafList.push(leaf);
         }
-      }
+        else
+        {
+            let leafIndex = this.selectedLeafList.indexOf(leaf);
+
+            this.selectedLeafList.splice(leafIndex, 1);
+        }
+
+        if(leaf.subLeafList)
+        {
+            for(let subLeaf of leaf.subLeafList)
+            {
+                this.recursiveAddLeafToList(subLeaf);
+            }
+        }
     }
-  }
+
+    recursiveCheckboxCheck(leaf:PlentyLeaf)
+    {
+        if(leaf.subLeafList)
+        {
+            for(let subLeaf of leaf.subLeafList)
+            {
+                subLeaf.checkboxChecked = leaf.checkboxChecked;
+
+                if(subLeaf.subLeafList)
+                {
+                    this.recursiveCheckboxCheck(subLeaf);
+                }
+            }
+        }
+    }
 }

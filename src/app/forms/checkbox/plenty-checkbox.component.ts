@@ -9,7 +9,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 
-export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
+export const CHECKBOX_CONTROL_VALUE_ACCESSOR:any = {
     provide:     NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => PlentyCheckbox),
     multi:       true
@@ -17,26 +17,26 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
 
 @Component({
                selector:    'plenty-checkbox',
-               templateUrl: './plenty-checkbox.component.html',
-               styleUrls:   ['./plenty-checkbox.component.css'],
+               templateUrl: 'plenty-checkbox.component.html',
+               styleUrls:   ['plenty-checkbox.component.css'],
                providers:   [CHECKBOX_CONTROL_VALUE_ACCESSOR]
            })
 
 export class PlentyCheckbox implements ControlValueAccessor
 {
-    @Input() isDisabled: boolean;
-    @Input() caption: string;
+    @Input() isDisabled:boolean;
+    @Input() caption:string;
     //The internal data model
-    private innerValue: boolean = false;
+    private innerValue:boolean = false;
     private _isIndeterminate = false;
 
     //Placeholders for the callbacks which are later providesd
     //by the Control Value Accessor
-    private onTouchedCallback: () => void = () =>
+    private onTouchedCallback:() => void = () =>
     {
     };
 
-    private onChangeCallback: (_: any) => void = (_) =>
+    private onChangeCallback:(_:any) => void = (_) =>
     {
     };
 
@@ -46,13 +46,13 @@ export class PlentyCheckbox implements ControlValueAccessor
 
     //get accessor
     @Input()
-    public get value(): boolean
+    public get value():boolean
     {
         return this.innerValue;
     };
 
     //set accessor including call the onchange callback
-    public set value(v: boolean)
+    public set value(v:boolean)
     {
         this.isIndeterminate = false;
 
@@ -64,7 +64,7 @@ export class PlentyCheckbox implements ControlValueAccessor
     }
 
     //From ControlValueAccessor interface
-    writeValue(value: boolean)
+    writeValue(value:boolean)
     {
         if(value !== this.innerValue)
         {
@@ -73,23 +73,23 @@ export class PlentyCheckbox implements ControlValueAccessor
     }
 
     //From ControlValueAccessor interface
-    registerOnChange(fn: any)
+    registerOnChange(fn:any)
     {
         this.onChangeCallback = fn;
     }
 
     //From ControlValueAccessor interface
-    registerOnTouched(fn: any)
+    registerOnTouched(fn:any)
     {
         this.onTouchedCallback = fn;
     }
 
-    public get isIndeterminate(): boolean
+    public get isIndeterminate():boolean
     {
         return this._isIndeterminate;
     }
 
-    public set isIndeterminate(value: boolean)
+    public set isIndeterminate(value:boolean)
     {
         //TODO is this correct?
         this.innerValue = false;

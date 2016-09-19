@@ -7,8 +7,8 @@ import {
 
 @Component({
                selector:    'plenty-button',
-               templateUrl: './plenty-button.component.html',
-               styleUrls:   ['./plenty-button.component.css']
+               templateUrl: 'plenty-button.component.html',
+               styleUrls:   ['plenty-button.component.css']
            })
 
 export class PlentyButton
