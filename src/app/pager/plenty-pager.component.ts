@@ -15,7 +15,7 @@ import { PlentySelectBoxValue } from '../forms/select-box/value/plenty-select-bo
              templateUrl: 'plenty-pager.component.html',
              styleUrls:   ['plenty-pager.component.css']
            })
-export class PlentyPagerComponent implements OnInit
+export class PlentyPager implements OnInit
 {
   @ViewChild(PlentyNumberInput) currentPageInput:PlentyNumberInput;
 

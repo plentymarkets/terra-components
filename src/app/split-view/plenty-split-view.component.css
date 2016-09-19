@@ -1,0 +1,21 @@
+.side-scroller {
+    position: relative;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+.side-scroller > * {
+    display: inline-block;
+}
+
+.divider {
+    width: 5px;
+    background-color: grey;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+}
+
+.divider + * {
+    margin-left: 10px;
+}

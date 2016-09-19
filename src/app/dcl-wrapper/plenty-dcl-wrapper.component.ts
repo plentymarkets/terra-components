@@ -5,8 +5,7 @@ import {
     Input,
     ComponentRef,
     ComponentFactoryResolver,
-    Compiler,
-    ComponentFactory
+    Compiler
 } from '@angular/core';
 
 @Component({
@@ -18,9 +17,12 @@ export class PlentyDclWrapper
 {
     @ViewChild('target', {read: ViewContainerRef}) target;
     @Input() type;
+    @Input() routeData;
+    @Input() identifier;
 
-    private _cmpRef: ComponentRef<Component>;
+    private _cmpRef: ComponentRef<any>;
     private _isViewInitialized: boolean = false;
+    private factory;
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver,
                 private compiler: Compiler)
@@ -41,11 +43,16 @@ export class PlentyDclWrapper
             this._cmpRef.destroy();
         }
 
-        let factory: ComponentFactory<Component> = this.componentFactoryResolver.resolveComponentFactory(this.type);
-        this._cmpRef = this.target.createComponent(factory);
+        this.factory = this.componentFactoryResolver.resolveComponentFactory(this.type);
+        this._cmpRef = this.target.createComponent(this.factory);
         // to access the created instance use
         // this.compRef.instance.someProperty = 'someValue';
         // this.compRef.instance.someOutput.subscribe(val => doSomething());
+
+        if(this._cmpRef.instance.initIframe)
+        {
+            this._cmpRef.instance.initIframe(this.routeData);
+        }
     }
 
     ngOnChanges()

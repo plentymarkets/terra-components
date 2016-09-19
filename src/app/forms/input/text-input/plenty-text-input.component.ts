@@ -3,7 +3,7 @@ import {
     Input,
     forwardRef
 } from '@angular/core';
-import { PlentyInputComponent } from '../plenty-input.component';
+import { PlentyInput } from '../plenty-input.component';
 import { PlentyRegex } from '../../../regex/plenty-regex';
 import {
     NG_VALUE_ACCESSOR
@@ -21,7 +21,7 @@ export const TEXT_INPUT_CONTROL_VALUE_ACCESSOR: any = {
                styleUrls:   ['./plenty-text-input.component.css'],
                providers:   [TEXT_INPUT_CONTROL_VALUE_ACCESSOR]
            })
-export class PlentyTextInput extends PlentyInputComponent
+export class PlentyTextInput extends PlentyInput
 {
     @Input() name: string;
     @Input() isRequired: boolean;
