@@ -6,7 +6,7 @@ import { PlentyAlert } from "./plenty-alert.component";
  */
 @Component({
                selector:    'plenty-status',
-               templateUrl: 'plenty-alert-panel.html'
+               templateUrl: 'plenty-alert-panel.component.html'
            })
 export class PlentyAlertPanel
 {
