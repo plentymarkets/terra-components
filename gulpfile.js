@@ -2,8 +2,7 @@ var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
 var merge = require('merge2');
 var tsc = require('gulp-typescript');
-var tsProject = tsc.createProject('./src/tsconfig.json', {declarationFiles: true,
-                                                          typescript: require('typescript')});
+var tsProject = tsc.createProject('./src/tsconfig.json', {typescript: require('typescript')});
 var config = require('./gulp.config.js')();
 var fs = require('fs');
 var semver = require('semver');
@@ -124,7 +123,7 @@ gulp.task('compile-ts', ['gitPush'], function ()
   ];
 
   var tsResult =
-    gulp.src('./src/**/*.ts')
+    gulp.src(sourceTsFiles)
       .pipe(sourcemaps.init())
       .pipe(tsc(tsProject));
 
