@@ -12,9 +12,21 @@ import {
 } from './event/plenty-loading-bar-event';
 
 @Component({
-               selector:    'plenty-loading-bar',
-               templateUrl: 'plenty-loading-bar.component.html',
-               styleUrls:   ['plenty-loading-bar.component.css']
+               selector:  'plenty-loading-bar',
+               // templateUrl: 'plenty-loading-bar.component.html',
+               styleUrls: ['plenty-loading-bar.component.css'],
+               template:  `<div class="loading-bar">
+                              <div class="loading-bar-progress"
+                                   [style.width]="progress"
+                                   [style.backgroundColor]="color"
+                                   [style.color]="color"
+                                   [style.height]="height"
+                                   [style.opacity]="show ? '1' : '0'"
+                                   [style.-webkit-transition]="'all ' + animationTime + 's ease-in-out'"
+                                   [style.-moz-transition]="'all ' + animationTime + 's ease-in-out'"
+                                   [style.-o-transition]="'all ' + animationTime + 's ease-in-out'"
+                                   [style.transition]="'all ' + animationTime + 's ease-in-out'"></div>
+                            </div>`
            })
 export class PlentyLoadingBar implements OnInit
 {

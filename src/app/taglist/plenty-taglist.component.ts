@@ -6,13 +6,16 @@ import {
 import { PlentyTag } from '../tag/plenty-tag.component';
 
 @Component({
-               selector:    'plenty-taglist',
-               templateUrl: 'plenty-taglist.component.html',
-               styleUrls:   ['plenty-taglist.component.css']
+               selector:  'plenty-taglist',
+               // templateUrl: 'plenty-taglist.component.html',
+               styleUrls: ['plenty-taglist.component.css'],
+               template:  `<span class="tag">
+                                {{badge}}
+                            </span>`
            })
 export class PlentyTaglist implements OnInit
 {
-    @Input() tagList: Array<PlentyTag>;
+    @Input() tagList:Array<PlentyTag>;
 
     constructor()
     {

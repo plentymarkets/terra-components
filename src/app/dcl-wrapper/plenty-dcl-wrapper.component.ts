@@ -9,9 +9,10 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector:    'dcl-wrapper',
-               templateUrl: 'plenty-dcl-wrapper.component.html',
-               styleUrls:   ['plenty-dcl-wrapper.component.css']
+               selector:  'dcl-wrapper',
+               // templateUrl: 'plenty-dcl-wrapper.component.html',
+               styleUrls: ['plenty-dcl-wrapper.component.css'],
+               template:  `<div #target></div>`
            })
 export class PlentyDclWrapper
 {

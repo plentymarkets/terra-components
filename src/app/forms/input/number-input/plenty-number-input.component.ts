@@ -16,10 +16,19 @@ export const NUMBER_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 };
 
 @Component({
-               selector:    'plenty-number-input',
-               templateUrl: 'plenty-number-input.component.html',
-               styleUrls:   ['plenty-number-input.component.css'],
-               providers:   [NUMBER_INPUT_CONTROL_VALUE_ACCESSOR]
+               selector:  'plenty-number-input',
+               // templateUrl: 'plenty-number-input.component.html',
+               styleUrls: ['plenty-number-input.component.css'],
+               providers: [NUMBER_INPUT_CONTROL_VALUE_ACCESSOR],
+               template:  `<div class="input-unit-v1"
+                                 tooltipPlacement="{{tooltipPlacement}}"
+                                 tooltip="{{tooltipText}}"
+                                 tooltipEnable="{{tooltipText}}"
+                                 [ngClass]="{'error': !isValid, 'disabled': isDisabled}">
+                              <label htmlFor="{{name}}">{{name}} <span *ngIf="isRequired">*</span></label>
+                              <i *ngIf="name">?</i>
+                              <input id="{{name}}" [type]="type" [(ngModel)]="value" name="{{name}}" (blur)="onBlur()" autocomplete="off" [disabled]="isDisabled" pattern="{{regex}}" step="1" min="{{minValue}}" max="{{maxValue}}">
+                            </div>`
            })
 export class PlentyNumberInput extends PlentyInput
 {
