@@ -18,7 +18,8 @@ export const DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 @Component({
                selector:  'plenty-double-input',
                // templateUrl: 'plenty-double-input.component.html',
-               styleUrls: ['plenty-double-input.component.css'],
+               // styleUrls: ['plenty-double-input.component.css'],
+               styles:    [``],
                providers: [DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR],
                template:  `<div class="input-unit-v1"
                                  tooltipPlacement="{{tooltipPlacement}}"

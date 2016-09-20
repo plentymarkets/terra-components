@@ -7,10 +7,11 @@ import { PlentyTaglist } from '../taglist/plenty-taglist.component';
 import { PlentyButton } from '../button/plenty-button.component';
 
 @Component({
-               selector:  'plenty-infobox',
+               selector: 'plenty-infobox',
                // templateUrl: 'plenty-infobox.component.html',
-               styleUrls: ['plenty-infobox.component.css'],
-               template:  `<div class="col-xs-12 infobox">
+               // styleUrls: ['plenty-infobox.component.css'],
+               styles:   [``],
+               template: `<div class="col-xs-12 infobox">
                               <div class="infobox-inner">
                                 <div class="col-xs-10 infobox-text">
                                   <ng-content></ng-content>

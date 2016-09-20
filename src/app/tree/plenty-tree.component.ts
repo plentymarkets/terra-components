@@ -7,6 +7,7 @@ import { PlentyLeaf } from './leaf/plenty-leaf.component';
 
 @Component({
                selector: 'plenty-tree',
+               styles:   [``],
                template: `<ul>
                               <template ngFor let-leaf [ngForOf]="leafList">
                                 <li class="node leaf" [ngClass]="{'collapsed': !leaf.isOpen, 'active': leaf.isActive}">

@@ -12,10 +12,11 @@ import {
 } from './event/plenty-loading-bar-event';
 
 @Component({
-               selector:  'plenty-loading-bar',
+               selector: 'plenty-loading-bar',
                // templateUrl: 'plenty-loading-bar.component.html',
-               styleUrls: ['plenty-loading-bar.component.css'],
-               template:  `<div class="loading-bar">
+               // styleUrls: ['plenty-loading-bar.component.css'],
+               styles:   [``],
+               template: `<div class="loading-bar">
                               <div class="loading-bar-progress"
                                    [style.width]="progress"
                                    [style.backgroundColor]="color"

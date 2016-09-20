@@ -9,10 +9,44 @@ import {
 import { PlentySelectBoxValue } from './value/plenty-select-box-value';
 
 @Component({
-               selector:  'plenty-select-box',
+               selector: 'plenty-select-box',
                // templateUrl: 'plenty-select-box.component.html',
-               styleUrls: ['plenty-select-box.component.css'],
-               template:  `<div class="list-box-wrapper"
+               // styleUrls: ['plenty-select-box.component.css'],
+               styles:   [`.input-unit-v1.list-box-wrapper .list-box
+                            {
+                                border: none;
+                                padding: 1.3rem 1rem .3rem 1rem;
+                            }
+                            
+                            .input-unit-v1.list-box-wrapper
+                            {
+                                overflow: inherit;
+                            }
+                            
+                            .input-unit-v1.list-box-wrapper .list-box-dropdown
+                            {
+                                width: auto;
+                                top: inherit;
+                                left: -1px;
+                                right: -1px;
+                            }
+                            
+                            .list-box-wrapper.disabled.open .list-box-dropdown
+                            {
+                                display: none !important;
+                            }
+                            
+                            .list-box-wrapper.disabled .list-box
+                            {
+                                background-color: #f2f2f2;
+                                cursor: not-allowed;
+                            }
+                            
+                            .list-box-wrapper.disabled:not(.input-unit-v1) .list-box
+                            {
+                                opacity: .65;
+                            }`],
+               template: `<div class="list-box-wrapper"
                                  tooltipPlacement="{{tooltipPlacement}}"
                                  tooltip="{{tooltipText}}"
                                  tooltipEnable="{{tooltipText}}"
@@ -41,7 +75,7 @@ import { PlentySelectBoxValue } from './value/plenty-select-box-value';
                                 </span>
                               </div>
                             </div>`,
-               host:      {
+               host:     {
                    '(document:click)': 'clickedOutside($event)',
                }
            })

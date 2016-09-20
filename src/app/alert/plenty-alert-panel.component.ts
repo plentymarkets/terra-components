@@ -7,6 +7,7 @@ import { PlentyAlert } from "./plenty-alert.component";
 @Component({
                selector: 'plenty-status',
                // templateUrl: 'plenty-alert-panel.component.html'
+               styles:   [``],
                template: `<alert *ngFor="let alert of alerts; let i = index" 
                                   [type]="alert.type" 
                                   (close)="closeAlert(i)" 

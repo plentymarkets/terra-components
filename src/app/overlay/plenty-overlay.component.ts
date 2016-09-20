@@ -14,10 +14,11 @@ import {
  * @author mfrank
  */
 @Component({
-               selector:  'plenty-overlay',
+               selector: 'plenty-overlay',
                // templateUrl: 'plenty-overlay.component.html',
-               styleUrls: ['plenty-overlay.component.css'],
-               template:  `<div bsModal #overlay="bs-modal" class="modal fade" tabindex="-1" role="dialog" >
+               // styleUrls: ['plenty-overlay.component.css'],
+               styles:   [``],
+               template: `<div bsModal #overlay="bs-modal" class="modal fade" tabindex="-1" role="dialog" >
                               <div class="modal-dialog modal-lg" [ngClass]="{'modal-lg': isLarge, 'modal-sm': isSmall}">
                                 <div class="modal-content">
                                   <div class="modal-header" *ngIf="isCloseable && overlayTitle">

@@ -18,7 +18,8 @@ export const NUMBER_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 @Component({
                selector:  'plenty-number-input',
                // templateUrl: 'plenty-number-input.component.html',
-               styleUrls: ['plenty-number-input.component.css'],
+               // styleUrls: ['plenty-number-input.component.css'],
+               styles:    [``],
                providers: [NUMBER_INPUT_CONTROL_VALUE_ACCESSOR],
                template:  `<div class="input-unit-v1"
                                  tooltipPlacement="{{tooltipPlacement}}"

@@ -8,10 +8,11 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector:  'plenty-filter',
+               selector: 'plenty-filter',
                // templateUrl: 'plenty-filter.component.html',
-               styleUrls: ['plenty-filter.component.css'],
-               template:  `<div style="border: 1px solid black; width: 200px;">
+               // styleUrls: ['plenty-filter.component.css'],
+               styles:   [``],
+               template: `<div style="border: 1px solid black; width: 200px;">
                               <plenty-base-toolbar>
                                 <div class="btn-group" role="group">
                                   <plenty-button caption="{{searchLabel}}" (click)="searchBtnClicked()"></plenty-button>

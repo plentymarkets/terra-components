@@ -11,10 +11,11 @@ import { PlentyNumberInput } from '../forms/input/number-input/plenty-number-inp
 import { PlentySelectBoxValue } from '../forms/select-box/value/plenty-select-box-value';
 
 @Component({
-               selector:  'plenty-pager',
+               selector: 'plenty-pager',
                // templateUrl: 'plenty-pager.component.html',
-               styleUrls: ['plenty-pager.component.css'],
-               template:  `<div class="pager">
+               // styleUrls: ['plenty-pager.component.css'],
+               styles:   [``],
+               template: `<div class="pager">
                               <plenty-base-toolbar>
                                 <div class="btn-group" role="group">
                                   <plenty-button icon="icon-control_start icon_dist_top" [isDisabled]="pagingData.currentPage == 1" (clicked)="onFirstPage()"></plenty-button>

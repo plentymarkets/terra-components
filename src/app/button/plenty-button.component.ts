@@ -8,7 +8,8 @@ import {
 @Component({
                selector:  'plenty-button',
                // templateUrl: 'plenty-button.component.html',
-               styleUrls: ['plenty-button.component.css'],
+               // styleUrls: ['plenty-button.component.css'],
+               styles:    [``],
                template:  `<div class="btn-handler"
                                  tooltipPlacement="{{tooltipPlacement}}"
                                  tooltip="{{tooltipText}}"

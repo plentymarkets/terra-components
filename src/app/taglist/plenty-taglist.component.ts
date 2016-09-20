@@ -6,12 +6,15 @@ import {
 import { PlentyTag } from '../tag/plenty-tag.component';
 
 @Component({
-               selector:  'plenty-taglist',
+               selector: 'plenty-taglist',
                // templateUrl: 'plenty-taglist.component.html',
-               styleUrls: ['plenty-taglist.component.css'],
-               template:  `<span class="tag">
-                                {{badge}}
-                            </span>`
+               // styleUrls: ['plenty-taglist.component.css'],
+               styles:   [``],
+               template: `<div class="col-xs-12 taglist">
+                              <template ngFor let-tag [ngForOf]="tagList">
+                                <plenty-tag [badge]="tag.badge"></plenty-tag>
+                              </template>
+                            </div>`
            })
 export class PlentyTaglist implements OnInit
 {

@@ -18,7 +18,8 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR:any = {
 @Component({
                selector:  'plenty-checkbox',
                // templateUrl: 'plenty-checkbox.component.html',
-               styleUrls: ['plenty-checkbox.component.css'],
+               // styleUrls: ['plenty-checkbox.component.css'],
+               styles:    [``],
                providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR],
                template:  `<label class="input-control checkbox small-check">
                               <input type="checkbox" [(ngModel)]="value" [disabled]="isDisabled" [indeterminate]="isIndeterminate">

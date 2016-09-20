@@ -5,10 +5,11 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector:  'plenty-indicator',
+               selector: 'plenty-indicator',
                // templateUrl: 'plenty-indicator.component.html',
-               styleUrls: ['plenty-indicator.component.css'],
-               template:  `<span class="label {{type}}">{{label}}</span>`
+               // styleUrls: ['plenty-indicator.component.css'],
+               styles:   [``],
+               template: `<span class="label {{type}}">{{label}}</span>`
            })
 export class PlentyIndicator implements OnInit
 {

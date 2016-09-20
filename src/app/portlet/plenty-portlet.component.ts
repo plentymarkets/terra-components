@@ -5,10 +5,11 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector:  'plenty-portlet',
+               selector: 'plenty-portlet',
                // templateUrl: 'plenty-portlet.component.html',
-               styleUrls: ['plenty-portlet.component.css'],
-               template:  `<div class="portlet">
+               // styleUrls: ['plenty-portlet.component.css'],
+               styles:   [``],
+               template: `<div class="portlet">
                               <div class="portlet_head">
                                 {{portletHeader}}
                               </div>
