@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var del = require('del');
 var sourcemaps = require('gulp-sourcemaps');
 var merge = require('merge2');
 var tsc = require('gulp-typescript');
@@ -83,7 +84,7 @@ gulp.task('changeVersion', ['gitFetch'], function ()
   console.log('-------------------------');
   console.log('------- WRITING PACKAGE.JSON -------');
 
-  fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
+  // fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
 
   console.log('------- PACKAGE.JSON CHANGED -------');
 });
