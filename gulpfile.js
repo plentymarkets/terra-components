@@ -84,7 +84,7 @@ gulp.task('changeVersion', ['gitFetch'], function ()
   console.log('-------------------------');
   console.log('------- WRITING PACKAGE.JSON -------');
 
-  // fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
+  fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
 
   console.log('------- PACKAGE.JSON CHANGED -------');
 });
@@ -163,4 +163,6 @@ gulp.task('post-compile', ['copy-files'], function ()
 });
 
 //publish to npm
-gulp.task('publish', ['post-compile']);
+gulp.task('publish', ['post-compile'], shell.task([
+  'npm publish dist'
+]));
