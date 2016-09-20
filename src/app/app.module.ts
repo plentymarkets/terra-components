@@ -41,6 +41,7 @@ export { PlentyTree } from './tree/plenty-tree.component';
 export { PlentyBaseTree } from './tree/base/plenty-base-tree.component';
 export { PlentyCheckboxTree } from './tree/checkbox-tree/plenty-checkbox-tree.component';
 export { PlentyLeaf } from './tree/leaf/plenty-leaf.component';
+export { PlentyDclWrapper } from './dcl-wrapper/plenty-dcl-wrapper.component';
 
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -139,6 +140,7 @@ import { PlentyAlert } from './alert/plenty-alert.component';
                   PlentyFilter
                   ],
               exports: [
+                  PlentyDclWrapper,
                   PlentyTextInput,
                   PlentyNumberInput,
                   PlentyButton,
