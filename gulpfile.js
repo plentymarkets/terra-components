@@ -99,7 +99,7 @@ gulp.task('gitCommit', ['changeVersion'], function ()
 });
 
 //push version changes
-gulp.task('gitPush', function ()
+gulp.task('gitPush', ['clean-dist'], function ()
 {
   console.log('------- PUSHING -------');
 
@@ -136,14 +136,30 @@ gulp.task('compile-ts', ['gitPush'], function ()
   ]);
 });
 
+gulp.task('copy-files', ['compile-ts'], function ()
+{
+  gulp.src(config.allCSS)
+      .pipe(gulp.dest(config.tsOutputPath));
+
+  gulp.src(config.allHTML)
+      .pipe(gulp.dest(config.tsOutputPath));
+
+  gulp
+      .src(['package.json', 'README.md'])
+      .pipe(gulp.dest(config.tsOutputPath));
+});
+
+gulp.task('clean-dist', function ()
+{
+  return del(config.tsOutputPath);
+});
+
 //console log after typescript compile
 //maybe add more tasks after this one
-gulp.task('post-compile', ['compile-ts'], function ()
+gulp.task('post-compile', ['copy-files'], function ()
 {
   console.log('------- TYPESCRIPT FILES COMPILED -------');
 });
 
 //publish to npm
-gulp.task('publish', ['post-compile'], shell.task([
-  'npm publish'
-]));
+gulp.task('publish', ['post-compile']);
