@@ -44,7 +44,7 @@ export { PlentyLeaf } from './tree/leaf/plenty-leaf.component';
 
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import {
     FormsModule,
     ReactiveFormsModule
@@ -173,10 +173,21 @@ import { PlentyAlert } from './alert/plenty-alert.component';
                   TooltipModule,
                   AlertModule
               ],
-
-              providers:    [PlentyLoadingBarService, PlentyDataTableContextMenuService, BaseService, PlentyAlert],
-              // bootstrap:    [AppComponent],
           })
 export class AppModule
 {
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: AppModule,
+            providers: [PlentyLoadingBarService, PlentyDataTableContextMenuService, BaseService, PlentyAlert]
+        };
+    }
+
+    static forChild(): ModuleWithProviders {
+        return {
+            ngModule: AppModule,
+            providers: [PlentyLoadingBarService, PlentyDataTableContextMenuService, BaseService, PlentyAlert]
+        };
+    }
+
 }
