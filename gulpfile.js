@@ -3,7 +3,7 @@ var del = require('del');
 var sourcemaps = require('gulp-sourcemaps');
 var merge = require('merge2');
 var tsc = require('gulp-typescript');
-var tsProject = tsc.createProject('./src/tsconfig.json', {typescript: require('typescript')});
+var tsProject = tsc.createProject('./src/tsconfig.json', {declaration: true, typescript: require('typescript')});
 var config = require('./gulp.config.js')();
 var fs = require('fs');
 var semver = require('semver');
@@ -78,7 +78,7 @@ gulp.task('changeVersion', ['gitFetch'], function ()
   //possible values are: patch, minor, major
   json.version = semver.inc(json.version, 'patch');
 
-  version = json.version;
+  // version = json.version;
 
   console.log('------- VERSION CHANGED -------');
   console.log('-------------------------');
@@ -163,6 +163,4 @@ gulp.task('post-compile', ['copy-files'], function ()
 });
 
 //publish to npm
-gulp.task('publish', ['post-compile'], shell.task([
-  'npm publish dist'
-]));
+gulp.task('publish', ['post-compile']);
