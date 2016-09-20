@@ -6,8 +6,8 @@ import {
 
 @Component({
                selector:  'app-root',
-               templateUrl: 'app.component.html',
-               // template:  ``,
+               // templateUrl: 'app.component.html',
+               template:  ``,
                styles:    [``],
                // styleUrls: ['app.component.css']
            })
