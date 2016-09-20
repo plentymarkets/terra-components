@@ -1,3 +1,4 @@
+import { PlentyLoadingBarService } from './loading-bar/service/plenty-loading-bar.service';
 export { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
 export { PlentyAlert } from './alert/plenty-alert.component';
 export { PlentyButtonInterface } from './button/interface/plenty-button-interface';
@@ -80,6 +81,9 @@ import { PlentyDoubleInput } from './forms/input/double-input/plenty-double-inpu
 import { PlentyPortlet } from './portlet/plenty-portlet.component';
 import { PlentySplitViewComponent } from './split-view/plenty-split-view.component';
 import { PlentyFilter } from './filter/plenty-filter.component';
+import { PlentyDataTableContextMenuService } from './table/data-table/context-menu/service/plenty-data-table-context-menu.service';
+import { BaseService } from './service/base.service';
+import { PlentyAlert } from './alert/plenty-alert.component';
 
 
 @NgModule({
@@ -169,7 +173,7 @@ import { PlentyFilter } from './filter/plenty-filter.component';
                   AlertModule
               ],
 
-              providers:    [],
+              providers:    [PlentyLoadingBarService, PlentyDataTableContextMenuService, BaseService, PlentyAlert],
               // bootstrap:    [AppComponent],
           })
 export class AppModule
