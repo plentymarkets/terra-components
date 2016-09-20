@@ -5,7 +5,9 @@ import {
     Input,
     ComponentRef,
     ComponentFactoryResolver,
-    ChangeDetectorRef
+    ChangeDetectorRef,
+    AfterViewInit,
+    OnDestroy
 } from '@angular/core';
 
 @Component({
@@ -15,7 +17,7 @@ import {
                styles:   [``],
                template: `<div #target></div>`
            })
-export class PlentyDclWrapper
+export class PlentyDclWrapper implements AfterViewInit, OnDestroy
 {
     @ViewChild('target', {read: ViewContainerRef}) target;
     @Input() type;
