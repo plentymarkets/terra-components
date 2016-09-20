@@ -57,7 +57,7 @@ gulp.task('gitPull', ['gitCommit'], function()
     }
     else
     {
-      // gulp.run('publish');
+      gulp.run('publish');
     }
   });
 
