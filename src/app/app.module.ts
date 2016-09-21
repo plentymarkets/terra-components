@@ -58,7 +58,6 @@ import {
     AlertModule,
     ModalModule
 } from 'ng2-bootstrap/ng2-bootstrap';
-import { NodeModule } from '@types/node';
 
 import { AppComponent } from './app.component';
 import { PlentyTextInput } from './forms/input/text-input/plenty-text-input.component';
@@ -167,7 +166,6 @@ import { PlentyAlert } from './alert/plenty-alert.component';
               ],
               imports:         [
                   BrowserModule,
-                  NodeModule,
                   FormsModule,
                   ReactiveFormsModule,
                   ModalModule,
