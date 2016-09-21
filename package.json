@@ -1,6 +1,6 @@
 {
 	"name": "@plentymarkets/terra-components",
-	"version": "0.0.39",
+	"version": "0.0.40",
 	"homepage": "https://github.com/plentymarkets/terra-components#readme",
 	"author": "plentymarkets",
 	"description": "plentymarkets terra components",
@@ -63,6 +63,7 @@
 		"node-sass": "^3.10.0",
 		"protractor": "4.0.5",
 		"raw-loader": "^0.5.1",
+		"require": "^2.4.20",
 		"run-sequence": "^1.2.2",
 		"sass-loader": "^4.0.2",
 		"style-loader": "^0.13.1",
