@@ -142,6 +142,9 @@ gulp.task('copy-files', ['compile-ts'], function ()
   gulp.src(config.allCSS)
       .pipe(gulp.dest(config.tsOutputPath));
 
+  gulp.src(config.allSCSS)
+      .pipe(gulp.dest(config.tsOutputPath));
+
   gulp.src(config.allHTML)
       .pipe(gulp.dest(config.tsOutputPath));
 

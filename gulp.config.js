@@ -4,6 +4,7 @@ module.exports = function () {
 
     allTs: './src/**/*.ts',
     allCSS: './src/**/*.css',
+    allSCSS: './src/**/*.scss',
     allHTML: './src/**/*.html',
     tsOutputPath: './dist/',
     excluded: '!./src/system-config.ts'
