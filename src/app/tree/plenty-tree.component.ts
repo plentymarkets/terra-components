@@ -1,6 +1,7 @@
 import {
     Component,
-    Input
+    Input,
+    ViewEncapsulation
 } from '@angular/core';
 import { PlentyBaseTree } from "./base/plenty-base-tree.component";
 import { PlentyLeaf } from './leaf/plenty-leaf.component';
@@ -8,6 +9,7 @@ import { PlentyLeaf } from './leaf/plenty-leaf.component';
 @Component({
                selector: 'plenty-tree',
                styles:   [require('./plenty-tree.component.scss')],
+               encapsulation: ViewEncapsulation.None,
                template: require('./plenty-tree.component.html')
            })
 export class PlentyTree extends PlentyBaseTree
