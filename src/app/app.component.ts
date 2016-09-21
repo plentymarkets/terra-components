@@ -5,11 +5,9 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector:  'app-root',
-               // templateUrl: 'app.component.html',
-               template:  ``,
-               styles:    [``],
-               // styleUrls: ['app.component.css']
+               selector: 'app-root',
+               template: require('./app.component.html'),
+               styles:   [require('./app.component.scss')],
            })
 
 export class AppComponent implements OnInit

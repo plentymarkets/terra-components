@@ -9,23 +9,8 @@ import {
 
 @Component({
                selector: 'plenty-filter',
-               // templateUrl: 'plenty-filter.component.html',
-               // styleUrls: ['plenty-filter.component.css'],
-               styles:   [``],
-               template: `<div style="border: 1px solid black; width: 200px;">
-                              <plenty-base-toolbar>
-                                <div class="btn-group" role="group">
-                                  <plenty-button caption="{{searchLabel}}" (click)="searchBtnClicked()"></plenty-button>
-                                  <plenty-button caption="{{resetLabel}}" (click)="resetBtnClicked()"></plenty-button>
-                                </div>
-                              </plenty-base-toolbar>
-                            
-                              <div class="input-group-v">
-                                <div *ngFor="let item of inputList" #inputList>
-                                  <dcl-wrapper [type]="item.template" [data]="item.data"></dcl-wrapper>
-                                </div>
-                              </div>
-                            </div>`
+               styles:   [require('./plenty-filter.component.scss')],
+               template: require('./plenty-filter.component.html')
            })
 export class PlentyFilter implements OnInit
 {

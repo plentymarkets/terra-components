@@ -10,71 +10,8 @@ import { PlentySelectBoxValue } from './value/plenty-select-box-value';
 
 @Component({
                selector: 'plenty-select-box',
-               // templateUrl: 'plenty-select-box.component.html',
-               // styleUrls: ['plenty-select-box.component.css'],
-               styles:   [`.input-unit-v1.list-box-wrapper .list-box
-                            {
-                                border: none;
-                                padding: 1.3rem 1rem .3rem 1rem;
-                            }
-                            
-                            .input-unit-v1.list-box-wrapper
-                            {
-                                overflow: inherit;
-                            }
-                            
-                            .input-unit-v1.list-box-wrapper .list-box-dropdown
-                            {
-                                width: auto;
-                                top: inherit;
-                                left: -1px;
-                                right: -1px;
-                            }
-                            
-                            .list-box-wrapper.disabled.open .list-box-dropdown
-                            {
-                                display: none !important;
-                            }
-                            
-                            .list-box-wrapper.disabled .list-box
-                            {
-                                background-color: #f2f2f2;
-                                cursor: not-allowed;
-                            }
-                            
-                            .list-box-wrapper.disabled:not(.input-unit-v1) .list-box
-                            {
-                                opacity: .65;
-                            }`],
-               template: `<div class="list-box-wrapper"
-                                 tooltipPlacement="{{tooltipPlacement}}"
-                                 tooltip="{{tooltipText}}"
-                                 tooltipEnable="{{tooltipText}}"
-                                 [ngClass]="{
-                                              'input-unit-v1': hasLabel,
-                                              'error': !isValid,
-                                              'disabled': isDisabled,
-                                              'open': toggleOpen
-                                            }"
-                                 (click)="toggleOpen=!toggleOpen">
-                            
-                              <label *ngIf="hasLabel" htmlFor="{{name}}">{{name}}
-                                <span *ngIf="isRequired">*</span>
-                              </label>
-                              <i *ngIf="name">?</i>
-                            
-                            
-                              <div class="list-box">
-                                {{selectedValue.caption}}
-                              </div>
-                            
-                              <div class="list-box-dropdown">
-                                <span *ngFor="let value of listBoxValues" (click)="select(value)" [ngClass]="{active: value.active}">
-                                  <span class="{{value.icon}}" *ngIf="value.icon"></span>
-                                  {{value.caption}}
-                                </span>
-                              </div>
-                            </div>`,
+               styles:   [require('./plenty-select-box.component.scss')],
+               template: require('./plenty-select-box.component.html'),
                host:     {
                    '(document:click)': 'clickedOutside($event)',
                }

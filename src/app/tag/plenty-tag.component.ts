@@ -6,12 +6,8 @@ import {
 
 @Component({
                selector: 'plenty-tag',
-               // templateUrl: 'plenty-tag.component.html',
-               // styleUrls: ['plenty-tag.component.css'],
-               styles:   [``],
-               template: `<span class="tag">
-                                {{badge}}
-                            </span>`
+               styles:   [require('./plenty-tag.component.scss')],
+               template: require('./plenty-tag.component.html')
            })
 export class PlentyTag implements OnInit
 {

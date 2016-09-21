@@ -5,16 +5,9 @@ import { PlentyAlert } from "./plenty-alert.component";
  * @author mkunze
  */
 @Component({
-               selector: 'plenty-status',
-               // templateUrl: 'plenty-alert-panel.component.html'
-               styles:   [``],
-               template: `<alert *ngFor="let alert of alerts; let i = index" 
-                                  [type]="alert.type" 
-                                  (close)="closeAlert(i)" 
-                                  [dismissible]="alert.closable" 
-                                  [dismissOnTimeout]="alert.dismissOnTimeout">
-                            {{ alert.msg }}
-                          </alert>`
+               selector: 'plenty-alert-panel',
+               styles:   [require('./plenty-alert-panel.component.scss')],
+               template: require('./plenty-alert-panel.component.html')
            })
 export class PlentyAlertPanel
 {

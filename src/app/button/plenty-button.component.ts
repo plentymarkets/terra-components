@@ -7,31 +7,8 @@ import {
 
 @Component({
                selector:  'plenty-button',
-               // templateUrl: 'plenty-button.component.html',
-               // styleUrls: ['plenty-button.component.css'],
-               styles:    [``],
-               template:  `<div class="btn-handler"
-                                 tooltipPlacement="{{tooltipPlacement}}"
-                                 tooltip="{{tooltipText}}"
-                                 tooltipEnable="{{tooltipText}}"
-                                 [ngClass]="{'pull-xs-right': isAlignRight,
-                                             'disabled': isDisabled}">
-                              <button class="btn"
-                                      [ngClass]="{'btn-brand-primary' : isPrimary,
-                                                  'btn-brand-secondary' : isSecondary,
-                                                  'btn-sm' : isSmall,
-                                                  'btn-lg' : isLarge}"
-                                      [disabled]="isDisabled"
-                                      [hidden]="isHidden"
-                                      [type]="type"
-                                      (click)="click()">
-                                <!--[tooltipAnimation]="{{tooltipAnimation}}">-->
-                                <span *ngIf="icon" class="icon_dist_top" [ngClass]="icon"></span>
-                            
-                                {{caption}}
-                            
-                              </button>
-                          </div>`
+               styles:    [require('./plenty-button.component.scss')],
+               template:  require('./plenty-button.component.html')
            })
 
 export class PlentyButton

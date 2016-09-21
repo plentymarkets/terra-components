@@ -6,17 +6,8 @@ import {
 
 @Component({
                selector: 'plenty-portlet',
-               // templateUrl: 'plenty-portlet.component.html',
-               // styleUrls: ['plenty-portlet.component.css'],
-               styles:   [``],
-               template: `<div class="portlet">
-                              <div class="portlet_head">
-                                {{portletHeader}}
-                              </div>
-                              <div class="portlet_body">
-                                <ng-content></ng-content>
-                              </div>
-                            </div>`
+               styles:   [require('./plenty-portlet.component.scss')],
+               template: require('./plenty-portlet.component.html')
            })
 
 export class PlentyPortlet

@@ -12,10 +12,8 @@ import {
 
 @Component({
                selector: 'dcl-wrapper',
-               // templateUrl: 'plenty-dcl-wrapper.component.html',
-               // styleUrls: ['plenty-dcl-wrapper.component.css'],
-               styles:   [``],
-               template: `<div #target></div>`
+               styles:   [require('./plenty-dcl-wrapper.component.scss')],
+               template: require('./plenty-dcl-wrapper.component.html')
            })
 export class PlentyDclWrapper implements AfterViewInit, OnDestroy
 {

@@ -17,19 +17,9 @@ export const TEXT_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 
 @Component({
                selector:  'plenty-text-input',
-               // templateUrl: 'plenty-text-input.component.html',
-               // styleUrls: ['plenty-text-input.component.css'],
-               styles:    [``],
+               styles:    [require('./plenty-text-input.component.scss')],
                providers: [TEXT_INPUT_CONTROL_VALUE_ACCESSOR],
-               template:  `<div class="input-unit-v1"
-                                 tooltipPlacement="{{tooltipPlacement}}"
-                                 tooltip="{{tooltipText}}"
-                                 tooltipEnable="{{tooltipText}}"
-                                 [ngClass]="{'error': !isValid, 'disabled': isDisabled}">
-                              <label htmlFor="{{name}}">{{name}} <span *ngIf="isRequired">*</span></label>
-                              <i *ngIf="name">?</i>
-                              <input id="{{name}}" [type]="type" [(ngModel)]="value" name="{{name}}" (blur)="onBlur()" autocomplete="off" [disabled]="isDisabled" pattern="{{regex}}">
-                            </div>`
+               template:  require('./plenty-text-input.component.html')
            })
 export class PlentyTextInput extends PlentyInput
 {
