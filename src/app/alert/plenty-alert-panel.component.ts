@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PlentyAlert } from "./plenty-alert.component";
+import { require } from '@types/node';
 
 /**
  * @author mkunze
