@@ -1,0 +1,51 @@
+@import "../assets/styles/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+@import "../button/plenty-button.component";
+@import "../forms/select-box/plenty-select-box.component";
+@import "../forms/input/plenty-input.component";
+
+.pager {
+  .form-group {
+    margin:5px 5px 0 10px;
+    label,
+    form  {
+      display: inline-block;
+    }
+    span  {
+      display: inline-block;
+      padding: 5px 0;
+      vertical-align: top;
+    }
+    input {
+      width: 2.5rem;
+      position: relative;
+      padding: .37rem;
+
+    }
+    .input-unit-v1 {
+      margin-bottom: 0;
+    }
+  }
+  plenty-select-box,
+  .form-group {
+    float: left;
+  }
+  .pager-text {
+    display:inline-block;
+    float:left;
+    margin:10px 10px 0 0px;
+    position:relative;
+    vertical-align: middle;
+  }
+  .list-box {
+    margin: 2px 0 2px 0;
+  }
+}
+@include media-breakpoint-down(md) {
+  .pager {
+    text-align: left;
+    .btn-group {
+      float: none;
+    }
+  }
+}
