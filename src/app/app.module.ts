@@ -44,20 +44,21 @@ export { PlentyLeaf } from './tree/leaf/plenty-leaf.component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import {
-  NgModule,
-  ModuleWithProviders
+    NgModule,
+    ModuleWithProviders
 } from '@angular/core';
 import {
-  FormsModule,
-  ReactiveFormsModule
+    FormsModule,
+    ReactiveFormsModule
 } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {
-  Ng2BootstrapModule,
-  TooltipModule,
-  AlertModule,
-  ModalModule
+    Ng2BootstrapModule,
+    TooltipModule,
+    AlertModule,
+    ModalModule
 } from 'ng2-bootstrap/ng2-bootstrap';
+import { NodeModule } from '@types/node';
 
 import { AppComponent } from './app.component';
 import { PlentyTextInput } from './forms/input/text-input/plenty-text-input.component';
@@ -88,116 +89,117 @@ import { BaseService } from './service/base.service';
 import { PlentyAlert } from './alert/plenty-alert.component';
 
 @NgModule({
-            declarations:    [
-              AppComponent,
-              PlentyDclWrapper,
-              PlentyTextInput,
-              PlentyNumberInput,
-              PlentyButton,
-              PlentyTree,
-              PlentyCheckboxTree,
-              PlentyCheckbox,
-              PlentySelectBox,
-              PlentyBaseToolbar,
-              PlentyIndicator,
-              PlentyPager,
-              PlentyIndicator,
-              PlentyInfobox,
-              PlentyTaglist,
-              PlentyTag,
-              PlentyLoadingBar,
-              PlentyOverlay,
-              PlentyDataTable,
-              PlentyDataTableContextMenu,
-              PlentyDataTableContextMenuDirective,
-              PlentyDoubleInput,
-              PlentyPortlet,
-              PlentySplitViewComponent,
-              PlentyFilter
-            ],
-            entryComponents: [
-              PlentyTextInput,
-              PlentyNumberInput,
-              PlentyButton,
-              PlentyTree,
-              PlentyCheckboxTree,
-              PlentyCheckbox,
-              PlentySelectBox,
-              PlentyBaseToolbar,
-              PlentyIndicator,
-              PlentyPager,
-              PlentyIndicator,
-              PlentyInfobox,
-              PlentyTaglist,
-              PlentyTag,
-              PlentyLoadingBar,
-              PlentyOverlay,
-              PlentyDataTable,
-              PlentyDataTableContextMenu,
-              PlentyDoubleInput,
-              PlentyPortlet,
-              PlentySplitViewComponent,
-              PlentyFilter
-            ],
-            exports:         [
-              PlentyDclWrapper,
-              PlentyTextInput,
-              PlentyNumberInput,
-              PlentyButton,
-              PlentyTree,
-              PlentyCheckboxTree,
-              PlentyCheckbox,
-              PlentySelectBox,
-              PlentyBaseToolbar,
-              PlentyIndicator,
-              PlentyPager,
-              PlentyIndicator,
-              PlentyInfobox,
-              PlentyTaglist,
-              PlentyTag,
-              PlentyLoadingBar,
-              PlentyOverlay,
-              PlentyDataTable,
-              PlentyDataTableContextMenu,
-              PlentyDoubleInput,
-              PlentyPortlet,
-              PlentySplitViewComponent,
-              PlentyFilter
-            ],
-            imports:         [
-              BrowserModule,
-              FormsModule,
-              ReactiveFormsModule,
-              ModalModule,
-              HttpModule,
-              Ng2BootstrapModule,
-              TooltipModule,
-              AlertModule
-            ],
-            bootstrap:       [AppComponent]
+              declarations:    [
+                  AppComponent,
+                  PlentyDclWrapper,
+                  PlentyTextInput,
+                  PlentyNumberInput,
+                  PlentyButton,
+                  PlentyTree,
+                  PlentyCheckboxTree,
+                  PlentyCheckbox,
+                  PlentySelectBox,
+                  PlentyBaseToolbar,
+                  PlentyIndicator,
+                  PlentyPager,
+                  PlentyIndicator,
+                  PlentyInfobox,
+                  PlentyTaglist,
+                  PlentyTag,
+                  PlentyLoadingBar,
+                  PlentyOverlay,
+                  PlentyDataTable,
+                  PlentyDataTableContextMenu,
+                  PlentyDataTableContextMenuDirective,
+                  PlentyDoubleInput,
+                  PlentyPortlet,
+                  PlentySplitViewComponent,
+                  PlentyFilter
+              ],
+              entryComponents: [
+                  PlentyTextInput,
+                  PlentyNumberInput,
+                  PlentyButton,
+                  PlentyTree,
+                  PlentyCheckboxTree,
+                  PlentyCheckbox,
+                  PlentySelectBox,
+                  PlentyBaseToolbar,
+                  PlentyIndicator,
+                  PlentyPager,
+                  PlentyIndicator,
+                  PlentyInfobox,
+                  PlentyTaglist,
+                  PlentyTag,
+                  PlentyLoadingBar,
+                  PlentyOverlay,
+                  PlentyDataTable,
+                  PlentyDataTableContextMenu,
+                  PlentyDoubleInput,
+                  PlentyPortlet,
+                  PlentySplitViewComponent,
+                  PlentyFilter
+              ],
+              exports:         [
+                  PlentyDclWrapper,
+                  PlentyTextInput,
+                  PlentyNumberInput,
+                  PlentyButton,
+                  PlentyTree,
+                  PlentyCheckboxTree,
+                  PlentyCheckbox,
+                  PlentySelectBox,
+                  PlentyBaseToolbar,
+                  PlentyIndicator,
+                  PlentyPager,
+                  PlentyIndicator,
+                  PlentyInfobox,
+                  PlentyTaglist,
+                  PlentyTag,
+                  PlentyLoadingBar,
+                  PlentyOverlay,
+                  PlentyDataTable,
+                  PlentyDataTableContextMenu,
+                  PlentyDoubleInput,
+                  PlentyPortlet,
+                  PlentySplitViewComponent,
+                  PlentyFilter
+              ],
+              imports:         [
+                  BrowserModule,
+                  NodeModule,
+                  FormsModule,
+                  ReactiveFormsModule,
+                  ModalModule,
+                  HttpModule,
+                  Ng2BootstrapModule,
+                  TooltipModule,
+                  AlertModule
+              ],
+              bootstrap:       [AppComponent]
           })
 export class AppModule
 {
-  static forRoot():ModuleWithProviders
-  {
-    return {
-      ngModule:  AppModule,
-      providers: [PlentyLoadingBarService,
-                  PlentyDataTableContextMenuService,
-                  BaseService,
-                  PlentyAlert]
-    };
-  }
+    static forRoot():ModuleWithProviders
+    {
+        return {
+            ngModule:  AppModule,
+            providers: [PlentyLoadingBarService,
+                        PlentyDataTableContextMenuService,
+                        BaseService,
+                        PlentyAlert]
+        };
+    }
 
-  static forChild():ModuleWithProviders
-  {
-    return {
-      ngModule:  AppModule,
-      providers: [PlentyLoadingBarService,
-                  PlentyDataTableContextMenuService,
-                  BaseService,
-                  PlentyAlert]
-    };
-  }
+    static forChild():ModuleWithProviders
+    {
+        return {
+            ngModule:  AppModule,
+            providers: [PlentyLoadingBarService,
+                        PlentyDataTableContextMenuService,
+                        BaseService,
+                        PlentyAlert]
+        };
+    }
 
 }
