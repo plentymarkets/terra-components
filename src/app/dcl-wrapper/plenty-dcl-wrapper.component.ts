@@ -60,6 +60,11 @@ export class PlentyDclWrapper implements AfterViewInit, OnDestroy
 
     }
 
+    ngOnChanges()
+    {
+        this.updateComponent();
+    }
+
     ngAfterViewInit()
     {
         this.isViewInitialized = true;
