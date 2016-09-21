@@ -1,0 +1,48 @@
+.alert-wrapper,
+plenty-status {
+  position:fixed;
+  right:30px;
+  top:5.1rem;
+  z-index: 1;
+  max-height: 500px;
+  overflow-y: auto;
+  max-width: 400px;
+  .alert {
+    position: relative;
+    padding:3px 30px 3px 40px;
+    margin-bottom:.2rem;
+    &::before {
+      font-family: 'plentyicons' !important;
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      font-size: 1.1em;
+      position: absolute;
+      top: .4em;
+      left: .7em;
+    }
+    &.alert-danger {
+      &::before {
+        content: "\ea1e";
+      }
+    }
+    &.alert-success {
+      &::before {
+        content: "\e915";
+      }
+    }
+    &.alert-warning {
+      &::before {
+        content: "\e9b9";
+      }
+    }
+    &.alert-info {
+      &::before {
+        content: "\e9bc";
+      }
+    }
+  }
+}
