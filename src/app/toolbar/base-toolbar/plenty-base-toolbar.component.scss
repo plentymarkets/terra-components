@@ -1,0 +1,40 @@
+@import "../../assets/styles/variables";
+
+.btn-toolbar {
+  background:$gray-light-4;
+  padding:.5rem;
+  margin-left: 0;
+
+  .btn {
+    margin:3px 0 3px 0 !important;
+    border-right: 1px solid $gray-light-4;
+
+    &:last-child {
+      border-right: 1px solid transparent;
+    }
+
+    span[class^="icon-"], span[class*=" icon-"] {
+      font-size: $font-size-lg;
+    }
+  }
+  .c-select {
+    border:1px solid $gray-light-2;
+    width: auto;
+    float: left;
+    margin-top: 3px;
+    padding: .6rem 2rem .45rem 1rem;
+    background-position: calc(100% - 0.5rem) .75rem;
+    text-align: left;
+    text-align-last: left;
+  }
+  .checkbox {
+    padding: 0.6rem .35rem;
+    margin-bottom: 0;
+    float: left;
+  }
+}
+@-moz-document url-prefix() {
+  .btn-toolbar .c-select {
+    padding: 0.475rem 2rem .4rem 1rem;
+  }
+}
