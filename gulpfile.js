@@ -124,7 +124,7 @@ gulp.task('compile-ts', ['gitPush'], function ()
   ];
 
   var tsResult =
-    gulp.src(sourceTsFiles, 'typings/globals/**/*.d.ts')
+    gulp.src(sourceTsFiles)
       .pipe(sourcemaps.init())
       .pipe(tsc(tsProject));
 
