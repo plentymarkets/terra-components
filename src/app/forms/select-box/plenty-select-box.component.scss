@@ -1,3 +1,63 @@
+@import "../../assets/styles/variables";
+@import "../input/plenty-input.component";
+
+.list-box-wrapper {
+    position: relative;
+    .list-box {
+        display: inline-block;
+        width: 100%;
+        max-width: 100%;
+        vertical-align: middle;
+        background: #fff;
+        border: 1px solid $gray-light-2;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        line-height: 1em;
+        padding: 0.6rem 2rem .6rem 1rem;
+        background-position: calc(100% - 1rem) 1.2rem;
+        border:$border-width solid $border-color;
+        border-radius: $border-radius;
+        background:#fff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat right .75rem center;
+        background-image:none\9;
+        background-size:8px 10px;
+        &.error {
+            border-color: $error;
+            color: $error;
+            background: url(../../assets/images/error-arrow.png) no-repeat right .75rem center;
+            background-size: 8px 10px;
+        }
+
+    }
+    .list-box-dropdown {
+        position: absolute;
+        z-index: 99999;
+        top: 35px;
+        left:0;
+        width: 100%;
+        overflow-y: auto;
+        max-height: 12rem;
+        border:1px solid $gray-light-2;
+        border-radius: $border-radius;
+        background:white;
+        display: none;
+        > span {
+            display: block;
+            width: 100%;
+            padding:.25em 1em;
+            &:hover,
+            &.active {
+                background:$brand-primary;
+                color: white;
+                cursor: pointer;
+            }
+        }
+    }
+    &.open {
+        .list-box-dropdown {
+            display:block;
+        }
+    }
+}
 .input-unit-v1.list-box-wrapper .list-box
 {
     border: none;
