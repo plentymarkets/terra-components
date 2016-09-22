@@ -51,7 +51,7 @@ export class PlentyDclWrapper implements AfterViewInit, OnDestroy
 
         if(this.cmpRef.instance.initIframe)
         {
-            if (this.cmpRef.instance.globalRegistry) {
+            if (!this.cmpRef.instance.globalRegistry) {
                 this.cmpRef.instance.globalRegistry = this.globalRegistry;
             }
 
