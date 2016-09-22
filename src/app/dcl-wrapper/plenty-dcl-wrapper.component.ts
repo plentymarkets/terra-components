@@ -19,6 +19,7 @@ export class PlentyDclWrapper implements AfterViewInit, OnDestroy
 {
     @ViewChild('target', {read: ViewContainerRef}) target;
     @Input() type;
+    @Input() globalRegistry;
     @Input() routeData;
     @Input() identifier;
     @Input() data:Array<any>;
@@ -45,11 +46,15 @@ export class PlentyDclWrapper implements AfterViewInit, OnDestroy
             this.cmpRef.destroy();
         }
 
-        let factory = this.componentFactoryResolver.resolveComponentFactory(this.type);
-        this.cmpRef = this.target.createComponent(factory);
+        // let factory = this.componentFactoryResolver.resolveComponentFactory(this.type);
+        this.cmpRef = this.target.createComponent(this.type);
 
         if(this.cmpRef.instance.initIframe)
         {
+            if (this.cmpRef.instance.globalRegistry) {
+                this.cmpRef.instance.globalRegistry = this.globalRegistry;
+            }
+
             this.cmpRef.instance.initIframe(this.routeData);
         }
 
