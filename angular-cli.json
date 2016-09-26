@@ -15,7 +15,7 @@
       "prefix": "plenty",
       "mobile": false,
       "styles": [
-        "styles.css"
+        "index.scss"
       ],
       "scripts": [],
       "environments": {
