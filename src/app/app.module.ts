@@ -172,7 +172,8 @@ import { PlentyAlert } from './alert/plenty-alert.component';
                   HttpModule,
                   TooltipModule,
                   AlertModule
-              ]
+              ],
+    bootstrap: [AppComponent]
           })
 export class AppModule
 {

@@ -16,6 +16,9 @@ module.exports({
             },
             // Support for CSS as raw text
             { test: /\.css$/, loader: 'raw-loader' },
+            { test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
+            { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
 
             // support for .html as raw text
             { test: /\.html$/, loader: 'raw-loader', exclude: [ root('src/index.html') ] },
