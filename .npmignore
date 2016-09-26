@@ -18,7 +18,6 @@ typings.json
 .travis.yml
 karma*
 tsconfig.json
-/dist
 /public
 /e2e
 /config
