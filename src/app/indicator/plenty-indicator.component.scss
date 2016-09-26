@@ -1,0 +1,74 @@
+.label {
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.15rem;
+}
+.label:empty {
+  display: none;
+}
+
+.btn .label {
+  position: relative;
+  top: -1px;
+}
+
+a.label:focus, a.label:hover {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.label-pill {
+  padding-right: .6em;
+  padding-left: .6em;
+  border-radius: 10rem;
+}
+
+.label-default {
+  background-color: #777777;
+}
+.label-default[href]:focus, .label-default[href]:hover {
+  background-color: #5e5e5e;
+}
+
+.label-primary {
+  background-color: #008ebd;
+}
+.label-primary[href]:focus, .label-primary[href]:hover {
+  background-color: #00688a;
+}
+
+.label-success {
+  background-color: #008ebd;
+}
+.label-success[href]:focus, .label-success[href]:hover {
+  background-color: #00688a;
+}
+
+.label-info {
+  background-color: #b0daf2;
+}
+.label-info[href]:focus, .label-info[href]:hover {
+  background-color: #84c5eb;
+}
+
+.label-warning {
+  background-color: #ffce36;
+}
+.label-warning[href]:focus, .label-warning[href]:hover {
+  background-color: #ffc203;
+}
+
+.label-danger {
+  background-color: #d4021d;
+}
+.label-danger[href]:focus, .label-danger[href]:hover {
+  background-color: #a10216;
+}

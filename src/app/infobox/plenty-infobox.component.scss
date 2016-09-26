@@ -1,0 +1,31 @@
+@import "../assets/styles/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+
+.infobox {
+  border: 1px solid $gray;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  .btn-handler {
+    display: block;
+  }
+  .taglist {
+    .tag{
+      background-color: $gray-light-3;
+      border-color: transparent;
+      -moz-border-radius: $border-radius;
+      -webkit-border-radius: $border-radius;
+      border-radius: $border-radius;
+      display: inline-block;
+      margin: 2px 0;
+      padding: 2px 10px;
+    }
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .infobox  {
+    .btn-handler {
+      display: inline-block;
+    }
+  }
+}
