@@ -170,11 +170,9 @@ import { PlentyAlert } from './alert/plenty-alert.component';
                   ReactiveFormsModule,
                   ModalModule,
                   HttpModule,
-                  Ng2BootstrapModule,
                   TooltipModule,
                   AlertModule
-              ],
-              bootstrap:       [AppComponent]
+              ]
           })
 export class AppModule
 {
