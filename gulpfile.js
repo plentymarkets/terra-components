@@ -12,6 +12,7 @@ var git = require('gulp-git');
 var gitignore = require('gulp-gitignore');
 var shell = require('gulp-shell');
 var version;
+var flatten = require('gulp-flatten');
 
 //build task
 gulp.task('build', function (callback)
@@ -142,8 +143,13 @@ gulp.task('copy-files', ['compile-ts'], function ()
   gulp.src(config.allCSS)
       .pipe(gulp.dest(config.tsOutputPath));
 
-  gulp.src(config.allAssets)
-      .pipe(gulp.dest(config.tsOutputPath));
+  gulp.src(config.allFonts)
+      .pipe(flatten())
+      .pipe(gulp.dest(config.fontsOutputPath));
+
+  gulp.src(config.allImages)
+      .pipe(flatten())
+      .pipe(gulp.dest(config.imagesOutputPath));
 
   gulp.src(config.allSCSS)
       .pipe(gulp.dest(config.tsOutputPath));

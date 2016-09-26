@@ -4,10 +4,13 @@ module.exports = function () {
 
     allTs: './src/**/*.ts',
     allCSS: './src/**/*.css',
-    allAssets: './src/assets/',
+    allFonts: './src/app/assets/fonts/**/*',
+    allImages: './src/app/assets/images/**/*',
     allSCSS: './src/**/*.scss',
     allHTML: './src/**/*.html',
     tsOutputPath: './dist/',
+    fontsOutputPath: './dist/app/assets/fonts',
+    imagesOutputPath: './dist/app/assets/images',
     excluded: '!./src/system-config.ts'
 
   };
