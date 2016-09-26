@@ -4,6 +4,7 @@ module.exports = function () {
 
     allTs: './src/**/*.ts',
     allCSS: './src/**/*.css',
+    allAssets: './src/assets/',
     allSCSS: './src/**/*.scss',
     allHTML: './src/**/*.html',
     tsOutputPath: './dist/',
