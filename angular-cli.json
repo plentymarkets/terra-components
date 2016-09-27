@@ -15,7 +15,7 @@
       "prefix": "plenty",
       "mobile": false,
       "styles": [
-        "index.scss"
+        "../node_modules/bootstrap/scss/bootstrap.scss"
       ],
       "scripts": [],
       "environments": {

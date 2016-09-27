@@ -1,6 +1,5 @@
 @import "../assets/styles/variables";
-//@import "../../../node_modules/bootstrap/scss/mixins";
-@import "../../../../bootstrap/scss/mixins";
+@import "~bootstrap/scss/mixins";
 @import "../button/plenty-button.component";
 @import "../forms/select-box/plenty-select-box.component";
 @import "../forms/input/plenty-input.component";
