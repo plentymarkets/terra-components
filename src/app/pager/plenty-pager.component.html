@@ -22,7 +22,7 @@
     </div>
     <div class="btn-group" role="group">
       <plenty-select-box [listBoxValues]="pagingSize" [defaultSelection]="defaultPagingSize" (valueChanged)="onChangeOffsetTo($event)"></plenty-select-box>
-      <div class="pager-text m-l-1">
+      <div class="pager-text">
         <!--{{pagingData.pagingUnit | translate:lang}} {{pagingData.from}}-{{pagingData.to}} {{'pagingOf' | translate:lang}} {{pagingData.total}}-->
         {{pagingData.pagingUnit}} {{pagingData.from}}-{{pagingData.to}} / {{pagingData.total}}
       </div>

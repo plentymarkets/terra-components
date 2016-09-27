@@ -4,7 +4,8 @@ import {
     ViewChild,
     Input,
     Output,
-    EventEmitter
+    EventEmitter,
+    ViewEncapsulation
 } from '@angular/core';
 import { PlentyPagerData } from './data/plenty-pager-data';
 import { PlentyNumberInput } from '../forms/input/number-input/plenty-number-input.component';
@@ -13,6 +14,7 @@ import { PlentySelectBoxValue } from '../forms/select-box/value/plenty-select-bo
 @Component({
                selector: 'plenty-pager',
                styles:   [require('./plenty-pager.component.scss')],
+               encapsulation: ViewEncapsulation.None,
                template: require('./plenty-pager.component.html')
            })
 export class PlentyPager implements OnInit
