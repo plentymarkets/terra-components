@@ -17,9 +17,9 @@
     <div class="option-list">
       <div *ngFor="let value of valueList">
         <div class="input-group">
-          <span class="input-group-addon">
+          <div class="input-group-addon">
             <plenty-checkbox #valueCheckbox type="checkbox" [isDisabled]="isDisabled" [value]="value.selected" (change)="onValueCheckboxChange(valueCheckbox.value, value)"></plenty-checkbox>
-          </span>
+          </div>
           <label class="form-control">{{value.caption}}</label>
         </div>
       </div>
