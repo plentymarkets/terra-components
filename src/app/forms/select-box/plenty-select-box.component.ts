@@ -4,7 +4,8 @@ import {
     Input,
     Output,
     ElementRef,
-    EventEmitter
+    EventEmitter,
+    ViewEncapsulation
 } from '@angular/core';
 import { PlentySelectBoxValue } from './value/plenty-select-box-value';
 
@@ -12,6 +13,7 @@ import { PlentySelectBoxValue } from './value/plenty-select-box-value';
                selector: 'plenty-select-box',
                styles:   [require('./plenty-select-box.component.scss')],
                template: require('./plenty-select-box.component.html'),
+               encapsulation: ViewEncapsulation.None,
                host:     {
                    '(document:click)': 'clickedOutside($event)',
                }

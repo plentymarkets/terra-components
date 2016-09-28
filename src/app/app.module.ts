@@ -87,10 +87,12 @@ import { PlentyDataTableContextMenuService } from './table/data-table/context-me
 import { BaseService } from './service/base.service';
 import { PlentyAlert } from './alert/plenty-alert.component';
 import { PlentyMultiSelectBox } from './forms/multi-select-box/plenty-multi-select-box.component';
+import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
 
 @NgModule({
               declarations:    [
                   AppComponent,
+                  PlentyAlertPanel,
                   PlentyDclWrapper,
                   PlentyTextInput,
                   PlentyNumberInput,
@@ -142,6 +144,7 @@ import { PlentyMultiSelectBox } from './forms/multi-select-box/plenty-multi-sele
                   PlentyFilter
               ],
               exports:         [
+                  PlentyAlertPanel,
                   PlentyDclWrapper,
                   PlentyTextInput,
                   PlentyNumberInput,

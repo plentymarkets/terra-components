@@ -1,7 +1,5 @@
 @import "../assets/styles/variables";
-@import "../../../../bootstrap/scss/mixins";
-//@import "../../../node_modules/bootstrap/scss/mixins";
-
+@import "~bootstrap/scss/mixins";
 
 // List of variables
 $btn-font-weight:                 700 !default;
