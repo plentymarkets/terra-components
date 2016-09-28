@@ -12,6 +12,7 @@ export { PlentyDoubleInput } from './forms/input/double-input/plenty-double-inpu
 export { PlentyNumberInput } from './forms/input/number-input/plenty-number-input.component';
 export { PlentyTextInput } from './forms/input/text-input/plenty-text-input.component';
 export { PlentySelectBoxValue } from './forms/select-box/value/plenty-select-box-value';
+export { PlentyMultiSelectBoxValue } from './forms/multi-select-box/value/plenty-multi-select-box-value';
 export { PlentySelectBox } from './forms/select-box/plenty-select-box.component';
 export { PlentyIndicator } from './indicator/plenty-indicator.component';
 export { PlentyInfobox } from './infobox/plenty-infobox.component';
@@ -86,6 +87,7 @@ import { PlentyFilter } from './filter/plenty-filter.component';
 import { PlentyDataTableContextMenuService } from './table/data-table/context-menu/service/plenty-data-table-context-menu.service';
 import { BaseService } from './service/base.service';
 import { PlentyAlert } from './alert/plenty-alert.component';
+import { PlentyMultiSelectBox } from './forms/multi-select-box/plenty-multi-select-box.component';
 import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
 
 @NgModule({
@@ -115,7 +117,8 @@ import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
                   PlentyDoubleInput,
                   PlentyPortlet,
                   PlentySplitViewComponent,
-                  PlentyFilter
+                  PlentyFilter,
+                  PlentyMultiSelectBox
               ],
               entryComponents: [
                   PlentyTextInput,
