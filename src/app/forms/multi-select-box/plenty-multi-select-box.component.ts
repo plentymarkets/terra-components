@@ -3,6 +3,8 @@ import
     Component,
     OnInit,
     Input,
+    Output,
+    EventEmitter,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
