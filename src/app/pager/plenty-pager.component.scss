@@ -6,9 +6,8 @@
 
 .pager {
   .form-group {
-    margin:5px 5px 0 10px;
-    label,
-    form  {
+    margin: 0;
+    label{
       display: inline-block;
     }
     span  {
@@ -18,9 +17,7 @@
     }
     input {
       width: 2.5rem;
-      position: relative;
-      padding: .37rem;
-
+      padding: .44rem;
     }
     .input-unit-v1 {
       margin-bottom: 0;
@@ -31,21 +28,17 @@
     float: left;
   }
   .pager-text {
-    display:inline-block;
-    float:left;
-    margin:10px 10px 0 0px;
-    position:relative;
-    vertical-align: middle;
-  }
-  .list-box {
-    margin: 2px 0 2px 0;
+    float: left;
+    margin-left: .5rem;
+    margin-top: .3rem;
   }
 }
-@include media-breakpoint-down(md) {
+@include media-breakpoint-down(sm) {
   .pager {
-    text-align: left;
     .btn-group {
       float: none;
+      margin-top: .2rem;
+      margin-bottom: .2rem;
     }
   }
 }
