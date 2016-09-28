@@ -143,7 +143,8 @@ import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
                   PlentyDoubleInput,
                   PlentyPortlet,
                   PlentySplitViewComponent,
-                  PlentyFilter
+                  PlentyFilter,
+                  PlentyMultiSelectBox
               ],
               exports:         [
                   PlentyAlertPanel,
@@ -169,7 +170,8 @@ import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
                   PlentyDoubleInput,
                   PlentyPortlet,
                   PlentySplitViewComponent,
-                  PlentyFilter
+                  PlentyFilter,
+                  PlentyMultiSelectBox
               ],
               imports:         [
                   BrowserModule,
