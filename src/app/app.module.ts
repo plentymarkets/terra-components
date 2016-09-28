@@ -179,11 +179,11 @@ import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
                   TooltipModule,
                   AlertModule
               ],
-    // bootstrap: [AppComponent]
+              bootstrap:       [AppComponent]
           })
 export class AppModule
 {
-    static forRoot():ModuleWithProviders
+    static forRoot(): ModuleWithProviders
     {
         return {
             ngModule:  AppModule,
@@ -194,7 +194,7 @@ export class AppModule
         };
     }
 
-    static forChild():ModuleWithProviders
+    static forChild(): ModuleWithProviders
     {
         return {
             ngModule:  AppModule,
