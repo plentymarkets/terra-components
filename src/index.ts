@@ -40,3 +40,4 @@ export * from './app/tree/plenty-tree.component';
 export * from './app/tree/base/plenty-base-tree.component';
 export * from './app/tree/checkbox-tree/plenty-checkbox-tree.component';
 export * from './app/tree/leaf/plenty-leaf.component';
+export * from './app/forms/multi-select-box/value/plenty-multi-select-box-value';
