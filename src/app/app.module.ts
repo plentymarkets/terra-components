@@ -12,6 +12,7 @@ export { PlentyDoubleInput } from './forms/input/double-input/plenty-double-inpu
 export { PlentyNumberInput } from './forms/input/number-input/plenty-number-input.component';
 export { PlentyTextInput } from './forms/input/text-input/plenty-text-input.component';
 export { PlentySelectBoxValue } from './forms/select-box/value/plenty-select-box-value';
+export { PlentyMultiSelectBox } from './forms/multi-select-box/plenty-multi-select-box.component';
 export { PlentyMultiSelectBoxValue } from './forms/multi-select-box/value/plenty-multi-select-box-value';
 export { PlentySelectBox } from './forms/select-box/plenty-select-box.component';
 export { PlentyIndicator } from './indicator/plenty-indicator.component';
