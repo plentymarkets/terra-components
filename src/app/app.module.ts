@@ -69,6 +69,7 @@ import { PlentyTree } from './tree/plenty-tree.component';
 import { PlentyCheckboxTree } from './tree/checkbox-tree/plenty-checkbox-tree.component';
 import { PlentyCheckbox } from './forms/checkbox/plenty-checkbox.component';
 import { PlentySelectBox } from './forms/select-box/plenty-select-box.component';
+import { PlentyMultiSelectBox } from './forms/multi-select-box/plenty-multi-select-box.component';
 import { PlentyDclWrapper } from './dcl-wrapper/plenty-dcl-wrapper.component';
 import { PlentyBaseToolbar } from './toolbar/base-toolbar/plenty-base-toolbar.component';
 import { PlentyIndicator } from './indicator/plenty-indicator.component';
@@ -88,7 +89,6 @@ import { PlentyFilter } from './filter/plenty-filter.component';
 import { PlentyDataTableContextMenuService } from './table/data-table/context-menu/service/plenty-data-table-context-menu.service';
 import { BaseService } from './service/base.service';
 import { PlentyAlert } from './alert/plenty-alert.component';
-import { PlentyMultiSelectBox } from './forms/multi-select-box/plenty-multi-select-box.component';
 import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
 
 @NgModule({
