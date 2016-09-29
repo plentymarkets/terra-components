@@ -11,10 +11,11 @@ import
 import { PlentyMultiSelectBoxValue } from './value/plenty-multi-select-box-value';
 import { PlentyCheckbox } from '../checkbox/plenty-checkbox.component';
 
+
 @Component({
-               selector:      'plenty-multi-select-box',
-               templateUrl:   require('./plenty-multi-select-box.component.html'),
-               styleUrls:     [require('./plenty-multi-select-box.component.scss')],
+               selector: 'plenty-multi-select-box',
+               styles:   [require('./plenty-multi-select-box.component.scss')],
+               template: require('./plenty-multi-select-box.component.html'),
                encapsulation: ViewEncapsulation.None
            })
 
