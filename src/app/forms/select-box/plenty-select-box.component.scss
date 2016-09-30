@@ -56,6 +56,18 @@
             display:block;
         }
     }
+
+    &.disabled {
+        opacity: .65;
+        label,
+        .list-box {
+            background-color: #f2f2f2;
+            cursor: not-allowed;
+        }
+        .list-box-dropdown {
+            display: none !important;
+        }
+    }
 }
 
 .input-unit-v1.list-box-wrapper .list-box {
@@ -74,15 +86,5 @@
     right: -1px;
 }
 
-.list-box-wrapper.disabled.open .list-box-dropdown {
-    display: none !important;
-}
 
-.list-box-wrapper.disabled .list-box {
-    background-color: #f2f2f2;
-    cursor: not-allowed;
-}
 
-.list-box-wrapper.disabled:not(.input-unit-v1) .list-box {
-    opacity: .65;
-}
