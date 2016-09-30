@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { PlentyAlert } from "./plenty-alert.component";
 
 /**
@@ -7,7 +7,8 @@ import { PlentyAlert } from "./plenty-alert.component";
 @Component({
                selector: 'plenty-alert-panel',
                styles:   [require('./plenty-alert-panel.component.scss')],
-               template: require('./plenty-alert-panel.component.html')
+               template: require('./plenty-alert-panel.component.html'),
+               encapsulation: ViewEncapsulation.None
            })
 export class PlentyAlertPanel
 {
