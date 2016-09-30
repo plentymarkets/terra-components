@@ -59,8 +59,8 @@
 
     &.disabled {
         opacity: .65;
-        label,
-        .list-box {
+
+        label, .list-box {
             background-color: #f2f2f2;
             cursor: not-allowed;
         }
