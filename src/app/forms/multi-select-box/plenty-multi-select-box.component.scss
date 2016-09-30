@@ -40,7 +40,7 @@
 
     .option-list {
 
-      overflow: auto;
+      overflow: scroll;
       .input-group {
         &:hover {
           .input-group-addon,
