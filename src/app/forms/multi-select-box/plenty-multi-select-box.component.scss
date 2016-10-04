@@ -3,6 +3,8 @@
 
 .multiselect-container {
   margin-bottom: 1rem;
+  border: $border-width solid $valid;
+  border-radius: .2rem;
   .multiselect{
     display: flex;
     flex-flow: column nowrap;
@@ -40,7 +42,8 @@
 
     .option-list {
 
-      overflow: auto;
+      overflow: scroll;
+      height: 146px;
       .input-group {
         &:hover {
           .input-group-addon,
@@ -100,6 +103,8 @@
     }
   }
   &.disabled {
+    border: $border-width solid $gray-light-2;
+    border-radius: .2rem;
     .multiselect {
       .btn-group--all{
         .btn{
