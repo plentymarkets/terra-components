@@ -11,7 +11,7 @@ plenty-alert-panel {
     position: relative;
     padding:3px 30px 3px 40px;
     margin-bottom:.2rem;
-    &::before {
+    &:before {
       font-family: 'plentyicons' !important;
       speak: none;
       font-style: normal;
@@ -25,22 +25,22 @@ plenty-alert-panel {
       left: .7em;
     }
     &.alert-danger {
-      &::before {
+      &:before {
         content: "\ea1e";
       }
     }
     &.alert-success {
-      &::before {
+      &:before {
         content: "\e915";
       }
     }
     &.alert-warning {
-      &::before {
+      &:before {
         content: "\e9b9";
       }
     }
     &.alert-info {
-      &::before {
+      &:before {
         content: "\e9bc";
       }
     }
