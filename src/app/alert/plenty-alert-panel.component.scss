@@ -5,6 +5,7 @@ plenty-alert-panel {
   top:51px;
   z-index: 10000;
   max-height: 500px;
+  max-width: 300px;
   overflow-y: auto;
   .alert {
     position: relative;
