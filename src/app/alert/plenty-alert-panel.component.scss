@@ -1,12 +1,11 @@
 .alert-wrapper,
 plenty-alert-panel {
   position:fixed;
-  right:30px;
-  top:5.1rem;
+  right:25px;
+  top:25px;
   z-index: 1;
   max-height: 500px;
   overflow-y: auto;
-  max-width: 400px;
   .alert {
     position: relative;
     padding:3px 30px 3px 40px;
@@ -44,5 +43,8 @@ plenty-alert-panel {
         content: "\e9bc";
       }
     }
+  }
+  div.alert button.close {
+    padding: 0px;
   }
 }
