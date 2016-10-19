@@ -271,12 +271,12 @@ export class PlentyDataTable<S extends BaseService, D extends BaseData>
         this._defaultPagingSize = value;
     }
 
-    public get onSuccessFunction():(res)=>void
+    public get onSuccessFunction():(res:any)=>void
     {
         return this._onSuccessFunction;
     }
 
-    public set onSuccessFunction(value:(res)=>void)
+    public set onSuccessFunction(value:(res:any)=>void)
     {
         this._onSuccessFunction = value;
     }
