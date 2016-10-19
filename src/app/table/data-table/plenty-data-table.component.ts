@@ -23,6 +23,7 @@ import { PlentyDataTableContextMenuService } from './context-menu/service/plenty
                styles:    [require('./plenty-data-table.component.scss')],
                template:  require('./plenty-data-table.component.html')
            })
+
 export class PlentyDataTable<S extends BaseService, D extends BaseData>
 {
     @Input() service:S;
