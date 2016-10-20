@@ -77,7 +77,11 @@ export class BaseService
 
     let req = request.map(
       response => {
-        if(response)
+        if(response.status == 204)
+        {
+          response.toString();
+        }
+        else
         {
           response.json()
         }
