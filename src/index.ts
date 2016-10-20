@@ -12,6 +12,8 @@ export * from './app/forms/input/number-input/plenty-number-input.component';
 export * from './app/forms/input/text-input/plenty-text-input.component';
 export * from './app/forms/select-box/value/plenty-select-box-value';
 export * from './app/forms/select-box/plenty-select-box.component';
+export * from './app/forms/multi-select-box/value/plenty-multi-select-box-value';
+export * from './app/forms/multi-select-box/plenty-multi-select-box.component';
 export * from './app/indicator/plenty-indicator.component';
 export * from './app/infobox/plenty-infobox.component';
 export * from './app/loading-bar/service/plenty-loading-bar.service';

@@ -12,18 +12,18 @@ import { PlentyNumberInput } from '../forms/input/number-input/plenty-number-inp
 import { PlentySelectBoxValue } from '../forms/select-box/value/plenty-select-box-value';
 
 @Component({
-               selector: 'plenty-pager',
-               styles:   [require('./plenty-pager.component.scss')],
-               encapsulation: ViewEncapsulation.None,
-               template: require('./plenty-pager.component.html')
+               selector:      'plenty-pager',
+               styles:        [require('./plenty-pager.component.scss')],
+               template:      require('./plenty-pager.component.html'),
+               encapsulation: ViewEncapsulation.None
            })
 export class PlentyPager implements OnInit
 {
-    @ViewChild(PlentyNumberInput) currentPageInput:PlentyNumberInput;
+    @ViewChild(PlentyNumberInput) currentPageInput: PlentyNumberInput;
 
-    @Input() pagingData:PlentyPagerData;
-    @Input() defaultPagingSize:number;
-    @Input() pagingSize:Array<PlentySelectBoxValue>;
+    @Input() pagingData: PlentyPagerData;
+    @Input() defaultPagingSize: number;
+    @Input() pagingSize: Array<PlentySelectBoxValue>;
 
     @Output() doPaging = new EventEmitter<PlentyPagerData>();
 
@@ -81,7 +81,7 @@ export class PlentyPager implements OnInit
         this.currentPageInput.value = this.pagingData.currentPage;
     }
 
-    public onFirstPage():void
+    public onFirstPage(): void
     {
         this.pagingData.currentPage = 1;
         this.updateCurrentPageInput();
@@ -90,7 +90,7 @@ export class PlentyPager implements OnInit
             .emit(this.pagingData);
     }
 
-    public onPrevPage():void
+    public onPrevPage(): void
     {
         this.pagingData.currentPage -= 1;
         this.updateCurrentPageInput();
@@ -99,7 +99,7 @@ export class PlentyPager implements OnInit
             .emit(this.pagingData);
     }
 
-    public onNextPage():void
+    public onNextPage(): void
     {
         this.pagingData.currentPage += 1;
         this.updateCurrentPageInput();
@@ -108,7 +108,7 @@ export class PlentyPager implements OnInit
             .emit(this.pagingData);
     }
 
-    public onLastPage():void
+    public onLastPage(): void
     {
         this.pagingData.currentPage = this.pagingData.lastPage;
         this.updateCurrentPageInput();
@@ -117,14 +117,14 @@ export class PlentyPager implements OnInit
             .emit(this.pagingData);
     }
 
-    public onReload():void
+    public onReload(): void
     {
         this.doPaging
             .emit(this.pagingData);
     }
 
-    public onToPage(event:any,
-                    pageNumber:number):void
+    public onToPage(event: any,
+                    pageNumber: number): void
     {
         event.preventDefault();
 
@@ -134,7 +134,7 @@ export class PlentyPager implements OnInit
             .emit(this.pagingData);
     }
 
-    public onChangeOffsetTo(selectedOffset:PlentySelectBoxValue):void
+    public onChangeOffsetTo(selectedOffset: PlentySelectBoxValue): void
     {
         this.pagingData.currentPage = 1;
         this.updateCurrentPageInput();

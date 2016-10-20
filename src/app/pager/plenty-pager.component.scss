@@ -7,17 +7,17 @@
 .pager {
   .form-group {
     margin: 0;
-    label{
+    label {
       display: inline-block;
     }
-    span  {
+    span {
       display: inline-block;
       padding: 5px 0;
       vertical-align: top;
     }
-    input {
+    .pager-page input {
       width: 2.5rem;
-      padding: .44rem;
+      padding: .35rem
     }
     .input-unit-v1 {
       margin-bottom: 0;
@@ -26,6 +26,14 @@
   plenty-select-box,
   .form-group {
     float: left;
+  }
+  .list-box-wrapper{
+    .list-box {
+      padding: .4rem 2rem .4rem 1rem;
+    }
+    .list-box-dropdown {
+      top: 1.78rem;
+    }
   }
   .pager-text {
     float: left;

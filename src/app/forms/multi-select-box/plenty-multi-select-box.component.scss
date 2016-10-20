@@ -3,15 +3,22 @@
 
 .multiselect-container {
   margin-bottom: 1rem;
+  border: $border-width solid $valid;
+  border-radius: .2rem;
   .multiselect{
     display: flex;
     flex-flow: column nowrap;
     height: 100%;
 
     .btn-group--all{
+      display: flex;
+      flex: 0 0 auto;
       margin-bottom: .1em;
       .checkbox-all{
-        padding: $input-padding-y $input-padding-x;
+        padding: 0.3rem 0.75rem;
+      }
+      .btn-all{
+        width: 100%;
       }
       .btn-handler {
         display: flex;
@@ -22,9 +29,6 @@
         &:last-child {
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
-        }
-        &:active{
-          background: transparent;
         }
       }
       &:hover {
@@ -39,6 +43,7 @@
     .option-list {
 
       overflow: auto;
+      height: 146px;
       .input-group {
         &:hover {
           .input-group-addon,
@@ -50,7 +55,7 @@
         .form-control,
         .input-group-addon {
           float: none;
-          padding: 0.3rem 0.7rem;
+          padding: 0.3rem 0.8rem;
           border-radius: 0;
           border-top:0;
           background: transparent;
@@ -86,7 +91,6 @@
     .multiselect {
       .btn-group--all {
         .checkbox-all {
-          padding: $input-padding-y $input-padding-x;
           background-color: $error;
         }
         &:hover {
@@ -99,6 +103,8 @@
     }
   }
   &.disabled {
+    border: $border-width solid $gray-light-2;
+    border-radius: .2rem;
     .multiselect {
       .btn-group--all{
         .btn{
@@ -106,6 +112,7 @@
           border-color: $gray-light-2;
           cursor: not-allowed;
           color: $white;
+          opacity: .65;
         }
         &:hover {
           button{

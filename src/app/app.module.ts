@@ -12,8 +12,9 @@ export { PlentyDoubleInput } from './forms/input/double-input/plenty-double-inpu
 export { PlentyNumberInput } from './forms/input/number-input/plenty-number-input.component';
 export { PlentyTextInput } from './forms/input/text-input/plenty-text-input.component';
 export { PlentySelectBoxValue } from './forms/select-box/value/plenty-select-box-value';
-export { PlentyMultiSelectBoxValue } from './forms/multi-select-box/value/plenty-multi-select-box-value';
 export { PlentySelectBox } from './forms/select-box/plenty-select-box.component';
+export { PlentyMultiSelectBoxValue } from './forms/multi-select-box/value/plenty-multi-select-box-value';
+export { PlentyMultiSelectBox } from './forms/multi-select-box/plenty-multi-select-box.component';
 export { PlentyIndicator } from './indicator/plenty-indicator.component';
 export { PlentyInfobox } from './infobox/plenty-infobox.component';
 export { PlentyLoadingBarService } from './loading-bar/service/plenty-loading-bar.service';
@@ -68,6 +69,7 @@ import { PlentyTree } from './tree/plenty-tree.component';
 import { PlentyCheckboxTree } from './tree/checkbox-tree/plenty-checkbox-tree.component';
 import { PlentyCheckbox } from './forms/checkbox/plenty-checkbox.component';
 import { PlentySelectBox } from './forms/select-box/plenty-select-box.component';
+import { PlentyMultiSelectBox } from './forms/multi-select-box/plenty-multi-select-box.component';
 import { PlentyDclWrapper } from './dcl-wrapper/plenty-dcl-wrapper.component';
 import { PlentyBaseToolbar } from './toolbar/base-toolbar/plenty-base-toolbar.component';
 import { PlentyIndicator } from './indicator/plenty-indicator.component';
@@ -87,7 +89,6 @@ import { PlentyFilter } from './filter/plenty-filter.component';
 import { PlentyDataTableContextMenuService } from './table/data-table/context-menu/service/plenty-data-table-context-menu.service';
 import { BaseService } from './service/base.service';
 import { PlentyAlert } from './alert/plenty-alert.component';
-import { PlentyMultiSelectBox } from './forms/multi-select-box/plenty-multi-select-box.component';
 import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
 
 @NgModule({
@@ -142,7 +143,8 @@ import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
                   PlentyDoubleInput,
                   PlentyPortlet,
                   PlentySplitViewComponent,
-                  PlentyFilter
+                  PlentyFilter,
+                  PlentyMultiSelectBox
               ],
               exports:         [
                   PlentyAlertPanel,
@@ -168,7 +170,8 @@ import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
                   PlentyDoubleInput,
                   PlentyPortlet,
                   PlentySplitViewComponent,
-                  PlentyFilter
+                  PlentyFilter,
+                  PlentyMultiSelectBox
               ],
               imports:         [
                   BrowserModule,
@@ -178,12 +181,12 @@ import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
                   HttpModule,
                   TooltipModule,
                   AlertModule
-              ],
-    // bootstrap: [AppComponent]
+              ]
+              // bootstrap:       [AppComponent]
           })
 export class AppModule
 {
-    static forRoot():ModuleWithProviders
+    static forRoot(): ModuleWithProviders
     {
         return {
             ngModule:  AppModule,
@@ -194,7 +197,7 @@ export class AppModule
         };
     }
 
-    static forChild():ModuleWithProviders
+    static forChild(): ModuleWithProviders
     {
         return {
             ngModule:  AppModule,

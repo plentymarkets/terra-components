@@ -9,6 +9,11 @@ $btn-active-box-shadow:           inset 0 3px 5px rgba(0,0,0,.125);
 /*------------------------------------*\
     $BUTTONS
 \*------------------------------------*/
+
+button, html [type="button"], [type="reset"], [type="submit"] {
+  -webkit-appearance: none;
+}
+
 button:focus {
   outline: 0 !important;
 }
@@ -232,4 +237,10 @@ input[type="button"] {
 
 .btn-handler {
   display: inline-block;
+}
+
+
+/* Tooltips */
+.tooltip {
+  font-size: $font-size-sm;
 }

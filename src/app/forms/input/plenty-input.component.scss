@@ -260,6 +260,9 @@ $border-width: 1px;
     }
 
   }
+  &.disabled{
+    opacity:.65;
+  }
 }
 
 .input-unit-v1.multiple{
@@ -298,17 +301,4 @@ $border-width: 1px;
     border-bottom-right-radius: $border-radius;
     border-bottom-left-radius: $border-radius;
   }
-
-
-}
-
-.input-group-h{
-
-
-}
-
-.pager .form-group input {
-  width: 2.5rem;
-  position: relative;
-  padding: .37rem;
 }

@@ -1,17 +1,17 @@
 .alert-wrapper,
 plenty-alert-panel {
   position:fixed;
-  right:30px;
-  top:5.1rem;
-  z-index: 1;
+  right:25px;
+  top:51px;
+  z-index: 10000;
   max-height: 500px;
+  max-width: 300px;
   overflow-y: auto;
-  max-width: 400px;
   .alert {
     position: relative;
     padding:3px 30px 3px 40px;
     margin-bottom:.2rem;
-    &::before {
+    &:before {
       font-family: 'plentyicons' !important;
       speak: none;
       font-style: normal;
@@ -25,24 +25,27 @@ plenty-alert-panel {
       left: .7em;
     }
     &.alert-danger {
-      &::before {
+      &:before {
         content: "\ea1e";
       }
     }
     &.alert-success {
-      &::before {
+      &:before {
         content: "\e915";
       }
     }
     &.alert-warning {
-      &::before {
+      &:before {
         content: "\e9b9";
       }
     }
     &.alert-info {
-      &::before {
+      &:before {
         content: "\e9bc";
       }
     }
+  }
+  div.alert button.close {
+    padding: 0px;
   }
 }
