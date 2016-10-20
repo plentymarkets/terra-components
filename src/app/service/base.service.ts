@@ -79,7 +79,7 @@ export class BaseService
       (response:Response) => {
         if(response.status == 204)
         {
-          return response.toString();
+          return response.text();
         }
         else
         {
