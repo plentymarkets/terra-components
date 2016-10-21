@@ -8,7 +8,7 @@ import { BaseData } from '../../../data/base-data';
  */
 @Component({
                selector: 'context-menu-holder',
-               styles:   [require('./plenty-data-table-context-menu.component.scss')],
+               styles:   [require('./plenty-data-table-context-menu.component.scss').toString()],
                host:     {
                    '(document:click)': 'clickedOutside()',
                },

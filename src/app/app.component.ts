@@ -10,7 +10,7 @@ import { PlentyOverlay } from './overlay/plenty-overlay.component';
 @Component({
                selector: 'app-root',
                template: require('./app.component.html'),
-               styles:   [require('./app.component.scss')],
+               styles:   [require('./app.component.scss').toString()],
            })
 
 export class AppComponent implements OnInit

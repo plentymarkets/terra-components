@@ -18,8 +18,7 @@
 	"angular-cli": {},
 	"scripts": {
 		"webpack": "webpack",
-		"gulpbuild": "gulp build",
-		"postinstall": "typings install"
+		"gulpbuild": "gulp build"
 	},
 	"dependencies": {
 		"@angular/common": "~2.1.0",
@@ -71,7 +70,6 @@
 		"ts-node": "^1.3.0",
 		"tslint": "3.13.0",
 		"typescript": "2.0.2",
-		"typings": "^1.4.0",
 		"webpack": "2.1.0-beta.22"
 	}
 }

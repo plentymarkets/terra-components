@@ -11,7 +11,7 @@ import { PlentySelectBoxValue } from './value/plenty-select-box-value';
 
 @Component({
                selector: 'plenty-select-box',
-               styles:   [require('./plenty-select-box.component.scss')],
+               styles:   [require('./plenty-select-box.component.scss').toString()],
                template: require('./plenty-select-box.component.html'),
                encapsulation: ViewEncapsulation.None,
                host:     {

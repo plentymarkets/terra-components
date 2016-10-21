@@ -20,7 +20,7 @@ import { PlentyDataTableContextMenuService } from './context-menu/service/plenty
 @Component({
                selector:  'plenty-data-table',
                providers: [PlentyDataTableContextMenuService],
-               styles:    [require('./plenty-data-table.component.scss')],
+               styles:    [require('./plenty-data-table.component.scss').toString()],
                template:  require('./plenty-data-table.component.html')
            })
 

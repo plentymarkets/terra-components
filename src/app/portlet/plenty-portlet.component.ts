@@ -6,7 +6,7 @@ import {
 
 @Component({
                selector: 'plenty-portlet',
-               styles:   [require('./plenty-portlet.component.scss')],
+               styles:   [require('./plenty-portlet.component.scss').toString()],
                template: require('./plenty-portlet.component.html')
            })
 

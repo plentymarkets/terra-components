@@ -7,7 +7,7 @@ import { PlentySplitViewData } from './data/plenty-split-view-data';
 
 @Component({
                selector:  'plenty-split-view',
-               styles:    [require('./plenty-split-view.component.scss')],
+               styles:    [require('./plenty-split-view.component.scss').toString()],
                template:  require('./plenty-split-view.component.html')
            })
 export class PlentySplitViewComponent implements OnInit
