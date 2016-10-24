@@ -77,7 +77,7 @@ gulp.task('changeVersion', ['gitFetch'], function ()
   console.log('------- CHANGING VERSION -------');
 
   //possible values are: patch, minor, major
-  json.version = "1.0.0-webpack";
+  json.version = "1.0.0-webpack.1";
 
   version = json.version;
 
