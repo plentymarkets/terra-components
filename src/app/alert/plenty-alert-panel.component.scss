@@ -11,6 +11,8 @@ plenty-alert-panel {
     position: relative;
     padding:3px 30px 3px 40px;
     margin-bottom:.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
     &:before {
       font-family: 'plentyicons' !important;
       speak: none;
