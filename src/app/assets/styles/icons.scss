@@ -9,16 +9,16 @@
   url('../fonts/plentysans-light-webfont.woff') format('woff');
   font-weight: 300;
   font-style: normal;
-
 }
+
 @font-face {
   font-family: 'plenty';
   src: url('../fonts/plentysans-regular-webfont.woff2') format('woff2'),
   url('../fonts/plentysans-regular-webfont.woff') format('woff');
   font-weight: 400;
   font-style: normal;
-
 }
+
 @font-face {
   font-family: 'plenty';
   src: url('../fonts/plentysans-semibold-webfont.woff2') format('woff2'),
@@ -26,7 +26,6 @@
   font-weight: 600;
   font-style: normal;
 }
-
 
 @font-face {
   font-family: 'plentyicons';
@@ -38,7 +37,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
 
 [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
