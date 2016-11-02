@@ -8,7 +8,7 @@ import {
 
 @Component({
                selector:  'plenty-button',
-               styles:    [require('./plenty-button.component.scss')],
+               styles:    [require('./plenty-button.component.scss').toString()],
                template:  require('./plenty-button.component.html'),
                encapsulation: ViewEncapsulation.None,
            })

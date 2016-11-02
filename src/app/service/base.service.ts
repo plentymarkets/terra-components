@@ -76,7 +76,16 @@ export class BaseService
     this.loadingBarService.start();
 
     let req = request.map(
-      response => response.json()).share();
+      (response:Response) => {
+        if(response.status == 204)
+        {
+          return response.text();
+        }
+        else
+        {
+          return response.json()
+        }
+      }).share();
 
     req.subscribe(() => {
       this.loadingBarService.complete();

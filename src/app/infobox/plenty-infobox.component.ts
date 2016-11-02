@@ -9,7 +9,7 @@ import { PlentyButton } from '../button/plenty-button.component';
 
 @Component({
                selector: 'plenty-infobox',
-               styles:   [require('./plenty-infobox.component.scss')],
+               styles:   [require('./plenty-infobox.component.scss').toString()],
                encapsulation: ViewEncapsulation.None,
                template: require('./plenty-infobox.component.html')
            })

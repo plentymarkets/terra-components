@@ -12,7 +12,7 @@ import {
 
 @Component({
                selector: 'dcl-wrapper',
-               styles:   [require('./plenty-dcl-wrapper.component.scss')],
+               styles:   [require('./plenty-dcl-wrapper.component.scss').toString()],
                template: require('./plenty-dcl-wrapper.component.html')
            })
 export class PlentyDclWrapper implements AfterViewInit, OnDestroy

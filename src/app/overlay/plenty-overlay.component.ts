@@ -15,7 +15,7 @@ import {
  */
 @Component({
                selector: 'plenty-overlay',
-               styles:   [require('./plenty-overlay.component.scss')],
+               styles:   [require('./plenty-overlay.component.scss').toString()],
                template: require('./plenty-overlay.component.html')
            })
 export class PlentyOverlay implements AfterViewInit
