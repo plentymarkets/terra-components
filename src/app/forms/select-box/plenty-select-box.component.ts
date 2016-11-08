@@ -10,14 +10,15 @@ import {
 import { PlentySelectBoxValue } from './value/plenty-select-box-value';
 
 @Component({
-               selector: 'plenty-select-box',
-               styles:   [require('./plenty-select-box.component.scss')],
-               template: require('./plenty-select-box.component.html'),
+               selector:      'plenty-select-box',
+               styles:        [require('./plenty-select-box.component.scss').toString()],
+               template:      require('./plenty-select-box.component.html'),
                encapsulation: ViewEncapsulation.None,
-               host:     {
+               host:          {
                    '(document:click)': 'clickedOutside($event)',
                }
            })
+
 export class PlentySelectBox implements OnInit
 {
     @Input() name:string;

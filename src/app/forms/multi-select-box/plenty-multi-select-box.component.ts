@@ -14,7 +14,7 @@ import { PlentyCheckbox } from '../checkbox/plenty-checkbox.component';
 
 @Component({
                selector: 'plenty-multi-select-box',
-               styles:   [require('./plenty-multi-select-box.component.scss')],
+               styles:   [require('./plenty-multi-select-box.component.scss').toString()],
                template: require('./plenty-multi-select-box.component.html'),
                encapsulation: ViewEncapsulation.None
            })

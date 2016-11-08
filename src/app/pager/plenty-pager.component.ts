@@ -13,7 +13,7 @@ import { PlentySelectBoxValue } from '../forms/select-box/value/plenty-select-bo
 
 @Component({
                selector:      'plenty-pager',
-               styles:        [require('./plenty-pager.component.scss')],
+               styles:        [require('./plenty-pager.component.scss').toString()],
                template:      require('./plenty-pager.component.html'),
                encapsulation: ViewEncapsulation.None
            })
