@@ -17,7 +17,7 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR:any = {
 
 @Component({
                selector:  'plenty-checkbox',
-               styles:    [require('./plenty-checkbox.component.scss')],
+               styles:    [require('./plenty-checkbox.component.scss').toString()],
                providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR],
                template:  require('./plenty-checkbox.component.html')
            })

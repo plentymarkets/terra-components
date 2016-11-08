@@ -9,7 +9,7 @@ import {
 
 @Component({
                selector: 'plenty-filter',
-               styles:   [require('./plenty-filter.component.scss').toString],
+               styles:   [require('./plenty-filter.component.scss').toString()],
                template: require('./plenty-filter.component.html')
            })
 export class PlentyFilter implements OnInit
