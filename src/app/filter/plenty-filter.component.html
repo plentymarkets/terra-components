@@ -1,17 +1,17 @@
 <div class="filter-container">
-
-  <plenty-base-toolbar>
-    <div class="btn-group" role="group">
-      <plenty-button caption="{{searchLabel}}" (click)="searchBtnClicked()"></plenty-button>
-      <plenty-button caption="{{resetLabel}}" (click)="resetBtnClicked()"></plenty-button>
+    
+    <plenty-base-toolbar>
+        <div class="btn-group" role="group">
+            <plenty-button caption="{{inputSearchLabel}}" (click)="outputOnSearchBtnClicked()"></plenty-button>
+            <plenty-button caption="{{inputResetLabel}}" (click)="outputOnResetBtnClicked()"></plenty-button>
+        </div>
+    </plenty-base-toolbar>
+    
+    <div class="input-group-v">
+        <div *ngFor="let item of inputInputList" #inputInputList>
+            <dcl-wrapper [type]="item.template" [data]="item.data"></dcl-wrapper>
+        </div>
     </div>
-  </plenty-base-toolbar>
-
-  <div class="input-group-v">
-    <div *ngFor="let item of inputList" #inputList>
-      <dcl-wrapper [type]="item.template" [data]="item.data"></dcl-wrapper>
-    </div>
-  </div>
 
 </div>
 
