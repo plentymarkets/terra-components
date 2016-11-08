@@ -1,6 +1,6 @@
 export interface PlentyMultiSelectBoxValue
 {
-    value: any;
-    caption: any;
-    selected: boolean;
+    value:any;
+    caption:any;
+    selected:boolean;
 }

@@ -1,146 +1,183 @@
 @import "../../assets/styles/variables";
 @import "../../button/plenty-button.component";
 
-.multiselect-container {
-  margin-bottom: 1rem;
-  border: $border-width solid $valid;
-  border-radius: .2rem;
-  .multiselect{
-    display: flex;
-    flex-flow: column nowrap;
-    height: 100%;
-
-    .btn-group--all{
-      display: flex;
-      flex: 0 0 auto;
-      margin-bottom: .1em;
-      .checkbox-all{
-        padding: 0.3rem 0.75rem;
-      }
-      .btn-all{
-        width: 100%;
-      }
-      .btn-handler {
+.multiselect-container
+{
+    margin-bottom: 1rem;
+    border: $border-width solid $valid;
+    border-radius: .2rem;
+    .multiselect
+    {
         display: flex;
         flex-flow: column nowrap;
-      }
-      .btn{
-        text-align: left;
-        &:last-child {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-      }
-      &:hover {
-        button{
-          background-color: darken($brand-primary, 15%);
-          border-color:darken($brand-primary, 15%);
-          color: $white;
-        }
-      }
-    }
-
-    .option-list {
-
-      overflow: auto;
-      height: 146px;
-      .input-group {
-        &:hover {
-          .input-group-addon,
-          .form-control {
-            background: lighten($brand-primary, 60);
-            cursor: pointer;
-          }
-        }
-        .form-control,
-        .input-group-addon {
-          float: none;
-          padding: 0.3rem 0.8rem;
-          border-radius: 0;
-          border-top:0;
-          background: transparent;
-        }
-      }
-      & > div{
-        &:first-of-type {
-          .form-control {
-            border-top-right-radius: $border-radius;
-            border-top: $border-width solid #ccc;
-          }
-          .input-group-addon {
-            border-top-left-radius: $border-radius;
-            border-top: $border-width solid #ccc;
-          }
-        }
-        &:last-of-type {
-          .form-control {
-            border-bottom-right-radius: $border-radius;
-          }
-          .input-group-addon {
-            border-bottom-left-radius: $border-radius;
-          }
-        }
-      }
-    }
-
-
-  }
-  &.error{
-    border: $border-width solid $error;
-    border-radius: .2rem;
-    .multiselect {
-      .btn-group--all {
-        .checkbox-all {
-          background-color: $error;
-        }
-        &:hover {
-          button{
-            background-color: darken($error, 15%);
-            border-color: darken($error, 15%);
-          }
-        }
-      }
-    }
-  }
-  &.disabled {
-    border: $border-width solid $gray-light-2;
-    border-radius: .2rem;
-    .multiselect {
-      .btn-group--all{
-        .btn{
-          background-color: $gray-light-2;
-          border-color: $gray-light-2;
-          cursor: not-allowed;
-          color: $white;
-          opacity: .65;
-        }
-        &:hover {
-          button{
-            background-color: $gray-light-2;
-            border-color:$gray-light-2;
-            cursor: not-allowed;
-          }
-        }
-      }
-      .option-list{
-        .input-group {
-          .form-control {
-            color: $gray-light-2;
-          }
-          &:hover {
-
-            .form-control {
-              background:white;
-              cursor: not-allowed;
+        height: 100%;
+        
+        .btn-group--all
+        {
+            display: flex;
+            flex: 0 0 auto;
+            margin-bottom: .1em;
+            .checkbox-all
+            {
+                padding: 0.3rem 0.75rem;
             }
-            .input-group-addon {
-              background:white;
-              cursor: not-allowed;
+            .btn-all
+            {
+                width: 100%;
             }
-          }
-
+            .btn-handler
+            {
+                display: flex;
+                flex-flow: column nowrap;
+            }
+            .btn
+            {
+                text-align: left;
+                &:last-child
+                {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+            }
+            &:hover
+            {
+                button
+                {
+                    background-color: darken($brand-primary, 15%);
+                    border-color: darken($brand-primary, 15%);
+                    color: $white;
+                }
+            }
         }
-      }
+        
+        .option-list
+        {
+            
+            overflow: auto;
+            height: 146px;
+            .input-group
+            {
+                &:hover
+                {
+                    .input-group-addon,
+                    .form-control
+                    {
+                        background: lighten($brand-primary, 60);
+                        cursor: pointer;
+                    }
+                }
+                .form-control,
+                .input-group-addon
+                {
+                    float: none;
+                    padding: 0.3rem 0.8rem;
+                    border-radius: 0;
+                    border-top: 0;
+                    background: transparent;
+                }
+            }
+            & > div
+            {
+                &:first-of-type
+                {
+                    .form-control
+                    {
+                        border-top-right-radius: $border-radius;
+                        border-top: $border-width solid #CCCCCC;
+                    }
+                    .input-group-addon
+                    {
+                        border-top-left-radius: $border-radius;
+                        border-top: $border-width solid #CCCCCC;
+                    }
+                }
+                &:last-of-type
+                {
+                    .form-control
+                    {
+                        border-bottom-right-radius: $border-radius;
+                    }
+                    .input-group-addon
+                    {
+                        border-bottom-left-radius: $border-radius;
+                    }
+                }
+            }
+        }
     }
-  }
+    &.error
+    {
+        border: $border-width solid $error;
+        border-radius: .2rem;
+        .multiselect
+        {
+            .btn-group--all
+            {
+                .checkbox-all
+                {
+                    background-color: $error;
+                }
+                &:hover
+                {
+                    button
+                    {
+                        background-color: darken($error, 15%);
+                        border-color: darken($error, 15%);
+                    }
+                }
+            }
+        }
+    }
+    &.disabled
+    {
+        border: $border-width solid $gray-light-2;
+        border-radius: .2rem;
+        .multiselect
+        {
+            .btn-group--all
+            {
+                .btn
+                {
+                    background-color: $gray-light-2;
+                    border-color: $gray-light-2;
+                    cursor: not-allowed;
+                    color: $white;
+                    opacity: .65;
+                }
+                &:hover
+                {
+                    button
+                    {
+                        background-color: $gray-light-2;
+                        border-color: $gray-light-2;
+                        cursor: not-allowed;
+                    }
+                }
+            }
+            .option-list
+            {
+                .input-group
+                {
+                    .form-control
+                    {
+                        color: $gray-light-2;
+                    }
+                    &:hover
+                    {
+                        
+                        .form-control
+                        {
+                            background: white;
+                            cursor: not-allowed;
+                        }
+                        .input-group-addon
+                        {
+                            background: white;
+                            cursor: not-allowed;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -7,108 +7,108 @@ import { PlentyAlert } from '../../alert/plenty-alert.component';
 
 export class PlentyInput implements ControlValueAccessor
 {
-    @Input() name: string;
-    @Input() isRequired: boolean;
-    @Input() emptyMessage: string;
-    @Input() invalidMessage: string;
-    @Input() tooltipText: string;
-    @Input() disabled: boolean;
-    @Input() tooltipPlacement: string; //top, bottom, left, right (default: top)
-    @Input() maxLength: number;
-    @Input() maxValue: number;
-    @Input() minLength: number;
-    @Input() minValue: number;
-    protected type: string;
-    private _isValid: boolean;
-    private _regex: string;
-    private alert: PlentyAlert = PlentyAlert.getInstance();
-
+    @Input() inputName:string;
+    @Input() inputIsRequired:boolean;
+    @Input() inputEmptyMessage:string;
+    @Input() inputInvalidMessage:string;
+    @Input() inputTooltipText:string;
+    @Input() inputDisabled:boolean;
+    @Input() inputTooltipPlacement:string; //top, bottom, left, right (default: top)
+    @Input() inputMaxLength:number;
+    @Input() inputMaxValue:number;
+    @Input() inputMinLength:number;
+    @Input() inputMinValue:number;
+    protected type:string;
+    private _isValid:boolean;
+    private _regex:string;
+    private _alert:PlentyAlert = PlentyAlert.getInstance();
+    
     //The internal data model
-    private innerValue: any = '';
-
+    private _innerValue:any = '';
+    
     //Placeholders for the callbacks which are later providesd
     //by the Control Value Accessor
-    private onTouchedCallback: () => void = () =>
+    private onTouchedCallback:() => void = () =>
     {
     };
-
-    private onChangeCallback: (_: any) => void = (_) =>
+    
+    private onChangeCallback:(_:any) => void = (_) =>
     {
     };
-
-    constructor(private inputType: string,
-                private inputRegex: string)
+    
+    constructor(private _inputType:string,
+                private _inputRegex:string)
     {
-        this.type = inputType;
-        this.regex = inputRegex;
+        this.type = _inputType;
+        this.regex = _inputRegex;
         this.isValid = true;
-        this.tooltipPlacement = 'top';
+        this.inputTooltipPlacement = 'top';
     }
-
-    public get isDisabled(): boolean
+    
+    public get isDisabled():boolean
     {
-        return this.disabled;
+        return this.inputDisabled;
     }
-
-    public set isDisabled(value: boolean)
+    
+    public set isDisabled(value:boolean)
     {
-        this.disabled = value;
+        this.inputDisabled = value;
     }
-
-    public get isValid(): boolean
+    
+    public get isValid():boolean
     {
         return this._isValid;
     }
-
-    public set isValid(value: boolean)
+    
+    public set isValid(value:boolean)
     {
         this._isValid = value;
     }
-
+    
     //get accessor
-    public get value(): any
+    public get value():any
     {
-        return this.innerValue;
+        return this._innerValue;
     };
-
+    
     //set accessor including call the onchange callback
-    public set value(v: any)
+    public set value(v:any)
     {
-        if(v !== this.innerValue)
+        if(v !== this._innerValue)
         {
-            this.innerValue = v;
+            this._innerValue = v;
             this.onChangeCallback(v);
         }
     }
-
+    
     //Set touched on blur
-    private onBlur(): void
+    private onBlur():void
     {
         this.onTouchedCallback();
     }
-
+    
     //From ControlValueAccessor interface
-    writeValue(value: any)
+    writeValue(value:any)
     {
-        if(value !== this.innerValue)
+        if(value !== this._innerValue)
         {
-            this.innerValue = value;
+            this._innerValue = value;
         }
     }
-
+    
     //From ControlValueAccessor interface
-    registerOnChange(fn: any)
+    registerOnChange(fn:any)
     {
         this.onChangeCallback = fn;
     }
-
+    
     //From ControlValueAccessor interface
-    registerOnTouched(fn: any)
+    registerOnTouched(fn:any)
     {
         this.onTouchedCallback = fn;
     }
-
-    public validate(formControl: FormControl): void
+    
+    public validate(formControl:FormControl):void
     {
         if(formControl.valid)
         {
@@ -119,50 +119,50 @@ export class PlentyInput implements ControlValueAccessor
             if(!this.isDisabled)
             {
                 this.isValid = false;
-
-                if(this.isRequired && this.value.length == 0)
+                
+                if(this.inputIsRequired && this.value.length == 0)
                 {
-                    let emptyMessage: string;
-
-                    if(!this.emptyMessage || this.emptyMessage.length == 0)
+                    let emptyMessage:string;
+                    
+                    if(!this.inputEmptyMessage || this.inputEmptyMessage.length == 0)
                     {
                         //TODO i18n
                         emptyMessage = 'Mach eine Eingabe!';
-
+                        
                     }
                     else
                     {
-                        emptyMessage = this.emptyMessage;
+                        emptyMessage = this.inputEmptyMessage;
                     }
-
-                    this.alert.addAlert(emptyMessage, true, 'danger', 0);
+                    
+                    this._alert.addAlert(emptyMessage, true, 'danger', 0);
                 }
                 else if(this.value.length > 0)
                 {
-                    let invalidMessage: string;
-
-                    if(!this.invalidMessage || this.invalidMessage.length == 0)
+                    let invalidMessage:string;
+                    
+                    if(!this.inputInvalidMessage || this.inputInvalidMessage.length == 0)
                     {
                         //TODO i18n
                         invalidMessage = 'Eingabe ungültig!';
                     }
                     else
                     {
-                        invalidMessage = this.invalidMessage;
+                        invalidMessage = this.inputInvalidMessage;
                     }
-
-                    this.alert.addAlert(invalidMessage, true, 'danger', 0);
+                    
+                    this._alert.addAlert(invalidMessage, true, 'danger', 0);
                 }
             }
         }
     }
-
-    public get regex(): string
+    
+    public get regex():string
     {
         return this._regex;
     }
-
-    public set regex(value: string)
+    
+    public set regex(value:string)
     {
         this._regex = value;
     }

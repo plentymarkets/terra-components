@@ -17,26 +17,26 @@ export const NUMBER_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 };
 
 @Component({
-               selector:  'plenty-number-input',
-               styles:    [require('./plenty-number-input.component.scss')],
+               selector:      'plenty-number-input',
+               styles:        [require('./plenty-number-input.component.scss').toString()],
                encapsulation: ViewEncapsulation.None,
-               providers: [NUMBER_INPUT_CONTROL_VALUE_ACCESSOR],
-               template:  require('./plenty-number-input.component.html')
+               providers:     [NUMBER_INPUT_CONTROL_VALUE_ACCESSOR],
+               template:      require('./plenty-number-input.component.html')
            })
 export class PlentyNumberInput extends PlentyInput
 {
-    @Input() name:string;
-    @Input() isRequired:boolean;
-    @Input() emptyMessage:string;
-    @Input() invalidMessage:string;
-    @Input() tooltipText:string;
-    @Input() disabled:boolean;
-    @Input() tooltipPlacement:string; //top, bottom, left, right (default: top)
-    @Input() maxLength:number;
-    @Input() maxValue:number;
-    @Input() minLength:number;
-    @Input() minValue:number;
-
+    @Input() inputName:string;
+    @Input() inputIsRequired:boolean;
+    @Input() inputEmptyMessage:string;
+    @Input() inputInvalidMessage:string;
+    @Input() inputTooltipText:string;
+    @Input() inputDisabled:boolean;
+    @Input() inputTooltipPlacement:string; //top, bottom, left, right (default: top)
+    @Input() inputMaxLength:number;
+    @Input() inputMaxValue:number;
+    @Input() inputMinLength:number;
+    @Input() inputMinValue:number;
+    
     constructor()
     {
         super('number', PlentyRegex.NUMERIC);

@@ -17,83 +17,82 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR:any = {
 
 @Component({
                selector:  'plenty-checkbox',
-               styles:    [require('./plenty-checkbox.component.scss')],
+               styles:    [require('./plenty-checkbox.component.scss').toString()],
                providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR],
                template:  require('./plenty-checkbox.component.html')
            })
 
 export class PlentyCheckbox implements ControlValueAccessor
 {
-    @Input() isDisabled:boolean;
-    @Input() caption:string;
+    @Input() inputIsDisabled:boolean;
+    @Input() inputCaption:string;
     //The internal data model
-    private innerValue:boolean = false;
+    private _innerValue:boolean = false;
     private _isIndeterminate = false;
-
-    //Placeholders for the callbacks which are later providesd
+    
+    //Placeholders for the callbacks which are later provided
     //by the Control Value Accessor
     private onTouchedCallback:() => void = () =>
     {
     };
-
+    
     private onChangeCallback:(_:any) => void = (_) =>
     {
     };
-
+    
     constructor()
     {
     }
-
+    
     //get accessor
     @Input()
     public get value():boolean
     {
-        return this.innerValue;
+        return this._innerValue;
     };
-
+    
     //set accessor including call the onchange callback
     public set value(v:boolean)
     {
         this.isIndeterminate = false;
-
-        if(v !== this.innerValue)
+        
+        if(v !== this._innerValue)
         {
-            this.innerValue = v;
+            this._innerValue = v;
             this.onChangeCallback(v);
         }
     }
-
+    
     //From ControlValueAccessor interface
     writeValue(value:boolean)
     {
-        if(value !== this.innerValue)
+        if(value !== this._innerValue)
         {
-            this.innerValue = value;
+            this._innerValue = value;
         }
     }
-
+    
     //From ControlValueAccessor interface
     registerOnChange(fn:any)
     {
         this.onChangeCallback = fn;
     }
-
+    
     //From ControlValueAccessor interface
     registerOnTouched(fn:any)
     {
         this.onTouchedCallback = fn;
     }
-
+    
     public get isIndeterminate():boolean
     {
         return this._isIndeterminate;
     }
-
+    
     public set isIndeterminate(value:boolean)
     {
         //TODO is this correct?
-        this.innerValue = false;
+        this._innerValue = false;
         this._isIndeterminate = value;
     }
-
 }
