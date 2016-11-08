@@ -7,35 +7,35 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector:  'plenty-button',
-               styles:    [require('./plenty-button.component.scss').toString()],
-               template:  require('./plenty-button.component.html'),
+               selector:      'plenty-button',
+               styles:        [require('./plenty-button.component.scss').toString()],
+               template:      require('./plenty-button.component.html'),
                encapsulation: ViewEncapsulation.None,
            })
 
 export class PlentyButton
 {
-    @Input() isPrimary:boolean;
-    @Input() isSecondary:boolean;
-    @Input() isSmall:boolean;
-    @Input() isLarge:boolean;
-    @Input() isDisabled:boolean;
-    @Input() caption:string;
-    @Input() icon:string;
-    @Input() type:string;
-    @Input() isAlignRight:boolean;
-    @Input() isHidden:boolean;
-    @Input() tooltipText:string;
-    @Input() tooltipPlacement:string; //top, bottom, left, right
-    @Output() clicked = new EventEmitter<any>();
-
+    @Input() inputIsPrimary:boolean;
+    @Input() inputIsSecondary:boolean;
+    @Input() inputIsSmall:boolean;
+    @Input() inputIsLarge:boolean;
+    @Input() inputIsDisabled:boolean;
+    @Input() inputCaption:string;
+    @Input() inputIcon:string;
+    @Input() inputType:string;
+    @Input() inputIsAlignRight:boolean;
+    @Input() inputIsHidden:boolean;
+    @Input() inputTooltipText:string;
+    @Input() inputTooltipPlacement:string; //top, bottom, left, right
+    @Output() outputClicked = new EventEmitter<any>();
+    
     constructor()
     {
-        this.tooltipPlacement = 'top';
+        this.inputTooltipPlacement = 'top';
     }
-
+    
     private click():void
     {
-        this.clicked.emit(null);
+        this.outputClicked.emit(null);
     }
 }

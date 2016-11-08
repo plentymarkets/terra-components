@@ -8,23 +8,23 @@ import { PlentyAlert } from "./plenty-alert.component";
  * @author mkunze
  */
 @Component({
-               selector: 'plenty-alert-panel',
-               styles: [require('./plenty-alert-panel.component.scss').toString()],
-               template: require('./plenty-alert-panel.component.html'),
+               selector:      'plenty-alert-panel',
+               styles:        [require('./plenty-alert-panel.component.scss').toString()],
+               template:      require('./plenty-alert-panel.component.html'),
                encapsulation: ViewEncapsulation.None
            })
 export class PlentyAlertPanel
 {
-    private alerts: Array<any>;
-    private alert: PlentyAlert = PlentyAlert.getInstance();
-
+    private _alerts:Array<any>;
+    private _alert:PlentyAlert = PlentyAlert.getInstance();
+    
     constructor()
     {
-        this.alerts = this.alert.alerts;
+        this._alerts = this._alert.alerts;
     }
-
-    private closeAlert(i: number): void
+    
+    private closeAlert(i:number):void
     {
-        this.alert.closeAlert(i);
+        this._alert.closeAlert(i);
     }
 }
