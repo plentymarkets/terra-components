@@ -18,6 +18,7 @@ import { PlentySelectBoxValue } from './value/plenty-select-box-value';
                    '(document:click)': 'clickedOutside($event)',
                }
            })
+
 export class PlentySelectBox implements OnInit
 {
     @Input() inputName:string;

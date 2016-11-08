@@ -7,7 +7,7 @@ import { PlentyTag } from '../tag/plenty-tag.component';
 
 @Component({
                selector: 'plenty-taglist',
-               styles:   [require('./plenty-taglist.component.scss')],
+               styles:   [require('./plenty-taglist.component.scss').toString()],
                template: require('./plenty-taglist.component.html')
            })
 export class PlentyTaglist implements OnInit

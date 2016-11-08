@@ -12,7 +12,7 @@ import {
 
 @Component({
                selector: 'dcl-wrapper',
-               styles:   [require('./plenty-dcl-wrapper.component.scss')],
+               styles:   [require('./plenty-dcl-wrapper.component.scss').toString()],
                template: require('./plenty-dcl-wrapper.component.html')
            })
 export class PlentyDclWrapper implements AfterViewInit, OnDestroy
@@ -21,7 +21,6 @@ export class PlentyDclWrapper implements AfterViewInit, OnDestroy
     @Input() type;
     @Input() routeData;
     @Input() identifier;
-    @Input() data:Array<any>;
 
     private cmpRef:ComponentRef<any>;
     private isViewInitialized:boolean = false;
@@ -47,12 +46,6 @@ export class PlentyDclWrapper implements AfterViewInit, OnDestroy
 
         let factory = this.componentFactoryResolver.resolveComponentFactory(this.type);
         this.cmpRef = this.target.createComponent(factory);
-
-        for(var item in this.data)
-        {
-            this.cmpRef.instance[item] = this.data[item];
-        }
-
     }
 
     ngOnChanges()

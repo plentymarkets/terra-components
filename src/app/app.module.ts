@@ -43,6 +43,7 @@ export { PlentyTree } from './tree/plenty-tree.component';
 export { PlentyBaseTree } from './tree/base/plenty-base-tree.component';
 export { PlentyCheckboxTree } from './tree/checkbox-tree/plenty-checkbox-tree.component';
 export { PlentyLeaf } from './tree/leaf/plenty-leaf.component';
+export { PlentyDynamicModuleLoaderComponent } from './dynamic-module-loader/plenty-dynamic-module-loader.component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import {
@@ -90,6 +91,7 @@ import { PlentyDataTableContextMenuService } from './table/data-table/context-me
 import { BaseService } from './service/base.service';
 import { PlentyAlert } from './alert/plenty-alert.component';
 import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
+import { PlentyDynamicModuleLoaderComponent } from './dynamic-module-loader/plenty-dynamic-module-loader.component';
 
 @NgModule({
               declarations:    [
@@ -119,7 +121,8 @@ import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
                   PlentyPortlet,
                   PlentySplitViewComponent,
                   PlentyFilter,
-                  PlentyMultiSelectBox
+                  PlentyMultiSelectBox,
+                  PlentyDynamicModuleLoaderComponent
               ],
               entryComponents: [
                   PlentyTextInput,
@@ -171,7 +174,8 @@ import { PlentyAlertPanel } from './alert/plenty-alert-panel.component';
                   PlentyPortlet,
                   PlentySplitViewComponent,
                   PlentyFilter,
-                  PlentyMultiSelectBox
+                  PlentyMultiSelectBox,
+                  PlentyDynamicModuleLoaderComponent
               ],
               imports:         [
                   BrowserModule,

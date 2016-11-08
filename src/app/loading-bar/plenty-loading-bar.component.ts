@@ -13,7 +13,7 @@ import {
 
 @Component({
                selector: 'plenty-loading-bar',
-               styles:   [require('./plenty-loading-bar.component.scss')],
+               styles:   [require('./plenty-loading-bar.component.scss').toString()],
                template: require('./plenty-loading-bar.component.html')
            })
 export class PlentyLoadingBar implements OnInit
