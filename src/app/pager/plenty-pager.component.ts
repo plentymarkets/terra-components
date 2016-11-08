@@ -13,34 +13,34 @@ import { PlentySelectBoxValue } from '../forms/select-box/value/plenty-select-bo
 
 @Component({
                selector:      'plenty-pager',
-               styles:        [require('./plenty-pager.component.scss')],
+               styles:        [require('./plenty-pager.component.scss').toString()],
                template:      require('./plenty-pager.component.html'),
                encapsulation: ViewEncapsulation.None
            })
 export class PlentyPager implements OnInit
 {
-    @ViewChild(PlentyNumberInput) currentPageInput: PlentyNumberInput;
-
-    @Input() pagingData: PlentyPagerData;
-    @Input() defaultPagingSize: number;
-    @Input() pagingSize: Array<PlentySelectBoxValue>;
-
-    @Output() doPaging = new EventEmitter<PlentyPagerData>();
-
+    @ViewChild(PlentyNumberInput) viewChildCurrentPageInput:PlentyNumberInput;
+    
+    @Input() inputPagingData:PlentyPagerData;
+    @Input() inputDefaultPagingSize:number;
+    @Input() inputPagingSize:Array<PlentySelectBoxValue>;
+    
+    @Output() outputDoPaging = new EventEmitter<PlentyPagerData>();
+    
     constructor()
     {
     }
-
+    
     ngOnInit()
     {
-        if(!this.defaultPagingSize)
+        if(!this.inputDefaultPagingSize)
         {
-            this.defaultPagingSize = 25;
+            this.inputDefaultPagingSize = 25;
         }
-
-        if(!this.pagingSize)
+        
+        if(!this.inputPagingSize)
         {
-            this.pagingSize = [
+            this.inputPagingSize = [
                 {
                     value:   25,
                     caption: '25'
@@ -59,10 +59,10 @@ export class PlentyPager implements OnInit
                 }
             ];
         }
-
-        if(!this.pagingData)
+        
+        if(!this.inputPagingData)
         {
-            this.pagingData = {
+            this.inputPagingData = {
                 pagingUnit:  'Entries',
                 total:       0,
                 currentPage: 1,
@@ -72,75 +72,75 @@ export class PlentyPager implements OnInit
                 to:          0
             };
         }
-
+        
         this.updateCurrentPageInput();
     }
-
+    
     private updateCurrentPageInput()
     {
-        this.currentPageInput.value = this.pagingData.currentPage;
+        this.viewChildCurrentPageInput.value = this.inputPagingData.currentPage;
     }
-
-    public onFirstPage(): void
+    
+    public onFirstPage():void
     {
-        this.pagingData.currentPage = 1;
+        this.inputPagingData.currentPage = 1;
         this.updateCurrentPageInput();
-
-        this.doPaging
-            .emit(this.pagingData);
+        
+        this.outputDoPaging
+            .emit(this.inputPagingData);
     }
-
-    public onPrevPage(): void
+    
+    public onPrevPage():void
     {
-        this.pagingData.currentPage -= 1;
+        this.inputPagingData.currentPage -= 1;
         this.updateCurrentPageInput();
-
-        this.doPaging
-            .emit(this.pagingData);
+        
+        this.outputDoPaging
+            .emit(this.inputPagingData);
     }
-
-    public onNextPage(): void
+    
+    public onNextPage():void
     {
-        this.pagingData.currentPage += 1;
+        this.inputPagingData.currentPage += 1;
         this.updateCurrentPageInput();
-
-        this.doPaging
-            .emit(this.pagingData);
+        
+        this.outputDoPaging
+            .emit(this.inputPagingData);
     }
-
-    public onLastPage(): void
+    
+    public onLastPage():void
     {
-        this.pagingData.currentPage = this.pagingData.lastPage;
+        this.inputPagingData.currentPage = this.inputPagingData.lastPage;
         this.updateCurrentPageInput();
-
-        this.doPaging
-            .emit(this.pagingData);
+        
+        this.outputDoPaging
+            .emit(this.inputPagingData);
     }
-
-    public onReload(): void
+    
+    public onReload():void
     {
-        this.doPaging
-            .emit(this.pagingData);
+        this.outputDoPaging
+            .emit(this.inputPagingData);
     }
-
-    public onToPage(event: any,
-                    pageNumber: number): void
+    
+    public onToPage(event:any,
+                    pageNumber:number):void
     {
         event.preventDefault();
-
-        this.pagingData.currentPage = pageNumber;
-
-        this.doPaging
-            .emit(this.pagingData);
+        
+        this.inputPagingData.currentPage = pageNumber;
+        
+        this.outputDoPaging
+            .emit(this.inputPagingData);
     }
-
-    public onChangeOffsetTo(selectedOffset: PlentySelectBoxValue): void
+    
+    public onChangeOffsetTo(selectedOffset:PlentySelectBoxValue):void
     {
-        this.pagingData.currentPage = 1;
+        this.inputPagingData.currentPage = 1;
         this.updateCurrentPageInput();
-        this.pagingData.perPage = selectedOffset.value;
-
-        this.doPaging
-            .emit(this.pagingData);
+        this.inputPagingData.perPage = selectedOffset.value;
+        
+        this.outputDoPaging
+            .emit(this.inputPagingData);
     }
 }
