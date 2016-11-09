@@ -1,10 +1,10 @@
-<div class="multiselect-container {{boxClassType}}">
+<div class="multiselect-container {{_boxClassType}}">
     <div class="multiselect">
         <div class="btn-group btn-group--all" role="group">
             <button class="btn btn-primary checkbox-all" isPrimary="true" type="plenty-button">
                 <plenty-checkbox #headerCheckbox type="checkbox" [isDisabled]="inputIsDisabled"
                                  (change)="onHeaderCheckboxChange(headerCheckbox.value)"
-                                 [value]="isHeaderCheckboxChecked"></plenty-checkbox>
+                                 [value]="_isHeaderCheckboxChecked"></plenty-checkbox>
             </button>
             <div *ngIf="inputIsDisabled == false && inputIsError == false" class="btn-all">
                 <plenty-button (clicked)="primaryClicked()" caption="Alle" isPrimary="true" type="plenty-button"></plenty-button>

@@ -1,13 +1,13 @@
 <div class="loading-bar">
     <div class="loading-bar-progress"
-         [style.width]="progress"
+         [style.width]="_progress"
          [style.backgroundColor]="inputColor"
          [style.color]="inputColor"
          [style.height]="inputHeight"
          [style.opacity]="inputShow ? '1' : '0'"
-         [style.-webkit-transition]="'all ' + animationTime + 's ease-in-out'"
-         [style.-moz-transition]="'all ' + animationTime + 's ease-in-out'"
-         [style.-o-transition]="'all ' + animationTime + 's ease-in-out'"
-         [style.transition]="'all ' + animationTime + 's ease-in-out'">
+         [style.-webkit-transition]="'all ' + _animationTime + 's ease-in-out'"
+         [style.-moz-transition]="'all ' + _animationTime + 's ease-in-out'"
+         [style.-o-transition]="'all ' + _animationTime + 's ease-in-out'"
+         [style.transition]="'all ' + _animationTime + 's ease-in-out'">
     </div>
 </div>

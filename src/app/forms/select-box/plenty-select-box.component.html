@@ -3,28 +3,28 @@
      tooltip="{{tooltipText}}"
      tooltipEnable="{{tooltipText}}"
      [ngClass]="{
-                  'input-unit-v1': hasLabel,
-                  'error': !isValid,
+                  'input-unit-v1': _hasLabel,
+                  'error': !_isValid,
                   'disabled': isDisabled,
-                  'open': toggleOpen
+                  'open': _toggleOpen
                 }"
-     (click)="toggleOpen=!toggleOpen">
-
-
-  <label *ngIf="hasLabel" htmlFor="{{name}}">{{name}}
-    <span *ngIf="isRequired">*</span>
-  </label>
-  <i *ngIf="name">?</i>
-
-
-  <div class="list-box">
-    {{selectedValue.caption}}
-  </div>
-
-  <div class="list-box-dropdown">
+     (click)="_toggleOpen=!_toggleOpen">
+    
+    
+    <label *ngIf="_hasLabel" htmlFor="{{name}}">{{name}}
+        <span *ngIf="isRequired">*</span>
+    </label>
+    <i *ngIf="name">?</i>
+    
+    
+    <div class="list-box">
+        {{_selectedValue.caption}}
+    </div>
+    
+    <div class="list-box-dropdown">
     <span *ngFor="let value of listBoxValues" (click)="select(value)" [ngClass]="{active: value.active}">
       <span class="{{value.icon}}" *ngIf="value.icon"></span>
       {{value.caption}}
     </span>
-  </div>
+    </div>
 </div>

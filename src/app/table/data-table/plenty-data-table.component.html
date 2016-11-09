@@ -1,4 +1,4 @@
-<plenty-pager [pagingSize]="pagingSize" [defaultPagingSize]="defaultPagingSize" [pagingData]="pagingData"
+<plenty-pager [pagingSize]="_pagingSize" [defaultPagingSize]="_defaultPagingSize" [pagingData]="_pagingData"
               (doPaging)="doPaging($event)"></plenty-pager>
 <!--<plenty-button (clicked)="openOverlayDataTableSettings()" icon="icon-settings" caption="Table Settings" [isSmall]="true" tooltipText="Einstellungen"></plenty-button>-->
 
@@ -9,9 +9,9 @@
         <tr>
             <th width="25px">
                 <plenty-checkbox #viewChildHeaderCheckbox type="checkbox" (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
-                                 [value]="isHeaderCheckboxChecked"></plenty-checkbox>
+                                 [value]="_isHeaderCheckboxChecked"></plenty-checkbox>
             </th>
-            <template ngFor let-header [ngForOf]="headerList">
+            <template ngFor let-header [ngForOf]="_headerList">
                 <th *ngIf="!header.isHidden"
                     width="{{header.width}}px">
               <span
@@ -23,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        <template ngFor let-row [ngForOf]="rowList">
+        <template ngFor let-row [ngForOf]="_rowList">
             <tr [ngClass]="{'selected': row.selected}" [context-menu]="row.contextMenuLinkList">
                 <td>
                     <plenty-checkbox #rowCheckbox type="checkbox" [value]="row.selected"
