@@ -1,9 +1,9 @@
 <plenty-base-toolbar>
-  <ng-content></ng-content>
+    <ng-content></ng-content>
 </plenty-base-toolbar>
 <div class="side-scroller">
-  <template ngFor let-component [ngForOf]="components" let-last="last">
-    <dcl-wrapper [identifier]="test" [type]="component.component" [style.width]="component.defaultWidth"></dcl-wrapper>
-    <div class="divider" *ngIf="!last"></div>
-  </template>
+    <template ngFor let-component [ngForOf]="inputComponents" let-last="last">
+        <dcl-wrapper [inputIdentifier]="test" [inputType]="component.component" [style.width]="component.defaultWidth"></dcl-wrapper>
+        <div class="divider" *ngIf="!last"></div>
+    </template>
 </div>
