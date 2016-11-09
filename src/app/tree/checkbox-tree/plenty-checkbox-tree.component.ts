@@ -7,7 +7,7 @@ import { PlentyLeaf } from '../leaf/plenty-leaf.component';
 
 @Component({
                selector: 'plenty-checkbox-tree',
-               styles:   [require('./plenty-checkbox-tree.component.scss')],
+               styles:   [require('./plenty-checkbox-tree.component.scss').toString()],
                template: require('./plenty-checkbox-tree.component.html')
            })
 /**
