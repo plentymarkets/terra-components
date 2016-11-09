@@ -19,9 +19,9 @@ export const NUMBER_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 @Component({
                selector:      'plenty-number-input',
                styles:        [require('./plenty-number-input.component.scss').toString()],
-               encapsulation: ViewEncapsulation.None,
+               template:      require('./plenty-number-input.component.html'),
                providers:     [NUMBER_INPUT_CONTROL_VALUE_ACCESSOR],
-               template:      require('./plenty-number-input.component.html')
+               encapsulation: ViewEncapsulation.None
            })
 export class PlentyNumberInput extends PlentyInput
 {
