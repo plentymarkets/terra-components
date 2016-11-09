@@ -7,8 +7,8 @@ export enum PlentyLoadingBarEventType {
 
 export class PlentyLoadingBarEvent
 {
-    constructor(public type: PlentyLoadingBarEventType,
-                public value: any)
+    constructor(public type:PlentyLoadingBarEventType,
+                public value:any)
     {
     }
 }
