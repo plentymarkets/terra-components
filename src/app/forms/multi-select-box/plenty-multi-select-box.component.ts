@@ -3,8 +3,6 @@ import
     Component,
     OnInit,
     Input,
-    Output,
-    EventEmitter,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
@@ -13,82 +11,82 @@ import { PlentyCheckbox } from '../checkbox/plenty-checkbox.component';
 
 
 @Component({
-               selector: 'plenty-multi-select-box',
-               styles:   [require('./plenty-multi-select-box.component.scss').toString()],
-               template: require('./plenty-multi-select-box.component.html'),
+               selector:      'plenty-multi-select-box',
+               styles:        [require('./plenty-multi-select-box.component.scss').toString()],
+               template:      require('./plenty-multi-select-box.component.html'),
                encapsulation: ViewEncapsulation.None
            })
 
 export class PlentyMultiSelectBox implements OnInit
 {
-    @Input() isDisabled: boolean;
-    @Input() isError: boolean;
-    @Input() valueList: Array<PlentyMultiSelectBoxValue>;
-    @ViewChild('headerCheckbox') headerCheckbox: PlentyCheckbox;
-
-    private isHeaderCheckboxChecked: boolean = false;
-    private selectedValueList: Array<PlentyMultiSelectBoxValue> = [];
-    private boxClassType: string = "";
-
+    @Input() inputIsDisabled:boolean;
+    @Input() inputIsError:boolean;
+    @Input() inputValueList:Array<PlentyMultiSelectBoxValue>;
+    @ViewChild('headerCheckbox') headerCheckbox:PlentyCheckbox;
+    
+    private _isHeaderCheckboxChecked:boolean = false;
+    private _selectedValueList:Array<PlentyMultiSelectBoxValue> = [];
+    private _boxClassType:string = "";
+    
     constructor()
     {
     }
-
+    
     ngOnInit()
     {
-        if(this.isDisabled)
+        if(this.inputIsDisabled)
         {
-            this.boxClassType = "disabled";
+            this._boxClassType = "disabled";
         }
-        else if(this.isError)
+        else if(this.inputIsError)
         {
-            this.boxClassType = "error";
+            this._boxClassType = "error";
         }
     }
-
-    private primaryClicked(): void
+    
+    private primaryClicked():void
     {
-        this.onHeaderCheckboxChange(!this.isHeaderCheckboxChecked);
+        this.onHeaderCheckboxChange(!this._isHeaderCheckboxChecked);
     }
-
-    private onHeaderCheckboxChange(isChecked: boolean): void
+    
+    private onHeaderCheckboxChange(isChecked:boolean):void
     {
-        this.isHeaderCheckboxChecked = isChecked;
-
-        this.valueList.forEach(
+        this._isHeaderCheckboxChecked = isChecked;
+        
+        this.inputValueList.forEach(
             (value)=>
             {
                 this.changeValueState(isChecked, value);
             });
     }
-
-    private onValueCheckboxChange(isChecked: boolean,
-                                  value: PlentyMultiSelectBoxValue): void
+    
+    private onValueCheckboxChange(isChecked:boolean,
+                                  value:PlentyMultiSelectBoxValue):void
     {
         this.changeValueState(isChecked, value);
-
-        if(this.selectedValueList.length == 0)
+        
+        if(this._selectedValueList.length == 0)
         {
-            this.isHeaderCheckboxChecked = false;
+            this._isHeaderCheckboxChecked = false;
         }
-        else if(this.selectedValueList.length > 0 && this.valueList.length == this.selectedValueList.length)
+        else if(this._selectedValueList.length > 0 && this.inputValueList.length == this._selectedValueList.length)
         {
-            this.isHeaderCheckboxChecked = true;
+            this._isHeaderCheckboxChecked = true;
         }
         else
         {
             this.headerCheckbox.isIndeterminate = true;
         }
     }
-
-    private changeValueState(isChecked: boolean,
-                             valueToChange: PlentyMultiSelectBoxValue): void
+    
+    private changeValueState(isChecked:boolean,
+                             valueToChange:PlentyMultiSelectBoxValue):void
     {
         valueToChange.selected = isChecked;
-
-        let valueFound: boolean = false;
-
-        this.selectedValueList.forEach(
+        
+        let valueFound:boolean = false;
+        
+        this._selectedValueList.forEach(
             (value)=>
             {
                 if(value == valueToChange)
@@ -96,19 +94,19 @@ export class PlentyMultiSelectBox implements OnInit
                     valueFound = true;
                 }
             });
-
+        
         if(valueToChange.selected)
         {
             if(!valueFound)
             {
-                this.selectedValueList.push(valueToChange);
+                this._selectedValueList.push(valueToChange);
             }
         }
         else
         {
-            let index = this.selectedValueList.indexOf(valueToChange);
-
-            this.selectedValueList.splice(index, 1);
+            let index = this._selectedValueList.indexOf(valueToChange);
+            
+            this._selectedValueList.splice(index, 1);
         }
     }
 }
