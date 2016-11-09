@@ -18,18 +18,18 @@ export class BaseService
     private _headers:Headers;
     private _url:string;
     
-    constructor(private _loadingBarService:PlentyLoadingBarService,
-                private _http:Http,
-                url:string)
+    constructor(private _baseLoadingBarService:PlentyLoadingBarService,
+                private _baseHttp:Http,
+                private _baseUrl:string)
     {
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.setAuthorization();
-        this.url = url;
+        this.url = _baseUrl;
     }
     
     get http():Http
     {
-        return this._http;
+        return this._baseHttp;
     }
     
     get headers():Headers
@@ -73,7 +73,7 @@ export class BaseService
     
     protected mapRequest(request:Observable<Response>):Observable<any>
     {
-        this._loadingBarService.start();
+        this._baseLoadingBarService.start();
         
         let req = request.map(
             (response:Response) =>
@@ -90,11 +90,11 @@ export class BaseService
         
         req.subscribe(() =>
                       {
-                          this._loadingBarService.complete();
+                          this._baseLoadingBarService.complete();
                       },
                       error =>
                       {
-                          this._loadingBarService.complete()
+                          this._baseLoadingBarService.complete()
                       });
         
         return req;
