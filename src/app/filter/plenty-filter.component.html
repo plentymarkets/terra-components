@@ -8,7 +8,7 @@
     </plenty-base-toolbar>
     
     <div class="input-group-v">
-        <div *ngFor="let item of inputInputList" #inputInputList>
+        <div *ngFor="let item of viewChildInputList" #inputList>
             <dcl-wrapper [type]="item.template" [data]="item.data"></dcl-wrapper>
         </div>
     </div>

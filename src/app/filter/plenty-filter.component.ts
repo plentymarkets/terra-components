@@ -15,7 +15,7 @@ import {
 export class PlentyFilter implements OnInit
 {
     
-    @ViewChild('inputInputList') childs;
+    @ViewChild('viewChildInputList') viewChildInputList;
     @Input() inputSearchLabel:string;
     @Input() inputResetLabel:string;
     @Input() inputInputList:any[];
