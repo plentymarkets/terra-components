@@ -21,21 +21,21 @@ import { PlentySelectBoxValue } from './value/plenty-select-box-value';
 
 export class PlentySelectBox implements OnInit
 {
-    @Input() name:string;
-    @Input() isRequired:boolean;
-    @Input() disabled:boolean;
-    @Input() tooltipText:string;
-    @Input() tooltipPlacement:string;
-    @Input() listBoxValues:Array<PlentySelectBoxValue>;
-    @Input() defaultSelection:number | string;
-    @Output() valueChanged = new EventEmitter<PlentySelectBoxValue>();
-
-    private selectedValue:PlentySelectBoxValue;
-    private toggleOpen:boolean;
-    private hasLabel:boolean;
+    @Input() inputName:string;
+    @Input() inputIsRequired:boolean;
+    @Input() inputDisabled:boolean;
+    @Input() inputTooltipText:string;
+    @Input() inputTooltipPlacement:string;
+    @Input() inputListBoxValues:Array<PlentySelectBoxValue>;
+    @Input() inputDefaultSelection:number | string;
+    @Output() outputValueChanged = new EventEmitter<PlentySelectBoxValue>();
+    
+    private _selectedValue:PlentySelectBoxValue;
+    private _toggleOpen:boolean;
+    private _hasLabel:boolean;
     private _isValid:boolean;
     private _regex:string;
-
+    
     /**
      *
      * @param elementRef
@@ -43,33 +43,33 @@ export class PlentySelectBox implements OnInit
     constructor(private elementRef:ElementRef)
     {
         this.isValid = true;
-        this.tooltipPlacement = 'top';
+        this.inputTooltipPlacement = 'top';
     }
-
+    
     ngOnInit()
     {
-        if(this.defaultSelection)
+        if(this.inputDefaultSelection)
         {
-            this.listBoxValues
+            this.inputListBoxValues
                 .forEach((value:PlentySelectBoxValue) =>
                          {
-                             if(value.value == this.defaultSelection)
+                             if(value.value == this.inputDefaultSelection)
                              {
                                  value.active = true;
-                                 this.selectedValue = value
+                                 this._selectedValue = value
                              }
                          });
         }
         else
         {
-            //this.listBoxValues[0].active = true;
-            //this.selectedValue = this.listBoxValues[0];
+            this.inputListBoxValues[0].active = true;
+            this._selectedValue = this.inputListBoxValues[0];
         }
-
-        this.toggleOpen = false;
-        this.hasLabel = this.name != null;
+        
+        this._toggleOpen = false;
+        this._hasLabel = this.inputName != null;
     }
-
+    
     /**
      *
      * @param event
@@ -78,40 +78,40 @@ export class PlentySelectBox implements OnInit
     {
         if(!this.elementRef.nativeElement.contains(event.target))
         {
-            this.toggleOpen = false;
+            this._toggleOpen = false;
         }
     }
-
+    
     /**
      *
      * @param value
      */
     private select(value:PlentySelectBoxValue):void
     {
-        this.selectedValue.active = false;
+        this._selectedValue.active = false;
         value.active = true;
-        this.selectedValue = value;
-        this.valueChanged.emit(value);
+        this._selectedValue = value;
+        this.outputValueChanged.emit(value);
     }
-
+    
     /**
      *
      * @returns {boolean}
      */
     public get isDisabled():boolean
     {
-        return this.disabled;
+        return this.inputDisabled;
     }
-
+    
     /**
      *
      * @param value
      */
     public set isDisabled(value:boolean)
     {
-        this.disabled = value;
+        this.inputDisabled = value;
     }
-
+    
     /**
      *
      * @returns {boolean}
@@ -120,7 +120,7 @@ export class PlentySelectBox implements OnInit
     {
         return this._isValid;
     }
-
+    
     /**
      *
      * @param isValid
@@ -129,7 +129,7 @@ export class PlentySelectBox implements OnInit
     {
         this._isValid = isValid;
     }
-
+    
     /**
      *
      * @returns {string}
@@ -138,7 +138,7 @@ export class PlentySelectBox implements OnInit
     {
         return this._regex;
     }
-
+    
     /**
      *
      * @param regex
@@ -147,5 +147,5 @@ export class PlentySelectBox implements OnInit
     {
         this._regex = regex;
     }
-
+    
 }

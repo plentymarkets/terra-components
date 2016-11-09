@@ -3,6 +3,6 @@
  */
 export interface PlentySplitViewData
 {
-  component:any;
-  defaultWidth:string;
+    component:any;
+    defaultWidth:string;
 }

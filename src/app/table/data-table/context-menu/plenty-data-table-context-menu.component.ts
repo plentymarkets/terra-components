@@ -10,7 +10,7 @@ import { BaseData } from '../../../data/base-data';
                selector: 'context-menu-holder',
                styles:   [require('./plenty-data-table-context-menu.component.scss').toString()],
                host:     {
-                   '(document:click)': 'clickedOutside()',
+                   '(document:click)': 'clickedOutside()'
                },
                template: require('./plenty-data-table-context-menu.component.html')
            })
@@ -18,37 +18,37 @@ export class PlentyDataTableContextMenu<D extends BaseData>
 {
     contextMenuLinkList:Array<PlentyDataTableContextMenuEntry<D>> = [];
     isShown = false;
-    private mouseLocation:{left:number,top:number} = {
+    private _mouseLocation:{left:number,top:number} = {
         left: 0,
         top:  0
     };
-
-    constructor(private contextMenuService:PlentyDataTableContextMenuService<D>)
+    
+    constructor(private _contextMenuService:PlentyDataTableContextMenuService<D>)
     {
-        contextMenuService.show.subscribe(
+        _contextMenuService.show.subscribe(
             e => this.showMenu(e.event, e.obj));
     }
-
+    
     get locationCss()
     {
         return {
             'display': this.isShown ? 'block' : 'none',
-            left:      this.mouseLocation.left + 'px',
-            top:       this.mouseLocation.top + 'px',
+            left:      this._mouseLocation.left + 'px',
+            top:       this._mouseLocation.top + 'px',
         };
     }
-
+    
     clickedOutside()
     {
         this.isShown = false
     }
-
+    
     showMenu(event,
              contextMenuLinkList:Array<PlentyDataTableContextMenuEntry<D>>)
     {
         this.isShown = true;
         this.contextMenuLinkList = contextMenuLinkList;
-        this.mouseLocation = {
+        this._mouseLocation = {
             left: event.clientX,
             top:  event.clientY
         }

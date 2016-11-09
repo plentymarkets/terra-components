@@ -4,11 +4,11 @@ import { PlentyButtonInterface } from '../../button/interface/plenty-button-inte
  */
 export interface PlentyTableCell
 {
-  identifier:string;
-  caption?:string | number;
-  isHidden?:boolean;
-  icon?:string;
-  buttonList?:Array<PlentyButtonInterface>;
-  tooltipText?:string;
-  tooltipPlacement?:string;
+    identifier:string;
+    caption?:string | number;
+    isHidden?:boolean;
+    icon?:string;
+    buttonList?:Array<PlentyButtonInterface>;
+    tooltipText?:string;
+    tooltipPlacement?:string;
 }
