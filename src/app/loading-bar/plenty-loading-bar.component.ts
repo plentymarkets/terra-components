@@ -30,7 +30,6 @@ export class PlentyLoadingBar implements OnInit
     }
     
     private _animationTime:number = 0.5;
-    
     private _progress:string = '0%';
     
     get progress():string
