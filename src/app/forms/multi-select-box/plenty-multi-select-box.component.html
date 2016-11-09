@@ -2,25 +2,25 @@
     <div class="multiselect">
         <div class="btn-group btn-group--all" role="group">
             <button class="btn btn-primary checkbox-all" isPrimary="true" type="plenty-button">
-                <plenty-checkbox #headerCheckbox type="checkbox" [isDisabled]="inputIsDisabled"
+                <plenty-checkbox #headerCheckbox type="checkbox" [inputIsDisabled]="inputIsDisabled"
                                  (change)="onHeaderCheckboxChange(headerCheckbox.value)"
                                  [value]="isHeaderCheckboxChecked"></plenty-checkbox>
             </button>
             <div *ngIf="inputIsDisabled == false && inputIsError == false" class="btn-all">
-                <plenty-button (clicked)="primaryClicked()" caption="Alle" isPrimary="true" type="plenty-button"></plenty-button>
+                <plenty-button (outputClicked)="primaryClicked()" inputCaption="Alle" inputIsPrimary="true" inputType="plenty-button"></plenty-button>
             </div>
             <div *ngIf="inputIsError" class="btn-all">
-                <plenty-button (clicked)="primaryClicked()" caption="Alle" isSecondary="true" type="plenty-button"></plenty-button>
+                <plenty-button (outputClicked)="primaryClicked()" inputCaption="Alle" inputIsSecondary="true" inputType="plenty-button"></plenty-button>
             </div>
             <div *ngIf="inputIsDisabled && inputIsError == false" class="btn-all">
-                <plenty-button (clicked)="primaryClicked()" caption="Alle" isDisabled="true" type="plenty-button"></plenty-button>
+                <plenty-button (outputClicked)="primaryClicked()" inputCaption="Alle" inputIsDisabled="true" inputType="plenty-button"></plenty-button>
             </div>
         </div>
         <div class="option-list">
             <div *ngFor="let value of inputValueList">
                 <div class="input-group">
                     <div class="input-group-addon">
-                        <plenty-checkbox #valueCheckbox type="checkbox" [isDisabled]="inputIsDisabled" [value]="value.selected"
+                        <plenty-checkbox #valueCheckbox type="checkbox" [inputIsDisabled]="inputIsDisabled" [value]="value.selected"
                                          (change)="onValueCheckboxChange(valueCheckbox.value, value)"></plenty-checkbox>
                     </div>
                     <label class="form-control">{{value.caption}}</label>

@@ -1,10 +1,10 @@
 <div class="pager">
     <plenty-base-toolbar>
         <div class="btn-group" role="group">
-            <plenty-button icon="icon-control_start icon_dist_top" [inputIsDisabled]="inputPagingData.currentPage == 1"
-                           (clicked)="onFirstPage()"></plenty-button>
-            <plenty-button icon="icon-back icon_dist_top" [inputIsDisabled]="inputPagingData.currentPage == 1"
-                           (clicked)="onPrevPage()"></plenty-button>
+            <plenty-button inputIcon="icon-control_start icon_dist_top" [inputIsDisabled]="inputPagingData.currentPage == 1"
+                           (outputClicked)="onFirstPage()"></plenty-button>
+            <plenty-button inputIcon="icon-back icon_dist_top" [inputIsDisabled]="inputPagingData.currentPage == 1"
+                           (outputClicked)="onPrevPage()"></plenty-button>
         </div>
         <div class="btn-group" role="group">
             <div class="form-group">
@@ -18,11 +18,11 @@
         </div>
         
         <div class="btn-group" role="group">
-            <plenty-button icon="icon-next icon_dist_top" [inputIsDisabled]="inputPagingData.currentPage == inputPagingData.lastPage"
-                           (clicked)="onNextPage()"></plenty-button>
-            <plenty-button icon="icon-last icon_dist_top" [inputIsDisabled]="inputPagingData.currentPage == inputPagingData.lastPage"
-                           (clicked)="onLastPage()"></plenty-button>
-            <plenty-button icon="icon-reload icon_dist_top" [inputIsPrimary]="true" (clicked)="onReload()"></plenty-button>
+            <plenty-button inputIcon="icon-next icon_dist_top" [inputIsDisabled]="inputPagingData.currentPage == inputPagingData.lastPage"
+                           (outputClicked)="onNextPage()"></plenty-button>
+            <plenty-button inputIcon="icon-last icon_dist_top" [inputIsDisabled]="inputPagingData.currentPage == inputPagingData.lastPage"
+                           (outputClicked)="onLastPage()"></plenty-button>
+            <plenty-button inputIcon="icon-reload icon_dist_top" [inputIsPrimary]="true" (outputClicked)="onReload()"></plenty-button>
         </div>
         <div class="btn-group" role="group">
             <plenty-select-box [inputListBoxValues]="pagingSize" [inputDefaultSelection]="inputDefaultPagingSize"

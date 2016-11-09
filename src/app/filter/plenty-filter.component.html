@@ -2,14 +2,14 @@
     
     <plenty-base-toolbar>
         <div class="btn-group" role="group">
-            <plenty-button caption="{{inputSearchLabel}}" (click)="outputOnSearchBtnClicked()"></plenty-button>
-            <plenty-button caption="{{inputResetLabel}}" (click)="outputOnResetBtnClicked()"></plenty-button>
+            <plenty-button inputCaption="{{inputSearchLabel}}" (outputClicked)="outputOnSearchBtnClicked()"></plenty-button>
+            <plenty-button inputCaption="{{inputResetLabel}}" (outputClicked)="outputOnResetBtnClicked()"></plenty-button>
         </div>
     </plenty-base-toolbar>
     
     <div class="input-group-v">
         <div *ngFor="let item of viewChildInputList" #inputList>
-            <dcl-wrapper [type]="item.template" [data]="item.data"></dcl-wrapper>
+            <dcl-wrapper [inputType]="item.template" [inputData]="item.data"></dcl-wrapper>
         </div>
     </div>
 
