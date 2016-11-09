@@ -7,7 +7,8 @@ import {
     ComponentFactoryResolver,
     ChangeDetectorRef,
     AfterViewInit,
-    OnDestroy
+    OnDestroy,
+    OnChanges
 } from '@angular/core';
 
 @Component({
@@ -15,57 +16,56 @@ import {
                styles:   [require('./plenty-dcl-wrapper.component.scss').toString()],
                template: require('./plenty-dcl-wrapper.component.html')
            })
-export class PlentyDclWrapper implements AfterViewInit, OnDestroy
+export class PlentyDclWrapper implements AfterViewInit, OnDestroy, OnChanges
 {
-    @ViewChild('target', {read: ViewContainerRef}) target;
-    @Input() type;
-    @Input() routeData;
-    @Input() identifier;
-
-    private cmpRef:ComponentRef<any>;
-    private isViewInitialized:boolean = false;
-
-    constructor(private componentFactoryResolver:ComponentFactoryResolver,
-                private cdRef:ChangeDetectorRef)
+    @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
+    @Input() inputType;
+    @Input() imputRouteData;
+    @Input() inputData:Array<any>;
+    
+    private _cmpRef:ComponentRef<any>;
+    private _isViewInitialized:boolean = false;
+    
+    constructor(private _componentFactoryResolver:ComponentFactoryResolver,
+                private _cdRef:ChangeDetectorRef)
     {
     }
-
+    
     private updateComponent():void
     {
-        if(!this.isViewInitialized)
+        if(!this._isViewInitialized)
         {
             return;
         }
-
-        if(this.cmpRef)
+        
+        if(this._cmpRef)
         {
-            // when the `type` input changes we destroy a previously
+            // when the `inputType` input changes we destroy a previously
             // created component before creating the new one
-            this.cmpRef.destroy();
+            this._cmpRef.destroy();
         }
-
-        let factory = this.componentFactoryResolver.resolveComponentFactory(this.type);
-        this.cmpRef = this.target.createComponent(factory);
+        
+        let factory = this._componentFactoryResolver.resolveComponentFactory(this.inputType);
+        this._cmpRef = this.viewChildTarget.createComponent(factory);
     }
-
+    
     ngOnChanges()
     {
         this.updateComponent();
     }
-
+    
     ngAfterViewInit()
     {
-        this.isViewInitialized = true;
+        this._isViewInitialized = true;
         this.updateComponent();
-        this.cdRef.detectChanges();
+        this._cdRef.detectChanges();
     }
-
+    
     ngOnDestroy()
     {
-        if(this.cmpRef)
+        if(this._cmpRef)
         {
-            this.cmpRef.destroy();
+            this._cmpRef.destroy();
         }
     }
-
 }
