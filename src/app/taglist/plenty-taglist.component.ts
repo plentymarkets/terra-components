@@ -12,12 +12,12 @@ import { PlentyTag } from '../tag/plenty-tag.component';
            })
 export class PlentyTaglist implements OnInit
 {
-    @Input() tagList:Array<PlentyTag>;
-
+    @Input() inputTagList:Array<PlentyTag>;
+    
     constructor()
     {
     }
-
+    
     ngOnInit()
     {
     }

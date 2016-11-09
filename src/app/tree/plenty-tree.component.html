@@ -1,5 +1,5 @@
 <ul>
-  <template ngFor let-leaf [ngForOf]="leafList">
+  <template ngFor let-leaf [ngForOf]="inputLeafList">
     <li class="node leaf" [ngClass]="{'collapsed': !leaf.isOpen, 'active': leaf.isActive}">
       <div class="leaf-titel" (click)="setLeafActive(leaf)">
         <span>
@@ -8,7 +8,7 @@
         </span>
       </div>
       <span class="node-toggle" *ngIf="leaf.subLeafList" (click)="toggleOpen(leaf)"></span>
-      <plenty-tree [leafList]="leaf.subLeafList" [parentLeafList]="leafList" *ngIf="leaf.subLeafList"></plenty-tree>
+      <plenty-tree [inputLeafList]="leaf.subLeafList" [inputParentLeafList]="leafList" *ngIf="leaf.subLeafList"></plenty-tree>
     </li>
   </template>
 </ul>
