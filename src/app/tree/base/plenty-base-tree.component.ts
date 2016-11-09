@@ -1,6 +1,6 @@
 import {
-  Input,
-  OnInit
+    Input,
+    OnInit
 } from '@angular/core';
 import { PlentyLeaf } from "../leaf/plenty-leaf.component";
 
@@ -9,97 +9,97 @@ import { PlentyLeaf } from "../leaf/plenty-leaf.component";
  */
 export class PlentyBaseTree implements OnInit
 {
-  /**
-   * current level leaf list
-   */
-  @Input() leafList:Array<PlentyLeaf>;
-
-  /**
-   * leafs one level higher than current leaf
-   */
-  @Input() parentLeafList:Array<PlentyLeaf>;
-
-  constructor()
-  {
-  }
-
-  ngOnInit()
-  {
-    if(this.parentLeafList)
+    /**
+     * current level leaf list
+     */
+    @Input() inputLeafList:Array<PlentyLeaf>;
+    
+    /**
+     * leafs one level higher than current leaf
+     */
+    @Input() inputParentLeafList:Array<PlentyLeaf>;
+    
+    constructor()
     {
-      for(let parentLeaf of this.parentLeafList)
-      {
-        if(parentLeaf.subLeafList)
+    }
+    
+    ngOnInit()
+    {
+        if(this.inputParentLeafList)
         {
-          for(let subLeaf of parentLeaf.subLeafList)
-          {
-            for(let leaf of this.leafList)
+            for(let parentLeaf of this.inputParentLeafList)
             {
-              if(leaf == subLeaf)
-              {
-                leaf.parentLeafList = this.parentLeafList;
-              }
+                if(parentLeaf.subLeafList)
+                {
+                    for(let subLeaf of parentLeaf.subLeafList)
+                    {
+                        for(let leaf of this.inputLeafList)
+                        {
+                            if(leaf == subLeaf)
+                            {
+                                leaf.parentLeafList = this.inputParentLeafList;
+                            }
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
-
-  private onLeafClick(clickedLeaf:PlentyLeaf):void
-  {
-    this.toggleOpen(clickedLeaf);
-    this.setLeafActive(clickedLeaf)
-  }
-
-  private setLeafActive(clickedLeaf:PlentyLeaf):void
-  {
-    this.setLeafListActive(clickedLeaf, this.leafList);
-  }
-
-  private setLeafListActive(clickedLeaf:PlentyLeaf,
-                            leafList:Array<PlentyLeaf>):void
-  {
-    for(let leaf of leafList)
+    
+    private onLeafClick(clickedLeaf:PlentyLeaf):void
     {
-      if(leaf == clickedLeaf)
-      {
-        leaf.isActive = true;
-
-        //set leafs inactive at one level higher
-        if(this.parentLeafList)
+        this.toggleOpen(clickedLeaf);
+        this.setLeafActive(clickedLeaf)
+    }
+    
+    private setLeafActive(clickedLeaf:PlentyLeaf):void
+    {
+        this.setLeafListActive(clickedLeaf, this.inputLeafList);
+    }
+    
+    private setLeafListActive(clickedLeaf:PlentyLeaf,
+                              inputLeafList:Array<PlentyLeaf>):void
+    {
+        for(let leaf of inputLeafList)
         {
-          this.setLeafListInactive(this.parentLeafList);
+            if(leaf == clickedLeaf)
+            {
+                leaf.isActive = true;
+                
+                //set leafs inactive at one level higher
+                if(this.inputParentLeafList)
+                {
+                    this.setLeafListInactive(this.inputParentLeafList);
+                }
+            }
+            else
+            {
+                leaf.isActive = false;
+            }
+            
+            //handle subLeafs recursively
+            if(leaf.subLeafList && leaf.subLeafList.length > 0)
+            {
+                this.setLeafListActive(leaf, leaf.subLeafList);
+            }
         }
-      }
-      else
-      {
-        leaf.isActive = false;
-      }
-
-      //handle subLeafs recursively
-      if(leaf.subLeafList && leaf.subLeafList.length > 0)
-      {
-        this.setLeafListActive(leaf, leaf.subLeafList);
-      }
     }
-  }
-
-  private setLeafListInactive(leafList:Array<PlentyLeaf>):void
-  {
-    for(let leaf of leafList)
+    
+    private setLeafListInactive(inputLeafList:Array<PlentyLeaf>):void
     {
-      leaf.isActive = false;
-
-      if(leaf.parentLeafList)
-      {
-        this.setLeafListInactive(leaf.parentLeafList);
-      }
+        for(let leaf of inputLeafList)
+        {
+            leaf.isActive = false;
+            
+            if(leaf.parentLeafList)
+            {
+                this.setLeafListInactive(leaf.parentLeafList);
+            }
+        }
     }
-  }
-
-  private toggleOpen(clickedLeaf:PlentyLeaf):void
-  {
-    clickedLeaf.isOpen = !clickedLeaf.isOpen;
-  }
+    
+    private toggleOpen(clickedLeaf:PlentyLeaf):void
+    {
+        clickedLeaf.isOpen = !clickedLeaf.isOpen;
+    }
 }
