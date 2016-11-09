@@ -19,9 +19,9 @@ export const TEXT_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 @Component({
                selector:      'plenty-text-input',
                styles:        [require('./plenty-text-input.component.scss').toString()],
-               encapsulation: ViewEncapsulation.None,
+               template:      require('./plenty-text-input.component.html'),
                providers:     [TEXT_INPUT_CONTROL_VALUE_ACCESSOR],
-               template:      require('./plenty-text-input.component.html')
+               encapsulation: ViewEncapsulation.None
            })
 export class PlentyTextInput extends PlentyInput
 {

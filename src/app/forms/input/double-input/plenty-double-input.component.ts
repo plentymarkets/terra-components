@@ -19,9 +19,9 @@ export const DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 @Component({
                selector:      'plenty-double-input',
                styles:        [require('./plenty-double-input.component.scss').toString()],
-               encapsulation: ViewEncapsulation.None,
+               template:      require('./plenty-double-input.component.html'),
                providers:     [DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR],
-               template:      require('./plenty-double-input.component.html')
+               encapsulation: ViewEncapsulation.None
            })
 export class PlentyDoubleInput extends PlentyInput
 {
