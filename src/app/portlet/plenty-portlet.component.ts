@@ -1,6 +1,5 @@
 import {
     Component,
-    OnInit,
     Input
 } from '@angular/core';
 
@@ -9,11 +8,10 @@ import {
                styles:   [require('./plenty-portlet.component.scss').toString()],
                template: require('./plenty-portlet.component.html')
            })
-
 export class PlentyPortlet
 {
-    @Input() portletHeader:string;
-
+    @Input() inputPortletHeader:string;
+    
     constructor()
     {
     }
