@@ -2,8 +2,8 @@
     <div class="clearfix">
         <div class="btn-group-vertical pull-sm-right" role="group">
             <template ngFor let-button [ngForOf]="inputButtonList">
-                <plenty-button (clicked)="button.clickFunction()" icon="{{button.inputIcon}}" caption="{{button.inputCaption}}"
-                               tooltipPlacement="left" tooltipText="{{button.inputTooltipText}}"></plenty-button>
+                <plenty-button (outputClicked)="button.clickFunction()" inputIcon="{{button.inputIcon}}" inputCaption="{{button.inputCaption}}"
+                               inputTooltipPlacement="left" inputTooltipText="{{button.inputTooltipText}}"></plenty-button>
             </template>
         </div>
         <div class="infobox-text pull-sm-left">
