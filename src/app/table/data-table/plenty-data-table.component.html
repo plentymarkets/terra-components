@@ -1,4 +1,4 @@
-<plenty-pager [pagingSize]="pagingSize" [defaultPagingSize]="defaultPagingSize" [pagingData]="pagingData"
+<plenty-pager [inputPagingSize]="pagingSize" [inputDefaultPagingSize]="defaultPagingSize" [inputPagingData]="pagingData"
               (doPaging)="doPaging($event)"></plenty-pager>
 <!--<plenty-button (clicked)="openOverlayDataTableSettings()" icon="icon-settings" caption="Table Settings" [isSmall]="true" tooltipText="Einstellungen"></plenty-button>-->
 
@@ -37,8 +37,8 @@
                     tooltipEnable="{{cell.tooltipText}}">{{cell.caption}}</span>
                         <div class="btn-group" *ngIf="cell.buttonList">
                             <template ngFor let-button [ngForOf]="cell.buttonList">
-                                <plenty-button (clicked)="button.clickFunction()" icon="{{button.icon}}" caption="{{button.caption}}"
-                                               [inputIsSmall]="true" tooltipText="{{button.tooltipText}}"></plenty-button>
+                                <plenty-button (outputClicked)="button.clickFunction()" inputIcon="{{button.icon}}" inputCaption="{{button.caption}}"
+                                               [inputIsSmall]="true" inputTooltipText="{{button.tooltipText}}"></plenty-button>
                             </template>
                         </div>
                     </td>
