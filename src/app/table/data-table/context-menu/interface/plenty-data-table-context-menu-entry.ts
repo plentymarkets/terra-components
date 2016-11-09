@@ -6,9 +6,9 @@ import { BaseData } from '../../../../data/base-data';
  */
 export interface PlentyDataTableContextMenuEntry<D extends BaseData>
 {
-  title?:string;
-  subject:Subject<PlentyDataTableContextMenuEntry<D>>;
-  clickFunction?:(value?:PlentyDataTableContextMenuEntry<D>)=>void;
-  data?:D;
-  isDivider?:boolean;
+    title?:string;
+    subject:Subject<PlentyDataTableContextMenuEntry<D>>;
+    clickFunction?:(value?:PlentyDataTableContextMenuEntry<D>)=>void;
+    data?:D;
+    isDivider?:boolean;
 }

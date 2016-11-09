@@ -11,15 +11,15 @@ import {
            })
 export class PlentyTag implements OnInit
 {
-    @Input() badge:string;
-    @Input() tag:string;
-
+    @Input() inputBadge:string;
+    @Input() inputTag:string;
+    
     constructor()
     {
     }
-
+    
     ngOnInit()
     {
     }
-
+    
 }
