@@ -16,7 +16,6 @@ typings.json
 !src/*.d.ts
 !tests/*.d.ts
 .travis.yml
-karma*
 tsconfig.json
 /public
 /e2e
@@ -25,7 +24,6 @@ tsconfig.json
 /typings
 .editorconfig
 .npmignore
-angular-cli.json
 angular-cli-build.js
 tslint.json
 gulp.config.js

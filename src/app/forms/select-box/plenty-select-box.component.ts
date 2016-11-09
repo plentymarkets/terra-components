@@ -62,8 +62,8 @@ export class PlentySelectBox implements OnInit
         }
         else
         {
-            this.listBoxValues[0].active = true;
-            this.selectedValue = this.listBoxValues[0];
+            //this.listBoxValues[0].active = true;
+            //this.selectedValue = this.listBoxValues[0];
         }
 
         this.toggleOpen = false;
