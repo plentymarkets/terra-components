@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "declaration": true,
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -17,10 +16,17 @@
       "dom",
       "es6"
     ],
+    "types": [
+      "node"
+    ],
     "typeRoots": [
       "./node_modules/@types"
     ]
   },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
     "useWebpackText": true
