@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RuntimeCompiler } from '@angular/compiler';
 
 @Component({
-               selector: 'dynamic-module-loader',
+               selector: 'terra-dynamic-module-loader',
                template: require('./plenty-dynamic-module-loader.component.html'),
                styles:   [require('./plenty-dynamic-module-loader.component.scss').toString()]
            })

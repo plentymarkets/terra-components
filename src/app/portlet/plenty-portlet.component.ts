@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector: 'plenty-portlet',
+               selector: 'terra-portlet',
                styles:   [require('./plenty-portlet.component.scss').toString()],
                template: require('./plenty-portlet.component.html')
            })

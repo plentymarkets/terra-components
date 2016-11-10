@@ -17,7 +17,7 @@ export const DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 };
 
 @Component({
-               selector:      'plenty-double-input',
+               selector:      'terra-double-input',
                styles:        [require('./plenty-double-input.component.scss').toString()],
                template:      require('./plenty-double-input.component.html'),
                providers:     [DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR],

@@ -17,7 +17,7 @@ export const TEXT_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 };
 
 @Component({
-               selector:      'plenty-text-input',
+               selector:      'terra-text-input',
                styles:        [require('./plenty-text-input.component.scss').toString()],
                template:      require('./plenty-text-input.component.html'),
                providers:     [TEXT_INPUT_CONTROL_VALUE_ACCESSOR],
