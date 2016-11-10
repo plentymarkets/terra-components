@@ -6,8 +6,8 @@ import {
 
 @Component({
                selector: 'terra-indicator',
-               styles:   [require('./plenty-indicator.component.scss').toString()],
-               template: require('./plenty-indicator.component.html')
+               styles:   [require('./indicator.component.scss').toString()],
+               template: require('./indicator.component.html')
            })
 export class PlentyIndicator implements OnInit
 {

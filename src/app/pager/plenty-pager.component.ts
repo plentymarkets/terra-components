@@ -8,7 +8,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { PlentyPagerData } from './data/plenty-pager-data';
-import { PlentyNumberInput } from '../forms/input/number-input/plenty-number-input.component';
+import { PlentyNumberInput } from '../forms/input/number-input/number-input.component';
 import { PlentySelectBoxValue } from '../forms/select-box/value/plenty-select-box-value';
 
 @Component({

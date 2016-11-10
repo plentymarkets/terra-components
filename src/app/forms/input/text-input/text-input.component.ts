@@ -4,7 +4,7 @@ import {
     forwardRef,
     ViewEncapsulation
 } from '@angular/core';
-import { PlentyInput } from '../plenty-input.component';
+import { PlentyInput } from '../input.component';
 import { PlentyRegex } from '../../../regex/plenty-regex';
 import {
     NG_VALUE_ACCESSOR
@@ -18,8 +18,8 @@ export const TEXT_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 
 @Component({
                selector:      'terra-text-input',
-               styles:        [require('./plenty-text-input.component.scss').toString()],
-               template:      require('./plenty-text-input.component.html'),
+               styles:        [require('./text-input.component.scss').toString()],
+               template:      require('./text-input.component.html'),
                providers:     [TEXT_INPUT_CONTROL_VALUE_ACCESSOR],
                encapsulation: ViewEncapsulation.None
            })

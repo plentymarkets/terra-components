@@ -11,7 +11,7 @@ import { PlentyTableRow } from '../row/plenty-table-row';
 import { BaseService } from '../../service/base.service';
 import { PlentyPagerData } from '../../pager/data/plenty-pager-data';
 import { BaseData } from '../../data/base-data';
-import { PlentyCheckbox } from '../../forms/checkbox/plenty-checkbox.component';
+import { PlentyCheckbox } from '../../forms/checkbox/checkbox.component';
 import { PlentySelectBoxValue } from '../../forms/select-box/value/plenty-select-box-value';
 import { PlentyAlert } from '../../alert/plenty-alert.component';
 import { PlentyOverlay } from '../../overlay/plenty-overlay.component';

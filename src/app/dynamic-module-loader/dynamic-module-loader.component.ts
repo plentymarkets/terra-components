@@ -13,29 +13,29 @@ import { RuntimeCompiler } from '@angular/compiler';
 
 @Component({
                selector: 'terra-dynamic-module-loader',
-               template: require('./plenty-dynamic-module-loader.component.html'),
-               styles:   [require('./plenty-dynamic-module-loader.component.scss').toString()]
+               template: require('./dynamic-module-loader.component.html'),
+               styles:   [require('./dynamic-module-loader.component.scss').toString()]
            })
 
 export class PlentyDynamicModuleLoaderComponent implements AfterViewInit, OnDestroy
 {
-
-    @ViewChild('target', {read: ViewContainerRef}) target;
-
+    
+    @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
+    
     private _resolvedData:ModuleWithProviders;
-
-    private cmpRef:ComponentRef<any>;
-
+    
+    private _cmpRef:ComponentRef<any>;
+    
     constructor(private _activatedRoute:ActivatedRoute,
                 private _runtimeCompiler:RuntimeCompiler)
     {
     }
-
+    
     ngOnChanges()
     {
         this.updateComponent();
     }
-
+    
     ngAfterViewInit()
     {
         this._activatedRoute
@@ -45,25 +45,25 @@ export class PlentyDynamicModuleLoaderComponent implements AfterViewInit, OnDest
                 {
                     this._resolvedData = resolveData as ModuleWithProviders;
                 });
-
+        
         this.updateComponent();
     }
-
+    
     ngOnDestroy()
     {
-        if(this.cmpRef)
+        if(this._cmpRef)
         {
-            this.cmpRef.destroy();
+            this._cmpRef.destroy();
         }
     }
-
+    
     private updateComponent():void
     {
         this._runtimeCompiler
             .compileModuleAndAllComponentsAsync(this._resolvedData.ngModule)
             .then((moduleWithFactories:ModuleWithComponentFactories<any>) =>
                   {
-                      this.cmpRef = this.target.createComponent(moduleWithFactories.componentFactories[0]);
+                      this._cmpRef = this.viewChildTarget.createComponent(moduleWithFactories.componentFactories[0]);
                   });
     }
 }

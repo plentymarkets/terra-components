@@ -2,4 +2,4 @@
     <input type="checkbox" [(ngModel)]="value" [disabled]="inputIsDisabled" [indeterminate]="_isIndeterminate">
     <span class="check"></span>
 </label>
-<span *ngIf="caption" [ngClass]="{'disabled': inputIsDisabled}">{{caption}}</span>
+<span *ngIf="inputCaption" [ngClass]="{'disabled': inputIsDisabled}">{{inputCaption}}</span>

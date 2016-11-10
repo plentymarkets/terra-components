@@ -13,15 +13,13 @@ import {
 
 @Component({
                selector: 'terra-dcl-wrapper',
-               styles:   [require('./plenty-dcl-wrapper.component.scss').toString()],
-               template: require('./plenty-dcl-wrapper.component.html')
+               styles:   [require('./dcl-wrapper.component.scss').toString()],
+               template: require('./dcl-wrapper.component.html')
            })
 export class PlentyDclWrapper implements AfterViewInit, OnDestroy, OnChanges
 {
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
     @Input() inputType;
-    @Input() imputRouteData;
-    @Input() inputData:Array<any>;
     
     private _cmpRef:ComponentRef<any>;
     private _isViewInitialized:boolean = false;

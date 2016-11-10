@@ -9,8 +9,8 @@ import { PlentyButton } from '../button/plenty-button.component';
 
 @Component({
                selector:      'terra-infobox',
-               styles:        [require('./plenty-infobox.component.scss').toString()],
-               template:      require('./plenty-infobox.component.html'),
+               styles:        [require('./infobox.component.scss').toString()],
+               template:      require('./infobox.component.html'),
                encapsulation: ViewEncapsulation.None
            })
 export class PlentyInfobox implements OnInit
@@ -25,5 +25,4 @@ export class PlentyInfobox implements OnInit
     ngOnInit()
     {
     }
-    
 }

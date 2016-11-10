@@ -84,7 +84,7 @@ export class PlentySelectBox implements OnInit
      */
     private clickedOutside(event):void
     {
-        if(!this.elementRef.nativeElement.contains(event.target))
+        if(!this.elementRef.nativeElement.contains(event.viewChildTarget))
         {
             this._toggleOpen = false;
         }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { PlentyAlertInterface } from './data/plenty-alert.interface';
 
 /**
  * @author mkunze
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PlentyAlert
 {
-    private _alerts:Array<any> = [];
+    private _alerts:Array<PlentyAlertInterface> = [];
     private static _instance:PlentyAlert = null;
     private static _isCreating:Boolean = false;
     
@@ -35,23 +36,19 @@ export class PlentyAlert
         this._alerts.splice(i, 1);
     }
     
-    public addAlert(message:string,
-                    closable:boolean,
-                    type:string,
-                    timeout?:number,
-                    identifier?:string):void
+    public addAlert(alert:PlentyAlertInterface):void
     {
-        if(timeout == null)
+        if(alert.dismissOnTimeout == null)
         {
-            timeout = 5000;
+            alert.dismissOnTimeout = 5000;
         }
         
         this._alerts.push({
-                              msg:              message,
-                              closable:         closable,
-                              type:             type,
-                              dismissOnTimeout: timeout,
-                              identifier:       identifier
+                              msg:              alert.msg,
+                              closable:         alert.closable,
+                              type:             alert.type,
+                              dismissOnTimeout: alert.dismissOnTimeout,
+                              identifier:       alert.identifier
                           });
     }
     
@@ -68,12 +65,12 @@ export class PlentyAlert
         }
     }
     
-    public get alerts():Array<any>
+    public get alerts():Array<PlentyAlertInterface>
     {
         return this._alerts;
     }
     
-    public set alerts(value:Array<any>)
+    public set alerts(value:Array<PlentyAlertInterface>)
     {
         this._alerts = value;
     }

@@ -17,8 +17,8 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR:any = {
 
 @Component({
                selector:  'terra-checkbox',
-               styles:    [require('./plenty-checkbox.component.scss').toString()],
-               template:  require('./plenty-checkbox.component.html'),
+               styles:    [require('./checkbox.component.scss').toString()],
+               template:  require('./checkbox.component.html'),
                providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR]
            })
 

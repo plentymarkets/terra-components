@@ -1,4 +1,4 @@
-import { PlentyButtonInterface } from '../../button/interface/plenty-button-interface';
+import { PlentyButtonInterface } from '../../button/data/plenty-button.interface';
 /**
  * @author mkunze
  */

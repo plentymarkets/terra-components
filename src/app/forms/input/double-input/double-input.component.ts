@@ -4,7 +4,7 @@ import {
     Input,
     ViewEncapsulation
 } from '@angular/core';
-import { PlentyInput } from '../plenty-input.component';
+import { PlentyInput } from '../input.component';
 import { PlentyRegex } from '../../../regex/plenty-regex';
 import {
     NG_VALUE_ACCESSOR
@@ -18,8 +18,8 @@ export const DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 
 @Component({
                selector:      'terra-double-input',
-               styles:        [require('./plenty-double-input.component.scss').toString()],
-               template:      require('./plenty-double-input.component.html'),
+               styles:        [require('./double-input.component.scss').toString()],
+               template:      require('./double-input.component.html'),
                providers:     [DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR],
                encapsulation: ViewEncapsulation.None
            })

@@ -7,7 +7,7 @@ import
     ViewEncapsulation
 } from '@angular/core';
 import { PlentyMultiSelectBoxValue } from './value/plenty-multi-select-box-value';
-import { PlentyCheckbox } from '../checkbox/plenty-checkbox.component';
+import { PlentyCheckbox } from '../checkbox/checkbox.component';
 
 
 @Component({

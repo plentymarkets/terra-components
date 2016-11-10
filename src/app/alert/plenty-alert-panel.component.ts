@@ -3,6 +3,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { PlentyAlert } from "./plenty-alert.component";
+import { PlentyAlertInterface } from './data/plenty-alert.interface';
 
 /**
  * @author mkunze
@@ -15,7 +16,7 @@ import { PlentyAlert } from "./plenty-alert.component";
            })
 export class PlentyAlertPanel
 {
-    private _alerts:Array<any>;
+    private _alerts:Array<PlentyAlertInterface>;
     private _alert:PlentyAlert = PlentyAlert.getInstance();
     
     constructor()

@@ -18,10 +18,10 @@ export class PlentyInput implements ControlValueAccessor
     @Input() inputMaxValue:number;
     @Input() inputMinLength:number;
     @Input() inputMinValue:number;
-    protected type:string;
     private _isValid:boolean;
     private _regex:string;
     private _alert:PlentyAlert = PlentyAlert.getInstance();
+    protected type:string;
     
     //The internal data model
     private _innerValue:any = '';
@@ -135,7 +135,12 @@ export class PlentyInput implements ControlValueAccessor
                         emptyMessage = this.inputEmptyMessage;
                     }
                     
-                    this._alert.addAlert(emptyMessage, true, 'danger', 0);
+                    this._alert.addAlert({
+                                             msg:              emptyMessage,
+                                             closable:         true,
+                                             type:             'danger',
+                                             dismissOnTimeout: 0
+                                         });
                 }
                 else if(this.value.length > 0)
                 {
@@ -151,7 +156,12 @@ export class PlentyInput implements ControlValueAccessor
                         invalidMessage = this.inputInvalidMessage;
                     }
                     
-                    this._alert.addAlert(invalidMessage, true, 'danger', 0);
+                    this._alert.addAlert({
+                                             msg:              invalidMessage,
+                                             closable:         true,
+                                             type:             'danger',
+                                             dismissOnTimeout: 0
+                                         });
                 }
             }
         }
