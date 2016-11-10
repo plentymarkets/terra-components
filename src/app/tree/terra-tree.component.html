@@ -1,0 +1,14 @@
+<ul>
+    <template ngFor let-leaf [ngForOf]="inputLeafList">
+        <li class="node leaf" [ngClass]="{'collapsed': !leaf.isOpen, 'active': leaf.isActive}">
+            <div class="leaf-titel" (click)="setLeafActive(leaf)">
+        <span>
+          <span class="icon" [ngClass]="leaf.icon"></span>
+          {{leaf.caption}}
+        </span>
+            </div>
+            <span class="node-toggle" *ngIf="leaf.subLeafList" (click)="toggleOpen(leaf)"></span>
+            <terra-tree [inputLeafList]="leaf.subLeafList" [inputParentLeafList]="leafList" *ngIf="leaf.subLeafList"></terra-tree>
+        </li>
+    </template>
+</ul>

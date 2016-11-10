@@ -1,0 +1,27 @@
+<div bsModal #viewChildOverlay="bs-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" [ngClass]="{'modal-lg': inputIsLarge, 'modal-sm': inputIsSmall}">
+        <div class="modal-content">
+            <div class="modal-header" *ngIf="inputIsCloseable && inputOverlayTitle">
+                <terra-button *ngIf="inputIsCloseable" [inputIsAlignRight]="true" inputIcon="icon-close"
+                              (outputClicked)="overlay.hide()"></terra-button>
+                <h4 class="modal-title">{{inputOverlayTitle}}</h4>
+            </div>
+            <div class="modal-body">
+                <ng-content></ng-content>
+            </div>
+            <div class="modal-footer" *ngIf="inputHasPrimaryButton || inputHasSecondaryButton || inputHasSaveButton">
+                <terra-button *ngIf="inputHasPrimaryButton" [inputIsAlignRight]="false" [inputIsPrimary]="true" inputCaption="Add"
+                              inputIcon="icon-add" inputTooltipText="{{inputAddButtonTooltip}}" inputTooltipPlacement="bottom"
+                              (outputClicked)="primaryClicked()"></terra-button>
+                <terra-button *ngIf="hasSaveButton" [inputIsAlignRight]="false" [inputIsPrimary]="true" inputCaption="Save"
+                              inputIcon="icon-save"
+                              inputTooltipText="{{inputSaveButtonTooltip}}" tooltipPlacement="bottom"
+                              (outputClicked)="primaryClicked()"></terra-button>
+                <terra-button *ngIf="inputHasSecondaryButton" [inputIsAlignRight]="false" [inputIsSecondary]="true" inputCaption="Cancel"
+                              inputIcon="icon-cancel" inputTooltipText="{{inputCancelButtonTooltip}}" inputTooltipPlacement="bottom"
+                              (outputClicked)="secondaryClicked()"></terra-button>
+            </div>
+        </div>
+    </div>
+</div>
+
