@@ -17,20 +17,20 @@ export const DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 };
 
 @Component({
-               selector:  'terra-double-input',
-               styles:    [require('./plenty-double-input.component.scss').toString()],
-               encapsulation: ViewEncapsulation.None,
-               providers: [DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR],
-               template:  require('./plenty-double-input.component.html')
+               selector:      'terra-double-input',
+               styles:        [require('./plenty-double-input.component.scss').toString()],
+               template:      require('./plenty-double-input.component.html'),
+               providers:     [DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR],
+               encapsulation: ViewEncapsulation.None
            })
 export class PlentyDoubleInput extends PlentyInput
 {
-    @Input() name:string;
-    @Input() isRequired:boolean;
-    @Input() tooltipPlacement:string; //top, bottom, left, right (default: top)
-    @Input() tooltipText:string;
-    @Input() disabled:boolean;
-
+    @Input() inputName:string;
+    @Input() inputIsRequired:boolean;
+    @Input() inputTooltipPlacement:string; //top, bottom, left, right (default: top)
+    @Input() inputTooltipText:string;
+    @Input() inputDisabled:boolean;
+    
     constructor()
     {
         super('number', PlentyRegex.DOUBLE);

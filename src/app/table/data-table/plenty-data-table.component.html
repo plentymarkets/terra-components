@@ -1,60 +1,68 @@
-<plenty-pager [pagingSize]="pagingSize" [defaultPagingSize]="defaultPagingSize" [pagingData]="pagingData" (doPaging)="doPaging($event)"></plenty-pager>
+<plenty-pager [inputPagingSize]="pagingSize" [inputDefaultPagingSize]="defaultPagingSize" [inputPagingData]="pagingData"
+              (doPaging)="doPaging($event)"></plenty-pager>
 <!--<plenty-button (clicked)="openOverlayDataTableSettings()" icon="icon-settings" caption="Table Settings" [isSmall]="true" tooltipText="Einstellungen"></plenty-button>-->
 
 <div class="table-responsive">
-  <context-menu-holder></context-menu-holder>
-  <table class="table data-table table-striped table-bordered">
-    <thead>
-    <tr>
-      <th width="25px">
-        <plenty-checkbox #headerCheckbox type="checkbox" (change)="onHeaderCheckboxChange(headerCheckbox.value)" [value]="isHeaderCheckboxChecked"></plenty-checkbox>
-      </th>
-      <template ngFor let-header [ngForOf]="headerList">
-        <th *ngIf="!header.isHidden"
-            width="{{header.width}}px">
+    <context-menu-holder></context-menu-holder>
+    <table class="table data-table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th width="25px">
+                <plenty-checkbox #viewChildHeaderCheckbox type="checkbox" (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
+                                 [value]="isHeaderCheckboxChecked"></plenty-checkbox>
+            </th>
+            <template ngFor let-header [ngForOf]="headerList">
+                <th *ngIf="!header.isHidden"
+                    width="{{header.width}}px">
               <span
-                      tooltipPlacement="{{header.tooltipPlacement}}"
-                      tooltip="{{header.tooltipText}}"
-                      tooltipEnable="{{header.tooltipText}}">{{header.caption}}</span>
-        </th>
-      </template>
-    </tr>
-    </thead>
-    <tbody>
-    <template ngFor let-row [ngForOf]="rowList">
-      <tr [ngClass]="{'selected': row.selected}" [context-menu]="row.contextMenuLinkList">
-        <td>
-          <plenty-checkbox #rowCheckbox type="checkbox" [value]="row.selected" (change)="onRowCheckboxChange(rowCheckbox.value, row)"></plenty-checkbox>
-        </td>
-        <template ngFor let-cell [ngForOf]="row.cellList">
-          <td *ngIf="!cell.isHidden" (click)="!cell.buttonList && row.clickFunction()">
+                  tooltipPlacement="{{header.tooltipPlacement}}"
+                  tooltip="{{header.tooltipText}}"
+                  tooltipEnable="{{header.tooltipText}}">{{header.caption}}</span>
+                </th>
+            </template>
+        </tr>
+        </thead>
+        <tbody>
+        <template ngFor let-row [ngForOf]="rowList">
+            <tr [ngClass]="{'selected': row.selected}" [context-menu]="row.contextMenuLinkList">
+                <td>
+                    <plenty-checkbox #rowCheckbox type="checkbox" [value]="row.selected"
+                                     (change)="onRowCheckboxChange(rowCheckbox.value, row)"></plenty-checkbox>
+                </td>
+                <template ngFor let-cell [ngForOf]="row.cellList">
+                    <td *ngIf="!cell.isHidden" (click)="!cell.buttonList && row.clickFunction()">
               <span [ngClass]="cell.icon"
                     tooltipPlacement="{{cell.tooltipPlacement}}"
                     tooltip="{{cell.tooltipText}}"
                     tooltipEnable="{{cell.tooltipText}}">{{cell.caption}}</span>
-            <div class="btn-group" *ngIf="cell.buttonList">
-              <template ngFor let-button [ngForOf]="cell.buttonList">
-                <plenty-button (clicked)="button.clickFunction()" icon="{{button.icon}}" caption="{{button.caption}}" [isSmall]="true" tooltipText="{{button.tooltipText}}"></plenty-button>
-              </template>
-            </div>
-          </td>
+                        <div class="btn-group" *ngIf="cell.buttonList">
+                            <template ngFor let-button [ngForOf]="cell.buttonList">
+                                <plenty-button (outputClicked)="button.clickFunction()" inputIcon="{{button.icon}}" inputCaption="{{button.caption}}"
+                                               [inputIsSmall]="true" inputTooltipText="{{button.tooltipText}}"></plenty-button>
+                            </template>
+                        </div>
+                    </td>
+                </template>
+            </tr>
         </template>
-      </tr>
-    </template>
-    </tbody>
-  </table>
+        </tbody>
+    </table>
 </div>
 
-<plenty-overlay #overlayDataTableSettings [saveButtonTooltip]="saveButtonTooltip" [cancelButtonTooltip]="cancelButtonTooltip" overlayTitle="Data Table Settings" [isCloseable]="false" [isLarge]="true" [hasSaveButton]="true" [hasSecondaryButton]="true" (primaryButtonClicked)="primaryClicked($event)" (secondaryButtonClicked)="secondaryClicked($event)">
-  <h5>Spalten ein- / ausblenden</h5>
-  <div>
-    <template ngFor let-row [ngForOf]="rowListOverlay">
-      <div>
-        <plenty-checkbox #rowCheckboxOverlay type="checkbox" [value]="row.selected" (change)="onCheckboxChangeOverlay(rowCheckboxOverlay.value, row)"></plenty-checkbox>
-        <template ngFor let-cell [ngForOf]="row.cellList">
-          <span *ngIf="!cell.isHidden">{{cell.caption}}</span>
-        </template>
-      </div>
-    </template>
-  </div>
-</plenty-overlay>
+<!--<plenty-overlay #viewChildOverlayDataTableSettings [inputSaveButtonTooltip]="saveButtonTooltip"-->
+                <!--[inputCancelButtonTooltip]="cancelButtonTooltip" overlayTitle="Data Table Settings" [inputIsCloseable]="false"-->
+                <!--[inputIsLarge]="true" [inputHasSaveButton]="true" [inputHasSecondaryButton]="true"-->
+                <!--(outputPrimaryButtonClicked)="primaryClicked($event)" (outputSecondaryButtonClicked)="secondaryClicked($event)">-->
+    <!--<h5>Spalten ein- / ausblenden</h5>-->
+    <!--<div>-->
+        <!--<template ngFor let-row [ngForOf]="overlayRowList">-->
+            <!--<div>-->
+                <!--<plenty-checkbox #overlayRowCheckbox type="checkbox" [value]="row.selected"-->
+                                 <!--(change)="onOverlayCheckboxChange(overlayRowCheckbox.value, row)"></plenty-checkbox>-->
+                <!--<template ngFor let-cell [ngForOf]="row.cellList">-->
+                    <!--<span *ngIf="!cell.isHidden">{{cell.caption}}</span>-->
+                <!--</template>-->
+            <!--</div>-->
+        <!--</template>-->
+    <!--</div>-->
+<!--</plenty-overlay>-->

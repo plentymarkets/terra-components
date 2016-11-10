@@ -4,49 +4,64 @@
 @import "../forms/select-box/plenty-select-box.component";
 @import "../forms/input/plenty-input.component";
 
-.pager {
-  .form-group {
-    margin: 0;
-    label {
-      display: inline-block;
+.pager
+{
+    .form-group
+    {
+        margin: 0;
+        label
+        {
+            display: inline-block;
+        }
+        span
+        {
+            display: inline-block;
+            padding: 5px 0;
+            vertical-align: top;
+        }
+        .pager-page input
+        {
+            width: 2.5rem;
+            padding: .35rem
+        }
+        .input-unit-v1
+        {
+            margin-bottom: 0;
+        }
     }
-    span {
-      display: inline-block;
-      padding: 5px 0;
-      vertical-align: top;
+    plenty-select-box,
+    .form-group
+    {
+        float: left;
     }
-    .pager-page input {
-      width: 2.5rem;
-      padding: .35rem
+    .list-box-wrapper
+    {
+        .list-box
+        {
+            padding: .4rem 2rem .4rem 1rem;
+        }
+        .list-box-dropdown
+        {
+            top: 1.78rem;
+        }
     }
-    .input-unit-v1 {
-      margin-bottom: 0;
+    .pager-text
+    {
+        float: left;
+        margin-left: .5rem;
+        margin-top: .3rem;
     }
-  }
-  plenty-select-box,
-  .form-group {
-    float: left;
-  }
-  .list-box-wrapper{
-    .list-box {
-      padding: .4rem 2rem .4rem 1rem;
-    }
-    .list-box-dropdown {
-      top: 1.78rem;
-    }
-  }
-  .pager-text {
-    float: left;
-    margin-left: .5rem;
-    margin-top: .3rem;
-  }
 }
-@include media-breakpoint-down(sm) {
-  .pager {
-    .btn-group {
-      float: none;
-      margin-top: .2rem;
-      margin-bottom: .2rem;
+
+@include media-breakpoint-down(sm)
+{
+    .pager
+    {
+        .btn-group
+        {
+            float: none;
+            margin-top: .2rem;
+            margin-bottom: .2rem;
+        }
     }
-  }
 }

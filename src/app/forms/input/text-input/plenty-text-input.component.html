@@ -1,10 +1,13 @@
 <div class="input-unit-v1"
-     tooltipPlacement="{{tooltipPlacement}}"
-     tooltip="{{tooltipText}}"
-     tooltipEnable="{{tooltipText}}"
+     tooltipPlacement="{{inputTooltipPlacement}}"
+     tooltip="{{inputTooltipText}}"
+     tooltipEnable="{{inputTooltipText}}"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled}">
-  <label htmlFor="{{name}}">{{name}} <span *ngIf="isRequired">*</span></label>
-  <i *ngIf="name">?</i>
-  <input id="{{name}}" [type]="type" [(ngModel)]="value" name="{{name}}" (blur)="onBlur()" autocomplete="off" [disabled]="isDisabled" pattern="{{regex}}">
+    <label htmlFor="{{inputName}}">{{inputName}}
+        <span *ngIf="isRequired">*</span>
+    </label>
+    <i *ngIf="inputName">?</i>
+    <input id="{{inputName}}" [type]="type" [(ngModel)]="value" name="{{inputName}}" (blur)="onBlur()" autocomplete="off"
+           [disabled]="isDisabled" pattern="{{regex}}">
 </div>
 

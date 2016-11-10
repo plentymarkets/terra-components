@@ -1,86 +1,110 @@
 @import "../../assets/styles/variables";
 
-table.table {
-  thead {
-    background: $brand-primary;
-    color: white;
-    tr {
-      th {
-        border: 1px solid white;
-        border-top: 1px solid $brand-primary;
-        border-bottom: 1px solid $brand-primary;
-        padding: 1rem .5rem;
-        &:first-child {
-          border-left: 1px solid $brand-primary;
+table.table
+{
+    thead
+    {
+        background: $brand-primary;
+        color: white;
+        tr
+        {
+            th
+            {
+                border: 1px solid white;
+                border-top: 1px solid $brand-primary;
+                border-bottom: 1px solid $brand-primary;
+                padding: 1rem .5rem;
+                &:first-child
+                {
+                    border-left: 1px solid $brand-primary;
+                }
+                &:last-child
+                {
+                    border-right: 1px solid $brand-primary;
+                }
+            }
         }
-        &:last-child {
-          border-right: 1px solid $brand-primary;
-        }
-      }
     }
-  }
-  tbody {
-    tr {
-      td {
-        padding: .5rem;
-        vertical-align: middle;
-        input {
-          border: 1px solid darken($gray-light-3, 20%);
-          padding: .2rem .5rem;
+    tbody
+    {
+        tr
+        {
+            td
+            {
+                padding: .5rem;
+                vertical-align: middle;
+                input
+                {
+                    border: 1px solid darken($gray-light-3, 20%);
+                    padding: .2rem .5rem;
+                }
+            }
         }
-      }
     }
-  }
 }
 
-.data-table{
-  margin-bottom: 1rem;
-  max-width: 100%;
-  width: auto;
-  tbody {
-    tr {
-      td {
-        padding: .5rem;
+.data-table
+{
+    margin-bottom: 1rem;
+    max-width: 100%;
+    width: auto;
+    tbody
+    {
+        tr
+        {
+            td
+            {
+                padding: .5rem;
+                vertical-align: middle;
+                border: 1px solid darken($gray-light-3, 20%);
+                padding: .2rem .5rem;
+            }
+        }
+    }
+    
+    span
+    {
+        display: inline-block;
+        overflow: hidden;
+        max-width: 100px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         vertical-align: middle;
-        border: 1px solid darken($gray-light-3, 20%);
-        padding: .2rem .5rem;
-      }
     }
-  }
-
-  span{
-    display: inline-block;
-    overflow: hidden;
-    max-width: 100px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    vertical-align: middle;
-  }
-  > tbody tr:hover{
-    background: $brand-primary-dark !important;
-    & td{
-      border-right: $table-border-width solid $white;
-      &:last-child{
-        border-right: $table-border-width solid $table-border-color;
-      }
+    > tbody tr:hover
+    {
+        background: $brand-primary-dark !important;
+        & td
+        {
+            border-right: $table-border-width solid $white;
+            &:last-child
+            {
+                border-right: $table-border-width solid $table-border-color;
+            }
+        }
     }
-  }
-  tbody tr.selected:nth-of-type(odd) {
-    background-color: lighten($brand-primary-dark, 5);
-  }
-  tbody tr.selected:nth-of-type(even) {
-    background-color: lighten($brand-primary-dark, 15);
-  }
-  .btn-group{
-    min-width: 120px;
-  }
+    tbody tr.selected:nth-of-type(odd)
+    {
+        background-color: lighten($brand-primary-dark, 5);
+    }
+    tbody tr.selected:nth-of-type(even)
+    {
+        background-color: lighten($brand-primary-dark, 15);
+    }
+    .btn-group
+    {
+        min-width: 120px;
+    }
 }
 
-.no-margin {
-  margin-bottom:0;
-  tr {
-    td {
-      border:none;
+.no-margin
+{
+    margin-bottom: 0;
+    tr
+    {
+        td
+        {
+            border: none;
+        }
     }
-  }
 }

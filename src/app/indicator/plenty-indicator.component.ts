@@ -11,15 +11,14 @@ import {
            })
 export class PlentyIndicator implements OnInit
 {
-    @Input() label:string;
-    @Input() type:string;
-
+    @Input() inputLabel:string;
+    @Input() inputType:string;
+    
     constructor()
     {
     }
-
+    
     ngOnInit()
     {
     }
-
 }

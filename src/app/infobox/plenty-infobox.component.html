@@ -1,13 +1,14 @@
 <div class="col-xs-12 infobox">
-  <div class="clearfix">
-    <div class="btn-group-vertical pull-sm-right" role="group">
-      <template ngFor let-button [ngForOf]="buttonList">
-        <plenty-button (clicked)="button.clickFunction()" icon="{{button.icon}}" caption="{{button.caption}}" tooltipPlacement="left" tooltipText="{{button.tooltipText}}"></plenty-button>
-      </template>
+    <div class="clearfix">
+        <div class="btn-group-vertical pull-sm-right" role="group">
+            <template ngFor let-button [ngForOf]="inputButtonList">
+                <plenty-button (outputClicked)="button.clickFunction()" inputIcon="{{button.inputIcon}}" inputCaption="{{button.inputCaption}}"
+                               inputTooltipPlacement="left" inputTooltipText="{{button.inputTooltipText}}"></plenty-button>
+            </template>
+        </div>
+        <div class="infobox-text pull-sm-left">
+            <ng-content></ng-content>
+        </div>
     </div>
-    <div class="infobox-text pull-sm-left">
-      <ng-content></ng-content>
-    </div>
-  </div>
-  <plenty-taglist [tagList]="tagList"></plenty-taglist>
+    <plenty-taglist [inputTagList]="inputTagList"></plenty-taglist>
 </div>

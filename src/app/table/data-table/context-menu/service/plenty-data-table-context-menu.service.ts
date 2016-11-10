@@ -9,6 +9,6 @@ import { BaseData } from '../../../../data/base-data';
 @Injectable()
 export class PlentyDataTableContextMenuService<D extends BaseData>
 {
-  public show:Subject<{event:MouseEvent,obj:PlentyDataTableContextMenuEntry<D>[]}> =
-    new Subject<{event:MouseEvent,obj:PlentyDataTableContextMenuEntry<D>[]}>();
+    public show:Subject<{event:MouseEvent,obj:PlentyDataTableContextMenuEntry<D>[]}> =
+        new Subject<{event:MouseEvent,obj:PlentyDataTableContextMenuEntry<D>[]}>();
 }
