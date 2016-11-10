@@ -2,8 +2,8 @@
     <div class="multiselect">
         <div class="btn-group btn-group--all" role="group">
             <button class="btn btn-primary checkbox-all" isPrimary="true" type="plenty-button">
-                <plenty-checkbox #headerCheckbox type="checkbox" [inputIsDisabled]="inputIsDisabled"
-                                 (change)="onHeaderCheckboxChange(headerCheckbox.value)"
+                <plenty-checkbox #viewChildHeaderCheckbox type="checkbox" [inputIsDisabled]="inputIsDisabled"
+                                 (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
                                  [value]="_isHeaderCheckboxChecked"></plenty-checkbox>
             </button>
             <div *ngIf="inputIsDisabled == false && inputIsError == false" class="btn-all">
