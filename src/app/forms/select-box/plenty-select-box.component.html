@@ -1,20 +1,20 @@
 <div class="list-box-wrapper"
-     tooltipPlacement="{{tooltipPlacement}}"
-     tooltip="{{tooltipText}}"
-     tooltipEnable="{{tooltipText}}"
+     tooltipPlacement="{{inputTooltipPlacement}}"
+     tooltip="{{inputTooltipText}}"
+     tooltipEnable="{{inputTooltipText}}"
      [ngClass]="{
                   'input-unit-v1': _hasLabel,
-                  'error': !_isValid,
+                  'error': !isValid,
                   'disabled': isDisabled,
                   'open': _toggleOpen
                 }"
      (click)="_toggleOpen=!_toggleOpen">
     
     
-    <label *ngIf="_hasLabel" htmlFor="{{name}}">{{name}}
-        <span *ngIf="isRequired">*</span>
+    <label *ngIf="_hasLabel" htmlFor="{{inputName}}">{{inputName}}
+        <span *ngIf="inputIsRequired">*</span>
     </label>
-    <i *ngIf="name">?</i>
+    <i *ngIf="inputName">?</i>
     
     
     <div class="list-box">
@@ -22,7 +22,7 @@
     </div>
     
     <div class="list-box-dropdown">
-    <span *ngFor="let value of listBoxValues" (click)="select(value)" [ngClass]="{active: value.active}">
+    <span *ngFor="let value of inputListBoxValues" (click)="select(value)" [ngClass]="{active: value.active}">
       <span class="{{value.icon}}" *ngIf="value.icon"></span>
       {{value.caption}}
     </span>
