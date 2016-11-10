@@ -44,6 +44,11 @@ export class PlentySelectBox implements OnInit
     {
         this.isValid = true;
         this.inputTooltipPlacement = 'top';
+        this._selectedValue =
+        {
+            value:   '',
+            caption: ''
+        };
     }
     
     ngOnInit()
@@ -62,8 +67,11 @@ export class PlentySelectBox implements OnInit
         }
         else
         {
-            this.inputListBoxValues[0].active = true;
-            this._selectedValue = this.inputListBoxValues[0];
+            if(this.inputListBoxValues != null && this.inputListBoxValues.length > 0)
+            {
+                this.inputListBoxValues[0].active = true;
+                this._selectedValue = this.inputListBoxValues[0];
+            }
         }
         
         this._toggleOpen = false;
