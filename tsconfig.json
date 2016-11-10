@@ -32,7 +32,6 @@
     "forkChecker": true,
     "useWebpackText": true
   },
-  "compileOnSave": false,
   "buildOnSave": false,
   "atom": { "rewriteTsconfig": false }
 }
