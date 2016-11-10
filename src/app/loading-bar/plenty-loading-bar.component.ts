@@ -12,7 +12,7 @@ import {
 } from './event/plenty-loading-bar-event';
 
 @Component({
-               selector: 'plenty-loading-bar',
+               selector: 'terra-loading-bar',
                styles:   [require('./plenty-loading-bar.component.scss').toString()],
                template: require('./plenty-loading-bar.component.html')
            })

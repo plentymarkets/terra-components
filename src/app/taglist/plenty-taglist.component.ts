@@ -6,7 +6,7 @@ import {
 import { PlentyTag } from '../tag/plenty-tag.component';
 
 @Component({
-               selector: 'plenty-taglist',
+               selector: 'terra-taglist',
                styles:   [require('./plenty-taglist.component.scss').toString()],
                template: require('./plenty-taglist.component.html')
            })

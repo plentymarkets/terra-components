@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector: 'plenty-filter',
+               selector: 'terra-filter',
                styles:   [require('./plenty-filter.component.scss').toString()],
                template: require('./plenty-filter.component.html')
            })

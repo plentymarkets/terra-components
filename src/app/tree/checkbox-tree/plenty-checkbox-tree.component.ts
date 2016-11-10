@@ -6,7 +6,7 @@ import { PlentyBaseTree } from '../base/plenty-base-tree.component';
 import { PlentyLeaf } from '../leaf/plenty-leaf.component';
 
 @Component({
-               selector: 'plenty-checkbox-tree',
+               selector: 'terra-checkbox-tree',
                styles:   [require('./plenty-checkbox-tree.component.scss').toString()],
                template: require('./plenty-checkbox-tree.component.html')
            })

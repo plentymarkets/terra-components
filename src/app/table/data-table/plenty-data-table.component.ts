@@ -18,7 +18,7 @@ import { PlentyOverlay } from '../../overlay/plenty-overlay.component';
 import { PlentyDataTableContextMenuService } from './context-menu/service/plenty-data-table-context-menu.service';
 
 @Component({
-               selector:  'plenty-data-table',
+               selector:  'terra-data-table',
                providers: [PlentyDataTableContextMenuService],
                styles:    [require('./plenty-data-table.component.scss').toString()],
                template:  require('./plenty-data-table.component.html')

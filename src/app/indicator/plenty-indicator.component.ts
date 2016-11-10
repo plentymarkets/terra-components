@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector: 'plenty-indicator',
+               selector: 'terra-indicator',
                styles:   [require('./plenty-indicator.component.scss').toString()],
                template: require('./plenty-indicator.component.html')
            })

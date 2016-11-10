@@ -12,7 +12,7 @@ import { PlentyNumberInput } from '../forms/input/number-input/plenty-number-inp
 import { PlentySelectBoxValue } from '../forms/select-box/value/plenty-select-box-value';
 
 @Component({
-               selector:      'plenty-pager',
+               selector:      'terra-pager',
                styles:        [require('./plenty-pager.component.scss').toString()],
                template:      require('./plenty-pager.component.html'),
                encapsulation: ViewEncapsulation.None

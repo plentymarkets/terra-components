@@ -17,7 +17,7 @@ export const NUMBER_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 };
 
 @Component({
-               selector:  'plenty-number-input',
+               selector:  'terra-number-input',
                styles:    [require('./plenty-number-input.component.scss').toString()],
                encapsulation: ViewEncapsulation.None,
                providers: [NUMBER_INPUT_CONTROL_VALUE_ACCESSOR],

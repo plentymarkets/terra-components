@@ -8,7 +8,7 @@ import { PlentyTaglist } from '../taglist/plenty-taglist.component';
 import { PlentyButton } from '../button/plenty-button.component';
 
 @Component({
-               selector: 'plenty-infobox',
+               selector: 'terra-infobox',
                styles:   [require('./plenty-infobox.component.scss').toString()],
                encapsulation: ViewEncapsulation.None,
                template: require('./plenty-infobox.component.html')

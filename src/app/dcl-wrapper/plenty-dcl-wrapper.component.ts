@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector: 'dcl-wrapper',
+               selector: 'terra-dcl-wrapper',
                styles:   [require('./plenty-dcl-wrapper.component.scss').toString()],
                template: require('./plenty-dcl-wrapper.component.html')
            })
