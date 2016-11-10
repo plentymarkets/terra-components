@@ -1,6 +1,6 @@
-<plenty-pager [inputPagingSize]="pagingSize" [inputDefaultPagingSize]="defaultPagingSize" [inputPagingData]="pagingData"
-              (doPaging)="doPaging($event)"></plenty-pager>
-<!--<plenty-button (clicked)="openOverlayDataTableSettings()" icon="icon-settings" caption="Table Settings" [isSmall]="true" tooltipText="Einstellungen"></plenty-button>-->
+<terra-pager [inputPagingSize]="pagingSize" [inputDefaultPagingSize]="defaultPagingSize" [inputPagingData]="pagingData"
+             (doPaging)="doPaging($event)"></terra-pager>
+<!--<terra-button (clicked)="openOverlayDataTableSettings()" icon="icon-settings" caption="Table Settings" [isSmall]="true" tooltipText="Einstellungen"></terra-button>-->
 
 <div class="table-responsive">
     <context-menu-holder></context-menu-holder>
@@ -8,8 +8,8 @@
         <thead>
         <tr>
             <th width="25px">
-                <plenty-checkbox #viewChildHeaderCheckbox type="checkbox" (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
-                                 [value]="_isHeaderCheckboxChecked"></plenty-checkbox>
+                <terra-checkbox #viewChildHeaderCheckbox type="checkbox" (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
+                                [value]="isHeaderCheckboxChecked"></terra-checkbox>
             </th>
             <template ngFor let-header [ngForOf]="_headerList">
                 <th *ngIf="!header.isHidden"
@@ -26,8 +26,8 @@
         <template ngFor let-row [ngForOf]="_rowList">
             <tr [ngClass]="{'selected': row.selected}" [context-menu]="row.contextMenuLinkList">
                 <td>
-                    <plenty-checkbox #rowCheckbox type="checkbox" [value]="row.selected"
-                                     (change)="onRowCheckboxChange(rowCheckbox.value, row)"></plenty-checkbox>
+                    <terra-checkbox #rowCheckbox type="checkbox" [value]="row.selected"
+                                    (change)="onRowCheckboxChange(rowCheckbox.value, row)"></terra-checkbox>
                 </td>
                 <template ngFor let-cell [ngForOf]="row.cellList">
                     <td *ngIf="!cell.isHidden" (click)="!cell.buttonList && row.clickFunction()">
@@ -37,8 +37,9 @@
                     tooltipEnable="{{cell.tooltipText}}">{{cell.caption}}</span>
                         <div class="btn-group" *ngIf="cell.buttonList">
                             <template ngFor let-button [ngForOf]="cell.buttonList">
-                                <plenty-button (outputClicked)="button.clickFunction()" inputIcon="{{button.icon}}" inputCaption="{{button.caption}}"
-                                               [inputIsSmall]="true" inputTooltipText="{{button.tooltipText}}"></plenty-button>
+                                <terra-button (outputClicked)="button.clickFunction()" inputIcon="{{button.icon}}"
+                                              inputCaption="{{button.caption}}"
+                                              [inputIsSmall]="true" inputTooltipText="{{button.tooltipText}}"></terra-button>
                             </template>
                         </div>
                     </td>
@@ -49,20 +50,20 @@
     </table>
 </div>
 
-<!--<plenty-overlay #viewChildOverlayDataTableSettings [inputSaveButtonTooltip]="saveButtonTooltip"-->
-                <!--[inputCancelButtonTooltip]="cancelButtonTooltip" overlayTitle="Data Table Settings" [inputIsCloseable]="false"-->
-                <!--[inputIsLarge]="true" [inputHasSaveButton]="true" [inputHasSecondaryButton]="true"-->
-                <!--(outputPrimaryButtonClicked)="primaryClicked($event)" (outputSecondaryButtonClicked)="secondaryClicked($event)">-->
-    <!--<h5>Spalten ein- / ausblenden</h5>-->
-    <!--<div>-->
-        <!--<template ngFor let-row [ngForOf]="overlayRowList">-->
-            <!--<div>-->
-                <!--<plenty-checkbox #overlayRowCheckbox type="checkbox" [value]="row.selected"-->
-                                 <!--(change)="onOverlayCheckboxChange(overlayRowCheckbox.value, row)"></plenty-checkbox>-->
-                <!--<template ngFor let-cell [ngForOf]="row.cellList">-->
-                    <!--<span *ngIf="!cell.isHidden">{{cell.caption}}</span>-->
-                <!--</template>-->
-            <!--</div>-->
-        <!--</template>-->
-    <!--</div>-->
-<!--</plenty-overlay>-->
+<!--<terra-overlay #viewChildOverlayDataTableSettings [inputSaveButtonTooltip]="saveButtonTooltip"-->
+<!--[inputCancelButtonTooltip]="cancelButtonTooltip" overlayTitle="Data Table Settings" [inputIsCloseable]="false"-->
+<!--[inputIsLarge]="true" [inputHasSaveButton]="true" [inputHasSecondaryButton]="true"-->
+<!--(outputPrimaryButtonClicked)="primaryClicked($event)" (outputSecondaryButtonClicked)="secondaryClicked($event)">-->
+<!--<h5>Spalten ein- / ausblenden</h5>-->
+<!--<div>-->
+<!--<template ngFor let-row [ngForOf]="overlayRowList">-->
+<!--<div>-->
+<!--<terra-checkbox #overlayRowCheckbox type="checkbox" [value]="row.selected"-->
+<!--(change)="onOverlayCheckboxChange(overlayRowCheckbox.value, row)"></terra-checkbox>-->
+<!--<template ngFor let-cell [ngForOf]="row.cellList">-->
+<!--<span *ngIf="!cell.isHidden">{{cell.caption}}</span>-->
+<!--</template>-->
+<!--</div>-->
+<!--</template>-->
+<!--</div>-->
+<!--</terra-overlay>-->

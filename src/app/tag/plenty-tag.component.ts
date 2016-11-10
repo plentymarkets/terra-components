@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector: 'plenty-tag',
+               selector: 'terra-tag',
                styles:   [require('./plenty-tag.component.scss').toString()],
                template: require('./plenty-tag.component.html')
            })
