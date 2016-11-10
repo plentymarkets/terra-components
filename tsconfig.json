@@ -3,25 +3,10 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "../dist/out-tsc",
+    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "noEmitHelpers": true,
-    "strictNullChecks": false,
-    "baseUrl": "./src",
-    "paths": {
-    },
-    "lib": [
-      "dom",
-      "es6"
-    ],
-    "types": [
-      "node"
-    ],
-    "typeRoots": [
-      "./node_modules/@types"
-    ]
+    "removeComments": false,
+    "noImplicitAny": false
   }
 }
