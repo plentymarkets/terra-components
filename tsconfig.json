@@ -10,6 +10,9 @@
     "noImplicitAny": false,
     "types": [
       "node"
+    ],
+    "typeRoots": [
+      "../node_modules/@types"
     ]
   }
 }
