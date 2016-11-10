@@ -21,10 +21,6 @@
       "./node_modules/@types"
     ]
   },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
     "useWebpackText": true
