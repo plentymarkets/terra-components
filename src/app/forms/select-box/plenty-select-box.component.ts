@@ -10,7 +10,7 @@ import {
 import { PlentySelectBoxValue } from './value/plenty-select-box-value';
 
 @Component({
-               selector:      'plenty-select-box',
+               selector:      'terra-select-box',
                styles:        [require('./plenty-select-box.component.scss').toString()],
                template:      require('./plenty-select-box.component.html'),
                encapsulation: ViewEncapsulation.None,

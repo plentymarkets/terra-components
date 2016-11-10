@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector:      'plenty-button',
+               selector:      'terra-button',
                styles:        [require('./plenty-button.component.scss').toString()],
                template:      require('./plenty-button.component.html'),
                encapsulation: ViewEncapsulation.None,

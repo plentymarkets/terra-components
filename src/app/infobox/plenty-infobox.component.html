@@ -2,13 +2,13 @@
     <div class="clearfix">
         <div class="btn-group-vertical pull-sm-right" role="group">
             <template ngFor let-button [ngForOf]="inputButtonList">
-                <plenty-button (outputClicked)="button.clickFunction()" inputIcon="{{button.inputIcon}}" inputCaption="{{button.inputCaption}}"
-                               inputTooltipPlacement="left" inputTooltipText="{{button.inputTooltipText}}"></plenty-button>
+                <terra-button (outputClicked)="button.clickFunction()" inputIcon="{{button.inputIcon}}" inputCaption="{{button.inputCaption}}"
+                               inputTooltipPlacement="left" inputTooltipText="{{button.inputTooltipText}}"></terra-button>
             </template>
         </div>
         <div class="infobox-text pull-sm-left">
             <ng-content></ng-content>
         </div>
     </div>
-    <plenty-taglist [inputTagList]="inputTagList"></plenty-taglist>
+    <terra-taglist [inputTagList]="inputTagList"></terra-taglist>
 </div>

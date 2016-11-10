@@ -9,22 +9,22 @@
                   'open': _toggleOpen
                 }"
      (click)="_toggleOpen=!_toggleOpen">
-
-
-  <label *ngIf="_hasLabel" htmlFor="{{inputName}}">{{inputName}}
-    <span *ngIf="inputIsRequired">*</span>
-  </label>
-  <i *ngIf="inputName">?</i>
-
-
-  <div class="list-box">
-    {{_selectedValue.caption}}
-  </div>
-
-  <div class="list-box-dropdown">
+    
+    
+    <label *ngIf="_hasLabel" htmlFor="{{inputName}}">{{inputName}}
+        <span *ngIf="inputIsRequired">*</span>
+    </label>
+    <i *ngIf="inputName">?</i>
+    
+    
+    <div class="list-box">
+        {{_selectedValue.caption}}
+    </div>
+    
+    <div class="list-box-dropdown">
     <span *ngFor="let value of inputListBoxValues" (click)="select(value)" [ngClass]="{active: value.active}">
       <span class="{{value.icon}}" *ngIf="value.icon"></span>
       {{value.caption}}
     </span>
-  </div>
+    </div>
 </div>

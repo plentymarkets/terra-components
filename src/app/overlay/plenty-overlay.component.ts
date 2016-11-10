@@ -14,7 +14,7 @@ import {
  * @author mfrank
  */
 @Component({
-               selector: 'plenty-overlay',
+               selector: 'terra-overlay',
                styles:   [require('./plenty-overlay.component.scss').toString()],
                template: require('./plenty-overlay.component.html')
            })

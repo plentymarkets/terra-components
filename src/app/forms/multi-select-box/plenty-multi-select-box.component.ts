@@ -11,7 +11,7 @@ import { PlentyCheckbox } from '../checkbox/plenty-checkbox.component';
 
 
 @Component({
-               selector:      'plenty-multi-select-box',
+               selector:      'terra-multi-select-box',
                styles:        [require('./plenty-multi-select-box.component.scss').toString()],
                template:      require('./plenty-multi-select-box.component.html'),
                encapsulation: ViewEncapsulation.None
@@ -19,10 +19,10 @@ import { PlentyCheckbox } from '../checkbox/plenty-checkbox.component';
 
 export class PlentyMultiSelectBox implements OnInit
 {
+    @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:PlentyCheckbox;
     @Input() inputIsDisabled:boolean;
     @Input() inputIsError:boolean;
     @Input() inputValueList:Array<PlentyMultiSelectBoxValue>;
-    @ViewChild('headerCheckbox') headerCheckbox:PlentyCheckbox;
     
     private _isHeaderCheckboxChecked:boolean = false;
     private _selectedValueList:Array<PlentyMultiSelectBoxValue> = [];
@@ -75,7 +75,7 @@ export class PlentyMultiSelectBox implements OnInit
         }
         else
         {
-            this.headerCheckbox.isIndeterminate = true;
+            this.viewChildHeaderCheckbox.isIndeterminate = true;
         }
     }
     

@@ -7,7 +7,7 @@ import { PlentyBaseTree } from "./base/plenty-base-tree.component";
 import { PlentyLeaf } from './leaf/plenty-leaf.component';
 
 @Component({
-               selector:      'plenty-tree',
+               selector:      'terra-tree',
                styles:        [require('./plenty-tree.component.scss').toString()],
                template:      require('./plenty-tree.component.html'),
                encapsulation: ViewEncapsulation.None

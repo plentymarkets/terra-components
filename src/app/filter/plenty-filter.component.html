@@ -1,11 +1,11 @@
 <div class="filter-container">
     
-    <plenty-base-toolbar>
+    <terra-base-toolbar>
         <div class="btn-group" role="group">
-            <plenty-button inputCaption="{{inputSearchLabel}}" (outputClicked)="outputOnSearchBtnClicked()"></plenty-button>
-            <plenty-button inputCaption="{{inputResetLabel}}" (outputClicked)="outputOnResetBtnClicked()"></plenty-button>
+            <terra-button inputCaption="{{inputSearchLabel}}" (outputClicked)="outputOnSearchBtnClicked()"></terra-button>
+            <terra-button inputCaption="{{inputResetLabel}}" (outputClicked)="outputOnResetBtnClicked()"></terra-button>
         </div>
-    </plenty-base-toolbar>
+    </terra-base-toolbar>
     
     <div class="input-group-v">
         <div *ngFor="let item of viewChildInputList" #inputList>
