@@ -19,10 +19,10 @@ import { PlentyCheckbox } from '../checkbox/plenty-checkbox.component';
 
 export class PlentyMultiSelectBox implements OnInit
 {
+    @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:PlentyCheckbox;
     @Input() inputIsDisabled:boolean;
     @Input() inputIsError:boolean;
     @Input() inputValueList:Array<PlentyMultiSelectBoxValue>;
-    @ViewChild('headerCheckbox') headerCheckbox:PlentyCheckbox;
     
     private _isHeaderCheckboxChecked:boolean = false;
     private _selectedValueList:Array<PlentyMultiSelectBoxValue> = [];
@@ -75,7 +75,7 @@ export class PlentyMultiSelectBox implements OnInit
         }
         else
         {
-            this.headerCheckbox.isIndeterminate = true;
+            this.viewChildHeaderCheckbox.isIndeterminate = true;
         }
     }
     

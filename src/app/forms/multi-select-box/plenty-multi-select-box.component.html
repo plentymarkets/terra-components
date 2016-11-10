@@ -1,10 +1,10 @@
-<div class="multiselect-container {{boxClassType}}">
+<div class="multiselect-container {{_boxClassType}}">
     <div class="multiselect">
         <div class="btn-group btn-group--all" role="group">
             <button class="btn btn-primary checkbox-all" isPrimary="true" type="terra-button">
-                <terra-checkbox #headerCheckbox type="checkbox" [inputIsDisabled]="inputIsDisabled"
-                                 (change)="onHeaderCheckboxChange(headerCheckbox.value)"
-                                 [value]="isHeaderCheckboxChecked"></terra-checkbox>
+                <terra-checkbox #viewChildHeaderCheckbox type="checkbox" [inputIsDisabled]="inputIsDisabled"
+                                 (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
+                                 [value]="_isHeaderCheckboxChecked"></terra-checkbox>
             </button>
             <div *ngIf="inputIsDisabled == false && inputIsError == false" class="btn-all">
                 <terra-button (outputClicked)="primaryClicked()" inputCaption="Alle" inputIsPrimary="true" inputType="terra-button"></terra-button>
