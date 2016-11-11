@@ -92,6 +92,7 @@ import { TerraBaseService } from './service/terra-base.service';
 import { TerraAlertComponent } from './alert/terra-alert.component';
 import { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
+import { DemoViewComponent } from './demo-view/demo-view.component';
 
 @NgModule({
               declarations:    [
@@ -122,7 +123,8 @@ import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraSplitViewComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
-                  TerraDynamicModuleLoaderComponent
+                  TerraDynamicModuleLoaderComponent,
+                  DemoViewComponent
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -147,7 +149,8 @@ import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraPortletComponent,
                   TerraSplitViewComponent,
                   TerraFilterComponent,
-                  TerraMultiSelectBoxComponent
+                  TerraMultiSelectBoxComponent,
+                  DemoViewComponent
               ],
               exports:         [
                   TerraAlertPanelComponent,
@@ -175,7 +178,8 @@ import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraSplitViewComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
-                  TerraDynamicModuleLoaderComponent
+                  TerraDynamicModuleLoaderComponent,
+                  DemoViewComponent
               ],
               imports:         [
                   BrowserModule,
@@ -185,11 +189,14 @@ import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   HttpModule,
                   TooltipModule,
                   AlertModule
+              ],
+              bootstrap:       [
+                  TerraComponentsComponent
               ]
           })
 export class TerraComponentsModule
 {
-    static forRoot(): ModuleWithProviders
+    static forRoot():ModuleWithProviders
     {
         return {
             ngModule:  TerraComponentsModule,
@@ -199,8 +206,8 @@ export class TerraComponentsModule
                         TerraAlertComponent]
         };
     }
-
-    static forChild(): ModuleWithProviders
+    
+    static forChild():ModuleWithProviders
     {
         return {
             ngModule:  TerraComponentsModule,
@@ -210,5 +217,5 @@ export class TerraComponentsModule
                         TerraAlertComponent]
         };
     }
-
+    
 }

@@ -1,5 +1,6 @@
 .side-scroller
 {
+    height: 100%;
     position: relative;
     overflow-x: hidden;
     white-space: nowrap;
@@ -13,10 +14,14 @@
 .divider
 {
     width: 5px;
-    background-color: grey;
+    height: 100%;
+    //background-color: grey;
+    //TODO use color from variables
+    background: #E7E7E7 url(./images/thumb_vertical.png) center center no-repeat;
     position: absolute;
     top: 0px;
     bottom: 0px;
+    cursor: col-resize;
 }
 
 .divider + *
