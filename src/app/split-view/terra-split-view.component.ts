@@ -5,25 +5,21 @@ import {
     Output,
     EventEmitter,
     OnChanges,
-    ViewChild,
-    ComponentRef,
-    ComponentFactoryResolver,
-    ChangeDetectorRef,
-    ViewContainerRef
+    DoCheck
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
-import { TerraDclWrapperComponent } from '../dcl-wrapper/terra-dcl-wrapper.component';
 
 @Component({
                selector: 'terra-split-view',
                styles:   [require('./terra-split-view.component.scss').toString()],
                template: require('./terra-split-view.component.html')
            })
-export class TerraSplitViewComponent implements OnInit, OnChanges
+export class TerraSplitViewComponent implements OnInit, DoCheck
 {
     @Input() inputComponents:Array<TerraSplitViewInterface>;
     @Input() inputType;
     @Output() outputClose = new EventEmitter<any>();
+    private _left:string = '0%';
     
     constructor()
     {
@@ -33,9 +29,32 @@ export class TerraSplitViewComponent implements OnInit, OnChanges
     {
     }
     
-    ngOnChanges()
+    ngDoCheck()
     {
-        
+        if(this.inputComponents.length == 1)
+        {
+            this._left = '0%';
+        }
+        else if(this.inputComponents.length == 2)
+        {
+            this._left = '0%';
+        }
+        else if(this.inputComponents.length == 3)
+        {
+            this._left = '0%';
+        }
+        else if(this.inputComponents.length == 4)
+        {
+            this._left = '-33.33%';
+        }
+        else if(this.inputComponents.length == 5)
+        {
+            this._left = '-66.66%';
+        }
+        else if(this.inputComponents.length == 6)
+        {
+            this._left = '-99.99%';
+        }
     }
     
     private onClick(component:TerraSplitViewInterface):void

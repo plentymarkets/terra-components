@@ -36,18 +36,21 @@ export class TerraComponentsComponent implements OnInit
         this.components.push({
                                  component:    DemoViewComponent,
                                  defaultWidth: '33%',
-                                 hidden:       false
+                                 hidden:       false,
+                                 id:           this._components.length
                              });
         this.components.push({
                                  component:    DemoViewComponent,
                                  defaultWidth: '33%',
-                                 hidden:       false
+                                 hidden:       false,
+                                 id:           this._components.length
                              });
-        this.components.push({
-                                 component:    DemoViewComponent,
-                                 defaultWidth: '33%',
-                                 hidden:       false
-                             });
+        //this.components.push({
+        //                         component:    DemoViewComponent,
+        //                         defaultWidth: '33%',
+        //                         hidden:       false,
+        //                         id:           this._components.length
+        //                     });
     }
     
     
@@ -71,7 +74,8 @@ export class TerraComponentsComponent implements OnInit
         this.components.push({
                                  component:    TerraButtonComponent,
                                  defaultWidth: '33%',
-                                 hidden:       false
+                                 hidden:       false,
+                                 id:           this._components.length
                              });
     }
 }
