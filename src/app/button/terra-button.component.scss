@@ -204,9 +204,9 @@ input[type="button"]
 }
 
 //
-// Button group + plenty-button + Button group vertical
+// Button group + terra-button + Button group vertical
 //
-.btn-group > plenty-button
+.btn-group > terra-button
 {
     float: left;
     &:not(:first-child) .btn
@@ -255,19 +255,19 @@ input[type="button"]
             margin-top: 0;
         }
     }
-    plenty-button:first-child:not(:last-child) .btn
+    terra-button:first-child:not(:last-child) .btn
     {
         border-top-right-radius: 0.15rem;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
     }
-    plenty-button:last-child:not(:first-child) .btn
+    terra-button:last-child:not(:first-child) .btn
     {
         border-bottom-left-radius: 0.15rem;
         border-top-right-radius: 0;
         border-top-left-radius: 0;
     }
-    plenty-button:not(:first-child):not(:last-child) .btn
+    terra-button:not(:first-child):not(:last-child) .btn
     {
         border-radius: 0;
     }
