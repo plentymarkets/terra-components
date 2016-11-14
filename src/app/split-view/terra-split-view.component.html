@@ -1,10 +1,17 @@
-<terra-base-toolbar>
-    <ng-content></ng-content>
-</terra-base-toolbar>
-<div class="side-scroller">
-  <!--<template ngFor let-component [ngForOf]="inputComponents" let-last="last">-->
-    <!--<dcl-wrapper [inputIdentifier]="test" [type]="component.component" [style.width]="component.defaultWidth"></dcl-wrapper>-->
-    <terra-dynamic-module-loader></terra-dynamic-module-loader>
-    <!--<div class="divider" *ngIf="!last"></div>-->
-  <!--</template>-->
+<div style="margin: 5px">
+    <terra-base-toolbar>
+        <ng-content></ng-content>
+        <terra-button [inputIsSmall]="true" inputCaption="zurück" [inputIsDisabled]="_isSingleComponent" [inputIsAlignRight]="true"
+                      (outputClicked)="onClick()"></terra-button>
+    </terra-base-toolbar>
+    <div class="side-scroller">
+        <template ngFor let-component [ngForOf]="inputComponents" let-last="last" let-first="first">
+            <div *ngIf="!component.hidden" [style.width]="component.defaultWidth">
+                <terra-dcl-wrapper *ngIf="!component.hidden" [inputIdentifier]="test" [inputType]="component.component"></terra-dcl-wrapper>
+                <!--<terra-dynamic-module-loader [resolvedData]="module"></terra-dynamic-module-loader>-->
+            </div>
+            <!--TODO make divider draggable-->
+            <div class="divider" *ngIf="!last && !component.hidden"></div>
+        </template>
+    </div>
 </div>

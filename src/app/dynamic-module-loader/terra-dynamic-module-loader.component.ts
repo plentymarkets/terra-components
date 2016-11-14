@@ -6,7 +6,8 @@ import {
     AfterViewInit,
     ModuleWithComponentFactories,
     ModuleWithProviders,
-    OnChanges
+    OnChanges,
+    Input
 } from '@angular/core';
 import { ViewChild } from '@angular/core/src/metadata/di';
 import { ActivatedRoute } from '@angular/router';
@@ -22,7 +23,6 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
 {
     
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
-    
     private _resolvedData:ModuleWithProviders;
     
     private _cmpRef:ComponentRef<any>;

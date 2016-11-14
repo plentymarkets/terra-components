@@ -20,6 +20,7 @@ export class TerraDclWrapperComponent implements AfterViewInit, OnDestroy, OnCha
 {
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
     @Input() inputType;
+    @Input() inputIdentifier;
     
     private _cmpRef:ComponentRef<any>;
     private _isViewInitialized:boolean = false;

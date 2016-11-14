@@ -185,11 +185,14 @@ import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   HttpModule,
                   TooltipModule,
                   AlertModule
+              ],
+              bootstrap:       [
+                  TerraComponentsComponent
               ]
           })
 export class TerraComponentsModule
 {
-    static forRoot(): ModuleWithProviders
+    static forRoot():ModuleWithProviders
     {
         return {
             ngModule:  TerraComponentsModule,
@@ -199,8 +202,8 @@ export class TerraComponentsModule
                         TerraAlertComponent]
         };
     }
-
-    static forChild(): ModuleWithProviders
+    
+    static forChild():ModuleWithProviders
     {
         return {
             ngModule:  TerraComponentsModule,
@@ -210,5 +213,5 @@ export class TerraComponentsModule
                         TerraAlertComponent]
         };
     }
-
+    
 }
