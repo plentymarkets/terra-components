@@ -84,7 +84,7 @@ export class TerraSelectBoxComponent implements OnInit
      */
     private clickedOutside(event):void
     {
-        if(!this.elementRef.nativeElement.contains(event.viewChildTarget))
+        if(!this.elementRef.nativeElement.contains(event.target))
         {
             this._toggleOpen = false;
         }

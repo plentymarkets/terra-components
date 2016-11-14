@@ -14,7 +14,7 @@ import { TerraSplitViewInterface } from './data/terra-split-view.interface';
 export class TerraSplitViewComponent implements OnInit, DoCheck
 {
     @Input() inputComponents:Array<TerraSplitViewInterface>;
-    private _left:string = '0%';
+    private _isSingleComponent:boolean;
     
     constructor()
     {
@@ -46,19 +46,19 @@ export class TerraSplitViewComponent implements OnInit, DoCheck
             if(this.inputComponents[1]) this.inputComponents[1].hidden = false;
             if(this.inputComponents[2]) this.inputComponents[2].hidden = false;
         }
+        
+        if(this.inputComponents.length == 1)
+        {
+            this._isSingleComponent = true;
+        }
+        else
+        {
+            this._isSingleComponent = false;
+        }
     }
     
-    private onClick(component:TerraSplitViewInterface):void
+    private onClick():void
     {
-        this.inputComponents.forEach
-        (
-            (comp) =>
-            {
-                if(comp === component)
-                {
-                    this.inputComponents.pop();
-                }
-            }
-        )
+        this.inputComponents.pop();
     }
 }
