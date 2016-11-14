@@ -1,8 +1,8 @@
 @import "../assets/styles/variables";
 
 .treeview,
-plenty-tree,
-plenty-checkbox-tree
+terra-tree,
+terra-checkbox-tree
 {
     margin: 0;
     padding: 0;
@@ -118,8 +118,8 @@ plenty-checkbox-tree
             }
         }
         
-        > plenty-tree,
-        plenty-checkbox-tree
+        > terra-tree,
+        terra-checkbox-tree
         {
             display: none;
         }
