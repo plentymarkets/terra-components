@@ -7,4 +7,5 @@ export interface TerraSplitViewInterface
     defaultWidth:string;
     hidden:boolean;
     id:number;
+    name?:string;
 }

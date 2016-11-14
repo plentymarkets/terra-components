@@ -1,6 +1,13 @@
 <div style="margin: 5px">
     <terra-base-toolbar>
         <ng-content></ng-content>
+        Aufträge >
+        <template ngFor let-component [ngForOf]="inputComponents" let-first="first">
+            <span *ngIf="!first">
+                >
+            </span>
+            {{component.name}}
+        </template>
         <terra-button [inputIsSmall]="true" inputCaption="zurück" [inputIsDisabled]="_isSingleComponent" [inputIsAlignRight]="true"
                       (outputClicked)="onClick()"></terra-button>
     </terra-base-toolbar>
