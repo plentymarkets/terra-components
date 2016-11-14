@@ -92,7 +92,6 @@ import { TerraBaseService } from './service/terra-base.service';
 import { TerraAlertComponent } from './alert/terra-alert.component';
 import { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
-import { DemoViewComponent } from './demo-view/demo-view.component';
 
 @NgModule({
               declarations:    [
@@ -123,8 +122,7 @@ import { DemoViewComponent } from './demo-view/demo-view.component';
                   TerraSplitViewComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
-                  TerraDynamicModuleLoaderComponent,
-                  DemoViewComponent
+                  TerraDynamicModuleLoaderComponent
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -149,8 +147,7 @@ import { DemoViewComponent } from './demo-view/demo-view.component';
                   TerraPortletComponent,
                   TerraSplitViewComponent,
                   TerraFilterComponent,
-                  TerraMultiSelectBoxComponent,
-                  DemoViewComponent
+                  TerraMultiSelectBoxComponent
               ],
               exports:         [
                   TerraAlertPanelComponent,
@@ -178,8 +175,7 @@ import { DemoViewComponent } from './demo-view/demo-view.component';
                   TerraSplitViewComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
-                  TerraDynamicModuleLoaderComponent,
-                  DemoViewComponent
+                  TerraDynamicModuleLoaderComponent
               ],
               imports:         [
                   BrowserModule,
