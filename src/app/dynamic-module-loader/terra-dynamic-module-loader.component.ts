@@ -23,6 +23,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
 {
     
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
+    @Input() inputModule:any;
     private _resolvedData:ModuleWithProviders;
     
     private _cmpRef:ComponentRef<any>;
@@ -39,14 +40,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     
     ngAfterViewInit()
     {
-        this._activatedRoute
-            .data
-            .subscribe(
-                (resolveData) =>
-                {
-                    this._resolvedData = resolveData as ModuleWithProviders;
-                });
-        
+        this._resolvedData = this.inputModule as ModuleWithProviders;
         this.updateComponent();
     }
     
