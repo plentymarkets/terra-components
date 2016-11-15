@@ -26,7 +26,7 @@
         </div>
         <div class="btn-group" role="group">
             <terra-select-box [inputListBoxValues]="inputPagingSize" [inputDefaultSelection]="inputDefaultPagingSize"
-                              (valueChanged)="onChangeOffsetTo($event)"></terra-select-box>
+                              (outputValueChanged)="onChangeOffsetTo($event)"></terra-select-box>
             <div class="pager-text">
                 <!--{{pagingData.pagingUnit | translate:lang}} {{pagingData.from}}-{{pagingData.to}} {{'pagingOf' | translate:lang}} {{pagingData.total}}-->
                 {{inputPagingData.pagingUnit}} {{inputPagingData.from}}-{{inputPagingData.to}} / {{inputPagingData.total}}
