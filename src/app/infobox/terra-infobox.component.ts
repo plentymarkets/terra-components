@@ -4,8 +4,8 @@ import {
     Input,
     ViewEncapsulation
 } from '@angular/core';
-import { TerraTaglistComponent } from '../taglist/terra-taglist.component';
-import { TerraButtonComponent } from '../button/terra-button.component';
+import { TerraTagInterface } from '../tag/data/terra-tag.interface';
+import { TerraButtonInterface } from '../button/data/terra-button.interface';
 
 @Component({
                selector:      'terra-infobox',
@@ -15,8 +15,8 @@ import { TerraButtonComponent } from '../button/terra-button.component';
            })
 export class TerraInfoboxComponent implements OnInit
 {
-    @Input() inputTagList:Array<TerraTaglistComponent>;
-    @Input() inputButtonList:Array<TerraButtonComponent>;
+    @Input() inputTagList:Array<TerraTagInterface>;
+    @Input() inputButtonList:Array<TerraButtonInterface>;
     
     constructor()
     {
