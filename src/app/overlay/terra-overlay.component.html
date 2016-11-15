@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header" *ngIf="inputIsCloseable && inputOverlayTitle">
                 <terra-button *ngIf="inputIsCloseable" [inputIsAlignRight]="true" inputIcon="icon-close"
-                              (outputClicked)="overlay.hide()"></terra-button>
+                              (outputClicked)="viewChildOverlay.hide()"></terra-button>
                 <h4 class="modal-title">{{inputOverlayTitle}}</h4>
             </div>
             <div class="modal-body">
