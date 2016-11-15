@@ -17,7 +17,7 @@
     <i *ngIf="inputName">?</i>
     
     
-    <div class="list-box">
+    <div class="list-box" [ngClass]="{'error': !isValid}">
         {{_selectedValue.caption}}
     </div>
     
