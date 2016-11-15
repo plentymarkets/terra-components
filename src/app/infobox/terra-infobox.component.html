@@ -2,8 +2,8 @@
     <div class="clearfix">
         <div class="btn-group-vertical pull-sm-right" role="group">
             <template ngFor let-button [ngForOf]="inputButtonList">
-                <terra-button (outputClicked)="button.clickFunction()" inputIcon="{{button.inputIcon}}" inputCaption="{{button.inputCaption}}"
-                               inputTooltipPlacement="left" inputTooltipText="{{button.inputTooltipText}}"></terra-button>
+                <terra-button (outputClicked)="button.clickFunction()" inputIcon="{{button.icon}}" inputCaption="{{button.caption}}"
+                              inputTooltipPlacement="left" inputTooltipText="{{button.tooltipText}}"></terra-button>
             </template>
         </div>
         <div class="infobox-text pull-sm-left">
