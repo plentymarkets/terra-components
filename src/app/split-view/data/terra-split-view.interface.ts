@@ -3,7 +3,7 @@
  */
 export interface TerraSplitViewInterface
 {
-    component:any;
+    module:any;
     defaultWidth:string;
     hidden:boolean;
     name:string;
