@@ -6,8 +6,8 @@ import {
     EventEmitter
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { TerraTableHeaderCellInterface } from '../cell/terra-table-header-cell.interface';
-import { TerraTableRowInterface } from '../row/terra-table-row.interface';
+import { TerraDataTableHeaderCellInterface } from './cell/terra-data-table-header-cell.interface';
+import { TerraDataTableRowInterface } from './row/terra-data-table-row.interface';
 import { TerraBaseService } from '../../service/terra-base.service';
 import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraBaseData } from '../../data/terra-base.data';
@@ -29,9 +29,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
     @Input() inputService:S;
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
-    private _headerList:Array<TerraTableHeaderCellInterface>;
-    private _rowList:Array<TerraTableRowInterface<D>>;
-    private _selectedRowList:Array<TerraTableRowInterface<D>> = [];
+    private _headerList:Array<TerraDataTableHeaderCellInterface>;
+    private _rowList:Array<TerraDataTableRowInterface<D>>;
+    private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
     private _isHeaderCheckboxChecked:boolean = false;
     private _pagingData:TerraPagerInterface;
     private _pagingSize:Array<TerraSelectBoxValueInterface>;
@@ -41,8 +41,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     
     // Overlay
     //@ViewChild('viewChildOverlayDataTableSettings') viewChildOverlayDataTableSettings:TerraOverlayComponent;
-    //private _overlayRowList:Array<TerraTableRowInterface<D>>;
-    //private _selectedOverlayRowList:Array<TerraTableRowInterface<D>> = [];
+    //private _overlayRowList:Array<TerraDataTableRowInterface<D>>;
+    //private _selectedOverlayRowList:Array<TerraDataTableRowInterface<D>> = [];
     //private _saveButtonTooltip:string = 'Speichern';
     //private _cancelButtonTooltip:string = 'Abbrechen';
     
@@ -62,7 +62,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     }
     
     private onRowCheckboxChange(isChecked:boolean,
-                                row:TerraTableRowInterface<D>):void
+                                row:TerraDataTableRowInterface<D>):void
     {
         this.changeRowState(isChecked, row);
         
@@ -81,7 +81,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     }
     
     private changeRowState(isChecked:boolean,
-                           rowToChange:TerraTableRowInterface<D>):void
+                           rowToChange:TerraDataTableRowInterface<D>):void
     {
         rowToChange.selected = isChecked;
         
@@ -111,22 +111,22 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
     }
     
-    public get headerList():Array<TerraTableHeaderCellInterface>
+    public get headerList():Array<TerraDataTableHeaderCellInterface>
     {
         return this._headerList;
     }
     
-    public set headerList(value:Array<TerraTableHeaderCellInterface>)
+    public set headerList(value:Array<TerraDataTableHeaderCellInterface>)
     {
         this._headerList = value;
     }
     
-    public get rowList():Array<TerraTableRowInterface<D>>
+    public get rowList():Array<TerraDataTableRowInterface<D>>
     {
         return this._rowList;
     }
     
-    public set rowList(value:Array<TerraTableRowInterface<D>>)
+    public set rowList(value:Array<TerraDataTableRowInterface<D>>)
     {
         this._rowList = value;
         
@@ -137,7 +137,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         );
     }
     
-    public deleteRow(rowToDelete:TerraTableRowInterface<D>):void
+    public deleteRow(rowToDelete:TerraDataTableRowInterface<D>):void
     {
         let index = this.rowList.indexOf(rowToDelete);
         
@@ -152,7 +152,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
     }
     
-    public get selectedRowList():Array<TerraTableRowInterface<D>>
+    public get selectedRowList():Array<TerraDataTableRowInterface<D>>
     {
         return this._selectedRowList;
     }
@@ -254,13 +254,13 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     //}
     //
     //private onOverlayCheckboxChange(isChecked:boolean,
-    //                                row:TerraTableRowInterface<D>):void
+    //                                row:TerraDataTableRowInterface<D>):void
     //{
     //    this.changeOverlayCheckboxState(isChecked, row);
     //}
     
     //public changeOverlayCheckboxState(isChecked:boolean,
-    //                                  rowToChange:TerraTableRowInterface<D>):void
+    //                                  rowToChange:TerraDataTableRowInterface<D>):void
     //{
     //    rowToChange.selected = isChecked;
     //
@@ -290,12 +290,12 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     //    }
     //}
     
-    //public get overlayRowList():Array<TerraTableRowInterface<D>>
+    //public get overlayRowList():Array<TerraDataTableRowInterface<D>>
     //{
     //    return this._overlayRowList;
     //}
     
-    //public set overlayRowList(value:Array<TerraTableRowInterface<D>>)
+    //public set overlayRowList(value:Array<TerraDataTableRowInterface<D>>)
     //{
     //    this._overlayRowList = value;
     //}
@@ -330,7 +330,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     //        });
     //}
     //
-    //private changeCellVisibility(rowToChange:TerraTableRowInterface<D>,
+    //private changeCellVisibility(rowToChange:TerraDataTableRowInterface<D>,
     //                             id:string,
     //                             hide:boolean):void
     //{

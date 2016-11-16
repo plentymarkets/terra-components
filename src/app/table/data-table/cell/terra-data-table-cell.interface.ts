@@ -1,8 +1,8 @@
-import { TerraButtonInterface } from '../../button/data/terra-button.interface';
+import { TerraButtonInterface } from '../../../button/data/terra-button.interface';
 /**
  * @author mkunze
  */
-export interface TerraTableCellInterface
+export interface TerraDataTableCellInterface
 {
     identifier:string;
     caption?:string | number;

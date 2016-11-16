@@ -1,7 +1,7 @@
 /**
  * @author mkunze
  */
-export interface TerraTableHeaderCellInterface
+export interface TerraDataTableHeaderCellInterface
 {
     caption:string;
     identifier:string;

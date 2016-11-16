@@ -27,14 +27,18 @@ export { TerraRegex } from './regex/terra-regex';
 export { TerraBaseService } from './service/terra-base.service';
 export { TerraSplitViewInterface } from './split-view/data/terra-split-view.interface';
 export { TerraSplitViewComponent } from './split-view/terra-split-view.component';
-export { TerraTableCellInterface } from './table/cell/terra-table-cell.interface';
-export { TerraTableHeaderCellInterface } from './table/cell/terra-table-header-cell.interface';
+export { TerraDataTableCellInterface } from './table/data-table/cell/terra-data-table-cell.interface';
+export { TerraDataTableHeaderCellInterface } from './table/data-table/cell/terra-data-table-header-cell.interface';
+export { TerraSimpleTableCellInterface } from './table/simple/cell/terra-simple-table-cell.interface';
+export { TerraSimpleTableHeaderCellInterface } from './table/simple/cell/terra-simple-table-header-cell.interface';
+export { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
+export { TerraSimpleTableRowInterface } from './table/simple/row/terra-simple-table-row.interface';
 export { TerraDataTableContextMenuDirective } from './table/data-table/context-menu/directive/terra-data-table-context-menu.directive';
 export { TerraDataTableContextMenuEntryInterafce } from './table/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
 export { TerraDataTableContextMenuService } from './table/data-table/context-menu/service/terra-data-table-context-menu.service';
 export { TerraDataTableContextMenuComponent } from './table/data-table/context-menu/terra-data-table-context-menu.component';
 export { TerraDataTableComponent } from './table/data-table/terra-data-table.component';
-export { TerraTableRowInterface } from './table/row/terra-table-row.interface';
+export { TerraDataTableRowInterface } from './table/data-table/row/terra-data-table-row.interface';
 export { TerraTagComponent } from './tag/terra-tag.component';
 export { TerraTagInterface } from './tag/data/terra-tag.interface';
 export { TerraTaglistComponent } from './taglist/terra-taglist.component';
@@ -92,6 +96,7 @@ import { TerraBaseService } from './service/terra-base.service';
 import { TerraAlertComponent } from './alert/terra-alert.component';
 import { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
+import { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
 
 @NgModule({
               declarations:    [
@@ -117,6 +122,7 @@ import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraDataTableComponent,
                   TerraDataTableContextMenuComponent,
                   TerraDataTableContextMenuDirective,
+                  TerraSimpleTableComponent,
                   TerraDoubleInputComponent,
                   TerraPortletComponent,
                   TerraSplitViewComponent,
@@ -143,6 +149,7 @@ import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraOverlayComponent,
                   TerraDataTableComponent,
                   TerraDataTableContextMenuComponent,
+                  TerraSimpleTableComponent,
                   TerraDoubleInputComponent,
                   TerraPortletComponent,
                   TerraSplitViewComponent,
@@ -170,6 +177,7 @@ import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraOverlayComponent,
                   TerraDataTableComponent,
                   TerraDataTableContextMenuComponent,
+                  TerraSimpleTableComponent,
                   TerraDoubleInputComponent,
                   TerraPortletComponent,
                   TerraSplitViewComponent,
