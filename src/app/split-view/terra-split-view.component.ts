@@ -13,7 +13,7 @@ import { TerraSplitViewInterface } from './data/terra-split-view.interface';
            })
 export class TerraSplitViewComponent implements OnInit, DoCheck
 {
-    @Input() inputmodules:Array<TerraSplitViewInterface>;
+    @Input() inputModules:Array<TerraSplitViewInterface>;
     @Input() inputNavbarEntryName:string;
     private _isSingleComponent:boolean;
     
@@ -27,28 +27,28 @@ export class TerraSplitViewComponent implements OnInit, DoCheck
     
     ngDoCheck()
     {
-        if(this.inputmodules.length > 3)
+        if(this.inputModules.length > 3)
         {
-            for(let index = this.inputmodules.length - 1; index >= 0; index--)
+            for(let index = this.inputModules.length - 1; index >= 0; index--)
             {
-                if(this.inputmodules.length - 1 - index < 3)
+                if(this.inputModules.length - 1 - index < 3)
                 {
-                    this.inputmodules[index].hidden = false;
+                    this.inputModules[index].hidden = false;
                 }
                 else
                 {
-                    this.inputmodules[index].hidden = true;
+                    this.inputModules[index].hidden = true;
                 }
             }
         }
         else
         {
-            if(this.inputmodules[0]) this.inputmodules[0].hidden = false;
-            if(this.inputmodules[1]) this.inputmodules[1].hidden = false;
-            if(this.inputmodules[2]) this.inputmodules[2].hidden = false;
+            if(this.inputModules[0]) this.inputModules[0].hidden = false;
+            if(this.inputModules[1]) this.inputModules[1].hidden = false;
+            if(this.inputModules[2]) this.inputModules[2].hidden = false;
         }
         
-        if(this.inputmodules.length == 1)
+        if(this.inputModules.length == 1)
         {
             this._isSingleComponent = true;
         }
@@ -60,6 +60,6 @@ export class TerraSplitViewComponent implements OnInit, DoCheck
     
     private onClick():void
     {
-        this.inputmodules.pop();
+        this.inputModules.pop();
     }
 }
