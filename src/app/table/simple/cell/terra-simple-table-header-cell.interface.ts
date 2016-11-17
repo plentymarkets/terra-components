@@ -1,12 +1,10 @@
 /**
  * @author mkunze
  */
-export interface TerraTableHeaderCellInterface
+export interface TerraSimpleTableHeaderCellInterface
 {
     caption:string;
-    identifier:string;
     width:number;
-    isHidden?:boolean;
     tooltipText?:string;
     tooltipPlacement?:string;
 }

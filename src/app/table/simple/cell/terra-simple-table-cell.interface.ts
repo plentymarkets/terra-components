@@ -1,12 +1,10 @@
-import { TerraButtonInterface } from '../../button/data/terra-button.interface';
+import { TerraButtonInterface } from '../../../button/data/terra-button.interface';
 /**
  * @author mkunze
  */
-export interface TerraTableCellInterface
+export interface TerraSimpleTableCellInterface
 {
-    identifier:string;
     caption?:string | number;
-    isHidden?:boolean;
     icon?:string;
     buttonList?:Array<TerraButtonInterface>;
     tooltipText?:string;
