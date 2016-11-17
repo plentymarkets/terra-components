@@ -14,7 +14,7 @@
     <div class="side-scroller">
         <template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">
             <div *ngIf="!module.hidden" [style.width]="module.defaultWidth">
-                <terra-dynamic-module-loader *ngIf="!module.hidden" [inputModule]="module.module"></terra-dynamic-module-loader>
+                <terra-dynamic-module-loader *ngIf="!module.hidden" [inputModule]="module.module" [inputMainComponentName]="inputMainComponentName"></terra-dynamic-module-loader>
             </div>
             <!--TODO make divider draggable-->
             <div class="divider" *ngIf="!last && !module.hidden"></div>

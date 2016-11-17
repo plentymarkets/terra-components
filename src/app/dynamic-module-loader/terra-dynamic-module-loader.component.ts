@@ -23,6 +23,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
     @Input() inputModule:any;
+    @Input() inputMainComponentName:string;
     private _resolvedData:ModuleWithProviders;
     
     private _cmpRef:ComponentRef<any>;
@@ -56,7 +57,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                       (
                           (factory) =>
                           {
-                              if(moduleWithFactories.ngModuleFactory.moduleType.name === factory.componentType.name)
+                              if(this.inputMainComponentName === factory.componentType.name)
                               {
                                   this._cmpRef = this.viewChildTarget.createComponent(factory);
                               }

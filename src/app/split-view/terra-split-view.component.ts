@@ -15,6 +15,7 @@ export class TerraSplitViewComponent implements OnInit, DoCheck
 {
     @Input() inputModules:Array<TerraSplitViewInterface>;
     @Input() inputBreadCrumbEntry:string;
+    @Input() inputMainComponentName:string;
     private _isSingleComponent:boolean;
     
     constructor()
