@@ -41,4 +41,9 @@ export class TerraTextInputComponent extends TerraInputComponent
     {
         super('text', TerraRegex.MIXED);
     }
+    
+    @Input() public set inputValue(v:string)
+    {
+        this.value = v;
+    }
 }
