@@ -10,7 +10,6 @@ import { TerraSimpleTableRowInterface } from './row/terra-simple-table-row.inter
                styles:   [require('./terra-simple-table.component.scss').toString()],
                template: require('./terra-simple-table.component.html')
            })
-
 export class TerraSimpleTableComponent
 {
     private _headerList:Array<TerraSimpleTableHeaderCellInterface>;

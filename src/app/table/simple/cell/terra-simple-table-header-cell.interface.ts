@@ -1,5 +1,5 @@
 /**
- * @author michaelkunze
+ * @author mkunze
  */
 export interface TerraSimpleTableHeaderCellInterface
 {

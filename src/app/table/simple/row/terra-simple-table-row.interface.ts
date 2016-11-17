@@ -1,6 +1,6 @@
 import { TerraSimpleTableCellInterface } from '../cell/terra-simple-table-cell.interface';
 /**
- * @author michaelkunze
+ * @author mkunze
  */
 export interface TerraSimpleTableRowInterface
 {

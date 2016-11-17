@@ -1,6 +1,6 @@
 import { TerraButtonInterface } from '../../../button/data/terra-button.interface';
 /**
- * @author michaelkunze
+ * @author mkunze
  */
 export interface TerraSimpleTableCellInterface
 {
