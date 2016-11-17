@@ -12,7 +12,7 @@
                       (outputClicked)="onClick()"></terra-button>
     </terra-base-toolbar>
     <div class="side-scroller">
-        <template ngFor let-module [ngForOf]="inputComponents" let-last="last" let-first="first">
+        <template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">
             <div *ngIf="!module.hidden" [style.width]="module.defaultWidth">
                 <terra-dynamic-module-loader *ngIf="!module.hidden" [inputModule]="module.module"></terra-dynamic-module-loader>
             </div>
