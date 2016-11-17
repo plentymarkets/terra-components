@@ -14,7 +14,6 @@ import { TerraSplitViewInterface } from './data/terra-split-view.interface';
 export class TerraSplitViewComponent implements OnInit, DoCheck
 {
     @Input() inputModules:Array<TerraSplitViewInterface>;
-    @Input() inputBreadCrumbEntry:string;
     private _isSingleComponent:boolean;
     
     constructor()
