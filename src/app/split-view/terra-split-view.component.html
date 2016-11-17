@@ -1,24 +1,23 @@
 <div style="margin: 5px">
     <terra-base-toolbar>
         <ng-content></ng-content>
-        Aufträge >
-        <template ngFor let-component [ngForOf]="inputComponents" let-first="first">
+        {{inputBreadCrumbEntry}} >
+        <template ngFor let-module [ngForOf]="inputModules" let-first="first">
             <span *ngIf="!first">
                 >
             </span>
-            {{component.name}}
+            {{module.name}}
         </template>
         <terra-button [inputIsSmall]="true" inputCaption="zurück" [inputIsDisabled]="_isSingleComponent" [inputIsAlignRight]="true"
                       (outputClicked)="onClick()"></terra-button>
     </terra-base-toolbar>
     <div class="side-scroller">
-        <template ngFor let-component [ngForOf]="inputComponents" let-last="last" let-first="first">
-            <div *ngIf="!component.hidden" [style.width]="component.defaultWidth">
-                <!--<terra-dcl-wrapper *ngIf="!component.hidden" [inputIdentifier]="test" [inputType]="component.component"></terra-dcl-wrapper>-->
-                <terra-dynamic-module-loader *ngIf="!component.hidden" [inputModule]="component.component"></terra-dynamic-module-loader>
+        <template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">
+            <div *ngIf="!module.hidden" [style.width]="module.defaultWidth">
+                <terra-dynamic-module-loader *ngIf="!module.hidden" [inputModule]="module.module"></terra-dynamic-module-loader>
             </div>
             <!--TODO make divider draggable-->
-            <div class="divider" *ngIf="!last && !component.hidden"></div>
+            <div class="divider" *ngIf="!last && !module.hidden"></div>
         </template>
     </div>
 </div>

@@ -6,7 +6,6 @@ import {
     AfterViewInit,
     ModuleWithComponentFactories,
     ModuleWithProviders,
-    OnChanges,
     Input
 } from '@angular/core';
 import { ViewChild } from '@angular/core/src/metadata/di';
@@ -19,7 +18,7 @@ import { RuntimeCompiler } from '@angular/compiler';
                styles:   [require('./terra-dynamic-module-loader.component.scss').toString()]
            })
 
-export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestroy, OnChanges
+export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestroy
 {
     
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
@@ -31,11 +30,6 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     constructor(private _activatedRoute:ActivatedRoute,
                 private _runtimeCompiler:RuntimeCompiler)
     {
-    }
-    
-    ngOnChanges()
-    {
-        this.updateComponent();
     }
     
     ngAfterViewInit()
@@ -58,7 +52,17 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
             .compileModuleAndAllComponentsAsync(this._resolvedData.ngModule)
             .then((moduleWithFactories:ModuleWithComponentFactories<any>) =>
                   {
-                      this._cmpRef = this.viewChildTarget.createComponent(moduleWithFactories.componentFactories[0]);
+                      moduleWithFactories.componentFactories.forEach
+                      (
+                          (factory) =>
+                          {
+                              if(moduleWithFactories.ngModuleFactory.moduleType.name === factory.componentType.name)
+                              {
+                                  this._cmpRef = this.viewChildTarget.createComponent(factory);
+                              }
+                          }
+                      )
+            
                   });
     }
 }
