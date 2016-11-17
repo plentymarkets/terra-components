@@ -13,7 +13,8 @@ import { TerraSplitViewInterface } from './data/terra-split-view.interface';
            })
 export class TerraSplitViewComponent implements OnInit, DoCheck
 {
-    @Input() inputComponents:Array<TerraSplitViewInterface>;
+    @Input() inputModules:Array<TerraSplitViewInterface>;
+    @Input() inputNavbarEntryName:string;
     private _isSingleComponent:boolean;
     
     constructor()
@@ -26,28 +27,28 @@ export class TerraSplitViewComponent implements OnInit, DoCheck
     
     ngDoCheck()
     {
-        if(this.inputComponents.length > 3)
+        if(this.inputModules.length > 3)
         {
-            for(let index = this.inputComponents.length -1; index >= 0; index--)
+            for(let index = this.inputModules.length - 1; index >= 0; index--)
             {
-                if(this.inputComponents.length -1 -index < 3)
+                if(this.inputModules.length - 1 - index < 3)
                 {
-                    this.inputComponents[index].hidden = false;
+                    this.inputModules[index].hidden = false;
                 }
                 else
                 {
-                    this.inputComponents[index].hidden = true;
+                    this.inputModules[index].hidden = true;
                 }
             }
         }
         else
         {
-            if(this.inputComponents[0]) this.inputComponents[0].hidden = false;
-            if(this.inputComponents[1]) this.inputComponents[1].hidden = false;
-            if(this.inputComponents[2]) this.inputComponents[2].hidden = false;
+            if(this.inputModules[0]) this.inputModules[0].hidden = false;
+            if(this.inputModules[1]) this.inputModules[1].hidden = false;
+            if(this.inputModules[2]) this.inputModules[2].hidden = false;
         }
         
-        if(this.inputComponents.length == 1)
+        if(this.inputModules.length == 1)
         {
             this._isSingleComponent = true;
         }
@@ -59,6 +60,6 @@ export class TerraSplitViewComponent implements OnInit, DoCheck
     
     private onClick():void
     {
-        this.inputComponents.pop();
+        this.inputModules.pop();
     }
 }
