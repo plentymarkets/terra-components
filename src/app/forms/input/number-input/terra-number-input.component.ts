@@ -41,4 +41,10 @@ export class TerraNumberInputComponent extends TerraInputComponent
     {
         super('number', TerraRegex.NUMERIC);
     }
+    
+    @Input()
+    public set inputValue(v:number)
+    {
+        this.value = v;
+    }
 }

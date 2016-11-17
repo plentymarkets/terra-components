@@ -35,4 +35,10 @@ export class TerraDoubleInputComponent extends TerraInputComponent
     {
         super('number', TerraRegex.DOUBLE);
     }
+    
+    @Input()
+    public set inputValue(v:number)
+    {
+        this.value = v;
+    }
 }
