@@ -56,13 +56,13 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                       (
                           (factory) =>
                           {
-                              if(factory.ngModuleFactory.moduleType.getMainComponent() === factory.componentType.name )
+                              if(moduleWithFactories.ngModuleFactory.moduleType.name === factory.componentType.name)
                               {
                                   this._cmpRef = this.viewChildTarget.createComponent(factory);
                               }
                           }
                       )
-                      
+            
                   });
     }
 }
