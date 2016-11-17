@@ -102,4 +102,35 @@ export class TerraBaseTreeComponent implements OnInit
     {
         clickedLeaf.isOpen = !clickedLeaf.isOpen;
     }
+    
+    private recursiveSearchActiveLeaf(leafListToSearch:Array<TerraLeafInterface>):TerraLeafInterface
+    {
+        let foundLeaf:TerraLeafInterface;
+        
+        for(let leaf of leafListToSearch)
+        {
+            if(leaf.isActive)
+            {
+                foundLeaf = leaf;
+                
+                return foundLeaf
+            }
+            else if(leaf.subLeafList)
+            {
+                foundLeaf = this.recursiveSearchActiveLeaf(leaf.subLeafList);
+                
+                if(foundLeaf != null)
+                {
+                    break;
+                }
+            }
+        }
+        
+        return foundLeaf;
+    }
+    
+    public getSelectedLeaf():TerraLeafInterface
+    {
+        return this.recursiveSearchActiveLeaf(this.inputLeafList);
+    }
 }
