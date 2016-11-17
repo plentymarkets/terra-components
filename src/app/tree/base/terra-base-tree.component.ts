@@ -115,7 +115,7 @@ export class TerraBaseTreeComponent implements OnInit
                 
                 return foundLeaf
             }
-            else if (leaf.subLeafList)
+            else if(leaf.subLeafList)
             {
                 foundLeaf = this.recursiveSearchActiveLeaf(leaf.subLeafList);
                 
