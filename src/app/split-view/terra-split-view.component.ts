@@ -14,7 +14,9 @@ import { TerraSplitViewInterface } from './data/terra-split-view.interface';
 export class TerraSplitViewComponent implements OnInit, DoCheck
 {
     @Input() inputModules:Array<TerraSplitViewInterface>;
+    @Input() inputShowBreadcrumbs:boolean;
     private _isSingleComponent:boolean;
+    private _isBreadcrumbsSet:boolean = true;
     
     constructor()
     {
@@ -22,6 +24,7 @@ export class TerraSplitViewComponent implements OnInit, DoCheck
     
     ngOnInit()
     {
+        this._isBreadcrumbsSet = this.inputShowBreadcrumbs;
     }
     
     ngDoCheck()

@@ -1,12 +1,8 @@
 <div style="margin: 5px">
-    <terra-base-toolbar>
-        <ng-content></ng-content>
-        <span>
-            >>
-        </span>
+    <terra-base-toolbar *ngIf="_isBreadcrumbsSet">
         <template ngFor let-module [ngForOf]="inputModules" let-first="first">
             <span *ngIf="!first">
-                >
+                »
             </span>
             {{module.name}}
         </template>
