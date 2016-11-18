@@ -1,6 +1,5 @@
 import {
     Component,
-    OnInit,
     Input,
     DoCheck
 } from '@angular/core';
@@ -11,18 +10,15 @@ import { TerraSplitViewInterface } from './data/terra-split-view.interface';
                styles:   [require('./terra-split-view.component.scss').toString()],
                template: require('./terra-split-view.component.html')
            })
-export class TerraSplitViewComponent implements OnInit, DoCheck
+export class TerraSplitViewComponent implements DoCheck
 {
     @Input() inputModules:Array<TerraSplitViewInterface>;
-    @Input() inputBreadCrumbEntry:string;
+    @Input() inputShowBreadcrumbs:boolean;
     private _isSingleComponent:boolean;
     
     constructor()
     {
-    }
-    
-    ngOnInit()
-    {
+        this.inputShowBreadcrumbs = true;
     }
     
     ngDoCheck()
