@@ -1,5 +1,5 @@
 <div style="margin: 5px">
-    <terra-base-toolbar *ngIf="_isBreadcrumbsSet">
+    <terra-base-toolbar *ngIf="inputShowBreadcrumbs">
         <template ngFor let-module [ngForOf]="inputModules" let-first="first">
             <span *ngIf="!first">
                 »
@@ -9,7 +9,7 @@
         <terra-button [inputIsSmall]="true" inputCaption="zurück" [inputIsDisabled]="_isSingleComponent" [inputIsAlignRight]="true"
                       (outputClicked)="onClick()"></terra-button>
     </terra-base-toolbar>
-    <div class="side-scroller">
+    <div class="side-scroller" *ngIf="inputModules">
         <template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">
             <div *ngIf="!module.hidden" [style.width]="module.defaultWidth">
                 <terra-dynamic-module-loader *ngIf="!module.hidden" [inputModule]="module.module"
