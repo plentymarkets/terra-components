@@ -20,6 +20,7 @@
             .checkbox-all
             {
                 padding: 0.3rem 0.75rem;
+                border-color: $valid;
             }
             .btn-all
             {
@@ -116,6 +117,7 @@
                 .checkbox-all
                 {
                     background-color: $error;
+                    border-color: $error;
                 }
                 &:hover
                 {
