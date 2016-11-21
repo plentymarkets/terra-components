@@ -6,7 +6,7 @@
             </span>
             {{module.name}}
         </template>
-        <terra-button [inputIsSmall]="true" inputCaption="zurück" [inputIsDisabled]="_isSingleComponent" [inputIsAlignRight]="true"
+        <terra-button *ngIf="inputModules" [inputIsSmall]="true" inputCaption="zurück" [inputIsDisabled]="_isSingleComponent" [inputIsAlignRight]="true"
                       (outputClicked)="onClick()"></terra-button>
     </terra-base-toolbar>
     <div class="side-scroller" *ngIf="inputModules">
