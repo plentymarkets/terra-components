@@ -3,16 +3,15 @@
         <div class="btn-group btn-group--all" role="group">
             <button class="btn btn-primary checkbox-all" isPrimary="true" type="terra-button">
                 <terra-checkbox #viewChildHeaderCheckbox type="checkbox" [inputIsDisabled]="inputIsDisabled"
-                                 (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
-                                 [value]="_isHeaderCheckboxChecked"></terra-checkbox>
+                                 (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"></terra-checkbox>
             </button>
-            <div *ngIf="inputIsDisabled == false && inputIsError == false" class="btn-all">
+            <div *ngIf="!inputIsDisabled && !inputIsError" class="btn-all">
                 <terra-button (outputClicked)="primaryClicked()" inputCaption="Alle" inputIsPrimary="true" inputType="terra-button"></terra-button>
             </div>
             <div *ngIf="inputIsError" class="btn-all">
                 <terra-button (outputClicked)="primaryClicked()" inputCaption="Alle" inputIsSecondary="true" inputType="terra-button"></terra-button>
             </div>
-            <div *ngIf="inputIsDisabled && inputIsError == false" class="btn-all">
+            <div *ngIf="inputIsDisabled && !inputIsError" class="btn-all">
                 <terra-button (outputClicked)="primaryClicked()" inputCaption="Alle" inputIsDisabled="true" inputType="terra-button"></terra-button>
             </div>
         </div>

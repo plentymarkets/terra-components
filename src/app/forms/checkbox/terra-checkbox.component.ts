@@ -45,13 +45,13 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     }
     
     //get accessor
-    @Input()
     public get value():boolean
     {
         return this._innerValue;
     };
     
     //set accessor including call the onchange callback
+    @Input()
     public set value(v:boolean)
     {
         this.isIndeterminate = false;
