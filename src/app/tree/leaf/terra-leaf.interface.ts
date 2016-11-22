@@ -8,6 +8,7 @@ export interface TerraLeafInterface
     icon?:string;
     id?:number;
     isActive?:boolean;
+    clickFunction?:()=>void;
     contextMenu?:Array<any>;//TODO
     subLeafList?:Array<TerraLeafInterface>;
     parentLeafList?:Array<TerraLeafInterface>;

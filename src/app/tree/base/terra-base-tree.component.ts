@@ -48,7 +48,16 @@ export class TerraBaseTreeComponent implements OnInit
     
     private onLeafClick(clickedLeaf:TerraLeafInterface):void
     {
-        this.toggleOpen(clickedLeaf);
+        if(clickedLeaf.subLeafList != null)
+        {
+            this.toggleOpen(clickedLeaf);
+        }
+        
+        if(clickedLeaf.clickFunction != null)
+        {
+            clickedLeaf.clickFunction();
+        }
+        
         this.setLeafActive(clickedLeaf)
     }
     
