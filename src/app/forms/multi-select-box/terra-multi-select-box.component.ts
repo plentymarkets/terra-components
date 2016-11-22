@@ -23,7 +23,6 @@ export class TerraMultiSelectBoxComponent implements OnInit
     @Input() inputIsError:boolean;
     @Input() inputValueList:Array<TerraMultiSelectBoxValueInterface>;
     
-    private _isHeaderCheckboxChecked:boolean = false;
     private _selectedValueList:Array<TerraMultiSelectBoxValueInterface> = [];
     private _boxClassType:string = "";
     
@@ -45,12 +44,12 @@ export class TerraMultiSelectBoxComponent implements OnInit
     
     private primaryClicked():void
     {
-        this.onHeaderCheckboxChange(!this._isHeaderCheckboxChecked);
+        this.onHeaderCheckboxChange(!this.viewChildHeaderCheckbox.value);
     }
     
     private onHeaderCheckboxChange(isChecked:boolean):void
     {
-        this._isHeaderCheckboxChecked = isChecked;
+        this.viewChildHeaderCheckbox.value = isChecked;
         
         this.inputValueList.forEach(
             (value)=>
@@ -66,11 +65,11 @@ export class TerraMultiSelectBoxComponent implements OnInit
         
         if(this._selectedValueList.length == 0)
         {
-            this._isHeaderCheckboxChecked = false;
+            this.viewChildHeaderCheckbox.value = false;
         }
         else if(this._selectedValueList.length > 0 && this.inputValueList.length == this._selectedValueList.length)
         {
-            this._isHeaderCheckboxChecked = true;
+            this.viewChildHeaderCheckbox.value = true;
         }
         else
         {
@@ -107,5 +106,10 @@ export class TerraMultiSelectBoxComponent implements OnInit
             
             this._selectedValueList.splice(index, 1);
         }
+    }
+    
+    public get selectedValueList():Array<TerraMultiSelectBoxValueInterface>
+    {
+        return this._selectedValueList;
     }
 }

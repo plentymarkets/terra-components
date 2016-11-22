@@ -8,7 +8,7 @@
                   'disabled': isDisabled,
                   'open': _toggleOpen
                 }"
-     (click)="_toggleOpen=!_toggleOpen">
+     (click)="_toggleOpen =! _toggleOpen">
     
     
     <label *ngIf="_hasLabel" htmlFor="{{inputName}}">{{inputName}}
@@ -22,9 +22,9 @@
     </div>
     
     <div class="list-box-dropdown">
-    <span *ngFor="let value of inputListBoxValues" (click)="select(value)" [ngClass]="{active: value.active}">
-      <span class="{{value.icon}}" *ngIf="value.icon"></span>
-      {{value.caption}}
-    </span>
+        <span *ngFor="let value of inputListBoxValues" (click)="select(value)" [ngClass]="{active: value.active}">
+          <span class="{{value.icon}}" *ngIf="value.icon"></span>
+          {{value.caption}}
+        </span>
     </div>
 </div>
