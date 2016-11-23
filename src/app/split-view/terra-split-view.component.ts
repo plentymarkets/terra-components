@@ -88,6 +88,7 @@ export class TerraSplitViewComponent implements DoCheck
     
     private copyPath():void
     {
+        this._breadCrumbsPath = "";
         this.inputModules.forEach
         (
             (module) =>
