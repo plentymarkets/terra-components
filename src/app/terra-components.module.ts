@@ -97,6 +97,7 @@ import { TerraAlertComponent } from './alert/terra-alert.component';
 import { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
 import { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
+import { ClipboardModule } from 'angular2-clipboard/src/clipboard.module';
 
 @NgModule({
               declarations:    [
@@ -192,7 +193,8 @@ import { TerraSimpleTableComponent } from './table/simple/terra-simple-table.com
                   ModalModule,
                   HttpModule,
                   TooltipModule,
-                  AlertModule
+                  AlertModule,
+                  ClipboardModule
               ],
               bootstrap:       [
                   TerraComponentsComponent
