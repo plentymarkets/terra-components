@@ -97,6 +97,7 @@ import { TerraAlertComponent } from './alert/terra-alert.component';
 import { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
 import { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
+import { COMPILER_PROVIDERS } from '@angular/compiler';
 
 @NgModule({
               declarations:    [
@@ -194,6 +195,7 @@ import { TerraSimpleTableComponent } from './table/simple/terra-simple-table.com
                   TooltipModule,
                   AlertModule
               ],
+              providers:       [COMPILER_PROVIDERS],
               bootstrap:       [
                   TerraComponentsComponent
               ]
