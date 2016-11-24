@@ -12,7 +12,7 @@ export class TerraInputComponent implements ControlValueAccessor
     @Input() inputEmptyMessage:string;
     @Input() inputInvalidMessage:string;
     @Input() inputTooltipText:string;
-    @Input() inputDisabled:boolean;
+    @Input() inputIsDisabled:boolean;
     @Input() inputTooltipPlacement:string; //top, bottom, left, right (default: top)
     @Input() inputMaxLength:number;
     @Input() inputMaxValue:number;
@@ -49,12 +49,12 @@ export class TerraInputComponent implements ControlValueAccessor
     
     public get isDisabled():boolean
     {
-        return this.inputDisabled;
+        return this.inputIsDisabled;
     }
     
     public set isDisabled(value:boolean)
     {
-        this.inputDisabled = value;
+        this.inputIsDisabled = value;
     }
     
     public get isValid():boolean

@@ -30,7 +30,7 @@ export class TerraTextInputComponent extends TerraInputComponent
     @Input() inputEmptyMessage:string;
     @Input() inputInvalidMessage:string;
     @Input() inputTooltipText:string;
-    @Input() inputDisabled:boolean;
+    @Input() inputIsDisabled:boolean;
     @Input() inputTooltipPlacement:string; //top, bottom, left, right (default: top)
     @Input() inputMaxLength:number;
     @Input() inputMaxValue:number;

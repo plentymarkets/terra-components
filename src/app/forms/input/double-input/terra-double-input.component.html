@@ -7,5 +7,5 @@
         <span *ngIf="inputIsRequired">*</span>
     </label>
     <input id="{{inputName}}" [ngClass]="{'price-input': inputIsPriceInput}" [type]="type" [(ngModel)]="value" name="{{inputName}}" (blur)="onBlur()" autocomplete="off"
-           [disabled]="isDisabled" pattern="{{_regex}}" step="0.01">
+           [disabled]="isDisabled" pattern="{{regex}}" step="0.01">
 </div>

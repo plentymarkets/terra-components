@@ -28,7 +28,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent
     @Input() inputName:string;
     @Input() inputTooltipPlacement:string; //top, bottom, left, right (default: top)
     @Input() inputTooltipText:string;
-    @Input() inputDisabled:boolean;
+    @Input() inputIsDisabled:boolean;
     @Input() inputIsPriceInput:boolean;
     @Input() inputIsRequired:boolean;
     
