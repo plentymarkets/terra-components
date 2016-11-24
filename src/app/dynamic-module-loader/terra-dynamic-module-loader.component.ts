@@ -6,10 +6,9 @@ import {
     AfterViewInit,
     ModuleWithComponentFactories,
     ModuleWithProviders,
-    Input
+    Input,
+    ViewChild
 } from '@angular/core';
-import { ViewChild } from '@angular/core/src/metadata/di';
-import { ActivatedRoute } from '@angular/router';
 import { RuntimeCompiler } from '@angular/compiler';
 
 @Component({
@@ -28,8 +27,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     
     private _cmpRef:ComponentRef<any>;
     
-    constructor(private _activatedRoute:ActivatedRoute,
-                private _runtimeCompiler:RuntimeCompiler)
+    constructor(private _runtimeCompiler:RuntimeCompiler)
     {
     }
     
