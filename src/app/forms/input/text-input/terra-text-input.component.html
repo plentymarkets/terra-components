@@ -6,7 +6,6 @@
     <label htmlFor="{{inputName}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
-    <i *ngIf="inputName">?</i>
     <input id="{{inputName}}" [type]="type" [(ngModel)]="value" name="{{inputName}}" (blur)="onBlur()" autocomplete="off"
            [disabled]="isDisabled" pattern="{{_regex}}">
 </div>
