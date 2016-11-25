@@ -18,7 +18,8 @@
 	"angular-cli": {},
 	"scripts": {
 		"webpack": "webpack",
-		"gulpbuild": "gulp build",
+		"publish": "gulp build",
+		"build-local": "gulp publish-locally",
 		"start": "npm run server:dev",
 		"server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch"
 	},
