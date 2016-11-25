@@ -4,20 +4,27 @@ import {
     DoCheck
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
+import {
+    Locale,
+    LocaleService,
+    LocalizationService
+} from 'angular2localization';
 
 @Component({
                selector: 'terra-split-view',
                styles:   [require('./terra-split-view.component.scss').toString()],
                template: require('./terra-split-view.component.html')
            })
-export class TerraSplitViewComponent implements DoCheck
+export class TerraSplitViewComponent extends Locale implements DoCheck
 {
     @Input() inputModules:Array<TerraSplitViewInterface>;
     @Input() inputShowBreadcrumbs:boolean;
     private _isSingleComponent:boolean;
     
-    constructor()
+    constructor(public locale:LocaleService,
+                public localization:LocalizationService)
     {
+        super(locale, localization);
         this.inputShowBreadcrumbs = true;
     }
     
@@ -39,9 +46,18 @@ export class TerraSplitViewComponent implements DoCheck
         }
         else
         {
-            if(this.inputModules[0]) this.inputModules[0].hidden = false;
-            if(this.inputModules[1]) this.inputModules[1].hidden = false;
-            if(this.inputModules[2]) this.inputModules[2].hidden = false;
+            if(this.inputModules[0])
+            {
+                this.inputModules[0].hidden = false;
+            }
+            if(this.inputModules[1])
+            {
+                this.inputModules[1].hidden = false;
+            }
+            if(this.inputModules[2])
+            {
+                this.inputModules[2].hidden = false;
+            }
         }
         
         if(this.inputModules.length == 1)
@@ -57,5 +73,15 @@ export class TerraSplitViewComponent implements DoCheck
     private onClick():void
     {
         this.inputModules.pop();
+    }
+    
+    public get isSingleComponent():boolean
+    {
+        return this._isSingleComponent;
+    }
+    
+    public set isSingleComponent(value:boolean)
+    {
+        this._isSingleComponent = value;
     }
 }

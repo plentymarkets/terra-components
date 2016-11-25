@@ -98,6 +98,12 @@ import { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
 import { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
+import {
+    LocaleService,
+    LocalizationService,
+    LocaleModule,
+    LocalizationModule
+} from 'angular2localization';
 
 @NgModule({
               declarations:    [
@@ -193,9 +199,14 @@ import { COMPILER_PROVIDERS } from '@angular/compiler';
                   ModalModule,
                   HttpModule,
                   TooltipModule,
-                  AlertModule
+                  AlertModule,
+                  LocaleModule,
+                  LocalizationModule
               ],
-              providers:       [COMPILER_PROVIDERS],
+              providers:       [COMPILER_PROVIDERS,
+                                LocaleService,
+                                LocalizationService
+              ],
               bootstrap:       [
                   TerraComponentsComponent
               ]

@@ -7,6 +7,11 @@ import {
 } from '@angular/core';
 import { TerraMultiSelectBoxValueInterface } from './data/terra-multi-select-box-value.interface';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
+import {
+    Locale,
+    LocaleService,
+    LocalizationService
+} from 'angular2localization';
 
 
 @Component({
@@ -16,7 +21,7 @@ import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
                encapsulation: ViewEncapsulation.None
            })
 
-export class TerraMultiSelectBoxComponent implements OnInit
+export class TerraMultiSelectBoxComponent extends Locale implements OnInit
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
     @Input() inputIsDisabled:boolean;
@@ -26,8 +31,9 @@ export class TerraMultiSelectBoxComponent implements OnInit
     private _selectedValueList:Array<TerraMultiSelectBoxValueInterface> = [];
     private _boxClassType:string = "";
     
-    constructor()
+    constructor(public locale:LocaleService, localization:LocalizationService)
     {
+        super(locale, localization);
     }
     
     ngOnInit()
@@ -111,5 +117,15 @@ export class TerraMultiSelectBoxComponent implements OnInit
     public get selectedValueList():Array<TerraMultiSelectBoxValueInterface>
     {
         return this._selectedValueList;
+    }
+    
+    public get boxClassType():string
+    {
+        return this._boxClassType;
+    }
+    
+    public set boxClassType(value:string)
+    {
+        this._boxClassType = value;
     }
 }
