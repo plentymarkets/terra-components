@@ -1,4 +1,4 @@
-<div class="list-box-wrapper"
+<div class="select-box-wrapper"
      tooltipPlacement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
      tooltipEnable="{{inputTooltipText}}"
@@ -14,14 +14,12 @@
     <label *ngIf="_hasLabel" htmlFor="{{inputName}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
-    <i *ngIf="inputName">?</i>
     
-    
-    <div class="list-box" [ngClass]="{'error': !isValid}">
+    <div class="select-box" [ngClass]="{'error': !isValid}">
         {{_selectedValue.caption}}
     </div>
     
-    <div class="list-box-dropdown">
+    <div class="select-box-dropdown">
         <span *ngFor="let value of inputListBoxValues" (click)="select(value)" [ngClass]="{active: value.active}">
           <span class="{{value.icon}}" *ngIf="value.icon"></span>
           {{value.caption}}
