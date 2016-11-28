@@ -1,6 +1,6 @@
 {
 	"name": "@plentymarkets/terra-components",
-	"version": "0.0.139",
+	"version": "0.0.140",
 	"homepage": "https://github.com/plentymarkets/terra-components#readme",
 	"author": "plentymarkets",
 	"description": "plentymarkets terra components",
@@ -32,7 +32,7 @@
 		"@angular/platform-browser": "~2.1.1",
 		"@angular/platform-browser-dynamic": "~2.1.1",
 		"@angular/router": "3.1.1",
-        "angular2localization": "^1.2.0",
+		"angular2localization": "^1.2.0",
 		"bootstrap": "4.0.0-alpha.4",
 		"bootstrap-loader": "2.0.0-beta.15",
 		"core-js": "^2.4.1",
