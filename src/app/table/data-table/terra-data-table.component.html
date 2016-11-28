@@ -7,8 +7,8 @@
     <table class="table data-table table-striped table-bordered">
         <thead>
         <tr>
-            <th width="25px">
-                <terra-checkbox #viewChildHeaderCheckbox type="checkbox" (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
+            <th *ngIf="_hasCheckboxes" width="25px">
+                <terra-checkbox   #viewChildHeaderCheckbox type="checkbox" (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
                                 [value]="_isHeaderCheckboxChecked"></terra-checkbox>
             </th>
             <template ngFor let-header [ngForOf]="_headerList">
@@ -25,7 +25,7 @@
         <tbody>
         <template ngFor let-row [ngForOf]="_rowList">
             <tr [ngClass]="{'selected': row.selected}" [context-menu]="row.contextMenuLinkList">
-                <td>
+                <td *ngIf="_hasCheckboxes">
                     <terra-checkbox #rowCheckbox type="checkbox" [value]="row.selected"
                                     (change)="onRowCheckboxChange(rowCheckbox.value, row)"></terra-checkbox>
                 </td>
