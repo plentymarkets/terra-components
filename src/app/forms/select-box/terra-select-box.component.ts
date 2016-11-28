@@ -5,7 +5,9 @@ import {
     Output,
     ElementRef,
     EventEmitter,
-    ViewEncapsulation
+    ViewEncapsulation,
+    OnChanges,
+    SimpleChanges
 } from '@angular/core';
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
 
@@ -19,7 +21,7 @@ import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface'
                }
            })
 
-export class TerraSelectBoxComponent implements OnInit
+export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
     @Input() inputName:string;
     @Input() inputIsRequired:boolean;
@@ -29,12 +31,28 @@ export class TerraSelectBoxComponent implements OnInit
     @Input() inputListBoxValues:Array<TerraSelectBoxValueInterface>;
     @Input() inputDefaultSelection:number | string;
     @Output() outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
+    @Output() inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
+    
+    @Input()
+    set inputSelectedValue(value:TerraSelectBoxValueInterface)
+    {
+        if(value)
+        {
+            this.select(value);
+        }
+    }
+    
+    get inputSelectedValue():TerraSelectBoxValueInterface
+    {
+        return this._selectedValue;
+    }
     
     private _selectedValue:TerraSelectBoxValueInterface;
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
     private _isValid:boolean;
     private _regex:string;
+    private _isInit:boolean;
     
     /**
      *
@@ -42,6 +60,7 @@ export class TerraSelectBoxComponent implements OnInit
      */
     constructor(private elementRef:ElementRef)
     {
+        this._isInit = false;
         this.isValid = true;
         this.inputTooltipPlacement = 'top';
         this._selectedValue =
@@ -76,6 +95,28 @@ export class TerraSelectBoxComponent implements OnInit
         
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
+        this._isInit = true;
+    }
+    
+    /**
+     *
+     * @param changes
+     */
+    ngOnChanges(changes:SimpleChanges)
+    {
+        for(let key of Object.keys(changes))
+        {
+            if(key == "inputListBoxValues" && this._isInit == true)
+            {
+                changes[key].currentValue.forEach((item:TerraSelectBoxValueInterface) =>
+                                                  {
+                                                      if(item.active && item.active == true)
+                                                      {
+                                                          this.select(item);
+                                                      }
+                                                  });
+            }
+        }
     }
     
     /**
@@ -96,10 +137,19 @@ export class TerraSelectBoxComponent implements OnInit
      */
     private select(value:TerraSelectBoxValueInterface):void
     {
-        this._selectedValue.active = false;
-        value.active = true;
-        this._selectedValue = value;
-        this.outputValueChanged.emit(value);
+        for(let i = 0; i < this.inputListBoxValues.length; i++)
+        {
+            if(this.inputListBoxValues[i].value == value.value || this.inputListBoxValues[i].caption == value.caption)
+            {
+                this._selectedValue.active = false;
+                value.active = true;
+                this._selectedValue = this.inputListBoxValues[i];
+                this.outputValueChanged.emit(this.inputListBoxValues[i]);
+                this.inputSelectedValueChange.emit(this.inputListBoxValues[i]);
+                
+                return;
+            }
+        }
     }
     
     /**
