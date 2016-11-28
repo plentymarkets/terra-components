@@ -29,6 +29,21 @@ export class TerraSelectBoxComponent implements OnInit
     @Input() inputListBoxValues:Array<TerraSelectBoxValueInterface>;
     @Input() inputDefaultSelection:number | string;
     @Output() outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
+    @Output() inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
+    
+    @Input()
+    set inputSelectedValue(value:TerraSelectBoxValueInterface)
+    {
+        if(value)
+        {
+            this.select(value);
+        }
+    }
+    
+    get inputSelectedValue():TerraSelectBoxValueInterface
+    {
+        return this._selectedValue;
+    }
     
     private _selectedValue:TerraSelectBoxValueInterface;
     private _toggleOpen:boolean;
@@ -96,10 +111,19 @@ export class TerraSelectBoxComponent implements OnInit
      */
     private select(value:TerraSelectBoxValueInterface):void
     {
-        this._selectedValue.active = false;
-        value.active = true;
-        this._selectedValue = value;
-        this.outputValueChanged.emit(value);
+        for(let i = 0; i < this.inputListBoxValues.length; i++)
+        {
+           if(this.inputListBoxValues[i].value == value.value || this.inputListBoxValues[i].caption == value.caption)
+           {
+               this._selectedValue.active = false;
+               value.active = true;
+               this._selectedValue = this.inputListBoxValues[i];
+               this.outputValueChanged.emit(this.inputListBoxValues[i]);
+               this.inputSelectedValueChange.emit(this.inputListBoxValues[i]);
+               
+               return;
+           }
+        }
     }
     
     /**
