@@ -98,6 +98,10 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this._isInit = true;
     }
     
+    /**
+     *
+     * @param changes
+     */
     ngOnChanges(changes:SimpleChanges)
     {
         for(let key of Object.keys(changes))
