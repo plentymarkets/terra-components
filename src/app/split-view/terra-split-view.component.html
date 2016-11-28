@@ -6,8 +6,8 @@
             </span>
             {{module.name}}
         </template>
-        <terra-button *ngIf="inputModules" [inputIsSmall]="true" inputCaption="zurück" [inputIsDisabled]="_isSingleComponent" [inputIsAlignRight]="true"
-                      (outputClicked)="onClick()"></terra-button>
+        <terra-button *ngIf="inputModules" [inputIsSmall]="true" inputCaption="{{ 'back' | translate:lang }}"
+                      [inputIsDisabled]="isSingleComponent" [inputIsAlignRight]="true" (outputClicked)="onClick()"></terra-button>
     </terra-base-toolbar>
     <div class="side-scroller" *ngIf="inputModules">
         <template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">

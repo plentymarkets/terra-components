@@ -1,4 +1,4 @@
-<div class="multiselect-container {{_boxClassType}}">
+<div class="multiselect-container {{boxClassType}}">
     <div class="multiselect">
         <div class="btn-group btn-group--all" role="group">
             <button class="btn btn-primary checkbox-all" isPrimary="true" type="terra-button">
@@ -6,13 +6,13 @@
                                  (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"></terra-checkbox>
             </button>
             <div *ngIf="!inputIsDisabled && !inputIsError" class="btn-all">
-                <terra-button (outputClicked)="primaryClicked()" inputCaption="Alle" inputIsPrimary="true" inputType="terra-button"></terra-button>
+                <terra-button (outputClicked)="primaryClicked()" inputCaption="{{ 'selectAll' | translate:lang }}" inputIsPrimary="true" inputType="terra-button"></terra-button>
             </div>
             <div *ngIf="inputIsError" class="btn-all">
-                <terra-button (outputClicked)="primaryClicked()" inputCaption="Alle" inputIsSecondary="true" inputType="terra-button"></terra-button>
+                <terra-button (outputClicked)="primaryClicked()" inputCaption="{{ 'selectAll' | translate:lang }}" inputIsSecondary="true" inputType="terra-button"></terra-button>
             </div>
             <div *ngIf="inputIsDisabled && !inputIsError" class="btn-all">
-                <terra-button (outputClicked)="primaryClicked()" inputCaption="Alle" inputIsDisabled="true" inputType="terra-button"></terra-button>
+                <terra-button (outputClicked)="primaryClicked()" inputCaption="{{ 'selectAll' | translate:lang }}" inputIsDisabled="true" inputType="terra-button"></terra-button>
             </div>
         </div>
         <div class="option-list">
