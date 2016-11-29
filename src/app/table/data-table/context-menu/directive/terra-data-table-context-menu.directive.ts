@@ -3,7 +3,7 @@ import {
     Input
 } from '@angular/core';
 import { TerraDataTableContextMenuService } from '../service/terra-data-table-context-menu.service';
-import { TerraDataTableContextMenuEntryInterafce } from '../data/terra-data-table-context-menu-entry.interface';
+import { TerraDataTableContextMenuEntryInterface } from '../data/terra-data-table-context-menu-entry.interface';
 import { TerraBaseData } from '../../../../data/terra-base.data';
 
 /**
@@ -15,7 +15,7 @@ import { TerraBaseData } from '../../../../data/terra-base.data';
            })
 export class TerraDataTableContextMenuDirective<D extends TerraBaseData>
 {
-    @Input('context-menu') inputLinks:Array<TerraDataTableContextMenuEntryInterafce<D>>;
+    @Input('context-menu') inputLinks:Array<TerraDataTableContextMenuEntryInterface<D>>;
     
     constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
     {
