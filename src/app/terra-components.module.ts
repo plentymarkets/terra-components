@@ -34,7 +34,7 @@ export { TerraSimpleTableHeaderCellInterface } from './table/simple/cell/terra-s
 export { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
 export { TerraSimpleTableRowInterface } from './table/simple/row/terra-simple-table-row.interface';
 export { TerraDataTableContextMenuDirective } from './table/data-table/context-menu/directive/terra-data-table-context-menu.directive';
-export { TerraDataTableContextMenuEntryInterafce } from './table/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
+export { TerraDataTableContextMenuEntryInterface } from './table/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
 export { TerraDataTableContextMenuService } from './table/data-table/context-menu/service/terra-data-table-context-menu.service';
 export { TerraDataTableContextMenuComponent } from './table/data-table/context-menu/terra-data-table-context-menu.component';
 export { TerraDataTableComponent } from './table/data-table/terra-data-table.component';
