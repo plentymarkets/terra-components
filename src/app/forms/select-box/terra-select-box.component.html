@@ -22,7 +22,7 @@
     </div>
     
     <div class="list-box-dropdown">
-        <span *ngFor="let item of inputListBoxValues" (click)="select(item.value)" [ngClass]="{active: item.active}">
+        <span *ngFor="let item of inputListBoxValues; let index=index;" (click)="select(index)" [ngClass]="{active: item.active}">
           <span class="{{item.icon}}" *ngIf="item.icon"></span>
           {{item.caption}}
         </span>
