@@ -47,7 +47,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                                  this._selectedValue = item;
                              }
                          });
-            setTimeout(() => this.inputSelectedValueChange.emit(this._selectedValue.value));
+            setTimeout(() => this.inputSelectedValueChange.emit(this._selectedValue.value), 0);
         }
     }
     
@@ -81,7 +81,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     
     ngOnInit()
     {
-        setTimeout(() => this.select(0));
+        setTimeout(() => this.select(0), 0);
         
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
@@ -100,14 +100,14 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             {
                 if(key == "inputListBoxValues" && changes[key].currentValue.length > 0)
                 {
-                    setTimeout(() => this.inputSelectedValue = changes[key].currentValue[0].value);
+                    setTimeout(() => this.inputSelectedValue = changes[key].currentValue[0].value, 0);
                     
                     changes[key].currentValue
                                 .forEach((item:TerraSelectBoxValueInterface) =>
                                          {
                                              if(item.active && item.active == true)
                                              {
-                                                 setTimeout(() => this.inputSelectedValue = item.value);
+                                                 setTimeout(() => this.inputSelectedValue = item.value, 0);
                                              }
                                          });
                 }
