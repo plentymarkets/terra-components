@@ -4,21 +4,28 @@ import {
     DoCheck
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
+import {
+    Locale,
+    LocaleService,
+    LocalizationService
+} from 'angular2localization';
 
 @Component({
-               selector:   'terra-split-view',
-               styles:     [require('./terra-split-view.component.scss').toString()],
-               template:   require('./terra-split-view.component.html'),
+               selector: 'terra-split-view',
+               styles:   [require('./terra-split-view.component.scss').toString()],
+               template: require('./terra-split-view.component.html'),
            })
-export class TerraSplitViewComponent implements DoCheck
+export class TerraSplitViewComponent extends Locale implements DoCheck
 {
     @Input() inputModules:Array<TerraSplitViewInterface>;
     @Input() inputShowBreadcrumbs:boolean;
     private _isSingleComponent:boolean;
     private _breadCrumbsPath:string;
     
-    constructor()
+    constructor(public locale:LocaleService,
+                public localization:LocalizationService)
     {
+        super(locale, localization);
         this.inputShowBreadcrumbs = true;
         this._breadCrumbsPath = '';
     }

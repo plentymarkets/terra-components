@@ -34,7 +34,7 @@ export { TerraSimpleTableHeaderCellInterface } from './table/simple/cell/terra-s
 export { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
 export { TerraSimpleTableRowInterface } from './table/simple/row/terra-simple-table-row.interface';
 export { TerraDataTableContextMenuDirective } from './table/data-table/context-menu/directive/terra-data-table-context-menu.directive';
-export { TerraDataTableContextMenuEntryInterafce } from './table/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
+export { TerraDataTableContextMenuEntryInterface } from './table/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
 export { TerraDataTableContextMenuService } from './table/data-table/context-menu/service/terra-data-table-context-menu.service';
 export { TerraDataTableContextMenuComponent } from './table/data-table/context-menu/terra-data-table-context-menu.component';
 export { TerraDataTableComponent } from './table/data-table/terra-data-table.component';
@@ -99,6 +99,12 @@ import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
 import { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
 import { ClipboardModule } from 'angular2-clipboard/src/clipboard.module';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
+import {
+    LocaleService,
+    LocalizationService,
+    LocaleModule,
+    LocalizationModule
+} from 'angular2localization';
 
 @NgModule({
               declarations:    [
@@ -195,9 +201,14 @@ import { COMPILER_PROVIDERS } from '@angular/compiler';
                   HttpModule,
                   TooltipModule,
                   AlertModule,
-                  ClipboardModule
+                  ClipboardModule,
+                  LocaleModule,
+                  LocalizationModule
               ],
-              providers:       [COMPILER_PROVIDERS],
+              providers:       [COMPILER_PROVIDERS,
+                                LocaleService,
+                                LocalizationService
+              ],
               bootstrap:       [
                   TerraComponentsComponent
               ]

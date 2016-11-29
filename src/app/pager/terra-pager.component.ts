@@ -140,7 +140,6 @@ export class TerraPagerComponent implements OnInit
         this.updateCurrentPageInput();
         this.inputPagingData.perPage = selectedOffset.value;
         
-        this.outputDoPaging
-            .emit(this.inputPagingData);
+        this.outputDoPaging.emit(this.inputPagingData);
     }
 }
