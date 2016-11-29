@@ -94,24 +94,18 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     ngOnChanges(changes:SimpleChanges)
     {
-        if(this._isInit == true)
+        if(this._isInit == true && changes["inputListBoxValues"] && changes["inputListBoxValues"].currentValue.length > 0)
         {
-            for(let key of Object.keys(changes))
-            {
-                if(key == "inputListBoxValues" && changes[key].currentValue.length > 0)
-                {
-                    setTimeout(() => this.inputSelectedValue = changes[key].currentValue[0].value, 0);
-                    
-                    changes[key].currentValue
-                                .forEach((item:TerraSelectBoxValueInterface) =>
-                                         {
-                                             if(item.active && item.active == true)
-                                             {
-                                                 setTimeout(() => this.inputSelectedValue = item.value, 0);
-                                             }
-                                         });
-                }
-            }
+            setTimeout(() => this.inputSelectedValue = changes["inputListBoxValues"].currentValue[0].value, 0);
+            
+            changes["inputListBoxValues"].currentValue
+                                         .forEach((item:TerraSelectBoxValueInterface) =>
+                                                  {
+                                                      if(item.active && item.active == true)
+                                                      {
+                                                          setTimeout(() => this.inputSelectedValue = item.value, 0);
+                                                      }
+                                                  });
         }
     }
     
