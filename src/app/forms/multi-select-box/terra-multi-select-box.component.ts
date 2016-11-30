@@ -28,6 +28,31 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit
     @Input() inputIsError:boolean;
     @Input() inputValueList:Array<TerraMultiSelectBoxValueInterface>;
     
+    @Input()
+    set inputSelectedValue(value:Array<any>)
+    {
+        if(value)
+        {
+            
+        }
+    }
+    
+    get inputSelectedValue():Array<any>
+    {
+        let result:Array<any> = [];
+        
+        this._selectedValueList
+            .forEach((item)=>
+                     {
+                         if(item.selected == true)
+                         {
+                             result.push(item.value);
+                         }
+                     });
+        
+        return result;
+    }
+    
     private _selectedValueList:Array<TerraMultiSelectBoxValueInterface> = [];
     private _boxClassType:string = "";
     
