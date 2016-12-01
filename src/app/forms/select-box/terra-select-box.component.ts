@@ -29,22 +29,31 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input() inputTooltipText:string;
     @Input() inputTooltipPlacement:string;
     @Input() inputListBoxValues:Array<TerraSelectBoxValueInterface>;
-    @Input() inputDefaultSelection:number | string;
     @Output() outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
     @Output() inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
     
     @Input()
-    set inputSelectedValue(value:TerraSelectBoxValueInterface)
+    set inputSelectedValue(value:number | string)
     {
         if(value)
         {
-            this.select(value);
+            this.inputListBoxValues
+                .forEach((item:TerraSelectBoxValueInterface) =>
+                         {
+                             if(item.value == value)
+                             {
+                                 this._selectedValue.active = false;
+                                 item.active = true;
+                                 this._selectedValue = item;
+                             }
+                         });
+            setTimeout(() => this.inputSelectedValueChange.emit(this._selectedValue.value), 0);
         }
     }
     
-    get inputSelectedValue():TerraSelectBoxValueInterface
+    get inputSelectedValue():number | string
     {
-        return this._selectedValue;
+        return this._selectedValue.value;
     }
     
     private _selectedValue:TerraSelectBoxValueInterface;
@@ -72,26 +81,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     
     ngOnInit()
     {
-        if(this.inputDefaultSelection)
-        {
-            this.inputListBoxValues
-                .forEach((value:TerraSelectBoxValueInterface) =>
-                         {
-                             if(value.value == this.inputDefaultSelection)
-                             {
-                                 value.active = true;
-                                 this._selectedValue = value
-                             }
-                         });
-        }
-        else
-        {
-            if(this.inputListBoxValues != null && this.inputListBoxValues.length > 0)
-            {
-                this.inputListBoxValues[0].active = true;
-                this._selectedValue = this.inputListBoxValues[0];
-            }
-        }
+        setTimeout(() => this.select(0), 0);
         
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
@@ -104,18 +94,18 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     ngOnChanges(changes:SimpleChanges)
     {
-        for(let key of Object.keys(changes))
+        if(this._isInit == true && changes["inputListBoxValues"] && changes["inputListBoxValues"].currentValue.length > 0)
         {
-            if(key == "inputListBoxValues" && this._isInit == true)
-            {
-                changes[key].currentValue.forEach((item:TerraSelectBoxValueInterface) =>
+            setTimeout(() => this.inputSelectedValue = changes["inputListBoxValues"].currentValue[0].value, 0);
+            
+            changes["inputListBoxValues"].currentValue
+                                         .forEach((item:TerraSelectBoxValueInterface) =>
                                                   {
                                                       if(item.active && item.active == true)
                                                       {
-                                                          this.select(item);
+                                                          setTimeout(() => this.inputSelectedValue = item.value, 0);
                                                       }
                                                   });
-            }
         }
     }
     
@@ -135,20 +125,14 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      *
      * @param value
      */
-    private select(value:TerraSelectBoxValueInterface):void
+    private select(index:number):void
     {
-        for(let i = 0; i < this.inputListBoxValues.length; i++)
+        if(this.inputListBoxValues.length > 0)
         {
-            if(this.inputListBoxValues[i].value == value.value || this.inputListBoxValues[i].caption == value.caption)
-            {
-                this._selectedValue.active = false;
-                value.active = true;
-                this._selectedValue = this.inputListBoxValues[i];
-                this.outputValueChanged.emit(this.inputListBoxValues[i]);
-                this.inputSelectedValueChange.emit(this.inputListBoxValues[i]);
-                
-                return;
-            }
+            this._selectedValue.active = false;
+            this._selectedValue = this.inputListBoxValues[index];
+            this.outputValueChanged.emit(this.inputListBoxValues[index]);
+            this.inputSelectedValue = this.inputListBoxValues[index].value;
         }
     }
     
