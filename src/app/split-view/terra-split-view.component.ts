@@ -13,7 +13,7 @@ import {
 @Component({
                selector: 'terra-split-view',
                styles:   [require('./terra-split-view.component.scss').toString()],
-               template: require('./terra-split-view.component.html'),
+               template: require('./terra-split-view.component.html')
            })
 export class TerraSplitViewComponent extends Locale implements DoCheck
 {
