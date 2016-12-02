@@ -51,7 +51,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     constructor()
     {
     }
-
+    
     private onHeaderCheckboxChange(isChecked:boolean):void
     {
         this._isHeaderCheckboxChecked = isChecked;
