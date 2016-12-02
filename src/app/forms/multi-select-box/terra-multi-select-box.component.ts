@@ -31,6 +31,8 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
     @Input() inputIsDisabled:boolean;
     @Input() inputIsError:boolean;
     @Input() inputValueList:Array<TerraMultiSelectBoxValueInterface>;
+    @Input() inputName:string;
+    @Input() inputIsRequired:boolean;
     @Output() inputSelectedValueListChange = new EventEmitter<Array<any>>();
     
     @Input()
@@ -80,6 +82,7 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
     
     private _selectedValueList:Array<any> = [];
     private _boxClassType:string = "";
+    private _hasLabel:boolean;
     private _isInit:boolean;
     
     constructor(public locale:LocaleService, localization:LocalizationService)
@@ -97,7 +100,8 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         {
             this._boxClassType = "error";
         }
-        
+    
+        this._hasLabel = this.inputName != null;
         this._isInit = true;
     }
     
