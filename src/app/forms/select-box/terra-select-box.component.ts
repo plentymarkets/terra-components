@@ -7,7 +7,8 @@ import {
     EventEmitter,
     ViewEncapsulation,
     OnChanges,
-    SimpleChanges
+    SimpleChanges,
+    ChangeDetectionStrategy
 } from '@angular/core';
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
 
@@ -18,7 +19,8 @@ import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface'
                encapsulation: ViewEncapsulation.None,
                host:          {
                    '(document:click)': 'clickedOutside($event)',
-               }
+               },
+               changeDetection : ChangeDetectionStrategy.OnPush
            })
 
 export class TerraSelectBoxComponent implements OnInit, OnChanges
