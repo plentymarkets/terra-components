@@ -18,6 +18,7 @@
     
     
     <div class="list-box" [ngClass]="{'error': !isValid}">
+        <span class="{{_selectedValue.icon}}" *ngIf="_selectedValue.icon"></span>
         {{_selectedValue.caption}}
     </div>
     
