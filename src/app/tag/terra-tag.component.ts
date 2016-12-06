@@ -12,7 +12,6 @@ import {
 export class TerraTagComponent implements OnInit
 {
     @Input() inputBadge:string;
-    @Input() inputTag:string;
     
     constructor()
     {
