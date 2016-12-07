@@ -45,6 +45,7 @@ import { TerraAlertComponent } from './alert/terra-alert.component';
 import { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
 import { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
+import { ClipboardModule } from 'angular2-clipboard/src/clipboard.module';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
 import {
     LocaleService,
@@ -198,6 +199,7 @@ export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   HttpModule,
                   TooltipModule,
                   AlertModule,
+                  ClipboardModule,
                   LocaleModule,
                   LocalizationModule
               ],
