@@ -19,6 +19,7 @@ export * from './app/infobox/terra-infobox.component';
 export * from './app/loading-bar/service/terra-loading-bar.service';
 export * from './app/loading-bar/terra-loading-bar.component';
 export * from './app/overlay/terra-overlay.component';
+export * from './app/overlay/data/terra-overlay-button.interface';
 export * from './app/pager/data/terra-pager.interface';
 export * from './app/pager/terra-pager.component';
 export * from './app/portlet/terra-portlet.component';

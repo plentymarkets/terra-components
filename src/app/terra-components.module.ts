@@ -1,54 +1,4 @@
 import { TerraLoadingBarService } from './loading-bar/service/terra-loading-bar.service';
-export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
-export { TerraAlertComponent } from './alert/terra-alert.component';
-export { TerraButtonInterface } from './button/data/terra-button.interface';
-export { TerraButtonComponent } from './button/terra-button.component';
-export { TerraBaseData } from './data/terra-base.data';
-export { TerraDclWrapperComponent } from './dcl-wrapper/terra-dcl-wrapper.component';
-export { TerraFilterComponent } from './filter/terra-filter.component';
-export { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
-export { TerraInputComponent } from './forms/input/terra-input.component';
-export { TerraDoubleInputComponent } from './forms/input/double-input/terra-double-input.component';
-export { TerraNumberInputComponent } from './forms/input/number-input/terra-number-input.component';
-export { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
-export { TerraSelectBoxValueInterface } from './forms/select-box/data/terra-select-box.interface';
-export { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
-export { TerraMultiSelectBoxValueInterface } from './forms/multi-select-box/data/terra-multi-select-box-value.interface';
-export { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-multi-select-box.component';
-export { TerraIndicatorComponent } from './indicator/terra-indicator.component';
-export { TerraInfoboxComponent } from './infobox/terra-infobox.component';
-export { TerraLoadingBarService } from './loading-bar/service/terra-loading-bar.service';
-export { TerraLoadingBarComponent } from './loading-bar/terra-loading-bar.component';
-export { TerraOverlayComponent } from './overlay/terra-overlay.component';
-export { TerraPagerInterface } from './pager/data/terra-pager.interface';
-export { TerraPagerComponent } from './pager/terra-pager.component';
-export { TerraPortletComponent } from './portlet/terra-portlet.component';
-export { TerraRegex } from './regex/terra-regex';
-export { TerraBaseService } from './service/terra-base.service';
-export { TerraSplitViewInterface } from './split-view/data/terra-split-view.interface';
-export { TerraSplitViewComponent } from './split-view/terra-split-view.component';
-export { TerraDataTableCellInterface } from './table/data-table/cell/terra-data-table-cell.interface';
-export { TerraDataTableHeaderCellInterface } from './table/data-table/cell/terra-data-table-header-cell.interface';
-export { TerraSimpleTableCellInterface } from './table/simple/cell/terra-simple-table-cell.interface';
-export { TerraSimpleTableHeaderCellInterface } from './table/simple/cell/terra-simple-table-header-cell.interface';
-export { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
-export { TerraSimpleTableRowInterface } from './table/simple/row/terra-simple-table-row.interface';
-export { TerraDataTableContextMenuDirective } from './table/data-table/context-menu/directive/terra-data-table-context-menu.directive';
-export { TerraDataTableContextMenuEntryInterafce } from './table/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
-export { TerraDataTableContextMenuService } from './table/data-table/context-menu/service/terra-data-table-context-menu.service';
-export { TerraDataTableContextMenuComponent } from './table/data-table/context-menu/terra-data-table-context-menu.component';
-export { TerraDataTableComponent } from './table/data-table/terra-data-table.component';
-export { TerraDataTableRowInterface } from './table/data-table/row/terra-data-table-row.interface';
-export { TerraTagComponent } from './tag/terra-tag.component';
-export { TerraTagInterface } from './tag/data/terra-tag.interface';
-export { TerraTaglistComponent } from './taglist/terra-taglist.component';
-export { TerraBaseToolbarComponent } from './toolbar/base-toolbar/terra-base-toolbar.component';
-export { TerraTreeComponent } from './tree/terra-tree.component';
-export { TerraBaseTreeComponent } from './tree/base/terra-base-tree.component';
-export { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-tree.component';
-export { TerraLeafInterface } from './tree/leaf/terra-leaf.interface';
-export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
-
 import { BrowserModule } from '@angular/platform-browser';
 import {
     NgModule,
@@ -60,12 +10,10 @@ import {
 } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {
-    Ng2BootstrapModule,
     TooltipModule,
     AlertModule,
     ModalModule
 } from 'ng2-bootstrap/ng2-bootstrap';
-
 import { TerraComponentsComponent } from './terra-components.component';
 import { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
 import { TerraNumberInputComponent } from './forms/input/number-input/terra-number-input.component';
@@ -97,6 +45,7 @@ import { TerraAlertComponent } from './alert/terra-alert.component';
 import { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
 import { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
+import { ClipboardModule } from 'angular2-clipboard/src/clipboard.module';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
 import {
     LocaleService,
@@ -104,6 +53,56 @@ import {
     LocaleModule,
     LocalizationModule
 } from 'angular2localization';
+export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
+export { TerraAlertComponent } from './alert/terra-alert.component';
+export { TerraButtonInterface } from './button/data/terra-button.interface';
+export { TerraButtonComponent } from './button/terra-button.component';
+export { TerraBaseData } from './data/terra-base.data';
+export { TerraDclWrapperComponent } from './dcl-wrapper/terra-dcl-wrapper.component';
+export { TerraFilterComponent } from './filter/terra-filter.component';
+export { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
+export { TerraInputComponent } from './forms/input/terra-input.component';
+export { TerraDoubleInputComponent } from './forms/input/double-input/terra-double-input.component';
+export { TerraNumberInputComponent } from './forms/input/number-input/terra-number-input.component';
+export { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
+export { TerraSelectBoxValueInterface } from './forms/select-box/data/terra-select-box.interface';
+export { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
+export { TerraMultiSelectBoxValueInterface } from './forms/multi-select-box/data/terra-multi-select-box-value.interface';
+export { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-multi-select-box.component';
+export { TerraIndicatorComponent } from './indicator/terra-indicator.component';
+export { TerraInfoboxComponent } from './infobox/terra-infobox.component';
+export { TerraLoadingBarService } from './loading-bar/service/terra-loading-bar.service';
+export { TerraLoadingBarComponent } from './loading-bar/terra-loading-bar.component';
+export { TerraOverlayComponent } from './overlay/terra-overlay.component';
+export { TerraOverlayButtonInterface } from './overlay/data/terra-overlay-button.interface';
+export { TerraPagerInterface } from './pager/data/terra-pager.interface';
+export { TerraPagerComponent } from './pager/terra-pager.component';
+export { TerraPortletComponent } from './portlet/terra-portlet.component';
+export { TerraRegex } from './regex/terra-regex';
+export { TerraBaseService } from './service/terra-base.service';
+export { TerraSplitViewInterface } from './split-view/data/terra-split-view.interface';
+export { TerraSplitViewComponent } from './split-view/terra-split-view.component';
+export { TerraDataTableCellInterface } from './table/data-table/cell/terra-data-table-cell.interface';
+export { TerraDataTableHeaderCellInterface } from './table/data-table/cell/terra-data-table-header-cell.interface';
+export { TerraSimpleTableCellInterface } from './table/simple/cell/terra-simple-table-cell.interface';
+export { TerraSimpleTableHeaderCellInterface } from './table/simple/cell/terra-simple-table-header-cell.interface';
+export { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
+export { TerraSimpleTableRowInterface } from './table/simple/row/terra-simple-table-row.interface';
+export { TerraDataTableContextMenuDirective } from './table/data-table/context-menu/directive/terra-data-table-context-menu.directive';
+export { TerraDataTableContextMenuEntryInterface } from './table/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
+export { TerraDataTableContextMenuService } from './table/data-table/context-menu/service/terra-data-table-context-menu.service';
+export { TerraDataTableContextMenuComponent } from './table/data-table/context-menu/terra-data-table-context-menu.component';
+export { TerraDataTableComponent } from './table/data-table/terra-data-table.component';
+export { TerraDataTableRowInterface } from './table/data-table/row/terra-data-table-row.interface';
+export { TerraTagComponent } from './tag/terra-tag.component';
+export { TerraTagInterface } from './tag/data/terra-tag.interface';
+export { TerraTaglistComponent } from './taglist/terra-taglist.component';
+export { TerraBaseToolbarComponent } from './toolbar/base-toolbar/terra-base-toolbar.component';
+export { TerraTreeComponent } from './tree/terra-tree.component';
+export { TerraBaseTreeComponent } from './tree/base/terra-base-tree.component';
+export { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-tree.component';
+export { TerraLeafInterface } from './tree/leaf/terra-leaf.interface';
+export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
 
 @NgModule({
               declarations:    [
@@ -200,12 +199,14 @@ import {
                   HttpModule,
                   TooltipModule,
                   AlertModule,
+                  ClipboardModule,
                   LocaleModule,
                   LocalizationModule
               ],
-              providers:       [COMPILER_PROVIDERS,
-                                LocaleService,
-                                LocalizationService
+              providers:       [
+                  COMPILER_PROVIDERS,
+                  LocaleService,
+                  LocalizationService
               ],
               bootstrap:       [
                   TerraComponentsComponent

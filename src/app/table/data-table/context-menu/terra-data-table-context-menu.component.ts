@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TerraDataTableContextMenuService } from './service/terra-data-table-context-menu.service';
-import { TerraDataTableContextMenuEntryInterafce } from './data/terra-data-table-context-menu-entry.interface';
+import { TerraDataTableContextMenuEntryInterface } from './data/terra-data-table-context-menu-entry.interface';
 import { TerraBaseData } from '../../../data/terra-base.data';
 
 /**
@@ -14,7 +14,7 @@ import { TerraBaseData } from '../../../data/terra-base.data';
            })
 export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 {
-    private _contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterafce<D>> = [];
+    private _contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
     private _isShown = false;
     
     private _mouseLocation:{left:number,top:number} = {
@@ -43,7 +43,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
     }
     
     showMenu(event,
-             contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterafce<D>>)
+             contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>>)
     {
         this._isShown = true;
         this._contextMenuLinkList = contextMenuLinkList;

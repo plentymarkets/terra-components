@@ -38,6 +38,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _onSuccessFunction:(res)=>void;
     private _defaultPagingSize:number;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+    @Input()
+    private _hasCheckboxes:boolean = true;
     
     // Overlay
     //@ViewChild('viewChildOverlayDataTableSettings') viewChildOverlayDataTableSettings:TerraOverlayComponent;
