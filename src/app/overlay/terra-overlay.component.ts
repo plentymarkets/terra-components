@@ -22,13 +22,17 @@ export class TerraOverlayComponent implements AfterViewInit
     @Input() inputOverlayTitle:string;
     @Input() inputPrimaryButtonInterface:TerraOverlayButtonInterface;
     @Input() inputSecondaryButtonInterface:TerraOverlayButtonInterface;
-    @Input() inputIsStatic:boolean = false;
-    @Input() inputIsCloseable:boolean = true;
-    @Input() inputIsLarge:boolean = false;
-    @Input() inputIsSmall:boolean = false;
+    @Input() inputIsStatic:boolean;
+    @Input() inputIsCloseable:boolean;
+    @Input() inputIsLarge:boolean;
+    @Input() inputIsSmall:boolean;
     
     constructor()
     {
+        this.inputIsStatic = false;
+        this.inputIsCloseable = true;
+        this.inputIsLarge = false;
+        this.inputIsSmall = false;
     }
     
     ngAfterViewInit()
