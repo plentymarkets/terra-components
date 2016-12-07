@@ -20,6 +20,7 @@ export { TerraInfoboxComponent } from './infobox/terra-infobox.component';
 export { TerraLoadingBarService } from './loading-bar/service/terra-loading-bar.service';
 export { TerraLoadingBarComponent } from './loading-bar/terra-loading-bar.component';
 export { TerraOverlayComponent } from './overlay/terra-overlay.component';
+export { TerraOverlayButtonInterface } from './overlay/data/terra-overlay-button.interface';
 export { TerraPagerInterface } from './pager/data/terra-pager.interface';
 export { TerraPagerComponent } from './pager/terra-pager.component';
 export { TerraPortletComponent } from './portlet/terra-portlet.component';

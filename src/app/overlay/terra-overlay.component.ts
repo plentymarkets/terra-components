@@ -2,13 +2,10 @@ import {
     Component,
     ViewChild,
     Input,
-    Output,
-    AfterViewInit,
-    EventEmitter
+    AfterViewInit
 } from '@angular/core';
-import {
-    ModalDirective
-} from 'ng2-bootstrap/ng2-bootstrap';
+import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
+import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interface';
 
 /**
  * @author mfrank
@@ -22,21 +19,13 @@ export class TerraOverlayComponent implements AfterViewInit
 {
     @ViewChild('viewChildOverlay') viewChildOverlay:ModalDirective;
     
-    @Input() inputAddButtonTooltip:string;
-    @Input() inputCancelButtonTooltip:string;
-    @Input() inputSaveButtonTooltip:string;
     @Input() inputOverlayTitle:string;
-    @Input() inputHasPrimaryButton:boolean = false;
-    @Input() inputHasSecondaryButton:boolean = false;
-    @Input() inputHasSaveButton:boolean = false;
+    @Input() inputPrimaryButtonInterface:TerraOverlayButtonInterface;
+    @Input() inputSecondaryButtonInterface:TerraOverlayButtonInterface;
     @Input() inputIsStatic:boolean = false;
     @Input() inputIsCloseable:boolean = true;
     @Input() inputIsLarge:boolean = false;
     @Input() inputIsSmall:boolean = false;
-    
-    @Output() outputPrimaryButtonClicked = new EventEmitter<TerraOverlayComponent>();
-    @Output() outputSecondaryButtonClicked = new EventEmitter<TerraOverlayComponent>();
-    @Output() outputSaveButtonClicked = new EventEmitter<TerraOverlayComponent>();
     
     constructor()
     {
@@ -54,16 +43,6 @@ export class TerraOverlayComponent implements AfterViewInit
             this.viewChildOverlay.config.backdrop = 'static';
             this.viewChildOverlay.config.keyboard = false;
         }
-    }
-    
-    private primaryClicked():void
-    {
-        this.outputPrimaryButtonClicked.emit(this);
-    }
-    
-    private secondaryClicked():void
-    {
-        this.outputSecondaryButtonClicked.emit(this);
     }
     
     public showOverlay():void
