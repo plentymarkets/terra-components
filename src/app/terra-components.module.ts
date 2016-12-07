@@ -1,4 +1,57 @@
 import { TerraLoadingBarService } from './loading-bar/service/terra-loading-bar.service';
+import { BrowserModule } from '@angular/platform-browser';
+import {
+    NgModule,
+    ModuleWithProviders
+} from '@angular/core';
+import {
+    FormsModule,
+    ReactiveFormsModule
+} from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import {
+    TooltipModule,
+    AlertModule,
+    ModalModule
+} from 'ng2-bootstrap/ng2-bootstrap';
+import { TerraComponentsComponent } from './terra-components.component';
+import { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
+import { TerraNumberInputComponent } from './forms/input/number-input/terra-number-input.component';
+import { TerraButtonComponent } from './button/terra-button.component';
+import { TerraTreeComponent } from './tree/terra-tree.component';
+import { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-tree.component';
+import { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
+import { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
+import { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-multi-select-box.component';
+import { TerraDclWrapperComponent } from './dcl-wrapper/terra-dcl-wrapper.component';
+import { TerraBaseToolbarComponent } from './toolbar/base-toolbar/terra-base-toolbar.component';
+import { TerraIndicatorComponent } from './indicator/terra-indicator.component';
+import { TerraPagerComponent } from './pager/terra-pager.component';
+import { TerraInfoboxComponent } from './infobox/terra-infobox.component';
+import { TerraTaglistComponent } from './taglist/terra-taglist.component';
+import { TerraTagComponent } from './tag/terra-tag.component';
+import { TerraLoadingBarComponent } from './loading-bar/terra-loading-bar.component';
+import { TerraOverlayComponent } from './overlay/terra-overlay.component';
+import { TerraDataTableComponent } from './table/data-table/terra-data-table.component';
+import { TerraDataTableContextMenuComponent } from './table/data-table/context-menu/terra-data-table-context-menu.component';
+import { TerraDataTableContextMenuDirective } from './table/data-table/context-menu/directive/terra-data-table-context-menu.directive';
+import { TerraDoubleInputComponent } from './forms/input/double-input/terra-double-input.component';
+import { TerraPortletComponent } from './portlet/terra-portlet.component';
+import { TerraSplitViewComponent } from './split-view/terra-split-view.component';
+import { TerraFilterComponent } from './filter/terra-filter.component';
+import { TerraDataTableContextMenuService } from './table/data-table/context-menu/service/terra-data-table-context-menu.service';
+import { TerraBaseService } from './service/terra-base.service';
+import { TerraAlertComponent } from './alert/terra-alert.component';
+import { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
+import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
+import { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
+import { COMPILER_PROVIDERS } from '@angular/compiler';
+import {
+    LocaleService,
+    LocalizationService,
+    LocaleModule,
+    LocalizationModule
+} from 'angular2localization';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -49,62 +102,6 @@ export { TerraBaseTreeComponent } from './tree/base/terra-base-tree.component';
 export { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-tree.component';
 export { TerraLeafInterface } from './tree/leaf/terra-leaf.interface';
 export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
-
-import { BrowserModule } from '@angular/platform-browser';
-import {
-    NgModule,
-    ModuleWithProviders
-} from '@angular/core';
-import {
-    FormsModule,
-    ReactiveFormsModule
-} from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import {
-    Ng2BootstrapModule,
-    TooltipModule,
-    AlertModule,
-    ModalModule
-} from 'ng2-bootstrap/ng2-bootstrap';
-
-import { TerraComponentsComponent } from './terra-components.component';
-import { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
-import { TerraNumberInputComponent } from './forms/input/number-input/terra-number-input.component';
-import { TerraButtonComponent } from './button/terra-button.component';
-import { TerraTreeComponent } from './tree/terra-tree.component';
-import { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-tree.component';
-import { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
-import { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
-import { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-multi-select-box.component';
-import { TerraDclWrapperComponent } from './dcl-wrapper/terra-dcl-wrapper.component';
-import { TerraBaseToolbarComponent } from './toolbar/base-toolbar/terra-base-toolbar.component';
-import { TerraIndicatorComponent } from './indicator/terra-indicator.component';
-import { TerraPagerComponent } from './pager/terra-pager.component';
-import { TerraInfoboxComponent } from './infobox/terra-infobox.component';
-import { TerraTaglistComponent } from './taglist/terra-taglist.component';
-import { TerraTagComponent } from './tag/terra-tag.component';
-import { TerraLoadingBarComponent } from './loading-bar/terra-loading-bar.component';
-import { TerraOverlayComponent } from './overlay/terra-overlay.component';
-import { TerraDataTableComponent } from './table/data-table/terra-data-table.component';
-import { TerraDataTableContextMenuComponent } from './table/data-table/context-menu/terra-data-table-context-menu.component';
-import { TerraDataTableContextMenuDirective } from './table/data-table/context-menu/directive/terra-data-table-context-menu.directive';
-import { TerraDoubleInputComponent } from './forms/input/double-input/terra-double-input.component';
-import { TerraPortletComponent } from './portlet/terra-portlet.component';
-import { TerraSplitViewComponent } from './split-view/terra-split-view.component';
-import { TerraFilterComponent } from './filter/terra-filter.component';
-import { TerraDataTableContextMenuService } from './table/data-table/context-menu/service/terra-data-table-context-menu.service';
-import { TerraBaseService } from './service/terra-base.service';
-import { TerraAlertComponent } from './alert/terra-alert.component';
-import { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
-import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
-import { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
-import { COMPILER_PROVIDERS } from '@angular/compiler';
-import {
-    LocaleService,
-    LocalizationService,
-    LocaleModule,
-    LocalizationModule
-} from 'angular2localization';
 
 @NgModule({
               declarations:    [
@@ -204,9 +201,10 @@ import {
                   LocaleModule,
                   LocalizationModule
               ],
-              providers:       [COMPILER_PROVIDERS,
-                                LocaleService,
-                                LocalizationService
+              providers:       [
+                  COMPILER_PROVIDERS,
+                  LocaleService,
+                  LocalizationService
               ],
               bootstrap:       [
                   TerraComponentsComponent
