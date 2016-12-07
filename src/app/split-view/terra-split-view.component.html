@@ -7,7 +7,7 @@
             {{module.name}}
         </template>
         <terra-button *ngIf="inputModules" [inputIsSmall]="true" inputCaption="{{ 'back' | translate:lang }}"
-        [inputIsDisabled]="isSingleComponent" [inputIsAlignRight]="true" (outputClicked)="onClick()"></terra-button>
+                      [inputIsDisabled]="isSingleComponent" [inputIsAlignRight]="true" (outputClicked)="onClick()"></terra-button>
         <terra-button *ngIf="inputModules" [inputIsSmall]="true" inputIcon="icon-copy_clipboard" [inputIsAlignRight]="true"
                       (outputClicked)="copyPath()" ngIIclipboard [cbContent]="breadCrumbsPath"></terra-button>
     </terra-base-toolbar>
