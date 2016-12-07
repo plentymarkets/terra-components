@@ -3,179 +3,189 @@
 
 .multiselect-container
 {
-    margin-bottom: 1rem;
-    border: $border-width solid $valid;
-    border-radius: .2rem;
-    .multiselect
+    .header-label
     {
-        display: flex;
-        flex-flow: column nowrap;
-        height: 100%;
-        
-        .btn-group--all
+        font-size: 1.3em;
+        line-height:1em !important;
+        letter-spacing:.1px;
+    }
+    
+    .multiselect-element
+    {
+        margin-bottom: 1rem;
+        border: $border-width solid $valid;
+        border-radius: .2rem;
+        .multiselect
         {
             display: flex;
-            flex: 0 0 auto;
-            margin-bottom: .1em;
-            .checkbox-all
-            {
-                padding: 0.3rem 0.75rem;
-                border-color: $valid;
-            }
-            .btn-all
-            {
-                width: 100%;
-            }
-            .btn-handler
+            flex-flow: column nowrap;
+            height: 100%;
+            
+            .btn-group--all
             {
                 display: flex;
-                flex-flow: column nowrap;
-            }
-            .btn
-            {
-                text-align: left;
-                &:last-child
-                {
-                    border-top-left-radius: 0;
-                    border-bottom-left-radius: 0;
-                }
-            }
-            &:hover
-            {
-                button
-                {
-                    background-color: darken($brand-primary, 15%);
-                    border-color: darken($brand-primary, 15%);
-                    color: $white;
-                }
-            }
-        }
-        
-        .option-list
-        {
-            
-            overflow: auto;
-            height: 146px;
-            .input-group
-            {
-                &:hover
-                {
-                    .input-group-addon,
-                    .form-control
-                    {
-                        background: lighten($brand-primary, 60);
-                        cursor: pointer;
-                    }
-                }
-                .form-control,
-                .input-group-addon
-                {
-                    float: none;
-                    padding: 0.3rem 0.8rem;
-                    border-radius: 0;
-                    border-top: 0;
-                    background: transparent;
-                }
-            }
-            & > div
-            {
-                &:first-of-type
-                {
-                    .form-control
-                    {
-                        border-top-right-radius: $border-radius;
-                        border-top: $border-width solid #CCCCCC;
-                    }
-                    .input-group-addon
-                    {
-                        border-top-left-radius: $border-radius;
-                        border-top: $border-width solid #CCCCCC;
-                    }
-                }
-                &:last-of-type
-                {
-                    .form-control
-                    {
-                        border-bottom-right-radius: $border-radius;
-                    }
-                    .input-group-addon
-                    {
-                        border-bottom-left-radius: $border-radius;
-                    }
-                }
-            }
-        }
-    }
-    &.error
-    {
-        border: $border-width solid $error;
-        border-radius: .2rem;
-        .multiselect
-        {
-            .btn-group--all
-            {
+                flex: 0 0 auto;
+                margin-bottom: .1em;
                 .checkbox-all
                 {
-                    background-color: $error;
-                    border-color: $error;
+                    padding: 0.3rem 0.75rem;
+                    border-color: $valid;
+                }
+                .btn-all
+                {
+                    width: 100%;
+                }
+                .btn-handler
+                {
+                    display: flex;
+                    flex-flow: column nowrap;
+                }
+                .btn
+                {
+                    text-align: left;
+                    &:last-child
+                    {
+                        border-top-left-radius: 0;
+                        border-bottom-left-radius: 0;
+                    }
                 }
                 &:hover
                 {
                     button
                     {
-                        background-color: darken($error, 15%);
-                        border-color: darken($error, 15%);
+                        background-color: darken($brand-primary, 15%);
+                        border-color: darken($brand-primary, 15%);
+                        color: $white;
+                    }
+                }
+            }
+            
+            .option-list
+            {
+                
+                overflow: auto;
+                height: 146px;
+                .input-group
+                {
+                    &:hover
+                    {
+                        .input-group-addon,
+                        .form-control
+                        {
+                            background: lighten($brand-primary, 60);
+                            cursor: pointer;
+                        }
+                    }
+                    .form-control,
+                    .input-group-addon
+                    {
+                        float: none;
+                        padding: 0.3rem 0.8rem;
+                        border-radius: 0;
+                        border-top: 0;
+                        background: transparent;
+                    }
+                }
+                & > div
+                {
+                    &:first-of-type
+                    {
+                        .form-control
+                        {
+                            border-top-right-radius: $border-radius;
+                            border-top: $border-width solid #CCCCCC;
+                        }
+                        .input-group-addon
+                        {
+                            border-top-left-radius: $border-radius;
+                            border-top: $border-width solid #CCCCCC;
+                        }
+                    }
+                    &:last-of-type
+                    {
+                        .form-control
+                        {
+                            border-bottom-right-radius: $border-radius;
+                        }
+                        .input-group-addon
+                        {
+                            border-bottom-left-radius: $border-radius;
+                        }
                     }
                 }
             }
         }
-    }
-    &.disabled
-    {
-        border: $border-width solid $gray-light-2;
-        border-radius: .2rem;
-        .multiselect
+        &.error
         {
-            .btn-group--all
+            border: $border-width solid $error;
+            border-radius: .2rem;
+            .multiselect
             {
-                .btn
+                .btn-group--all
                 {
-                    background-color: $gray-light-2;
-                    border-color: $gray-light-2;
-                    cursor: not-allowed;
-                    color: $white;
-                    opacity: .65;
+                    .checkbox-all
+                    {
+                        background-color: $error;
+                        border-color: $error;
+                    }
+                    &:hover
+                    {
+                        button
+                        {
+                            background-color: darken($error, 15%);
+                            border-color: darken($error, 15%);
+                        }
+                    }
                 }
-                &:hover
+            }
+        }
+        &.disabled
+        {
+            border: $border-width solid $gray-light-2;
+            border-radius: .2rem;
+            .multiselect
+            {
+                .btn-group--all
                 {
-                    button
+                    .btn
                     {
                         background-color: $gray-light-2;
                         border-color: $gray-light-2;
                         cursor: not-allowed;
-                    }
-                }
-            }
-            .option-list
-            {
-                .input-group
-                {
-                    .form-control
-                    {
-                        color: $gray-light-2;
+                        color: $white;
+                        opacity: .65;
                     }
                     &:hover
                     {
-                        
-                        .form-control
+                        button
                         {
-                            background: white;
+                            background-color: $gray-light-2;
+                            border-color: $gray-light-2;
                             cursor: not-allowed;
                         }
-                        .input-group-addon
+                    }
+                }
+                .option-list
+                {
+                    .input-group
+                    {
+                        .form-control
                         {
-                            background: white;
-                            cursor: not-allowed;
+                            color: $gray-light-2;
+                        }
+                        &:hover
+                        {
+                            
+                            .form-control
+                            {
+                                background: white;
+                                cursor: not-allowed;
+                            }
+                            .input-group-addon
+                            {
+                                background: white;
+                                cursor: not-allowed;
+                            }
                         }
                     }
                 }

@@ -7,7 +7,8 @@ import {
     EventEmitter,
     ViewEncapsulation,
     OnChanges,
-    SimpleChanges
+    SimpleChanges,
+    ChangeDetectionStrategy
 } from '@angular/core';
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
 
@@ -18,7 +19,8 @@ import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface'
                encapsulation: ViewEncapsulation.None,
                host:          {
                    '(document:click)': 'clickedOutside($event)',
-               }
+               },
+               changeDetection : ChangeDetectionStrategy.OnPush
            })
 
 export class TerraSelectBoxComponent implements OnInit, OnChanges
@@ -37,7 +39,17 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         if(value)
         {
-            setTimeout(() => this.select(value));
+            this.inputListBoxValues
+                .forEach((item:TerraSelectBoxValueInterface) =>
+                         {
+                             if(item.value == value)
+                             {
+                                 this._selectedValue.active = false;
+                                 item.active = true;
+                                 this._selectedValue = item;
+                             }
+                         });
+            setTimeout(() => this.inputSelectedValueChange.emit(this._selectedValue.value), 0);
         }
     }
     
@@ -71,10 +83,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     
     ngOnInit()
     {
-        if(this.inputListBoxValues && this.inputListBoxValues.length > 0)
-        {
-            setTimeout(() => this.select(this.inputListBoxValues[0].value));
-        }
+        setTimeout(() => this.select(0), 0);
         
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
@@ -87,23 +96,18 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     ngOnChanges(changes:SimpleChanges)
     {
-        if(this._isInit == true)
+        if(this._isInit == true && changes["inputListBoxValues"] && changes["inputListBoxValues"].currentValue.length > 0)
         {
-            for(let key of Object.keys(changes))
-            {
-                if(key == "inputListBoxValues" && changes[key].currentValue.length > 0)
-                {
-                    setTimeout(() => this.select(changes[key].currentValue[0].value));
-                    
-                    changes[key].currentValue.forEach((item:TerraSelectBoxValueInterface) =>
+            setTimeout(() => this.inputSelectedValue = changes["inputListBoxValues"].currentValue[0].value, 0);
+            
+            changes["inputListBoxValues"].currentValue
+                                         .forEach((item:TerraSelectBoxValueInterface) =>
+                                                  {
+                                                      if(item.active && item.active == true)
                                                       {
-                                                          if(item.active && item.active == true)
-                                                          {
-                                                              setTimeout(() => this.select(item.value));
-                                                          }
-                                                      });
-                }
-            }
+                                                          setTimeout(() => this.inputSelectedValue = item.value, 0);
+                                                      }
+                                                  });
         }
     }
     
@@ -123,19 +127,14 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      *
      * @param value
      */
-    private select(value:number | string):void
+    private select(index:number):void
     {
-        for(let i = 0; i < this.inputListBoxValues.length; i++)
+        if(this.inputListBoxValues.length > 0)
         {
-            if(this.inputListBoxValues[i].value == value)
-            {
-                this._selectedValue.active = false;
-                this._selectedValue = this.inputListBoxValues[i];
-                this.outputValueChanged.emit(this.inputListBoxValues[i]);
-                this.inputSelectedValueChange.emit(this.inputListBoxValues[i].value);
-                
-                return;
-            }
+            this._selectedValue.active = false;
+            this._selectedValue = this.inputListBoxValues[index];
+            this.outputValueChanged.emit(this.inputListBoxValues[index]);
+            this.inputSelectedValue = this.inputListBoxValues[index].value;
         }
     }
     
