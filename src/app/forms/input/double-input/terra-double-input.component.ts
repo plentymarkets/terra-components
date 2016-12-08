@@ -26,10 +26,11 @@ export const DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 export class TerraDoubleInputComponent extends TerraInputComponent
 {
     @Input() inputName:string;
-    @Input() inputIsRequired:boolean;
     @Input() inputTooltipPlacement:string; //top, bottom, left, right (default: top)
     @Input() inputTooltipText:string;
-    @Input() inputDisabled:boolean;
+    @Input() inputIsDisabled:boolean;
+    @Input() inputIsPriceInput:boolean;
+    @Input() inputIsRequired:boolean;
     
     constructor()
     {

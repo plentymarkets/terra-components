@@ -153,10 +153,10 @@ $border-width: 1px;
         border: none;
         box-shadow: none; //inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
         line-height: 1.2em !important;
-        padding: 1.3rem 1rem .3rem 1rem;
+        padding: 1.3rem .8rem .3rem .8rem;
         width: 100%;
         font-size: 1em;
-        text-align: right;
+        text-align: left;
         outline: none !important;
         
         transition: all .2s;
@@ -217,7 +217,7 @@ $border-width: 1px;
         font-weight: 600;
         
         width: 100%;
-        padding: 0.2rem 1.4rem 0;
+        padding: 0.4rem .6rem 0;
         margin-bottom: 0;
         color: $gray-light;
         
@@ -231,21 +231,21 @@ $border-width: 1px;
         -moz-osx-font-smoothing: grayscale;
     }
     
-    i
-    {
-        font-style: normal;
-        font-weight: bold;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: $gray-light-3;
-        color: $gray-light-2;
-        line-height: 1.2em;
-        width: 1.2em;
-        text-align: center;
-        cursor: pointer;
-        border-bottom-right-radius: 2px;
-    }
+    //i
+    //{
+    //    font-style: normal;
+    //    font-weight: bold;
+    //    position: absolute;
+    //    top: 0;
+    //    left: 0;
+    //    background-color: $gray-light-3;
+    //    color: $gray-light-2;
+    //    line-height: 1.2em;
+    //    width: 1.2em;
+    //    text-align: center;
+    //    cursor: pointer;
+    //    border-bottom-right-radius: 2px;
+    //}
     
     &.error
     {

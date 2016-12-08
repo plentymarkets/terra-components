@@ -1,10 +1,10 @@
 @import "../../assets/styles/variables";
 @import "../input/terra-input.component";
 
-.list-box-wrapper
+.select-box-wrapper
 {
     position: relative;
-    .list-box
+    .select-box
     {
         display: inline-block;
         width: 100%;
@@ -31,7 +31,7 @@
         }
         
     }
-    .list-box-dropdown
+    .select-box-dropdown
     {
         position: absolute;
         z-index: 99999;
@@ -59,7 +59,7 @@
     }
     &.open
     {
-        .list-box-dropdown
+        .select-box-dropdown
         {
             display: block;
         }
@@ -69,30 +69,30 @@
     {
         opacity: .65;
         
-        label, .list-box
+        label, .select-box
         {
             background-color: #F2F2F2;
             cursor: not-allowed;
         }
-        .list-box-dropdown
+        .select-box-dropdown
         {
             display: none !important;
         }
     }
 }
 
-.input-unit-v1.list-box-wrapper .list-box
+.input-unit-v1.select-box-wrapper .select-box
 {
     border: none;
     padding: 1.3rem 1rem .3rem 1rem;
 }
 
-.input-unit-v1.list-box-wrapper
+.input-unit-v1.select-box-wrapper
 {
     overflow: inherit;
 }
 
-.input-unit-v1.list-box-wrapper .list-box-dropdown
+.input-unit-v1.select-box-wrapper .select-box-dropdown
 {
     width: auto;
     top: inherit;
