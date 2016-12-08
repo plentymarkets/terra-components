@@ -38,6 +38,32 @@
         margin-bottom: 0;
         float: left;
     }
+    terra-number-input,
+    terra-text-input,
+    terra-double-input
+    {
+        float: left;
+        margin: 4px 0 3px 0 !important;
+        
+        input
+        {
+            font-size: $font-size-lg !important;
+        }
+    }
+    terra-select-box
+    {
+        margin: 4px 0 3px 0 !important;
+        
+        .select-box
+        {
+            font-size: $font-size-lg;
+            padding: .65rem 2rem .6rem 1rem;
+        }
+        .select-box-dropdown
+        {
+            top: 2.3rem;
+        }
+    }
 }
 
 @-moz-document url-prefix() {
