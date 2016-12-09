@@ -22,7 +22,7 @@
         .pager-page input
         {
             width: 2.5rem;
-            padding: .5rem .35rem .55rem;
+            padding: .5rem .35rem;
         }
         .input-unit-v1
         {
@@ -37,6 +37,7 @@
     .pager-text
     {
         float: left;
+        font-size: $font-size-lg;
         margin-left: .5rem;
         margin-top: .7rem;
     }
