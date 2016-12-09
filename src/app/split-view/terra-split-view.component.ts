@@ -1,7 +1,7 @@
 import {
     Component,
     Input,
-    DoCheck
+    OnChanges
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
 import {
@@ -15,61 +15,64 @@ import {
                styles:   [require('./terra-split-view.component.scss').toString()],
                template: require('./terra-split-view.component.html')
            })
-export class TerraSplitViewComponent extends Locale implements DoCheck
+export class TerraSplitViewComponent extends Locale implements OnChanges
 {
     @Input() inputModules:Array<TerraSplitViewInterface>;
     @Input() inputShowBreadcrumbs:boolean;
+    @Input() inputViewsPerScreen:number;
     private _isSingleComponent:boolean;
     private _breadCrumbsPath:string;
     
-    constructor(public locale:LocaleService,
-                public localization:LocalizationService)
+    constructor(public locale:LocaleService, public localization:LocalizationService)
     {
         super(locale, localization);
-        this.inputShowBreadcrumbs = true;
+        this.inputViewsPerScreen = 3;       //default
+        this.inputShowBreadcrumbs = true;   //default
         this._breadCrumbsPath = '';
     }
     
-    
-    ngDoCheck()
+    ngOnChanges()
     {
-        if(this.inputModules.length > 3)
+        if(this.inputModules)
         {
-            for(let index = this.inputModules.length - 1; index >= 0; index--)
+            if(this.inputModules.length > this.inputViewsPerScreen)
             {
-                if(this.inputModules.length - 1 - index < 3)
+                for(let index = this.inputModules.length - 1; index >= 0; index--)
                 {
-                    this.inputModules[index].hidden = false;
+                    if(this.inputModules.length - index < this.inputViewsPerScreen + 1)
+                    {
+                        this.inputModules[index].hidden = false;
+                    }
+                    else
+                    {
+                        this.inputModules[index].hidden = true;
+                    }
                 }
-                else
+            }
+            else
+            {
+                if(this.inputModules[0])
                 {
-                    this.inputModules[index].hidden = true;
+                    this.inputModules[0].hidden = false;
+                }
+                if(this.inputModules[1])
+                {
+                    this.inputModules[1].hidden = false;
+                }
+                if(this.inputModules[2])
+                {
+                    this.inputModules[2].hidden = false;
                 }
             }
-        }
-        else
-        {
-            if(this.inputModules[0])
+            
+            if(this.inputModules.length == 1)
             {
-                this.inputModules[0].hidden = false;
+                this._isSingleComponent = true;
             }
-            if(this.inputModules[1])
+            else
             {
-                this.inputModules[1].hidden = false;
+                this._isSingleComponent = false;
             }
-            if(this.inputModules[2])
-            {
-                this.inputModules[2].hidden = false;
-            }
-        }
-        
-        if(this.inputModules.length == 1)
-        {
-            this._isSingleComponent = true;
-        }
-        else
-        {
-            this._isSingleComponent = false;
         }
     }
     
@@ -91,6 +94,7 @@ export class TerraSplitViewComponent extends Locale implements DoCheck
     private onClick():void
     {
         this.inputModules.pop();
+        this.ngOnChanges();
     }
     
     private copyPath():void
@@ -112,3 +116,4 @@ export class TerraSplitViewComponent extends Locale implements DoCheck
         )
     }
 }
+
