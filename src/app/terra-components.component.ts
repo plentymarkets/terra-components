@@ -18,6 +18,8 @@ export class TerraComponentsComponent extends Locale implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
     
+    public radioModel:string = 'Up';
+    
     public constructor(private viewContainerRef:ViewContainerRef,
                        public local:LocaleService,
                        public localization:LocalizationService)
