@@ -13,7 +13,7 @@
     </terra-base-toolbar>
     <div class="side-scroller" *ngIf="inputModules">
         <template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">
-            <div *ngIf="!module.hidden" [style.width]="module.defaultWidth">
+            <div class="view" *ngIf="!module.hidden" [style.width]="module.defaultWidth">
                 <terra-dynamic-module-loader *ngIf="!module.hidden" [inputModule]="module.module"
                                              [inputMainComponentName]="module.mainComponentName"></terra-dynamic-module-loader>
             </div>
