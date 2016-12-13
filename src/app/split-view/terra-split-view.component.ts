@@ -1,7 +1,8 @@
 import {
     Component,
     Input,
-    OnChanges
+    OnChanges,
+    SimpleChanges
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
 import {
@@ -31,7 +32,36 @@ export class TerraSplitViewComponent extends Locale implements OnChanges
         this._breadCrumbsPath = '';
     }
     
-    ngOnChanges()
+    ngOnChanges(changes:SimpleChanges)
+    {
+        if(changes["inputModules"])
+        {
+            this.updateViewPositions();
+        }
+    }
+    
+    public get breadCrumbsPath():string
+    {
+        return this._breadCrumbsPath;
+    }
+    
+    public set isSingleComponent(value:boolean)
+    {
+        this._isSingleComponent = value;
+    }
+    
+    public get isSingleComponent():boolean
+    {
+        return this._isSingleComponent;
+    }
+    
+    private onClick():void
+    {
+        this.inputModules.pop();
+        this.updateViewPositions();
+    }
+    
+    private updateViewPositions()
     {
         if(this.inputModules)
         {
@@ -64,7 +94,7 @@ export class TerraSplitViewComponent extends Locale implements OnChanges
                     this.inputModules[2].hidden = false;
                 }
             }
-            
+        
             if(this.inputModules.length == 1)
             {
                 this._isSingleComponent = true;
@@ -74,27 +104,6 @@ export class TerraSplitViewComponent extends Locale implements OnChanges
                 this._isSingleComponent = false;
             }
         }
-    }
-    
-    public get breadCrumbsPath():string
-    {
-        return this._breadCrumbsPath;
-    }
-    
-    public set isSingleComponent(value:boolean)
-    {
-        this._isSingleComponent = value;
-    }
-    
-    public get isSingleComponent():boolean
-    {
-        return this._isSingleComponent;
-    }
-    
-    private onClick():void
-    {
-        this.inputModules.pop();
-        this.ngOnChanges();
     }
     
     private copyPath():void
