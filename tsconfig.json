@@ -9,12 +9,17 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
     "lib": [
-      "dom",
-      "es6"
+      "es2015",
+      "dom"
     ],
     "types": [
       "node"
     ]
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
