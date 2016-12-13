@@ -36,7 +36,7 @@ export class TerraSplitViewComponent extends Locale implements OnChanges
     {
         if(changes["inputModules"])
         {
-            this.updateViewPositions();
+            setTimeout(() => this.updateViewPositions());
         }
     }
     
