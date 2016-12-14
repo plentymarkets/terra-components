@@ -9,7 +9,7 @@ import {
     Input,
     ViewChild
 } from '@angular/core';
-import { RuntimeCompiler } from '@angular/compiler';
+//import { RuntimeCompiler } from '@angular/compiler';
 
 @Component({
                selector: 'terra-dynamic-module-loader',
@@ -27,7 +27,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     
     private _cmpRef:ComponentRef<any>;
     
-    constructor(private _runtimeCompiler:RuntimeCompiler)
+    constructor()//private _runtimeCompiler:RuntimeCompiler)
     {
     }
     
@@ -47,21 +47,21 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     
     private updateComponent():void
     {
-        this._runtimeCompiler
-            .compileModuleAndAllComponentsAsync(this._resolvedData.ngModule)
-            .then((moduleWithFactories:ModuleWithComponentFactories<any>) =>
-                  {
-                      moduleWithFactories.componentFactories.forEach
-                      (
-                          (factory) =>
-                          {
-                              if(this.inputMainComponentName === factory.componentType.name)
-                              {
-                                  this._cmpRef = this.viewChildTarget.createComponent(factory);
-                              }
-                          }
-                      )
-            
-                  });
+        //this._runtimeCompiler
+        //    .compileModuleAndAllComponentsAsync(this._resolvedData.ngModule)
+        //    .then((moduleWithFactories:ModuleWithComponentFactories<any>) =>
+        //          {
+        //              moduleWithFactories.componentFactories.forEach
+        //              (
+        //                  (factory) =>
+        //                  {
+        //                      if(this.inputMainComponentName === factory.componentType.name)
+        //                      {
+        //                          this._cmpRef = this.viewChildTarget.createComponent(factory);
+        //                      }
+        //                  }
+        //              )
+        //
+        //          });
     }
 }
