@@ -31,7 +31,7 @@
 		"@angular/http": "~2.3.0",
 		"@angular/platform-browser": "~2.3.0",
 		"@angular/platform-browser-dynamic": "~2.3.0",
-		"@angular/router": "~3.3.0",
+		"@angular/router": "3.3.0",
 		"angular2-clipboard": "^1.0.2",
 		"angular2localization": "^1.2.0",
 		"bootstrap": "4.0.0-alpha.4",
