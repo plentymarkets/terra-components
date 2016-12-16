@@ -16,6 +16,9 @@ import {
     LocaleService,
     LocalizationService
 } from 'angular2localization';
+import {
+    isBlank
+} from '@angular/core/src/facade/lang';
 
 
 @Component({
@@ -176,14 +179,18 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         
         let valueFound:boolean = false;
         
-        this._selectedValueList
-            .forEach((value)=>
-                     {
-                         if(value == valueToChange)
-                         {
-                             valueFound = true;
-                         }
-                     });
+        let index = this._selectedValueList.indexOf(valueToChange.value);
+        let valueIdentifier = 'entry'+valueToChange.value;
+        
+        //check if value exists in list
+        if(index == -1)
+        {
+            valueFound = false;
+        }
+        else
+        {
+            valueFound = !isBlank(this._selectedValueList[index]);
+        }
         
         if(valueToChange.selected)
         {
@@ -195,7 +202,7 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         else
         {
             let index = this._selectedValueList.indexOf(valueToChange.value);
-            
+
             this._selectedValueList.splice(index, 1);
         }
     }
