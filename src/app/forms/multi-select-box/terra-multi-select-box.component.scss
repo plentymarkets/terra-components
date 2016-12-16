@@ -13,8 +13,6 @@
     .multiselect-element
     {
         margin-bottom: 1rem;
-        border: $border-width solid $valid;
-        border-radius: .2rem;
         .multiselect
         {
             display: flex;
@@ -29,7 +27,7 @@
                 .checkbox-all
                 {
                     padding: 0.3rem 0.75rem;
-                    border-color: $valid;
+                    border-color: $gray-light-3;
                 }
                 .btn-all
                 {
@@ -43,6 +41,8 @@
                 .btn
                 {
                     text-align: left;
+                    border-bottom-left-radius: 0px;
+                    border-bottom-right-radius: 0px;
                     &:last-child
                     {
                         border-top-left-radius: 0;
@@ -117,8 +117,6 @@
         }
         &.error
         {
-            border: $border-width solid $error;
-            border-radius: .2rem;
             .multiselect
             {
                 .btn-group--all
@@ -141,8 +139,6 @@
         }
         &.disabled
         {
-            border: $border-width solid $gray-light-2;
-            border-radius: .2rem;
             .multiselect
             {
                 .btn-group--all
