@@ -180,7 +180,6 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         let valueFound:boolean = false;
         
         let index = this._selectedValueList.indexOf(valueToChange.value);
-        let valueIdentifier = 'entry'+valueToChange.value;
         
         //check if value exists in list
         if(index == -1)
