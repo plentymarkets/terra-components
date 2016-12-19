@@ -12,7 +12,8 @@
                                     (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"></terra-checkbox>
                 </div>
                 <div *ngIf="!inputIsDisabled && !inputIsError" class="btn-all">
-                    <terra-button (outputClicked)="primaryClicked()" inputCaption="{{ 'selectAll' | translate:lang }}" [inputIsPrimary]="true"></terra-button>
+                    <terra-button (outputClicked)="primaryClicked()" inputCaption="{{ 'selectAll' | translate:lang }}"
+                                  [inputIsPrimary]="true"></terra-button>
                 </div>
                 <div *ngIf="inputIsError" class="btn-all">
                     <terra-button (outputClicked)="primaryClicked()" inputCaption="{{ 'selectAll' | translate:lang }}"
