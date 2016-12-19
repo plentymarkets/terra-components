@@ -6,15 +6,13 @@
     .header-label
     {
         font-size: 1.3em;
-        line-height:1em !important;
-        letter-spacing:.1px;
+        line-height: 1em !important;
+        letter-spacing: .1px;
     }
     
     .multiselect-element
     {
         margin-bottom: 1rem;
-        border: $border-width solid $valid;
-        border-radius: .2rem;
         .multiselect
         {
             display: flex;
@@ -29,8 +27,7 @@
                 .checkbox-all
                 {
                     padding: 0.3rem 0.75rem;
-                    border-color: $valid;
-                    border-radius: 0;
+                    border-color: $gray-light-4;
                 }
                 .btn-all
                 {
@@ -44,7 +41,11 @@
                 .btn
                 {
                     text-align: left;
-                    border-radius: 0;
+                    border-bottom-left-radius: 0px;
+                    border-bottom-right-radius: 0px;
+                    background-color: $gray-light-4;
+                    border-color: $gray-light-4;
+                    color: $gray-dark;
                     &:last-child
                     {
                         border-top-left-radius: 0;
@@ -55,15 +56,15 @@
                 {
                     button
                     {
-                        background-color: darken($brand-primary, 15%);
-                        border-color: darken($brand-primary, 15%);
-                        color: $white;
+                        background-color: darken($gray-light-4, 15%);
+                        border-color: darken($gray-light-4, 15%);
+                        color: $gray-dark;
                     }
                     
                     .checkbox-all
                     {
-                        background-color: darken($brand-primary, 15%);
-                        border-color: darken($brand-primary, 15%);
+                        background-color: darken($gray-light-4, 15%);
+                        border-color: darken($gray-light-4, 15%);
                     }
                 }
             }
@@ -121,8 +122,6 @@
         }
         &.error
         {
-            border: $border-width solid $error;
-            border-radius: .2rem;
             .multiselect
             {
                 .btn-group--all
@@ -131,11 +130,12 @@
                     {
                         background-color: $error;
                         border-color: $error;
-                        border-top-left-radius: 0;
                     }
-                    button
+                    .btn
                     {
-                        border-top-right-radius: 0;
+                        background-color: $error;
+                        border-color: $error;
+                        color: $white;
                     }
                     &:hover
                     {
@@ -144,7 +144,7 @@
                             background-color: darken($error, 15%);
                             border-color: darken($error, 15%);
                         }
-    
+                        
                         .checkbox-all
                         {
                             background-color: darken($error, 15%);
@@ -156,19 +156,12 @@
         }
         &.disabled
         {
-            border: $border-width solid $gray-light-2;
-            border-radius: .2rem;
             .multiselect
             {
                 .btn-group--all
                 {
                     .checkbox-all
                     {
-                        border-top-left-radius: 0;
-                    }
-                    button
-                    {
-                        border-top-right-radius: 0;
                     }
                     .btn
                     {
