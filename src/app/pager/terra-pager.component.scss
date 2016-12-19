@@ -22,7 +22,7 @@
         .pager-page input
         {
             width: 2.5rem;
-            padding: .35rem
+            padding: .5rem .35rem;
         }
         .input-unit-v1
         {
@@ -34,22 +34,12 @@
     {
         float: left;
     }
-    .select-box-wrapper
-    {
-        .select-box
-        {
-            padding: .4rem 2rem .4rem 1rem;
-        }
-        .select-box-dropdown
-        {
-            top: 1.78rem;
-        }
-    }
     .pager-text
     {
         float: left;
+        font-size: $font-size-lg;
         margin-left: .5rem;
-        margin-top: .3rem;
+        margin-top: .7rem;
     }
 }
 
