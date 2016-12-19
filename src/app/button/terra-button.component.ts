@@ -21,7 +21,7 @@ export class TerraButtonComponent
     @Input() inputIsDisabled:boolean;
     @Input() inputCaption:string;
     @Input() inputIcon:string;
-    @Input() inputType:string;
+    @Input() inputType:string = 'button';
     @Input() inputIsAlignRight:boolean;
     @Input() inputIsHidden:boolean;
     @Input() inputTooltipText:string;

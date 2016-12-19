@@ -13,6 +13,8 @@
     .multiselect-element
     {
         margin-bottom: 1rem;
+        border: $border-width solid $valid;
+        border-radius: .2rem;
         .multiselect
         {
             display: flex;
@@ -27,7 +29,8 @@
                 .checkbox-all
                 {
                     padding: 0.3rem 0.75rem;
-                    border-color: $gray-light-3;
+                    border-color: $valid;
+                    border-radius: 0;
                 }
                 .btn-all
                 {
@@ -41,8 +44,7 @@
                 .btn
                 {
                     text-align: left;
-                    border-bottom-left-radius: 0px;
-                    border-bottom-right-radius: 0px;
+                    border-radius: 0;
                     &:last-child
                     {
                         border-top-left-radius: 0;
@@ -56,6 +58,12 @@
                         background-color: darken($brand-primary, 15%);
                         border-color: darken($brand-primary, 15%);
                         color: $white;
+                    }
+                    
+                    .checkbox-all
+                    {
+                        background-color: darken($brand-primary, 15%);
+                        border-color: darken($brand-primary, 15%);
                     }
                 }
             }
@@ -84,6 +92,15 @@
                         border-radius: 0;
                         border-top: 0;
                         background: transparent;
+                        
+                        &:first-child
+                        {
+                            border-left: 0;
+                        }
+                        &:last-child
+                        {
+                            border-right: 0;
+                        }
                     }
                 }
                 & > div
@@ -92,24 +109,11 @@
                     {
                         .form-control
                         {
-                            border-top-right-radius: $border-radius;
                             border-top: $border-width solid #CCCCCC;
                         }
                         .input-group-addon
                         {
-                            border-top-left-radius: $border-radius;
                             border-top: $border-width solid #CCCCCC;
-                        }
-                    }
-                    &:last-of-type
-                    {
-                        .form-control
-                        {
-                            border-bottom-right-radius: $border-radius;
-                        }
-                        .input-group-addon
-                        {
-                            border-bottom-left-radius: $border-radius;
                         }
                     }
                 }
@@ -117,6 +121,8 @@
         }
         &.error
         {
+            border: $border-width solid $error;
+            border-radius: .2rem;
             .multiselect
             {
                 .btn-group--all
@@ -125,10 +131,21 @@
                     {
                         background-color: $error;
                         border-color: $error;
+                        border-top-left-radius: 0;
+                    }
+                    button
+                    {
+                        border-top-right-radius: 0;
                     }
                     &:hover
                     {
                         button
+                        {
+                            background-color: darken($error, 15%);
+                            border-color: darken($error, 15%);
+                        }
+    
+                        .checkbox-all
                         {
                             background-color: darken($error, 15%);
                             border-color: darken($error, 15%);
@@ -139,10 +156,20 @@
         }
         &.disabled
         {
+            border: $border-width solid $gray-light-2;
+            border-radius: .2rem;
             .multiselect
             {
                 .btn-group--all
                 {
+                    .checkbox-all
+                    {
+                        border-top-left-radius: 0;
+                    }
+                    button
+                    {
+                        border-top-right-radius: 0;
+                    }
                     .btn
                     {
                         background-color: $gray-light-2;

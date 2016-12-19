@@ -26,6 +26,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
 {
     @Input() inputIsDisabled:boolean;
     @Input() inputCaption:string;
+    @Input() inputId:string;
     //The internal data model
     private _innerValue:boolean = false;
     private _isIndeterminate = false;
