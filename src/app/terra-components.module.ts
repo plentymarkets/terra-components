@@ -12,7 +12,8 @@ import { HttpModule } from '@angular/http';
 import {
     TooltipModule,
     AlertModule,
-    ModalModule
+    ModalModule,
+    ComponentsHelper
 } from 'ng2-bootstrap/ng2-bootstrap';
 import { TerraComponentsComponent } from './terra-components.component';
 import { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
@@ -206,7 +207,8 @@ export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
               providers:       [
                   COMPILER_PROVIDERS,
                   LocaleService,
-                  LocalizationService
+                  LocalizationService,
+                  {provide: ComponentsHelper, useClass: ComponentsHelper}
               ],
               bootstrap:       [
                   TerraComponentsComponent
