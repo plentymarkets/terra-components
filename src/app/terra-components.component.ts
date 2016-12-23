@@ -1,15 +1,13 @@
 import {
     Component,
     OnInit,
-    ViewContainerRef,
-    ViewChild
+    ViewContainerRef
 } from '@angular/core';
 import {
     LocaleService,
     LocalizationService,
     Locale
 } from 'angular2localization';
-import { ComponentsHelper } from 'ng2-bootstrap';
 
 @Component({
                selector: 'app-root',
@@ -21,7 +19,6 @@ export class TerraComponentsComponent extends Locale implements OnInit
     private _viewContainerRef:ViewContainerRef;
     
     public constructor(private viewContainerRef:ViewContainerRef,
-                       private _componentsHelper:ComponentsHelper,
                        public local:LocaleService,
                        public localization:LocalizationService)
     {
@@ -29,7 +26,6 @@ export class TerraComponentsComponent extends Locale implements OnInit
         
         // You need this small hack in order to catch application root view container ref
         this._viewContainerRef = viewContainerRef;
-        this._componentsHelper.setRootViewContainerRef(this._viewContainerRef);
         
         //Definitions for i18n
         if(process.env.ENV === 'production')
