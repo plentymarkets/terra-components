@@ -4,10 +4,9 @@ import {
     Headers,
     Response
 } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import 'rxjs/Rx';
 import { TerraLoadingBarService } from '../loading-bar/service/terra-loading-bar.service';
+import { Observable } from 'rxjs';
 
 /**
  * @author mfrank
@@ -52,8 +51,7 @@ export class TerraBaseService
         this._url = value;
     }
     
-    protected setToHeader(key:string,
-                          value:string):void
+    protected setToHeader(key:string, value:string):void
     {
         this.headers.set(key, value);
     }

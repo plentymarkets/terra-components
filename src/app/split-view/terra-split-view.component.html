@@ -1,24 +1,24 @@
-<div style="margin: 5px">
-    <terra-base-toolbar *ngIf="inputShowBreadcrumbs">
-        <template ngFor let-module [ngForOf]="inputModules" let-first="first">
-            <span *ngIf="!first">
-                »
-            </span>
-            {{module.name}}
-        </template>
-        <terra-button *ngIf="inputModules" [inputIsSmall]="true" inputCaption="{{ 'back' | translate:lang }}"
-                      [inputIsDisabled]="isSingleComponent" [inputIsAlignRight]="true" (outputClicked)="onClick()"></terra-button>
-        <terra-button *ngIf="inputModules" [inputIsSmall]="true" inputIcon="icon-copy_clipboard" [inputIsAlignRight]="true"
-                      (outputClicked)="copyPath()" ngIIclipboard [cbContent]="breadCrumbsPath"></terra-button>
-    </terra-base-toolbar>
-    <div class="side-scroller" *ngIf="inputModules">
-        <template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">
-            <div *ngIf="!module.hidden" [style.width]="module.defaultWidth">
-                <terra-dynamic-module-loader *ngIf="!module.hidden" [inputModule]="module.module"
-                                             [inputMainComponentName]="module.mainComponentName"></terra-dynamic-module-loader>
-            </div>
-            <!--TODO make divider draggable-->
-            <div class="divider" *ngIf="!last && !module.hidden"></div>
-        </template>
-    </div>
-</div>
+<!--<div style="margin: 5px">-->
+    <!--<terra-base-toolbar *ngIf="inputShowBreadcrumbs">-->
+        <!--<template ngFor let-module [ngForOf]="inputModules" let-first="first">-->
+            <!--<span *ngIf="!first">-->
+                <!--»-->
+            <!--</span>-->
+            <!--{{module.name}}-->
+        <!--</template>-->
+        <!--<terra-button *ngIf="inputModules" [inputIsSmall]="true" inputCaption="{{ 'back' | translate:lang }}"-->
+                      <!--[inputIsDisabled]="isSingleComponent" [inputIsAlignRight]="true" (outputClicked)="onClick()"></terra-button>-->
+        <!--<terra-button *ngIf="inputModules" [inputIsSmall]="true" inputIcon="icon-copy_clipboard" [inputIsAlignRight]="true"-->
+                      <!--(outputClicked)="copyPath()" ngIIclipboard [cbContent]="breadCrumbsPath"></terra-button>-->
+    <!--</terra-base-toolbar>-->
+    <!--<div class="side-scroller" *ngIf="inputModules">-->
+        <!--<template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">-->
+            <!--<div class="view" *ngIf="!module.hidden" [style.width]="module.defaultWidth">-->
+                <!--<terra-dynamic-module-loader *ngIf="!module.hidden" [inputModule]="module.module"-->
+                                             <!--[inputMainComponentName]="module.mainComponentName"></terra-dynamic-module-loader>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;TODO make divider draggable&ndash;&gt;-->
+            <!--<div class="divider" *ngIf="!last && !module.hidden"></div>-->
+        <!--</template>-->
+    <!--</div>-->
+<!--</div>-->

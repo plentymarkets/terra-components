@@ -13,14 +13,14 @@ import {
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
 
 @Component({
-               selector:      'terra-select-box',
-               styles:        [require('./terra-select-box.component.scss').toString()],
-               template:      require('./terra-select-box.component.html'),
-               encapsulation: ViewEncapsulation.None,
-               host:          {
+               selector:        'terra-select-box',
+               styles:          [require('./terra-select-box.component.scss').toString()],
+               template:        require('./terra-select-box.component.html'),
+               encapsulation:   ViewEncapsulation.None,
+               host:            {
                    '(document:click)': 'clickedOutside($event)',
                },
-               changeDetection : ChangeDetectionStrategy.OnPush
+               changeDetection: ChangeDetectionStrategy.OnPush
            })
 
 export class TerraSelectBoxComponent implements OnInit, OnChanges
@@ -83,7 +83,24 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     
     ngOnInit()
     {
-        setTimeout(() => this.select(0), 0);
+        if(this.inputListBoxValues && this.inputListBoxValues.length > 0)
+        {
+            let foundItem = false;
+            
+            for(let i = 0; i < this.inputListBoxValues.length; i++)
+            {
+                if(this.inputListBoxValues[i].active == true)
+                {
+                    this.select(i);
+                    foundItem = true;
+                }
+            }
+            
+            if(foundItem == false)
+            {
+                this.select(0);
+            }
+        }
         
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;

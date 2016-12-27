@@ -9,14 +9,13 @@ import {
     Input,
     ViewChild
 } from '@angular/core';
-import { RuntimeCompiler } from '@angular/compiler';
+import { JitCompiler } from '@angular/compiler';
 
 @Component({
                selector: 'terra-dynamic-module-loader',
                template: require('./terra-dynamic-module-loader.component.html'),
                styles:   [require('./terra-dynamic-module-loader.component.scss').toString()]
            })
-
 export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestroy
 {
     
@@ -27,7 +26,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     
     private _cmpRef:ComponentRef<any>;
     
-    constructor(private _runtimeCompiler:RuntimeCompiler)
+    constructor(private _jitCompiler:JitCompiler)
     {
     }
     
@@ -47,7 +46,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     
     private updateComponent():void
     {
-        this._runtimeCompiler
+        this._jitCompiler
             .compileModuleAndAllComponentsAsync(this._resolvedData.ngModule)
             .then((moduleWithFactories:ModuleWithComponentFactories<any>) =>
                   {
