@@ -1,9 +1,10 @@
 import {
     Component,
     Input,
-    forwardRef
+    forwardRef,
+    Output,
+    EventEmitter
 } from '@angular/core';
-
 import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
@@ -26,9 +27,11 @@ export class TerraCheckboxComponent implements ControlValueAccessor
 {
     @Input() inputIsDisabled:boolean;
     @Input() inputCaption:string;
+    @Output() valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+    
     //The internal data model
     private _innerValue:boolean = false;
-    private _isIndeterminate = false;
+    private _isIndeterminate:boolean = false;
     
     //Placeholders for the callbacks which are later provided
     //by the Control Value Accessor
@@ -54,11 +57,12 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     @Input()
     public set value(v:boolean)
     {
-        this.isIndeterminate = false;
+        this._isIndeterminate = false;
         
         if(v !== this._innerValue)
         {
             this._innerValue = v;
+            this.valueChange.emit(v);
             this.onChangeCallback(v);
         }
     }
