@@ -8,7 +8,8 @@
                 </span>
             </div>
             <span class="node-toggle" *ngIf="leaf.subLeafList" (click)="toggleOpen(leaf)"></span>
-            <terra-tree [inputLeafList]="leaf.subLeafList" [inputParentLeafList]="inputLeafList" [inputCompleteLeafList]="inputCompleteLeafList" *ngIf="leaf.subLeafList"></terra-tree>
+            <terra-tree [inputLeafList]="leaf.subLeafList" [inputParentLeafList]="inputLeafList"
+                        [inputCompleteLeafList]="inputCompleteLeafList" *ngIf="leaf.subLeafList"></terra-tree>
         </li>
     </template>
 </ul>
