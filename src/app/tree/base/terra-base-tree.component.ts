@@ -19,12 +19,23 @@ export class TerraBaseTreeComponent implements OnInit
      */
     @Input() inputParentLeafList:Array<TerraLeafInterface>;
     
+    /**
+     * complete leaf list for better and faster searching
+     */
+    @Input() inputCompleteLeafList:Array<TerraLeafInterface>;
+    
     constructor()
     {
     }
     
-    ngOnInit()
+    ngOnInit():void
     {
+        
+        if(!this.inputCompleteLeafList)
+        {
+            this.inputCompleteLeafList = this.inputLeafList;
+        }
+        
         if(this.inputParentLeafList)
         {
             for(let parentLeaf of this.inputParentLeafList)
@@ -46,6 +57,7 @@ export class TerraBaseTreeComponent implements OnInit
         }
     }
     
+    
     private onLeafClick(clickedLeaf:TerraLeafInterface):void
     {
         if(clickedLeaf.subLeafList != null)
@@ -58,53 +70,40 @@ export class TerraBaseTreeComponent implements OnInit
             clickedLeaf.clickFunction();
         }
         
-        this.setLeafActive(clickedLeaf)
-    }
-    
-    private setLeafActive(clickedLeaf:TerraLeafInterface):void
-    {
-        this.setLeafListActive(clickedLeaf, this.inputLeafList);
-    }
-    
-    private setLeafListActive(clickedLeaf:TerraLeafInterface,
-                              inputLeafList:Array<TerraLeafInterface>):void
-    {
-        for(let leaf of inputLeafList)
+        if(clickedLeaf.isActive)
         {
-            if(leaf == clickedLeaf)
-            {
-                leaf.isActive = true;
-                
-                //set leafs inactive at one level higher
-                if(this.inputParentLeafList)
-                {
-                    this.setLeafListInactive(this.inputParentLeafList);
-                }
-            }
-            else
+            clickedLeaf.isActive = false;
+        }
+        else
+        {
+            this.recursiveLeafListInactive(this.inputCompleteLeafList);
+            clickedLeaf.isActive = true;
+        }
+    }
+
+    private recursiveLeafListInactive(list:Array<TerraLeafInterface>):boolean
+    {
+        let foundActive:boolean = false;
+        
+        for(let leaf of list)
+        {
+            if(leaf.isActive)
             {
                 leaf.isActive = false;
+                return true;
+            }
+            else if(leaf.subLeafList)
+            {
+                foundActive = this.recursiveLeafListInactive(leaf.subLeafList);
             }
             
-            //handle subLeafs recursively
-            if(leaf.subLeafList && leaf.subLeafList.length > 0)
+            if(foundActive)
             {
-                this.setLeafListActive(leaf, leaf.subLeafList);
+                return foundActive;
             }
         }
-    }
-    
-    private setLeafListInactive(inputLeafList:Array<TerraLeafInterface>):void
-    {
-        for(let leaf of inputLeafList)
-        {
-            leaf.isActive = false;
-            
-            if(leaf.parentLeafList)
-            {
-                this.setLeafListInactive(leaf.parentLeafList);
-            }
-        }
+        
+        return false;
     }
     
     private toggleOpen(clickedLeaf:TerraLeafInterface):void
