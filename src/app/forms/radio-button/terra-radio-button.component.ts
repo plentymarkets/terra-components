@@ -27,7 +27,7 @@ export const RADIO_CONTROL_VALUE_ACCESSOR:any = {
 export class TerraRadioButtonComponent implements ControlValueAccessor
 {
     @Input() inputCaption:string;
-    @Input() inputName:string;
+    @Input() inputValue:string | number | boolean;
     @Input() inputIsDisabled:boolean;
     @Input() inputIsUncheckable:boolean;
     
@@ -39,13 +39,13 @@ export class TerraRadioButtonComponent implements ControlValueAccessor
             return;
         }
         
-        if(this.inputIsUncheckable && this.inputName === this.value)
+        if(this.inputIsUncheckable && this.inputValue === this.value)
         {
             this.value = undefined;
         }
         else
         {
-            this.value = this.inputName;
+            this.value = this.inputValue;
         }
         
         this.onTouchedCallback();
