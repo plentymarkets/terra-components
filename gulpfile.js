@@ -52,6 +52,7 @@ gulp.task('gitInit', function () {
         if (err) throw err;
     });
 
+    return;
 });
 
 //fetch data
@@ -61,6 +62,7 @@ gulp.task('gitFetch', function () {
         if (err) throw err;
     });
 
+    return;
 });
 
 //changing version of package.json for new publish
@@ -79,8 +81,7 @@ gulp.task('changeVersion', function () {
     console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
     console.log('-------------------------------------------------');
 
-    fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
-
+    return fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
 });
 
 //commit version changes
@@ -98,7 +99,7 @@ gulp.task('gitPull', function () {
             throw err;
         }
         else {
-            gulp.watch('publish');
+            return gulp.watch('publish');
         }
     });
 
@@ -115,6 +116,7 @@ gulp.task('gitPush', function () {
         if (err) throw err;
     });
 
+    return;
 });
 
 //compile typescript files
@@ -156,6 +158,8 @@ gulp.task('copy-files', function () {
 
     gulp.src(['package.json', 'README.md'])
         .pipe(gulp.dest(config.tsOutputPath));
+
+    return;
 });
 
 //publish to npm
