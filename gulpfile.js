@@ -159,9 +159,13 @@ gulp.task('copy-files', function () {
 });
 
 //publish to npm
-gulp.task('publish', shell.task([
-    'npm publish dist'
-]));
+gulp.task('publish', function () {
+
+    return shell.task([
+        'npm publish dist'
+    ]);
+
+});
 
 
 gulp.task('compile-ts-locally', function () {
