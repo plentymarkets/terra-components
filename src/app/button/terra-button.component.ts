@@ -21,7 +21,7 @@ export class TerraButtonComponent
     @Input() inputIsDisabled:boolean;
     @Input() inputCaption:string;
     @Input() inputIcon:string;
-    @Input() inputType:string = 'button';
+    @Input() inputType:string;
     @Input() inputIsAlignRight:boolean;
     @Input() inputIsHidden:boolean;
     @Input() inputTooltipText:string;
@@ -31,6 +31,7 @@ export class TerraButtonComponent
     constructor()
     {
         this.inputTooltipPlacement = 'top';
+        this.inputType = 'button';
     }
     
     private click():void
