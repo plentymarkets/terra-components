@@ -95,7 +95,7 @@ gulp.task('gitPull', function () {
             throw err;
         }
         else {
-            return gulp.watch('publish');
+            // return gulp.watch('publish');
         }
     });
 
@@ -158,10 +158,6 @@ gulp.task('copy-files', function () {
 gulp.task('publish', shell.task([
     'npm publish dist'
 ]));
-
-gulp.task('publish-trigger', ['publish'], function () {
-    return;
-});
 
 
 gulp.task('compile-ts-locally', function () {
