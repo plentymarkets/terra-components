@@ -101,7 +101,7 @@ gulp.task('gitPull', function () {
             throw err;
         }
         else {
-            gulp.run('publish');
+            gulp.watch('publish');
         }
     });
 
@@ -129,18 +129,15 @@ gulp.task('compile-ts', function () {
         config.allTs
     ];
 
-    var tsResult =
-        gulp.src(sourceTsFiles)
-            .pipe(sourcemaps.init())
-            .pipe(tsc(tsProject));
+    var tsResult = gulp.src(sourceTsFiles)
+        .pipe(sourcemaps.init())
+        .pipe(tsc(tsProject));
 
-    return merge([
-        tsResult.dts
+    return merge(
+        [tsResult.dts
             .pipe(gulp.dest(config.tsOutputPath)),
-        tsResult.js
-            .pipe(sourcemaps.write('.'))
-            .pipe(gulp.dest(config.tsOutputPath))
-    ]);
+            tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.tsOutputPath))]
+    );
 });
 
 //copy files to dist
