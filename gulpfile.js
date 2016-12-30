@@ -27,12 +27,11 @@ gulp.task('npm-publish', function (callback) {
         'gitPush',
         'compile-ts',
         'copy-files',
-        'publish-trigger',
+        // 'publish',
         callback
     );
 
 });
-
 
 gulp.task('build-local', function (callback) {
 
@@ -46,13 +45,12 @@ gulp.task('build-local', function (callback) {
 
 });
 
+
 //init git
 gulp.task('gitInit', function () {
     git.init(function (err) {
         if (err) throw err;
     });
-
-    return;
 });
 
 //fetch data
@@ -61,8 +59,6 @@ gulp.task('gitFetch', function () {
     git.fetch('origin', '', function (err) {
         if (err) throw err;
     });
-
-    return;
 });
 
 //changing version of package.json for new publish
@@ -115,8 +111,6 @@ gulp.task('gitPush', function () {
     git.push('origin', 'stable7', function (err) {
         if (err) throw err;
     });
-
-    return;
 });
 
 //compile typescript files
@@ -158,8 +152,6 @@ gulp.task('copy-files', function () {
 
     gulp.src(['package.json', 'README.md'])
         .pipe(gulp.dest(config.tsOutputPath));
-
-    return;
 });
 
 //publish to npm
