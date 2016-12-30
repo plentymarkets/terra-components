@@ -27,7 +27,7 @@ gulp.task('npm-publish', function (callback) {
         'gitPush',
         'compile-ts',
         'copy-files',
-        // 'publish',
+        'publish',
         callback
     );
 
@@ -70,7 +70,7 @@ gulp.task('changeVersion', function () {
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
 
     //possible values are: patch, minor, major
-    json.version = "1.0.0-test.04"; //semver.inc(json.version, 'patch');
+    json.version = "1.0.0-test.05"; //semver.inc(json.version, 'patch');
 
     version = json.version;
 
@@ -93,9 +93,6 @@ gulp.task('gitPull', function () {
     git.pull('origin', ['stable7'], function (err) {
         if (err) {
             throw err;
-        }
-        else {
-            // return gulp.watch('publish');
         }
     });
 
