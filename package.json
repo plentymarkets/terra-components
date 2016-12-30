@@ -21,7 +21,8 @@
 		"npm-publish": "gulp build",
 		"build-local": "gulp publish-locally",
 		"start": "npm run server:dev",
-		"server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch"
+		"server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch",
+		"gulp": "gulp"
 	},
 	"dependencies": {
 		"@angular/common": "~2.3.0",

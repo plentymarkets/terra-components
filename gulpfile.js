@@ -14,11 +14,21 @@ var shell = require('gulp-shell');
 var version;
 var flatten = require('gulp-flatten');
 
-//build task
-gulp.task('build', function (callback) {
-    runSequence('gitPull',
-        callback);
+
+gulp.task('test', function (callback) {
+
+    runSequence(
+        'gitInit',
+        'gitFetch',
+
+        'gitPull',
+
+
+        callback
+    );
+
 });
+
 
 //init git
 gulp.task('gitInit', function () {
@@ -31,7 +41,7 @@ gulp.task('gitInit', function () {
 });
 
 //fetch data
-gulp.task('gitFetch', ['gitInit'], function () {
+gulp.task('gitFetch', function () {
     console.log('------- FETCHING DATA -------');
 
     git.fetch('origin', '', function (err) {
@@ -40,6 +50,52 @@ gulp.task('gitFetch', ['gitInit'], function () {
 
     console.log('------- FETCHING DONE -------');
 });
+
+//changing version of package.json for new publish
+gulp.task('changeVersion', function () {
+
+    var json = JSON.parse(fs.readFileSync('./package.json'));
+
+    console.log('------- OLD VERSION: ' + json.version + ' -------');
+    console.log('-------------------------');
+    console.log('------- CHANGING VERSION -------');
+
+    //possible values are: patch, minor, major
+    json.version = "1.0.0-test.01" //semver.inc(json.version, 'patch');
+
+    version = json.version;
+
+    console.log('------- VERSION CHANGED -------');
+    console.log('-------------------------');
+    console.log('------- WRITING PACKAGE.JSON -------');
+
+    fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
+
+    console.log('------- PACKAGE.JSON CHANGED -------');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//build task
+gulp.task('build', function (callback) {
+    runSequence('gitPull',
+        callback);
+});
+
+
+
+
 
 gulp.task('gitPull', ['gitCommit'], function () {
     console.log('------- COMMITTING DONE -------');
@@ -57,28 +113,7 @@ gulp.task('gitPull', ['gitCommit'], function () {
     console.log('------- PULLING DONE -------');
 });
 
-//changing version of package.json for new publish
-gulp.task('changeVersion', ['gitFetch'], function () {
 
-    var json = JSON.parse(fs.readFileSync('./package.json'));
-
-    console.log('------- OLD VERSION: ' + json.version + ' -------');
-    console.log('-------------------------');
-    console.log('------- CHANGING VERSION -------');
-
-    //possible values are: patch, minor, major
-    json.version =  "1.0.0-test.01" //semver.inc(json.version, 'patch');
-
-    version = json.version;
-
-    console.log('------- VERSION CHANGED -------');
-    console.log('-------------------------');
-    console.log('------- WRITING PACKAGE.JSON -------');
-
-    fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
-
-    console.log('------- PACKAGE.JSON CHANGED -------');
-});
 
 //commit version changes
 gulp.task('gitCommit', ['changeVersion'], function () {
