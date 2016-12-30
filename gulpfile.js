@@ -67,7 +67,7 @@ gulp.task('changeVersion', ['gitFetch'], function () {
     console.log('------- CHANGING VERSION -------');
 
     //possible values are: patch, minor, major
-    json.version =  "test.01" //semver.inc(json.version, 'patch');
+    json.version =  "1.0.0-test.01" //semver.inc(json.version, 'patch');
 
     version = json.version;
 
