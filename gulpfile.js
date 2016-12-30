@@ -66,7 +66,7 @@ gulp.task('changeVersion', function () {
     console.log('------- CHANGING VERSION -------');
 
     //possible values are: patch, minor, major
-    json.version = "1.0.0-test.02" //semver.inc(json.version, 'patch');
+    json.version = "1.0.0-test.02"; //semver.inc(json.version, 'patch');
 
     version = json.version;
 
@@ -109,7 +109,7 @@ gulp.task('clean-dist', function () {
 });
 
 //push version changes
-gulp.task('gitPush', ['clean-dist'], function () {
+gulp.task('gitPush', function () {
     console.log('------- PUSHING -------');
 
     git.push('origin', 'stable7', function (err) {
@@ -120,7 +120,7 @@ gulp.task('gitPush', ['clean-dist'], function () {
 });
 
 //compile typescript files
-gulp.task('compile-ts', ['gitPush'], function () {
+gulp.task('compile-ts', function () {
 
     console.log('------- COMPILING TYPESCRIPT FILES -------');
     var sourceTsFiles = [
@@ -143,7 +143,7 @@ gulp.task('compile-ts', ['gitPush'], function () {
     ]);
 });
 
-gulp.task('copy-files', ['compile-ts'], function () {
+gulp.task('copy-files', function () {
     gulp.src(config.allCSS)
         .pipe(gulp.dest(config.tsOutputPath));
 
