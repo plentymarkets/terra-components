@@ -27,7 +27,7 @@ gulp.task('npm-publish', function (callback) {
         'gitPush',
         'compile-ts',
         'copy-files',
-        'publish',
+        'publish-trigger',
         callback
     );
 
@@ -159,12 +159,12 @@ gulp.task('copy-files', function () {
 });
 
 //publish to npm
-gulp.task('publish', function () {
+gulp.task('publish', shell.task([
+    'npm publish dist'
+]));
 
-    return shell([
-        'npm publish dist'
-    ]);
-
+gulp.task('publish-trigger', ['publish'], function () {
+    return;
 });
 
 
