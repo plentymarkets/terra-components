@@ -68,22 +68,19 @@ gulp.task('changeVersion', function () {
 
     var json = JSON.parse(fs.readFileSync('./package.json'));
 
-    console.log('------- OLD VERSION: ' + json.version + ' -------');
-    console.log('-------------------------');
-    console.log('------- CHANGING VERSION -------');
+    console.log('-------------------------------------------------');
+    console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
 
     //possible values are: patch, minor, major
     json.version = "1.0.0-test.02"; //semver.inc(json.version, 'patch');
 
     version = json.version;
 
-    console.log('------- VERSION CHANGED -------');
-    console.log('-------------------------');
-    console.log('------- WRITING PACKAGE.JSON -------');
+    console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
+    console.log('-------------------------------------------------');
 
     fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
 
-    console.log('------- PACKAGE.JSON CHANGED -------');
 });
 
 //commit version changes
@@ -124,7 +121,6 @@ gulp.task('gitPush', function () {
 gulp.task('compile-ts', function () {
 
     var sourceTsFiles = [
-
         config.excluded,
         config.allTs
     ];
@@ -133,11 +129,10 @@ gulp.task('compile-ts', function () {
         .pipe(sourcemaps.init())
         .pipe(tsc(tsProject));
 
-    return merge(
-        [tsResult.dts
-            .pipe(gulp.dest(config.tsOutputPath)),
-            tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.tsOutputPath))]
-    );
+    return merge([
+        tsResult.dts.pipe(gulp.dest(config.tsOutputPath)),
+        tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.tsOutputPath))
+    ]);
 });
 
 //copy files to dist
