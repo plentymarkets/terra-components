@@ -12,7 +12,8 @@ import { HttpModule } from '@angular/http';
 import {
     TooltipModule,
     AlertModule,
-    ModalModule
+    ModalModule,
+    ButtonsModule
 } from 'ng2-bootstrap/ng2-bootstrap';
 import { TerraComponentsComponent } from './terra-components.component';
 import { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
@@ -21,6 +22,7 @@ import { TerraButtonComponent } from './button/terra-button.component';
 import { TerraTreeComponent } from './tree/terra-tree.component';
 import { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-tree.component';
 import { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
+import { TerraRadioButtonComponent } from './forms/radio-button/terra-radio-button.component';
 import { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
 import { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-multi-select-box.component';
 import { TerraDclWrapperComponent } from './dcl-wrapper/terra-dcl-wrapper.component';
@@ -61,6 +63,7 @@ export { TerraBaseData } from './data/terra-base.data';
 export { TerraDclWrapperComponent } from './dcl-wrapper/terra-dcl-wrapper.component';
 export { TerraFilterComponent } from './filter/terra-filter.component';
 export { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
+export { TerraRadioButtonComponent } from './forms/radio-button/terra-radio-button.component';
 export { TerraInputComponent } from './forms/input/terra-input.component';
 export { TerraDoubleInputComponent } from './forms/input/double-input/terra-double-input.component';
 export { TerraNumberInputComponent } from './forms/input/number-input/terra-number-input.component';
@@ -115,6 +118,7 @@ export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraTreeComponent,
                   TerraCheckboxTreeComponent,
                   TerraCheckboxComponent,
+                  TerraRadioButtonComponent,
                   TerraSelectBoxComponent,
                   TerraBaseToolbarComponent,
                   TerraIndicatorComponent,
@@ -143,6 +147,7 @@ export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraTreeComponent,
                   TerraCheckboxTreeComponent,
                   TerraCheckboxComponent,
+                  TerraRadioButtonComponent,
                   TerraSelectBoxComponent,
                   TerraBaseToolbarComponent,
                   TerraIndicatorComponent,
@@ -171,6 +176,7 @@ export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraTreeComponent,
                   TerraCheckboxTreeComponent,
                   TerraCheckboxComponent,
+                  TerraRadioButtonComponent,
                   TerraSelectBoxComponent,
                   TerraBaseToolbarComponent,
                   TerraIndicatorComponent,
@@ -199,6 +205,7 @@ export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   HttpModule,
                   TooltipModule,
                   AlertModule,
+                  ButtonsModule,
                   ClipboardModule,
                   LocaleModule,
                   LocalizationModule

@@ -1,0 +1,4 @@
+<label class="input-control radio-button small-check">
+    <span class="check" [ngClass]="{'disabled': inputIsDisabled, 'active': inputValue===value}"></span>
+    <span *ngIf="inputCaption" class="caption" [ngClass]="{'disabled': inputIsDisabled}">{{inputCaption}}</span>
+</label>

@@ -24,6 +24,11 @@ export class TerraTreeComponent extends TerraBaseTreeComponent
      */
     @Input() inputParentLeafList:Array<TerraLeafInterface>;
     
+    /**
+     * complete leaf list for better and faster searching
+     */
+    @Input() inputCompleteLeafList:Array<TerraLeafInterface>;
+    
     constructor()
     {
         super();
