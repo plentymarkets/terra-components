@@ -20,10 +20,15 @@ gulp.task('test', function (callback) {
     runSequence(
         'gitInit',
         'gitFetch',
-
+        'changeVersion',
+        'gitCommit',
         'gitPull',
-
-
+        'clean-dist',
+        'gitPush',
+        'compile-ts',
+        'copy-files',
+        'post-compile',
+        'publish',
         callback
     );
 
@@ -61,7 +66,7 @@ gulp.task('changeVersion', function () {
     console.log('------- CHANGING VERSION -------');
 
     //possible values are: patch, minor, major
-    json.version = "1.0.0-test.01" //semver.inc(json.version, 'patch');
+    json.version = "1.0.0-test.02" //semver.inc(json.version, 'patch');
 
     version = json.version;
 
@@ -74,30 +79,16 @@ gulp.task('changeVersion', function () {
     console.log('------- PACKAGE.JSON CHANGED -------');
 });
 
+//commit version changes
+gulp.task('gitCommit', function () {
+    console.log('------- COMMITTING -------');
 
-
-
-
-
-
-
-
-
-
-
-
-
-//build task
-gulp.task('build', function (callback) {
-    runSequence('gitPull',
-        callback);
+    return gulp.src('./*')
+        .pipe(gitignore())
+        .pipe(git.commit('update version to ' + version));
 });
 
-
-
-
-
-gulp.task('gitPull', ['gitCommit'], function () {
+gulp.task('gitPull', function () {
     console.log('------- COMMITTING DONE -------');
     console.log('------- PULLING -------');
 
@@ -113,15 +104,8 @@ gulp.task('gitPull', ['gitCommit'], function () {
     console.log('------- PULLING DONE -------');
 });
 
-
-
-//commit version changes
-gulp.task('gitCommit', ['changeVersion'], function () {
-    console.log('------- COMMITTING -------');
-
-    return gulp.src('./*')
-        .pipe(gitignore())
-        .pipe(git.commit('update version to ' + version));
+gulp.task('clean-dist', function () {
+    return del(config.tsOutputPath);
 });
 
 //push version changes
@@ -181,20 +165,20 @@ gulp.task('copy-files', ['compile-ts'], function () {
         .pipe(gulp.dest(config.tsOutputPath));
 });
 
-gulp.task('clean-dist', function () {
-    return del(config.tsOutputPath);
-});
-
 //console log after typescript compile
 //maybe add more tasks after this one
-gulp.task('post-compile', ['copy-files'], function () {
+gulp.task('post-compile', function () {
     console.log('------- TYPESCRIPT FILES COMPILED -------');
 });
 
 //publish to npm
-gulp.task('publish', ['post-compile'], shell.task([
+gulp.task('publish', shell.task([
     'npm publish dist'
 ]));
+
+
+
+
 
 gulp.task('compile-ts-locally', function () {
 
