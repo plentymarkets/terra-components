@@ -161,7 +161,7 @@ gulp.task('copy-files', function () {
 //publish to npm
 gulp.task('publish', function () {
 
-    return shell.task([
+    return shell([
         'npm publish dist'
     ]);
 
