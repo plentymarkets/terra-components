@@ -66,8 +66,4 @@ export class TerraComponentsComponent extends Locale implements OnInit
     ngOnInit()
     {
     }
-    
-    private openOverlayStatic():void
-    {
-    }
 }

@@ -31,6 +31,7 @@ export class TerraButtonComponent
     constructor()
     {
         this.inputTooltipPlacement = 'top';
+        this.inputType = 'button';
     }
     
     private click():void
