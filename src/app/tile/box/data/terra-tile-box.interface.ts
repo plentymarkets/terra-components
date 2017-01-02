@@ -10,5 +10,6 @@ export interface TerraTileBoxInterface
     text:string;
     isSelected?:boolean;
     isDragging?:boolean;
+    isDropTarget?:boolean;
     buttonList?:Array<TerraButtonInterface>;
 }

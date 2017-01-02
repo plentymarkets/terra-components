@@ -1,4 +1,7 @@
-<div class="flex-item is_in_inbox" [ngClass]="{'is_selected': inputIsSelected, 'is_dragging': inputIsDragging}">
+<div class="flex-item is_drop_target" [hidden]="!inputIsDropTarget">
+    <span class="drop_target_title">{{inputTitle}}</span>
+</div>
+<div [hidden]="inputIsDropTarget" class="flex-item is_in_inbox" [ngClass]="{'is_selected': inputIsSelected, 'is_dragging': inputIsDragging}">
     <img *ngIf="inputImagePath && inputImagePath.length > 0" class="flex-image" [src]="inputImagePath">
     <h1 class="flex-title">
         {{inputTitle}}

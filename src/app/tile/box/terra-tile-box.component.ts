@@ -19,6 +19,7 @@ export class TerraTileBoxComponent
     @Input() inputImagePath:string;
     @Input() inputIsSelected:boolean;
     @Input() inputIsDragging:boolean;
+    @Input() inputIsDropTarget:boolean;
     @Input() inputButtonList:Array<TerraButtonInterface>;
     
     constructor()

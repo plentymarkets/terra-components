@@ -6,6 +6,7 @@
                         [inputText]="tile.text"
                         [inputSubTitle]="tile.subTitle"
                         [inputImagePath]="tile.imagePath"
+                        [inputIsDropTarget]="tile.isDropTarget"
                         draggable="true"
                         (click)="onBoxClick($event, tile)"
                         (drop)="onDrop($event, tile)"

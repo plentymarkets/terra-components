@@ -38,11 +38,18 @@ export class TerraTileBoxPanelComponent
         }
     }
     
-    private onDrag(ev, tile:TerraTileBoxInterface)
+    private onDrag(ev, draggingTile:TerraTileBoxInterface)
     {
-        this.draggedIndex = this.inputTileBoxList.indexOf(tile);
-        let draggingTile:TerraTileBoxInterface = this.inputTileBoxList[this.draggedIndex];
+        this.draggedIndex = this.inputTileBoxList.indexOf(draggingTile);
         draggingTile.isDragging = true;
+        
+        for(let tile of this.inputTileBoxList)
+        {
+            if(tile != draggingTile)
+            {
+                tile.isDropTarget = true;
+            }
+        }
     }
     
     private onDrop(ev, droppedTile:TerraTileBoxInterface)
@@ -51,6 +58,11 @@ export class TerraTileBoxPanelComponent
         
         let draggedTile:TerraTileBoxInterface = this.inputTileBoxList[this.draggedIndex];
         draggedTile.isDragging = false;
+    
+        for(let tile of this.inputTileBoxList)
+        {
+            tile.isDropTarget = false;
+        }
         
         let droppedIndex = this.inputTileBoxList.indexOf(droppedTile);
         
