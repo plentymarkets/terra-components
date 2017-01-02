@@ -1,5 +1,10 @@
 @import "../../assets/styles/variables";
 
+:host-context(.line-view)
+{
+    width: 100%;
+}
+
 .flex-item
 {
     position: relative;
@@ -75,6 +80,7 @@
     border-radius: 2px;
     border: none;
     float: left;
+    pointer-events: none;
 }
 
 .flex-align-bottom
@@ -87,6 +93,11 @@
     text-align: left;
     padding: .3em;
     box-sizing: border-box;
+    
+    hr
+    {
+        margin: 5px 0;
+    }
 }
 
 .flex-action-icon

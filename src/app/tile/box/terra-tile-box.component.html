@@ -13,6 +13,7 @@
         {{inputText}}
     </div>
     <div class="flex-align-bottom" (click)="stopPropagation($event)">
+        <hr *ngIf="inputButtonList && inputButtonList.length > 0">
         <template ngFor let-button [ngForOf]="inputButtonList">
             <terra-button [inputCaption]="button.caption"
                           [inputTooltipText]="button.tooltipText"
