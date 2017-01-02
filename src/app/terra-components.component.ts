@@ -1,7 +1,8 @@
 import {
     Component,
     OnInit,
-    ViewContainerRef
+    ViewContainerRef,
+    ViewChild
 } from '@angular/core';
 import {
     LocaleService,
@@ -9,6 +10,7 @@ import {
     Locale
 } from 'angular2localization';
 import { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface';
+import { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
 
 @Component({
                selector: 'app-root',
@@ -18,6 +20,7 @@ import { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface'
 export class TerraComponentsComponent extends Locale implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
+    @ViewChild(TerraTileBoxPanelComponent) tileBoxPanel:TerraTileBoxPanelComponent;
     
     private tileList:Array<TerraTileBoxInterface>;
     
@@ -103,6 +106,18 @@ export class TerraComponentsComponent extends Locale implements OnInit
             {
                 title: 'Plugin3',
                 text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
+            },
+            {
+                title: 'Plugin4',
+                text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
+            },
+            {
+                title: 'Plugin5',
+                text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
+            },
+            {
+                title: 'Plugin6',
+                text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
             }
         ]
     }
@@ -113,5 +128,10 @@ export class TerraComponentsComponent extends Locale implements OnInit
     
     private openOverlayStatic():void
     {
+    }
+    
+    click()
+    {
+        console.log(this.tileBoxPanel.selectedTileBoxList);
     }
 }

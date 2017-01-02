@@ -14,7 +14,7 @@ import { TerraTileBoxInterface } from '../box/data/terra-tile-box.interface';
 export class TerraTileBoxPanelComponent
 {
     @Input() inputTileBoxList:Array<TerraTileBoxInterface>;
-    @Input() selectedTileBoxList:Array<TerraTileBoxInterface> = [];
+    private _selectedTileBoxList:Array<TerraTileBoxInterface> = [];
     
     private draggedIndex;
     
@@ -26,15 +26,15 @@ export class TerraTileBoxPanelComponent
     {
         tile.isSelected = !tile.isSelected;
         
-        let index = this.selectedTileBoxList.indexOf(tile);
+        let index = this._selectedTileBoxList.indexOf(tile);
         
         if(tile.isSelected && index == -1)
         {
-            this.selectedTileBoxList.push(tile);
+            this._selectedTileBoxList.push(tile);
         }
         else if(!tile.isSelected && index != -1)
         {
-            this.selectedTileBoxList.splice(index, 1)
+            this._selectedTileBoxList.splice(index, 1)
         }
     }
     
@@ -54,12 +54,23 @@ export class TerraTileBoxPanelComponent
         
         let droppedIndex = this.inputTileBoxList.indexOf(droppedTile);
         
-        this.inputTileBoxList[this.draggedIndex] = droppedTile;
-        this.inputTileBoxList[droppedIndex] = draggedTile;
+        this.inputTileBoxList.splice(this.draggedIndex, 1);
+        this.inputTileBoxList.splice(droppedIndex, 0, draggedTile);
     }
     
     private allowDrop(ev)
     {
         ev.preventDefault();
+    }
+    
+    
+    public get selectedTileBoxList():Array<TerraTileBoxInterface>
+    {
+        return this._selectedTileBoxList;
+    }
+    
+    public set selectedTileBoxList(value:Array<TerraTileBoxInterface>)
+    {
+        this._selectedTileBoxList = value;
     }
 }
