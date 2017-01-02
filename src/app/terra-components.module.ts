@@ -55,6 +55,8 @@ import {
     LocaleModule,
     LocalizationModule
 } from 'angular2localization';
+import { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
+import { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -106,6 +108,9 @@ export { TerraBaseTreeComponent } from './tree/base/terra-base-tree.component';
 export { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-tree.component';
 export { TerraLeafInterface } from './tree/leaf/terra-leaf.interface';
 export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
+export { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
+export { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
+export { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface';
 
 @NgModule({
               declarations:    [
@@ -138,7 +143,9 @@ export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraSplitViewComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
-                  TerraDynamicModuleLoaderComponent
+                  TerraDynamicModuleLoaderComponent,
+                  TerraTileBoxComponent,
+                  TerraTileBoxPanelComponent
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -165,7 +172,9 @@ export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraPortletComponent,
                   TerraSplitViewComponent,
                   TerraFilterComponent,
-                  TerraMultiSelectBoxComponent
+                  TerraMultiSelectBoxComponent,
+                  TerraTileBoxComponent,
+                  TerraTileBoxPanelComponent
               ],
               exports:         [
                   TerraAlertPanelComponent,
@@ -195,7 +204,9 @@ export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraSplitViewComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
-                  TerraDynamicModuleLoaderComponent
+                  TerraDynamicModuleLoaderComponent,
+                  TerraTileBoxComponent,
+                  TerraTileBoxPanelComponent
               ],
               imports:         [
                   BrowserModule,

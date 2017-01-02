@@ -8,6 +8,7 @@ import {
     LocalizationService,
     Locale
 } from 'angular2localization';
+import { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface';
 
 @Component({
                selector: 'app-root',
@@ -17,6 +18,8 @@ import {
 export class TerraComponentsComponent extends Locale implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
+    
+    private tileList:Array<TerraTileBoxInterface>;
     
     public constructor(private viewContainerRef:ViewContainerRef,
                        public local:LocaleService,
@@ -61,6 +64,47 @@ export class TerraComponentsComponent extends Locale implements OnInit
         }
         
         this.localization.updateTranslation();
+        
+        this.tileList = [
+            {
+                title:      'Plugin1',
+                subTitle:'Vers.: 1.0.1',
+                imagePath: 'src/app/tile/box/tmp/ceres.png',
+                text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia',
+                buttonList: [
+                    {
+                        icon: 'icon-folder',
+                        clickFunction:()=>{
+                            alert('Plugin1 inbox click')
+                        },
+                        tooltipText: 'inbox'
+                    },
+                    {
+                        icon: 'icon-plugin_copy_to_stage',
+                        clickFunction:()=>{
+                            alert('Plugin1 stage click')
+                        },
+                        tooltipText: 'stage'
+                    },
+                    {
+                        icon: 'icon-plugin_productive',
+                        clickFunction:()=>{
+                            alert('Plugin1 productive click')
+                        },
+                        tooltipText: 'productive'
+                    }
+                ]
+            },
+            {
+                title: 'Plugin2',
+                subTitle:'Vers.: 1.0.1',
+                text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
+            },
+            {
+                title: 'Plugin3',
+                text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
+            }
+        ]
     }
     
     ngOnInit()

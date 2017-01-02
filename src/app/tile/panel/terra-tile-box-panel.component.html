@@ -1,0 +1,16 @@
+<div class="flex-container tile-view">
+    <template ngFor let-tile [ngForOf]="inputTileBoxList">
+        <terra-tile-box [inputIsDragging]="tile.isDragging"
+                        [inputIsSelected]="tile.isSelected"
+                        [inputTitle]="tile.title"
+                        [inputText]="tile.text"
+                        [inputSubTitle]="tile.subTitle"
+                        [inputImagePath]="tile.imagePath"
+                        draggable="true"
+                        (click)="onBoxClick($event, tile)"
+                        (drop)="onDrop($event, tile)"
+                        (dragover)="allowDrop($event)"
+                        (dragstart)="onDrag($event, tile)"
+                        [inputButtonList]="tile.buttonList"></terra-tile-box>
+    </template>
+</div>
