@@ -1,9 +1,9 @@
 @import "../../assets/styles/variables";
 
-:host-context(.line-view)
-{
-    width: 100%;
-}
+//:host-context(.line-view)
+//{
+//    width: 100%;
+//}
 
 .flex-item
 {
@@ -232,7 +232,7 @@
         position: relative;
         padding: 0;
         width: 100%;
-        height: 40px;
+        height: 48px;
         margin: 0;
         overflow: hidden;
         border-radius: 0;
@@ -245,12 +245,22 @@
         bottom: 0;
         left: auto;
         right: 5px;
-        width: 150px;
+        width: 200px;
         margin-bottom: 0;
         text-align: left;
         padding: .3em;
         box-sizing: border-box;
         border-left: $white 1px solid;
+        
+        terra-button
+        {
+            display: inline-block;
+        }
+        
+        hr
+        {
+            display: none;
+        }
     }
     
     .flex-image
@@ -265,11 +275,10 @@
     }
     
     .flex-title,
-    .flex-version,
+    .flex-sub_title,
     .flex-text
     {
-        margin-top: 5px;
-        margin-bottom: 5px;
+        margin: 0 3px;
         padding: 0;
         text-align: left;
         height: 100%;
@@ -278,10 +287,18 @@
         display: block;
         float: left;
         position: relative;
-        vertical-align: bottom;
-        line-height: 30px;
+        line-height: 40px;
         border-right: $white 1px solid;
-        margin-right: 3px;
+    }
+    
+    .flex-title_no_image
+    {
+        width: 240px;
+    }
+    
+    .flex-sub_title
+    {
+        padding-top: 2px;
     }
     
     .flex-text
@@ -290,6 +307,8 @@
         height: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-top: 2px;
     }
 }
 

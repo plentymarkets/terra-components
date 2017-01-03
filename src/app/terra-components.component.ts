@@ -105,18 +105,22 @@ export class TerraComponentsComponent extends Locale implements OnInit
             },
             {
                 title: 'Plugin3',
+                subTitle:'Vers.: 0.0.150',
                 text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
             },
             {
                 title: 'Plugin4',
+                subTitle:'Vers.: 1.9.1',
                 text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
             },
             {
                 title: 'Plugin5',
+                subTitle:'Vers.: 3.4.5',
                 text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
             },
             {
                 title: 'Plugin6',
+                subTitle:'Vers.: 1.0.0',
                 text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
             }
         ]

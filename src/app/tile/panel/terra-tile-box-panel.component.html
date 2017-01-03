@@ -1,4 +1,7 @@
-<div class="flex-container tile-view">
+<div class="toggleView">
+    <terra-button inputCaption="Toggle View" (outputClicked)="toggleView()"></terra-button>
+</div>
+<div class="flex-container" [ngClass]="{'tile-view': viewStyle, 'line-view': !viewStyle}">
     <template ngFor let-tile [ngForOf]="inputTileBoxList">
         <terra-tile-box [inputIsDragging]="tile.isDragging"
                         [inputIsSelected]="tile.isSelected"
@@ -7,7 +10,7 @@
                         [inputSubTitle]="tile.subTitle"
                         [inputImagePath]="tile.imagePath"
                         [inputIsDropTarget]="tile.isDropTarget"
-                        draggable="true"
+                        [draggable]="true"
                         (click)="onBoxClick($event, tile)"
                         (drop)="onDrop($event, tile)"
                         (dragover)="allowDrop($event)"

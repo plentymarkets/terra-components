@@ -16,7 +16,8 @@ export class TerraTileBoxPanelComponent
     @Input() inputTileBoxList:Array<TerraTileBoxInterface>;
     private _selectedTileBoxList:Array<TerraTileBoxInterface> = [];
     
-    private draggedIndex;
+    private draggedIndex:number;
+    private _viewStyle:boolean = false;
     
     constructor()
     {
@@ -84,5 +85,21 @@ export class TerraTileBoxPanelComponent
     public set selectedTileBoxList(value:Array<TerraTileBoxInterface>)
     {
         this._selectedTileBoxList = value;
+    }
+    
+    
+    public get viewStyle():boolean
+    {
+        return this._viewStyle;
+    }
+    
+    public set viewStyle(value:boolean)
+    {
+        this._viewStyle = value;
+    }
+    
+    private toggleView():void
+    {
+        this.viewStyle = !this.viewStyle;
     }
 }
