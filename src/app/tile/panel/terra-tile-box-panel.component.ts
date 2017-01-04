@@ -53,6 +53,8 @@ export class TerraTileBoxPanelComponent
                 tile.isDropTarget = true;
             }
         }
+    
+        ev.dataTransfer.setData('text', 'anything');
     }
     
     private onDragEnd(ev, draggingTile:TerraTileBoxInterface)
