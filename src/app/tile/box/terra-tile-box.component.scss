@@ -10,6 +10,10 @@
         margin: 5px .3em .3em 5px;
         height: 25%;
     }
+    
+    .drop_target_title{
+        line-height: 250px;
+    }
 }
 
 .flex-item
@@ -46,7 +50,6 @@
         color: $gray-light-2;
         font-style: italic;
         font-size: $font-size-lg-1;
-        line-height: 250px;
         display: block;
         height: 100%;
         text-overflow: ellipsis;
@@ -272,6 +275,10 @@ $lines-to-show: 8;
         overflow: hidden;
         border-radius: 0;
         border-bottom: $white 1px solid;
+    }
+    
+    .drop_target_title{
+        line-height: 48px;
     }
     
     .flex-align-bottom
