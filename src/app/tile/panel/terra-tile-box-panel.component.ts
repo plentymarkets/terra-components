@@ -55,6 +55,29 @@ export class TerraTileBoxPanelComponent
         }
     }
     
+    private onDragEnd(ev, draggingTile:TerraTileBoxInterface)
+    {
+        ev.preventDefault();
+        
+        draggingTile.isDragging = false;
+        
+        for(let tile of this.inputTileBoxList)
+        {
+            tile.isDropTarget = false;
+            tile.isHover = false;
+        }
+    }
+    
+    private onDragLeave(ev, hoverTile:TerraTileBoxInterface)
+    {
+        ev.preventDefault();
+    
+        if(!hoverTile.isDragging)
+        {
+            hoverTile.isHover = false;
+        }
+    }
+    
     private onDrop(ev, droppedTile:TerraTileBoxInterface)
     {
         ev.preventDefault();
@@ -65,6 +88,7 @@ export class TerraTileBoxPanelComponent
         for(let tile of this.inputTileBoxList)
         {
             tile.isDropTarget = false;
+            tile.isHover = false;
         }
         
         let droppedIndex = this.inputTileBoxList.indexOf(droppedTile);
@@ -73,9 +97,22 @@ export class TerraTileBoxPanelComponent
         this.inputTileBoxList.splice(droppedIndex, 0, draggedTile);
     }
     
-    private allowDrop(ev)
+    private allowDrop(ev, hoverTile:TerraTileBoxInterface)
     {
         ev.preventDefault();
+        
+        if(!hoverTile.isDragging)
+        {
+            hoverTile.isHover = true;
+            
+            for(let tile of this.inputTileBoxList)
+            {
+                if(tile != hoverTile)
+                {
+                    tile.isHover = false;
+                }
+            }
+        }
     }
     
     

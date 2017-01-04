@@ -10,11 +10,14 @@
                         [inputSubTitle]="tile.subTitle"
                         [inputImagePath]="tile.imagePath"
                         [inputIsDropTarget]="tile.isDropTarget"
+                        [inputIsHover]="tile.isHover"
                         [draggable]="true"
                         (click)="onBoxClick($event, tile)"
                         (drop)="onDrop($event, tile)"
-                        (dragover)="allowDrop($event)"
+                        (dragover)="allowDrop($event, tile)"
                         (dragstart)="onDrag($event, tile)"
+                        (dragend)="onDragEnd($event, tile)"
+                        (dragleave)="onDragLeave($event, tile)"
                         [inputButtonList]="tile.buttonList"></terra-tile-box>
     </template>
 </div>

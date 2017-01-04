@@ -31,6 +31,15 @@
         border: $gray-light-3 dashed 2px;
         background-color: $gray-light-5;
         text-align: center;
+        
+        &.black_border{
+            border: $gray-dark dashed 2px;
+            background-color: $gray-light-3;
+            
+            >.drop_target_title{
+                color: $gray-dark;
+            }
+        }
     }
     .drop_target_title{
         color: $gray-light-2;
@@ -39,6 +48,9 @@
         line-height: 250px;
         display: block;
         height: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     }
 }
 

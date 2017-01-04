@@ -1,4 +1,4 @@
-<div class="flex-item is_drop_target" [hidden]="!inputIsDropTarget">
+<div class="flex-item is_drop_target" [hidden]="!inputIsDropTarget" [ngClass]="{'black_border': inputIsHover}">
     <span class="drop_target_title">{{inputTitle}}</span>
 </div>
 <div [hidden]="inputIsDropTarget" class="flex-item is_in_inbox"

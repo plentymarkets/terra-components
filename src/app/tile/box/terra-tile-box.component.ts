@@ -20,6 +20,7 @@ export class TerraTileBoxComponent
     @Input() inputIsSelected:boolean;
     @Input() inputIsDragging:boolean;
     @Input() inputIsDropTarget:boolean;
+    @Input() inputIsHover:boolean;
     @Input() inputButtonList:Array<TerraButtonInterface>;
     
     constructor()
