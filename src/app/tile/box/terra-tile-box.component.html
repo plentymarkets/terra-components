@@ -4,11 +4,13 @@
 <div [hidden]="inputIsDropTarget" class="flex-item is_in_inbox"
      [ngClass]="{'is_selected': inputIsSelected, 'is_dragging': inputIsDragging}">
     <img *ngIf="inputImagePath && inputImagePath.length > 0" class="flex-image" [src]="inputImagePath">
-    <h1 class="flex-title" [ngClass]="{'flex-title_no_image': !(inputImagePath && inputImagePath.length > 0)}">
-        {{inputTitle}}
-    </h1>
-    <div class='flex-sub_title' *ngIf="inputSubTitle && inputSubTitle.length > 0">
-        {{inputSubTitle}}
+    <div class="title-wrapper">
+        <h1 class="flex-title" [ngClass]="{'flex-title_no_image': !(inputImagePath && inputImagePath.length > 0)}">
+            {{inputTitle}}
+        </h1>
+        <div class='flex-sub_title' *ngIf="inputSubTitle && inputSubTitle.length > 0">
+            {{inputSubTitle}}
+        </div>
     </div>
     <div class="flex-text">
         {{inputText}}

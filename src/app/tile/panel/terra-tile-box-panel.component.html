@@ -1,4 +1,4 @@
-<div class="toggleView">
+<div class="toggleView" *ngIf="inputIsViewToggable">
     <terra-button inputCaption="Toggle View" (outputClicked)="toggleView()"></terra-button>
 </div>
 <div class="flex-container" [ngClass]="{'tile-view': viewStyle, 'line-view': !viewStyle}">

@@ -14,6 +14,7 @@ import { TerraTileBoxInterface } from '../box/data/terra-tile-box.interface';
 export class TerraTileBoxPanelComponent
 {
     @Input() inputTileBoxList:Array<TerraTileBoxInterface>;
+    @Input() inputIsViewToggable:boolean;
     private _selectedTileBoxList:Array<TerraTileBoxInterface> = [];
     
     private draggedIndex:number;
@@ -21,6 +22,7 @@ export class TerraTileBoxPanelComponent
     
     constructor()
     {
+        this.inputIsViewToggable = false;
     }
     
     private onBoxClick(ev, tile:TerraTileBoxInterface)
