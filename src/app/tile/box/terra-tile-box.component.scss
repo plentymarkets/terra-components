@@ -73,31 +73,31 @@
     }
 }
 
-.is_in_inbox
+.light_blue
 {
     border: $brand-primary-lighter solid 2px;
     border-radius: 0;
     background: $brand-primary-lighter;
 }
 
-.is_in_stage
+.blue
 {
     border: $brand-primary-dark solid 2px;
     border-radius: 0;
     background: $brand-primary-dark;
 }
 
-.is_in_productive
+.dark_blue
 {
     border: $brand-primary-darker solid 2px;
     border-radius: 0;
     background: $brand-primary-darker;
 }
 
-.is_in_productive .tile-box-align-bottom,
-.is_in_productive .tile-box-title,
-.is_in_productive .tile-box-sub_title,
-.is_in_productive .tile-box-text
+.dark_blue .tile-box-align-bottom,
+.dark_blue .tile-box-title,
+.dark_blue .tile-box-sub_title,
+.dark_blue .tile-box-text
 {
     filter: invert(100%);
 }
@@ -141,81 +141,6 @@
     cursor: pointer;
     background-size: contain;
     background-repeat: no-repeat;
-}
-
-.inbox
-{
-    background-image: url(tmp/inbox.png);
-}
-
-.stage
-{
-    background-image: url(tmp/stage.png);
-}
-
-.productive
-{
-    background-image: url(tmp/procuctive.png);
-}
-
-.inbox::after, .stage::after, .productive::after
-{
-    
-    height: 15px;
-    width: 15px;
-    overflow: hidden;
-    background-size: contain;
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    content: "";
-}
-
-.inbox_click_preventer
-{
-    width: 30px;
-    height: 30px;
-    display: block;
-}
-
-.is_in_inbox .inbox::after
-{
-    background-image: url(tmp/ok.png);
-    
-}
-
-.is_in_inbox .stage::after, .is_in_inbox .productive::after
-{
-    background-image: url(tmp/delete.png);
-}
-
-.is_in_stage .stage::after, .is_in_stage .inbox::after
-{
-    background-image: url(tmp/ok.png);
-}
-
-.is_in_stage .productive::after
-{
-    background-image: url(tmp/delete.png);
-}
-
-.is_in_productive .productive::after, .is_in_productive .inbox::after
-{
-    filter: invert(100%);
-    background-image: url(tmp/ok.png);
-}
-
-.is_in_productive .stage::after
-{
-    filter: invert(100%);
-    background-image: url(tmp/delete.png);
-}
-
-.is_in_stage.is_in_productive .stage::after
-{
-    filter: invert(100%);
-    background-image: url(tmp/ok.png);
 }
 
 .tile-box-title
@@ -368,7 +293,7 @@ $lines-to-show: 8;
     }
 }
 
-.is_in_productive
+.dark_blue
 {
     .line-view
     {

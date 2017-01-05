@@ -1,4 +1,4 @@
-<div class="toggleView" *ngIf="inputIsViewToggable">
+<div class="toggleView" *ngIf="inputIsViewToggleable">
     <terra-button inputCaption="Toggle View" (outputClicked)="toggleView()"></terra-button>
 </div>
 <div class="tile-box-container" [ngClass]="{'tile-view': viewStyle, 'line-view': !viewStyle}">
@@ -11,11 +11,12 @@
                         [inputImagePath]="tile.imagePath"
                         [inputIsDropTarget]="tile.isDropTarget"
                         [inputIsHover]="tile.isHover"
+                        [inputColor]="tile.color"
                         [draggable]="true"
                         (click)="onBoxClick($event, tile)"
                         (drop)="onDrop($event, tile)"
-                        (dragover)="allowDrop($event, tile)"
-                        (dragstart)="onDrag($event, tile)"
+                        (dragover)="onDragOver($event, tile)"
+                        (dragstart)="onDragStart($event, tile)"
                         (dragend)="onDragEnd($event, tile)"
                         (dragleave)="onDragLeave($event, tile)"
                         [inputButtonList]="tile.buttonList"></terra-tile-box>

@@ -1,4 +1,5 @@
 import { TerraButtonInterface } from '../../../button/data/terra-button.interface';
+import { TerraTileBoxColor } from './terra-tile-box-color';
 /**
  * @author mkunze
  */
@@ -12,5 +13,6 @@ export interface TerraTileBoxInterface
     isDragging?:boolean;
     isDropTarget?:boolean;
     isHover?:boolean;
+    color?:TerraTileBoxColor;
     buttonList?:Array<TerraButtonInterface>;
 }

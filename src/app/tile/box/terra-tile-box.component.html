@@ -1,8 +1,8 @@
 <div class="tile-box-item is_drop_target" [hidden]="!inputIsDropTarget" [ngClass]="{'black_border': inputIsHover}">
     <span class="drop_target_title">{{inputTitle}}</span>
 </div>
-<div [hidden]="inputIsDropTarget" class="tile-box-item is_in_inbox"
-     [ngClass]="{'is_selected': inputIsSelected, 'is_dragging': inputIsDragging}">
+<div [hidden]="inputIsDropTarget" class="tile-box-item"
+     [ngClass]="setClassesToTileBoxItem()">
     <img *ngIf="inputImagePath && inputImagePath.length > 0" class="tile-box-image" [src]="inputImagePath">
     <div class="title-wrapper">
         <h1 class="tile-box-title" [ngClass]="{'tile-box-title_no_image': !(inputImagePath && inputImagePath.length > 0)}">

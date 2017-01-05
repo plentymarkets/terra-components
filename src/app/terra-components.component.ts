@@ -11,6 +11,7 @@ import {
 } from 'angular2localization';
 import { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface';
 import { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
+import { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
 
 @Component({
                selector: 'app-root',
@@ -73,6 +74,7 @@ export class TerraComponentsComponent extends Locale implements OnInit
                 title:      'Plugin1 zum testen langer text',
                 subTitle:'Vers.: 1.0.1 zum testen langer text',
                 imagePath: 'src/app/tile/box/tmp/ceres.png',
+                color: TerraTileBoxColor.BLUE,
                 text: 'Kurzbeschreibung Plugin asdasd asd  alsjdalkskdj aldja lkdajs dlasjd lajsd aldsjaldj aslkdj alsdj alsdjalsdj ad as das da ds as da sd asd a da d asd a da sd ads ad sblaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia',
                 buttonList: [
                     {

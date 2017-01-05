@@ -14,7 +14,7 @@ import { TerraTileBoxInterface } from '../box/data/terra-tile-box.interface';
 export class TerraTileBoxPanelComponent
 {
     @Input() inputTileBoxList:Array<TerraTileBoxInterface>;
-    @Input() inputIsViewToggable:boolean;
+    @Input() inputIsViewToggleable:boolean;
     private _selectedTileBoxList:Array<TerraTileBoxInterface> = [];
     
     private draggedIndex:number;
@@ -22,10 +22,10 @@ export class TerraTileBoxPanelComponent
     
     constructor()
     {
-        this.inputIsViewToggable = false;
+        this.inputIsViewToggleable = false;
     }
     
-    private onBoxClick(ev, tile:TerraTileBoxInterface)
+    private onBoxClick(ev, tile:TerraTileBoxInterface):void
     {
         tile.isSelected = !tile.isSelected;
         
@@ -41,7 +41,7 @@ export class TerraTileBoxPanelComponent
         }
     }
     
-    private onDrag(ev, draggingTile:TerraTileBoxInterface)
+    private onDragStart(ev, draggingTile:TerraTileBoxInterface):void
     {
         this.draggedIndex = this.inputTileBoxList.indexOf(draggingTile);
         draggingTile.isDragging = true;
@@ -54,10 +54,11 @@ export class TerraTileBoxPanelComponent
             }
         }
     
+        //awesome hack for firefox! it rocks!!!
         ev.dataTransfer.setData('text', 'anything');
     }
     
-    private onDragEnd(ev, draggingTile:TerraTileBoxInterface)
+    private onDragEnd(ev, draggingTile:TerraTileBoxInterface):void
     {
         ev.preventDefault();
         
@@ -70,7 +71,7 @@ export class TerraTileBoxPanelComponent
         }
     }
     
-    private onDragLeave(ev, hoverTile:TerraTileBoxInterface)
+    private onDragLeave(ev, hoverTile:TerraTileBoxInterface):void
     {
         ev.preventDefault();
     
@@ -80,7 +81,7 @@ export class TerraTileBoxPanelComponent
         }
     }
     
-    private onDrop(ev, droppedTile:TerraTileBoxInterface)
+    private onDrop(ev, droppedTile:TerraTileBoxInterface):void
     {
         ev.preventDefault();
         
@@ -99,7 +100,7 @@ export class TerraTileBoxPanelComponent
         this.inputTileBoxList.splice(droppedIndex, 0, draggedTile);
     }
     
-    private allowDrop(ev, hoverTile:TerraTileBoxInterface)
+    private onDragOver(ev, hoverTile:TerraTileBoxInterface):void
     {
         ev.preventDefault();
         

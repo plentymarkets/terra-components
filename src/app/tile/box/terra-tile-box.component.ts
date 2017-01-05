@@ -3,6 +3,7 @@ import {
     Input
 } from '@angular/core';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
+import { TerraTileBoxColor } from './data/terra-tile-box-color';
 /**
  * @author mkunze
  */
@@ -21,14 +22,51 @@ export class TerraTileBoxComponent
     @Input() inputIsDragging:boolean;
     @Input() inputIsDropTarget:boolean;
     @Input() inputIsHover:boolean;
+    @Input() inputColor:TerraTileBoxColor; //default LIGHT_BLUE
     @Input() inputButtonList:Array<TerraButtonInterface>;
     
     constructor()
     {
     }
     
-    private stopPropagation(event)
+    private stopPropagation(event):void
     {
         event.stopPropagation();
+    }
+    
+    private setClassesToTileBoxItem():Object
+    {
+        let isLightBlue:boolean = false;
+        let isBlue:boolean = false;
+        let isDarkBlue:boolean = false;
+        
+        switch (this.inputColor)
+        {
+            case TerraTileBoxColor.LIGHT_BLUE:
+                
+                isLightBlue = true;
+                break;
+                
+            case TerraTileBoxColor.BLUE:
+                
+                isBlue = true;
+                break;
+                
+            case TerraTileBoxColor.DARK_BLUE:
+                
+                isDarkBlue = true;
+                break;
+            
+            default:
+                isLightBlue = true;
+        }
+        
+        return {
+            'light_blue': isLightBlue,
+            'blue': isBlue,
+            'dark_blue': isDarkBlue,
+            is_selected: this.inputIsSelected,
+            is_dragging: this.inputIsDragging
+        }
     }
 }
