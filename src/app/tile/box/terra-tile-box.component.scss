@@ -115,6 +115,7 @@
     border: none;
     float: left;
     pointer-events: none;
+    background-size: cover;
 }
 
 .tile-box-align-bottom
@@ -200,6 +201,10 @@ $lines-to-show: 8;
 
 .line-view
 {
+    .title-wrapper
+    {
+        width: 25%;
+    }
     .tile-box-item
     {
         transition: all .3s;
@@ -221,9 +226,8 @@ $lines-to-show: 8;
     {
         left: auto;
         right: 5px;
-        width: 200px;
+        width: 25%;
         text-align: left;
-        border-left: $white 1px solid;
         
         terra-button
         {
@@ -247,10 +251,10 @@ $lines-to-show: 8;
     .tile-box-text
     {
         margin: 0 3px;
-        padding: 0;
+        padding: 0 3px 0 0;
         text-align: left;
         height: 100%;
-        width: 200px;
+        width: 40%;
         display: block;
         float: left;
         position: relative;
@@ -260,7 +264,7 @@ $lines-to-show: 8;
     
     .tile-box-text
     {
-        width: 400px;
+        width: 50%;
         height: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
