@@ -12,6 +12,7 @@
                         [inputIsDropTarget]="tile.isDropTarget"
                         [inputIsHover]="tile.isHover"
                         [inputColor]="tile.color"
+                        [inputIsLineView]="!viewStyle"
                         [draggable]="true"
                         (click)="onBoxClick($event, tile)"
                         (drop)="onDrop($event, tile)"

@@ -104,10 +104,9 @@
 
 .tile-box-image
 {
-    margin: 5px .3em .3em 5px;
+    margin: 7px .3em .3em 7px;
     width: 25%;
     height: 25%;
-    background: $white;
     border-radius: 2px;
     border: none;
     float: left;
@@ -116,14 +115,14 @@
 
 .tile-box-align-bottom
 {
-    position: absolute;
     bottom: 0;
+    position: absolute;
     left: 0;
     width: 100%;
-    margin-bottom: 0;
     text-align: left;
-    padding: .3em;
     box-sizing: border-box;
+    line-height: 48px;
+    padding-left: 5px;
     
     hr
     {
@@ -222,15 +221,10 @@ $lines-to-show: 8;
     
     .tile-box-align-bottom
     {
-        position: absolute;
-        bottom: 0;
         left: auto;
         right: 5px;
         width: 200px;
-        margin-bottom: 0;
         text-align: left;
-        padding: .3em;
-        box-sizing: border-box;
         border-left: $white 1px solid;
         
         terra-button
@@ -246,13 +240,8 @@ $lines-to-show: 8;
     
     .tile-box-image
     {
-        margin: 5px .3em .3em 5px;
         width: 30px;
         height: 30px;
-        background: $white;
-        border-radius: 2px;
-        border: none;
-        float: left;
     }
     
     .tile-box-title,
@@ -268,18 +257,8 @@ $lines-to-show: 8;
         display: block;
         float: left;
         position: relative;
-        line-height: 40px;
+        line-height: 48px;
         border-right: $white 1px solid;
-    }
-    
-    .tile-box-title_no_image
-    {
-        width: 240px;
-    }
-    
-    .tile-box-sub_title
-    {
-        padding-top: 2px;
     }
     
     .tile-box-text
@@ -289,7 +268,6 @@ $lines-to-show: 8;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        margin-top: 2px;
     }
 }
 

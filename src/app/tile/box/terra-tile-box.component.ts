@@ -23,6 +23,7 @@ export class TerraTileBoxComponent
     @Input() inputIsDropTarget:boolean;
     @Input() inputIsHover:boolean;
     @Input() inputColor:TerraTileBoxColor; //default LIGHT_BLUE
+    @Input() inputIsLineView:boolean;
     @Input() inputButtonList:Array<TerraButtonInterface>;
     
     constructor()

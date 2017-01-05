@@ -4,8 +4,9 @@
 <div [hidden]="inputIsDropTarget" class="tile-box-item"
      [ngClass]="setClassesToTileBoxItem()">
     <img *ngIf="inputImagePath && inputImagePath.length > 0" class="tile-box-image" [src]="inputImagePath">
+    <div *ngIf="inputIsLineView && (!inputImagePath || inputImagePath.length == 0)" class="tile-box-image image-placeholder"></div>
     <div class="title-wrapper">
-        <h1 class="tile-box-title" [ngClass]="{'tile-box-title_no_image': !(inputImagePath && inputImagePath.length > 0)}">
+        <h1 class="tile-box-title">
             {{inputTitle}}
         </h1>
         <div class='tile-box-sub_title' *ngIf="inputSubTitle && inputSubTitle.length > 0">
