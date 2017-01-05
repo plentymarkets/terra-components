@@ -1,17 +1,13 @@
 import {
     Component,
     OnInit,
-    ViewContainerRef,
-    ViewChild
+    ViewContainerRef
 } from '@angular/core';
 import {
     LocaleService,
     LocalizationService,
     Locale
 } from 'angular2localization';
-import { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface';
-import { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
-import { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
 
 @Component({
                selector: 'app-root',
@@ -21,9 +17,6 @@ import { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
 export class TerraComponentsComponent extends Locale implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
-    @ViewChild(TerraTileBoxPanelComponent) tileBoxPanel:TerraTileBoxPanelComponent;
-    
-    private tileList:Array<TerraTileBoxInterface>;
     
     public constructor(private viewContainerRef:ViewContainerRef,
                        public local:LocaleService,
@@ -68,77 +61,9 @@ export class TerraComponentsComponent extends Locale implements OnInit
         }
         
         this.localization.updateTranslation();
-        
-        this.tileList = [
-            {
-                title:      'Plugin1 zum testen langer text',
-                subTitle:'Vers.: 1.0.1 zum testen langer text',
-                imagePath: 'src/app/tile/box/tmp/ceres.png',
-                color: TerraTileBoxColor.DARK_BLUE,
-                text: 'Kurzbeschreibung Plugin asdasd asd  alsjdalkskdj aldja lkdajs dlasjd lajsd aldsjaldj aslkdj alsdj alsdjalsdj ad as das da ds as da sd asd a da d asd a da sd ads ad sblaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia',
-                buttonList: [
-                    {
-                        icon: 'icon-folder',
-                        clickFunction:()=>{
-                            alert('Plugin1 inbox click')
-                        },
-                        tooltipText: 'inbox'
-                    },
-                    {
-                        icon: 'icon-plugin_copy_to_stage',
-                        clickFunction:()=>{
-                            alert('Plugin1 stage click')
-                        },
-                        tooltipText: 'stage'
-                    },
-                    {
-                        icon: 'icon-plugin_productive',
-                        clickFunction:()=>{
-                            alert('Plugin1 productive click')
-                        },
-                        tooltipText: 'productive'
-                    }
-                ]
-            },
-            {
-                title: 'Plugin2',
-                subTitle:'Vers.: 1.0.1',
-                text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
-            },
-            {
-                title: 'Plugin3',
-                subTitle:'Vers.: 0.0.150',
-                text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
-            },
-            {
-                title: 'Plugin4',
-                subTitle:'Vers.: 1.9.1',
-                text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
-            },
-            {
-                title: 'Plugin5',
-                subTitle:'Vers.: 3.4.5',
-                color: TerraTileBoxColor.BLUE,
-                text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
-            },
-            {
-                title: 'Plugin6',
-                subTitle:'Vers.: 1.0.0',
-                text: 'Kurzbeschreibung Plugin blaa blaablaa lalala blaablubblub blaa blaa lalala blaa blubblub blaa lalalablaa lalala blaa blaa blaa blaa blaa blubblub blaa blubbaa blubblub blaa lalala dadia'
-            }
-        ]
     }
     
     ngOnInit()
     {
-    }
-    
-    private openOverlayStatic():void
-    {
-    }
-    
-    click()
-    {
-        console.log(this.tileBoxPanel.selectedTileBoxList);
     }
 }
