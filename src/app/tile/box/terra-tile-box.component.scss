@@ -92,13 +92,18 @@
     border: $brand-primary-darker solid 2px;
     border-radius: 0;
     background: $brand-primary-darker;
+    
+    &.is_dragging
+    {
+        border: $brand-secondary-light dashed 2px;
+    }
 }
 
 .dark_blue .tile-box-title,
 .dark_blue .tile-box-sub_title,
 .dark_blue .tile-box-text
 {
-    filter: invert(100%);
+    color: $white;
 }
 
 .tile-box-image
@@ -205,12 +210,6 @@ $lines-to-show: 8;
         margin: 0 0 2px;
         overflow: hidden;
         border-radius: 0;
-    
-        &.is_selected
-        {
-            border: $brand-yellow solid 2px;
-            border-radius: 0;
-        }
     }
     
     .drop_target_title
@@ -252,7 +251,6 @@ $lines-to-show: 8;
         text-align: left;
         height: 100%;
         width: 200px;
-        color: $black;
         display: block;
         float: left;
         position: relative;

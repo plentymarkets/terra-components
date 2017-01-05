@@ -63,9 +63,9 @@ export class TerraTileBoxComponent
         }
         
         return {
-            'light_blue': isLightBlue,
-            'blue': isBlue,
-            'dark_blue': isDarkBlue,
+            light_blue: isLightBlue,
+            blue: isBlue,
+            dark_blue: isDarkBlue,
             is_selected: this.inputIsSelected,
             is_dragging: this.inputIsDragging
         }
