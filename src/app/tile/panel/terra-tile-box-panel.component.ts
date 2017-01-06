@@ -17,7 +17,7 @@ export class TerraTileBoxPanelComponent
     @Input() inputIsViewToggleable:boolean;
     private _selectedTileBoxList:Array<TerraTileBoxInterface> = [];
     
-    private draggedIndex:number;
+    private _draggedIndex:number;
     private _viewStyle:boolean = false;
     
     constructor()
@@ -25,7 +25,7 @@ export class TerraTileBoxPanelComponent
         this.inputIsViewToggleable = false;
     }
     
-    private onBoxClick(ev, tile:TerraTileBoxInterface):void
+    private onBoxClick(event, tile:TerraTileBoxInterface):void
     {
         tile.isSelected = !tile.isSelected;
         
@@ -41,9 +41,9 @@ export class TerraTileBoxPanelComponent
         }
     }
     
-    private onDragStart(ev, draggingTile:TerraTileBoxInterface):void
+    private onDragStart(event, draggingTile:TerraTileBoxInterface):void
     {
-        this.draggedIndex = this.inputTileBoxList.indexOf(draggingTile);
+        this._draggedIndex = this.inputTileBoxList.indexOf(draggingTile);
         draggingTile.isDragging = true;
         
         for(let tile of this.inputTileBoxList)
@@ -55,12 +55,12 @@ export class TerraTileBoxPanelComponent
         }
     
         //awesome hack for firefox! it rocks!!!
-        ev.dataTransfer.setData('text', 'anything');
+        event.dataTransfer.setData('text', 'anything');
     }
     
-    private onDragEnd(ev, draggingTile:TerraTileBoxInterface):void
+    private onDragEnd(event, draggingTile:TerraTileBoxInterface):void
     {
-        ev.preventDefault();
+        event.preventDefault();
         
         draggingTile.isDragging = false;
         
@@ -71,9 +71,9 @@ export class TerraTileBoxPanelComponent
         }
     }
     
-    private onDragLeave(ev, hoverTile:TerraTileBoxInterface):void
+    private onDragLeave(event, hoverTile:TerraTileBoxInterface):void
     {
-        ev.preventDefault();
+        event.preventDefault();
     
         if(!hoverTile.isDragging)
         {
@@ -81,11 +81,11 @@ export class TerraTileBoxPanelComponent
         }
     }
     
-    private onDrop(ev, droppedTile:TerraTileBoxInterface):void
+    private onDrop(event, droppedTile:TerraTileBoxInterface):void
     {
-        ev.preventDefault();
+        event.preventDefault();
         
-        let draggedTile:TerraTileBoxInterface = this.inputTileBoxList[this.draggedIndex];
+        let draggedTile:TerraTileBoxInterface = this.inputTileBoxList[this._draggedIndex];
         draggedTile.isDragging = false;
     
         for(let tile of this.inputTileBoxList)
@@ -96,13 +96,13 @@ export class TerraTileBoxPanelComponent
         
         let droppedIndex = this.inputTileBoxList.indexOf(droppedTile);
         
-        this.inputTileBoxList.splice(this.draggedIndex, 1);
+        this.inputTileBoxList.splice(this._draggedIndex, 1);
         this.inputTileBoxList.splice(droppedIndex, 0, draggedTile);
     }
     
-    private onDragOver(ev, hoverTile:TerraTileBoxInterface):void
+    private onDragOver(event, hoverTile:TerraTileBoxInterface):void
     {
-        ev.preventDefault();
+        event.preventDefault();
         
         if(!hoverTile.isDragging)
         {
