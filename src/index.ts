@@ -50,3 +50,5 @@ export * from './app/tree/checkbox-tree/terra-checkbox-tree.component';
 export * from './app/tree/leaf/terra-leaf.interface';
 export * from './app/tile/box/terra-tile-box.component';
 export * from './app/tile/panel/terra-tile-box-panel.component';
+export * from './app/tile/box/data/terra-tile-box.interface';
+export * from './app/tile/box/data/terra-tile-box-color';
