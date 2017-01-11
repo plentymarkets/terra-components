@@ -228,7 +228,7 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   LocalizationService
               ],
               bootstrap:       [
-                  TerraComponentsComponent
+                  //TerraComponentsComponent
               ]
           })
 export class TerraComponentsModule
