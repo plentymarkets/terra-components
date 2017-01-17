@@ -174,11 +174,15 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this.outputDoPagingEvent.emit(pagerData);
         
         this._isHeaderCheckboxChecked = false;
-        this.rowList.forEach(
-            (row)=>
-            {
-                this.changeRowState(false, row);
-            });
+        
+        if(this.rowList != null)
+        {
+            this.rowList.forEach(
+                (row)=>
+                {
+                    this.changeRowState(false, row);
+                });
+        }
     }
     
     public get pagingSize():Array<TerraSelectBoxValueInterface>
