@@ -11,203 +11,165 @@ var runSequence = require('run-sequence');
 var git = require('gulp-git');
 var gitignore = require('gulp-gitignore');
 var shell = require('gulp-shell');
-var version;
 var flatten = require('gulp-flatten');
 
-//build task
-gulp.task('build', function (callback) {
-    runSequence('gitPull',
-        callback);
+var version;
+
+gulp.task('npm-publish', function (callback)
+{
+    runSequence(
+        'gitInit',
+        'gitFetch',
+        'changeVersion',
+        'gitCommit',
+        'gitPull',
+        'clean-dist',
+        'gitPush',
+        'compile-ts',
+        'copy-files',
+        'publish',
+        callback
+    );
 });
 
-//init git
-gulp.task('gitInit', function () {
-    console.log('------- INITIALIZING GIT -------');
-    git.init(function (err) {
-        if (err) throw err;
-    });
+gulp.task('build-local', function (callback)
+{
+    runSequence(
+        'clean-dist',
+        'compile-ts',
+        'copy-files',
+        callback
+    );
+    
+    gulp.src('dist/**/*.*').pipe(gulp.dest('../terra/node_modules/@plentymarkets/terra-components/'));
+});
 
-    console.log('------- GIT INITIALIZED -------');
+
+//init git
+gulp.task('gitInit', function ()
+{
+    git.init(function (err)
+             {
+                 if(err)
+                 {
+                     throw err;
+                 }
+             });
 });
 
 //fetch data
-gulp.task('gitFetch', ['gitInit'], function () {
-    console.log('------- FETCHING DATA -------');
-
-    git.fetch('origin', '', function (err) {
-        if (err) throw err;
-    });
-
-    console.log('------- FETCHING DONE -------');
-});
-
-gulp.task('gitPull', ['gitCommit'], function () {
-    console.log('------- COMMITTING DONE -------');
-    console.log('------- PULLING -------');
-
-    git.pull('origin', ['stable7'], function (err) {
-        if (err) {
+gulp.task('gitFetch', function ()
+{
+    git.fetch('origin', '', function (err)
+    {
+        if(err)
+        {
             throw err;
         }
-        else {
-            gulp.run('publish');
-        }
     });
-
-    console.log('------- PULLING DONE -------');
 });
 
 //changing version of package.json for new publish
-gulp.task('changeVersion', ['gitFetch'], function () {
-
+gulp.task('changeVersion', function ()
+{
     var json = JSON.parse(fs.readFileSync('./package.json'));
-
-    console.log('------- OLD VERSION: ' + json.version + ' -------');
-    console.log('-------------------------');
-    console.log('------- CHANGING VERSION -------');
-
+    
+    console.log('-------------------------------------------------');
+    console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
+    
     //possible values are: patch, minor, major
     json.version = semver.inc(json.version, 'patch');
-
+    
     version = json.version;
-
-    console.log('------- VERSION CHANGED -------');
-    console.log('-------------------------');
-    console.log('------- WRITING PACKAGE.JSON -------');
-
-    fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
-
-    console.log('------- PACKAGE.JSON CHANGED -------');
+    
+    console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
+    console.log('-------------------------------------------------');
+    
+    return fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
 });
 
 //commit version changes
-gulp.task('gitCommit', ['changeVersion'], function () {
-    console.log('------- COMMITTING -------');
-
+gulp.task('gitCommit', function ()
+{
     return gulp.src('./*')
-        .pipe(gitignore())
-        .pipe(git.commit('update version to ' + version));
+               .pipe(gitignore())
+               .pipe(git.commit('update version to ' + version));
 });
 
-//push version changes
-gulp.task('gitPush', ['clean-dist'], function () {
-    console.log('------- PUSHING -------');
-
-    git.push('origin', 'stable7', function (err) {
-        if (err) throw err;
+gulp.task('gitPull', function ()
+{
+    git.pull('origin', ['stable7'], function (err)
+    {
+        if(err)
+        {
+            throw err;
+        }
     });
-
-    console.log('------- PUSHING DONE -------');
+    
 });
 
-//compile typescript files
-gulp.task('compile-ts', ['gitPush'], function () {
-
-    console.log('------- COMPILING TYPESCRIPT FILES -------');
-    var sourceTsFiles = [
-
-        config.excluded,
-        config.allTs
-    ];
-
-    var tsResult =
-        gulp.src(sourceTsFiles)
-            .pipe(sourcemaps.init())
-            .pipe(tsc(tsProject));
-
-    return merge([
-        tsResult.dts
-            .pipe(gulp.dest(config.tsOutputPath)),
-        tsResult.js
-            .pipe(sourcemaps.write('.'))
-            .pipe(gulp.dest(config.tsOutputPath))
-    ]);
-});
-
-gulp.task('copy-files', ['compile-ts'], function () {
-    gulp.src(config.allCSS)
-        .pipe(gulp.dest(config.tsOutputPath));
-
-    gulp.src(config.allFonts)
-        .pipe(flatten())
-        .pipe(gulp.dest(config.fontsOutputPath));
-
-    gulp.src(config.allImages)
-        .pipe(flatten())
-        .pipe(gulp.dest(config.imagesOutputPath));
-
-    gulp.src(config.allSCSS)
-        .pipe(gulp.dest(config.tsOutputPath));
-
-    gulp.src(config.allHTML)
-        .pipe(gulp.dest(config.tsOutputPath));
-
-    gulp.src(['package.json', 'README.md'])
-        .pipe(gulp.dest(config.tsOutputPath));
-});
-
-gulp.task('clean-dist', function () {
+gulp.task('clean-dist', function ()
+{
     return del(config.tsOutputPath);
 });
 
-//console log after typescript compile
-//maybe add more tasks after this one
-gulp.task('post-compile', ['copy-files'], function () {
-    console.log('------- TYPESCRIPT FILES COMPILED -------');
+//push version changes
+gulp.task('gitPush', function ()
+{
+    git.push('origin', 'stable7', function (err)
+    {
+        if(err)
+        {
+            throw err;
+        }
+    });
 });
 
-//publish to npm
-gulp.task('publish', ['post-compile'], shell.task([
-    'npm publish dist'
-]));
-
-gulp.task('compile-ts-locally', function () {
-
-    console.log('------- COMPILING TYPESCRIPT FILES -------');
+//compile typescript files
+gulp.task('compile-ts', function ()
+{
     var sourceTsFiles = [
-
         config.excluded,
         config.allTs
     ];
-
-    var tsResult =
-        gulp.src(sourceTsFiles)
-            .pipe(sourcemaps.init())
-            .pipe(tsc(tsProject));
-
+    
+    var tsResult = gulp.src(sourceTsFiles)
+                       .pipe(sourcemaps.init())
+                       .pipe(tsc(tsProject));
+    
     return merge([
-        tsResult.dts
-            .pipe(gulp.dest(config.tsOutputPath)),
-        tsResult.js
-            .pipe(sourcemaps.write('.'))
-            .pipe(gulp.dest(config.tsOutputPath))
-    ]);
+                     tsResult.dts.pipe(gulp.dest(config.tsOutputPath)),
+                     tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.tsOutputPath))
+                 ]);
 });
 
-gulp.task('copy-files-locally', ['compile-ts-locally'], function () {
+//copy files to dist
+gulp.task('copy-files', function ()
+{
     gulp.src(config.allCSS)
         .pipe(gulp.dest(config.tsOutputPath));
-
+    
     gulp.src(config.allFonts)
         .pipe(flatten())
         .pipe(gulp.dest(config.fontsOutputPath));
-
+    
     gulp.src(config.allImages)
         .pipe(flatten())
         .pipe(gulp.dest(config.imagesOutputPath));
-
+    
     gulp.src(config.allSCSS)
         .pipe(gulp.dest(config.tsOutputPath));
-
+    
     gulp.src(config.allHTML)
         .pipe(gulp.dest(config.tsOutputPath));
-
-    gulp.src(['package.json', 'README.md'])
+    
+    gulp.src(['package.json',
+              'README.md'])
         .pipe(gulp.dest(config.tsOutputPath));
 });
 
-//publish locally
-gulp.task('publish-locally', ['copy-files-locally'], function () {
-    gulp.src('dist/**/*.*')
-        .pipe(gulp.dest('../terra/node_modules/@plentymarkets/terra-components/'));
-});
+//publish to npm
+gulp.task('publish', shell.task([
+                                    'npm publish dist'
+                                ])
+);
