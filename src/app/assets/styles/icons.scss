@@ -35,11 +35,11 @@
 @font-face
 {
     font-family: 'plentyicons';
-    src: url('../fonts/plentyicons.eot?h4qsqv');
-    src: url('../fonts/plentyicons.eot?h4qsqv#iefix') format('embedded-opentype'),
-    url('../fonts/plentyicons.ttf?h4qsqv') format('truetype'),
-    url('../fonts/plentyicons.woff?h4qsqv') format('woff'),
-    url('../fonts/plentyicons.svg?h4qsqv#plentyicons') format('svg');
+    src: url('../fonts/plentyicons.eot?k5eulh');
+    src: url('../fonts/plentyicons.eot?k5eulh#iefix') format('embedded-opentype'),
+    url('../fonts/plentyicons.ttf?k5eulh') format('truetype'),
+    url('../fonts/plentyicons.woff?k5eulh') format('woff'),
+    url('../fonts/plentyicons.svg?k5eulh#plentyicons') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -60,12 +60,51 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon_dist_top
+.icon-dunning_level:before
 {
-    position: relative;
-    top: 2px;
-    margin-top: -8px;
-    display: inline-block;
+    content: "\e94b";
+}
+
+.icon-file_extension_odt .path1:before
+{
+    content: "\e94f";
+    color: rgb(0, 0, 0);
+}
+
+.icon-file_extension_odt .path2:before
+{
+    content: "\e953";
+    margin-left: -1em;
+    color: rgb(29, 29, 27);
+}
+
+.icon-file_extension_odt .path3:before
+{
+    content: "\e958";
+    margin-left: -1em;
+    color: rgb(29, 29, 27);
+}
+
+.icon-file_extension_odt .path4:before
+{
+    content: "\eaab";
+    margin-left: -1em;
+    color: rgb(29, 29, 27);
+}
+
+.icon-folder_closeable:before
+{
+    content: "\eaac";
+}
+
+.icon-order_multi:before
+{
+    content: "\eaad";
+}
+
+.icon-plugin_stage:before
+{
+    content: "\eaae";
 }
 
 .icon-support:before
@@ -473,7 +512,7 @@
 {
     content: "\e945";
     margin-left: -1em;
-    color: rgb(255, 255, 255);
+    color: rgb(29, 29, 27);
 }
 
 .icon-dunning_level_1 .path3:before
@@ -487,88 +526,67 @@
 {
     content: "\e947";
     margin-left: -1em;
-    color: rgb(29, 29, 27);
+    color: rgb(255, 255, 255);
 }
 
 .icon-dunning_level_2 .path1:before
 {
     content: "\e948";
-    color: rgb(255, 255, 255);
+    color: rgb(29, 29, 27);
 }
 
 .icon-dunning_level_2 .path2:before
 {
     content: "\e949";
     margin-left: -1em;
-    color: rgb(255, 255, 255);
+    color: rgb(29, 29, 27);
 }
 
 .icon-dunning_level_2 .path3:before
 {
     content: "\e94a";
     margin-left: -1em;
-    color: rgb(0, 0, 0);
-}
-
-.icon-dunning_level_2 .path4:before
-{
-    content: "\e94b";
-    margin-left: -1em;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .icon-dunning_level_3 .path1:before
 {
     content: "\e94c";
-    color: rgb(255, 255, 255);
+    color: rgb(29, 29, 27);
 }
 
 .icon-dunning_level_3 .path2:before
 {
     content: "\e94d";
     margin-left: -1em;
-    color: rgb(255, 255, 255);
+    color: rgb(29, 29, 27);
 }
 
 .icon-dunning_level_3 .path3:before
 {
     content: "\e94e";
     margin-left: -1em;
-    color: rgb(0, 0, 0);
-}
-
-.icon-dunning_level_3 .path4:before
-{
-    content: "\e94f";
-    margin-left: -1em;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .icon-dunning_level_4 .path1:before
 {
     content: "\e950";
-    color: rgb(255, 255, 255);
+    color: rgb(29, 29, 27);
 }
 
 .icon-dunning_level_4 .path2:before
 {
     content: "\e951";
     margin-left: -1em;
-    color: rgb(255, 255, 255);
+    color: rgb(29, 29, 27);
 }
 
 .icon-dunning_level_4 .path3:before
 {
     content: "\e952";
     margin-left: -1em;
-    color: rgb(0, 0, 0);
-}
-
-.icon-dunning_level_4 .path4:before
-{
-    content: "\e953";
-    margin-left: -1em;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .icon-dunning_level_5 .path1:before
@@ -581,28 +599,21 @@
 {
     content: "\e955";
     margin-left: -1em;
-    color: rgb(255, 255, 255);
+    color: rgb(29, 29, 27);
 }
 
 .icon-dunning_level_5 .path3:before
 {
     content: "\e956";
     margin-left: -1em;
-    color: rgb(0, 0, 0);
+    color: rgb(29, 29, 27);
 }
 
 .icon-dunning_level_5 .path4:before
 {
     content: "\e957";
     margin-left: -1em;
-    color: rgb(0, 0, 0);
-}
-
-.icon-dunning_level_5 .path5:before
-{
-    content: "\e958";
-    margin-left: -1em;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .icon-edit_blog:before
@@ -2318,3 +2329,4 @@
 {
     content: "\eaa5";
 }
+
