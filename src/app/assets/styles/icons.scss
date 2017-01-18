@@ -35,11 +35,11 @@
 @font-face
 {
     font-family: 'plentyicons';
-    src: url('../fonts/plentyicons.eot?k5eulh');
-    src: url('../fonts/plentyicons.eot?k5eulh#iefix') format('embedded-opentype'),
-    url('../fonts/plentyicons.ttf?k5eulh') format('truetype'),
-    url('../fonts/plentyicons.woff?k5eulh') format('woff'),
-    url('../fonts/plentyicons.svg?k5eulh#plentyicons') format('svg');
+    src:  url('../fonts/plentyicons.eot?asgry6');
+    src:  url('../fonts/plentyicons.eot?asgry6#iefix') format('embedded-opentype'),
+    url('../fonts/plentyicons.ttf?asgry6') format('truetype'),
+    url('../fonts/plentyicons.woff?asgry6') format('woff'),
+    url('../fonts/plentyicons.svg?asgry6#plentyicons') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -58,6 +58,11 @@
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-plugin_inbox:before
+{
+    content: "\eaaf";
 }
 
 .icon-dunning_level:before
