@@ -24,6 +24,7 @@ import { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-
 import { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
 import { TerraRadioButtonComponent } from './forms/radio-button/terra-radio-button.component';
 import { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
+import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 import { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-multi-select-box.component';
 import { TerraDclWrapperComponent } from './dcl-wrapper/terra-dcl-wrapper.component';
 import { TerraBaseToolbarComponent } from './toolbar/base-toolbar/terra-base-toolbar.component';
@@ -55,6 +56,8 @@ import {
     LocaleModule,
     LocalizationModule
 } from 'angular2localization';
+import { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
+import { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -70,6 +73,7 @@ export { TerraNumberInputComponent } from './forms/input/number-input/terra-numb
 export { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
 export { TerraSelectBoxValueInterface } from './forms/select-box/data/terra-select-box.interface';
 export { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
+export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 export { TerraMultiSelectBoxValueInterface } from './forms/multi-select-box/data/terra-multi-select-box-value.interface';
 export { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-multi-select-box.component';
 export { TerraIndicatorComponent } from './indicator/terra-indicator.component';
@@ -106,6 +110,10 @@ export { TerraBaseTreeComponent } from './tree/base/terra-base-tree.component';
 export { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-tree.component';
 export { TerraLeafInterface } from './tree/leaf/terra-leaf.interface';
 export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
+export { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
+export { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
+export { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface';
+export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
 
 @NgModule({
               declarations:    [
@@ -120,6 +128,7 @@ export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraCheckboxComponent,
                   TerraRadioButtonComponent,
                   TerraSelectBoxComponent,
+                  TerraSuggestionBoxComponent,
                   TerraBaseToolbarComponent,
                   TerraIndicatorComponent,
                   TerraPagerComponent,
@@ -138,7 +147,9 @@ export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraSplitViewComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
-                  TerraDynamicModuleLoaderComponent
+                  TerraDynamicModuleLoaderComponent,
+                  TerraTileBoxComponent,
+                  TerraTileBoxPanelComponent
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -149,35 +160,7 @@ export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraCheckboxComponent,
                   TerraRadioButtonComponent,
                   TerraSelectBoxComponent,
-                  TerraBaseToolbarComponent,
-                  TerraIndicatorComponent,
-                  TerraPagerComponent,
-                  TerraIndicatorComponent,
-                  TerraInfoboxComponent,
-                  TerraTaglistComponent,
-                  TerraTagComponent,
-                  TerraLoadingBarComponent,
-                  TerraOverlayComponent,
-                  TerraDataTableComponent,
-                  TerraDataTableContextMenuComponent,
-                  TerraSimpleTableComponent,
-                  TerraDoubleInputComponent,
-                  TerraPortletComponent,
-                  TerraSplitViewComponent,
-                  TerraFilterComponent,
-                  TerraMultiSelectBoxComponent
-              ],
-              exports:         [
-                  TerraAlertPanelComponent,
-                  TerraDclWrapperComponent,
-                  TerraTextInputComponent,
-                  TerraNumberInputComponent,
-                  TerraButtonComponent,
-                  TerraTreeComponent,
-                  TerraCheckboxTreeComponent,
-                  TerraCheckboxComponent,
-                  TerraRadioButtonComponent,
-                  TerraSelectBoxComponent,
+                  TerraSuggestionBoxComponent,
                   TerraBaseToolbarComponent,
                   TerraIndicatorComponent,
                   TerraPagerComponent,
@@ -195,7 +178,41 @@ export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra
                   TerraSplitViewComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
-                  TerraDynamicModuleLoaderComponent
+                  TerraTileBoxComponent,
+                  TerraTileBoxPanelComponent
+              ],
+              exports:         [
+                  TerraAlertPanelComponent,
+                  TerraDclWrapperComponent,
+                  TerraTextInputComponent,
+                  TerraNumberInputComponent,
+                  TerraButtonComponent,
+                  TerraTreeComponent,
+                  TerraCheckboxTreeComponent,
+                  TerraCheckboxComponent,
+                  TerraRadioButtonComponent,
+                  TerraSelectBoxComponent,
+                  TerraSuggestionBoxComponent,
+                  TerraBaseToolbarComponent,
+                  TerraIndicatorComponent,
+                  TerraPagerComponent,
+                  TerraIndicatorComponent,
+                  TerraInfoboxComponent,
+                  TerraTaglistComponent,
+                  TerraTagComponent,
+                  TerraLoadingBarComponent,
+                  TerraOverlayComponent,
+                  TerraDataTableComponent,
+                  TerraDataTableContextMenuComponent,
+                  TerraSimpleTableComponent,
+                  TerraDoubleInputComponent,
+                  TerraPortletComponent,
+                  TerraSplitViewComponent,
+                  TerraFilterComponent,
+                  TerraMultiSelectBoxComponent,
+                  TerraDynamicModuleLoaderComponent,
+                  TerraTileBoxComponent,
+                  TerraTileBoxPanelComponent
               ],
               imports:         [
                   BrowserModule,
