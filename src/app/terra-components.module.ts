@@ -24,6 +24,7 @@ import { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-
 import { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
 import { TerraRadioButtonComponent } from './forms/radio-button/terra-radio-button.component';
 import { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
+import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 import { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-multi-select-box.component';
 import { TerraDclWrapperComponent } from './dcl-wrapper/terra-dcl-wrapper.component';
 import { TerraBaseToolbarComponent } from './toolbar/base-toolbar/terra-base-toolbar.component';
@@ -72,6 +73,7 @@ export { TerraNumberInputComponent } from './forms/input/number-input/terra-numb
 export { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
 export { TerraSelectBoxValueInterface } from './forms/select-box/data/terra-select-box.interface';
 export { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
+export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 export { TerraMultiSelectBoxValueInterface } from './forms/multi-select-box/data/terra-multi-select-box-value.interface';
 export { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-multi-select-box.component';
 export { TerraIndicatorComponent } from './indicator/terra-indicator.component';
@@ -126,6 +128,7 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   TerraCheckboxComponent,
                   TerraRadioButtonComponent,
                   TerraSelectBoxComponent,
+                  TerraSuggestionBoxComponent,
                   TerraBaseToolbarComponent,
                   TerraIndicatorComponent,
                   TerraPagerComponent,
@@ -157,6 +160,7 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   TerraCheckboxComponent,
                   TerraRadioButtonComponent,
                   TerraSelectBoxComponent,
+                  TerraSuggestionBoxComponent,
                   TerraBaseToolbarComponent,
                   TerraIndicatorComponent,
                   TerraPagerComponent,
@@ -188,6 +192,7 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   TerraCheckboxComponent,
                   TerraRadioButtonComponent,
                   TerraSelectBoxComponent,
+                  TerraSuggestionBoxComponent,
                   TerraBaseToolbarComponent,
                   TerraIndicatorComponent,
                   TerraPagerComponent,
