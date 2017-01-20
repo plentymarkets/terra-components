@@ -27,6 +27,8 @@ gulp.task('npm-publish', function (callback)
         'gitPush',
         'compile-ts',
         'copy-files',
+        'copy-fonts',
+        'copy-images',
         'publish',
         callback
     );
@@ -38,6 +40,8 @@ gulp.task('build-local', function (callback)
         'clean-dist',
         'compile-ts',
         'copy-files',
+        'copy-fonts',
+        'copy-images',
         'copy-to-terra',
         callback
     );
@@ -148,11 +152,25 @@ gulp.task('copy-files', function ()
     return gulp.src(['package.json',
                      'README.md',
                      config.allCSS,
-                     config.allFonts,
-                     config.allImages,
                      config.allSCSS,
                      config.allHTML])
                .pipe(gulp.dest(config.tsOutputPath));
+});
+
+//copy fonts to dist
+gulp.task('copy-fonts', function ()
+{
+    return gulp.src(config.allFonts)
+               .pipe(flatten())
+               .pipe(gulp.dest(config.fontsOutputPath));
+});
+
+//copy images to dist
+gulp.task('copy-images', function ()
+{
+    return gulp.src(config.allImages)
+               .pipe(flatten())
+               .pipe(gulp.dest(config.imagesOutputPath));
 });
 
 //copy files from dist to terra
