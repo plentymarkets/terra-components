@@ -33,7 +33,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     @Input() inputListBoxValues: Array<TerraSuggestionBoxValueInterface>;
     @Output() outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
     @Output() inputSelectedValueChange = new EventEmitter<TerraSuggestionBoxValueInterface>();
-    private isfocused: boolean = false;
     
     @Input()
     set inputSelectedValue(value: number | string)
@@ -87,25 +86,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 value:   '',
                 caption: ''
             };
-        
-        this.inputListBoxValues = [
-                                    {
-                                        value:   "hallo",
-                                        caption: "hallo"
-                                    },
-                                    {
-                                        value:   "hallo2",
-                                        caption: "hallo2"
-                                    },
-                                    {
-                                        value:   "komischer Wert",
-                                        caption: "komischer Wert"
-                                    },
-                                    {
-                                        value:   "hallo3",
-                                        caption: "hallo3"
-                                    }
-                                    ];
+       if (this.inputListBoxValues == null)
+       {
+           this.inputListBoxValues = [];
+       }
     }
     
     ngOnInit()
