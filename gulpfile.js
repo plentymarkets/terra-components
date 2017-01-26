@@ -27,6 +27,8 @@ gulp.task('npm-publish', function (callback)
         'gitPush',
         'compile-ts',
         'copy-files',
+        'copy-fonts',
+        'copy-images',
         'publish',
         callback
     );
@@ -38,10 +40,11 @@ gulp.task('build-local', function (callback)
         'clean-dist',
         'compile-ts',
         'copy-files',
+        'copy-fonts',
+        'copy-images',
+        'copy-to-terra',
         callback
     );
-    
-    gulp.src('dist/**/*.*').pipe(gulp.dest('../terra/node_modules/@plentymarkets/terra-components/'));
 });
 
 
@@ -146,26 +149,35 @@ gulp.task('compile-ts', function ()
 //copy files to dist
 gulp.task('copy-files', function ()
 {
-    gulp.src(config.allCSS)
-        .pipe(gulp.dest(config.tsOutputPath));
-    
-    gulp.src(config.allFonts)
-        .pipe(flatten())
-        .pipe(gulp.dest(config.fontsOutputPath));
-    
-    gulp.src(config.allImages)
-        .pipe(flatten())
-        .pipe(gulp.dest(config.imagesOutputPath));
-    
-    gulp.src(config.allSCSS)
-        .pipe(gulp.dest(config.tsOutputPath));
-    
-    gulp.src(config.allHTML)
-        .pipe(gulp.dest(config.tsOutputPath));
-    
-    gulp.src(['package.json',
-              'README.md'])
-        .pipe(gulp.dest(config.tsOutputPath));
+    return gulp.src(['package.json',
+                     'README.md',
+                     config.allCSS,
+                     config.allSCSS,
+                     config.allHTML])
+               .pipe(gulp.dest(config.tsOutputPath));
+});
+
+//copy fonts to dist
+gulp.task('copy-fonts', function ()
+{
+    return gulp.src(config.allFonts)
+               .pipe(flatten())
+               .pipe(gulp.dest(config.fontsOutputPath));
+});
+
+//copy images to dist
+gulp.task('copy-images', function ()
+{
+    return gulp.src(config.allImages)
+               .pipe(flatten())
+               .pipe(gulp.dest(config.imagesOutputPath));
+});
+
+//copy files from dist to terra
+gulp.task('copy-to-terra', function ()
+{
+    return gulp.src('dist/**/*.*')
+               .pipe(gulp.dest('../terra/node_modules/@plentymarkets/terra-components/'));
 });
 
 //publish to npm

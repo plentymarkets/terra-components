@@ -12,8 +12,8 @@ import { TerraSimpleTableRowInterface } from './row/terra-simple-table-row.inter
            })
 export class TerraSimpleTableComponent
 {
-    private _headerList:Array<TerraSimpleTableHeaderCellInterface>;
-    private _rowList:Array<TerraSimpleTableRowInterface>;
+    @Input() inputHeaderList:Array<TerraSimpleTableHeaderCellInterface>;
+    @Input() inputRowList:Array<TerraSimpleTableRowInterface>;
     @Input() inputUseHighlighting:boolean = false;
     @Input() inputIsStriped:boolean = false;
     
@@ -21,30 +21,50 @@ export class TerraSimpleTableComponent
     {
     }
     
+    /**
+     * @deprecated
+     *
+     * @returns {Array<TerraSimpleTableHeaderCellInterface>}
+     */
     public get headerList():Array<TerraSimpleTableHeaderCellInterface>
     {
-        return this._headerList;
+        return this.inputHeaderList;
     }
     
+    /**
+     * @deprecated
+     *
+     * @param value
+     */
     public set headerList(value:Array<TerraSimpleTableHeaderCellInterface>)
     {
-        this._headerList = value;
+        this.inputHeaderList = value;
     }
     
+    /**
+     * @deprecated
+     *
+     * @returns {Array<TerraSimpleTableRowInterface>}
+     */
     public get rowList():Array<TerraSimpleTableRowInterface>
     {
-        return this._rowList;
+        return this.inputRowList;
     }
     
     public set rowList(value:Array<TerraSimpleTableRowInterface>)
     {
-        this._rowList = value;
+        this.inputRowList = value;
     }
     
+    /**
+     * @deprecated
+     *
+     * @param rowToDelete
+     */
     public deleteRow(rowToDelete:TerraSimpleTableRowInterface):void
     {
-        let index = this.rowList.indexOf(rowToDelete);
+        let index = this.inputRowList.indexOf(rowToDelete);
         
-        this.rowList.splice(index, 1);
+        this.inputRowList.splice(index, 1);
     }
 }
