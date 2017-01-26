@@ -25,6 +25,7 @@ export class TerraDclWrapperComponent implements AfterViewInit, OnDestroy, OnCha
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
     @Input() inputType;
     @Input() inputName;
+    @Input() inputValue;
     @Input() inputIdentifier;
     
     private _cmpRef:ComponentRef<any>;
@@ -83,6 +84,11 @@ export class TerraDclWrapperComponent implements AfterViewInit, OnDestroy, OnCha
            this._cmpRef.instance instanceof TerraSuggestionBoxComponent)
         {
             this._cmpRef.instance.inputName = this.inputName;
+        }
+        if(this._cmpRef.instance instanceof TerraSelectBoxComponent        ||
+           this._cmpRef.instance instanceof TerraSuggestionBoxComponent)
+        {
+            this._cmpRef.instance.inputListBoxValues = this.inputValue;
         }
     }
 }
