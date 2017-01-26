@@ -228,7 +228,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     public onFocus()
     {
         this._toggleOpen = true;
-        
     }
     
     /**
