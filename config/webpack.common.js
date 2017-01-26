@@ -7,7 +7,7 @@ const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 const helpers = require('./helpers');
@@ -46,18 +46,28 @@ module.exports = function (options) {
                 },
                 {
                     test: /\.scss$/,
-                    use: [
-                        'style-loader',
-                        {
-                            loader: 'css-loader'
-                            // options: {
-                            //     importLoaders: 1
-                            // }
-                        },
-                        'postcss-loader',
-                        'sass-loader',
-                        'sass-resources-loader'
-                    ]
+                    loader: ExtractTextPlugin.extract({
+                        fallbackLoader: 'style-loader',
+                        loader: [
+                            {
+                                loader: 'css-loader',
+                                query: {
+                                    modules: false,
+                                    sourceMap: false,
+                                    localIdentName: '[hash:base64:5]',
+                                    minimize: false
+                                }
+                            },
+                            'postcss-loader',
+                            {
+                                loader: 'sass-loader',
+                                query: {
+                                    sourceMap: false
+                                }
+                            },
+                            'sass-resources-loader'
+                        ]
+                    })
                 },
                 {
                     test: /\.json$/,
@@ -131,6 +141,8 @@ module.exports = function (options) {
                 Util: "exports?Util!bootstrap/js/dist/util"
                 //---------------------------------------------------
             }),
+
+            new ExtractTextPlugin("[name].css"),
 
             new LoaderOptionsPlugin({
                 debug: true,
