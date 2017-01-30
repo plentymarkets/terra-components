@@ -9,7 +9,7 @@ import { TerraTileBoxColor } from './data/terra-tile-box-color';
  */
 @Component({
                selector: 'terra-tile-box',
-               styles:   [require('./terra-tile-box.component.scss').toString()],
+               styles:   [require('./terra-tile-box.component.scss')],
                template: require('./terra-tile-box.component.html')
            })
 export class TerraTileBoxComponent

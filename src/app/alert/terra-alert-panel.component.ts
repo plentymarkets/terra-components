@@ -10,9 +10,8 @@ import { TerraAlertInterface } from './data/terra-alert.interface';
  */
 @Component({
                selector:      'terra-alert-panel',
-               styles:        [require('./terra-alert-panel.component.scss').toString()],
+               styles:        [require('./terra-alert-panel.component.scss')],
                template:      require('./terra-alert-panel.component.html'),
-               encapsulation: ViewEncapsulation.None
            })
 export class TerraAlertPanelComponent
 {

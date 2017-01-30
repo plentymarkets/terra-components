@@ -14,7 +14,7 @@ import { JitCompiler } from '@angular/compiler';
 @Component({
                selector: 'terra-dynamic-module-loader',
                template: require('./terra-dynamic-module-loader.component.html'),
-               styles:   [require('./terra-dynamic-module-loader.component.scss').toString()]
+               styles:   [require('./terra-dynamic-module-loader.component.scss')]
            })
 export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestroy
 {

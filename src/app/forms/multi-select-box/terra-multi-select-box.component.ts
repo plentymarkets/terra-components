@@ -23,9 +23,8 @@ import {
 
 @Component({
                selector:      'terra-multi-select-box',
-               styles:        [require('./terra-multi-select-box.component.scss').toString()],
+               styles:        [require('./terra-multi-select-box.component.scss')],
                template:      require('./terra-multi-select-box.component.html'),
-               encapsulation: ViewEncapsulation.None
            })
 
 export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnChanges

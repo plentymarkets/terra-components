@@ -18,10 +18,9 @@ export const NUMBER_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 
 @Component({
                selector:      'terra-number-input',
-               styles:        [require('./terra-number-input.component.scss').toString()],
+               styles:        [require('./terra-number-input.component.scss')],
                template:      require('./terra-number-input.component.html'),
                providers:     [NUMBER_INPUT_CONTROL_VALUE_ACCESSOR],
-               encapsulation: ViewEncapsulation.None
            })
 export class TerraNumberInputComponent extends TerraInputComponent
 {

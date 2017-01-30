@@ -8,9 +8,8 @@ import { TerraLeafInterface } from './leaf/terra-leaf.interface';
 
 @Component({
                selector:      'terra-tree',
-               styles:        [require('./terra-tree.component.scss').toString()],
+               styles:        [require('./terra-tree.component.scss')],
                template:      require('./terra-tree.component.html'),
-               encapsulation: ViewEncapsulation.None
            })
 export class TerraTreeComponent extends TerraBaseTreeComponent
 {

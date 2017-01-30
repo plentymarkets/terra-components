@@ -13,7 +13,7 @@ import {
 
 @Component({
                selector: 'terra-split-view',
-               styles:   [require('./terra-split-view.component.scss').toString()],
+               styles:   [require('./terra-split-view.component.scss')],
                template: require('./terra-split-view.component.html')
            })
 export class TerraSplitViewComponent extends Locale implements OnChanges

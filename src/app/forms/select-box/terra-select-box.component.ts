@@ -14,7 +14,7 @@ import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface'
 
 @Component({
                selector:        'terra-select-box',
-               styles:          [require('./terra-select-box.component.scss').toString()],
+               styles:          [require('./terra-select-box.component.scss')],
                template:        require('./terra-select-box.component.html'),
                encapsulation:   ViewEncapsulation.None,
                host:            {

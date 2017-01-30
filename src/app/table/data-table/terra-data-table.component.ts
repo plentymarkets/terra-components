@@ -20,7 +20,7 @@ import { TerraDataTableContextMenuService } from './context-menu/service/terra-d
 @Component({
                selector:  'terra-data-table',
                providers: [TerraDataTableContextMenuService],
-               styles:    [require('./terra-data-table.component.scss').toString()],
+               styles:    [require('./terra-data-table.component.scss')],
                template:  require('./terra-data-table.component.html')
            })
 

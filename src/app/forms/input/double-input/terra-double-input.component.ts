@@ -18,10 +18,9 @@ export const DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 
 @Component({
                selector:      'terra-double-input',
-               styles:        [require('./terra-double-input.component.scss').toString()],
+               styles:        [require('./terra-double-input.component.scss')],
                template:      require('./terra-double-input.component.html'),
                providers:     [DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR],
-               encapsulation: ViewEncapsulation.None
            })
 export class TerraDoubleInputComponent extends TerraInputComponent
 {

@@ -13,7 +13,7 @@ import {
 
 @Component({
                selector: 'terra-dcl-wrapper',
-               styles:   [require('./terra-dcl-wrapper.component.scss').toString()],
+               styles:   [require('./terra-dcl-wrapper.component.scss')],
                template: require('./terra-dcl-wrapper.component.html')
            })
 export class TerraDclWrapperComponent implements AfterViewInit, OnDestroy, OnChanges
