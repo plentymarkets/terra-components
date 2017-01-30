@@ -45,7 +45,7 @@ styleLoaders:
 # Import your custom styles here
 # Usually this endpoint-file contains list of @imports of your application styles
 #
-appStyles: ./src/index.scss
+appStyles: ./src/index.glob.scss
 
 
 ### Bootstrap styles

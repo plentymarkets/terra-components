@@ -9,6 +9,7 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const helpers = require('./helpers');
 
@@ -46,36 +47,39 @@ module.exports = function (options) {
                 },
                 {
                     test: /\.scss$/,
-                    loader: ExtractTextPlugin.extract({
-                        fallbackLoader: 'style-loader',
-                        loader: [
-                            {
-                                loader: 'css-loader',
-                                query: {
-                                    modules: false,
-                                    sourceMap: false,
-                                    localIdentName: '[hash:base64:5]',
-                                    minimize: false
-                                }
-                            },
-                            'postcss-loader',
-                            {
-                                loader: 'sass-loader',
-                                query: {
-                                    sourceMap: false
-                                }
-                            },
-                            'sass-resources-loader'
-                        ]
-                    })
+                    exclude: [/\.glob\.scss$/],
+                    loaders: [
+                        'raw-loader',
+                        // 'resolve-url-loader',
+                        {
+                            loader: 'sass-loader',
+                            query: {
+                                sourceMap: true
+                            }
+                        },
+                        'sass-resources-loader'
+                    ]
+                },
+                {
+                    test: /\.glob\.scss$/,
+                    loaders: [
+                        'style-loader',
+                        'css-loader',
+                        'postcss-loader',
+                        'sass-loader'
+                    ]
                 },
                 {
                     test: /\.json$/,
                     loader: 'json-loader'
                 },
                 {
-                    test: /\.(jpg|png|gif|svg)$/,
+                    test: /\.svg$/,
                     loader: 'file-loader'
+                },
+                {
+                    test: /\.jpg$/,
+                    loader:  'file-loader'
                 },
                 {
                     test: /\.(woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -142,7 +146,11 @@ module.exports = function (options) {
                 //---------------------------------------------------
             }),
 
-            new ExtractTextPlugin("[name].css"),
+            // new ExtractTextPlugin("[name].css"),
+
+            new CopyWebpackPlugin([
+                {from: 'src/app/assets', to: 'assets'}
+            ]),
 
             new LoaderOptionsPlugin({
                 debug: true,
