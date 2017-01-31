@@ -6,23 +6,12 @@
     
     <div class="multiselect-element {{boxClassType}}">
         <div class="multiselect">
-            <div class="btn-group btn-group--all" role="group">
-                <div class="btn btn-primary checkbox-all">
+            <div class="multiselect-header" >
+                <div class="checkbox-container">
                     <terra-checkbox #viewChildHeaderCheckbox type="checkbox" [inputIsDisabled]="inputIsDisabled"
                                     (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"></terra-checkbox>
                 </div>
-                <div *ngIf="!inputIsDisabled && !inputIsError" class="btn-all">
-                    <terra-button (outputClicked)="primaryClicked()" inputCaption="{{ 'selectAll' | translate:lang }}"
-                                  [inputIsPrimary]="true"></terra-button>
-                </div>
-                <div *ngIf="inputIsError" class="btn-all">
-                    <terra-button (outputClicked)="primaryClicked()" inputCaption="{{ 'selectAll' | translate:lang }}"
-                                  [inputIsSecondary]="true"></terra-button>
-                </div>
-                <div *ngIf="inputIsDisabled && !inputIsError" class="btn-all">
-                    <terra-button (outputClicked)="primaryClicked()" inputCaption="{{ 'selectAll' | translate:lang }}"
-                                  [inputIsDisabled]="true"></terra-button>
-                </div>
+                <label (click)="primaryClicked()" class="header-label">{{ 'selectAll' | translate:lang }}</label>
             </div>
             <div class="option-list">
                 <div *ngFor="let value of inputValueList; let i = index">
