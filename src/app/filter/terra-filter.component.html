@@ -8,9 +8,7 @@
     </terra-base-toolbar>
     
     <div class="input-group-v">
-        <div *ngFor="let item of inputInputList" #viewChildInputList>
-            <terra-dcl-wrapper [inputType]="item.template"></terra-dcl-wrapper>
-        </div>
+        <ng-content></ng-content>
     </div>
 
 </div>

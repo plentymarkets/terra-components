@@ -132,11 +132,14 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         this._rowList = value;
         
-        this.rowList.forEach(
-            row =>row.contextMenuLinkList.forEach(
-                l => l.subject.subscribe(
-                    val=> val.clickFunction(val)))
-        );
+        if(this.rowList != null)
+        {
+            this.rowList.forEach(
+                row =>row.contextMenuLinkList.forEach(
+                    l => l.subject.subscribe(
+                        val=> val.clickFunction(val)))
+            );
+        }
     }
     
     public deleteRow(rowToDelete:TerraDataTableRowInterface<D>):void
