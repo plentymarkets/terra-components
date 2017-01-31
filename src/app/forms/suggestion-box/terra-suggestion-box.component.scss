@@ -1,0 +1,103 @@
+@import "../../assets/styles/variables";
+@import "../input/terra-input.component";
+
+.select-box-wrapper
+{
+    position: relative;
+    .select-box
+    {
+        display: inline-block;
+        width: 100%;
+        max-width: 100%;
+        vertical-align: middle;
+        background: #FFFFFF;
+        border: 1px solid $gray-light-2;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        line-height: 1em;
+        padding: .6rem 2rem .5rem 1rem;
+        background-position: calc(100% - 1rem) 1.2rem;
+        border: $border-width solid $border-color;
+        border-radius: $border-radius;
+        background: #FFFFFF url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat right .75rem center;
+        background-image: none \9;
+        background-size: 8px 10px;
+        &.error
+        {
+            border-color: $error;
+            color: $error;
+            background-size: 8px 10px;
+        }
+
+    }
+    .select-box-dropdown
+    {
+        position: absolute;
+        z-index: 99999;
+        top: 1.9375rem;
+        left: 0;
+        width: 100%;
+        max-height: 12rem;
+        border: 1px solid $gray-light-2;
+        border-radius: $border-radius;
+        background: white;
+        display: none;
+        > span
+        {
+            display: block;
+            width: 100%;
+            padding: .25em 1em;
+            &:hover,
+            &.active
+            {
+                background: $brand-primary;
+                color: white;
+                cursor: pointer;
+            }
+        }
+    }
+    &.open
+    {
+        .select-box-dropdown
+        {
+            display: block;
+        }
+    }
+
+    &.disabled
+    {
+        opacity: .65;
+
+        label, .select-box
+        {
+            background-color: #F2F2F2;
+            cursor: not-allowed;
+        }
+        .select-box-dropdown
+        {
+            display: none !important;
+        }
+    }
+}
+
+.input-unit-v1.select-box-wrapper .select-box
+{
+    border: none;
+    padding: 1.3rem 1rem .3rem 1rem;
+}
+
+.input-unit-v1.select-box-wrapper
+{
+    overflow: inherit;
+}
+
+.input-unit-v1.select-box-wrapper .select-box-dropdown
+{
+    width: auto;
+    top: inherit;
+    left: -1px;
+    right: -1px;
+}
+
+
+
