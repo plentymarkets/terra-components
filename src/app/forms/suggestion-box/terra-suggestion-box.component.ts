@@ -16,6 +16,7 @@ import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.in
                selector:        'terra-suggestion-box',
                styles:          [require('./terra-suggestion-box.component.scss').toString()],
                template:        require('./terra-suggestion-box.component.html'),
+    //TODO in template input mit terra-input ersetzen
                encapsulation:   ViewEncapsulation.None,
                host:            {
                    '(document:click)': 'clickedOutside($event)',
