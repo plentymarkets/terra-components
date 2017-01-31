@@ -270,4 +270,22 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this.inputListBoxValues = this.tempInputListBoxValues;
         }
     }
+    
+    /**
+     *
+     * @param
+     */
+    public resetComponentValue()
+    {
+        this._selectedValue =
+            {
+                value:   '',
+                caption: ''
+            };
+        this._currentValue =
+            {
+                value:   '',
+                caption: ''
+            };
+    }
 }
