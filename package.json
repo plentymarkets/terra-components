@@ -1,6 +1,6 @@
 {
 	"name": "@plentymarkets/terra-components",
-	"version": "1.0.0.view-encapsulation",
+	"version": "1.0.0-encapsulation",
 	"homepage": "https://github.com/plentymarkets/terra-components#readme",
 	"author": "plentymarkets",
 	"description": "plentymarkets terra components",
