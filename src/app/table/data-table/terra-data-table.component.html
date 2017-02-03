@@ -15,7 +15,7 @@
                 <th *ngIf="!header.isHidden"
                     width="{{header.width}}px">
               <span
-                  tooltipPlacement="{{header.tooltipPlacement}}"
+                  placement="{{header.tooltipPlacement}}"
                   tooltip="{{header.tooltipText}}"
                   tooltipEnable="{{header.tooltipText}}">{{header.caption}}</span>
                 </th>
@@ -32,7 +32,7 @@
                 <template ngFor let-cell [ngForOf]="row.cellList">
                     <td *ngIf="!cell.isHidden" (click)="!cell.buttonList && row.clickFunction()">
               <span [ngClass]="cell.icon"
-                    tooltipPlacement="{{cell.tooltipPlacement}}"
+                    placement="{{cell.tooltipPlacement}}"
                     tooltip="{{cell.tooltipText}}"
                     tooltipEnable="{{cell.tooltipText}}">{{cell.caption}}</span>
                         <div class="btn-group" *ngIf="cell.buttonList">

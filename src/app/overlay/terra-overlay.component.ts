@@ -4,7 +4,7 @@ import {
     Input,
     AfterViewInit
 } from '@angular/core';
-import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
+import { ModalDirective } from 'ng2-bootstrap';
 import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interface';
 
 /**

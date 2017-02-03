@@ -14,7 +14,7 @@ import {
     AlertModule,
     ModalModule,
     ButtonsModule
-} from 'ng2-bootstrap/ng2-bootstrap';
+} from 'ng2-bootstrap';
 import { TerraComponentsComponent } from './terra-components.component';
 import { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
 import { TerraNumberInputComponent } from './forms/input/number-input/terra-number-input.component';
@@ -213,14 +213,14 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   BrowserModule,
                   FormsModule,
                   ReactiveFormsModule,
-                  ModalModule,
+                  ModalModule.forRoot(),
                   HttpModule,
-                  TooltipModule,
-                  AlertModule,
-                  ButtonsModule,
+                  TooltipModule.forRoot(),
+                  AlertModule.forRoot(),
+                  ButtonsModule.forRoot(),
                   ClipboardModule,
                   LocaleModule,
-                  LocalizationModule
+                  LocalizationModule,
               ],
               providers:       [
                   COMPILER_PROVIDERS,
@@ -228,7 +228,7 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   LocalizationService
               ],
               bootstrap:       [
-                  //TerraComponentsComponent
+                  TerraComponentsComponent
               ]
           })
 export class TerraComponentsModule

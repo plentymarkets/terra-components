@@ -6,7 +6,7 @@
                     <terra-checkbox #viewChildHeaderCheckbox type="checkbox" [inputIsDisabled]="inputIsDisabled"
                                     (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"></terra-checkbox>
                 </div>
-                <label (click)="primaryClicked()" class="header-label">{{ _label }}</label>
+                <label (click)="primaryClicked()" class="header-label">{{ inputName }}</label>
             </div>
             <div class="option-list">
                 <div *ngFor="let value of inputValueList; let i = index">

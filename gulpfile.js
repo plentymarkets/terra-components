@@ -81,7 +81,7 @@ gulp.task('changeVersion', function ()
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
     
     //possible values are: patch, minor, major
-    json.version = '1.0.0-encapsulation3'; //semver.inc(json.version, 'patch');
+    json.version = '1.0.0-encapsulation4'; //semver.inc(json.version, 'patch');
     
     version = json.version;
     
