@@ -53,7 +53,7 @@ export class TerraTileBoxPanelComponent
                 tile.isDropTarget = true;
             }
         }
-    
+        
         //awesome hack for firefox! it rocks!!!
         event.dataTransfer.setData('text', 'anything');
     }
@@ -74,7 +74,7 @@ export class TerraTileBoxPanelComponent
     private onDragLeave(event, hoverTile:TerraTileBoxInterface):void
     {
         event.preventDefault();
-    
+        
         if(!hoverTile.isDragging)
         {
             hoverTile.isHover = false;
@@ -87,7 +87,7 @@ export class TerraTileBoxPanelComponent
         
         let draggedTile:TerraTileBoxInterface = this.inputTileBoxList[this._draggedIndex];
         draggedTile.isDragging = false;
-    
+        
         for(let tile of this.inputTileBoxList)
         {
             tile.isDropTarget = false;
