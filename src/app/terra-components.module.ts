@@ -113,6 +113,7 @@ export { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
 export { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
 export { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface';
 export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
+export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 
 @NgModule({
               declarations:    [
