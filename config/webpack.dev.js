@@ -5,8 +5,6 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 3000;
@@ -55,4 +53,4 @@ module.exports = function (options) {
     }
 
   });
-}
+};
