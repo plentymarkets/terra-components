@@ -9,6 +9,6 @@ export interface TerraDataTableRowInterface<D extends TerraBaseData>
     cellList:Array<TerraDataTableCellInterface>;
     selected?:boolean;
     data?:D;
-    clickFunction?:()=>void;
+    clickFunction?:() => void;
     contextMenuLinkList?:Array<TerraDataTableContextMenuEntryInterface<D>>;
 }

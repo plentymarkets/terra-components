@@ -35,7 +35,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _isHeaderCheckboxChecked:boolean = false;
     private _pagingData:TerraPagerInterface;
     private _pagingSize:Array<TerraSelectBoxValueInterface>;
-    private _onSuccessFunction:(res)=>void;
+    private _onSuccessFunction:(res) => void;
     private _defaultPagingSize:number;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     @Input()
@@ -57,7 +57,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this._isHeaderCheckboxChecked = isChecked;
         
         this.rowList.forEach(
-            (row)=>
+            (row) =>
             {
                 this.changeRowState(isChecked, row);
             });
@@ -90,7 +90,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         let rowFound:boolean = false;
         
         this.selectedRowList.forEach(
-            (row)=>
+            (row) =>
             {
                 if(row == rowToChange)
                 {
@@ -133,9 +133,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this._rowList = value;
         
         this.rowList.forEach(
-            row =>row.contextMenuLinkList.forEach(
+            row => row.contextMenuLinkList.forEach(
                 l => l.subject.subscribe(
-                    val=> val.clickFunction(val)))
+                    val => val.clickFunction(val)))
         );
     }
     
@@ -178,7 +178,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         if(this.rowList != null)
         {
             this.rowList.forEach(
-                (row)=>
+                (row) =>
                 {
                     this.changeRowState(false, row);
                 });
@@ -205,12 +205,12 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this._defaultPagingSize = value;
     }
     
-    public get onSuccessFunction():(res:any)=>void
+    public get onSuccessFunction():(res:any) => void
     {
         return this._onSuccessFunction;
     }
     
-    public set onSuccessFunction(value:(res:any)=>void)
+    public set onSuccessFunction(value:(res:any) => void)
     {
         this._onSuccessFunction = value;
     }

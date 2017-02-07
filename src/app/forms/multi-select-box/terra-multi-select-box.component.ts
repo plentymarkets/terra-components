@@ -22,9 +22,9 @@ import {
 
 
 @Component({
-               selector:      'terra-multi-select-box',
-               styles:        [require('./terra-multi-select-box.component.scss')],
-               template:      require('./terra-multi-select-box.component.html'),
+               selector: 'terra-multi-select-box',
+               styles:   [require('./terra-multi-select-box.component.scss')],
+               template: require('./terra-multi-select-box.component.html'),
            })
 
 export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnChanges
@@ -63,10 +63,10 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
             }
             
             this.inputValueList
-                .forEach((item:TerraMultiSelectBoxValueInterface)=>
+                .forEach((item:TerraMultiSelectBoxValueInterface) =>
                          {
                              item.selected = false;
-                             
+                
                              valueCopy.forEach((key) =>
                                                {
                                                    if(item.value == key)
@@ -78,7 +78,7 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
                                                });
                          });
             
-            setTimeout(()=> this.inputSelectedValueListChange.emit(this._selectedValueList), 0);
+            setTimeout(() => this.inputSelectedValueListChange.emit(this._selectedValueList), 0);
         }
     }
     
@@ -111,7 +111,7 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         {
             this._label = "Alle";
         }
-    
+        
         this._isInit = true;
     }
     
@@ -153,7 +153,7 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         this.viewChildHeaderCheckbox.value = isChecked;
         
         this.inputValueList
-            .forEach((value)=>
+            .forEach((value) =>
                      {
                          this.changeValueState(isChecked, value);
                      });
@@ -208,7 +208,7 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         else
         {
             let index = this._selectedValueList.indexOf(valueToChange.value);
-
+            
             this._selectedValueList.splice(index, 1);
         }
     }
@@ -220,7 +220,7 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         if(valueList && valueList.length > 0)
         {
             valueList
-                .forEach((item:TerraMultiSelectBoxValueInterface)=>
+                .forEach((item:TerraMultiSelectBoxValueInterface) =>
                          {
                              if(item.selected == true)
                              {

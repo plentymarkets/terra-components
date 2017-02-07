@@ -6,7 +6,7 @@ import { TerraTileBoxColor } from './terra-tile-box-color';
 export interface TerraTileBoxInterface
 {
     title:string;
-    imagePath?: string;
+    imagePath?:string;
     subTitle?:string;
     text:string;
     isSelected?:boolean;
