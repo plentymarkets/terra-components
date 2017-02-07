@@ -57,6 +57,7 @@ import {
 } from 'angular2localization';
 import { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
 import { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
+import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -146,7 +147,8 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   TerraMultiSelectBoxComponent,
                   TerraDynamicModuleLoaderComponent,
                   TerraTileBoxComponent,
-                  TerraTileBoxPanelComponent
+                  TerraTileBoxPanelComponent,
+                  TerraSuggestionBoxComponent
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -175,7 +177,8 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
                   TerraTileBoxComponent,
-                  TerraTileBoxPanelComponent
+                  TerraTileBoxPanelComponent,
+                  TerraSuggestionBoxComponent
               ],
               exports:         [
                   TerraAlertPanelComponent,
@@ -207,7 +210,8 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   TerraMultiSelectBoxComponent,
                   TerraDynamicModuleLoaderComponent,
                   TerraTileBoxComponent,
-                  TerraTileBoxPanelComponent
+                  TerraTileBoxPanelComponent,
+                  TerraSuggestionBoxComponent
               ],
               imports:         [
                   BrowserModule,
