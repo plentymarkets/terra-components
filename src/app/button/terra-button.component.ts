@@ -6,9 +6,9 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector:      'terra-button',
-               styles:        [require('./terra-button.component.scss')],
-               template:      require('./terra-button.component.html'),
+               selector: 'terra-button',
+               styles:   [require('./terra-button.component.scss')],
+               template: require('./terra-button.component.html'),
            })
 export class TerraButtonComponent
 {

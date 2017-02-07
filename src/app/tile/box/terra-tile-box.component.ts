@@ -41,18 +41,18 @@ export class TerraTileBoxComponent
         let isBlue:boolean = false;
         let isDarkBlue:boolean = false;
         
-        switch (this.inputColor)
+        switch(this.inputColor)
         {
             case TerraTileBoxColor.LIGHT_BLUE:
                 
                 isLightBlue = true;
                 break;
-                
+            
             case TerraTileBoxColor.BLUE:
                 
                 isBlue = true;
                 break;
-                
+            
             case TerraTileBoxColor.DARK_BLUE:
                 
                 isDarkBlue = true;
@@ -63,9 +63,9 @@ export class TerraTileBoxComponent
         }
         
         return {
-            light_blue: isLightBlue,
-            blue: isBlue,
-            dark_blue: isDarkBlue,
+            light_blue:  isLightBlue,
+            blue:        isBlue,
+            dark_blue:   isDarkBlue,
             is_selected: this.inputIsSelected,
             is_dragging: this.inputIsDragging
         }

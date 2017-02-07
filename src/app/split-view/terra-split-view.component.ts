@@ -94,7 +94,7 @@ export class TerraSplitViewComponent extends Locale implements OnChanges
                     this.inputModules[2].hidden = false;
                 }
             }
-        
+            
             if(this.inputModules.length == 1)
             {
                 this._isSingleComponent = true;

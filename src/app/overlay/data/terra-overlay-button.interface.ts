@@ -7,5 +7,5 @@ export interface TerraOverlayButtonInterface
     caption?:string;
     tooltipText?:string;
     isDisabled?:boolean;
-    clickFunction:()=>void;
+    clickFunction:() => void;
 }
