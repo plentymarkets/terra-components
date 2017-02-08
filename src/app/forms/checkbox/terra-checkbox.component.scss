@@ -4,6 +4,21 @@ input[type="checkbox"]
     margin-right: 0.3em;
 }
 
+.disabled
+{
+    opacity: .65;
+    
+    background-color: #F2F2F2;
+    cursor: not-allowed;
+    
+    label
+    {
+        background-color: #F2F2F2;
+        cursor: not-allowed;
+    }
+    
+}
+
 .checkbox
 {
     display: inline-block;
