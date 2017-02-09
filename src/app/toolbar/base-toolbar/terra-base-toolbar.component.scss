@@ -4,10 +4,16 @@
     padding: .5rem;
     margin-left: 0;
     
+    /deep/
+    {
     .btn
     {
         margin: 3px 0 3px 0 !important;
-        border-right: 1px solid $gray-light-4;
+        border-right: 1px solid $gray-light-4 !important;
+        padding: 0.5rem 1rem !important;
+        font-weight: normal !important;
+        font-size: 1rem !important;
+        border-radius: 0.25rem !important;
         
         &:last-child
         {
@@ -42,13 +48,15 @@
     {
         float: left;
         margin: 4px 0 3px 0 !important;
+        //width: 2.5rem;
+        //padding: .5rem .35rem;
         
         input
         {
             font-size: $font-size-lg !important;
         }
     }
-    terra-select-box
+    .terra-select-box
     {
         margin: 3px 0 3px 0 !important;
         
@@ -61,6 +69,7 @@
         {
             top: 2.3rem;
         }
+    }
     }
 }
 
