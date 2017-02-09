@@ -6,70 +6,76 @@
     
     /deep/
     {
-    .btn
-    {
-        margin: 3px 0 3px 0 !important;
-        border-right: 1px solid $gray-light-4 !important;
-        padding: 0.5rem 1rem !important;
-        font-weight: normal !important;
-        font-size: 1rem !important;
-        border-radius: 0.25rem !important;
-        
-        &:last-child
+        .btn
         {
-            border-right: 1px solid transparent;
+            margin: 3px 0 3px 0 !important;
+            border-right: 1px solid $gray-light-4 !important;
+            padding: 0.5rem 1rem !important;
+            font-weight: normal !important;
+            font-size: 1rem !important;
+            border-radius: 0.25rem !important;
+            
+            &:disabled
+            {
+                cursor: not-allowed;
+                opacity: .65;
+            }
+            
+            &:last-child
+            {
+                border-right: 1px solid transparent;
+            }
+            
+            span[class^="icon-"], span[class*=" icon-"]
+            {
+                font-size: $font-size-lg;
+            }
         }
-        
-        span[class^="icon-"], span[class*=" icon-"]
+        .c-select
         {
-            font-size: $font-size-lg;
+            border: 1px solid $gray-light-2;
+            width: auto;
+            float: left;
+            margin-top: 3px;
+            padding: .6rem 2rem .45rem 1rem;
+            background-position: calc(100% - 0.5rem) .75rem;
+            text-align: left;
+            text-align-last: left;
         }
-    }
-    .c-select
-    {
-        border: 1px solid $gray-light-2;
-        width: auto;
-        float: left;
-        margin-top: 3px;
-        padding: .6rem 2rem .45rem 1rem;
-        background-position: calc(100% - 0.5rem) .75rem;
-        text-align: left;
-        text-align-last: left;
-    }
-    .checkbox
-    {
-        padding: 0.6rem .35rem;
-        margin-bottom: 0;
-        float: left;
-    }
-    terra-number-input,
-    terra-text-input,
-    terra-double-input
-    {
-        float: left;
-        margin: 4px 0 3px 0 !important;
-        //width: 2.5rem;
-        //padding: .5rem .35rem;
-        
-        input
+        .checkbox
         {
-            font-size: $font-size-lg !important;
+            padding: 0.6rem .35rem;
+            margin-bottom: 0;
+            float: left;
         }
-    }
-    .terra-select-box
-    {
-        margin: 3px 0 3px 0 !important;
-        
-        .select-box
+        terra-number-input,
+        terra-text-input,
+        terra-double-input
         {
-            font-size: $font-size-lg;
-            padding: .65rem 2rem .6rem 1rem;
+            float: left;
+            margin: 4px 0 3px 0 !important;
+            //width: 2.5rem;
+            //padding: .5rem .35rem;
+            
+            input
+            {
+                font-size: $font-size-lg !important;
+            }
         }
-        .select-box-dropdown
+        .terra-select-box
         {
-            top: 2.3rem;
+            margin: 3px 0 3px 0 !important;
+            
+            .select-box
+            {
+                font-size: $font-size-lg;
+                padding: .65rem 2rem .6rem 1rem;
+            }
+            .select-box-dropdown
+            {
+                top: 2.3rem;
+            }
         }
-    }
     }
 }
 
