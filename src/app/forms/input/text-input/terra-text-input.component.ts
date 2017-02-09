@@ -2,7 +2,6 @@ import {
     Component,
     Input,
     forwardRef,
-    ViewEncapsulation
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { TerraRegex } from '../../../regex/terra-regex';
@@ -35,10 +34,12 @@ export class TerraTextInputComponent extends TerraInputComponent
     @Input() inputMaxValue:number;
     @Input() inputMinLength:number;
     @Input() inputMinValue:number;
+    @Input() inputType:string;
     
     constructor()
     {
-        super('text', TerraRegex.MIXED);
+        super('', TerraRegex.MIXED);
+        this.inputType = "text";
     }
     
     @Input()
