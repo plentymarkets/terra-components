@@ -1,10 +1,10 @@
 <div
     [ngClass]=" {
-                'disabled': inputIsDisabled
+                'disabled-chk': inputIsDisabled
                 }">
     <label class="input-control checkbox small-check">
         <input type="checkbox" [(ngModel)]="value" [disabled]="inputIsDisabled" [indeterminate]="isIndeterminate" [id]="inputId">
         <span class="check"></span>
     </label>
-    <span *ngIf="inputCaption" [ngClass]="{'disabled': inputIsDisabled}">{{inputCaption}}</span>
+    <span *ngIf="inputCaption" [ngClass]="{'disabled-chk': inputIsDisabled}">{{inputCaption}}</span>
 </div>

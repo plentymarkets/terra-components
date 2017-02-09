@@ -4,19 +4,15 @@ input[type="checkbox"]
     margin-right: 0.3em;
 }
 
-.disabled
+.disabled-chk
 {
     opacity: .65;
-    
-    background-color: #F2F2F2;
     cursor: not-allowed;
     
-    label
+    span
     {
         background-color: #F2F2F2;
-        cursor: not-allowed;
     }
-    
 }
 
 .checkbox
