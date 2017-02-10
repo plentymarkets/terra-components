@@ -15,7 +15,6 @@
 		"components"
 	],
 	"license": "MIT",
-	"angular-cli": {},
 	"scripts": {
 		"webpack": "webpack",
 		"npm-publish": "gulp npm-publish",
