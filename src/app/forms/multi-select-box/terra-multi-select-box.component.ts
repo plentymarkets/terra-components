@@ -3,7 +3,6 @@ import {
     OnInit,
     Input,
     ViewChild,
-    ViewEncapsulation,
     Output,
     EventEmitter,
     SimpleChanges,
@@ -26,7 +25,6 @@ import {
                styles:   [require('./terra-multi-select-box.component.scss')],
                template: require('./terra-multi-select-box.component.html'),
            })
-
 export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnChanges
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
@@ -67,7 +65,7 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
                          {
                              item.selected = false;
                 
-                             valueCopy.forEach((key) =>
+                             valueCopy.forEach((key:any) =>
                                                {
                                                    if(item.value == key)
                                                    {
@@ -153,7 +151,7 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         this.viewChildHeaderCheckbox.value = isChecked;
         
         this.inputValueList
-            .forEach((value) =>
+            .forEach((value:TerraMultiSelectBoxValueInterface) =>
                      {
                          this.changeValueState(isChecked, value);
                      });
