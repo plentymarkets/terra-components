@@ -16,6 +16,7 @@ import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraOverlayComponent } from '../../overlay/terra-overlay.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
+import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 
 @Component({
                selector:  'terra-data-table',
@@ -133,9 +134,11 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this._rowList = value;
         
         this.rowList.forEach(
-            row => row.contextMenuLinkList.forEach(
-                l => l.subject.subscribe(
-                    val => val.clickFunction(val)))
+            (row:TerraDataTableRowInterface<D>) => row.contextMenuLinkList.forEach(
+                (link:TerraDataTableContextMenuEntryInterface<D>) => link.subject.subscribe(
+                    (valueToClick:TerraDataTableContextMenuEntryInterface<D>) => valueToClick.clickFunction(valueToClick)
+                )
+            )
         );
     }
     
@@ -178,7 +181,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         if(this.rowList != null)
         {
             this.rowList.forEach(
-                (row) =>
+                (row:TerraDataTableRowInterface<D>) =>
                 {
                     this.changeRowState(false, row);
                 });
