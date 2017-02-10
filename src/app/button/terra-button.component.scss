@@ -282,7 +282,7 @@ input[type="button"]
 }
 
 /* Tooltips */
-:host > > > .tooltip-inner
+:host /deep/ .tooltip-inner
 {
     font-size: 4px !important;
     color: #FFFFFF;
