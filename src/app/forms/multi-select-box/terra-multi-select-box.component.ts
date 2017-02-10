@@ -132,11 +132,6 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
                                                   }
                                               });
             
-            //if(temp.length == 0)
-            //{
-            //    temp.push(changes["inputValueList"].currentValue[0].value);
-            //}
-            
             setTimeout(() => this.inputSelectedValueList = temp, 0);
         }
     }

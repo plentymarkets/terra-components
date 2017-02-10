@@ -4,8 +4,7 @@ import {
     ViewChild,
     Input,
     Output,
-    EventEmitter,
-    ViewEncapsulation
+    EventEmitter
 } from '@angular/core';
 import { TerraPagerInterface } from './data/terra-pager.interface';
 import { TerraNumberInputComponent } from '../forms/input/number-input/terra-number-input.component';

@@ -5,19 +5,17 @@ import {
     Output,
     ElementRef,
     EventEmitter,
-    ViewEncapsulation,
     OnChanges,
     SimpleChanges,
     ChangeDetectionStrategy
 } from '@angular/core';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 
+//TODO in template input mit terra-input ersetzen
 @Component({
                selector:        'terra-suggestion-box',
-               styles:          [require('./terra-suggestion-box.component.scss').toString()],
+               styles:          [require('./terra-suggestion-box.component.scss')],
                template:        require('./terra-suggestion-box.component.html'),
-               //TODO in template input mit terra-input ersetzen
-               encapsulation:   ViewEncapsulation.None,
                host:            {
                    '(document:click)': 'clickedOutside($event)',
                },
@@ -26,22 +24,22 @@ import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.in
 
 export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 {
-    @Input() inputName: string;
-    @Input() inputIsRequired: boolean;
-    @Input() inputDisabled: boolean;
-    @Input() inputTooltipText: string;
-    @Input() inputTooltipPlacement: string;
-    @Input() inputListBoxValues: Array<TerraSuggestionBoxValueInterface>;
+    @Input() inputName:string;
+    @Input() inputIsRequired:boolean;
+    @Input() inputDisabled:boolean;
+    @Input() inputTooltipText:string;
+    @Input() inputTooltipPlacement:string;
+    @Input() inputListBoxValues:Array<TerraSuggestionBoxValueInterface>;
     @Output() outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
     @Output() inputSelectedValueChange = new EventEmitter<TerraSuggestionBoxValueInterface>();
     
     @Input()
-    set inputSelectedValue(value: number | string)
+    set inputSelectedValue(value:number | string)
     {
         if(value)
         {
             this.inputListBoxValues
-                .forEach((item: TerraSuggestionBoxValueInterface) =>
+                .forEach((item:TerraSuggestionBoxValueInterface) =>
                          {
                              if(item.value == value)
                              {
@@ -54,25 +52,25 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
     }
     
-    get inputSelectedValue(): number | string
+    get inputSelectedValue():number | string
     {
         return this._selectedValue.value;
     }
     
-    private _selectedValue: TerraSuggestionBoxValueInterface;
-    private _currentValue: TerraSuggestionBoxValueInterface;
-    private tempInputListBoxValues: Array<TerraSuggestionBoxValueInterface> = [];
-    private _toggleOpen: boolean;
-    private _hasLabel: boolean;
-    private _isValid: boolean;
-    private _regex: string;
-    private _isInit: boolean;
+    private _selectedValue:TerraSuggestionBoxValueInterface;
+    private _currentValue:TerraSuggestionBoxValueInterface;
+    private tempInputListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
+    private _toggleOpen:boolean;
+    private _hasLabel:boolean;
+    private _isValid:boolean;
+    private _regex:string;
+    private _isInit:boolean;
     
     /**
      *
      * @param elementRef
      */
-    constructor(private elementRef: ElementRef)
+    constructor(private elementRef:ElementRef)
     {
         this._isInit = false;
         this.isValid = true;
@@ -87,7 +85,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 value:   '',
                 caption: ''
             };
-        if (this.inputListBoxValues == null)
+        if(this.inputListBoxValues == null)
         {
             this.inputListBoxValues = [];
         }
@@ -123,14 +121,14 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      *
      * @param changes
      */
-    ngOnChanges(changes: SimpleChanges)
+    ngOnChanges(changes:SimpleChanges)
     {
         if(this._isInit == true && changes["inputListBoxValues"] && changes["inputListBoxValues"].currentValue.length > 0)
         {
             setTimeout(() => this.inputSelectedValue = changes["inputListBoxValues"].currentValue[0].value, 0);
             
             changes["inputListBoxValues"].currentValue
-                                         .forEach((item: TerraSuggestionBoxValueInterface) =>
+                                         .forEach((item:TerraSuggestionBoxValueInterface) =>
                                                   {
                                                       if(item.active && item.active == true)
                                                       {
@@ -144,7 +142,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      *
      * @param event
      */
-    private clickedOutside(event): void
+    private clickedOutside(event):void
     {
         if(!this.elementRef.nativeElement.contains(event.target))
         {
@@ -156,7 +154,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      *
      * @param value
      */
-    private select(index: number): void
+    private select(index:number):void
     {
         if(this.inputListBoxValues.length > 0)
         {
@@ -172,7 +170,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      *
      * @returns {boolean}
      */
-    public get isDisabled(): boolean
+    public get isDisabled():boolean
     {
         return this.inputDisabled;
     }
@@ -181,7 +179,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      *
      * @param value
      */
-    public set isDisabled(value: boolean)
+    public set isDisabled(value:boolean)
     {
         this.inputDisabled = value;
     }
@@ -190,7 +188,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      *
      * @returns {boolean}
      */
-    public get isValid(): boolean
+    public get isValid():boolean
     {
         return this._isValid;
     }
@@ -199,7 +197,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      *
      * @param isValid
      */
-    public set isValid(isValid: boolean)
+    public set isValid(isValid:boolean)
     {
         this._isValid = isValid;
     }
@@ -208,7 +206,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      *
      * @returns {string}
      */
-    public get regex(): string
+    public get regex():string
     {
         return this._regex;
     }
@@ -217,7 +215,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      *
      * @param regex
      */
-    public set regex(regex: string)
+    public set regex(regex:string)
     {
         this._regex = regex;
     }

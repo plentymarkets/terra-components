@@ -1,7 +1,4 @@
-import {
-    Component,
-    ViewEncapsulation
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { TerraAlertComponent } from "./terra-alert.component";
 import { TerraAlertInterface } from './data/terra-alert.interface';
 
@@ -11,8 +8,9 @@ import { TerraAlertInterface } from './data/terra-alert.interface';
 @Component({
                selector: 'terra-alert-panel',
                styles:   [require('./terra-alert-panel.component.scss')],
-               template: require('./terra-alert-panel.component.html'),
+               template: require('./terra-alert-panel.component.html')
            })
+
 export class TerraAlertPanelComponent
 {
     private _alerts:Array<TerraAlertInterface>;

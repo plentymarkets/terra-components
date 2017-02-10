@@ -1,8 +1,7 @@
 import {
     Component,
     OnInit,
-    Input,
-    ViewEncapsulation
+    Input
 } from '@angular/core';
 import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 import { TerraButtonInterface } from '../button/data/terra-button.interface';
