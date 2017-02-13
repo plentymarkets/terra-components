@@ -107,7 +107,7 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         }
         else
         {
-            this._label = "Alle";
+            this._label = this.localization.translate('selectAll');
         }
         
         this._isInit = true;
