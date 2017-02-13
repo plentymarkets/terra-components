@@ -13,7 +13,7 @@ import {
 
 @Component({
                selector: 'terra-loading-bar',
-               styles:   [require('./terra-loading-bar.component.scss').toString()],
+               styles:   [require('./terra-loading-bar.component.scss')],
                template: require('./terra-loading-bar.component.html')
            })
 export class TerraLoadingBarComponent implements OnInit

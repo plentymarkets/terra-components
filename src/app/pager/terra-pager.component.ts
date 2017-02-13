@@ -4,18 +4,16 @@ import {
     ViewChild,
     Input,
     Output,
-    EventEmitter,
-    ViewEncapsulation
+    EventEmitter
 } from '@angular/core';
 import { TerraPagerInterface } from './data/terra-pager.interface';
 import { TerraNumberInputComponent } from '../forms/input/number-input/terra-number-input.component';
 import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-select-box.interface';
 
 @Component({
-               selector:      'terra-pager',
-               styles:        [require('./terra-pager.component.scss').toString()],
-               template:      require('./terra-pager.component.html'),
-               encapsulation: ViewEncapsulation.None
+               selector: 'terra-pager',
+               styles:   [require('./terra-pager.component.scss')],
+               template: require('./terra-pager.component.html')
            })
 export class TerraPagerComponent implements OnInit
 {

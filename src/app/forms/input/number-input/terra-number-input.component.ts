@@ -1,8 +1,7 @@
 import {
     Component,
     forwardRef,
-    Input,
-    ViewEncapsulation
+    Input
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { TerraRegex } from '../../../regex/terra-regex';
@@ -17,11 +16,10 @@ export const NUMBER_INPUT_CONTROL_VALUE_ACCESSOR:any = {
 };
 
 @Component({
-               selector:      'terra-number-input',
-               styles:        [require('./terra-number-input.component.scss').toString()],
-               template:      require('./terra-number-input.component.html'),
-               providers:     [NUMBER_INPUT_CONTROL_VALUE_ACCESSOR],
-               encapsulation: ViewEncapsulation.None
+               selector:  'terra-number-input',
+               styles:    [require('./terra-number-input.component.scss')],
+               template:  require('./terra-number-input.component.html'),
+               providers: [NUMBER_INPUT_CONTROL_VALUE_ACCESSOR]
            })
 export class TerraNumberInputComponent extends TerraInputComponent
 {

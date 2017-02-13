@@ -18,7 +18,7 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR:any = {
 
 @Component({
                selector:  'terra-checkbox',
-               styles:    [require('./terra-checkbox.component.scss').toString()],
+               styles:    [require('./terra-checkbox.component.scss')],
                template:  require('./terra-checkbox.component.html'),
                providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR]
            })

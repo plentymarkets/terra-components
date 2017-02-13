@@ -7,8 +7,8 @@ const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const helpers = require('./helpers');
 
@@ -46,35 +46,42 @@ module.exports = function (options) {
                 },
                 {
                     test: /\.scss$/,
-                    loader: ExtractTextPlugin.extract({
-                        fallbackLoader: 'style-loader',
-                        loader: [
-                            {
-                                loader: 'css-loader',
-                                query: {
-                                    modules: false,
-                                    sourceMap: false,
-                                    localIdentName: '[hash:base64:5]',
-                                    minimize: false
-                                }
-                            },
-                            'postcss-loader',
-                            {
-                                loader: 'sass-loader',
-                                query: {
-                                    sourceMap: false
-                                }
-                            },
-                            'sass-resources-loader'
-                        ]
-                    })
+                    exclude: [/\.glob\.scss$/],
+                    loaders: [
+                        'raw-loader',
+                        {
+                            loader: 'sass-loader',
+                            query: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'sass-resources-loader',
+                            options: {
+                                resources: helpers.root('src/app/assets/styles/_variables.scss')
+                            }
+                        }
+                    ]
+                },
+                {
+                    test: /\.glob\.scss$/,
+                    loaders: [
+                        'style-loader',
+                        'css-loader',
+                        'postcss-loader',
+                        'sass-loader'
+                    ]
                 },
                 {
                     test: /\.json$/,
                     loader: 'json-loader'
                 },
                 {
-                    test: /\.(jpg|png|gif|svg)$/,
+                    test: /\.svg$/,
+                    loader: 'file-loader'
+                },
+                {
+                    test: /\.jpg$/,
                     loader: 'file-loader'
                 },
                 {
@@ -119,30 +126,27 @@ module.exports = function (options) {
             new OccurrenceOrderPlugin(true),
 
             new ProvidePlugin({
-                // jQuery: 'jquery',
-                // jquery: 'jquery',
-                // $: 'jquery',
-                // "Tether": 'tether',
+                // $: "jquery",
+                // jQuery: "jquery",
+                // "window.jQuery": "jquery",
+                // Tether: "tether",
                 // "window.Tether": "tether",
-                //---------------------------------------------------
-                //------------- temporary workaround ----------------
-                // https://github.com/shakacode/bootstrap-loader/issues/172#issuecomment-247205500
-                //this requires exports-loader installed from npm
-                Tooltip: "exports?Tooltip!bootstrap/js/dist/tooltip",
-                Alert: "exports?Alert!bootstrap/js/dist/alert",
-                Button: "exports?Button!bootstrap/js/dist/button",
-                Carousel: "exports?Carousel!bootstrap/js/dist/carousel",
-                Collapse: "exports?Collapse!bootstrap/js/dist/collapse",
-                Dropdown: "exports?Dropdown!bootstrap/js/dist/dropdown",
-                Modal: "exports?Modal!bootstrap/js/dist/modal",
-                Popover: "exports?Popover!bootstrap/js/dist/popover",
-                Scrollspy: "exports?Scrollspy!bootstrap/js/dist/scrollspy",
-                Tab: "exports?Tab!bootstrap/js/dist/tab",
-                Util: "exports?Util!bootstrap/js/dist/util"
-                //---------------------------------------------------
+                Alert: "exports-loader?Alert!bootstrap/js/dist/alert",
+                Button: "exports-loader?Button!bootstrap/js/dist/button",
+                Carousel: "exports-loader?Carousel!bootstrap/js/dist/carousel",
+                Collapse: "exports-loader?Collapse!bootstrap/js/dist/collapse",
+                Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
+                Modal: "exports-loader?Modal!bootstrap/js/dist/modal",
+                Popover: "exports-loader?Popover!bootstrap/js/dist/popover",
+                Scrollspy: "exports-loader?Scrollspy!bootstrap/js/dist/scrollspy",
+                Tab: "exports-loader?Tab!bootstrap/js/dist/tab",
+                Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
+                Util: "exports-loader?Util!bootstrap/js/dist/util"
             }),
 
-            new ExtractTextPlugin("[name].css"),
+            new CopyWebpackPlugin([
+                {from: 'src/app/assets', to: 'assets'}
+            ]),
 
             new LoaderOptionsPlugin({
                 debug: true,
@@ -155,10 +159,7 @@ module.exports = function (options) {
                         failOnHint: false,
                         resourcePath: helpers.root('./src'),
                         formattersDirectory: "./node_modules/tslint-loader/formatters/"
-                    },
-                    sassResources: [
-                        helpers.root('src/app/assets/styles/_variables.scss').toString()
-                    ]
+                    }
                 }
             })
         ],

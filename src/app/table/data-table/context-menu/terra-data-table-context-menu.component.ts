@@ -8,7 +8,7 @@ import { TerraBaseData } from '../../../data/terra-base.data';
  */
 @Component({
                selector: 'context-menu-holder',
-               styles:   [require('./terra-data-table-context-menu.component.scss').toString()],
+               styles:   [require('./terra-data-table-context-menu.component.scss')],
                template: require('./terra-data-table-context-menu.component.html'),
                host:     {'(document:click)': 'clickedOutside()'}
            })
@@ -17,7 +17,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
     private _contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
     private _isShown = false;
     
-    private _mouseLocation:{left:number,top:number} = {
+    private _mouseLocation:{left:number, top:number} = {
         left: 0,
         top:  0
     };

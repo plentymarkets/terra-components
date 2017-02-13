@@ -5,7 +5,6 @@ import {
     Output,
     ElementRef,
     EventEmitter,
-    ViewEncapsulation,
     OnChanges,
     SimpleChanges,
     ChangeDetectionStrategy
@@ -14,9 +13,8 @@ import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface'
 
 @Component({
                selector:        'terra-select-box',
-               styles:          [require('./terra-select-box.component.scss').toString()],
+               styles:          [require('./terra-select-box.component.scss')],
                template:        require('./terra-select-box.component.html'),
-               encapsulation:   ViewEncapsulation.None,
                host:            {
                    '(document:click)': 'clickedOutside($event)',
                },
@@ -27,7 +25,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
     @Input() inputName:string;
     @Input() inputIsRequired:boolean;
-    @Input() inputDisabled:boolean;
+    @Input() inputIsDisabled:boolean;
     @Input() inputTooltipText:string;
     @Input() inputTooltipPlacement:string;
     @Input() inputListBoxValues:Array<TerraSelectBoxValueInterface>;
@@ -75,10 +73,10 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this.isValid = true;
         this.inputTooltipPlacement = 'top';
         this._selectedValue =
-        {
-            value:   '',
-            caption: ''
-        };
+            {
+                value:   '',
+                caption: ''
+            };
     }
     
     ngOnInit()
@@ -161,7 +159,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     public get isDisabled():boolean
     {
-        return this.inputDisabled;
+        return this.inputIsDisabled;
     }
     
     /**
@@ -170,7 +168,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     public set isDisabled(value:boolean)
     {
-        this.inputDisabled = value;
+        this.inputIsDisabled = value;
     }
     
     /**

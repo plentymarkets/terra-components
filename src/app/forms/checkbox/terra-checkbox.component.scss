@@ -4,6 +4,17 @@ input[type="checkbox"]
     margin-right: 0.3em;
 }
 
+.disabled-chk
+{
+    opacity: .65;
+    cursor: not-allowed;
+    
+    span
+    {
+        background-color: #F2F2F2;
+    }
+}
+
 .checkbox
 {
     display: inline-block;

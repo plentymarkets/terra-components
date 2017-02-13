@@ -14,7 +14,7 @@ import {
     AlertModule,
     ModalModule,
     ButtonsModule
-} from 'ng2-bootstrap/ng2-bootstrap';
+} from 'ng2-bootstrap';
 import { TerraComponentsComponent } from './terra-components.component';
 import { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
 import { TerraNumberInputComponent } from './forms/input/number-input/terra-number-input.component';
@@ -24,7 +24,6 @@ import { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-
 import { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
 import { TerraRadioButtonComponent } from './forms/radio-button/terra-radio-button.component';
 import { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
-import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 import { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-multi-select-box.component';
 import { TerraDclWrapperComponent } from './dcl-wrapper/terra-dcl-wrapper.component';
 import { TerraBaseToolbarComponent } from './toolbar/base-toolbar/terra-base-toolbar.component';
@@ -58,6 +57,7 @@ import {
 } from 'angular2localization';
 import { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
 import { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
+import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -73,7 +73,6 @@ export { TerraNumberInputComponent } from './forms/input/number-input/terra-numb
 export { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
 export { TerraSelectBoxValueInterface } from './forms/select-box/data/terra-select-box.interface';
 export { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
-export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 export { TerraMultiSelectBoxValueInterface } from './forms/multi-select-box/data/terra-multi-select-box-value.interface';
 export { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-multi-select-box.component';
 export { TerraIndicatorComponent } from './indicator/terra-indicator.component';
@@ -114,6 +113,7 @@ export { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
 export { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
 export { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface';
 export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
+export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 
 @NgModule({
               declarations:    [
@@ -128,7 +128,6 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   TerraCheckboxComponent,
                   TerraRadioButtonComponent,
                   TerraSelectBoxComponent,
-                  TerraSuggestionBoxComponent,
                   TerraBaseToolbarComponent,
                   TerraIndicatorComponent,
                   TerraPagerComponent,
@@ -149,7 +148,8 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   TerraMultiSelectBoxComponent,
                   TerraDynamicModuleLoaderComponent,
                   TerraTileBoxComponent,
-                  TerraTileBoxPanelComponent
+                  TerraTileBoxPanelComponent,
+                  TerraSuggestionBoxComponent
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -160,7 +160,6 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   TerraCheckboxComponent,
                   TerraRadioButtonComponent,
                   TerraSelectBoxComponent,
-                  TerraSuggestionBoxComponent,
                   TerraBaseToolbarComponent,
                   TerraIndicatorComponent,
                   TerraPagerComponent,
@@ -179,7 +178,8 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
                   TerraTileBoxComponent,
-                  TerraTileBoxPanelComponent
+                  TerraTileBoxPanelComponent,
+                  TerraSuggestionBoxComponent
               ],
               exports:         [
                   TerraAlertPanelComponent,
@@ -192,7 +192,6 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   TerraCheckboxComponent,
                   TerraRadioButtonComponent,
                   TerraSelectBoxComponent,
-                  TerraSuggestionBoxComponent,
                   TerraBaseToolbarComponent,
                   TerraIndicatorComponent,
                   TerraPagerComponent,
@@ -212,17 +211,18 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   TerraMultiSelectBoxComponent,
                   TerraDynamicModuleLoaderComponent,
                   TerraTileBoxComponent,
-                  TerraTileBoxPanelComponent
+                  TerraTileBoxPanelComponent,
+                  TerraSuggestionBoxComponent
               ],
               imports:         [
                   BrowserModule,
                   FormsModule,
                   ReactiveFormsModule,
-                  ModalModule,
+                  ModalModule.forRoot(),
                   HttpModule,
-                  TooltipModule,
-                  AlertModule,
-                  ButtonsModule,
+                  TooltipModule.forRoot(),
+                  AlertModule.forRoot(),
+                  ButtonsModule.forRoot(),
                   ClipboardModule,
                   LocaleModule,
                   LocalizationModule
@@ -233,7 +233,7 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
                   LocalizationService
               ],
               bootstrap:       [
-                  TerraComponentsComponent
+                  //TerraComponentsComponent
               ]
           })
 export class TerraComponentsModule

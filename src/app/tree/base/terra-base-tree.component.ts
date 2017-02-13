@@ -80,7 +80,7 @@ export class TerraBaseTreeComponent implements OnInit
             clickedLeaf.isActive = true;
         }
     }
-
+    
     private recursiveLeafListInactive(list:Array<TerraLeafInterface>):boolean
     {
         let foundActive:boolean = false;

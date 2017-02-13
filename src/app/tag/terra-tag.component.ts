@@ -6,7 +6,7 @@ import {
 
 @Component({
                selector: 'terra-tag',
-               styles:   [require('./terra-tag.component.scss').toString()],
+               styles:   [require('./terra-tag.component.scss')],
                template: require('./terra-tag.component.html')
            })
 export class TerraTagComponent implements OnInit

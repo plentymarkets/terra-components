@@ -14,7 +14,7 @@ import { JitCompiler } from '@angular/compiler';
 @Component({
                selector: 'terra-dynamic-module-loader',
                template: require('./terra-dynamic-module-loader.component.html'),
-               styles:   [require('./terra-dynamic-module-loader.component.scss').toString()]
+               styles:   [require('./terra-dynamic-module-loader.component.scss')]
            })
 export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestroy
 {
@@ -22,6 +22,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
     @Input() inputModule:any;
     @Input() inputMainComponentName:string;
+    @Input() inputParameter:any;
     private _resolvedData:ModuleWithProviders;
     
     private _cmpRef:ComponentRef<any>;
@@ -57,6 +58,9 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                               if(this.inputMainComponentName === factory.componentType.name)
                               {
                                   this._cmpRef = this.viewChildTarget.createComponent(factory);
+                        
+                                  this._cmpRef.instance.parameter = this.inputParameter;
+                        
                               }
                           }
                       )

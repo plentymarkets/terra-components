@@ -3,14 +3,12 @@ import {
     Input,
     Output,
     EventEmitter,
-    ViewEncapsulation
 } from '@angular/core';
 
 @Component({
-               selector:      'terra-button',
-               styles:        [require('./terra-button.component.scss').toString()],
-               template:      require('./terra-button.component.html'),
-               encapsulation: ViewEncapsulation.None,
+               selector: 'terra-button',
+               styles:   [require('./terra-button.component.scss')],
+               template: require('./terra-button.component.html')
            })
 export class TerraButtonComponent
 {

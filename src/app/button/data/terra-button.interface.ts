@@ -8,5 +8,5 @@ export interface TerraButtonInterface
     icon?:string;
     caption?:string;
     tooltipText?:string;
-    clickFunction:()=>void;
+    clickFunction:() => void;
 }

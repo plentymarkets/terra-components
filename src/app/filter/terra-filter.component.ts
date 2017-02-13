@@ -9,7 +9,7 @@ import {
 
 @Component({
                selector: 'terra-filter',
-               styles:   [require('./terra-filter.component.scss').toString()],
+               styles:   [require('./terra-filter.component.scss')],
                template: require('./terra-filter.component.html')
            })
 export class TerraFilterComponent implements OnInit

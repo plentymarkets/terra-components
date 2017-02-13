@@ -16,11 +16,12 @@ import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraOverlayComponent } from '../../overlay/terra-overlay.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
+import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 
 @Component({
                selector:  'terra-data-table',
                providers: [TerraDataTableContextMenuService],
-               styles:    [require('./terra-data-table.component.scss').toString()],
+               styles:    [require('./terra-data-table.component.scss')],
                template:  require('./terra-data-table.component.html')
            })
 
@@ -35,7 +36,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _isHeaderCheckboxChecked:boolean = false;
     private _pagingData:TerraPagerInterface;
     private _pagingSize:Array<TerraSelectBoxValueInterface>;
-    private _onSuccessFunction:(res)=>void;
+    private _onSuccessFunction:(res) => void;
     private _defaultPagingSize:number;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     @Input()
@@ -57,7 +58,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this._isHeaderCheckboxChecked = isChecked;
         
         this.rowList.forEach(
-            (row)=>
+            (row) =>
             {
                 this.changeRowState(isChecked, row);
             });
@@ -90,7 +91,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         let rowFound:boolean = false;
         
         this.selectedRowList.forEach(
-            (row)=>
+            (row) =>
             {
                 if(row == rowToChange)
                 {
@@ -132,14 +133,13 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         this._rowList = value;
         
-        if(this.rowList != null)
-        {
-            this.rowList.forEach(
-                row =>row.contextMenuLinkList.forEach(
-                    l => l.subject.subscribe(
-                        val=> val.clickFunction(val)))
-            );
-        }
+        this.rowList.forEach(
+            (row:TerraDataTableRowInterface<D>) => row.contextMenuLinkList.forEach(
+                (link:TerraDataTableContextMenuEntryInterface<D>) => link.subject.subscribe(
+                    (valueToClick:TerraDataTableContextMenuEntryInterface<D>) => valueToClick.clickFunction(valueToClick)
+                )
+            )
+        );
     }
     
     public deleteRow(rowToDelete:TerraDataTableRowInterface<D>):void
@@ -181,7 +181,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         if(this.rowList != null)
         {
             this.rowList.forEach(
-                (row)=>
+                (row:TerraDataTableRowInterface<D>) =>
                 {
                     this.changeRowState(false, row);
                 });
@@ -208,12 +208,12 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this._defaultPagingSize = value;
     }
     
-    public get onSuccessFunction():(res:any)=>void
+    public get onSuccessFunction():(res:any) => void
     {
         return this._onSuccessFunction;
     }
     
-    public set onSuccessFunction(value:(res:any)=>void)
+    public set onSuccessFunction(value:(res:any) => void)
     {
         this._onSuccessFunction = value;
     }

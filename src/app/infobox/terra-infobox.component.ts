@@ -1,17 +1,15 @@
 import {
     Component,
     OnInit,
-    Input,
-    ViewEncapsulation
+    Input
 } from '@angular/core';
 import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 import { TerraButtonInterface } from '../button/data/terra-button.interface';
 
 @Component({
-               selector:      'terra-infobox',
-               styles:        [require('./terra-infobox.component.scss').toString()],
-               template:      require('./terra-infobox.component.html'),
-               encapsulation: ViewEncapsulation.None
+               selector: 'terra-infobox',
+               styles:   [require('./terra-infobox.component.scss')],
+               template: require('./terra-infobox.component.html')
            })
 export class TerraInfoboxComponent implements OnInit
 {

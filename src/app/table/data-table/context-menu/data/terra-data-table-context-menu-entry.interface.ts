@@ -8,7 +8,7 @@ export interface TerraDataTableContextMenuEntryInterface<D extends TerraBaseData
 {
     title?:string;
     subject:Subject<TerraDataTableContextMenuEntryInterface<D>>;
-    clickFunction?:(value?:TerraDataTableContextMenuEntryInterface<D>)=>void;
+    clickFunction?:(value?:TerraDataTableContextMenuEntryInterface<D>) => void;
     data?:D;
     isDivider?:boolean;
 }

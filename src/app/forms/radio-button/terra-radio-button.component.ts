@@ -21,7 +21,7 @@ export const RADIO_CONTROL_VALUE_ACCESSOR:any = {
 @Component({
                selector:  'terra-radio-button',
                template:  require('./terra-radio-button.component.html'),
-               styles:    [require('./terra-radio-button.component.scss').toString()],
+               styles:    [require('./terra-radio-button.component.scss')],
                providers: [RADIO_CONTROL_VALUE_ACCESSOR]
            })
 export class TerraRadioButtonComponent implements ControlValueAccessor

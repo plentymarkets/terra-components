@@ -8,4 +8,5 @@ export interface TerraSplitViewInterface
     hidden:boolean;
     name:string;
     mainComponentName:string;
+    parameter:any;
 }

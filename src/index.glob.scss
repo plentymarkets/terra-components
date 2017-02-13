@@ -1,9 +1,10 @@
-body {
+body
+{
     font-family: "plenty", Helvetica, Arial, sans-serif !important;
     font-size: 0.875rem !important;
     line-height: 1.5 !important;
     color: #333333 !important;
-    background-color: #fff !important;
+    background-color: #FFFFFF !important;
     position: absolute !important;
     top: 0 !important;
     bottom: 0 !important;
@@ -14,4 +15,9 @@ body {
     padding: 0 !important;
     overflow: hidden !important;
     direction: ltr !important;
+}
+
+.tooltip
+{
+    font-size: .75rem;
 }

@@ -7,7 +7,7 @@ import { TerraSimpleTableRowInterface } from './row/terra-simple-table-row.inter
 
 @Component({
                selector: 'terra-simple-table',
-               styles:   [require('./terra-simple-table.component.scss').toString()],
+               styles:   [require('./terra-simple-table.component.scss')],
                template: require('./terra-simple-table.component.html')
            })
 export class TerraSimpleTableComponent

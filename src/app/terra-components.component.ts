@@ -12,7 +12,7 @@ import {
 @Component({
                selector: 'app-root',
                template: require('./terra-components.component.html'),
-               styles:   [require('./terra-components.component.scss').toString()],
+               styles:   [require('./terra-components.component.scss')]
            })
 export class TerraComponentsComponent extends Locale implements OnInit
 {
