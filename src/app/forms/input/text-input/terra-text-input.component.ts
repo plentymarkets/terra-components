@@ -19,7 +19,7 @@ export const TEXT_INPUT_CONTROL_VALUE_ACCESSOR:any = {
                selector:  'terra-text-input',
                styles:    [require('./terra-text-input.component.scss')],
                template:  require('./terra-text-input.component.html'),
-               providers: [TEXT_INPUT_CONTROL_VALUE_ACCESSOR],
+               providers: [TEXT_INPUT_CONTROL_VALUE_ACCESSOR]
            })
 export class TerraTextInputComponent extends TerraInputComponent
 {

@@ -8,7 +8,7 @@ import {
 @Component({
                selector: 'terra-button',
                styles:   [require('./terra-button.component.scss')],
-               template: require('./terra-button.component.html'),
+               template: require('./terra-button.component.html')
            })
 export class TerraButtonComponent
 {

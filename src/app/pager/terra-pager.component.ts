@@ -13,7 +13,7 @@ import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-sel
 @Component({
                selector: 'terra-pager',
                styles:   [require('./terra-pager.component.scss')],
-               template: require('./terra-pager.component.html'),
+               template: require('./terra-pager.component.html')
            })
 export class TerraPagerComponent implements OnInit
 {

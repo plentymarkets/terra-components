@@ -9,7 +9,7 @@ import { TerraButtonInterface } from '../button/data/terra-button.interface';
 @Component({
                selector: 'terra-infobox',
                styles:   [require('./terra-infobox.component.scss')],
-               template: require('./terra-infobox.component.html'),
+               template: require('./terra-infobox.component.html')
            })
 export class TerraInfoboxComponent implements OnInit
 {

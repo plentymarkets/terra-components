@@ -225,7 +225,7 @@ export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-sugges
                   ButtonsModule.forRoot(),
                   ClipboardModule,
                   LocaleModule,
-                  LocalizationModule,
+                  LocalizationModule
               ],
               providers:       [
                   COMPILER_PROVIDERS,
