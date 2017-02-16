@@ -13,7 +13,8 @@ export class TerraRegex
     private static _ISBN:string = '^(97(8|9))?\\d{9}(\\d|X)$';
     private static _UPC:string = '\"^[0-9]{0,12}$\"';
     private static _HEX_COLOR_SHORT:string = '^#?([0-9a-f]{3}){1,2}$';
-    private static _EMAIL:string = '^[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$';
+    //private static _EMAIL:string = '^[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$';
+    private static _EMAIL:string = '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     private static _EMAIL_LOCAL_PART:string = '^[a-zA-Z0-9_\\-\\.]*$';
     private static _EMAIL_FORWARDING:string = '^[^üÜäÄöÖ!§$%&/{([)=}\\]?\\*+#^°:`µ¤<>|\"\']*$';
     private static _DATE:string = '^\\d{1,2}\\.\\d{1,2}\\.\\d{4}$';
