@@ -5,6 +5,11 @@
     margin: 0;
 }
 
+:host /deep/ .terra-number-input input
+{
+    text-align: right !important;
+}
+
 :host /deep/ .btn-toolbar .btn-group
 {
     margin: 0;
