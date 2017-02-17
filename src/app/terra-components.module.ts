@@ -60,7 +60,6 @@ import { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.co
 import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 import { TerraDatePickerComponent } from './date-picker/terra-date-picker.component';
 import { MyDatePickerModule } from 'mydatepicker';
-import { MyDateRangePickerModule } from 'mydaterangepicker';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -234,8 +233,7 @@ export { TerraDatePickerComponent } from './date-picker/terra-date-picker.compon
                   ClipboardModule,
                   LocaleModule,
                   LocalizationModule,
-                  MyDatePickerModule,
-                  MyDateRangePickerModule
+                  MyDatePickerModule
               ],
               providers:       [
                   COMPILER_PROVIDERS,

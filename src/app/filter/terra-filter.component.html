@@ -2,8 +2,16 @@
     
     <terra-base-toolbar>
         <div class="btn-group" role="group">
-            <terra-button class="terra-button" inputCaption="{{inputSearchLabel}}" (outputClicked)="searchBtnClicked()"></terra-button>
-            <terra-button class="terra-button" inputCaption="{{inputResetLabel}}" (outputClicked)="resetBtnClicked()"></terra-button>
+            <terra-button class="terra-button"
+                          inputCaption="{{inputSearchLabel}}"
+                          [inputIcon]="'icon-search'"
+                          (outputClicked)="searchBtnClicked()">
+            </terra-button>
+            <terra-button class="terra-button"
+                          inputCaption="{{inputResetLabel}}"
+                          [inputIcon]="'icon-reset'"
+                          (outputClicked)="resetBtnClicked()">
+            </terra-button>
         </div>
     </terra-base-toolbar>
     
@@ -14,7 +22,3 @@
     </div>
 
 </div>
-
-
-
-

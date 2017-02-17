@@ -11,17 +11,23 @@
             </div>
             <div class="modal-footer" *ngIf="inputPrimaryButtonInterface || inputSecondaryButtonInterface">
                 
-                <terra-button *ngIf="inputPrimaryButtonInterface" [inputIsAlignRight]="false" [inputIsPrimary]="true"
+                <terra-button *ngIf="inputPrimaryButtonInterface"
+                              [inputIsAlignRight]="false"
+                              [inputIsPrimary]="true"
                               [inputCaption]="inputPrimaryButtonInterface.caption"
-                              [inputIcon]="inputPrimaryButtonInterface.icon" [inputTooltipText]="inputPrimaryButtonInterface.tooltipText"
+                              [inputIcon]="inputPrimaryButtonInterface.icon"
+                              [inputTooltipText]="inputPrimaryButtonInterface.tooltipText"
                               inputTooltipPlacement="bottom"
                               [inputIsDisabled]="inputPrimaryButtonInterface.isDisabled"
                               (outputClicked)="inputPrimaryButtonInterface.clickFunction()"></terra-button>
                 
-                <terra-button *ngIf="inputSecondaryButtonInterface" [inputIsAlignRight]="false" [inputIsSecondary]="true"
+                <terra-button *ngIf="inputSecondaryButtonInterface"
+                              [inputIsAlignRight]="false"
+                              [inputIsSecondary]="true"
                               [inputCaption]="inputSecondaryButtonInterface.caption"
                               [inputIcon]="inputSecondaryButtonInterface.icon"
-                              [inputTooltipText]="inputSecondaryButtonInterface.tooltipText" inputTooltipPlacement="bottom"
+                              [inputTooltipText]="inputSecondaryButtonInterface.tooltipText"
+                              inputTooltipPlacement="bottom"
                               [inputIsDisabled]="inputSecondaryButtonInterface.isDisabled"
                               (outputClicked)="inputSecondaryButtonInterface.clickFunction()"></terra-button>
             </div>

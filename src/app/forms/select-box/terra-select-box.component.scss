@@ -42,6 +42,7 @@
         border-radius: $border-radius;
         background: white;
         display: none;
+        overflow: auto;
         > span
         {
             display: block;
