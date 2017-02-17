@@ -58,6 +58,7 @@ import {
 import { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
 import { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
 import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
+import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -114,6 +115,7 @@ export { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.co
 export { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface';
 export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
 export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
+export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 
 @NgModule({
               declarations:    [
@@ -149,7 +151,8 @@ export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-sugges
                   TerraDynamicModuleLoaderComponent,
                   TerraTileBoxComponent,
                   TerraTileBoxPanelComponent,
-                  TerraSuggestionBoxComponent
+                  TerraSuggestionBoxComponent,
+                  TerraTextAreaInputComponent
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -179,7 +182,8 @@ export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-sugges
                   TerraMultiSelectBoxComponent,
                   TerraTileBoxComponent,
                   TerraTileBoxPanelComponent,
-                  TerraSuggestionBoxComponent
+                  TerraSuggestionBoxComponent,
+                  TerraTextAreaInputComponent
               ],
               exports:         [
                   TerraAlertPanelComponent,
@@ -212,7 +216,8 @@ export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-sugges
                   TerraDynamicModuleLoaderComponent,
                   TerraTileBoxComponent,
                   TerraTileBoxPanelComponent,
-                  TerraSuggestionBoxComponent
+                  TerraSuggestionBoxComponent,
+                  TerraTextAreaInputComponent
               ],
               imports:         [
                   BrowserModule,
@@ -233,7 +238,7 @@ export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-sugges
                   LocalizationService
               ],
               bootstrap:       [
-                  //TerraComponentsComponent
+                  TerraComponentsComponent
               ]
           })
 export class TerraComponentsModule
