@@ -14,11 +14,12 @@ import {
            })
 export class TerraFilterComponent implements OnInit
 {
-    
     @ViewChild('viewChildInputList') viewChildInputList;
+    
     @Input() inputSearchLabel:string;
     @Input() inputResetLabel:string;
     @Input() inputInputList:any[];
+    
     @Output() outputOnSearchBtnClicked = new EventEmitter<any>();
     @Output() outputOnResetBtnClicked = new EventEmitter<any>();
     
