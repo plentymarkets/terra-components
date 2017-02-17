@@ -38,10 +38,10 @@
         }
         .pager-text
         {
+            line-height: $terra-btn-md-height;
             float: left;
             font-size: $font-size-lg;
             margin-left: .5rem;
-            margin-top: .7rem;
         }
         
         @include media-breakpoint-down(sm)
