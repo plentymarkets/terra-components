@@ -1,0 +1,6 @@
+<div style="position: absolute;top: 50%;left: calc(50% - 100px);">
+    <terra-date-picker [(ngModel)]="model" inputName="My Label" [inputIsRequired]="false" [inputIsDisabled]="isDisabledToggle" [inputIsValid]="true"></terra-date-picker>
+    <terra-text-input inputName="Test Input" [(ngModel)]="model"></terra-text-input>
+</div>
+
+<terra-button inputCaption="Toggle Disabled" (outputClicked)="toggle()"></terra-button>

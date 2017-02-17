@@ -54,3 +54,4 @@ export * from './app/tile/box/terra-tile-box.component';
 export * from './app/tile/panel/terra-tile-box-panel.component';
 export * from './app/tile/box/data/terra-tile-box.interface';
 export * from './app/tile/box/data/terra-tile-box-color';
+export * from './app/date-picker/terra-date-picker.component';
