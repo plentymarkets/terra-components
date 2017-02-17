@@ -12,7 +12,6 @@ import {
     IMyOptions,
     IMyDateModel
 } from 'mydatepicker';
-import * as moment from 'moment';
 
 export const DATE_PICKER_VALUE_ACCESSOR:any = {
     provide:     NG_VALUE_ACCESSOR,
@@ -99,8 +98,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     {
         this._value = value;
         
-        //let momentDate = moment.unix(value); //myDateModel cannot be typed
-        let momentDate:Date = new Date(value*1000); //myDateModel cannot be typed
+        let momentDate:Date = new Date(value*1000);
         
         this.myDateModel = {
             date:      {
