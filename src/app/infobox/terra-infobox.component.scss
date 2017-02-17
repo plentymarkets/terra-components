@@ -2,7 +2,7 @@
 
 .infobox
 {
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     border: 1px solid #999999;
     -moz-border-radius: $border-radius;
     -webkit-border-radius: $border-radius;
@@ -10,11 +10,15 @@
     padding: 0.5rem;
     min-width: 10rem;
 }
-.infobox-inner {
+
+.infobox-inner
+{
     display: flex;
     justify-content: space-between;
 }
-.infobox-text {
+
+.infobox-text
+{
     padding-right: 0.8rem;
     padding-bottom: 0.4rem;
 }
@@ -23,6 +27,7 @@
 {
     display: block !important;
 }
+
 :host /deep/ .btn
 {
     margin: 0.04rem 0rem !important;
