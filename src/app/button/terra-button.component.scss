@@ -26,7 +26,9 @@ button.close
 
 .btn
 {
+    height:34px;
     display: inline-block;
+    padding: 7px 12px !important;
     font-weight: $btn-font-weight !important;
     text-align: center;
     white-space: nowrap;
@@ -107,6 +109,11 @@ button.close
         {
             background: darken($brand-secondary, 10%);
         }
+    }
+
+    span
+    {
+        font-size: 20px;
     }
 }
 
