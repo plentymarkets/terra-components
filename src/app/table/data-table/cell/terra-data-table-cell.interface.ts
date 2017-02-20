@@ -11,4 +11,5 @@ export interface TerraDataTableCellInterface
     buttonList?:Array<TerraButtonInterface>;
     tooltipText?:string;
     tooltipPlacement?:string;
+    color?:string;
 }
