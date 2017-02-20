@@ -96,6 +96,52 @@ table.table
     }
 }
 
+.simple-table
+{
+    margin-bottom: 1rem;
+    max-width: 100%;
+    width: auto;
+    tbody
+    {
+        tr
+        {
+            td
+            {
+                padding: .5rem;
+                vertical-align: middle;
+                border: 1px solid darken($gray-light-3, 20%);
+                padding: .2rem .5rem;
+            }
+        }
+    }
+    
+    span
+    {
+        display: inline-block;
+        overflow: hidden;
+        max-width: 100px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+    > tbody.highlighting tr:hover
+    {
+        background: $brand-primary-dark !important;
+        & td
+        {
+            border-right: $table-border-width solid $white;
+            &:last-child
+            {
+                border-right: $table-border-width solid $table-border-color;
+            }
+        }
+    }
+    .btn-group
+    {
+        min-width: 120px;
+    }
+}
+
 .no-margin
 {
     margin-bottom: 0;
