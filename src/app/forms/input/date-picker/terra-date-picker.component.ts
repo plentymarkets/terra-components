@@ -43,10 +43,6 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     {
     };
     
-    
-    /**
-     *
-     */
     private _value:number;
     private _myDateModel:IMyDateModel;
     private _currentLocale:string;

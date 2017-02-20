@@ -58,7 +58,7 @@ import {
 import { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
 import { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
 import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
-import { TerraDatePickerComponent } from './date-picker/terra-date-picker.component';
+import { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-picker.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 
@@ -118,7 +118,7 @@ export { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.co
 export { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface';
 export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
 export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
-export { TerraDatePickerComponent } from './date-picker/terra-date-picker.component';
+export { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-picker.component';
 export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 
 @NgModule({
