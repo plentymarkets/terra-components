@@ -299,10 +299,3 @@ input[type="button"]
 {
     display: inline-block;
 }
-
-/* Tooltips */
-:host /deep/ .tooltip-inner
-{
-    font-size: 4px !important;
-    color: #FFFFFF;
-}
