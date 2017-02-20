@@ -26,7 +26,10 @@ button.close
 
 .btn
 {
+    height: $terra-btn-md-height;
+    line-height:$terra-btn-md-height;
     display: inline-block;
+    padding: 0px 12px !important;
     font-weight: $btn-font-weight !important;
     text-align: center;
     white-space: nowrap;
@@ -108,6 +111,13 @@ button.close
             background: darken($brand-secondary, 10%);
         }
     }
+
+    span
+    {
+        font-size: 20px;
+        position: relative;
+        top: 5px;
+    }
 }
 
 // Future-proof disabling of clicks on `<a>` elements
@@ -168,13 +178,22 @@ fieldset[disabled] a.btn
 .btn-lg
 {
     // line-height: ensure even-numbered height of button next to large input
+    height: $terra-btn-lg-height;
+    line-height: $terra-btn-lg-height;
     @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $font-size-lg, $btn-border-radius-lg);
 }
 
 .btn-sm
 {
     // line-height: ensure proper height of button next to small input
+    height: $terra-btn-sm-height;
+    line-height: $terra-btn-sm-height;
     @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-border-radius-sm);
+
+    span
+    {
+       top: 2px;
+    }
 }
 
 //

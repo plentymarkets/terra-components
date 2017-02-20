@@ -2,37 +2,33 @@
 
 .infobox
 {
-    border: 1px solid $gray;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    .btn-handler
-    {
-        display: block;
-    }
-    .taglist
-    {
-        .tag
-        {
-            background-color: $gray-light-3;
-            border-color: transparent;
-            -moz-border-radius: $border-radius;
-            -webkit-border-radius: $border-radius;
-            border-radius: $border-radius;
-            display: inline-block;
-            margin: 2px 0;
-            padding: .3rem 1rem;
-            color: $gray-dark;
-        }
-    }
+    background-color: #FFFFFF;
+    border: 1px solid #999999;
+    -moz-border-radius: $border-radius;
+    -webkit-border-radius: $border-radius;
+    border-radius: $border-radius;
+    padding: 0.5rem;
+    min-width: 10rem;
 }
 
-@include media-breakpoint-down(xs)
+.infobox-inner
 {
-    .infobox
-    {
-        .btn-handler
-        {
-            display: inline-block;
-        }
-    }
+    display: flex;
+    justify-content: space-between;
+}
+
+.infobox-text
+{
+    padding-right: 0.8rem;
+    padding-bottom: 0.4rem;
+}
+
+:host /deep/ .btn-handler
+{
+    display: block !important;
+}
+
+:host /deep/ .btn
+{
+    margin: 0.04rem 0rem !important;
 }

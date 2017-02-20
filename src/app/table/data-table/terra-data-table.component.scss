@@ -1,6 +1,7 @@
 table.table
 {
     width: auto;
+    margin-bottom: 1rem;
     thead
     {
         background: $brand-primary;
@@ -12,7 +13,7 @@ table.table
                 border: 1px solid white;
                 border-top: 1px solid $brand-primary;
                 border-bottom: 1px solid $brand-primary;
-                padding: 1rem .5rem;
+                padding: 6px 9px;
                 &:first-child
                 {
                     border-left: 1px solid $brand-primary;
@@ -30,37 +31,12 @@ table.table
         {
             td
             {
-                padding: .5rem;
-                vertical-align: middle;
-                input
-                {
-                    border: 1px solid darken($gray-light-3, 20%);
-                    padding: .2rem .5rem;
-                }
-            }
-        }
-    }
-}
-
-.data-table
-{
-    margin-bottom: 1rem;
-    max-width: 100%;
-    width: auto;
-    tbody
-    {
-        tr
-        {
-            td
-            {
-                padding: .5rem;
+                padding: 4px 9px;
                 vertical-align: middle;
                 border: 1px solid darken($gray-light-3, 20%);
-                padding: .2rem .5rem;
             }
         }
     }
-    
     span
     {
         display: inline-block;
@@ -89,10 +65,6 @@ table.table
     tbody tr.selected:nth-of-type(even)
     {
         background-color: lighten($brand-primary-dark, 15);
-    }
-    .btn-group
-    {
-        min-width: 120px;
     }
 }
 
