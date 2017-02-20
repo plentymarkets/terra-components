@@ -34,7 +34,7 @@
     {
         position: absolute;
         z-index: 99999;
-        top: 1.9375rem;
+        top: $terra-btn-md-height;
         left: 0;
         width: 100%;
         max-height: 12rem;
@@ -84,7 +84,7 @@
 .input-unit-v1.select-box-wrapper .select-box
 {
     border: none;
-    padding: 1.3rem 1rem .3rem 1rem;
+    padding: 1.0rem 0.7rem 0rem 0.7rem;
 }
 
 .input-unit-v1.select-box-wrapper
@@ -95,7 +95,7 @@
 .input-unit-v1.select-box-wrapper .select-box-dropdown
 {
     width: auto;
-    top: inherit;
+    top: $terra-btn-md-height - 1px;
     left: -1px;
     right: -1px;
 }

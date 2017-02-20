@@ -1,13 +1,13 @@
 <div class="col-xs-12 infobox">
-    <div class="clearfix">
-        <div class="btn-group-vertical pull-sm-right" role="group">
-            <template ngFor let-button [ngForOf]="inputButtonList">
-                <terra-button (outputClicked)="button.clickFunction()" inputIcon="{{button.icon}}" inputCaption="{{button.caption}}"
-                              inputTooltipPlacement="left" inputTooltipText="{{button.tooltipText}}"></terra-button>
-            </template>
-        </div>
+    <div class="infobox-inner">
         <div class="infobox-text pull-sm-left">
             <ng-content></ng-content>
+        </div>
+        <div class="btn-group-vertical pull-sm-right" role="group">
+            <template ngFor let-button [ngForOf]="inputButtonList">
+                <terra-button (outputClicked)="button.clickFunction()" inputIcon="{{button.icon}}"
+                              inputTooltipPlacement="left" inputTooltipText="{{button.tooltipText}}"></terra-button>
+            </template>
         </div>
     </div>
     <terra-taglist [inputTagList]="inputTagList"></terra-taglist>
