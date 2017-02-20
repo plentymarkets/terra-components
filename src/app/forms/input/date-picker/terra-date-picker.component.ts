@@ -34,6 +34,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     @Input() inputIsRequired:boolean;
     @Input() inputIsValid:boolean;
     @Input() inputIsDisabled:boolean;
+    @Input() inputOpenCalendarTop:boolean;
     
     private onTouchedCallback:() => void = () =>
     {
@@ -53,6 +54,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.inputIsRequired = false;
         this.inputIsDisabled = false;
         this.inputIsValid = true;
+        this.inputOpenCalendarTop = false;
         
         this._currentLocale = localStorage.getItem('plentymarkets_lang_');
     }
@@ -66,7 +68,9 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     {
         this._datePickerOptions = {
             inputValueRequired: this.inputIsRequired,
-            componentDisabled:  this.inputIsDisabled
+            componentDisabled:  this.inputIsDisabled,
+            openSelectorTopOfInput: this.inputOpenCalendarTop,
+            showSelectorArrow: !this.inputOpenCalendarTop
         };
     }
     
