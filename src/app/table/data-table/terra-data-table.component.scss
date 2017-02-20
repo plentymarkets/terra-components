@@ -13,7 +13,7 @@ table.table
                 border: 1px solid white;
                 border-top: 1px solid $brand-primary;
                 border-bottom: 1px solid $brand-primary;
-                padding: 1rem .5rem;
+                padding: 6px 9px;
                 &:first-child
                 {
                     border-left: 1px solid $brand-primary;
@@ -31,10 +31,9 @@ table.table
         {
             td
             {
-                padding: .5rem;
+                padding: 4px 9px;
                 vertical-align: middle;
                 border: 1px solid darken($gray-light-3, 20%);
-                padding: .2rem .5rem;
             }
         }
     }
@@ -46,10 +45,6 @@ table.table
         text-overflow: ellipsis;
         white-space: nowrap;
         vertical-align: middle;
-    }
-    .btn-group
-    {
-        min-width: 120px;
     }
     > tbody tr:hover
     {
