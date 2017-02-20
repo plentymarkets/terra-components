@@ -238,7 +238,7 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   LocalizationService
               ],
               bootstrap:       [
-                  TerraComponentsComponent
+                  //TerraComponentsComponent
               ]
           })
 export class TerraComponentsModule

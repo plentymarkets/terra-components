@@ -18,8 +18,6 @@ export class TerraComponentsComponent extends Locale implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
     
-    private area:string = 'test';
-    
     public constructor(private viewContainerRef:ViewContainerRef,
                        public local:LocaleService,
                        public localization:LocalizationService)

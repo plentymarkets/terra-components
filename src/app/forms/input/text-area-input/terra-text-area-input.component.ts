@@ -25,8 +25,6 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
 {
     @Input() inputName:string;
     @Input() inputIsRequired:boolean;
-    @Input() inputEmptyMessage:string;
-    @Input() inputInvalidMessage:string;
     @Input() inputTooltipText:string;
     @Input() inputIsDisabled:boolean;
     @Input() inputTooltipPlacement:string; //top, bottom, left, right (default: top)
