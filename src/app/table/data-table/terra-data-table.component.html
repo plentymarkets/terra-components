@@ -32,6 +32,7 @@
                 <template ngFor let-cell [ngForOf]="row.cellList">
                     <td *ngIf="!cell.isHidden" (click)="!cell.buttonList && row.clickFunction()">
               <span [ngClass]="cell.icon"
+                    [ngStyle]="{color: cell.color}"
                     placement="{{cell.tooltipPlacement}}"
                     tooltip="{{cell.tooltipText}}"
                     tooltipEnable="{{cell.tooltipText}}">{{cell.caption}}</span>

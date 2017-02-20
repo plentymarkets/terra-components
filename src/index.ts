@@ -17,6 +17,7 @@ export * from './app/forms/select-box/terra-select-box.component';
 export * from './app/forms/suggestion-box/terra-suggestion-box.component';
 export * from './app/forms/multi-select-box/data/terra-multi-select-box-value.interface';
 export * from './app/forms/multi-select-box/terra-multi-select-box.component';
+export * from './app/forms/input/text-area-input/terra-text-area-input.component';
 export * from './app/indicator/terra-indicator.component';
 export * from './app/infobox/terra-infobox.component';
 export * from './app/loading-bar/service/terra-loading-bar.service';

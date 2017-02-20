@@ -60,6 +60,7 @@ import { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.co
 import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 import { TerraDatePickerComponent } from './date-picker/terra-date-picker.component';
 import { MyDatePickerModule } from 'mydatepicker';
+import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -118,6 +119,7 @@ export { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface'
 export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
 export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 export { TerraDatePickerComponent } from './date-picker/terra-date-picker.component';
+export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 
 @NgModule({
               declarations:    [
@@ -154,7 +156,8 @@ export { TerraDatePickerComponent } from './date-picker/terra-date-picker.compon
                   TerraTileBoxComponent,
                   TerraTileBoxPanelComponent,
                   TerraSuggestionBoxComponent,
-                  TerraDatePickerComponent
+                  TerraDatePickerComponent,
+                  TerraTextAreaInputComponent
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -185,7 +188,8 @@ export { TerraDatePickerComponent } from './date-picker/terra-date-picker.compon
                   TerraTileBoxComponent,
                   TerraTileBoxPanelComponent,
                   TerraSuggestionBoxComponent,
-                  TerraDatePickerComponent
+                  TerraDatePickerComponent,
+                  TerraTextAreaInputComponent
               ],
               exports:         [
                   TerraAlertPanelComponent,
@@ -219,7 +223,8 @@ export { TerraDatePickerComponent } from './date-picker/terra-date-picker.compon
                   TerraTileBoxComponent,
                   TerraTileBoxPanelComponent,
                   TerraSuggestionBoxComponent,
-                  TerraDatePickerComponent
+                  TerraDatePickerComponent,
+                  TerraTextAreaInputComponent
               ],
               imports:         [
                   BrowserModule,

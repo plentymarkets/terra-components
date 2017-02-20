@@ -1,0 +1,9 @@
+@import "../terra-input.component";
+
+/deep/{
+    textarea
+    {
+        -webkit-appearance: textarea !important;
+        resize: both;
+    }
+}

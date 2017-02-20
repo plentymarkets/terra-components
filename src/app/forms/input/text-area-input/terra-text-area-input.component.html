@@ -1,0 +1,11 @@
+<div class="input-unit-v1"
+     tooltipPlacement="{{inputTooltipPlacement}}"
+     tooltip="{{inputTooltipText}}"
+     tooltipEnable="{{inputTooltipText}}"
+     [ngClass]="{'error': !isValid, 'disabled': isDisabled}">
+    <label htmlFor="{{inputName}}">{{inputName}}
+        <span *ngIf="inputIsRequired">*</span>
+    </label>
+    <textarea id="{{inputId}}" [(ngModel)]="value" [rows]="inputMaxRows" [cols]="inputMaxCols" name="{{inputName}}" (blur)="onBlur()" autocomplete="off"
+              [disabled]="isDisabled"></textarea>
+</div>
