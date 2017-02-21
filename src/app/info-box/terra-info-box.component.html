@@ -1,0 +1,11 @@
+<div class="col-xs-12 info-box">
+    <div class="info-box-inner">
+        <div class="info-box-text pull-sm-left">
+            <ng-content select="[body]"></ng-content>
+        </div>
+        <div class="btn-group-vertical pull-sm-right" role="group">
+            <ng-content select="[buttons]"></ng-content>
+        </div>
+    </div>
+    <terra-taglist [inputTagList]="inputTagList"></terra-taglist>
+</div>
