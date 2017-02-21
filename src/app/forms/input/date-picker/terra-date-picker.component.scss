@@ -1,10 +1,5 @@
 @import "../terra-input.component";
 
-:host
-{
-    display: inline-block;
-}
-
 .input-unit-v1
 {
     overflow: inherit;
@@ -24,6 +19,7 @@
         display: block;
         overflow: visible;
         position: inherit;
+        height: 32px;
         
         input
         {
@@ -32,10 +28,11 @@
             border: none;
             box-shadow: none;
             line-height: 1.2em !important;
-            padding: 1.3rem .8rem .3rem .8rem !important;
+            padding: 16px 0px 2px 12px !important;
             width: calc(100% - 68px);
             height: inherit !important;
             font-size: 1em !important;
+            font-family: $font !important;
             text-align: left;
             outline: none !important;
             transition: all .2s;
@@ -51,18 +48,18 @@
         display: inline-block;
         text-align: right;
         vertical-align: bottom;
-        height: 24px !important;
+        height: 22px !important;
         
         .btnpicker
         {
             background-color: $brand-primary;
             color: $white;
-            width: 24px;
+            width: 22px;
             
             //css for myDateModel select button
             .icon-calendar
             {
-                line-height: 1.7em !important;
+                line-height: 1.5em !important;
                 
                 &:before
                 {
@@ -75,12 +72,12 @@
         {
             background-color: $brand-secondary;
             color: $white;
-            width: 24px;
+            width: 22px;
             
             //css for clear selected myDateModel button
             .icon-cross
             {
-                line-height: 1.7em !important;
+                line-height: 1.5em !important;
                 
                 &:before
                 {

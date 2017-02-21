@@ -67,6 +67,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     private updateDatePickerOptions():void
     {
         this._datePickerOptions = {
+            height: 'inherit',
             inputValueRequired: this.inputIsRequired,
             componentDisabled:  this.inputIsDisabled,
             openSelectorTopOfInput: this.inputOpenCalendarTop,
