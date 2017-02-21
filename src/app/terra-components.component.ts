@@ -18,14 +18,6 @@ export class TerraComponentsComponent extends Locale implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
     
-    private model:number = 1489446000;
-    public isDisabledToggle:boolean = false;
-    
-    toggle()
-    {
-        this.isDisabledToggle = !this.isDisabledToggle;
-    }
-    
     public constructor(private viewContainerRef:ViewContainerRef,
                        public local:LocaleService,
                        public localization:LocalizationService)
