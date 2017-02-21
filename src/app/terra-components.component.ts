@@ -8,8 +8,10 @@ import {
     LocaleService,
     LocalizationService,
     Locale
+    
 } from 'angular2localization';
 import { TerraOverlayComponent } from './overlay/terra-overlay.component';
+import { TerraOverlayButtonInterface } from './overlay/data/terra-overlay-button.interface';
 
 @Component({
                selector: 'app-root',
@@ -21,6 +23,8 @@ export class TerraComponentsComponent extends Locale implements OnInit
     private _viewContainerRef:ViewContainerRef;
     
     @ViewChild('overlay') overlay:TerraOverlayComponent;
+    private _primaryButtonInterface:TerraOverlayButtonInterface;
+    private _secondaryButtonInterface:TerraOverlayButtonInterface;
     
     public constructor(private viewContainerRef:ViewContainerRef,
                        public local:LocaleService,
@@ -69,7 +73,21 @@ export class TerraComponentsComponent extends Locale implements OnInit
     
     ngOnInit()
     {
+        this.primaryButtonInterface = {
+            icon:          'icon-save',
+            caption:       'Speichern',
+            tooltipText:   'Test',
+            isDisabled:    false,
+            clickFunction: () => this.closeOverlay()
+        };
         
+        this.secondaryButtonInterface = {
+            icon:          'icon-cancel',
+            caption:       'Cancel',
+            tooltipText:   'TEST',
+            isDisabled:    false,
+            clickFunction: () => this.closeOverlay()
+        };
     }
     
     toggle()
@@ -81,5 +99,24 @@ export class TerraComponentsComponent extends Locale implements OnInit
     {
         this.overlay.hideOverlay();
     }
-  
+    
+    public get primaryButtonInterface():TerraOverlayButtonInterface
+    {
+        return this._primaryButtonInterface;
+    }
+    
+    public set primaryButtonInterface(value:TerraOverlayButtonInterface)
+    {
+        this._primaryButtonInterface = value;
+    }
+    
+    public get secondaryButtonInterface():TerraOverlayButtonInterface
+    {
+        return this._secondaryButtonInterface;
+    }
+    
+    public set secondaryButtonInterface(value:TerraOverlayButtonInterface)
+    {
+        this._secondaryButtonInterface = value;
+    }
 }
