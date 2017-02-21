@@ -1,17 +1,17 @@
 <div class="terra-tree">
-  <ul>
-    <template ngFor let-leaf [ngForOf]="inputLeafList">
-      <li class="node leaf" [ngClass]="{'collapsed': !leaf.isOpen, 'active': leaf.isActive}">
-        <div class="leaf-titel" (click)="onLeafClick(leaf)">
-                <span>
-                  <span class="icon" [ngClass]="leaf.icon"></span>
-                  {{leaf.caption}}
-                </span>
-        </div>
-        <span class="node-toggle" *ngIf="leaf.subLeafList" (click)="toggleOpen(leaf)"></span>
-        <terra-tree [inputLeafList]="leaf.subLeafList" [inputParentLeafList]="inputLeafList"
-                    [inputCompleteLeafList]="inputCompleteLeafList" *ngIf="leaf.subLeafList"></terra-tree>
-      </li>
-    </template>
-  </ul>
+    <ul>
+        <template ngFor let-leaf [ngForOf]="inputLeafList">
+            <li class="node leaf" [ngClass]="{'collapsed': !leaf.isOpen, 'active': leaf.isActive}">
+                <div class="leaf-titel" (click)="onLeafClick(leaf)">
+                    <span>
+                        <span class="icon" [ngClass]="leaf.icon"></span>
+                        {{leaf.caption}}
+                    </span>
+                </div>
+            <span class="node-toggle" *ngIf="leaf.subLeafList" (click)="toggleOpen(leaf)"></span>
+            <terra-tree [inputLeafList]="leaf.subLeafList" [inputParentLeafList]="inputLeafList"
+                        [inputCompleteLeafList]="inputCompleteLeafList" *ngIf="leaf.subLeafList"></terra-tree>
+          </li>
+        </template>
+    </ul>
 </div>
