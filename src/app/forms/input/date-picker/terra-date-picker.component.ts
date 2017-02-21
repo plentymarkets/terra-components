@@ -61,7 +61,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     
     ngOnChanges()
     {
-        this.updateDatePickerOptions()
+        this.updateDatePickerOptions();
     }
     
     private updateDatePickerOptions():void
