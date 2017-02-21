@@ -1,13 +1,15 @@
 import {
     Component,
     OnInit,
-    ViewContainerRef
+    ViewContainerRef,
+    ViewChild
 } from '@angular/core';
 import {
     LocaleService,
     LocalizationService,
     Locale
 } from 'angular2localization';
+import { TerraOverlayComponent } from './overlay/terra-overlay.component';
 
 @Component({
                selector: 'app-root',
@@ -17,6 +19,8 @@ import {
 export class TerraComponentsComponent extends Locale implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
+    
+    @ViewChild('overlay') overlay:TerraOverlayComponent;
     
     public constructor(private viewContainerRef:ViewContainerRef,
                        public local:LocaleService,
@@ -65,5 +69,17 @@ export class TerraComponentsComponent extends Locale implements OnInit
     
     ngOnInit()
     {
+        
     }
+    
+    toggle()
+    {
+        this.overlay.showOverlay();
+    }
+    
+    closeOverlay()
+    {
+        this.overlay.hideOverlay();
+    }
+  
 }
