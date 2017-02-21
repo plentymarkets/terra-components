@@ -1,0 +1,159 @@
+@import "../terra-input.component";
+
+:host
+{
+    display: inline-block;
+}
+
+.input-unit-v1
+{
+    overflow: inherit;
+}
+
+.date-picker /deep/
+{
+    .mydp
+    {
+        border: none;
+        overflow: visible;
+        position: inherit;
+    }
+    
+    .selectiongroup
+    {
+        display: block;
+        overflow: visible;
+        position: inherit;
+        
+        input
+        {
+            color: #333333;
+            background-color: white;
+            border: none;
+            box-shadow: none;
+            line-height: 1.2em !important;
+            padding: 1.3rem .8rem .3rem .8rem !important;
+            width: calc(100% - 68px);
+            height: inherit !important;
+            font-size: 1em !important;
+            text-align: left;
+            outline: none !important;
+            transition: all .2s;
+            overflow: visible;
+            position: inherit;
+            display: inline-block;
+        }
+    }
+    
+    .selbtngroup
+    {
+        width: 68px;
+        display: inline-block;
+        text-align: right;
+        vertical-align: bottom;
+        height: 24px !important;
+        
+        .btnpicker
+        {
+            background-color: $brand-primary;
+            color: $white;
+            width: 24px;
+            
+            //css for myDateModel select button
+            .icon-calendar
+            {
+                line-height: 1.7em !important;
+                
+                &:before
+                {
+                    content: '\e925';
+                }
+            }
+        }
+        
+        .btnclear
+        {
+            background-color: $brand-secondary;
+            color: $white;
+            width: 24px;
+            
+            //css for clear selected myDateModel button
+            .icon-cross
+            {
+                line-height: 1.7em !important;
+                
+                &:before
+                {
+                    content: '\e910';
+                }
+            }
+        }
+    }
+    
+    .selector
+    {
+        border: 1px solid $gray-light-2;
+        
+        &:before
+        {
+            border-bottom-color: $gray-light-2;
+        }
+        
+        &:focus
+        {
+            border-color: $gray-light-2;
+    
+            &:before
+            {
+                border-bottom-color: $gray-light-2;
+            }
+        }
+        
+        .header
+        {
+            .icon-left
+            {
+                &:focus
+                {
+                    color: $black;
+                }
+                &:hover
+                {
+                    color: $brand-primary;
+                }
+                &:before
+                {
+                    content: '\e912';
+                }
+            }
+    
+            .icon-right
+            {
+                &:focus
+                {
+                    color: $black;
+                }
+                &:hover
+                {
+                    color: $brand-primary;
+                }
+                &:before
+                {
+                    content: '\e913';
+                }
+            }
+            
+            .monthlabel
+            {
+                &:focus
+                {
+                    color: $black;
+                }
+                &:hover
+                {
+                    color: $brand-primary;
+                }
+            }
+        }
+    }
+}
