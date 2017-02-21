@@ -1,0 +1,7 @@
+<div class="input-unit-v1"
+     [ngClass]="{'error': !inputIsValid, 'disabled': inputIsDisabled}">
+    <label htmlFor="{{inputName}}">{{inputName}}
+        <span *ngIf="inputIsRequired">*</span>
+    </label>
+    <my-date-picker class="date-picker" [(ngModel)]="myDateModel" [locale]="_currentLocale" [options]="_datePickerOptions"></my-date-picker>
+</div>

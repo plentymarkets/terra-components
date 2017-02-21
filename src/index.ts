@@ -19,7 +19,7 @@ export * from './app/forms/multi-select-box/data/terra-multi-select-box-value.in
 export * from './app/forms/multi-select-box/terra-multi-select-box.component';
 export * from './app/forms/input/text-area-input/terra-text-area-input.component';
 export * from './app/indicator/terra-indicator.component';
-export * from './app/infobox/terra-infobox.component';
+export * from './app/info-box/terra-info-box.component';
 export * from './app/loading-bar/service/terra-loading-bar.service';
 export * from './app/loading-bar/terra-loading-bar.component';
 export * from './app/overlay/terra-overlay.component';
@@ -55,3 +55,4 @@ export * from './app/tile/box/terra-tile-box.component';
 export * from './app/tile/panel/terra-tile-box-panel.component';
 export * from './app/tile/box/data/terra-tile-box.interface';
 export * from './app/tile/box/data/terra-tile-box-color';
+export * from './app/forms/input/date-picker/terra-date-picker.component';

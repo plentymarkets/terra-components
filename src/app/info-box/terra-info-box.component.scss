@@ -1,6 +1,6 @@
 @import "~bootstrap/scss/mixins";
 
-.infobox
+.info-box
 {
     background-color: #FFFFFF;
     border: 1px solid #999999;
@@ -11,13 +11,13 @@
     min-width: 10rem;
 }
 
-.infobox-inner
+.info-box-inner
 {
     display: flex;
     justify-content: space-between;
 }
 
-.infobox-text
+.info-box-text
 {
     padding-right: 0.8rem;
     padding-bottom: 0.4rem;
