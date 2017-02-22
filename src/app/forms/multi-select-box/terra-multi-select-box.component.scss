@@ -1,5 +1,3 @@
-@import "../../button/terra-button.component";
-
 .multiselect-container
 {
     .header-label
@@ -12,6 +10,7 @@
     .multiselect-element
     {
         margin-bottom: 1rem;
+        
         .multiselect
         {
             display: flex;
@@ -38,7 +37,7 @@
                 
                 .header-label
                 {
-                    color: #FFFFFF;
+                    color: $white;
                     width: 100%;
                     text-align: left;
                     margin-bottom: 0;
@@ -48,66 +47,66 @@
                     padding-left: 0.5em;
                 }
                 
-                .header-label:hover
-                {
-                    cursor: pointer;
-                }
+                //.header-label:hover
+                //{
+                //    //cursor: pointer;
+                //}
             }
             
-            .multiselect-header:hover
-            {
-                background-color: $brand-primary-darker;
-            }
+            //.multiselect-header:hover
+            //{
+            //    background-color: $brand-primary-darker;
+            //}
             
-            .btn-group--all
-            {
-                display: flex;
-                flex: 0 0 auto;
-                margin-bottom: .1em;
-                .checkbox-all
-                {
-                    padding: 0.3rem 0.75rem;
-                    border-color: $gray-light-4;
-                }
-                .btn-all
-                {
-                    width: 100%;
-                }
-                .btn-handler
-                {
-                    display: flex;
-                    flex-flow: column nowrap;
-                }
-                .btn
-                {
-                    text-align: left;
-                    border-bottom-left-radius: 0px;
-                    border-bottom-right-radius: 0px;
-                    background-color: $gray-light-4;
-                    border-color: $gray-light-4;
-                    color: $gray-dark;
-                    &:last-child
-                    {
-                        border-top-left-radius: 0;
-                        border-bottom-left-radius: 0;
-                    }
-                }
-                &:hover
-                {
-                    button
-                    {
-                        background-color: darken($gray-light-4, 15%);
-                        border-color: darken($gray-light-4, 15%);
-                        color: $gray-dark;
-                    }
-                    
-                    .checkbox-all
-                    {
-                        background-color: darken($gray-light-4, 15%);
-                        border-color: darken($gray-light-4, 15%);
-                    }
-                }
-            }
+            //.btn-group--all
+            //{
+            //    display: flex;
+            //    flex: 0 0 auto;
+            //    margin-bottom: .1em;
+            //    .checkbox-all
+            //    {
+            //        padding: 0.3rem 0.75rem;
+            //        border-color: $gray-light-4;
+            //    }
+            //    .btn-all
+            //    {
+            //        width: 100%;
+            //    }
+            //    .btn-handler
+            //    {
+            //        display: flex;
+            //        flex-flow: column nowrap;
+            //    }
+            //    .btn
+            //    {
+            //        text-align: left;
+            //        border-bottom-left-radius: 0;
+            //        border-bottom-right-radius: 0;
+            //        background-color: $gray-light-4;
+            //        border-color: $gray-light-4;
+            //        color: $gray-dark;
+            //        &:last-child
+            //        {
+            //            border-top-left-radius: 0;
+            //            border-bottom-left-radius: 0;
+            //        }
+            //    }
+            //    &:hover
+            //    {
+            //        button
+            //        {
+            //            background-color: darken($gray-light-4, 15%);
+            //            border-color: darken($gray-light-4, 15%);
+            //            color: $gray-dark;
+            //        }
+            //
+            //        .checkbox-all
+            //        {
+            //            background-color: darken($gray-light-4, 15%);
+            //            border-color: darken($gray-light-4, 15%);
+            //        }
+            //    }
+            //}
             
             .option-list
             {
@@ -150,11 +149,11 @@
                     {
                         .form-control
                         {
-                            border-top: $border-width solid #CCCCCC;
+                            border-top: $border-width solid $gray-light-2;
                         }
                         .input-group-addon
                         {
-                            border-top: $border-width solid #CCCCCC;
+                            border-top: $border-width solid $gray-light-2;
                         }
                     }
                 }
@@ -164,33 +163,10 @@
         {
             .multiselect
             {
-                .btn-group--all
+                .multiselect-header
                 {
-                    .checkbox-all
-                    {
-                        background-color: $error;
-                        border-color: $error;
-                    }
-                    .btn
-                    {
-                        background-color: $error;
-                        border-color: $error;
-                        color: $white;
-                    }
-                    &:hover
-                    {
-                        button
-                        {
-                            background-color: darken($error, 15%);
-                            border-color: darken($error, 15%);
-                        }
-                        
-                        .checkbox-all
-                        {
-                            background-color: darken($error, 15%);
-                            border-color: darken($error, 15%);
-                        }
-                    }
+                    background-color: $error;
+                    border-color: $error;
                 }
             }
         }
@@ -198,27 +174,17 @@
         {
             .multiselect
             {
-                .btn-group--all
+                .multiselect-header
                 {
-                    .checkbox-all
+                    background-color: $gray-light-2;
+                    border-color: $gray-light-2;
+                    cursor: not-allowed;
+                    color: $white;
+                    opacity: .65;
+    
+                    .header-label:hover
                     {
-                    }
-                    .btn
-                    {
-                        background-color: $gray-light-2;
-                        border-color: $gray-light-2;
                         cursor: not-allowed;
-                        color: $white;
-                        opacity: .65;
-                    }
-                    &:hover
-                    {
-                        button
-                        {
-                            background-color: $gray-light-2;
-                            border-color: $gray-light-2;
-                            cursor: not-allowed;
-                        }
                     }
                 }
                 .option-list
@@ -227,7 +193,7 @@
                     {
                         .form-control
                         {
-                            color: $gray-light-2;
+                            color: $gray-light-3;
                         }
                         &:hover
                         {

@@ -81,9 +81,7 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
     }
     
     private _selectedValueList:Array<any> = [];
-    private _boxClassType:string = "";
     private _isInit:boolean;
-    private _label:string;
     
     constructor(public locale:LocaleService, localization:LocalizationService)
     {
@@ -92,22 +90,9 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
     
     ngOnInit()
     {
-        if(this.inputIsDisabled)
+        if(!this.inputName)
         {
-            this._boxClassType = "disabled";
-        }
-        else if(this.inputIsError)
-        {
-            this._boxClassType = "error";
-        }
-        
-        if(this.inputName)
-        {
-            this._label = this.inputName;
-        }
-        else
-        {
-            this._label = this.localization.translate('selectAll');
+            this.inputName = this.localization.translate('selectAll');
         }
         
         this._isInit = true;
@@ -119,11 +104,11 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
      */
     ngOnChanges(changes:SimpleChanges)
     {
-        if(this._isInit == true && changes["inputValueList"] && changes["inputValueList"].currentValue.length > 0)
+        if(this._isInit == true && changes['inputValueList'] && changes['inputValueList'].currentValue.length > 0)
         {
             let temp:Array<any> = [];
             
-            changes["inputValueList"].currentValue
+            changes['inputValueList'].currentValue
                                      .forEach((item:TerraMultiSelectBoxValueInterface) =>
                                               {
                                                   if(item.selected && item.selected == true)
@@ -223,15 +208,5 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         }
         
         return result;
-    }
-    
-    public get boxClassType():string
-    {
-        return this._boxClassType;
-    }
-    
-    public set boxClassType(value:string)
-    {
-        this._boxClassType = value;
     }
 }
