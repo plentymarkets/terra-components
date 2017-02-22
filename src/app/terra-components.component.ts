@@ -8,7 +8,6 @@ import {
     LocaleService,
     LocalizationService,
     Locale
-    
 } from 'angular2localization';
 import { TerraOverlayComponent } from './overlay/terra-overlay.component';
 import { TerraOverlayButtonInterface } from './overlay/data/terra-overlay-button.interface';
@@ -21,7 +20,6 @@ import { TerraOverlayButtonInterface } from './overlay/data/terra-overlay-button
 export class TerraComponentsComponent extends Locale implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
-    
     
     public constructor(private viewContainerRef:ViewContainerRef,
                        public local:LocaleService,
@@ -69,11 +67,6 @@ export class TerraComponentsComponent extends Locale implements OnInit
     }
     
     ngOnInit()
-    {
-        
-    }
-    
-    toggle()
     {
         
     }
