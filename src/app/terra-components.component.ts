@@ -8,7 +8,6 @@ import {
     LocaleService,
     LocalizationService,
     Locale
-    
 } from 'angular2localization';
 
 @Component({
@@ -68,5 +67,4 @@ export class TerraComponentsComponent extends Locale implements OnInit
     ngOnInit()
     {
     }
-    
 }
