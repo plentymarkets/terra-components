@@ -19,22 +19,15 @@ body
 .tooltip
 {
     font-size: .75rem;
-
+    
 }
 
 bs-tooltip-container
-
 {
-    .tooltip
-    {
-        color: #1B6EAE !important;
-    }
-    
     .tooltip-inner
     {
         background-color: #1B6EAE !important;
     }
-    
     
     .tooltip-arrow
     {
