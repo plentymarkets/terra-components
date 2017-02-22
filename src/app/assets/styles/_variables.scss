@@ -506,9 +506,9 @@ $card-link-hover-color: #FFFFFF !default;
 
 // Tooltips
 $tooltip-max-width: 200px !default;
-$tooltip-color: #FFFFFF !default;
-$tooltip-bg: #000000 !default;
 $tooltip-opacity: .9 !default;
+$tooltip-color: $brand-primary-darker !default;
+$tooltip-bg: $white !default;
 
 $tooltip-arrow-width: 5px !default;
 $tooltip-arrow-color: $tooltip-bg !default;

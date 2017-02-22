@@ -2,14 +2,12 @@ import {
     Component,
     OnInit,
     ViewContainerRef,
-    ViewChild
 } from '@angular/core';
 import {
     LocaleService,
     LocalizationService,
     Locale
 } from 'angular2localization';
-import { TerraMultiSelectBoxValueInterface } from './forms/multi-select-box/data/terra-multi-select-box-value.interface';
 
 @Component({
                selector: 'app-root',
@@ -67,5 +65,6 @@ export class TerraComponentsComponent extends Locale implements OnInit
     
     ngOnInit()
     {
+        
     }
 }
