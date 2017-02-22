@@ -19,27 +19,6 @@ export class TerraComponentsComponent extends Locale implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
     
-    private isDisabled:boolean = false;
-    private isError:boolean = false;
-    
-    private entries:Array<TerraMultiSelectBoxValueInterface> = [
-        {
-            caption: 'val_1',
-            value: 'val_1',
-            selected: false
-        },
-        {
-            caption: 'val_2',
-            value: 'val_2',
-            selected: false
-        },
-        {
-            caption: 'val_3',
-            value: 'val_3',
-            selected: false
-        }
-    ];
-    
     public constructor(private viewContainerRef:ViewContainerRef,
                        public local:LocaleService,
                        public localization:LocalizationService)
@@ -87,15 +66,5 @@ export class TerraComponentsComponent extends Locale implements OnInit
     
     ngOnInit()
     {
-    }
-    
-    toggleDisable()
-    {
-        this.isDisabled = !this.isDisabled;
-    }
-    
-    toggleError()
-    {
-        this.isError = !this.isError;
     }
 }
