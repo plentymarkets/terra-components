@@ -6,12 +6,12 @@ input[type="checkbox"]
 
 .disabled-chk
 {
-    opacity: .65;
+    color: $gray-light-3;
     cursor: not-allowed;
     
-    span
+    .input-control.checkbox .check
     {
-        background-color: #F2F2F2;
+        cursor: not-allowed;
     }
 }
 
@@ -30,8 +30,7 @@ input[type="checkbox"]
     user-select: none;
 }
 
-.input-control.checkbox input[type="checkbox"],
-.input-control.checkbox input[type="radio"]
+.input-control.checkbox input[type="checkbox"]
 {
     position: absolute;
     opacity: 0;
@@ -55,6 +54,12 @@ input[type="checkbox"]
     position: relative;
     display: inline-block;
     vertical-align: middle;
+    cursor: pointer;
+}
+
+.input-control.checkbox .check:hover
+{
+    
 }
 
 .input-control.checkbox.text-left .check
@@ -90,30 +95,20 @@ input[type="checkbox"]
     transition: all 0.2s linear;
 }
 
-.input-control.checkbox input[type=radio] ~ .check:before
-{
-    border-color: transparent;
-}
-
-.input-control.checkbox input[type="checkbox"]:checked ~ .check:before,
-.input-control.checkbox input[type="radio"]:checked ~ .check:before
+.input-control.checkbox input[type="checkbox"]:checked ~ .check:before
 {
     border-color: #555555;
     transition: all 0.2s linear;
 }
 
-.input-control.checkbox input[type="checkbox"]:disabled ~ .caption,
-.input-control.checkbox input[type="radio"]:disabled ~ .caption
+.input-control.checkbox input[type="checkbox"]:disabled ~ .caption
 {
     color: #CACACA;
-    cursor: default;
 }
 
-.input-control.checkbox input[type="checkbox"]:disabled ~ .check,
-.input-control.checkbox input[type="radio"]:disabled ~ .check
+.input-control.checkbox input[type="checkbox"]:disabled ~ .check
 {
     border-color: #CACACA;
-    cursor: default;
 }
 
 .input-control.checkbox input[type="checkbox"]:disabled:checked ~ .check:before

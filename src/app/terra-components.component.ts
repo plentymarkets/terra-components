@@ -8,6 +8,7 @@ import {
     LocalizationService,
     Locale
 } from 'angular2localization';
+import { TerraMultiSelectBoxValueInterface } from './forms/multi-select-box/data/terra-multi-select-box-value.interface';
 
 @Component({
                selector: 'app-root',
