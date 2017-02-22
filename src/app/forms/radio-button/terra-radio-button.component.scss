@@ -1,5 +1,3 @@
-@import "~bootstrap/scss/mixins";
-
 .radio-button
 {
     display: inline-block;
@@ -55,6 +53,11 @@
             margin-top: -0.365rem;
             display: block;
         }
+        
+        &:hover
+        {
+            cursor: pointer;
+        }
     }
     
     .check.active:before
@@ -66,14 +69,19 @@
     .check.disabled
     {
         border-color: $gray-light-3;
-        cursor: default;
+        cursor: not-allowed;
+        
+        &:before
+        {
+            border-color: $gray-light-2;
+        }
     }
 }
 
 .caption.disabled
 {
     color: $gray-light-3;
-    cursor: default;
+    cursor: not-allowed;
 }
 
 .input-control.small-check
