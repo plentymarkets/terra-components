@@ -9,8 +9,6 @@ import {
     LocalizationService,
     Locale
 } from 'angular2localization';
-import { TerraOverlayComponent } from './overlay/terra-overlay.component';
-import { TerraOverlayButtonInterface } from './overlay/data/terra-overlay-button.interface';
 
 @Component({
                selector: 'app-root',

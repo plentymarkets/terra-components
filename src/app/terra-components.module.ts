@@ -29,7 +29,7 @@ import { TerraDclWrapperComponent } from './dcl-wrapper/terra-dcl-wrapper.compon
 import { TerraBaseToolbarComponent } from './toolbar/base-toolbar/terra-base-toolbar.component';
 import { TerraIndicatorComponent } from './indicator/terra-indicator.component';
 import { TerraPagerComponent } from './pager/terra-pager.component';
-import { TerraInfoboxComponent } from './infobox/terra-infobox.component';
+import { TerraInfoBoxComponent } from './info-box/terra-info-box.component';
 import { TerraTaglistComponent } from './taglist/terra-taglist.component';
 import { TerraTagComponent } from './tag/terra-tag.component';
 import { TerraLoadingBarComponent } from './loading-bar/terra-loading-bar.component';
@@ -80,7 +80,7 @@ export { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.com
 export { TerraMultiSelectBoxValueInterface } from './forms/multi-select-box/data/terra-multi-select-box-value.interface';
 export { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-multi-select-box.component';
 export { TerraIndicatorComponent } from './indicator/terra-indicator.component';
-export { TerraInfoboxComponent } from './infobox/terra-infobox.component';
+export { TerraInfoBoxComponent } from './info-box/terra-info-box.component';
 export { TerraLoadingBarService } from './loading-bar/service/terra-loading-bar.service';
 export { TerraLoadingBarComponent } from './loading-bar/terra-loading-bar.component';
 export { TerraOverlayComponent } from './overlay/terra-overlay.component';
@@ -138,7 +138,7 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraIndicatorComponent,
                   TerraPagerComponent,
                   TerraIndicatorComponent,
-                  TerraInfoboxComponent,
+                  TerraInfoBoxComponent,
                   TerraTaglistComponent,
                   TerraTagComponent,
                   TerraLoadingBarComponent,
@@ -172,7 +172,7 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraIndicatorComponent,
                   TerraPagerComponent,
                   TerraIndicatorComponent,
-                  TerraInfoboxComponent,
+                  TerraInfoBoxComponent,
                   TerraTaglistComponent,
                   TerraTagComponent,
                   TerraLoadingBarComponent,
@@ -206,7 +206,7 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraIndicatorComponent,
                   TerraPagerComponent,
                   TerraIndicatorComponent,
-                  TerraInfoboxComponent,
+                  TerraInfoBoxComponent,
                   TerraTaglistComponent,
                   TerraTagComponent,
                   TerraLoadingBarComponent,
