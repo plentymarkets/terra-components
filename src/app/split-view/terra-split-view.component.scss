@@ -1,8 +1,14 @@
+.terra-breadcrumb-bar .btn-toolbar
+{
+    line-height: $terra-btn-md-height;
+    padding: 0px 6px;
+}
+
 .side-scroller
 {
-    height: 100%;
     position: relative;
-    overflow-x: hidden;
+    height: 100%;
+    overflow: hidden;
 }
 
 .side-scroller > *
@@ -12,23 +18,21 @@
 
 .divider
 {
-    width: 5px;
-    height: 100%;
-    background-color: grey;
-    //TODO use color from variables
-    //background: #E7E7E7 url(./images/thumb_vertical.png) center center no-repeat; //TODO move image file to assets
+    width: 4px;
+    background-color: $gray-light-3;
     position: absolute;
     top: 0px;
     bottom: 0px;
-    cursor: col-resize;
 }
 
 .divider + *
 {
-    margin-left: 10px;
+    margin-left: 8px;
 }
 
 .view
 {
     vertical-align: top;
+    height: 100%;
+    overflow: auto;
 }
