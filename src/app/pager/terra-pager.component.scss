@@ -25,10 +25,6 @@
                 width: 2.5rem !important;
                 padding: .5rem .35rem !important;
             }
-            .input-unit-v1
-            {
-                margin-bottom: 0;
-            }
         }
         .terra-select-box,
         .form-group
@@ -56,4 +52,24 @@
             }
         }
     }
+    
+}
+
+:host /deep/ .input-unit-v1
+{
+    margin-bottom: 0px !important;
+    line-height: 0px !important;
+    input
+    {
+        height: $terra-btn-md-height - 2 !important;
+    }
+}
+
+:host /deep/ .select-box-wrapper
+{
+    margin-bottom: 0px !important;
+}
+:host /deep/ .select-box
+{
+    padding: 0px 28px 0px 12px !important;
 }

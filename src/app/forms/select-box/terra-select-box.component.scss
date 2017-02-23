@@ -3,18 +3,19 @@
 .select-box-wrapper
 {
     position: relative;
+    margin-bottom: 12px;
     .select-box
     {
+        height: $terra-btn-md-height;
+        line-height: $terra-btn-md-height - 2;
         display: inline-block;
         width: 100%;
         max-width: 100%;
         vertical-align: middle;
-        background: #FFFFFF;
         border: 1px solid $gray-light-2;
         -moz-appearance: none;
         -webkit-appearance: none;
-        line-height: 1em;
-        padding: .6rem 2rem .5rem 1rem;
+        padding: 0px 12px 0px 12px;
         background-position: calc(100% - 1rem) 1.2rem;
         border: $border-width solid $border-color;
         border-radius: $border-radius;
@@ -29,6 +30,11 @@
             background-size: 8px 10px;
         }
         
+    }
+    .labeled
+    {
+        line-height: 1.2em;
+        padding: 16px 12px 2px 12px;
     }
     .select-box-dropdown
     {
@@ -48,6 +54,7 @@
             display: block;
             width: 100%;
             padding: .25em 1em;
+            line-height: 18px;
             &:hover,
             &.active
             {
@@ -84,7 +91,7 @@
 .input-unit-v1.select-box-wrapper .select-box
 {
     border: none;
-    padding: 1.0rem 0.7rem 0rem 0.7rem;
+    padding: 7px 9px 0px 12px;
 }
 
 .input-unit-v1.select-box-wrapper
@@ -95,7 +102,7 @@
 .input-unit-v1.select-box-wrapper .select-box-dropdown
 {
     width: auto;
-    top: $terra-btn-md-height - 1px;
+    top: $terra-btn-md-height;
     left: -1px;
     right: -1px;
 }
