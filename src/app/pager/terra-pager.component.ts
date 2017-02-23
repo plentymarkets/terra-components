@@ -61,13 +61,14 @@ export class TerraPagerComponent implements OnInit
         if(!this.inputPagingData)
         {
             this.inputPagingData = {
-                pagingUnit:  'Entries',
-                total:       0,
-                currentPage: 1,
-                perPage:     0,
-                lastPage:    0,
-                from:        0,
-                to:          0
+                pagingUnit:     'Entries',
+                totalsCount:    0,
+                page:           1,
+                itemsPerPage:   0,
+                lastPageNumber: 0,
+                firstOnPage:    0,
+                lastOnPage:     0,
+                isLastPage:     false
             };
         }
         
@@ -76,12 +77,12 @@ export class TerraPagerComponent implements OnInit
     
     private updateCurrentPageInput()
     {
-        this.viewChildCurrentPageInput.value = this.inputPagingData.currentPage;
+        this.viewChildCurrentPageInput.value = this.inputPagingData.page;
     }
     
     public onFirstPage():void
     {
-        this.inputPagingData.currentPage = 1;
+        this.inputPagingData.page = 1;
         this.updateCurrentPageInput();
         
         this.outputDoPaging
@@ -90,7 +91,7 @@ export class TerraPagerComponent implements OnInit
     
     public onPrevPage():void
     {
-        this.inputPagingData.currentPage -= 1;
+        this.inputPagingData.page -= 1;
         this.updateCurrentPageInput();
         
         this.outputDoPaging
@@ -99,7 +100,7 @@ export class TerraPagerComponent implements OnInit
     
     public onNextPage():void
     {
-        this.inputPagingData.currentPage += 1;
+        this.inputPagingData.page += 1;
         this.updateCurrentPageInput();
         
         this.outputDoPaging
@@ -108,7 +109,7 @@ export class TerraPagerComponent implements OnInit
     
     public onLastPage():void
     {
-        this.inputPagingData.currentPage = this.inputPagingData.lastPage;
+        this.inputPagingData.page = this.inputPagingData.lastPageNumber;
         this.updateCurrentPageInput();
         
         this.outputDoPaging
@@ -126,7 +127,7 @@ export class TerraPagerComponent implements OnInit
     {
         event.preventDefault();
         
-        this.inputPagingData.currentPage = pageNumber;
+        this.inputPagingData.page = pageNumber;
         
         this.outputDoPaging
             .emit(this.inputPagingData);
@@ -134,9 +135,9 @@ export class TerraPagerComponent implements OnInit
     
     public onChangeOffsetTo(selectedOffset:TerraSelectBoxValueInterface):void
     {
-        this.inputPagingData.currentPage = 1;
+        this.inputPagingData.page = 1;
         this.updateCurrentPageInput();
-        this.inputPagingData.perPage = selectedOffset.value;
+        this.inputPagingData.itemsPerPage = selectedOffset.value;
         
         this.outputDoPaging.emit(this.inputPagingData);
     }
