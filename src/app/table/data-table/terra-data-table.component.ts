@@ -25,7 +25,7 @@ import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/ter
                template:  require('./terra-data-table.component.html')
            })
 
-export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData>
+export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface>
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
     @Input() inputService:S;
@@ -218,7 +218,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this._onSuccessFunction = value;
     }
     
-    public doSearch(restCall:Observable<D>):void
+    public doSearch(restCall:Observable<I>):void
     {
         //TODO check
         restCall.subscribe(
