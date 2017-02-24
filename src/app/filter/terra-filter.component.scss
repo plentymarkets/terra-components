@@ -1,5 +1,14 @@
 .filter-container
 {
-    border: 1px solid $gray;
-    width: 200px;
+
+}
+
+:host /deep/ .filter-group
+{
+    .input-unit-v1,
+    .select-box-wrapper
+    {
+        margin-top: 3px;
+        margin-bottom: 0px;
+    }
 }
