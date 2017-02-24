@@ -109,9 +109,10 @@ export class TerraBaseTreeComponent implements OnInit
     
     private onArrowClick(clickedLeaf:TerraLeafInterface):void
     {
-        if(clickedLeaf.onOpenFunction != null)
+        if(clickedLeaf.onOpenFunction != null && !clickedLeaf.isOnOpenFunctionCalled)
         {
             clickedLeaf.onOpenFunction();
+            clickedLeaf.isOnOpenFunctionCalled = true;
         }
         
         this.toggleOpen(clickedLeaf);
