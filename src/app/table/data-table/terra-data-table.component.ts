@@ -133,13 +133,21 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         this._rowList = value;
         
-        this.rowList.forEach(
-            (row:TerraDataTableRowInterface<D>) => row.contextMenuLinkList.forEach(
-                (link:TerraDataTableContextMenuEntryInterface<D>) => link.subject.subscribe(
-                    (valueToClick:TerraDataTableContextMenuEntryInterface<D>) => valueToClick.clickFunction(valueToClick)
-                )
-            )
-        );
+        this.rowList
+            .forEach((row:TerraDataTableRowInterface<D>) =>
+                     {
+                         if(row.contextMenuLinkList)
+                         {
+                             row.contextMenuLinkList.forEach((link:TerraDataTableContextMenuEntryInterface<D>) =>
+                                                             {
+                                                                 link.subject
+                                                                     .subscribe((valueToClick:TerraDataTableContextMenuEntryInterface<D>) =>
+                                                                                {
+                                                                                    valueToClick.clickFunction(valueToClick)
+                                                                                })
+                                                             })
+                         }
+                     });
     }
     
     public deleteRow(rowToDelete:TerraDataTableRowInterface<D>):void
