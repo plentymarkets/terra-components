@@ -65,16 +65,12 @@ export class TerraBaseTreeComponent implements OnInit
             this.toggleOpen(clickedLeaf);
         }
         
-        if(clickedLeaf.clickFunction != null)
+        if(clickedLeaf.clickFunction != null && !clickedLeaf.isActive)
         {
             clickedLeaf.clickFunction();
         }
         
-        if(clickedLeaf.isActive)
-        {
-            clickedLeaf.isActive = false;
-        }
-        else
+        if(!clickedLeaf.isActive)
         {
             this.recursiveLeafListInactive(this.inputCompleteLeafList);
             clickedLeaf.isActive = true;
@@ -111,6 +107,16 @@ export class TerraBaseTreeComponent implements OnInit
         clickedLeaf.isOpen = !clickedLeaf.isOpen;
     }
     
+    private onArrowClick(clickedLeaf:TerraLeafInterface):void
+    {
+        if(clickedLeaf.onOpenFunction != null)
+        {
+            clickedLeaf.onOpenFunction();
+        }
+        
+        this.toggleOpen(clickedLeaf);
+    }
+    
     private recursiveSearchActiveLeaf(leafListToSearch:Array<TerraLeafInterface>):TerraLeafInterface
     {
         let foundLeaf:TerraLeafInterface;
@@ -140,5 +146,10 @@ export class TerraBaseTreeComponent implements OnInit
     public getSelectedLeaf():TerraLeafInterface
     {
         return this.recursiveSearchActiveLeaf(this.inputLeafList);
+    }
+    
+    private checkIfArrowNeeded(clickedLeaf:TerraLeafInterface):boolean
+    {
+        return clickedLeaf.subLeafList != null || clickedLeaf.onOpenFunction != null;
     }
 }
