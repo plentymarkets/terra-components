@@ -111,6 +111,16 @@ export class TerraBaseTreeComponent implements OnInit
         clickedLeaf.isOpen = !clickedLeaf.isOpen;
     }
     
+    private onArrowClick(clickedLeaf:TerraLeafInterface):void
+    {
+        if(clickedLeaf.onOpenFunction != null)
+        {
+            clickedLeaf.onOpenFunction();
+        }
+        
+        this.toggleOpen(clickedLeaf);
+    }
+    
     private recursiveSearchActiveLeaf(leafListToSearch:Array<TerraLeafInterface>):TerraLeafInterface
     {
         let foundLeaf:TerraLeafInterface;
