@@ -12,6 +12,7 @@ export interface TerraLeafInterface
     isActive?:boolean;
     clickFunction?:() => void;
     onOpenFunction?:() => void;
+    isOnOpenFunctionCalled?:boolean;
     contextMenu?:Array<any>;//TODO
     subLeafList?:Array<TerraLeafInterface>;
     parentLeafList?:Array<TerraLeafInterface>;
