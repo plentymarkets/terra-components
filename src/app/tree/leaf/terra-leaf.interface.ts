@@ -5,7 +5,9 @@ export interface TerraLeafInterface
 {
     caption:string;
     isOpen?:boolean;
+    avoidOpenOnClick?:boolean;
     icon?:string;
+    iconColor?:string;
     id?:number;
     isActive?:boolean;
     clickFunction?:() => void;
