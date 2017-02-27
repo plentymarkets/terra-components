@@ -19,19 +19,29 @@ body
 .tooltip
 {
     font-size: .75rem;
-    
 }
 
-bs-tooltip-container
+.tooltip.top .tooltip-arrow
 {
-    .tooltip-inner
-    {
-        background-color: #1B6EAE !important;
-    }
-    
-    .tooltip-arrow
-    {
-        color: #1B6EAE !important;
-        border-bottom-color: #1B6EAE !important;
-    }
+    border-top-color: #1B6EAE;
+}
+
+.tooltip.left .tooltip-arrow
+{
+    border-left-color: #1B6EAE;
+}
+
+.tooltip.bottom .tooltip-arrow
+{
+    border-bottom-color: #1B6EAE;
+}
+
+.tooltip.right .tooltip-arrow
+{
+    border-right-color: #1B6EAE;
+}
+
+.tooltip-inner
+{
+    background-color: #1B6EAE;
 }
