@@ -20,7 +20,6 @@ import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface'
                },
                changeDetection: ChangeDetectionStrategy.OnPush
            })
-
 export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
     @Input() inputName:string;
@@ -35,7 +34,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input()
     set inputSelectedValue(value:number | string)
     {
-        if(value)
+        if(value !== undefined && value !== null)
         {
             this.inputListBoxValues
                 .forEach((item:TerraSelectBoxValueInterface) =>

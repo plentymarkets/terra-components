@@ -19,7 +19,6 @@ import {
     isBlank
 } from '@angular/core/src/facade/lang';
 
-
 @Component({
                selector: 'terra-multi-select-box',
                styles:   [require('./terra-multi-select-box.component.scss')],
@@ -38,7 +37,7 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
     @Input()
     set inputSelectedValueList(value:Array<any>)
     {
-        if(value)
+        if(value !== undefined && value !== null)
         {
             let valueCopy = value.slice(0);
             
