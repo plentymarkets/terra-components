@@ -8,7 +8,7 @@
     <!--<terra-button *ngIf="inputModules" [inputIsSmall]="true" inputIcon="icon-copy_clipboard" [inputIsAlignRight]="true"-->
     <!--(outputClicked)="copyPath()" ngIIclipboard [cbContent]="breadCrumbsPath"></terra-button>-->
 </terra-base-toolbar>
-<div class="side-scroller" *ngIf="inputModules">
+<div class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}" *ngIf="inputModules">
     <template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">
         <div class="view" *ngIf="!module.hidden" [style.width]="module.defaultWidth">
             <terra-dynamic-module-loader *ngIf="!module.hidden" [inputModule]="module.module" [inputParameter]="module.parameter"
