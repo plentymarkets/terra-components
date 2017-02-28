@@ -29,12 +29,8 @@
     background-color: $gray-light-3;
     position: absolute;
     top: 0px;
+    right: 0px;
     bottom: 0px;
-}
-
-.divider + *
-{
-    margin-left: 8px;
 }
 
 .view
@@ -43,4 +39,22 @@
     height: 100%;
     overflow: auto;
     white-space: normal;
+    position: relative;
+    padding: 0px;
+}
+
+.view.hasDivider
+{
+    padding: 0px 8px 0px 4px;
+    margin-right: -4px;
+}
+
+.view.first
+{
+    padding-left: 0px;
+}
+
+.view.last
+{
+    padding: 0px 0px 0px 4px;
 }
