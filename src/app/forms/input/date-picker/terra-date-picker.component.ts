@@ -101,20 +101,28 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     
     public set value(value:any)
     {
-        this._value = value;
-        
-        let momentDate:Date = new Date(value * 1000);
-        
-        this.myDateModel = {
-            date:      {
-                year:  momentDate.getFullYear(),
-                month: momentDate.getMonth() + 1,
-                day:   momentDate.getDate()
-            },
-            jsdate:    momentDate,
-            formatted: '',
-            epoc:      value
-        };
+        if(value != null)
+        {
+    
+            this._value = value;
+    
+            let momentDate: Date = new Date(value * 1000);
+    
+            this.myDateModel = {
+                date:      {
+                    year:  momentDate.getFullYear(),
+                    month: momentDate.getMonth() + 1,
+                    day:   momentDate.getDate()
+                },
+                jsdate:    momentDate,
+                formatted: '',
+                epoc:      value
+            };
+        }
+        else
+        {
+            this.viewChildMyDatePicker.clearDate();
+        }
     }
     
     public get myDateModel():IMyDateModel
