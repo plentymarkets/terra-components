@@ -17,7 +17,7 @@
               <span
                   placement="{{header.tooltipPlacement}}"
                   tooltip="{{header.tooltipText}}"
-                  tooltipEnable="{{header.tooltipText}}">{{header.caption}}</span>
+                  isDisabled="{{!header.tooltipText}}">{{header.caption}}</span>
                 </th>
             </template>
         </tr>
@@ -35,7 +35,7 @@
                     [ngStyle]="{color: cell.color}"
                     placement="{{cell.tooltipPlacement}}"
                     tooltip="{{cell.tooltipText}}"
-                    tooltipEnable="{{cell.tooltipText}}">{{cell.caption}}</span>
+                    isDisabled="{{!cell.tooltipText}}">{{cell.caption}}</span>
                         <div class="btn-group" *ngIf="cell.buttonList">
                             <template ngFor let-button [ngForOf]="cell.buttonList">
                                 <terra-button (outputClicked)="button.clickFunction()" inputIcon="{{button.icon}}"
