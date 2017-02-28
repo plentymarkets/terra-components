@@ -71,7 +71,7 @@ export class TerraBaseService
     
     protected mapRequest(request:Observable<Response>):Observable<any>
     {
-        this._baseLoadingBarService.start();
+        //this._baseLoadingBarService.start();
         
         let req = request.map(
             (response:Response) =>
@@ -88,11 +88,11 @@ export class TerraBaseService
         
         req.subscribe(() =>
                       {
-                          this._baseLoadingBarService.complete();
+                          //this._baseLoadingBarService.complete();
                       },
                       error =>
                       {
-                          this._baseLoadingBarService.complete()
+                          //this._baseLoadingBarService.complete()
                       });
         
         return req;
