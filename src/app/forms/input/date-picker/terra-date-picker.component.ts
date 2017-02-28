@@ -135,3 +135,4 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.viewChildMyDatePicker.clearDate();
     }
 }
+    
