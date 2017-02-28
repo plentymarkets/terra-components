@@ -79,17 +79,17 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         };
     }
     
-    public writeValue(value: any):void
+    public writeValue(value:any):void
     {
         this.value = value;
     }
     
-    public registerOnChange(fn: any):void
+    public registerOnChange(fn:any):void
     {
         this.onChangeCallback = fn;
     }
     
-    public registerOnTouched(fn: any):void
+    public registerOnTouched(fn:any):void
     {
         this.onTouchedCallback = fn;
     }
@@ -103,7 +103,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     {
         this._value = value;
         
-        let momentDate: Date = new Date(value * 1000);
+        let momentDate:Date = new Date(value * 1000);
         
         this.myDateModel = {
             date:      {
