@@ -15,7 +15,7 @@ import {
     MyDatePicker
 } from 'mydatepicker';
 
-export const DATE_PICKER_VALUE_ACCESSOR: any = {
+export const DATE_PICKER_VALUE_ACCESSOR:any = {
     provide:     NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => TerraDatePickerComponent),
     multi:       true
@@ -32,11 +32,11 @@ export const DATE_PICKER_VALUE_ACCESSOR: any = {
            })
 export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 {
-    @Input() inputName: string;
-    @Input() inputIsRequired: boolean;
-    @Input() inputIsValid: boolean;
-    @Input() inputIsDisabled: boolean;
-    @Input() inputOpenCalendarTop: boolean;
+    @Input() inputName:string;
+    @Input() inputIsRequired:boolean;
+    @Input() inputIsValid:boolean;
+    @Input() inputIsDisabled:boolean;
+    @Input() inputOpenCalendarTop:boolean;
     
     @ViewChild('viewChildMyDatePicker') viewChildMyDatePicker:MyDatePicker;
     
@@ -49,9 +49,9 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     };
     
     private _value: number;
-    private _myDateModel: IMyDateModel;
-    private _currentLocale: string;
-    private _datePickerOptions: IMyOptions;
+    private _myDateModel:IMyDateModel;
+    private _currentLocale:string;
+    private _datePickerOptions:IMyOptions;
     
     constructor()
     {
@@ -68,7 +68,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.updateDatePickerOptions();
     }
     
-    private updateDatePickerOptions(): void
+    private updateDatePickerOptions():void
     {
         this._datePickerOptions = {
             height:                 'inherit',
@@ -79,27 +79,27 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         };
     }
     
-    public writeValue(value: any): void
+    public writeValue(value: any):void
     {
         this.value = value;
     }
     
-    public registerOnChange(fn: any): void
+    public registerOnChange(fn: any):void
     {
         this.onChangeCallback = fn;
     }
     
-    public registerOnTouched(fn: any): void
+    public registerOnTouched(fn: any):void
     {
         this.onTouchedCallback = fn;
     }
     
-    public get value(): any
+    public get value():any
     {
         return this._value;
     }
     
-    public set value(value: any)
+    public set value(value:any)
     {
         this._value = value;
         
@@ -117,12 +117,12 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         };
     }
     
-    public get myDateModel(): IMyDateModel
+    public get myDateModel():IMyDateModel
     {
         return this._myDateModel;
     }
     
-    public set myDateModel(value: IMyDateModel)
+    public set myDateModel(value:IMyDateModel)
     {
         this._myDateModel = value;
         
@@ -130,7 +130,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.onChangeCallback(this.myDateModel.epoc);
     }
     
-    public clearDate(): void
+    public clearDate():void
     {
         this.viewChildMyDatePicker.clearDate();
     }
