@@ -128,7 +128,7 @@ module.exports = function (options) {
             new ProvidePlugin({
                 $: "jquery",
                 jQuery: "jquery",
-                // "window.jQuery": "jquery",
+                "window.jQuery": "jquery",
                 // Tether: "tether",
                 // "window.Tether": "tether",
                 Alert: "exports-loader?Alert!bootstrap/js/dist/alert",
