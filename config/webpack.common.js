@@ -126,8 +126,8 @@ module.exports = function (options) {
             new OccurrenceOrderPlugin(true),
 
             new ProvidePlugin({
-                // $: "jquery",
-                // jQuery: "jquery",
+                $: "jquery",
+                jQuery: "jquery",
                 // "window.jQuery": "jquery",
                 // Tether: "tether",
                 // "window.Tether": "tether",
