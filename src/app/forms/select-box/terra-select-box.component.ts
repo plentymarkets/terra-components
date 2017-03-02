@@ -5,6 +5,8 @@ import {
     Output,
     ElementRef,
     EventEmitter,
+    OnChanges,
+    SimpleChanges,
     ChangeDetectionStrategy
 } from '@angular/core';
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
@@ -18,7 +20,7 @@ import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface'
                },
                changeDetection: ChangeDetectionStrategy.OnPush
            })
-export class TerraSelectBoxComponent implements OnInit
+export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
     @Input() inputName:string;
     @Input() inputIsRequired:boolean;
@@ -98,6 +100,18 @@ export class TerraSelectBoxComponent implements OnInit
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
         this._isInit = true;
+    }
+    
+    /**
+     *
+     * @param changes
+     */
+    ngOnChanges(changes:SimpleChanges)
+    {
+        if(this._isInit == true && changes["inputListBoxValues"] && changes["inputListBoxValues"].currentValue.length > 0)
+        {
+            this.select(0);
+        }
     }
     
     /**
