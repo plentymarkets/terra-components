@@ -110,7 +110,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         if(this._isInit == true && changes["inputListBoxValues"] && changes["inputListBoxValues"].currentValue.length > 0)
         {
-            this.select(0);
+            setTimeout(() => this.select(0), 0);
         }
     }
     
