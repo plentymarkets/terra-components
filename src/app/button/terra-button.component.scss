@@ -273,6 +273,8 @@ input[type="button"]
 
 :host-context(.btn-group-vertical)
 {
+    display: block;
+
     .btn,
     .btn-handler
     {
@@ -280,6 +282,7 @@ input[type="button"]
         float: none;
         max-width: 100%;
         width: 100%;
+        text-align: left;
     }
     &:first-child:not(:last-child) .btn
     {
