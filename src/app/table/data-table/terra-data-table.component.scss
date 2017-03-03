@@ -49,6 +49,7 @@ table.table
     > tbody tr:hover
     {
         background: $brand-primary-dark !important;
+        cursor: pointer;
         & td
         {
             border-right: $table-border-width solid $white;
