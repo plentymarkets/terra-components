@@ -4,6 +4,7 @@
 ### Bug Fixes
 * **Tooltip** FIX deprecated input naming
 * **Loading Bar** Removed Loading Bar
+* **Pager** Removed 'limit of a hundred' from Pager 
 
 ### Features
 * **terra-split-view** Improved CSS styling & added horizontal scroll function
