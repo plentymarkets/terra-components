@@ -1,3 +1,12 @@
+<a name="0.0.184"></a>
+# 0.0.184 (??.??.????)
+
+### Bug Fixes
+* **terra-select-box** FIX data binding and selection bug when using the same array of listBoxValues for multiple select-boxes in the same view.
+
+### Features
+* **terra-select-box.interface** The active property has been removed because it is no longer being used 
+
 <a name="0.0.183"></a>
 # 0.0.184 (03.03.2017)
 
