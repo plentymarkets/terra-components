@@ -6,8 +6,7 @@
                 <th width="{{header.width}}px">
               <span
                   placement="{{header.tooltipPlacement}}"
-                  tooltip="{{header.tooltipText}}"
-                  isDisabled="{{!header.tooltipText}}">{{header.caption}}</span>
+                  tooltip="{{header.tooltipText}}">{{header.caption}}</span>
                 </th>
             </template>
         </tr>
@@ -19,8 +18,7 @@
                     <td>
                         <span [ngClass]="cell.icon"
                               placement="{{cell.tooltipPlacement}}"
-                              tooltip="{{cell.tooltipText}}"
-                              isDisabled="{{!cell.tooltipText}}">{{cell.caption}}</span>
+                              tooltip="{{cell.tooltipText}}">{{cell.caption}}</span>
                         <div class="btn-group" *ngIf="cell.buttonList">
                             <template ngFor let-button [ngForOf]="cell.buttonList">
                                 <terra-button (outputClicked)="button.clickFunction()" inputIcon="{{button.icon}}"
