@@ -67,6 +67,10 @@ table.table
     {
         background-color: lighten($brand-primary-dark, 15);
     }
+    tbody tr.isActive
+    {
+        background-color: $brand-primary-dark;
+    }
 }
 
 .no-margin

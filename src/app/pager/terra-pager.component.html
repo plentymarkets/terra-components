@@ -11,8 +11,10 @@
             <div class="form-group">
                 <!--<span>{{'pagingPage' | translate:lang}}</span>-->
                 <form (submit)="onToPage($event, pager.value)" role="form">
-                    <terra-number-input #pager class="pager-page terra-number-input" [inputMinValue]="1"
-                                        [inputMaxValue]="100"></terra-number-input>
+                    <terra-number-input #pager
+                                        class="pager-page terra-number-input"
+                                        [inputMinValue]="1">
+                    </terra-number-input>
                 </form>
             </div>
             <!--<div class="pager-text">{{'pagingOf' | translate:lang}} {{pagingData.lastPage}}</div>-->
