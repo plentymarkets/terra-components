@@ -24,7 +24,7 @@
         </thead>
         <tbody>
         <template ngFor let-row [ngForOf]="_rowList">
-            <tr [ngClass]="{'selected': row.selected}" [context-menu]="row.contextMenuLinkList">
+            <tr [ngClass]="{'selected': row.selected, 'isActive': row.isActive}" [context-menu]="row.contextMenuLinkList">
                 <td *ngIf="_hasCheckboxes">
                     <terra-checkbox #rowCheckbox type="checkbox" [value]="row.selected"
                                     (change)="onRowCheckboxChange(rowCheckbox.value, row)"></terra-checkbox>
