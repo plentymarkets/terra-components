@@ -2,7 +2,7 @@ import { TerraSplitViewInterface } from "./terra-split-view.interface";
 
 export class TerraSplitConfigBase
 {
-    public _modules:Array<TerraSplitViewInterface> = [];
+    private _modules:Array<TerraSplitViewInterface> = [];
 
     public addModule(module:TerraSplitViewInterface):void
     {
@@ -24,5 +24,15 @@ export class TerraSplitConfigBase
         }
         this._modules.push(module);
         this._modules = this._modules.slice(0);
+    }
+
+    public get modules():Array<TerraSplitViewInterface>
+    {
+        return this._modules;
+    }
+
+    public set modules(value:Array<TerraSplitViewInterface>)
+    {
+        this._modules = value;
     }
 }
