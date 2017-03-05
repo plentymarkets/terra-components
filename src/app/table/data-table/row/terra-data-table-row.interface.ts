@@ -11,4 +11,5 @@ export interface TerraDataTableRowInterface<D extends TerraBaseData>
     data?:D;
     clickFunction?:() => void;
     contextMenuLinkList?:Array<TerraDataTableContextMenuEntryInterface<D>>;
+    isActive?:boolean;
 }

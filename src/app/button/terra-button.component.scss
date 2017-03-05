@@ -261,39 +261,6 @@ input[type="button"]
     }
 }
 
-/* Button Group vertical */
-.btn-group-vertical
-{
-    .btn
-    {
-        display: block;
-        float: none;
-        margin: 1px 0;
-        max-width: 100%;
-        width: 100%;
-        + .btn
-        {
-            margin-top: 0;
-        }
-    }
-    .terra-button:first-child:not(:last-child) .btn
-    {
-        border-top-right-radius: 0.15rem;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-    .terra-button:last-child:not(:first-child) .btn
-    {
-        border-bottom-left-radius: 0.15rem;
-        border-top-right-radius: 0;
-        border-top-left-radius: 0;
-    }
-    .terra-button:not(:first-child):not(:last-child) .btn
-    {
-        border-radius: 0;
-    }
-}
-
 .btn-handler
 {
     display: inline-block;
@@ -302,4 +269,43 @@ input[type="button"]
 .icon_dist_top
 {
     line-height: 0px;
+}
+
+/deep/
+{
+    .btn-group-vertical
+    {
+        display: block;
+
+        .btn,
+        .btn-handler
+        {
+            display: block;
+            float: none;
+            max-width: 100%;
+            width: 100%;
+            text-align: left;
+        }
+        terra-button:first-child:not(:last-child) .btn
+        {
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+            margin: 0px 0px 1px 0px;
+        }
+        terra-button:last-child:not(:first-child) .btn
+        {
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            margin: 1px 0px 0px 0px;
+        }
+        terra-button:not(:first-child):not(:last-child) .btn
+        {
+            border-radius: 0;
+            margin: 1px 0;
+        }
+    }
 }

@@ -4,6 +4,7 @@
 {
     position: relative;
     margin-bottom: 12px;
+    background-color: #FFFFFF;
     .select-box
     {
         height: $terra-btn-md-height;
@@ -19,7 +20,7 @@
         background-position: calc(100% - 1rem) 1.2rem;
         border: $border-width solid $border-color;
         border-radius: $border-radius;
-        background: #FFFFFF url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat right .75rem center;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat right .75rem center;
         background-image: none \9;
         background-size: 8px 10px;
         &.error
@@ -75,10 +76,11 @@
     &.disabled
     {
         opacity: .65;
+        background-color: transparent !important;
         
         label, .select-box
         {
-            background-color: #F2F2F2;
+            //background-color: #F2F2F2;
             cursor: not-allowed;
         }
         .select-box-dropdown

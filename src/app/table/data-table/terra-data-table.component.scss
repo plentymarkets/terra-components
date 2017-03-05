@@ -49,6 +49,7 @@ table.table
     > tbody tr:hover
     {
         background: $brand-primary-dark !important;
+        cursor: pointer;
         & td
         {
             border-right: $table-border-width solid $white;
@@ -65,6 +66,10 @@ table.table
     tbody tr.selected:nth-of-type(even)
     {
         background-color: lighten($brand-primary-dark, 15);
+    }
+    tbody tr.isActive
+    {
+        background-color: $brand-primary-dark;
     }
 }
 

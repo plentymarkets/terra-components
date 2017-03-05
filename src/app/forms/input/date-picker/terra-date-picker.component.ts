@@ -2,7 +2,8 @@ import {
     Component,
     Input,
     forwardRef,
-    OnChanges
+    OnChanges,
+    ViewChild
 } from '@angular/core';
 import {
     NG_VALUE_ACCESSOR,
@@ -10,7 +11,8 @@ import {
 } from '@angular/forms';
 import {
     IMyOptions,
-    IMyDateModel
+    IMyDateModel,
+    MyDatePicker
 } from 'mydatepicker';
 
 export const DATE_PICKER_VALUE_ACCESSOR:any = {
@@ -36,7 +38,9 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     @Input() inputIsDisabled:boolean;
     @Input() inputOpenCalendarTop:boolean;
     
-    private onTouchedCallback:() => void = () =>
+    @ViewChild('viewChildMyDatePicker') viewChildMyDatePicker:MyDatePicker;
+    
+    private onTouchedCallback: () => void = () =>
     {
     };
     
@@ -67,11 +71,11 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     private updateDatePickerOptions():void
     {
         this._datePickerOptions = {
-            height: 'inherit',
-            inputValueRequired: this.inputIsRequired,
-            componentDisabled:  this.inputIsDisabled,
+            height:                 'inherit',
+            inputValueRequired:     this.inputIsRequired,
+            componentDisabled:      this.inputIsDisabled,
             openSelectorTopOfInput: this.inputOpenCalendarTop,
-            showSelectorArrow: !this.inputOpenCalendarTop
+            showSelectorArrow:      !this.inputOpenCalendarTop
         };
     }
     
@@ -97,22 +101,29 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     
     public set value(value:any)
     {
-        this._value = value;
-        
-        let momentDate:Date = new Date(value*1000);
-        
-        this.myDateModel = {
-            date:      {
-                year:  momentDate.getFullYear(),
-                month: momentDate.getMonth()+1,
-                day:   momentDate.getDate()
-            },
-            jsdate:    momentDate,
-            formatted: '',
-            epoc:      value
-        };
-    }
+        if(value != null)
+        {
     
+            this._value = value;
+    
+            let momentDate: Date = new Date(value * 1000);
+    
+            this.myDateModel = {
+                date:      {
+                    year:  momentDate.getFullYear(),
+                    month: momentDate.getMonth() + 1,
+                    day:   momentDate.getDate()
+                },
+                jsdate:    momentDate,
+                formatted: '',
+                epoc:      value
+            };
+        }
+        else
+        {
+            this.viewChildMyDatePicker.clearDate();
+        }
+    }
     
     public get myDateModel():IMyDateModel
     {
@@ -126,4 +137,10 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.onTouchedCallback();
         this.onChangeCallback(this.myDateModel.epoc);
     }
+    
+    public clearDate():void
+    {
+        this.viewChildMyDatePicker.clearDate();
+    }
 }
+    
