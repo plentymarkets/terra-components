@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@types/jasmine": "^2.5.37",
+    "@types/jquery": "^2.0.40",
     "@types/node": "^6.0.46",
     "@types/source-map": "^0.1.27",
     "@types/uglify-js": "^2.0.27",
@@ -84,8 +85,4 @@
     "webpack-dev-server": "2.3.0",
     "webpack-merge": "^2.4.0"
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> beta7
