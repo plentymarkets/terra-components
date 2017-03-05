@@ -41,8 +41,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                          {
                              if(item.value == value)
                              {
-                                 this._selectedValue.active = false;
-                                 item.active = true;
                                  this._selectedValue = item;
                              }
                          });
@@ -83,16 +81,16 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         if(this.inputListBoxValues && this.inputListBoxValues.length > 0)
         {
             let foundItem = false;
-            
+
             for(let i = 0; i < this.inputListBoxValues.length; i++)
             {
-                if(this.inputListBoxValues[i].active == true)
+                if(this.inputListBoxValues[i].value === this._selectedValue.value)
                 {
                     this.select(i);
                     foundItem = true;
                 }
             }
-            
+
             if(foundItem == false)
             {
                 this.select(0);
@@ -112,16 +110,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         if(this._isInit == true && changes["inputListBoxValues"] && changes["inputListBoxValues"].currentValue.length > 0)
         {
-            setTimeout(() => this.inputSelectedValue = changes["inputListBoxValues"].currentValue[0].value, 0);
-            
-            changes["inputListBoxValues"].currentValue
-                                         .forEach((item:TerraSelectBoxValueInterface) =>
-                                                  {
-                                                      if(item.active && item.active == true)
-                                                      {
-                                                          setTimeout(() => this.inputSelectedValue = item.value, 0);
-                                                      }
-                                                  });
+            setTimeout(() => this.select(0), 0);
         }
     }
     
@@ -145,7 +134,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         if(this.inputListBoxValues.length > 0)
         {
-            this._selectedValue.active = false;
             this._selectedValue = this.inputListBoxValues[index];
             this.outputValueChanged.emit(this.inputListBoxValues[index]);
             this.inputSelectedValue = this.inputListBoxValues[index].value;

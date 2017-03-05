@@ -23,7 +23,15 @@ export class TerraBaseService
     {
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.setAuthorization();
-        this.url = _baseUrl;
+        
+        if(process.env.ENV === 'production')
+        {
+            this.url = _baseUrl;
+        }
+        else
+        {
+            this.url = "http://master.plentymarkets.com" + _baseUrl;
+        }
     }
     
     get http():Http
