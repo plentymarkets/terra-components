@@ -66,5 +66,10 @@ export class TerraComponentsComponent extends Locale implements OnInit
     ngOnInit()
     {
         
+        $("#xyz").click(function()
+                        {
+                            alert("The paragraph was clicked.");
+                        });
+        
     }
 }
