@@ -11,6 +11,5 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 import 'jquery';
-import 'jquery.scrollintoview';
 
 import './app/assets/styles/icons.glob.scss';
