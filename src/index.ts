@@ -30,6 +30,7 @@ export * from './app/portlet/terra-portlet.component';
 export * from './app/regex/terra-regex';
 export * from './app/service/terra-base.service';
 export * from './app/split-view/data/terra-split-view.interface';
+export * from './app/split-view/data/terra-split-config-base';
 export * from './app/split-view/terra-split-view.component';
 export * from './app/table/data-table/cell/terra-data-table-cell.interface';
 export * from './app/table/data-table/cell/terra-data-table-header-cell.interface';
