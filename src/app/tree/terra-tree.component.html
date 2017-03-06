@@ -8,10 +8,10 @@
                         {{leaf.caption}}
                     </span>
                 </div>
-            <span class="node-toggle" *ngIf="checkIfArrowNeeded(leaf)" (click)="onArrowClick(leaf)"></span>
-            <terra-tree [inputLeafList]="leaf.subLeafList" [inputParentLeafList]="inputLeafList"
-                        [inputCompleteLeafList]="inputCompleteLeafList" *ngIf="leaf.subLeafList"></terra-tree>
-          </li>
+                <span class="node-toggle" *ngIf="checkIfArrowNeeded(leaf)" (click)="onArrowClick(leaf)"></span>
+                <terra-tree [inputLeafList]="leaf.subLeafList" [inputParentLeafList]="inputLeafList"
+                            [inputCompleteLeafList]="inputCompleteLeafList" *ngIf="leaf.subLeafList"></terra-tree>
+            </li>
         </template>
     </ul>
 </div>

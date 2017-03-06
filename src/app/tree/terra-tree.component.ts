@@ -2,7 +2,7 @@ import {
     Component,
     Input
 } from '@angular/core';
-import { TerraBaseTreeComponent } from "./base/terra-base-tree.component";
+import { TerraBaseTreeComponent } from './base/terra-base-tree.component';
 import { TerraLeafInterface } from './leaf/terra-leaf.interface';
 
 @Component({

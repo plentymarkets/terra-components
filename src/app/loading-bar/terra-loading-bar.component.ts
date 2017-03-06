@@ -3,9 +3,7 @@ import {
     OnInit,
     Input
 } from '@angular/core';
-import {
-    TerraLoadingBarService
-} from './service/terra-loading-bar.service';
+import { TerraLoadingBarService } from './service/terra-loading-bar.service';
 import {
     TerraLoadingBarEvent,
     TerraLoadingBarEventType

@@ -81,7 +81,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         if(this.inputListBoxValues && this.inputListBoxValues.length > 0)
         {
             let foundItem = false;
-
+            
             for(let i = 0; i < this.inputListBoxValues.length; i++)
             {
                 if(this.inputListBoxValues[i].value === this._selectedValue.value)
@@ -90,7 +90,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                     foundItem = true;
                 }
             }
-
+            
             if(foundItem == false)
             {
                 this.select(0);
