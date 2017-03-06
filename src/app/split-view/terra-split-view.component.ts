@@ -21,36 +21,36 @@ export class TerraSplitViewComponent extends Locale implements OnChanges
     @Input() inputModules:Array<TerraSplitViewInterface>;
     @Input() inputShowBreadcrumbs:boolean;
     private _breadCrumbsPath:string;
-
+    
     constructor(public locale:LocaleService, public localization:LocalizationService)
     {
         super(locale, localization);
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
     }
-
+    
     ngOnChanges(changes:SimpleChanges)
     {
         if(changes["inputModules"])
         {
-            if (this.inputModules != null)
+            if(this.inputModules != null)
             {
-                this.focusView(this.inputModules[this.inputModules.length-1].mainComponentName);
+                this.focusView(this.inputModules[this.inputModules.length - 1].mainComponentName);
             }
         }
     }
-
+    
     private focusView(id:string):void
     {
-      setTimeout(function()
-      {
-          document.getElementById(id).scrollIntoView();
-          // let anchor = $('#' + id);
-          // $('.side-scroller').stop();
-          // $('.side-scroller').animate({
-          //     scrollLeft: (anchor.offset().left)
-          // }, 1000);
-      });
+        setTimeout(function()
+                   {
+                       document.getElementById(id).scrollIntoView();
+                       // let anchor = $('#' + id);
+                       // $('.side-scroller').stop();
+                       // $('.side-scroller').animate({
+                       //     scrollLeft: (anchor.offset().left)
+                       // }, 1000);
+                   });
     }
 }
 
