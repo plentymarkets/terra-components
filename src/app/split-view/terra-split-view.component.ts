@@ -43,14 +43,22 @@ export class TerraSplitViewComponent extends Locale implements OnChanges
     private focusView(id:string):void
     {
         setTimeout(function()
-                   {
-                       document.getElementById(id).scrollIntoView();
-                       // let anchor = $('#' + id);
-                       // $('.side-scroller').stop();
-                       // $('.side-scroller').animate({
-                       //     scrollLeft: (anchor.offset().left)
-                       // }, 1000);
-                   });
+        {
+            let anchor = $('#' + id);
+
+            if (anchor[0].getBoundingClientRect().left > $('.side-scroller').scrollLeft() - 3 &&
+                anchor[0].getBoundingClientRect().right <= (window.innerWidth || document.documentElement.clientWidth))
+            {
+                return;
+            }
+
+            $('.side-scroller').stop();
+            $('.side-scroller').animate({
+                scrollLeft: (anchor.offset().left + $('.side-scroller').scrollLeft() - 3)
+            }, 500);
+          
+        });
     }
+
 }
 
