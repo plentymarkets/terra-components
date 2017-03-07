@@ -6,6 +6,9 @@
 
 ### Features
 * **terra-select-box.interface** The active property has been removed because it is no longer being used 
+* **terra-base-service** when not in productive mode the base url is master.plentymarkets.com ([e751503](https://github.com/plentymarkets/terra-components/commit/e751503))
+* **Jquery** Added jquery libraries to project
+* **terra-split-view** Split view scrolls now automatically & improved breadcrumb navigation 
 
 <a name="0.0.184"></a>
 # 0.0.184 (03.03.2017)
