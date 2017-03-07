@@ -16,7 +16,7 @@ Sign up today and become a member of our [forum](https://forum.plentymarkets.com
 
 ## Versioning
 
-Visit our forum and find the latest news and updates in our [Changelog](https://forum.plentymarkets.com/c/changelog?order=created).
+Visit our forum and find the latest news and updates in our [Changelog](https://github.com/plentymarkets/terra-components/blob/beta7/CHANGELOG.md).
 
 ## License
 
