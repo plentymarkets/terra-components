@@ -1,5 +1,5 @@
 <a name="0.0.185"></a>
-# 0.0.185 (??.??.????)
+# 0.0.185 (07.03.2017)
 
 ### Bug Fixes
 * **terra-select-box** FIX data binding and selection bug when using the same array of listBoxValues for multiple select-boxes in the same view.
