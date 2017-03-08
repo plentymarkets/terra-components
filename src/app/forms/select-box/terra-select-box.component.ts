@@ -7,25 +7,18 @@ import {
     EventEmitter,
     OnChanges,
     SimpleChanges,
-    forwardRef
+    ChangeDetectionStrategy
 } from '@angular/core';
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-
-export const SELECT_BOX_VALUE_ACCESSOR:any = {
-    provide:     NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TerraSelectBoxComponent),
-    multi:       true
-};
 
 @Component({
-               selector:  'terra-select-box',
-               styles:    [require('./terra-select-box.component.scss')],
-               template:  require('./terra-select-box.component.html'),
-               host:      {
+               selector:        'terra-select-box',
+               styles:          [require('./terra-select-box.component.scss')],
+               template:        require('./terra-select-box.component.html'),
+               host:            {
                    '(document:click)': 'clickedOutside($event)',
                },
-               providers: [SELECT_BOX_VALUE_ACCESSOR]
+               changeDetection: ChangeDetectionStrategy.OnPush
            })
 export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
@@ -38,15 +31,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Output() outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
     @Output() inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
     
-    
-    /**
-     * @deprecated
-     * @param value
-     */
     @Input()
     set inputSelectedValue(value:number | string)
     {
-        console.warn('inputSelectedValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.')
         if(value !== undefined && value !== null)
         {
             this.inputListBoxValues
@@ -66,7 +53,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         return this._selectedValue.value;
     }
     
-    private _value:number | string;
     private _selectedValue:TerraSelectBoxValueInterface;
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
@@ -92,7 +78,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     
     ngOnInit()
     {
-
         if(this.inputListBoxValues && this.inputListBoxValues.length > 0)
         {
             let foundItem = false;
@@ -112,7 +97,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             }
         }
         
-
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
         this._isInit = true;
@@ -126,60 +110,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         if(this._isInit == true && changes["inputListBoxValues"] && changes["inputListBoxValues"].currentValue.length > 0)
         {
-            setTimeout(() => this.select(this.inputListBoxValues[0]), 0);
-        }
-    }
-    
-    /**
-     *
-     * Two way data binding by ngModel
-     */
-    private onTouchedCallback:() => void = () =>
-    {
-    };
-    
-    private onChangeCallback:(_:any) => void = (_) =>
-    {
-    };
-    
-    public registerOnChange(fn:any):void
-    {
-        this.onChangeCallback = fn;
-    }
-    
-    public registerOnTouched(fn:any):void
-    {
-        this.onTouchedCallback = fn;
-    }
-    
-    public writeValue(value:any):void
-    {
-        this.value = value;
-    }
-    
-    public get value():any
-    {
-        return this._value;
-    }
-    
-    public set value(value:any)
-    {
-        this._value = value;
-        
-        if(value !== undefined && value !== null)
-        {
-            this.inputListBoxValues
-                .forEach((item:TerraSelectBoxValueInterface) =>
-                         {
-                             if(item.value == value)
-                             {
-                                 this._selectedValue = item;
-                             }
-                         });
-        }
-        else
-        {
-            this._selectedValue = this.inputListBoxValues[0];
+            setTimeout(() => this.select(0), 0);
         }
     }
     
@@ -199,11 +130,14 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      *
      * @param value
      */
-    private select(value:TerraSelectBoxValueInterface):void
+    private select(index:number):void
     {
-        this._selectedValue = value;
-        this.onTouchedCallback();
-        this.onChangeCallback(value.value);
+        if(this.inputListBoxValues.length > 0)
+        {
+            this._selectedValue = this.inputListBoxValues[index];
+            this.outputValueChanged.emit(this.inputListBoxValues[index]);
+            this.inputSelectedValue = this.inputListBoxValues[index].value;
+        }
     }
     
     /**
@@ -259,4 +193,5 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         this._regex = regex;
     }
+    
 }
