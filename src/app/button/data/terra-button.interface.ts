@@ -9,4 +9,5 @@ export interface TerraButtonInterface
     caption?:string;
     tooltipText?:string;
     clickFunction:() => void;
+    isActive?:boolean;
 }
