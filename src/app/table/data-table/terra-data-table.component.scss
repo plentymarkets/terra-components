@@ -48,7 +48,8 @@ table.table
     }
     > tbody tr:hover
     {
-        background: $brand-primary-dark !important;
+        background: $brand-primary-lighter;
+        color: $gray-dark;
         cursor: pointer;
         & td
         {
@@ -61,15 +62,16 @@ table.table
     }
     tbody tr.selected:nth-of-type(odd)
     {
-        background-color: lighten($brand-primary-dark, 5);
+        background-color: lighten($brand-primary-lighter, 5);
     }
     tbody tr.selected:nth-of-type(even)
     {
-        background-color: lighten($brand-primary-dark, 15);
+        background-color: lighten($brand-primary-lighter, 15);
     }
     tbody tr.isActive
     {
-        background-color: $brand-primary-dark;
+        background-color: $brand-primary-darker;
+        color: $white;
     }
 }
 
