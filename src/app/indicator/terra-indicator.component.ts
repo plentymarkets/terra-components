@@ -16,6 +16,7 @@ export class TerraIndicatorComponent implements OnInit
     
     constructor()
     {
+        this.inputType = 'default';
     }
     
     ngOnInit()
