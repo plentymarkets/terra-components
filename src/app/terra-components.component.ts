@@ -8,7 +8,6 @@ import {
     LocalizationService,
     Locale
 } from 'angular2localization';
-import { TerraSelectBoxValueInterface } from './forms/select-box/data/terra-select-box.interface';
 
 @Component({
                selector: 'app-root',
@@ -18,23 +17,6 @@ import { TerraSelectBoxValueInterface } from './forms/select-box/data/terra-sele
 export class TerraComponentsComponent extends Locale implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
-    
-    private mainOptionList:Array<TerraSelectBoxValueInterface> = [
-        {
-            value:   'mail',
-            caption: 'E-Mail'
-        },
-        {
-            value:   'phone',
-            caption: 'Telefon'
-        },
-        {
-            value:   'marketplace',
-            caption: 'Marktplatz'
-        }
-    ];
-    
-    private selectedValue:any = 'phone';
     
     public constructor(private viewContainerRef:ViewContainerRef,
                        public local:LocaleService,
@@ -84,21 +66,5 @@ export class TerraComponentsComponent extends Locale implements OnInit
     ngOnInit()
     {
         
-    }
-    
-    private stupidFunc()
-    {
-        this.mainOptionList.push({
-            value: 'newwwwwww',
-            caption: 'nev'
-                                 });
-    }
-    
-    private stupidFunc2()
-    {
-        this.mainOptionList = [{
-            value: 'newwwwwww2',
-            caption: 'nev2'
-        }];
     }
 }
