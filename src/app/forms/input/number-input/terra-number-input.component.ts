@@ -5,9 +5,7 @@ import {
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { TerraRegex } from '../../../regex/terra-regex';
-import {
-    NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export const NUMBER_INPUT_CONTROL_VALUE_ACCESSOR:any = {
     provide:     NG_VALUE_ACCESSOR,

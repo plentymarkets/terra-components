@@ -15,9 +15,7 @@ import {
     LocaleService,
     LocalizationService
 } from 'angular2localization';
-import {
-    isBlank
-} from '@angular/core/src/facade/lang';
+import { isBlank } from '@angular/core/src/facade/lang';
 
 @Component({
                selector: 'terra-multi-select-box',

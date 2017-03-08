@@ -91,6 +91,7 @@ export { TerraPortletComponent } from './portlet/terra-portlet.component';
 export { TerraRegex } from './regex/terra-regex';
 export { TerraBaseService } from './service/terra-base.service';
 export { TerraSplitViewInterface } from './split-view/data/terra-split-view.interface';
+export { TerraSplitConfigBase } from './split-view/data/terra-split-config-base';
 export { TerraSplitViewComponent } from './split-view/terra-split-view.component';
 export { TerraDataTableCellInterface } from './table/data-table/cell/terra-data-table-cell.interface';
 export { TerraDataTableHeaderCellInterface } from './table/data-table/cell/terra-data-table-header-cell.interface';

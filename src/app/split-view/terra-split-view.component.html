@@ -1,17 +1,19 @@
 <terra-base-toolbar class="terra-breadcrumb-bar" *ngIf="inputShowBreadcrumbs">
-    <template ngFor let-module [ngForOf]="inputModules" let-first="first">
-        <span *ngIf="!first"> » </span>
-        {{module.name}}
-    </template>
-    <terra-button *ngIf="inputModules" [inputIsSmall]="true" inputCaption="{{ 'back' | translate:lang }}"
-                  [inputIsDisabled]="isSingleComponent" [inputIsAlignRight]="true" (outputClicked)="onClick()"></terra-button>
-    <!--<terra-button *ngIf="inputModules" [inputIsSmall]="true" inputIcon="icon-copy_clipboard" [inputIsAlignRight]="true"-->
-    <!--(outputClicked)="copyPath()" ngIIclipboard [cbContent]="breadCrumbsPath"></terra-button>-->
+    <div class="btn-group">
+        <template ngFor let-module [ngForOf]="inputModules" let-first="first">
+            <terra-button *ngIf="inputModules"
+                          [inputIsSmall]="true"
+                          inputCaption="{{ module.name }}"
+                          (outputClicked)="focusView(module.mainComponentName)">
+            </terra-button>
+        </template>
+    </div>
 </terra-base-toolbar>
 <div *ngIf="inputModules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
     <template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">
         <div *ngIf="!module.hidden"
-             class="view {{module.defaultWidth}}"
+             id="{{ module.mainComponentName }}"
+             class="view {{ module.defaultWidth }}"
              [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">
             <terra-dynamic-module-loader [inputModule]="module.module"
                                          [inputParameter]="module.parameter"

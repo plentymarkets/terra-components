@@ -40,7 +40,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     
     @ViewChild('viewChildMyDatePicker') viewChildMyDatePicker:MyDatePicker;
     
-    private onTouchedCallback: () => void = () =>
+    private onTouchedCallback:() => void = () =>
     {
     };
     
@@ -103,11 +103,11 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     {
         if(value != null)
         {
-    
+            
             this._value = value;
-    
-            let momentDate: Date = new Date(value * 1000);
-    
+            
+            let momentDate:Date = new Date(value * 1000);
+            
             this.myDateModel = {
                 date:      {
                     year:  momentDate.getFullYear(),

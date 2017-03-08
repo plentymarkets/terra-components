@@ -2,7 +2,7 @@ import {
     Input,
     OnInit
 } from '@angular/core';
-import { TerraLeafInterface } from "../leaf/terra-leaf.interface";
+import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
 
 /**
  * @author mkunze

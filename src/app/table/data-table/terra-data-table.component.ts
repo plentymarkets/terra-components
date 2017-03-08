@@ -14,7 +14,6 @@ import { TerraBaseData } from '../../data/terra-base.data';
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
-import { TerraOverlayComponent } from '../../overlay/terra-overlay.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 

@@ -1,7 +1,7 @@
 import {
     Component,
     OnInit,
-    ViewContainerRef,
+    ViewContainerRef
 } from '@angular/core';
 import {
     LocaleService,

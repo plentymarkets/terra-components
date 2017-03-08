@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TerraAlertComponent } from "./terra-alert.component";
+import { TerraAlertComponent } from './terra-alert.component';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 
 /**
