@@ -1,4 +1,12 @@
 <a name="0.0.185"></a>
+# 0.0.188 (09.03.2017)
+
+### Bug Fixes
+* **terra-select-box** FIX missing existing check on rendering selected value
+* **terra-select-box** FIX emit outputValueChanged event after selection
+* **terra-select-box.interface** FIX changed type of caption from any to string or number
+
+<a name="0.0.185"></a>
 # 0.0.185 (07.03.2017)
 
 ### Bug Fixes
