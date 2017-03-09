@@ -31,7 +31,7 @@ export class TerraSplitViewComponent extends Locale implements OnChanges
     
     ngOnChanges(changes:SimpleChanges)
     {
-        if(changes["inputModules"])
+        if(changes["inputModules"].currentValue !== undefined && changes["inputModules"].currentValue.length > 0 )
         {
             if(this.inputModules != null)
             {
