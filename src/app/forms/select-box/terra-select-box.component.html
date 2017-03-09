@@ -14,8 +14,8 @@
     </label>
     
     <div class="select-box" [ngClass]="{'error': !isValid, 'labeled': _hasLabel}">
-        <span class="{{_selectedValue.icon}}" *ngIf="_selectedValue.icon"></span>
-        {{_selectedValue.caption}}
+        <span class="{{_selectedValue?.icon}}" *ngIf="_selectedValue?.icon"></span>
+        {{_selectedValue?.caption}}
     </div>
     
     <div class="select-box-dropdown">
