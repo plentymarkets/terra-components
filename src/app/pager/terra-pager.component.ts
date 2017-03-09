@@ -61,7 +61,7 @@ export class TerraPagerComponent implements OnInit
         if(!this.inputPagingData)
         {
             this.inputPagingData = {
-                pagingUnit:     'Entries',
+                pagingUnit:     '',
                 totalsCount:    0,
                 page:           1,
                 itemsPerPage:   0,
