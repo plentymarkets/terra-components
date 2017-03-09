@@ -6,13 +6,13 @@ export class TerraSplitConfigBase
     
     public addModule(module:TerraSplitViewInterface):void
     {
-        for(var i = 0; i < this._modules.length; i++)
+        for (let i = 0; i < this._modules.length; i++)
         {
             // check if this module is already loaded
-            if(this._modules[i].mainComponentName == module.mainComponentName)
+            if (this._modules[i].mainComponentName == module.mainComponentName ||
+                (this._modules[i].instanceKey != null && this._modules[i].instanceKey == module.instanceKey))
             {
-                // TODO: == might not be sufficient here
-                if(this._modules[i].parameter == module.parameter)
+                if (this._modules[i].parameter == module.parameter)
                 {
                     // same module, same parameters => do nothing
                     return;
