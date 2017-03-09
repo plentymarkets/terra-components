@@ -183,6 +183,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this._selectedValue = value;
         this.onTouchedCallback();
         this.onChangeCallback(value.value);
+        this.outputValueChanged.emit(value);
     }
     
     /**

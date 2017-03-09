@@ -1,7 +1,6 @@
 export interface TerraSelectBoxValueInterface
 {
     value:any;
-    //i18n from locale_de and locale_en
-    caption:any;
+    caption:string | number;
     icon?:string;
 }
