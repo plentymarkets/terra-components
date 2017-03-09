@@ -12,6 +12,11 @@
         border: none;
         overflow: visible;
         position: inherit;
+        .icon-cross,
+        .icon-calendar
+        {
+            font-size: 20px
+        }
     }
     
     .selectiongroup
@@ -19,7 +24,7 @@
         display: block;
         overflow: visible;
         position: inherit;
-        height: 32px;
+        height: $terra-btn-md-height - 2;
         
         input
         {
@@ -48,14 +53,14 @@
         display: inline-block;
         text-align: right;
         vertical-align: bottom;
-        height: 22px !important;
+        padding-right: 4px;
         
         .btnpicker
         {
-            background-color: $brand-primary;
-            color: $white;
-            width: 22px;
-            
+            background-color: $white;
+            color: $brand-primary;
+            width: 24px;
+            border: 0px;
             //css for myDateModel select button
             .icon-calendar
             {
@@ -70,10 +75,10 @@
         
         .btnclear
         {
-            background-color: $brand-secondary;
-            color: $white;
+            background-color: $white;
+            color: $brand-secondary;
             width: 22px;
-            
+            border: 0px;
             //css for clear selected myDateModel button
             .icon-cross
             {
@@ -99,7 +104,7 @@
         &:focus
         {
             border-color: $gray-light-2;
-
+            
             &:before
             {
                 border-bottom-color: $gray-light-2;
@@ -123,7 +128,7 @@
                     content: '\e912';
                 }
             }
-
+            
             .icon-right
             {
                 &:focus
