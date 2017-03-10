@@ -48,17 +48,9 @@ table.table
     }
     > tbody tr:hover
     {
-        background: $brand-primary-lighter;
+        background: $gray-light-3;
         color: $gray-dark;
         cursor: pointer;
-        & td
-        {
-            border-right: $table-border-width solid $white;
-            &:last-child
-            {
-                border-right: $table-border-width solid $table-border-color;
-            }
-        }
     }
     tbody tr.selected:nth-of-type(odd)
     {
@@ -70,8 +62,16 @@ table.table
     }
     tbody tr.isActive
     {
-        background-color: $brand-primary-darker;
+        background-color: $gray-light;
         color: $white;
+        & td
+        {
+            border-right: $table-border-width solid $white;
+            &:last-child
+            {
+                border-right: $table-border-width solid $table-border-color;
+            }
+        }
     }
 }
 
