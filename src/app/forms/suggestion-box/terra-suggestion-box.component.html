@@ -1,10 +1,13 @@
-<div class="select-box-wrapper"
+<div
      [ngClass]="{
                   'input-unit-v1': _hasLabel,
                   'error': !isValid,
                   'disabled': isDisabled,
                   'open': '_toggleOpen'
                 }">
+    <label htmlFor="{{inputName}}">{{inputName}}
+        <span *ngIf="inputIsRequired">*</span>
+    </label>
     <input
         tooltipPlacement="{{inputTooltipPlacement}}"
         tooltip="{{inputTooltipText}}"
@@ -15,9 +18,6 @@
         [(ngModel)]="_currentValue.caption"
         value={{_selectedValue.caption}}
     >
-    <label htmlFor="{{inputName}}">{{inputName}}
-        <span *ngIf="inputIsRequired">*</span>
-    </label>
     <div *ngIf='_toggleOpen' class="select-box-dropdown">
         <span *ngFor="let item of inputListBoxValues; let  index=index;"
               (click)="select(index)" [ngClass]="{'active': item.active}">
