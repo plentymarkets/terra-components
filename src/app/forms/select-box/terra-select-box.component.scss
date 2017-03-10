@@ -37,56 +37,58 @@
         line-height: 1.2em;
         padding: 16px 12px 2px 12px;
     }
+}
+
+.select-box-dropdown
+{
+    position: absolute;
+    z-index: 99999;
+    top: $terra-btn-md-height;
+    left: 0;
+    width: 100%;
+    max-height: 12rem;
+    border: 1px solid $gray-light-2;
+    border-radius: $border-radius;
+    background: white;
+    display: none;
+    overflow: auto;
+    > span
+    {
+        display: block;
+        width: 100%;
+        padding: .25em 1em;
+        line-height: 18px;
+        &:hover,
+        &.active
+        {
+            background: $brand-primary;
+            color: white;
+            cursor: pointer;
+        }
+    }
+}
+
+.open
+{
     .select-box-dropdown
     {
-        position: absolute;
-        z-index: 99999;
-        top: $terra-btn-md-height;
-        left: 0;
-        width: 100%;
-        max-height: 12rem;
-        border: 1px solid $gray-light-2;
-        border-radius: $border-radius;
-        background: white;
-        display: none;
-        overflow: auto;
-        > span
-        {
-            display: block;
-            width: 100%;
-            padding: .25em 1em;
-            line-height: 18px;
-            &:hover,
-            &.active
-            {
-                background: $brand-primary;
-                color: white;
-                cursor: pointer;
-            }
-        }
+        display: block;
     }
-    &.open
-    {
-        .select-box-dropdown
-        {
-            display: block;
-        }
-    }
+}
+
+.disabled
+{
+    opacity: .65;
+    background-color: transparent !important;
     
-    &.disabled
+    label, .select-box
     {
-        opacity: .65;
-        background-color: transparent !important;
-        
-        label, .select-box
-        {
-            //background-color: #F2F2F2;
-            cursor: not-allowed;
-        }
-        .select-box-dropdown
-        {
-            display: none !important;
-        }
+        //background-color: #F2F2F2;
+        cursor: not-allowed;
+    }
+    .select-box-dropdown
+    {
+        display: none !important;
     }
 }
 
@@ -101,7 +103,7 @@
     overflow: inherit;
 }
 
-.input-unit-v1.select-box-wrapper .select-box-dropdown
+.input-unit-v1 .select-box-dropdown
 {
     width: auto;
     top: $terra-btn-md-height;
