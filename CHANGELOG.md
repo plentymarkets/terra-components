@@ -23,6 +23,12 @@
 * **terra-select-box** FIX emit outputValueChanged event after selection
 * **terra-select-box.interface** FIX changed type of caption from any to string or number
 
+<a name="0.0.186"></a>
+# 0.0.186 (09.03.2017)
+
+### Bug Fixes
+* **terra-indicator** FIX usage of inputs in template conforming to style classes
+
 <a name="0.0.185"></a>
 # 0.0.185 (07.03.2017)
 
