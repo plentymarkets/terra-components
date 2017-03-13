@@ -1,3 +1,9 @@
+<a name="0.0.190"></a>
+# 0.0.190 (13.03.2017)
+
+### Bug Fixes
+* **terra-tile-box-panel** FIX viewStyle value for tile box CSS
+
 <a name="0.0.189"></a>
 # 0.0.189 (13.03.2017)
 
