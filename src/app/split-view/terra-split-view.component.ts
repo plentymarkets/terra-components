@@ -59,6 +59,4 @@ export class TerraSplitViewComponent extends Locale implements OnChanges
             
                    });
     }
-    
 }
-

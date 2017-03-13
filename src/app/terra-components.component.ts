@@ -8,7 +8,6 @@ import {
     LocalizationService,
     Locale
 } from 'angular2localization';
-import { TerraSelectBoxValueInterface } from './forms/select-box/data/terra-select-box.interface';
 
 @Component({
                selector: 'app-root',
