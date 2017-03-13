@@ -1,4 +1,15 @@
-<a name="0.0.185"></a>
+<a name="0.0.189"></a>
+# 0.0.189 (13.03.2017)
+
+### Bug Fixes
+* **terra-data-table** FIX table colours for row hover and selected row
+
+### Features
+* **terra-suggestion-box** Label position changed
+* **terra-date-picker** Invert button colours
+* **terra-tile-view** Set tile view as default
+
+<a name="0.0.188"></a>
 # 0.0.188 (09.03.2017)
 
 ### Bug Fixes
