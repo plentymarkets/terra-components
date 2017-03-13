@@ -45,7 +45,7 @@ button.close
     @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-border-radius);
     @include transition(all .2s ease-in-out);
     @include button-variant($gray-dark, $gray-light-3, transparent);
-
+    
     &:hover
     {
         background: darken($gray-light-3, 10%);

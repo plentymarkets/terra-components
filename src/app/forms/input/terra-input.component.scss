@@ -146,7 +146,7 @@ input[type],
 input:not([type="checkbox"]),
 input:not([type="radio"])
 {
-
+    
     color: $color;
     background-color: $background;
     border: none;
@@ -159,7 +159,7 @@ input:not([type="radio"])
     outline: none !important;
     transition: all .2s;
     height: $terra-btn-md-height - 3; //3 instead of 2, because of subpixel-rendering
-
+    
     &:focus,
     &.filled
     {
@@ -167,31 +167,31 @@ input:not([type="radio"])
         background-color: $active-background;
         border-color: $border-active;
     }
-
+    
     &.disabled,
     &:disabled
     {
         background-color: $gray-light-4;
         border-color: $gray-light-3;
         cursor: not-allowed;
-
+        
         & ~ label
         {
             color: $gray-light-3;
             cursor: not-allowed;
         }
     }
-
+    
     & + .symbol
     {
         color: $gray;
         position: absolute;
         top: $border-width;
         right: $border-width;
-
+        
         transition: all .2s;
     }
-
+    
     &.disabled,
     &:disabled
     {
@@ -199,7 +199,7 @@ input:not([type="radio"])
         {
             color: $gray;
         }
-
+        
         & + label
         {
             color: $gray-light !important;
@@ -214,12 +214,12 @@ label
     text-transform: uppercase;
     letter-spacing: .1px;
     font-weight: 600;
-
+    
     width: 100%;
     padding: 2px 5px 0;
     margin-bottom: 0;
     color: $gray-light;
-
+    
     position: absolute;
     top: 0;
     left: 0;
@@ -250,46 +250,46 @@ label
 {
     z-index: $zIndex-3;
     border-color: $brand-danger;
-
+    
     input
     {
         color: $brand-danger;
     }
-
+    
     label
     {
         color: $brand-danger;
     }
-
+    
     i
     {
         background-color: $brand-danger;
         color: white;
     }
-
+    
 }
 
 &.success
 {
     z-index: $zIndex-2;
     border-color: $brand-success;
-
+    
     input
     {
         color: $brand-success;
     }
-
+    
     label
     {
         color: $brand-success;
     }
-
+    
     i
     {
         background-color: $brand-success;
         color: white;
     }
-
+    
 }
 
 &.disabled
