@@ -1,7 +1,7 @@
 <div class="select-box-wrapper"
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
-     isDisabled="{{!inputTooltipText}}"
+     [isDisabled]="!inputTooltipText"
      [ngClass]="{
                   'error': !isValid,
                   'disabled': isDisabled,

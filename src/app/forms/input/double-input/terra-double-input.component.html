@@ -1,7 +1,7 @@
 <div class="input-unit-v1"
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
-     isDisabled="{{!inputTooltipText}}"
+     [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled}">
     <label htmlFor="{{inputName}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
