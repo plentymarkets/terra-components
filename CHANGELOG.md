@@ -1,3 +1,9 @@
+<a name="0.0.191"></a>
+# 0.0.191 (.03.2017)
+
+### Features
+* **terra-date-picker** Selector will open when the input field is clicked - Input is not editable anymore
+
 <a name="0.0.190"></a>
 # 0.0.190 (13.03.2017)
 
