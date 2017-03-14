@@ -1,3 +1,9 @@
+<a name="0.0.191"></a>
+# 0.0.191 (13.03.2017)
+
+### Bug Fixes
+* **terra-select-box** FIX active selected value
+
 <a name="0.0.190"></a>
 # 0.0.190 (13.03.2017)
 
