@@ -1,7 +1,74 @@
-.terra-breadcrumb-bar .btn-toolbar
+.terra-breadcrumbs
 {
-    line-height: $terra-btn-md-height;
+    list-style: none;
+    overflow: hidden;
     padding: 0px 6px;
+    margin-bottom: 0.05rem;
+    font-weight: $btn-font-weight;
+}
+
+.terra-breadcrumbs li
+{
+    float: left;
+    cursor: pointer;
+}
+
+.terra-breadcrumbs li span
+{
+    text-decoration: none;
+    padding: 6px 0 6px 45px;
+    background: $gray-light-3;
+    position: relative;
+    display: block;
+    float: left;
+    
+    &:hover
+    {
+        background: darken($gray-light-3, 10%);
+    }
+}
+
+.terra-breadcrumbs li span::after
+{
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid $gray-light-3;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    left: 100%;
+    z-index: 2;
+}
+
+.terra-breadcrumbs li span:hover:after
+{
+    border-left-color: darken($gray-light-3, 10%) !important;
+}
+
+.terra-breadcrumbs li span::before
+{
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 35px solid $gray-light-4;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: 1px;
+    left: 100%;
+    z-index: 1;
+}
+
+.terra-breadcrumbs li:first-child span
+{
+    padding-left: 16px;
 }
 
 .side-scroller
