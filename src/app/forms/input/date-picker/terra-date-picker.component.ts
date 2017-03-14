@@ -75,7 +75,10 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
             inputValueRequired:     this.inputIsRequired,
             componentDisabled:      this.inputIsDisabled,
             openSelectorTopOfInput: this.inputOpenCalendarTop,
-            showSelectorArrow:      !this.inputOpenCalendarTop
+            showSelectorArrow:      !this.inputOpenCalendarTop,
+            inline:                 false,
+            editableDateField:      false,
+            openSelectorOnInputClick:true
         };
     }
     
