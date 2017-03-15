@@ -11,7 +11,7 @@
     <input
         tooltipPlacement="{{inputTooltipPlacement}}"
         tooltip="{{inputTooltipText}}"
-        isDisabled="{{!inputTooltipText}}"
+        [isDisabled]="!inputTooltipText"
         (focus)="onFocus()"
         (input)="onChange()"
         name="{{inputName}}"

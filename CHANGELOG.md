@@ -1,8 +1,11 @@
 <a name="0.0.191"></a>
-# 0.0.191 (.03.2017)
+# 0.0.191 (13.03.2017)
 
 ### Features
 * **terra-date-picker** Selector will open when the input field is clicked - Input is not editable anymore
+
+### Bug Fixes
+* **terra-select-box** FIX active selected value
 
 <a name="0.0.190"></a>
 # 0.0.190 (13.03.2017)
@@ -28,6 +31,12 @@
 * **terra-select-box** FIX missing existing check on rendering selected value
 * **terra-select-box** FIX emit outputValueChanged event after selection
 * **terra-select-box.interface** FIX changed type of caption from any to string or number
+
+<a name="0.0.186"></a>
+# 0.0.186 (09.03.2017)
+
+### Bug Fixes
+* **terra-indicator** FIX usage of inputs in template conforming to style classes
 
 <a name="0.0.185"></a>
 # 0.0.185 (07.03.2017)

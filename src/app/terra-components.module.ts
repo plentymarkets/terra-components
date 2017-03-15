@@ -61,7 +61,6 @@ import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-sugges
 import { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-picker.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
-
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
