@@ -12,6 +12,7 @@
         border: none;
         overflow: visible;
         position: inherit;
+        height: 100%;
         .icon-cross,
         .icon-calendar
         {
@@ -24,7 +25,7 @@
         display: block;
         overflow: visible;
         position: inherit;
-        height: $terra-btn-md-height - 2;
+        height: 100%;
         
         input
         {
@@ -100,7 +101,6 @@
         {
             border-bottom-color: $gray-light-2;
         }
-        
         &:focus
         {
             border-color: $gray-light-2;
@@ -110,7 +110,6 @@
                 border-bottom-color: $gray-light-2;
             }
         }
-        
         .header
         {
             .icon-left
@@ -128,7 +127,6 @@
                     content: '\e912';
                 }
             }
-            
             .icon-right
             {
                 &:focus
@@ -144,7 +142,6 @@
                     content: '\e913';
                 }
             }
-            
             .monthlabel
             {
                 &:focus
