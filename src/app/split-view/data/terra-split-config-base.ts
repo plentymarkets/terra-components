@@ -4,29 +4,35 @@ export class TerraSplitConfigBase
 {
     private _modules:Array<TerraSplitViewInterface> = [];
     
+    
     public addModule(module:TerraSplitViewInterface):void
     {
         for (let i = 0; i < this._modules.length; i++)
         {
-            let isSameInstanceKey = this._modules[i].instanceKey != null && this._modules[i].instanceKey == module.instanceKey;
+            let hasSameModuleName = this._modules[i].mainComponentName != null &&
+                                    this._modules[i].mainComponentName == module.mainComponentName;
+    
+            let hasSameInstanceKey = this._modules[i].instanceKey != null &&
+                                     this._modules[i].instanceKey == module.instanceKey;
             
-            // check if this module is already loaded
-            if (this._modules[i].mainComponentName == module.mainComponentName ||
-               (isSameInstanceKey))
+            let hasSameParams = this._modules[i].parameter == module.parameter;
+    
+    
+            if (hasSameModuleName)
             {
-                if (this._modules[i].parameter == module.parameter)
+                if (hasSameInstanceKey)
                 {
-                    // same module, same parameters => do nothing
-                    return;
-                }
-                else if (!isSameInstanceKey)
-                {
+                    if (hasSameParams) { return; }
+    
+                    this._modules = this._modules.slice(0, i);
                     break;
                 }
-                
-                // same module, different parameters => drop old instance (including child modules) and reload
-                this._modules = this._modules.slice(0, i);
-                break;
+                else
+                {
+                    this._modules.push(module);
+                    this._modules = this._modules.slice(0);
+                    return;
+                }
             }
         }
         this._modules.push(module);
