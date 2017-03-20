@@ -6,7 +6,14 @@
     <label htmlFor="{{inputName}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
-    <textarea id="{{inputId}}" [(ngModel)]="value" [rows]="inputMaxRows" [cols]="inputMaxCols" name="{{inputName}}" (blur)="onBlur()"
+    <textarea id="{{inputId}}"
+              [(ngModel)]="value"
+              name="{{inputName}}"
+              (blur)="onBlur()"
+              [maxlength]="inputMaxLength"
+              [rows]="inputMaxRows"
+              [required]="inputIsRequired"
               autocomplete="off"
-              [disabled]="isDisabled"></textarea>
+              [disabled]="isDisabled">
+    </textarea>
 </div>
