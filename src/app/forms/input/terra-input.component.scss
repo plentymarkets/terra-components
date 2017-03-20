@@ -14,12 +14,18 @@ input, textarea, .form-control
     }
 }
 
+textarea
+{
+    -webkit-appearance: textarea;
+    resize: none;
+}
+
 input:focus
 {
     outline: none;
 }
 
-input[type=text], input[type=search], input[type=url], input[type=number], textarea
+input[type=text], input[type=search], input[type=url], input[type=number]
 {
     -webkit-appearance: none;
 }
@@ -132,19 +138,62 @@ $border-width: 1px;
 
 .input-unit-v1
 {
-    
     position: relative;
     width: 100%;
     margin-bottom: 12px;
     border: $border-width solid $border-color;
     border-radius: $border-radius;
     height: $terra-btn-md-height;
-    line-height: $terra-btn-md-height;
+    line-height: 0px;
+    
+    &.error
+    {
+        z-index: $zIndex-3;
+        border-color: $brand-danger;
+        input
+        {
+            color: $brand-danger;
+        }
+        label
+        {
+            color: $brand-danger;
+        }
+        i
+        {
+            background-color: $brand-danger;
+            color: white;
+        }
+    }
+    
+    &.success
+    {
+        z-index: $zIndex-2;
+        border-color: $brand-success;
+        input
+        {
+            color: $brand-success;
+        }
+        label
+        {
+            color: $brand-success;
+        }
+        i
+        {
+            background-color: $brand-success;
+            color: white;
+        }
+    }
+    
+    &.disabled
+    {
+        opacity: .65;
+    }
 }
 
 input[type],
 input:not([type="checkbox"]),
-input:not([type="radio"])
+input:not([type="radio"]),
+textarea
 {
     
     color: $color;
@@ -158,7 +207,7 @@ input:not([type="radio"])
     text-align: left;
     outline: none !important;
     transition: all .2s;
-    height: $terra-btn-md-height - 3; //3 instead of 2, because of subpixel-rendering
+    height: 100%;
     
     &:focus,
     &.filled
@@ -188,7 +237,6 @@ input:not([type="radio"])
         position: absolute;
         top: $border-width;
         right: $border-width;
-        
         transition: all .2s;
     }
     
@@ -204,6 +252,10 @@ input:not([type="radio"])
         {
             color: $gray-light !important;
         }
+    }
+    .price-input
+    {
+        text-align: right;
     }
 }
 
@@ -230,73 +282,6 @@ label
     -moz-osx-font-smoothing: grayscale;
 }
 
-//i
-//{
-//    font-style: normal;
-//    font-weight: bold;
-//    position: absolute;
-//    top: 0;
-//    left: 0;
-//    background-color: $gray-light-3;
-//    color: $gray-light-2;
-//    line-height: 1.2em;
-//    width: 1.2em;
-//    text-align: center;
-//    cursor: pointer;
-//    border-bottom-right-radius: 2px;
-//}
-
-&.error
-{
-    z-index: $zIndex-3;
-    border-color: $brand-danger;
-    
-    input
-    {
-        color: $brand-danger;
-    }
-    
-    label
-    {
-        color: $brand-danger;
-    }
-    
-    i
-    {
-        background-color: $brand-danger;
-        color: white;
-    }
-    
-}
-
-&.success
-{
-    z-index: $zIndex-2;
-    border-color: $brand-success;
-    
-    input
-    {
-        color: $brand-success;
-    }
-    
-    label
-    {
-        color: $brand-success;
-    }
-    
-    i
-    {
-        background-color: $brand-success;
-        color: white;
-    }
-    
-}
-
-&.disabled
-{
-    opacity: .65;
-}
-
 .input-unit-v1.multiple
 {
     display: flex;
@@ -318,26 +303,16 @@ label
     $INPUT GROUP
 \*------------------------------------*/
 
-.input-group-v
+/deep/
 {
-    
-    .input-unit-v1
+    .input-group-v
     {
-        margin-top: -1px;
-        margin-bottom: 0;
-        border-radius: 0;
-    }
-    
-    & > *:first-child
-    {
-        margin-top: 0;
-        border-top-right-radius: $border-radius;
-        border-top-left-radius: $border-radius;
-    }
-    
-    & > *:last-child
-    {
-        border-bottom-right-radius: $border-radius;
-        border-bottom-left-radius: $border-radius;
+        margin-bottom: 12px;
+        .input-unit-v1,
+        .select-box-wrapper
+        {
+            margin-top: 3px;
+            margin-bottom: 0px;
+        }
     }
 }

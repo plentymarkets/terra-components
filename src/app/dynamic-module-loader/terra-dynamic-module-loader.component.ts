@@ -18,7 +18,6 @@ import { JitCompiler } from '@angular/compiler';
            })
 export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestroy
 {
-    
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
     @Input() inputModule:any;
     @Input() inputMainComponentName:string;

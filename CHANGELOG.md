@@ -1,3 +1,18 @@
+<a name="0.0.192"></a>
+# 0.0.192 (16.03.2017)
+
+### Bug Fixes
+* **tooltip** FIX disabling of input components ([47d03f4](https://github.com/plentymarkets/terra-components/commit/47d03f4))
+
+### Features
+* **terra-loading-spinnter-service** NEW loading spinner service and component ([fa54862](https://github.com/plentymarkets/terra-components/commit/fa54862))
+
+<a name="0.0.191"></a>
+# 0.0.191 (13.03.2017)
+
+### Bug Fixes
+* **terra-select-box** FIX active selected value
+
 <a name="0.0.190"></a>
 # 0.0.190 (13.03.2017)
 
@@ -22,6 +37,12 @@
 * **terra-select-box** FIX missing existing check on rendering selected value
 * **terra-select-box** FIX emit outputValueChanged event after selection
 * **terra-select-box.interface** FIX changed type of caption from any to string or number
+
+<a name="0.0.186"></a>
+# 0.0.186 (09.03.2017)
+
+### Bug Fixes
+* **terra-indicator** FIX usage of inputs in template conforming to style classes
 
 <a name="0.0.185"></a>
 # 0.0.185 (07.03.2017)

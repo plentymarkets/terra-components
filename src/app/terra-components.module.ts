@@ -61,7 +61,8 @@ import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-sugges
 import { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-picker.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
-
+import { TerraLoadingSpinnerComponent } from './loading-spinner/terra-loading-spinner.component';
+import { TerraLoadingSpinnerService } from './loading-spinner/service/terra-loading-spinner.service';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -82,6 +83,7 @@ export { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-mul
 export { TerraIndicatorComponent } from './indicator/terra-indicator.component';
 export { TerraInfoBoxComponent } from './info-box/terra-info-box.component';
 export { TerraLoadingBarService } from './loading-bar/service/terra-loading-bar.service';
+export { TerraLoadingSpinnerService } from './loading-spinner/service/terra-loading-spinner.service';
 export { TerraLoadingBarComponent } from './loading-bar/terra-loading-bar.component';
 export { TerraOverlayComponent } from './overlay/terra-overlay.component';
 export { TerraOverlayButtonInterface } from './overlay/data/terra-overlay-button.interface';
@@ -143,6 +145,7 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraTaglistComponent,
                   TerraTagComponent,
                   TerraLoadingBarComponent,
+                  TerraLoadingSpinnerComponent,
                   TerraOverlayComponent,
                   TerraDataTableComponent,
                   TerraDataTableContextMenuComponent,
@@ -177,6 +180,7 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraTaglistComponent,
                   TerraTagComponent,
                   TerraLoadingBarComponent,
+                  TerraLoadingSpinnerComponent,
                   TerraOverlayComponent,
                   TerraDataTableComponent,
                   TerraDataTableContextMenuComponent,
@@ -211,6 +215,7 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraTaglistComponent,
                   TerraTagComponent,
                   TerraLoadingBarComponent,
+                  TerraLoadingSpinnerComponent,
                   TerraOverlayComponent,
                   TerraDataTableComponent,
                   TerraDataTableContextMenuComponent,
@@ -257,6 +262,7 @@ export class TerraComponentsModule
         return {
             ngModule:  TerraComponentsModule,
             providers: [TerraLoadingBarService,
+                        TerraLoadingSpinnerService,
                         TerraDataTableContextMenuService,
                         TerraBaseService,
                         TerraAlertComponent]
@@ -268,10 +274,10 @@ export class TerraComponentsModule
         return {
             ngModule:  TerraComponentsModule,
             providers: [TerraLoadingBarService,
+                        TerraLoadingSpinnerService,
                         TerraDataTableContextMenuService,
                         TerraBaseService,
                         TerraAlertComponent]
         };
     }
-    
 }
