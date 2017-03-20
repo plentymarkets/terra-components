@@ -16,6 +16,7 @@ import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
+import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
 
 @Component({
                selector:  'terra-data-table',
@@ -112,17 +113,20 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
     }
     
-    private rowClicked(row:TerraDataTableRowInterface<D>):void
+    private rowClicked(cell:TerraDataTableCellInterface, row:TerraDataTableRowInterface<D>):void
     {
-        this._rowList
-            .forEach((row) =>
-                     {
-                         row.isActive = false;
-                     });
-        
-        row.isActive = true;
-        
-        row.clickFunction();
+        if(!cell.buttonList)
+        {
+            this._rowList
+                .forEach((row) =>
+                         {
+                             row.isActive = false;
+                         });
+            
+            row.isActive = true;
+            
+            row.clickFunction();
+        }
     }
     
     public get headerList():Array<TerraDataTableHeaderCellInterface>
