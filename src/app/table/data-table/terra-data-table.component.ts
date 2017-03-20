@@ -113,6 +113,19 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
     }
     
+    private rowClicked(row:TerraDataTableRowInterface<D>):void
+    {
+        this._rowList
+            .forEach((row) =>
+                     {
+                         row.isActive = false;
+                     });
+        
+        row.isActive = true;
+        
+        row.clickFunction();
+    }
+    
     public get headerList():Array<TerraDataTableHeaderCellInterface>
     {
         return this._headerList;
