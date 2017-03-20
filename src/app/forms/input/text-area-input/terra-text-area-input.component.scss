@@ -1,10 +1,16 @@
 @import "../terra-input.component";
 
-/deep/
+.input-unit-v1
 {
-    textarea
-    {
-        -webkit-appearance: textarea !important;
-        resize: both;
-    }
+    height: initial;
+}
+
+//To fix the scrolling
+label
+{
+    position: static;
+}
+textarea
+{
+    padding-top: 3px;
 }

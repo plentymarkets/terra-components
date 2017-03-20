@@ -5,8 +5,8 @@ import {
     Response
 } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { TerraLoadingBarService } from '../loading-bar/service/terra-loading-bar.service';
 import { Observable } from 'rxjs';
+import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
 
 /**
  * @author mfrank
@@ -17,7 +17,7 @@ export class TerraBaseService
     private _headers:Headers;
     private _url:string;
     
-    constructor(private _baseLoadingBarService:TerraLoadingBarService,
+    constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private _baseHttp:Http,
                 private _baseUrl:string)
     {
@@ -79,7 +79,7 @@ export class TerraBaseService
     
     protected mapRequest(request:Observable<Response>):Observable<any>
     {
-        //this._baseLoadingBarService.start();
+        this._terraLoadingSpinnerService.start();
         
         let req = request.map(
             (response:Response) =>
@@ -96,12 +96,13 @@ export class TerraBaseService
         
         req.subscribe(() =>
                       {
-                          //this._baseLoadingBarService.complete();
+                          this._terraLoadingSpinnerService.stop();
                       },
                       error =>
                       {
-                          //this._baseLoadingBarService.complete()
-                      });
+                          this._terraLoadingSpinnerService.stop();
+                      }
+        );
         
         return req;
     }
