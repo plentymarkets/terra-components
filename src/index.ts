@@ -22,6 +22,8 @@ export * from './app/indicator/terra-indicator.component';
 export * from './app/info-box/terra-info-box.component';
 export * from './app/loading-bar/service/terra-loading-bar.service';
 export * from './app/loading-bar/terra-loading-bar.component';
+export * from './app/loading-spinner/service/terra-loading-spinner.service';
+export * from './app/loading-spinner/terra-loading-spinner.component';
 export * from './app/overlay/terra-overlay.component';
 export * from './app/overlay/data/terra-overlay-button.interface';
 export * from './app/pager/data/terra-pager.interface';
