@@ -71,14 +71,14 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     private updateDatePickerOptions():void
     {
         this._datePickerOptions = {
-            height:                 'inherit',
-            inputValueRequired:     this.inputIsRequired,
-            componentDisabled:      this.inputIsDisabled,
-            openSelectorTopOfInput: this.inputOpenCalendarTop,
-            showSelectorArrow:      !this.inputOpenCalendarTop,
-            inline:                 false,
-            editableDateField:      false,
-            openSelectorOnInputClick:true
+            height:                   'inherit',
+            inputValueRequired:       this.inputIsRequired,
+            componentDisabled:        this.inputIsDisabled,
+            openSelectorTopOfInput:   this.inputOpenCalendarTop,
+            showSelectorArrow:        !this.inputOpenCalendarTop,
+            inline:                   false,
+            editableDateField:        false,
+            openSelectorOnInputClick: true
         };
     }
     
@@ -137,8 +137,18 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     {
         this._myDateModel = value;
         
+        if(this.myDateModel.epoc === 0)
+        {
+            this.myDateModel.date = null;
+        }
+        
         this.onTouchedCallback();
         this.onChangeCallback(this.myDateModel.epoc);
+    }
+    
+    public onDateChanged(event:IMyDateModel):void
+    {
+        this.myDateModel = event;
     }
     
     public clearDate():void
