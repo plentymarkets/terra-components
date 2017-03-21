@@ -1,0 +1,12 @@
+<div class="card terra-card">
+    <div #header class="card-header" [hidden]="!showHeader">
+        <ng-content select="[terra-card-header]"></ng-content>
+    </div>
+    <div class="card-img-top terra-card-image" [style.background-image]="'url(' + inputImagePath + ')'"></div>
+    <div class="card-block">
+        <ng-content select="[terra-card-content]"></ng-content>
+    </div>
+    <div #footer class="card-footer" [hidden]="!showFooter">
+        <ng-content select="[terra-card-footer]"></ng-content>
+    </div>
+</div>
