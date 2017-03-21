@@ -63,6 +63,7 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 import { TerraLoadingSpinnerComponent } from './loading-spinner/terra-loading-spinner.component';
 import { TerraLoadingSpinnerService } from './loading-spinner/service/terra-loading-spinner.service';
+import { TerraCardComponent } from './card/terra-card.component';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -123,6 +124,7 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
 export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 export { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-picker.component';
 export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
+export { TerraCardComponent } from './card/terra-card.component';
 
 @NgModule({
               declarations:    [
@@ -161,7 +163,8 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraTileBoxPanelComponent,
                   TerraSuggestionBoxComponent,
                   TerraDatePickerComponent,
-                  TerraTextAreaInputComponent
+                  TerraTextAreaInputComponent,
+                  TerraCardComponent
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -194,7 +197,8 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraTileBoxPanelComponent,
                   TerraSuggestionBoxComponent,
                   TerraDatePickerComponent,
-                  TerraTextAreaInputComponent
+                  TerraTextAreaInputComponent,
+                  TerraCardComponent
               ],
               exports:         [
                   TerraAlertPanelComponent,
@@ -230,7 +234,8 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraTileBoxPanelComponent,
                   TerraSuggestionBoxComponent,
                   TerraDatePickerComponent,
-                  TerraTextAreaInputComponent
+                  TerraTextAreaInputComponent,
+                  TerraCardComponent
               ],
               imports:         [
                   BrowserModule,
