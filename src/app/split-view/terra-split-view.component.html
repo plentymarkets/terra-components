@@ -1,13 +1,11 @@
-<terra-base-toolbar class="terra-breadcrumb-bar" *ngIf="inputShowBreadcrumbs">
-    <div class="btn-group">
+<terra-base-toolbar *ngIf="inputShowBreadcrumbs">
+    <ul class="terra-breadcrumbs">
         <template ngFor let-module [ngForOf]="inputModules" let-first="first">
-            <terra-button *ngIf="inputModules"
-                          [inputIsSmall]="true"
-                          inputCaption="{{ module.name }}"
-                          (outputClicked)="focusView(module.mainComponentName)">
-            </terra-button>
+            <li *ngIf="inputModules" (click)="focusView(module.mainComponentName)">
+                <span>{{ module.name }}</span>
+            </li>
         </template>
-    </div>
+    </ul>
 </terra-base-toolbar>
 <div *ngIf="inputModules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
     <template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">
