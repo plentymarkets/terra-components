@@ -4,7 +4,6 @@ export class TerraSplitConfigBase
 {
     private _modules:Array<TerraSplitViewInterface> = [];
     
-    
     public addModule(module:TerraSplitViewInterface):void
     {
         for (let i = 0; i < this._modules.length; i++)
@@ -16,8 +15,7 @@ export class TerraSplitConfigBase
                                      this._modules[i].instanceKey == module.instanceKey;
             
             let hasSameParams = this._modules[i].parameter == module.parameter;
-    
-    
+            
             if (hasSameModuleName)
             {
                 if (hasSameInstanceKey)
@@ -26,12 +24,6 @@ export class TerraSplitConfigBase
     
                     this._modules = this._modules.slice(0, i);
                     break;
-                }
-                else
-                {
-                    this._modules.push(module);
-                    this._modules = this._modules.slice(0);
-                    return;
                 }
             }
         }
