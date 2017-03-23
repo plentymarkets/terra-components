@@ -1,3 +1,6 @@
+### Features
+* **terra-split-view** Changed styling of bread crumb navigation list elements ([20a92f2](https://github.com/plentymarkets/terra-components/commit/20a92f2))
+
 <a name="0.0.192"></a>
 # 0.0.192 (16.03.2017)
 
@@ -5,7 +8,7 @@
 * **tooltip** FIX disabling of input components ([47d03f4](https://github.com/plentymarkets/terra-components/commit/47d03f4))
 
 ### Features
-* **terra-loading-spinnter-service** NEW loading spinner service and component ([fa54862](https://github.com/plentymarkets/terra-components/commit/fa54862))
+* **terra-loading-spinner-service** NEW loading spinner service and component ([fa54862](https://github.com/plentymarkets/terra-components/commit/fa54862))
 
 <a name="0.0.191"></a>
 # 0.0.191 (13.03.2017)
