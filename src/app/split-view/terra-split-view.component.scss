@@ -4,7 +4,6 @@
     overflow: hidden;
     padding: 0px 0px;
     margin-bottom: 0.05rem;
-    font-weight: $btn-font-weight;
 }
 
 .terra-breadcrumbs li
@@ -16,15 +15,16 @@
 .terra-breadcrumbs li span
 {
     text-decoration: none;
-    padding: 6px 0 6px 45px;
+    padding: 6px 0 6px 28px;
     background: $gray-light-3;
     position: relative;
     display: block;
     float: left;
+    color: $gray-dark;
     
     &:hover
     {
-        background: darken($gray-light-3, 10%);
+        background: $brand-primary;
     }
 }
 
@@ -34,19 +34,35 @@
     display: block;
     width: 0;
     height: 0;
-    border-top: 50px solid transparent;
-    border-bottom: 50px solid transparent;
-    border-left: 30px solid $gray-light-3;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 18px solid $gray-light-3;
     position: absolute;
-    top: 50%;
-    margin-top: -50px;
+    top: 60%;
+    margin-top: -28px;
     left: 100%;
     z-index: 2;
 }
 
+.terra-breadcrumbs li span:hover
+{
+    color: $white;
+}
+
 .terra-breadcrumbs li span:hover:after
 {
-    border-left-color: darken($gray-light-3, 10%) !important;
+    border-left-color: $brand-primary !important;
+}
+
+.terra-breadcrumbs li:last-child span::after
+{
+    border: 7px solid #E0E0E0;
+    height: 47px;
+}
+
+.terra-breadcrumbs li:last-child span:hover:after
+{
+    border-color: $brand-primary !important;
 }
 
 .terra-breadcrumbs li span::before
@@ -55,12 +71,12 @@
     display: block;
     width: 0;
     height: 0;
-    border-top: 50px solid transparent;
-    border-bottom: 50px solid transparent;
-    border-left: 35px solid $gray-light-4;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 19px solid $gray-light-4;
     position: absolute;
-    top: 50%;
-    margin-top: -50px;
+    top: 60%;
+    margin-top: -28px;
     margin-left: 1px;
     left: 100%;
     z-index: 1;
