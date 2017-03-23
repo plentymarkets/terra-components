@@ -1,5 +1,6 @@
 ### Features
 * **terra-split-view** Changed styling of bread crumb navigation list elements ([20a92f2](https://github.com/plentymarkets/terra-components/commit/20a92f2))
+* **terra-filter** Added form tag for ability to submit on enter. Use '(outputOnEnterSubmit)' for this feature ([514b700](https://github.com/plentymarkets/terra-components/commit/514b700))
 
 <a name="0.0.192"></a>
 # 0.0.192 (16.03.2017)
