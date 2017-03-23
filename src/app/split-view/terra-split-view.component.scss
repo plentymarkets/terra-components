@@ -92,8 +92,8 @@
 
 .divider
 {
-    width: 4px;
-    background-color: $gray-light-3;
+    width: 1px;
+    background-color: #c7c7c7;
     position: absolute;
     top: 0px;
     right: 0px;
@@ -112,7 +112,7 @@
 
 .view.hasDivider
 {
-    padding: 0px 8px 0px 4px;
+    padding: 0px 4px 0px 4px;
     margin-right: -4px;
 }
 
