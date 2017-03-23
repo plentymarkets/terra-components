@@ -10,6 +10,9 @@
 <a name="0.0.191"></a>
 # 0.0.191 (13.03.2017)
 
+### Features
+* **terra-date-picker** Selector will open when the input field is clicked - Input is not editable anymore
+
 ### Bug Fixes
 * **terra-select-box** FIX active selected value
 
