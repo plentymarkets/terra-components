@@ -17,8 +17,13 @@
         </div>
     </terra-base-toolbar>
     
-    <div class="filter-group">
-        <ng-content></ng-content>
+    <div class="input-group-v">
+        <form (ngSubmit)="onSubmit()">
+            <ng-content></ng-content>
+            <button hidden="true" type="submit">
+                Submit
+            </button>
+        </form>
     </div>
     
     <!--<div class="input-group-v">-->

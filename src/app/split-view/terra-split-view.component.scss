@@ -1,7 +1,90 @@
-.terra-breadcrumb-bar .btn-toolbar
+.terra-breadcrumbs
 {
-    line-height: $terra-btn-md-height;
-    padding: 0px 6px;
+    list-style: none;
+    overflow: hidden;
+    padding: 0px 0px;
+    margin-bottom: 0.05rem;
+}
+
+.terra-breadcrumbs li
+{
+    float: left;
+    cursor: pointer;
+}
+
+.terra-breadcrumbs li span
+{
+    text-decoration: none;
+    padding: 6px 0 6px 28px;
+    background: $gray-light-3;
+    position: relative;
+    display: block;
+    float: left;
+    color: $gray-dark;
+    
+    &:hover
+    {
+        background: $brand-primary;
+    }
+}
+
+.terra-breadcrumbs li span::after
+{
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 18px solid $gray-light-3;
+    position: absolute;
+    top: 60%;
+    margin-top: -28px;
+    left: 100%;
+    z-index: 2;
+}
+
+.terra-breadcrumbs li span:hover
+{
+    color: $white;
+}
+
+.terra-breadcrumbs li span:hover:after
+{
+    border-left-color: $brand-primary !important;
+}
+
+.terra-breadcrumbs li:last-child span::after
+{
+    border: 7px solid #E0E0E0;
+    height: 47px;
+}
+
+.terra-breadcrumbs li:last-child span:hover:after
+{
+    border-color: $brand-primary !important;
+}
+
+.terra-breadcrumbs li span::before
+{
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 19px solid $gray-light-4;
+    position: absolute;
+    top: 60%;
+    margin-top: -28px;
+    margin-left: 1px;
+    left: 100%;
+    z-index: 1;
+}
+
+.terra-breadcrumbs li:first-child span
+{
+    padding-left: 16px;
 }
 
 .side-scroller

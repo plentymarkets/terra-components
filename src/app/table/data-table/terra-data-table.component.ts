@@ -16,6 +16,7 @@ import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
+import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
 
 @Component({
                selector:  'terra-data-table',
@@ -23,7 +24,6 @@ import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/ter
                styles:    [require('./terra-data-table.component.scss')],
                template:  require('./terra-data-table.component.html')
            })
-
 export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface>
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
@@ -110,6 +110,22 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             let index = this.selectedRowList.indexOf(rowToChange);
             
             this.selectedRowList.splice(index, 1);
+        }
+    }
+    
+    private rowClicked(cell:TerraDataTableCellInterface, row:TerraDataTableRowInterface<D>):void
+    {
+        this._rowList
+            .forEach((row) =>
+                     {
+                         row.isActive = false;
+                     });
+        
+        row.isActive = true;
+        
+        if(!cell.buttonList)
+        {
+            row.clickFunction();
         }
     }
     
