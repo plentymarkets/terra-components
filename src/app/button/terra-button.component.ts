@@ -24,7 +24,6 @@ export class TerraButtonComponent
     @Input() inputIsHidden:boolean;
     @Input() inputTooltipText:string;
     @Input() inputTooltipPlacement:string; //top, bottom, left, right
-    @Input() inputTooltipContainer:string; //actually only body and empty string are supported
     @Input() inputIsActive:boolean;
     @Output() outputClicked = new EventEmitter<any>();
     
@@ -34,7 +33,6 @@ export class TerraButtonComponent
         this.inputTooltipPlacement = 'top';
         this.inputType = 'button';
         this.inputIsActive = false;
-        this.inputTooltipContainer = '';
     }
     
     private click():void
