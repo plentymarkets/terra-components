@@ -1,5 +1,7 @@
 {
   "user": "User",
   "selectAll": "All",
-  "back": "back"
+  "back": "back",
+
+  "initialLoading": "Click on 'search' to display contacts"
 }

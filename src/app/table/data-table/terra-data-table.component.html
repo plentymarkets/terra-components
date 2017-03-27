@@ -22,7 +22,7 @@
             </template>
         </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="_rowList">
         <template ngFor let-row [ngForOf]="_rowList">
             <tr [ngClass]="{'selected': row.selected, 'isActive': row.isActive}" [context-menu]="row.contextMenuLinkList">
                 <td *ngIf="_hasCheckboxes">
@@ -49,6 +49,8 @@
         </template>
         </tbody>
     </table>
+    <!--TODO: Implement translation after the update to Angular 4.0-->
+    <div *ngIf="!_rowList" class="initial-loading-warn">Suche ausführen, um Daten anzuzeigen</div>
 </div>
 
 <!--<terra-viewChildOverlay #viewChildOverlayDataTableSettings [inputSaveButtonTooltip]="saveButtonTooltip"-->
