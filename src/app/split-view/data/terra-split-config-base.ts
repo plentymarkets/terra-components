@@ -6,22 +6,25 @@ export class TerraSplitConfigBase
     
     public addModule(module:TerraSplitViewInterface):void
     {
-        for (let i = 0; i < this._modules.length; i++)
+        for(let i = 0; i < this._modules.length; i++)
         {
             let hasSameModuleName = this._modules[i].mainComponentName != null &&
                                     this._modules[i].mainComponentName == module.mainComponentName;
-    
+            
             let hasSameInstanceKey = this._modules[i].instanceKey != null &&
                                      this._modules[i].instanceKey == module.instanceKey;
             
             let hasSameParams = this._modules[i].parameter == module.parameter;
             
-            if (hasSameModuleName)
+            if(hasSameModuleName)
             {
-                if (hasSameInstanceKey)
+                if(hasSameInstanceKey)
                 {
-                    if (hasSameParams) { return; }
-    
+                    if(hasSameParams)
+                    {
+                        return;
+                    }
+                    
                     this._modules = this._modules.slice(0, i);
                     break;
                 }
