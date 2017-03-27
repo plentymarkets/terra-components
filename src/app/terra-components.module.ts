@@ -63,6 +63,7 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 import { TerraLoadingSpinnerComponent } from './loading-spinner/terra-loading-spinner.component';
 import { TerraLoadingSpinnerService } from './loading-spinner/service/terra-loading-spinner.service';
+import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -265,6 +266,7 @@ export class TerraComponentsModule
                         TerraLoadingSpinnerService,
                         TerraDataTableContextMenuService,
                         TerraBaseService,
+                        TerraUrlParamsDecorator,
                         TerraAlertComponent]
         };
     }
@@ -277,6 +279,7 @@ export class TerraComponentsModule
                         TerraLoadingSpinnerService,
                         TerraDataTableContextMenuService,
                         TerraBaseService,
+                        TerraUrlParamsDecorator,
                         TerraAlertComponent]
         };
     }
