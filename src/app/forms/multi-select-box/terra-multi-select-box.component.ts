@@ -15,7 +15,7 @@ import {
     LocaleService,
     LocalizationService
 } from 'angular2localization';
-import { isBlank } from '@angular/core/src/facade/lang';
+//import { isBlank } from '@angular/core/src/facade/lang';
 
 @Component({
                selector: 'terra-multi-select-box',
@@ -170,7 +170,8 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         }
         else
         {
-            valueFound = !isBlank(this._selectedValueList[index]);
+            //valueFound = !isBlank(this._selectedValueList[index]);
+            valueFound = this._selectedValueList[index] != null;
         }
         
         if(valueToChange.selected)

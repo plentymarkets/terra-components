@@ -138,7 +138,7 @@ gulp.task('compile-ts', function ()
     
     var tsResult = gulp.src(sourceTsFiles)
                        .pipe(sourcemaps.init())
-                       .pipe(tsc(tsProject));
+                       .pipe(tsProject());
     
     return merge([
                      tsResult.dts.pipe(gulp.dest(config.tsOutputPath)),

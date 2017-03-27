@@ -5,12 +5,13 @@ const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 
-const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+//const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const helpers = require('./helpers');
+const path = require('path');
 
 const METADATA = {
     baseUrl: '/'
@@ -104,7 +105,7 @@ module.exports = function (options) {
             ]
         },
         plugins: [
-            new ForkCheckerPlugin(),
+            //new ForkCheckerPlugin(),
 
             new CommonsChunkPlugin({
                 name: ['app', 'vendor', 'polyfills'],
@@ -115,6 +116,11 @@ module.exports = function (options) {
                 // The (\\|\/) piece accounts for path separators in *nix and Windows
                 /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
                 helpers.root('./src') // location of your src
+            ),
+
+            new ContextReplacementPlugin(
+                /angular(\\|\/)core(\\|\/)@angular/,
+                path.resolve(__dirname, '../src')
             ),
 
             new HtmlWebpackPlugin({
