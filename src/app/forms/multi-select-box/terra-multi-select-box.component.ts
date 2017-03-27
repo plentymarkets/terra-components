@@ -11,18 +11,16 @@ import {
 import { TerraMultiSelectBoxValueInterface } from './data/terra-multi-select-box-value.interface';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import {
-    Locale,
-    LocaleService,
-    LocalizationService
-} from 'angular2localization';
-//import { isBlank } from '@angular/core/src/facade/lang';
+    Translation,
+    TranslationService
+} from 'angular-l10n';
 
 @Component({
                selector: 'terra-multi-select-box',
                styles:   [require('./terra-multi-select-box.component.scss')],
                template: require('./terra-multi-select-box.component.html')
            })
-export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnChanges
+export class TerraMultiSelectBoxComponent extends Translation implements OnInit, OnChanges
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
     @Input() inputIsDisabled:boolean;
@@ -80,16 +78,23 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
     private _selectedValueList:Array<any> = [];
     private _isInit:boolean;
     
-    constructor(public locale:LocaleService, localization:LocalizationService)
+    constructor(translation:TranslationService)
     {
-        super(locale, localization);
+        super(translation);
     }
     
     ngOnInit()
     {
         if(!this.inputName)
         {
-            this.inputName = this.localization.translate('selectAll');
+            this.inputName = this.translation.translate('selectAll');
+    
+            //this is necessary for language switch
+            this.translation.translationChanged.subscribe(
+                () =>
+                {
+                    this.inputName = this.translation.translate('selectAll');
+                });
         }
         
         this._isInit = true;
@@ -170,7 +175,6 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         }
         else
         {
-            //valueFound = !isBlank(this._selectedValueList[index]);
             valueFound = this._selectedValueList[index] != null;
         }
         

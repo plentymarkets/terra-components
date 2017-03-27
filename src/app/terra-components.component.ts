@@ -4,48 +4,39 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import {
+    Translation,
     LocaleService,
-    LocalizationService,
-    Locale
-} from 'angular2localization';
+    TranslationService
+} from 'angular-l10n';
 
 @Component({
                selector: 'app-root',
                template: require('./terra-components.component.html'),
                styles:   [require('./terra-components.component.scss')]
            })
-export class TerraComponentsComponent extends Locale implements OnInit
+export class TerraComponentsComponent extends Translation implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
     
     public constructor(private viewContainerRef:ViewContainerRef,
-                       public local:LocaleService,
-                       public localization:LocalizationService)
+                       public locale:LocaleService,
+                       public translation:TranslationService)
     {
-        super(local, localization);
+        super(translation);
         
         // You need this small hack in order to catch application root view container ref
         this._viewContainerRef = viewContainerRef;
         
-        //Definitions for i18n
-        if(process.env.ENV === 'production')
-        {
-            this.localization.translationProvider('app/resources/locale_');
-        }
-        else
-        {
-            this.localization.translationProvider('src/app/resources/locale_');
-        }
-        
-        this.locale.addLanguage('de');
-        this.locale.addLanguage('en');
-        this.locale.definePreferredLocale('en', 'EN', 30); //default language is en
+        this.locale.addConfiguration()
+            .addLanguages(['de', 'en'])
+            .setCookieExpiration(30)
+            .defineDefaultLocale('en', 'EN');
         
         let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
         
         if(langInLocalStorage != null)
         {
-            this.locale.setCurrentLocale(langInLocalStorage, langInLocalStorage.toUpperCase());
+            this.locale.setCurrentLanguage(langInLocalStorage);
         }
         else
         {
@@ -55,12 +46,24 @@ export class TerraComponentsComponent extends Locale implements OnInit
             {
                 lang = 'en';
             }
-            
-            this.locale.setCurrentLocale(lang, lang.toUpperCase());
+    
+            this.locale.setCurrentLanguage(lang);
             localStorage.setItem('plentymarkets_lang_', lang);
         }
         
-        this.localization.updateTranslation();
+        this.locale.init();
+    
+        //Definitions for i18n
+        if(process.env.ENV === 'production')
+        {
+            this.translation.addConfiguration().addProvider('app/assets/lang/locale_');
+        }
+        else
+        {
+            this.translation.addConfiguration().addProvider('src/app/assets/lang/locale_');
+        }
+        
+        this.translation.init();
     }
     
     ngOnInit()

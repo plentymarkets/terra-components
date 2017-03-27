@@ -48,12 +48,6 @@ import { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
 import { TerraSimpleTableComponent } from './table/simple/terra-simple-table.component';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
-import {
-    LocaleService,
-    LocalizationService,
-    LocaleModule,
-    LocalizationModule
-} from 'angular2localization';
 import { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
 import { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
 import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
@@ -62,6 +56,7 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 import { TerraLoadingSpinnerComponent } from './loading-spinner/terra-loading-spinner.component';
 import { TerraLoadingSpinnerService } from './loading-spinner/service/terra-loading-spinner.service';
+import { TranslationModule } from 'angular-l10n';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -240,14 +235,11 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TooltipModule.forRoot(),
                   AlertModule.forRoot(),
                   ButtonsModule.forRoot(),
-                  LocaleModule,
-                  LocalizationModule,
+                  TranslationModule.forRoot(),
                   MyDatePickerModule
               ],
               providers:       [
                   COMPILER_PROVIDERS,
-                  LocaleService,
-                  LocalizationService
               ],
               bootstrap:       [
                   //TerraComponentsComponent
