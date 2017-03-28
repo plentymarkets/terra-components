@@ -18,13 +18,19 @@ import { TerraDataTableContextMenuService } from './context-menu/service/terra-d
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
 
+import {
+    Locale,
+    LocaleService,
+    LocalizationService
+} from 'angular2localization';
+
 @Component({
                selector:  'terra-data-table',
                providers: [TerraDataTableContextMenuService],
                styles:    [require('./terra-data-table.component.scss')],
                template:  require('./terra-data-table.component.html')
            })
-export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface>
+export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> extends Locale
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
     @Input() inputService:S;
@@ -37,6 +43,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _pagingSize:Array<TerraSelectBoxValueInterface>;
     private _onSuccessFunction:(res) => void;
     private _defaultPagingSize:number;
+    private _initialLoadingMessage:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     @Input()
     private _hasCheckboxes:boolean = true;
@@ -48,8 +55,10 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     //private _saveButtonTooltip:string = 'Speichern';
     //private _cancelButtonTooltip:string = 'Abbrechen';
     
-    constructor()
+    constructor(public locale:LocaleService,
+                public localization:LocalizationService)
     {
+       super(locale, localization);
     }
     
     private onHeaderCheckboxChange(isChecked:boolean):void
