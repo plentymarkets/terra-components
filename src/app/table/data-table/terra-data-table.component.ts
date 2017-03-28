@@ -17,12 +17,10 @@ import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
-
 import {
-    Locale,
-    LocaleService,
-    LocalizationService
-} from 'angular2localization';
+    Translation,
+    TranslationService
+} from 'angular-l10n';
 
 @Component({
                selector:  'terra-data-table',
@@ -30,7 +28,7 @@ import {
                styles:    [require('./terra-data-table.component.scss')],
                template:  require('./terra-data-table.component.html')
            })
-export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> extends Locale
+export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> extends Translation
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
     @Input() inputService:S;
@@ -55,10 +53,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     //private _saveButtonTooltip:string = 'Speichern';
     //private _cancelButtonTooltip:string = 'Abbrechen';
     
-    constructor(public locale:LocaleService,
-                public localization:LocalizationService)
+    constructor(translation:TranslationService)
     {
-       super(locale, localization);
+        super(translation);
     }
     
     private onHeaderCheckboxChange(isChecked:boolean):void
