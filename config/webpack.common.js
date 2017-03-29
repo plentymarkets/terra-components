@@ -2,16 +2,12 @@ const webpack = require('webpack');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
-const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 
-//const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const helpers = require('./helpers');
-const path = require('path');
 
 const METADATA = {
     baseUrl: '/'
@@ -78,11 +74,7 @@ module.exports = function (options) {
                     loader: 'json-loader'
                 },
                 {
-                    test: /\.svg$/,
-                    loader: 'file-loader'
-                },
-                {
-                    test: /\.jpg$/,
+                    test: /\.(jpg|png|gif|svg)$/,
                     loader: 'file-loader'
                 },
                 {
@@ -105,23 +97,18 @@ module.exports = function (options) {
             ]
         },
         plugins: [
-            //new ForkCheckerPlugin(),
 
-            new CommonsChunkPlugin({
+            // Workaround for angular/angular#11580
+            new webpack.ContextReplacementPlugin(
+                /angular(\\|\/)core(\\|\/)@angular/,
+                helpers.root('./src'), // location of your src
+                {} // a map of your routes
+            ),
+
+            new webpack.optimize.CommonsChunkPlugin({
                 name: ['app', 'vendor', 'polyfills'],
                 minChunks: Infinity
             }),
-
-            new ContextReplacementPlugin(
-                // The (\\|\/) piece accounts for path separators in *nix and Windows
-                /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-                helpers.root('./src') // location of your src
-            ),
-
-            new ContextReplacementPlugin(
-                /angular(\\|\/)core(\\|\/)@angular/,
-                path.resolve(__dirname, '../src')
-            ),
 
             new HtmlWebpackPlugin({
                 template: 'src/index.html',
