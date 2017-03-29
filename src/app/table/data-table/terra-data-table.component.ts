@@ -17,6 +17,11 @@ import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
+import {
+    TranslationService,
+    LocaleService
+} from 'angular-l10n';
+import { TranslatableComponent } from '../../translatable-component/translatable-component';
 
 @Component({
                selector:  'terra-data-table',
@@ -24,7 +29,7 @@ import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interf
                styles:    [require('./terra-data-table.component.scss')],
                template:  require('./terra-data-table.component.html')
            })
-export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface>
+export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> extends TranslatableComponent
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
     @Input() inputService:S;
@@ -37,9 +42,12 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _pagingSize:Array<TerraSelectBoxValueInterface>;
     private _onSuccessFunction:(res) => void;
     private _defaultPagingSize:number;
+    private _initialLoadingMessage:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     @Input()
     private _hasCheckboxes:boolean = true;
+    
+    private _langPrefix:string = 'terra-data-table';
     
     // Overlay
     //@ViewChild('viewChildOverlayDataTableSettings') viewChildOverlayDataTableSettings:TerraOverlayComponent;
@@ -48,8 +56,11 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     //private _saveButtonTooltip:string = 'Speichern';
     //private _cancelButtonTooltip:string = 'Abbrechen';
     
-    constructor()
+    constructor(locale:LocaleService, translation:TranslationService)
     {
+        super(locale, translation);
+    
+        this.addProvider(this._langPrefix);
     }
     
     private onHeaderCheckboxChange(isChecked:boolean):void
