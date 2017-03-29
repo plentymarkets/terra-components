@@ -11,16 +11,17 @@ import {
 import { TerraMultiSelectBoxValueInterface } from './data/terra-multi-select-box-value.interface';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import {
-    Translation,
-    TranslationService
+    TranslationService,
+    LocaleService
 } from 'angular-l10n';
+import { TranslatableComponent } from '../../translatable-component/translatable-component';
 
 @Component({
                selector: 'terra-multi-select-box',
                styles:   [require('./terra-multi-select-box.component.scss')],
                template: require('./terra-multi-select-box.component.html')
            })
-export class TerraMultiSelectBoxComponent extends Translation implements OnInit, OnChanges
+export class TerraMultiSelectBoxComponent extends TranslatableComponent implements OnInit, OnChanges
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
     @Input() inputIsDisabled:boolean;
@@ -78,22 +79,26 @@ export class TerraMultiSelectBoxComponent extends Translation implements OnInit,
     private _selectedValueList:Array<any> = [];
     private _isInit:boolean;
     
-    constructor(translation:TranslationService)
+    private _langPrefix:string = 'terra-multi-select-box';
+    
+    constructor(public locale:LocaleService, public translation:TranslationService)
     {
-        super(translation);
+        super(locale, translation);
+        
+        this.addProvider(this._langPrefix);
     }
     
     ngOnInit()
     {
         if(!this.inputName)
         {
-            this.inputName = this.translation.translate('selectAll');
+            this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
     
             //this is necessary for language switch
             this.translation.translationChanged.subscribe(
                 () =>
                 {
-                    this.inputName = this.translation.translate('selectAll');
+                    this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
                 });
         }
         

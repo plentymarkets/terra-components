@@ -11,7 +11,6 @@ var runSequence = require('run-sequence');
 var git = require('gulp-git');
 var gitignore = require('gulp-gitignore');
 var shell = require('gulp-shell');
-var flatten = require('gulp-flatten');
 
 var version;
 
@@ -29,6 +28,7 @@ gulp.task('npm-publish', function (callback)
         'copy-files',
         'copy-fonts',
         'copy-images',
+        'copy-lang',
         'publish',
         callback
     );
@@ -42,6 +42,7 @@ gulp.task('build-local', function (callback)
         'copy-files',
         'copy-fonts',
         'copy-images',
+        'copy-lang',
         'copy-to-terra',
         callback
     );
@@ -161,7 +162,6 @@ gulp.task('copy-files', function ()
 gulp.task('copy-fonts', function ()
 {
     return gulp.src(config.allFonts)
-               .pipe(flatten())
                .pipe(gulp.dest(config.fontsOutputPath));
 });
 
@@ -169,8 +169,14 @@ gulp.task('copy-fonts', function ()
 gulp.task('copy-images', function ()
 {
     return gulp.src(config.allImages)
-               .pipe(flatten())
                .pipe(gulp.dest(config.imagesOutputPath));
+});
+
+//copy lang to dist
+gulp.task('copy-lang', function ()
+{
+    return gulp.src(config.allLang)
+               .pipe(gulp.dest(config.langOutputPath));
 });
 
 //copy files from dist to terra
