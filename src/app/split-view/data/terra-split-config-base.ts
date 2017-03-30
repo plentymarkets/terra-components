@@ -16,18 +16,15 @@ export class TerraSplitConfigBase
             
             let hasSameParams = this._modules[i].parameter == module.parameter;
             
-            if(hasSameModuleName)
+            if(hasSameModuleName || hasSameInstanceKey)
             {
-                if(hasSameInstanceKey)
+                if(hasSameParams)
                 {
-                    if(hasSameParams)
-                    {
-                        return;
-                    }
-                    
-                    this._modules = this._modules.slice(0, i);
-                    break;
+                    return;
                 }
+    
+                this._modules = this._modules.slice(0, i);
+                break;
             }
         }
         this._modules.push(module);
