@@ -42,7 +42,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _initialLoadingMessage:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     @Input()
-    private _hasCheckboxes:boolean = true;
+    private _hasCheckboxes:boolean;
+    @Input()
+    private _hasInitialLoading:boolean;
     
     private _langPrefix:string = 'terraDataTable';
     
@@ -55,6 +57,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     
     constructor()
     {
+        this._hasInitialLoading = false;
+        this._hasCheckboxes = true;
     }
     
     private onHeaderCheckboxChange(isChecked:boolean):void
