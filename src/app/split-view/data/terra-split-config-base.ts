@@ -8,16 +8,21 @@ export class TerraSplitConfigBase
     {
         for(let i = 0; i < this._modules.length; i++)
         {
-            // check if this module is already loaded
-            if(this._modules[i].mainComponentName == module.mainComponentName ||
-               (this._modules[i].instanceKey != null && this._modules[i].instanceKey == module.instanceKey))
+            let hasSameModuleName = this._modules[i].mainComponentName != null &&
+                                    this._modules[i].mainComponentName == module.mainComponentName;
+            
+            let hasSameInstanceKey = this._modules[i].instanceKey != null &&
+                                     this._modules[i].instanceKey == module.instanceKey;
+            
+            let hasSameParams = this._modules[i].parameter == module.parameter;
+            
+            if(hasSameModuleName || hasSameInstanceKey)
             {
-                if(this._modules[i].parameter == module.parameter)
+                if(hasSameParams)
                 {
-                    // same module, same parameters => do nothing
                     return;
                 }
-                // same module, different parameters => drop old instance (including child modules) and reload
+    
                 this._modules = this._modules.slice(0, i);
                 break;
             }
