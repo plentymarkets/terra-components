@@ -10,18 +10,14 @@ import {
 } from '@angular/core';
 import { TerraMultiSelectBoxValueInterface } from './data/terra-multi-select-box-value.interface';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
-import {
-    TranslationService,
-    LocaleService
-} from 'angular-l10n';
-import { TranslatableComponent } from '../../translatable-component/translatable-component';
+import { TranslationService } from 'angular-l10n';
 
 @Component({
                selector: 'terra-multi-select-box',
                styles:   [require('./terra-multi-select-box.component.scss')],
                template: require('./terra-multi-select-box.component.html')
            })
-export class TerraMultiSelectBoxComponent extends TranslatableComponent implements OnInit, OnChanges
+export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
     @Input() inputIsDisabled:boolean;
@@ -79,13 +75,10 @@ export class TerraMultiSelectBoxComponent extends TranslatableComponent implemen
     private _selectedValueList:Array<any> = [];
     private _isInit:boolean;
     
-    private _langPrefix:string = 'terra-multi-select-box';
+    private _langPrefix:string = 'terraMultiSelectBox';
     
-    constructor(public locale:LocaleService, public translation:TranslationService)
+    constructor(public translation:TranslationService)
     {
-        super(locale, translation);
-        
-        this.addProvider(this._langPrefix);
     }
     
     ngOnInit()

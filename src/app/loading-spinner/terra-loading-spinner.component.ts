@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+/**
+ * @author mscharf
+ */
 @Component({
                selector: 'terra-loading-spinner',
                styles:   [require('./terra-loading-spinner.component.scss')],
