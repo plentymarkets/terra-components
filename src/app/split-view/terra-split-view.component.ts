@@ -5,26 +5,20 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
-import {
-    Locale,
-    LocaleService,
-    LocalizationService
-} from 'angular2localization';
 
 @Component({
                selector: 'terra-split-view',
                styles:   [require('./terra-split-view.component.scss')],
                template: require('./terra-split-view.component.html')
            })
-export class TerraSplitViewComponent extends Locale implements OnChanges
+export class TerraSplitViewComponent implements OnChanges
 {
     @Input() inputModules:Array<TerraSplitViewInterface>;
     @Input() inputShowBreadcrumbs:boolean;
     private _breadCrumbsPath:string;
     
-    constructor(public locale:LocaleService, public localization:LocalizationService)
+    constructor()
     {
-        super(locale, localization);
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
     }
