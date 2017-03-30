@@ -44,7 +44,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @Input()
     private _hasCheckboxes:boolean = true;
     
-    private _langPrefix:string = 'terra-data-table';
+    private _langPrefix:string = 'terraDataTable';
     
     // Overlay
     //@ViewChild('viewChildOverlayDataTableSettings') viewChildOverlayDataTableSettings:TerraOverlayComponent;

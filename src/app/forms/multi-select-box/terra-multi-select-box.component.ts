@@ -75,7 +75,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
     private _selectedValueList:Array<any> = [];
     private _isInit:boolean;
     
-    private _langPrefix:string = 'terra-multi-select-box';
+    private _langPrefix:string = 'terraMultiSelectBox';
     
     constructor(public translation:TranslationService)
     {
