@@ -49,8 +49,7 @@
         </ng-template>
         </tbody>
     </table>
-    <!--TODO: Implement translation after the update to Angular 4.0-->
-    <div *ngIf="!_rowList" class="initial-loading-warn">{{_langPrefix+'.initialLoading' | translate:lang:{ dataType: inputDataType} }}</div>
+    <div *ngIf="!_rowList && !_hasInitialLoading" class="initial-loading-warn">{{_langPrefix+'.initialLoading' | translate:lang:{ dataType: inputDataType} }}</div>
 </div>
 
 <!--<terra-viewChildOverlay #viewChildOverlayDataTableSettings [inputSaveButtonTooltip]="saveButtonTooltip"-->
