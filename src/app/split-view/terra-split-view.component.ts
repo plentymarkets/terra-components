@@ -30,24 +30,37 @@ export class TerraSplitViewComponent implements OnChanges
             if (this.inputModules != null)
             {
                 let currentModule = this.inputModules[this.inputModules.length - 1]
-                this.focusView(currentModule.mainComponentName + "_" + currentModule.instanceKey);
+                this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
             }
         }
     }
     
-    private focusView(id:string):void
+    private updateViewport(id:string):void
     {
-        setTimeout(function() {
-            let anchor = $('#' + id);
-        
-            if (anchor[0].getBoundingClientRect().left > anchor.parent().scrollLeft() - 3 &&
-                anchor[0].getBoundingClientRect().right <= anchor.parent()[0].getBoundingClientRect().right)
-            {
-                return;
-            }
-        
-            anchor.parent().stop();
-            anchor.parent().animate({ scrollLeft: (anchor[0].getBoundingClientRect().left + anchor.parent().scrollLeft() - 3) }, 500);
-        });
+        setTimeout(function()
+                   {
+                       let anchor = $('#' + id);
+                       let breadcrumb = $('.' + id);
+    
+                       // update breadcrumbs
+                       breadcrumb.closest('.terra-breadcrumbs')
+                                 .find('span')
+                                 .each(function()
+                                       {
+                                           $(this).removeClass('active');
+                                       });
+    
+                       breadcrumb.addClass('active');
+    
+                       // focus view
+                       if (anchor[0].getBoundingClientRect().left > anchor.parent().scrollLeft() - 3 &&
+                           anchor[0].getBoundingClientRect().right <= anchor.parent()[0].getBoundingClientRect().right)
+                       {
+                           return;
+                       }
+    
+                       anchor.parent().stop();
+                       anchor.parent().animate({ scrollLeft: (anchor[0].getBoundingClientRect().left + anchor.parent().scrollLeft() - 3) }, 500);
+                   });
     }
 }
