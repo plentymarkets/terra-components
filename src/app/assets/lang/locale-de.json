@@ -1,0 +1,8 @@
+{
+  "terra-data-table": {
+    "initial-loading": "Suche ausführen, um {{ dataType }} anzuzeigen"
+  },
+  "terra-multi-select-box": {
+    "selectAll": "Alle"
+  }
+}

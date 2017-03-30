@@ -3,7 +3,8 @@ import {
     Input,
     Output,
     ViewChild,
-    EventEmitter
+    EventEmitter,
+    OnInit
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { TerraDataTableHeaderCellInterface } from './cell/terra-data-table-header-cell.interface';
@@ -17,11 +18,6 @@ import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
-import {
-    TranslationService,
-    LocaleService
-} from 'angular-l10n';
-import { TranslatableComponent } from '../../translatable-component/translatable-component';
 
 @Component({
                selector:  'terra-data-table',
@@ -29,10 +25,11 @@ import { TranslatableComponent } from '../../translatable-component/translatable
                styles:    [require('./terra-data-table.component.scss')],
                template:  require('./terra-data-table.component.html')
            })
-export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> extends TranslatableComponent
+export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface>
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
     @Input() inputService:S;
+    @Input() inputDataType:string;
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
     private _headerList:Array<TerraDataTableHeaderCellInterface>;
     private _rowList:Array<TerraDataTableRowInterface<D>>;
@@ -56,11 +53,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     //private _saveButtonTooltip:string = 'Speichern';
     //private _cancelButtonTooltip:string = 'Abbrechen';
     
-    constructor(locale:LocaleService, translation:TranslationService)
+    constructor()
     {
-        super(locale, translation);
-    
-        this.addProvider(this._langPrefix);
     }
     
     private onHeaderCheckboxChange(isChecked:boolean):void
