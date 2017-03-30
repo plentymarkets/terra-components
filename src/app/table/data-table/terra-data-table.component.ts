@@ -46,9 +46,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _initialLoadingMessage:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     @Input()
-    private _hasCheckboxes:boolean = true;
+    private _hasCheckboxes:boolean;
     @Input()
-    private _hasInitialLoading:boolean = false;
+    private _hasInitialLoading:boolean;
     
     // Overlay
     //@ViewChild('viewChildOverlayDataTableSettings') viewChildOverlayDataTableSettings:TerraOverlayComponent;
@@ -60,7 +60,10 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     constructor(public locale:LocaleService,
                 public localization:LocalizationService)
     {
-       super(locale, localization);
+        super(locale, localization);
+        
+        this._hasInitialLoading = false;
+        this._hasCheckboxes = true;
     }
     
     private onHeaderCheckboxChange(isChecked:boolean):void
