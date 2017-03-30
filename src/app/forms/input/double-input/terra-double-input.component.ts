@@ -21,12 +21,7 @@ export const DOUBLE_INPUT_CONTROL_VALUE_ACCESSOR:any = {
            })
 export class TerraDoubleInputComponent extends TerraInputComponent
 {
-    @Input() inputName:string;
-    @Input() inputTooltipPlacement:string; //top, bottom, left, right (default: top)
-    @Input() inputTooltipText:string;
-    @Input() inputIsDisabled:boolean;
     @Input() inputIsPriceInput:boolean;
-    @Input() inputIsRequired:boolean;
     
     constructor()
     {
@@ -36,6 +31,8 @@ export class TerraDoubleInputComponent extends TerraInputComponent
     @Input()
     public set inputValue(v:number)
     {
+        console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
+        
         this.value = v;
     }
 }

@@ -21,18 +21,6 @@ export const NUMBER_INPUT_CONTROL_VALUE_ACCESSOR:any = {
            })
 export class TerraNumberInputComponent extends TerraInputComponent
 {
-    @Input() inputName:string;
-    @Input() inputIsRequired:boolean;
-    @Input() inputEmptyMessage:string;
-    @Input() inputInvalidMessage:string;
-    @Input() inputTooltipText:string;
-    @Input() inputIsDisabled:boolean;
-    @Input() inputTooltipPlacement:string; //top, bottom, left, right (default: top)
-    @Input() inputMaxLength:number;
-    @Input() inputMaxValue:number;
-    @Input() inputMinLength:number;
-    @Input() inputMinValue:number;
-    
     constructor()
     {
         super('number', TerraRegex.NUMERIC);
@@ -41,6 +29,8 @@ export class TerraNumberInputComponent extends TerraInputComponent
     @Input()
     public set inputValue(v:number)
     {
+        console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
+        
         this.value = v;
     }
 }

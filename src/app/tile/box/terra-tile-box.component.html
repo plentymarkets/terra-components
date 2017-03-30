@@ -23,11 +23,11 @@
     </div>
     <div *ngIf="inputButtonList && inputButtonList.length > 0" class="tile-box-align-bottom" (click)="stopPropagation($event)">
         <hr *ngIf="inputButtonList && inputButtonList.length > 0">
-        <template ngFor let-button [ngForOf]="inputButtonList">
+        <ng-template ngFor let-button [ngForOf]="inputButtonList">
             <terra-button [inputCaption]="button.caption"
                           [inputTooltipText]="button.tooltipText"
                           (outputClicked)="button.clickFunction()"
                           [inputIcon]="button.icon"></terra-button>
-        </template>
+        </ng-template>
     </div>
 </div>
