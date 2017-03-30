@@ -10,19 +10,14 @@ import {
 } from '@angular/core';
 import { TerraMultiSelectBoxValueInterface } from './data/terra-multi-select-box-value.interface';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
-import {
-    Locale,
-    LocaleService,
-    LocalizationService
-} from 'angular2localization';
-import { isBlank } from '@angular/core/src/facade/lang';
+import { TranslationService } from 'angular-l10n';
 
 @Component({
                selector: 'terra-multi-select-box',
                styles:   [require('./terra-multi-select-box.component.scss')],
                template: require('./terra-multi-select-box.component.html')
            })
-export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnChanges
+export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
     @Input() inputIsDisabled:boolean;
@@ -80,16 +75,24 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
     private _selectedValueList:Array<any> = [];
     private _isInit:boolean;
     
-    constructor(public locale:LocaleService, localization:LocalizationService)
+    private _langPrefix:string = 'terraMultiSelectBox';
+    
+    constructor(public translation:TranslationService)
     {
-        super(locale, localization);
     }
     
     ngOnInit()
     {
         if(!this.inputName)
         {
-            this.inputName = this.localization.translate('selectAll');
+            this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
+    
+            //this is necessary for language switch
+            this.translation.translationChanged.subscribe(
+                () =>
+                {
+                    this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
+                });
         }
         
         this._isInit = true;
@@ -170,7 +173,7 @@ export class TerraMultiSelectBoxComponent extends Locale implements OnInit, OnCh
         }
         else
         {
-            valueFound = !isBlank(this._selectedValueList[index]);
+            valueFound = this._selectedValueList[index] != null;
         }
         
         if(valueToChange.selected)

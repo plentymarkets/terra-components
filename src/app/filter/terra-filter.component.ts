@@ -7,6 +7,9 @@ import {
     EventEmitter
 } from '@angular/core';
 
+/**
+ * @author mscharf
+ */
 @Component({
                selector: 'terra-filter',
                styles:   [require('./terra-filter.component.scss')],

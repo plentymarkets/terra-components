@@ -1,14 +1,14 @@
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs">
     <ul class="terra-breadcrumbs">
-        <template ngFor let-module [ngForOf]="inputModules" let-first="first">
+        <ng-template ngFor let-module [ngForOf]="inputModules" let-first="first">
             <li *ngIf="inputModules" (click)="focusView(module.mainComponentName)">
                 <span>{{ module.name }}</span>
             </li>
-        </template>
+        </ng-template>
     </ul>
 </terra-base-toolbar>
 <div *ngIf="inputModules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
-    <template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">
+    <ng-template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">
         <div *ngIf="!module.hidden"
              id="{{ module.mainComponentName }}"
              class="view {{ module.defaultWidth }}"
@@ -19,5 +19,5 @@
             </terra-dynamic-module-loader>
             <div class="divider" *ngIf="!last"></div>
         </div>
-    </template>
+    </ng-template>
 </div>
