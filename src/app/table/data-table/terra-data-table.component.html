@@ -50,7 +50,7 @@
         </tbody>
     </table>
     <!--TODO: Implement translation after the update to Angular 4.0-->
-    <div *ngIf="!_rowList" class="initial-loading-warn">Suche ausführen, um Daten anzuzeigen</div>
+    <div *ngIf="!_rowList && !_hasInitialLoading" class="initial-loading-warn">Suche ausführen, um Daten anzuzeigen</div>
 </div>
 
 <!--<terra-viewChildOverlay #viewChildOverlayDataTableSettings [inputSaveButtonTooltip]="saveButtonTooltip"-->

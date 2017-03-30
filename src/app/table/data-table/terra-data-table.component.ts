@@ -47,6 +47,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     @Input()
     private _hasCheckboxes:boolean = true;
+    @Input()
+    private _hasInitialLoading:boolean = false;
     
     // Overlay
     //@ViewChild('viewChildOverlayDataTableSettings') viewChildOverlayDataTableSettings:TerraOverlayComponent;
