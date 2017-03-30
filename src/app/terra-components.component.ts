@@ -4,10 +4,11 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import {
-    Translation,
     LocaleService,
+    Translation,
     TranslationService
 } from 'angular-l10n';
+import { TerraNavigatorNodeInterface } from './navigator/data/terra-navigator-node.interface';
 
 @Component({
                selector: 'app-root',
@@ -17,6 +18,7 @@ import {
 export class TerraComponentsComponent extends Translation implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
+    private myNodes:Array<TerraNavigatorNodeInterface>;
     
     public constructor(private viewContainerRef:ViewContainerRef,
                        public locale:LocaleService,
@@ -28,9 +30,11 @@ export class TerraComponentsComponent extends Translation implements OnInit
         this._viewContainerRef = viewContainerRef;
         
         this.locale.addConfiguration()
-            .addLanguages(['de', 'en'])
+            .addLanguages(['de',
+                           'en'])
             .setCookieExpiration(30)
-            .defineDefaultLocale('en', 'EN');
+            .defineDefaultLocale('en',
+                                 'EN');
         
         let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
         
@@ -40,19 +44,21 @@ export class TerraComponentsComponent extends Translation implements OnInit
         }
         else
         {
-            let lang = navigator.language.slice(0, 2).toLocaleLowerCase();
+            let lang = navigator.language.slice(0,
+                                                2).toLocaleLowerCase();
             
             if(lang !== 'de' && lang !== 'en')
             {
                 lang = 'en';
             }
-    
+            
             this.locale.setCurrentLanguage(lang);
-            localStorage.setItem('plentymarkets_lang_', lang);
+            localStorage.setItem('plentymarkets_lang_',
+                                 lang);
         }
         
         this.locale.init();
-    
+        
         //Definitions for i18n
         if(process.env.ENV === 'production')
         {
@@ -69,5 +75,51 @@ export class TerraComponentsComponent extends Translation implements OnInit
     ngOnInit()
     {
         
+        this.myNodes = [
+            {
+                nodeName: "Lvl1",
+                children: [
+                    {
+                        nodeName: "Lvl2 #0",
+                        children: null
+                    },
+                    {
+                        nodeName: "Lvl2 #1 ABC",
+                        children: [
+                            {
+                                nodeName: "LEVEL 3 - 1",
+                                children: null,
+                            }
+                        ]
+                    },
+                    {
+                        nodeName: "Lvl2 #2",
+                        children: null
+                    }
+                ]
+            },
+            {
+                nodeName: "Lvl2",
+                children: [
+                    {
+                        nodeName: "Lvl2 #0",
+                        children: null
+                    },
+                    {
+                        nodeName: "Lvl2 #1 ABC",
+                        children: [
+                            {
+                                nodeName: "LEVEL 3 - 2",
+                                children: null
+                            }
+                        ]
+                    },
+                    {
+                        nodeName: "Lvl2 #2 SDSSSSS",
+                        children: null
+                    }
+                ]
+            }
+        ];
     }
 }

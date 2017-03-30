@@ -3,9 +3,8 @@
  */
 export interface TerraNavigatorNodeInterface
 {
-    id?:number;
-    parentNodeIndex?:number;
     nodeName:string;
-    //parent:Array<TerraNavigatorNodeInterface>;
+    value?:any;
+    rootPath?:Array<number>;
     children:Array<TerraNavigatorNodeInterface>;
 }

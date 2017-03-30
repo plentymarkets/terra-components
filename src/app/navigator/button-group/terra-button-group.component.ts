@@ -38,10 +38,7 @@ export class TerraButtonGroupComponent implements OnInit
                                        clickFunction: () =>
                                                       {
                                                           this._terraNavigatorSplitViewConfig
-                                                              .openNextLevel({
-                                                                                 nodeName: item.nodeName,
-                                                                                 children: null
-                                                                             });
+                                                              .openNextLevel(item);
                     
                                                           this._buttonList
                                                               .forEach((btnItem) =>

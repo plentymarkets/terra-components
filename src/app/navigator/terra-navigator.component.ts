@@ -27,10 +27,14 @@ export class TerraNavigatorComponent implements OnInit
     {
         console.log(this.inputNodes);
         
+        let result:Array<TerraNavigatorNodeInterface> = this.initRootPaths(this.inputNodes, null);
+        
+        console.log(result);
+        
         this._terraNavigatorSplitViewConfig
             .addModule({
                            module:            TerraButtonGroupModule.forRoot(),
-                           instanceKey:       '1',
+                           instanceKey:       "sdsdf",
                            defaultWidth:      'col-xs-2',
                            hidden:            false,
                            name:              'Menü',
@@ -40,8 +44,53 @@ export class TerraNavigatorComponent implements OnInit
                            }
                        });
         
+        this._terraNavigatorSplitViewConfig
+            .observable
+            .subscribe((item:TerraNavigatorNodeInterface) =>
+                       {
+            
+            
+                           this._terraNavigatorSplitViewConfig
+                               .addModule({
+                                              module:            TerraButtonGroupModule.forRoot(),
+                                              instanceKey:       "23sdfsdf",
+                                              defaultWidth:      'col-xs-2',
+                                              hidden:            false,
+                                              name:              item.nodeName,
+                                              mainComponentName: 'TerraButtonGroupComponent',
+                                              parameter:         {
+                                                  nodes: item.children
+                                              }
+                                          });
+            
+            
+                       });
         
     }
     
+    private initRootPaths(data:Array<TerraNavigatorNodeInterface>, rootIndex:Array<number>):Array<TerraNavigatorNodeInterface>
+    {
+        for(let i = 0; i < data.length; i++)
+        {
+            data[i].rootPath = [];
+            
+            if(rootIndex !== null)
+            {
+                rootIndex.forEach((item) =>
+                                  {
+                                      data[i].rootPath.push(item);
+                                  });
+            }
+            
+            data[i].rootPath.push(i);
+            
+            if(data[i].children != null)
+            {
+                this.initRootPaths(data[i].children, data[i].rootPath);
+            }
+        }
+        
+        return data;
+    }
     
 }
