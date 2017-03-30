@@ -56,11 +56,11 @@ export class TerraComponentsComponent extends Translation implements OnInit
         //Definitions for i18n
         if(process.env.ENV === 'production')
         {
-            this.translation.addConfiguration().addProvider('app/assets/lang/locale_');
+            this.translation.addConfiguration().addProvider('app/assets/lang/locale-');
         }
         else
         {
-            this.translation.addConfiguration().addProvider('src/app/assets/lang/locale_');
+            this.translation.addConfiguration().addProvider('src/app/assets/lang/locale-');
         }
         
         this.translation.init();
