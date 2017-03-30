@@ -1,0 +1,14 @@
+:host /deep/ {
+    .active {
+        .btn {
+            background-color: #354763 !important;
+            color: #ffffff !important;
+        }
+    }
+    terra-button {
+        .btn {
+            background-color: #f2f2f2;
+            border-radius: 0px !important;
+        }
+    }
+}

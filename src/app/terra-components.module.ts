@@ -59,6 +59,7 @@ import { TerraLoadingSpinnerService } from './loading-spinner/service/terra-load
 import { TranslationModule } from 'angular-l10n';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraNavigatorComponent } from './navigator/terra-navigator.component';
+import { TerraNavigatorSplitViewConfig } from './navigator/config/terra-navigator-split-view.config';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -245,9 +246,10 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
               ],
               providers:       [
                   COMPILER_PROVIDERS,
+                  TerraNavigatorSplitViewConfig
               ],
               bootstrap:       [
-                  //TerraComponentsComponent
+                  TerraComponentsComponent
               ]
           })
 export class TerraComponentsModule
@@ -260,6 +262,7 @@ export class TerraComponentsModule
                         TerraLoadingSpinnerService,
                         TerraDataTableContextMenuService,
                         TerraBaseService,
+                        TerraNavigatorSplitViewConfig,
                         TerraUrlParamsDecorator,
                         TerraAlertComponent]
         };
@@ -273,6 +276,7 @@ export class TerraComponentsModule
                         TerraLoadingSpinnerService,
                         TerraDataTableContextMenuService,
                         TerraBaseService,
+                        TerraNavigatorSplitViewConfig,
                         TerraUrlParamsDecorator,
                         TerraAlertComponent]
         };

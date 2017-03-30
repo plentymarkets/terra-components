@@ -1,0 +1,8 @@
+<div class="btn-group-vertical" role="group">
+    <template ngFor let-item [ngForOf]="_buttonList">
+        <terra-button inputCaption="{{item.caption}}"
+                      (outputClicked)="item.clickFunction()"
+                      [ngClass]="{'active' : item.isActive}">
+        </terra-button>
+    </template>
+</div>
