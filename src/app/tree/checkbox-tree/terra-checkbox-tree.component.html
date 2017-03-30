@@ -1,6 +1,6 @@
 <div class="terra-tree">
     <ul>
-        <template ngFor let-leaf [ngForOf]="inputLeafList">
+        <ng-template ngFor let-leaf [ngForOf]="inputLeafList">
             <li class="node leaf" [ngClass]="{'collapsed': !leaf.isOpen, 'active': leaf.isActive}">
                 <div class="leaf-titel" (click)="onLeafClick(leaf)">
                     <label class="input-control checkbox small-check">
@@ -15,6 +15,6 @@
                 <terra-checkbox-tree [inputLeafList]="leaf.subLeafList" [inputParentLeafList]="leafList"
                                      [inputCompleteLeafList]="inputCompleteLeafList" *ngIf="leaf.subLeafList"></terra-checkbox-tree>
             </li>
-        </template>
+        </ng-template>
     </ul>
 </div>
