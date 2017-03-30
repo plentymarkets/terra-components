@@ -57,13 +57,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     
     constructor()
     {
-<<<<<<< HEAD
-        super(locale, localization);
-        
         this._hasInitialLoading = false;
         this._hasCheckboxes = true;
-=======
->>>>>>> ec66a8fe9eab7a7a7195daa9564f8aaef32620ee
     }
     
     private onHeaderCheckboxChange(isChecked:boolean):void
