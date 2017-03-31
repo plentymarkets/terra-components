@@ -54,10 +54,6 @@ export class TerraNavigatorComponent implements OnInit, OnChanges
                        {
                            if(item.children !== null)
                            {
-                               console.log("Path length" + item.rootPath.length);
-                
-                               let test = this._terraNavigatorSplitViewConfig.modules;
-                
                                this._terraNavigatorSplitViewConfig
                                    .addModule({
                                                   module:            TerraButtonGroupModule.forRoot(),
