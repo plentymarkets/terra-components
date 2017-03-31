@@ -21,19 +21,29 @@ export const TEXT_INPUT_CONTROL_VALUE_ACCESSOR:any = {
            })
 export class TerraTextInputComponent extends TerraInputComponent
 {
-    @Input() inputType:string;
-    
-    constructor()
+    /**
+     * @deprecated
+     * @param v
+     */
+    @Input() set inputType(v:string)
     {
-        super('', TerraRegex.MIXED);
-        this.inputType = "text";
+        console.warn('inputType is no longer used.  It will be removed in one of the upcoming releases.');
     }
     
+    /**
+     * @deprecated
+     * @param v
+     */
     @Input()
     public set inputValue(v:string)
     {
         console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
         
         this.value = v;
+    }
+    
+    constructor()
+    {
+        super(TerraRegex.MIXED);
     }
 }
