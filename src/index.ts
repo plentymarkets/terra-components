@@ -61,3 +61,4 @@ export * from './app/tile/box/data/terra-tile-box-color';
 export * from './app/forms/input/date-picker/terra-date-picker.component';
 export * from './app/pager/data/terra-pager.parameter.interface';
 export * from './app/navigator/terra-navigator.component';
+export * from './app/navigator/data/terra-navigator-node.interface';

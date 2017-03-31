@@ -1,7 +1,9 @@
 import {
     Component,
     Input,
-    OnInit
+    OnChanges,
+    OnInit,
+    SimpleChanges
 } from '@angular/core';
 import { TerraNavigatorSplitViewConfig } from './config/terra-navigator-split-view.config';
 import { TerraNavigatorNodeInterface } from './data/terra-navigator-node.interface';
@@ -15,34 +17,36 @@ import { TerraButtonGroupModule } from './button-group/terra-button-group.module
                template: require('./terra-navigator.component.html'),
                styles:   [require('./terra-navigator.component.scss')]
            })
-export class TerraNavigatorComponent implements OnInit
+export class TerraNavigatorComponent implements OnInit, OnChanges
 {
     @Input() inputNodes:Array<TerraNavigatorNodeInterface>;
     
+    private _isInit:boolean;
+    
     constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig)
     {
+        this._isInit = false;
     }
     
     ngOnInit()
     {
-        console.log(this.inputNodes);
-        
-        let result:Array<TerraNavigatorNodeInterface> = this.initRootPaths(this.inputNodes, null);
-        
-        console.log(result);
-        
-        this._terraNavigatorSplitViewConfig
-            .addModule({
-                           module:            TerraButtonGroupModule.forRoot(),
-                           instanceKey:       0,
-                           defaultWidth:      'col-xs-12 col-md-3 col-lg-2',
-                           hidden:            false,
-                           name:              'Menü',
-                           mainComponentName: 'TerraButtonGroupComponent',
-                           parameter:         {
-                               nodes: this.inputNodes
-                           }
-                       });
+        if(this.inputNodes !== null)
+        {
+            let result:Array<TerraNavigatorNodeInterface> = this.initRootPaths(this.inputNodes, null);
+            
+            this._terraNavigatorSplitViewConfig
+                .addModule({
+                               module:            TerraButtonGroupModule.forRoot(),
+                               instanceKey:       0,
+                               defaultWidth:      'col-xs-12 col-md-3 col-lg-2',
+                               hidden:            false,
+                               name:              'Menü',
+                               mainComponentName: 'TerraButtonGroupComponent',
+                               parameter:         {
+                                   nodes: this.inputNodes
+                               }
+                           });
+        }
         
         this._terraNavigatorSplitViewConfig
             .observable
@@ -73,6 +77,28 @@ export class TerraNavigatorComponent implements OnInit
                            }
                        });
         
+        this._isInit = true;
+    }
+    
+    ngOnChanges(changes:SimpleChanges)
+    {
+        if(this._isInit == true && changes["inputNodes"])
+        {
+            let result:Array<TerraNavigatorNodeInterface> = this.initRootPaths(this.inputNodes, null);
+            
+            this._terraNavigatorSplitViewConfig
+                .addModule({
+                               module:            TerraButtonGroupModule.forRoot(),
+                               instanceKey:       0,
+                               defaultWidth:      'col-xs-12 col-md-3 col-lg-2',
+                               hidden:            false,
+                               name:              'Menü',
+                               mainComponentName: 'TerraButtonGroupComponent',
+                               parameter:         {
+                                   nodes: this.inputNodes
+                               }
+                           });
+        }
     }
     
     private initRootPaths(data:Array<TerraNavigatorNodeInterface>, rootIndex:Array<number>):Array<TerraNavigatorNodeInterface>
