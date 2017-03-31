@@ -38,7 +38,12 @@
                     </span>
                         <div class="btn-group" *ngIf="cell.buttonList">
                             <template ngFor let-button [ngForOf]="cell.buttonList">
-                                <terra-button (outputClicked)="button.clickFunction()" inputIcon="{{button.icon}}"
+                                <terra-button (outputClicked)="button.clickFunction()"
+                                              inputIcon="{{button.icon}}"
+                                              [inputIsPrimary]="button.isPrimary"
+                                              [inputIsSecondary]="button.isSecondary"
+                                              [inputTooltipText]="button.tooltipText"
+                                              [inputTooltipPlacement]="button.tooltipPlacement"
                                               inputCaption="{{button.caption}}"
                                               [inputIsSmall]="true" inputTooltipText="{{button.tooltipText}}"></terra-button>
                             </template>
