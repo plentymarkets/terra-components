@@ -32,7 +32,7 @@ export class TerraNavigatorComponent implements OnInit, OnChanges
     {
         if(this.inputNodes !== null)
         {
-            let result:Array<TerraNavigatorNodeInterface> = this.initRootPaths(this.inputNodes, null);
+            this.initRootPaths(this.inputNodes, null);
             
             this._terraNavigatorSplitViewConfig
                 .addModule({
@@ -80,7 +80,7 @@ export class TerraNavigatorComponent implements OnInit, OnChanges
     {
         if(this._isInit == true && changes["inputNodes"])
         {
-            let result:Array<TerraNavigatorNodeInterface> = this.initRootPaths(this.inputNodes, null);
+            this.initRootPaths(this.inputNodes, null);
             
             this._terraNavigatorSplitViewConfig
                 .addModule({
