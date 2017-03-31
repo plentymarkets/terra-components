@@ -4,7 +4,8 @@ import {
     Output,
     ViewChild,
     EventEmitter,
-    OnInit
+    OnChanges,
+    SimpleChanges
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { TerraDataTableHeaderCellInterface } from './cell/terra-data-table-header-cell.interface';
@@ -25,12 +26,17 @@ import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interf
                styles:    [require('./terra-data-table.component.scss')],
                template:  require('./terra-data-table.component.html')
            })
-export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface>
+export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> implements OnChanges
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
+    
     @Input() inputService:S;
     @Input() inputDataType:string;
+    @Input() inputHasCheckboxes:boolean;
+    @Input() inputHasInitialLoading:boolean;
+    
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
+    
     private _headerList:Array<TerraDataTableHeaderCellInterface>;
     private _rowList:Array<TerraDataTableRowInterface<D>>;
     private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
@@ -41,12 +47,13 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _defaultPagingSize:number;
     private _initialLoadingMessage:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+    private _langPrefix:string = 'terraDataTable';
+    
+    /**
+     * @deprecated
+     */
     @Input()
     private _hasCheckboxes:boolean;
-    @Input()
-    private _hasInitialLoading:boolean;
-    
-    private _langPrefix:string = 'terraDataTable';
     
     // Overlay
     //@ViewChild('viewChildOverlayDataTableSettings') viewChildOverlayDataTableSettings:TerraOverlayComponent;
@@ -57,8 +64,19 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     
     constructor()
     {
-        this._hasInitialLoading = false;
         this._hasCheckboxes = true;
+        this.inputHasCheckboxes = true;
+        this.inputHasInitialLoading = false;
+    }
+    
+    
+    ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes['_hasCheckboxes'])
+        {
+            console.warn('_hasCheckboxes is deprecated. It will be removed in one of the upcoming releases. Please use inputHasCheckboxes instead.');
+            this.inputHasCheckboxes = changes['_hasCheckboxes'].currentValue;
+        }
     }
     
     private onHeaderCheckboxChange(isChecked:boolean):void
