@@ -24,11 +24,9 @@ export class TerraInputComponent implements ControlValueAccessor
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     
     //The internal data model
-    private _innerValue:any = '';
+    private _innerValue:any;
     
-    protected type:string;
-    
-    //Placeholders for the callbacks which are later providesd
+    //Placeholders for the callbacks which are later provided
     //by the Control Value Accessor
     private onTouchedCallback:() => void = () =>
     {
@@ -38,10 +36,8 @@ export class TerraInputComponent implements ControlValueAccessor
     {
     };
     
-    constructor(private _inputType:string,
-                private _inputRegex:string)
+    constructor(private _inputRegex:string)
     {
-        this.type = _inputType;
         this.regex = _inputRegex;
         this.isValid = true;
         this.inputTooltipPlacement = 'top';
@@ -79,7 +75,7 @@ export class TerraInputComponent implements ControlValueAccessor
         if(v !== this._innerValue)
         {
             this._innerValue = v;
-            this.onChangeCallback(v);
+            this.onChangeCallback(this._innerValue);
         }
     }
     
