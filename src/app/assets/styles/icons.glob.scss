@@ -60,6 +60,19 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-burger:before {
+    content: "\eab0";
+}
+.icon-grid:before {
+    content: "\eab1";
+}
+.icon-marketplace:before {
+    content: "\eab2";
+}
+.icon-plugin:before {
+    content: "\eab3";
+}
+
 .icon-plugin_inbox:before
 {
     content: "\eaaf";
