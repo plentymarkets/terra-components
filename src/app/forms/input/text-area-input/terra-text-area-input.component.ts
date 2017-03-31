@@ -21,15 +21,6 @@ export const TEXT_AREA_INPUT_CONTROL_VALUE_ACCESSOR:any = {
            })
 export class TerraTextAreaInputComponent extends TerraInputComponent
 {
-    @Input() inputName:string;
-    @Input() inputIsRequired:boolean;
-    @Input() inputTooltipText:string;
-    @Input() inputIsDisabled:boolean;
-    @Input() inputTooltipPlacement:string; //top, bottom, left, right (default: top)
-    @Input() inputMaxLength:number;
-    @Input() inputMaxValue:number;
-    @Input() inputMinLength:number;
-    @Input() inputMinValue:number;
     @Input() inputType:string;
     @Input() inputMaxRows:number;
     @Input() inputMaxCols:number;
@@ -43,6 +34,8 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
     @Input()
     public set inputValue(v:string)
     {
+        console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
+        
         this.value = v;
     }
 }

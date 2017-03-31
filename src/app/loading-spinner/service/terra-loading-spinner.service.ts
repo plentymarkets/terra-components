@@ -4,6 +4,9 @@ import {
     Subscriber
 } from 'rxjs';
 
+/**
+ * @author mscharf
+ */
 @Injectable()
 export class TerraLoadingSpinnerService
 {

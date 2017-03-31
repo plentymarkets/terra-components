@@ -1,3 +1,17 @@
+<a name="0.1.0"></a>
+# 0.1.0 (30.03.2017)
+
+### Breaking Changes
+* **terra-components** Update terra-components to Angular 4.0.0
+* **terra-components** Update angular2localization to angular-l10n
+
+<a name="0.0.193"></a>
+# 0.0.193 (16.03.2017)
+
+### Features
+* **terra-split-view** Changed styling of bread crumb navigation list elements ([20a92f2](https://github.com/plentymarkets/terra-components/commit/20a92f2))
+* **terra-filter** Added form tag for ability to submit on enter. Use '(outputOnEnterSubmit)' for this feature ([514b700](https://github.com/plentymarkets/terra-components/commit/514b700))
+
 <a name="0.0.192"></a>
 # 0.0.192 (16.03.2017)
 
@@ -5,7 +19,7 @@
 * **tooltip** FIX disabling of input components ([47d03f4](https://github.com/plentymarkets/terra-components/commit/47d03f4))
 
 ### Features
-* **terra-loading-spinnter-service** NEW loading spinner service and component ([fa54862](https://github.com/plentymarkets/terra-components/commit/fa54862))
+* **terra-loading-spinner-service** NEW loading spinner service and component ([fa54862](https://github.com/plentymarkets/terra-components/commit/fa54862))
 
 <a name="0.0.191"></a>
 # 0.0.191 (13.03.2017)

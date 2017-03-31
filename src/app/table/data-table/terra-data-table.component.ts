@@ -3,7 +3,8 @@ import {
     Input,
     Output,
     ViewChild,
-    EventEmitter
+    EventEmitter,
+    OnInit
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { TerraDataTableHeaderCellInterface } from './cell/terra-data-table-header-cell.interface';
@@ -28,6 +29,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
     @Input() inputService:S;
+    @Input() inputDataType:string;
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
     private _headerList:Array<TerraDataTableHeaderCellInterface>;
     private _rowList:Array<TerraDataTableRowInterface<D>>;
@@ -37,9 +39,14 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _pagingSize:Array<TerraSelectBoxValueInterface>;
     private _onSuccessFunction:(res) => void;
     private _defaultPagingSize:number;
+    private _initialLoadingMessage:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     @Input()
-    private _hasCheckboxes:boolean = true;
+    private _hasCheckboxes:boolean;
+    @Input()
+    private _hasInitialLoading:boolean;
+    
+    private _langPrefix:string = 'terraDataTable';
     
     // Overlay
     //@ViewChild('viewChildOverlayDataTableSettings') viewChildOverlayDataTableSettings:TerraOverlayComponent;
@@ -50,6 +57,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     
     constructor()
     {
+        this._hasInitialLoading = false;
+        this._hasCheckboxes = true;
     }
     
     private onHeaderCheckboxChange(isChecked:boolean):void
