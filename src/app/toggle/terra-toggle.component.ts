@@ -24,7 +24,7 @@ export const TOGGLE_CONTROL_VALUE_ACCESSOR:any = {
            })
 export class TerraToggleComponent implements ControlValueAccessor
 {
-    isActive:boolean = false;
+    private _isActive:boolean = false;
     
     @Input() inputIsSmall:boolean;
     @Input() inputIsLarge:boolean;
@@ -52,14 +52,14 @@ export class TerraToggleComponent implements ControlValueAccessor
         this.inputTooltipPlacement = 'top';
     }
     
-    toggle()
+    private toggle():void
     {
         if(!this.inputIsDisabled)
         {
-            this.isActive = !this.isActive;
-            this.toggled.emit(this.isActive);
-            this.onChangeCallback(this.isActive);
-            if(this.isActive)
+            this._isActive = !this._isActive;
+            this.toggled.emit(this._isActive);
+            this.onChangeCallback(this._isActive);
+            if(this._isActive)
             {
                 this.activated.emit();
             }
@@ -73,9 +73,9 @@ export class TerraToggleComponent implements ControlValueAccessor
     //From ControlValueAccessor interface
     writeValue(value:boolean)
     {
-        if(value !== this.isActive)
+        if(value !== this._isActive)
         {
-            this.isActive = value;
+            this._isActive = value;
         }
     }
     
