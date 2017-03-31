@@ -24,8 +24,6 @@ export const TOGGLE_CONTROL_VALUE_ACCESSOR:any = {
            })
 export class TerraToggleComponent implements ControlValueAccessor
 {
-    private _isActive:boolean = false;
-    
     @Input() inputIsSmall:boolean;
     @Input() inputIsLarge:boolean;
     @Input() inputIsDisabled:boolean;
@@ -38,6 +36,8 @@ export class TerraToggleComponent implements ControlValueAccessor
     @Output() deactivated = new EventEmitter<any>();
     @Output() activated = new EventEmitter<any>();
     @Output() toggled = new EventEmitter<boolean>();
+    
+    private _isActive:boolean = false;
     
     private onTouchedCallback:() => void = () =>
     {
