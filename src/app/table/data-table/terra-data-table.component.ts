@@ -65,7 +65,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     constructor()
     {
         this._hasCheckboxes = true;
-        
         this.inputHasCheckboxes = true;
         this.inputHasInitialLoading = false;
     }
