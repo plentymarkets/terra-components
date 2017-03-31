@@ -69,7 +69,10 @@ export class TerraNavigatorComponent implements OnInit, OnChanges
                            }
                            else
                            {
-                               alert("endpoint");
+                               while(this._terraNavigatorSplitViewConfig.modules.length > item.rootPath.length)
+                               {
+                                   this._terraNavigatorSplitViewConfig.modules.pop();
+                               }
                            }
                        });
         
@@ -121,5 +124,4 @@ export class TerraNavigatorComponent implements OnInit, OnChanges
         
         return data;
     }
-    
 }
