@@ -44,7 +44,7 @@
                                               [inputIsSecondary]="button.isSecondary"
                                               [inputTooltipText]="button.tooltipText"
                                               [inputIsDisabled]="button.isDisabled"
-                                              [inputTooltipPlacement]="button.tooltipPlacement"
+                                              [inputTooltipPlacement]="getButtonTooltipPlacement(button)"
                                               inputCaption="{{button.caption}}"
                                               [inputIsSmall]="true" inputTooltipText="{{button.tooltipText}}"></terra-button>
                             </ng-template>
