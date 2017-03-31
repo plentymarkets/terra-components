@@ -34,8 +34,8 @@ export class TerraNavigatorComponent implements OnInit
         this._terraNavigatorSplitViewConfig
             .addModule({
                            module:            TerraButtonGroupModule.forRoot(),
-                           instanceKey:       "sdsdf",
-                           defaultWidth:      'col-xs-2',
+                           instanceKey:       0,
+                           defaultWidth:      'col-xs-12 col-md-3 col-lg-2',
                            hidden:            false,
                            name:              'Menü',
                            mainComponentName: 'TerraButtonGroupComponent',
@@ -48,22 +48,29 @@ export class TerraNavigatorComponent implements OnInit
             .observable
             .subscribe((item:TerraNavigatorNodeInterface) =>
                        {
-            
-            
-                           this._terraNavigatorSplitViewConfig
-                               .addModule({
-                                              module:            TerraButtonGroupModule.forRoot(),
-                                              instanceKey:       "23sdfsdf",
-                                              defaultWidth:      'col-xs-2',
-                                              hidden:            false,
-                                              name:              item.nodeName,
-                                              mainComponentName: 'TerraButtonGroupComponent',
-                                              parameter:         {
-                                                  nodes: item.children
-                                              }
-                                          });
-            
-            
+                           if(item.children !== null)
+                           {
+                               console.log("Path length" + item.rootPath.length);
+                
+                               let test = this._terraNavigatorSplitViewConfig.modules;
+                
+                               this._terraNavigatorSplitViewConfig
+                                   .addModule({
+                                                  module:            TerraButtonGroupModule.forRoot(),
+                                                  instanceKey:       item.rootPath.length,
+                                                  defaultWidth:      'col-xs-12 col-md-3 col-lg-2',
+                                                  hidden:            false,
+                                                  name:              item.nodeName,
+                                                  mainComponentName: 'TerraButtonGroupComponent',
+                                                  parameter:         {
+                                                      nodes: item.children
+                                                  }
+                                              });
+                           }
+                           else
+                           {
+                               alert("endpoint");
+                           }
                        });
         
     }
