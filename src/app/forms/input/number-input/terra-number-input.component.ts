@@ -23,7 +23,7 @@ export class TerraNumberInputComponent extends TerraInputComponent
 {
     constructor()
     {
-        super('number', TerraRegex.NUMERIC);
+        super(TerraRegex.NUMERIC);
     }
     
     @Input()

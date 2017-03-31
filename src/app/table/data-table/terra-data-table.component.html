@@ -7,7 +7,7 @@
     <table class="table data-table table-striped table-bordered">
         <thead>
         <tr>
-            <th *ngIf="_hasCheckboxes" width="25px">
+            <th *ngIf="inputHasCheckboxes" width="25px">
                 <terra-checkbox #viewChildHeaderCheckbox type="checkbox"
                                 (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
                                 [value]="_isHeaderCheckboxChecked"></terra-checkbox>
@@ -25,7 +25,7 @@
         <tbody *ngIf="_rowList">
         <ng-template ngFor let-row [ngForOf]="_rowList">
             <tr [ngClass]="{'selected': row.selected, 'isActive': row.isActive}" [context-menu]="row.contextMenuLinkList">
-                <td *ngIf="_hasCheckboxes">
+                <td *ngIf="inputHasCheckboxes">
                     <terra-checkbox #rowCheckbox type="checkbox" [value]="row.selected"
                                     (change)="onRowCheckboxChange(rowCheckbox.value, row)"></terra-checkbox>
                 </td>
@@ -55,7 +55,7 @@
         </ng-template>
         </tbody>
     </table>
-    <div *ngIf="!_rowList && !_hasInitialLoading" class="initial-loading-warn">{{_langPrefix+'.initialLoading' | translate:lang:{ dataType: inputDataType} }}</div>
+    <div *ngIf="!_rowList && !inputHasInitialLoading" class="initial-loading-warn">{{_langPrefix+'.initialLoading' | translate:lang:{ dataType: inputDataType} }}</div>
 </div>
 
 <!--<terra-viewChildOverlay #viewChildOverlayDataTableSettings [inputSaveButtonTooltip]="saveButtonTooltip"-->

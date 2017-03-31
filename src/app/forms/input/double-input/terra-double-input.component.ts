@@ -25,7 +25,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent
     
     constructor()
     {
-        super('number', TerraRegex.DOUBLE);
+        super(TerraRegex.DOUBLE);
     }
     
     @Input()

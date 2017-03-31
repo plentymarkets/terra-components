@@ -1,3 +1,14 @@
+<a name="0.1.1"></a>
+# 0.1.1 (31.03.2017)
+
+### Bug Fixes
+* **terra-number-input** ngModel binds number type correctly
+* **terra-double-input** ngModel binds number type correctly
+
+### Feature
+* **terra-toggle** Create toggable button component
+* **terra-data-table** Created initial loading message
+
 <a name="0.1.0"></a>
 # 0.1.0 (30.03.2017)
 
