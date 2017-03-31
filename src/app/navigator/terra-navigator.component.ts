@@ -8,6 +8,7 @@ import {
 import { TerraNavigatorSplitViewConfig } from './config/terra-navigator-split-view.config';
 import { TerraNavigatorNodeInterface } from './data/terra-navigator-node.interface';
 import { TerraButtonGroupModule } from './button-group/terra-button-group.module';
+import { TerraSplitViewInterface } from '../split-view/data/terra-split-view.interface';
 
 /**
  * @author mscharf
@@ -20,6 +21,7 @@ import { TerraButtonGroupModule } from './button-group/terra-button-group.module
 export class TerraNavigatorComponent implements OnInit, OnChanges
 {
     @Input() inputNodes:Array<TerraNavigatorNodeInterface>;
+    @Input() inputEndPointModule:TerraSplitViewInterface;
     
     private _isInit:boolean;
     
@@ -73,6 +75,19 @@ export class TerraNavigatorComponent implements OnInit, OnChanges
                                {
                                    this._terraNavigatorSplitViewConfig.modules.pop();
                                }
+                
+                               this._terraNavigatorSplitViewConfig
+                                   .addModule({
+                                                  module:            this.inputEndPointModule,
+                                                  instanceKey:       item.rootPath.length,
+                                                  defaultWidth:      'col-xs-12 col-md-3 col-lg-2',
+                                                  hidden:            this.inputEndPointModule.hidden,
+                                                  name:              this.inputEndPointModule.name,
+                                                  mainComponentName: this.inputEndPointModule.mainComponentName,
+                                                  parameter:         {
+                                                      nodes: item.value
+                                                  }
+                                              });
                            }
                        });
         
