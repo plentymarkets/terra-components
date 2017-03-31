@@ -13,4 +13,5 @@ export interface TerraButtonInterface
     isPrimary?:boolean;
     isSecondary?:boolean;
     isActive?:boolean;
+    isDisabled?:boolean;
 }
