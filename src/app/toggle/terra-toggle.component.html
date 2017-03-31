@@ -1,0 +1,20 @@
+<div
+    tooltip="{{inputTooltipText}}"
+    placement="{{inputTooltipPlacement}}"
+    class="toggle-wrapper"
+    [hidden]="inputIsHidden"
+    [ngClass]="{'active':isActive,
+                'sm': inputIsSmall,
+                'lg': inputIsLarge,
+                'pull-xs-right': inputIsAlignRight,
+                'disabled': inputIsDisabled
+                }"
+    (click)="toggle()">
+    
+    <terra-button
+        [inputIsDisabled]="inputIsDisabled"
+        [inputIcon]="inputIcon"
+        [inputIsSmall]="inputIsSmall"
+        [inputIsLarge]="inputIsLarge">
+    </terra-button>
+</div>

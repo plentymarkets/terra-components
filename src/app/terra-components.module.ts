@@ -58,6 +58,7 @@ import { TerraLoadingSpinnerComponent } from './loading-spinner/terra-loading-sp
 import { TerraLoadingSpinnerService } from './loading-spinner/service/terra-loading-spinner.service';
 import { TranslationModule } from 'angular-l10n';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
+import { TerraToggleComponent } from './toggle/terra-toggle.component';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -156,7 +157,8 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraTileBoxPanelComponent,
                   TerraSuggestionBoxComponent,
                   TerraDatePickerComponent,
-                  TerraTextAreaInputComponent
+                  TerraTextAreaInputComponent,
+                  TerraToggleComponent
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -189,7 +191,8 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraTileBoxPanelComponent,
                   TerraSuggestionBoxComponent,
                   TerraDatePickerComponent,
-                  TerraTextAreaInputComponent
+                  TerraTextAreaInputComponent,
+                  TerraToggleComponent
               ],
               exports:         [
                   TerraAlertPanelComponent,
@@ -225,7 +228,8 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraTileBoxPanelComponent,
                   TerraSuggestionBoxComponent,
                   TerraDatePickerComponent,
-                  TerraTextAreaInputComponent
+                  TerraTextAreaInputComponent,
+                  TerraToggleComponent
               ],
               imports:         [
                   BrowserModule,
