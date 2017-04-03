@@ -1,8 +1,8 @@
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs">
     <ul class="terra-breadcrumbs">
         <ng-template ngFor let-module [ngForOf]="inputModules" let-first="first">
-            <li *ngIf="inputModules" (click)="focusView(module.mainComponentName + '_' + module.instanceKey)">
-                <span>{{ module.name }}</span>
+            <li *ngIf="inputModules" (click)="updateViewport(module.mainComponentName + '_' + module.instanceKey)">
+                <span class="{{ module.mainComponentName + '_' + module.instanceKey }}">{{ module.name }}</span>
             </li>
         </ng-template>
     </ul>
