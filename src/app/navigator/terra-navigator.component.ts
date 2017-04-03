@@ -78,14 +78,14 @@ export class TerraNavigatorComponent implements OnInit, OnChanges
                 
                                this._terraNavigatorSplitViewConfig
                                    .addModule({
-                                                  module:            this.inputEndPointModule,
+                                                  module:            this.inputEndPointModule.module,
                                                   instanceKey:       item.rootPath.length,
                                                   defaultWidth:      'col-xs-12 col-md-3 col-lg-2',
                                                   hidden:            this.inputEndPointModule.hidden,
                                                   name:              this.inputEndPointModule.name,
                                                   mainComponentName: this.inputEndPointModule.mainComponentName,
                                                   parameter:         {
-                                                      nodes: item.value
+                                                      node: item
                                                   }
                                               });
                            }
