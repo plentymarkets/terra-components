@@ -9,7 +9,6 @@
         </div>
         <div class="btn-group" role="group">
             <div class="form-group">
-                <!--<span>{{'pagingPage' | translate:lang}}</span>-->
                 <form (submit)="onToPage($event, pager.value)" role="form">
                     <terra-number-input #pager
                                         class="pager-page terra-number-input"
@@ -17,7 +16,6 @@
                     </terra-number-input>
                 </form>
             </div>
-            <!--<div class="pager-text">{{'pagingOf' | translate:lang}} {{pagingData.lastPage}}</div>-->
             <div class="pager-text">/ {{inputPagingData.lastPageNumber}}</div>
         </div>
         
@@ -33,10 +31,9 @@
         </div>
         <div class="btn-group" role="group">
             <terra-select-box class="terra-select-box" [inputListBoxValues]="inputPagingSize"
-                              [(inputSelectedValue)]="inputDefaultPagingSize"
+                              [(ngModel)]="inputDefaultPagingSize"
                               (outputValueChanged)="onChangeOffsetTo($event)"></terra-select-box>
             <div class="pager-text">
-                <!--{{pagingData.pagingUnit | translate:lang}} {{pagingData.from}}-{{pagingData.to}} {{'pagingOf' | translate:lang}} {{pagingData.total}}-->
                 {{inputPagingData.pagingUnit}} {{inputPagingData.firstOnPage}}-{{inputPagingData.lastOnPage}} / {{inputPagingData.totalsCount}}
             </div>
         </div>
