@@ -1,6 +1,13 @@
+<a name="0.1.3"></a>
+# 0.1.3 (??.??.????)
+
+### Fix
+* **terra-toggle** change inputSelectedValue to ngModel
+
 <a name="0.1.2"></a>
 # 0.1.2 (31.03.2017)
 
+### Feature
 * **terra-toggle** added export 
 
 <a name="0.1.1"></a>
