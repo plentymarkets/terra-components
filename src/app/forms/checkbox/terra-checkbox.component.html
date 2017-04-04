@@ -2,7 +2,9 @@
     <label class="input-control checkbox small-check">
         <input type="checkbox" [(ngModel)]="value"
                (change)="onChange()"
-               [disabled]="inputIsDisabled" [indeterminate]="isIndeterminate" [id]="inputId">
+               [disabled]="inputIsDisabled"
+               [indeterminate]="isIndeterminate"
+               [id]="inputId">
         <span class="check"></span>
     </label>
     <span *ngIf="inputCaption" [ngClass]="{'disabled-chk': inputIsDisabled}">{{inputCaption}}</span>
