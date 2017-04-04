@@ -20,10 +20,11 @@ export class TerraNavigatorSplitViewConfig extends TerraSplitConfigBase
     {
         super();
         
-        this.observable = new Observable<TerraNavigatorNodeInterface>((subscriber:Subscriber<TerraNavigatorNodeInterface>) =>
-                                                                      {
-                                                                          this._subscriber = subscriber;
-                                                                      });
+        this.observable = new Observable<TerraNavigatorNodeInterface>(
+            (subscriber:Subscriber<TerraNavigatorNodeInterface>) =>
+            {
+                this._subscriber = subscriber;
+            });
     }
     
     public openNextLevel(currentLevelItem:TerraNavigatorNodeInterface):void
@@ -31,7 +32,7 @@ export class TerraNavigatorSplitViewConfig extends TerraSplitConfigBase
         this.emitEvent(currentLevelItem);
     }
     
-    private emitEvent(event:TerraNavigatorNodeInterface)
+    private emitEvent(event:TerraNavigatorNodeInterface):void
     {
         if(this._subscriber)
         {

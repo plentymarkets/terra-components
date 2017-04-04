@@ -31,8 +31,7 @@ export class TerraComponentsComponent extends Translation implements OnInit
             .addLanguages(['de',
                            'en'])
             .setCookieExpiration(30)
-            .defineDefaultLocale('en',
-                                 'EN');
+            .defineDefaultLocale('en', 'EN');
         
         let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
         
@@ -42,8 +41,7 @@ export class TerraComponentsComponent extends Translation implements OnInit
         }
         else
         {
-            let lang = navigator.language.slice(0,
-                                                2).toLocaleLowerCase();
+            let lang = navigator.language.slice(0, 2).toLocaleLowerCase();
             
             if(lang !== 'de' && lang !== 'en')
             {
@@ -51,8 +49,7 @@ export class TerraComponentsComponent extends Translation implements OnInit
             }
             
             this.locale.setCurrentLanguage(lang);
-            localStorage.setItem('plentymarkets_lang_',
-                                 lang);
+            localStorage.setItem('plentymarkets_lang_', lang);
         }
         
         this.locale.init();
