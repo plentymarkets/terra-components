@@ -1,14 +1,15 @@
 import {
     Component,
+    EventEmitter,
     Input,
     OnChanges,
     OnInit,
+    Output,
     SimpleChanges
 } from '@angular/core';
 import { TerraNavigatorSplitViewConfig } from './config/terra-navigator-split-view.config';
 import { TerraNavigatorNodeInterface } from './data/terra-navigator-node.interface';
 import { TerraButtonGroupModule } from './button-group/terra-button-group.module';
-import { TerraSplitViewInterface } from '../split-view/data/terra-split-view.interface';
 
 /**
  * @author mscharf
@@ -21,17 +22,25 @@ import { TerraSplitViewInterface } from '../split-view/data/terra-split-view.int
 export class TerraNavigatorComponent implements OnInit, OnChanges
 {
     @Input() inputNodes:Array<TerraNavigatorNodeInterface>;
-    @Input() inputEndPointModule:TerraSplitViewInterface;
+    @Input() inputModuleWidth:string;
+    
+    @Output() outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface>;
     
     private _isInit:boolean;
     
     constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig)
     {
         this._isInit = false;
+        this.outputEndpointClicked = new EventEmitter();
     }
     
     ngOnInit()
     {
+        if(this.inputModuleWidth === null || this.inputModuleWidth === undefined)
+        {
+            this.inputModuleWidth = 'col-xs-12 col-md-12 col-lg-12';
+        }
+        
         if(this.inputNodes !== null)
         {
             this.initRootPaths(this.inputNodes, null);
@@ -40,7 +49,7 @@ export class TerraNavigatorComponent implements OnInit, OnChanges
                 .addModule({
                                module:            TerraButtonGroupModule.forRoot(),
                                instanceKey:       0,
-                               defaultWidth:      'col-xs-12 col-md-3 col-lg-2',
+                               defaultWidth:      this.inputModuleWidth,
                                hidden:            false,
                                name:              'Menü',
                                mainComponentName: 'TerraButtonGroupComponent',
@@ -60,7 +69,7 @@ export class TerraNavigatorComponent implements OnInit, OnChanges
                                    .addModule({
                                                   module:            TerraButtonGroupModule.forRoot(),
                                                   instanceKey:       item.rootPath.length,
-                                                  defaultWidth:      'col-xs-12 col-md-3 col-lg-2',
+                                                  defaultWidth:      this.inputModuleWidth,
                                                   hidden:            false,
                                                   name:              item.nodeName,
                                                   mainComponentName: 'TerraButtonGroupComponent',
@@ -76,18 +85,7 @@ export class TerraNavigatorComponent implements OnInit, OnChanges
                                    this._terraNavigatorSplitViewConfig.modules.pop();
                                }
                 
-                               this._terraNavigatorSplitViewConfig
-                                   .addModule({
-                                                  module:            this.inputEndPointModule.module,
-                                                  instanceKey:       item.rootPath.length,
-                                                  defaultWidth:      'col-xs-12 col-md-3 col-lg-2',
-                                                  hidden:            this.inputEndPointModule.hidden,
-                                                  name:              this.inputEndPointModule.name,
-                                                  mainComponentName: this.inputEndPointModule.mainComponentName,
-                                                  parameter:         {
-                                                      node: item
-                                                  }
-                                              });
+                               this.outputEndpointClicked.emit(item);
                            }
                        });
         
@@ -104,7 +102,7 @@ export class TerraNavigatorComponent implements OnInit, OnChanges
                 .addModule({
                                module:            TerraButtonGroupModule.forRoot(),
                                instanceKey:       0,
-                               defaultWidth:      'col-xs-12 col-md-3 col-lg-2',
+                               defaultWidth:      this.inputModuleWidth,
                                hidden:            false,
                                name:              'Menü',
                                mainComponentName: 'TerraButtonGroupComponent',
