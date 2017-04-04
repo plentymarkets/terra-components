@@ -1,5 +1,5 @@
 <div class="btn-group-vertical" role="group">
-    <template ngFor let-item [ngForOf]="_buttonList">
+    <ng-template ngFor let-item [ngForOf]="_buttonList">
         <div class="btn-handler">
             <button class="btn"
                     [ngClass]="{'activated' : item.isActive}"
@@ -8,5 +8,5 @@
                 {{item.caption}}
             </button>
         </div>
-    </template>
+    </ng-template>
 </div>

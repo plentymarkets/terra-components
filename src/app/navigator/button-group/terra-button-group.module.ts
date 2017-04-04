@@ -6,7 +6,7 @@ import { TooltipModule } from 'ng2-bootstrap';
 @NgModule({
               imports:      [
                   CommonModule,
-                  TooltipModule.forRoot(),
+                  TooltipModule.forRoot()
               ],
               declarations: [
                   TerraButtonGroupComponent

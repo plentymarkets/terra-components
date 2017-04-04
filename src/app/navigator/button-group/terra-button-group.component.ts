@@ -17,7 +17,7 @@ import { TerraNavigatorNodeInterface } from '../data/terra-navigator-node.interf
            })
 export class TerraButtonGroupComponent implements OnInit
 {
-    @Input() parameter;
+    @Input() parameter:any;
     
     private _buttonList:Array<TerraButtonInterface>;
     
