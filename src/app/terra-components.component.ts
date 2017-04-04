@@ -8,7 +8,6 @@ import {
     Translation,
     TranslationService
 } from 'angular-l10n';
-import { TerraNavigatorNodeInterface } from './navigator/data/terra-navigator-node.interface';
 
 @Component({
                selector: 'app-root',
@@ -18,7 +17,6 @@ import { TerraNavigatorNodeInterface } from './navigator/data/terra-navigator-no
 export class TerraComponentsComponent extends Translation implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
-    private myNodes:Array<TerraNavigatorNodeInterface>;
     
     public constructor(private viewContainerRef:ViewContainerRef,
                        public locale:LocaleService,
@@ -74,52 +72,5 @@ export class TerraComponentsComponent extends Translation implements OnInit
     
     ngOnInit()
     {
-        
-        this.myNodes = [
-            {
-                nodeName: "Lvl1",
-                children: [
-                    {
-                        nodeName: "Lvl2 #0",
-                        children: null
-                    },
-                    {
-                        nodeName: "Lvl2 #1 ABC",
-                        children: [
-                            {
-                                nodeName: "LEVEL 3 - 1",
-                                children: null,
-                            }
-                        ]
-                    },
-                    {
-                        nodeName: "Lvl2 #2",
-                        children: null
-                    }
-                ]
-            },
-            {
-                nodeName: "Lvl2",
-                children: [
-                    {
-                        nodeName: "Lvl2 #0",
-                        children: null
-                    },
-                    {
-                        nodeName: "Lvl2 #1 ABC",
-                        children: [
-                            {
-                                nodeName: "LEVEL 3 - 2",
-                                children: null
-                            }
-                        ]
-                    },
-                    {
-                        nodeName: "Lvl2 #2 SDSSSSS",
-                        children: null
-                    }
-                ]
-            }
-        ];
     }
 }

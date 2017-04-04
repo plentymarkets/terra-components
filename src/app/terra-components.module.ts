@@ -253,7 +253,7 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraNavigatorSplitViewConfig
               ],
               bootstrap:       [
-                  TerraComponentsComponent
+                  //TerraComponentsComponent
               ]
           })
 export class TerraComponentsModule
