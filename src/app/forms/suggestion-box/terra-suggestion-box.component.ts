@@ -361,5 +361,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 value:   '',
                 caption: ''
             };
+        this._value = null;
     }
 }
