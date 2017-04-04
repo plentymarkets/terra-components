@@ -349,7 +349,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      *
      * @param
      */
-    public resetComponentValue()
+    public resetComponentValue():void
     {
         this.value = null;
         
