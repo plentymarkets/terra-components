@@ -351,6 +351,8 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      */
     public resetComponentValue()
     {
+        this.value = null;
+        
         this._selectedValue =
             {
                 value:   '',
