@@ -10,29 +10,29 @@ import { TerraNavigatorNodeInterface } from '../data/terra-navigator-node.interf
  * @author mscharf
  */
 @Injectable()
-export class TerraNavigatorSplitViewConfig extends TerraSplitConfigBase
+export class TerraNavigatorSplitViewConfig<D> extends TerraSplitConfigBase
 {
-    public observable:Observable<TerraNavigatorNodeInterface>;
+    public observable:Observable<TerraNavigatorNodeInterface<D>>;
     
-    private _subscriber:Subscriber<TerraNavigatorNodeInterface>;
+    private _subscriber:Subscriber<TerraNavigatorNodeInterface<D>>;
     
     constructor()
     {
         super();
         
-        this.observable = new Observable<TerraNavigatorNodeInterface>(
-            (subscriber:Subscriber<TerraNavigatorNodeInterface>) =>
+        this.observable = new Observable<TerraNavigatorNodeInterface<D>>(
+            (subscriber:Subscriber<TerraNavigatorNodeInterface<D>>) =>
             {
                 this._subscriber = subscriber;
             });
     }
     
-    public openNextLevel(currentLevelItem:TerraNavigatorNodeInterface):void
+    public openNextLevel(currentLevelItem:TerraNavigatorNodeInterface<D>):void
     {
         this.emitEvent(currentLevelItem);
     }
     
-    private emitEvent(event:TerraNavigatorNodeInterface):void
+    private emitEvent(event:TerraNavigatorNodeInterface<D>):void
     {
         if(this._subscriber)
         {

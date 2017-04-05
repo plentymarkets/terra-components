@@ -15,13 +15,13 @@ import { TerraNavigatorNodeInterface } from '../data/terra-navigator-node.interf
                template: require('./terra-button-group.component.html'),
                styles:   [require('./terra-button-group.component.scss')]
            })
-export class TerraButtonGroupComponent implements OnInit
+export class TerraButtonGroupComponent<D> implements OnInit
 {
     @Input() parameter:any;
     
     private _buttonList:Array<TerraButtonInterface>;
     
-    public constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig)
+    public constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig<D>)
     {
         this._buttonList = [];
     }
@@ -30,7 +30,7 @@ export class TerraButtonGroupComponent implements OnInit
     {
         this.parameter
             .nodes
-            .forEach((item:TerraNavigatorNodeInterface) =>
+            .forEach((item:TerraNavigatorNodeInterface<D>) =>
                      {
                          this._buttonList
                              .push({
