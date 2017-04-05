@@ -343,6 +343,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this.value = null;
             this.onTouchedCallback();
             this.onChangeCallback(null);
+            this._toggleOpen = false;
         }
     }
     
