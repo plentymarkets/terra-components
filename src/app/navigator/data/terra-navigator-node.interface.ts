@@ -1,10 +1,10 @@
 /**
  * @author mscharf
  */
-export interface TerraNavigatorNodeInterface
+export interface TerraNavigatorNodeInterface<D>
 {
     nodeName:string;
-    value?:any;
+    value?:D;
     rootPath?:Array<number>;
-    children:Array<TerraNavigatorNodeInterface>;
+    children:Array<TerraNavigatorNodeInterface<D>>;
 }

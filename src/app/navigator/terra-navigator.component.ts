@@ -19,16 +19,16 @@ import { TerraButtonGroupModule } from './button-group/terra-button-group.module
                template: require('./terra-navigator.component.html'),
                styles:   [require('./terra-navigator.component.scss')]
            })
-export class TerraNavigatorComponent implements OnInit, OnChanges
+export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 {
-    @Input() inputNodes:Array<TerraNavigatorNodeInterface>;
+    @Input() inputNodes:Array<TerraNavigatorNodeInterface<D>>;
     @Input() inputModuleWidth:string;
     
-    @Output() outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface>;
+    @Output() outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
     
     private _isInit:boolean;
     
-    constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig)
+    constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig<D>)
     {
         this._isInit = false;
         this.outputEndpointClicked = new EventEmitter();
@@ -61,7 +61,7 @@ export class TerraNavigatorComponent implements OnInit, OnChanges
         
         this._terraNavigatorSplitViewConfig
             .observable
-            .subscribe((item:TerraNavigatorNodeInterface) =>
+            .subscribe((item:TerraNavigatorNodeInterface<D>) =>
                        {
                            if(item.children !== null)
                            {
@@ -113,7 +113,7 @@ export class TerraNavigatorComponent implements OnInit, OnChanges
         }
     }
     
-    private initRootPaths(data:Array<TerraNavigatorNodeInterface>, rootIndex:Array<number>):Array<TerraNavigatorNodeInterface>
+    private initRootPaths(data:Array<TerraNavigatorNodeInterface<D>>, rootIndex:Array<number>):Array<TerraNavigatorNodeInterface<D>>
     {
         for(let i = 0; i < data.length; i++)
         {
