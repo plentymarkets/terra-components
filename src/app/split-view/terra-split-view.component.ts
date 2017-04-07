@@ -25,32 +25,42 @@ export class TerraSplitViewComponent implements OnChanges
     
     ngOnChanges(changes:SimpleChanges)
     {
-        if(changes["inputModules"].currentValue !== undefined && changes["inputModules"].currentValue.length > 0)
+        if (changes["inputModules"].currentValue !== undefined && changes["inputModules"].currentValue.length > 0)
         {
-            if(this.inputModules != null)
+            if (this.inputModules != null)
             {
-                this.focusView(this.inputModules[this.inputModules.length - 1].mainComponentName);
+                let currentModule = this.inputModules[this.inputModules.length - 1]
+                this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
             }
         }
     }
     
-    private focusView(id:string):void
+    private updateViewport(id:string):void
     {
         setTimeout(function()
                    {
                        let anchor = $('#' + id);
-            
-                       if(anchor[0].getBoundingClientRect().left > $('.side-scroller').scrollLeft() - 3 &&
-                          anchor[0].getBoundingClientRect().right <= (window.innerWidth || document.documentElement.clientWidth))
+                       let breadcrumb = $('.' + id);
+    
+                       // update breadcrumbs
+                       breadcrumb.closest('.terra-breadcrumbs')
+                                 .find('span')
+                                 .each(function()
+                                       {
+                                           $(this).removeClass('active');
+                                       });
+    
+                       breadcrumb.addClass('active');
+    
+                       // focus view
+                       if (anchor[0].getBoundingClientRect().left > anchor.parent().scrollLeft() - 3 &&
+                           anchor[0].getBoundingClientRect().right <= anchor.parent()[0].getBoundingClientRect().right)
                        {
                            return;
                        }
-            
-                       $('.side-scroller').stop();
-                       $('.side-scroller').animate({
-                                                       scrollLeft: (anchor.offset().left + $('.side-scroller').scrollLeft() - 3)
-                                                   }, 500);
-            
+    
+                       anchor.parent().stop();
+                       anchor.parent().animate({ scrollLeft: (anchor[0].getBoundingClientRect().left + anchor.parent().scrollLeft() - 3) }, 500);
                    });
     }
 }

@@ -1,0 +1,12 @@
+<div class="btn-group-vertical" role="group">
+    <ng-template ngFor let-item [ngForOf]="_buttonList">
+        <div class="btn-handler">
+            <button class="btn"
+                    [ngClass]="{'activated' : item.isActive}"
+                    (click)="item.clickFunction()"
+                    container="body">
+                {{item.caption}}
+            </button>
+        </div>
+    </ng-template>
+</div>

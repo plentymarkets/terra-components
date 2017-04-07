@@ -1,8 +1,8 @@
 import { TerraLoadingBarService } from './loading-bar/service/terra-loading-bar.service';
 import { BrowserModule } from '@angular/platform-browser';
 import {
-    NgModule,
-    ModuleWithProviders
+    ModuleWithProviders,
+    NgModule
 } from '@angular/core';
 import {
     FormsModule,
@@ -10,10 +10,10 @@ import {
 } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {
-    TooltipModule,
     AlertModule,
+    ButtonsModule,
     ModalModule,
-    ButtonsModule
+    TooltipModule
 } from 'ng2-bootstrap';
 import { TerraComponentsComponent } from './terra-components.component';
 import { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
@@ -59,6 +59,8 @@ import { TerraLoadingSpinnerService } from './loading-spinner/service/terra-load
 import { TerraCardComponent } from './card/terra-card.component';
 import { TranslationModule } from 'angular-l10n';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
+import { TerraNavigatorComponent } from './navigator/terra-navigator.component';
+import { TerraNavigatorSplitViewConfig } from './navigator/config/terra-navigator-split-view.config';
 import { TerraToggleComponent } from './toggle/terra-toggle.component';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -161,6 +163,7 @@ export { TerraCardComponent } from './card/terra-card.component';
                   TerraDatePickerComponent,
                   TerraTextAreaInputComponent,
                   TerraCardComponent,
+                  TerraNavigatorComponent,
                   TerraToggleComponent
               ],
               entryComponents: [
@@ -196,6 +199,7 @@ export { TerraCardComponent } from './card/terra-card.component';
                   TerraDatePickerComponent,
                   TerraTextAreaInputComponent,
                   TerraCardComponent,
+                  TerraNavigatorComponent,
                   TerraToggleComponent
               ],
               exports:         [
@@ -234,6 +238,7 @@ export { TerraCardComponent } from './card/terra-card.component';
                   TerraDatePickerComponent,
                   TerraTextAreaInputComponent,
                   TerraCardComponent,
+                  TerraNavigatorComponent,
                   TerraToggleComponent
               ],
               imports:         [
@@ -250,6 +255,7 @@ export { TerraCardComponent } from './card/terra-card.component';
               ],
               providers:       [
                   COMPILER_PROVIDERS,
+                  TerraNavigatorSplitViewConfig
               ],
               bootstrap:       [
                   //TerraComponentsComponent
@@ -265,6 +271,7 @@ export class TerraComponentsModule
                         TerraLoadingSpinnerService,
                         TerraDataTableContextMenuService,
                         TerraBaseService,
+                        TerraNavigatorSplitViewConfig,
                         TerraUrlParamsDecorator,
                         TerraAlertComponent]
         };
@@ -278,6 +285,7 @@ export class TerraComponentsModule
                         TerraLoadingSpinnerService,
                         TerraDataTableContextMenuService,
                         TerraBaseService,
+                        TerraNavigatorSplitViewConfig,
                         TerraUrlParamsDecorator,
                         TerraAlertComponent]
         };

@@ -1,0 +1,40 @@
+@import "./../../button/terra-button.component.scss";
+
+.btn
+{
+    &.activated
+    {
+        background-color: #354763 !important;
+        color: #FFFFFF !important;
+    }
+    background-color: #F2F2F2;
+    border-radius: 0 !important;
+}
+
+/deep/
+{
+    .btn-group-vertical
+    {
+        .btn-handler:first-child:not(:last-child) .btn
+        {
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+            margin: 0px 0px 1px 0px;
+        }
+        .btn-handler:last-child:not(:first-child) .btn
+        {
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            margin: 1px 0px 0px 0px;
+        }
+        .btn-handler:not(:first-child):not(:last-child) .btn
+        {
+            border-radius: 0;
+            margin: 1px 0;
+        }
+    }
+}

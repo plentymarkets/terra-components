@@ -3,7 +3,8 @@
     list-style: none;
     overflow: hidden;
     padding: 0px 0px;
-    margin-bottom: 0.05rem;
+    margin: 0px;
+    
 }
 
 .terra-breadcrumbs li
@@ -28,6 +29,25 @@
     }
 }
 
+.terra-breadcrumbs li span.active
+{
+    color: #FFFFFF;
+    background: $brand-primary-darker;
+    cursor: default;
+}
+
+.terra-breadcrumbs li span.active:after
+{
+    border-left-color: $brand-primary-darker;
+    cursor: default;
+}
+
+.terra-breadcrumbs li:last-child span.active:after
+{
+    border-color: $brand-primary-darker;
+    cursor: default;
+}
+
 .terra-breadcrumbs li span::after
 {
     content: " ";
@@ -44,12 +64,13 @@
     z-index: 2;
 }
 
-.terra-breadcrumbs li span:hover
+.terra-breadcrumbs li span:not(.active):hover
 {
     color: $white;
+    background-color: $brand-primary !important;
 }
 
-.terra-breadcrumbs li span:hover:after
+.terra-breadcrumbs li span:not(.active):hover:after
 {
     border-left-color: $brand-primary !important;
 }
@@ -60,7 +81,7 @@
     height: 47px;
 }
 
-.terra-breadcrumbs li:last-child span:hover:after
+.terra-breadcrumbs li:last-child span:not(.active):hover:after
 {
     border-color: $brand-primary !important;
 }
@@ -98,7 +119,7 @@
 
 .side-scroller.offset
 {
-    height: calc(100% - 40px) !important;
+    height: calc(100% - 50px) !important;
 }
 
 .side-scroller > *
@@ -108,8 +129,8 @@
 
 .divider
 {
-    width: 4px;
-    background-color: $gray-light-3;
+    width: 1px;
+    background-color: #C7C7C7;
     position: absolute;
     top: 0px;
     right: 0px;
@@ -128,16 +149,22 @@
 
 .view.hasDivider
 {
-    padding: 0px 8px 0px 4px;
+    padding: 0px 5px 0px 4px;
     margin-right: -4px;
 }
 
 .view.first
 {
-    padding-left: 0px;
+    padding-left: 0px !important;
 }
 
 .view.last
 {
     padding: 0px 0px 0px 4px;
+}
+
+/deep/ .modal-body
+{
+    height: 525px;
+    padding: 0px 0px 4px 0px;
 }

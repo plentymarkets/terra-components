@@ -33,7 +33,6 @@ button.close
     line-height: $terra-btn-md-height;
     display: inline-block;
     padding: 0px 12px !important;
-    font-weight: $btn-font-weight !important;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -45,6 +44,9 @@ button.close
     -ms-user-select: none;
     user-select: none;
     border: 0;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
     @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-border-radius);
     @include transition(all .2s ease-in-out);
     @include button-variant($gray-dark, $gray-light-3, transparent);
