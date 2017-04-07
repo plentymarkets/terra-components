@@ -247,7 +247,7 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   COMPILER_PROVIDERS,
               ],
               bootstrap:       [
-                  //TerraComponentsComponent
+                  TerraComponentsComponent
               ]
           })
 export class TerraComponentsModule

@@ -4,6 +4,7 @@
  */
 export interface TerraTagInterface
 {
-    caption?:string;
-    badge?:string;
+    badge:string;
+    isTagged?:boolean
+    isTaggable?:boolean;
 }
