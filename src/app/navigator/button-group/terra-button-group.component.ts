@@ -55,6 +55,11 @@ export class TerraButtonGroupComponent<D> implements OnInit
                                                       }
                                    });
             
+                         if(item.nodeIcon !== null && item.nodeIcon !== undefined)
+                         {
+                             this._buttonList[this._buttonList.length - 1].icon = item.nodeIcon;
+                         }
+            
                      });
     }
 }
