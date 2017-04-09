@@ -17,6 +17,8 @@ export class TerraSplitViewComponent implements OnChanges
     @Input() inputShowBreadcrumbs:boolean;
     private _breadCrumbsPath:string;
     
+    public static ANIMATION_SPEED = 1000; // ms
+    
     constructor()
     {
         this.inputShowBreadcrumbs = true; // default
@@ -41,7 +43,11 @@ export class TerraSplitViewComponent implements OnChanges
                    {
                        let anchor = $('#' + id);
                        let breadcrumb = $('.' + id);
-    
+                       let breadCrumbContainer = breadcrumb.closest('.terra-breadcrumbs');
+                       let viewContainer = anchor.parent();
+                       let offset = 3;
+                       let prevSplitView = breadcrumb.closest('.view').prev();
+                       
                        // update breadcrumbs
                        breadcrumb.closest('.terra-breadcrumbs')
                                  .find('div')
@@ -52,28 +58,29 @@ export class TerraSplitViewComponent implements OnChanges
     
                        breadcrumb.addClass('active');
                        
-                       let breadCrumbContainer = breadcrumb.closest('.terra-breadcrumbs');
-    
-                       breadCrumbContainer.stop();
-                       
+                       // focus breadcrumbs
                        if (breadcrumb[0] != null)
                        {
-                           breadCrumbContainer.animate({ scrollLeft: (breadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft()) }, 500);
+                           breadCrumbContainer.stop();
+                           breadCrumbContainer.animate({ scrollLeft: (breadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft()) },
+                                                       this.ANIMATION_SPEED);
                        }
                        
-                        //alert(anchor.closest('.view').prev().attr('id')); //SplitViewNavigatorDetailShowcaseComponent_SPLIT-VIEW-NAVIGATOR-SHOWCASE
-                       
-                       let viewContainer = anchor.parent();
-                       
                        // focus view
-                       if (anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - 3 &&
+                       if (anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
                            anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
                        {
                            return;
                        }
-    
+                       
+                       if (prevSplitView[0] != null)
+                       {
+                           offset = offset + prevSplitView.width() + (3 * offset);
+                       }
+                       
                        viewContainer.stop();
-                       viewContainer.animate({ scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - 3) }, 500);
+                       viewContainer.animate({ scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset) },
+                                             this.ANIMATION_SPEED);
                    });
     }
 }
