@@ -44,7 +44,7 @@ export class TerraSplitViewComponent implements OnChanges
     
                        // update breadcrumbs
                        breadcrumb.closest('.terra-breadcrumbs')
-                                 .find('span')
+                                 .find('div')
                                  .each(function()
                                        {
                                            $(this).removeClass('active');
@@ -52,6 +52,9 @@ export class TerraSplitViewComponent implements OnChanges
     
                        breadcrumb.addClass('active');
     
+    
+                        //alert(anchor.closest('.view').prev().attr('id')); //SplitViewNavigatorDetailShowcaseComponent_SPLIT-VIEW-NAVIGATOR-SHOWCASE
+                        
                        // focus view
                        if (anchor[0].getBoundingClientRect().left > anchor.parent().scrollLeft() - 3 &&
                            anchor[0].getBoundingClientRect().right <= anchor.parent()[0].getBoundingClientRect().right)

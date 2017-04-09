@@ -4,7 +4,8 @@
     overflow: hidden;
     padding: 0px 0px;
     margin: 0px;
-    
+    height: 33px;
+    display: flex;
 }
 
 .terra-breadcrumbs li
@@ -13,7 +14,7 @@
     cursor: pointer;
 }
 
-.terra-breadcrumbs li span
+.terra-breadcrumbs li div
 {
     text-decoration: none;
     padding: 6px 0 6px 28px;
@@ -22,6 +23,7 @@
     display: block;
     float: left;
     color: $gray-dark;
+    white-space: nowrap;
     
     &:hover
     {
@@ -29,26 +31,26 @@
     }
 }
 
-.terra-breadcrumbs li span.active
+.terra-breadcrumbs li div.active
 {
     color: #FFFFFF;
     background: $brand-primary-darker;
     cursor: default;
 }
 
-.terra-breadcrumbs li span.active:after
+.terra-breadcrumbs li div.active:after
 {
     border-left-color: $brand-primary-darker;
     cursor: default;
 }
 
-.terra-breadcrumbs li:last-child span.active:after
+.terra-breadcrumbs li:last-child div.active:after
 {
     border-color: $brand-primary-darker;
     cursor: default;
 }
 
-.terra-breadcrumbs li span::after
+.terra-breadcrumbs li div::after
 {
     content: " ";
     display: block;
@@ -64,29 +66,29 @@
     z-index: 2;
 }
 
-.terra-breadcrumbs li span:not(.active):hover
+.terra-breadcrumbs li div:not(.active):hover
 {
     color: $white;
     background-color: $brand-primary !important;
 }
 
-.terra-breadcrumbs li span:not(.active):hover:after
+.terra-breadcrumbs li div:not(.active):hover:after
 {
     border-left-color: $brand-primary !important;
 }
 
-.terra-breadcrumbs li:last-child span::after
+.terra-breadcrumbs li:last-child div::after
 {
     border: 7px solid #E0E0E0;
     height: 47px;
 }
 
-.terra-breadcrumbs li:last-child span:not(.active):hover:after
+.terra-breadcrumbs li:last-child div:not(.active):hover:after
 {
     border-color: $brand-primary !important;
 }
 
-.terra-breadcrumbs li span::before
+.terra-breadcrumbs li div::before
 {
     content: " ";
     display: block;
@@ -103,7 +105,7 @@
     z-index: 1;
 }
 
-.terra-breadcrumbs li:first-child span
+.terra-breadcrumbs li:first-child div
 {
     padding-left: 16px;
 }
