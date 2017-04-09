@@ -51,19 +51,29 @@ export class TerraSplitViewComponent implements OnChanges
                                        });
     
                        breadcrumb.addClass('active');
+                       
+                       let breadCrumbContainer = breadcrumb.closest('.terra-breadcrumbs');
     
-    
+                       breadCrumbContainer.stop();
+                       
+                       if (breadcrumb[0] != null)
+                       {
+                           breadCrumbContainer.animate({ scrollLeft: (breadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft()) }, 500);
+                       }
+                       
                         //alert(anchor.closest('.view').prev().attr('id')); //SplitViewNavigatorDetailShowcaseComponent_SPLIT-VIEW-NAVIGATOR-SHOWCASE
-                        
+                       
+                       let viewContainer = anchor.parent();
+                       
                        // focus view
-                       if (anchor[0].getBoundingClientRect().left > anchor.parent().scrollLeft() - 3 &&
-                           anchor[0].getBoundingClientRect().right <= anchor.parent()[0].getBoundingClientRect().right)
+                       if (anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - 3 &&
+                           anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
                        {
                            return;
                        }
     
-                       anchor.parent().stop();
-                       anchor.parent().animate({ scrollLeft: (anchor[0].getBoundingClientRect().left + anchor.parent().scrollLeft() - 3) }, 500);
+                       viewContainer.stop();
+                       viewContainer.animate({ scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - 3) }, 500);
                    });
     }
 }
