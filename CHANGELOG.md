@@ -1,5 +1,20 @@
+<a name="0.1.4"></a>
+# 0.1.4 (10.04.2017)
+
+### Feature
+* **terra-navigator** collapse icons for items with children
+
+### Bug Fixes
+* **terra-split-view** responsive breadcrumbs
+
 <a name="0.1.3"></a>
-# 0.1.3 (??.??.????)
+# 0.1.3 (07.04.2017)
+
+### Feature
+* **terra-navigator** new navigator component
+
+### Bug Fixes
+* **terra-suggestion-box** fix two way binding
 
 ### Fix
 * **terra-toggle** change inputSelectedValue to ngModel
