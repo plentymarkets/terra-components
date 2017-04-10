@@ -17,6 +17,8 @@ export class TerraSplitViewComponent implements OnChanges
     @Input() inputShowBreadcrumbs:boolean;
     private _breadCrumbsPath:string;
     
+    public static ANIMATION_SPEED = 1000; // ms
+    
     constructor()
     {
         this.inputShowBreadcrumbs = true; // default
@@ -41,26 +43,44 @@ export class TerraSplitViewComponent implements OnChanges
                    {
                        let anchor = $('#' + id);
                        let breadcrumb = $('.' + id);
-    
+                       let breadCrumbContainer = breadcrumb.closest('.terra-breadcrumbs');
+                       let viewContainer = anchor.parent();
+                       let offset = 3;
+                       let prevSplitView = breadcrumb.closest('.view').prev();
+                       
                        // update breadcrumbs
                        breadcrumb.closest('.terra-breadcrumbs')
-                                 .find('span')
+                                 .find('div')
                                  .each(function()
                                        {
                                            $(this).removeClass('active');
                                        });
     
                        breadcrumb.addClass('active');
-    
+                       
+                       // focus breadcrumbs
+                       if (breadcrumb[0] != null)
+                       {
+                           breadCrumbContainer.stop();
+                           breadCrumbContainer.animate({ scrollLeft: (breadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft()) },
+                                                       this.ANIMATION_SPEED);
+                       }
+                       
                        // focus view
-                       if (anchor[0].getBoundingClientRect().left > anchor.parent().scrollLeft() - 3 &&
-                           anchor[0].getBoundingClientRect().right <= anchor.parent()[0].getBoundingClientRect().right)
+                       if (anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
+                           anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
                        {
                            return;
                        }
-    
-                       anchor.parent().stop();
-                       anchor.parent().animate({ scrollLeft: (anchor[0].getBoundingClientRect().left + anchor.parent().scrollLeft() - 3) }, 500);
+                       
+                       if (prevSplitView[0] != null)
+                       {
+                           offset = offset + prevSplitView.width() + (3 * offset);
+                       }
+                       
+                       viewContainer.stop();
+                       viewContainer.animate({ scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset) },
+                                             this.ANIMATION_SPEED);
                    });
     }
 }
