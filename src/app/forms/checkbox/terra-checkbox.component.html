@@ -6,7 +6,7 @@
                [indeterminate]="isIndeterminate"
                [id]="inputId">
         <span class="check"></span>
+        <span *ngIf="inputIcon" class="checkbox-icon" [ngClass]="inputIcon"></span>
+        <span *ngIf="inputCaption" [ngClass]="{'disabled-chk': inputIsDisabled}">{{inputCaption}}</span>
     </label>
-    <span *ngIf="inputIcon" class="checkbox-icon" [ngClass]="inputIcon"></span>
-    <span *ngIf="inputCaption" [ngClass]="{'disabled-chk': inputIsDisabled}">{{inputCaption}}</span>
 </div>
