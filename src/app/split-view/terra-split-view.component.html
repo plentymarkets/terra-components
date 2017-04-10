@@ -2,7 +2,7 @@
     <ul class="terra-breadcrumbs">
         <ng-template ngFor let-module [ngForOf]="inputModules" let-first="first">
             <li *ngIf="inputModules" (click)="updateViewport(module.mainComponentName + '_' + module.instanceKey)">
-                <span class="{{ module.mainComponentName + '_' + module.instanceKey }}">{{ module.name }}</span>
+                <div class="{{ module.mainComponentName + '_' + module.instanceKey }}"><span>{{ module.name }}</span></div>
             </li>
         </ng-template>
     </ul>
