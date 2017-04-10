@@ -7,6 +7,7 @@
                     container="body">
                 <span *ngIf="item.icon" class="icon_dist_top" [ngClass]="item.icon"></span>
                 {{item.caption}}
+                <span *ngIf="item.hasChildren" class="icon-right icon-collapse_rightpng"></span>
             </button>
         </div>
     </ng-template>

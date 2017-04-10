@@ -3,9 +3,9 @@ import {
     Input,
     OnInit
 } from '@angular/core';
-import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { TerraNavigatorSplitViewConfig } from '../config/terra-navigator-split-view.config';
 import { TerraNavigatorNodeInterface } from '../data/terra-navigator-node.interface';
+import { TerraButtonGroupInterface } from './data/terra-button-group.interface';
 
 /**
  * @author mscharf
@@ -19,7 +19,7 @@ export class TerraButtonGroupComponent<D> implements OnInit
 {
     @Input() parameter:any;
     
-    private _buttonList:Array<TerraButtonInterface>;
+    private _buttonList:Array<TerraButtonGroupInterface>;
     
     public constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig<D>)
     {
@@ -32,6 +32,13 @@ export class TerraButtonGroupComponent<D> implements OnInit
             .nodes
             .forEach((item:TerraNavigatorNodeInterface<D>) =>
                      {
+                         let hasChildren = false;
+            
+                         if(item.children !== null)
+                         {
+                             hasChildren = true;
+                         }
+            
                          this._buttonList
                              .push({
                                        caption:       item.nodeName,
@@ -52,7 +59,8 @@ export class TerraButtonGroupComponent<D> implements OnInit
                                                                                btnItem.isActive = false;
                                                                            }
                                                                        });
-                                                      }
+                                                      },
+                                       hasChildren:   hasChildren
                                    });
             
                          if(item.nodeIcon !== null && item.nodeIcon !== undefined)
