@@ -102,7 +102,7 @@ gulp.task('gitCommit', function ()
 
 gulp.task('gitPull', function ()
 {
-    git.pull('origin', ['stable7'], function (err)
+    return git.pull('origin', ['stable7'], function (err)
     {
         if(err)
         {
