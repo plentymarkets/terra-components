@@ -14,4 +14,5 @@ export interface TerraButtonInterface
     isSecondary?:boolean;
     isActive?:boolean;
     isDisabled?:boolean;
+    isHidden?:boolean;
 }

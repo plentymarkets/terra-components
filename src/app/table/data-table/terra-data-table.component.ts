@@ -149,10 +149,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
                          row.isActive = false;
                      });
         
-        row.isActive = true;
-        
         if(!cell.buttonList)
         {
+            row.isActive = true;
             row.clickFunction();
         }
     }

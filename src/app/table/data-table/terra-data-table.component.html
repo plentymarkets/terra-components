@@ -38,7 +38,8 @@
                     </span>
                         <div class="btn-group" *ngIf="cell.buttonList">
                             <ng-template ngFor let-button [ngForOf]="cell.buttonList">
-                                <terra-button (outputClicked)="button.clickFunction()"
+                                <terra-button *ngIf="!button.isHidden"
+                                              (outputClicked)="button.clickFunction()"
                                               inputIcon="{{button.icon}}"
                                               [inputIsPrimary]="button.isPrimary"
                                               [inputIsSecondary]="button.isSecondary"
