@@ -143,14 +143,14 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     
     private rowClicked(cell:TerraDataTableCellInterface, row:TerraDataTableRowInterface<D>):void
     {
-        this._rowList
-            .forEach((row) =>
-                     {
-                         row.isActive = false;
-                     });
-        
         if(!cell.buttonList)
         {
+            this._rowList
+                .forEach((row) =>
+                         {
+                             row.isActive = false;
+                         });
+            
             row.isActive = true;
             row.clickFunction();
         }
