@@ -1,5 +1,5 @@
-<a name="0.2.x"></a>
-# 0.2.x (??.??.????)
+<a name="0.2.0"></a>
+# 0.2.0 (??.??.????)
 
 ### Feature
 * **terra-navigator** Add tooltip to navigator buttons
