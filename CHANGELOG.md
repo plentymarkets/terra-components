@@ -1,3 +1,9 @@
+<a name="0.2.x"></a>
+# 0.1.x (??.??.????)
+
+### Feature
+* **terra-navigator** Add tooltip to navigator buttons
+
 <a name="0.1.4"></a>
 # 0.1.4 (10.04.2017)
 
