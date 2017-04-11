@@ -18,4 +18,7 @@
         <span *ngIf="inputIcon" class="icon_dist_top" [ngClass]="inputIcon"></span>
         {{inputCaption}}
     </button>
+    <div *ngIf="inputIsFlagged" class="flag" [ngClass]="{'disabled': inputIsDisabled}">
+        <span [ngClass]="{'disabled': inputIsDisabled}"></span>
+    </div>
 </div>
