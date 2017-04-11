@@ -11,8 +11,17 @@ var runSequence = require('run-sequence');
 var git = require('gulp-git');
 var gitignore = require('gulp-gitignore');
 var shell = require('gulp-shell');
+var argv = require('yargs').argv;
 
-var version;
+var version, level, sequence;
+
+gulp.task('build', function(callback)
+{
+    level = argv.level ? argv.level : 'patch';
+    sequence = argv.publish ? 'npm-publish' : 'build-local';
+    
+    runSequence(sequence, callback);
+});
 
 gulp.task('npm-publish', function (callback)
 {
@@ -82,7 +91,7 @@ gulp.task('changeVersion', function ()
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
     
     //possible values are: patch, minor, major
-    json.version = semver.inc(json.version, 'patch');
+    json.version = semver.inc(json.version, level);
     
     version = json.version;
     
@@ -102,7 +111,7 @@ gulp.task('gitCommit', function ()
 
 gulp.task('gitPull', function ()
 {
-    git.pull('origin', ['stable7'], function (err)
+    return git.pull('origin', ['stable7'], function (err)
     {
         if(err)
         {

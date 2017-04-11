@@ -14,7 +14,6 @@ module.exports = function () {
         imagesOutputPath: './dist/app/assets/images/',
         langOutputPath: './dist/app/assets/lang/',
         excluded: '!./src/system-config.ts'
-
     };
 
     return config;
