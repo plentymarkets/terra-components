@@ -22,6 +22,7 @@ import { TerraButtonGroupModule } from './button-group/terra-button-group.module
 export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 {
     @Input() inputNodes:Array<TerraNavigatorNodeInterface<D>>;
+    @Input() inputNavigatorService:TerraNavigatorSplitViewConfig<D>;
     @Input() inputModuleWidth:string;
     
     @Output() outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
@@ -60,7 +61,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         }
         
         this._terraNavigatorSplitViewConfig
-            .observable
+            .observableNodeClicked
             .subscribe((item:TerraNavigatorNodeInterface<D>) =>
                        {
                            if(item.children !== null)
@@ -87,6 +88,15 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                 
                                this.outputEndpointClicked.emit(item);
                            }
+                       });
+        
+        this.inputNavigatorService
+            .observableNodeListChanged
+            .subscribe((item:TerraNavigatorNodeInterface<D>) =>
+                       {
+                           console.log(item);
+            
+                           this.addNodeAt(this.inputNodes, item.rootPath, -1, item);
                        });
         
         this._isInit = true;
@@ -136,5 +146,21 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         }
         
         return data;
+    }
+    
+    private addNodeAt(data:Array<TerraNavigatorNodeInterface<D>>, rootIndex:Array<number>, position:number,
+                      newNode:TerraNavigatorNodeInterface<D>):void
+    {
+        position++;
+        
+        if(position == rootIndex.length)
+        {
+            //data[rootIndex[position]].children.push(newNode);
+            data.push(newNode); 
+        }
+        else
+        {
+            this.addNodeAt(data[rootIndex[position]].children, rootIndex, position, newNode);
+        }
     }
 }
