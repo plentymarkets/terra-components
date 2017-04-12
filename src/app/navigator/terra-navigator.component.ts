@@ -162,8 +162,9 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             data.push({
                           nodeName: newNode.nodeName,
                           nodeIcon: newNode.nodeIcon,
-                          children: newNode.children,
-                          rootPath: newRootPath
+                          route:    newNode.route,
+                          rootPath: newRootPath,
+                          children: newNode.children
                       });
         }
         else
