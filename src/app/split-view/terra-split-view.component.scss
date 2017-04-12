@@ -139,6 +139,14 @@
     bottom: 0px;
 }
 
+/deep/
+{
+    terra-split-view terra-split-view .divider
+    {
+        display: none !important;
+    }
+}
+
 .view
 {
     vertical-align: top;
@@ -155,6 +163,14 @@
     margin-right: -4px;
 }
 
+/deep/
+{
+    terra-split-view terra-split-view .hasDivider
+    {
+        padding: 0px !important;
+    }
+}
+
 .view.first
 {
     padding-left: 0px !important;
@@ -163,6 +179,14 @@
 .view.last
 {
     padding: 0px 0px 0px 4px;
+}
+
+/deep/
+{
+    terra-split-view terra-split-view .view.last
+    {
+        padding: 0px 0px 0px 0px !important;
+    }
 }
 
 /deep/ .modal-body
