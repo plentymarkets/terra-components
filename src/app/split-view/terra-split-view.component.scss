@@ -2,8 +2,8 @@
 {
     list-style: none;
     overflow: hidden;
-    padding: 0px 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     height: 33px;
     display: flex;
 }
@@ -134,9 +134,9 @@
     width: 1px;
     background-color: #C7C7C7;
     position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
+    top: 0;
+    right: 0;
+    bottom: 0;
 }
 
 /deep/
@@ -154,12 +154,12 @@
     overflow: auto;
     white-space: normal;
     position: relative;
-    padding: 0px;
+    padding: 0;
 }
 
 .view.hasDivider
 {
-    padding: 0px 5px 0px 4px;
+    padding: 0 5px 0 4px;
     margin-right: -4px;
 }
 
@@ -167,30 +167,30 @@
 {
     terra-split-view terra-split-view .hasDivider
     {
-        padding: 0px !important;
+        padding: 0 !important;
     }
 }
 
 .view.first
 {
-    padding-left: 0px !important;
+    padding-left: 0 !important;
 }
 
 .view.last
 {
-    padding: 0px 0px 0px 4px;
+    padding: 0 0 0 4px;
 }
 
 /deep/
 {
     terra-split-view terra-split-view .view.last
     {
-        padding: 0px 0px 0px 0px !important;
+        padding: 0 !important;
     }
 }
 
 /deep/ .modal-body
 {
     height: 525px;
-    padding: 0px 0px 4px 0px;
+    padding: 0 0 4px 0;
 }
