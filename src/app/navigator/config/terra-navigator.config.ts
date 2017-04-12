@@ -10,10 +10,10 @@ import { TerraNavigatorNodeInterface } from '../data/terra-navigator-node.interf
 export class TerraNavigatorConfig<D>
 {
     public observableNodeListChanged:Observable<TerraNavigatorNodeInterface<D>>;
+    public observableAddNewNodes:Observable<any>;
     
     private _subscriberNodeListChanged:Subscriber<TerraNavigatorNodeInterface<D>>;
-    
-    private _nodes:Array<TerraNavigatorNodeInterface<D>>;
+    private _subscriberAddNewNodes:Subscriber<any>;
     
     constructor()
     {
@@ -22,6 +22,12 @@ export class TerraNavigatorConfig<D>
             {
                 this._subscriberNodeListChanged = subscriber;
             });
+        
+        this.observableAddNewNodes = new Observable<any>(
+            (subscriber:Subscriber<any>) =>
+            {
+                this._subscriberAddNewNodes = subscriber;
+            });
     }
     
     public addNodeAt(newNode:TerraNavigatorNodeInterface<D>)
@@ -29,6 +35,14 @@ export class TerraNavigatorConfig<D>
         if(this._subscriberNodeListChanged)
         {
             this._subscriberNodeListChanged.next(newNode);
+        }
+    }
+    
+    public addNodes(newNodes:any)
+    {
+        if(this._subscriberAddNewNodes)
+        {
+            this._subscriberAddNewNodes.next(newNodes);
         }
     }
 }
