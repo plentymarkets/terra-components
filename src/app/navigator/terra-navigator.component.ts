@@ -155,8 +155,16 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         
         if(position == rootIndex.length)
         {
-            //data[rootIndex[position]].children.push(newNode);
-            data.push(newNode); 
+            let newRootPath = newNode.rootPath;
+            
+            newRootPath.push(data.length);
+            
+            data.push({
+                          nodeName: newNode.nodeName,
+                          nodeIcon: newNode.nodeIcon,
+                          children: newNode.children,
+                          rootPath: newRootPath
+                      });
         }
         else
         {
