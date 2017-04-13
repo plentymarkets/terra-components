@@ -1,5 +1,30 @@
+<a name="0.2.0"></a>
+# 0.2.0 (??.??.????)
+
+### Feature
+* **terra-navigator** Add tooltip to navigator buttons
+
+### Bug Fixes
+* **terra-tag.interface** Caption is now deprecated. Please use badge instead. It will become mandatory in the next major release.
+* **terra-navigator** Removed additional divider from terra navigator.
+
+<a name="0.1.4"></a>
+# 0.1.4 (10.04.2017)
+
+### Feature
+* **terra-navigator** collapse icons for items with children
+
+### Bug Fixes
+* **terra-split-view** responsive breadcrumbs
+
 <a name="0.1.3"></a>
-# 0.1.3 (??.??.????)
+# 0.1.3 (07.04.2017)
+
+### Feature
+* **terra-navigator** new navigator component
+
+### Bug Fixes
+* **terra-suggestion-box** fix two way binding
 
 ### Fix
 * **terra-toggle** change inputSelectedValue to ngModel

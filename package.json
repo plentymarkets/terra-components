@@ -17,8 +17,7 @@
 	"license": "MIT",
 	"scripts": {
 		"webpack": "webpack",
-		"npm-publish": "gulp npm-publish",
-		"build-local": "gulp build-local",
+		"build": "gulp build",
 		"start": "npm run server:dev",
 		"server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch",
 		"gulp": "gulp"

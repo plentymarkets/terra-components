@@ -4,7 +4,9 @@
             <button class="btn"
                     [ngClass]="{'activated' : item.isActive}"
                     (click)="item.clickFunction()"
-                    container="body">
+                    container="body"
+                    [tooltip]="item.caption"
+                    [placement]="'right'">
                 <span *ngIf="item.icon" class="icon_dist_top" [ngClass]="item.icon"></span>
                 {{item.caption}}
                 <span *ngIf="item.hasChildren" class="icon-right icon-collapse_rightpng"></span>
