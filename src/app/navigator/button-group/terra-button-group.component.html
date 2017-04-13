@@ -6,7 +6,7 @@
                     (click)="item.clickFunction()"
                     container="body">
                 <span *ngIf="item.icon" class="icon_dist_top" [ngClass]="item.icon"></span>
-                {{item.caption}}
+                {{item.caption | translate:lang }}
                 <span *ngIf="item.hasChildren" class="icon-right icon-collapse_rightpng"></span>
             </button>
         </div>
