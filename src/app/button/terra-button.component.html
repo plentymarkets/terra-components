@@ -1,6 +1,8 @@
-<div class="btn-handler"
-     tooltip="{{inputTooltipText}}"
-     placement="{{inputTooltipPlacement}}"
+<template #tooltipTemplate><div [innerHtml]="inputTooltipText"></div></template>
+<div [isDisabled]="!inputTooltipText"
+     class="btn-handler"
+     [tooltip]="tooltipTemplate"
+     [placement]="inputTooltipPlacement"
      [container]="'body'"
      [ngClass]="{'pull-xs-right': inputIsAlignRight,
                  'disabled': inputIsDisabled}">
@@ -13,8 +15,7 @@
             [disabled]="inputIsDisabled"
             [hidden]="inputIsHidden"
             [type]="inputType"
-            (click)="click()"
-            container="body">
+            (click)="click()">
         <span *ngIf="inputIcon" class="icon_dist_top" [ngClass]="inputIcon"></span>
         {{inputCaption}}
     </button>
