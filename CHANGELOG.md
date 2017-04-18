@@ -1,3 +1,13 @@
+<a name="0.2.0"></a>
+# 0.2.0 (??.??.????)
+
+### Feature
+* **terra-navigator** Add tooltip to navigator buttons
+
+### Bug Fixes
+* **terra-tag.interface** Caption is now deprecated. Please use badge instead. It will become mandatory in the next major release.
+* **terra-navigator** Removed additional divider from terra navigator.
+
 <a name="0.1.4"></a>
 # 0.1.4 (10.04.2017)
 
