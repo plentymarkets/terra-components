@@ -5,7 +5,7 @@
                     [ngClass]="{'activated' : item.isActive}"
                     (click)="item.clickFunction()"
                     container="body"
-                    [tooltip]="item.caption"
+                    [tooltip]="item.caption | translate:lang"
                     [placement]="'right'">
                 <span *ngIf="item.icon" class="icon_dist_top" [ngClass]="item.icon"></span>
                 {{item.caption | translate:lang }}
