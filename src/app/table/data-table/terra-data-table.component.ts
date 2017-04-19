@@ -110,6 +110,16 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
     }
     
+    private checkTooltipPlacement(placement:string):string
+    {
+        if(placement != null && placement != '')
+        {
+            return placement;
+        }
+        
+        return 'top';
+    }
+    
     private changeRowState(isChecked:boolean,
                            rowToChange:TerraDataTableRowInterface<D>):void
     {
@@ -220,18 +230,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     public get pagingData():TerraPagerInterface
     {
         return this._pagingData;
-    }
-    
-    private getButtonTooltipPlacement(button:TerraButtonInterface):string
-    {
-        if(button.tooltipPlacement && button.tooltipPlacement != '')
-        {
-            return button.tooltipPlacement;
-        }
-        else
-        {
-            return 'top';
-        }
     }
     
     public doPaging(pagerData:TerraPagerInterface):void
