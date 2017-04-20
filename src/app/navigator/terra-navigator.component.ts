@@ -145,7 +145,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             
             data[i].rootPath.push(i);
             
-            if(data[i].children != null)
+            if(data[i].children !== null && data[i].children.length > 0)
             {
                 this.initRootPaths(data[i].children, data[i].rootPath);
             }
