@@ -10,6 +10,7 @@ import {
 import { TerraNavigatorSplitViewConfig } from './config/terra-navigator-split-view.config';
 import { TerraNavigatorNodeInterface } from './data/terra-navigator-node.interface';
 import { TerraButtonGroupModule } from './button-group/terra-button-group.module';
+import { TerraNavigatorConfig } from './config/terra-navigator.config';
 
 /**
  * @author mscharf
@@ -22,7 +23,7 @@ import { TerraButtonGroupModule } from './button-group/terra-button-group.module
 export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 {
     @Input() inputNodes:Array<TerraNavigatorNodeInterface<D>>;
-    @Input() inputNavigatorService:TerraNavigatorSplitViewConfig<D>;
+    @Input() inputNavigatorService:TerraNavigatorConfig<D>;
     @Input() inputModuleWidth:string;
     
     @Output() outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
@@ -91,12 +92,17 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                        });
         
         this.inputNavigatorService
-            .observableNodeListChanged
+            .observableNewNodeByRootPath
             .subscribe((item:TerraNavigatorNodeInterface<D>) =>
                        {
-                           console.log(item);
-            
                            this.addNodeAt(this.inputNodes, item.rootPath, -1, item);
+                       });
+        
+        this.inputNavigatorService
+            .observableNewNodeByRoute
+            .subscribe((item) =>
+                       {
+                           console.log(item);
                        });
         
         this._isInit = true;

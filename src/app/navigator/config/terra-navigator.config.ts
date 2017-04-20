@@ -9,40 +9,40 @@ import { TerraNavigatorNodeInterface } from '../data/terra-navigator-node.interf
  */
 export class TerraNavigatorConfig<D>
 {
-    public observableNodeListChanged:Observable<TerraNavigatorNodeInterface<D>>;
-    public observableAddNewNodes:Observable<any>;
-    
-    private _subscriberNodeListChanged:Subscriber<TerraNavigatorNodeInterface<D>>;
-    private _subscriberAddNewNodes:Subscriber<any>;
-    
+    public observableNewNodeByRootPath:Observable<TerraNavigatorNodeInterface<D>>;
+    public observableNewNodeByRoute:Observable<TerraNavigatorNodeInterface<D>>;
+
+    private _subscriberNewNodeByRootPath:Subscriber<TerraNavigatorNodeInterface<D>>;
+    private _subscriberNewNodeByRoute:Subscriber<TerraNavigatorNodeInterface<D>>;
+
     constructor()
     {
-        this.observableNodeListChanged = new Observable<TerraNavigatorNodeInterface<D>>(
+        this.observableNewNodeByRootPath = new Observable<TerraNavigatorNodeInterface<D>>(
             (subscriber:Subscriber<TerraNavigatorNodeInterface<D>>) =>
             {
-                this._subscriberNodeListChanged = subscriber;
+                this._subscriberNewNodeByRootPath = subscriber;
             });
-        
-        this.observableAddNewNodes = new Observable<any>(
-            (subscriber:Subscriber<any>) =>
+
+        this.observableNewNodeByRoute = new Observable<TerraNavigatorNodeInterface<D>>(
+            (subscriber:Subscriber<TerraNavigatorNodeInterface<D>>) =>
             {
-                this._subscriberAddNewNodes = subscriber;
+                this._subscriberNewNodeByRoute = subscriber;
             });
     }
-    
-    public addNodeAt(newNode:TerraNavigatorNodeInterface<D>)
+
+    public addNodeByRootPath(newNode:TerraNavigatorNodeInterface<D>)
     {
-        if(this._subscriberNodeListChanged)
+        if(this._subscriberNewNodeByRootPath)
         {
-            this._subscriberNodeListChanged.next(newNode);
+            this._subscriberNewNodeByRootPath.next(newNode);
         }
     }
-    
-    public addNodes(newNodes:any)
+
+    public addNodeByRoute(newNode:TerraNavigatorNodeInterface<D>)
     {
-        if(this._subscriberAddNewNodes)
+        if(this._subscriberNewNodeByRoute)
         {
-            this._subscriberAddNewNodes.next(newNodes);
+            this._subscriberNewNodeByRoute.next(newNode);
         }
     }
 }
