@@ -96,6 +96,8 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             .subscribe((item:TerraNavigatorNodeInterface<D>) =>
                        {
                            this.addNodeAt(this.inputNodes, item.rootPath, -1, item);
+    
+                           this.initRootPaths(this.inputNodes, null);
                        });
         
         this.inputNavigatorService
