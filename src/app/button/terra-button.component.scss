@@ -155,6 +155,15 @@ button.close
             background: darken($brand-secondary, 10%);
         }
     }
+    &.btn-tertiary
+    {
+        background: $brand-green;
+        color: white;
+        &:hover
+        {
+            background: darken($brand-green, 10%);
+        }
+    }
     
     span
     {

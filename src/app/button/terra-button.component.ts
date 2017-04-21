@@ -14,6 +14,7 @@ export class TerraButtonComponent
 {
     @Input() inputIsPrimary:boolean;
     @Input() inputIsSecondary:boolean;
+    @Input() inputIsTertiary:boolean;
     @Input() inputIsSmall:boolean;
     @Input() inputIsLarge:boolean;
     @Input() inputIsDisabled:boolean;
