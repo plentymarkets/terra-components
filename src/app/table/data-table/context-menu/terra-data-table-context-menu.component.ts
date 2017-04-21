@@ -17,7 +17,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
     private _contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
     private _isShown = false;
     
-    private _mouseLocation:{left:number, top:number} = {
+    private _mouseLocation:{ left:number, top:number } = {
         left: 0,
         top:  0
     };

@@ -49,7 +49,9 @@
         </ng-template>
         </tbody>
     </table>
-    <div *ngIf="!_rowList && !inputHasInitialLoading" class="initial-loading-warn">{{_langPrefix+'.initialLoading' | translate:lang:{ dataType: inputDataType} }}</div>
+    <div *ngIf="!_rowList && !inputHasInitialLoading"
+         class="initial-loading-warn">{{_langPrefix+'.initialLoading' | translate:lang:{ dataType: inputDataType} }}
+    </div>
 </div>
 
 <!--<terra-viewChildOverlay #viewChildOverlayDataTableSettings [inputSaveButtonTooltip]="saveButtonTooltip"-->
