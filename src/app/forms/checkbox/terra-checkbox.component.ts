@@ -1,9 +1,9 @@
 import {
     Component,
-    Input,
+    EventEmitter,
     forwardRef,
-    Output,
-    EventEmitter
+    Input,
+    Output
 } from '@angular/core';
 import {
     ControlValueAccessor,

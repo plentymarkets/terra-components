@@ -1,14 +1,14 @@
 import {
+    ChangeDetectionStrategy,
     Component,
-    OnInit,
-    Input,
-    Output,
     ElementRef,
     EventEmitter,
+    forwardRef,
+    Input,
     OnChanges,
-    SimpleChanges,
-    ChangeDetectionStrategy,
-    forwardRef
+    OnInit,
+    Output,
+    SimpleChanges
 } from '@angular/core';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -27,7 +27,7 @@ export const SUGGESTION_BOX_VALUE_ACCESSOR:any = {
                host:            {
                    '(document:click)': 'clickedOutside($event)',
                },
-               providers: [SUGGESTION_BOX_VALUE_ACCESSOR],
+               providers:       [SUGGESTION_BOX_VALUE_ACCESSOR],
                changeDetection: ChangeDetectionStrategy.OnPush
            })
 
@@ -318,7 +318,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             {
                 this.tempInputListBoxValues = this.inputListBoxValues;
             }
-    
+            
             if(this._currentValue.caption.length >= 3)
             {
                 for(let value in this.tempInputListBoxValues)
@@ -328,14 +328,14 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                         currentList.push(this.tempInputListBoxValues[value]);
                     }
                 }
-        
+                
                 this.inputListBoxValues = currentList;
             }
             else
             {
                 this.inputListBoxValues = this.tempInputListBoxValues;
             }
-    
+            
             this.value = this._currentValue;
         }
         else

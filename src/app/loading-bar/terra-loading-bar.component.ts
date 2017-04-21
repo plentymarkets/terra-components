@@ -1,7 +1,7 @@
 import {
     Component,
-    OnInit,
-    Input
+    Input,
+    OnInit
 } from '@angular/core';
 import { TerraLoadingBarService } from './service/terra-loading-bar.service';
 import {
