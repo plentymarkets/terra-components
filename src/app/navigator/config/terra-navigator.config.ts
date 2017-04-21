@@ -10,11 +10,11 @@ import { TerraNavigatorNodeInterface } from '../data/terra-navigator-node.interf
 export class TerraNavigatorConfig<D>
 {
     public observableNewNodeByRootPath:Observable<TerraNavigatorNodeInterface<D>>;
-    public observableNewNodeByRoute:Observable<TerraNavigatorNodeInterface<D>>;
-
+    public observableNewNodesByRoute:Observable<Array<TerraNavigatorNodeInterface<D>>>;
+    
     private _subscriberNewNodeByRootPath:Subscriber<TerraNavigatorNodeInterface<D>>;
-    private _subscriberNewNodeByRoute:Subscriber<TerraNavigatorNodeInterface<D>>;
-
+    private _subscriberNewNodesByRoute:Subscriber<Array<TerraNavigatorNodeInterface<D>>>;
+    
     constructor()
     {
         this.observableNewNodeByRootPath = new Observable<TerraNavigatorNodeInterface<D>>(
@@ -22,14 +22,14 @@ export class TerraNavigatorConfig<D>
             {
                 this._subscriberNewNodeByRootPath = subscriber;
             });
-
-        this.observableNewNodeByRoute = new Observable<TerraNavigatorNodeInterface<D>>(
-            (subscriber:Subscriber<TerraNavigatorNodeInterface<D>>) =>
+        
+        this.observableNewNodesByRoute = new Observable<Array<TerraNavigatorNodeInterface<D>>>(
+            (subscriber:Subscriber<Array<TerraNavigatorNodeInterface<D>>>) =>
             {
-                this._subscriberNewNodeByRoute = subscriber;
+                this._subscriberNewNodesByRoute = subscriber;
             });
     }
-
+    
     public addNodeByRootPath(newNode:TerraNavigatorNodeInterface<D>)
     {
         if(this._subscriberNewNodeByRootPath)
@@ -37,12 +37,12 @@ export class TerraNavigatorConfig<D>
             this._subscriberNewNodeByRootPath.next(newNode);
         }
     }
-
-    public addNodeByRoute(newNode:TerraNavigatorNodeInterface<D>)
+    
+    public addNodesByRoute(newNodes:Array<TerraNavigatorNodeInterface<D>>)
     {
-        if(this._subscriberNewNodeByRoute)
+        if(this._subscriberNewNodesByRoute)
         {
-            this._subscriberNewNodeByRoute.next(newNode);
+            this._subscriberNewNodesByRoute.next(newNodes);
         }
     }
 }

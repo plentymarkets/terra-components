@@ -96,15 +96,17 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             .subscribe((item:TerraNavigatorNodeInterface<D>) =>
                        {
                            this.addNodeAt(this.inputNodes, item.rootPath, -1, item);
-    
+            
                            this.initRootPaths(this.inputNodes, null);
                        });
         
         this.inputNavigatorService
-            .observableNewNodeByRoute
-            .subscribe((item) =>
+            .observableNewNodesByRoute
+            .subscribe((item:Array<TerraNavigatorNodeInterface<D>>) =>
                        {
                            console.log(item);
+            
+                           this.addNodesRecursive(item);
                        });
         
         this._isInit = true;
@@ -154,6 +156,64 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         }
         
         return data;
+    }
+    
+    private addNodesRecursive(nodes:Array<TerraNavigatorNodeInterface<D>>)
+    {
+        nodes.forEach((item:TerraNavigatorNodeInterface<D>) =>
+                      {
+                          let routeArray:Array<string> = item.route.split('/');
+                          let routeIndex:number = -1;
+                          let result = [];
+            
+                          this.findRooPath(routeArray,
+                                           routeIndex,
+                                           this.inputNodes,
+                                           result
+                          );
+            
+                          let newNode:TerraNavigatorNodeInterface<D> = {
+                              nodeName: item.nodeName,
+                              nodeIcon: item.nodeIcon,
+                              route:    routeArray[routeArray.length - 1],
+                              value:    item.value,
+                              rootPath: [],
+                              children: null
+                          };
+            
+                          if(item.children !== null)
+                          {
+                              newNode.children = [];
+                          }
+            
+                          this.addNodeAt(this.inputNodes, result, -1, newNode);
+            
+                          this.initRootPaths(this.inputNodes, null);
+            
+                          if(item.children !== null)
+                          {
+                              this.addNodesRecursive(item.children);
+                          }
+                      });
+    }
+    
+    private findRooPath(routeArray:Array<string>, routeIndex:number,
+                        data:Array<TerraNavigatorNodeInterface<D>>, result:Array<number>)
+    {
+        routeIndex++;
+        
+        data.forEach((item) =>
+                     {
+                         if(item.route == routeArray[routeIndex])
+                         {
+                             result.push(item.rootPath[item.rootPath.length - 1]);
+                
+                             if(item.children !== null)
+                             {
+                                 this.findRooPath(routeArray, routeIndex, item.children, result);
+                             }
+                         }
+                     });
     }
     
     private addNodeAt(data:Array<TerraNavigatorNodeInterface<D>>, rootIndex:Array<number>, position:number,
