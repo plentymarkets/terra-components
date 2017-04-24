@@ -3,7 +3,7 @@
         <ng-template ngFor let-module [ngForOf]="inputModules" let-first="first">
             <li *ngIf="inputModules" (click)="updateViewport(module.mainComponentName + '_' + module.instanceKey)">
                 <div class="{{ module.mainComponentName + '_' + module.instanceKey }}">
-                    <span>{{ module.name }}</span>
+                    <span>{{ module.name | translate: lang}}</span>
                 </div>
             </li>
         </ng-template>
