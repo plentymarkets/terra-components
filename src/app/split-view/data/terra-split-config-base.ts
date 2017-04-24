@@ -22,7 +22,7 @@ export class TerraSplitConfigBase
                 {
                     return;
                 }
-
+                
                 this._modules = this._modules.slice(0, i);
                 break;
             }

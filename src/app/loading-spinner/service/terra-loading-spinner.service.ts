@@ -18,9 +18,9 @@ export class TerraLoadingSpinnerService
     {
         
         this.observable = new Observable<boolean>((subscriber:Subscriber<boolean>) =>
-        {
-            this._subscriber = subscriber;
-        });
+                                                  {
+                                                      this._subscriber = subscriber;
+                                                  });
         
     }
     

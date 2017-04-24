@@ -1,14 +1,14 @@
 import {
-    Component,
-    ViewChild,
-    ViewContainerRef,
-    Input,
-    ComponentRef,
-    ComponentFactoryResolver,
-    ChangeDetectorRef,
     AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    ComponentFactoryResolver,
+    ComponentRef,
+    Input,
+    OnChanges,
     OnDestroy,
-    OnChanges
+    ViewChild,
+    ViewContainerRef
 } from '@angular/core';
 
 @Component({

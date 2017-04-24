@@ -26,9 +26,9 @@ export class TerraLoadingBarService
     constructor()
     {
         this.observable = new Observable<TerraLoadingBarEvent>((subscriber:Subscriber<TerraLoadingBarEvent>) =>
-        {
-            this._subscriber = subscriber;
-        });
+                                                               {
+                                                                   this._subscriber = subscriber;
+                                                               });
     }
     
     public set progress(value:number)

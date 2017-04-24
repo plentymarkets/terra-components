@@ -1,8 +1,8 @@
 import {
     Component,
+    EventEmitter,
     Input,
-    Output,
-    EventEmitter
+    Output
 } from '@angular/core';
 
 @Component({
