@@ -62,6 +62,8 @@ import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorat
 import { TerraNavigatorComponent } from './navigator/terra-navigator.component';
 import { TerraNavigatorSplitViewConfig } from './navigator/config/terra-navigator-split-view.config';
 import { TerraToggleComponent } from './toggle/terra-toggle.component';
+import { TerraSyntaxEditorComponent } from './editor/syntax/terra-syntax-editor.component';
+import { AceEditorModule } from 'ng2-ace-editor';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -123,6 +125,7 @@ export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-sugges
 export { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-picker.component';
 export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 export { TerraCardComponent } from './card/terra-card.component';
+export { TerraSyntaxEditorComponent } from './editor/syntax/terra-syntax-editor.component';
 
 @NgModule({
               declarations:    [
@@ -164,7 +167,8 @@ export { TerraCardComponent } from './card/terra-card.component';
                   TerraTextAreaInputComponent,
                   TerraCardComponent,
                   TerraNavigatorComponent,
-                  TerraToggleComponent
+                  TerraToggleComponent,
+                  TerraSyntaxEditorComponent
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -200,7 +204,8 @@ export { TerraCardComponent } from './card/terra-card.component';
                   TerraTextAreaInputComponent,
                   TerraCardComponent,
                   TerraNavigatorComponent,
-                  TerraToggleComponent
+                  TerraToggleComponent,
+                  TerraSyntaxEditorComponent
               ],
               exports:         [
                   TerraAlertPanelComponent,
@@ -239,7 +244,8 @@ export { TerraCardComponent } from './card/terra-card.component';
                   TerraTextAreaInputComponent,
                   TerraCardComponent,
                   TerraNavigatorComponent,
-                  TerraToggleComponent
+                  TerraToggleComponent,
+                  TerraSyntaxEditorComponent
               ],
               imports:         [
                   BrowserModule,
@@ -251,7 +257,8 @@ export { TerraCardComponent } from './card/terra-card.component';
                   AlertModule.forRoot(),
                   ButtonsModule.forRoot(),
                   TranslationModule.forRoot(),
-                  MyDatePickerModule
+                  MyDatePickerModule,
+                  AceEditorModule
               ],
               providers:       [
                   COMPILER_PROVIDERS,
