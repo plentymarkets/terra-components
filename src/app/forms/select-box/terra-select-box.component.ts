@@ -1,13 +1,13 @@
 import {
     Component,
-    OnInit,
-    Input,
-    Output,
     ElementRef,
     EventEmitter,
+    forwardRef,
+    Input,
     OnChanges,
-    SimpleChanges,
-    forwardRef
+    OnInit,
+    Output,
+    SimpleChanges
 } from '@angular/core';
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';

@@ -1,7 +1,7 @@
 import {
     Component,
-    Input,
-    forwardRef
+    forwardRef,
+    Input
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { TerraRegex } from '../../../regex/terra-regex';
@@ -29,6 +29,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
     {
         console.warn('inputType is no longer used.  It will be removed in one of the upcoming releases.');
     }
+    
     /**
      * @deprecated
      * @param v
@@ -40,6 +41,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
         
         this.value = v;
     }
+    
     @Input() inputMaxRows:number;
     @Input() inputMaxCols:number;
     

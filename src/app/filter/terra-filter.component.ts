@@ -1,10 +1,10 @@
 import {
     Component,
-    OnInit,
+    EventEmitter,
     Input,
+    OnInit,
     Output,
-    ViewChild,
-    EventEmitter
+    ViewChild
 } from '@angular/core';
 
 /**

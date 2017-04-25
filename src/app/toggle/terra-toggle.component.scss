@@ -19,7 +19,7 @@
     &:disabled
     {
         @include box-shadow(none);
-        cursor:not-allowed;
+        cursor: not-allowed;
         background-color: $gray-light-4;
     }
     

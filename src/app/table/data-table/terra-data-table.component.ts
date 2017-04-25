@@ -1,11 +1,11 @@
 import {
     Component,
-    Input,
-    Output,
-    ViewChild,
     EventEmitter,
+    Input,
     OnChanges,
-    SimpleChanges
+    Output,
+    SimpleChanges,
+    ViewChild
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { TerraDataTableHeaderCellInterface } from './cell/terra-data-table-header-cell.interface';
@@ -75,7 +75,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         if(changes['_hasCheckboxes'])
         {
-            console.warn('_hasCheckboxes is deprecated. It will be removed in one of the upcoming releases. Please use inputHasCheckboxes instead.');
+            console.warn(
+                '_hasCheckboxes is deprecated. It will be removed in one of the upcoming releases. Please use inputHasCheckboxes instead.');
             this.inputHasCheckboxes = changes['_hasCheckboxes'].currentValue;
         }
     }
