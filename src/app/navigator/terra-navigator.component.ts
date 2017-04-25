@@ -46,6 +46,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         if(this.inputNodes !== null)
         {
             this.initRootPaths(this.inputNodes, null);
+            this.refreshNodeVisibilities(this.inputNodes);
             
             this._terraNavigatorSplitViewConfig
                 .addModule({
@@ -98,6 +99,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                            this.addNodeAt(this.inputNodes, item.rootPath, -1, item);
             
                            this.initRootPaths(this.inputNodes, null);
+                           this.refreshNodeVisibilities(this.inputNodes);
                        });
         
         this.inputNavigatorService
@@ -107,6 +109,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                            console.log(item);
             
                            this.addNodesRecursive(item);
+                           this.refreshNodeVisibilities(this.inputNodes);
                        });
         
         this._isInit = true;
@@ -117,6 +120,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         if(this._isInit == true && changes["inputNodes"])
         {
             this.initRootPaths(this.inputNodes, null);
+            this.refreshNodeVisibilities(this.inputNodes);
             
             this._terraNavigatorSplitViewConfig
                 .addModule({
@@ -239,5 +243,55 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         {
             this.addNodeAt(data[rootIndex[position]].children, rootIndex, position, newNode);
         }
+    }
+    
+    private refreshNodeVisibilities(nodes:Array<TerraNavigatorNodeInterface<D>>)
+    {
+        // go through the node list
+        nodes.forEach(
+            (node) =>
+            {
+                // check if there are children or if node is a leaf
+                if(node.children !== null && node.children.length > 0)
+                {
+                    // check descendants visibility
+                    if(this.getTotalVisibleChildren(node) > 0)
+                    {
+                        this.refreshNodeVisibilities(node.children);
+                    }
+                    // there are no visible descendants -> hide node
+                    else
+                    {
+                        node.isVisible = false;
+                    }
+                }
+            }
+        )
+    }
+    
+    private getTotalVisibleChildren(rootNode:TerraNavigatorNodeInterface<D>):number
+    {
+        // initialize counter
+        let childrenCount = 0;
+        
+        // go deep into the children
+        if(rootNode.children !== null)
+        {
+            rootNode.children.forEach(
+                (node) =>
+                {
+                    if(node.isVisible || node.isVisible === undefined)
+                    {
+                        childrenCount++;
+                    }
+                    
+                    // recursive
+                    childrenCount += this.getTotalVisibleChildren(node);
+                }
+            );
+        }
+        
+        // return count of children
+        return childrenCount;
     }
 }
