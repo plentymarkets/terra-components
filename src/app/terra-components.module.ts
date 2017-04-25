@@ -14,7 +14,7 @@ import {
     ButtonsModule,
     ModalModule,
     TooltipModule
-} from 'ng2-bootstrap';
+} from 'ngx-bootstrap';
 import { TerraComponentsComponent } from './terra-components.component';
 import { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
 import { TerraNumberInputComponent } from './forms/input/number-input/terra-number-input.component';

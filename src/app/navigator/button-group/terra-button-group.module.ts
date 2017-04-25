@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TerraButtonGroupComponent } from './terra-button-group.component';
-import { TooltipModule } from 'ng2-bootstrap';
+import { TooltipModule } from 'ngx-bootstrap';
 import { TranslationModule } from 'angular-l10n';
 
 @NgModule({
