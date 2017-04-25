@@ -126,6 +126,7 @@ export { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-p
 export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 export { TerraCardComponent } from './card/terra-card.component';
 export { TerraSyntaxEditorComponent } from './editor/syntax/terra-syntax-editor.component';
+export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.data';
 
 @NgModule({
               declarations:    [

@@ -1,10 +1,14 @@
 import {
+    AfterViewInit,
     Component,
     Input,
-    OnInit
+    OnInit,
+    ViewChild
 } from '@angular/core';
 import { TerraSyntaxEditorModes } from './modes/terra-syntax-editor-modes';
+import { AceEditorComponent } from 'ng2-ace-editor';
 import 'brace';
+import 'brace/theme/chrome';
 import 'brace/mode/typescript';
 import 'brace/mode/css';
 import 'brace/mode/javascript';
@@ -15,30 +19,56 @@ import 'brace/mode/markdown';
 import 'brace/mode/twig';
 import 'brace/mode/php';
 import 'brace/mode/text';
+import 'brace/ext/error_marker';
+import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
 
 @Component({
                selector: 'terra-syntax-editor',
                template: require('./terra-syntax-editor.component.html'),
                styles:   [require('./terra-syntax-editor.component.scss')]
            })
-export class TerraSyntaxEditorComponent implements OnInit
+export class TerraSyntaxEditorComponent implements AfterViewInit
 {
     @Input() inputEditorMode:TerraSyntaxEditorModes = TerraSyntaxEditorModes.TEXT;
-    @Input() inputText:string = '';
+    @Input() inputText:string;
     @Input() inputReadOnly:boolean;
-    @Input() inputOptions:Object = {};
+    @Input() inputOptions:Object;
+    @ViewChild('aceEditor') editor:AceEditorComponent;
+    
+    private annotations:Array<TerraSyntaxEditorData> = [];
     
     constructor()
     {
-        this.inputOptions = {maxLines: 10000};
+        this.inputOptions = {
+            maxLines: 10000
+        };
     }
     
-    ngOnInit()
+    ngAfterViewInit()
     {
-    
+        this.editor.getEditor().clearSelection();
+        this.editor.getEditor().getSession().setAnnotations(this.annotations);
     }
     
-    getEditorMode():string
+    public addAnnotation(annotation:TerraSyntaxEditorData):void
+    {
+        this.annotations.push(annotation);
+    }
+    
+    public addAnnotationList(list:Array<TerraSyntaxEditorData>)
+    {
+        for(let data of list)
+        {
+            this.addAnnotation(data);
+        }
+    }
+    
+    public clearAnnotations():void
+    {
+        this.annotations.splice(0, this.annotations.length);
+    }
+    
+    protected getEditorMode():string
     {
         switch(this.inputEditorMode)
         {

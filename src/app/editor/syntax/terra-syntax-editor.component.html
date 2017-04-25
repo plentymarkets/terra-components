@@ -1,4 +1,5 @@
-<ace-editor [(text)]="inputText"
+<ace-editor #aceEditor [(text)]="inputText"
+            [theme]="'chrome'"
             [mode]="getEditorMode()"
             [readOnly]="inputReadOnly"
             [options]="inputOptions"
