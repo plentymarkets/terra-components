@@ -9,4 +9,5 @@ export interface TerraNavigatorNodeInterface<D>
     value?:D;
     rootPath?:Array<number>;
     children:Array<TerraNavigatorNodeInterface<D>>;
+    isVisible?:boolean;
 }
