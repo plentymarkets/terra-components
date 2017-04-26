@@ -1,7 +1,9 @@
 import {
     AfterViewInit,
     Component,
+    EventEmitter,
     Input,
+    Output,
     ViewChild
 } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap';
@@ -26,6 +28,8 @@ export class TerraOverlayComponent implements AfterViewInit
     @Input() inputIsCloseable:boolean;
     @Input() inputIsLarge:boolean;
     @Input() inputIsSmall:boolean;
+    @Output() outputOnHide = new EventEmitter<ModalDirective>();
+    @Output() outputOnShow = new EventEmitter<ModalDirective>();
     
     constructor()
     {
@@ -51,11 +55,13 @@ export class TerraOverlayComponent implements AfterViewInit
     
     public showOverlay():void
     {
+        this.outputOnShow.emit(null);
         this.viewChildOverlay.show();
     }
     
     public hideOverlay():void
     {
+        this.outputOnHide.emit(null);
         this.viewChildOverlay.hide();
     }
 }

@@ -1,9 +1,9 @@
-<div bsModal #viewChildOverlay="bs-modal" class="modal fade" tabindex="-1" role="dialog">
+<div bsModal #viewChildOverlay="bs-modal" class="modal fade" tabindex="-1" role="dialog" (onHide)="outputOnHide" (onShow)="outputOnShow">
     <div class="modal-dialog modal-lg" [ngClass]="{'modal-lg': inputIsLarge, 'modal-sm': inputIsSmall}">
         <div class="modal-content">
             <div class="modal-header" *ngIf="inputIsCloseable && inputOverlayTitle">
                 <terra-button *ngIf="inputIsCloseable" [inputIsAlignRight]="true" inputIcon="icon-close"
-                              (outputClicked)="viewChildOverlay.hide()"></terra-button>
+                              (outputClicked)="hideOverlay()"></terra-button>
                 <h4 class="modal-title">{{inputOverlayTitle}}</h4>
             </div>
             <div class="modal-body">
