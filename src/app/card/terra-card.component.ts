@@ -1,8 +1,8 @@
 import {
+    AfterContentChecked,
     Component,
     Input,
-    ViewChild,
-    AfterContentChecked
+    ViewChild
 } from '@angular/core';
 
 @Component({

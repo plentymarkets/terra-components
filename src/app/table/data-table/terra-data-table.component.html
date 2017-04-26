@@ -19,7 +19,7 @@
                     [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                     [tooltip]="header.tooltipText"
                     [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
-                  <span>{{header.caption}}</span>
+                    <span>{{header.caption}}</span>
                 </th>
             </ng-template>
         </tr>
@@ -33,7 +33,9 @@
                                     (change)="onRowCheckboxChange(rowCheckbox.value, row)"></terra-checkbox>
                 </td>
                 <ng-template ngFor let-cell [ngForOf]="row.cellList">
-                    <template #tdTooltip><div [innerHTML]="cell.tooltipText"></div></template>
+                    <template #tdTooltip>
+                        <div [innerHTML]="cell.tooltipText"></div>
+                    </template>
                     <td *ngIf="!cell.isHidden"
                         (click)="rowClicked(cell, row)"
                         [container]="'body'"

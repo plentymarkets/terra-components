@@ -27,7 +27,8 @@ button.close
     padding: 5px 10px 0 5px;
 }
 
-.flag {
+.flag
+{
     position: absolute;
     right: 0;
     top: 0;
@@ -42,7 +43,8 @@ button.close
         cursor: not-allowed;
     }
     
-    span {
+    span
+    {
         font-weight: 600;
         font-size: 1.1rem;
         color: $white;
@@ -346,14 +348,15 @@ input[type="button"]
             width: 100%;
             text-align: left;
         }
-    
-        terra-button:last-child:not(:first-child) .flag {
+        
+        terra-button:last-child:not(:first-child) .flag
+        {
             border-bottom-left-radius: 3px;
             border-bottom-right-radius: 3px;
             border-top-right-radius: 0;
             border-top-left-radius: 0;
         }
-    
+        
         terra-button:first-child:not(:last-child) .flag
         {
             border-top-right-radius: 3px;
@@ -361,7 +364,7 @@ input[type="button"]
             border-bottom-right-radius: 0;
             border-bottom-left-radius: 0;
         }
-    
+        
         terra-button:not(:first-child):not(:last-child) .flag
         {
             border-radius: 0;
