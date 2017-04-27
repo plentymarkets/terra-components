@@ -2,7 +2,6 @@ import {
     AfterViewInit,
     Component,
     Input,
-    OnInit,
     ViewChild
 } from '@angular/core';
 import { TerraSyntaxEditorModes } from './modes/terra-syntax-editor-modes';
@@ -74,34 +73,34 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
         {
             case TerraSyntaxEditorModes.CSS:
                 return 'css';
-                
+            
             case TerraSyntaxEditorModes.JAVASCRIPT:
                 return 'javascript';
-                
+            
             case TerraSyntaxEditorModes.JSON:
                 return 'json';
-                
+            
             case TerraSyntaxEditorModes.SCSS:
                 return 'scss';
-                
+            
             case TerraSyntaxEditorModes.HTML:
                 return 'html';
-                
+            
             case TerraSyntaxEditorModes.MARKDOWN:
                 return 'markdown';
             
             case TerraSyntaxEditorModes.TWIG:
                 return 'twig';
-                
+            
             case TerraSyntaxEditorModes.PHP:
                 return 'php';
-                
+            
             case TerraSyntaxEditorModes.TYPESCRIPT:
                 return 'typescript';
-                
+            
             case TerraSyntaxEditorModes.TEXT:
             default:
-            return 'text';
+                return 'text';
         }
     }
 }

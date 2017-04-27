@@ -7,8 +7,8 @@
          [style.background-size]="'contain'"
          *ngIf="inputImagePath && inputImagePath != ''"></div>
     <div class="card-img-top terra-card-placeholder"
-          *ngIf="!inputImagePath || inputImagePath == ''"
-          [ngClass]="inputPlaceholderIcon"></div>
+         *ngIf="!inputImagePath || inputImagePath == ''"
+         [ngClass]="inputPlaceholderIcon"></div>
     <div class="card-block">
         <ng-content select="[terra-card-content]"></ng-content>
     </div>

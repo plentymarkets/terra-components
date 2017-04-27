@@ -1,4 +1,6 @@
-<template #tooltipTemplate><div [innerHtml]="inputTooltipText"></div></template>
+<template #tooltipTemplate>
+    <div [innerHtml]="inputTooltipText"></div>
+</template>
 <div [isDisabled]="!inputTooltipText"
      class="btn-handler"
      [tooltip]="tooltipTemplate"
