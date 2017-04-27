@@ -98,16 +98,18 @@ export class TerraBaseService
                 if (error.status == 401)
                 {
                     let event:CustomEvent = new CustomEvent('login');
-                    
-                    //workaround for plugins in GWT (loaded via iFrame)
-                    if(window.parent.window.parent != null)
-                    {
-                        window.parent.window.parent.window.dispatchEvent(event);
-                    }
                     //Workaround for plugins in Angular (loaded via iFrame)
-                    else if(window.parent != null)
+                    if(window.parent != null)
                     {
-                        window.parent.window.dispatchEvent(event);
+                        //workaround for plugins in GWT (loaded via iFrame)
+                        if(window.parent.window.parent != null)
+                        {
+                            window.parent.window.parent.window.dispatchEvent(event);
+                        }
+                        else
+                        {
+                            window.parent.window.dispatchEvent(event);
+                        }
                     }
                     else
                     {
