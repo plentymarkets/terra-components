@@ -5,6 +5,7 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
+import { TerraNavigatorSplitViewConfig } from '../navigator/config/terra-navigator-split-view.config';
 
 @Component({
                selector: 'terra-split-view',
@@ -15,6 +16,7 @@ export class TerraSplitViewComponent implements OnChanges
 {
     @Input() inputModules:Array<TerraSplitViewInterface>;
     @Input() inputShowBreadcrumbs:boolean;
+    @Input() inputUpdateViewport:boolean;
     private _breadCrumbsPath:string;
     
     public static ANIMATION_SPEED = 1000; // ms
@@ -23,16 +25,20 @@ export class TerraSplitViewComponent implements OnChanges
     {
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
+        this.inputUpdateViewport = true;
     }
     
     ngOnChanges(changes:SimpleChanges)
     {
-        if(changes["inputModules"].currentValue !== undefined && changes["inputModules"].currentValue.length > 0)
+        if(this.inputUpdateViewport)
         {
-            if(this.inputModules != null)
+            if(changes["inputModules"].currentValue !== undefined && changes["inputModules"].currentValue.length > 0)
             {
-                let currentModule = this.inputModules[this.inputModules.length - 1]
-                this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
+                if(this.inputModules != null)
+                {
+                    let currentModule = this.inputModules[this.inputModules.length - 1]
+                    this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
+                }
             }
         }
     }

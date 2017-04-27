@@ -24,7 +24,7 @@
     float: left;
     color: $gray-dark;
     white-space: nowrap;
-    
+
     &:hover
     {
         background: $brand-primary;
@@ -110,6 +110,7 @@
     padding-left: 16px;
 }
 
+
 .side-scroller
 {
     position: relative;
@@ -139,19 +140,12 @@
     bottom: 0;
 }
 
-/deep/
-{
-    terra-split-view terra-split-view .divider
-    {
-        display: none !important;
-    }
-}
-
 .view
 {
     vertical-align: top;
     height: 100%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     white-space: normal;
     position: relative;
     padding: 0;
@@ -163,14 +157,6 @@
     margin-right: -4px;
 }
 
-/deep/
-{
-    terra-split-view terra-split-view .hasDivider
-    {
-        padding: 0 !important;
-    }
-}
-
 .view.first
 {
     padding-left: 0 !important;
@@ -179,12 +165,4 @@
 .view.last
 {
     padding: 0 0 0 4px;
-}
-
-/deep/
-{
-    terra-split-view terra-split-view .view.last
-    {
-        padding: 0 !important;
-    }
 }

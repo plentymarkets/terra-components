@@ -2,6 +2,7 @@
 
 .btn
 {
+    padding: 0px 24px 0px 12px !important;
     &.activated
     {
         background-color: #354763 !important;
@@ -12,9 +13,10 @@
     
     .icon-right
     {
-        float: right;
-        margin-top: 4px;
-        margin-right: -5px;
+        margin-top: 8px;
+        position: absolute;
+        right: 2px;
+        top: initial;
     }
 }
 

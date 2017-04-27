@@ -29,11 +29,13 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
     @Output() outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
     
     private _isInit:boolean;
+    private _updateViewport:boolean;
     
     constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig<D>)
     {
         this._isInit = false;
         this.outputEndpointClicked = new EventEmitter();
+        this._updateViewport = false;
     }
     
     ngOnInit()
@@ -68,11 +70,16 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                        {
                            if(item.children !== null)
                            {
+                
+                               this._terraNavigatorSplitViewConfig
+                                   .modules[0]
+                                   .defaultWidth = 'col-xs-6 col-md-6 col-lg-6';
+                
                                this._terraNavigatorSplitViewConfig
                                    .addModule({
                                                   module:            TerraButtonGroupModule.forRoot(),
                                                   instanceKey:       item.rootPath.length,
-                                                  defaultWidth:      this.inputModuleWidth,
+                                                  defaultWidth:      'col-xs-6 col-md-6 col-lg-6',
                                                   hidden:            false,
                                                   name:              item.nodeName,
                                                   mainComponentName: 'TerraButtonGroupComponent',
@@ -80,6 +87,11 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                                                       nodes: item.children
                                                   }
                                               });
+                               if(this._terraNavigatorSplitViewConfig.modules.length >= 3)
+                               {
+                                   this._updateViewport = true;
+                               }
+                               
                            }
                            else
                            {

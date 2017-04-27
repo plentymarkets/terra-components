@@ -12,7 +12,7 @@ import { isUndefined } from 'util';
  * @author mscharf
  */
 @Component({
-               selector: 'terra-log-settings',
+               selector: 'terra-button-group',
                template: require('./terra-button-group.component.html'),
                styles:   [require('./terra-button-group.component.scss')]
            })
