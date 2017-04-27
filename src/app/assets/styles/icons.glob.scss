@@ -61,6 +61,21 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-plugin_productive_deploy {
+    &:before {
+        content: $icon-plugin_productive_deploy;
+    }
+}
+.icon-plugin_to_productive {
+    &:before {
+        content: $icon-plugin_to_productive;
+    }
+}
+.icon-plugin_to_stage {
+    &:before {
+        content: $icon-plugin_to_stage;
+    }
+}
 .icon-image .path1 {
     &:before {
         content: $icon-image-path1;
