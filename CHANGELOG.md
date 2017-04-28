@@ -1,3 +1,9 @@
+<a name="1.0.3"></a>
+# 1.0.3 (28.04.2017)
+
+### Feature
+* **terra-navigator** Add double column navigation
+
 <a name="1.0.2"></a>
 # 1.0.2 (27.04.2017)
 
