@@ -4,8 +4,9 @@ import {
     Input,
     ViewChild
 } from '@angular/core';
-import { TerraSyntaxEditorModes } from './modes/terra-syntax-editor-modes';
-import { AceEditorComponent } from 'ng2-ace-editor';
+import {
+    AceEditorComponent,
+} from 'ng2-ace-editor';
 import 'brace';
 import 'brace/theme/chrome';
 import 'brace/mode/typescript';
@@ -28,13 +29,11 @@ import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
            })
 export class TerraSyntaxEditorComponent implements AfterViewInit
 {
-    @Input() inputEditorMode:TerraSyntaxEditorModes = TerraSyntaxEditorModes.TEXT;
-    @Input() inputText:string;
+    private _inputEditorMode:string;
+    private _inputText:string;
     @Input() inputReadOnly:boolean;
     @Input() inputOptions:Object;
     @ViewChild('aceEditor') editor:AceEditorComponent;
-    
-    private annotations:Array<TerraSyntaxEditorData> = [];
     
     constructor()
     {
@@ -46,61 +45,31 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
     ngAfterViewInit()
     {
         this.editor.getEditor().clearSelection();
-        this.editor.getEditor().getSession().setAnnotations(this.annotations);
+        this.editor.getEditor().$blockScrolling = Infinity;
+        this.editor.getEditor().setShowPrintMargin(false);
     }
     
-    public addAnnotation(annotation:TerraSyntaxEditorData):void
+    public setAnnotationList(list:Array<TerraSyntaxEditorData>)
     {
-        this.annotations.push(annotation);
+        this.editor.getEditor().getSession().setAnnotations(list);
     }
     
-    public addAnnotationList(list:Array<TerraSyntaxEditorData>)
+    @Input()
+    public set inputEditorMode(value:string)
     {
-        for(let data of list)
-        {
-            this.addAnnotation(data);
-        }
+        this._inputEditorMode = value;
+        this.editor.setMode(value);
     }
     
-    public clearAnnotations():void
+    @Input()
+    public set inputText(value:string)
     {
-        this.annotations.splice(0, this.annotations.length);
+        this._inputText = value;
+        this.editor.setText(value);
     }
     
-    protected getEditorMode():string
+    public get inputText():string
     {
-        switch(this.inputEditorMode)
-        {
-            case TerraSyntaxEditorModes.CSS:
-                return 'css';
-            
-            case TerraSyntaxEditorModes.JAVASCRIPT:
-                return 'javascript';
-            
-            case TerraSyntaxEditorModes.JSON:
-                return 'json';
-            
-            case TerraSyntaxEditorModes.SCSS:
-                return 'scss';
-            
-            case TerraSyntaxEditorModes.HTML:
-                return 'html';
-            
-            case TerraSyntaxEditorModes.MARKDOWN:
-                return 'markdown';
-            
-            case TerraSyntaxEditorModes.TWIG:
-                return 'twig';
-            
-            case TerraSyntaxEditorModes.PHP:
-                return 'php';
-            
-            case TerraSyntaxEditorModes.TYPESCRIPT:
-                return 'typescript';
-            
-            case TerraSyntaxEditorModes.TEXT:
-            default:
-                return 'text';
-        }
+        return this._inputText;
     }
 }

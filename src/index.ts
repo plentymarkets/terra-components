@@ -66,5 +66,4 @@ export * from './app/navigator/data/terra-navigator-node.interface';
 export * from './app/toggle/terra-toggle.component';
 export * from './app/navigator/button-group/data/terra-button-group.interface';
 export * from './app/editor/syntax/terra-syntax-editor.component';
-export * from './app/editor/syntax/modes/terra-syntax-editor-modes';
 export * from './app/editor/syntax/data/terra-syntax-editor.data';

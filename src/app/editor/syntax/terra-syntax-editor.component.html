@@ -1,6 +1,6 @@
 <ace-editor #aceEditor [(text)]="inputText"
             [theme]="'chrome'"
-            [mode]="getEditorMode()"
+            [mode]="inputEditorMode"
             [readOnly]="inputReadOnly"
             [options]="inputOptions"
             style="width: auto; overflow: auto;"></ace-editor>
