@@ -14,8 +14,8 @@ import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interfa
  */
 @Component({
                selector: 'terra-overlay',
-               styles:   [require('./terra-overlay.component.scss')],
-               template: require('./terra-overlay.component.html')
+               template: require('./terra-overlay.component.html'),
+               styles:   [require('./terra-overlay.component.scss')]
            })
 export class TerraOverlayComponent implements AfterViewInit
 {
@@ -28,8 +28,8 @@ export class TerraOverlayComponent implements AfterViewInit
     @Input() inputIsCloseable:boolean;
     @Input() inputIsLarge:boolean;
     @Input() inputIsSmall:boolean;
-    @Output() outputOnHide = new EventEmitter<ModalDirective>();
-    @Output() outputOnShow = new EventEmitter<ModalDirective>();
+    @Output() outputOnHide:EventEmitter<ModalDirective>;
+    @Output() outputOnShow:EventEmitter<ModalDirective>;
     
     constructor()
     {
@@ -37,6 +37,9 @@ export class TerraOverlayComponent implements AfterViewInit
         this.inputIsCloseable = true;
         this.inputIsLarge = false;
         this.inputIsSmall = false;
+        
+        this.outputOnHide = new EventEmitter<ModalDirective>();
+        this.outputOnShow = new EventEmitter<ModalDirective>();
     }
     
     ngAfterViewInit()

@@ -10,6 +10,7 @@ import {
 import { TerraNavigatorSplitViewConfig } from './config/terra-navigator-split-view.config';
 import { TerraNavigatorNodeInterface } from './data/terra-navigator-node.interface';
 import { TerraButtonGroupModule } from './button-group/terra-button-group.module';
+import { TerraNavigatorConfig } from './config/terra-navigator.config';
 
 /**
  * @author mscharf
@@ -22,6 +23,7 @@ import { TerraButtonGroupModule } from './button-group/terra-button-group.module
 export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 {
     @Input() inputNodes:Array<TerraNavigatorNodeInterface<D>>;
+    @Input() inputNavigatorService:TerraNavigatorConfig<D>;
     @Input() inputModuleWidth:string;
     
     @Output() outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
@@ -44,6 +46,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         if(this.inputNodes !== null)
         {
             this.initRootPaths(this.inputNodes, null);
+            this.refreshNodeVisibilities(this.inputNodes);
             
             this._terraNavigatorSplitViewConfig
                 .addModule({
@@ -60,7 +63,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         }
         
         this._terraNavigatorSplitViewConfig
-            .observable
+            .observableNodeClicked
             .subscribe((item:TerraNavigatorNodeInterface<D>) =>
                        {
                            if(item.children !== null)
@@ -89,6 +92,26 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                            }
                        });
         
+        this.inputNavigatorService
+            .observableNewNodeByRootPath
+            .subscribe((item:TerraNavigatorNodeInterface<D>) =>
+                       {
+                           this.addNodeAt(this.inputNodes, item.rootPath, -1, item);
+            
+                           this.initRootPaths(this.inputNodes, null);
+                           this.refreshNodeVisibilities(this.inputNodes);
+                       });
+        
+        this.inputNavigatorService
+            .observableNewNodesByRoute
+            .subscribe((item:Array<TerraNavigatorNodeInterface<D>>) =>
+                       {
+                           console.log(item);
+            
+                           this.addNodesRecursive(item);
+                           this.refreshNodeVisibilities(this.inputNodes);
+                       });
+        
         this._isInit = true;
     }
     
@@ -97,6 +120,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         if(this._isInit == true && changes["inputNodes"])
         {
             this.initRootPaths(this.inputNodes, null);
+            this.refreshNodeVisibilities(this.inputNodes);
             
             this._terraNavigatorSplitViewConfig
                 .addModule({
@@ -129,12 +153,145 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             
             data[i].rootPath.push(i);
             
-            if(data[i].children != null)
+            if(data[i].children !== null && data[i].children.length > 0)
             {
                 this.initRootPaths(data[i].children, data[i].rootPath);
             }
         }
         
         return data;
+    }
+    
+    private addNodesRecursive(nodes:Array<TerraNavigatorNodeInterface<D>>)
+    {
+        nodes.forEach((item:TerraNavigatorNodeInterface<D>) =>
+                      {
+                          let routeArray:Array<string> = item.route.split('/');
+                          let routeIndex:number = -1;
+                          let result = [];
+            
+                          this.findRooPath(routeArray,
+                                           routeIndex,
+                                           this.inputNodes,
+                                           result
+                          );
+            
+                          let newNode:TerraNavigatorNodeInterface<D> = {
+                              nodeName: item.nodeName,
+                              nodeIcon: item.nodeIcon,
+                              route:    routeArray[routeArray.length - 1],
+                              value:    item.value,
+                              rootPath: [],
+                              children: null
+                          };
+            
+                          if(item.children !== null)
+                          {
+                              newNode.children = [];
+                          }
+            
+                          this.addNodeAt(this.inputNodes, result, -1, newNode);
+            
+                          this.initRootPaths(this.inputNodes, null);
+            
+                          if(item.children !== null)
+                          {
+                              this.addNodesRecursive(item.children);
+                          }
+                      });
+    }
+    
+    private findRooPath(routeArray:Array<string>, routeIndex:number,
+                        data:Array<TerraNavigatorNodeInterface<D>>, result:Array<number>)
+    {
+        routeIndex++;
+        
+        data.forEach((item) =>
+                     {
+                         if(item.route == routeArray[routeIndex])
+                         {
+                             result.push(item.rootPath[item.rootPath.length - 1]);
+                
+                             if(item.children !== null)
+                             {
+                                 this.findRooPath(routeArray, routeIndex, item.children, result);
+                             }
+                         }
+                     });
+    }
+    
+    private addNodeAt(data:Array<TerraNavigatorNodeInterface<D>>, rootIndex:Array<number>, position:number,
+                      newNode:TerraNavigatorNodeInterface<D>):void
+    {
+        position++;
+        
+        if(position == rootIndex.length)
+        {
+            let newRootPath = newNode.rootPath;
+            
+            newRootPath.push(data.length);
+            
+            data.push({
+                          nodeName: newNode.nodeName,
+                          nodeIcon: newNode.nodeIcon,
+                          route:    newNode.route,
+                          rootPath: newRootPath,
+                          children: newNode.children
+                      });
+        }
+        else
+        {
+            this.addNodeAt(data[rootIndex[position]].children, rootIndex, position, newNode);
+        }
+    }
+    
+    private refreshNodeVisibilities(nodes:Array<TerraNavigatorNodeInterface<D>>)
+    {
+        // go through the node list
+        nodes.forEach(
+            (node) =>
+            {
+                // check if there are children or if node is a leaf
+                if(node.children !== null && node.children.length > 0)
+                {
+                    // check descendants visibility
+                    if(this.getTotalVisibleChildren(node) > 0)
+                    {
+                        this.refreshNodeVisibilities(node.children);
+                    }
+                    // there are no visible descendants -> hide node
+                    else
+                    {
+                        node.isVisible = false;
+                    }
+                }
+            }
+        )
+    }
+    
+    private getTotalVisibleChildren(rootNode:TerraNavigatorNodeInterface<D>):number
+    {
+        // initialize counter
+        let childrenCount = 0;
+        
+        // go deep into the children
+        if(rootNode.children !== null)
+        {
+            rootNode.children.forEach(
+                (node) =>
+                {
+                    if(node.isVisible || node.isVisible === undefined)
+                    {
+                        childrenCount++;
+                    }
+                    
+                    // recursive
+                    childrenCount += this.getTotalVisibleChildren(node);
+                }
+            );
+        }
+        
+        // return count of children
+        return childrenCount;
     }
 }

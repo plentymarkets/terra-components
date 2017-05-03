@@ -16,12 +16,14 @@ export class TerraCardComponent implements AfterContentChecked
     @Input() inputPlaceholderIcon:string;
     
     @ViewChild('header') viewChildHeader;
-    private showHeader:boolean = false;
+    private showHeader:boolean;
     @ViewChild('footer') viewChildFooter;
-    private showFooter:boolean = false;
+    private showFooter:boolean;
     
     constructor()
     {
+        this.showHeader = false;
+        this.showFooter = false;
     }
     
     ngAfterContentChecked()

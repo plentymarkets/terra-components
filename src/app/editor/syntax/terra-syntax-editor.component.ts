@@ -4,9 +4,7 @@ import {
     Input,
     ViewChild
 } from '@angular/core';
-import {
-    AceEditorComponent,
-} from 'ng2-ace-editor';
+import { AceEditorComponent } from 'ng2-ace-editor';
 import 'brace';
 import 'brace/theme/chrome';
 import 'brace/mode/typescript';
