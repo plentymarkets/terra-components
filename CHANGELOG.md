@@ -1,5 +1,15 @@
-<a name="0.2.0"></a>
-# 0.2.0 (??.??.????)
+<a name="1.0.2"></a>
+# 1.0.2 (27.04.2017)
+
+### Feature
+* **terra-navigator** Add isVisible & route to TerraNavigatorNodeInterface
+* **terra-navigator** Add new methods to add dynamically nodes to terra-navigator
+
+<a name="1.0.1"></a>
+# 1.0.1 (26.04.2017)
+
+### Breaking Changes
+* **ng2-boostrap** replaced ng2-bootstrap with ngx-bootstrap
 
 ### Feature
 * **terra-navigator** Add tooltip to navigator buttons
@@ -7,6 +17,8 @@
 ### Bug Fixes
 * **terra-tag.interface** Caption is now deprecated. Please use badge instead. It will become mandatory in the next major release.
 * **terra-navigator** Removed additional divider from terra navigator.
+* **terra-alert-panel** Show messages behind content
+* **terra-date-picker** Correct displaying of icons
 
 <a name="0.1.4"></a>
 # 0.1.4 (10.04.2017)

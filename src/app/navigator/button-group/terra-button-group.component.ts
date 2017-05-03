@@ -6,6 +6,7 @@ import {
 import { TerraNavigatorSplitViewConfig } from '../config/terra-navigator-split-view.config';
 import { TerraNavigatorNodeInterface } from '../data/terra-navigator-node.interface';
 import { TerraButtonGroupInterface } from './data/terra-button-group.interface';
+import { isUndefined } from 'util';
 
 /**
  * @author mscharf
@@ -60,7 +61,8 @@ export class TerraButtonGroupComponent<D> implements OnInit
                                                                            }
                                                                        });
                                                       },
-                                       hasChildren:   hasChildren
+                                       hasChildren:   hasChildren,
+                                       isVisible:     isUndefined(item.isVisible) || item.isVisible,
                                    });
             
                          if(item.nodeIcon !== null && item.nodeIcon !== undefined)

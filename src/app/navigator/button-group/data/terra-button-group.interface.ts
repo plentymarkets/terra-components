@@ -6,4 +6,5 @@ import { TerraButtonInterface } from '../../../button/data/terra-button.interfac
 export interface TerraButtonGroupInterface extends TerraButtonInterface
 {
     hasChildren:boolean;
+    isVisible:boolean;
 }
