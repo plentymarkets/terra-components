@@ -247,6 +247,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                           nodeName: newNode.nodeName,
                           nodeIcon: newNode.nodeIcon,
                           route:    newNode.route,
+                          value:    newNode.value,
                           rootPath: newRootPath,
                           children: newNode.children
                       });
