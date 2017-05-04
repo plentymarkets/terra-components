@@ -27,11 +27,11 @@ import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
            })
 export class TerraSyntaxEditorComponent implements AfterViewInit
 {
-    private _inputEditorMode:string;
-    private _inputText:string;
+    @ViewChild('aceEditor') editor:AceEditorComponent;
     @Input() inputReadOnly:boolean;
     @Input() inputOptions:Object;
-    @ViewChild('aceEditor') editor:AceEditorComponent;
+    private _inputEditorMode:string;
+    private _inputText:string;
     
     constructor()
     {
@@ -47,7 +47,7 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
         this.editor.getEditor().setShowPrintMargin(false);
     }
     
-    public setAnnotationList(list:Array<TerraSyntaxEditorData>)
+    public setAnnotationList(list:Array<TerraSyntaxEditorData>):void
     {
         this.editor.getEditor().getSession().setAnnotations(list);
     }

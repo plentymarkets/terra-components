@@ -12,12 +12,11 @@ import {
            })
 export class TerraCardComponent implements AfterContentChecked
 {
+    @ViewChild('header') viewChildHeader;
+    @ViewChild('footer') viewChildFooter;
     @Input() inputImagePath:string;
     @Input() inputPlaceholderIcon:string;
-    
-    @ViewChild('header') viewChildHeader;
     private showHeader:boolean;
-    @ViewChild('footer') viewChildFooter;
     private showFooter:boolean;
     
     constructor()
