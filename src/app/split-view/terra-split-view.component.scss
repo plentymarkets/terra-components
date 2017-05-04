@@ -166,3 +166,17 @@
 {
     padding: 0 0 0 4px;
 }
+
+///// Fixed Columns for Terra-Navigator ///////
+@media (min-width: 768px) {
+    .col-md-300px
+    {
+        float: left;
+        width: 300px;
+    }
+    .col-md-300px-anti
+    {
+        float: left;
+        width: calc(100% - 300px);
+    }
+}
