@@ -12,6 +12,7 @@ export interface TerraButtonInterface
     tooltipPlacement?:string;
     isPrimary?:boolean;
     isSecondary?:boolean;
+    isTertiary?:boolean;
     isActive?:boolean;
     isDisabled?:boolean;
     isHidden?:boolean;
