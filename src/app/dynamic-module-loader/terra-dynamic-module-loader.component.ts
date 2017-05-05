@@ -1,13 +1,13 @@
 import {
-    Component,
-    ViewContainerRef,
-    ComponentRef,
-    OnDestroy,
     AfterViewInit,
+    Component,
+    ComponentRef,
+    Input,
     ModuleWithComponentFactories,
     ModuleWithProviders,
-    Input,
-    ViewChild
+    OnDestroy,
+    ViewChild,
+    ViewContainerRef
 } from '@angular/core';
 import { JitCompiler } from '@angular/compiler';
 

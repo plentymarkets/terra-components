@@ -1,7 +1,7 @@
 import {
     Component,
-    Input,
-    forwardRef
+    forwardRef,
+    Input
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { TerraRegex } from '../../../regex/terra-regex';

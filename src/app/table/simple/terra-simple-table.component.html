@@ -3,27 +3,41 @@
         <thead>
         <tr *ngIf="inputHeaderList">
             <ng-template ngFor let-header [ngForOf]="inputHeaderList">
-                <th width="{{header.width}}px">
-              <span
-                  placement="{{header.tooltipPlacement}}"
-                  tooltip="{{header.tooltipText}}">{{header.caption}}</span>
+                <th width="{{header.width}}px"
+                    [container]="'body'"
+                    [placement]="checkTooltipPlacement(header.tooltipPlacement)"
+                    [tooltip]="header.tooltipText"
+                    [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
+                    <span>{{header.caption}}</span>
                 </th>
             </ng-template>
         </tr>
         </thead>
         <tbody [ngClass]="{'highlighting': inputUseHighlighting}">
         <ng-template ngFor let-row [ngForOf]="inputRowList">
-            <tr>
+            <tr [ngClass]="row.textColorCss">
                 <ng-template ngFor let-cell [ngForOf]="row.cellList">
-                    <td>
-                        <span [ngClass]="cell.icon"
-                              placement="{{cell.tooltipPlacement}}"
-                              tooltip="{{cell.tooltipText}}">{{cell.caption}}</span>
-                        <div class="btn-group" *ngIf="cell.buttonList">
+                    <template #tdTooltip>
+                        <div [innerHTML]="cell.tooltipText"></div>
+                    </template>
+                    <td [container]="'body'"
+                        [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
+                        [tooltip]="tdTooltip"
+                        [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0">
+                        <span [ngClass]="cell.icon">{{cell.caption}}</span>
+                        <div class="btn-group" *ngIf="cell.buttonList" [ngClass]="{'pull-xs-right': cell.buttonListAlignRight}">
                             <ng-template ngFor let-button [ngForOf]="cell.buttonList">
-                                <terra-button (outputClicked)="button.clickFunction()" inputIcon="{{button.icon}}"
-                                              inputCaption="{{button.caption}}"
-                                              [inputIsSmall]="true" inputTooltipText="{{button.tooltipText}}"></terra-button>
+                                <terra-button *ngIf="!button.isHidden"
+                                              (outputClicked)="button.clickFunction()"
+                                              [inputIcon]="button.icon"
+                                              [inputIsPrimary]="button.isPrimary"
+                                              [inputIsSecondary]="button.isSecondary"
+                                              [inputIsTertiary]="button.isTertiary"
+                                              [inputIsDisabled]="button.isDisabled"
+                                              [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
+                                              [inputCaption]="button.caption"
+                                              [inputIsSmall]="true"
+                                              [inputTooltipText]="button.tooltipText"></terra-button>
                             </ng-template>
                         </div>
                     </td>

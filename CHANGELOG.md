@@ -1,6 +1,75 @@
+<a name="1.1.0"></a>
+# 1.1.0 (05.05.2017)
+
+### Feature
+* **terra-syntax-editor** NEW component for displaying and editing code.
+* **terra-card** NEW component to display data in a responsive card (grid) layout
+* **terra-button.interface** Add new optional attributes _tooltipPlacement_, _isPrimary_, _isSecondary_, _isTertiary_, _isDisabled_, _isHidden_
+* **terra-button** Add new inputs _inputIsTertiary_, _inputIsFlagged_
+* **terra-checkbox** Add new input _inputIcon_
+* **terra-overlay** Add new outputs _outputOnHide_, _outputOnShow_
+* **terra-data-table** Add additional options for _buttonList_
+* **terra-simple-table** Add additional options for _buttonList_ 
+* **terra-simple-table-cell.interface** add _buttonListAlignRight_ attribute
+* **terra-simple-table-row.interface** add _textColorCss_ attribute
+
+### Bug Fixes
+* **terra-checkbox** The label is clickable to change the value.
+* **terra-checkbox** Fixed a bug where the change event wasn't triggered correctly.
+* **terra-base.service** Showing the relogin overlay on 401 (Unauthorized) http response.
+* **terra-split-config-base** The parameter as JSON of two different views is now compared correctly.
+* **terra-split-view** Reloading split view won't add more modules to HTML anymore.
+* **terra-split-view** Fixed CSS for split view showing in an overlay.
+* **terra-data-table** Tooltip changes for cells and header.
+* **terra-simple-table** Tooltip changes for cells and header.
+
+<a name="1.0.2"></a>
+# 1.0.2 (27.04.2017)
+
+### Feature
+* **terra-navigator** Add isVisible & route to TerraNavigatorNodeInterface
+* **terra-navigator** Add new methods to add dynamically nodes to terra-navigator
+
+<a name="1.0.1"></a>
+# 1.0.1 (26.04.2017)
+
+### Breaking Changes
+* **ng2-bootstrap** replaced ng2-bootstrap with ngx-bootstrap
+
+### Feature
+* **terra-navigator** Add tooltip to navigator buttons
+
+### Bug Fixes
+* **terra-tag.interface** Caption is now deprecated. Please use badge instead. It will become mandatory in the next major release.
+* **terra-navigator** Removed additional divider from terra navigator.
+* **terra-alert-panel** Show messages behind content
+* **terra-date-picker** Correct displaying of icons
+
+<a name="0.1.4"></a>
+# 0.1.4 (10.04.2017)
+
+### Feature
+* **terra-navigator** collapse icons for items with children
+
+### Bug Fixes
+* **terra-split-view** responsive breadcrumbs
+
+<a name="0.1.3"></a>
+# 0.1.3 (07.04.2017)
+
+### Feature
+* **terra-navigator** new navigator component
+
+### Bug Fixes
+* **terra-suggestion-box** fix two way binding
+
+### Fix
+* **terra-toggle** change inputSelectedValue to ngModel
+
 <a name="0.1.2"></a>
 # 0.1.2 (31.03.2017)
 
+### Feature
 * **terra-toggle** added export 
 
 <a name="0.1.1"></a>

@@ -1,8 +1,8 @@
 import {
     Component,
-    Input,
+    forwardRef,
     HostListener,
-    forwardRef
+    Input
 } from '@angular/core';
 import {
     ControlValueAccessor,

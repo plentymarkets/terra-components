@@ -1,17 +1,17 @@
 import {
     Component,
-    Input,
     forwardRef,
+    Input,
     OnChanges,
     ViewChild
 } from '@angular/core';
 import {
-    NG_VALUE_ACCESSOR,
-    ControlValueAccessor
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import {
-    IMyOptions,
     IMyDateModel,
+    IMyOptions,
     MyDatePicker
 } from 'mydatepicker';
 
@@ -72,7 +72,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     {
         this._datePickerOptions = {
             height:                   'inherit',
-            inputValueRequired:       this.inputIsRequired,
+            //inputValueRequired:       this.inputIsRequired,
             componentDisabled:        this.inputIsDisabled,
             openSelectorTopOfInput:   this.inputOpenCalendarTop,
             showSelectorArrow:        !this.inputOpenCalendarTop,

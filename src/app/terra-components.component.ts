@@ -4,8 +4,8 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import {
-    Translation,
     LocaleService,
+    Translation,
     TranslationService
 } from 'angular-l10n';
 import { TerraTagInterface } from './tag/data/terra-tag.interface';
@@ -29,7 +29,8 @@ export class TerraComponentsComponent extends Translation implements OnInit
         this._viewContainerRef = viewContainerRef;
         
         this.locale.addConfiguration()
-            .addLanguages(['de', 'en'])
+            .addLanguages(['de',
+                           'en'])
             .setCookieExpiration(30)
             .defineDefaultLocale('en', 'EN');
         
@@ -47,13 +48,13 @@ export class TerraComponentsComponent extends Translation implements OnInit
             {
                 lang = 'en';
             }
-    
+            
             this.locale.setCurrentLanguage(lang);
             localStorage.setItem('plentymarkets_lang_', lang);
         }
         
         this.locale.init();
-    
+        
         //Definitions for i18n
         if(process.env.ENV === 'production')
         {
@@ -69,6 +70,5 @@ export class TerraComponentsComponent extends Translation implements OnInit
     
     ngOnInit()
     {
-        
     }
 }

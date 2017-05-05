@@ -1,10 +1,12 @@
 import {
+    AfterViewInit,
     Component,
-    ViewChild,
+    EventEmitter,
     Input,
-    AfterViewInit
+    Output,
+    ViewChild
 } from '@angular/core';
-import { ModalDirective } from 'ng2-bootstrap';
+import { ModalDirective } from 'ngx-bootstrap';
 import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interface';
 
 /**
@@ -12,8 +14,8 @@ import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interfa
  */
 @Component({
                selector: 'terra-overlay',
-               styles:   [require('./terra-overlay.component.scss')],
-               template: require('./terra-overlay.component.html')
+               template: require('./terra-overlay.component.html'),
+               styles:   [require('./terra-overlay.component.scss')]
            })
 export class TerraOverlayComponent implements AfterViewInit
 {
@@ -26,6 +28,8 @@ export class TerraOverlayComponent implements AfterViewInit
     @Input() inputIsCloseable:boolean;
     @Input() inputIsLarge:boolean;
     @Input() inputIsSmall:boolean;
+    @Output() outputOnHide:EventEmitter<ModalDirective>;
+    @Output() outputOnShow:EventEmitter<ModalDirective>;
     
     constructor()
     {
@@ -33,6 +37,9 @@ export class TerraOverlayComponent implements AfterViewInit
         this.inputIsCloseable = true;
         this.inputIsLarge = false;
         this.inputIsSmall = false;
+        
+        this.outputOnHide = new EventEmitter<ModalDirective>();
+        this.outputOnShow = new EventEmitter<ModalDirective>();
     }
     
     ngAfterViewInit()
@@ -51,11 +58,13 @@ export class TerraOverlayComponent implements AfterViewInit
     
     public showOverlay():void
     {
+        this.outputOnShow.emit(null);
         this.viewChildOverlay.show();
     }
     
     public hideOverlay():void
     {
+        this.outputOnHide.emit(null);
         this.viewChildOverlay.hide();
     }
 }

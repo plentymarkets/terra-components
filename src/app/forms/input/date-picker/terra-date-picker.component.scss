@@ -13,12 +13,17 @@
         overflow: visible;
         position: inherit;
         height: 100%;
+        [class*=" icon-"]
+        {
+            font-family: mydatepicker !important;
+        }
         .icon-cross,
         .icon-calendar
         {
-            font-size: 20px
+            font-size: 20px;
         }
-        .selector {
+        .selector
+        {
             position: fixed;
         }
     }

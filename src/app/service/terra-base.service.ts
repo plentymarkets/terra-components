@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
-    Http,
     Headers,
+    Http,
     Response
 } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -92,6 +92,32 @@ export class TerraBaseService
                 {
                     return response.json()
                 }
+            }).catch(
+            (error: any) =>
+            {
+                if (error.status == 401)
+                {
+                    let event:CustomEvent = new CustomEvent('login');
+                    //Workaround for plugins in Angular (loaded via iFrame)
+                    if(window.parent != null)
+                    {
+                        //workaround for plugins in GWT (loaded via iFrame)
+                        if(window.parent.window.parent != null)
+                        {
+                            window.parent.window.parent.window.dispatchEvent(event);
+                        }
+                        else
+                        {
+                            window.parent.window.dispatchEvent(event);
+                        }
+                    }
+                    else
+                    {
+                        window.dispatchEvent(event);
+                    }
+                }
+    
+                return Observable.throw(new Error(error));
             }).share();
         
         req.subscribe(() =>

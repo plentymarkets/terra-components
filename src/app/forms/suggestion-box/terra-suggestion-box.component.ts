@@ -1,15 +1,23 @@
 import {
+    ChangeDetectionStrategy,
     Component,
-    OnInit,
-    Input,
-    Output,
     ElementRef,
     EventEmitter,
+    forwardRef,
+    Input,
     OnChanges,
-    SimpleChanges,
-    ChangeDetectionStrategy
+    OnInit,
+    Output,
+    SimpleChanges
 } from '@angular/core';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+
+export const SUGGESTION_BOX_VALUE_ACCESSOR:any = {
+    provide:     NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => TerraSuggestionBoxComponent),
+    multi:       true
+};
 
 //TODO in template input mit terra-input ersetzen
 @Component({
@@ -19,6 +27,7 @@ import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.in
                host:            {
                    '(document:click)': 'clickedOutside($event)',
                },
+               providers:       [SUGGESTION_BOX_VALUE_ACCESSOR],
                changeDetection: ChangeDetectionStrategy.OnPush
            })
 
@@ -33,9 +42,14 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     @Output() outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
     @Output() inputSelectedValueChange = new EventEmitter<TerraSuggestionBoxValueInterface>();
     
+    /**
+     * @deprecated
+     * @param value
+     */
     @Input()
     set inputSelectedValue(value:number | string)
     {
+        console.warn('inputSelectedValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
         if(value)
         {
             this.inputListBoxValues
@@ -65,6 +79,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     private _isValid:boolean;
     private _regex:string;
     private _isInit:boolean;
+    private _value:number | string;
     
     /**
      *
@@ -101,7 +116,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             {
                 if(this.inputListBoxValues[i].active == true)
                 {
-                    this.select(i);
+                    this.select(this.inputListBoxValues[i]);
                     foundItem = true;
                 }
             }
@@ -140,6 +155,59 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     
     /**
      *
+     * Two way data binding by ngModel
+     */
+    private onTouchedCallback:() => void = () =>
+    {
+    };
+    
+    private onChangeCallback:(_:any) => void = (_) =>
+    {
+    };
+    
+    public registerOnChange(fn:any):void
+    {
+        this.onChangeCallback = fn;
+    }
+    
+    public registerOnTouched(fn:any):void
+    {
+        this.onTouchedCallback = fn;
+    }
+    
+    public writeValue(value:any):void
+    {
+        this.value = value;
+    }
+    
+    public get value():any
+    {
+        return this._value;
+    }
+    
+    public set value(value:any)
+    {
+        this._value = value;
+        
+        if(value !== undefined && value !== null)
+        {
+            this.inputListBoxValues
+                .forEach((item:TerraSuggestionBoxValueInterface) =>
+                         {
+                             if(item.value == value)
+                             {
+                                 this._selectedValue = item;
+                             }
+                         });
+        }
+        else
+        {
+            this._selectedValue = this.inputListBoxValues[0];
+        }
+    }
+    
+    /**
+     *
      * @param event
      */
     private clickedOutside(event):void
@@ -154,16 +222,13 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      *
      * @param value
      */
-    private select(index:number):void
+    private select(value:TerraSuggestionBoxValueInterface):void
     {
-        if(this.inputListBoxValues.length > 0)
-        {
-            this._selectedValue.active = false;
-            this._selectedValue = this.inputListBoxValues[index];
-            this.outputValueChanged.emit(this.inputListBoxValues[index]);
-            this.inputSelectedValue = this.inputListBoxValues[index].value;
-        }
-        this._toggleOpen = !this._toggleOpen;
+        this._selectedValue = value;
+        this.onTouchedCallback();
+        this.onChangeCallback(value.value);
+        this.outputValueChanged.emit(value);
+        this._toggleOpen = false;
     }
     
     /**
@@ -247,26 +312,38 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         let currentList = [];
         let searchString = this._currentValue.caption;
         
-        if(this.tempInputListBoxValues != null && this.tempInputListBoxValues.length == 0)
+        if(searchString)
         {
-            this.tempInputListBoxValues = this.inputListBoxValues;
-        }
-        
-        if(this._currentValue.caption.length >= 3)
-        {
-            for(let value in this.tempInputListBoxValues)
+            if(this.tempInputListBoxValues != null && this.tempInputListBoxValues.length == 0)
             {
-                if(this.tempInputListBoxValues[value].caption.search(searchString) != -1)
-                {
-                    currentList.push(this.tempInputListBoxValues[value]);
-                }
+                this.tempInputListBoxValues = this.inputListBoxValues;
             }
             
-            this.inputListBoxValues = currentList;
+            if(this._currentValue.caption.length >= 3)
+            {
+                for(let value in this.tempInputListBoxValues)
+                {
+                    if(this.tempInputListBoxValues[value].caption.search(searchString) != -1)
+                    {
+                        currentList.push(this.tempInputListBoxValues[value]);
+                    }
+                }
+                
+                this.inputListBoxValues = currentList;
+            }
+            else
+            {
+                this.inputListBoxValues = this.tempInputListBoxValues;
+            }
+            
+            this.value = this._currentValue;
         }
         else
         {
-            this.inputListBoxValues = this.tempInputListBoxValues;
+            this.value = null;
+            this.onTouchedCallback();
+            this.onChangeCallback(null);
+            this._toggleOpen = false;
         }
     }
     
@@ -274,8 +351,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      *
      * @param
      */
-    public resetComponentValue()
+    public resetComponentValue():void
     {
+        this.value = null;
+        
         this._selectedValue =
             {
                 value:   '',
@@ -286,5 +365,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 value:   '',
                 caption: ''
             };
+        this._value = null;
     }
 }

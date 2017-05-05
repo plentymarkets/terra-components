@@ -1,12 +1,12 @@
 import {
     Component,
-    OnInit,
-    Input,
-    ViewChild,
-    Output,
     EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
     SimpleChanges,
-    OnChanges
+    ViewChild
 } from '@angular/core';
 import { TerraMultiSelectBoxValueInterface } from './data/terra-multi-select-box-value.interface';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
@@ -86,7 +86,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
         if(!this.inputName)
         {
             this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
-    
+            
             //this is necessary for language switch
             this.translation.translationChanged.subscribe(
                 () =>
