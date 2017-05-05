@@ -2,16 +2,17 @@ import {
     Component,
     Input,
     OnChanges,
+    OnDestroy,
     SimpleChanges
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
 
 @Component({
                selector: 'terra-split-view',
-               styles:   [require('./terra-split-view.component.scss')],
-               template: require('./terra-split-view.component.html')
+               template: require('./terra-split-view.component.html'),
+               styles:   [require('./terra-split-view.component.scss')]
            })
-export class TerraSplitViewComponent implements OnChanges
+export class TerraSplitViewComponent implements OnChanges, OnDestroy
 {
     @Input() inputModules:Array<TerraSplitViewInterface>;
     @Input() inputShowBreadcrumbs:boolean;
@@ -23,6 +24,11 @@ export class TerraSplitViewComponent implements OnChanges
     {
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
+    }
+    
+    ngOnDestroy()
+    {
+        this.inputModules.splice(0, this.inputModules.length);
     }
     
     ngOnChanges(changes:SimpleChanges)

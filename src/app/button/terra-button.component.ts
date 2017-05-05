@@ -14,6 +14,7 @@ export class TerraButtonComponent
 {
     @Input() inputIsPrimary:boolean;
     @Input() inputIsSecondary:boolean;
+    @Input() inputIsTertiary:boolean;
     @Input() inputIsSmall:boolean;
     @Input() inputIsLarge:boolean;
     @Input() inputIsDisabled:boolean;
@@ -25,14 +26,15 @@ export class TerraButtonComponent
     @Input() inputTooltipText:string;
     @Input() inputTooltipPlacement:string; //top, bottom, left, right
     @Input() inputIsActive:boolean;
+    @Input() inputIsFlagged:boolean;
     @Output() outputClicked = new EventEmitter<any>();
-    
     
     constructor()
     {
         this.inputTooltipPlacement = 'top';
         this.inputType = 'button';
         this.inputIsActive = false;
+        this.inputIsFlagged = false;
     }
     
     private click():void

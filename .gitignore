@@ -18,6 +18,7 @@
 .classpath
 *.launch
 .settings/
+*.iml
 
 # misc
 /.sass-cache

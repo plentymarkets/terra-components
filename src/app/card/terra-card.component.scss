@@ -1,0 +1,38 @@
+.card
+{
+    &.terra-card
+    {
+        margin: 10px 5px;
+        display: inline-block;
+        width: 200px;
+    }
+    .card-img-top
+    {
+        width: 100%;
+        height: 150px;
+        margin: 36px 0px 8px 0px;
+        
+        &.terra-card-image
+        {
+            background-size: contain;
+            background: no-repeat center;
+        }
+        
+        &.terra-card-placeholder
+        {
+            font-size: 150px;
+            text-align: center;
+            color: $gray-light-2;
+        }
+    }
+}
+
+.card-footer
+{
+    padding: 2px 8px;
+}
+
+.card-block
+{
+    padding: 0px 8px 8px 8px;
+}

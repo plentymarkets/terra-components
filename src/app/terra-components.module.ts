@@ -56,11 +56,14 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 import { TerraLoadingSpinnerComponent } from './loading-spinner/terra-loading-spinner.component';
 import { TerraLoadingSpinnerService } from './loading-spinner/service/terra-loading-spinner.service';
+import { TerraCardComponent } from './card/terra-card.component';
 import { TranslationModule } from 'angular-l10n';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraNavigatorComponent } from './navigator/terra-navigator.component';
 import { TerraNavigatorSplitViewConfig } from './navigator/config/terra-navigator-split-view.config';
 import { TerraToggleComponent } from './toggle/terra-toggle.component';
+import { TerraSyntaxEditorComponent } from './editor/syntax/terra-syntax-editor.component';
+import { AceEditorModule } from 'ng2-ace-editor';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -121,6 +124,9 @@ export { TerraTileBoxColor } from './tile/box/data/terra-tile-box-color';
 export { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 export { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-picker.component';
 export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
+export { TerraCardComponent } from './card/terra-card.component';
+export { TerraSyntaxEditorComponent } from './editor/syntax/terra-syntax-editor.component';
+export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.data';
 
 @NgModule({
               declarations:    [
@@ -160,8 +166,10 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraSuggestionBoxComponent,
                   TerraDatePickerComponent,
                   TerraTextAreaInputComponent,
+                  TerraCardComponent,
                   TerraNavigatorComponent,
-                  TerraToggleComponent
+                  TerraToggleComponent,
+                  TerraSyntaxEditorComponent
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -195,8 +203,10 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraSuggestionBoxComponent,
                   TerraDatePickerComponent,
                   TerraTextAreaInputComponent,
+                  TerraCardComponent,
                   TerraNavigatorComponent,
-                  TerraToggleComponent
+                  TerraToggleComponent,
+                  TerraSyntaxEditorComponent
               ],
               exports:         [
                   TerraAlertPanelComponent,
@@ -233,8 +243,10 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   TerraSuggestionBoxComponent,
                   TerraDatePickerComponent,
                   TerraTextAreaInputComponent,
+                  TerraCardComponent,
                   TerraNavigatorComponent,
                   TerraToggleComponent,
+                  TerraSyntaxEditorComponent
               ],
               imports:         [
                   BrowserModule,
@@ -246,7 +258,8 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
                   AlertModule.forRoot(),
                   ButtonsModule.forRoot(),
                   TranslationModule.forRoot(),
-                  MyDatePickerModule
+                  MyDatePickerModule,
+                  AceEditorModule
               ],
               providers:       [
                   COMPILER_PROVIDERS,

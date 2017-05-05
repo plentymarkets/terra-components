@@ -1,20 +1,28 @@
-<div class="btn-handler"
-     tooltip="{{inputTooltipText}}"
-     placement="{{inputTooltipPlacement}}"
+<template #tooltipTemplate>
+    <div [innerHtml]="inputTooltipText"></div>
+</template>
+<div [isDisabled]="!inputTooltipText"
+     class="btn-handler"
+     [tooltip]="tooltipTemplate"
+     [placement]="inputTooltipPlacement"
+     [container]="'body'"
      [ngClass]="{'pull-xs-right': inputIsAlignRight,
                  'disabled': inputIsDisabled}">
     <button class="btn"
             [ngClass]="{'btn-brand-primary' : inputIsPrimary,
                       'btn-brand-secondary' : inputIsSecondary,
+                      'btn-tertiary': inputIsTertiary,
                       'btn-sm' : inputIsSmall,
                       'btn-lg' : inputIsLarge,
                       'activated' : inputIsActive}"
             [disabled]="inputIsDisabled"
             [hidden]="inputIsHidden"
             [type]="inputType"
-            (click)="click()"
-            container="body">
+            (click)="click()">
         <span *ngIf="inputIcon" class="icon_dist_top" [ngClass]="inputIcon"></span>
         {{inputCaption}}
     </button>
+    <div *ngIf="inputIsFlagged" class="flag" [ngClass]="{'disabled': inputIsDisabled}">
+        <span [ngClass]="{'disabled': inputIsDisabled}"></span>
+    </div>
 </div>

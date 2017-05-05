@@ -18,6 +18,15 @@ input[type="checkbox"]
 .checkbox
 {
     display: inline-block;
+    cursor: pointer;
+}
+
+.checkbox-icon
+{
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: .125rem;
+    font-size: 1rem;
 }
 
 .input-control.checkbox

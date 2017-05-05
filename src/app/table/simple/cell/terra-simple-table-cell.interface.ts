@@ -9,4 +9,5 @@ export interface TerraSimpleTableCellInterface
     buttonList?:Array<TerraButtonInterface>;
     tooltipText?:string;
     tooltipPlacement?:string;
+    buttonListAlignRight?:boolean;
 }
