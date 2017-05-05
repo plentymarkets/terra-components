@@ -19,20 +19,6 @@ export class TerraComponentsComponent extends Translation implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
     
-    private tagList:Array<TerraTagInterface> = [
-        {
-            badge: 'tag1',
-            isTaggable: true,
-            isTagged: true
-        },
-        {
-            badge: 'tag2'
-        },
-        {
-            badge: 'tag3'
-        }
-    ];
-    
     public constructor(private viewContainerRef:ViewContainerRef,
                        public locale:LocaleService,
                        public translation:TranslationService)
