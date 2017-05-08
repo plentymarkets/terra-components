@@ -110,6 +110,16 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
     }
     
+    private checkTooltipPlacement(placement:string):string
+    {
+        if(placement != null && placement != '')
+        {
+            return placement;
+        }
+        
+        return 'top';
+    }
+    
     private changeRowState(isChecked:boolean,
                            rowToChange:TerraDataTableRowInterface<D>):void
     {
@@ -143,16 +153,15 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     
     private rowClicked(cell:TerraDataTableCellInterface, row:TerraDataTableRowInterface<D>):void
     {
-        this._rowList
-            .forEach((row) =>
-                     {
-                         row.isActive = false;
-                     });
-        
-        row.isActive = true;
-        
         if(!cell.buttonList)
         {
+            this._rowList
+                .forEach((row) =>
+                         {
+                             row.isActive = false;
+                         });
+            
+            row.isActive = true;
             row.clickFunction();
         }
     }

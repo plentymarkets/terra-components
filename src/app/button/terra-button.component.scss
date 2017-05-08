@@ -27,6 +27,47 @@ button.close
     padding: 5px 10px 0 5px;
 }
 
+.flag
+{
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    width: 15px;
+    height: 15px;
+    border-top-right-radius: 0.2rem;
+    cursor: pointer;
+    
+    &.disabled
+    {
+        cursor: not-allowed;
+    }
+    
+    span
+    {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: $white;
+        text-align: center;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        width: 20px;
+        display: block;
+        position: absolute;
+        top: -2px;
+        right: -7px;
+        cursor: pointer;
+        background: $brand-yellow;
+        border-top: 10px solid $brand-yellow;
+        &.disabled
+        {
+            background: $brand-yellow-light;
+            border-top: 10px solid $brand-yellow-light;
+            cursor: not-allowed;
+        }
+    }
+}
+
 .btn
 {
     height: $terra-btn-md-height;
@@ -114,6 +155,15 @@ button.close
         &:hover
         {
             background: darken($brand-secondary, 10%);
+        }
+    }
+    &.btn-tertiary
+    {
+        background: $brand-green;
+        color: white;
+        &:hover
+        {
+            background: darken($brand-green, 10%);
         }
     }
     
@@ -245,7 +295,7 @@ input[type="button"]
             border-left: $border-width solid $gray-light-4;
         }
         
-        &:not(:first-child):not(:last-child) > .btn-handler > .btn
+        &:not(:first-child):not(:last-child) > .btn-handler > .btn, &:not(:first-child):not(:last-child) > .btn-handler > .flag
         {
             border-radius: 0;
         }
@@ -254,7 +304,7 @@ input[type="button"]
         {
             margin-left: 0;
             
-            &:not(:last-child) > .btn-handler > .btn
+            &:not(:last-child) > .btn-handler > .btn, &:not(:last-child) > .btn-handler > .flag
             {
                 @include border-right-radius(0);
             }
@@ -264,7 +314,7 @@ input[type="button"]
         {
             margin-left: 0;
             
-            &:not(:first-child) > .btn-handler > .btn
+            &:not(:first-child) > .btn-handler > .btn, &:not(:first-child) > .btn-handler > .flag
             {
                 @include border-left-radius(0);
             }
@@ -275,6 +325,7 @@ input[type="button"]
 .btn-handler
 {
     display: inline-block;
+    position: relative;
 }
 
 .icon_dist_top
@@ -297,6 +348,28 @@ input[type="button"]
             width: 100%;
             text-align: left;
         }
+        
+        terra-button:last-child:not(:first-child) .flag
+        {
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+        
+        terra-button:first-child:not(:last-child) .flag
+        {
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        
+        terra-button:not(:first-child):not(:last-child) .flag
+        {
+            border-radius: 0;
+        }
+        
         terra-button:first-child:not(:last-child) .btn
         {
             border-top-right-radius: 3px;

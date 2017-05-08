@@ -67,4 +67,14 @@ export class TerraSimpleTableComponent
         
         this.inputRowList.splice(index, 1);
     }
+    
+    private checkTooltipPlacement(placement:string):string
+    {
+        if(placement != null && placement != '')
+        {
+            return placement;
+        }
+        
+        return 'top';
+    }
 }

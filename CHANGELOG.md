@@ -1,3 +1,34 @@
+<a name="1.1.0"></a>
+# 1.1.1 (08.05.2017)
+
+### Bug Fixes
+* **terra-button** changed colors and minor pseudo-class fixes
+
+<a name="1.1.0"></a>
+# 1.1.0 (05.05.2017)
+
+### Feature
+* **terra-syntax-editor** NEW component for displaying and editing code.
+* **terra-card** NEW component to display data in a responsive card (grid) layout
+* **terra-button.interface** Add new optional attributes _tooltipPlacement_, _isPrimary_, _isSecondary_, _isTertiary_, _isDisabled_, _isHidden_
+* **terra-button** Add new inputs _inputIsTertiary_, _inputIsFlagged_
+* **terra-checkbox** Add new input _inputIcon_
+* **terra-overlay** Add new outputs _outputOnHide_, _outputOnShow_
+* **terra-data-table** Add additional options for _buttonList_
+* **terra-simple-table** Add additional options for _buttonList_ 
+* **terra-simple-table-cell.interface** add _buttonListAlignRight_ attribute
+* **terra-simple-table-row.interface** add _textColorCss_ attribute
+
+### Bug Fixes
+* **terra-checkbox** The label is clickable to change the value.
+* **terra-checkbox** Fixed a bug where the change event wasn't triggered correctly.
+* **terra-base.service** Showing the relogin overlay on 401 (Unauthorized) http response.
+* **terra-split-config-base** The parameter as JSON of two different views is now compared correctly.
+* **terra-split-view** Reloading split view won't add more modules to HTML anymore.
+* **terra-split-view** Fixed CSS for split view showing in an overlay.
+* **terra-data-table** Tooltip changes for cells and header.
+* **terra-simple-table** Tooltip changes for cells and header.
+
 <a name="1.0.3"></a>
 # 1.0.3 (28.04.2017)
 
@@ -15,7 +46,7 @@
 # 1.0.1 (26.04.2017)
 
 ### Breaking Changes
-* **ng2-boostrap** replaced ng2-bootstrap with ngx-bootstrap
+* **ng2-bootstrap** replaced ng2-bootstrap with ngx-bootstrap
 
 ### Feature
 * **terra-navigator** Add tooltip to navigator buttons

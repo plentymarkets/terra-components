@@ -27,6 +27,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
 {
     @Input() inputIsDisabled:boolean;
     @Input() inputCaption:string;
+    @Input() inputIcon:string;
     @Input() inputId:string;
     @Output() valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
     
@@ -63,9 +64,13 @@ export class TerraCheckboxComponent implements ControlValueAccessor
         if(v !== this._innerValue)
         {
             this._innerValue = v;
-            this.valueChange.emit(v);
             this.onChangeCallback(v);
         }
+    }
+    
+    onChange()
+    {
+        this.valueChange.emit(null);
     }
     
     //From ControlValueAccessor interface

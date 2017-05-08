@@ -180,3 +180,25 @@
         width: calc(100% - 300px);
     }
 }
+
+// TODO: @vwiebe, refactoring
+
+/deep/ terra-split-view .modal-content terra-split-view .hasDivider
+{
+    padding: 0 5px 0 4px !important;
+}
+
+/deep/ terra-split-view .modal-content terra-split-view .view.last:not(.first)
+{
+    padding: 0 0 0 4px !important;
+}
+
+/deep/ terra-split-view .modal-content terra-split-view .divider
+{
+    display: block !important;
+}
+
+/deep/ .hasSplitView .modal-body
+{
+    height: 525px;
+}

@@ -14,7 +14,7 @@ export class TerraSplitConfigBase
             let hasSameInstanceKey = this._modules[i].instanceKey != null &&
                                      this._modules[i].instanceKey == module.instanceKey;
             
-            let hasSameParams = this._modules[i].parameter == module.parameter;
+            let hasSameParams = JSON.stringify(this._modules[i].parameter) == JSON.stringify(module.parameter);
             
             if(hasSameModuleName && hasSameInstanceKey)
             {
