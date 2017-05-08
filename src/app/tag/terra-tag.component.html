@@ -1,3 +1,6 @@
 <span class="tag">
+    <span *ngIf="inputIsTaggable"
+          [ngClass]="{'isTagged': inputIsTagged, 'icon-ticket_prio1': inputIsTagged, 'icon-ticket_prio8': !inputIsTagged}">
+    </span>
     {{inputBadge}}
 </span>
