@@ -307,7 +307,7 @@ input[type="button"]
 
 /deep/
 {
-    .btn-group-vertical
+    .btn-group-vertical, .btn-group-menu
     {
         display: block;
         
@@ -362,6 +362,29 @@ input[type="button"]
         {
             border-radius: 0;
             margin: 1px 0;
+        }
+    }
+    .btn-group-menu
+    {
+        .btn
+        {
+            padding: 0px 18px 0px 9px !important;
+            color: #333333;
+            background-color: #F2F2F2;
+            border-radius: 0 !important;
+            
+            &.activated
+            {
+                background-color: #354763 !important;
+                color: #FFFFFF !important;
+            }
+            
+            .icon-right
+            {
+                float: right;
+                margin-top: 4px;
+                margin-right: -5px;
+            }
         }
     }
 }
