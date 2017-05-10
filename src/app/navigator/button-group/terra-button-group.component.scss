@@ -1,26 +1,5 @@
 @import "./../../button/terra-button.component.scss";
 
-.btn
-{
-    padding: 0px 18px 0px 9px !important;
-    color: #333333;
-
-    &.activated
-    {
-        background-color: #354763 !important;
-        color: #FFFFFF !important;
-    }
-    background-color: #F2F2F2;
-    border-radius: 0 !important;
-    
-    .icon-right
-    {
-        float: right;
-        margin-top: 4px;
-        margin-right: -5px;
-    }
-}
-
 /deep/
 {
     .btn-group-vertical
