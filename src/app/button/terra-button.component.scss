@@ -342,7 +342,8 @@ input[type="button"]
             border-radius: 0;
         }
         
-        terra-button:first-child:not(:last-child) .btn
+        terra-button:first-child:not(:last-child) .btn,
+        .btn-handler:first-child:not(:last-child) .btn
         {
             border-top-right-radius: 3px;
             border-top-left-radius: 3px;
@@ -350,7 +351,8 @@ input[type="button"]
             border-bottom-left-radius: 0;
             margin: 0px 0px 1px 0px;
         }
-        terra-button:last-child:not(:first-child) .btn
+        terra-button:last-child:not(:first-child) .btn,
+        .btn-handler:last-child:not(:first-child) .btn
         {
             border-bottom-left-radius: 3px;
             border-bottom-right-radius: 3px;
@@ -358,7 +360,8 @@ input[type="button"]
             border-top-left-radius: 0;
             margin: 1px 0px 0px 0px;
         }
-        terra-button:not(:first-child):not(:last-child) .btn
+        terra-button:not(:first-child):not(:last-child) .btn,
+        .btn-handler:not(:first-child):not(:last-child) .btn
         {
             border-radius: 0;
             margin: 1px 0;
@@ -381,9 +384,10 @@ input[type="button"]
             
             .icon-right
             {
-                float: right;
-                margin-top: 4px;
-                margin-right: -5px;
+                margin-top: 8px;
+                position: absolute !important;
+                right: 0px;
+                top: initial !important;
             }
         }
     }
