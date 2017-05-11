@@ -25,6 +25,25 @@
     }
 }
 
+//ToDo: Fix Divider Problem
+///deep/
+//{
+//    terra-navigator .divider
+//    {
+//    display: none !important;
+//    }
+//
+//    terra-navigator .hasDivider
+//    {
+//        padding: 0 !important;
+//    }
+//
+//    terra-navigator .btn-group-menu
+//    {
+//        margin: 0 1px !important;
+//    }
+//}
+
 :host /deep/ .view
 {
     overflow: hidden !important;
