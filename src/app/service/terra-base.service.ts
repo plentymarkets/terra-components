@@ -90,7 +90,7 @@ export class TerraBaseService
                 }
                 else
                 {
-                    return response.json()
+                    return response.text() === ''? {} : response.json();
                 }
             }).catch(
             (error: any) =>
