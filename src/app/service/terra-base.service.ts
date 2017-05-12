@@ -117,7 +117,7 @@ export class TerraBaseService
                     }
                 }
     
-                return Observable.throw(new Error(error));
+                return Observable.throw(error);
             }).share();
         
         req.subscribe(() =>
