@@ -1,4 +1,4 @@
-<div bsModal #viewChildOverlay="bs-modal" class="modal fade" tabindex="-1" role="dialog" (onHidden)="outputOnHide" (onShown)="outputOnShow">
+<div bsModal #viewChildOverlay="bs-modal" class="modal fade" tabindex="-1" role="dialog" (onHidden)="hideOverlay()" (onShown)="outputOnShow">
     <div class="modal-dialog modal-lg" [ngClass]="{'modal-lg': inputIsLarge, 'modal-sm': inputIsSmall}">
         <div class="modal-content">
             <div class="modal-header" *ngIf="inputIsCloseable && inputOverlayTitle">
