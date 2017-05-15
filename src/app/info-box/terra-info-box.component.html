@@ -1,6 +1,12 @@
-<div class="info-box">
-    <div class="info-box-inner">
-        <div class="info-box-text pull-sm-left">
+<div class="info-box"
+     [ngClass]="{'add': inputAddBox,
+                'empty': inputIsEmpty}">
+    <div class="info-box-inner"
+         [ngClass]="{'add': inputAddBox,
+                    'empty': inputIsEmpty}">
+        <div class="info-box-text pull-sm-left"
+             [ngClass]="{'add': inputAddBox,
+                        'empty': inputIsEmpty}">
             <ng-content select="[body]"></ng-content>
         </div>
         <div class="btn-group-vertical pull-sm-right" role="group">
