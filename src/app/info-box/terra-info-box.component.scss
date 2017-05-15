@@ -25,3 +25,16 @@
     padding-right: 0.8rem;
     padding-bottom: 0.4rem;
 }
+
+.empty
+{
+    background: $gray-light-3;
+    justify-content: center;
+    line-height: 8rem;
+}
+
+.add
+{
+    // TODO add icon to symbolize adding function
+    background: $gray-light-3;
+}
