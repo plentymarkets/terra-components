@@ -46,6 +46,44 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
                     this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
                 }
             }
+    
+            // init breadcrumb sliding
+            setTimeout(function()
+            {
+                $('.terra-breadcrumbs').each(function()
+                {
+                    $(this).find('li').each(function()
+                    {
+                        var viewContainer = $(this).closest('.terra-breadcrumbs');
+                        var viewContainerOffsetLeft =  viewContainer.offset().left;
+                        var viewContainerWidth = viewContainer.width();
+    
+                        $(this).off()
+                        $(this).mouseenter(function()
+                        {
+                            var elementWidth = $(this).width();
+                            var elementOffsetLeft = $(this).offset().left;
+                            var viewContainerScrollLeft = viewContainer.scrollLeft();
+                            var offset = 0;
+    
+                            if (elementOffsetLeft < viewContainer.offset().left)
+                            {
+                                offset = viewContainerScrollLeft + elementOffsetLeft - 10;
+                            }
+                            else if (elementOffsetLeft + elementWidth + 30 > viewContainerOffsetLeft + viewContainerWidth)
+                            {
+                                offset = viewContainerScrollLeft + elementOffsetLeft + elementWidth + 30 - viewContainerWidth;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                            viewContainer.stop();
+                            viewContainer.animate({ scrollLeft: offset }, 1200);
+                        });
+                    });
+                });
+            });
         }
     }
     
@@ -97,7 +135,7 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
                        {
                            offset = offset + ($(window).width() / 2 - viewContainer.width() / 2);
                        }
-            
+                       
                        viewContainer.stop();
                        viewContainer.animate({scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset)},
                                              this.ANIMATION_SPEED);
