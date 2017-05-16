@@ -36,6 +36,7 @@
     "bootstrap": "4.0.0-alpha.4",
     "bootstrap-loader": "2.0.0",
     "core-js": "^2.4.1",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "mydatepicker": "^1.7.15",
     "ng2-ace-editor": "^0.2.0",
