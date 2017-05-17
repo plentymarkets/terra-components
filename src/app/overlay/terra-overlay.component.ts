@@ -58,13 +58,21 @@ export class TerraOverlayComponent implements AfterViewInit
     
     public showOverlay():void
     {
-        this.outputOnShow.emit(null);
         this.viewChildOverlay.show();
     }
     
     public hideOverlay():void
     {
-        this.outputOnHide.emit(null);
         this.viewChildOverlay.hide();
+    }
+    
+    public emitOutputOnShow():void
+    {
+        this.outputOnShow.emit(null);
+    }
+    
+    public emitOutputOnHide():void
+    {
+        this.outputOnHide.emit(null);
     }
 }
