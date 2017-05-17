@@ -9,4 +9,5 @@ export interface TerraDataTableHeaderCellInterface
     isHidden?:boolean;
     tooltipText?:string;
     tooltipPlacement?:string;
+    textAlign?:string;
 }

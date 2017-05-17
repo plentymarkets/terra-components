@@ -173,6 +173,14 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     
     public set headerList(value:Array<TerraDataTableHeaderCellInterface>)
     {
+        value.forEach((item:TerraDataTableHeaderCellInterface) =>
+                      {
+                          if(item.textAlign === null || item.textAlign === undefined)
+                          {
+                              item.textAlign = "left";
+                          }
+                      });
+        
         this._headerList = value;
     }
     
