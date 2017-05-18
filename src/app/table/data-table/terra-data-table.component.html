@@ -19,7 +19,7 @@
                     [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                     [tooltip]="header.tooltipText"
                     [isDisabled]="!header.tooltipText || header.tooltipText.length == 0"
-                    [ngStyle]="{'text-align': header.textAlign}">
+                    [ngStyle]="getTextAlign(header)">
                     <span>{{header.caption}}</span>
                 </th>
             </ng-template>
@@ -43,7 +43,7 @@
                         [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
                         [tooltip]="tdTooltip"
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
-                        [ngStyle]="{'text-align': _headerList[i].textAlign}">
+                        [ngStyle]="getTextAlign(_headerList[i])">
                         <span [ngClass]="cell.icon"
                               [ngStyle]="{color: cell.color}">{{cell.caption}}
                         </span>

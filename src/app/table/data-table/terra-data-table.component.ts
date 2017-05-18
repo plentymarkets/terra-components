@@ -173,14 +173,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     
     public set headerList(value:Array<TerraDataTableHeaderCellInterface>)
     {
-        value.forEach((item:TerraDataTableHeaderCellInterface) =>
-                      {
-                          if(item.textAlign === null || item.textAlign === undefined)
-                          {
-                              item.textAlign = "left";
-                          }
-                      });
-        
         this._headerList = value;
     }
     
@@ -301,6 +293,18 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
                 }
             }
         )
+    }
+    
+    public getTextAlign(item:TerraDataTableHeaderCellInterface):any
+    {
+        if(item.textAlign !== undefined && item.textAlign !== null)
+        {
+            return {'text-align': item.textAlign};
+        }
+        else
+        {
+            return {'text-align': "left"};
+        }
     }
     
     // ------------------------------------------------------
