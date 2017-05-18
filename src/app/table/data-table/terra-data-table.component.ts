@@ -295,6 +295,18 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         )
     }
     
+    public getTextAlign(item:TerraDataTableHeaderCellInterface):any
+    {
+        if(item.textAlign !== undefined && item.textAlign !== null)
+        {
+            return {'text-align': item.textAlign};
+        }
+        else
+        {
+            return {'text-align': "left"};
+        }
+    }
+    
     // ------------------------------------------------------
     // viewChildOverlay and column hiding functionality
     
