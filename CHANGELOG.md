@@ -1,3 +1,9 @@
+<a name="X.X.X"></a>
+# 1.2.0 (18.05.2017)
+
+### Feature
+* **terra-data-table** Added text align for content
+
 <a name="1.1.1"></a>
 # 1.2.0 (18.05.2017)
 
