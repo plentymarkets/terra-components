@@ -1,10 +1,11 @@
 <a name="X.X.X"></a>
-# 1.2.0 (18.05.2017)
+# X.X.X (XX.XX.XXXX)
 
 ### Feature
 * **terra-data-table** Added text align for content
+* **plenty-icons** New icon class _.icon-zoom_out_ and updated icons for _.icon-shipment_tracking_ and _.icon-reorder_search_
 
-<a name="1.1.1"></a>
+<a name="1.2.0"></a>
 # 1.2.0 (18.05.2017)
 
 ### Feature
