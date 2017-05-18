@@ -8,7 +8,6 @@ import {
     Translation,
     TranslationService
 } from 'angular-l10n';
-import { TerraTagInterface } from './tag/data/terra-tag.interface';
 
 @Component({
                selector: 'app-root',

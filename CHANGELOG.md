@@ -1,3 +1,18 @@
+<a name="1.1.1"></a>
+# 1.1.0 (18.05.2017)
+
+### Feature
+* **terra-button** Changed background color of button
+* **terra-taglist** Added icons to tag component
+* **
+
+### Bug Fixes
+* **terra-button** Fixed button focus outline 
+* **terra-split-view** Fixed sliding for breadcrumbs
+* **terra-number-input** Fixed disable of input 
+* **terra-base-service** Fixed error response handling
+* **terra-base-service** Fixed empty response handling
+
 <a name="1.1.0"></a>
 # 1.1.0 (05.05.2017)
 
