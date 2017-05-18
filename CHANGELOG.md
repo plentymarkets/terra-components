@@ -1,10 +1,15 @@
 <a name="1.1.1"></a>
-# 1.1.0 (18.05.2017)
+# 1.2.0 (18.05.2017)
+
+### Feature
+* **angular** Changed angular versions from 4.0.X to 4.1.X
+
+<a name="1.1.1"></a>
+# 1.1.1 (18.05.2017)
 
 ### Feature
 * **terra-button** Changed background color of button
 * **terra-taglist** Added icons to tag component
-* **
 
 ### Bug Fixes
 * **terra-button** Fixed button focus outline 
