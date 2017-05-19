@@ -38,7 +38,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Output() outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
     @Output() inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
     
-    
     /**
      * @deprecated
      * @param value
@@ -70,8 +69,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     private _selectedValue:TerraSelectBoxValueInterface;
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
-    private _isValid:boolean;
-    private _regex:string;
+    public _isValid:boolean;
     private _isInit:boolean;
     
     /**
@@ -81,7 +79,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     constructor(private elementRef:ElementRef)
     {
         this._isInit = false;
-        this.isValid = true;
         this.inputTooltipPlacement = 'top';
         this._selectedValue =
             {
@@ -92,6 +89,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     
     ngOnInit()
     {
+        this._isValid = true;
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
         this._isInit = true;
@@ -184,59 +182,5 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this.onTouchedCallback();
         this.onChangeCallback(value.value);
         this.outputValueChanged.emit(value);
-    }
-    
-    /**
-     *
-     * @returns {boolean}
-     */
-    public get isDisabled():boolean
-    {
-        return this.inputIsDisabled;
-    }
-    
-    /**
-     *
-     * @param value
-     */
-    public set isDisabled(value:boolean)
-    {
-        this.inputIsDisabled = value;
-    }
-    
-    /**
-     *
-     * @returns {boolean}
-     */
-    public get isValid():boolean
-    {
-        return this._isValid;
-    }
-    
-    /**
-     *
-     * @param isValid
-     */
-    public set isValid(isValid:boolean)
-    {
-        this._isValid = isValid;
-    }
-    
-    /**
-     *
-     * @returns {string}
-     */
-    public get regex():string
-    {
-        return this._regex;
-    }
-    
-    /**
-     *
-     * @param regex
-     */
-    public set regex(regex:string)
-    {
-        this._regex = regex;
     }
 }
