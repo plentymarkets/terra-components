@@ -9,5 +9,5 @@
     </label>
     <input id="{{inputName}}" [ngClass]="{'price-input': inputIsPriceInput}" type="number" [(ngModel)]="value" name="{{inputName}}"
            (blur)="onBlur()" autocomplete="off"
-           [disabled]="isDisabled" pattern="{{regex}}" step="0.01">
+           [disabled]="isDisabled" pattern="{{regex}}" step="0.01" placeholder="{{inputPlaceholder}}">
 </div>

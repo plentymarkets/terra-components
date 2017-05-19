@@ -15,12 +15,6 @@ import {
     MyDatePicker
 } from 'mydatepicker';
 
-export const DATE_PICKER_VALUE_ACCESSOR:any = {
-    provide:     NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TerraDatePickerComponent),
-    multi:       true
-};
-
 /**
  * @author mfrank
  */
@@ -28,7 +22,13 @@ export const DATE_PICKER_VALUE_ACCESSOR:any = {
                selector:  'terra-date-picker',
                styles:    [require('./terra-date-picker.component.scss')],
                template:  require('./terra-date-picker.component.html'),
-               providers: [DATE_PICKER_VALUE_ACCESSOR],
+               providers: [
+                   {
+                       provide:     NG_VALUE_ACCESSOR,
+                       useExisting: forwardRef(() => TerraDatePickerComponent),
+                       multi:       true
+                   }
+               ]
            })
 export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 {
