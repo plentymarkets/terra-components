@@ -6,6 +6,10 @@ $zIndex-3: 300;
     $FORMS
 \*------------------------------------*/
 
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    red;
+}
+
 input, textarea, .form-control
 {
     &.input_inset_inner

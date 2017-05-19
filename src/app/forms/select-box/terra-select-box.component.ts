@@ -12,20 +12,20 @@ import {
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-export const SELECT_BOX_VALUE_ACCESSOR:any = {
-    provide:     NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TerraSelectBoxComponent),
-    multi:       true
-};
-
 @Component({
                selector:  'terra-select-box',
                styles:    [require('./terra-select-box.component.scss')],
                template:  require('./terra-select-box.component.html'),
+               providers: [
+                   {
+                       provide:     NG_VALUE_ACCESSOR,
+                       useExisting: forwardRef(() => TerraSelectBoxComponent),
+                       multi:       true
+                   }
+               ],
                host:      {
                    '(document:click)': 'clickedOutside($event)',
-               },
-               providers: [SELECT_BOX_VALUE_ACCESSOR]
+               }
            })
 export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
