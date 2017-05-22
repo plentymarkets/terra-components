@@ -1,0 +1,38 @@
+<terra-base-toolbar *ngIf="inputShowBreadcrumbs">
+    <ul class="terra-breadcrumbs">
+        <ng-template ngFor let-module [ngForOf]="modules" let-first="first">
+            <li *ngIf="modules" (click)="updateViewport(module.mainComponentName + '_' + getModuleIndex(module))">
+                <div class="{{ module.mainComponentName + '_' + getModuleIndex(module) }}">
+                    <span>{{ module.name | translate: lang}}</span>
+                    <span *ngIf="module.componentChildren && module.componentChildren.length > 0">{{module.componentChildren.length}}</span>
+                </div>
+            </li>
+        </ng-template>
+    </ul>
+</terra-base-toolbar>
+<div *ngIf="modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
+    <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first">
+        <div *ngIf="!module.hidden"
+             id="{{ module.mainComponentName + '_' + getModuleIndex(module) }}"
+             class="view {{ module.defaultWidth }}"
+             [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">
+            <terra-dynamic-module-loader [inputModule]="module.module"
+                                         [inputParameter]="module.parameter"
+                                         [inputMainComponentName]="module.mainComponentName">
+            </terra-dynamic-module-loader>
+            <div class="divider" *ngIf="!last"></div>
+            <ng-template ngFor let-child [ngForOf]="module.componentChildren" let-last="last" let-first="first" let-i="index">
+                <div *ngIf="!child.hidden"
+                     id="{{ child.mainComponentName + '_child_' + i }}"
+                     class="view {{ child.defaultWidth }}"
+                     [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">
+                    <terra-dynamic-module-loader [inputModule]="child.module"
+                                                 [inputParameter]="child.parameter"
+                                                 [inputMainComponentName]="child.mainComponentName">
+                    </terra-dynamic-module-loader>
+                    <div class="divider" *ngIf="!last"></div>
+                </div>
+            </ng-template>
+        </div>
+    </ng-template>
+</div>
