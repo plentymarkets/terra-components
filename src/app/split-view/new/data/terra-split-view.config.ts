@@ -39,11 +39,16 @@ export class TerraSplitViewConfig
     {
         if(view.nextModule)
         {
-            return this.findLastModule(view.nextModule);;
+            return this.findLastModule(view.nextModule);
         }
         else
         {
             return view;
         }
+    }
+    
+    getLastModule():TerraSplitViewIn
+    {
+        return this.findLastModule(this.module);
     }
 }
