@@ -16,7 +16,7 @@
     
     <div class="select-box" [ngClass]="{'error': !_isValid, 'labeled': _hasLabel}">
         <span class="{{_selectedValue?.icon}}" *ngIf="_selectedValue?.icon"></span>
-        {{_selectedValue?.caption}}
+        <span [innerHtml]="_selectedValue?.caption"></span>
     </div>
     
     <div class="select-box-dropdown">
@@ -24,7 +24,7 @@
               (click)="select(item)"
               [ngClass]="{active: item.value === _selectedValue?.value}">
           <span class="{{item.icon}}" *ngIf="item.icon"></span>
-          {{item.caption}}
+            <span [innerHtml]="item.caption"></span>
         </span>
     </div>
 </div>
