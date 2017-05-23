@@ -3,43 +3,46 @@ import { EventEmitter } from '@angular/core';
 
 export class TerraSplitViewConfig
 {
-    module:TerraSplitViewIn;
+    private _firstView:TerraSplitViewIn;
     
-    eventEmitter:EventEmitter<TerraSplitViewIn> = new EventEmitter<TerraSplitViewIn>();
+    private _addViewEventEmitter:EventEmitter<TerraSplitViewIn> = new EventEmitter<TerraSplitViewIn>();
+    private _deleteViewEventEmitter:EventEmitter<TerraSplitViewIn> = new EventEmitter<TerraSplitViewIn>();
     
     public addView(view:TerraSplitViewIn):void
     {
-        if(this.module)
+        if(this._firstView)
         {
-            let lastModule = this.findLastModule(this.module);
-            if(lastModule.module.ngModule == view.module.ngModule)
+            let lastView = this.findLastView(this._firstView);
+            if(lastView.module.ngModule == view.module.ngModule)
             {
-                if(lastModule.componentChildren == null)
+                if(lastView.componentChildren == null)
                 {
-                    lastModule.componentChildren = [];
+                    lastView.componentChildren = [];
                 }
                 
-                lastModule.componentChildren.push(view);
-                this.eventEmitter.next(lastModule);
+                lastView.componentChildren.push(view);
+                view.parentView = lastView;
+                this.addViewEventEmitter.next(lastView);
             }
             else
             {
-                lastModule.nextModule = view;
-                this.eventEmitter.next(view);
+                lastView.nextView = view;
+                view.parentView = lastView;
+                this.addViewEventEmitter.next(view);
             }
         }
         else
         {
-            this.module = view;
-            this.eventEmitter.next(this.module);
+            this._firstView = view;
+            this.addViewEventEmitter.next(this._firstView);
         }
     }
     
-    findLastModule(view:TerraSplitViewIn):TerraSplitViewIn
+    public findLastView(view:TerraSplitViewIn):TerraSplitViewIn
     {
-        if(view.nextModule)
+        if(view.nextView)
         {
-            return this.findLastModule(view.nextModule);
+            return this.findLastView(view.nextView);;
         }
         else
         {
@@ -47,8 +50,71 @@ export class TerraSplitViewConfig
         }
     }
     
-    getLastModule():TerraSplitViewIn
+    public getLastModule():TerraSplitViewIn
     {
-        return this.findLastModule(this.module);
+        return this.findLastView(this.firstView);
+    }
+    
+    public reset():void
+    {
+        this._firstView = null;
+        this._addViewEventEmitter.unsubscribe();
+        this._addViewEventEmitter = new EventEmitter<TerraSplitViewIn>();
+        this._deleteViewEventEmitter.unsubscribe();
+        this._deleteViewEventEmitter = new EventEmitter<TerraSplitViewIn>();
+    }
+    
+    public findViewByInstanceKey(instanceKey:string):TerraSplitViewIn
+    {
+        return this.findViewRecursiveByInstanceKey(this._firstView, instanceKey);
+    }
+    
+    private findViewRecursiveByInstanceKey(view:TerraSplitViewIn, key:string):TerraSplitViewIn
+    {
+        if(view.instanceKey != null && view.instanceKey == key)
+        {
+            return view;
+        }
+        else
+        {
+            if(view.nextView != null)
+            {
+                return this.findViewRecursiveByInstanceKey(view.nextView, key);
+            }
+        }
+        
+        return null;
+    }
+    
+    public deleteViewByInstanceKey(instanceKey:string)
+    {
+        let view:TerraSplitViewIn = this.findViewByInstanceKey(instanceKey);
+        
+        this.deleteView(view);
+    }
+    
+    public deleteView(viewToDelete:TerraSplitViewIn):void
+    {
+        if(viewToDelete.parentView != null)
+        {
+            viewToDelete.parentView.nextView = null;
+            
+            this.deleteViewEventEmitter.next(viewToDelete);
+        }
+    }
+    
+    public get deleteViewEventEmitter():EventEmitter<TerraSplitViewIn>
+    {
+        return this._deleteViewEventEmitter;
+    }
+    
+    public get addViewEventEmitter():EventEmitter<TerraSplitViewIn>
+    {
+        return this._addViewEventEmitter;
+    }
+    
+    public get firstView():TerraSplitViewIn
+    {
+        return this._firstView;
     }
 }

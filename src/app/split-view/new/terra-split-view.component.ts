@@ -35,23 +35,26 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     
     ngOnDestroy()
     {
-        this.inputConfig.eventEmitter.unsubscribe();//TODO test
+        this.inputConfig.reset();
     }
     
     ngOnInit()
     {
-        this.inputConfig.eventEmitter.subscribe((value:TerraSplitViewIn) =>
-                                                {
-                                                    if(value.componentChildren)
-                                                    {
-    
-                                                    }
-                                                    else
-                                                    {
-                                                        this.addModuleToList(value);
-                                                    }
-                                                    this.updateBreadCrumbs();
-                                                })
+        this.inputConfig.addViewEventEmitter.subscribe((value:TerraSplitViewIn) =>
+                                                       {
+                                                           if(!value.componentChildren)
+                                                           {
+                                                               this.addViewToList(value);
+                                                           }
+                                                           
+                                                           this.updateBreadCrumbs();
+                                                       });
+        
+        this.inputConfig.deleteViewEventEmitter.subscribe((value:TerraSplitViewIn) =>
+                                                       {
+                                                           this.removeViewFromList(value);
+                                                           this.updateBreadCrumbs();
+                                                       });
     }
     
     ngOnChanges(changes:SimpleChanges)
@@ -62,21 +65,36 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         }
     }
     
-    addModuleToList(view:TerraSplitViewIn)
+    addViewToList(view:TerraSplitViewIn)
     {
         this.modules.push(view);
         
-        if(view.nextModule)
+        if(view.nextView)
         {
-            this.addModuleToList(view.nextModule);
+            this.addViewToList(view.nextView);
         }
     }
     
-    findLastModule(view:TerraSplitViewIn):TerraSplitViewIn
+    removeViewFromList(view:TerraSplitViewIn)
     {
-        if(view.nextModule)
+        let index:number = this.modules.indexOf(view);
+        
+        if(index != -1)
         {
-            return this.findLastModule(view.nextModule);
+            this.modules.splice(index, 1)
+        }
+        
+        if(view.nextView)
+        {
+            this.removeViewFromList(view.nextView);
+        }
+    }
+    
+    findLastView(view:TerraSplitViewIn):TerraSplitViewIn
+    {
+        if(view.nextView)
+        {
+            return this.findLastView(view.nextView);
         }
         else
         {
@@ -91,15 +109,15 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     
     private updateBreadCrumbs()
     {
-        if(this.inputConfig.module != null)
+        if(this.inputConfig.firstView != null)
         {
-            let currentModule = this.findLastModule(this.inputConfig.module);
+            let currentModule = this.findLastView(this.inputConfig.firstView);
             
             let index:number = this.getModuleIndex(currentModule);
             
             if(index == -1)
             {
-                this.addModuleToList(this.inputConfig.module);
+                this.addViewToList(this.inputConfig.firstView);
             }
             
             this.updateViewport(currentModule.mainComponentName + "_" + this.getModuleIndex(currentModule));
@@ -179,7 +197,8 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                        }
             
                        // focus view
-                       if(anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
+                       if(anchor[0] != null &&
+                          anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
                           anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
                        {
                            return;
