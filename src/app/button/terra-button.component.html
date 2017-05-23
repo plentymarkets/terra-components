@@ -14,7 +14,8 @@
                       'btn-tertiary': inputIsTertiary,
                       'btn-sm' : inputIsSmall,
                       'btn-lg' : inputIsLarge,
-                      'activated' : inputIsActive}"
+                      'activated' : inputIsActive && !inputIsDivider,
+                      'btn-divider' : inputIsDivider }"
             [disabled]="inputIsDisabled"
             [hidden]="inputIsHidden"
             [type]="inputType"
