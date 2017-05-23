@@ -5,13 +5,13 @@ import { ModuleWithProviders } from '@angular/core';
 export interface TerraSplitViewIn
 {
     module:ModuleWithProviders;
-    //instanceKey?:any;
+    instanceKey?:any;
     defaultWidth:string;
     hidden?:boolean;
     name:string;
     mainComponentName:string;
     parameter:any;
-    nextModule?:TerraSplitViewIn;
-    parentModule?:TerraSplitViewIn;
+    nextView?:TerraSplitViewIn;
+    parentView?:TerraSplitViewIn;
     componentChildren?:Array<TerraSplitViewIn>;
 }
