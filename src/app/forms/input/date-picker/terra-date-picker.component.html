@@ -3,7 +3,10 @@
     <label htmlFor="{{inputName}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
-    <my-date-picker #viewChildMyDatePicker class="date-picker" [selDate]="myDateModel.date" (dateChanged)="onDateChanged($event)"
+    <my-date-picker #viewChildMyDatePicker
+                    class="date-picker"
+                    [(ngModel)]="value"
+                    (dateChanged)="onDateChanged($event)"
                     [locale]="_currentLocale"
                     [options]="_datePickerOptions"></my-date-picker>
 </div>
