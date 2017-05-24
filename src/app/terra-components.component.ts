@@ -18,8 +18,6 @@ export class TerraComponentsComponent extends Translation implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
     
-    private myValue:any;
-    
     public constructor(private viewContainerRef:ViewContainerRef,
                        public locale:LocaleService,
                        public translation:TranslationService)
@@ -71,6 +69,5 @@ export class TerraComponentsComponent extends Translation implements OnInit
     
     ngOnInit()
     {
-        this.myValue = "2014-01-27T11:43:23+01:00";
     }
 }
