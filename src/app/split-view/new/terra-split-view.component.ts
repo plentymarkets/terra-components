@@ -42,17 +42,17 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     {
         this.inputConfig.addViewEventEmitter.subscribe((value:TerraSplitViewIn) =>
                                                        {
-                                                           if(!value.componentChildren)
-                                                           {
-                                                               this.addViewToList(value);
-                                                           }
+                                                           //if(!value.componentChildren)
+                                                           //{
+                                                           //    this.addViewToList(value);
+                                                           //}
                                                            
                                                            this.updateBreadCrumbs();
                                                        });
         
         this.inputConfig.deleteViewEventEmitter.subscribe((value:TerraSplitViewIn) =>
                                                        {
-                                                           this.removeViewFromList(value);
+                                                           //this.removeViewFromList(value);
                                                            this.updateBreadCrumbs();
                                                        });
     }
@@ -65,42 +65,42 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         }
     }
     
-    addViewToList(view:TerraSplitViewIn)
-    {
-        this.modules.push(view);
-        
-        if(view.nextView)
-        {
-            this.addViewToList(view.nextView);
-        }
-    }
-    
-    removeViewFromList(view:TerraSplitViewIn)
-    {
-        let index:number = this.modules.indexOf(view);
-        
-        if(index != -1)
-        {
-            this.modules.splice(index, 1)
-        }
-        
-        if(view.nextView)
-        {
-            this.removeViewFromList(view.nextView);
-        }
-    }
-    
-    findLastView(view:TerraSplitViewIn):TerraSplitViewIn
-    {
-        if(view.nextView)
-        {
-            return this.findLastView(view.nextView);
-        }
-        else
-        {
-            return view;
-        }
-    }
+    //addViewToList(view:TerraSplitViewIn)
+    //{
+    //    this.modules.push(view);
+    //
+    //    if(view.nextView)
+    //    {
+    //        this.addViewToList(view.nextView);
+    //    }
+    //}
+    //
+    //removeViewFromList(view:TerraSplitViewIn)
+    //{
+    //    let index:number = this.modules.indexOf(view);
+    //
+    //    if(index != -1)
+    //    {
+    //        this.modules.splice(index, 1)
+    //    }
+    //
+    //    if(view.nextView)
+    //    {
+    //        this.removeViewFromList(view.nextView);
+    //    }
+    //}
+    //
+    //findLastView(view:TerraSplitViewIn):TerraSplitViewIn
+    //{
+    //    if(view.nextView)
+    //    {
+    //        return this.findLastView(view.nextView);
+    //    }
+    //    else
+    //    {
+    //        return view;
+    //    }
+    //}
     
     getModuleIndex(module:TerraSplitViewIn):number
     {
@@ -111,16 +111,26 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     {
         if(this.inputConfig.firstView != null)
         {
-            let currentModule = this.findLastView(this.inputConfig.firstView);
-            
-            let index:number = this.getModuleIndex(currentModule);
-            
-            if(index == -1)
+            //let currentModule = this.findLastView(this.inputConfig.firstView);
+            //
+            //let index:number = this.getModuleIndex(currentModule);
+            //
+            //if(index == -1)
+            //{
+            //    this.addViewToList(this.inputConfig.firstView);
+            //}
+            //
+            let currentModule:TerraSplitViewIn;
+            if(this.inputConfig.firstView.nextViews)
             {
-                this.addViewToList(this.inputConfig.firstView);
+                currentModule = this.inputConfig.firstView.nextViews[this.inputConfig.firstView.nextViews.length - 1];
+            }
+            else
+            {
+                currentModule = this.inputConfig.firstView;
             }
             
-            this.updateViewport(currentModule.mainComponentName + "_" + this.getModuleIndex(currentModule));
+            this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
         }
         
         // init breadcrumb sliding
@@ -166,7 +176,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                    });
     }
     
-    private updateViewport(id:string):void
+    public updateViewport(id:string):void
     {
         setTimeout(function()
                    {

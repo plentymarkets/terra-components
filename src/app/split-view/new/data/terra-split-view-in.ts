@@ -11,7 +11,7 @@ export interface TerraSplitViewIn
     name:string;
     mainComponentName:string;
     parameter:any;
-    nextView?:TerraSplitViewIn;
+    nextViews?:Array<TerraSplitViewIn>;
     parentView?:TerraSplitViewIn;
-    componentChildren?:Array<TerraSplitViewIn>;
+    isSelected?:boolean; //For breadcrumb selection
 }

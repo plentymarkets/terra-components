@@ -1,0 +1,27 @@
+<li (click)="updateViewport(inputView.mainComponentName + '_' + inputView.instanceKey)">
+    <div class="{{ inputView.mainComponentName + '_' + inputView.instanceKey }}">
+        <span>{{ inputView.name | translate: lang}}</span>
+        <a class="caret">
+            <ul class="context-menu">
+                <ng-template ngFor let-next [ngForOf]="inputView.nextViews" >
+                    <li *ngIf="next.module.ngModule == inputView.module.ngModule">
+                        {{next.name}}
+                    </li>
+                </ng-template>
+            </ul>
+        </a>
+    </div>
+</li>
+<!--<div *ngIf="!inputView.hidden"-->
+     <!--id="{{ inputView.mainComponentName + '_' + inputView.instanceKey }}"-->
+     <!--class="view {{ inputView.defaultWidth }}"-->
+     <!--[ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">-->
+    <!--<terra-dynamic-module-loader [inputModule]="inputView.module"-->
+                                 <!--[inputParameter]="inputView.parameter"-->
+                                 <!--[inputMainComponentName]="inputView.mainComponentName">-->
+    <!--</terra-dynamic-module-loader>-->
+    <!--&lt;!&ndash;<div class="divider" *ngIf="!last"></div>&ndash;&gt;-->
+<!--</div>-->
+<ng-template ngFor let-next [ngForOf]="inputView.nextViews" let-last="last" let-first="first" let-i="index">
+    <terra-split-view-breadcrumb [inputView]="next" *ngIf="next.module.ngModule != inputView.module.ngModule"></terra-split-view-breadcrumb>
+</ng-template>

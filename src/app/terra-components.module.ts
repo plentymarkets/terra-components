@@ -65,6 +65,8 @@ import { TerraToggleComponent } from './toggle/terra-toggle.component';
 import { TerraSyntaxEditorComponent } from './editor/syntax/terra-syntax-editor.component';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { TerraSplitViewComponentNew } from './split-view/new/terra-split-view.component';
+import { TerraSplitViewDetailComponent } from './split-view/new/detail/terra-split-view-detail.component';
+import { TerraSplitViewBreadcrumbsComponent } from './split-view/new/breadcrumbs/terra-split-view-breadcrumbs.component';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -162,6 +164,8 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraPortletComponent,
                   TerraSplitViewComponent,
                   TerraSplitViewComponentNew,
+                  TerraSplitViewBreadcrumbsComponent,
+                  TerraSplitViewDetailComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
                   TerraDynamicModuleLoaderComponent,
@@ -201,6 +205,8 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraPortletComponent,
                   TerraSplitViewComponent,
                   TerraSplitViewComponentNew,
+                  TerraSplitViewBreadcrumbsComponent,
+                  TerraSplitViewDetailComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
                   TerraTileBoxComponent,
