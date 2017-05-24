@@ -106,7 +106,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
                     month: newDate.getMonth() + 1,
                     day:   newDate.getDate()
                 },
-                jsdate:    null,
+                jsdate:    newDate,
                 formatted: null,
                 epoc:      null
             };
