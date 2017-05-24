@@ -1,7 +1,7 @@
 .terra-breadcrumbs
 {
     list-style: none;
-    overflow: hidden;
+    //overflow: hidden;
     padding: 0;
     margin: 0;
     height: 33px;
@@ -38,33 +38,33 @@ li div.active
     cursor: default;
 }
 
-li div.active:after
-{
-    border-left-color: $brand-primary-darker;
-    cursor: default;
-}
-
-li:last-child div.active:after
-{
-    border-color: $brand-primary-darker;
-    cursor: default;
-}
-
-li div::after
-{
-    content: " ";
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    border-left: 18px solid $gray-light-3;
-    position: absolute;
-    top: 60%;
-    margin-top: -28px;
-    left: 100%;
-    z-index: 2;
-}
+//li div.active:after
+//{
+//    border-left-color: $brand-primary-darker;
+//    cursor: default;
+//}
+//
+//li:last-child div.active:after
+//{
+//    border-color: $brand-primary-darker;
+//    cursor: default;
+//}
+//
+//li div::after
+//{
+//    content: " ";
+//    display: block;
+//    width: 0;
+//    height: 0;
+//    border-top: 25px solid transparent;
+//    border-bottom: 25px solid transparent;
+//    border-left: 18px solid $gray-light-3;
+//    position: absolute;
+//    top: 60%;
+//    margin-top: -28px;
+//    left: 100%;
+//    z-index: 2;
+//}
 
 li div:not(.active):hover
 {
@@ -72,38 +72,38 @@ li div:not(.active):hover
     background-color: $brand-primary !important;
 }
 
-li div:not(.active):hover:after
-{
-    border-left-color: $brand-primary !important;
-}
-
-li:last-child div::after
-{
-    border: 7px solid #E0E0E0;
-    height: 47px;
-}
-
-li:last-child div:not(.active):hover:after
-{
-    border-color: $brand-primary !important;
-}
-
-li div::before
-{
-    content: " ";
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    border-left: 19px solid $gray-light-4;
-    position: absolute;
-    top: 60%;
-    margin-top: -28px;
-    margin-left: 1px;
-    left: 100%;
-    z-index: 1;
-}
+//li div:not(.active):hover:after
+//{
+//    border-left-color: $brand-primary !important;
+//}
+//
+//li:last-child div::after
+//{
+//    border: 7px solid #E0E0E0;
+//    height: 47px;
+//}
+//
+//li:last-child div:not(.active):hover:after
+//{
+//    border-color: $brand-primary !important;
+//}
+//
+//li div::before
+//{
+//    content: " ";
+//    display: block;
+//    width: 0;
+//    height: 0;
+//    border-top: 25px solid transparent;
+//    border-bottom: 25px solid transparent;
+//    border-left: 19px solid $gray-light-4;
+//    position: absolute;
+//    top: 60%;
+//    margin-top: -28px;
+//    margin-left: 1px;
+//    left: 100%;
+//    z-index: 1;
+//}
 
 li:first-child div
 {

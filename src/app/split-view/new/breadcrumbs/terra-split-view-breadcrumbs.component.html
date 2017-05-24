@@ -1,11 +1,11 @@
 <li (click)="updateViewport(inputView.mainComponentName + '_' + inputView.instanceKey)">
     <div class="{{ inputView.mainComponentName + '_' + inputView.instanceKey }}">
         <span>{{ inputView.name | translate: lang}}</span>
-        <a class="caret">
+        <a class="caret" *ngIf="inputView.nextViews != null && inputView.nextViews.length > 0">
             <ul class="context-menu">
                 <ng-template ngFor let-next [ngForOf]="inputView.nextViews" >
                     <li *ngIf="next.module.ngModule == inputView.module.ngModule">
-                        {{next.name}}
+                        <a>{{next.name}}</a>
                     </li>
                 </ng-template>
             </ul>
