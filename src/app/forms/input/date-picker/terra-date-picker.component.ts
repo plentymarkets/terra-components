@@ -120,7 +120,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     
     public set value(value:IMyDateModel)
     {
-        if(value !== null && value !== undefined)
+        if(value !== null && value !== undefined && typeof(value) === "object")
         {
             this._value = value;
             
@@ -129,7 +129,10 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         }
         else
         {
-            this.viewChildMyDatePicker.clearDate();
+            this._value = null;
+    
+            this.onTouchedCallback();
+            this.onChangeCallback(null);
         }
     }
     
@@ -154,10 +157,5 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     public onDateChanged(event:IMyDateModel):void
     {
         this.myDateModel = event;
-    }
-    
-    public clearDate():void
-    {
-        this.viewChildMyDatePicker.clearDate();
     }
 }
