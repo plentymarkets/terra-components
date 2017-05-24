@@ -71,5 +71,6 @@ export class TerraComponentsComponent extends Translation implements OnInit
     
     ngOnInit()
     {
+        this.myValue = "2014-01-27T11:43:23+01:00";
     }
 }

@@ -41,7 +41,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     
     @ViewChild('viewChildMyDatePicker') viewChildMyDatePicker:MyDatePicker;
     
-    private _value:string;
+    private _value:IMyDateModel;
     private _myDateModel:IMyDateModel;
     private _currentLocale:string;
     private _datePickerOptions:IMyOptions;
@@ -96,20 +96,36 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     
     public writeValue(value:any):void
     {
-        this.value = value;
+        if(value !== null && value !== undefined && typeof (value) === "string" && isNaN(Date.parse(value)) === false)
+        {
+            let newDate = new Date(value);
+            
+            this.value = {
+                date:      {
+                    year:  newDate.getFullYear(),
+                    month: newDate.getMonth() + 1,
+                    day:   newDate.getDate()
+                },
+                jsdate:    null,
+                formatted: null,
+                epoc:      null
+            };
+        }
     }
     
-    public get value():any
+    public get value():IMyDateModel
     {
         return this._value;
     }
     
-    public set value(value:any)
+    public set value(value:IMyDateModel)
     {
         if(value !== null && value !== undefined)
         {
+            this._value = value;
+            
             this.onTouchedCallback();
-            this.onChangeCallback(value.formatted);
+            this.onChangeCallback(value.jsdate.toISOString());
         }
         else
         {
