@@ -16,5 +16,11 @@
     <!--&lt;!&ndash;<div class="divider" *ngIf="!last"></div>&ndash;&gt;-->
 <!--</div>-->
 <ng-template ngFor let-next [ngForOf]="inputView.nextViews" let-last="last" let-first="first" let-i="index">
-    <terra-split-view-detail [inputFirst]="first" [inputIndex]="i" [inputView]="next" [inputLast]="last"></terra-split-view-detail>
+    <terra-split-view-detail [inputFirst]="first"
+                             [inputIndex]="i"
+                             [inputView]="next"
+                             [inputLast]="last"
+                             class="{{ inputView.mainComponentName + '_' + inputView.instanceKey + '_' + i }}">
+        
+    </terra-split-view-detail>
 </ng-template>

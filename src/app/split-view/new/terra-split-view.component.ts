@@ -120,7 +120,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             //    this.addViewToList(this.inputConfig.firstView);
             //}
             //
-            let currentModule:TerraSplitViewIn;
+            var currentModule:TerraSplitViewIn;
             if(this.inputConfig.firstView.nextViews)
             {
                 currentModule = this.inputConfig.firstView.nextViews[this.inputConfig.firstView.nextViews.length - 1];
@@ -132,6 +132,26 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             
             this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
         }
+        
+        // init same instance sliding
+        
+        setTimeout(function()
+                   {
+                       $('terra-split-view-breadcrumb').find('.' + currentModule.mainComponentName + "_" + currentModule.instanceKey).each(function()
+                                                                                                       {
+                                                                                                           $(this).find('a').off();
+                                                                                                           $(this).find('a').click(function()
+                                                                                                                                                    {
+                                                                                                                                                        let yolo = $('.' + $(this).attr('class'));
+    
+                                                                                                                                                        $(yolo.parent()[1]).animate({scrollTop: (yolo[1].getBoundingClientRect().top - 126)},
+                                                                                                                                                                              this.ANIMATION_SPEED);
+                                                                                                                                                        
+                                                                                                                                                    });
+                                                                                                                                   
+                                                                                                       });
+                   });
+        
         
         // init breadcrumb sliding
         setTimeout(function()
@@ -211,6 +231,10 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                           anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
                           anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
                        {
+                           //viewContainer.stop();
+                           //anchor.animate({scrollTop: (anchor[0].getBoundingClientRect().top + 200)},
+                           //               this.ANIMATION_SPEED);
+                           
                            return;
                        }
             
@@ -229,6 +253,11 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                        viewContainer.stop();
                        viewContainer.animate({scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset)},
                                              this.ANIMATION_SPEED);
+                       //
+                       //
+                       //anchor.animate({scrollTop: (anchor[0].getBoundingClientRect().top + 200)},
+                       //                      this.ANIMATION_SPEED);
+
                    });
     }
 }

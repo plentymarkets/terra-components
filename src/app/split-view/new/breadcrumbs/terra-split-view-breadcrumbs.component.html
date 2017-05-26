@@ -3,9 +3,10 @@
         <span>{{ inputView.name | translate: lang}}</span>
         <a class="caret" *ngIf="inputView.nextViews != null && inputView.nextViews.length > 0">
             <ul class="context-menu">
-                <ng-template ngFor let-next [ngForOf]="inputView.nextViews" >
-                    <li *ngIf="next.module.ngModule == inputView.module.ngModule">
-                        <a>{{next.name}}</a>
+                <ng-template ngFor let-next [ngForOf]="inputView.nextViews" let-i="index">
+                    <li *ngIf="next.module.ngModule == inputView.module.ngModule"
+                        class="{{ inputView.mainComponentName + '_' + inputView.instanceKey}}">
+                        <a class="{{ inputView.mainComponentName + '_' + inputView.instanceKey + '_' + i }}">{{next.name}}</a>
                     </li>
                 </ng-template>
             </ul>

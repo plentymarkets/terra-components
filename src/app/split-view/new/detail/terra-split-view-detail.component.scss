@@ -189,6 +189,11 @@
     }
 }
 
+/deep/ terra-split-view-detail > div
+{
+    height: 100%;
+}
+
 // TODO: @vwiebe, refactoring
 
 /deep/ terra-split-view .modal-content terra-split-view .hasDivider
