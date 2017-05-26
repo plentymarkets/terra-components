@@ -3,101 +3,153 @@ import { EventEmitter } from '@angular/core';
 
 export class TerraSplitViewConfig
 {
-    private _firstView:TerraSplitViewIn;
+    //private _firstView:TerraSplitViewIn;
+    private _views:Array<TerraSplitViewIn> = [];
     
     private _addViewEventEmitter:EventEmitter<TerraSplitViewIn> = new EventEmitter<TerraSplitViewIn>();
     private _deleteViewEventEmitter:EventEmitter<TerraSplitViewIn> = new EventEmitter<TerraSplitViewIn>();
     
     public addView(view:TerraSplitViewIn):void
     {
-        if(this._firstView)
+        let existingView:TerraSplitViewIn = this.recursiveFindViewByModule2(view, this._views);
+        
+        if(existingView == null)
         {
-            this.recursiveUnselectViews(this._firstView);
-            view.isSelected = true;
+            let lastView = this.findLastView2(this._views);
             
-            let existingView:TerraSplitViewIn = this.recursiveFindViewByModule(view, this.firstView);
-            
-            if(existingView == null)
+            if(lastView == null)
             {
-                if(this.firstView.nextViews == null)
-                {
-                    this.firstView.nextViews = [];
-                }
-    
-                this.firstView.nextViews.push(view);
-                this.addViewEventEmitter.next(view);
+                this._views.push(view);
             }
             else
             {
-                if(existingView.nextViews == null)
+                if(lastView.nextViews == null)
                 {
-                    existingView.nextViews = [];
+                    lastView.nextViews = [];
                 }
     
-                existingView.nextViews.push(view);
+                lastView.nextViews.push(view);
+                view.parentView = lastView;
                 this.addViewEventEmitter.next(view);
             }
-            
-            //let existingView:TerraSplitViewIn = this.recursiveFindViewByModule(view, this._firstView);
-            //
-            //if(existingView == null)
-            //{
-            //    let lastView:TerraSplitViewIn = this.findLastView(this._firstView);
-            //
-            //    if(lastView.module.ngModule == view.module.ngModule)
-            //    {
-            //        if(lastView.componentChildren == null)
-            //        {
-            //            lastView.componentChildren = [];
-            //        }
-            //
-            //        lastView.componentChildren.push(view);
-            //        view.parentView = lastView;
-            //        this.addViewEventEmitter.next(lastView);
-            //    }
-            //    else
-            //    {
-            //        lastView.nextView = view;
-            //        view.parentView = lastView;
-            //        this.addViewEventEmitter.next(view);
-            //    }
-            //}
-            //else
-            //{
-            //    if(existingView.module.ngModule == view.module.ngModule)
-            //    {
-            //        if(existingView.componentChildren == null)
-            //        {
-            //            existingView.componentChildren = [];
-            //        }
-            //
-            //        if(existingView.nextView)
-            //        {
-            //            this.deleteView(existingView.nextView);
-            //        }
-            //
-            //        if(!this.childExists(view, existingView) && this.findViewByInstanceKey(existingView.instanceKey) != null)
-            //        {
-            //            existingView.componentChildren.push(view);
-            //        }
-            //
-            //        view.parentView = existingView;
-            //        this.addViewEventEmitter.next(existingView);
-            //    }
-            //    else
-            //    {
-            //        existingView.nextView = view;
-            //        view.parentView = existingView;
-            //        this.addViewEventEmitter.next(view);
-            //    }
-            //}
         }
         else
         {
-            this._firstView = view;
-            this._firstView.isSelected;
-            this.addViewEventEmitter.next(this._firstView);
+            existingView.parentView.nextViews.push(view);
+            view.parentView = existingView.parentView;
+            this.addViewEventEmitter.next(view);
         }
+        
+        //if(this._firstView)
+        //{
+        //    this.recursiveUnselectViews(this._firstView);
+        //    view.isSelected = true;
+        //
+        //    let existingView:TerraSplitViewIn = this.recursiveFindViewByModule(view, this.firstView);
+        //
+        //    if(existingView == null)
+        //    {
+        //        let lastView = this.findLastView(this._firstView);
+        //
+        //        if(lastView.nextViews == null)
+        //        {
+        //            lastView.nextViews = [];
+        //        }
+        //
+        //        lastView.nextViews.push(view);
+        //        view.parentView = lastView;
+        //        this.addViewEventEmitter.next(view);
+        //    }
+        //    else
+        //    {
+        //        //if(existingView.nextViews == null)
+        //        //{
+        //        //    existingView.nextViews = [];
+        //        //}
+        //        //
+        //        //existingView.nextViews.push(view);
+        //        //this.addViewEventEmitter.next(view);
+        //
+        //
+        //        if(existingView.module.ngModule != view.module.ngModule)
+        //        {
+        //            if(existingView.nextViews == null)
+        //            {
+        //                existingView.nextViews = [];
+        //            }
+        //
+        //            existingView.nextViews.push(view);
+        //            view.parentView = existingView;
+        //            this.addViewEventEmitter.next(existingView);
+        //        }
+        //        else
+        //        {
+        //            existingView.parentView.nextViews.push(view);
+        //            view.parentView = existingView.parentView;
+        //            this.addViewEventEmitter.next(view);
+        //        }
+        //    }
+        //
+        //    //let existingView:TerraSplitViewIn = this.recursiveFindViewByModule(view, this._firstView);
+        //    //
+        //    //if(existingView == null)
+        //    //{
+        //    //    let lastView:TerraSplitViewIn = this.findLastView(this._firstView);
+        //    //
+        //    //    if(lastView.module.ngModule == view.module.ngModule)
+        //    //    {
+        //    //        if(lastView.componentChildren == null)
+        //    //        {
+        //    //            lastView.componentChildren = [];
+        //    //        }
+        //    //
+        //    //        lastView.componentChildren.push(view);
+        //    //        view.parentView = lastView;
+        //    //        this.addViewEventEmitter.next(lastView);
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        lastView.nextView = view;
+        //    //        view.parentView = lastView;
+        //    //        this.addViewEventEmitter.next(view);
+        //    //    }
+        //    //}
+        //    //else
+        //    //{
+        //    //    if(existingView.module.ngModule == view.module.ngModule)
+        //    //    {
+        //    //        if(existingView.componentChildren == null)
+        //    //        {
+        //    //            existingView.componentChildren = [];
+        //    //        }
+        //    //
+        //    //        if(existingView.nextView)
+        //    //        {
+        //    //            this.deleteView(existingView.nextView);
+        //    //        }
+        //    //
+        //    //        if(!this.childExists(view, existingView) && this.findViewByInstanceKey(existingView.instanceKey) != null)
+        //    //        {
+        //    //            existingView.componentChildren.push(view);
+        //    //        }
+        //    //
+        //    //        view.parentView = existingView;
+        //    //        this.addViewEventEmitter.next(existingView);
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        existingView.nextView = view;
+        //    //        view.parentView = existingView;
+        //    //        this.addViewEventEmitter.next(view);
+        //    //    }
+        //    //}
+        //}
+        //else
+        //{
+        //    this._firstView = view;
+        //    this._firstView.isSelected;
+        //    this.addViewEventEmitter.next(this._firstView);
+        //}
     }
     
     private recursiveUnselectViews(view:TerraSplitViewIn)
@@ -116,30 +168,30 @@ export class TerraSplitViewConfig
         }
     }
     
-    public getViewByInstanceKey(instanceKey:string):TerraSplitViewIn
-    {
-        return this.recursiveGetViewByInstanceKey(instanceKey, this._firstView);
-    }
-    
-    private recursiveGetViewByInstanceKey(instanceKey:string, view:TerraSplitViewIn):TerraSplitViewIn
-    {
-        if(view.instanceKey == instanceKey)
-        {
-            return view;
-        }
-        else
-        {
-            if(view.nextViews)
-            {
-                for(let nextView of view.nextViews)
-                {
-                    this.recursiveGetViewByInstanceKey(instanceKey, nextView);
-                }
-            }
-        }
-        
-        return null;
-    }
+    //public getViewByInstanceKey(instanceKey:string):TerraSplitViewIn
+    //{
+    //    return this.recursiveGetViewByInstanceKey(instanceKey, this._firstView);
+    //}
+    //
+    //private recursiveGetViewByInstanceKey(instanceKey:string, view:TerraSplitViewIn):TerraSplitViewIn
+    //{
+    //    if(view.instanceKey == instanceKey)
+    //    {
+    //        return view;
+    //    }
+    //    else
+    //    {
+    //        if(view.nextViews)
+    //        {
+    //            for(let nextView of view.nextViews)
+    //            {
+    //                this.recursiveGetViewByInstanceKey(instanceKey, nextView);
+    //            }
+    //        }
+    //    }
+    //
+    //    return null;
+    //}
     
     //private childExists(viewToFind:TerraSplitViewIn, viewToCompare:TerraSplitViewIn):boolean
     //{
@@ -181,6 +233,78 @@ export class TerraSplitViewConfig
             }
         }
     }
+    
+    private recursiveFindViewByModule2(viewToFind:TerraSplitViewIn, listToCompare:Array<TerraSplitViewIn>):TerraSplitViewIn
+    {
+        for(let view of listToCompare)
+        {
+            if(viewToFind.module.ngModule == view.module.ngModule)
+            {
+                return view;
+            }
+            else
+            {
+                if(view.nextViews)
+                {
+                    let foundView = this.recursiveFindViewByModule2(viewToFind, view.nextViews);
+                    
+                    if(foundView)
+                    {
+                        return foundView;
+                    }
+                }
+            }
+        }
+    }
+    
+    public findLastView(view:TerraSplitViewIn):TerraSplitViewIn
+    {
+        if(view.nextViews && view.nextViews.length > 0)
+        {
+            for(let nextView of view.nextViews)
+            {
+                let next = this.findLastView(nextView);
+                
+                if(next)
+                {
+                    return next;
+                }
+            }
+        }
+        else
+        {
+            return view;
+        }
+    }
+    
+    public findLastView2(list:Array<TerraSplitViewIn>):TerraSplitViewIn
+    {
+        let viewFound:boolean = false;
+        for(let view of list)
+        {
+            if(view.nextViews)
+            {
+               let foundView =  this.findLastView2(view.nextViews);
+               
+               if(foundView)
+               {
+                   viewFound = true;
+                   return foundView;
+               }
+            }
+            else
+            {
+                viewFound = true;
+                return view;
+            }
+        }
+        
+        if(!viewFound)
+        {
+            return null;
+        }
+    }
+    
     //
     //public findLastView(view:TerraSplitViewIn):TerraSplitViewIn
     //{
@@ -201,7 +325,8 @@ export class TerraSplitViewConfig
     
     public reset():void
     {
-        this._firstView = null;
+        //this._firstView = null;
+        this._views = null;
         this._addViewEventEmitter.unsubscribe();
         this._addViewEventEmitter = new EventEmitter<TerraSplitViewIn>();
         this._deleteViewEventEmitter.unsubscribe();
@@ -257,8 +382,14 @@ export class TerraSplitViewConfig
         return this._addViewEventEmitter;
     }
     
-    public get firstView():TerraSplitViewIn
+    //public get firstView():TerraSplitViewIn
+    //{
+    //    return this._firstView;
+    //}
+    
+    
+    public get views():Array<TerraSplitViewIn>
     {
-        return this._firstView;
+        return this._views;
     }
 }

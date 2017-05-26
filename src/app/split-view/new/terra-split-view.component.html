@@ -1,66 +1,21 @@
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs">
     <ul class="terra-breadcrumbs">
-        <!--<li *ngIf="inputConfig.firstView" (click)="updateViewport(inputConfig.firstView.mainComponentName + '_' + inputConfig.firstView.instanceKey)">-->
-            <!--<div class="{{ inputConfig.firstView.mainComponentName + '_' + inputConfig.firstView.instanceKey }}">-->
-                <!--<span>{{ inputConfig.firstView.name | translate: lang}}</span>-->
-            <!--</div>-->
-        <!--</li>-->
-        <terra-split-view-breadcrumb [inputView]="inputConfig.firstView"></terra-split-view-breadcrumb>
-        <!--<ng-template ngFor let-module [ngForOf]="inputConfig.firstView.nextViews" let-first="first">-->
-            <!--&lt;!&ndash;<li (click)="updateViewport(module.mainComponentName + '_' + module.instanceKey)">&ndash;&gt;-->
-                <!--&lt;!&ndash;<div class="{{ module.mainComponentName + '_' + module.instanceKey }}">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<span>{{ module.name | translate: lang}}</span>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;</li>&ndash;&gt;-->
-            <!--<terra-split-view-breadcrumb [inputView]="module"></terra-split-view-breadcrumb>-->
-        <!--</ng-template>-->
+        <ng-template ngFor let-module [ngForOf]="inputConfig.views" let-first="first">
+            <terra-split-view-breadcrumb [inputView]="module"></terra-split-view-breadcrumb>
+        </ng-template>
     </ul>
 </terra-base-toolbar>
-<!--<div *ngIf="modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">-->
-    <!--<ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first">-->
-        <!--<div *ngIf="!module.hidden"-->
-             <!--id="{{ module.mainComponentName + '_' + getModuleIndex(module) }}"-->
-             <!--class="view {{ module.defaultWidth }}"-->
-             <!--[ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">-->
-            <!--<terra-dynamic-module-loader [inputModule]="module.module"-->
-                                         <!--[inputParameter]="module.parameter"-->
-                                         <!--[inputMainComponentName]="module.mainComponentName">-->
-            <!--</terra-dynamic-module-loader>-->
-            <!--<div class="divider" *ngIf="!last"></div>-->
-        <!--</div>-->
-    <!--</ng-template>-->
-<!--</div>-->
 
-<div *ngIf="inputConfig.firstView" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
-    <div *ngIf="!inputConfig.firstView.hidden"
-         id="{{ inputConfig.firstView.mainComponentName + '_' + inputConfig.firstView.instanceKey }}"
-         class="view {{ inputConfig.firstView.defaultWidth }}"
-         [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">
-        <terra-dynamic-module-loader [inputModule]="inputConfig.firstView.module"
-                                     [inputParameter]="inputConfig.firstView.parameter"
-                                     [inputMainComponentName]="inputConfig.firstView.mainComponentName">
-        </terra-dynamic-module-loader>
-        <div class="divider" *ngIf="inputConfig.firstView.nextViews && inputConfig.firstView.nextViews > 0"></div>
-    </div>
-    <!--<ng-template ngFor let-module [ngForOf]="inputConfig.firstView.nextViews" let-last="last" let-first="first">-->
-        <!--<div *ngIf="!module.hidden"-->
-             <!--id="{{ module.mainComponentName + '_' + module.instanceKey }}"-->
-             <!--class="view {{ module.defaultWidth }}"-->
-             <!--[ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">-->
-            <!--<terra-dynamic-module-loader [inputModule]="module.module"-->
-                                         <!--[inputParameter]="module.parameter"-->
-                                         <!--[inputMainComponentName]="module.mainComponentName">-->
-            <!--</terra-dynamic-module-loader>-->
-            <!--<div class="divider" *ngIf="!last"></div>-->
-        <!--</div>-->
-    <!--</ng-template>-->
-    <ng-template ngFor let-module [ngForOf]="inputConfig.firstView.nextViews" let-last="last" let-first="first" let-i="index">
+
+
+
+
+<div *ngIf="inputConfig.views" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
+    <ng-template ngFor let-module [ngForOf]="inputConfig.views" let-last="last" let-first="first" let-i="index">
         <terra-split-view-detail
             id="{{ module.mainComponentName + '_' + module.instanceKey }}"
-            class="view {{ module.defaultWidth }}"
             [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}"
             [inputFirst]="first" [inputIndex]="i" [inputView]="module" [inputLast]="last"></terra-split-view-detail>
     </ng-template>
-    
 </div>
 

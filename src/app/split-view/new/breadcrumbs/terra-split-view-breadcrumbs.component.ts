@@ -2,7 +2,8 @@ import {
     Component,
     forwardRef,
     Inject,
-    Input
+    Input,
+    OnInit
 } from '@angular/core';
 import { TerraSplitViewIn } from '../data/terra-split-view-in';
 import { TerraSplitViewComponentNew } from '../terra-split-view.component';
@@ -12,7 +13,7 @@ import { TerraSplitViewComponentNew } from '../terra-split-view.component';
                template: require('./terra-split-view-breadcrumbs.component.html'),
                styles:   [require('./terra-split-view-breadcrumbs.component.scss')]
            })
-export class TerraSplitViewBreadcrumbsComponent
+export class TerraSplitViewBreadcrumbsComponent implements OnInit
 {
     
     @Input() inputView:TerraSplitViewIn;
@@ -22,10 +23,17 @@ export class TerraSplitViewBreadcrumbsComponent
     
     constructor(@Inject(forwardRef(() => TerraSplitViewComponentNew)) private splitViewComponent:TerraSplitViewComponentNew)
     {
+    
+    }
+    
+    ngOnInit()
+    {
+        console.log(this.inputView);
     }
     
     updateViewport(id:string)
     {
+        console.log(this.inputView);
         this.splitViewComponent.updateViewport(id);
     }
 }

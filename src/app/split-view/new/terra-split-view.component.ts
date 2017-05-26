@@ -109,7 +109,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     
     private updateBreadCrumbs()
     {
-        if(this.inputConfig.firstView != null)
+        if(this.inputConfig.views != null)
         {
             //let currentModule = this.findLastView(this.inputConfig.firstView);
             //
@@ -120,15 +120,19 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             //    this.addViewToList(this.inputConfig.firstView);
             //}
             //
+            //var currentModule:TerraSplitViewIn;
+            //if(this.inputConfig.firstView.nextViews)
+            //{
+            //    currentModule = this.inputConfig.views[this.inputConfig.firstView.nextViews.length - 1];
+            //}
+            //else
+            //{
+            //    currentModule = this.inputConfig.firstView;
+            //}
+            
             var currentModule:TerraSplitViewIn;
-            if(this.inputConfig.firstView.nextViews)
-            {
-                currentModule = this.inputConfig.firstView.nextViews[this.inputConfig.firstView.nextViews.length - 1];
-            }
-            else
-            {
-                currentModule = this.inputConfig.firstView;
-            }
+            
+            currentModule =  this.inputConfig.findLastView2(this.inputConfig.views);
             
             this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
         }
