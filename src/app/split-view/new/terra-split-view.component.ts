@@ -139,12 +139,12 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                    {
                        $('terra-split-view-breadcrumb').find('.' + currentModule.mainComponentName + "_" + currentModule.instanceKey).each(function()
                                                                                                        {
-                                                                                                           $(this).find('a').off();
-                                                                                                           $(this).find('a').click(function()
+                                                                                                           $(this).find('a:not(.caret)').off();
+                                                                                                           $(this).find('a:not(.caret)').click(function()
                                                                                                                                                     {
-                                                                                                                                                        let yolo = $('.' + $(this).attr('class'));
+                                                                                                                                                        let yolo = $('.side-scroller').find($('.' + $(this).attr('class')));
     
-                                                                                                                                                        $(yolo.parent()[1]).animate({scrollTop: (yolo[1].getBoundingClientRect().top - 126)},
+                                                                                                                                                        $(yolo.parent()[0]).animate({scrollTop: (yolo[0].getBoundingClientRect().top - 126)},
                                                                                                                                                                               this.ANIMATION_SPEED);
                                                                                                                                                         
                                                                                                                                                     });
