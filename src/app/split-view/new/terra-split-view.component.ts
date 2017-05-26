@@ -144,7 +144,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                                                                                                                                                     {
                                                                                                                                                         let yolo = $('.side-scroller').find($('.' + $(this).attr('class')));
     
-                                                                                                                                                        $(yolo.parent()[0]).animate({scrollTop: (yolo[0].getBoundingClientRect().top - 126)},
+                                                                                                                                                        $(yolo.parent()[0]).animate({scrollTop: ($(yolo.parent()[0]).scrollTop() + yolo[0].getBoundingClientRect().top - 126)},
                                                                                                                                                                               this.ANIMATION_SPEED);
                                                                                                                                                         
                                                                                                                                                     });
