@@ -8,6 +8,16 @@
     display: flex;
 }
 
+terra-split-view-breadcrumb li div
+{
+    padding-right: 16px !important;
+}
+
+terra-split-view-breadcrumb li div a
+{
+    margin-right: -16px;
+}
+
 li
 {
     float: left;
