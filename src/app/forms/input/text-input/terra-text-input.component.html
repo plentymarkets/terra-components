@@ -4,9 +4,10 @@
      [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
      container="body">
-    <label htmlFor="{{inputName}}">{{inputName}}
+    <label htmlFor="{{inputName}}">
+        <span translate>{{inputLabel}}</span>
         <span *ngIf="inputIsRequired">*</span>
     </label>
-    <input id="{{inputName}}" type="text" [(ngModel)]="value" name="{{inputName}}" (blur)="onBlur()" autocomplete="off"
+    <input type="text" [(ngModel)]="value" name="{{inputName}}" (blur)="onBlur()" autocomplete="off"
            [disabled]="isDisabled" pattern="{{regex}}" placeholder="{{inputPlaceholder}}">
 </div>
