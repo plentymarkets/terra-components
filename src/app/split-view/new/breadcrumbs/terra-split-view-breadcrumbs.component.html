@@ -14,5 +14,5 @@
     </div>
 </li>
 <ng-template ngFor let-next [ngForOf]="inputView.nextViews" let-last="last" let-first="first" let-i="index">
-    <terra-split-view-breadcrumb [inputView]="next" *ngIf="next.module.ngModule != inputView.module.ngModule"></terra-split-view-breadcrumb>
+    <terra-split-view-breadcrumb [inputSplitViewConfig]="inputSplitViewConfig" [inputView]="next" *ngIf="next.module.ngModule != inputView.module.ngModule"></terra-split-view-breadcrumb>
 </ng-template>

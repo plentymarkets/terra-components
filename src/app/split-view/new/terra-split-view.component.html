@@ -1,7 +1,7 @@
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs">
     <ul class="terra-breadcrumbs">
         <ng-template ngFor let-module [ngForOf]="inputConfig.views" let-first="first">
-            <terra-split-view-breadcrumb [inputView]="module"></terra-split-view-breadcrumb>
+            <terra-split-view-breadcrumb [inputSplitViewConfig]="inputConfig" [inputView]="module"></terra-split-view-breadcrumb>
         </ng-template>
     </ul>
 </terra-base-toolbar>
@@ -13,6 +13,7 @@
 <div *ngIf="inputConfig.views" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
     <ng-template ngFor let-module [ngForOf]="inputConfig.views" let-last="last" let-first="first" let-i="index">
         <terra-split-view-detail
+            [inputSplitViewConfig]="inputConfig"
             id="{{ module.mainComponentName + '_' + module.instanceKey }}"
             [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}"
             [inputFirst]="first" [inputIndex]="i" [inputView]="module" [inputLast]="last"></terra-split-view-detail>

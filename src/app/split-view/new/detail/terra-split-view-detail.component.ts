@@ -3,6 +3,7 @@ import {
     Input
 } from '@angular/core';
 import { TerraSplitViewIn } from '../data/terra-split-view-in';
+import { TerraSplitViewConfig } from '../data/terra-split-view.config';
 
 @Component({
                selector: 'terra-split-view-detail',
@@ -15,4 +16,15 @@ export class TerraSplitViewDetailComponent
     @Input() inputIndex:number;
     @Input() inputLast:boolean;
     @Input() inputFirst:boolean;
+    @Input() inputSplitViewConfig:TerraSplitViewConfig;
+    
+    
+    constructor()
+    {
+    }
+    
+    onDetailClick(view:TerraSplitViewIn)
+    {
+        this.inputSplitViewConfig.currentSelectedView = view;
+    }
 }

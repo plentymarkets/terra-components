@@ -1,4 +1,5 @@
-<div *ngIf="!inputView.hidden" class="view {{ inputView.defaultWidth }}">
+<div *ngIf="!inputView.hidden" class="view {{ inputView.defaultWidth }}"
+     (click)="onDetailClick(inputView)">
     <terra-dynamic-module-loader [inputModule]="inputView.module"
                                  [inputParameter]="inputView.parameter"
                                  [inputMainComponentName]="inputView.mainComponentName">
@@ -16,7 +17,8 @@
     <!--&lt;!&ndash;<div class="divider" *ngIf="!last"></div>&ndash;&gt;-->
 <!--</div>-->
 <ng-template ngFor let-next [ngForOf]="inputView.nextViews" let-last="last" let-first="first" let-i="index">
-    <terra-split-view-detail [inputFirst]="first"
+    <terra-split-view-detail [inputSplitViewConfig]="inputSplitViewConfig"
+                             [inputFirst]="first"
                              [inputIndex]="i"
                              [inputView]="next"
                              [inputLast]="last"
