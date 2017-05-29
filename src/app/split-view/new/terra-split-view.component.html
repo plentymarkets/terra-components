@@ -22,12 +22,16 @@
 
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs">
     <ul class="terra-breadcrumbs">
-        <ng-template ngFor let-module [ngForOf]="modules" let-first="first">
-            <li *ngIf="modules" (click)="updateViewport(module.mainComponentName + '_' + module.instanceKey)">
-                <div class="{{ module.mainComponentName + '_' + module.instanceKey }}">
-                    <span>{{ module.name | translate: lang}}</span>
-                </div>
-            </li>
+        <ng-template ngFor let-module [ngForOf]="modules">
+            <div class="{{ module.identifier }}">
+                <ng-template ngFor let-view [ngForOf]="module.views">
+                    <li *ngIf="module.views" (click)="updateViewport(view.mainComponentName)">
+                        <div class="{{ view.mainComponentName + '_' + view.instanceKey }}">
+                            <span>{{ view.name | translate: lang}}</span>
+                        </div>
+                    </li>
+                </ng-template>
+            </div>
         </ng-template>
     </ul>
 </terra-base-toolbar>
@@ -42,7 +46,7 @@
                     </terra-dynamic-module-loader>
                 </div>
             </ng-template>
+            <div class="divider" *ngIf="!last"></div>
         </div>
-        <div class="divider" *ngIf="!last"></div>
     </ng-template>
 </div>

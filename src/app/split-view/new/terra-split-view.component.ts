@@ -174,7 +174,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             
             if(currentModule)
             {
-                this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
+                this.updateViewport(currentModule.mainComponentName);
             }
             
         }
