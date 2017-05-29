@@ -130,7 +130,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         else
         {
             this._value = null;
-    
+            
             this.onTouchedCallback();
             this.onChangeCallback(null);
         }
@@ -157,5 +157,10 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     public onDateChanged(event:IMyDateModel):void
     {
         this.myDateModel = event;
+    }
+    
+    public clearDate():void
+    {
+        this.viewChildMyDatePicker.clearDate();
     }
 }
