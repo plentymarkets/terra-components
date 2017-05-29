@@ -21,19 +21,34 @@
 <!--</div>-->
 
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs">
-    <ul class="terra-breadcrumbs">
+    <div class="terra-breadcrumbs">
         <ng-template ngFor let-module [ngForOf]="modules">
-            <div class="{{ module.identifier }}">
+            <div *ngIf="module.views.length > 1">
+                hilfe!
+                <a class="caret">
+                    <ul class="{{ module.identifier }} context-menu">
+                        <ng-template ngFor let-view [ngForOf]="module.views">
+                            <li *ngIf="module.views" (click)="updateViewport(view.mainComponentName) && setSelectedView(view)">
+                                <div class="{{ view.mainComponentName + '_' + view.instanceKey }}">
+                                    <span>{{ view.name | translate: lang}}</span>
+                                </div>
+                            </li>
+                        </ng-template>
+                    </ul>
+                </a>
+            </div>
+            
+            <ul *ngIf="module.views.length == 1">
                 <ng-template ngFor let-view [ngForOf]="module.views">
-                    <li *ngIf="module.views" (click)="updateViewport(view.mainComponentName)">
+                    <li *ngIf="module.views" (click)="updateViewport(view.mainComponentName) && setSelectedView(view)">
                         <div class="{{ view.mainComponentName + '_' + view.instanceKey }}">
                             <span>{{ view.name | translate: lang}}</span>
                         </div>
                     </li>
                 </ng-template>
-            </div>
+            </ul>
         </ng-template>
-    </ul>
+    </div>
 </terra-base-toolbar>
 <div *ngIf="modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
     <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first">

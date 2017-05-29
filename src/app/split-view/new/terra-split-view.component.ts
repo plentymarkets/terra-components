@@ -145,6 +145,11 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     //    return this.modules.indexOf(module);
     //}
     
+    private setSelectedView(view:TerraSplitViewIn)
+    {
+        this.inputConfig.currentSelectedView = view;
+    }
+    
     private updateBreadCrumbs()
     {
         if(this.inputConfig.views != null)

@@ -13,35 +13,6 @@ export class TerraSplitViewConfig
     public addView(view:TerraSplitViewIn):void
     {
         setTimeout(()=>{
-            //let existingView:TerraSplitViewIn = this.recursiveFindViewByModule2(view, this._views);
-            //
-            //if(existingView == null)
-            //{
-            //    let lastView = this.findLastView2(this._views);
-            //
-            //    if(lastView == null)
-            //    {
-            //        this._views.push(view);
-            //    }
-            //    else
-            //    {
-            //        if(lastView.nextViews == null)
-            //        {
-            //            lastView.nextViews = [];
-            //        }
-            //
-            //        lastView.nextViews.push(view);
-            //        view.parentView = lastView;
-            //        this.addViewEventEmitter.next(view);
-            //    }
-            //}
-            //else
-            //{
-            //    existingView.parentView.nextViews.push(view);
-            //    view.parentView = existingView.parentView;
-            //    this.addViewEventEmitter.next(view);
-            //}
-            
             if(this.currentSelectedView == null)
             {
                 this.views.push(view);
