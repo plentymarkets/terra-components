@@ -4,6 +4,7 @@
 ### Feature
 * **terra-data-table** Added text align for content
 * **plenty-icons** New icon class _.icon-zoom_out_ and updated icons for _.icon-shipment_tracking_ and _.icon-reorder_search_
+* **base-service** Add _createUrlSearchParams()_ function to create URLSearchParams from a given params interface
 
 <a name="1.2.0"></a>
 # 1.2.0 (18.05.2017)

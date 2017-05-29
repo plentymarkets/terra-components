@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import {
     Headers,
     Http,
-    Response
+    Response,
+    URLSearchParams
 } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
+import { TerraBaseParameterInterface } from '../data/terra-base-parameter.interface';
 
 /**
  * @author mfrank
@@ -90,12 +92,12 @@ export class TerraBaseService
                 }
                 else
                 {
-                    return response.text() === ''? {} : response.json();
+                    return response.text() === '' ? {} : response.json();
                 }
             }).catch(
-            (error: any) =>
+            (error:any) =>
             {
-                if (error.status == 401)
+                if(error.status == 401)
                 {
                     let event:CustomEvent = new CustomEvent('login');
                     //Workaround for plugins in Angular (loaded via iFrame)
@@ -116,7 +118,7 @@ export class TerraBaseService
                         window.dispatchEvent(event);
                     }
                 }
-    
+                
                 return Observable.throw(error);
             }).share();
         
@@ -131,5 +133,23 @@ export class TerraBaseService
         );
         
         return req;
+    }
+    
+    /**
+     * @param {TerraBaseParameterInterface} params
+     * @returns {URLSearchParams}
+     */
+    protected createUrlSearchParams(params:TerraBaseParameterInterface):URLSearchParams
+    {
+        let searchParams:URLSearchParams = new URLSearchParams();
+        
+        Object.keys(params)
+              .map(
+                  (key) =>
+                  {
+                      searchParams.set(key, params[key]);
+                  });
+        
+        return searchParams;
     }
 }

@@ -25,5 +25,4 @@ export class TerraUrlParamsDecorator
             urlSearchParams.set('itemsPerPage', terraPagerParameter.itemsPerPage.toString());
         }
     }
-    
 }
