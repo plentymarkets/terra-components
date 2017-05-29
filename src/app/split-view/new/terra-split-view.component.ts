@@ -89,8 +89,24 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             {
                if(detail.identifier == view.mainComponentName)
                {
-                   detail.views.push(view);
-                   break;
+                   let hasSameParams:boolean = false;
+                   
+                   for(let detailView of detail.views)
+                   {
+                       hasSameParams = JSON.stringify(detailView.parameter) == JSON.stringify(view.parameter);
+                       
+                       if(hasSameParams)
+                       {
+                           this.updateViewport(view.mainComponentName);
+                           break;
+                       }
+                   }
+                   
+                   if(!hasSameParams)
+                   {
+                       detail.views.push(view);
+                       break;
+                   }
                }
             }
         }
