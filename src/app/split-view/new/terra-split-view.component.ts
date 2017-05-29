@@ -163,6 +163,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     
     private setSelectedView(view:TerraSplitViewIn)
     {
+        console.log(view);
         this.inputConfig.currentSelectedView = view;
     }
     

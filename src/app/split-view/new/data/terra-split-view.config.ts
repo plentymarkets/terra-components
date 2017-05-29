@@ -26,7 +26,23 @@ export class TerraSplitViewConfig
                     this.currentSelectedView.nextViews = [];
                 }
                 
-                this.currentSelectedView.nextViews.push(view);
+                let alreadyAdded:boolean = false;
+                
+                for(let next of this.currentSelectedView.nextViews)
+                {
+                    let hasSameParameter:boolean = JSON.stringify(next.parameter) == JSON.stringify(view.parameter);
+                    
+                    if(hasSameParameter && next.module.ngModule == view.module.ngModule)
+                    {
+                        alreadyAdded = true;
+                        break;
+                    }
+                }
+                
+                if(!alreadyAdded)
+                {
+                    this.currentSelectedView.nextViews.push(view);
+                }
             }
     
             this.addViewEventEmitter.next(view);
