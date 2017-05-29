@@ -14,6 +14,7 @@ import {
     IMyOptions,
     MyDatePicker
 } from 'mydatepicker';
+import moment = require('moment');
 
 /**
  * @author mfrank
@@ -125,7 +126,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
             this._value = value;
             
             this.onTouchedCallback();
-            this.onChangeCallback(value.jsdate.toISOString());
+            this.onChangeCallback(moment(value.jsdate).format());
         }
         else
         {
