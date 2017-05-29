@@ -157,6 +157,11 @@
     padding: 0;
 }
 
+.view > div
+{
+    height: 100%;
+}
+
 .view.hasDivider
 {
     padding: 0 5px 0 4px;
