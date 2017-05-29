@@ -5,40 +5,62 @@ export class TerraSplitViewConfig
 {
     //private _firstView:TerraSplitViewIn;
     private _views:Array<TerraSplitViewIn> = [];
+    private _currentSelectedView:TerraSplitViewIn;
     
     private _addViewEventEmitter:EventEmitter<TerraSplitViewIn> = new EventEmitter<TerraSplitViewIn>();
     private _deleteViewEventEmitter:EventEmitter<TerraSplitViewIn> = new EventEmitter<TerraSplitViewIn>();
     
     public addView(view:TerraSplitViewIn):void
     {
-        let existingView:TerraSplitViewIn = this.recursiveFindViewByModule2(view, this._views);
-        
-        if(existingView == null)
-        {
-            let lastView = this.findLastView2(this._views);
+        setTimeout(()=>{
+            //let existingView:TerraSplitViewIn = this.recursiveFindViewByModule2(view, this._views);
+            //
+            //if(existingView == null)
+            //{
+            //    let lastView = this.findLastView2(this._views);
+            //
+            //    if(lastView == null)
+            //    {
+            //        this._views.push(view);
+            //    }
+            //    else
+            //    {
+            //        if(lastView.nextViews == null)
+            //        {
+            //            lastView.nextViews = [];
+            //        }
+            //
+            //        lastView.nextViews.push(view);
+            //        view.parentView = lastView;
+            //        this.addViewEventEmitter.next(view);
+            //    }
+            //}
+            //else
+            //{
+            //    existingView.parentView.nextViews.push(view);
+            //    view.parentView = existingView.parentView;
+            //    this.addViewEventEmitter.next(view);
+            //}
             
-            if(lastView == null)
+            if(this.currentSelectedView == null)
             {
-                this._views.push(view);
+                this.views.push(view);
             }
             else
             {
-                if(lastView.nextViews == null)
+                view.parentView = this.currentSelectedView;
+                
+                if(this.currentSelectedView.nextViews == null)
                 {
-                    lastView.nextViews = [];
+                    this.currentSelectedView.nextViews = [];
                 }
-    
-                lastView.nextViews.push(view);
-                view.parentView = lastView;
-                this.addViewEventEmitter.next(view);
+                
+                this.currentSelectedView.nextViews.push(view);
             }
-        }
-        else
-        {
-            existingView.parentView.nextViews.push(view);
-            view.parentView = existingView.parentView;
+    
             this.addViewEventEmitter.next(view);
-        }
+        });
+        
         
         //if(this._firstView)
         //{
@@ -391,5 +413,15 @@ export class TerraSplitViewConfig
     public get views():Array<TerraSplitViewIn>
     {
         return this._views;
+    }
+    
+    public get currentSelectedView():TerraSplitViewIn
+    {
+        return this._currentSelectedView;
+    }
+    
+    public set currentSelectedView(value:TerraSplitViewIn)
+    {
+        this._currentSelectedView = value;
     }
 }

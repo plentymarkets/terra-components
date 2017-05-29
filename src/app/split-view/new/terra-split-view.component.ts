@@ -47,6 +47,8 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                                                            //    this.addViewToList(value);
                                                            //}
                                                            
+                                                           this.inputConfig.currentSelectedView = value;
+                                                           
                                                            this.updateBreadCrumbs();
                                                        });
         
@@ -132,9 +134,13 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             
             var currentModule:TerraSplitViewIn;
             
-            currentModule =  this.inputConfig.findLastView2(this.inputConfig.views);
+            currentModule =  this.inputConfig.currentSelectedView;
             
-            this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
+            if(currentModule)
+            {
+                this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
+            }
+            
         }
         
         // init same instance sliding

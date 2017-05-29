@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { TerraSplitViewIn } from '../data/terra-split-view-in';
 import { TerraSplitViewComponentNew } from '../terra-split-view.component';
+import { TerraSplitViewConfig } from '../data/terra-split-view.config';
 
 @Component({
                selector: 'terra-split-view-breadcrumb',
@@ -20,6 +21,7 @@ export class TerraSplitViewBreadcrumbsComponent implements OnInit
     @Input() inputIndex:number;
     @Input() inputLast:boolean;
     @Input() inputFirst:boolean;
+    @Input() inputSplitViewConfig:TerraSplitViewConfig;
     
     constructor(@Inject(forwardRef(() => TerraSplitViewComponentNew)) private splitViewComponent:TerraSplitViewComponentNew)
     {
@@ -34,6 +36,7 @@ export class TerraSplitViewBreadcrumbsComponent implements OnInit
     updateViewport(id:string)
     {
         console.log(this.inputView);
+        this.inputSplitViewConfig.currentSelectedView = this.inputView;
         this.splitViewComponent.updateViewport(id);
     }
 }
