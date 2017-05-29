@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { TerraSplitViewIn } from './data/terra-split-view-in';
 import { TerraSplitViewConfig } from './data/terra-split-view.config';
+import { TerraSplitViewDetail } from './data/terra-split-view-detail';
 
 @Component({
                selector: 'terra-split-view-new',
@@ -23,7 +24,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     @Input() inputShowBreadcrumbs:boolean;
     private _breadCrumbsPath:string;
     
-    private modules:Array<TerraSplitViewIn> = [];
+    private modules:Array<TerraSplitViewDetail> = [];
     
     public static ANIMATION_SPEED = 1000; // ms
     
@@ -47,16 +48,18 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                                                            //    this.addViewToList(value);
                                                            //}
                                                            
+                                                           this.addViewToList(value);
+            
                                                            this.inputConfig.currentSelectedView = value;
-                                                           
+            
                                                            this.updateBreadCrumbs();
                                                        });
         
         this.inputConfig.deleteViewEventEmitter.subscribe((value:TerraSplitViewIn) =>
-                                                       {
-                                                           //this.removeViewFromList(value);
-                                                           this.updateBreadCrumbs();
-                                                       });
+                                                          {
+                                                              //this.removeViewFromList(value);
+                                                              this.updateBreadCrumbs();
+                                                          });
     }
     
     ngOnChanges(changes:SimpleChanges)
@@ -67,15 +70,48 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         }
     }
     
-    //addViewToList(view:TerraSplitViewIn)
-    //{
-    //    this.modules.push(view);
-    //
-    //    if(view.nextView)
-    //    {
-    //        this.addViewToList(view.nextView);
-    //    }
-    //}
+    addViewToList(view:TerraSplitViewIn)
+    {
+        let viewFound:boolean = false;
+        
+        for(let detail of this.modules)
+        {
+            if(detail.identifier == view.mainComponentName)
+            {
+                viewFound = true;
+                break;
+            }
+        }
+        
+        if(viewFound)
+        {
+            for(let detail of this.modules)
+            {
+               if(detail.identifier == view.mainComponentName)
+               {
+                   detail.views.push(view);
+                   break;
+               }
+            }
+        }
+        else
+        {
+            let views:Array<TerraSplitViewIn> = [];
+            views.push(view);
+            
+            this.modules.push({
+                                  views:      views,
+                                  identifier: view.mainComponentName,
+                                  defaultWidth: view.defaultWidth
+                              });
+        }
+        
+        //if(view.nextView)
+        //{
+        //    this.addViewToList(view.nextView);
+        //}
+    }
+    
     //
     //removeViewFromList(view:TerraSplitViewIn)
     //{
@@ -104,10 +140,10 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     //    }
     //}
     
-    getModuleIndex(module:TerraSplitViewIn):number
-    {
-        return this.modules.indexOf(module);
-    }
+    //getModuleIndex(module:TerraSplitViewIn):number
+    //{
+    //    return this.modules.indexOf(module);
+    //}
     
     private updateBreadCrumbs()
     {
@@ -134,7 +170,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             
             var currentModule:TerraSplitViewIn;
             
-            currentModule =  this.inputConfig.currentSelectedView;
+            currentModule = this.inputConfig.currentSelectedView;
             
             if(currentModule)
             {
@@ -215,7 +251,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                                {scrollLeft: (breadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft())},
                                this.ANIMATION_SPEED);
                        }
-    
+            
                        // focus view vertically
                        // TODO: @vwiebe, 1. fix breadcrumb scope, 2. don't refocus, 3. refactoring
                        breadcrumb.each(function()
@@ -223,11 +259,15 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                                            $(this).find('a:not(.caret)').off();
                                            $(this).find('a:not(.caret)').click(function()
                                                                                {
-                                                                                   let yolo = $('.side-scroller').find($('.' + $(this).attr('class')));
-            
-                                                                                   $(yolo.parent()[0]).animate({scrollTop: ($(yolo.parent()[0]).scrollTop() + yolo[0].getBoundingClientRect().top - yolo.parent()[0].getBoundingClientRect().top)},
+                                                                                   let yolo = $('.side-scroller')
+                                                                                       .find($('.' + $(this).attr('class')));
+                    
+                                                                                   $(yolo.parent()[0]).animate({
+                                                                                                                   scrollTop: ($(yolo.parent()[0])
+                                                                                                                                   .scrollTop() + yolo[0].getBoundingClientRect().top - yolo.parent()[0].getBoundingClientRect().top)
+                                                                                                               },
                                                                                                                this.ANIMATION_SPEED);
-            
+                    
                                                                                });
                                        });
             
@@ -239,7 +279,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                            //viewContainer.stop();
                            //anchor.animate({scrollTop: (anchor[0].getBoundingClientRect().top + 200)},
                            //               this.ANIMATION_SPEED);
-                           
+                
                            return;
                        }
             
@@ -258,7 +298,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                        viewContainer.stop();
                        viewContainer.animate({scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset)},
                                              this.ANIMATION_SPEED);
-
+            
                    });
     }
 }
