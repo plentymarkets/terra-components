@@ -124,8 +124,12 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         {
             this._value = value;
             
+            let tmp = new Date(value.jsdate);
+            
+            tmp.setMinutes(value.jsdate.getMinutes() - value.jsdate.getTimezoneOffset());
+            
             this.onTouchedCallback();
-            this.onChangeCallback(value.jsdate.toISOString());
+            this.onChangeCallback(tmp.toISOString());
         }
         else
         {
