@@ -423,5 +423,20 @@ export class TerraSplitViewConfig
     public set currentSelectedView(value:TerraSplitViewIn)
     {
         this._currentSelectedView = value;
+        
+        this.recursiveSetSelected(value);
+    }
+    
+    private recursiveSetSelected(view:TerraSplitViewIn)
+    {
+        view.isSelected = true;
+        
+        if(view.nextViews)
+        {
+            for(let next of view.nextViews)
+            {
+                this.recursiveSetSelected(next);
+            }
+        }
     }
 }

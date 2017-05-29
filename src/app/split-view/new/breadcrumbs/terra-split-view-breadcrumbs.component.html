@@ -1,4 +1,4 @@
-<li (click)="updateViewport(inputView.mainComponentName + '_' + inputView.instanceKey + '_' + inputIndex)">
+<li *ngIf="inputView.isSelected" (click)="updateViewport(inputView.mainComponentName + '_' + inputView.instanceKey + '_' + inputIndex)">
     <div class="{{ inputView.mainComponentName + '_' + inputView.instanceKey}}">
         <span>{{ inputView.name | translate: lang}}</span>
         <a class="caret" *ngIf="inputView.parentView != null && inputView.parentView.nextViews != null && inputView.parentView.nextViews.length > 1">
