@@ -137,26 +137,6 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
         }
         
-        // init same instance sliding
-        
-        setTimeout(function()
-                   {
-                       $('terra-split-view-breadcrumb').find('.' + currentModule.mainComponentName + "_" + currentModule.instanceKey).each(function()
-                                                                                                       {
-                                                                                                           $(this).find('a:not(.caret)').off();
-                                                                                                           $(this).find('a:not(.caret)').click(function()
-                                                                                                                                                    {
-                                                                                                                                                        let yolo = $('.side-scroller').find($('.' + $(this).attr('class')));
-    
-                                                                                                                                                        $(yolo.parent()[0]).animate({scrollTop: ($(yolo.parent()[0]).scrollTop() + yolo[0].getBoundingClientRect().top - 126)},
-                                                                                                                                                                              this.ANIMATION_SPEED);
-                                                                                                                                                        
-                                                                                                                                                    });
-                                                                                                                                   
-                                                                                                       });
-                   });
-        
-        
         // init breadcrumb sliding
         setTimeout(function()
                    {
@@ -229,8 +209,23 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                                {scrollLeft: (breadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft())},
                                this.ANIMATION_SPEED);
                        }
+    
+                       // focus view vertically
+                       // TODO: @vwiebe, 1. fix breadcrumb scope, 2. don't refocus, 3. refactoring
+                       breadcrumb.each(function()
+                                       {
+                                           $(this).find('a:not(.caret)').off();
+                                           $(this).find('a:not(.caret)').click(function()
+                                                                               {
+                                                                                   let yolo = $('.side-scroller').find($('.' + $(this).attr('class')));
             
-                       // focus view
+                                                                                   $(yolo.parent()[0]).animate({scrollTop: ($(yolo.parent()[0]).scrollTop() + yolo[0].getBoundingClientRect().top - yolo.parent()[0].getBoundingClientRect().top)},
+                                                                                                               this.ANIMATION_SPEED);
+            
+                                                                               });
+                                       });
+            
+                       // focus view horizontally
                        if(anchor[0] != null &&
                           anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
                           anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
@@ -257,10 +252,6 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                        viewContainer.stop();
                        viewContainer.animate({scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset)},
                                              this.ANIMATION_SPEED);
-                       //
-                       //
-                       //anchor.animate({scrollTop: (anchor[0].getBoundingClientRect().top + 200)},
-                       //                      this.ANIMATION_SPEED);
 
                    });
     }
