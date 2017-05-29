@@ -14,6 +14,7 @@ import {
     IMyOptions,
     MyDatePicker
 } from 'mydatepicker';
+import moment = require('moment');
 
 /**
  * @author mfrank
@@ -37,18 +38,11 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     @Input() inputIsValid:boolean;
     @Input() inputIsDisabled:boolean;
     @Input() inputOpenCalendarTop:boolean;
+    @Input() inputDisplayDateFormat:string;
     
     @ViewChild('viewChildMyDatePicker') viewChildMyDatePicker:MyDatePicker;
     
-    private onTouchedCallback:() => void = () =>
-    {
-    };
-    
-    private onChangeCallback:(_:any) => void = (_) =>
-    {
-    };
-    
-    private _value:number;
+    private _value:IMyDateModel;
     private _myDateModel:IMyDateModel;
     private _currentLocale:string;
     private _datePickerOptions:IMyOptions;
@@ -59,6 +53,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.inputIsDisabled = false;
         this.inputIsValid = true;
         this.inputOpenCalendarTop = false;
+        this.inputDisplayDateFormat = "dd.mm.yyyy";
         
         this._currentLocale = localStorage.getItem('plentymarkets_lang_');
     }
@@ -72,20 +67,23 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     {
         this._datePickerOptions = {
             height:                   'inherit',
-            //inputValueRequired:       this.inputIsRequired,
             componentDisabled:        this.inputIsDisabled,
             openSelectorTopOfInput:   this.inputOpenCalendarTop,
             showSelectorArrow:        !this.inputOpenCalendarTop,
             inline:                   false,
             editableDateField:        true,
-            openSelectorOnInputClick: false
+            openSelectorOnInputClick: false,
+            dateFormat:               this.inputDisplayDateFormat,
         };
     }
     
-    public writeValue(value:any):void
+    private onTouchedCallback:() => void = () =>
     {
-        this.value = value;
-    }
+    };
+    
+    private onChangeCallback:(_:any) => void = (_) =>
+    {
+    };
     
     public registerOnChange(fn:any):void
     {
@@ -97,34 +95,45 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.onTouchedCallback = fn;
     }
     
-    public get value():any
+    public writeValue(value:any):void
+    {
+        if(value !== null && value !== undefined && typeof (value) === "string" && isNaN(Date.parse(value)) === false)
+        {
+            let newDate = new Date(value);
+            
+            this.value = {
+                date:      {
+                    year:  newDate.getFullYear(),
+                    month: newDate.getMonth() + 1,
+                    day:   newDate.getDate()
+                },
+                jsdate:    newDate,
+                formatted: null,
+                epoc:      null
+            };
+        }
+    }
+    
+    public get value():IMyDateModel
     {
         return this._value;
     }
     
-    public set value(value:any)
+    public set value(value:IMyDateModel)
     {
-        if(value != null)
+        if(value !== null && value !== undefined && typeof(value) === "object")
         {
-            
             this._value = value;
             
-            let momentDate:Date = new Date(value * 1000);
-            
-            this.myDateModel = {
-                date:      {
-                    year:  momentDate.getFullYear(),
-                    month: momentDate.getMonth() + 1,
-                    day:   momentDate.getDate()
-                },
-                jsdate:    momentDate,
-                formatted: '',
-                epoc:      value
-            };
+            this.onTouchedCallback();
+            this.onChangeCallback(moment(value.jsdate).format());
         }
         else
         {
-            this.viewChildMyDatePicker.clearDate();
+            this._value = null;
+            
+            this.onTouchedCallback();
+            this.onChangeCallback(null);
         }
     }
     
@@ -156,4 +165,3 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.viewChildMyDatePicker.clearDate();
     }
 }
-    

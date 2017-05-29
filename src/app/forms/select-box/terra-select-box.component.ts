@@ -69,7 +69,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     private _selectedValue:TerraSelectBoxValueInterface;
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
-    public _isValid:boolean;
+    private _isValid:boolean;
     private _isInit:boolean;
     
     /**
