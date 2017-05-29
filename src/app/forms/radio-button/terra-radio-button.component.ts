@@ -9,12 +9,6 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 
-export const RADIO_CONTROL_VALUE_ACCESSOR:any = {
-    provide:     NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TerraRadioButtonComponent),
-    multi:       true
-};
-
 /**
  * @author mfrank
  */
@@ -22,7 +16,13 @@ export const RADIO_CONTROL_VALUE_ACCESSOR:any = {
                selector:  'terra-radio-button',
                template:  require('./terra-radio-button.component.html'),
                styles:    [require('./terra-radio-button.component.scss')],
-               providers: [RADIO_CONTROL_VALUE_ACCESSOR]
+               providers: [
+                   {
+                       provide:     NG_VALUE_ACCESSOR,
+                       useExisting: forwardRef(() => TerraRadioButtonComponent),
+                       multi:       true
+                   }
+               ]
            })
 export class TerraRadioButtonComponent implements ControlValueAccessor
 {

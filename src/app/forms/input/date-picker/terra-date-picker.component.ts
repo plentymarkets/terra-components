@@ -29,7 +29,7 @@ import moment = require('moment');
                        useExisting: forwardRef(() => TerraDatePickerComponent),
                        multi:       true
                    }
-               ],
+               ]
            })
 export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 {

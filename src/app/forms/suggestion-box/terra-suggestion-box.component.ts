@@ -13,21 +13,21 @@ import {
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-export const SUGGESTION_BOX_VALUE_ACCESSOR:any = {
-    provide:     NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TerraSuggestionBoxComponent),
-    multi:       true
-};
-
 //TODO in template input mit terra-input ersetzen
 @Component({
                selector:        'terra-suggestion-box',
                styles:          [require('./terra-suggestion-box.component.scss')],
                template:        require('./terra-suggestion-box.component.html'),
+               providers:       [
+                   {
+                       provide:     NG_VALUE_ACCESSOR,
+                       useExisting: forwardRef(() => TerraSuggestionBoxComponent),
+                       multi:       true
+                   }
+               ],
                host:            {
                    '(document:click)': 'clickedOutside($event)',
                },
-               providers:       [SUGGESTION_BOX_VALUE_ACCESSOR],
                changeDetection: ChangeDetectionStrategy.OnPush
            })
 
