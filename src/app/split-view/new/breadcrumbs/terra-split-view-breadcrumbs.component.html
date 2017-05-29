@@ -1,12 +1,12 @@
-<li (click)="updateViewport(inputView.mainComponentName + '_' + inputView.instanceKey)">
-    <div class="{{ inputView.mainComponentName + '_' + inputView.instanceKey }}">
+<li (click)="updateViewport(inputView.mainComponentName + '_' + inputView.instanceKey + '_' + inputIndex)">
+    <div class="{{ inputView.mainComponentName + '_' + inputView.instanceKey}}">
         <span>{{ inputView.name | translate: lang}}</span>
-        <a class="caret" *ngIf="inputView.nextViews != null && inputView.nextViews.length > 0">
+        <a class="caret" *ngIf="inputView.parentView != null && inputView.parentView.nextViews != null && inputView.parentView.nextViews.length > 1">
             <ul class="context-menu">
-                <ng-template ngFor let-next [ngForOf]="inputView.nextViews" let-i="index">
+                <ng-template ngFor let-next [ngForOf]="inputView.parentView.nextViews" let-i="index">
                     <li *ngIf="next.module.ngModule == inputView.module.ngModule"
-                        class="{{ inputView.mainComponentName + '_' + inputView.instanceKey}}">
-                        <a class="{{ inputView.mainComponentName + '_' + inputView.instanceKey + '_' + i }}">{{next.name}}</a>
+                        class="{{ next.mainComponentName + '_' + next.instanceKey }}">
+                        <a class="{{ next.mainComponentName + '_' + next.instanceKey + '_' + i }}">{{next.name}}</a>
                     </li>
                 </ng-template>
             </ul>
@@ -14,5 +14,5 @@
     </div>
 </li>
 <ng-template ngFor let-next [ngForOf]="inputView.nextViews" let-last="last" let-first="first" let-i="index">
-    <terra-split-view-breadcrumb [inputSplitViewConfig]="inputSplitViewConfig" [inputView]="next" *ngIf="next.module.ngModule != inputView.module.ngModule"></terra-split-view-breadcrumb>
+    <terra-split-view-breadcrumb [inputSplitViewConfig]="inputSplitViewConfig" [inputIndex]="i" [inputView]="next" *ngIf="next.module.ngModule != inputView.module.ngModule"></terra-split-view-breadcrumb>
 </ng-template>
