@@ -7,4 +7,5 @@ export interface TerraSplitViewDetail
     views:Array<TerraSplitViewIn>,
     identifier:any;
     defaultWidth:string;
+    name:string;
 }

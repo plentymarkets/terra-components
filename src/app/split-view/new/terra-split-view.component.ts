@@ -19,7 +19,6 @@ import { TerraSplitViewDetail } from './data/terra-split-view-detail';
            })
 export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
 {
-    //@Input() inputModule:TerraSplitViewIn;
     @Input() inputConfig:TerraSplitViewConfig;
     @Input() inputShowBreadcrumbs:boolean;
     private _breadCrumbsPath:string;
@@ -43,11 +42,6 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     {
         this.inputConfig.addViewEventEmitter.subscribe((value:TerraSplitViewIn) =>
                                                        {
-                                                           //if(!value.componentChildren)
-                                                           //{
-                                                           //    this.addViewToList(value);
-                                                           //}
-                                                           
                                                            this.addViewToList(value);
             
                                                            this.inputConfig.currentSelectedView = value;
@@ -57,7 +51,6 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         
         this.inputConfig.deleteViewEventEmitter.subscribe((value:TerraSplitViewIn) =>
                                                           {
-                                                              //this.removeViewFromList(value);
                                                               this.updateBreadCrumbs();
                                                           });
     }
@@ -118,79 +111,36 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             this.modules.push({
                                   views:      views,
                                   identifier: view.mainComponentName,
-                                  defaultWidth: view.defaultWidth
+                                  defaultWidth: view.defaultWidth,
+                                  name: view.name
                               });
         }
-        
-        //if(view.nextView)
-        //{
-        //    this.addViewToList(view.nextView);
-        //}
     }
     
-    //
-    //removeViewFromList(view:TerraSplitViewIn)
-    //{
-    //    let index:number = this.modules.indexOf(view);
-    //
-    //    if(index != -1)
-    //    {
-    //        this.modules.splice(index, 1)
-    //    }
-    //
-    //    if(view.nextView)
-    //    {
-    //        this.removeViewFromList(view.nextView);
-    //    }
-    //}
-    //
-    //findLastView(view:TerraSplitViewIn):TerraSplitViewIn
-    //{
-    //    if(view.nextView)
-    //    {
-    //        return this.findLastView(view.nextView);
-    //    }
-    //    else
-    //    {
-    //        return view;
-    //    }
-    //}
-    
-    //getModuleIndex(module:TerraSplitViewIn):number
-    //{
-    //    return this.modules.indexOf(module);
-    //}
+    private changeBreadcrumbName(view:TerraSplitViewIn)
+    {
+        for(let module of this.modules)
+        {
+            if(module.identifier == view.mainComponentName)
+            {
+                module.name = view.name;
+                break;
+            }
+        }
+    }
     
     private setSelectedView(view:TerraSplitViewIn)
     {
         console.log(view);
         this.inputConfig.currentSelectedView = view;
+        this.changeBreadcrumbName(view);
     }
     
     private updateBreadCrumbs()
     {
         if(this.inputConfig.views != null)
         {
-            //let currentModule = this.findLastView(this.inputConfig.firstView);
-            //
-            //let index:number = this.getModuleIndex(currentModule);
-            //
-            //if(index == -1)
-            //{
-            //    this.addViewToList(this.inputConfig.firstView);
-            //}
-            //
-            //var currentModule:TerraSplitViewIn;
-            //if(this.inputConfig.firstView.nextViews)
-            //{
-            //    currentModule = this.inputConfig.views[this.inputConfig.firstView.nextViews.length - 1];
-            //}
-            //else
-            //{
-            //    currentModule = this.inputConfig.firstView;
-            //}
-            
-            var currentModule:TerraSplitViewIn;
+            let currentModule:TerraSplitViewIn;
             
             currentModule = this.inputConfig.currentSelectedView;
             
@@ -276,22 +226,22 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             
                        // focus view vertically
                        // TODO: @vwiebe, 1. fix breadcrumb scope, 2. don't refocus, 3. refactoring
-                       breadcrumb.each(function()
-                                       {
-                                           $(this).find('a:not(.caret)').off();
-                                           $(this).find('a:not(.caret)').click(function()
-                                                                               {
-                                                                                   let yolo = $('.side-scroller')
-                                                                                       .find($('.' + $(this).attr('class')));
-                    
-                                                                                   $(yolo.parent()[0]).animate({
-                                                                                                                   scrollTop: ($(yolo.parent()[0])
-                                                                                                                                   .scrollTop() + yolo[0].getBoundingClientRect().top - yolo.parent()[0].getBoundingClientRect().top)
-                                                                                                               },
-                                                                                                               this.ANIMATION_SPEED);
-                    
-                                                                               });
-                                       });
+                       //breadcrumb.each(function()
+                       //                {
+                       //                    $(this).find('a:not(.caret)').off();
+                       //                    $(this).find('a:not(.caret)').click(function()
+                       //                                                        {
+                       //                                                            let yolo = $('.side-scroller')
+                       //                                                                .find($('.' + $(this).attr('class')));
+                       //
+                       //                                                            $(yolo.parent()[0]).animate({
+                       //                                                                                            scrollTop: ($(yolo.parent()[0])
+                       //                                                                                                            .scrollTop() + yolo[0].getBoundingClientRect().top - yolo.parent()[0].getBoundingClientRect().top)
+                       //                                                                                        },
+                       //                                                                                        this.ANIMATION_SPEED);
+                       //
+                       //                                                        });
+                       //                });
             
                        // focus view horizontally
                        if(anchor[0] != null &&

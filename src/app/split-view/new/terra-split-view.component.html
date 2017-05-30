@@ -21,35 +21,56 @@
 <!--</div>-->
 
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs">
-    <div class="terra-breadcrumbs">
-        <ng-template ngFor let-module [ngForOf]="modules" let-index="index">
-            <div *ngIf="module.views.length > 1">
-                {{index}}
-                <a class="caret">
-                    <ul class="{{ module.identifier }} context-menu">
-                        <ng-template ngFor let-view [ngForOf]="module.views">
-                            <li *ngIf="module.views" (click)="updateViewport(view.mainComponentName) && setSelectedView(view)">
-                                <div class="{{ view.mainComponentName + '_' + view.instanceKey }}">
-                                    <span>{{ view.name | translate: lang}}</span>
-                                </div>
-                            </li>
-                        </ng-template>
-                    </ul>
-                </a>
-            </div>
-            
-            <ul *ngIf="module.views.length == 1">
-                <ng-template ngFor let-view [ngForOf]="module.views">
-                    <li *ngIf="module.views" (click)="updateViewport(view.mainComponentName) && setSelectedView(view)">
-                        <div class="{{ view.mainComponentName + '_' + view.instanceKey }}">
-                            <span>{{ view.name | translate: lang}}</span>
-                        </div>
-                    </li>
-                </ng-template>
-            </ul>
+    <ul class="terra-breadcrumbs">
+        <ng-template ngFor let-module [ngForOf]="modules">
+            <li (click)="updateViewport(module.identifier)">
+                <div class="{{ module.identifier }}">
+                    <span>{{module.name}}</span>
+                    <a class="caret" *ngIf="module.views.length > 1">
+                        <ul class="context-menu">
+                            <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
+                                <a (click)="setSelectedView(view) && updateViewport(view.mainComponentName)">
+                                    <span>{{ view.name }}</span>
+                                </a>
+                            </ng-template>
+                        </ul>
+                    </a>
+                </div>
+            </li>
         </ng-template>
-    </div>
+    </ul>
 </terra-base-toolbar>
+
+<!--<terra-base-toolbar *ngIf="inputShowBreadcrumbs">-->
+    <!--<ul class="terra-breadcrumbs">-->
+        <!--<ng-template ngFor let-module [ngForOf]="modules" let-index="index">-->
+            <!--<li>-->
+                <!--{{index}}-->
+                <!--<a class="caret">-->
+                    <!--<ul class="{{ module.identifier }} context-menu">-->
+                        <!--<ng-template ngFor let-view [ngForOf]="module.views">-->
+                            <!--<li *ngIf="module.views" (click)="updateViewport(view.mainComponentName) && setSelectedView(view)">-->
+                                <!--<div class="{{ view.mainComponentName + '_' + view.instanceKey }}">-->
+                                    <!--<span>{{ view.name | translate: lang}}</span>-->
+                                <!--</div>-->
+                            <!--</li>-->
+                        <!--</ng-template>-->
+                    <!--</ul>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!---->
+            <!--&lt;!&ndash;<ul *ngIf="module.views.length == 1">&ndash;&gt;-->
+                <!--&lt;!&ndash;<ng-template ngFor let-view [ngForOf]="module.views">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li *ngIf="module.views" (click)="updateViewport(view.mainComponentName) && setSelectedView(view)">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="{{ view.mainComponentName + '_' + view.instanceKey }}">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<span>{{ view.name | translate: lang}}</span>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ng-template>&ndash;&gt;-->
+            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+        <!--</ng-template>-->
+    <!--</ul>-->
+<!--</terra-base-toolbar>-->
 <div *ngIf="modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
     <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first">
         <div class="view {{ module.defaultWidth }}" id="{{ module.identifier }}" [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">
