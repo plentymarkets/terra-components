@@ -45,7 +45,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                                                            this.addViewToList(value);
             
                                                            this.inputConfig.currentSelectedView = value;
-            
+                                                           this.changeBreadcrumbName(value);
                                                            this.updateBreadCrumbs();
                                                        });
         
@@ -61,6 +61,11 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         {
             this.updateBreadCrumbs();
         }
+    }
+    
+    checkModuleVisibility(module:TerraSplitViewDetail, view:TerraSplitViewIn):boolean
+    {
+        return module.currentSelectedView != view;
     }
     
     addViewToList(view:TerraSplitViewIn)
@@ -112,7 +117,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                                   views:      views,
                                   identifier: view.mainComponentName,
                                   defaultWidth: view.defaultWidth,
-                                  name: view.name
+                                  currentSelectedView: view
                               });
         }
     }
@@ -123,8 +128,34 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         {
             if(module.identifier == view.mainComponentName)
             {
-                module.name = view.name;
-                break;
+                module.currentSelectedView = view;
+                
+            }
+            
+            if(view.parentView != null && module.identifier == view.parentView.mainComponentName)
+            {
+                module.currentSelectedView = view.parentView;
+            }
+            
+            this.changeNextViewsBreadcrumbs(module, view.nextViews);
+        }
+    }
+    
+    private changeNextViewsBreadcrumbs(module:TerraSplitViewDetail, views:Array<TerraSplitViewIn>)
+    {
+        if(views != null)
+        {
+            for(let view of views)
+            {
+                if(module.identifier == view.mainComponentName)
+                {
+                    module.currentSelectedView = view;
+                }
+                
+                if(view.nextViews)
+                {
+                    this.changeNextViewsBreadcrumbs(module, view.nextViews);
+                }
             }
         }
     }

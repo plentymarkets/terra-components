@@ -4,8 +4,8 @@ import { TerraSplitViewIn } from './terra-split-view-in';
  */
 export interface TerraSplitViewDetail
 {
-    views:Array<TerraSplitViewIn>,
+    views:Array<TerraSplitViewIn>;
     identifier:any;
     defaultWidth:string;
-    name:string;
+    currentSelectedView:TerraSplitViewIn;
 }

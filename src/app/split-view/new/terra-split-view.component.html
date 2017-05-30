@@ -25,7 +25,7 @@
         <ng-template ngFor let-module [ngForOf]="modules">
             <li (click)="updateViewport(module.identifier)">
                 <div class="{{ module.identifier }}">
-                    <span>{{module.name}}</span>
+                    <span>{{module.currentSelectedView.name}}</span>
                     <a class="caret" *ngIf="module.views.length > 1">
                         <ul class="context-menu">
                             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
@@ -75,7 +75,7 @@
     <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first">
         <div class="view {{ module.defaultWidth }}" id="{{ module.identifier }}" [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">
             <ng-template ngFor let-view [ngForOf]="module.views">
-                <div *ngIf="!view.hidden" (click)="setSelectedView(view)">
+                <div [hidden]="checkModuleVisibility(module, view)" (click)="setSelectedView(view)">
                     <terra-dynamic-module-loader [inputModule]="view.module"
                                                  [inputParameter]="view.parameter"
                                                  [inputMainComponentName]="view.mainComponentName">
