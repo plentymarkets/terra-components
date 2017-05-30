@@ -29,9 +29,11 @@
                     <a class="caret" *ngIf="module.views.length > 1">
                         <ul class="context-menu">
                             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
-                                <a (click)="setSelectedView(view) && updateViewport(view.mainComponentName)">
-                                    <span>{{ view.name }}</span>
-                                </a>
+                                <li>
+                                    <a (click)="setSelectedView(view) && updateViewport(view.mainComponentName)">
+                                        <span>{{ view.name }}</span>
+                                    </a>
+                                </li>
                             </ng-template>
                         </ul>
                     </a>
