@@ -12,20 +12,20 @@ import {
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-export const SELECT_BOX_VALUE_ACCESSOR:any = {
-    provide:     NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TerraSelectBoxComponent),
-    multi:       true
-};
-
 @Component({
                selector:  'terra-select-box',
                styles:    [require('./terra-select-box.component.scss')],
                template:  require('./terra-select-box.component.html'),
+               providers: [
+                   {
+                       provide:     NG_VALUE_ACCESSOR,
+                       useExisting: forwardRef(() => TerraSelectBoxComponent),
+                       multi:       true
+                   }
+               ],
                host:      {
                    '(document:click)': 'clickedOutside($event)',
-               },
-               providers: [SELECT_BOX_VALUE_ACCESSOR]
+               }
            })
 export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
@@ -37,7 +37,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input() inputListBoxValues:Array<TerraSelectBoxValueInterface>;
     @Output() outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
     @Output() inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
-    
     
     /**
      * @deprecated
@@ -71,7 +70,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
     private _isValid:boolean;
-    private _regex:string;
     private _isInit:boolean;
     
     /**
@@ -81,7 +79,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     constructor(private elementRef:ElementRef)
     {
         this._isInit = false;
-        this.isValid = true;
         this.inputTooltipPlacement = 'top';
         this._selectedValue =
             {
@@ -92,6 +89,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     
     ngOnInit()
     {
+        this._isValid = true;
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
         this._isInit = true;
@@ -184,59 +182,5 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this.onTouchedCallback();
         this.onChangeCallback(value.value);
         this.outputValueChanged.emit(value);
-    }
-    
-    /**
-     *
-     * @returns {boolean}
-     */
-    public get isDisabled():boolean
-    {
-        return this.inputIsDisabled;
-    }
-    
-    /**
-     *
-     * @param value
-     */
-    public set isDisabled(value:boolean)
-    {
-        this.inputIsDisabled = value;
-    }
-    
-    /**
-     *
-     * @returns {boolean}
-     */
-    public get isValid():boolean
-    {
-        return this._isValid;
-    }
-    
-    /**
-     *
-     * @param isValid
-     */
-    public set isValid(isValid:boolean)
-    {
-        this._isValid = isValid;
-    }
-    
-    /**
-     *
-     * @returns {string}
-     */
-    public get regex():string
-    {
-        return this._regex;
-    }
-    
-    /**
-     *
-     * @param regex
-     */
-    public set regex(regex:string)
-    {
-        this._regex = regex;
     }
 }
