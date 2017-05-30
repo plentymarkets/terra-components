@@ -10,19 +10,18 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 
-export const CHECKBOX_CONTROL_VALUE_ACCESSOR:any = {
-    provide:     NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TerraCheckboxComponent),
-    multi:       true
-};
-
 @Component({
                selector:  'terra-checkbox',
                styles:    [require('./terra-checkbox.component.scss')],
                template:  require('./terra-checkbox.component.html'),
-               providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR]
+               providers: [
+                   {
+                       provide:     NG_VALUE_ACCESSOR,
+                       useExisting: forwardRef(() => TerraCheckboxComponent),
+                       multi:       true
+                   }
+               ]
            })
-
 export class TerraCheckboxComponent implements ControlValueAccessor
 {
     @Input() inputIsDisabled:boolean;

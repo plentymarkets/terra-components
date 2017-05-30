@@ -18,6 +18,7 @@ export class TerraInputComponent implements ControlValueAccessor
     @Input() inputMaxValue:number;
     @Input() inputMinLength:number;
     @Input() inputMinValue:number;
+    @Input() inputPlaceholder:string;
     
     private _isValid:boolean;
     private _regex:string;
