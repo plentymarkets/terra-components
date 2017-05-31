@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../data/terra-base-parameter.interface';
+import { TerraCacheInterface } from './data/terra-cache.interface';
 
 /**
  * @author mfrank
@@ -18,6 +19,7 @@ export class TerraBaseService
 {
     private _headers:Headers;
     private _url:string;
+    private _cache:Array<TerraCacheInterface> = [];
     
     constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private _baseHttp:Http,
@@ -79,7 +81,38 @@ export class TerraBaseService
         }
     }
     
-    protected mapRequest(request:Observable<Response>):Observable<any>
+    protected getRequest(url:string, loadFromCache:boolean):Observable<any>
+    {
+        let result:any = null;
+        
+        this._cache
+            .some((item:TerraCacheInterface) =>
+                  {
+                      if(item.url == url)
+                      {
+                          //respone is already loaded
+                          result = item.content;
+                
+                          return true;
+                      }
+                  });
+        
+        if(result === null || loadFromCache === true)
+        {
+            return this.mapRequest(this.http
+                                       .get(url, {
+                                           headers: this.headers
+                                       }));
+        }
+        else
+        {
+            Promise.resolve();
+            
+            return Observable.of(result);
+        }
+    }
+    
+    protected mapRequest(request:Observable<any>):Observable<any>
     {
         this._terraLoadingSpinnerService.start();
         
@@ -88,12 +121,34 @@ export class TerraBaseService
             {
                 if(response.status == 204)
                 {
-                    return response.text();
+                    this._cache
+                        .push({
+                                  url:     response.url,
+                                  content: response.text()
+                              });
                 }
                 else
                 {
-                    return response.text() === '' ? {} : response.json();
+                    if(response.text() === '')
+                    {
+                        this._cache
+                            .push({
+                                      url:     response.url,
+                                      content: {}
+                                  });
+                    }
+                    else
+                    {
+                        this._cache
+                            .push({
+                                      url:     response.url,
+                                      content: response.json()
+                                  });
+                    }
                 }
+                
+                return this._cache[this._cache.length - 1].content;
+                
             }).catch(
             (error:any) =>
             {
