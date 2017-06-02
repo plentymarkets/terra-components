@@ -1,10 +1,15 @@
-<a name="X.X.X"></a>
-# X.X.X (XX.XX.XXXX)
+<a name="1.2.1"></a>
+# 1.2.1 (30.05.2017)
 
 ### Feature
 * **terra-data-table** Added text align for content
-* **plenty-icons** New icon class _.icon-zoom_out_ and updated icons for _.icon-shipment_tracking_ and _.icon-reorder_search_
+* **plenty-icons** New icon class _.icon-zoom_out_ and updated icons for _.icon-shipment_tracking_ and _.icon-reorder_search_ and _icon-reversal_document-13_
 * **base-service** Add _createUrlSearchParams()_ function to create URLSearchParams from a given params interface
+* **terra-text-input** **terra-number-input** **terra-double-input** **terra-text-area-input** Added placeholder 
+
+### Bug Fixes
+* **terra-date-picker** Fixed date format
+* **terra-select-box** Support for empty value in select box
 
 <a name="1.2.0"></a>
 # 1.2.0 (18.05.2017)

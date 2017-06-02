@@ -61,6 +61,38 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-icon-reversal_document-13
+{
+    &:before
+    {
+        content: $icon-icon-reversal_document-13;
+    }
+}
+
+.icon-reorder_search
+{
+    &:before
+    {
+        content: $icon-reorder_search;
+    }
+}
+
+.icon-shipment_tracking
+{
+    &:before
+    {
+        content: $icon-shipment_tracking;
+    }
+}
+
+.icon-zoom_out
+{
+    &:before
+    {
+        content: $icon-zoom_out;
+    }
+}
+
 .icon-plugin_productive_deploy
 {
     &:before
@@ -398,14 +430,6 @@
     &:before
     {
         content: $icon-category_edit;
-    }
-}
-
-.icon-changelog_publish
-{
-    &:before
-    {
-        content: $icon-changelog_publish;
     }
 }
 
@@ -4110,14 +4134,6 @@
     }
 }
 
-.icon-reorder_search
-{
-    &:before
-    {
-        content: $icon-reorder_search;
-    }
-}
-
 .icon-reorder_show
 {
     &:before
@@ -4219,14 +4235,6 @@
     &:before
     {
         content: $icon-settings;
-    }
-}
-
-.icon-shipment_tracking
-{
-    &:before
-    {
-        content: $icon-shipment_tracking;
     }
 }
 
@@ -4772,13 +4780,5 @@
     &:before
     {
         content: $icon-zoom;
-    }
-}
-
-.icon-zoom_out
-{
-    &:before
-    {
-        content: $icon-zoom_out;
     }
 }
