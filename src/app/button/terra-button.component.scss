@@ -397,6 +397,8 @@ input[type="button"]
         .btn-divider:focus
         {
             background-color: $white !important;
+            margin-bottom: 5px !important;
+            margin-top: 5px !important;
             //color: $gray-light-2 !important;
             cursor: default;
             height: 1px;
