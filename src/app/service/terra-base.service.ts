@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../data/terra-base-parameter.interface';
+import { TerraAlertComponent } from '../alert/terra-alert.component';
 
 /**
  * @author mfrank
@@ -18,59 +19,61 @@ export class TerraBaseService
 {
     private _headers:Headers;
     private _url:string;
-    
+
+    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+
     constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private _baseHttp:Http,
                 private _baseUrl:string)
     {
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.setAuthorization();
-        
+
         if(process.env.ENV === 'production')
         {
             this.url = _baseUrl;
         }
         else
         {
-            this.url = "http://master.plentymarkets.com" + _baseUrl;
+            this.url = 'http://master.plentymarkets.com' + _baseUrl;
         }
     }
-    
+
     get http():Http
     {
         return this._baseHttp;
     }
-    
+
     get headers():Headers
     {
         return this._headers;
     }
-    
+
     set headers(value:Headers)
     {
         this._headers = value;
     }
-    
+
     get url():string
     {
         return this._url;
     }
-    
+
     set url(value:string)
     {
         this._url = value;
     }
-    
+
     protected setToHeader(key:string, value:string):void
     {
         this.headers.set(key, value);
     }
-    
+
     protected deleteFromHeader(key:string):void
     {
         this.headers.delete(key);
     }
-    
+
     protected setAuthorization():void
     {
         if(localStorage.getItem('accessToken'))
@@ -78,11 +81,11 @@ export class TerraBaseService
             this.setToHeader('Authorization', 'Bearer ' + localStorage.getItem('accessToken'));
         }
     }
-    
-    protected mapRequest(request:Observable<Response>):Observable<any>
+
+    protected mapRequest(request:Observable<Response>, err?:(error:any) => void):Observable<any>
     {
         this._terraLoadingSpinnerService.start();
-        
+
         let req = request.map(
             (response:Response) =>
             {
@@ -97,6 +100,15 @@ export class TerraBaseService
             }).catch(
             (error:any) =>
             {
+                if(err)
+                {
+                    err(error);
+                }
+                else
+                {
+                    this.handleException(error);
+                }
+
                 if(error.status == 401)
                 {
                     let event:CustomEvent = new CustomEvent('login');
@@ -118,10 +130,10 @@ export class TerraBaseService
                         window.dispatchEvent(event);
                     }
                 }
-                
+
                 return Observable.throw(error);
             }).share();
-        
+
         req.subscribe(() =>
                       {
                           this._terraLoadingSpinnerService.stop();
@@ -131,10 +143,37 @@ export class TerraBaseService
                           this._terraLoadingSpinnerService.stop();
                       }
         );
-        
+
         return req;
     }
-    
+
+    private handleException(exception:any)
+    {
+        // define interface
+        let error: {
+            message: string,
+            code?: number,
+            exception: string
+        };
+
+        // parse exception string
+        error = JSON.parse(exception._body).error;
+
+        // get error code
+        let errCode = error.code ? ' ' + error.code : '';
+
+        // show alert
+        this._alert.addAlert(
+            {
+                // TODO: translate static "Error" string
+                msg:              'Error' + errCode + ': ' + error.message,
+                closable:         true,
+                type:             'danger',
+                dismissOnTimeout: 0
+            }
+        )
+    }
+
     /**
      * @param {TerraBaseParameterInterface} params
      * @returns {URLSearchParams}
@@ -142,14 +181,14 @@ export class TerraBaseService
     protected createUrlSearchParams(params:TerraBaseParameterInterface):URLSearchParams
     {
         let searchParams:URLSearchParams = new URLSearchParams();
-        
+
         Object.keys(params)
               .map(
                   (key) =>
                   {
                       searchParams.set(key, params[key]);
                   });
-        
+
         return searchParams;
     }
 }
