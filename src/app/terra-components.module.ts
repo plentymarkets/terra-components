@@ -266,7 +266,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraNavigatorSplitViewConfig
               ],
               bootstrap:       [
-                  //TerraComponentsComponent
+                  TerraComponentsComponent
               ]
           })
 export class TerraComponentsModule

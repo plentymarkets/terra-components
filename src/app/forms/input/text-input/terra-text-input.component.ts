@@ -21,6 +21,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
            })
 export class TerraTextInputComponent extends TerraInputComponent
 {
+    @Input() inputIsPassword:boolean;
     /**
      * @deprecated
      * @param v
@@ -45,5 +46,9 @@ export class TerraTextInputComponent extends TerraInputComponent
     constructor()
     {
         super(TerraRegex.MIXED);
+        if(this.inputIsPassword == undefined || this.inputIsPassword == null)
+        {
+            this.inputIsPassword = false;
+        }
     }
 }

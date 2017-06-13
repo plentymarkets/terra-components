@@ -7,6 +7,8 @@
     <label htmlFor="{{inputName}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
-    <input id="{{inputName}}" type="text" [(ngModel)]="value" name="{{inputName}}" (blur)="onBlur()" autocomplete="off"
+    <input *ngIf="!inputIsPassword" id="{{inputName}}" type="text" [(ngModel)]="value" name="{{inputName}}" (blur)="onBlur()" autocomplete="off"
            [disabled]="isDisabled" pattern="{{regex}}" placeholder="{{inputPlaceholder}}">
+    <input *ngIf="inputIsPassword" id="{{inputName}}" type="password" [(ngModel)]="value" name="{{inputName}}" (blur)="onBlur()" autocomplete="off"
+           [disabled]="isDisabled" pattern="{{regex}}" placeholder="{{inputPlaceholder}}" required>
 </div>
