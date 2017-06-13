@@ -151,13 +151,15 @@ export class TerraBaseService
     }
 
     /**
-     * Workaround to prevent the injection of the TranslationService in every extending Service
+     * Workaround to prevent the injection of the TranslationService in every Service, that extends TerraBaseService
      * @returns {string}
      */
     protected getErrorString():string
     {
+        // get language from localStorage
         let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
 
+        // translate error string
         switch(langInLocalStorage)
         {
             case 'de':
@@ -169,6 +171,10 @@ export class TerraBaseService
         }
     }
 
+    /**
+     * Handles exceptions that are returned from the server on a failed rest call
+     * @param exception
+     */
     private handleException(exception:any):void
     {
         // parse response object
