@@ -6,6 +6,7 @@ import {
 import { TerraInputComponent } from '../terra-input.component';
 import { TerraRegex } from '../../../regex/terra-regex';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { isNullOrUndefined } from 'util';
 
 @Component({
                selector:  'terra-text-input',
@@ -46,7 +47,7 @@ export class TerraTextInputComponent extends TerraInputComponent
     constructor()
     {
         super(TerraRegex.MIXED);
-        if(this.inputIsPassword == undefined || this.inputIsPassword == null)
+        if(isNullOrUndefined(this.inputIsPassword))
         {
             this.inputIsPassword = false;
         }
