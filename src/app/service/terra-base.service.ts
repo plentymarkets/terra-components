@@ -10,6 +10,9 @@ import { Observable } from 'rxjs';
 import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../data/terra-base-parameter.interface';
 import { TerraAlertComponent } from '../alert/terra-alert.component';
+import { Exception } from './data/exception.interface';
+import { isNullOrUndefined } from 'util';
+import { lang } from 'moment';
 
 /**
  * @author mfrank
@@ -147,31 +150,62 @@ export class TerraBaseService
         return req;
     }
 
-    private handleException(exception:any)
+    /**
+     * Workaround to prevent the injection of the TranslationService in every extending Service
+     * @returns {string}
+     */
+    protected getErrorString():string
     {
-        // define interface
-        let error: {
-            message: string,
-            code?: number,
-            exception: string
-        };
+        let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
 
-        // parse exception string
-        error = JSON.parse(exception._body).error;
+        switch(langInLocalStorage)
+        {
+            case 'de':
+                return 'Fehler';
+            case 'en':
+                return 'Error';
+            default:
+                return 'Error';
+        }
+    }
 
-        // get error code
-        let errCode = error.code ? ' ' + error.code : '';
+    private handleException(exception:any):void
+    {
+        // parse response object
+        let response:any = JSON.parse(exception._body);
 
-        // show alert
-        this._alert.addAlert(
-            {
-                // TODO: translate static "Error" string
-                msg:              'Error' + errCode + ': ' + error.message,
-                closable:         true,
-                type:             'danger',
-                dismissOnTimeout: 0
-            }
-        )
+        // check which exception type has been received
+        if (!isNullOrUndefined(response.error) && !isNullOrUndefined(response.message))
+        {
+            // show alert
+            this._alert.addAlert(
+                {
+                    msg:              this.getErrorString() + ': ' + response.message,
+                    closable:         true,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                }
+            );
+        }
+        // default exception type
+        else
+        {
+            // parse exception string
+            let error:Exception = response.error;
+
+            // get error code
+            let errorCode:string = error.code ? ' ' + error.code : '';
+
+            // show alert
+            this._alert.addAlert(
+                {
+                    msg:              this.getErrorString() + errorCode + ': ' + error.message,
+                    closable:         true,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                }
+            );
+        }
     }
 
     /**
