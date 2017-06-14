@@ -390,23 +390,18 @@ input[type="button"]
                 top: initial !important;
             }
         }
+        
         .btn-divider,
         .btn-divider:hover,
         .btn-divider:active,
         .btn-divider:focus
         {
             background-color: $white !important;
-            color: $gray-light-2 !important;
+            margin-bottom: 7px !important;
             cursor: default;
-            font-style: normal;
-            font-size: .8em;
-            line-height: 16px;
-            height: 22px;
-            text-transform: uppercase;
-            letter-spacing: .1px;
-            font-weight: 600;
-            border-bottom: 1px solid $gray-light-3;
-            padding: 8px 0px 0px 0px !important;
+            height: 1px;
+            border-bottom: 1px solid #C7C7C7;
+            border-top: 1px solid #C7C7C7;
         }
     }
 }
