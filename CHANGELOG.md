@@ -3,6 +3,10 @@
 
 ### Feature
 * **terra-base-service** Generally catch exceptions that are returned from a rest call and show corresponding alert. The programmer is also still able to specify a custom exception handling function.
+# 1.2.2 (XX.XX.XXXX)
+
+### Feature
+* **terra-text-input** Added input 'inputIsPassword'. set true to substitute password with asterisks.
 
 # 1.2.1 (30.05.2017)
 
