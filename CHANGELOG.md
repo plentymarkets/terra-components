@@ -1,4 +1,9 @@
 <a name="1.2.1"></a>
+# 1.2.2 (XX.XX.XXXX)
+
+### Feature
+* **terra-text-input** Added input 'inputIsPassword'. set true to substitute password with asterisks.
+
 # 1.2.1 (30.05.2017)
 
 ### Feature
