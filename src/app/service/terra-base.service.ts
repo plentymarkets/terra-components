@@ -97,7 +97,7 @@ export class TerraBaseService
             }).catch(
             (error:any) =>
             {
-                if(error.status == 401)
+                if(error.status == 401 && error.statusText === "Unauthenticated")
                 {
                     let event:CustomEvent = new CustomEvent('login');
                     //Workaround for plugins in Angular (loaded via iFrame)
