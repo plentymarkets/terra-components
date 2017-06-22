@@ -1,25 +1,3 @@
-<!--<terra-base-toolbar *ngIf="inputShowBreadcrumbs">-->
-    <!--<ul class="terra-breadcrumbs">-->
-        <!--<ng-template ngFor let-module [ngForOf]="inputConfig.views" let-first="first">-->
-            <!--<terra-split-view-breadcrumb [inputSplitViewConfig]="inputConfig" [inputView]="module"></terra-split-view-breadcrumb>-->
-        <!--</ng-template>-->
-    <!--</ul>-->
-<!--</terra-base-toolbar>-->
-
-
-
-
-
-<!--<div *ngIf="inputConfig.views" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">-->
-    <!--<ng-template ngFor let-module [ngForOf]="inputConfig.views" let-last="last" let-first="first" let-i="index">-->
-        <!--<terra-split-view-detail-->
-            <!--[inputSplitViewConfig]="inputConfig"-->
-            <!--id="{{ module.mainComponentName + '_' + module.instanceKey }}"-->
-            <!--[ngClass]="{'hasDivider': !last, 'first': first, 'last': last}"-->
-            <!--[inputFirst]="first" [inputIndex]="i" [inputView]="module" [inputLast]="last"></terra-split-view-detail>-->
-    <!--</ng-template>-->
-<!--</div>-->
-
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs">
     <ul class="terra-breadcrumbs">
         <ng-template ngFor let-module [ngForOf]="modules">
@@ -44,42 +22,10 @@
         </ng-template>
     </ul>
 </terra-base-toolbar>
-
-<!--<terra-base-toolbar *ngIf="inputShowBreadcrumbs">-->
-    <!--<ul class="terra-breadcrumbs">-->
-        <!--<ng-template ngFor let-module [ngForOf]="modules" let-index="index">-->
-            <!--<li>-->
-                <!--{{index}}-->
-                <!--<a class="caret">-->
-                    <!--<ul class="{{ module.identifier }} context-menu">-->
-                        <!--<ng-template ngFor let-view [ngForOf]="module.views">-->
-                            <!--<li *ngIf="module.views" (click)="updateViewport(view.mainComponentName) && setSelectedView(view)">-->
-                                <!--<div class="{{ view.mainComponentName + '_' + view.instanceKey }}">-->
-                                    <!--<span>{{ view.name | translate: lang}}</span>-->
-                                <!--</div>-->
-                            <!--</li>-->
-                        <!--</ng-template>-->
-                    <!--</ul>-->
-                <!--</a>-->
-            <!--</li>-->
-            <!---->
-            <!--&lt;!&ndash;<ul *ngIf="module.views.length == 1">&ndash;&gt;-->
-                <!--&lt;!&ndash;<ng-template ngFor let-view [ngForOf]="module.views">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li *ngIf="module.views" (click)="updateViewport(view.mainComponentName) && setSelectedView(view)">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="{{ view.mainComponentName + '_' + view.instanceKey }}">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<span>{{ view.name | translate: lang}}</span>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                <!--&lt;!&ndash;</ng-template>&ndash;&gt;-->
-            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-        <!--</ng-template>-->
-    <!--</ul>-->
-<!--</terra-base-toolbar>-->
 <div *ngIf="modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
     <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first">
         <div class="view {{ module.defaultWidth }}" id="{{ module.identifier }}" [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">
             <ng-template ngFor let-view [ngForOf]="module.views">
-                <!--<div [hidden]="checkModuleVisibility(module, view)" (click)="setSelectedView(view)">-->
                 <div class ="{{ view.mainComponentName + '_' + view.instanceKey }}"
                      (click)="setSelectedView(view)">
                 <terra-dynamic-module-loader [inputModule]="view.module"

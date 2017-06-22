@@ -6,16 +6,6 @@
     </terra-dynamic-module-loader>
     <div class="divider" *ngIf="!inputLast"></div>
 </div>
-<!--<div *ngIf="!inputView.hidden"-->
-     <!--id="{{ inputView.mainComponentName + '_' + inputView.instanceKey }}"-->
-     <!--class="view {{ inputView.defaultWidth }}"-->
-     <!--[ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">-->
-    <!--<terra-dynamic-module-loader [inputModule]="inputView.module"-->
-                                 <!--[inputParameter]="inputView.parameter"-->
-                                 <!--[inputMainComponentName]="inputView.mainComponentName">-->
-    <!--</terra-dynamic-module-loader>-->
-    <!--&lt;!&ndash;<div class="divider" *ngIf="!last"></div>&ndash;&gt;-->
-<!--</div>-->
 <ng-template ngFor let-next [ngForOf]="inputView.nextViews" let-last="last" let-first="first" let-i="index">
     <terra-split-view-detail [inputSplitViewConfig]="inputSplitViewConfig"
                              [inputFirst]="first"
