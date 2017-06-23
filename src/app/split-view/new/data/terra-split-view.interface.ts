@@ -1,17 +1,17 @@
 import { ModuleWithProviders } from '@angular/core';
 /**
- * @author mfrank
+ * @author pweyrich
  */
-export interface TerraSplitViewIn
+export class TerraSplitViewInterface
 {
+    parent?: TerraSplitViewInterface;
+    children?: Array<TerraSplitViewInterface>;
     module:ModuleWithProviders;
     instanceKey?:any;
     defaultWidth:string;
-    hidden?:boolean;
+    hidden:boolean;
     name:string;
     mainComponentName:string;
     parameter:any;
-    nextViews?:Array<TerraSplitViewIn>;
-    parentView?:TerraSplitViewIn;
-    isSelected?:boolean; //For breadcrumb selection
+    isSelected?:boolean;
 }

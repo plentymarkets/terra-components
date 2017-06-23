@@ -1,6 +1,4 @@
 import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     Input,
     OnChanges,
@@ -8,9 +6,9 @@ import {
     OnInit,
     SimpleChanges
 } from '@angular/core';
-import { TerraSplitViewIn } from './data/terra-split-view-in';
 import { TerraSplitViewConfig } from './data/terra-split-view.config';
 import { TerraSplitViewDetail } from './data/terra-split-view-detail';
+import { TerraSplitViewInterface } from './data/terra-split-view.interface';
 
 @Component({
                selector: 'terra-split-view-new',
@@ -40,7 +38,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     
     ngOnInit()
     {
-        this.inputConfig.addViewEventEmitter.subscribe((value:TerraSplitViewIn) =>
+        this.inputConfig.addViewEventEmitter.subscribe((value:TerraSplitViewInterface) =>
                                                        {
                                                            this.addViewToList(value);
             
@@ -49,7 +47,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                                                            this.updateBreadCrumbs();
                                                        });
         
-        this.inputConfig.deleteViewEventEmitter.subscribe((value:TerraSplitViewIn) =>
+        this.inputConfig.deleteViewEventEmitter.subscribe((value:TerraSplitViewInterface) =>
                                                           {
                                                               this.updateBreadCrumbs();
                                                           });
@@ -63,12 +61,12 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         }
     }
     
-    checkModuleVisibility(module:TerraSplitViewDetail, view:TerraSplitViewIn):boolean
+    checkModuleVisibility(module:TerraSplitViewDetail, view:TerraSplitViewInterface):boolean
     {
         return module.currentSelectedView != view;
     }
     
-    addViewToList(view:TerraSplitViewIn)
+    addViewToList(view:TerraSplitViewInterface)
     {
         let viewFound:boolean = false;
         
@@ -110,7 +108,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         }
         else
         {
-            let views:Array<TerraSplitViewIn> = [];
+            let views:Array<TerraSplitViewInterface> = [];
             views.push(view);
             
             this.modules.push({
@@ -122,7 +120,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         }
     }
     
-    private changeBreadcrumbName(view:TerraSplitViewIn)
+    private changeBreadcrumbName(view:TerraSplitViewInterface)
     {
         for(let module of this.modules)
         {
@@ -132,16 +130,16 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                 
             }
             
-            if(view.parentView != null && module.identifier == view.parentView.mainComponentName)
+            if(view.parent != null && module.identifier == view.parent.mainComponentName)
             {
-                module.currentSelectedView = view.parentView;
+                module.currentSelectedView = view.parent;
             }
             
-            this.changeNextViewsBreadcrumbs(module, view.nextViews);
+            this.changeNextViewsBreadcrumbs(module, view.children);
         }
     }
     
-    private changeNextViewsBreadcrumbs(module:TerraSplitViewDetail, views:Array<TerraSplitViewIn>)
+    private changeNextViewsBreadcrumbs(module:TerraSplitViewDetail, views:Array<TerraSplitViewInterface>)
     {
         if(views != null)
         {
@@ -152,15 +150,15 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                     module.currentSelectedView = view;
                 }
                 
-                if(view.nextViews)
+                if(view.children)
                 {
-                    this.changeNextViewsBreadcrumbs(module, view.nextViews);
+                    this.changeNextViewsBreadcrumbs(module, view.children);
                 }
             }
         }
     }
     
-    private setSelectedView(view:TerraSplitViewIn)
+    private setSelectedView(view:TerraSplitViewInterface)
     {
         console.log(view);
         this.inputConfig.currentSelectedView = view;
@@ -171,7 +169,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     {
         if(this.inputConfig.views != null)
         {
-            let currentModule:TerraSplitViewIn;
+            let currentModule:TerraSplitViewInterface;
             
             currentModule = this.inputConfig.currentSelectedView;
             

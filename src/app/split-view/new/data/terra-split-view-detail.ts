@@ -1,11 +1,11 @@
-import { TerraSplitViewIn } from './terra-split-view-in';
+import { TerraSplitViewInterface } from './terra-split-view.interface';
 /**
- * @author mfrank
+ * @author pweyrich
  */
 export interface TerraSplitViewDetail
 {
-    views:Array<TerraSplitViewIn>;
+    views:Array<TerraSplitViewInterface>;
     identifier:any;
     defaultWidth:string;
-    currentSelectedView:TerraSplitViewIn;
+    currentSelectedView:TerraSplitViewInterface;
 }

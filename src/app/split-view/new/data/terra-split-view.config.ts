@@ -1,46 +1,54 @@
-import { TerraSplitViewIn } from './terra-split-view-in';
 import { EventEmitter } from '@angular/core';
+import { TerraSplitViewInterface } from './terra-split-view.interface';
 
 export class TerraSplitViewConfig
 {
-    private _views:Array<TerraSplitViewIn> = [];
-    private _currentSelectedView:TerraSplitViewIn;
+    private _views:Array<TerraSplitViewInterface> = [];
+    private _currentSelectedView:TerraSplitViewInterface;
     
-    private _addViewEventEmitter:EventEmitter<TerraSplitViewIn> = new EventEmitter<TerraSplitViewIn>();
-    private _deleteViewEventEmitter:EventEmitter<TerraSplitViewIn> = new EventEmitter<TerraSplitViewIn>();
+    private _addViewEventEmitter:EventEmitter<TerraSplitViewInterface> = new EventEmitter<TerraSplitViewInterface>();
+    private _deleteViewEventEmitter:EventEmitter<TerraSplitViewInterface> = new EventEmitter<TerraSplitViewInterface>();
     
-    public addView(view:TerraSplitViewIn):void
+    public addView(view:TerraSplitViewInterface, parent?:TerraSplitViewInterface):void
     {
         setTimeout(()=>{
-            if(this.currentSelectedView == null)
+            if(parent)
             {
-                this.views.push(view);
+                parent.children.push(view);
             }
             else
             {
-                view.parentView = this.currentSelectedView;
-                
-                if (this.currentSelectedView.nextViews == null)
+                if(this.currentSelectedView == null)
                 {
-                    this.currentSelectedView.nextViews = [];
+                    this.views.push(view);
                 }
-                
-                
-                for (let next of this.currentSelectedView.nextViews)
+                else
                 {
-                    let hasSameParameter:boolean = JSON.stringify(next.parameter) == JSON.stringify(view.parameter);
-                    
-                    if (hasSameParameter && next.module.ngModule == view.module.ngModule)
+                    // add view to currently selected view's children
+                    view.parent = this.currentSelectedView;
+
+                    if (this.currentSelectedView.children == null)
                     {
-                        this.currentSelectedView.nextViews.push(view);
-    
-                        break;
+                        this.currentSelectedView.children = [];
+                        this.currentSelectedView.children.push(view);
+                    }
+                    else
+                    {
+                        for (let child of this.currentSelectedView.children)
+                        {
+                            let hasSameParameter:boolean = JSON.stringify(child.parameter) == JSON.stringify(view.parameter);
+
+                            if (!(hasSameParameter && child.module.ngModule == view.module.ngModule))
+                            {
+                                this.currentSelectedView.children.push(view);
+
+                                break;
+                            }
+                        }
                     }
                 }
-                
-                
             }
-    
+
             this.addViewEventEmitter.next(view);
         });
     }
@@ -49,46 +57,46 @@ export class TerraSplitViewConfig
     {
         this._views = null;
         this._addViewEventEmitter.unsubscribe();
-        this._addViewEventEmitter = new EventEmitter<TerraSplitViewIn>();
+        this._addViewEventEmitter = new EventEmitter<TerraSplitViewInterface>();
         this._deleteViewEventEmitter.unsubscribe();
-        this._deleteViewEventEmitter = new EventEmitter<TerraSplitViewIn>();
+        this._deleteViewEventEmitter = new EventEmitter<TerraSplitViewInterface>();
     }
-    public get deleteViewEventEmitter():EventEmitter<TerraSplitViewIn>
+    public get deleteViewEventEmitter():EventEmitter<TerraSplitViewInterface>
     {
         return this._deleteViewEventEmitter;
     }
     
-    public get addViewEventEmitter():EventEmitter<TerraSplitViewIn>
+    public get addViewEventEmitter():EventEmitter<TerraSplitViewInterface>
     {
         return this._addViewEventEmitter;
     }
     
-    public get views():Array<TerraSplitViewIn>
+    public get views():Array<TerraSplitViewInterface>
     {
         return this._views;
     }
     
-    public get currentSelectedView():TerraSplitViewIn
+    public get currentSelectedView():TerraSplitViewInterface
     {
         return this._currentSelectedView;
     }
     
-    public set currentSelectedView(value:TerraSplitViewIn)
+    public set currentSelectedView(value:TerraSplitViewInterface)
     {
         this._currentSelectedView = value;
         
         this.recursiveSetSelected(value);
     }
     
-    private recursiveSetSelected(view:TerraSplitViewIn)
+    private recursiveSetSelected(view:TerraSplitViewInterface)
     {
         view.isSelected = true;
         
-        if(view.nextViews)
+        if(view.children)
         {
-            for(let next of view.nextViews)
+            for(let child of view.children)
             {
-                this.recursiveSetSelected(next);
+                this.recursiveSetSelected(child);
             }
         }
     }
