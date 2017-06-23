@@ -38,8 +38,6 @@ export class TerraBaseService
         }
     }
 
-
-
     get http():Http
     {
         return this._baseHttp;
