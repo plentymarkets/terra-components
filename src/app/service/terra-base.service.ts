@@ -108,12 +108,13 @@ export class TerraBaseService
 
                 if(error.status == 401 && errorMessage === "This action is unauthorized.")
                 {
-                    this._alert.addAlert({
-                                             msg:              missingUserPermissionAlertMessage,
-                                             closable:         true,
-                                             type:             'danger',
-                                             dismissOnTimeout: 0
-                                         });
+                    this._alert
+                        .addAlert({
+                                      msg:              missingUserPermissionAlertMessage,
+                                      closable:         true,
+                                      type:             'danger',
+                                      dismissOnTimeout: 0
+                                  });
                 }
                 // END Very unclean workaround!
                 else if(error.status == 401)
