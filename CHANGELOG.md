@@ -1,9 +1,14 @@
-<a name="1.2.1"></a>
-# 1.2.2 (XX.XX.XXXX)
+<a name="1.2.2"></a>
+# 1.2.2 (27.06.2017)
 
 ### Feature
 * **terra-text-input** Added input 'inputIsPassword'. set true to substitute password with asterisks.
+* **terra-button** Changed style for context menu
 
+### Bug Fixes
+* **terra-base-service** Fixed error handling for http statuscode 401
+
+<a name="1.2.1"></a>
 # 1.2.1 (30.05.2017)
 
 ### Feature
