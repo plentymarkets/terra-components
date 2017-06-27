@@ -15,11 +15,11 @@ export class TerraInfoBoxComponent implements OnInit
     @Input() inputTagList:Array<TerraTagInterface>;
     @Input() inputAddBox:boolean;
     @Input() inputIsEmpty:boolean;
-    
+
     constructor()
     {
     }
-    
+
     ngOnInit()
     {
     }

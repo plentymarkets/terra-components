@@ -284,7 +284,7 @@ export class TerraComponentsModule
                         TerraAlertComponent]
         };
     }
-    
+
     static forChild():ModuleWithProviders
     {
         return {

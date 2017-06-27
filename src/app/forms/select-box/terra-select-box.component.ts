@@ -37,7 +37,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input() inputListBoxValues:Array<TerraSelectBoxValueInterface>;
     @Output() outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
     @Output() inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
-    
+
     /**
      * @deprecated
      * @param value
@@ -59,19 +59,19 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             setTimeout(() => this.inputSelectedValueChange.emit(this._selectedValue.value), 0);
         }
     }
-    
+
     get inputSelectedValue():number | string
     {
         return this._selectedValue.value;
     }
-    
+
     private _value:number | string;
     private _selectedValue:TerraSelectBoxValueInterface;
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
     private _isValid:boolean;
     private _isInit:boolean;
-    
+
     /**
      *
      * @param elementRef
@@ -86,7 +86,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                 caption: ''
             };
     }
-    
+
     ngOnInit()
     {
         this._isValid = true;
@@ -94,7 +94,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this._hasLabel = this.inputName != null;
         this._isInit = true;
     }
-    
+
     /**
      *
      * @param changes
@@ -106,7 +106,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             setTimeout(() => this.select(this.inputListBoxValues[0]), 0);
         }
     }
-    
+
     /**
      *
      * Two way data binding by ngModel
@@ -114,35 +114,35 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     private onTouchedCallback:() => void = () =>
     {
     };
-    
+
     private onChangeCallback:(_:any) => void = (_) =>
     {
     };
-    
+
     public registerOnChange(fn:any):void
     {
         this.onChangeCallback = fn;
     }
-    
+
     public registerOnTouched(fn:any):void
     {
         this.onTouchedCallback = fn;
     }
-    
+
     public writeValue(value:any):void
     {
         this.value = value;
     }
-    
+
     public get value():any
     {
         return this._value;
     }
-    
+
     public set value(value:any)
     {
         this._value = value;
-        
+
         if(value !== undefined && value !== null)
         {
             this.inputListBoxValues
@@ -159,7 +159,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             this._selectedValue = this.inputListBoxValues[0];
         }
     }
-    
+
     /**
      *
      * @param event
@@ -171,7 +171,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             this._toggleOpen = false;
         }
     }
-    
+
     /**
      *
      * @param value

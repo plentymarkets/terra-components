@@ -32,26 +32,26 @@ export class TerraToggleComponent implements ControlValueAccessor
     @Input() inputIsHidden:boolean;
     @Input() inputTooltipText:string;
     @Input() inputTooltipPlacement:string; //top, bottom, left, right
-    
+
     @Output() deactivated = new EventEmitter<any>();
     @Output() activated = new EventEmitter<any>();
     @Output() toggled = new EventEmitter<boolean>();
-    
+
     private _isActive:boolean = false;
-    
+
     private onTouchedCallback:() => void = () =>
     {
     };
-    
+
     private onChangeCallback:(_:any) => void = () =>
     {
     };
-    
+
     constructor()
     {
         this.inputTooltipPlacement = 'top';
     }
-    
+
     private toggle():void
     {
         if(!this.inputIsDisabled)
@@ -69,7 +69,7 @@ export class TerraToggleComponent implements ControlValueAccessor
             }
         }
     }
-    
+
     //From ControlValueAccessor interface
     writeValue(value:boolean)
     {
@@ -78,13 +78,13 @@ export class TerraToggleComponent implements ControlValueAccessor
             this._isActive = value;
         }
     }
-    
+
     //From ControlValueAccessor interface
     registerOnChange(fn:any)
     {
         this.onChangeCallback = fn;
     }
-    
+
     //From ControlValueAccessor interface
     registerOnTouched(fn:any)
     {

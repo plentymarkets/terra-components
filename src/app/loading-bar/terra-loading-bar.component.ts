@@ -19,7 +19,7 @@ export class TerraLoadingBarComponent implements OnInit
     @Input() inputColor:string = 'black';
     @Input() inputHeight:string = '2px';
     @Input() inputShow:boolean = true;
-    
+
     @Input() set progress(value:string)
     {
         if(value != null)
@@ -27,19 +27,19 @@ export class TerraLoadingBarComponent implements OnInit
             this._progress = value + '%';
         }
     }
-    
+
     private _animationTime:number = 0.5;
     private _progress:string = '0%';
-    
+
     get progress():string
     {
         return this._progress;
     }
-    
+
     constructor(private service:TerraLoadingBarService)
     {
     }
-    
+
     ngOnInit():any
     {
         this.service.observable.subscribe((event:TerraLoadingBarEvent) =>

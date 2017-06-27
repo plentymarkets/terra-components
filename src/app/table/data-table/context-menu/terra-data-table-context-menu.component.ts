@@ -16,18 +16,18 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 {
     private _contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
     private _isShown = false;
-    
+
     private _mouseLocation:{ left:number, top:number } = {
         left: 0,
         top:  0
     };
-    
+
     constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
     {
         _contextMenuService.show.subscribe(
             e => this.showMenu(e.event, e.obj));
     }
-    
+
     get locationCss()
     {
         return {
@@ -36,12 +36,12 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
             top:       this._mouseLocation.top + 'px',
         };
     }
-    
+
     clickedOutside()
     {
         this._isShown = false
     }
-    
+
     showMenu(event,
              contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>>)
     {

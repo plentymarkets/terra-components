@@ -15,41 +15,41 @@ import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
  */
 export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent
 {
-    
+
     /**
      * current level leaf list
      */
     @Input() inputLeafList:Array<TerraLeafInterface>;
-    
+
     /**
      * leafs one level higher than current leaf
      */
     @Input() inputParentLeafList:Array<TerraLeafInterface>;
-    
+
     /**
      * complete leaf list for better and faster searching
      */
     @Input() inputCompleteLeafList:Array<TerraLeafInterface>;
-    
+
     constructor()
     {
         super();
     }
-    
+
     selectedLeafList:Array<TerraLeafInterface> = [];
-    
+
     onCheckboxValueChange(event,
                           leaf:TerraLeafInterface)
     {
         leaf.checkboxChecked = event.currentTarget.checked;
-        
+
         // this.recursiveAddLeafToList(leaf);
-        
+
         this.recursiveCheckboxCheck(leaf);
-        
+
         // alert(this.selectedLeafList.length);
     }
-    
+
     recursiveAddLeafToList(leaf:TerraLeafInterface)
     {
         if(leaf.checkboxChecked)
@@ -59,10 +59,10 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent
         else
         {
             let leafIndex = this.selectedLeafList.indexOf(leaf);
-            
+
             this.selectedLeafList.splice(leafIndex, 1);
         }
-        
+
         if(leaf.subLeafList)
         {
             for(let subLeaf of leaf.subLeafList)
@@ -71,7 +71,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent
             }
         }
     }
-    
+
     recursiveCheckboxCheck(leaf:TerraLeafInterface)
     {
         if(leaf.subLeafList)
@@ -79,7 +79,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent
             for(let subLeaf of leaf.subLeafList)
             {
                 subLeaf.checkboxChecked = leaf.checkboxChecked;
-                
+
                 if(subLeaf.subLeafList)
                 {
                     this.recursiveCheckboxCheck(subLeaf);

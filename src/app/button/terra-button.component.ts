@@ -29,7 +29,7 @@ export class TerraButtonComponent
     @Input() inputIsFlagged:boolean;
     @Input() inputIsDivider:boolean;
     @Output() outputClicked = new EventEmitter<any>();
-    
+
     constructor()
     {
         this.inputTooltipPlacement = 'top';
@@ -38,7 +38,7 @@ export class TerraButtonComponent
         this.inputIsFlagged = false;
         this.inputIsDivider = false;
     }
-    
+
     private click():void
     {
         this.outputClicked.emit(null);

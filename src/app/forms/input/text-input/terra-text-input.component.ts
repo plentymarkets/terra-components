@@ -23,6 +23,7 @@ import { isNullOrUndefined } from 'util';
 export class TerraTextInputComponent extends TerraInputComponent
 {
     @Input() inputIsPassword:boolean;
+
     /**
      * @deprecated
      * @param v
@@ -31,7 +32,7 @@ export class TerraTextInputComponent extends TerraInputComponent
     {
         console.warn('inputType is no longer used.  It will be removed in one of the upcoming releases.');
     }
-    
+
     /**
      * @deprecated
      * @param v
@@ -40,10 +41,10 @@ export class TerraTextInputComponent extends TerraInputComponent
     public set inputValue(v:string)
     {
         console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-        
+
         this.value = v;
     }
-    
+
     constructor()
     {
         super(TerraRegex.MIXED);
