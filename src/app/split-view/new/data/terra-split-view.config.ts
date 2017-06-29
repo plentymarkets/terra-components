@@ -5,10 +5,10 @@ export class TerraSplitViewConfig
 {
     private _views:Array<TerraSplitViewInterface> = [];
     private _currentSelectedView:TerraSplitViewInterface;
-    
+
     private _addViewEventEmitter:EventEmitter<TerraSplitViewInterface> = new EventEmitter<TerraSplitViewInterface>();
     private _deleteViewEventEmitter:EventEmitter<TerraSplitViewInterface> = new EventEmitter<TerraSplitViewInterface>();
-    
+
     public addView(view:TerraSplitViewInterface, parent?:TerraSplitViewInterface):void
     {
         setTimeout(()=>{
@@ -58,7 +58,7 @@ export class TerraSplitViewConfig
             this.addViewEventEmitter.next(view);
         });
     }
-    
+
     public reset():void
     {
         this._views = null;
@@ -71,17 +71,22 @@ export class TerraSplitViewConfig
     {
         return this._deleteViewEventEmitter;
     }
-    
+
     public get addViewEventEmitter():EventEmitter<TerraSplitViewInterface>
     {
         return this._addViewEventEmitter;
     }
-    
+
     public get views():Array<TerraSplitViewInterface>
     {
         return this._views;
     }
-    
+
+    public set views(value:Array<TerraSplitViewInterface>)
+    {
+        this._views = value;
+    }
+
     public get currentSelectedView():TerraSplitViewInterface
     {
         return this._currentSelectedView;
@@ -90,20 +95,5 @@ export class TerraSplitViewConfig
     public set currentSelectedView(value:TerraSplitViewInterface)
     {
         this._currentSelectedView = value;
-        
-        this.recursiveSetSelected(value);
-    }
-    
-    private recursiveSetSelected(view:TerraSplitViewInterface)
-    {
-        view.isSelected = true;
-        
-        if(view.children)
-        {
-            for(let child of view.children)
-            {
-                this.recursiveSetSelected(child);
-            }
-        }
     }
 }
