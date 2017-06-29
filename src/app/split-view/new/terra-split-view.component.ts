@@ -69,14 +69,26 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     addViewToList(view:TerraSplitViewInterface)
     {
         let viewFound:boolean = false;
+        let hasSameInstanceKey:boolean = false;
         
         for(let detail of this.modules)
         {
             if(detail.identifier == view.mainComponentName)
             {
                 viewFound = true;
-                break;
+                //break;
+                
+                
             }
+    
+            for (let detailView of detail.views)
+            {
+                if (view.instanceKey != undefined && view.instanceKey == detailView.instanceKey)
+                {
+                    hasSameInstanceKey = true;
+                }
+            }
+            
         }
         
         if(viewFound)
@@ -110,6 +122,11 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         {
             let views:Array<TerraSplitViewInterface> = [];
             views.push(view);
+            
+            if (hasSameInstanceKey)
+            {
+                this.modules = this.modules.slice(0, this.modules.length - 1);
+            }
             
             this.modules.push({
                                   views:      views,

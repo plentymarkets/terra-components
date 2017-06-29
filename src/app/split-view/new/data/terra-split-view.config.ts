@@ -26,7 +26,6 @@ export class TerraSplitViewConfig
                 {
                     // add view to currently selected view's children
                     view.parent = this.currentSelectedView;
-
                     if (this.currentSelectedView.children == null)
                     {
                         this.currentSelectedView.children = [];
@@ -36,12 +35,19 @@ export class TerraSplitViewConfig
                     {
                         for (let child of this.currentSelectedView.children)
                         {
+                            let hasSameInstanceKey: boolean = child.instanceKey != undefined && child.instanceKey == view.instanceKey;
                             let hasSameParameter:boolean = JSON.stringify(child.parameter) == JSON.stringify(view.parameter);
-
+                            
+                            if (hasSameInstanceKey)
+                            {
+                                this.currentSelectedView.children = [];
+                                this.currentSelectedView.children.push(view);
+                                break;
+                            }
+                                
                             if (!(hasSameParameter && child.module.ngModule == view.module.ngModule))
                             {
                                 this.currentSelectedView.children.push(view);
-
                                 break;
                             }
                         }
