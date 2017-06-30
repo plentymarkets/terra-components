@@ -16,10 +16,11 @@ import {TerraSplitViewInterface} from './data/terra-split-view.interface';
     template: require('./terra-split-view.component.html'),
     styles: [require('./terra-split-view.component.scss')]
 })
-export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges {
-    @Input() inputConfig: TerraSplitViewConfig;
-    @Input() inputShowBreadcrumbs: boolean;
-    private _breadCrumbsPath: string;
+export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
+{
+    @Input() inputConfig:TerraSplitViewConfig;
+    @Input() inputShowBreadcrumbs:boolean;
+    private _breadCrumbsPath:string;
 
     private modules: Array<TerraSplitViewDetail> = [];
 
@@ -35,64 +36,82 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges 
     }
 
     ngOnInit() {
-        this.inputConfig.addViewEventEmitter.subscribe((value: TerraSplitViewInterface) => {
-            this.addViewToList(value);
+        this.inputConfig.addViewEventEmitter.subscribe(
+            (value: TerraSplitViewInterface) => 
+            {
+                this.addViewToList(value);
 
-            this.inputConfig.currentSelectedView = value;
-            this.changeBreadcrumbName(value);
-            this.updateBreadCrumbs();
-        });
+                this.inputConfig.currentSelectedView = value;
+                this.changeBreadcrumbName(value);
+                this.updateBreadCrumbs();
+            }
+        );
 
-        this.inputConfig.deleteViewEventEmitter.subscribe((value: TerraSplitViewInterface) => {
-            this.updateBreadCrumbs();
-        });
+        this.inputConfig.deleteViewEventEmitter.subscribe(
+            (value: TerraSplitViewInterface) =>
+            {
+                this.updateBreadCrumbs();
+            }
+        );
     }
 
-    ngOnChanges(changes: SimpleChanges) {
-        if (changes["inputConfig"].currentValue !== undefined) {
+    ngOnChanges(changes:SimpleChanges)
+    {
+        if(changes["inputConfig"].currentValue !== undefined)
+        {
             this.updateBreadCrumbs();
         }
     }
 
-    checkModuleVisibility(module: TerraSplitViewDetail, view: TerraSplitViewInterface): boolean {
+    checkModuleVisibility(module:TerraSplitViewDetail, view:TerraSplitViewInterface):boolean
+    {
         return module.currentSelectedView != view;
     }
 
-    addViewToList(view: TerraSplitViewInterface) {
-        let viewFound: boolean = false;
-        let hasSameInstanceKey: boolean = false;
+    addViewToList(view:TerraSplitViewInterface)
+    {
+        let viewFound:boolean = false;
+        let hasSameInstanceKey:boolean = false;
 
-        for (let detail of this.modules) {
-            if (detail.identifier == view.mainComponentName) {
+        for(let detail of this.modules)
+        {
+            if(detail.identifier == view.mainComponentName)
+            {
                 viewFound = true;
                 //break;
-
-
             }
 
-            for (let detailView of detail.views) {
-                if (view.instanceKey != undefined && view.instanceKey == detailView.instanceKey) {
+            for(let detailView of detail.views)
+            {
+                if(view.instanceKey != undefined && view.instanceKey == detailView.instanceKey)
+                {
                     hasSameInstanceKey = true;
                 }
             }
 
         }
 
-        if (viewFound) {
-            for (let detail of this.modules) {
-                if (detail.identifier == view.mainComponentName) {
-                    let hasSameParams: boolean = false;
+        if(viewFound)
+        {
+            for(let detail of this.modules)
+            {
+                if(detail.identifier == view.mainComponentName)
+                {
+                    let hasSameParams:boolean = false;
 
-                    for (let detailView of detail.views) {
+                    for(let detailView of detail.views)
+                    {
                         hasSameParams = JSON.stringify(detailView.parameter) == JSON.stringify(view.parameter);
 
-                        if (hasSameParams) {
+                        if(hasSameParams)
+                        {
                             this.updateViewport(view.mainComponentName);
                             break;
                         }
                     }
 
-                    if (!hasSameParams) {
+                    if(!hasSameParams)
+                    {
                         detail.views.push(view);
                         break;
                     }
@@ -103,49 +122,64 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges 
             let views: Array<TerraSplitViewInterface> = [];
             views.push(view);
 
-            if (hasSameInstanceKey) {
+            if(hasSameInstanceKey)
+            {
                 this.modules = this.modules.slice(0, this.modules.length - 1);
             }
 
             this.modules.push({
-                views: views,
-                identifier: view.mainComponentName,
-                defaultWidth: view.defaultWidth,
-                currentSelectedView: view
-            });
+                                  views:               views,
+                                  identifier:          view.mainComponentName,
+                                  defaultWidth:        view.defaultWidth,
+                                  currentSelectedView: view
+                              });
         }
     }
 
-    private changeBreadcrumbName(view: TerraSplitViewInterface) {
-        for (let module of this.modules) {
-            if (module.identifier == view.mainComponentName) {
+    private changeBreadcrumbName(view:TerraSplitViewInterface)
+    {
+        for(let module of this.modules)
+        {
+            if(module.identifier == view.mainComponentName)
+            {
+                module.lastSelectedView = module.currentSelectedView;
                 module.currentSelectedView = view;
 
             }
 
-            if (view.parent != null && module.identifier == view.parent.mainComponentName) {
+            // TODO: WARUM????
+            if(view.parent != null && module.identifier == view.parent.mainComponentName)
+            {
+                module.lastSelectedView = module.currentSelectedView;
                 module.currentSelectedView = view.parent;
             }
 
-            this.changeNextViewsBreadcrumbs(module, view.children);
+            //this.changeNextViewsBreadcrumbs(module, view.children);
         }
     }
 
-    private changeNextViewsBreadcrumbs(module: TerraSplitViewDetail, views: Array<TerraSplitViewInterface>) {
-        if (views != null) {
-            for (let view of views) {
-                if (module.identifier == view.mainComponentName) {
+    private changeNextViewsBreadcrumbs(module:TerraSplitViewDetail, views:Array<TerraSplitViewInterface>)
+    {
+        if(views != null)
+        {
+            for(let view of views)
+            {
+                if(module.identifier == view.mainComponentName)
+                {
+                    module.lastSelectedView = module.currentSelectedView;
                     module.currentSelectedView = view;
                 }
 
-                if (view.children) {
+                if(view.children)
+                {
                     this.changeNextViewsBreadcrumbs(module, view.children);
                 }
             }
         }
     }
 
-    private setSelectedView(view: TerraSplitViewInterface) {
+    private setSelectedView(view:TerraSplitViewInterface)
+    {
         console.log(view);
         this.inputConfig.currentSelectedView = view;
         this.changeBreadcrumbName(view);
@@ -173,7 +207,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges 
                         let viewContainerOffsetLeft = viewContainer.offset().left;
                         let viewContainerWidth = viewContainer.width();
 
-                        $(this).off()
+                        $(this).off();
                         $(this).mouseenter(function () {
                             let elementWidth = $(this)
                                 .width();
@@ -201,7 +235,8 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges 
         });
     }
 
-    public updateViewport(id: string): void {
+    public updateViewport(id: string): void
+    {
         this.zone.runOutsideAngular(() => {
             setTimeout(function () {
                 let anchor = $('#' + id);
@@ -220,7 +255,8 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges 
                 breadcrumb.addClass('active');
 
                 // focus breadcrumbs
-                if (breadcrumb[0] != null) {
+                if(breadcrumb[0] != null)
+                {
                     breadCrumbContainer.stop();
                     breadCrumbContainer.animate(
                         {scrollLeft: (breadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft())},
@@ -278,12 +314,14 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges 
                 }
 
                 // offset fix for navigator
-                if (prevSplitView[0] != null) {
+                if(prevSplitView[0] != null)
+                {
                     offset = offset + prevSplitView.width() + (3 * offset);
                 }
 
                 // offset fix for overlay
-                if ($($(anchor[0].closest('.hasSplitView')).find(anchor))[0] != null) {
+                if($($(anchor[0].closest('.hasSplitView')).find(anchor))[0] != null)
+                {
                     offset = offset + ($(window).width() / 2 - viewContainer.width() / 2);
                 }
 

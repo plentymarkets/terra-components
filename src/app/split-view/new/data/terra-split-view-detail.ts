@@ -4,6 +4,7 @@ import { TerraSplitViewInterface } from './terra-split-view.interface';
  */
 export interface TerraSplitViewDetail
 {
+    lastSelectedView?:TerraSplitViewInterface;
     views:Array<TerraSplitViewInterface>;
     identifier:any;
     defaultWidth:string;
