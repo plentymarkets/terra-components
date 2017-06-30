@@ -106,8 +106,6 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             .observableNewNodesByRoute
             .subscribe((item:Array<TerraNavigatorNodeInterface<D>>) =>
                        {
-                           console.log(item);
-
                            this.addNodesRecursive(item);
                            this.refreshNodeVisibilities(this.inputNodes);
                        });
