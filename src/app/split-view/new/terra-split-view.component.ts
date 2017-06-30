@@ -71,7 +71,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     addViewToList(view:TerraSplitViewInterface)
     {
         let viewFound:boolean = false;
-        let hasSameInstanceKey:boolean = false;
+        let moduleToReplace:TerraSplitViewInterface = null;
 
         for(let detail of this.modules)
         {
@@ -85,7 +85,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             {
                 if(view.instanceKey != undefined && view.instanceKey == detailView.instanceKey)
                 {
-                    hasSameInstanceKey = true;
+                    moduleToReplace = view;
                 }
             }
 
@@ -122,9 +122,25 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             let views: Array<TerraSplitViewInterface> = [];
             views.push(view);
 
-            if(hasSameInstanceKey)
+            if (moduleToReplace != null)
             {
-                this.modules = this.modules.slice(0, this.modules.length - 1);
+                // TODO: @vwiebe, move up to previous iteration
+                for (let detail of this.modules)
+                {
+                    for (let view of detail.views)
+                    {
+                        if(view.mainComponentName !== moduleToReplace.mainComponentName &&
+                           view.instanceKey === moduleToReplace.instanceKey)
+                        {
+                            view = moduleToReplace;
+                            detail.views = detail.views.slice(0, detail.views.length);
+                            this.modules = this.modules.slice(0, this.modules.length);
+                            detail.lastSelectedView = detail.currentSelectedView;
+                            detail.currentSelectedView = moduleToReplace;
+                            return;
+                        }
+                    }
+                }
             }
 
             this.modules.push({
@@ -148,11 +164,11 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             }
 
             // TODO: WARUM????
-            if(view.parent != null && module.identifier == view.parent.mainComponentName)
-            {
-                module.lastSelectedView = module.currentSelectedView;
-                module.currentSelectedView = view.parent;
-            }
+            //if(view.parent != null && module.identifier == view.parent.mainComponentName)
+            //{
+            //    module.lastSelectedView = module.currentSelectedView;
+            //    module.currentSelectedView = view.parent;
+            //}
 
             //this.changeNextViewsBreadcrumbs(module, view.children);
         }
