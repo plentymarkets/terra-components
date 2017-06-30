@@ -23,19 +23,19 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     @Input() inputMainComponentName:string;
     @Input() inputParameter:any;
     private _resolvedData:ModuleWithProviders;
-    
+
     private _cmpRef:ComponentRef<any>;
-    
+
     constructor(private _jitCompiler:JitCompiler)
     {
     }
-    
+
     ngAfterViewInit()
     {
         this._resolvedData = this.inputModule as ModuleWithProviders;
         this.updateComponent();
     }
-    
+
     ngOnDestroy()
     {
         if(this._cmpRef)
@@ -43,7 +43,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
             this._cmpRef.destroy();
         }
     }
-    
+
     private updateComponent():void
     {
         this._jitCompiler
@@ -57,13 +57,13 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                               if(this.inputMainComponentName === factory.componentType.name)
                               {
                                   this._cmpRef = this.viewChildTarget.createComponent(factory);
-                        
+
                                   this._cmpRef.instance.parameter = this.inputParameter;
-                        
+
                               }
                           }
                       )
-            
+
                   });
     }
 }

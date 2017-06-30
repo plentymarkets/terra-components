@@ -21,45 +21,45 @@ export class TerraDclWrapperComponent implements AfterViewInit, OnDestroy, OnCha
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
     @Input() inputType;
     @Input() inputIdentifier;
-    
+
     private _cmpRef:ComponentRef<any>;
     private _isViewInitialized:boolean = false;
-    
+
     constructor(private _componentFactoryResolver:ComponentFactoryResolver,
                 private _cdRef:ChangeDetectorRef)
     {
     }
-    
+
     private updateComponent():void
     {
         if(!this._isViewInitialized)
         {
             return;
         }
-        
+
         if(this._cmpRef)
         {
             // when the `inputType` input changes we destroy a previously
             // created component before creating the new one
             this._cmpRef.destroy();
         }
-        
+
         let factory = this._componentFactoryResolver.resolveComponentFactory(this.inputType);
         this._cmpRef = this.viewChildTarget.createComponent(factory);
     }
-    
+
     ngOnChanges()
     {
         this.updateComponent();
     }
-    
+
     ngAfterViewInit()
     {
         this._isViewInitialized = true;
         this.updateComponent();
         this._cdRef.detectChanges();
     }
-    
+
     ngOnDestroy()
     {
         if(this._cmpRef)

@@ -11,7 +11,7 @@ import {
 export class TerraPortletComponent
 {
     @Input() inputPortletHeader:string;
-    
+
     constructor()
     {
     }

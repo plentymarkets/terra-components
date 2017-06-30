@@ -16,11 +16,11 @@ export class TerraSimpleTableComponent
     @Input() inputRowList:Array<TerraSimpleTableRowInterface>;
     @Input() inputUseHighlighting:boolean = false;
     @Input() inputIsStriped:boolean = false;
-    
+
     constructor()
     {
     }
-    
+
     /**
      * @deprecated
      *
@@ -30,7 +30,7 @@ export class TerraSimpleTableComponent
     {
         return this.inputHeaderList;
     }
-    
+
     /**
      * @deprecated
      *
@@ -40,7 +40,7 @@ export class TerraSimpleTableComponent
     {
         this.inputHeaderList = value;
     }
-    
+
     /**
      * @deprecated
      *
@@ -50,12 +50,12 @@ export class TerraSimpleTableComponent
     {
         return this.inputRowList;
     }
-    
+
     public set rowList(value:Array<TerraSimpleTableRowInterface>)
     {
         this.inputRowList = value;
     }
-    
+
     /**
      * @deprecated
      *
@@ -64,17 +64,17 @@ export class TerraSimpleTableComponent
     public deleteRow(rowToDelete:TerraSimpleTableRowInterface):void
     {
         let index = this.inputRowList.indexOf(rowToDelete);
-        
+
         this.inputRowList.splice(index, 1);
     }
-    
+
     private checkTooltipPlacement(placement:string):string
     {
         if(placement != null && placement != '')
         {
             return placement;
         }
-        
+
         return 'top';
     }
 }

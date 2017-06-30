@@ -7,6 +7,16 @@
     <label htmlFor="{{inputName}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
-    <input id="{{inputName}}" type="number" [(ngModel)]="value" name="{{inputName}}" (blur)="onBlur()" autocomplete="off"
-           [disabled]="inputIsDisabled" pattern="{{regex}}" step="1" min="{{inputMinValue}}" max="{{inputMaxValue}}" placeholder="{{inputPlaceholder}}">
+    <input id="{{inputName}}"
+           type="number"
+           [(ngModel)]="value"
+           name="{{inputName}}"
+           (blur)="onBlur()"
+           autocomplete="off"
+           [disabled]="inputIsDisabled"
+           pattern="{{regex}}"
+           step="1"
+           min="{{inputMinValue}}"
+           max="{{inputMaxValue}}"
+           placeholder="{{inputPlaceholder}}">
 </div>
