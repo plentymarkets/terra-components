@@ -180,7 +180,6 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
 
     private setSelectedView(view:TerraSplitViewInterface)
     {
-        console.log(view);
         this.inputConfig.currentSelectedView = view;
         this.changeBreadcrumbName(view);
     }
