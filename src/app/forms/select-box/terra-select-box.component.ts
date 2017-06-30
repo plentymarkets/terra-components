@@ -22,10 +22,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
                        useExisting: forwardRef(() => TerraSelectBoxComponent),
                        multi:       true
                    }
-               ],
-               host:      {
-                   '(document:click)': 'clickedOutside($event)',
-               }
+               ]
            })
 export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
@@ -37,6 +34,8 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input() inputListBoxValues:Array<TerraSelectBoxValueInterface>;
     @Output() outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
     @Output() inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
+
+    private clickListener: (event: Event) => void;
 
     /**
      * @deprecated
@@ -78,6 +77,11 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     constructor(private elementRef:ElementRef)
     {
+        this.clickListener = (event) =>
+        {
+            this.clickedOutside(event);
+        };
+
         this._isInit = false;
         this.inputTooltipPlacement = 'top';
         this._selectedValue =
@@ -160,16 +164,41 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         }
     }
 
+    private set toggleOpen(value)
+    {
+        if (this._toggleOpen !== value && value == true)
+        {
+            document.addEventListener('click', this.clickListener);
+        }
+        else if (this._toggleOpen !== value && value == false)
+        {
+            document.removeEventListener('click', this.clickListener);
+        }
+
+        this._toggleOpen = value;
+    }
+
+    private get toggleOpen():boolean
+    {
+        return this._toggleOpen;
+    }
+
     /**
      *
      * @param event
      */
-    private clickedOutside(event):void
+    private clickedOutside(event:Event):void
     {
         if(!this.elementRef.nativeElement.contains(event.target))
         {
-            this._toggleOpen = false;
+            this.toggleOpen = false;
         }
+    }
+
+    private onClick(evt:Event):void
+    {
+        evt.stopPropagation(); // prevents the click listener on the document to be fired right after
+        this.toggleOpen = !this.toggleOpen;
     }
 
     /**
