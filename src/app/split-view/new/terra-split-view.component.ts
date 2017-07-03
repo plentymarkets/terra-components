@@ -10,6 +10,7 @@ import {
 import {TerraSplitViewConfig} from './data/terra-split-view.config';
 import {TerraSplitViewDetail} from './data/terra-split-view-detail';
 import {TerraSplitViewInterface} from './data/terra-split-view.interface';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'terra-split-view-new',
@@ -36,13 +37,16 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     }
 
     ngOnInit() {
+        // initialize modules array
+        this.modules = [];
+
         this.inputConfig.addViewEventEmitter.subscribe(
             (value: TerraSplitViewInterface) => 
             {
-                this.addViewToList(value);
+                // synchronize modules array with input config
+                this.goDeep(this.inputConfig.views, 0);
 
                 this.inputConfig.currentSelectedView = value;
-                this.changeBreadcrumbName(value);
                 this.updateBreadCrumbs();
             }
         );
@@ -63,93 +67,46 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         }
     }
 
-    checkModuleVisibility(module:TerraSplitViewDetail, view:TerraSplitViewInterface):boolean
+    // TODO @pweyrich: Find a better name
+    private goDeep(children: TerraSplitViewInterface[], hierarchyLevel: number):void
     {
-        return module.currentSelectedView != view;
-    }
-
-    addViewToList(view:TerraSplitViewInterface)
-    {
-        let viewFound:boolean = false;
-        let moduleToReplace:TerraSplitViewInterface = null;
-
-        for(let detail of this.modules)
-        {
-            if(detail.identifier == view.mainComponentName)
+        children.forEach(
+            (child) =>
             {
-                viewFound = true;
-                //break;
-            }
-
-            for(let detailView of detail.views)
-            {
-                if(view.instanceKey != undefined && view.instanceKey == detailView.instanceKey)
+                if (isNullOrUndefined(this.modules[hierarchyLevel]))
                 {
-                    moduleToReplace = view;
-                }
-            }
-
-        }
-
-        if(viewFound)
-        {
-            for(let detail of this.modules)
-            {
-                if(detail.identifier == view.mainComponentName)
-                {
-                    let hasSameParams:boolean = false;
-
-                    for(let detailView of detail.views)
-                    {
-                        hasSameParams = JSON.stringify(detailView.parameter) == JSON.stringify(view.parameter);
-
-                        if(hasSameParams)
+                    this.modules[hierarchyLevel] =
                         {
-                            this.updateViewport(view.mainComponentName);
-                            break;
-                        }
-                    }
-
-                    if(!hasSameParams)
-                    {
-                        detail.views.push(view);
-                        break;
-                    }
+                            views:               [],
+                            identifier:          child.mainComponentName,
+                            defaultWidth:        child.defaultWidth,
+                            currentSelectedView: child
+                        };
                 }
-            }
-        }
-        else {
-            let views: Array<TerraSplitViewInterface> = [];
-            views.push(view);
 
-            if (moduleToReplace != null)
-            {
-                // TODO: @vwiebe, move up to previous iteration
-                for (let detail of this.modules)
+                // initialize views array if null or undefined
+                if (isNullOrUndefined(this.modules[hierarchyLevel].views))
                 {
-                    for (let view of detail.views)
-                    {
-                        if(view.mainComponentName !== moduleToReplace.mainComponentName &&
-                           view.instanceKey === moduleToReplace.instanceKey)
-                        {
-                            view = moduleToReplace;
-                            detail.views = detail.views.slice(0, detail.views.length);
-                            this.modules = this.modules.slice(0, this.modules.length);
-                            detail.lastSelectedView = detail.currentSelectedView;
-                            detail.currentSelectedView = moduleToReplace;
-                            return;
-                        }
-                    }
+                    this.modules[hierarchyLevel].views = [];
                 }
-            }
 
-            this.modules.push({
-                                  views:               views,
-                                  identifier:          view.mainComponentName,
-                                  defaultWidth:        view.defaultWidth,
-                                  currentSelectedView: view
-                              });
-        }
+                // before: check if it is already added/existing
+                if (this.modules[hierarchyLevel].views.indexOf(child) === -1)
+                {
+                    // add children of this hierarchy level to the modules array
+                    this.modules[hierarchyLevel].views.push(child);
+                    this.modules[hierarchyLevel].currentSelectedView = child;
+                }
+
+                // go deeper
+                if (!isNullOrUndefined(child.children) && child.children.length > 0)
+                {
+                    this.goDeep(child.children, hierarchyLevel + 1);
+                }
+
+                console.log(child);
+            }
+        );
     }
 
     private changeBreadcrumbName(view:TerraSplitViewInterface)
@@ -164,39 +121,20 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             }
 
             // TODO: WARUM????
-            //if(view.parent != null && module.identifier == view.parent.mainComponentName)
-            //{
-            //    module.lastSelectedView = module.currentSelectedView;
-            //    module.currentSelectedView = view.parent;
-            //}
+            /*if(view.parent != null && module.identifier == view.parent.mainComponentName)
+            {
+                module.lastSelectedView = module.currentSelectedView;
+                module.currentSelectedView = view.parent;
+            }*/
 
             //this.changeNextViewsBreadcrumbs(module, view.children);
-        }
-    }
-
-    private changeNextViewsBreadcrumbs(module:TerraSplitViewDetail, views:Array<TerraSplitViewInterface>)
-    {
-        if(views != null)
-        {
-            for(let view of views)
-            {
-                if(module.identifier == view.mainComponentName)
-                {
-                    module.lastSelectedView = module.currentSelectedView;
-                    module.currentSelectedView = view;
-                }
-
-                if(view.children)
-                {
-                    this.changeNextViewsBreadcrumbs(module, view.children);
-                }
-            }
         }
     }
 
     private setSelectedView(view:TerraSplitViewInterface)
     {
         this.inputConfig.currentSelectedView = view;
+        this.updateViewport(view.mainComponentName);
         this.changeBreadcrumbName(view);
     }
 

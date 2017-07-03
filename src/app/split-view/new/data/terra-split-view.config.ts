@@ -28,23 +28,14 @@ export class TerraSplitViewConfig
                     view.parent = this.currentSelectedView;
                     if (this.currentSelectedView.children == null)
                     {
-                        this.currentSelectedView.children = [];
-                        this.currentSelectedView.children.push(view);
+                        this.currentSelectedView.children = [view];
                     }
                     else
                     {
                         for (let child of this.currentSelectedView.children)
                         {
-                            let hasSameInstanceKey: boolean = child.instanceKey != undefined && child.instanceKey == view.instanceKey;
                             let hasSameParameter:boolean = JSON.stringify(child.parameter) == JSON.stringify(view.parameter);
-                            
-                            if (hasSameInstanceKey)
-                            {
-                                this.currentSelectedView.children = [];
-                                this.currentSelectedView.children.push(view);
-                                break;
-                            }
-                                
+
                             if (!(hasSameParameter && child.module.ngModule == view.module.ngModule))
                             {
                                 this.currentSelectedView.children.push(view);
@@ -91,7 +82,7 @@ export class TerraSplitViewConfig
     {
         return this._currentSelectedView;
     }
-    
+
     public set currentSelectedView(value:TerraSplitViewInterface)
     {
         this._currentSelectedView = value;
