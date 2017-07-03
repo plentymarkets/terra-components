@@ -10,7 +10,9 @@ import {
 import {TerraSplitViewConfig} from './data/terra-split-view.config';
 import {TerraSplitViewDetail} from './data/terra-split-view-detail';
 import {TerraSplitViewInterface} from './data/terra-split-view.interface';
-import { isNullOrUndefined } from 'util';
+import {
+    isNullOrUndefined
+} from 'util';
 
 @Component({
     selector: 'terra-split-view-new',
@@ -46,8 +48,8 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                 // synchronize modules array with input config
                 this.goDeep(this.inputConfig.views, 0);
 
-                this.inputConfig.currentSelectedView = value;
-                this.updateBreadCrumbs();
+                // set the selected view
+                this.setSelectedView(value);
             }
         );
 
@@ -91,7 +93,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                 }
 
                 // before: check if it is already added/existing
-                if (this.modules[hierarchyLevel].views.indexOf(child) === -1)
+                if (this.modules[hierarchyLevel].views.findIndex((view) => view.name === child.name) === -1) // TODO: this does not work since it is not the same instance..
                 {
                     // add children of this hierarchy level to the modules array
                     this.modules[hierarchyLevel].views.push(child);
@@ -109,33 +111,22 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         );
     }
 
-    private changeBreadcrumbName(view:TerraSplitViewInterface)
+    private setSelectedView(view:TerraSplitViewInterface)
     {
+        // update the corresponding module's current- and lastSelectedView
         for(let module of this.modules)
         {
-            if(module.identifier == view.mainComponentName)
+            // search for the view
+            if(module.views.find((moduleView) => moduleView === view) || module.views.find((moduleView) => moduleView.name === view.name))
             {
                 module.lastSelectedView = module.currentSelectedView;
                 module.currentSelectedView = view;
-
             }
-
-            // TODO: WARUM????
-            /*if(view.parent != null && module.identifier == view.parent.mainComponentName)
-            {
-                module.lastSelectedView = module.currentSelectedView;
-                module.currentSelectedView = view.parent;
-            }*/
-
-            //this.changeNextViewsBreadcrumbs(module, view.children);
         }
-    }
 
-    private setSelectedView(view:TerraSplitViewInterface)
-    {
         this.inputConfig.currentSelectedView = view;
         this.updateViewport(view.mainComponentName);
-        this.changeBreadcrumbName(view);
+        this.updateBreadCrumbs();
     }
 
     private updateBreadCrumbs() {
