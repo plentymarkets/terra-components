@@ -11,6 +11,7 @@ import {TerraSplitViewConfig} from './data/terra-split-view.config';
 import {TerraSplitViewDetail} from './data/terra-split-view-detail';
 import {TerraSplitViewInterface} from './data/terra-split-view.interface';
 import {
+    isNull,
     isNullOrUndefined
 } from 'util';
 
@@ -46,7 +47,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
             (value: TerraSplitViewInterface) => 
             {
                 // synchronize modules array with input config
-                this.goDeep(this.inputConfig.views, 0);
+                this.synchronizeModulesWithInputTree(this.inputConfig.views, 0);
 
                 // set the selected view
                 this.setSelectedView(value);
@@ -56,6 +57,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         this.inputConfig.deleteViewEventEmitter.subscribe(
             (value: TerraSplitViewInterface) =>
             {
+                // TODO: implement behavior in synchronize function
                 this.updateBreadCrumbs();
             }
         );
@@ -65,16 +67,24 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     {
         if(changes["inputConfig"].currentValue !== undefined)
         {
-            this.updateBreadCrumbs();
+            // synchronize data model if updated
+            this.synchronizeModulesWithInputTree(changes['inputConfig'].currentValue.views,0);
         }
     }
 
-    // TODO @pweyrich: Find a better name
-    private goDeep(children: TerraSplitViewInterface[], hierarchyLevel: number):void
+    private synchronizeModulesWithInputTree(children: TerraSplitViewInterface[], hierarchyLevel: number):void
     {
+        // check whether children are null or undefined
+        if(isNullOrUndefined(children))
+        {
+            return;
+        }
+
+        // go through all the children
         children.forEach(
             (child) =>
             {
+                // initialize hierarchy level if not defined
                 if (isNullOrUndefined(this.modules[hierarchyLevel]))
                 {
                     this.modules[hierarchyLevel] =
@@ -93,7 +103,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                 }
 
                 // before: check if it is already added/existing
-                if (this.modules[hierarchyLevel].views.findIndex((view) => view.name === child.name) === -1) // TODO: this does not work since it is not the same instance..
+                if (this.modules[hierarchyLevel].views.findIndex((view) => view.name === child.name) === -1)
                 {
                     // add children of this hierarchy level to the modules array
                     this.modules[hierarchyLevel].views.push(child);
@@ -103,10 +113,8 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                 // go deeper
                 if (!isNullOrUndefined(child.children) && child.children.length > 0)
                 {
-                    this.goDeep(child.children, hierarchyLevel + 1);
+                    this.synchronizeModulesWithInputTree(child.children, hierarchyLevel + 1);
                 }
-
-                console.log(child);
             }
         );
     }
@@ -117,10 +125,22 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         for(let module of this.modules)
         {
             // search for the view
-            if(module.views.find((moduleView) => moduleView === view) || module.views.find((moduleView) => moduleView.name === view.name))
+            for(let moduleView of module.views)
             {
-                module.lastSelectedView = module.currentSelectedView;
-                module.currentSelectedView = view;
+                // an existing view has been SELECTED
+                if(moduleView === view)
+                {
+                    module.lastSelectedView = module.currentSelectedView;
+                    module.currentSelectedView = view;
+                    break;
+                }
+                // an existing view has been ADDED -> not the same instance of the view
+                else if (moduleView.name === view.name)
+                {
+                    module.lastSelectedView = module.currentSelectedView;
+                    module.currentSelectedView = moduleView;
+                    break;
+                }
             }
         }
 
@@ -130,17 +150,6 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
     }
 
     private updateBreadCrumbs() {
-        if (this.inputConfig.views != null) {
-            let currentModule: TerraSplitViewInterface;
-
-            currentModule = this.inputConfig.currentSelectedView;
-
-            if (currentModule) {
-                this.updateViewport(currentModule.mainComponentName);
-            }
-
-        }
-
         this.zone.runOutsideAngular(() => {
             // init breadcrumb sliding
             setTimeout(function () {
