@@ -220,7 +220,10 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
                 // TODO: @vwiebe, 1. fix breadcrumb scope, 2. don't refocus, 3. refactoring
                 breadCrumbContainer.children('li').each(function () {
                     var container = $(this);
-
+                    
+                    let caret = breadCrumbContainer.find('.caret');
+                    caret.first().css('display','inline');
+                    
                     container.find('a:not(.caret)').each(function () {
                         $(this).off();
                         $(this).click(function () {
