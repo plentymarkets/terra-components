@@ -218,42 +218,42 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
 
                 // focus view vertically
                 // TODO: @vwiebe, 1. fix breadcrumb scope, 2. don't refocus, 3. refactoring
-                //breadCrumbContainer.children('li').each(function () {
-                //    var container = $(this);
-                //
-                //    container.find('a:not(.caret)').each(function () {
-                //        $(this).off();
-                //        $(this).click(function () {
-                //
-                //            let yolo = $('.side-scroller').find($('.' + $(this).attr('class')));
-                //
-                //            $(yolo.parent()[0]).animate({
-                //                    scrollTop: ($(yolo.parent()[0]).scrollTop() +
-                //                    yolo[0].getBoundingClientRect().top -
-                //                    yolo.parent()[0].getBoundingClientRect().top)
-                //                },
-                //                1000);
-                //
-                //            breadCrumbContainer.children('li').each(function () {
-                //                var container2 = $(this);
-                //
-                //                if (container.attr('class') != container2.attr('class')) {
-                //                    if (container2.find('.caret').length > 0) {
-                //                        let yolo2 = $('.side-scroller').find($('.' + container2.attr('class')));
-                //
-                //                        $(yolo2.parent()[0]).animate({
-                //                                scrollTop: ($(yolo.parent()[0]).scrollTop() +
-                //                                yolo[0].getBoundingClientRect().top -
-                //                                yolo.parent()[0].getBoundingClientRect().top)
-                //                            },
-                //                            1000);
-                //                    }
-                //                }
-                //
-                //            });
-                //        });
-                //    });
-                //});
+                breadCrumbContainer.children('li').each(function () {
+                    var container = $(this);
+
+                    container.find('a:not(.caret)').each(function () {
+                        $(this).off();
+                        $(this).click(function () {
+
+                            let yolo = $('.side-scroller').find($('.' + $(this).attr('class')));
+
+                            $(yolo.parent()[0]).animate({
+                                    scrollTop: ($(yolo.parent()[0]).scrollTop() +
+                                    yolo[0].getBoundingClientRect().top -
+                                    yolo.parent()[0].getBoundingClientRect().top)
+                                },
+                                1000);
+
+                            breadCrumbContainer.children('li').each(function () {
+                                var container2 = $(this);
+
+                                if (container.attr('class') != container2.attr('class')) {
+                                    if (container2.find('.caret').length > 0) {
+                                        let yolo2 = $('.side-scroller').find($('.' + container2.attr('class')));
+
+                                        $(yolo2.parent()[0]).animate({
+                                                scrollTop: ($(yolo.parent()[0]).scrollTop() +
+                                                yolo[0].getBoundingClientRect().top -
+                                                yolo.parent()[0].getBoundingClientRect().top)
+                                            },
+                                            1000);
+                                    }
+                                }
+
+                            });
+                        });
+                    });
+                });
 
                 // focus view horizontally
                 if (anchor[0] != null &&
