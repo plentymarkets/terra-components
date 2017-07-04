@@ -1,5 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { TerraSplitViewInterface } from './terra-split-view.interface';
+import { isNullOrUndefined } from 'util';
 
 export class TerraSplitViewConfig
 {
@@ -12,36 +13,46 @@ export class TerraSplitViewConfig
     public addView(view:TerraSplitViewInterface, parent?:TerraSplitViewInterface):void
     {
         setTimeout(()=>{
-            if(parent)
+            if (isNullOrUndefined(parent))
             {
-                parent.children.push(view);
-            }
-            else
-            {
-                if(this.currentSelectedView == null)
+                if (isNullOrUndefined(this.currentSelectedView))
                 {
                     this.views.push(view);
                 }
                 else
                 {
-                    // add view to currently selected view's children
-                    view.parent = this.currentSelectedView;
-                    if (this.currentSelectedView.children == null)
-                    {
-                        this.currentSelectedView.children = [view];
-                    }
-                    else
-                    {
-                        for (let child of this.currentSelectedView.children)
-                        {
-                            let hasSameParameter:boolean = JSON.stringify(child.parameter) == JSON.stringify(view.parameter);
+                    parent = this.currentSelectedView;
+                }
+            }
 
-                            if (!(hasSameParameter && child.module.ngModule == view.module.ngModule))
-                            {
-                                this.currentSelectedView.children.push(view);
-                                break;
-                            }
+            if (parent)
+            {
+                view.parent = parent;
+
+                if (isNullOrUndefined(parent.children))
+                {
+                    parent.children = [view]
+                }
+                else
+                {
+                    let viewExist:boolean = false;
+
+                    for (let child of parent.children)
+                    {
+                        // TODO very ugly way, maybe add an option to use an id?
+                        let hasSameParameter:boolean = JSON.stringify(child.parameter) == JSON.stringify(view.parameter);
+
+                        if (hasSameParameter && child.module.ngModule == view.module.ngModule)
+                        {
+                            view = child;
+                            viewExist = true;
+                            break;
                         }
+                    }
+
+                    if (!viewExist)
+                    {
+                        parent.children.push(view);
                     }
                 }
             }

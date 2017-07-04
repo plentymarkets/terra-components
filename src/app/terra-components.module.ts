@@ -120,6 +120,7 @@ export { TerraBaseTreeComponent } from './tree/base/terra-base-tree.component';
 export { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-tree.component';
 export { TerraLeafInterface } from './tree/leaf/terra-leaf.interface';
 export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
+export { TerraDynamicLoadedComponent } from './dynamic-module-loader/data/terra-dynamic-loaded-component.interface';
 export { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
 export { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
 export { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface';

@@ -29,7 +29,7 @@
                 <div *ngIf="module.currentSelectedView === view || module.lastSelectedView === view" class="{{ view.mainComponentName + '_' + view.instanceKey }}">
                     <terra-dynamic-module-loader
                         [inputModule]="view.module"
-                        [inputParameter]="view.parameter"
+                        [inputParameter]="view"
                         [inputMainComponentName]="view.mainComponentName">
                     </terra-dynamic-module-loader>
                 </div>

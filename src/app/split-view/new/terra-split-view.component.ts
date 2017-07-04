@@ -10,10 +10,7 @@ import {
 import {TerraSplitViewConfig} from './data/terra-split-view.config';
 import {TerraSplitViewDetail} from './data/terra-split-view-detail';
 import {TerraSplitViewInterface} from './data/terra-split-view.interface';
-import {
-    isNull,
-    isNullOrUndefined
-} from 'util';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'terra-split-view-new',
