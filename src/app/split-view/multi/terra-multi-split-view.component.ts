@@ -7,23 +7,23 @@ import {
     OnInit,
     SimpleChanges,
 } from '@angular/core';
-import {TerraSplitViewConfig} from './data/terra-split-view.config';
-import {TerraSplitViewDetail} from './data/terra-split-view-detail';
-import {TerraSplitViewInterface} from './data/terra-split-view.interface';
 import { isNullOrUndefined } from 'util';
+import { TerraMultiSplitViewConfig } from './data/terra-multi-split-view.config';
+import { TerraMultiSplitViewDetail } from './data/terra-multi-split-view-detail';
+import { TerraMultiSplitViewInterface } from './data/terra-multi-split-view.interface';
 
 @Component({
-    selector: 'terra-split-view-new',
-    template: require('./terra-split-view.component.html'),
-    styles: [require('./terra-split-view.component.scss')]
+    selector: 'terra-multi-split-view',
+    template: require('./terra-multi-split-view.component.html'),
+    styles: [require('./terra-multi-split-view.component.scss')]
 })
-export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
+export class TerraMultiSplitViewComponent implements OnDestroy, OnInit, OnChanges
 {
-    @Input() inputConfig:TerraSplitViewConfig;
+    @Input() inputConfig:TerraMultiSplitViewConfig;
     @Input() inputShowBreadcrumbs:boolean;
     private _breadCrumbsPath:string;
 
-    private modules: Array<TerraSplitViewDetail> = [];
+    private modules: Array<TerraMultiSplitViewDetail> = [];
 
     public static ANIMATION_SPEED = 1000; // ms
 
@@ -41,7 +41,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         this.modules = [];
 
         this.inputConfig.addViewEventEmitter.subscribe(
-            (value: TerraSplitViewInterface) => 
+            (value: TerraMultiSplitViewInterface) =>
             {
                 // synchronize modules array with input config
                 this.synchronizeModulesWithInputTree(this.inputConfig.views, 0);
@@ -52,7 +52,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         );
 
         this.inputConfig.deleteViewEventEmitter.subscribe(
-            (value: TerraSplitViewInterface) =>
+            (value: TerraMultiSplitViewInterface) =>
             {
                 // TODO: implement behavior in synchronize function
                 this.updateBreadCrumbs();
@@ -69,7 +69,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         }
     }
 
-    private synchronizeModulesWithInputTree(children: TerraSplitViewInterface[], hierarchyLevel: number):void
+    private synchronizeModulesWithInputTree(children: TerraMultiSplitViewInterface[], hierarchyLevel: number):void
     {
         // check whether children are null or undefined
         if(isNullOrUndefined(children))
@@ -116,7 +116,7 @@ export class TerraSplitViewComponentNew implements OnDestroy, OnInit, OnChanges
         );
     }
 
-    private setSelectedView(view:TerraSplitViewInterface)
+    private setSelectedView(view:TerraMultiSplitViewInterface)
     {
         // update the corresponding module's current- and lastSelectedView
         for(let module of this.modules)

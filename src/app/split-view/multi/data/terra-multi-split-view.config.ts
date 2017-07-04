@@ -1,16 +1,16 @@
 import { EventEmitter } from '@angular/core';
-import { TerraSplitViewInterface } from './terra-split-view.interface';
+import { TerraMultiSplitViewInterface } from './terra-multi-split-view.interface';
 import { isNullOrUndefined } from 'util';
 
-export class TerraSplitViewConfig
+export class TerraMultiSplitViewConfig
 {
-    private _views:Array<TerraSplitViewInterface> = [];
-    private _currentSelectedView:TerraSplitViewInterface;
+    private _views:Array<TerraMultiSplitViewInterface> = [];
+    private _currentSelectedView:TerraMultiSplitViewInterface;
 
-    private _addViewEventEmitter:EventEmitter<TerraSplitViewInterface> = new EventEmitter<TerraSplitViewInterface>();
-    private _deleteViewEventEmitter:EventEmitter<TerraSplitViewInterface> = new EventEmitter<TerraSplitViewInterface>();
+    private _addViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+    private _deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
 
-    public addView(view:TerraSplitViewInterface, parent?:TerraSplitViewInterface):void
+    public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
     {
         setTimeout(()=>{
             if (isNullOrUndefined(parent))
@@ -65,36 +65,36 @@ export class TerraSplitViewConfig
     {
         this._views = null;
         this._addViewEventEmitter.unsubscribe();
-        this._addViewEventEmitter = new EventEmitter<TerraSplitViewInterface>();
+        this._addViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
         this._deleteViewEventEmitter.unsubscribe();
-        this._deleteViewEventEmitter = new EventEmitter<TerraSplitViewInterface>();
+        this._deleteViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
     }
-    public get deleteViewEventEmitter():EventEmitter<TerraSplitViewInterface>
+    public get deleteViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
     {
         return this._deleteViewEventEmitter;
     }
 
-    public get addViewEventEmitter():EventEmitter<TerraSplitViewInterface>
+    public get addViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
     {
         return this._addViewEventEmitter;
     }
 
-    public get views():Array<TerraSplitViewInterface>
+    public get views():Array<TerraMultiSplitViewInterface>
     {
         return this._views;
     }
 
-    public set views(value:Array<TerraSplitViewInterface>)
+    public set views(value:Array<TerraMultiSplitViewInterface>)
     {
         this._views = value;
     }
 
-    public get currentSelectedView():TerraSplitViewInterface
+    public get currentSelectedView():TerraMultiSplitViewInterface
     {
         return this._currentSelectedView;
     }
 
-    public set currentSelectedView(value:TerraSplitViewInterface)
+    public set currentSelectedView(value:TerraMultiSplitViewInterface)
     {
         this._currentSelectedView = value;
     }
