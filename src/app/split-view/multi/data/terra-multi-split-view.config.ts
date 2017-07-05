@@ -17,6 +17,7 @@ export class TerraMultiSplitViewConfig
             {
                 if (isNullOrUndefined(this.currentSelectedView))
                 {
+                    this.currentSelectedView = view;
                     this.views.push(view);
                 }
                 else
