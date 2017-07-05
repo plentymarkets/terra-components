@@ -188,15 +188,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 let offset = 3;
                 let prevSplitView = breadcrumb.closest('.view').prev();
 
-                // TODO: replace with angular's ngClass attribute in the template
-                // update breadcrumbs
-                breadCrumbContainer.find('div')
-                    .each(function () {
-                        $(this).removeClass('active');
-                    });
-
-                breadcrumb.addClass('active');
-
                 // focus breadcrumbs
                 if(breadcrumb[0] != null)
                 {

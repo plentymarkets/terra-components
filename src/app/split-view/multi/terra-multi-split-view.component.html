@@ -3,7 +3,8 @@
         <ng-template ngFor let-module [ngForOf]="modules">
             <li class="{{ module.identifier + '_' + module.currentSelectedView.instanceKey }}"
                 (click)="setSelectedView(module.currentSelectedView)">
-                <div class="{{ module.identifier }}">
+                <div class="{{ module.identifier }}"
+                     [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
                     <span>{{module.currentSelectedView.name}}</span>
                     <a class="caret" *ngIf="module.views.length > 1">
                         <ul class="context-menu">
