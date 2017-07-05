@@ -2,10 +2,8 @@ import {
     Component,
     Input,
     NgZone,
-    OnChanges,
     OnDestroy,
-    OnInit,
-    SimpleChanges,
+    OnInit
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { TerraMultiSplitViewConfig } from './data/terra-multi-split-view.config';
@@ -37,8 +35,9 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     }
 
     ngOnInit() {
-        // initialize modules array
-        this.modules = [];
+        // init modules from inputConfig
+        this.initModulesFromInputConfig();
+
 
         this.inputConfig.addViewEventEmitter.subscribe(
             (value: TerraMultiSplitViewInterface) =>
@@ -61,6 +60,43 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 this.setSelectedView(value.parent);
             }
         );
+    }
+
+    private initModulesFromInputConfig():void
+    {
+        let nextViewStack: Array<TerraMultiSplitViewInterface> = [];
+        let currentViewStack: Array<TerraMultiSplitViewInterface> = this.inputConfig.views;
+        let hierarchyLevel = 0;
+
+        if (isNullOrUndefined(currentViewStack) || currentViewStack.length == 0)
+        {
+            return;
+        }
+
+        do {
+            this.modules[hierarchyLevel] = {
+                views:               [],
+                identifier:          currentViewStack[0].mainComponentName,
+                defaultWidth:        currentViewStack[0].defaultWidth,
+                currentSelectedView: currentViewStack[0]
+            };
+
+            currentViewStack.forEach(
+                (view) =>
+                {
+                    this.modules[hierarchyLevel].views.push(view);
+
+                    if(view.children && view.children.length)
+                    {
+                        nextViewStack = nextViewStack.concat(view.children);
+                    }
+                }
+            );
+
+            hierarchyLevel++;
+            currentViewStack = nextViewStack;
+            nextViewStack = [];
+        } while (currentViewStack.length > 0);
     }
 
     private addToModulesIfNotExist(view: TerraMultiSplitViewInterface):void
