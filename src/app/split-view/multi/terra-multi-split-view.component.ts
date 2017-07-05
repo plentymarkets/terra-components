@@ -54,8 +54,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.inputConfig.deleteViewEventEmitter.subscribe(
             (value: TerraMultiSplitViewInterface) =>
             {
-                // TODO: implement behavior in synchronize function
-                this.updateBreadCrumbs();
+                // update modules array
+                this.removeFromModules(value);
+
+                // select the parent view
+                this.setSelectedView(value.parent);
             }
         );
     }
@@ -263,5 +266,86 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     this.ANIMATION_SPEED);
             });
         });
+    }
+
+    private removeFromModules(view:TerraMultiSplitViewInterface):void
+    {
+        // check whether view is null or undefined
+        if(isNullOrUndefined(view))
+        {
+            // ERROR... stop further execution
+            return;
+        }
+
+        // get the corresponding module
+        let module = this.getModuleOfView(view);
+
+        // check whether module is defined
+        if (isNullOrUndefined(module))
+        {
+            // ERROR... stop further execution
+            return;
+        }
+
+        // check if module has more than one view
+        if (module.views.length <= 1)
+        {
+            if (!isNullOrUndefined(view.children))
+            {
+                view.children.forEach(
+                    (elem) =>
+                    {
+                        this.removeFromModules(elem);
+                    }
+                );
+            }
+
+            // remove complete module
+            let moduleIndex:number = this.modules.findIndex((mod) => mod === module);
+            this.modules.splice(moduleIndex,1);
+        }
+        else
+        {
+            // also delete all children from the modules array
+            if (!isNullOrUndefined(view.children))
+            {
+                view.children.forEach(
+                    (elem) =>
+                    {
+                        this.removeFromModules(elem);
+                    }
+                );
+            }
+
+            // get the index of the view in the module's views array
+            let viewIndex:number = module.views.findIndex((elem) => elem === view);
+
+            // remove view from module's views array
+            module.views.splice(viewIndex,1);
+
+            // reset current selected view
+            if (!isNullOrUndefined(module.lastSelectedView))
+            {
+                module.currentSelectedView = module.lastSelectedView;
+            }
+            else
+            {
+                module.currentSelectedView = module.views[0];
+            }
+        }
+    }
+
+    protected getModuleOfView(view):TerraMultiSplitViewDetail
+    {
+        // get hierarchy level of deleted view
+        let hierarchyLevel:number = 0;
+        let parent:TerraMultiSplitViewInterface = view.parent;
+        while(!isNullOrUndefined(parent))
+        {
+            parent = parent.parent;
+            hierarchyLevel++;
+        }
+
+        return this.modules[hierarchyLevel];
     }
 }

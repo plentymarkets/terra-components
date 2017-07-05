@@ -27,7 +27,8 @@
     <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first">
         <div class="view {{ module.defaultWidth }}" id="{{ module.identifier }}" [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">
             <ng-template ngFor let-view [ngForOf]="module.views">
-                <div *ngIf="module.currentSelectedView === view || module.lastSelectedView === view" class="{{ view.mainComponentName + '_' + view.instanceKey }}">
+                <div *ngIf="module.currentSelectedView === view || module.lastSelectedView === view"
+                     class="{{ view.mainComponentName + '_' + view.instanceKey }}">
                     <terra-dynamic-module-loader
                         [inputModule]="view.module"
                         [inputParameter]="view"

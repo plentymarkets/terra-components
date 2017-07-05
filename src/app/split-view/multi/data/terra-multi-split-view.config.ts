@@ -62,6 +62,19 @@ export class TerraMultiSplitViewConfig
         });
     }
 
+    public removeView(view:TerraMultiSplitViewInterface):void
+    {
+        let parent: TerraMultiSplitViewInterface = view.parent;
+
+        let viewIndex:number = parent.children.findIndex((elem) => elem === view);
+
+        if (viewIndex >= 0)
+        {
+            parent.children.splice(viewIndex, 1);
+            this.deleteViewEventEmitter.next(view);
+        }
+    }
+
     public reset():void
     {
         this._views = null;
