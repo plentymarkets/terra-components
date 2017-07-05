@@ -17,7 +17,7 @@ import { TerraMultiSplitViewInterface } from './data/terra-multi-split-view.inte
     template: require('./terra-multi-split-view.component.html'),
     styles: [require('./terra-multi-split-view.component.scss')]
 })
-export class TerraMultiSplitViewComponent implements OnDestroy, OnInit, OnChanges
+export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {
     @Input() inputConfig:TerraMultiSplitViewConfig;
     @Input() inputShowBreadcrumbs:boolean;
@@ -44,7 +44,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit, OnChange
             (value: TerraMultiSplitViewInterface) =>
             {
                 // synchronize modules array with input config
-                this.synchronizeModulesWithInputTree(this.inputConfig.views, 0);
+                this.addToModulesIfNotExist(value);
 
                 // set the selected view
                 this.setSelectedView(value);
@@ -60,60 +60,52 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit, OnChange
         );
     }
 
-    ngOnChanges(changes:SimpleChanges)
+    private addToModulesIfNotExist(view: TerraMultiSplitViewInterface):void
     {
-        if(changes["inputConfig"].currentValue !== undefined)
-        {
-            // synchronize data model if updated
-            this.synchronizeModulesWithInputTree(changes['inputConfig'].currentValue.views,0);
-        }
-    }
-
-    private synchronizeModulesWithInputTree(children: TerraMultiSplitViewInterface[], hierarchyLevel: number):void
-    {
-        // check whether children are null or undefined
-        if(isNullOrUndefined(children))
+        // check whether view is null or undefined
+        if(isNullOrUndefined(view))
         {
             return;
         }
 
-        // go through all the children
-        children.forEach(
-            (child) =>
-            {
-                // initialize hierarchy level if not defined
-                if (isNullOrUndefined(this.modules[hierarchyLevel]))
-                {
-                    this.modules[hierarchyLevel] =
-                        {
-                            views:               [],
-                            identifier:          child.mainComponentName,
-                            defaultWidth:        child.defaultWidth,
-                            currentSelectedView: child
-                        };
-                }
+        // get hierarchy level of selected view
+        let hierarchyLevel:number = 0;
+        let parent:TerraMultiSplitViewInterface = view.parent;
+        while(!isNullOrUndefined(parent))
+        {
+            parent = parent.parent;
+            hierarchyLevel++;
+        }
 
-                // initialize views array if null or undefined
-                if (isNullOrUndefined(this.modules[hierarchyLevel].views))
+        // check if modules array is not initialized
+        if (isNullOrUndefined(this.modules[hierarchyLevel]))
+        {
+            this.modules.push(
                 {
-                    this.modules[hierarchyLevel].views = [];
+                    views:               [],
+                    identifier:          view.mainComponentName,
+                    defaultWidth:        view.defaultWidth,
+                    currentSelectedView: view
                 }
+            );
+        }
 
-                // before: check if it is already added/existing
-                if (this.modules[hierarchyLevel].views.findIndex((view) => view.name === child.name) === -1)
-                {
-                    // add children of this hierarchy level to the modules array
-                    this.modules[hierarchyLevel].views.push(child);
-                    this.modules[hierarchyLevel].currentSelectedView = child;
-                }
+        // get the module of the hierarchy
+        let module = this.modules[hierarchyLevel];
 
-                // go deeper
-                if (!isNullOrUndefined(child.children) && child.children.length > 0)
-                {
-                    this.synchronizeModulesWithInputTree(child.children, hierarchyLevel + 1);
-                }
-            }
-        );
+        // initialize views array if null or undefined
+        if (isNullOrUndefined(module.views))
+        {
+            module.views = [];
+        }
+
+        // check if view is already added to module's views array
+        if (!module.views.find((elem) => elem === view))
+        {
+            // add view to the module's views array
+            module.views.push(view);
+            module.currentSelectedView = view;
+        }
     }
 
     private setSelectedView(view:TerraMultiSplitViewInterface)
@@ -136,13 +128,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit, OnChange
                 {
                     module.lastSelectedView = module.currentSelectedView;
                     module.currentSelectedView = view;
-                    break;
-                }
-                // an existing view has been ADDED -> not the same instance of the view
-                else if (moduleView.name === view.name)
-                {
-                    module.lastSelectedView = module.currentSelectedView;
-                    module.currentSelectedView = moduleView;
                     break;
                 }
             }
@@ -203,6 +188,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit, OnChange
                 let offset = 3;
                 let prevSplitView = breadcrumb.closest('.view').prev();
 
+                // TODO: replace with angular's ngClass attribute in the template
                 // update breadcrumbs
                 breadCrumbContainer.find('div')
                     .each(function () {
