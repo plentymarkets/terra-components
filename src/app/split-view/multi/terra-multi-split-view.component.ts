@@ -121,6 +121,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit, OnChange
         // update the corresponding module's current- and lastSelectedView
         for(let module of this.modules)
         {
+            // check whether the view is already opened
+            if (module.currentSelectedView === view)
+            {
+                // skip further execution since the view is already selected
+                break;
+            }
+
             // search for the view
             for(let moduleView of module.views)
             {
