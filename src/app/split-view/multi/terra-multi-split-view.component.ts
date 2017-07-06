@@ -2,10 +2,8 @@ import {
     Component,
     Input,
     NgZone,
-    OnChanges,
     OnDestroy,
-    OnInit,
-    SimpleChanges,
+    OnInit
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { TerraMultiSplitViewConfig } from './data/terra-multi-split-view.config';
@@ -37,8 +35,9 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     }
 
     ngOnInit() {
-        // initialize modules array
-        this.modules = [];
+        // init modules from inputConfig
+        this.initModulesFromInputConfig();
+
 
         this.inputConfig.addViewEventEmitter.subscribe(
             (value: TerraMultiSplitViewInterface) =>
@@ -61,6 +60,43 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 this.setSelectedView(value.parent);
             }
         );
+    }
+
+    private initModulesFromInputConfig():void
+    {
+        let nextViewStack: Array<TerraMultiSplitViewInterface> = [];
+        let currentViewStack: Array<TerraMultiSplitViewInterface> = this.inputConfig.views;
+        let hierarchyLevel = 0;
+
+        if (isNullOrUndefined(currentViewStack) || currentViewStack.length == 0)
+        {
+            return;
+        }
+
+        do {
+            this.modules[hierarchyLevel] = {
+                views:               [],
+                identifier:          currentViewStack[0].mainComponentName,
+                defaultWidth:        currentViewStack[0].defaultWidth,
+                currentSelectedView: currentViewStack[0]
+            };
+
+            currentViewStack.forEach(
+                (view) =>
+                {
+                    this.modules[hierarchyLevel].views.push(view);
+
+                    if(view.children && view.children.length)
+                    {
+                        nextViewStack = nextViewStack.concat(view.children);
+                    }
+                }
+            );
+
+            hierarchyLevel++;
+            currentViewStack = nextViewStack;
+            nextViewStack = [];
+        } while (currentViewStack.length > 0);
     }
 
     private addToModulesIfNotExist(view: TerraMultiSplitViewInterface):void
@@ -185,63 +221,73 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.zone.runOutsideAngular(() => {
             setTimeout(function () {
                 let anchor = $('#' + id);
-                let breadcrumb = $('.' + id); // TODO: vwiebe, fix scope
-                let breadCrumbContainer = breadcrumb.closest('.terra-breadcrumbs');
+                let currentBreadcrumb = $('.' + id); // TODO: vwiebe, fix scope
+                let breadCrumbContainer = currentBreadcrumb.closest('.terra-breadcrumbs');
                 let viewContainer = anchor.parent();
                 let offset = 3;
-                let prevSplitView = breadcrumb.closest('.view').prev();
-
+                let prevSplitView = currentBreadcrumb.closest('.view').prev();
+                
                 // focus breadcrumbs
-                if(breadcrumb[0] != null)
+                if(currentBreadcrumb[0] != null)
                 {
                     breadCrumbContainer.stop();
                     breadCrumbContainer.animate(
-                        {scrollLeft: (breadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft())},
+                        {scrollLeft: (currentBreadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft())},
                         this.ANIMATION_SPEED);
                 }
-
-                // focus view vertically
-                // TODO: @vwiebe, 1. fix breadcrumb scope, 2. don't refocus, 3. refactoring
+                
                 breadCrumbContainer.children('li').each(function () {
-                    var container = $(this);
-                    
+                    var breadcrumb = $(this);
+
                     let caret = breadCrumbContainer.find('.caret');
                     caret.first().css('display','inline');
-                    
-                    container.find('a:not(.caret)').each(function () {
-                        $(this).off();
-                        $(this).click(function () {
+                    //caret.css('display','inline');
+    
+                    breadcrumb.find('a:not(.caret)').each(function () {
+                        
+                        var breadcrumbEntry = $(this);
+    
+                        breadcrumbEntry.off();
+                        breadcrumbEntry.click(function () {
 
-                            let yolo = $('.side-scroller').find($('.' + $(this).attr('class')));
+                            // TODO: @vwiebe, fix .side-scroller scope
+                            let correspondingView = $('.side-scroller').find($('.' + breadcrumbEntry.attr('class')));
+                            let verticalContainer = correspondingView.parent();
+                            
+                            var viewOffset = verticalContainer.scrollTop() +
+                                             correspondingView[0].getBoundingClientRect().top -
+                                             verticalContainer[0].getBoundingClientRect().top;
 
-                            $(yolo.parent()[0]).animate({
-                                    scrollTop: ($(yolo.parent()[0]).scrollTop() +
-                                    yolo[0].getBoundingClientRect().top -
-                                    yolo.parent()[0].getBoundingClientRect().top)
-                                },
-                                1000);
-
+                            // adjust viewport for clicked breadcrumb
+                            verticalContainer.animate({
+                                    scrollTop: (verticalContainer.scrollTop() +
+                                                correspondingView[0].getBoundingClientRect().top -
+                                                verticalContainer[0].getBoundingClientRect().top)
+                                }, 1000);
+    
                             breadCrumbContainer.children('li').each(function () {
-                                var container2 = $(this);
+                                var breadcrumbContainers = $(this);
 
-                                if (container.attr('class') != container2.attr('class')) {
-                                    if (container2.find('.caret').length > 0) {
-                                        let yolo2 = $('.side-scroller').find($('.' + container2.attr('class')));
-
-                                        $(yolo2.parent()[0]).animate({
-                                                scrollTop: ($(yolo.parent()[0]).scrollTop() +
-                                                yolo[0].getBoundingClientRect().top -
-                                                yolo.parent()[0].getBoundingClientRect().top)
-                                            },
-                                            1000);
+                                if (breadcrumb.attr('class') != breadcrumbContainers.attr('class')) {
+                                    if (breadcrumbContainers.find('.caret').length > 0) {
+                                        
+                                        let firstClassName = breadcrumbContainers.attr('class').split(' ')[0];
+                                        let correspondingView = $('#' + firstClassName);
+    
+                                        // adjust viewport for all follow-up breadcrumbs
+                                        correspondingView.animate({
+                                            scrollTop: (viewOffset)
+                                        }, 1000);
                                     }
                                 }
 
                             });
+                            
+                            
                         });
                     });
                 });
-
+                
                 // focus view horizontally
                 if (anchor[0] != null &&
                     anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&

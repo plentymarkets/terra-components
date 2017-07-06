@@ -12,7 +12,6 @@ export class TerraMultiSplitViewConfig
 
     public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
     {
-        setTimeout(()=>{
             if (isNullOrUndefined(parent))
             {
                 if (isNullOrUndefined(this.currentSelectedView))
@@ -59,7 +58,6 @@ export class TerraMultiSplitViewConfig
             }
 
             this.addViewEventEmitter.next(view);
-        });
     }
 
     public removeView(view:TerraMultiSplitViewInterface):void

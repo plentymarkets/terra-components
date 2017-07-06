@@ -1,7 +1,8 @@
+<script src="terra-multi-split-view.component.ts"></script>
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs">
     <ul class="terra-breadcrumbs">
         <ng-template ngFor let-module [ngForOf]="modules">
-            <li class="{{ module.identifier + '_' + module.currentSelectedView.instanceKey }}"
+            <li class="{{ module.identifier }}"
                 (click)="setSelectedView(module.currentSelectedView)">
                 <div class="{{ module.identifier }}"
                      [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
@@ -10,7 +11,7 @@
                         <ul class="context-menu">
                             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                                 <li>
-                                    <a class="{{ view.mainComponentName + '_' + view.instanceKey }}"
+                                    <a class="{{ view.mainComponentName + '_' + i }}"
                                        (click)="setSelectedView(view)">
                                         <span>{{ view.name }}</span>
                                     </a>
@@ -26,9 +27,8 @@
 <div *ngIf="modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
     <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first">
         <div class="view {{ module.defaultWidth }}" id="{{ module.identifier }}" [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">
-            <ng-template ngFor let-view [ngForOf]="module.views">
-                <div *ngIf="module.currentSelectedView === view || module.lastSelectedView === view"
-                     class="{{ view.mainComponentName + '_' + view.instanceKey }}">
+            <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
+                <div *ngIf="module.currentSelectedView === view || module.lastSelectedView === view" class="{{ view.mainComponentName + '_' + i }}">
                     <terra-dynamic-module-loader
                         [inputModule]="view.module"
                         [inputParameter]="view.parameter"
