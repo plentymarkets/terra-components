@@ -58,10 +58,13 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                           {
                               if(this.inputMainComponentName === factory.componentType.name)
                               {
+                                  // create the component
                                   this._cmpRef = this.viewChildTarget.createComponent(factory);
 
+                                  // pass the delivered parameter to the component
                                   this._cmpRef.instance.parameter = this.inputParameter;
 
+                                  // pass the instance of the loaded view back to the component
                                   this._cmpRef.instance.splitViewInstance = this.inputView;
                               }
                           }
