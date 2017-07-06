@@ -31,7 +31,8 @@
                      class="{{ view.mainComponentName + '_' + view.instanceKey }}">
                     <terra-dynamic-module-loader
                         [inputModule]="view.module"
-                        [inputParameter]="view"
+                        [inputParameter]="view.parameter"
+                        [inputView]="view"
                         [inputMainComponentName]="view.mainComponentName">
                     </terra-dynamic-module-loader>
                 </div>

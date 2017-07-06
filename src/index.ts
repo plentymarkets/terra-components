@@ -71,3 +71,4 @@ export * from './app/navigator/config/terra-navigator.config';
 export * from './app/split-view/multi/terra-multi-split-view.component';
 export * from './app/split-view/multi/data/terra-multi-split-view.config';
 export * from './app/split-view/multi/data/terra-multi-split-view.interface';
+export * from './app/dynamic-module-loader/data/terra-split-view-component.interface';

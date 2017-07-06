@@ -5,5 +5,5 @@ import { Input } from '@angular/core';
  */
 export class TerraDynamicLoadedComponent
 {
-    @Input() public parameter;
+    @Input() public parameter:any;
 }
