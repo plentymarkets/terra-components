@@ -12,7 +12,6 @@ export class TerraMultiSplitViewConfig
 
     public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
     {
-        setTimeout(()=>{
             if (isNullOrUndefined(parent))
             {
                 if (isNullOrUndefined(this.currentSelectedView))
@@ -59,7 +58,19 @@ export class TerraMultiSplitViewConfig
             }
 
             this.addViewEventEmitter.next(view);
-        });
+    }
+
+    public removeView(view:TerraMultiSplitViewInterface):void
+    {
+        let parent: TerraMultiSplitViewInterface = view.parent;
+
+        let viewIndex:number = parent.children.findIndex((elem) => elem === view);
+
+        if (viewIndex >= 0)
+        {
+            parent.children.splice(viewIndex, 1);
+            this.deleteViewEventEmitter.next(view);
+        }
     }
 
     public reset():void
