@@ -25,9 +25,6 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
                        multi:       true
                    }
                ],
-               host:            {
-                   '(document:click)': 'clickedOutside($event)',
-               },
                changeDetection: ChangeDetectionStrategy.OnPush
            })
 
@@ -80,6 +77,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     private _regex:string;
     private _isInit:boolean;
     private _value:number | string;
+    private clickListener:(event:Event) => void;
 
     /**
      *
@@ -104,6 +102,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         {
             this.inputListBoxValues = [];
         }
+
+        this.clickListener = (event) =>
+        {
+            this.clickedOutside(event);
+        };
     }
 
     ngOnInit()
@@ -206,6 +209,26 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
     }
 
+    public set toggleOpen(value:boolean)
+    {
+        if(this._toggleOpen !== value && value == true)
+        {
+            document.addEventListener('click', this.clickListener);
+        }
+        else if(this._toggleOpen !== value && value == false)
+        {
+            document.removeEventListener('click', this.clickListener);
+        }
+
+        this._toggleOpen = value;
+    }
+
+    public get toggleOpen():boolean
+    {
+        return this._toggleOpen;
+    }
+
+
     /**
      *
      * @param event
@@ -214,8 +237,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
         if(!this.elementRef.nativeElement.contains(event.target))
         {
-            this._toggleOpen = false;
+            this.toggleOpen = false;
         }
+
     }
 
     /**
@@ -228,7 +252,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this.onTouchedCallback();
         this.onChangeCallback(value.value);
         this.outputValueChanged.emit(value);
-        this._toggleOpen = false;
+        this.toggleOpen = false;
     }
 
     /**
@@ -291,7 +315,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      */
     public onFocus()
     {
-        this._toggleOpen = true;
+        this.toggleOpen = true;
     }
 
     /**
@@ -300,7 +324,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      */
     public onBlur()
     {
-        this._toggleOpen = false;
+        this.toggleOpen = false;
     }
 
     /**
@@ -343,7 +367,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this.value = null;
             this.onTouchedCallback();
             this.onChangeCallback(null);
-            this._toggleOpen = false;
+            this.toggleOpen = false;
         }
     }
 

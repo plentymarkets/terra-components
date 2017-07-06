@@ -9,13 +9,13 @@ import { TerraBaseData } from '../../../data/terra-base.data';
 @Component({
                selector: 'context-menu-holder',
                styles:   [require('./terra-data-table-context-menu.component.scss')],
-               template: require('./terra-data-table-context-menu.component.html'),
-               host:     {'(document:click)': 'clickedOutside()'}
+               template: require('./terra-data-table-context-menu.component.html')
            })
 export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 {
     private _contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
     private _isShown = false;
+    private clickListener: (event:Event) => void;
 
     private _mouseLocation:{ left:number, top:number } = {
         left: 0,
@@ -26,6 +26,12 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
     {
         _contextMenuService.show.subscribe(
             e => this.showMenu(e.event, e.obj));
+
+        this.clickListener = (event) =>
+        {
+            this.clickedOutside();
+            event.stopPropagation();
+        }
     }
 
     get locationCss()
@@ -39,7 +45,8 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 
     clickedOutside()
     {
-        this._isShown = false
+        this._isShown = false;
+        document.removeEventListener('click', this.clickListener);
     }
 
     showMenu(event,
@@ -50,6 +57,9 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
         this._mouseLocation = {
             left: event.clientX,
             top:  event.clientY
-        }
+        };
+
+        event.stopPropagation();
+        document.addEventListener('click', this.clickListener);
     }
 }
