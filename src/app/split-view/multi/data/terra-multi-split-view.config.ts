@@ -31,7 +31,7 @@ export class TerraMultiSplitViewConfig
 
                 if (isNullOrUndefined(parent.children))
                 {
-                    parent.children = [view]
+                    parent.children = [view];
                 }
                 else
                 {
