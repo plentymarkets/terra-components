@@ -16,11 +16,11 @@ import { TerraBaseData } from '../../../../data/terra-base.data';
 export class TerraDataTableContextMenuDirective<D extends TerraBaseData>
 {
     @Input('context-menu') inputLinks:Array<TerraDataTableContextMenuEntryInterface<D>>;
-    
+
     constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
     {
     }
-    
+
     rightClicked(event:MouseEvent)
     {
         this._contextMenuService.show.next({

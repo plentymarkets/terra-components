@@ -15,12 +15,12 @@ export class TerraAlertPanelComponent
 {
     private _alerts:Array<TerraAlertInterface>;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
-    
+
     constructor()
     {
         this._alerts = this._alert.alerts;
     }
-    
+
     private closeAlert(i:number):void
     {
         this._alert.closeAlert(i);

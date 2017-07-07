@@ -1,3 +1,46 @@
+<a name="1.2.2"></a>
+# 1.2.2 (27.06.2017)
+
+### Feature
+* **terra-text-input** Added input 'inputIsPassword'. set true to substitute password with asterisks.
+* **terra-button** Changed style for context menu
+
+### Bug Fixes
+* **terra-base-service** Fixed error handling for http statuscode 401
+
+<a name="1.2.1"></a>
+# 1.2.1 (30.05.2017)
+
+### Feature
+* **terra-data-table** Added text align for content
+* **plenty-icons** New icon class _.icon-zoom_out_ and updated icons for _.icon-shipment_tracking_ and _.icon-reorder_search_ and _icon-reversal_document-13_
+* **base-service** Add _createUrlSearchParams()_ function to create URLSearchParams from a given params interface
+* **terra-text-input** **terra-number-input** **terra-double-input** **terra-text-area-input** Added placeholder 
+
+### Bug Fixes
+* **terra-date-picker** Fixed date format
+* **terra-select-box** Support for empty value in select box
+
+<a name="1.2.0"></a>
+# 1.2.0 (18.05.2017)
+
+### Feature
+* **angular** Changed angular versions from 4.0.X to 4.1.X
+
+<a name="1.1.1"></a>
+# 1.1.1 (18.05.2017)
+
+### Feature
+* **terra-button** Changed background color of button
+* **terra-taglist** Added icons to tag component
+
+### Bug Fixes
+* **terra-button** Fixed button focus outline 
+* **terra-split-view** Fixed sliding for breadcrumbs
+* **terra-number-input** Fixed disable of input 
+* **terra-base-service** Fixed error response handling
+* **terra-base-service** Fixed empty response handling
+
 <a name="1.1.0"></a>
 # 1.1.1 (08.05.2017)
 

@@ -390,6 +390,20 @@ input[type="button"]
                 top: initial !important;
             }
         }
+        
+        .btn-divider,
+        .btn-divider:hover,
+        .btn-divider:active,
+        .btn-divider:focus
+        {
+            background-color: $white !important;
+            margin-bottom: 3px !important;
+            margin-top: 3px !important;
+            cursor: default;
+            height: 1px;
+            border-bottom: 1px solid #C7C7C7;
+            border-top: 0 solid #C7C7C7;
+        }
     }
 }
 

@@ -36,11 +36,11 @@
 @font-face
 {
     font-family: 'plentyicons';
-    src: url('../fonts/plentyicons.eot?asgry6');
-    src: url('../fonts/plentyicons.eot?asgry6#iefix') format('embedded-opentype'),
-    url('../fonts/plentyicons.ttf?asgry6') format('truetype'),
-    url('../fonts/plentyicons.woff?asgry6') format('woff'),
-    url('../fonts/plentyicons.svg?asgry6#plentyicons') format('svg');
+    src: url('../fonts/plentyicons.eot?nex54c');
+    src: url('../fonts/plentyicons.eot?nex54c#iefix') format('embedded-opentype'),
+    url('../fonts/plentyicons.ttf?nex54c') format('truetype'),
+    url('../fonts/plentyicons.woff?nex54c') format('woff'),
+    url('../fonts/plentyicons.svg?nex54c#plentyicons') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -61,6 +61,38 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-icon-reversal_document-13
+{
+    &:before
+    {
+        content: $icon-icon-reversal_document-13;
+    }
+}
+
+.icon-reorder_search
+{
+    &:before
+    {
+        content: $icon-reorder_search;
+    }
+}
+
+.icon-shipment_tracking
+{
+    &:before
+    {
+        content: $icon-shipment_tracking;
+    }
+}
+
+.icon-zoom_out
+{
+    &:before
+    {
+        content: $icon-zoom_out;
+    }
+}
+
 .icon-plugin_productive_deploy
 {
     &:before
@@ -68,6 +100,7 @@
         content: $icon-plugin_productive_deploy;
     }
 }
+
 .icon-plugin_to_productive
 {
     &:before
@@ -75,11 +108,15 @@
         content: $icon-plugin_to_productive;
     }
 }
-.icon-plugin_to_stage {
-    &:before {
+
+.icon-plugin_to_stage
+{
+    &:before
+    {
         content: $icon-plugin_to_stage;
     }
 }
+
 .icon-image .path1
 {
     &:before
@@ -393,14 +430,6 @@
     &:before
     {
         content: $icon-category_edit;
-    }
-}
-
-.icon-changelog_publish
-{
-    &:before
-    {
-        content: $icon-changelog_publish;
     }
 }
 
@@ -4105,14 +4134,6 @@
     }
 }
 
-.icon-reorder_search
-{
-    &:before
-    {
-        content: $icon-reorder_search;
-    }
-}
-
 .icon-reorder_show
 {
     &:before
@@ -4214,14 +4235,6 @@
     &:before
     {
         content: $icon-settings;
-    }
-}
-
-.icon-shipment_tracking
-{
-    &:before
-    {
-        content: $icon-shipment_tracking;
     }
 }
 

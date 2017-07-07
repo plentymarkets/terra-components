@@ -1,15 +1,13 @@
 .portlet
 {
     background: $gray-light-4;
-    margin-bottom: 1rem;
-    padding-bottom: .5rem;
+    margin-bottom: 6px;
     .portlet_head
     {
         padding: 6px 9px;
         background: $brand-primary;
         color: white;
         font-size: $font-size-lg;
-        margin-bottom: 1rem;
         &.error-bottom
         {
             border-bottom: 5px solid $error;
@@ -29,7 +27,7 @@
     
     .portlet_body
     {
-        padding: .5rem .75rem;
+        padding: 12px;
         font-size: $font-size-base;
         table.table
         {

@@ -12,20 +12,17 @@ import {
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-export const SELECT_BOX_VALUE_ACCESSOR:any = {
-    provide:     NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TerraSelectBoxComponent),
-    multi:       true
-};
-
 @Component({
                selector:  'terra-select-box',
                styles:    [require('./terra-select-box.component.scss')],
                template:  require('./terra-select-box.component.html'),
-               host:      {
-                   '(document:click)': 'clickedOutside($event)',
-               },
-               providers: [SELECT_BOX_VALUE_ACCESSOR]
+               providers: [
+                   {
+                       provide:     NG_VALUE_ACCESSOR,
+                       useExisting: forwardRef(() => TerraSelectBoxComponent),
+                       multi:       true
+                   }
+               ]
            })
 export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
@@ -37,8 +34,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input() inputListBoxValues:Array<TerraSelectBoxValueInterface>;
     @Output() outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
     @Output() inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
-    
-    
+
+    private clickListener: (event: Event) => void;
+
     /**
      * @deprecated
      * @param value
@@ -60,28 +58,31 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             setTimeout(() => this.inputSelectedValueChange.emit(this._selectedValue.value), 0);
         }
     }
-    
+
     get inputSelectedValue():number | string
     {
         return this._selectedValue.value;
     }
-    
+
     private _value:number | string;
     private _selectedValue:TerraSelectBoxValueInterface;
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
     private _isValid:boolean;
-    private _regex:string;
     private _isInit:boolean;
-    
+
     /**
      *
      * @param elementRef
      */
     constructor(private elementRef:ElementRef)
     {
+        this.clickListener = (event) =>
+        {
+            this.clickedOutside(event);
+        };
+
         this._isInit = false;
-        this.isValid = true;
         this.inputTooltipPlacement = 'top';
         this._selectedValue =
             {
@@ -89,14 +90,15 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                 caption: ''
             };
     }
-    
+
     ngOnInit()
     {
+        this._isValid = true;
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
         this._isInit = true;
     }
-    
+
     /**
      *
      * @param changes
@@ -108,7 +110,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             setTimeout(() => this.select(this.inputListBoxValues[0]), 0);
         }
     }
-    
+
     /**
      *
      * Two way data binding by ngModel
@@ -116,35 +118,35 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     private onTouchedCallback:() => void = () =>
     {
     };
-    
+
     private onChangeCallback:(_:any) => void = (_) =>
     {
     };
-    
+
     public registerOnChange(fn:any):void
     {
         this.onChangeCallback = fn;
     }
-    
+
     public registerOnTouched(fn:any):void
     {
         this.onTouchedCallback = fn;
     }
-    
+
     public writeValue(value:any):void
     {
         this.value = value;
     }
-    
+
     public get value():any
     {
         return this._value;
     }
-    
+
     public set value(value:any)
     {
         this._value = value;
-        
+
         if(value !== undefined && value !== null)
         {
             this.inputListBoxValues
@@ -161,19 +163,44 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             this._selectedValue = this.inputListBoxValues[0];
         }
     }
-    
+
+    private set toggleOpen(value)
+    {
+        if (this._toggleOpen !== value && value == true)
+        {
+            document.addEventListener('click', this.clickListener);
+        }
+        else if (this._toggleOpen !== value && value == false)
+        {
+            document.removeEventListener('click', this.clickListener);
+        }
+
+        this._toggleOpen = value;
+    }
+
+    private get toggleOpen():boolean
+    {
+        return this._toggleOpen;
+    }
+
     /**
      *
      * @param event
      */
-    private clickedOutside(event):void
+    private clickedOutside(event:Event):void
     {
         if(!this.elementRef.nativeElement.contains(event.target))
         {
-            this._toggleOpen = false;
+            this.toggleOpen = false;
         }
     }
-    
+
+    private onClick(evt:Event):void
+    {
+        evt.stopPropagation(); // prevents the click listener on the document to be fired right after
+        this.toggleOpen = !this.toggleOpen;
+    }
+
     /**
      *
      * @param value
@@ -184,59 +211,5 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this.onTouchedCallback();
         this.onChangeCallback(value.value);
         this.outputValueChanged.emit(value);
-    }
-    
-    /**
-     *
-     * @returns {boolean}
-     */
-    public get isDisabled():boolean
-    {
-        return this.inputIsDisabled;
-    }
-    
-    /**
-     *
-     * @param value
-     */
-    public set isDisabled(value:boolean)
-    {
-        this.inputIsDisabled = value;
-    }
-    
-    /**
-     *
-     * @returns {boolean}
-     */
-    public get isValid():boolean
-    {
-        return this._isValid;
-    }
-    
-    /**
-     *
-     * @param isValid
-     */
-    public set isValid(isValid:boolean)
-    {
-        this._isValid = isValid;
-    }
-    
-    /**
-     *
-     * @returns {string}
-     */
-    public get regex():string
-    {
-        return this._regex;
-    }
-    
-    /**
-     *
-     * @param regex
-     */
-    public set regex(regex:string)
-    {
-        this._regex = regex;
     }
 }

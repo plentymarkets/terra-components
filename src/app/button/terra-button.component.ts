@@ -27,16 +27,18 @@ export class TerraButtonComponent
     @Input() inputTooltipPlacement:string; //top, bottom, left, right
     @Input() inputIsActive:boolean;
     @Input() inputIsFlagged:boolean;
+    @Input() inputIsDivider:boolean;
     @Output() outputClicked = new EventEmitter<any>();
-    
+
     constructor()
     {
         this.inputTooltipPlacement = 'top';
         this.inputType = 'button';
         this.inputIsActive = false;
         this.inputIsFlagged = false;
+        this.inputIsDivider = false;
     }
-    
+
     private click():void
     {
         this.outputClicked.emit(null);

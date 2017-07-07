@@ -6,21 +6,24 @@ import {
 import { TerraInputComponent } from '../terra-input.component';
 import { TerraRegex } from '../../../regex/terra-regex';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-
-export const TEXT_INPUT_CONTROL_VALUE_ACCESSOR:any = {
-    provide:     NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TerraTextInputComponent),
-    multi:       true
-};
+import { isNullOrUndefined } from 'util';
 
 @Component({
                selector:  'terra-text-input',
                styles:    [require('./terra-text-input.component.scss')],
                template:  require('./terra-text-input.component.html'),
-               providers: [TEXT_INPUT_CONTROL_VALUE_ACCESSOR]
+               providers: [
+                   {
+                       provide:     NG_VALUE_ACCESSOR,
+                       useExisting: forwardRef(() => TerraTextInputComponent),
+                       multi:       true
+                   }
+               ]
            })
 export class TerraTextInputComponent extends TerraInputComponent
 {
+    @Input() inputIsPassword:boolean;
+
     /**
      * @deprecated
      * @param v
@@ -29,7 +32,7 @@ export class TerraTextInputComponent extends TerraInputComponent
     {
         console.warn('inputType is no longer used.  It will be removed in one of the upcoming releases.');
     }
-    
+
     /**
      * @deprecated
      * @param v
@@ -38,12 +41,16 @@ export class TerraTextInputComponent extends TerraInputComponent
     public set inputValue(v:string)
     {
         console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-        
+
         this.value = v;
     }
-    
+
     constructor()
     {
         super(TerraRegex.MIXED);
+        if(isNullOrUndefined(this.inputIsPassword))
+        {
+            this.inputIsPassword = false;
+        }
     }
 }

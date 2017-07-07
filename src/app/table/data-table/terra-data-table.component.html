@@ -18,7 +18,8 @@
                     [container]="'body'"
                     [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                     [tooltip]="header.tooltipText"
-                    [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
+                    [isDisabled]="!header.tooltipText || header.tooltipText.length == 0"
+                    [ngStyle]="getTextAlign(header)">
                     <span>{{header.caption}}</span>
                 </th>
             </ng-template>
@@ -32,7 +33,7 @@
                     <terra-checkbox #rowCheckbox type="checkbox" [value]="row.selected"
                                     (change)="onRowCheckboxChange(rowCheckbox.value, row)"></terra-checkbox>
                 </td>
-                <ng-template ngFor let-cell [ngForOf]="row.cellList">
+                <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
                     <template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>
                     </template>
@@ -41,7 +42,8 @@
                         [container]="'body'"
                         [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
                         [tooltip]="tdTooltip"
-                        [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0">
+                        [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
+                        [ngStyle]="getTextAlign(_headerList[i])">
                         <span [ngClass]="cell.icon"
                               [ngStyle]="{color: cell.color}">{{cell.caption}}
                         </span>
