@@ -37,8 +37,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     ngOnInit() {
         // init modules from inputConfig
         this.initModulesFromInputConfig();
-
-
+        
         this.inputConfig.addViewEventEmitter.subscribe(
             (value: TerraMultiSplitViewInterface) =>
             {
