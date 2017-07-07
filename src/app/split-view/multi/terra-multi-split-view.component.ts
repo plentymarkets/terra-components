@@ -279,10 +279,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                                         }, 1000);
                                     }
                                 }
-
                             });
-                            
-                            
                         });
                     });
                 });
