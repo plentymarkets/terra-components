@@ -1,0 +1,4 @@
+{
+  "extends": "./node_modules/@plentymarkets/terra-components/tslint-rules.json",
+  "rulesDirectory": "node_modules/codelyzer"
+}
