@@ -148,6 +148,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private setSelectedView(view:TerraMultiSplitViewInterface)
     {
+        // check if view is already selected
+        if (this.inputConfig.currentSelectedView === view)
+        {
+            // stop execution, since the view is already selected
+            return;
+        }
+
         // update the corresponding module's current- and lastSelectedView
         for(let module of this.modules)
         {
