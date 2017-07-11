@@ -13,52 +13,58 @@ export class TerraMultiSplitViewConfig
 
     public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
     {
-            if (isNullOrUndefined(parent))
+        // TODO: setTimeout can be removed, if it is guaranteed that change detection is fired when adding a new view
+        setTimeout(
+            () =>
             {
-                if (isNullOrUndefined(this.currentSelectedView))
+                if(isNullOrUndefined(parent))
                 {
-                    this.currentSelectedView = view;
-                    this.views.push(view);
-                }
-                else
-                {
-                    parent = this.currentSelectedView;
-                }
-            }
-
-            if (parent)
-            {
-                view.parent = parent;
-
-                if (isNullOrUndefined(parent.children))
-                {
-                    parent.children = [view];
-                }
-                else
-                {
-                    let viewExist:boolean = false;
-
-                    for (let child of parent.children)
+                    if(isNullOrUndefined(this.currentSelectedView))
                     {
-                        // TODO very ugly way, maybe add an option to use an id?
-                        let hasSameParameter:boolean = JSON.stringify(child.parameter) == JSON.stringify(view.parameter);
+                        this.currentSelectedView = view;
+                        this.views.push(view);
+                    }
+                    else
+                    {
+                        parent = this.currentSelectedView;
+                    }
+                }
 
-                        if (hasSameParameter && child.module.ngModule == view.module.ngModule)
+                if(parent)
+                {
+                    view.parent = parent;
+
+                    if(isNullOrUndefined(parent.children))
+                    {
+                        parent.children = [view];
+                    }
+                    else
+                    {
+                        let viewExist:boolean = false;
+
+                        for(let child of parent.children)
                         {
-                            view = child;
-                            viewExist = true;
-                            break;
+                            // TODO very ugly way, maybe add an option to use an id?
+                            let hasSameParameter:boolean = JSON.stringify(child.parameter) == JSON.stringify(view.parameter);
+
+                            if(hasSameParameter && child.module.ngModule == view.module.ngModule)
+                            {
+                                view = child;
+                                viewExist = true;
+                                break;
+                            }
+                        }
+
+                        if(!viewExist)
+                        {
+                            parent.children.push(view);
                         }
                     }
-
-                    if (!viewExist)
-                    {
-                        parent.children.push(view);
-                    }
                 }
-            }
 
-            this.addViewEventEmitter.next(view);
+                this.addViewEventEmitter.next(view);
+            }
+        );
     }
 
     public removeView(view:TerraMultiSplitViewInterface):void
@@ -68,18 +74,18 @@ export class TerraMultiSplitViewConfig
             return;
         }
 
-        let parent: TerraMultiSplitViewInterface = view.parent;
+        let parent:TerraMultiSplitViewInterface = view.parent;
 
         let viewIndex:number = parent.children.findIndex((elem) => elem === view);
 
-        if (viewIndex >= 0)
+        if(viewIndex >= 0)
         {
             parent.children.splice(viewIndex, 1);
             this.deleteViewEventEmitter.next(view);
         }
     }
 
-    public resizeView(view:TerraMultiSplitViewInterface, width: string):void
+    public resizeView(view:TerraMultiSplitViewInterface, width:string):void
     {
         view.defaultWidth = width;
         this._resizeViewEventEmitter.next(view);
@@ -95,6 +101,7 @@ export class TerraMultiSplitViewConfig
         this._resizeViewEventEmitter.unsubscribe();
         this._resizeViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
     }
+
     public get deleteViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
     {
         return this._deleteViewEventEmitter;
