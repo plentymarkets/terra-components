@@ -9,6 +9,7 @@ export class TerraMultiSplitViewConfig
 
     private _addViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+    private _replaceViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
 
     public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
     {
@@ -66,6 +67,50 @@ export class TerraMultiSplitViewConfig
         );
     }
 
+    public replaceViewsOfParent(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
+    {
+        // check if parameter is defined..
+        if(isNullOrUndefined(view))
+        {
+            // return if undefined or null
+            return;
+        }
+
+        // check if parent is defined
+        if(isNullOrUndefined(parent))
+        {
+            // check if current selected view is already set
+            if(isNullOrUndefined(this.currentSelectedView))
+            {
+                // set current selected view and push it to the views array
+                this.currentSelectedView = view;
+                this.views.push(view);
+                // TODO: check if we can return here!? Double check of parent would be obsolete
+            }
+            else
+            {
+                // use current selected view as parent
+                parent = this.currentSelectedView;
+            }
+        }
+
+        // check if parent is defined
+        if(parent)
+        {
+            // set the view's parent
+            view.parent = parent;
+
+            // reset children array
+            parent.children = [];
+
+            // add view to children array
+            parent.children.push(view);
+
+            // trigger event emitter
+            this.replaceViewEventEmitter.next(view);
+        }
+    }
+
     public removeView(view:TerraMultiSplitViewInterface):void
     {
         let parent:TerraMultiSplitViewInterface = view.parent;
@@ -116,5 +161,15 @@ export class TerraMultiSplitViewConfig
     public set currentSelectedView(value:TerraMultiSplitViewInterface)
     {
         this._currentSelectedView = value;
+    }
+
+    public get replaceViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
+    {
+        return this._replaceViewEventEmitter;
+    }
+
+    public set replaceViewEventEmitter(value:EventEmitter<TerraMultiSplitViewInterface>)
+    {
+        this._replaceViewEventEmitter = value;
     }
 }
