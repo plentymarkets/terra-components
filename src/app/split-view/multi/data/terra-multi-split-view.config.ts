@@ -63,6 +63,11 @@ export class TerraMultiSplitViewConfig
 
     public removeView(view:TerraMultiSplitViewInterface):void
     {
+        if(isNullOrUndefined(view))
+        {
+            return;
+        }
+
         let parent: TerraMultiSplitViewInterface = view.parent;
 
         let viewIndex:number = parent.children.findIndex((elem) => elem === view);
