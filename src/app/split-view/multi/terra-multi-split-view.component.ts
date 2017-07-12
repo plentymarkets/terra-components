@@ -179,7 +179,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     {
         this.zone.runOutsideAngular(() => {
             setTimeout(function () {
-                const id: string = view.mainComponentName;
+                let id: string = view.mainComponentName;
 
                 let parent:TerraMultiSplitViewInterface = view.parent;
                 let moduleIndex:number = 0;
@@ -189,8 +189,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     parent = parent.parent;
                     moduleIndex++;
                 }
-
-                this.modules[moduleIndex].views.findIndex(view);
 
                 let anchor = $('#module' + moduleIndex);
                 let currentBreadcrumb = $('.' + id); // TODO: vwiebe, fix scope
