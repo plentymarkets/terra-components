@@ -132,7 +132,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
 
         this.inputConfig.currentSelectedView = view;
-        this.updateViewport(view.mainComponentName);
+        this.updateViewport(view);
         this.updateBreadCrumbs();
     }
 
@@ -175,11 +175,24 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         });
     }
 
-    public updateViewport(id: string): void
+    public updateViewport(view:TerraMultiSplitViewInterface): void
     {
         this.zone.runOutsideAngular(() => {
             setTimeout(function () {
-                let anchor = $('#' + id);
+                const id: string = view.mainComponentName;
+
+                let parent:TerraMultiSplitViewInterface = view.parent;
+                let moduleIndex:number = 0;
+
+                while (!isNullOrUndefined(parent))
+                {
+                    parent = parent.parent;
+                    moduleIndex++;
+                }
+
+                this.modules[moduleIndex].views.findIndex(view);
+
+                let anchor = $('#module' + moduleIndex);
                 let currentBreadcrumb = $('.' + id); // TODO: vwiebe, fix scope
                 let breadCrumbContainer = currentBreadcrumb.closest('.terra-breadcrumbs');
                 let viewContainer = anchor.parent();
