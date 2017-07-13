@@ -1,8 +1,8 @@
 <script src="terra-multi-split-view.component.ts"></script>
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs">
     <ul class="terra-breadcrumbs">
-        <ng-template ngFor let-module [ngForOf]="modules">
-            <li class="{{ module.identifier }}"
+        <ng-template ngFor let-module [ngForOf]="modules" let-index="index">
+            <li class="module{{index}}"
                 (click)="setSelectedView(module.currentSelectedView)">
                 <div class="{{ module.identifier }}"
                      [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
@@ -25,8 +25,8 @@
     </ul>
 </terra-base-toolbar>
 <div *ngIf="modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
-    <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first">
-        <div class="view {{ module.defaultWidth }}" id="{{ module.identifier }}" [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">
+    <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first" let-index="index">
+        <div class="view {{ module.defaultWidth }}" id="module{{index}}" [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">
             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                 <div *ngIf="module.currentSelectedView === view || module.lastSelectedView === view" class="{{ view.mainComponentName + '_' + i }}">
                     <terra-dynamic-module-loader
