@@ -21,22 +21,25 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     @Input() inputShowBreadcrumbs:boolean;
     private _breadCrumbsPath:string;
 
-    private modules: Array<TerraMultiSplitViewDetail> = [];
+    private modules:Array<TerraMultiSplitViewDetail> = [];
 
     public static ANIMATION_SPEED = 1000; // ms
 
-    constructor(private zone: NgZone) {
+    constructor(private zone:NgZone)
+    {
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
     }
 
-    ngOnDestroy() {
+    ngOnDestroy()
+    {
         this.inputConfig.reset();
     }
 
-    ngOnInit() {
+    ngOnInit()
+    {
         this.inputConfig.addViewEventEmitter.subscribe(
-            (value: TerraMultiSplitViewInterface) =>
+            (value:TerraMultiSplitViewInterface) =>
             {
                 // synchronize modules array with input config
                 this.addToModulesIfNotExist(value);
@@ -47,7 +50,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         );
 
         this.inputConfig.deleteViewEventEmitter.subscribe(
-            (value: TerraMultiSplitViewInterface) =>
+            (value:TerraMultiSplitViewInterface) =>
             {
                 // update modules array
                 this.removeFromModules(value);
@@ -58,14 +61,14 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         );
 
         this.inputConfig.resizeViewEventEmitter.subscribe(
-            (value: TerraMultiSplitViewInterface) =>
+            (value:TerraMultiSplitViewInterface) =>
             {
                 this.resizeViewAndModule(value);
             }
         );
     }
 
-    private addToModulesIfNotExist(view: TerraMultiSplitViewInterface):void
+    private addToModulesIfNotExist(view:TerraMultiSplitViewInterface):void
     {
         // check whether view is null or undefined
         if(isNullOrUndefined(view))
@@ -83,13 +86,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
 
         // check if modules array is not initialized
-        if (isNullOrUndefined(this.modules[hierarchyLevel]))
+        if(isNullOrUndefined(this.modules[hierarchyLevel]))
         {
             this.modules.push(
                 {
                     views:               [],
                     identifier:          view.mainComponentName,
-                    defaultWidth:        view.defaultWidth,
+                    width:               view.defaultWidth,
                     currentSelectedView: view
                 }
             );
@@ -99,13 +102,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         let module = this.modules[hierarchyLevel];
 
         // initialize views array if null or undefined
-        if (isNullOrUndefined(module.views))
+        if(isNullOrUndefined(module.views))
         {
             module.views = [];
         }
 
         // check if view is already added to module's views array
-        if (!module.views.find((elem) => elem === view))
+        if(!module.views.find((elem) => elem === view))
         {
             // add view to the module's views array
             module.views.push(view);
@@ -116,7 +119,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     private setSelectedView(view:TerraMultiSplitViewInterface)
     {
         // check if view is already selected
-        if (this.inputConfig.currentSelectedView === view)
+        if(this.inputConfig.currentSelectedView === view)
         {
             // stop execution, since the view is already selected
             return;
@@ -126,8 +129,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         for(let module of this.modules)
         {
             // check whether the view is already opened
-            if (module.currentSelectedView === view)
+            if(module.currentSelectedView === view)
             {
+                // also set the width of the view
+                module.width = !isNullOrUndefined(view.focusedWidth) ? view.focusedWidth : view.defaultWidth;
+
                 // skip further execution since the view is already selected
                 break;
             }
@@ -142,12 +148,19 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     module.currentSelectedView = view;
 
                     // also set the width of the view
-                    module.defaultWidth = view.defaultWidth;
+                    module.width = !isNullOrUndefined(view.focusedWidth) ? view.focusedWidth : view.defaultWidth;
 
                     // exit the loop
                     break;
                 }
             }
+        }
+
+        // if module has changed horizontally
+        let module:TerraMultiSplitViewDetail = this.getModuleOfView(this.inputConfig.currentSelectedView)
+        if (module !== this.getModuleOfView(view))
+        {
+            module.width = this.inputConfig.currentSelectedView.defaultWidth;
         }
 
         this.inputConfig.currentSelectedView = view;
@@ -313,16 +326,16 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         let module = this.getModuleOfView(view);
 
         // check whether module is defined
-        if (isNullOrUndefined(module))
+        if(isNullOrUndefined(module))
         {
             // ERROR... stop further execution
             return;
         }
 
         // check if module has more than one view
-        if (module.views.length <= 1)
+        if(module.views.length <= 1)
         {
-            if (!isNullOrUndefined(view.children))
+            if(!isNullOrUndefined(view.children))
             {
                 view.children.forEach(
                     (elem) =>
@@ -334,12 +347,12 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
             // remove complete module
             let moduleIndex:number = this.modules.findIndex((mod) => mod === module);
-            this.modules.splice(moduleIndex,1);
+            this.modules.splice(moduleIndex, 1);
         }
         else
         {
             // also delete all children from the modules array
-            if (!isNullOrUndefined(view.children))
+            if(!isNullOrUndefined(view.children))
             {
                 view.children.forEach(
                     (elem) =>
@@ -353,10 +366,10 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             let viewIndex:number = module.views.findIndex((elem) => elem === view);
 
             // remove view from module's views array
-            module.views.splice(viewIndex,1);
+            module.views.splice(viewIndex, 1);
 
             // reset current selected view
-            if (!isNullOrUndefined(module.lastSelectedView))
+            if(!isNullOrUndefined(module.lastSelectedView))
             {
                 module.currentSelectedView = module.lastSelectedView;
             }
@@ -385,6 +398,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     {
         let module:TerraMultiSplitViewDetail = this.getModuleOfView(view);
 
-        module.defaultWidth = view.defaultWidth;
+        module.width = view.defaultWidth;
     }
 }
