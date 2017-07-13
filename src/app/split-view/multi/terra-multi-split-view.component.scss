@@ -88,6 +88,7 @@
 {
     width: 1px;
     background-color: $gray-light-2-half;
+    height: 200% !important;
     position: absolute;
     top: 0;
     right: 0;
@@ -251,4 +252,29 @@
             transition-delay: 0.2s;
         }
     }
+}
+
+
+.slideDown
+{
+    height: 0px;
+    min-height: 0px !important;
+    animation-name: slideDownAnimation;
+    animation-duration: 0.5s;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes slideDownAnimation
+{
+    from {height: 0px;}
+    to {height: 100%;}
+}
+
+.slideDown>div
+{
+    height: calc(100vh - 138px);
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
