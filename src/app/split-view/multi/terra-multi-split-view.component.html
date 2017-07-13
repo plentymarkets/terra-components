@@ -1,8 +1,8 @@
 <script src="terra-multi-split-view.component.ts"></script>
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs">
     <ul class="terra-breadcrumbs">
-        <ng-template ngFor let-module [ngForOf]="modules">
-            <li class="{{ module.identifier }}"
+        <ng-template ngFor let-module [ngForOf]="modules" let-index="index">
+            <li class="module{{index}}"
                 (click)="setSelectedView(module.currentSelectedView)">
                 <div class="{{ module.identifier }}"
                      [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
