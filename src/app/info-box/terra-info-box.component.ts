@@ -15,6 +15,7 @@ export class TerraInfoBoxComponent implements OnInit
     @Input() inputTagList:Array<TerraTagInterface>;
     @Input() inputAddBox:boolean;
     @Input() inputIsEmpty:boolean;
+    @Input() inputIsSelected:boolean;
 
     constructor()
     {
