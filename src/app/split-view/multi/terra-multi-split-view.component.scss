@@ -87,7 +87,7 @@
 .divider
 {
     width: 1px;
-    background-color: #C7C7C7;
+    background-color: $gray-light-2-half;
     position: absolute;
     top: 0;
     right: 0;
@@ -199,7 +199,7 @@
     a
     {
         cursor: pointer;
-        background: #C7C7C7;
+        background: $gray-light-2-half;
         padding: 4px 12px;
         display: block;
         text-decoration: none;
