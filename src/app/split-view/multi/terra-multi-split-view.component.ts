@@ -232,7 +232,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                                     scrollTop: (verticalContainer.scrollTop() +
                                                 correspondingView[0].getBoundingClientRect().top -
                                                 verticalContainer[0].getBoundingClientRect().top)
-                                }, 400);
+                                }, 300);
         
                                 breadCrumbContainer.children('li').each(function() {
                                     var breadcrumbContainers = $(this);
@@ -247,7 +247,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                                             // adjust viewport for all follow-up breadcrumbs
                                             correspondingView.animate({
                                                 scrollTop: (viewOffset)
-                                            }, 400);
+                                            }, 300);
                                         }
                                     }
                                 });
