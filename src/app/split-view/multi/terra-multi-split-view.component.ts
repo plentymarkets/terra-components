@@ -251,38 +251,39 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     
                         breadcrumbEntry.off();
                         breadcrumbEntry.click(function () {
-
-                            // TODO: @vwiebe, fix .side-scroller scope
-                            let correspondingView = $('.side-scroller').find($('.' + breadcrumbEntry.attr('class')));
-                            let verticalContainer = correspondingView.parent();
-                            
-                            var viewOffset = verticalContainer.scrollTop() +
-                                             correspondingView[0].getBoundingClientRect().top -
-                                             verticalContainer[0].getBoundingClientRect().top;
-
-                            // adjust viewport for clicked breadcrumb
-                            verticalContainer.animate({
+                            setTimeout(function() {
+                                let correspondingView = $('.side-scroller').find($('.' + breadcrumbEntry.attr('class')));
+                                let verticalContainer = correspondingView.parent();
+        
+                                var viewOffset = verticalContainer.scrollTop() +
+                                                 correspondingView[0].getBoundingClientRect().top -
+                                                 verticalContainer[0].getBoundingClientRect().top;
+        
+                                // adjust viewport for clicked breadcrumb
+                                verticalContainer.animate({
                                     scrollTop: (verticalContainer.scrollTop() +
                                                 correspondingView[0].getBoundingClientRect().top -
                                                 verticalContainer[0].getBoundingClientRect().top)
-                                }, 1000);
-    
-                            breadCrumbContainer.children('li').each(function () {
-                                var breadcrumbContainers = $(this);
-
-                                if (breadcrumb.attr('class') != breadcrumbContainers.attr('class')) {
-                                    if (breadcrumbContainers.find('.caret').length > 0) {
-                                        
-                                        let firstClassName = breadcrumbContainers.attr('class').split(' ')[0];
-                                        let correspondingView = $('#' + firstClassName);
-    
-                                        // adjust viewport for all follow-up breadcrumbs
-                                        correspondingView.animate({
-                                            scrollTop: (viewOffset)
-                                        }, 1000);
+                                }, 300);
+        
+                                breadCrumbContainer.children('li').each(function() {
+                                    var breadcrumbContainers = $(this);
+            
+                                    if(breadcrumb.attr('class') != breadcrumbContainers.attr('class'))
+                                    {
+                                        if(breadcrumbContainers.find('.caret').length > 0)
+                                        {
+                                            let firstClassName = breadcrumbContainers.attr('class').split(' ')[0];
+                                            let correspondingView = $('#' + firstClassName);
+                    
+                                            // adjust viewport for all follow-up breadcrumbs
+                                            correspondingView.animate({
+                                                scrollTop: (viewOffset)
+                                            }, 300);
+                                        }
                                     }
-                                }
-                            });
+                                });
+                            }, 600);
                         });
                     });
                 });
@@ -290,7 +291,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 // focus view horizontally
                 if (anchor[0] != null &&
                     anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
-                    anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right) {
+                    anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
+                {
                     return;
                 }
 
