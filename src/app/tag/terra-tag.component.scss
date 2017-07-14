@@ -16,3 +16,8 @@
 {
     color: $black;
 }
+
+/deep/ terra-tag:not(:last-child)
+{
+    margin-right: 2px;
+}
