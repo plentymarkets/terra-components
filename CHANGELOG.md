@@ -1,3 +1,14 @@
+<a name="1.2.3"></a>
+# 1.2.3 (11.07.2017)
+
+### Feature
+* **terra-multi-split-view** New splitview with vertical layers
+* **terra-split-view** Various interface changes
+* **terra-dynamic-module-loader** Added commentary
+
+### Bug Fixes
+* **ExpressionChangedAfterItHasBeenCheckedError** no more unnecessary change detection
+
 <a name="1.2.2"></a>
 # 1.2.2 (27.06.2017)
 

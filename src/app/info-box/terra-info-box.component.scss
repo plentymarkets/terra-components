@@ -1,7 +1,7 @@
 .info-box
 {
-    background-color: #FFFFFF;
-    border: 1px solid #999999;
+    background-color: $gray-light-5;
+    border: 1px solid $gray-light-2-half;
     -moz-border-radius: $border-radius;
     -webkit-border-radius: $border-radius;
     border-radius: $border-radius;
@@ -11,6 +11,10 @@
     height: 150px;
     overflow-y: auto;
     overflow-x: hidden;
+    &.selected {
+        background-color: $brand-primary-lighter;
+        border: 1px solid $brand-primary;
+    }
 }
 
 .info-box-inner
