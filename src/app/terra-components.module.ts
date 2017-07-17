@@ -1,5 +1,4 @@
 import { TerraLoadingBarService } from './loading-bar/service/terra-loading-bar.service';
-import { BrowserModule } from '@angular/platform-browser';
 import {
     ModuleWithProviders,
     NgModule
@@ -65,6 +64,7 @@ import { TerraSyntaxEditorComponent } from './editor/syntax/terra-syntax-editor.
 import { AceEditorModule } from 'ng2-ace-editor';
 import { TerraMultiSplitViewComponent } from './split-view/multi/terra-multi-split-view.component';
 import { TerraSplitViewComponent } from './split-view/terra-split-view.component';
+import { CommonModule } from '@angular/common';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -258,7 +258,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraSyntaxEditorComponent
               ],
               imports:         [
-                  BrowserModule,
+                  CommonModule,
                   FormsModule,
                   ReactiveFormsModule,
                   ModalModule.forRoot(),

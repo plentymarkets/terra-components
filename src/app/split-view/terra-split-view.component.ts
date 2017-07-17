@@ -6,7 +6,6 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
-import { TerraNavigatorSplitViewConfig } from '../navigator/config/terra-navigator-split-view.config';
 
 @Component({
                selector: 'terra-split-view',
