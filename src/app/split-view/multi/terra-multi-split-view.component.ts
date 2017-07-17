@@ -157,8 +157,9 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
 
         // if module has changed horizontally
-        let module:TerraMultiSplitViewDetail = this.getModuleOfView(this.inputConfig.currentSelectedView)
-        if (module !== this.getModuleOfView(view))
+        let module:TerraMultiSplitViewDetail = this.getModuleOfView(this.inputConfig.currentSelectedView);
+        if (module !== this.getModuleOfView(view)
+            && !isNullOrUndefined(module)) // this has to be checked, since a module can be removed and hence isn't existing anymore
         {
             module.width = this.inputConfig.currentSelectedView.defaultWidth;
         }
