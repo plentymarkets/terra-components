@@ -272,8 +272,12 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private onBreadCrumbClick(view:TerraMultiSplitViewInterface):void
     {
-        // rebuild modules array
-        this.rebuildModules(view);
+        // do not rebuild if there is no vertical change
+        if (this.getModuleOfView(view).currentSelectedView !== view)
+        {
+            // rebuild modules array
+            this.rebuildModules(view);
+        }
 
         // set selected
         this.setSelectedView(view);
