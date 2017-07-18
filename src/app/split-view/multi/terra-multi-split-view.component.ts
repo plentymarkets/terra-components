@@ -297,11 +297,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     // add view to the modules array
                     this.addToModulesIfNotExist(child);
 
-                    // a little unclean workaround to select the right view without calling setSelectedView
-                    this.getModuleOfView(child).currentSelectedView = child;
-
-                    // rebuild sub tree for the children
-                    this.rebuildModules(child);
+                    // set selected view and rebuild sub tree for children
+                    this.setSelectedView(child);
                 }
             );
         }
