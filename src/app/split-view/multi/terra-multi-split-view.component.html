@@ -3,7 +3,7 @@
     <ul class="terra-breadcrumbs">
         <ng-template ngFor let-module [ngForOf]="modules" let-index="index">
             <li class="module{{index}}"
-                (click)="onBreadCrumbClick(module.currentSelectedView)">
+                (click)="setSelectedView(module.currentSelectedView)">
                 <div class="{{ module.identifier }}"
                      [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
                     <span>{{module.currentSelectedView.name}}</span>
@@ -12,7 +12,7 @@
                             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                                 <li>
                                     <a class="{{ view.mainComponentName + '_' + i }}"
-                                       (click)="onBreadCrumbClick(view)">
+                                       (click)="setSelectedView(view)">
                                         <span>{{ view.name }}</span>
                                     </a>
                                 </li>

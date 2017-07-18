@@ -116,12 +116,18 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             // add view to the module's views array
             module.views.push(view);
-            module.currentSelectedView = view;
         }
     }
 
     private setSelectedView(view:TerraMultiSplitViewInterface)
     {
+        // check if modules array has to be partially rebuild
+        if (this.getModuleOfView(view).currentSelectedView !== view)
+        {
+            // rebuild modules array depending on the selected view
+            this.rebuildModules(view);
+        }
+
         // check if view is already selected
         if(this.inputConfig.currentSelectedView === view)
         {
@@ -270,19 +276,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         });
     }
 
-    private onBreadCrumbClick(view:TerraMultiSplitViewInterface):void
-    {
-        // do not rebuild if there is no vertical change
-        if (this.getModuleOfView(view).currentSelectedView !== view)
-        {
-            // rebuild modules array
-            this.rebuildModules(view);
-        }
-
-        // set selected
-        this.setSelectedView(view);
-    }
-
     private rebuildModules(view:TerraMultiSplitViewInterface):void
     {
         if(isNullOrUndefined(view))
@@ -303,6 +296,9 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 {
                     // add view to the modules array
                     this.addToModulesIfNotExist(child);
+
+                    // a little unclean workaround to select the right view without calling setSelectedView
+                    this.getModuleOfView(child).currentSelectedView = child;
 
                     // rebuild sub tree for the children
                     this.rebuildModules(child);
