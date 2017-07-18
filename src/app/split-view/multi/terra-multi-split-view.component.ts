@@ -87,13 +87,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
 
         // get hierarchy level of selected view
-        let hierarchyLevel:number = 0;
-        let parent:TerraMultiSplitViewInterface = view.parent;
-        while(!isNullOrUndefined(parent))
-        {
-            parent = parent.parent;
-            hierarchyLevel++;
-        }
+        let hierarchyLevel:number = this.getHierarchyLevelOfView(view);
 
         // check if modules array is not initialized
         if(isNullOrUndefined(this.modules[hierarchyLevel]))
@@ -249,56 +243,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                         this.ANIMATION_SPEED);
                 }
                 
-                breadCrumbContainer.children('li').each(function () {
-                    var breadcrumb = $(this);
-
-                    let caret = breadCrumbContainer.find('.caret');
-                    caret.first().css('display','inline');
-                    //caret.css('display','inline');
-    
-                    breadcrumb.find('a:not(.caret)').each(function () {
-                        
-                        var breadcrumbEntry = $(this);
-    
-                        breadcrumbEntry.off();
-                        breadcrumbEntry.click(function () {
-                            setTimeout(function() {
-                                let correspondingView = $('.side-scroller').find($('.' + breadcrumbEntry.attr('class')));
-                                let verticalContainer = correspondingView.parent();
-        
-                                var viewOffset = verticalContainer.scrollTop() +
-                                                 correspondingView[0].getBoundingClientRect().top -
-                                                 verticalContainer[0].getBoundingClientRect().top;
-        
-                                // adjust viewport for clicked breadcrumb
-                                verticalContainer.animate({
-                                    scrollTop: (verticalContainer.scrollTop() +
-                                                correspondingView[0].getBoundingClientRect().top -
-                                                verticalContainer[0].getBoundingClientRect().top)
-                                }, 300);
-        
-                                breadCrumbContainer.children('li').each(function() {
-                                    var breadcrumbContainers = $(this);
-            
-                                    if(breadcrumb.attr('class') != breadcrumbContainers.attr('class'))
-                                    {
-                                        if(breadcrumbContainers.find('.caret').length > 0)
-                                        {
-                                            let firstClassName = breadcrumbContainers.attr('class').split(' ')[0];
-                                            let correspondingView = $('#' + firstClassName);
-                    
-                                            // adjust viewport for all follow-up breadcrumbs
-                                            correspondingView.animate({
-                                                scrollTop: (viewOffset)
-                                            }, 300);
-                                        }
-                                    }
-                                });
-                            }, 600);
-                        });
-                    });
-                });
-                
                 // focus view horizontally
                 if (anchor[0] != null &&
                     anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
@@ -324,6 +268,43 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     this.ANIMATION_SPEED);
             });
         });
+    }
+
+    private onBreadCrumbClick(view:TerraMultiSplitViewInterface):void
+    {
+        // rebuild modules array
+        this.rebuildModules(view);
+
+        // set selected
+        this.setSelectedView(view);
+    }
+
+    private rebuildModules(view:TerraMultiSplitViewInterface):void
+    {
+        if(isNullOrUndefined(view))
+        {
+            return;
+        }
+
+        let hierarchyLevel:number = this.getHierarchyLevelOfView(view);
+
+        // cut off last elements
+        this.modules = this.modules.slice(0, hierarchyLevel + 1);
+
+        // rebuild
+        if(!isNullOrUndefined(view.children))
+        {
+            view.children.forEach(
+                (child) =>
+                {
+                    // add view to the modules array
+                    this.addToModulesIfNotExist(child);
+
+                    // rebuild sub tree for the children
+                    this.rebuildModules(child);
+                }
+            );
+        }
     }
 
     private removeFromModules(view:TerraMultiSplitViewInterface):void
@@ -396,6 +377,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     protected getModuleOfView(view):TerraMultiSplitViewDetail
     {
         // get hierarchy level of deleted view
+        let hierarchyLevel:number = this.getHierarchyLevelOfView(view);
+
+        return this.modules[hierarchyLevel];
+    }
+
+    private getHierarchyLevelOfView(view:TerraMultiSplitViewInterface):number
+    {
         let hierarchyLevel:number = 0;
         let parent:TerraMultiSplitViewInterface = view.parent;
         while(!isNullOrUndefined(parent))
@@ -404,7 +392,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             hierarchyLevel++;
         }
 
-        return this.modules[hierarchyLevel];
+        return hierarchyLevel;
     }
 
     private resizeViewAndModule(view:TerraMultiSplitViewInterface):void
