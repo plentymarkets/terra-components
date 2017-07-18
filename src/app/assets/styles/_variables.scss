@@ -38,16 +38,17 @@ $brand-green-lighter: #DFF2DA !default;
 $brand-yellow: #FFCE36 !default;
 $brand-yellow-light: #FEE090 !default;
 $brand-yellow-lighter: #FFF5D8 !default;
-$black: #000000 !default;
-$gray-dark: #333333 !default;
-$gray: #555555 !default;
-$gray-light: #777777 !default;
-$gray-light-2: #999999 !default;
-$gray-light-3: #E0E0E0 !default;
-$gray-light-4: #F2F2F2 !default;
-$gray-light-5: #FAFAFA !default;
-$brand-gray: #707173 !default;
-$white: #FFFFFF !default;
+
+$black: #000000 !default;            //255
+$gray-dark: #333333 !default;        //204
+$gray: #555555 !default;             //170
+$gray-light: #777777 !default;       //136
+$gray-light-2: #999999 !default;     //102
+$gray-light-2-half:#C7C7C7 !default; //56
+$gray-light-3: #E0E0E0 !default;     //31
+$gray-light-4: #F2F2F2 !default;     //13
+$gray-light-5: #FAFAFA !default;     //5
+$white: #FFFFFF !default;            //0
 
 $btn-brand-primary: $brand-primary !default;
 $btn-brand-secondary: $brand-secondary !default;

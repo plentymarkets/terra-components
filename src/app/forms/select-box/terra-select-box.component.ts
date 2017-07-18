@@ -35,7 +35,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Output() outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
     @Output() inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
 
-    private clickListener: (event: Event) => void;
+    private clickListener:(event:Event) => void;
 
     /**
      * @deprecated
@@ -107,9 +107,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     ngOnChanges(changes:SimpleChanges)
     {
         if(this._isInit == true
-            && changes["inputListBoxValues"]
-            && changes["inputListBoxValues"].currentValue.length > 0
-            && this.inputListBoxValues.indexOf(this._selectedValue) == -1)
+           && changes["inputListBoxValues"]
+           && changes["inputListBoxValues"].currentValue.length > 0
+           && this.inputListBoxValues.indexOf(this._selectedValue) == -1)
         {
             this.select(this.inputListBoxValues[0]);
         }
@@ -170,11 +170,11 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 
     private set toggleOpen(value)
     {
-        if (this._toggleOpen !== value && value == true)
+        if(this._toggleOpen !== value && value == true)
         {
             document.addEventListener('click', this.clickListener);
         }
-        else if (this._toggleOpen !== value && value == false)
+        else if(this._toggleOpen !== value && value == false)
         {
             document.removeEventListener('click', this.clickListener);
         }

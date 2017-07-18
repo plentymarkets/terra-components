@@ -401,8 +401,8 @@ input[type="button"]
             margin-top: 3px !important;
             cursor: default;
             height: 1px;
-            border-bottom: 1px solid #C7C7C7;
-            border-top: 0 solid #C7C7C7;
+            border-bottom: 1px solid $gray-light-2-half;
+            border-top: 0 solid $gray-light-2-half;
         }
     }
 }
