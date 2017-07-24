@@ -11,10 +11,10 @@ import { TerraMultiSplitViewDetail } from './data/terra-multi-split-view-detail'
 import { TerraMultiSplitViewInterface } from './data/terra-multi-split-view.interface';
 
 @Component({
-    selector: 'terra-multi-split-view',
-    template: require('./terra-multi-split-view.component.html'),
-    styles: [require('./terra-multi-split-view.component.scss')]
-})
+               selector: 'terra-multi-split-view',
+               template: require('./terra-multi-split-view.component.html'),
+               styles:   [require('./terra-multi-split-view.component.scss')]
+           })
 export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {
     @Input() inputConfig:TerraMultiSplitViewConfig;
