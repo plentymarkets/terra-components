@@ -11,10 +11,10 @@ import { TerraMultiSplitViewDetail } from './data/terra-multi-split-view-detail'
 import { TerraMultiSplitViewInterface } from './data/terra-multi-split-view.interface';
 
 @Component({
-    selector: 'terra-multi-split-view',
-    template: require('./terra-multi-split-view.component.html'),
-    styles: [require('./terra-multi-split-view.component.scss')]
-})
+               selector: 'terra-multi-split-view',
+               template: require('./terra-multi-split-view.component.html'),
+               styles:   [require('./terra-multi-split-view.component.scss')]
+           })
 export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {
     @Input() inputConfig:TerraMultiSplitViewConfig;
@@ -67,7 +67,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             }
         );
         this.inputConfig.replaceViewEventEmitter.subscribe(
-            (value: TerraMultiSplitViewInterface) =>
+            (value:TerraMultiSplitViewInterface) =>
             {
                 // update modules array
                 this.replaceView(value);
@@ -122,7 +122,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     private setSelectedView(view:TerraMultiSplitViewInterface)
     {
         // check if modules array has to be partially rebuild
-        if (this.getModuleOfView(view).currentSelectedView !== view)
+        if(this.getModuleOfView(view).currentSelectedView !== view)
         {
             // rebuild modules array depending on the selected view
             this.rebuildModules(view);
@@ -168,8 +168,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
         // if module has changed horizontally
         let module:TerraMultiSplitViewDetail = this.getModuleOfView(this.inputConfig.currentSelectedView);
-        if (module !== this.getModuleOfView(view)
-            && !isNullOrUndefined(module)) // this has to be checked, since a module can be removed and hence isn't existing anymore
+        if(module !== this.getModuleOfView(view)
+           && !isNullOrUndefined(module)) // this has to be checked, since a module can be removed and hence isn't existing anymore
         {
             module.width = this.inputConfig.currentSelectedView.defaultWidth;
         }
@@ -179,101 +179,125 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.updateBreadCrumbs();
     }
 
-    private updateBreadCrumbs() {
-        this.zone.runOutsideAngular(() => {
-            // init breadcrumb sliding
-            setTimeout(function () {
-                $('.terra-breadcrumbs').each(function () {
-                    $(this).find('li').each(function () {
-                        let viewContainer = $(this)
-                            .closest('.terra-breadcrumbs');
-                        let viewContainerOffsetLeft = viewContainer.offset().left;
-                        let viewContainerWidth = viewContainer.width();
+    private updateBreadCrumbs()
+    {
+        this.zone.runOutsideAngular(
+            () =>
+            {
+                // init breadcrumb sliding
+                setTimeout(
+                    function()
+                    {
+                        $('.terra-breadcrumbs').each(
+                            function()
+                            {
+                                $(this).find('li').each(
+                                    function()
+                                    {
+                                        let viewContainer = $(
+                                            this)
+                                            .closest(
+                                                '.terra-breadcrumbs');
+                                        let viewContainerOffsetLeft = viewContainer.offset().left;
+                                        let viewContainerWidth = viewContainer.width();
 
-                        $(this).off();
-                        $(this).mouseenter(function () {
-                            let elementWidth = $(this)
-                                .width();
-                            let elementOffsetLeft = $(this)
-                                .offset().left;
-                            let viewContainerScrollLeft = viewContainer.scrollLeft();
-                            let offset = 0;
+                                        $(this).off();
+                                        $(this).mouseenter(
+                                            function()
+                                            {
+                                                let elementWidth = $(
+                                                    this)
+                                                    .width();
+                                                let elementOffsetLeft = $(
+                                                    this)
+                                                    .offset().left;
+                                                let viewContainerScrollLeft = viewContainer.scrollLeft();
+                                                let offset = 0;
 
-                            if (elementOffsetLeft < viewContainer.offset().left) {
-                                offset = viewContainerScrollLeft + elementOffsetLeft - 10;
-                            }
-                            else if (elementOffsetLeft + elementWidth + 30 > viewContainerOffsetLeft + viewContainerWidth) {
-                                offset = viewContainerScrollLeft + elementOffsetLeft + elementWidth + 30 - viewContainerWidth;
-                            }
-                            else {
-                                return;
-                            }
-                            viewContainer.stop();
-                            viewContainer.animate({scrollLeft: offset},
-                                1200);
-                        });
+                                                if(elementOffsetLeft < viewContainer.offset().left)
+                                                {
+                                                    offset = viewContainerScrollLeft + elementOffsetLeft - 10;
+                                                }
+                                                else if(elementOffsetLeft + elementWidth + 30 > viewContainerOffsetLeft + viewContainerWidth)
+                                                {
+                                                    offset = viewContainerScrollLeft + elementOffsetLeft + elementWidth + 30 - viewContainerWidth;
+                                                }
+                                                else
+                                                {
+                                                    return;
+                                                }
+                                                viewContainer.stop();
+                                                viewContainer.animate(
+                                                    {scrollLeft: offset},
+                                                    1200);
+                                            });
+                                    });
+                            });
                     });
-                });
             });
-        });
     }
 
-    public updateViewport(view:TerraMultiSplitViewInterface): void
+    public updateViewport(view:TerraMultiSplitViewInterface):void
     {
-        this.zone.runOutsideAngular(() => {
-            setTimeout(function () {
-                let id: string = view.mainComponentName;
+        this.zone.runOutsideAngular(
+            () =>
+            {
+                setTimeout(
+                    function()
+                    {
+                        let id:string = view.mainComponentName;
 
-                let parent:TerraMultiSplitViewInterface = view.parent;
-                let moduleIndex:number = 0;
+                        let parent:TerraMultiSplitViewInterface = view.parent;
+                        let moduleIndex:number = 0;
 
-                while (!isNullOrUndefined(parent))
-                {
-                    parent = parent.parent;
-                    moduleIndex++;
-                }
+                        while(!isNullOrUndefined(parent))
+                        {
+                            parent = parent.parent;
+                            moduleIndex++;
+                        }
 
-                let anchor = $('#module' + moduleIndex);
-                let currentBreadcrumb = $('.' + id); // TODO: vwiebe, fix scope
-                let breadCrumbContainer = currentBreadcrumb.closest('.terra-breadcrumbs');
-                let viewContainer = anchor.parent();
-                let offset = 3;
-                let prevSplitView = currentBreadcrumb.closest('.view').prev();
-                
-                // focus breadcrumbs
-                if(currentBreadcrumb[0] != null)
-                {
-                    breadCrumbContainer.stop();
-                    breadCrumbContainer.animate(
-                        {scrollLeft: (currentBreadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft())},
-                        this.ANIMATION_SPEED);
-                }
-                
-                // focus view horizontally
-                if (anchor[0] != null &&
-                    anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
-                    anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
-                {
-                    return;
-                }
+                        let anchor = $('#module' + moduleIndex);
+                        let currentBreadcrumb = $('.' + id); // TODO: vwiebe, fix scope
+                        let breadCrumbContainer = currentBreadcrumb.closest('.terra-breadcrumbs');
+                        let viewContainer = anchor.parent();
+                        let offset = 3;
+                        let prevSplitView = currentBreadcrumb.closest('.view').prev();
 
-                // offset fix for navigator
-                if(prevSplitView[0] != null)
-                {
-                    offset = offset + prevSplitView.width() + (3 * offset);
-                }
+                        // focus breadcrumbs
+                        if(currentBreadcrumb[0] != null)
+                        {
+                            breadCrumbContainer.stop();
+                            breadCrumbContainer.animate(
+                                {scrollLeft: (currentBreadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft())},
+                                this.ANIMATION_SPEED);
+                        }
 
-                // offset fix for overlay
-                if($($(anchor[0].closest('.hasSplitView')).find(anchor))[0] != null)
-                {
-                    offset = offset + ($(window).width() / 2 - viewContainer.width() / 2);
-                }
+                        // focus view horizontally
+                        if(anchor[0] != null &&
+                           anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
+                           anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
+                        {
+                            return;
+                        }
 
-                viewContainer.stop();
-                viewContainer.animate({scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset)},
-                    this.ANIMATION_SPEED);
+                        // offset fix for navigator
+                        if(prevSplitView[0] != null)
+                        {
+                            offset = offset + prevSplitView.width() + (3 * offset);
+                        }
+
+                        // offset fix for overlay
+                        if($($(anchor[0].closest('.hasSplitView')).find(anchor))[0] != null)
+                        {
+                            offset = offset + ($(window).width() / 2 - viewContainer.width() / 2);
+                        }
+
+                        viewContainer.stop();
+                        viewContainer.animate(
+                            {scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset)},
+                            this.ANIMATION_SPEED);
+                    });
             });
-        });
     }
 
     private rebuildModules(view:TerraMultiSplitViewInterface):void
