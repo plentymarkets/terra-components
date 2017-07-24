@@ -3,5 +3,5 @@
  */
 export class TerraDynamicLoadedComponent
 {
-   public parameter:any;
+    public parameter:any;
 }
