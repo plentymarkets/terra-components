@@ -192,7 +192,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
         this._value = value;
 
-        if(value !== undefined && value !== null)
+        if(value !== undefined && value != null)
         {
             this.inputListBoxValues
                 .forEach((item:TerraSuggestionBoxValueInterface) =>

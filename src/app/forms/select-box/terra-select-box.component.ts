@@ -45,7 +45,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     set inputSelectedValue(value:number | string)
     {
         console.warn('inputSelectedValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-        if(value !== undefined && value !== null)
+        if(value !== undefined && value != null)
         {
             this.inputListBoxValues
                 .forEach((item:TerraSelectBoxValueInterface) =>
@@ -151,7 +151,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         this._value = value;
 
-        if(value !== undefined && value !== null)
+        if(value !== undefined && value != null)
         {
             this.inputListBoxValues
                 .forEach((item:TerraSelectBoxValueInterface) =>

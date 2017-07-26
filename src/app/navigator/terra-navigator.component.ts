@@ -25,6 +25,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
     @Input() inputNodes:Array<TerraNavigatorNodeInterface<D>>;
     @Input() inputNavigatorService:TerraNavigatorConfig<D>;
     @Input() inputModuleWidth:string;
+    @Input() inputFirstBreadcrumbName:string;
 
     @Output() outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
 
@@ -44,18 +45,23 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             this.inputModuleWidth = 'col-xs-12 col-md-12 col-lg-12';
         }
 
-        if(this.inputNodes !== null)
+        if(this.inputNodes != null)
         {
             this.initRootPaths(this.inputNodes, null);
             this.refreshNodeVisibilities(this.inputNodes);
 
+            if(this.inputFirstBreadcrumbName == null || this.inputFirstBreadcrumbName == '')
+            {
+                console.error('You have to define an initial breadcrumb!!!');
+            }
+            
             this._terraNavigatorSplitViewConfig
                 .addModule({
                                module:            TerraButtonGroupModule.forRoot(),
                                instanceKey:       0,
                                defaultWidth:      this.inputModuleWidth,
                                hidden:            false,
-                               name:              'Menü',
+                               name:              this.inputFirstBreadcrumbName,
                                mainComponentName: 'TerraButtonGroupComponent',
                                parameter:         {
                                    nodes: this.inputNodes
@@ -67,7 +73,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             .observableNodeClicked
             .subscribe((item:TerraNavigatorNodeInterface<D>) =>
                        {
-                           if(item.children !== null)
+                           if(item.children != null)
                            {
                 
                                this._terraNavigatorSplitViewConfig
@@ -98,7 +104,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                                {
                                    this._terraNavigatorSplitViewConfig.modules.pop();
                                }
-
+                               
                                this.outputEndpointClicked.emit(item);
                            }
                        });
@@ -137,7 +143,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                                instanceKey:       0,
                                defaultWidth:      this.inputModuleWidth,
                                hidden:            false,
-                               name:              'Menü',
+                               name:              this.inputFirstBreadcrumbName,
                                mainComponentName: 'TerraButtonGroupComponent',
                                parameter:         {
                                    nodes: this.inputNodes
@@ -152,7 +158,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         {
             data[i].rootPath = [];
 
-            if(rootIndex !== null)
+            if(rootIndex != null)
             {
                 rootIndex.forEach((item) =>
                                   {
@@ -162,7 +168,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
             data[i].rootPath.push(i);
 
-            if(data[i].children !== null && data[i].children.length > 0)
+            if(data[i].children != null && data[i].children.length > 0)
             {
                 this.initRootPaths(data[i].children, data[i].rootPath);
             }
@@ -194,7 +200,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                               children: null
                           };
 
-                          if(item.children !== null)
+                          if(item.children != null)
                           {
                               newNode.children = [];
                           }
@@ -203,7 +209,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
                           this.initRootPaths(this.inputNodes, null);
 
-                          if(item.children !== null)
+                          if(item.children != null)
                           {
                               this.addNodesRecursive(item.children);
                           }
@@ -221,7 +227,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                          {
                              result.push(item.rootPath[item.rootPath.length - 1]);
 
-                             if(item.children !== null)
+                             if(item.children != null)
                              {
                                  this.findRooPath(routeArray, routeIndex, item.children, result);
                              }
@@ -262,7 +268,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             (node) =>
             {
                 // check if there are children or if node is a leaf
-                if(node.children !== null && node.children.length > 0)
+                if(node.children != null && node.children.length > 0)
                 {
                     // check descendants visibility
                     if(this.getTotalVisibleChildren(node) > 0)
@@ -285,7 +291,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         let childrenCount = 0;
 
         // go deep into the children
-        if(rootNode.children !== null)
+        if(rootNode.children != null)
         {
             rootNode.children.forEach(
                 (node) =>
