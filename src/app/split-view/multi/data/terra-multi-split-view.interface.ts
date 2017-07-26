@@ -4,8 +4,8 @@ import { ModuleWithProviders } from '@angular/core';
  */
 export class TerraMultiSplitViewInterface
 {
-    parent?: TerraMultiSplitViewInterface;
-    children?: Array<TerraMultiSplitViewInterface>;
+    parent?:TerraMultiSplitViewInterface;
+    children?:Array<TerraMultiSplitViewInterface>;
     module:ModuleWithProviders;
     instanceKey?:any; // TODO: REMOVE!.. We don't need this anymore
     defaultWidth:string;

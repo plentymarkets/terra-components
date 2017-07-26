@@ -39,11 +39,8 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
         {
             if(changes["inputModules"].currentValue !== undefined && changes["inputModules"].currentValue.length > 0)
             {
-                if(this.inputModules != null)
-                {
-                    let currentModule = this.inputModules[this.inputModules.length - 1]
-                    this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
-                }
+                let currentModule = this.inputModules[this.inputModules.length - 1];
+                this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
             }
 
             // init breadcrumb sliding
@@ -63,10 +60,8 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
                                                           $(this).off();
                                                           $(this).mouseenter(function()
                                                                              {
-                                                                                 var elementWidth = $(this)
-                                                                                     .width();
-                                                                                 var elementOffsetLeft = $(
-                                                                                     this).offset().left;
+                                                                                 var elementWidth = $(this).width();
+                                                                                 var elementOffsetLeft = $(this).offset().left;
                                                                                  var viewContainerScrollLeft = viewContainer.scrollLeft();
                                                                                  var offset = 0;
 

@@ -31,6 +31,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
     private _isInit:boolean;
     private _updateViewport:boolean;
+
     constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig<D>)
     {
         this._isInit = false;
@@ -75,11 +76,11 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                        {
                            if(item.children != null)
                            {
-                
+
                                this._terraNavigatorSplitViewConfig
                                    .modules[0]
                                    .defaultWidth = 'col-xs-6 col-md-6 col-lg-6';
-                
+
                                this._terraNavigatorSplitViewConfig
                                    .addModule({
                                                   module:            TerraButtonGroupModule.forRoot(),
@@ -96,7 +97,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                                {
                                    this._updateViewport = true;
                                }
-                               
+
                            }
                            else
                            {
