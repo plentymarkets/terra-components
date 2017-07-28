@@ -77,13 +77,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
 
         // get hierarchy level of selected view
-        let hierarchyLevel:number = 0;
-        let parent:TerraMultiSplitViewInterface = view.parent;
-        while(!isNullOrUndefined(parent))
-        {
-            parent = parent.parent;
-            hierarchyLevel++;
-        }
+        let hierarchyLevel:number = this.getHierarchyLevelOfView(view);
 
         // check if modules array is not initialized
         if(isNullOrUndefined(this.modules[hierarchyLevel]))
@@ -112,12 +106,18 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             // add view to the module's views array
             module.views.push(view);
-            module.currentSelectedView = view;
         }
     }
 
     private setSelectedView(view:TerraMultiSplitViewInterface)
     {
+        // check if modules array has to be partially rebuild
+        if(this.getModuleOfView(view).currentSelectedView !== view)
+        {
+            // rebuild modules array depending on the selected view
+            this.rebuildModules(view);
+        }
+
         // check if view is already selected
         if(this.inputConfig.currentSelectedView === view)
         {
@@ -158,8 +158,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
         // if module has changed horizontally
         let module:TerraMultiSplitViewDetail = this.getModuleOfView(this.inputConfig.currentSelectedView);
-        if (module !== this.getModuleOfView(view)
-            && !isNullOrUndefined(module)) // this has to be checked, since a module can be removed and hence isn't existing anymore
+        if(module !== this.getModuleOfView(view)
+           && !isNullOrUndefined(module)) // this has to be checked, since a module can be removed and hence isn't existing anymore
         {
             module.width = this.inputConfig.currentSelectedView.defaultWidth;
         }
@@ -171,202 +171,151 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private updateBreadCrumbs()
     {
-        this.zone.runOutsideAngular(() =>
+        this.zone.runOutsideAngular(
+            () =>
+            {
+                // init breadcrumb sliding
+                setTimeout(
+                    function()
+                    {
+                        $('.terra-breadcrumbs').each(
+                            function()
+                            {
+                                $(this).find('li').each(
+                                    function()
                                     {
-                                        // init breadcrumb sliding
-                                        setTimeout(function()
-                                                   {
-                                                       $('.terra-breadcrumbs').each(function()
-                                                                                    {
-                                                                                        $(this).find('li').each(function()
-                                                                                                                {
-                                                                                                                    let viewContainer = $(
-                                                                                                                        this)
-                                                                                                                        .closest(
-                                                                                                                            '.terra-breadcrumbs');
-                                                                                                                    let viewContainerOffsetLeft = viewContainer.offset().left;
-                                                                                                                    let viewContainerWidth = viewContainer.width();
+                                        let viewContainer = $(
+                                            this)
+                                            .closest(
+                                                '.terra-breadcrumbs');
+                                        let viewContainerOffsetLeft = viewContainer.offset().left;
+                                        let viewContainerWidth = viewContainer.width();
 
-                                                                                                                    $(this).off();
-                                                                                                                    $(this).mouseenter(
-                                                                                                                        function()
-                                                                                                                        {
-                                                                                                                            let elementWidth = $(
-                                                                                                                                this)
-                                                                                                                                .width();
-                                                                                                                            let elementOffsetLeft = $(
-                                                                                                                                this)
-                                                                                                                                .offset().left;
-                                                                                                                            let viewContainerScrollLeft = viewContainer.scrollLeft();
-                                                                                                                            let offset = 0;
+                                        $(this).off();
+                                        $(this).mouseenter(
+                                            function()
+                                            {
+                                                let elementWidth = $(
+                                                    this)
+                                                    .width();
+                                                let elementOffsetLeft = $(
+                                                    this)
+                                                    .offset().left;
+                                                let viewContainerScrollLeft = viewContainer.scrollLeft();
+                                                let offset = 0;
 
-                                                                                                                            if(elementOffsetLeft < viewContainer.offset().left)
-                                                                                                                            {
-                                                                                                                                offset = viewContainerScrollLeft + elementOffsetLeft - 10;
-                                                                                                                            }
-                                                                                                                            else if(elementOffsetLeft + elementWidth + 30 > viewContainerOffsetLeft + viewContainerWidth)
-                                                                                                                            {
-                                                                                                                                offset = viewContainerScrollLeft + elementOffsetLeft + elementWidth + 30 - viewContainerWidth;
-                                                                                                                            }
-                                                                                                                            else
-                                                                                                                            {
-                                                                                                                                return;
-                                                                                                                            }
-                                                                                                                            viewContainer.stop();
-                                                                                                                            viewContainer.animate(
-                                                                                                                                {scrollLeft: offset},
-                                                                                                                                1200);
-                                                                                                                        });
-                                                                                                                });
-                                                                                    });
-                                                   });
+                                                if(elementOffsetLeft < viewContainer.offset().left)
+                                                {
+                                                    offset = viewContainerScrollLeft + elementOffsetLeft - 10;
+                                                }
+                                                else if(elementOffsetLeft + elementWidth + 30 > viewContainerOffsetLeft + viewContainerWidth)
+                                                {
+                                                    offset = viewContainerScrollLeft + elementOffsetLeft + elementWidth + 30 - viewContainerWidth;
+                                                }
+                                                else
+                                                {
+                                                    return;
+                                                }
+                                                viewContainer.stop();
+                                                viewContainer.animate(
+                                                    {scrollLeft: offset},
+                                                    1200);
+                                            });
                                     });
+                            });
+                    });
+            });
     }
 
     public updateViewport(view:TerraMultiSplitViewInterface):void
     {
-        this.zone.runOutsideAngular(() =>
-                                    {
-                                        setTimeout(function()
-                                                   {
-                                                       let id:string = view.mainComponentName;
+        this.zone.runOutsideAngular(
+            () =>
+            {
+                setTimeout(
+                    function()
+                    {
+                        let id:string = view.mainComponentName;
 
-                                                       let parent:TerraMultiSplitViewInterface = view.parent;
-                                                       let moduleIndex:number = 0;
+                        let parent:TerraMultiSplitViewInterface = view.parent;
+                        let moduleIndex:number = 0;
 
-                                                       while(!isNullOrUndefined(parent))
-                                                       {
-                                                           parent = parent.parent;
-                                                           moduleIndex++;
-                                                       }
+                        while(!isNullOrUndefined(parent))
+                        {
+                            parent = parent.parent;
+                            moduleIndex++;
+                        }
 
-                                                       let anchor = $('#module' + moduleIndex);
-                                                       let currentBreadcrumb = $('.' + id); // TODO: vwiebe, fix scope
-                                                       let breadCrumbContainer = currentBreadcrumb.closest('.terra-breadcrumbs');
-                                                       let viewContainer = anchor.parent();
-                                                       let offset = 3;
-                                                       let prevSplitView = currentBreadcrumb.closest('.view').prev();
+                        let anchor = $('#module' + moduleIndex);
+                        let currentBreadcrumb = $('.' + id); // TODO: vwiebe, fix scope
+                        let breadCrumbContainer = currentBreadcrumb.closest('.terra-breadcrumbs');
+                        let viewContainer = anchor.parent();
+                        let offset = 3;
+                        let prevSplitView = currentBreadcrumb.closest('.view').prev();
 
-                                                       // focus breadcrumbs
-                                                       if(currentBreadcrumb[0] != null)
-                                                       {
-                                                           breadCrumbContainer.stop();
-                                                           breadCrumbContainer.animate(
-                                                               {scrollLeft: (currentBreadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft())},
-                                                               this.ANIMATION_SPEED);
-                                                       }
+                        // focus breadcrumbs
+                        if(currentBreadcrumb[0] != null)
+                        {
+                            breadCrumbContainer.stop();
+                            breadCrumbContainer.animate(
+                                {scrollLeft: (currentBreadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft())},
+                                this.ANIMATION_SPEED);
+                        }
 
-                                                       breadCrumbContainer.children('li').each(function()
-                                                                                               {
-                                                                                                   var breadcrumb = $(this);
+                        // focus view horizontally
+                        if(anchor[0] != null &&
+                           anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
+                           anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
+                        {
+                            return;
+                        }
 
-                                                                                                   let caret = breadCrumbContainer.find(
-                                                                                                       '.caret');
-                                                                                                   caret.first().css('display', 'inline');
-                                                                                                   //caret.css('display','inline');
+                        // offset fix for navigator
+                        if(prevSplitView[0] != null)
+                        {
+                            offset = offset + prevSplitView.width() + (3 * offset);
+                        }
 
-                                                                                                   breadcrumb.find('a:not(.caret)')
-                                                                                                             .each(function()
-                                                                                                                   {
+                        // offset fix for overlay
+                        if($($(anchor[0].closest('.hasSplitView')).find(anchor))[0] != null)
+                        {
+                            offset = offset + ($(window).width() / 2 - viewContainer.width() / 2);
+                        }
 
-                                                                                                                       var breadcrumbEntry = $(
-                                                                                                                           this);
+                        viewContainer.stop();
+                        viewContainer.animate(
+                            {scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset)},
+                            this.ANIMATION_SPEED);
+                    });
+            });
+    }
 
-                                                                                                                       breadcrumbEntry.off();
-                                                                                                                       breadcrumbEntry.click(
-                                                                                                                           function()
-                                                                                                                           {
+    private rebuildModules(view:TerraMultiSplitViewInterface):void
+    {
+        if(isNullOrUndefined(view))
+        {
+            return;
+        }
 
-                                                                                                                               // TODO:
-                                                                                                                               // @vwiebe,
-                                                                                                                               // fix
-                                                                                                                               // .side-scroller
-                                                                                                                               // scope
-                                                                                                                               let correspondingView = $(
-                                                                                                                                   '.side-scroller')
-                                                                                                                                   .find(
-                                                                                                                                       $('.' + breadcrumbEntry.attr(
-                                                                                                                                             'class')));
-                                                                                                                               let verticalContainer = correspondingView.parent();
+        let hierarchyLevel:number = this.getHierarchyLevelOfView(view);
 
-                                                                                                                               var viewOffset = verticalContainer.scrollTop() +
-                                                                                                                                                correspondingView[0].getBoundingClientRect().top -
-                                                                                                                                                verticalContainer[0].getBoundingClientRect().top;
+        // cut off last elements
+        this.modules = this.modules.slice(0, hierarchyLevel + 1);
 
-                                                                                                                               // adjust
-                                                                                                                               // viewport
-                                                                                                                               // for
-                                                                                                                               // clicked
-                                                                                                                               // breadcrumb
-                                                                                                                               verticalContainer.animate(
-                                                                                                                                   {
-                                                                                                                                       scrollTop: (verticalContainer.scrollTop() +
-                                                                                                                                                   correspondingView[0].getBoundingClientRect().top -
-                                                                                                                                                   verticalContainer[0].getBoundingClientRect().top)
-                                                                                                                                   }, 1000);
+        // rebuild
+        if(!isNullOrUndefined(view.children))
+        {
+            view.children.forEach(
+                (child) =>
+                {
+                    // add view to the modules array
+                    this.addToModulesIfNotExist(child);
 
-                                                                                                                               breadCrumbContainer.children(
-                                                                                                                                   'li')
-                                                                                                                                                  .each(
-                                                                                                                                                      function()
-                                                                                                                                                      {
-                                                                                                                                                          var breadcrumbContainers = $(
-                                                                                                                                                              this);
-
-                                                                                                                                                          if(breadcrumb.attr(
-                                                                                                                                                                  'class') != breadcrumbContainers.attr(
-                                                                                                                                                                  'class'))
-                                                                                                                                                          {
-                                                                                                                                                              if(breadcrumbContainers.find(
-                                                                                                                                                                      '.caret').length > 0)
-                                                                                                                                                              {
-
-                                                                                                                                                                  let firstClassName = breadcrumbContainers.attr(
-                                                                                                                                                                      'class')
-                                                                                                                                                                                                           .split(
-                                                                                                                                                                                                               ' ')[0];
-                                                                                                                                                                  let correspondingView = $(
-                                                                                                                                                                      '#' + firstClassName);
-
-                                                                                                                                                                  // adjust viewport for all follow-up breadcrumbs
-                                                                                                                                                                  correspondingView.animate(
-                                                                                                                                                                      {
-                                                                                                                                                                          scrollTop: (viewOffset)
-                                                                                                                                                                      },
-                                                                                                                                                                      1000);
-                                                                                                                                                              }
-                                                                                                                                                          }
-                                                                                                                                                      });
-                                                                                                                           });
-                                                                                                                   });
-                                                                                               });
-
-                                                       // focus view horizontally
-                                                       if(anchor[0] != null &&
-                                                          anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
-                                                          anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
-                                                       {
-                                                           return;
-                                                       }
-
-                                                       // offset fix for navigator
-                                                       if(prevSplitView[0] != null)
-                                                       {
-                                                           offset = offset + prevSplitView.width() + (3 * offset);
-                                                       }
-
-                                                       // offset fix for overlay
-                                                       if($($(anchor[0].closest('.hasSplitView')).find(anchor))[0] != null)
-                                                       {
-                                                           offset = offset + ($(window).width() / 2 - viewContainer.width() / 2);
-                                                       }
-
-                                                       viewContainer.stop();
-                                                       viewContainer.animate(
-                                                           {scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset)},
-                                                           this.ANIMATION_SPEED);
-                                                   });
-                                    });
+                    // set selected view and rebuild sub tree for children
+                    this.setSelectedView(child);
+                }
+            );
+        }
     }
 
     private removeFromModules(view:TerraMultiSplitViewInterface):void
@@ -439,6 +388,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     protected getModuleOfView(view):TerraMultiSplitViewDetail
     {
         // get hierarchy level of deleted view
+        let hierarchyLevel:number = this.getHierarchyLevelOfView(view);
+
+        return this.modules[hierarchyLevel];
+    }
+
+    private getHierarchyLevelOfView(view:TerraMultiSplitViewInterface):number
+    {
         let hierarchyLevel:number = 0;
         let parent:TerraMultiSplitViewInterface = view.parent;
         while(!isNullOrUndefined(parent))
@@ -447,7 +403,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             hierarchyLevel++;
         }
 
-        return this.modules[hierarchyLevel];
+        return hierarchyLevel;
     }
 
     private resizeViewAndModule(view:TerraMultiSplitViewInterface):void

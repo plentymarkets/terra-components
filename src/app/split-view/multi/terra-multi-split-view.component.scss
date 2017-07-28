@@ -87,6 +87,7 @@
 .divider
 {
     width: 1px;
+    height: 200% !important;
     background-color: $gray-light-2-half;
     position: absolute;
     top: 0;
@@ -221,7 +222,6 @@
 
 .caret
 {
-    display: none;
     padding: 6px 0px 6px 0px;
     overflow: hidden;
     &::before
@@ -251,4 +251,29 @@
             transition-delay: 0.2s;
         }
     }
+}
+
+
+.slideDown
+{
+    height: 0px;
+    min-height: 0px !important;
+    animation-name: slideDownAnimation;
+    animation-duration: 0.5s;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes slideDownAnimation
+{
+    from {height: 0px;}
+    to {height: 100%;}
+}
+
+.slideDown>div
+{
+    height: calc(100vh - 138px);
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
