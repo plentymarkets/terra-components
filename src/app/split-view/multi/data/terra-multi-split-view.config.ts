@@ -9,6 +9,7 @@ export class TerraMultiSplitViewConfig
 
     private _addViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+    private _resizeViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
 
     public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
     {
@@ -68,6 +69,11 @@ export class TerraMultiSplitViewConfig
 
     public removeView(view:TerraMultiSplitViewInterface):void
     {
+        if(isNullOrUndefined(view))
+        {
+            return;
+        }
+
         let parent:TerraMultiSplitViewInterface = view.parent;
 
         let viewIndex:number = parent.children.findIndex((elem) => elem === view);
@@ -79,6 +85,12 @@ export class TerraMultiSplitViewConfig
         }
     }
 
+    public resizeView(view:TerraMultiSplitViewInterface, width:string):void
+    {
+        view.defaultWidth = width;
+        this._resizeViewEventEmitter.next(view);
+    }
+
     public reset():void
     {
         this._views = null;
@@ -86,6 +98,8 @@ export class TerraMultiSplitViewConfig
         this._addViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
         this._deleteViewEventEmitter.unsubscribe();
         this._deleteViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
+        this._resizeViewEventEmitter.unsubscribe();
+        this._resizeViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
     }
 
     public get deleteViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
@@ -116,5 +130,15 @@ export class TerraMultiSplitViewConfig
     public set currentSelectedView(value:TerraMultiSplitViewInterface)
     {
         this._currentSelectedView = value;
+    }
+
+    public get resizeViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
+    {
+        return this._resizeViewEventEmitter;
+    }
+
+    public set resizeViewEventEmitter(value:EventEmitter<TerraMultiSplitViewInterface>)
+    {
+        this._resizeViewEventEmitter = value;
     }
 }
