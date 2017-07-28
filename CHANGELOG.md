@@ -1,8 +1,16 @@
 <a name="#"></a>
 # Unrealeased
+* **terra-multi-split-view** 
+	- adjusted sliding animations; 
+	- fixed rendering of multiple views; 
+	- partially rebuild breadcrumbs on vertical selection changes; 
+	- added possibility to resize a view manually, after it has already been added to the split-view;
+	- added new interface property 'focusedWidth' to be able to automatically resize a view when it's focused.
+* **terra-info-box** restyled
 
 ### Bug Fixes
-* ***terra-tag*** fix tag right margin in tag list
+* **terra-tag** fix tag right margin in tag list
+* **terra-loading-spinner** fix bug with infinite loading animation
 
 <a name="1.2.3"></a>
 # 1.2.3 (11.07.2017)

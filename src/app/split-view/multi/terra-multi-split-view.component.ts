@@ -66,16 +66,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 this.resizeViewAndModule(value);
             }
         );
-        this.inputConfig.replaceViewEventEmitter.subscribe(
-            (value:TerraMultiSplitViewInterface) =>
-            {
-                // update modules array
-                this.replaceView(value);
-
-                // set selected view
-                this.setSelectedView(value);
-            }
-        );
     }
 
     private addToModulesIfNotExist(view:TerraMultiSplitViewInterface):void
@@ -421,21 +411,5 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         let module:TerraMultiSplitViewDetail = this.getModuleOfView(view);
 
         module.width = view.defaultWidth;
-    }
-
-    private replaceView(view:TerraMultiSplitViewInterface):void
-    {
-        // get corresponding module
-        let module:TerraMultiSplitViewDetail = this.getModuleOfView(view);
-
-        // check if module has been found
-        if(module)
-        {
-            // reset views array
-            module.views = [];
-
-            // push view to the module's views array
-            module.views.push(view);
-        }
     }
 }
