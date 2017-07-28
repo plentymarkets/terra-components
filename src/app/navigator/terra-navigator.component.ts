@@ -36,7 +36,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
     {
         this._isInit = false;
         this.outputEndpointClicked = new EventEmitter();
-        this._updateViewport = false;
+        this._updateViewport = true;
     }
 
     ngOnInit()
@@ -93,10 +93,10 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                                                       nodes: item.children
                                                   }
                                               });
-                               if(this._terraNavigatorSplitViewConfig.modules.length >= 3)
-                               {
-                                   this._updateViewport = true;
-                               }
+                               //if(this._terraNavigatorSplitViewConfig.modules.length >= 2)
+                               //{
+                               //    this._updateViewport = true;
+                               //}
 
                            }
                            else
@@ -186,10 +186,10 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                           let routeIndex:number = -1;
                           let result = [];
 
-                          this.findRooPath(routeArray,
-                                           routeIndex,
-                                           this.inputNodes,
-                                           result
+                          this.findRootPath(routeArray,
+                                            routeIndex,
+                                            this.inputNodes,
+                                            result
                           );
 
                           let newNode:TerraNavigatorNodeInterface<D> = {
@@ -217,8 +217,8 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                       });
     }
 
-    private findRooPath(routeArray:Array<string>, routeIndex:number,
-                        data:Array<TerraNavigatorNodeInterface<D>>, result:Array<number>)
+    private findRootPath(routeArray:Array<string>, routeIndex:number,
+                         data:Array<TerraNavigatorNodeInterface<D>>, result:Array<number>)
     {
         routeIndex++;
 
@@ -230,7 +230,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
                              if(item.children != null)
                              {
-                                 this.findRooPath(routeArray, routeIndex, item.children, result);
+                                 this.findRootPath(routeArray, routeIndex, item.children, result);
                              }
                          }
                      });
