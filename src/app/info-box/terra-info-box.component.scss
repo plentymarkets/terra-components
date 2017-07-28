@@ -43,3 +43,15 @@
     // TODO add icon to symbolize adding function
     background: $gray-light-3;
 }
+
+.info-box-footer
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-box-id
+{
+    margin:5px 2px 0px 0px;
+    color: $gray-light-2;
+}
