@@ -30,9 +30,14 @@
             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                 <div *ngIf="module.currentSelectedView === view" class="{{ view.mainComponentName + '_' + i}} slideDown">
                     <div>
-                        <terra-dynamic-module-loader
+                        <terra-dynamic-module-loader *ngIf="!view.inputs"
                             [inputModule]="view.module"
-                            [inputParameter]="view.parameter"
+                            [inputView]="view"
+                            [inputMainComponentName]="view.mainComponentName">
+                        </terra-dynamic-module-loader>
+                        <terra-dynamic-module-loader *ngIf="view.inputs"
+                            [inputModule]="view.module"
+                            [inputInputs]="view.inputs"
                             [inputView]="view"
                             [inputMainComponentName]="view.mainComponentName">
                         </terra-dynamic-module-loader>

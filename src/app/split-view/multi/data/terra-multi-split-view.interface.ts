@@ -1,4 +1,5 @@
 import { ModuleWithProviders } from '@angular/core';
+import { TerraMultiSplitViewInputInterface } from './terra-multi-split-view-input.interface';
 /**
  * @author pweyrich
  */
@@ -13,5 +14,5 @@ export class TerraMultiSplitViewInterface
     hidden?:boolean; // TODO: REMOVE!.. We don't need this
     name:string;
     mainComponentName:string;
-    parameter:any;
+    inputs?:Array<TerraMultiSplitViewInputInterface>;
 }
