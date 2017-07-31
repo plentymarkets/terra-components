@@ -7,6 +7,6 @@ export interface TerraMultiSplitViewDetail
     lastSelectedView?:TerraMultiSplitViewInterface;
     views:Array<TerraMultiSplitViewInterface>;
     identifier:any;
-    defaultWidth:string;
+    width:string;
     currentSelectedView:TerraMultiSplitViewInterface;
 }

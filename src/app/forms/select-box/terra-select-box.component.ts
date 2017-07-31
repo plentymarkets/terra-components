@@ -168,6 +168,16 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         }
     }
 
+    public get isValid():boolean
+    {
+        return this._isValid;
+    }
+
+    public set isValid(value:boolean)
+    {
+        this._isValid = value;
+    }
+
     private set toggleOpen(value)
     {
         if(this._toggleOpen !== value && value == true)
