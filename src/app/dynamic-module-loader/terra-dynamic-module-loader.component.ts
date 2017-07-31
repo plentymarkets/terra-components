@@ -23,7 +23,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
     @Input() inputModule:any;
     @Input() inputMainComponentName:string;
-    @Input() inputInputs:Array<{key:string, value:any}>;
+    @Input() inputInputs:Array<TerraMultiSplitViewInputInterface>;
     @Input() inputView:TerraMultiSplitViewInterface;
     private _resolvedData:ModuleWithProviders;
 
