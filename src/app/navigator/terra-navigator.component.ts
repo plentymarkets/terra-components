@@ -42,12 +42,12 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
     ngOnInit()
     {
-        if(!isNullOrUndefined(this.inputModuleWidth))
+        if(isNullOrUndefined(this.inputModuleWidth))
         {
             this.inputModuleWidth = 'col-xs-12 col-md-12 col-lg-12';
         }
 
-        if(this.inputNodes !== null)
+        if(!isNullOrUndefined(this.inputNodes))
         {
             this.initRootPaths(this.inputNodes, null);
             this.refreshNodeVisibilities(this.inputNodes);
@@ -75,12 +75,12 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             .observableNodeClicked
             .subscribe((item:TerraNavigatorNodeInterface<D>) =>
                        {
-                           if(item.rootPath === null)
+                           if(isNullOrUndefined(item.rootPath))
                            {
                                this.initRootPaths(this.inputNodes, null);
                            }
 
-                           if(item.children !== null)
+                           if(!isNullOrUndefined(item.children))
                            {
                                this._terraNavigatorSplitViewConfig
                                    .modules[0]
@@ -163,7 +163,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         {
             data[i].rootPath = [];
 
-            if(rootIndex != null)
+            if(!isNullOrUndefined(rootIndex))
             {
                 rootIndex.forEach((item) =>
                                   {
@@ -173,7 +173,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
             data[i].rootPath.push(i);
 
-            if(data[i].children !== null && data[i].children.length > 0)
+            if(!isNullOrUndefined(data[i].children) && data[i].children.length > 0)
             {
                 this.initRootPaths(data[i].children, data[i].rootPath);
             }
@@ -214,7 +214,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
                           this.initRootPaths(this.inputNodes, null);
 
-                          if(item.children !== null)
+                          if(!isNullOrUndefined(item.children))
                           {
                               this.addNodesRecursive(item.children);
                           }
@@ -271,7 +271,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         nodes.forEach((node) =>
                       {
                           // check if there are children or if node is a leaf
-                          if(node.children !== null && node.children.length > 0)
+                          if(!isNullOrUndefined(node.children) && node.children.length > 0)
                           {
                               // check descendants visibility
                               if(this.getTotalVisibleChildren(node) > 0)
@@ -294,20 +294,20 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         let childrenCount = 0;
 
         // go deep into the children
-        if(rootNode.children !== null)
+        if(!isNullOrUndefined(rootNode.children))
         {
-            rootNode.children.forEach(
-                (node) =>
-                {
-                    if(node.isVisible || node.isVisible === undefined)
-                    {
-                        childrenCount++;
-                    }
+            rootNode.children
+                    .forEach((node) =>
+                             {
+                                 if(node.isVisible || node.isVisible === undefined)
+                                 {
+                                     childrenCount++;
+                                 }
 
-                    // recursive
-                    childrenCount += this.getTotalVisibleChildren(node);
-                }
-            );
+                                 // recursive
+                                 childrenCount += this.getTotalVisibleChildren(node);
+                             }
+                    );
         }
 
         // return count of children
