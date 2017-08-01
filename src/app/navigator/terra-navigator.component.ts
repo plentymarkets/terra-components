@@ -74,13 +74,18 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             .observableNodeClicked
             .subscribe((item:TerraNavigatorNodeInterface<D>) =>
                        {
+                           if(item.rootPath == null)
+                           {
+                               this.initRootPaths(this.inputNodes, null);
+                           }
+                           
                            if(item.children != null)
                            {
 
                                this._terraNavigatorSplitViewConfig
                                    .modules[0]
                                    .defaultWidth = 'col-xs-6 col-md-6 col-lg-6';
-
+                               
                                this._terraNavigatorSplitViewConfig
                                    .addModule({
                                                   module:            TerraButtonGroupModule.forRoot(),
