@@ -5,7 +5,7 @@ import { TerraMultiSplitViewInterface } from '../../split-view/multi/data/terra-
  * @author pweyrich
  */
 
-export class TerraSplitViewComponentInterface extends TerraDynamicLoadedComponent
+export class TerraSplitViewComponentInterface
 {
     public splitViewInstance:TerraMultiSplitViewInterface;
 }
