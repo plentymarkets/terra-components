@@ -25,6 +25,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     @Input() inputMainComponentName:string;
     @Input() inputInputs:Array<{key:string, value:any}>;
     @Input() inputView:TerraMultiSplitViewInterface;
+    @Input() inputParameter:any; // TODO: remove input if old split-view is removed
     private _resolvedData:ModuleWithProviders;
 
     private _cmpRef:ComponentRef<any>;
@@ -63,6 +64,9 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                                   this._cmpRef = this.viewChildTarget.createComponent(factory);
 
                                   // pass the delivered parameter to the component
+                                  this._cmpRef.instance.parameter = this.inputParameter; // TODO: deprecated if old split view is removed
+
+                                  // add inputs to component for data binding purposes
                                   if(!isNullOrUndefined(this.inputInputs))
                                   {
                                       this.inputInputs.forEach(
