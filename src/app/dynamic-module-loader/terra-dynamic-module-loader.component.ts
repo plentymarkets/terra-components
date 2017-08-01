@@ -74,9 +74,9 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                                           (input) =>
                                           {
                                               if (!isNullOrUndefined(input)
-                                              && !isNullOrUndefined(input.key))
+                                              && !isNullOrUndefined(input.name))
                                               {
-                                                  this._cmpRef.instance[input.key] = input.value;
+                                                  this._cmpRef.instance[input.name] = input.value;
                                               }
                                           }
                                       );
