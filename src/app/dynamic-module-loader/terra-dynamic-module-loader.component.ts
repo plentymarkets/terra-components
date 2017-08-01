@@ -12,6 +12,7 @@ import {
 import { JitCompiler } from '@angular/compiler';
 import { TerraMultiSplitViewInterface } from '../split-view/multi/data/terra-multi-split-view.interface';
 import { isNullOrUndefined } from 'util';
+import { TerraMultiSplitViewInputInterface } from '../split-view/multi/data/terra-multi-split-view-input.interface';
 
 @Component({
                selector: 'terra-dynamic-module-loader',
