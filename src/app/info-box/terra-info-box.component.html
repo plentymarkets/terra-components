@@ -10,9 +10,12 @@
                         'empty': inputIsEmpty}">
             <ng-content select="[body]"></ng-content>
         </div>
-        <div class="btn-group-vertical pull-sm-right" role="group">
+        <div class="btn-group-vertical" role="group">
             <ng-content select="[buttons]"></ng-content>
         </div>
     </div>
-    <terra-taglist [inputTagList]="inputTagList"></terra-taglist>
+    <div class="info-box-footer">
+        <terra-taglist [inputTagList]="inputTagList"></terra-taglist>
+        <span *ngIf="inputId" class="info-box-id">#{{ inputId }}</span>
+    </div>
 </div>
