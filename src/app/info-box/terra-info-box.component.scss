@@ -29,8 +29,15 @@
 {
     padding-right: 0.8rem;
     padding-bottom: 0.4rem;
+    max-width: 77%;
 }
 
+:host /deep/ .info-box-text div
+{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
 .empty
 {
     background: $gray-light-3;
