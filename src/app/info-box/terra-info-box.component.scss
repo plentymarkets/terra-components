@@ -1,7 +1,7 @@
 .info-box
 {
-    background-color: #FFFFFF;
-    border: 1px solid #999999;
+    background-color: $gray-light-5;
+    border: 1px solid $gray-light-2-half;
     -moz-border-radius: $border-radius;
     -webkit-border-radius: $border-radius;
     border-radius: $border-radius;
@@ -11,21 +11,33 @@
     height: 150px;
     overflow-y: auto;
     overflow-x: hidden;
+    &.selected
+    {
+        background-color: $brand-primary-lighter;
+        border: 1px solid $brand-primary;
+    }
 }
 
 .info-box-inner
 {
     display: flex;
     justify-content: space-between;
-    height: calc(100% - 25px);
+    height: calc(100% - 26px);
 }
 
 .info-box-text
 {
     padding-right: 0.8rem;
     padding-bottom: 0.4rem;
+    max-width: 77%;
 }
 
+:host /deep/ .info-box-text div
+{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
 .empty
 {
     background: $gray-light-3;
@@ -37,4 +49,16 @@
 {
     // TODO add icon to symbolize adding function
     background: $gray-light-3;
+}
+
+.info-box-footer
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-box-id
+{
+    margin:5px 2px 0px 0px;
+    color: $gray-light-2;
 }

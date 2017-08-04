@@ -390,16 +390,19 @@ input[type="button"]
                 top: initial !important;
             }
         }
+        
         .btn-divider,
         .btn-divider:hover,
         .btn-divider:active,
         .btn-divider:focus
         {
             background-color: $white !important;
-            color: $gray-light-2 !important;
-            line-height: 50px;
+            margin-bottom: 3px !important;
+            margin-top: 3px !important;
             cursor: default;
-            font-style: italic;
+            height: 1px;
+            border-bottom: 1px solid $gray-light-2-half;
+            border-top: 0 solid $gray-light-2-half;
         }
     }
 }

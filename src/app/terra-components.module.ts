@@ -39,7 +39,6 @@ import { TerraDataTableContextMenuComponent } from './table/data-table/context-m
 import { TerraDataTableContextMenuDirective } from './table/data-table/context-menu/directive/terra-data-table-context-menu.directive';
 import { TerraDoubleInputComponent } from './forms/input/double-input/terra-double-input.component';
 import { TerraPortletComponent } from './portlet/terra-portlet.component';
-import { TerraSplitViewComponent } from './split-view/terra-split-view.component';
 import { TerraFilterComponent } from './filter/terra-filter.component';
 import { TerraDataTableContextMenuService } from './table/data-table/context-menu/service/terra-data-table-context-menu.service';
 import { TerraBaseService } from './service/terra-base.service';
@@ -64,6 +63,8 @@ import { TerraNavigatorSplitViewConfig } from './navigator/config/terra-navigato
 import { TerraToggleComponent } from './toggle/terra-toggle.component';
 import { TerraSyntaxEditorComponent } from './editor/syntax/terra-syntax-editor.component';
 import { AceEditorModule } from 'ng2-ace-editor';
+import { TerraMultiSplitViewComponent } from './split-view/multi/terra-multi-split-view.component';
+import { TerraSplitViewComponent } from './split-view/terra-split-view.component';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -96,6 +97,10 @@ export { TerraBaseService } from './service/terra-base.service';
 export { TerraSplitViewInterface } from './split-view/data/terra-split-view.interface';
 export { TerraSplitConfigBase } from './split-view/data/terra-split-config-base';
 export { TerraSplitViewComponent } from './split-view/terra-split-view.component';
+export { TerraMultiSplitViewConfig } from './split-view/multi/data/terra-multi-split-view.config';
+export { TerraMultiSplitViewInterface } from './split-view/multi/data/terra-multi-split-view.interface';
+export { TerraMultiSplitViewDetail } from './split-view/multi/data/terra-multi-split-view-detail';
+export { TerraMultiSplitViewComponent } from './split-view/multi/terra-multi-split-view.component';
 export { TerraDataTableCellInterface } from './table/data-table/cell/terra-data-table-cell.interface';
 export { TerraDataTableHeaderCellInterface } from './table/data-table/cell/terra-data-table-header-cell.interface';
 export { TerraSimpleTableCellInterface } from './table/simple/cell/terra-simple-table-cell.interface';
@@ -117,6 +122,7 @@ export { TerraBaseTreeComponent } from './tree/base/terra-base-tree.component';
 export { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-tree.component';
 export { TerraLeafInterface } from './tree/leaf/terra-leaf.interface';
 export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
+export { TerraDynamicLoadedComponent } from './dynamic-module-loader/data/terra-dynamic-loaded-component.interface';
 export { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
 export { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
 export { TerraTileBoxInterface } from './tile/box/data/terra-tile-box.interface';
@@ -169,7 +175,8 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraCardComponent,
                   TerraNavigatorComponent,
                   TerraToggleComponent,
-                  TerraSyntaxEditorComponent
+                  TerraSyntaxEditorComponent,
+                  TerraMultiSplitViewComponent
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -196,6 +203,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraDoubleInputComponent,
                   TerraPortletComponent,
                   TerraSplitViewComponent,
+                  TerraMultiSplitViewComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
                   TerraTileBoxComponent,
@@ -235,6 +243,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraDoubleInputComponent,
                   TerraPortletComponent,
                   TerraSplitViewComponent,
+                  TerraMultiSplitViewComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
                   TerraDynamicModuleLoaderComponent,
@@ -266,7 +275,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraNavigatorSplitViewConfig
               ],
               bootstrap:       [
-                  //TerraComponentsComponent
+                  TerraComponentsComponent
               ]
           })
 export class TerraComponentsModule
@@ -284,7 +293,7 @@ export class TerraComponentsModule
                         TerraAlertComponent]
         };
     }
-    
+
     static forChild():ModuleWithProviders
     {
         return {

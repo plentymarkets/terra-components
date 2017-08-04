@@ -8,6 +8,15 @@
         <span translate>{{inputLabel}}</span>
         <span *ngIf="inputIsRequired">*</span>
     </label>
-    <input type="number" [(ngModel)]="value" name="{{inputName}}" (blur)="onBlur()" autocomplete="off"
-           [disabled]="inputIsDisabled" pattern="{{regex}}" step="1" min="{{inputMinValue}}" max="{{inputMaxValue}}" placeholder="{{inputPlaceholder}}">
+    <input type="number"
+           [(ngModel)]="value"
+           name="{{inputName}}"
+           (blur)="onBlur()"
+           autocomplete="off"
+           [disabled]="inputIsDisabled"
+           pattern="{{regex}}"
+           step="1"
+           min="{{inputMinValue}}"
+           max="{{inputMaxValue}}"
+           placeholder="{{inputPlaceholder}}">
 </div>

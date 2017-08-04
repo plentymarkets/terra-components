@@ -10,6 +10,7 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import { JitCompiler } from '@angular/compiler';
+import { TerraMultiSplitViewInterface } from '../split-view/multi/data/terra-multi-split-view.interface';
 
 @Component({
                selector: 'terra-dynamic-module-loader',
@@ -22,20 +23,21 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     @Input() inputModule:any;
     @Input() inputMainComponentName:string;
     @Input() inputParameter:any;
+    @Input() inputView:TerraMultiSplitViewInterface;
     private _resolvedData:ModuleWithProviders;
-    
+
     private _cmpRef:ComponentRef<any>;
-    
+
     constructor(private _jitCompiler:JitCompiler)
     {
     }
-    
+
     ngAfterViewInit()
     {
         this._resolvedData = this.inputModule as ModuleWithProviders;
         this.updateComponent();
     }
-    
+
     ngOnDestroy()
     {
         if(this._cmpRef)
@@ -43,7 +45,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
             this._cmpRef.destroy();
         }
     }
-    
+
     private updateComponent():void
     {
         this._jitCompiler
@@ -56,14 +58,18 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                           {
                               if(this.inputMainComponentName === factory.componentType.name)
                               {
+                                  // create the component
                                   this._cmpRef = this.viewChildTarget.createComponent(factory);
-                        
+
+                                  // pass the delivered parameter to the component
                                   this._cmpRef.instance.parameter = this.inputParameter;
-                        
+
+                                  // pass the instance of the loaded view back to the component
+                                  this._cmpRef.instance.splitViewInstance = this.inputView;
                               }
                           }
                       )
-            
+
                   });
     }
 }

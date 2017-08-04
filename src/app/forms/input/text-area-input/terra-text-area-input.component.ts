@@ -29,7 +29,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
     {
         console.warn('inputType is no longer used.  It will be removed in one of the upcoming releases.');
     }
-    
+
     /**
      * @deprecated
      * @param v
@@ -38,13 +38,13 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
     public set inputValue(v:string)
     {
         console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-        
+
         this.value = v;
     }
-    
+
     @Input() inputMaxRows:number;
     @Input() inputMaxCols:number;
-    
+
     constructor()
     {
         super(TerraRegex.MIXED);

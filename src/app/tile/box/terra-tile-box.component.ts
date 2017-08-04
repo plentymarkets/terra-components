@@ -25,43 +25,43 @@ export class TerraTileBoxComponent
     @Input() inputColor:TerraTileBoxColor; //default LIGHT_BLUE
     @Input() inputIsLineView:boolean;
     @Input() inputButtonList:Array<TerraButtonInterface>;
-    
+
     constructor()
     {
     }
-    
+
     private stopPropagation(event):void
     {
         event.stopPropagation();
     }
-    
+
     private setClassesToTileBoxItem():Object
     {
         let isLightBlue:boolean = false;
         let isBlue:boolean = false;
         let isDarkBlue:boolean = false;
-        
+
         switch(this.inputColor)
         {
             case TerraTileBoxColor.LIGHT_BLUE:
-                
+
                 isLightBlue = true;
                 break;
-            
+
             case TerraTileBoxColor.BLUE:
-                
+
                 isBlue = true;
                 break;
-            
+
             case TerraTileBoxColor.DARK_BLUE:
-                
+
                 isDarkBlue = true;
                 break;
-            
+
             default:
                 isLightBlue = true;
         }
-        
+
         return {
             light_blue:  isLightBlue,
             blue:        isBlue,

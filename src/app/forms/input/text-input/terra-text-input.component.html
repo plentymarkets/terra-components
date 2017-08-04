@@ -8,6 +8,14 @@
         <span translate>{{inputLabel}}</span>
         <span *ngIf="inputIsRequired">*</span>
     </label>
-    <input type="text" [(ngModel)]="value" name="{{inputName}}" (blur)="onBlur()" autocomplete="off"
-           [disabled]="isDisabled" pattern="{{regex}}" placeholder="{{inputPlaceholder}}">
+    <input
+           [type]="inputIsPassword?'password':'text'"
+           [(ngModel)]="value"
+           name="{{inputName}}"
+           (blur)="onBlur()"
+           autocomplete="off"
+           [disabled]="isDisabled"
+           pattern="{{regex}}"
+           placeholder="{{inputPlaceholder}}"
+           required>
 </div>
