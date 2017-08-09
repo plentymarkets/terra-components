@@ -201,10 +201,10 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                               children: null
                           };
 
-                          if(item.children !== null)
-                          {
-                              newNode.children = [];
-                          }
+                          //if(item.children !== null)
+                          //{
+                          //    newNode.children = [];
+                          //}
 
                           this.addNodeAt(this.inputNodes, result, -1, newNode);
 
@@ -255,9 +255,16 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                           children: newNode.children
                       });
         }
-        else
+        else if(!isNullOrUndefined(data[rootIndex[position]].children))
         {
             this.addNodeAt(data[rootIndex[position]].children, rootIndex, position, newNode);
+        }
+        else
+        {
+            data[rootIndex[position]].children = [];
+            this.addNodeAt(data[rootIndex[position]].children, rootIndex, position, newNode);
+
+            //console.log("addNodeAt() -> data[rootIndex[position]].children === undefined!!!");
         }
     }
 

@@ -46,7 +46,7 @@ export class TerraButtonGroupComponent<D> implements OnInit
                                             {
                                                 this._terraNavigatorSplitViewConfig
                                                     .openNextLevel(item);
-    
+
                                                 this._buttonList
                                                     .forEach((btnItem) =>
                                                              {
@@ -63,7 +63,7 @@ export class TerraButtonGroupComponent<D> implements OnInit
                              hasChildren:   hasChildren,
                              isVisible:     isUndefined(item.isVisible) || item.isVisible,
                          };
-                         
+
                          this._buttonList
                              .push(button);
 
@@ -72,22 +72,22 @@ export class TerraButtonGroupComponent<D> implements OnInit
                              this._buttonList[this._buttonList.length - 1].icon = item.nodeIcon;
                          }
                      });
-        
+
         this.setRecursiveItemActive(this.parameter.nodes);
     }
-    
+
     private setRecursiveItemActive(list:Array<TerraNavigatorNodeInterface<D>>)
     {
         list.forEach((item:TerraNavigatorNodeInterface<D>) =>
                      {
                          if(item.isActive)
                          {
-                             setTimeout(()=>
+                             setTimeout(() =>
                                         {
                                             this._terraNavigatorSplitViewConfig
                                                 .openNextLevel(item);
                                         });
-                             
+
                              this._buttonList
                                  .forEach((btnItem) =>
                                           {
