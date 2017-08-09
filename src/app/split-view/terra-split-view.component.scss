@@ -209,6 +209,9 @@
 {
     overflow-y: auto;
     width: 15%;
+    border-right: 1px #C7C7C7;
+    border-right-style: solid;
+    padding-right: 5px;
 }
 
 :host-context(.terra-navigator) .view
