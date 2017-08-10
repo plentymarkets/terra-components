@@ -43,15 +43,3 @@
 //        margin: 0 1px !important;
 //    }
 //}
-
-:host /deep/ .view
-{
-    overflow: hidden !important;
-    height: initial !important;
-    
-}
-
-:host /deep/ .side-scroller
-{
-    overflow-y: auto !important;
-}

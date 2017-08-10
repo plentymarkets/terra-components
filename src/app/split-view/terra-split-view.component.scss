@@ -201,3 +201,20 @@
 {
     height: 525px;
 }
+
+
+//In relation to split view classes for the terra-navigator are set .... Feature: No !important statement necessary!
+
+:host-context(.terra-navigator) .side-scroller
+{
+    overflow-y: auto;
+    width: 15%;
+    border-right: 1px solid #C7C7C7;
+    padding-right: 1px;
+}
+
+:host-context(.terra-navigator) .view
+{
+    overflow: hidden;
+    height: initial;
+}
