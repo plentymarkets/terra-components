@@ -1,5 +1,7 @@
 <a name="#"></a>
-# Unrealeased
+<a name="1.3.2"></a>
+# 1.3.2 (11.07.2017)
+### Bug Fixes
 * **terra-multi-split-view** 
 	- adjusted sliding animations; 
 	- fixed rendering of multiple views; 
