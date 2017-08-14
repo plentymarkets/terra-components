@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { isNullOrUndefined } from 'util';
 
 //TODO in template input mit terra-input ersetzen
 @Component({
@@ -156,10 +157,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
     }
 
-    /**
-     *
-     * Two way data binding by ngModel
-     */
     private onTouchedCallback:() => void = () =>
     {
     };
@@ -192,7 +189,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
         this._value = value;
 
-        if(value !== undefined && value != null)
+        if(!isNullOrUndefined(value))
         {
             this.inputListBoxValues
                 .forEach((item:TerraSuggestionBoxValueInterface) =>
@@ -228,11 +225,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         return this._toggleOpen;
     }
 
-
-    /**
-     *
-     * @param event
-     */
     private clickedOutside(event):void
     {
         if(!this.elementRef.nativeElement.contains(event.target))
@@ -242,10 +234,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     }
 
-    /**
-     *
-     * @param value
-     */
     private select(value:TerraSuggestionBoxValueInterface):void
     {
         this._selectedValue = value;
@@ -255,82 +243,47 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this.toggleOpen = false;
     }
 
-    /**
-     *
-     * @returns {boolean}
-     */
     public get isDisabled():boolean
     {
         return this.inputDisabled;
     }
 
-    /**
-     *
-     * @param value
-     */
     public set isDisabled(value:boolean)
     {
         this.inputDisabled = value;
     }
 
-    /**
-     *
-     * @returns {boolean}
-     */
     public get isValid():boolean
     {
         return this._isValid;
     }
 
-    /**
-     *
-     * @param isValid
-     */
     public set isValid(isValid:boolean)
     {
         this._isValid = isValid;
     }
 
-    /**
-     *
-     * @returns {string}
-     */
+
     public get regex():string
     {
         return this._regex;
     }
 
-    /**
-     *
-     * @param regex
-     */
     public set regex(regex:string)
     {
         this._regex = regex;
     }
 
-    /**
-     *
-     * @param
-     */
     public onFocus()
     {
         this.toggleOpen = true;
     }
 
-    /**
-     *
-     * @param
-     */
     public onBlur()
     {
         this.toggleOpen = false;
     }
 
-    /**
-     *
-     * @param
-     */
     public onChange()
     {
         let currentList = [];
@@ -371,10 +324,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
     }
 
-    /**
-     *
-     * @param
-     */
     public resetComponentValue():void
     {
         this.value = null;
