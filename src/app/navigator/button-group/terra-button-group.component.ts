@@ -6,7 +6,7 @@ import {
 import { TerraNavigatorSplitViewConfig } from '../config/terra-navigator-split-view.config';
 import { TerraNavigatorNodeInterface } from '../data/terra-navigator-node.interface';
 import { TerraButtonGroupInterface } from './data/terra-button-group.interface';
-import { isUndefined } from 'util';
+import { isNullOrUndefined } from 'util';
 
 /**
  * @author mscharf
@@ -40,7 +40,7 @@ export class TerraButtonGroupComponent<D> implements OnInit
             .forEach((item:TerraNavigatorNodeInterface<D>) => {
                 let hasChildren = false;
 
-                if(item.children != null)
+                if(!isNullOrUndefined(item.children))
                 {
                     hasChildren = true;
                 }
@@ -53,7 +53,7 @@ export class TerraButtonGroupComponent<D> implements OnInit
 
                         this._buttonList
                             .forEach((btnItem) => {
-                                if(item.nodeName == btnItem.caption)
+                                if(item.nodeName === btnItem.caption)
                                 {
                                     btnItem.isActive = true;
                                 }
@@ -64,13 +64,13 @@ export class TerraButtonGroupComponent<D> implements OnInit
                             });
                     },
                     hasChildren:   hasChildren,
-                    isVisible:     isUndefined(item.isVisible) || item.isVisible,
+                    isVisible:     isNullOrUndefined(item.isVisible) || item.isVisible,
                 };
 
                 this._buttonList
                     .push(button);
 
-                if(item.nodeIcon != null && item.nodeIcon !== undefined)
+                if(!isNullOrUndefined(item.nodeIcon))
                 {
                     this._buttonList[this._buttonList.length - 1].icon = item.nodeIcon;
                 }
