@@ -73,72 +73,71 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
         this._terraNavigatorSplitViewConfig
             .observableNodeClicked
-            .subscribe((item:TerraNavigatorNodeInterface<D>) =>
-                       {
-                           if(isNullOrUndefined(item.rootPath))
-                           {
-                               this.initRootPaths(this.inputNodes, null);
-                           }
+            .subscribe((item:TerraNavigatorNodeInterface<D>) => {
+                if(isNullOrUndefined(item.rootPath))
+                {
+                    this.initRootPaths(this.inputNodes, null);
+                }
 
-                           if(!isNullOrUndefined(item.children))
-                           {
-                               this._terraNavigatorSplitViewConfig
-                                   .modules[0]
-                                   .defaultWidth = 'col-xs-6 col-md-6 col-lg-6';
+                if(!isNullOrUndefined(item.children))
+                {
+                    this._terraNavigatorSplitViewConfig
+                        .modules[0]
+                        .defaultWidth = 'col-xs-6 col-md-6 col-lg-6';
 
-                               this._terraNavigatorSplitViewConfig
-                                   .addModule({
-                                                  module:            TerraButtonGroupModule.forRoot(),
-                                                  instanceKey:       item.rootPath.length,
-                                                  defaultWidth:      'col-xs-6 col-md-6 col-lg-6',
-                                                  hidden:            false,
-                                                  name:              item.nodeName,
-                                                  mainComponentName: 'TerraButtonGroupComponent',
-                                                  parameter:         {
-                                                      nodes: item.children
-                                                  }
-                                              });
-                           }
-                           else
-                           {
-                               while(this._terraNavigatorSplitViewConfig.modules.length > item.rootPath.length)
-                               {
-                                   this._terraNavigatorSplitViewConfig.modules.pop();
-                               }
+                    this._terraNavigatorSplitViewConfig
+                        .addModule({
+                                       module:            TerraButtonGroupModule.forRoot(),
+                                       instanceKey:       item.rootPath.length,
+                                       defaultWidth:      'col-xs-6 col-md-6 col-lg-6',
+                                       hidden:            false,
+                                       name:              item.nodeName,
+                                       mainComponentName: 'TerraButtonGroupComponent',
+                                       parameter:         {
+                                           nodes: item.children
+                                       }
+                                   });
+                }
+                else
+                {
+                    while(this._terraNavigatorSplitViewConfig.modules.length > item.rootPath.length)
+                    {
+                        this._terraNavigatorSplitViewConfig.modules.pop();
+                    }
 
-                               this.outputEndpointClicked.emit(item);
-                           }
-                       });
+                    this.outputEndpointClicked.emit(item);
+                }
+            });
 
         this.inputNavigatorService
             .observableNewNodeByRootPath
-            .subscribe((item:TerraNavigatorNodeInterface<D>) =>
-                       {
-                           this.addNodeAt(this.inputNodes,
-                                          item.rootPath,
-                                          -1,
-                                          item);
+            .subscribe((item:TerraNavigatorNodeInterface<D>) => {
+                this.addNodeAt(this.inputNodes,
+                               item.rootPath,
+                               -1,
+                               item);
 
-                           this.initRootPaths(this.inputNodes,
-                                              null);
-                           this.refreshNodeVisibilities(this.inputNodes);
-                       });
+                this.initRootPaths(this.inputNodes,
+                                   null);
+                this.refreshNodeVisibilities(this.inputNodes);
+            });
 
         this.inputNavigatorService
             .observableNewNodesByRoute
-            .subscribe((item:Array<TerraNavigatorNodeInterface<D>>) =>
-                       {
-                           this.addNodesRecursive(item);
-                           this.refreshNodeVisibilities(this.inputNodes);
-                       });
+            .subscribe((item:Array<TerraNavigatorNodeInterface<D>>) => {
+                this.addNodesRecursive(item);
+                this.refreshNodeVisibilities(this.inputNodes);
+            });
 
         this._isInit = true;
     }
 
     ngOnChanges(changes:SimpleChanges)
     {
-        if(this._isInit === true && changes["inputNodes"])
+        if(this._isInit === true && changes['inputNodes'])
         {
+            this._terraNavigatorSplitViewConfig.updateActiveItem(changes['inputNodes'].currentValue);
+
             this.initRootPaths(this.inputNodes,
                                null);
             this.refreshNodeVisibilities(this.inputNodes);
@@ -166,10 +165,9 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
             if(!isNullOrUndefined(rootIndex))
             {
-                rootIndex.forEach((item) =>
-                                  {
-                                      data[i].rootPath.push(item);
-                                  });
+                rootIndex.forEach((item) => {
+                    data[i].rootPath.push(item);
+                });
             }
 
             data[i].rootPath.push(i);
@@ -185,52 +183,50 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
     private addNodesRecursive(nodes:Array<TerraNavigatorNodeInterface<D>>)
     {
-        nodes.forEach((item:TerraNavigatorNodeInterface<D>) =>
-                      {
-                          let routeArray:Array<string> = item.route.split('/');
-                          let routeIndex:number = -1;
-                          let result = [];
+        nodes.forEach((item:TerraNavigatorNodeInterface<D>) => {
+            let routeArray:Array<string> = item.route.split('/');
+            let routeIndex:number = -1;
+            let result = [];
 
-                          this.findRootPath(routeArray, routeIndex, this.inputNodes, result);
+            this.findRootPath(routeArray, routeIndex, this.inputNodes, result);
 
-                          let newNode:TerraNavigatorNodeInterface<D> = {
-                              nodeName:  item.nodeName,
-                              nodeIcon:  item.nodeIcon,
-                              route:     routeArray[routeArray.length - 1],
-                              value:     item.value,
-                              rootPath:  [],
-                              children:  null,
-                              isVisible: item.isVisible,
-                              isActive:  item.isActive
-                          };
+            let newNode:TerraNavigatorNodeInterface<D> = {
+                nodeName:  item.nodeName,
+                nodeIcon:  item.nodeIcon,
+                route:     routeArray[routeArray.length - 1],
+                value:     item.value,
+                rootPath:  [],
+                children:  null,
+                isVisible: item.isVisible,
+                isActive:  item.isActive
+            };
 
-                          this.addNodeAt(this.inputNodes, result, -1, newNode);
+            this.addNodeAt(this.inputNodes, result, -1, newNode);
 
-                          this.initRootPaths(this.inputNodes, null);
+            this.initRootPaths(this.inputNodes, null);
 
-                          if(!isNullOrUndefined(item.children))
-                          {
-                              this.addNodesRecursive(item.children);
-                          }
-                      });
+            if(!isNullOrUndefined(item.children))
+            {
+                this.addNodesRecursive(item.children);
+            }
+        });
     }
 
     private findRootPath(routeArray:Array<string>, routeIndex:number, data:Array<TerraNavigatorNodeInterface<D>>, result:Array<number>)
     {
         routeIndex++;
 
-        data.forEach((item) =>
-                     {
-                         if(item.route === routeArray[routeIndex])
-                         {
-                             result.push(item.rootPath[item.rootPath.length - 1]);
+        data.forEach((item) => {
+            if(item.route === routeArray[routeIndex])
+            {
+                result.push(item.rootPath[item.rootPath.length - 1]);
 
-                             if(item.children != null)
-                             {
-                                 this.findRootPath(routeArray, routeIndex, item.children, result);
-                             }
-                         }
-                     });
+                if(item.children != null)
+                {
+                    this.findRootPath(routeArray, routeIndex, item.children, result);
+                }
+            }
+        });
     }
 
     private addNodeAt(data:Array<TerraNavigatorNodeInterface<D>>, rootIndex:Array<number>, position:number,
@@ -271,8 +267,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
     private refreshNodeVisibilities(nodes:Array<TerraNavigatorNodeInterface<D>>)
     {
         // go through the node list
-        nodes.forEach((node) =>
-                      {
+        nodes.forEach((node) => {
                           // check if there are children or if node is a leaf
                           if(!isNullOrUndefined(node.children) && node.children.length > 0)
                           {
@@ -300,8 +295,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         if(!isNullOrUndefined(rootNode.children))
         {
             rootNode.children
-                    .forEach((node) =>
-                             {
+                    .forEach((node) => {
                                  if(node.isVisible || node.isVisible === undefined)
                                  {
                                      childrenCount++;
