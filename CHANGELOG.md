@@ -1,5 +1,6 @@
 <a name="#"></a>
 # Unrealeased
+* **terra-checkbox** added isValid property for Validation purposes
 * **terra-multi-split-view** 
 	- adjusted sliding animations; 
 	- fixed rendering of multiple views; 
