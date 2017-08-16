@@ -33,6 +33,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     //The internal data model
     private _innerValue:boolean = false;
     private _isIndeterminate:boolean = false;
+    private _isValid:boolean = true;
 
     //Placeholders for the callbacks which are later provided
     //by the Control Value Accessor
@@ -103,5 +104,15 @@ export class TerraCheckboxComponent implements ControlValueAccessor
         //TODO is this correct?
         this._innerValue = false;
         this._isIndeterminate = value;
+    }
+
+    public get isValid():boolean
+    {
+        return this._isValid;
+    }
+
+    public set isValid(value:boolean)
+    {
+        this._isValid = value;
     }
 }

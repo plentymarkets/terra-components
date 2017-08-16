@@ -1,18 +1,45 @@
 /deep/
 {
-    terra-navigator .divider
+    terra-navigator
     {
-        display: none !important;
+        .divider
+        {
+            display: none !important;
+        }
+        .hasDivider
+        {
+            padding: 0 !important;
+        }
+        .view
+        {
+            padding: 0 2px !important;
+        }
+        .view .last
+        {
+            padding: 0 !important;
+        }
+        .side-scroller
+        {
+            margin-right: -2px;
+        }
     }
-    
-    terra-navigator .hasDivider
-    {
-        padding: 0 !important;
-    }
-    
-    terra-navigator .btn-group-menu
-    {
-        margin: 0 1px !important;
-    }
-    
 }
+
+//ToDo: Fix Divider Problem
+///deep/
+//{
+//    terra-navigator .divider
+//    {
+//    display: none !important;
+//    }
+//
+//    terra-navigator .hasDivider
+//    {
+//        padding: 0 !important;
+//    }
+//
+//    terra-navigator .btn-group-menu
+//    {
+//        margin: 0 1px !important;
+//    }
+//}
