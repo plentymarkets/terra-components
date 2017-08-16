@@ -13,12 +13,13 @@ var gitignore = require('gulp-gitignore');
 var shell = require('gulp-shell');
 var argv = require('yargs').argv;
 
-var version, level, sequence;
+var version, level, sequence, subversion;
 
 gulp.task('build', function(callback)
 {
     level = argv.level ? argv.level : 'patch';
     sequence = argv.publish ? 'npm-publish' : 'build-local';
+    subversion = argv.subversion ? argv.subversion : '';
     
     runSequence(sequence, callback);
 });
@@ -26,13 +27,8 @@ gulp.task('build', function(callback)
 gulp.task('npm-publish', function (callback)
 {
     runSequence(
-        'gitInit',
-        'gitFetch',
         'changeVersion',
-        'gitCommit',
-        'gitPull',
         'clean-dist',
-        'gitPush',
         'compile-ts',
         'copy-files',
         'copy-fonts',
@@ -90,8 +86,12 @@ gulp.task('changeVersion', function ()
     console.log('-------------------------------------------------');
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
     
+    json.version = json.version.replace('-'+subversion, '');
+    
     //possible values are: patch, minor, major
     json.version = semver.inc(json.version, level);
+    
+    json.version += '-' + subversion;
     
     version = json.version;
     
