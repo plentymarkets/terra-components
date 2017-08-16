@@ -23,12 +23,14 @@ export class TerraNavigatorSplitViewConfig<D> extends TerraSplitConfigBase
         super();
 
         this.observableUpdateActiveItem = new Observable<Array<TerraNavigatorNodeInterface<D>>>(
-            (subscriber:Subscriber<Array<TerraNavigatorNodeInterface<D>>>) => {
+            (subscriber:Subscriber<Array<TerraNavigatorNodeInterface<D>>>) =>
+            {
                 this._subscriberUpdateActiveItem = subscriber;
             });
 
         this.observableNodeClicked = new Observable<TerraNavigatorNodeInterface<D>>(
-            (subscriber:Subscriber<TerraNavigatorNodeInterface<D>>) => {
+            (subscriber:Subscriber<TerraNavigatorNodeInterface<D>>) =>
+            {
                 this._subscriberNodeClicked = subscriber;
             });
     }
