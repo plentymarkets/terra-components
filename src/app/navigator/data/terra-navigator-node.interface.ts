@@ -11,4 +11,5 @@ export interface TerraNavigatorNodeInterface<D>
     children?:Array<TerraNavigatorNodeInterface<D>>;
     isVisible?:boolean;
     isActive?:boolean;
+    isButtonClicked?:boolean;
 }

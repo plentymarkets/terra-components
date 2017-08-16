@@ -136,11 +136,13 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
     {
         if(this._isInit === true && changes['inputNodes'])
         {
-            this._terraNavigatorSplitViewConfig.updateActiveItem(changes['inputNodes'].currentValue);
+            this._terraNavigatorSplitViewConfig.modules = [];
 
-            this.initRootPaths(this.inputNodes,
+            //this._terraNavigatorSplitViewConfig.updateActiveItem(changes['inputNodes'].currentValue);
+
+            this.initRootPaths(changes['inputNodes'].currentValue,
                                null);
-            this.refreshNodeVisibilities(this.inputNodes);
+            this.refreshNodeVisibilities(changes['inputNodes'].currentValue);
 
             this._terraNavigatorSplitViewConfig
                 .addModule({
@@ -151,7 +153,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                                name:              this.inputFirstBreadcrumbName,
                                mainComponentName: 'TerraButtonGroupComponent',
                                parameter:         {
-                                   nodes: this.inputNodes
+                                   nodes: changes['inputNodes'].currentValue
                                }
                            });
         }

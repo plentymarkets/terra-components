@@ -51,6 +51,7 @@ export class TerraButtonGroupComponent<D> implements OnInit
                         this._terraNavigatorSplitViewConfig
                             .openNextLevel(item);
 
+                        item.isButtonClicked = true;
                         this._buttonList
                             .forEach((btnItem) => {
                                 if(item.nodeName === btnItem.caption)
@@ -89,13 +90,15 @@ export class TerraButtonGroupComponent<D> implements OnInit
                         .openNextLevel(item);
                 });
 
-                this._buttonList
-                    .forEach((btnItem) => {
-                        if(btnItem.caption == item.nodeName)
-                        {
-                            btnItem.isActive = item.isActive;
-                        }
+                let btn:TerraButtonGroupInterface =
+                    this._buttonList.find((btn:TerraButtonGroupInterface) => {
+                        return btn.caption === item.nodeName;
                     });
+
+                if(!isNullOrUndefined(btn))
+                {
+                    btn.isActive = item.isActive;
+                }
             }
             else
             {
