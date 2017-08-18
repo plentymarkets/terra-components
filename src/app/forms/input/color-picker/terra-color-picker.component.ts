@@ -31,7 +31,6 @@ export class TerraColorPickerComponent extends TerraInputComponent
     public set color( c: string )
     {
         this.value = c;
-        this.validate( this );
     }
 
     public isDark(): boolean
