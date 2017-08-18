@@ -10,11 +10,13 @@
                     <a class="caret" *ngIf="module.views.length > 1">
                         <ul class="context-menu">
                             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
-                                <li>
-                                    <a class="{{ view.mainComponentName + '_' + i }}"
+                                <li class="inline-a-element">
+                                    
+                                    <a class="{{ view.mainComponentName + '_' + i }} "
                                        (click)="setSelectedView(view)">
                                         <span>{{ view.name }}</span>
                                     </a>
+                                    <span class="close-contact-icon icon-close" (click)="inputConfig.removeView(view)"></span>
                                 </li>
                             </ng-template>
                         </ul>

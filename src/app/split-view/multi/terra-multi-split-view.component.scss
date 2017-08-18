@@ -277,3 +277,42 @@
     bottom: 0px;
     width: 100%;
 }
+
+.close-contact-icon
+{
+    position: absolute;
+    right: 2px;
+    margin-left: 6px;
+    display: inline-block !important;
+    font-size: 1.0em;
+    color: $white;
+    padding: 10px 1px;
+    opacity: 1;
+    text-shadow: none;
+    font-weight: bold;
+    &:before
+    {
+        padding: 10px 1px;
+    }
+    &:hover
+    {
+        color: $brand-secondary;
+        opacity: 1;
+    }
+}
+
+.inline-a-element
+{
+    width: 150px;
+}
+.inline-a-element a
+{
+    display: inline-block;
+    width: 100%;
+    text-overflow: ellipsis;
+    &:hover ~ .close-contact-icon
+    {
+        color: $brand-primary-darker;
+    }
+}
+
