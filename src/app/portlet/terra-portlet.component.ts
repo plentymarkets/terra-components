@@ -1,8 +1,18 @@
 import {
-    Component, EventEmitter,
-    Input, OnChanges, Output, SimpleChanges
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+    SimpleChanges
 } from '@angular/core';
-import { animate, state, style, transition, trigger } from "@angular/animations";
+import {
+    animate,
+    state,
+    style,
+    transition,
+    trigger
+} from "@angular/animations";
 
 @Component({
     selector: 'terra-portlet',
