@@ -278,6 +278,16 @@
     width: 100%;
 }
 
+.ellipsis
+{
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    vertical-align:top;
+    max-width:150px;
+    display:inline-block;
+}
+
 .close-contact-icon
 {
     position: absolute;

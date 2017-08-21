@@ -6,7 +6,7 @@
                 (click)="setSelectedView(module.currentSelectedView)">
                 <div class="{{ module.identifier }}"
                      [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
-                    <span>{{module.currentSelectedView.name}}</span>
+                    <span class="ellipsis">{{module.currentSelectedView.name}}</span>
                     <a class="caret" *ngIf="module.views.length > 1">
                         <ul class="context-menu">
                             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
