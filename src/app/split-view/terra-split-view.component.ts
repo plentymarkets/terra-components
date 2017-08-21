@@ -16,6 +16,7 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
 {
     @Input() inputModules:Array<TerraSplitViewInterface>;
     @Input() inputShowBreadcrumbs:boolean;
+    @Input() inputUpdateViewport:boolean;
     private _breadCrumbsPath:string;
 
     public static ANIMATION_SPEED = 1000; // ms
@@ -24,6 +25,7 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
     {
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
+        this.inputUpdateViewport = true;
     }
 
     ngOnDestroy()
@@ -33,9 +35,9 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
 
     ngOnChanges(changes:SimpleChanges)
     {
-        if(changes["inputModules"].currentValue !== undefined && changes["inputModules"].currentValue.length > 0)
+        if(this.inputUpdateViewport)
         {
-            if(this.inputModules != null)
+            if(changes["inputModules"].currentValue !== undefined && changes["inputModules"].currentValue.length > 0)
             {
                 let currentModule = this.inputModules[this.inputModules.length - 1];
                 this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
