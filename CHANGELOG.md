@@ -1,5 +1,6 @@
 <a name="#"></a>
 # Unrealeased
+* **terra-checkbox** added isValid property for Validation purposes
 * **terra-multi-split-view** 
 	- adjusted sliding animations; 
 	- fixed rendering of multiple views; 
@@ -67,6 +68,12 @@
 * **terra-base-service** Fixed empty response handling
 
 <a name="1.1.0"></a>
+# 1.1.1 (08.05.2017)
+
+### Bug Fixes
+* **terra-button** changed colors and minor pseudo-class fixes
+
+<a name="1.1.0"></a>
 # 1.1.0 (05.05.2017)
 
 ### Feature
@@ -90,6 +97,12 @@
 * **terra-split-view** Fixed CSS for split view showing in an overlay.
 * **terra-data-table** Tooltip changes for cells and header.
 * **terra-simple-table** Tooltip changes for cells and header.
+
+<a name="1.0.3"></a>
+# 1.0.3 (28.04.2017)
+
+### Feature
+* **terra-navigator** Add double column navigation
 
 <a name="1.0.2"></a>
 # 1.0.2 (27.04.2017)
