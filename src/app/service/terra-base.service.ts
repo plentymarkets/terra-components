@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../data/terra-base-parameter.interface';
 import { TerraAlertComponent } from '../alert/terra-alert.component';
+import { isNullOrUndefined } from 'util';
 
 /**
  * @author mfrank
@@ -70,12 +71,11 @@ export class TerraBaseService
     {
         if(localStorage.getItem('accessToken'))
         {
-            this.setToHeader('Authorization',
-                             'Bearer ' + localStorage.getItem('accessToken'));
+            this.setToHeader('Authorization', 'Bearer ' + localStorage.getItem('accessToken'));
         }
     }
 
-    protected mapRequest(request:Observable<Response>):Observable<any>
+    protected mapRequest(request:Observable<Response>, isPdf?:boolean):Observable<any>
     {
         this._terraLoadingSpinnerService.start();
 
@@ -85,6 +85,10 @@ export class TerraBaseService
                 if(response.status == 204)
                 {
                     return response.text();
+                }
+                else if(!isNullOrUndefined(isPdf) && isPdf == true)
+                {
+                    return new Blob([response.blob()], {type: 'application/pdf'});
                 }
                 else
                 {

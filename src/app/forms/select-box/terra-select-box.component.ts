@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { isNullOrUndefined } from 'util';
 
 @Component({
                selector:  'terra-select-box',
@@ -151,7 +152,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         this._value = value;
 
-        if(value !== undefined && value != null)
+        if(!isNullOrUndefined(value))
         {
             this.inputListBoxValues
                 .forEach((item:TerraSelectBoxValueInterface) =>

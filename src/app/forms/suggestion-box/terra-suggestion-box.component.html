@@ -1,30 +1,26 @@
-<div
-    [ngClass]="{
-                  'input-unit-v1': _hasLabel,
-                  'error': !isValid,
-                  'disabled': isDisabled,
-                  'open': '_toggleOpen'
-                }">
-    <label htmlFor="{{inputName}}">{{inputName}}
-        <span *ngIf="inputIsRequired">*</span>
-    </label>
-    <input
-        tooltipPlacement="{{inputTooltipPlacement}}"
-        tooltip="{{inputTooltipText}}"
-        [isDisabled]="!inputTooltipText"
-        (focus)="onFocus()"
-        (input)="onChange()"
-        name="{{inputName}}"
-        [(ngModel)]="_currentValue.caption"
-        value={{_selectedValue.caption}}
-        container="body"
-    >
-    <div *ngIf='_toggleOpen' class="select-box-dropdown">
+<div class="select-box-wrapper"
+     placement="{{inputTooltipPlacement}}"
+     tooltip="{{inputTooltipText}}"
+     [isDisabled]="!inputTooltipText"
+     [ngClass]="{
+                  'error': !_isValid,
+                  'disabled': inputIsDisabled,
+                  'open': _toggleOpen
+                }"
+     (click)="onClick($event)"
+     container="body">
+    
+    
+    <terra-text-input [inputName]="inputName"
+                      [(ngModel)]="_selectedValue.caption">
+    </terra-text-input>
+    
+    <div class="select-box-dropdown">
         <span *ngFor="let item of inputListBoxValues; let index=index;"
               (click)="select(item)"
               [ngClass]="{active: item.value === _selectedValue?.value}">
           <span class="{{item.icon}}" *ngIf="item.icon"></span>
-          {{item.caption}}
+            <span [innerHtml]="item.caption"></span>
         </span>
     </div>
 </div>

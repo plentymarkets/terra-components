@@ -65,6 +65,7 @@ import { TerraMultiSplitViewComponent } from './split-view/multi/terra-multi-spl
 import { TerraSplitViewComponent } from './split-view/terra-split-view.component';
 import { CommonModule } from '@angular/common';
 import { TerraDynamicComponentLoaderComponent } from './dynamic-component-loader/terra-dynamic-component-loader.component';
+import { BrowserModule } from '@angular/platform-browser';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -256,6 +257,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraSyntaxEditorComponent
               ],
               imports:         [
+                  BrowserModule,
                   CommonModule,
                   FormsModule,
                   ReactiveFormsModule,
