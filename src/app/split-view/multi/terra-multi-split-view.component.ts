@@ -363,8 +363,12 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             // get the index of the view in the module's views array
             let viewIndex:number = module.views.findIndex((elem) => elem === view);
 
-            // remove view from module's views array
-            module.views.splice(viewIndex, 1);
+            // check if the view has been found
+            if(viewIndex >= 0 && viewIndex < module.views.length)
+            {
+                // remove view from module's views array
+                module.views.splice(viewIndex, 1);
+            }
 
             // reset current selected view
             if(!isNullOrUndefined(module.lastSelectedView))
