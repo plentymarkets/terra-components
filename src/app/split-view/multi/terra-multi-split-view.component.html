@@ -16,7 +16,7 @@
                                        (click)="setSelectedView(view)">
                                         <span>{{ view.name }}</span>
                                     </a>
-                                    <span class="close-contact-icon icon-close" (click)="inputConfig.removeView(view)"></span>
+                                    <span class="close-contact-icon icon-close" (click)="removeView(view,$event)"></span>
                                 </li>
                             </ng-template>
                         </ul>

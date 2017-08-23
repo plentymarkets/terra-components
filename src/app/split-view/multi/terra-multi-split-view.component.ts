@@ -422,4 +422,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
         module.width = view.defaultWidth;
     }
+
+    private removeView(view:TerraMultiSplitViewInterface, event:Event):void
+    {
+        // stop event bubbling
+        event.stopPropagation();
+
+        // remove the selected view
+        this.inputConfig.removeView(view);
+    }
 }
