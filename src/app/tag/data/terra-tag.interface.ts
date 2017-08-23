@@ -14,4 +14,5 @@ export interface TerraTagInterface
      *  will be mandatory in next major release.
      */
     badge?:string;
+    customClass?:string;
 }

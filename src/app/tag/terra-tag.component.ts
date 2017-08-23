@@ -14,11 +14,13 @@ export class TerraTagComponent implements OnInit
     @Input() inputBadge:string;
     @Input() inputIsTagged:boolean;
     @Input() inputIsTaggable:boolean;
+    @Input() inputCustomClass:string;
 
     constructor()
     {
         this.inputIsTagged = false;
         this.inputIsTaggable = false;
+        this.inputCustomClass = null;
     }
 
     ngOnInit()

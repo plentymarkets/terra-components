@@ -1,6 +1,7 @@
-<span class="tag">
+<span class="tag" [ngClass]="inputCustomClass">
     <span *ngIf="inputIsTaggable"
-          [ngClass]="{'isTagged': inputIsTagged, 'icon-ticket_prio1': inputIsTagged, 'icon-ticket_prio8': !inputIsTagged}">
+          [ngClass]="{'isTagged': inputIsTagged, 'icon-ticket_prio1': inputIsTagged, 'icon-ticket_prio8': !inputIsTagged}"
+    [class.]>
     </span>
     {{inputBadge}}
 </span>
