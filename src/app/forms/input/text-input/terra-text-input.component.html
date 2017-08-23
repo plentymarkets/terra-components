@@ -9,8 +9,10 @@
     </label>
     <input id="{{inputName}}"
            [type]="inputIsPassword?'password':'text'"
-           [(ngModel)]="value" name="{{inputName}}"
+           [(ngModel)]="value"
+           name="{{inputName}}"
            (blur)="onBlur()"
+           (input)="onInput()"
            autocomplete="off"
            [disabled]="isDisabled"
            pattern="{{regex}}"

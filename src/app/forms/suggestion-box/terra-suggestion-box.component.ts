@@ -34,21 +34,16 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     @Input() inputTooltipPlacement:string;
     @Input() inputListBoxValues:Array<TerraSuggestionBoxValueInterface>;
     @Output() outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
-    @Output() inputSelectedValueChange = new EventEmitter<TerraSuggestionBoxValueInterface>();
 
     private _selectedValue:TerraSuggestionBoxValueInterface;
-    private _currentValue:TerraSuggestionBoxValueInterface;
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
     private _isValid:boolean;
     private _isInit:boolean;
     private _value:number | string;
     private clickListener:(event:Event) => void;
+    private tempInputListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
 
-    /**
-     *
-     * @param elementRef
-     */
     constructor(private elementRef:ElementRef)
     {
         this.clickListener = (event) =>
@@ -63,12 +58,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 value:   '',
                 caption: ''
             };
-        //
-        //this._currentValue =
-        //    {
-        //        value:   '',
-        //        caption: ''
-        //    };
     }
 
     public get isValid():boolean
@@ -83,35 +72,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     ngOnInit()
     {
-        //if(this.inputListBoxValues && this.inputListBoxValues.length > 0)
-        //{
-        //    let foundItem = false;
-        //
-        //    for(let i = 0; i < this.inputListBoxValues.length; i++)
-        //    {
-        //        if(this.inputListBoxValues[i].active == true)
-        //        {
-        //            this.select(this.inputListBoxValues[i]);
-        //            foundItem = true;
-        //        }
-        //    }
-        //
-        //    if(foundItem == false)
-        //    {
-        //        //this.select(0);
-        //    }
-        //}
-
         this._isValid = true;
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
         this._isInit = true;
     }
 
-    /**
-     *
-     * @param changes
-     */
     ngOnChanges(changes:SimpleChanges)
     {
         if(this._isInit == true
@@ -223,60 +189,36 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     }
 
 
-    //public onChange()
-    //{
-    //    let currentList = [];
-    //    let searchString = this._currentValue.caption;
-    //
-    //    if(searchString)
-    //    {
-    //        if(this.tempInputListBoxValues != null && this.tempInputListBoxValues.length == 0)
-    //        {
-    //            this.tempInputListBoxValues = this.inputListBoxValues;
-    //        }
-    //
-    //        if(this._currentValue.caption.length >= 3)
-    //        {
-    //            for(let value in this.tempInputListBoxValues)
-    //            {
-    //                if(this.tempInputListBoxValues[value].caption.search(searchString) != -1)
-    //                {
-    //                    currentList.push(this.tempInputListBoxValues[value]);
-    //                }
-    //            }
-    //
-    //            this.inputListBoxValues = currentList;
-    //        }
-    //        else
-    //        {
-    //            this.inputListBoxValues = this.tempInputListBoxValues;
-    //        }
-    //
-    //        this.value = this._currentValue;
-    //    }
-    //    else
-    //    {
-    //        this.value = null;
-    //        this.onTouchedCallback();
-    //        this.onChangeCallback(null);
-    //        this.toggleOpen = false;
-    //    }
-    //}
-    //
-    //public resetComponentValue():void
-    //{
-    //    this.value = null;
-    //
-    //    this._selectedValue =
-    //        {
-    //            value:   '',
-    //            caption: ''
-    //        };
-    //    this._currentValue =
-    //        {
-    //            value:   '',
-    //            caption: ''
-    //        };
-    //    this._value = null;
-    //}
+    public onChange()
+    {
+        let currentList = [];
+        let searchString = this._selectedValue.caption;
+
+        if(searchString !== '')
+        {
+            if(this.tempInputListBoxValues != null && this.tempInputListBoxValues.length == 0)
+            {
+                this.tempInputListBoxValues = this.inputListBoxValues;
+            }
+
+            if(this._selectedValue.caption.length >= 3)
+            {
+                for(let value in this.tempInputListBoxValues)
+                {
+                    if(this.tempInputListBoxValues[value].caption.search(searchString) != -1)
+                    {
+                        currentList.push(this.tempInputListBoxValues[value]);
+                    }
+                }
+
+                this.inputListBoxValues = currentList;
+            }
+            else
+            {
+                this.inputListBoxValues = this.tempInputListBoxValues;
+            }
+
+            this.value = this._selectedValue;
+        }
+    }
 }
