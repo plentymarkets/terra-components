@@ -337,43 +337,29 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             return;
         }
 
+        // delete all children only if the view is selected and the children are rendered
+        if(view === module.currentSelectedView)
+        {
+            if(!isNullOrUndefined(view.children))
+            {
+                view.children.forEach(
+                    (elem) =>
+                    {
+                        this.removeFromModules(elem);
+                    }
+                );
+            }
+        }
+
         // check if module has more than one view
         if(module.views.length <= 1)
         {
-            // delete all children only if the view is selected and the children are rendered
-            if(view === module.currentSelectedView)
-            {
-                if(!isNullOrUndefined(view.children))
-                {
-                    view.children.forEach(
-                        (elem) =>
-                        {
-                            this.removeFromModules(elem);
-                        }
-                    );
-                }
-            }
-
             // remove complete module
             let moduleIndex:number = this.modules.findIndex((mod) => mod === module);
             this.modules.splice(moduleIndex, 1);
         }
         else
         {
-            // delete all children only if the view is selected and the children are rendered
-            if(view === module.currentSelectedView)
-            {
-                if(!isNullOrUndefined(view.children))
-                {
-                    view.children.forEach(
-                        (elem) =>
-                        {
-                            this.removeFromModules(elem);
-                        }
-                    );
-                }
-            }
-
             // get the index of the view in the module's views array
             let viewIndex:number = module.views.findIndex((elem) => elem === view);
 
