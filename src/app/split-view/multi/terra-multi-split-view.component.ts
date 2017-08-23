@@ -363,6 +363,9 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             {
                 // remove the whole module
                 this.modules.splice(moduleIndex, 1);
+
+                // select the views parent view
+                return view.parent;
             }
         }
         else
