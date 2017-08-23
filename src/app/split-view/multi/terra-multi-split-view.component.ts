@@ -354,9 +354,15 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         // check if module has more than one view
         if(module.views.length <= 1)
         {
-            // remove complete module
+            // get the index of the module in the modules array
             let moduleIndex:number = this.modules.findIndex((mod) => mod === module);
-            this.modules.splice(moduleIndex, 1);
+
+            // check if the module has been found
+            if(moduleIndex >= 0 && moduleIndex < this.modules.length)
+            {
+                // remove the whole module
+                this.modules.splice(moduleIndex, 1);
+            }
         }
         else
         {
