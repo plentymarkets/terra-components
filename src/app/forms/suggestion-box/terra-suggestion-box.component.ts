@@ -188,11 +188,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this.outputValueChanged.emit(value);
     }
 
-
     public onChange()
     {
         let currentList = [];
         let searchString = this._selectedValue.caption;
+        this.toggleOpen = true;
 
         if(searchString !== '')
         {
