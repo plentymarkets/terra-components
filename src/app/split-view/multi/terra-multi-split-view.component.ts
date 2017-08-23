@@ -383,11 +383,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             // return the view that should be selected after deletion
             if(module.currentSelectedView === view)
             {
+                // select the first view in the views array
                 return module.views[0];
             }
             else
             {
-                return module.currentSelectedView;
+                // do not change anything -> select the currently selected view
+                return this.inputConfig.currentSelectedView;
             }
 
         }
