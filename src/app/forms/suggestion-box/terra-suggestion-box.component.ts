@@ -80,12 +80,14 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     ngOnChanges(changes:SimpleChanges)
     {
-        if(this._isInit == true
-           && changes["inputListBoxValues"]
+        if(changes["inputListBoxValues"]
            && changes["inputListBoxValues"].currentValue.length > 0
            && this.inputListBoxValues.indexOf(this._selectedValue) == -1)
         {
-            this.select(this.inputListBoxValues[0]);
+            setTimeout(() =>
+                       {
+                           this.select(this.inputListBoxValues[0]);
+                       });
         }
     }
 
