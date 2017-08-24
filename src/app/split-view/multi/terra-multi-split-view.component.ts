@@ -337,41 +337,44 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             return;
         }
 
+        // delete all children only if the view is selected and the children are rendered
+        if(view === module.currentSelectedView)
+        {
+            if(!isNullOrUndefined(view.children))
+            {
+                view.children.forEach(
+                    (elem) =>
+                    {
+                        this.removeFromModules(elem);
+                    }
+                );
+            }
+        }
+
         // check if module has more than one view
         if(module.views.length <= 1)
         {
-            if(!isNullOrUndefined(view.children))
-            {
-                view.children.forEach(
-                    (elem) =>
-                    {
-                        this.removeFromModules(elem);
-                    }
-                );
-            }
-
-            // remove complete module
+            // get the index of the module in the modules array
             let moduleIndex:number = this.modules.findIndex((mod) => mod === module);
-            this.modules.splice(moduleIndex, 1);
+
+            // check if the module has been found
+            if(moduleIndex >= 0 && moduleIndex < this.modules.length)
+            {
+                // remove the whole module
+                this.modules.splice(moduleIndex, 1);
+            }
         }
         else
         {
-            // also delete all children from the modules array
-            if(!isNullOrUndefined(view.children))
-            {
-                view.children.forEach(
-                    (elem) =>
-                    {
-                        this.removeFromModules(elem);
-                    }
-                );
-            }
-
             // get the index of the view in the module's views array
             let viewIndex:number = module.views.findIndex((elem) => elem === view);
 
-            // remove view from module's views array
-            module.views.splice(viewIndex, 1);
+            // check if the view has been found
+            if(viewIndex >= 0 && viewIndex < module.views.length)
+            {
+                // remove view from module's views array
+                module.views.splice(viewIndex, 1);
+            }
 
             // reset current selected view
             if(!isNullOrUndefined(module.lastSelectedView))
