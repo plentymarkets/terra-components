@@ -253,7 +253,6 @@
     }
 }
 
-
 .slideDown
 {
     height: 0px;
@@ -266,11 +265,17 @@
 
 @keyframes slideDownAnimation
 {
-    from {height: 0px;}
-    to {height: 100%;}
+    from
+    {
+        height: 0px;
+    }
+    to
+    {
+        height: 100%;
+    }
 }
 
-.slideDown>div
+.slideDown > div
 {
     height: calc(100vh - 138px);
     position: absolute;
@@ -281,11 +286,11 @@
 .ellipsis
 {
     overflow: hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    vertical-align:top;
-    max-width:150px;
-    display:inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    max-width: 150px;
+    display: inline-block;
 }
 
 .close-contact-icon
@@ -315,6 +320,7 @@
 {
     width: 150px;
 }
+
 .inline-a-element a
 {
     display: inline-block;
