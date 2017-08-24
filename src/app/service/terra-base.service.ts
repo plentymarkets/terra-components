@@ -88,7 +88,7 @@ export class TerraBaseService
                 }
                 else if(!isNullOrUndefined(isPdf) && isPdf == true)
                 {
-                    return new Blob([response.blob()], {type: 'application/pdf'});
+                    return response.text();
                 }
                 else
                 {
