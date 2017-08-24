@@ -9,7 +9,11 @@
 	- added new interface property 'focusedWidth' to be able to automatically resize a view when it's focused.
 * **terra-info-box** restyled
 
+### Feature
+* **terra-suggestion-box** Allow html parsing
+
 ### Bug Fixes
+* **terra-suggestion-box** Replace deprecated tooltipReplacement
 * **terra-tag** fix tag right margin in tag list
 * **terra-loading-spinner** fix bug with infinite loading animation
 
