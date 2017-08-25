@@ -10,8 +10,7 @@
                     <a class="caret" *ngIf="module.views.length > 1">
                         <ul class="context-menu">
                             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
-                                <li class="inline-a-element">
-                                    
+                                <li class="dropdown-list-name">
                                     <a class="{{ view.mainComponentName + '_' + i }} "
                                        (click)="setSelectedView(view)">
                                         <span>{{ view.name }}</span>
