@@ -27,7 +27,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.zone.runOutsideAngular(
             () =>
             {
-                // debounce resize, wait for resize to finish before doing stuff
+                // debounce resize, wait for resize to finish before updating the viewport
                 if (this.resizeTimeout)
                 {
                     clearTimeout(this.resizeTimeout);
