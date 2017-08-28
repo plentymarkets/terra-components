@@ -1,5 +1,9 @@
 <a name="#"></a>
 # Unreleased 
+
+### Feature
+* **terra-multi-split-view** added function to close selected views via dropdown
+	
 ### Bug Fixes
 * **terra-multi-split-view** fixed bug when removing a view that is not selected (vertically)
 

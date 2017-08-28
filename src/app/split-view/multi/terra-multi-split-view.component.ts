@@ -53,10 +53,10 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             (value:TerraMultiSplitViewInterface) =>
             {
                 // update modules array
-                this.removeFromModules(value);
+                let viewToSelect:TerraMultiSplitViewInterface = this.removeFromModules(value);
 
                 // select the parent view
-                this.setSelectedView(value.parent);
+                this.setSelectedView(viewToSelect);
             }
         );
 
@@ -111,11 +111,17 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private setSelectedView(view:TerraMultiSplitViewInterface)
     {
-        // check if modules array has to be partially rebuild
-        if(this.getModuleOfView(view).currentSelectedView !== view)
+        // check whether view is defined
+        if(isNullOrUndefined(view))
         {
-            // rebuild modules array depending on the selected view
-            this.rebuildModules(view);
+            return;
+        }
+
+        // check whether the view's module is defined
+        let module:TerraMultiSplitViewDetail = this.getModuleOfView(view);
+        if(isNullOrUndefined(module))
+        {
+            return;
         }
 
         // check if view is already selected
@@ -125,43 +131,38 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             return;
         }
 
-        // update the corresponding module's current- and lastSelectedView
-        for(let module of this.modules)
+        // check whether the view is already opened
+        if(module.currentSelectedView === view)
         {
-            // check whether the view is already opened
-            if(module.currentSelectedView === view)
+            // also set the width of the view
+            module.width = !isNullOrUndefined(view.focusedWidth) ? view.focusedWidth : view.defaultWidth;
+        }
+        // vertical selection has changed
+        else
+        {
+            // rebuild modules array depending on the selected view
+            this.rebuildModules(view);
+
+            // update the corresponding module's current- and lastSelectedView
+            let moduleView:TerraMultiSplitViewInterface = module.views.find((v) => v === view);
+
+            // an existing view has been SELECTED?
+            if(moduleView)
             {
+                module.lastSelectedView = module.currentSelectedView;
+                module.currentSelectedView = view;
+
                 // also set the width of the view
                 module.width = !isNullOrUndefined(view.focusedWidth) ? view.focusedWidth : view.defaultWidth;
-
-                // skip further execution since the view is already selected
-                break;
-            }
-
-            // search for the view
-            for(let moduleView of module.views)
-            {
-                // an existing view has been SELECTED
-                if(moduleView === view)
-                {
-                    module.lastSelectedView = module.currentSelectedView;
-                    module.currentSelectedView = view;
-
-                    // also set the width of the view
-                    module.width = !isNullOrUndefined(view.focusedWidth) ? view.focusedWidth : view.defaultWidth;
-
-                    // exit the loop
-                    break;
-                }
             }
         }
 
         // if module has changed horizontally
-        let module:TerraMultiSplitViewDetail = this.getModuleOfView(this.inputConfig.currentSelectedView);
-        if(module !== this.getModuleOfView(view)
-           && !isNullOrUndefined(module)) // this has to be checked, since a module can be removed and hence isn't existing anymore
+        let inputModule:TerraMultiSplitViewDetail = this.getModuleOfView(this.inputConfig.currentSelectedView);
+        if(inputModule !== this.getModuleOfView(view)
+           && !isNullOrUndefined(inputModule)) // this has to be checked, since a module can be removed and hence isn't existing anymore
         {
-            module.width = this.inputConfig.currentSelectedView.defaultWidth;
+            inputModule.width = this.inputConfig.currentSelectedView.defaultWidth;
         }
 
         this.inputConfig.currentSelectedView = view;
@@ -318,13 +319,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
     }
 
-    private removeFromModules(view:TerraMultiSplitViewInterface):void
+    private removeFromModules(view:TerraMultiSplitViewInterface):TerraMultiSplitViewInterface
     {
         // check whether view is null or undefined
         if(isNullOrUndefined(view))
         {
             // ERROR... stop further execution
-            return;
+            return view;
         }
 
         // get the corresponding module
@@ -334,7 +335,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         if(isNullOrUndefined(module))
         {
             // ERROR... stop further execution
-            return;
+            return view;
         }
 
         // delete all children only if the view is selected and the children are rendered
@@ -362,6 +363,9 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             {
                 // remove the whole module
                 this.modules.splice(moduleIndex, 1);
+
+                // select the views parent view
+                return view.parent;
             }
         }
         else
@@ -376,15 +380,18 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 module.views.splice(viewIndex, 1);
             }
 
-            // reset current selected view
-            if(!isNullOrUndefined(module.lastSelectedView))
+            // return the view that should be selected after deletion
+            if(module.currentSelectedView === view)
             {
-                module.currentSelectedView = module.lastSelectedView;
+                // select the first view in the views array
+                return module.views[0];
             }
             else
             {
-                module.currentSelectedView = module.views[0];
+                // do not change anything -> select the currently selected view
+                return this.inputConfig.currentSelectedView;
             }
+
         }
     }
 
@@ -414,5 +421,14 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         let module:TerraMultiSplitViewDetail = this.getModuleOfView(view);
 
         module.width = view.defaultWidth;
+    }
+
+    private removeView(view:TerraMultiSplitViewInterface, event:Event):void
+    {
+        // stop event bubbling
+        event.stopPropagation();
+
+        // remove the selected view
+        this.inputConfig.removeView(view);
     }
 }
