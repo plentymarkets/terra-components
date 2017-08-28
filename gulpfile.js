@@ -12,6 +12,7 @@ var git = require('gulp-git');
 var gitignore = require('gulp-gitignore');
 var shell = require('gulp-shell');
 var argv = require('yargs').argv;
+var path = require('path');
 
 var version, level, sequence, subversion;
 
@@ -25,6 +26,7 @@ var version, level, sequence, subversion;
  * @param level      - Possible values are major (1.x.x to 2.x.x), minor (x.1.x to x.2.x) or patch (x.x.1 to x.x.2).
  *                     If not set patch is default. See VERSIONING.md for further information.
  * @param subversion - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json). Use only, if really necessary!!
+ * @param target     - Sets the target directory to copy build files to. Will copy files to 'node_modules/@plentymarkets/terra-components' in target directory
  *
  **/
 gulp.task('build', function(callback)
@@ -32,7 +34,7 @@ gulp.task('build', function(callback)
     level = argv.level ? argv.level : 'patch';
     sequence = argv.publish ? 'npm-publish' : 'build-local';
     subversion = argv.subversion ? argv.subversion : '';
-    
+
     runSequence(sequence, callback);
 });
 
@@ -65,7 +67,7 @@ gulp.task('build-local', function (callback)
         'copy-fonts',
         'copy-images',
         'copy-lang',
-        'copy-to-terra',
+        'copy-to-target',
         callback
     );
 });
@@ -99,22 +101,22 @@ gulp.task('gitFetch', function ()
 gulp.task('changeVersion', function ()
 {
     var json = JSON.parse(fs.readFileSync('./package.json'));
-    
+
     console.log('-------------------------------------------------');
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
-    
+
     json.version = json.version.replace('-'+subversion, '');
-    
+
     //possible values are: patch, minor, major
     json.version = semver.inc(json.version, level);
-    
+
     json.version += '-' + subversion;
-    
+
     version = json.version;
-    
+
     console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
     console.log('-------------------------------------------------');
-    
+
     return fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
 });
 
@@ -135,7 +137,7 @@ gulp.task('gitPull', function ()
             throw err;
         }
     });
-    
+
 });
 
 gulp.task('clean-dist', function ()
@@ -162,11 +164,11 @@ gulp.task('compile-ts', function ()
         config.excluded,
         config.allTs
     ];
-    
+
     var tsResult = gulp.src(sourceTsFiles)
                        .pipe(sourcemaps.init())
                        .pipe(tsProject());
-    
+
     return merge([
                      tsResult.dts.pipe(gulp.dest(config.tsOutputPath)),
                      tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.tsOutputPath))
@@ -205,9 +207,10 @@ gulp.task('copy-lang', function ()
                .pipe(gulp.dest(config.langOutputPath));
 });
 
-//copy files from dist to terra
-gulp.task('copy-to-terra', function ()
+//copy files from dist to defined directory
+gulp.task('copy-to-target', function ()
 {
+    var target = argv.target || '/workspace/terra';
     return gulp.src('dist/**/*.*')
                .pipe(gulp.dest('../plugin-payment-ebics-ui/node_modules/@plentymarkets/terra-components/'));
 });
