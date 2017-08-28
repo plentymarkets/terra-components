@@ -10,6 +10,7 @@ export * from './app/forms/input/terra-input.component';
 export * from './app/forms/input/double-input/terra-double-input.component';
 export * from './app/forms/input/number-input/terra-number-input.component';
 export * from './app/forms/input/text-input/terra-text-input.component';
+export * from './app/forms/input/color-picker/terra-color-picker.component';
 export * from './app/forms/select-box/data/terra-select-box.interface';
 export * from './app/forms/suggestion-box/data/terra-suggestion-box.interface';
 export * from './app/forms/select-box/terra-select-box.component';
