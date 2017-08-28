@@ -13,6 +13,9 @@
 * **terra-tag** fix tag right margin in tag list
 * **terra-loading-spinner** fix bug with infinite loading animation
 
+### Feature
+* **terra-base-toolbar** Added input 'inputIsSticky' to set the toolbar sticky at top of containing container
+
 <a name="1.2.3"></a>
 # 1.2.3 (11.07.2017)
 
