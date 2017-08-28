@@ -9,6 +9,8 @@
     min-width: 200px;
     margin: 4px 0px;
     height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
     &.selected
     {
         background-color: $brand-primary-lighter;

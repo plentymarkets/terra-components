@@ -2,9 +2,9 @@
 :host /deep/
 {
     position: fixed;
-    right: 14px;
-    top: 68px;
-    z-index: 1031;
+    right: 25px;
+    top: 51px;
+    z-index: 1030;
     max-height: 500px;
     max-width: 350px;
     overflow-y: auto;
@@ -60,11 +60,5 @@
     div.alert button.close
     {
         padding: 0px;
-        top: -5px;
-        right: -20px;
-        span
-        {
-            font-size: $font-size-5;
-        }
     }
 }
