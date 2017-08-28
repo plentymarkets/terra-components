@@ -25,6 +25,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     public static ANIMATION_SPEED = 1000; // ms
 
+    private resizeTimeout:number;
+
     constructor(private zone:NgZone)
     {
         this.inputShowBreadcrumbs = true; // default
@@ -228,7 +230,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             });
     }
 
-    public updateViewport(view:TerraMultiSplitViewInterface):void
+    public updateViewport(view:TerraMultiSplitViewInterface, skipAnimation?:boolean):void
     {
         this.zone.runOutsideAngular(
             () =>
@@ -284,9 +286,17 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                         }
 
                         viewContainer.stop();
-                        viewContainer.animate(
-                            {scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset)},
-                            this.ANIMATION_SPEED);
+
+                        if(skipAnimation)
+                        {
+                            viewContainer.scrollLeft(anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset);
+                        }
+                        else
+                        {
+                            viewContainer.animate(
+                                {scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset)},
+                                this.ANIMATION_SPEED);
+                        }
                     });
             });
     }
