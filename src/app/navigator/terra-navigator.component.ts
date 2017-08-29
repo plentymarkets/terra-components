@@ -29,6 +29,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
     @Input() inputFirstBreadcrumbName:string;
 
     @Output() outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
+    @Output() outputNodeClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
 
     private _isInit:boolean;
     private _updateViewport:boolean;
@@ -37,6 +38,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
     {
         this._isInit = false;
         this.outputEndpointClicked = new EventEmitter();
+        this.outputNodeClicked = new EventEmitter();
         this._updateViewport = true;
     }
 
@@ -79,6 +81,8 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                            {
                                this.initRootPaths(this.inputNodes, null);
                            }
+
+                           this.outputNodeClicked.emit(item);
 
                            if(!isNullOrUndefined(item.children))
                            {
