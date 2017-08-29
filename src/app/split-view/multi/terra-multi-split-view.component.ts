@@ -25,8 +25,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     public static ANIMATION_SPEED = 1000; // ms
 
-    private resizeTimeout:number;
-
     constructor(private zone:NgZone)
     {
         this.inputShowBreadcrumbs = true; // default
