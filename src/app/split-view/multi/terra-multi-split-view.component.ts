@@ -47,6 +47,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     private modules:Array<TerraMultiSplitViewDetail> = [];
 
     public static ANIMATION_SPEED = 1000; // ms
+    
+    private resizeTimeout:number;
 
     constructor(private zone:NgZone)
     {
