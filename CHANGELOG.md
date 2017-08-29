@@ -3,6 +3,7 @@
 
 ### Feature
 * **terra-multi-split-view** added function to close selected views via dropdown
+* **terra-base-toolbar** Added input 'inputIsSticky' to set the toolbar sticky at top of containing container
 	
 ### Bug Fixes
 * **terra-multi-split-view** fixed bug when removing a view that is not selected (vertically)
@@ -23,9 +24,6 @@
 * **terra-multi-split-view** 
 	- adjusted sliding animations; 
 	- fixed rendering of multiple views; 
-
-### Feature
-* **terra-base-toolbar** Added input 'inputIsSticky' to set the toolbar sticky at top of containing container
 
 <a name="1.2.3"></a>
 # 1.2.3 (11.07.2017)
