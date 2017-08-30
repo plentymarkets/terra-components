@@ -75,8 +75,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             }
         }
 
-        this._terraNavigatorSplitViewConfig
-            .observableNodeClicked
+        this._terraNavigatorSplitViewConfig.observableNodeClicked
             .subscribe((item:TerraNavigatorNodeInterface<D>) =>
                        {
                            if(isNullOrUndefined(item.rootPath))
@@ -88,9 +87,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
                            if(!isNullOrUndefined(item.children))
                            {
-                               this._terraNavigatorSplitViewConfig
-                                   .modules[0]
-                                   .defaultWidth = 'col-xs-6 col-md-6 col-lg-6';
+                               this._terraNavigatorSplitViewConfig.modules[0].defaultWidth = 'col-xs-6 col-md-6 col-lg-6';
 
                                this._terraNavigatorSplitViewConfig
                                    .addModule({
@@ -116,8 +113,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                            }
                        });
 
-        this.inputNavigatorService
-            .observableNewNodeByRootPath
+        this.inputNavigatorService.observableNewNodeByRootPath
             .subscribe((item:TerraNavigatorNodeInterface<D>) =>
                        {
                            this.addNodeAt(this.inputNodes, item.rootPath, -1, item);
@@ -126,8 +122,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                            this.refreshNodeVisibilities(this.inputNodes);
                        });
 
-        this.inputNavigatorService
-            .observableNewNodesByRoute
+        this.inputNavigatorService.observableNewNodesByRoute
             .subscribe((item:Array<TerraNavigatorNodeInterface<D>>) =>
                        {
                            this.addNodesRecursive(item);
