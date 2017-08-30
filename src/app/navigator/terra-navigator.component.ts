@@ -59,19 +59,20 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                 console.error('You have to define an initial breadcrumb!!!');
             }
 
-            if(this.inputNodes.length) {
+            if(this.inputNodes.length)
+            {
                 this._terraNavigatorSplitViewConfig
                     .addModule({
-                        module:            TerraButtonGroupModule.forRoot(),
-                        instanceKey:       0,
-                        defaultWidth:      this.inputModuleWidth,
-                        hidden:            false,
-                        name:              this.inputFirstBreadcrumbName,
-                        mainComponentName: 'TerraButtonGroupComponent',
-                        parameter:         {
-                            nodes: this.inputNodes
-                        }
-                    });
+                                   module:            TerraButtonGroupModule.forRoot(),
+                                   instanceKey:       0,
+                                   defaultWidth:      this.inputModuleWidth,
+                                   hidden:            false,
+                                   name:              this.inputFirstBreadcrumbName,
+                                   mainComponentName: 'TerraButtonGroupComponent',
+                                   parameter:         {
+                                       nodes: this.inputNodes
+                                   }
+                               });
             }
         }
 
@@ -129,29 +130,28 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                            this.refreshNodeVisibilities(this.inputNodes);
                        });
 
-        this.inputNavigatorService
-            .observableRefresh
+        this.inputNavigatorService.observableRefresh
             .subscribe(() =>
-            {
-                this.initRootPaths(this.inputNodes, null);
-                this.refreshNodeVisibilities(this.inputNodes);
+                       {
+                           this.initRootPaths(this.inputNodes, null);
+                           this.refreshNodeVisibilities(this.inputNodes);
 
-                this._terraNavigatorSplitViewConfig
-                    .addModule({
-                        module:            TerraButtonGroupModule.forRoot(),
-                        instanceKey:       0,
-                        defaultWidth:      this.inputModuleWidth,
-                        hidden:            false,
-                        name:              this.inputFirstBreadcrumbName,
-                        mainComponentName: 'TerraButtonGroupComponent',
-                        parameter:         {
-                            nodes: this.inputNodes
-                        }
-                    });
+                           this._terraNavigatorSplitViewConfig
+                               .addModule({
+                                              module:            TerraButtonGroupModule.forRoot(),
+                                              instanceKey:       0,
+                                              defaultWidth:      this.inputModuleWidth,
+                                              hidden:            false,
+                                              name:              this.inputFirstBreadcrumbName,
+                                              mainComponentName: 'TerraButtonGroupComponent',
+                                              parameter:         {
+                                                  nodes: this.inputNodes
+                                              }
+                                          });
 
-                //this.initRootPaths(item, null);
-                //this.refreshNodeVisibilities(item);
-            });
+                           //this.initRootPaths(item, null);
+                           //this.refreshNodeVisibilities(item);
+                       });
 
         this._isInit = true;
     }

@@ -54,7 +54,8 @@ export class TerraNavigatorConfig<D>
         }
     }
 
-    public refresh() {
+    public refresh()
+    {
         if(this._subscriberRefresh)
         {
             this._subscriberRefresh.next();
