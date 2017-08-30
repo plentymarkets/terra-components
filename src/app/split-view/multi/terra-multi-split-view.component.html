@@ -6,15 +6,16 @@
                 (click)="setSelectedView(module.currentSelectedView)">
                 <div class="{{ module.identifier }}"
                      [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
-                    <span>{{module.currentSelectedView.name}}</span>
+                    <span class="ellipsis">{{module.currentSelectedView.name}}</span>
                     <a class="caret" *ngIf="module.views.length > 1">
                         <ul class="context-menu">
                             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
-                                <li>
-                                    <a class="{{ view.mainComponentName + '_' + i }}"
+                                <li class="dropdown-list-name">
+                                    <a class="{{ view.mainComponentName + '_' + i }} "
                                        (click)="setSelectedView(view)">
                                         <span>{{ view.name }}</span>
                                     </a>
+                                    <span class="close-contact-icon icon-close" (click)="removeView(view,$event)"></span>
                                 </li>
                             </ng-template>
                         </ul>

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+    Component,
+    Input
+} from '@angular/core';
 
 @Component({
                selector: 'terra-base-toolbar',
@@ -7,7 +10,11 @@ import { Component } from '@angular/core';
            })
 export class TerraBaseToolbarComponent
 {
+
+    @Input() inputIsSticky:boolean;
+
     constructor()
     {
+        this.inputIsSticky = false;
     }
 }
