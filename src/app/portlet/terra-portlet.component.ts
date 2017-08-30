@@ -20,7 +20,7 @@ import {
     template: require('./terra-portlet.component.html'),
     animations: [
         trigger('collapsedState', [
-            state('collapsed', style({
+            state('inputCollapsed', style({
                 height: 0,
                 'padding-top': 0,
                 'padding-bottom': 0
@@ -28,7 +28,7 @@ import {
             state('expanded', style({
                 height: '*'
             })),
-            transition('collapsed <=> expanded', [
+            transition('inputCollapsed <=> expanded', [
                 animate(100)
             ])
         ])
@@ -39,22 +39,22 @@ export class TerraPortletComponent implements OnChanges
 
     @Input() inputPortletHeader:string;
 
-    @Input() isCollapsable: boolean = false;
+    @Input() inputIsCollapsable: boolean = false;
 
-    @Input() collapsed: boolean = false;
+    @Input() inputCollapsed: boolean = false;
 
-    @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() inputCollapsedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     private get collapsedState(): string
     {
-        if ( !this.isCollapsable )
+        if ( !this.inputIsCollapsable )
         {
             return 'expanded';
         }
 
-        if ( this.collapsed )
+        if ( this.inputCollapsed )
         {
-            return 'collapsed';
+            return 'inputCollapsed';
         }
 
         return 'expanded';
@@ -66,24 +66,24 @@ export class TerraPortletComponent implements OnChanges
 
     public ngOnChanges( changes: SimpleChanges ): void
     {
-        if( changes.hasOwnProperty( "isCollapsable") && !this.isCollapsable )
+        if( changes.hasOwnProperty( "inputIsCollapsable") && !this.inputIsCollapsable )
         {
-            this.collapsed = false;
+            this.inputCollapsed = false;
             setTimeout( () => {
-                this.collapsedChange.emit( false );
+                this.inputCollapsedChange.emit( false );
             });
         }
     }
 
     public toggleCollapse(): void
     {
-        this.collapsed = !this.collapsed;
+        this.inputCollapsed = !this.inputCollapsed;
 
-        if ( !this.isCollapsable )
+        if ( !this.inputIsCollapsable )
         {
-            this.collapsed = false;
+            this.inputCollapsed = false;
         }
 
-        this.collapsedChange.emit( this.collapsed );
+        this.inputCollapsedChange.emit( this.inputCollapsed );
     }
 }
