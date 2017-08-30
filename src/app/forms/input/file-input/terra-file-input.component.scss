@@ -1,0 +1,14 @@
+.file-select {
+  @media(min-width: 992px ) {
+    /deep/
+    .modal-dialog {
+      max-width: 80%;
+
+      .modal-body {
+        max-height: 80vh;
+        height: 80vh;
+      }
+    }
+  }
+
+}

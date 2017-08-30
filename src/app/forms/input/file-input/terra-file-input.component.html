@@ -1,0 +1,8 @@
+<div class="file-select">
+    <input type="type" readonly="true" (click)="showFileBrowser()">
+
+    <terra-overlay #overlay
+                   [inputIsLarge]="true">
+        <terra-file-browser></terra-file-browser>
+    </terra-overlay>
+</div>
