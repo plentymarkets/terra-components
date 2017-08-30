@@ -1,5 +1,6 @@
 import {
     Component,
+    HostListener,
     Input,
     NgZone,
     OnDestroy,
@@ -19,11 +20,35 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {
     @Input() inputConfig:TerraMultiSplitViewConfig;
     @Input() inputShowBreadcrumbs:boolean;
+
+    @HostListener('window:resize')
+    onWindowResize()
+    {
+        this.zone.runOutsideAngular(
+            () =>
+            {
+                // debounce resize, wait for resize to finish before updating the viewport
+                if (this.resizeTimeout)
+                {
+                    clearTimeout(this.resizeTimeout);
+                }
+                this.resizeTimeout = setTimeout((
+                    () =>
+                    {
+                        this.updateViewport(this.inputConfig.currentSelectedView);
+                    }
+                ).bind(this), 500);
+            }
+        )
+    };
+
     private _breadCrumbsPath:string;
 
     private modules:Array<TerraMultiSplitViewDetail> = [];
 
     public static ANIMATION_SPEED = 1000; // ms
+    
+    private resizeTimeout:number;
 
     constructor(private zone:NgZone)
     {
@@ -228,7 +253,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             });
     }
 
-    public updateViewport(view:TerraMultiSplitViewInterface):void
+    public updateViewport(view:TerraMultiSplitViewInterface, skipAnimation?:boolean):void
     {
         this.zone.runOutsideAngular(
             () =>
@@ -284,9 +309,17 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                         }
 
                         viewContainer.stop();
-                        viewContainer.animate(
-                            {scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset)},
-                            this.ANIMATION_SPEED);
+
+                        if(skipAnimation)
+                        {
+                            viewContainer.scrollLeft(anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset);
+                        }
+                        else
+                        {
+                            viewContainer.animate(
+                                {scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset)},
+                                this.ANIMATION_SPEED);
+                        }
                     });
             });
     }
