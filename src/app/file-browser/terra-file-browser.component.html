@@ -59,7 +59,7 @@
         </div>
 
         <ul class="file-list" *ngIf="storageList && currentRoot.hasChildren">
-            <li *ngFor="let item of currentRoot.children" (click)="selectObject(item)" [class.selected]="item === selectedStorageObject">
+            <li *ngFor="let item of currentRoot.children" (click)="selectObject(item)" [class.disabled]="!isAllowed(item.key)" [class.selected]="item === selectedStorageObject">
                 <div class="upload-progress" *ngIf="uploadProgresses.hasOwnProperty(item.key) && uploadProgresses[item.key] < 100 && uploadProgresses[item.key] > 0" [style.width.%]="uploadProgresses[item.key]">
                     <span [class]="getIconClass( item.key )">
                         <span class="path1"></span>

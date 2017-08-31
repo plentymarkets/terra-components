@@ -1,8 +1,8 @@
 import {
     ChangeDetectorRef,
     Component,
-    ElementRef, OnDestroy,
-    OnInit,
+    ElementRef, EventEmitter, Input, OnDestroy,
+    OnInit, Output,
     ViewChild
 } from "@angular/core";
 import { TerraFrontendStorageService } from "./terra-frontend-storage.service";
@@ -21,6 +21,12 @@ import * as moment from "moment";
 })
 export class TerraFileBrowserComponent implements OnInit, OnDestroy
 {
+    @Input()
+    public inputAllowedExtensions: string[] = [];
+
+    @Output()
+    public outputSelected: EventEmitter<string> = new EventEmitter<string>();
+
     @ViewChild('fileChooser', { read: ElementRef })
     public fileChooserElement: ElementRef;
 
@@ -69,10 +75,12 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
         if ( !object )
         {
             this._selectedStorageObjectName = null;
+            this.outputSelected.emit( null );
         }
         else
         {
             this._selectedStorageObjectName = object.name;
+            this.outputSelected.emit( object.publicUrl );
         }
     }
 
@@ -168,10 +176,36 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
         if ( object.isDirectory )
         {
             this._currentRoot = object;
+            this.selectedStorageObject = null;
         }
         else
         {
-            this.selectedStorageObject = object;
+            if ( this.isAllowed( object.key ) )
+            {
+                this.selectedStorageObject = object;
+            }
+        }
+    }
+
+    public selectUrl( url: string ): void
+    {
+        if ( this.storageList && url )
+        {
+            let cdnExp = /^.*\/frontend\/(.*)$/;
+            let selectedKey: string;
+            if ( cdnExp.test( url ) )
+            {
+                selectedKey = cdnExp.exec( url )[1];
+            }
+
+            let preselectedObject = this.storageList.root.find( selectedKey );
+            if ( preselectedObject )
+            {
+                this._currentRoot = preselectedObject.parent;
+                this._selectedStorageObjectName = preselectedObject.name;
+                this.outputSelected.emit( preselectedObject.publicUrl );
+            }
+            this.changeDetector.detectChanges();
         }
     }
 
@@ -318,5 +352,17 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
     public getFormattedDate( date: Date ): string
     {
         return moment( date ).format('YYYY-MM-DD HH:mm');
+    }
+
+    public isAllowed( filename: string ): boolean
+    {
+        if ( !filename )
+        {
+            return false;
+        }
+
+        return this.inputAllowedExtensions.length <= 0
+            || this.inputAllowedExtensions.indexOf( PathHelper.extName(filename) ) >= 0
+            || PathHelper.isDirectory( filename )
     }
 }

@@ -45,6 +45,17 @@ terra-file-browser {
       &.selected {
         background-color: $brand-primary;
         color: #fff;
+
+        [class^="icon-"]:before,
+        [class^="icon-"] *:before {
+          color: #fff;
+        }
+      }
+
+      &.disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        pointer-events: none;
       }
 
       & > div {
@@ -102,8 +113,8 @@ terra-file-browser {
     position: absolute;
     top: 0;
     left: 50%;
-    width: 400px;
-    margin-left: -200px;
+    width: 90%;
+    margin-left: -45%;
     background: #fff;
     border: 1px solid #CCCCCC;
     border-top: none;
@@ -123,6 +134,14 @@ terra-file-browser {
       font-weight: bold;
       margin-bottom: 8px;
       display: block;
+    }
+  }
+
+  @media(min-width: 544px)
+  {
+    .prompt {
+      width: 400px;
+      margin-left: -200px;
     }
   }
 
@@ -156,15 +175,10 @@ terra-file-browser {
   }
 
   .preview-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 25%;
-    min-width: 300px;
-    transform: translateX(100%);
+
+    transform: translateY(100%);
     transition: transform 150ms ease;
-    border-left: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -172,7 +186,7 @@ terra-file-browser {
     overflow-y: auto;
 
     &.in {
-      transform: translateX(0);
+      transform: translateY(0);
     }
 
     .preview-title {
@@ -207,6 +221,7 @@ terra-file-browser {
       border-radius: $border-radius;
       min-height: 150px;
       position: relative;
+      flex-direction: column;
 
       > span {
         width: 100%;
@@ -216,6 +231,7 @@ terra-file-browser {
         background-repeat: no-repeat;
         background-position: center center;
         align-items: center;
+        flex: 1;
 
         > [class^="icon-"] {
           display: inline-flex;
@@ -232,6 +248,25 @@ terra-file-browser {
         position: absolute;
         top: 6px;
         right: 6px;
+      }
+    }
+  }
+
+  @media(min-width: 768px)
+  {
+    .preview-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 25%;
+      min-width: 300px;
+      transform: translateX(100%);
+      border-left: 1px solid #CCCCCC;
+      border-top: none;
+
+      &.in {
+        transform: translateX(0);
       }
     }
   }

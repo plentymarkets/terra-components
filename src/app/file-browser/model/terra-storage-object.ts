@@ -167,4 +167,27 @@ export class TerraStorageObject
             return child.name === name;
         });
     }
+
+    public find( key: string ): TerraStorageObject
+    {
+        if ( !key )
+        {
+            return null;
+        }
+
+        let paths: string[] = key.split("/").filter( key => key.length > 0 );
+        let nextPath = paths.shift();
+        let child = this.getChild( nextPath );
+        if ( child )
+        {
+            if ( paths.length > 0 )
+            {
+                return child.find( paths.join("/") );
+            }
+
+            return child;
+        }
+
+        return null;
+    }
 }
