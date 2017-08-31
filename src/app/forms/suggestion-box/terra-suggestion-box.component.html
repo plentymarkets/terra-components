@@ -9,7 +9,7 @@
         <span *ngIf="inputIsRequired">*</span>
     </label>
     <input
-        tooltipPlacement="{{inputTooltipPlacement}}"
+        placement="{{inputTooltipPlacement}}"
         tooltip="{{inputTooltipText}}"
         [isDisabled]="!inputTooltipText"
         (focus)="onFocus()"
@@ -24,7 +24,7 @@
               (click)="select(item)"
               [ngClass]="{active: item.value === _selectedValue?.value}">
           <span class="{{item.icon}}" *ngIf="item.icon"></span>
-          {{item.caption}}
+          <span [innerHtml]="item.caption"></span>
         </span>
     </div>
 </div>
