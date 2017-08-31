@@ -6,6 +6,13 @@
     margin-bottom: 3px;
 }
 
+.sticky
+{
+    top: 0;
+    position: sticky;
+    z-index: $zindex-toolbar-sticky;
+}
+
 :host /deep/ .terra-number-input input
 {
     text-align: right !important;

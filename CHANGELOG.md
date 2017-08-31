@@ -1,9 +1,18 @@
 <a name="#"></a>
-# Unrealeased
+# Unreleased 
+
+### Feature
+* **terra-multi-split-view** added function to close selected views via dropdown
+* **terra-base-toolbar** Added input 'inputIsSticky' to set the toolbar sticky at top of containing container
+	
+### Bug Fixes
+* **terra-multi-split-view** fixed bug when removing a view that is not selected (vertically)
+
+<a name="1.3.1"></a>
+# 1.3.1 (03.08.2017)
+### Feature
 * **terra-checkbox** added isValid property for Validation purposes
 * **terra-multi-split-view** 
-	- adjusted sliding animations; 
-	- fixed rendering of multiple views; 
 	- partially rebuild breadcrumbs on vertical selection changes; 
 	- added possibility to resize a view manually, after it has already been added to the split-view;
 	- added new interface property 'focusedWidth' to be able to automatically resize a view when it's focused.
@@ -16,6 +25,9 @@
 * **terra-suggestion-box** Replace deprecated tooltipReplacement
 * **terra-tag** fix tag right margin in tag list
 * **terra-loading-spinner** fix bug with infinite loading animation
+* **terra-multi-split-view** 
+	- adjusted sliding animations; 
+	- fixed rendering of multiple views; 
 
 <a name="1.2.3"></a>
 # 1.2.3 (11.07.2017)
