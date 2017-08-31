@@ -257,11 +257,16 @@
 {
     height: 0px;
     min-height: 0px !important;
-    animation-name: slideDownAnimation;
-    animation-duration: 0.5s;
     position: relative;
     overflow: hidden;
 }
+
+// TODO dtrauf add class in for usage in Terra
+//.tab-content > .slideDown
+//{
+//    animation-name: slideDownAnimation;
+//    animation-duration: 0.5s;
+//}
 
 @keyframes slideDownAnimation
 {
@@ -279,9 +284,15 @@
 {
     height: calc(100vh - 138px);
     position: absolute;
-    bottom: 0px;
     width: 100%;
 }
+
+// TODO dtrauf add class in for usage in Terra
+//.tab-content > .slideDown > div
+//{
+//    bottom: 0px;
+//}
+
 
 .ellipsis
 {
