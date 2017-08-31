@@ -8,8 +8,9 @@ export class TerraMultiSplitViewConfig
     private _currentSelectedView:TerraMultiSplitViewInterface;
 
     private _addViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
-    private _deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+    private _deleteViewEventEmitter:EventEmitter<{view:TerraMultiSplitViewInterface, isSelected:boolean}> = new EventEmitter<{view:TerraMultiSplitViewInterface, isSelected:boolean}>();
     private _resizeViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+    private _selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
 
     public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
     {
@@ -67,8 +68,10 @@ export class TerraMultiSplitViewConfig
         );
     }
 
-    public removeView(view:TerraMultiSplitViewInterface):void
+    public removeView(view:TerraMultiSplitViewInterface, doNotSelectLastView?:boolean):void
     {
+        let isSelected:boolean = !doNotSelectLastView;
+
         if(isNullOrUndefined(view))
         {
             return;
@@ -81,7 +84,7 @@ export class TerraMultiSplitViewConfig
         if(viewIndex >= 0)
         {
             parent.children.splice(viewIndex, 1);
-            this.deleteViewEventEmitter.next(view);
+            this.deleteViewEventEmitter.next({view:view, isSelected: isSelected});
         }
     }
 
@@ -94,15 +97,19 @@ export class TerraMultiSplitViewConfig
     public reset():void
     {
         this._views = null;
+        this._views = [];
+        this._currentSelectedView = null;
         this._addViewEventEmitter.unsubscribe();
         this._addViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
         this._deleteViewEventEmitter.unsubscribe();
-        this._deleteViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
+        this._deleteViewEventEmitter = new EventEmitter<{view:TerraMultiSplitViewInterface, isSelected:boolean}>();
         this._resizeViewEventEmitter.unsubscribe();
         this._resizeViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
+        this._selectBreadcrumbEventEmitter.unsubscribe();
+        this._selectBreadcrumbEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
     }
 
-    public get deleteViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
+    public get deleteViewEventEmitter():EventEmitter<{view:TerraMultiSplitViewInterface, isSelected:boolean}>
     {
         return this._deleteViewEventEmitter;
     }
@@ -140,5 +147,10 @@ export class TerraMultiSplitViewConfig
     public set resizeViewEventEmitter(value:EventEmitter<TerraMultiSplitViewInterface>)
     {
         this._resizeViewEventEmitter = value;
+    }
+
+    public get selectBreadcrumbEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
+    {
+        return this._selectBreadcrumbEventEmitter;
     }
 }

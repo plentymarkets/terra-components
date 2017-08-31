@@ -75,13 +75,16 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         );
 
         this.inputConfig.deleteViewEventEmitter.subscribe(
-            (value:TerraMultiSplitViewInterface) =>
+            (value:{view:TerraMultiSplitViewInterface, isSelected:boolean}) =>
             {
                 // update modules array
-                let viewToSelect:TerraMultiSplitViewInterface = this.removeFromModules(value);
+                let viewToSelect:TerraMultiSplitViewInterface = this.removeFromModules(value.view);
 
-                // select the parent view
-                this.setSelectedView(viewToSelect);
+                if(value.isSelected)
+                {
+                    // select the parent view
+                    this.setSelectedView(viewToSelect);
+                }
             }
         );
 
@@ -142,6 +145,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             return;
         }
 
+        if(!isNullOrUndefined(this.inputConfig.selectBreadcrumbEventEmitter))
+        {
+            this.inputConfig.selectBreadcrumbEventEmitter.next(view);
+        }
+
         // check whether the view's module is defined
         let module:TerraMultiSplitViewDetail = this.getModuleOfView(view);
         if(isNullOrUndefined(module))
@@ -184,8 +192,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
         // if module has changed horizontally
         let inputModule:TerraMultiSplitViewDetail = this.getModuleOfView(this.inputConfig.currentSelectedView);
-        if(inputModule !== this.getModuleOfView(view)
-           && !isNullOrUndefined(inputModule)) // this has to be checked, since a module can be removed and hence isn't existing anymore
+        if(!isNullOrUndefined(inputModule) && inputModule !== this.getModuleOfView(view)) // this has to be checked, since a module can be removed and hence isn't existing anymore
         {
             inputModule.width = this.inputConfig.currentSelectedView.defaultWidth;
         }

@@ -30,7 +30,7 @@
         <div class="view {{ module.width }}" id="module{{index}}" [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">
             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                 <div *ngIf="module.currentSelectedView === view" class="{{ view.mainComponentName + '_' + i}} slideDown">
-                    <div>
+                    <div [ngClass]="{'offsetHeight': inputShowBreadcrumbs}">
                         <terra-dynamic-module-loader
                             [inputModule]="view.module"
                             [inputParameter]="view.parameter"
