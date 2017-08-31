@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+
 body
 {
-    font-family: "plenty", Helvetica, Arial, sans-serif !important;
-    font-size: 0.875rem !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-size: $font-size-3 !important;
+    font-weight: $font-weight-1 !important;
     line-height: 1.5 !important;
     color: #333333 !important;
     background-color: #FFFFFF !important;
@@ -65,4 +68,29 @@ body
     padding-right: 4px;
     padding-left: 4px;
     transition: all 0.3s ease;
+}
+
+h1 {
+    font-size: $font-size-7;
+    font-weight: $font-bold;
+}
+h2 {
+    font-size: $font-size-6;
+    font-weight: $font-bold;
+}
+h3 {
+    font-size: $font-size-5;
+    font-weight: $font-bold;
+}
+h4 {
+    font-size: $font-size-5;
+    font-weight: $font-weight-1;
+}
+h5 {
+    font-size: $font-size-4;
+    font-weight: $font-bold;
+}
+p, span, a {
+    font-size: $font-size-3;
+    font-weight: $font-weight-1;
 }
