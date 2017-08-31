@@ -15,6 +15,19 @@ var argv = require('yargs').argv;
 
 var version, level, sequence, subversion;
 
+/**
+ *
+ * usage: 'npm run build' for local build
+ *        or
+ *        'npm run build -- --param1 --param2 param2_value' for publishing
+ *
+ * @param publish    - If set publish to npm, otherwise publish locally
+ * @param level      - Possible values are major (1.x.x to 2.x.x), minor (x.1.x to x.2.x) or patch (x.x.1 to x.x.2).
+ *                     If not set patch is default. See VERSIONING.md for further information.
+ * @param subversion - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json). Use only, if really necessary!!
+ * @param target     - Sets the target directory to copy build files to. Will copy files to 'node_modules/@plentymarkets/terra-components' in target directory
+ *
+ **/
 gulp.task('build', function(callback)
 {
     level = argv.level ? argv.level : 'patch';
