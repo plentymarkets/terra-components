@@ -10,7 +10,11 @@ import { isNullOrUndefined } from 'util';
 import { TerraMultiSplitViewConfig } from './data/terra-multi-split-view.config';
 import { TerraMultiSplitViewDetail } from './data/terra-multi-split-view-detail';
 import { TerraMultiSplitViewInterface } from './data/terra-multi-split-view.interface';
-
+import {
+    NavigationStart,
+    Router
+} from '@angular/router';
+import * as AngularRouter from '@angular/router';
 @Component({
                selector: 'terra-multi-split-view',
                template: require('./terra-multi-split-view.component.html'),
@@ -20,6 +24,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {
     @Input() inputConfig:TerraMultiSplitViewConfig;
     @Input() inputShowBreadcrumbs:boolean;
+    @Input() router:Router;     // to catch router events
+    @Input() componentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
 
     @HostListener('window:resize')
     onWindowResize()
@@ -63,6 +69,20 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     ngOnInit()
     {
+        // catch routing events, but only those that select the tab where the split view is instantiated
+        if (!isNullOrUndefined(this.router)
+            && !isNullOrUndefined(this.componentRoute))
+        {
+            if(this.router.config.find((route) => route === this.componentRoute))
+            {
+                this.router.events
+                    .filter((event:AngularRouter.Event) => event instanceof NavigationStart && event.url === this.componentRoute)
+                    .subscribe((path:NavigationStart) => {
+                        this.updateViewport(this.inputConfig.currentSelectedView, true);
+                    });
+            }
+        }
+
         this.inputConfig.addViewEventEmitter.subscribe(
             (value:TerraMultiSplitViewInterface) =>
             {
@@ -463,5 +483,18 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
         // remove the selected view
         this.inputConfig.removeView(view);
+    }
+
+    private checkIfRouteExists(route:string):void
+    {
+        let path:Array<string> = route.split('/');
+
+        path.forEach(
+            (section) =>
+            {
+                if(this.router.config.find((route) => route.path === section));
+            }
+        )
+
     }
 }
