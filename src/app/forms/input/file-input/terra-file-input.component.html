@@ -40,6 +40,8 @@
         </div>
         <terra-button class="input-group-btn"
                       [inputIcon]="'icon-more'"
+                      [inputTooltipText]=" _translationPrefix + '.chooseFile' | translate:lang"
+                      [inputTooltipPlacement]="'left'"
                       (outputClicked)="showFileBrowser()">
         </terra-button>
     </div>

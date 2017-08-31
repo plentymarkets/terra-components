@@ -13,6 +13,8 @@ import { TerraTextInputComponent } from "../forms/input/text-input/terra-text-in
 import { ClipboardHelper } from "./helper/clipboard.helper";
 import { FileType } from "./helper/fileType.helper";
 import * as moment from "moment";
+import { TranslationService } from "angular-l10n";
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
     selector: 'terra-file-browser',
@@ -21,6 +23,8 @@ import * as moment from "moment";
 })
 export class TerraFileBrowserComponent implements OnInit, OnDestroy
 {
+    private _translationPrefix: string = "terraFileBrowser";
+
     @Input()
     public inputAllowedExtensions: string[] = [];
 
@@ -34,6 +38,8 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
     public fileDropzoneElement: ElementRef;
 
     public storageList: TerraStorageObjectList;
+
+    private _storageListSubscription: Subscription;
 
     public uploadProgresses: {[key: string]: number} = {};
 
@@ -101,6 +107,7 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
 
     constructor(
         private frontendStorageService: TerraFrontendStorageService,
+        private translation: TranslationService,
         private changeDetector: ChangeDetectorRef  )
     {
     }
@@ -156,11 +163,12 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
             dragLeaveTimeout = null;
         });
 
-        // TODO: unsubscribe on destroy
-        this.frontendStorageService.listFiles().subscribe( (objectList: TerraStorageObjectList) => {
-            this.storageList = objectList;
-            this.changeDetector.detectChanges();
-        });
+        this._storageListSubscription = this.frontendStorageService
+                                            .listFiles()
+                                            .subscribe( (objectList: TerraStorageObjectList) => {
+                                                this.storageList = objectList;
+                                                this.changeDetector.detectChanges();
+                                            });
     }
 
     public ngOnDestroy(): void
@@ -169,6 +177,8 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
             document.removeEventListener( event, this._globalListeners[event] );
         });
         this._globalListeners = {};
+
+        this._storageListSubscription.unsubscribe();
     }
 
     public selectObject( object: TerraStorageObject ): void
@@ -244,24 +254,6 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
 
         this.frontendStorageService
             .uploadFiles( event.dataTransfer.files || [], this.getUploadPrefix() );
-        /*
-            .forEach( (uploadItem) => {
-                this.uploadProgresses[uploadItem.pathname] = 0;
-                uploadItem
-                    .onProgress( (progress: number) => {
-                        this.uploadProgresses[uploadItem.pathname] = progress;
-                        this.changeDetector.detectChanges();
-                    })
-                    .onError( () => {
-                        this.storageList.root.removeChild(uploadItem.pathname);
-                        this.changeDetector.detectChanges();
-                    })
-                    .onCancel( () => {
-                        this.storageList.root.removeChild(uploadItem.pathname);
-                        this.changeDetector.detectChanges();
-                    });
-            });
-            */
     }
 
     public selectFiles( event: Event ): void
@@ -270,24 +262,6 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
         {
             this.frontendStorageService
                 .uploadFiles( (<any>event.srcElement).files || [], this.getUploadPrefix() );
-            /*
-                .forEach( (uploadItem) => {
-                    this.uploadProgresses[uploadItem.pathname] = 0;
-                    uploadItem
-                        .onProgress( (progress: number) => {
-                            this.uploadProgresses[uploadItem.pathname] = progress;
-                            this.changeDetector.detectChanges();
-                        })
-                        .onError( () => {
-                            this.storageList.root.removeChild(uploadItem.pathname);
-                            this.changeDetector.detectChanges();
-                        })
-                        .onCancel( () => {
-                            this.storageList.root.removeChild(uploadItem.pathname);
-                            this.changeDetector.detectChanges();
-                        });
-                });
-            */
         }
     }
 

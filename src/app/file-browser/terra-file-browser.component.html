@@ -3,15 +3,15 @@
         <ul class="terra-breadcrumbs" *ngIf="storageList">
             <li *ngFor="let parent of parentObjects; let last = last" (click)="selectObject(parent)">
                 <div [class.active]="last">
-                    <span>{{ parent.name || "Meine Dateien" }}</span>
+                    <span>{{ parent.name || _translationPrefix + ".myFiles" | translate:lang }}</span>
                 </div>
             </li>
         </ul>
     </terra-base-toolbar>
     <terra-base-toolbar>
         <div class="btn-group" role="group">
-            <terra-button [inputIcon]="'icon-upload'" (outputClicked)="showFileChooser()"></terra-button>
-            <terra-button [inputIcon]="'icon-folder_add'" (outputClicked)="createDirectory()"></terra-button>
+            <terra-button [inputIcon]="'icon-upload'" [inputTooltipText]="_translationPrefix + '.uploadFile' | translate:lang" (outputClicked)="showFileChooser()"></terra-button>
+            <terra-button [inputIcon]="'icon-folder_add'" [inputTooltipText]="_translationPrefix + '.createFolder' | translate:lang" (outputClicked)="createDirectory()"></terra-button>
         </div>
 
         <label style="width:0; height: 0; visibility: hidden;" #fileChooser>
@@ -22,19 +22,19 @@
 
     <div class="file-browser-content">
         <div class="prompt" [class.in]="showNewDirectoryPrompt">
-            <span class="prompt-title">Neuen Ordner erstellen</span>
-            <terra-text-input [inputName]="'Ordnername'"
+            <span class="prompt-title">{{ _translationPrefix + '.createFolder' | translate:lang }}</span>
+            <terra-text-input [inputName]="_translationPrefix + '.folderName' | translate:lang"
                               [ngModel]="newDirectoryName"
                               (ngModelChange)="setNewDirectoryName($event)">
             </terra-text-input>
             <div class="pull-lg-right">
                 <terra-button [inputIcon]="'icon-close'"
-                              [inputCaption]="'abbrechen'"
+                              [inputCaption]="_translationPrefix + '.cancel' | translate:lang"
                               [inputIsSmall]="true"
                               (outputClicked)="showNewDirectoryPrompt = false"></terra-button>
 
                 <terra-button [inputIcon]="'icon-success'"
-                              [inputCaption]="'erstellen'"
+                              [inputCaption]="_translationPrefix + '.create' | translate:lang"
                               [inputIsSmall]="true"
                               [inputIsTertiary]="true"
                               [inputIsDisabled]="!newDirectoryName"
@@ -43,15 +43,15 @@
         </div>
 
         <div class="prompt" [class.in]="deletableObjectKey">
-            <span class="prompt-title">Ordner löschen?</span>
+            <span class="prompt-title">{{ _translationPrefix + '.confirmDelete' | translate:lang }}</span>
             <div class="pull-lg-right">
                 <terra-button [inputIcon]="'icon-close'"
-                              [inputCaption]="'abbrechen'"
+                              [inputCaption]="_translationPrefix + '.cancel' | translate:lang"
                               [inputIsSmall]="true"
                               (outputClicked)="deletableObjectKey = null"></terra-button>
 
                 <terra-button [inputIcon]="'icon-success'"
-                              [inputCaption]="'löschen'"
+                              [inputCaption]="_translationPrefix + '.delete' | translate:lang"
                               [inputIsSmall]="true"
                               [inputIsTertiary]="true"
                               (outputClicked)="deleteObject()"></terra-button>
@@ -87,16 +87,16 @@
 
         <div class="file-list-empty" *ngIf="storageList && !currentRoot.hasChildren">
             <div>
-                <span>Der Ordner ist leer.</span>
+                <span>{{ _translationPrefix + '.folderIsEmpty' | translate:lang }}</span>
                 <div>
                     <terra-button *ngIf="currentRoot.key !== '/'"
                                   [inputIsSecondary]="true"
                                   [inputIcon]="'icon-delete'"
-                                  [inputCaption]="'Ordner löschen'"
+                                  [inputCaption]="_translationPrefix + '.deleteFolder' | translate:lang"
                                   (outputClicked)="deletableObjectKey = currentRoot.key">
                     </terra-button>
                     <terra-button [inputIcon]="'icon-upload'"
-                                  [inputCaption]="'Datei hochladen'"
+                                  [inputCaption]="_translationPrefix + '.uploadFile' | translate:lang"
                                   (outputClicked)="showFileChooser()">
                     </terra-button>
                 </div>
@@ -125,19 +125,27 @@
                 <div class="delete-btn">
                     <terra-button [inputIsSecondary]="true"
                                   [inputIcon]="'icon-delete'"
-                                  [inputTooltipText]="'Datei löschen'"
+                                  [inputTooltipText]="_translationPrefix + '.deleteFile' | translate:lang"
                                   (outputClicked)="deletableObjectKey = selectedStorageObject.key">
                     </terra-button>
                 </div>
             </span>
 
             <div class="input-group">
-                <terra-text-input [inputName]="'Datei-URL'" #urlInput [inputIsReadonly]="true" [ngModel]="selectedStorageObject?.publicUrl"></terra-text-input>
-                <terra-button class="input-group-btn" [inputIcon]="'icon-copy_clipboard'" (click)="copyToClipboard(urlInput.value)"></terra-button>
+                <terra-text-input #urlInput
+                                  [inputName]="_translationPrefix + '.fileURL' | translate:lang"
+                                  [inputIsReadonly]="true"
+                                  [ngModel]="selectedStorageObject?.publicUrl">
+                </terra-text-input>
+                <terra-button class="input-group-btn"
+                              [inputIcon]="'icon-copy_clipboard'"
+                              [inputTooltipText]="_translationPrefix + '.copyToClipboard' | translate:lang"
+                              (click)="copyToClipboard(urlInput.value)">
+                </terra-button>
             </div>
         </div>
 
-        <div class="file-drop" [class.in]="isFileDragged" (drop)="dropFiles($event)" #fileDropzone><span>Datei(en) hochladen</span></div>
+        <div class="file-drop" [class.in]="isFileDragged" (drop)="dropFiles($event)" #fileDropzone><span>{{ _translationPrefix + '.uploadFile' | translate:lang }}</span></div>
     </div>
 
 </div>

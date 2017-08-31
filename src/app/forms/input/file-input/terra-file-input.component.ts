@@ -6,6 +6,7 @@ import { TerraRegex } from "../../../regex/terra-regex";
 import { TerraOverlayButtonInterface } from "../../../overlay/data/terra-overlay-button.interface";
 import { PathHelper } from "../../../file-browser/helper/path.helper";
 import { FileType } from "../../../file-browser/helper/fileType.helper";
+import { TranslationService } from "angular-l10n";
 
 @Component({
     selector: 'terra-file-input',
@@ -21,6 +22,7 @@ import { FileType } from "../../../file-browser/helper/fileType.helper";
 })
 export class TerraFileInputComponent extends TerraInputComponent implements OnInit
 {
+    private _translationPrefix: string = "terraFileInput";
     @Input()
     public inputShowPreview: boolean = false;
 
@@ -46,7 +48,7 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
 
     public primaryOverlayButton: TerraOverlayButtonInterface = {
         icon: 'icon-success',
-        caption: 'auswählen',
+        caption: this.translation.translate( this._translationPrefix + ".choose" ),
         isDisabled: true,
         clickFunction: () => {
             this.value = this.selectedUrl;
@@ -56,7 +58,7 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
 
     public secondaryOverlayButton: TerraOverlayButtonInterface = {
         icon: 'icon-close',
-        caption: 'abbrechen',
+        caption: this.translation.translate( this._translationPrefix + ".cancel" ),
         isDisabled: false,
         clickFunction: () => {
             this.selectedUrl = this.value;
@@ -64,7 +66,7 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
         }
     };
 
-    constructor()
+    constructor( private translation: TranslationService )
     {
         super(TerraRegex.MIXED);
     }
