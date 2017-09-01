@@ -6,7 +6,9 @@
 * **terra-base-toolbar** Added input 'inputIsSticky' to set the toolbar sticky at top of containing container
 	
 ### Bug Fixes
-* **terra-multi-split-view** fixed bug when removing a view that is not selected (vertically)
+* **terra-multi-split-view**
+	- fixed bug when removing a view that is not selected (vertically)
+	- removed vertical animations for right positioning in plugins
 
 <a name="1.3.1"></a>
 # 1.3.1 (03.08.2017)
