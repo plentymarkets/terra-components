@@ -12,7 +12,8 @@ import { TerraMultiSplitViewDetail } from './data/terra-multi-split-view-detail'
 import { TerraMultiSplitViewInterface } from './data/terra-multi-split-view.interface';
 import {
     NavigationStart,
-    Router
+    Router,
+    Routes
 } from '@angular/router';
 import * as AngularRouter from '@angular/router';
 @Component({
@@ -73,8 +74,10 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         if (!isNullOrUndefined(this.router)
             && !isNullOrUndefined(this.componentRoute))
         {
-            if(this.router.config.find((route) => route === this.componentRoute))
+            // check if the given route exists in the route config
+            if(this.routeExists(this.componentRoute))
             {
+                // register event listener
                 this.router.events
                     .filter((event:AngularRouter.Event) => event instanceof NavigationStart && event.url === this.componentRoute)
                     .subscribe((path:NavigationStart) => {
@@ -485,16 +488,40 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.inputConfig.removeView(view);
     }
 
-    private checkIfRouteExists(route:string):void
+    private routeExists(route:string):boolean
     {
+        // get the partials of the route
         let path:Array<string> = route.split('/');
 
-        path.forEach(
-            (section) =>
-            {
-                if(this.router.config.find((route) => route.path === section));
-            }
-        )
+        // start at element 1 not 0, since the route starts with a separator
+        let routeLevel:number = 1;
 
+        // get the routing config
+        let routes:Routes = this.router.config;
+
+        // scan the routing config
+        while (routeLevel < path.length)
+        {
+            if(isNullOrUndefined(routes))
+            {
+                return false;
+            }
+
+            // search the array for the route partial
+            let foundRoute = routes.find((route) => route.path === path[routeLevel]);
+            if(foundRoute) // the route partial is defined?
+            {
+                // into deep
+                routeLevel++;
+                routes = foundRoute.children;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // if the while loop ends, the route exists
+        return true;
     }
 }
