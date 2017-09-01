@@ -8,7 +8,6 @@ import { TerraStorageObjectList } from "./model/terra-storage-object-list";
 import { Observable } from "rxjs/Observable";
 import { Observer } from "rxjs/Observer";
 import { createS3StorageObject } from "./model/s3-storage-object.interface";
-import { queue } from "rxjs/scheduler/queue";
 
 @Injectable()
 export class TerraFrontendStorageService extends TerraBaseService
@@ -177,7 +176,7 @@ export class TerraFrontendStorageService extends TerraBaseService
         });
     }
 
-    public deleteObject( key: string ): Observable<void>
+    public deleteFile( key: string ): Observable<void>
     {
 
         this.setAuthorization();

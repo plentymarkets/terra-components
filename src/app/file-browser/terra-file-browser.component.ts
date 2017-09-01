@@ -286,7 +286,7 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
             this._currentRoot = this.currentRoot.parent;
         }
 
-        this.frontendStorageService.deleteObject( this.deletableObjectKey );
+        this.frontendStorageService.deleteFile( this.deletableObjectKey );
         this.deletableObjectKey = null;
     }
 
