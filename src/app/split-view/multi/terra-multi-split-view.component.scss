@@ -261,12 +261,11 @@
     overflow: hidden;
 }
 
-// TODO dtrauf add class in for usage in Terra
-//.tab-content > .slideDown
-//{
-//    animation-name: slideDownAnimation;
-//    animation-duration: 0.5s;
-//}
+/deep/ .tab-content .slideDown
+{
+    animation-name: slideDownAnimation;
+    animation-duration: 0.5s;
+}
 
 @keyframes slideDownAnimation
 {
@@ -287,11 +286,10 @@
     width: 100%;
 }
 
-// TODO dtrauf add class in for usage in Terra
-//.tab-content > .slideDown > div
-//{
-//    bottom: 0px;
-//}
+/deep/ .tab-content .slideDown > div
+{
+    bottom: 0px;
+}
 
 
 .ellipsis
