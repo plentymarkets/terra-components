@@ -147,7 +147,7 @@ export class TerraUploadQueue
 
             xhr.open(
                 "POST",
-                "/rest/storage/frontend?key=" + item.pathname,
+                "/rest/storage/frontend/file?key=" + item.pathname,
                 true
             );
 

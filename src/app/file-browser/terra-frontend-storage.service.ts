@@ -32,7 +32,7 @@ export class TerraFrontendStorageService extends TerraBaseService
         super(
             _terraLoadingSpinnerService,
             _http,
-            "/rest/storage/frontend"
+            "/rest/storage/frontend/file"
         );
     }
 
@@ -177,16 +177,13 @@ export class TerraFrontendStorageService extends TerraBaseService
         });
     }
 
-    public deleteObjects( keyList: string[] ): Observable<void>
+    public deleteObject( key: string ): Observable<void>
     {
-        let keyListParam: string = "?" + keyList.map( key => {
-            return "keyList[]=" + key;
-        }).join("&");
 
         this.setAuthorization();
         let request = this.mapRequest(
             this.http.delete(
-                this.url + keyListParam,
+                this.url + "?key=" + key,
                 {
                     headers: this.headers
                 }
@@ -195,9 +192,7 @@ export class TerraFrontendStorageService extends TerraBaseService
 
         request.subscribe(
             () => {
-                keyList.forEach( (key: string) => {
-                    this._storageObjectList.root.removeChild( key )
-                });
+                this._storageObjectList.root.removeChild( key );
                 this.notifyObservers();
             },
             err => {
@@ -214,7 +209,7 @@ export class TerraFrontendStorageService extends TerraBaseService
     {
         this._storageInitialized = true;
 
-        let url = this.url + "/list";
+        let url = "/rest/storage/frontend/files";
         if ( continuationToken )
         {
             url += "?continuationToken=" + continuationToken;
