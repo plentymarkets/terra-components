@@ -26,8 +26,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {
     @Input() inputConfig:TerraMultiSplitViewConfig;
     @Input() inputShowBreadcrumbs:boolean;
-    @Input() router:Router;     // to catch router events
-    @Input() componentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
+    @Input() inputRouter:Router;     // to catch inputRouter events
+    @Input() inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
 
     @HostListener('window:resize')
     onWindowResize()
@@ -72,15 +72,15 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     ngOnInit()
     {
         // catch routing events, but only those that select the tab where the split view is instantiated
-        if (!isNullOrUndefined(this.router)
-            && !isNullOrUndefined(this.componentRoute))
+        if (!isNullOrUndefined(this.inputRouter)
+            && !isNullOrUndefined(this.inputComponentRoute))
         {
             // check if the given route exists in the route config
-            if(this.routeExists(this.componentRoute))
+            if(this.routeExists(this.inputComponentRoute))
             {
                 // register event listener
-                this.router.events
-                    .filter((event:AngularRouter.Event) => event instanceof NavigationStart && event.url === this.componentRoute)
+                this.inputRouter.events
+                    .filter((event:AngularRouter.Event) => event instanceof NavigationStart && event.url === this.inputComponentRoute)
                     .subscribe((path:NavigationStart) => {
                         this.updateViewport(this.inputConfig.currentSelectedView, true);
                     });
@@ -498,7 +498,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         let routeLevel:number = 1;
 
         // get the routing config
-        let routes:Routes = this.router.config;
+        let routes:Routes = this.inputRouter.config;
 
         // scan the routing config
         while (routeLevel < path.length)
