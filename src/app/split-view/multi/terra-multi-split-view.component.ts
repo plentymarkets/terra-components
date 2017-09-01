@@ -15,7 +15,7 @@ import {
     Router,
     Routes
 } from '@angular/router';
-import * as AngularRouter from '@angular/router';
+import * as AngularRouter from '@angular/router'; // Required to use both Angular Router Events and ES6 Events
 @Component({
                selector: 'terra-multi-split-view',
                template: require('./terra-multi-split-view.component.html'),
