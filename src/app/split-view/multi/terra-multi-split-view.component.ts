@@ -10,6 +10,12 @@ import { isNullOrUndefined } from 'util';
 import { TerraMultiSplitViewConfig } from './data/terra-multi-split-view.config';
 import { TerraMultiSplitViewDetail } from './data/terra-multi-split-view-detail';
 import { TerraMultiSplitViewInterface } from './data/terra-multi-split-view.interface';
+import {
+    NavigationStart,
+    Router,
+    Routes
+} from '@angular/router';
+import * as AngularRouter from '@angular/router'; // Required to use both Angular Router Events and ES6 Events
 
 @Component({
                selector: 'terra-multi-split-view',
@@ -20,6 +26,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {
     @Input() inputConfig:TerraMultiSplitViewConfig;
     @Input() inputShowBreadcrumbs:boolean;
+    @Input() inputRouter:Router;     // to catch inputRouter events
+    @Input() inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
 
     @HostListener('window:resize')
     onWindowResize()
@@ -35,7 +43,10 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 this.resizeTimeout = setTimeout((
                     () =>
                     {
-                        this.updateViewport(this.inputConfig.currentSelectedView);
+                        if (this.inputConfig.currentSelectedView)
+                        {
+                            this.updateViewport(this.inputConfig.currentSelectedView);
+                        }
                     }
                 ).bind(this), 500);
             }
@@ -63,6 +74,22 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     ngOnInit()
     {
+        // catch routing events, but only those that select the tab where the split view is instantiated
+        if (!isNullOrUndefined(this.inputRouter)
+            && !isNullOrUndefined(this.inputComponentRoute))
+        {
+            // check if the given route exists in the route config
+            if(this.routeExists(this.inputComponentRoute))
+            {
+                // register event listener
+                this.inputRouter.events
+                    .filter((event:AngularRouter.Event) => event instanceof NavigationStart && event.url === this.inputComponentRoute)
+                    .subscribe((path:NavigationStart) => {
+                        this.updateViewport(this.inputConfig.currentSelectedView, true);
+                    });
+            }
+        }
+
         this.inputConfig.addViewEventEmitter.subscribe(
             (value:TerraMultiSplitViewInterface) =>
             {
@@ -463,5 +490,42 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
         // remove the selected view
         this.inputConfig.removeView(view);
+    }
+
+    private routeExists(route:string):boolean
+    {
+        // get the partials of the route
+        let path:Array<string> = route.split('/');
+
+        // start at element 1 not 0, since the route starts with a separator
+        let routeLevel:number = 1;
+
+        // get the routing config
+        let routes:Routes = this.inputRouter.config;
+
+        // scan the routing config
+        while (routeLevel < path.length)
+        {
+            if(isNullOrUndefined(routes))
+            {
+                return false;
+            }
+
+            // search the array for the route partial
+            let foundRoute = routes.find((route) => route.path === path[routeLevel]);
+            if(foundRoute) // the route partial is defined?
+            {
+                // into deep
+                routeLevel++;
+                routes = foundRoute.children;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // if the while loop ends, the route exists
+        return true;
     }
 }
