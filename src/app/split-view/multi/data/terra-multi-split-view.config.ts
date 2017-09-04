@@ -13,6 +13,11 @@ export class TerraMultiSplitViewConfig
 
     public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
     {
+        if (view.parameter)
+        {
+            console.warn('Property \'parameter\' is deprecated. It will be removed in one of the upcoming releases. Please use \'inputs\' instead.')
+        }
+
         // TODO: setTimeout can be removed, if it is guaranteed that change detection is fired when adding a new view
         setTimeout(
             () =>
