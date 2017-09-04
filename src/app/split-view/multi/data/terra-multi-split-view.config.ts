@@ -46,8 +46,8 @@ export class TerraMultiSplitViewConfig
                         {
                             // TODO very ugly way, maybe add an option to use an id?
                             let hasSameParameter:boolean =
-                                JSON.stringify(child.parameter) === JSON.stringify(view.parameter)
-                                || JSON.stringify(child.inputs) === JSON.stringify(view.inputs);
+                                (child.parameter && view.parameter && JSON.stringify(child.parameter) === JSON.stringify(view.parameter))
+                                || (child.inputs && view.inputs && JSON.stringify(child.inputs) === JSON.stringify(view.inputs));
 
                             if(hasSameParameter && child.module.ngModule == view.module.ngModule)
                             {
