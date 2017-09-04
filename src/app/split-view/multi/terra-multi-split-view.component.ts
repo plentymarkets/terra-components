@@ -43,7 +43,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 this.resizeTimeout = setTimeout((
                     () =>
                     {
-                        this.updateViewport(this.inputConfig.currentSelectedView);
+                        this.updateViewport(this.inputConfig.currentSelectedView, true);
                     }
                 ).bind(this), 500);
             }
