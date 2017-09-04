@@ -67,6 +67,7 @@ import { CommonModule } from '@angular/common';
 import { TerraDynamicComponentLoaderComponent } from './dynamic-component-loader/terra-dynamic-component-loader.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TerraColorPickerComponent } from "./forms/input/color-picker/terra-color-picker.component";
+import { TerraInteractModule } from "./interactables/interact.module";
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -272,7 +273,8 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   ButtonsModule.forRoot(),
                   TranslationModule.forRoot(),
                   MyDatePickerModule,
-                  AceEditorModule
+                  AceEditorModule,
+                  TerraInteractModule
               ],
               providers:       [
                   COMPILER_PROVIDERS,
