@@ -23,8 +23,9 @@
 `inputIsCollapsed` and `inputIsCollapsedChange` to bind collapsed state from parent component.
 
 ### Bug Fixes
-* **terra-multi-split-view** 
- 	- fixed bug when removing a view that is not selected (vertically)
+* **terra-multi-split-view**
+	- fixed bug when removing a view that is not selected (vertically)
+	- removed vertical animations for right positioning in plugins
  	- fixed problems with updating the viewport after resizing
 
 <a name="1.3.2"></a>
