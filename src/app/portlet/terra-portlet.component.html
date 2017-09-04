@@ -1,8 +1,9 @@
-<div class="portlet">
-    <div class="portlet_head">
-        {{inputPortletHeader}}
+<div class="portlet" [class.collapsable]="inputIsCollapsable">
+    <div class="portlet_head" (click)="toggleCollapse()">
+        <span>{{inputPortletHeader}}</span>
+        <span class="icon-collapse_down" [class.rotated]="inputCollapsed" *ngIf="inputIsCollapsable"></span>
     </div>
-    <div class="portlet_body">
+    <div class="portlet_body" [@collapsedState]="collapsedState">
         <ng-content></ng-content>
     </div>
 </div>
