@@ -1,9 +1,63 @@
-<a name="X.X.X"></a>
-# X.X.X (XX.XX.XXXX)
+<a name="#"></a>
+# Unreleased 
+
+### Feature
+* **terra-multi-split-view** 
+	- added function to close selected views via dropdown
+	- added new inputs _inputRouter_ and _inputComponentRoute_ to catch routing events and to access the routing config
+	- added _skipAnimation_ option to _updateViewport_ method to disable animation when changing the selected view
+* **terra-base-toolbar** Added input 'inputIsSticky' to set the toolbar sticky at top of containing container
+* **terra-color-picker** Added new component for selecting colors based on HTML5 color picker.  
+* **terra-portlet** Added input-property `inputIsCollapsable` to make portlets collapsable and properties 
+`inputIsCollapsed` and `inputIsCollapsedChange` to bind collapsed state from parent component.
+	
+### Bug Fixes
+* **terra-multi-split-view** 
+ 	- fixed bug when removing a view that is not selected (vertically)
+ 	- fixed problems with updating the viewport after resizing
+
+<a name="1.3.1"></a>
+# 1.3.1 (03.08.2017)
+### Feature
+* **terra-checkbox** added isValid property for Validation purposes
+* **terra-multi-split-view** 
+	- partially rebuild breadcrumbs on vertical selection changes; 
+	- added possibility to resize a view manually, after it has already been added to the split-view;
+	- added new interface property 'focusedWidth' to be able to automatically resize a view when it's focused.
+* **terra-info-box** restyled
+
+### Feature
+* **terra-suggestion-box** Allow html parsing
+
+### Bug Fixes
+* **terra-suggestion-box** Replace deprecated tooltipReplacement
+* **terra-tag** fix tag right margin in tag list
+* **terra-loading-spinner** fix bug with infinite loading animation
+* **terra-multi-split-view** 
+	- adjusted sliding animations; 
+	- fixed rendering of multiple views; 
+
+<a name="1.2.3"></a>
+# 1.2.3 (11.07.2017)
+
+### Feature
+* **terra-multi-split-view** New splitview with vertical layers
+* **terra-split-view** Various interface changes
+* **terra-dynamic-module-loader** Added commentary
+
+### Bug Fixes
+* **ExpressionChangedAfterItHasBeenCheckedError** no more unnecessary change detection
+
+<a name="1.2.2"></a>
+# 1.2.2 (27.06.2017)
 
 ### Feature
 * **terra-base-service** Generally catch exceptions that are returned from a rest call and show corresponding alert. The programmer is also still able to specify a custom exception handling function.
 * **terra-text-input** Added input 'inputIsPassword'. set true to substitute password with asterisks.
+* **terra-button** Changed style for context menu
+
+### Bug Fixes
+* **terra-base-service** Fixed error handling for http statuscode 401
 
 <a name="1.2.1"></a>
 # 1.2.1 (30.05.2017)
@@ -39,6 +93,12 @@
 * **terra-base-service** Fixed empty response handling
 
 <a name="1.1.0"></a>
+# 1.1.1 (08.05.2017)
+
+### Bug Fixes
+* **terra-button** changed colors and minor pseudo-class fixes
+
+<a name="1.1.0"></a>
 # 1.1.0 (05.05.2017)
 
 ### Feature
@@ -62,6 +122,12 @@
 * **terra-split-view** Fixed CSS for split view showing in an overlay.
 * **terra-data-table** Tooltip changes for cells and header.
 * **terra-simple-table** Tooltip changes for cells and header.
+
+<a name="1.0.3"></a>
+# 1.0.3 (28.04.2017)
+
+### Feature
+* **terra-navigator** Add double column navigation
 
 <a name="1.0.2"></a>
 # 1.0.2 (27.04.2017)

@@ -13,12 +13,12 @@ export class TerraIndicatorComponent implements OnInit
 {
     @Input() inputLabel:string;
     @Input() inputType:string;
-    
+
     constructor()
     {
         this.inputType = 'default';
     }
-    
+
     ngOnInit()
     {
     }

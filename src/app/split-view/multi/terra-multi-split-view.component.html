@@ -1,0 +1,46 @@
+<script src="terra-multi-split-view.component.ts"></script>
+<terra-base-toolbar *ngIf="inputShowBreadcrumbs">
+    <ul class="terra-breadcrumbs">
+        <ng-template ngFor let-module [ngForOf]="modules" let-index="index">
+            <li class="module{{index}}"
+                (click)="setSelectedView(module.currentSelectedView)">
+                <div class="{{ module.identifier }}"
+                     [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
+                    <span class="ellipsis">{{module.currentSelectedView.name}}</span>
+                    <a class="caret" *ngIf="module.views.length > 1">
+                        <ul class="context-menu">
+                            <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
+                                <li class="dropdown-list-name">
+                                    <a class="{{ view.mainComponentName + '_' + i }} "
+                                       (click)="setSelectedView(view)">
+                                        <span>{{ view.name }}</span>
+                                    </a>
+                                    <span class="close-contact-icon icon-close" (click)="removeView(view,$event)"></span>
+                                </li>
+                            </ng-template>
+                        </ul>
+                    </a>
+                </div>
+            </li>
+        </ng-template>
+    </ul>
+</terra-base-toolbar>
+<div *ngIf="modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
+    <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first" let-index="index">
+        <div class="view {{ module.width }}" id="module{{index}}" [ngClass]="{'hasDivider': !last, 'first': first, 'last': last}">
+            <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
+                <div *ngIf="module.currentSelectedView === view" class="{{ view.mainComponentName + '_' + i}} slideDown">
+                    <div>
+                        <terra-dynamic-module-loader
+                            [inputModule]="view.module"
+                            [inputParameter]="view.parameter"
+                            [inputView]="view"
+                            [inputMainComponentName]="view.mainComponentName">
+                        </terra-dynamic-module-loader>
+                    </div>
+                </div>
+            </ng-template>
+            <div class="divider" *ngIf="!last"></div>
+        </div>
+    </ng-template>
+</div>

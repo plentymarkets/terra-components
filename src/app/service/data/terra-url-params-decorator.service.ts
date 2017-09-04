@@ -19,7 +19,7 @@ export class TerraUrlParamsDecorator
         {
             urlSearchParams.set('page', terraPagerParameter.page.toString());
         }
-        
+
         if(terraPagerParameter.itemsPerPage)
         {
             urlSearchParams.set('itemsPerPage', terraPagerParameter.itemsPerPage.toString());

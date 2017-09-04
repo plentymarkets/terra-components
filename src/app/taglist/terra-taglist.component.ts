@@ -13,11 +13,11 @@ import { TerraTagComponent } from '../tag/terra-tag.component';
 export class TerraTaglistComponent implements OnInit
 {
     @Input() inputTagList:Array<TerraTagComponent>;
-    
+
     constructor()
     {
     }
-    
+
     ngOnInit()
     {
     }

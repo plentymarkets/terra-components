@@ -22,7 +22,6 @@ export class TerraBaseService
 {
     private _headers:Headers;
     private _url:string;
-
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
@@ -31,15 +30,7 @@ export class TerraBaseService
     {
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.setAuthorization();
-
-        if(process.env.ENV === 'production')
-        {
-            this.url = _baseUrl;
-        }
-        else
-        {
-            this.url = 'http://master.plentymarkets.com' + _baseUrl;
-        }
+        this.url = _baseUrl;
     }
 
     get http():Http
@@ -112,7 +103,23 @@ export class TerraBaseService
                     this.handleException(error);
                 }
 
-                if(error.status == 401)
+                // START Very unclean workaround! Normally we should get a 403 status code as response
+                // when user has no permission
+                let errorMessage:string = error.json().error.message;
+                let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage();
+
+                if(error.status == 401 && errorMessage === "This action is unauthorized.")
+                {
+                    this._alert
+                        .addAlert({
+                                      msg:              missingUserPermissionAlertMessage,
+                                      closable:         true,
+                                      type:             'danger',
+                                      dismissOnTimeout: 0
+                                  });
+                }
+                // END Very unclean workaround!
+                else if(error.status == 401)
                 {
                     let event:CustomEvent = new CustomEvent('login');
                     //Workaround for plugins in Angular (loaded via iFrame)
@@ -230,5 +237,20 @@ export class TerraBaseService
                   });
 
         return searchParams;
+    }
+
+    private getMissingUserPermissionAlertMessage()
+    {
+        //START workaround because we do not have a real translation solution in terra components
+        let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
+        if(langInLocalStorage === "de")
+        {
+            return "Fehlende Berechtigungen";
+        }
+        else
+        {
+            return "Missing permissions";
+        }
+        //END workaround
     }
 }

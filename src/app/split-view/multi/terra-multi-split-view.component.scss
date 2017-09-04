@@ -1,0 +1,334 @@
+.terra-breadcrumbs
+{
+    list-style: none;
+    //overflow: hidden;
+    padding: 0;
+    margin: 0;
+    height: 33px;
+    display: flex;
+}
+
+.terra-breadcrumbs li
+{
+    float: left;
+    cursor: pointer;
+}
+
+.terra-breadcrumbs li div
+{
+    text-decoration: none;
+    padding: 6px 16px;
+    background: $gray-light-3;
+    position: relative;
+    display: block;
+    float: left;
+    color: $gray-dark;
+    white-space: nowrap;
+    
+    &:hover
+    {
+        background: $brand-primary;
+    }
+}
+
+.terra-breadcrumbs li div.active
+{
+    color: #FFFFFF;
+    background: $brand-primary-darker;
+    cursor: default;
+}
+
+.terra-breadcrumbs li div .caret
+{
+    margin-right: -16px;
+    padding: 8px 0;
+}
+
+.terra-breadcrumbs li div .context-menu
+{
+    top: 33px;
+}
+
+.terra-breadcrumbs .context-menu li
+{
+    float: none;
+}
+
+.terra-breadcrumbs li div:not(.active):hover
+{
+    color: $white;
+    background-color: $brand-primary !important;
+}
+
+.terra-breadcrumbs li:first-child div
+{
+    padding-left: 16px;
+}
+
+.side-scroller
+{
+    position: relative;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+    white-space: nowrap;
+}
+
+.side-scroller.offset
+{
+    height: calc(100% - 50px) !important;
+}
+
+.side-scroller > *
+{
+    display: inline-block;
+}
+
+.divider
+{
+    width: 1px;
+    height: 200% !important;
+    background-color: $gray-light-2-half;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/deep/
+{
+    terra-split-view terra-split-view .divider
+    {
+        display: none !important;
+    }
+}
+
+.view
+{
+    vertical-align: top;
+    height: 100%;
+    overflow: hidden;
+    white-space: normal;
+    position: relative;
+    padding: 0;
+}
+
+.view > div
+{
+    height: 100%;
+    min-height: 100%;
+    overflow-y: auto;
+}
+
+.view.hasDivider
+{
+    padding: 0 5px 0 4px;
+    margin-right: -4px;
+}
+
+/deep/
+{
+    terra-split-view terra-split-view .hasDivider
+    {
+        padding: 0 !important;
+    }
+}
+
+.view.first
+{
+    padding-left: 0 !important;
+}
+
+.view.last
+{
+    padding: 0 0 0 4px;
+}
+
+/deep/
+{
+    terra-split-view terra-split-view .view.last
+    {
+        padding: 0 !important;
+    }
+}
+
+// TODO: @vwiebe, refactoring
+
+/deep/ terra-split-view .modal-content terra-split-view .hasDivider
+{
+    padding: 0 3px 0 4px !important;
+}
+
+/deep/ terra-split-view .modal-content terra-split-view .view.last:not(.first)
+{
+    padding: 0 0 0 4px !important;
+}
+
+/deep/ terra-split-view .modal-content terra-split-view .divider
+{
+    display: block !important;
+}
+
+/deep/ .hasSplitView .modal-body
+{
+    height: 525px;
+}
+
+.context-menu
+{
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    transition-delay: 0.2s;
+    padding: 5px 0px;
+    background-color: $brand-primary-darker;
+    
+    border-left: 1px solid $brand-primary-darker;
+    border-right: 1px solid $brand-primary-darker;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    
+    top: 29px;
+    right: 0px;
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    
+    text-align: left;
+    z-index: 99999;
+    a
+    {
+        cursor: pointer;
+        background: $gray-light-2-half;
+        padding: 4px 12px;
+        display: block;
+        text-decoration: none;
+        background: $brand-primary-darker;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        &:hover
+        {
+            background-color: #F5F5F5;
+            color: $brand-primary-darker;
+        }
+        span
+        {
+            vertical-align: -1px;
+        }
+    }
+}
+
+.caret
+{
+    padding: 6px 0px 6px 0px;
+    overflow: hidden;
+    &::before
+    {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 7px;
+        margin-right: 7px;
+        vertical-align: middle;
+        content: "";
+        border-top: 0.3em solid;
+        border-right: 0.3em solid transparent;
+        border-left: 0.3em solid transparent;
+        overflow: hidden;
+    }
+    
+    &:hover
+    {
+        background-color: $brand-primary-darker;
+        .context-menu
+        {
+            display: block;
+            visibility: visible;
+            opacity: 1;
+            transition: all 0.2s ease;
+            transition-delay: 0.2s;
+        }
+    }
+}
+
+.slideDown
+{
+    height: 0px;
+    min-height: 0px !important;
+    animation-name: slideDownAnimation;
+    animation-duration: 0.5s;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes slideDownAnimation
+{
+    from
+    {
+        height: 0px;
+    }
+    to
+    {
+        height: 100%;
+    }
+}
+
+.slideDown > div
+{
+    height: calc(100vh - 138px);
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.ellipsis
+{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    max-width: 150px;
+    display: inline-block;
+}
+
+.close-contact-icon
+{
+    position: absolute;
+    right: 2px;
+    margin-left: 6px;
+    display: inline-block !important;
+    font-size: 1.0em;
+    color: $white;
+    padding: 10px 1px;
+    opacity: 1;
+    text-shadow: none;
+    font-weight: bold;
+    &:before
+    {
+        padding: 10px 1px;
+    }
+    &:hover
+    {
+        color: $brand-secondary;
+        opacity: 1;
+    }
+}
+
+.dropdown-list-name
+{
+    width: 150px;
+}
+
+.dropdown-list-name a
+{
+    display: inline-block;
+    width: 100%;
+    text-overflow: ellipsis;
+    &:hover ~ .close-contact-icon
+    {
+        color: $brand-primary-darker;
+    }
+}
+

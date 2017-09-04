@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { isNullOrUndefined } from 'util';
 
 //TODO in template input mit terra-input ersetzen
 @Component({
@@ -25,9 +26,6 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
                        multi:       true
                    }
                ],
-               host:            {
-                   '(document:click)': 'clickedOutside($event)',
-               },
                changeDetection: ChangeDetectionStrategy.OnPush
            })
 
@@ -41,7 +39,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     @Input() inputListBoxValues:Array<TerraSuggestionBoxValueInterface>;
     @Output() outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
     @Output() inputSelectedValueChange = new EventEmitter<TerraSuggestionBoxValueInterface>();
-    
+
     /**
      * @deprecated
      * @param value
@@ -65,12 +63,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             setTimeout(() => this.inputSelectedValueChange.emit(this._selectedValue.value), 0);
         }
     }
-    
+
     get inputSelectedValue():number | string
     {
         return this._selectedValue.value;
     }
-    
+
     private _selectedValue:TerraSuggestionBoxValueInterface;
     private _currentValue:TerraSuggestionBoxValueInterface;
     private tempInputListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
@@ -80,7 +78,8 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     private _regex:string;
     private _isInit:boolean;
     private _value:number | string;
-    
+    private clickListener:(event:Event) => void;
+
     /**
      *
      * @param elementRef
@@ -104,14 +103,19 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         {
             this.inputListBoxValues = [];
         }
+
+        this.clickListener = (event) =>
+        {
+            this.clickedOutside(event);
+        };
     }
-    
+
     ngOnInit()
     {
         if(this.inputListBoxValues && this.inputListBoxValues.length > 0)
         {
             let foundItem = false;
-            
+
             for(let i = 0; i < this.inputListBoxValues.length; i++)
             {
                 if(this.inputListBoxValues[i].active == true)
@@ -120,18 +124,18 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                     foundItem = true;
                 }
             }
-            
+
             if(foundItem == false)
             {
                 //this.select(0);
             }
         }
-        
+
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
         this._isInit = true;
     }
-    
+
     /**
      *
      * @param changes
@@ -141,7 +145,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         if(this._isInit == true && changes["inputListBoxValues"] && changes["inputListBoxValues"].currentValue.length > 0)
         {
             setTimeout(() => this.inputSelectedValue = changes["inputListBoxValues"].currentValue[0].value, 0);
-            
+
             changes["inputListBoxValues"].currentValue
                                          .forEach((item:TerraSuggestionBoxValueInterface) =>
                                                   {
@@ -152,44 +156,40 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                                                   });
         }
     }
-    
-    /**
-     *
-     * Two way data binding by ngModel
-     */
+
     private onTouchedCallback:() => void = () =>
     {
     };
-    
+
     private onChangeCallback:(_:any) => void = (_) =>
     {
     };
-    
+
     public registerOnChange(fn:any):void
     {
         this.onChangeCallback = fn;
     }
-    
+
     public registerOnTouched(fn:any):void
     {
         this.onTouchedCallback = fn;
     }
-    
+
     public writeValue(value:any):void
     {
         this.value = value;
     }
-    
+
     public get value():any
     {
         return this._value;
     }
-    
+
     public set value(value:any)
     {
         this._value = value;
-        
-        if(value !== undefined && value !== null)
+
+        if(!isNullOrUndefined(value))
         {
             this.inputListBoxValues
                 .forEach((item:TerraSuggestionBoxValueInterface) =>
@@ -205,120 +205,97 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this._selectedValue = this.inputListBoxValues[0];
         }
     }
-    
-    /**
-     *
-     * @param event
-     */
+
+    public set toggleOpen(value:boolean)
+    {
+        if(this._toggleOpen !== value && value == true)
+        {
+            document.addEventListener('click', this.clickListener);
+        }
+        else if(this._toggleOpen !== value && value == false)
+        {
+            document.removeEventListener('click', this.clickListener);
+        }
+
+        this._toggleOpen = value;
+    }
+
+    public get toggleOpen():boolean
+    {
+        return this._toggleOpen;
+    }
+
     private clickedOutside(event):void
     {
         if(!this.elementRef.nativeElement.contains(event.target))
         {
-            this._toggleOpen = false;
+            this.toggleOpen = false;
         }
+
     }
-    
-    /**
-     *
-     * @param value
-     */
+
     private select(value:TerraSuggestionBoxValueInterface):void
     {
         this._selectedValue = value;
         this.onTouchedCallback();
         this.onChangeCallback(value.value);
         this.outputValueChanged.emit(value);
-        this._toggleOpen = false;
+        this.toggleOpen = false;
     }
-    
-    /**
-     *
-     * @returns {boolean}
-     */
+
     public get isDisabled():boolean
     {
         return this.inputDisabled;
     }
-    
-    /**
-     *
-     * @param value
-     */
+
     public set isDisabled(value:boolean)
     {
         this.inputDisabled = value;
     }
-    
-    /**
-     *
-     * @returns {boolean}
-     */
+
     public get isValid():boolean
     {
         return this._isValid;
     }
-    
-    /**
-     *
-     * @param isValid
-     */
+
     public set isValid(isValid:boolean)
     {
         this._isValid = isValid;
     }
-    
-    /**
-     *
-     * @returns {string}
-     */
+
+
     public get regex():string
     {
         return this._regex;
     }
-    
-    /**
-     *
-     * @param regex
-     */
+
     public set regex(regex:string)
     {
         this._regex = regex;
     }
-    
-    /**
-     *
-     * @param
-     */
+
     public onFocus()
     {
-        this._toggleOpen = true;
+        this.toggleOpen = true;
     }
-    
-    /**
-     *
-     * @param
-     */
+
     public onBlur()
     {
-        this._toggleOpen = false;
+        this.toggleOpen = false;
     }
-    
-    /**
-     *
-     * @param
-     */
+
     public onChange()
     {
         let currentList = [];
         let searchString = this._currentValue.caption;
-        
+
         if(searchString)
         {
             if(this.tempInputListBoxValues != null && this.tempInputListBoxValues.length == 0)
             {
                 this.tempInputListBoxValues = this.inputListBoxValues;
             }
-            
+
             if(this._currentValue.caption.length >= 3)
             {
                 for(let value in this.tempInputListBoxValues)
@@ -328,14 +305,14 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                         currentList.push(this.tempInputListBoxValues[value]);
                     }
                 }
-                
+
                 this.inputListBoxValues = currentList;
             }
             else
             {
                 this.inputListBoxValues = this.tempInputListBoxValues;
             }
-            
+
             this.value = this._currentValue;
         }
         else
@@ -343,18 +320,14 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this.value = null;
             this.onTouchedCallback();
             this.onChangeCallback(null);
-            this._toggleOpen = false;
+            this.toggleOpen = false;
         }
     }
-    
-    /**
-     *
-     * @param
-     */
+
     public resetComponentValue():void
     {
         this.value = null;
-        
+
         this._selectedValue =
             {
                 value:   '',

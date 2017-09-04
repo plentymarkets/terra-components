@@ -22,17 +22,17 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 export class TerraDoubleInputComponent extends TerraInputComponent
 {
     @Input() inputIsPriceInput:boolean;
-    
+
     constructor()
     {
         super(TerraRegex.DOUBLE);
     }
-    
+
     @Input()
     public set inputValue(v:number)
     {
         console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-        
+
         this.value = v;
     }
 }

@@ -1,17 +1,23 @@
 .tag
 {
-    background-color: $gray-light-3;
+    background-color: $gray-light-2;
     border-color: transparent;
     -moz-border-radius: $border-radius;
     -webkit-border-radius: $border-radius;
     border-radius: $border-radius;
     display: flex;
     padding: 0.25rem 0.5rem;
-    margin: 0.04rem 0.04rem;
-    color: #333333;
+    color: $white;
+    font-weight: normal;
+    margin-top: 7px;
 }
 
 .isTagged
 {
     color: $black;
+}
+
+/deep/ terra-tag:not(:last-child)
+{
+    margin-right: 2px;
 }

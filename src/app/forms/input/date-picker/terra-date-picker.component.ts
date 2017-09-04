@@ -39,14 +39,14 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     @Input() inputIsDisabled:boolean;
     @Input() inputOpenCalendarTop:boolean;
     @Input() inputDisplayDateFormat:string;
-    
+
     @ViewChild('viewChildMyDatePicker') viewChildMyDatePicker:MyDatePicker;
-    
+
     private _value:IMyDateModel;
     private _myDateModel:IMyDateModel;
     private _currentLocale:string;
     private _datePickerOptions:IMyOptions;
-    
+
     constructor()
     {
         this.inputIsRequired = false;
@@ -54,15 +54,15 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.inputIsValid = true;
         this.inputOpenCalendarTop = false;
         this.inputDisplayDateFormat = "dd.mm.yyyy";
-        
+
         this._currentLocale = localStorage.getItem('plentymarkets_lang_');
     }
-    
+
     ngOnChanges()
     {
         this.updateDatePickerOptions();
     }
-    
+
     private updateDatePickerOptions():void
     {
         this._datePickerOptions = {
@@ -76,31 +76,31 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
             dateFormat:               this.inputDisplayDateFormat,
         };
     }
-    
+
     private onTouchedCallback:() => void = () =>
     {
     };
-    
+
     private onChangeCallback:(_:any) => void = (_) =>
     {
     };
-    
+
     public registerOnChange(fn:any):void
     {
         this.onChangeCallback = fn;
     }
-    
+
     public registerOnTouched(fn:any):void
     {
         this.onTouchedCallback = fn;
     }
-    
+
     public writeValue(value:any):void
     {
-        if(value !== null && value !== undefined && typeof (value) === "string" && isNaN(Date.parse(value)) === false)
+        if(value != null && value !== undefined && typeof (value) === "string" && isNaN(Date.parse(value)) === false)
         {
             let newDate = new Date(value);
-            
+
             this.value = {
                 date:      {
                     year:  newDate.getFullYear(),
@@ -113,53 +113,53 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
             };
         }
     }
-    
+
     public get value():IMyDateModel
     {
         return this._value;
     }
-    
+
     public set value(value:IMyDateModel)
     {
-        if(value !== null && value !== undefined && typeof(value) === "object")
+        if(value != null && value !== undefined && typeof(value) === "object")
         {
             this._value = value;
-            
+
             this.onTouchedCallback();
             this.onChangeCallback(moment(value.jsdate).format());
         }
         else
         {
             this._value = null;
-            
+
             this.onTouchedCallback();
             this.onChangeCallback(null);
         }
     }
-    
+
     public get myDateModel():IMyDateModel
     {
         return this._myDateModel;
     }
-    
+
     public set myDateModel(value:IMyDateModel)
     {
         this._myDateModel = value;
-        
+
         if(this.myDateModel.epoc === 0)
         {
             this.myDateModel.date = null;
         }
-        
+
         this.onTouchedCallback();
         this.onChangeCallback(this.myDateModel.epoc);
     }
-    
+
     public onDateChanged(event:IMyDateModel):void
     {
         this.myDateModel = event;
     }
-    
+
     public clearDate():void
     {
         this.viewChildMyDatePicker.clearDate();
