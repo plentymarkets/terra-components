@@ -7,7 +7,10 @@
 	- added new inputs _inputRouter_ and _inputComponentRoute_ to catch routing events and to access the routing config
 	- added _skipAnimation_ option to _updateViewport_ method to disable animation when changing the selected view
 * **terra-base-toolbar** Added input 'inputIsSticky' to set the toolbar sticky at top of containing container
-
+* **terra-color-picker** Added new component for selecting colors based on HTML5 color picker.  
+* **terra-portlet** Added input-property `inputIsCollapsable` to make portlets collapsable and properties 
+`inputIsCollapsed` and `inputIsCollapsedChange` to bind collapsed state from parent component.
+	
 ### Bug Fixes
 * **terra-multi-split-view** 
  	- fixed bug when removing a view that is not selected (vertically)
