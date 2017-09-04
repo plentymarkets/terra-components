@@ -12,7 +12,6 @@ import { TerraBaseParameterInterface } from '../data/terra-base-parameter.interf
 import { TerraAlertComponent } from '../alert/terra-alert.component';
 import { Exception } from './data/exception.interface';
 import { isNullOrUndefined } from 'util';
-import { lang } from 'moment';
 
 /**
  * @author mfrank
