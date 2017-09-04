@@ -10,6 +10,8 @@
 * **terra-color-picker** Added new component for selecting colors based on HTML5 color picker.  
 * **terra-portlet** Added input-property `inputIsCollapsable` to make portlets collapsable and properties 
 `inputIsCollapsed` and `inputIsCollapsedChange` to bind collapsed state from parent component.
+* **terra-base-service** Generally catch exceptions that are returned from a rest call and show corresponding alert. The programmer is also still able to specify a custom exception handling function.
+
 	
 ### Bug Fixes
 * **terra-multi-split-view** 
@@ -52,7 +54,6 @@
 # 1.2.2 (27.06.2017)
 
 ### Feature
-* **terra-base-service** Generally catch exceptions that are returned from a rest call and show corresponding alert. The programmer is also still able to specify a custom exception handling function.
 * **terra-text-input** Added input 'inputIsPassword'. set true to substitute password with asterisks.
 * **terra-button** Changed style for context menu
 
