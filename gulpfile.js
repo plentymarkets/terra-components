@@ -77,12 +77,12 @@ gulp.task('build-local', function (callback)
 gulp.task('gitInit', function ()
 {
     git.init(function (err)
-             {
-                 if(err)
-                 {
-                     throw err;
-                 }
-             });
+    {
+        if(err)
+        {
+            throw err;
+        }
+    });
 });
 
 //fetch data
@@ -105,12 +105,15 @@ gulp.task('changeVersion', function ()
     console.log('-------------------------------------------------');
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
 
-    json.version = json.version.replace('-'+subversion, '');
+    json.version = json.version.replace('-' + subversion, '');
 
     //possible values are: patch, minor, major
     json.version = semver.inc(json.version, level);
 
-    json.version += '-' + subversion;
+    if(subversion !== '')
+    {
+        json.version += '-' + subversion;
+    }
 
     version = json.version;
 
@@ -124,8 +127,8 @@ gulp.task('changeVersion', function ()
 gulp.task('gitCommit', function ()
 {
     return gulp.src('./*')
-               .pipe(gitignore())
-               .pipe(git.commit('update version to ' + version));
+        .pipe(gitignore())
+        .pipe(git.commit('update version to ' + version));
 });
 
 gulp.task('gitPull', function ()
@@ -166,45 +169,45 @@ gulp.task('compile-ts', function ()
     ];
 
     var tsResult = gulp.src(sourceTsFiles)
-                       .pipe(sourcemaps.init())
-                       .pipe(tsProject());
+        .pipe(sourcemaps.init())
+        .pipe(tsProject());
 
     return merge([
-                     tsResult.dts.pipe(gulp.dest(config.tsOutputPath)),
-                     tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.tsOutputPath))
-                 ]);
+        tsResult.dts.pipe(gulp.dest(config.tsOutputPath)),
+        tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.tsOutputPath))
+    ]);
 });
 
 //copy files to dist
 gulp.task('copy-files', function ()
 {
     return gulp.src(['package.json',
-                     'README.md',
-                     config.allCSS,
-                     config.allSCSS,
-                     config.allHTML])
-               .pipe(gulp.dest(config.tsOutputPath));
+        'README.md',
+        config.allCSS,
+        config.allSCSS,
+        config.allHTML])
+        .pipe(gulp.dest(config.tsOutputPath));
 });
 
 //copy fonts to dist
 gulp.task('copy-fonts', function ()
 {
     return gulp.src(config.allFonts)
-               .pipe(gulp.dest(config.fontsOutputPath));
+        .pipe(gulp.dest(config.fontsOutputPath));
 });
 
 //copy images to dist
 gulp.task('copy-images', function ()
 {
     return gulp.src(config.allImages)
-               .pipe(gulp.dest(config.imagesOutputPath));
+        .pipe(gulp.dest(config.imagesOutputPath));
 });
 
 //copy lang to dist
 gulp.task('copy-lang', function ()
 {
     return gulp.src(config.allLang)
-               .pipe(gulp.dest(config.langOutputPath));
+        .pipe(gulp.dest(config.langOutputPath));
 });
 
 //copy files from dist to defined directory
@@ -212,11 +215,13 @@ gulp.task('copy-to-target', function ()
 {
     var target = argv.target || '/workspace/terra';
     return gulp.src('dist/**/*.*')
-               .pipe(gulp.dest('../plugin-payment-ebics-ui/node_modules/@plentymarkets/terra-components/'));
+        .pipe(
+            gulp.dest( path.join( target, '/node_modules/@plentymarkets/terra-components/' ) )
+        );
 });
 
 //publish to npm
 gulp.task('publish', shell.task([
-                                    'npm publish dist'
-                                ])
+        'npm publish dist'
+    ])
 );

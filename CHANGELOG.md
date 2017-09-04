@@ -1,5 +1,12 @@
-<a name="#"></a>
-# Unreleased 
+<a name="1.4.1"></a>
+# 1.4.1 (04.09.2017)
+
+### Feature
+
+* **terra-base-service** Generally catch exceptions that are returned from a rest call and show corresponding alert. The programmer is also still able to specify a custom exception handling function.
+
+<a name="1.4.0"></a>
+# 1.4.0 (04.09.2017) 
 
 ### Feature
 * **terra-multi-split-view** 
@@ -10,17 +17,19 @@
 * **terra-color-picker** Added new component for selecting colors based on HTML5 color picker.  
 * **terra-portlet** Added input-property `inputIsCollapsable` to make portlets collapsable and properties 
 `inputIsCollapsed` and `inputIsCollapsedChange` to bind collapsed state from parent component.
-	
+
 ### Bug Fixes
 * **terra-multi-split-view** 
  	- fixed bug when removing a view that is not selected (vertically)
  	- fixed problems with updating the viewport after resizing
 
-<a name="1.3.1"></a>
-# 1.3.1 (03.08.2017)
+<a name="1.3.2"></a>
+# 1.3.2 (03.08.2017)
 ### Feature
 * **terra-checkbox** added isValid property for Validation purposes
 * **terra-multi-split-view** 
+	- adjusted sliding animations; 
+	- fixed rendering of multiple views; 
 	- partially rebuild breadcrumbs on vertical selection changes; 
 	- added possibility to resize a view manually, after it has already been added to the split-view;
 	- added new interface property 'focusedWidth' to be able to automatically resize a view when it's focused.

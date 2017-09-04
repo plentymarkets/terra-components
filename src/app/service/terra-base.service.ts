@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../data/terra-base-parameter.interface';
 import { TerraAlertComponent } from '../alert/terra-alert.component';
+import { Exception } from './data/exception.interface';
 import { isNullOrUndefined } from 'util';
 
 /**
@@ -58,8 +59,7 @@ export class TerraBaseService
 
     protected setToHeader(key:string, value:string):void
     {
-        this.headers.set(key,
-                         value);
+        this.headers.set(key, value);
     }
 
     protected deleteFromHeader(key:string):void
@@ -75,7 +75,7 @@ export class TerraBaseService
         }
     }
 
-    protected mapRequest(request:Observable<Response>, isPdf?:boolean):Observable<any>
+    protected mapRequest(request:Observable<Response>, err?:(error:any) => void, isPdf?:boolean):Observable<any>
     {
         this._terraLoadingSpinnerService.start();
 
@@ -97,6 +97,15 @@ export class TerraBaseService
             }).catch(
             (error:any) =>
             {
+                if(err)
+                {
+                    err(error);
+                }
+                else
+                {
+                    this.handleException(error);
+                }
+
                 // START Very unclean workaround! Normally we should get a 403 status code as response
                 // when user has no permission
                 let errorMessage:string = error.json().error.message;
@@ -152,6 +161,70 @@ export class TerraBaseService
     }
 
     /**
+     * Workaround to prevent the injection of the TranslationService in every Service, that extends TerraBaseService
+     * @returns {string}
+     */
+    protected getErrorString():string
+    {
+        // get language from localStorage
+        let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
+
+        // translate error string
+        switch(langInLocalStorage)
+        {
+            case 'de':
+                return 'Fehler';
+            case 'en':
+                return 'Error';
+            default:
+                return 'Error';
+        }
+    }
+
+    /**
+     * Handles exceptions that are returned from the server on a failed rest call
+     * @param exception
+     */
+    private handleException(exception:any):void
+    {
+        // parse response object
+        let response:any = JSON.parse(exception._body);
+
+        // check which exception type has been received
+        if (!isNullOrUndefined(response.error) && !isNullOrUndefined(response.message))
+        {
+            // show alert
+            this._alert.addAlert(
+                {
+                    msg:              this.getErrorString() + ': ' + response.message,
+                    closable:         true,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                }
+            );
+        }
+        // default exception type
+        else
+        {
+            // parse exception string
+            let error:Exception = response.error;
+
+            // get error code
+            let errorCode:string = error.code ? ' ' + error.code : '';
+
+            // show alert
+            this._alert.addAlert(
+                {
+                    msg:              this.getErrorString() + errorCode + ': ' + error.message,
+                    closable:         true,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                }
+            );
+        }
+    }
+
+    /**
      * @param {TerraBaseParameterInterface} params
      * @returns {URLSearchParams}
      */
@@ -163,8 +236,7 @@ export class TerraBaseService
               .map(
                   (key) =>
                   {
-                      searchParams.set(key,
-                                       params[key]);
+                      searchParams.set(key, params[key]);
                   });
 
         return searchParams;
