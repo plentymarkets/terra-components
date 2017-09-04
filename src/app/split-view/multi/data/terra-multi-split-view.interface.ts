@@ -13,7 +13,7 @@ export class TerraMultiSplitViewInterface
     name:string;
     mainComponentName:string;
     /**
-     * @deprecated Should be removed soon.
+     * @deprecated Will be removed in an upcoming release.
      */
     parameter?:any;
     inputs?:Array<TerraDynamicLoadedComponentInputInterface>;
