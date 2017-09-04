@@ -24,9 +24,9 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
     @Input() inputModule:any;
     @Input() inputMainComponentName:string;
+    @Input() inputParameter:any; // TODO: remove input if old split-view is removed
     @Input() inputInputs:Array<TerraMultiSplitViewInputInterface>;
     @Input() inputView:TerraMultiSplitViewInterface;
-    @Input() inputParameter:any; // TODO: remove input if old split-view is removed
     private _resolvedData:ModuleWithProviders;
 
     private _cmpRef:ComponentRef<any>;
