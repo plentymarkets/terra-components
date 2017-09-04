@@ -58,7 +58,7 @@ export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDe
             let viewContainerRef = this.viewChildTarget;
             viewContainerRef.clear();
 
-            let componentRef = viewContainerRef.createComponent(componentFactory);
+            this._cmpRef = viewContainerRef.createComponent(componentFactory);
         }
     }
 }

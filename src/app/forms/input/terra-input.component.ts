@@ -4,6 +4,7 @@ import {
     FormControl
 } from '@angular/forms';
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
+import { isNullOrUndefined } from 'util';
 
 export class TerraInputComponent implements ControlValueAccessor
 {
@@ -119,48 +120,48 @@ export class TerraInputComponent implements ControlValueAccessor
             {
                 this.isValid = false;
 
-                if(this.inputIsRequired && this.value.length == 0)
+                if(this.inputIsRequired && (isNullOrUndefined(this.value) || this.value.length == 0))
                 {
                     let emptyMessage:string;
 
                     if(!this.inputEmptyMessage || this.inputEmptyMessage.length == 0)
                     {
-                        //TODO i18n
-                        emptyMessage = 'Mach eine Eingabe!';
+                        ////TODO i18n
+                        //emptyMessage = 'Mach eine Eingabe!';
 
                     }
                     else
                     {
                         emptyMessage = this.inputEmptyMessage;
-                    }
 
-                    this._alert.addAlert({
-                                             msg:              emptyMessage,
-                                             closable:         true,
-                                             type:             'danger',
-                                             dismissOnTimeout: 0
-                                         });
+                        this._alert.addAlert({
+                                                 msg:              emptyMessage,
+                                                 closable:         true,
+                                                 type:             'danger',
+                                                 dismissOnTimeout: 0
+                                             });
+                    }
                 }
-                else if(this.value.length > 0)
+                else if(!isNullOrUndefined(this.value) && this.value.length > 0)
                 {
                     let invalidMessage:string;
 
                     if(!this.inputInvalidMessage || this.inputInvalidMessage.length == 0)
                     {
-                        //TODO i18n
-                        invalidMessage = 'Eingabe ungültig!';
+                        ////TODO i18n
+                        //invalidMessage = 'Eingabe ungültig!';
                     }
                     else
                     {
                         invalidMessage = this.inputInvalidMessage;
-                    }
 
-                    this._alert.addAlert({
-                                             msg:              invalidMessage,
-                                             closable:         true,
-                                             type:             'danger',
-                                             dismissOnTimeout: 0
-                                         });
+                        this._alert.addAlert({
+                                                 msg:              invalidMessage,
+                                                 closable:         true,
+                                                 type:             'danger',
+                                                 dismissOnTimeout: 0
+                                             });
+                    }
                 }
             }
         }

@@ -52,18 +52,14 @@ export class TerraButtonGroupComponent<D> implements OnInit
                                                 this._terraNavigatorSplitViewConfig.openNextLevel(item);
 
                                                 item.isButtonClicked = true;
+
                                                 this._buttonList
                                                     .forEach((btnItem) =>
                                                              {
-                                                                 if(item.nodeName === btnItem.caption)
-                                                                 {
-                                                                     btnItem.isActive = true;
-                                                                 }
-                                                                 else
-                                                                 {
-                                                                     btnItem.isActive = false;
-                                                                 }
+                                                                 btnItem.isActive = false;
                                                              });
+
+                                                button.isActive = true;
                                             },
                              hasChildren:   hasChildren,
                              isVisible:     isNullOrUndefined(item.isVisible) || item.isVisible,
