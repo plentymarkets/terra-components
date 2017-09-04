@@ -1,5 +1,4 @@
 import { TerraLoadingBarService } from './loading-bar/service/terra-loading-bar.service';
-import { BrowserModule } from '@angular/platform-browser';
 import {
     ModuleWithProviders,
     NgModule
@@ -25,7 +24,6 @@ import { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.componen
 import { TerraRadioButtonComponent } from './forms/radio-button/terra-radio-button.component';
 import { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
 import { TerraMultiSelectBoxComponent } from './forms/multi-select-box/terra-multi-select-box.component';
-import { TerraDclWrapperComponent } from './dcl-wrapper/terra-dcl-wrapper.component';
 import { TerraBaseToolbarComponent } from './toolbar/base-toolbar/terra-base-toolbar.component';
 import { TerraIndicatorComponent } from './indicator/terra-indicator.component';
 import { TerraPagerComponent } from './pager/terra-pager.component';
@@ -65,12 +63,15 @@ import { TerraSyntaxEditorComponent } from './editor/syntax/terra-syntax-editor.
 import { AceEditorModule } from 'ng2-ace-editor';
 import { TerraMultiSplitViewComponent } from './split-view/multi/terra-multi-split-view.component';
 import { TerraSplitViewComponent } from './split-view/terra-split-view.component';
+import { CommonModule } from '@angular/common';
+import { TerraDynamicComponentLoaderComponent } from './dynamic-component-loader/terra-dynamic-component-loader.component';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { TerraColorPickerComponent } from "./forms/input/color-picker/terra-color-picker.component";
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
 export { TerraButtonComponent } from './button/terra-button.component';
 export { TerraBaseData } from './data/terra-base.data';
-export { TerraDclWrapperComponent } from './dcl-wrapper/terra-dcl-wrapper.component';
 export { TerraFilterComponent } from './filter/terra-filter.component';
 export { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
 export { TerraRadioButtonComponent } from './forms/radio-button/terra-radio-button.component';
@@ -121,7 +122,6 @@ export { TerraTreeComponent } from './tree/terra-tree.component';
 export { TerraBaseTreeComponent } from './tree/base/terra-base-tree.component';
 export { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-tree.component';
 export { TerraLeafInterface } from './tree/leaf/terra-leaf.interface';
-export { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
 export { TerraDynamicLoadedComponent } from './dynamic-module-loader/data/terra-dynamic-loaded-component.interface';
 export { TerraTileBoxComponent } from './tile/box/terra-tile-box.component';
 export { TerraTileBoxPanelComponent } from './tile/panel/terra-tile-box-panel.component';
@@ -138,8 +138,8 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
               declarations:    [
                   TerraComponentsComponent,
                   TerraAlertPanelComponent,
-                  TerraDclWrapperComponent,
                   TerraTextInputComponent,
+                  TerraColorPickerComponent,
                   TerraNumberInputComponent,
                   TerraButtonComponent,
                   TerraTreeComponent,
@@ -166,6 +166,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraSplitViewComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
+                  TerraDynamicComponentLoaderComponent,
                   TerraDynamicModuleLoaderComponent,
                   TerraTileBoxComponent,
                   TerraTileBoxPanelComponent,
@@ -180,6 +181,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
               ],
               entryComponents: [
                   TerraTextInputComponent,
+                  TerraColorPickerComponent,
                   TerraNumberInputComponent,
                   TerraButtonComponent,
                   TerraTreeComponent,
@@ -218,8 +220,8 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
               ],
               exports:         [
                   TerraAlertPanelComponent,
-                  TerraDclWrapperComponent,
                   TerraTextInputComponent,
+                  TerraColorPickerComponent,
                   TerraNumberInputComponent,
                   TerraButtonComponent,
                   TerraTreeComponent,
@@ -246,6 +248,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraMultiSplitViewComponent,
                   TerraFilterComponent,
                   TerraMultiSelectBoxComponent,
+                  TerraDynamicComponentLoaderComponent,
                   TerraDynamicModuleLoaderComponent,
                   TerraTileBoxComponent,
                   TerraTileBoxPanelComponent,
@@ -258,7 +261,8 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraSyntaxEditorComponent
               ],
               imports:         [
-                  BrowserModule,
+                  BrowserAnimationsModule,
+                  CommonModule,
                   FormsModule,
                   ReactiveFormsModule,
                   ModalModule.forRoot(),

@@ -30,7 +30,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
     @Input()
     set inputSelectedValueList(value:Array<any>)
     {
-        if(value !== undefined && value !== null)
+        if(value !== undefined && value != null)
         {
             let valueCopy = value.slice(0);
 

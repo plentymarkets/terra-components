@@ -16,6 +16,7 @@ export class TerraInfoBoxComponent implements OnInit
     @Input() inputAddBox:boolean;
     @Input() inputIsEmpty:boolean;
     @Input() inputIsSelected:boolean;
+    @Input() inputId:number;
 
     constructor()
     {
