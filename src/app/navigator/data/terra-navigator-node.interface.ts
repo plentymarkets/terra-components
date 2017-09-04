@@ -8,6 +8,8 @@ export interface TerraNavigatorNodeInterface<D>
     route:string;
     value?:D;
     rootPath?:Array<number>;
-    children:Array<TerraNavigatorNodeInterface<D>>;
+    children?:Array<TerraNavigatorNodeInterface<D>>;
     isVisible?:boolean;
+    isActive?:boolean;
+    isButtonClicked?:boolean;
 }
