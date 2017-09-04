@@ -5,6 +5,7 @@
 * **terra-multi-split-view** 
 	- added function to close selected views via dropdown
 	- added _skipAnimation_ option to _updateViewport_ method to disable animation when changing the selected view
+	- added new interface property _inputs_ to be able to pass a list of input variables to the component, that is added to the split view. This now allows data-binding as usual and will replace interface property _parameter_.
 * **terra-base-toolbar** Added input 'inputIsSticky' to set the toolbar sticky at top of containing container
 	
 ### Bug Fixes
