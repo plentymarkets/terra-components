@@ -1,5 +1,5 @@
 import { ModuleWithProviders } from '@angular/core';
-import { TerraMultiSplitViewInputInterface } from './terra-multi-split-view-input.interface';
+import { TerraDynamicLoadedComponentInputInterface } from '../../../dynamic-module-loader/data/terra-dynamic-loaded-component-input.interface';
 /**
  * @author pweyrich
  */
@@ -16,5 +16,5 @@ export class TerraMultiSplitViewInterface
      * @deprecated Should be removed soon.
      */
     parameter?:any;
-    inputs?:Array<TerraMultiSplitViewInputInterface>;
+    inputs?:Array<TerraDynamicLoadedComponentInputInterface>;
 }

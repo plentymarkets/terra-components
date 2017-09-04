@@ -12,7 +12,7 @@ import {
 import { JitCompiler } from '@angular/compiler';
 import { TerraMultiSplitViewInterface } from '../split-view/multi/data/terra-multi-split-view.interface';
 import { isNullOrUndefined } from 'util';
-import { TerraMultiSplitViewInputInterface } from '../split-view/multi/data/terra-multi-split-view-input.interface';
+import { TerraDynamicLoadedComponentInputInterface } from './data/terra-dynamic-loaded-component-input.interface';
 
 @Component({
                selector: 'terra-dynamic-module-loader',
@@ -25,7 +25,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     @Input() inputModule:any;
     @Input() inputMainComponentName:string;
     @Input() inputParameter:any; // TODO: remove input if old split-view is removed
-    @Input() inputInputs:Array<TerraMultiSplitViewInputInterface>;
+    @Input() inputInputs:Array<TerraDynamicLoadedComponentInputInterface>;
     @Input() inputView:TerraMultiSplitViewInterface;
     private _resolvedData:ModuleWithProviders;
 
@@ -71,7 +71,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                                   if(!isNullOrUndefined(this.inputInputs))
                                   {
                                       this.inputInputs.forEach(
-                                          (input) =>
+                                          (input:TerraDynamicLoadedComponentInputInterface) =>
                                           {
                                               if (!isNullOrUndefined(input)
                                               && !isNullOrUndefined(input.name))
@@ -86,7 +86,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                                   this._cmpRef.instance.splitViewInstance = this.inputView;
                               }
                           }
-                      )
+                      );
 
                   });
     }
