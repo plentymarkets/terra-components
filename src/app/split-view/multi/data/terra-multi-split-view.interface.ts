@@ -12,5 +12,9 @@ export class TerraMultiSplitViewInterface
     focusedWidth?:string;
     name:string;
     mainComponentName:string;
+    /**
+     * @deprecated Should be removed soon.
+     */
+    parameter?:any;
     inputs?:Array<TerraMultiSplitViewInputInterface>;
 }
