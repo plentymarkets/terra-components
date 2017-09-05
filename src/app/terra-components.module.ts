@@ -65,6 +65,9 @@ import { TerraMultiSplitViewComponent } from './split-view/multi/terra-multi-spl
 import { TerraSplitViewComponent } from './split-view/terra-split-view.component';
 import { CommonModule } from '@angular/common';
 import { TerraDynamicComponentLoaderComponent } from './dynamic-component-loader/terra-dynamic-component-loader.component';
+import { TerraFileBrowserComponent } from "./file-browser/terra-file-browser.component";
+import { TerraFileInputComponent } from "./forms/input/file-input/terra-file-input.component";
+import { TerraFrontendStorageService } from "./file-browser/terra-frontend-storage.service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TerraColorPickerComponent } from "./forms/input/color-picker/terra-color-picker.component";
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
@@ -177,7 +180,9 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraNavigatorComponent,
                   TerraToggleComponent,
                   TerraSyntaxEditorComponent,
-                  TerraMultiSplitViewComponent
+                  TerraMultiSplitViewComponent,
+                  TerraFileBrowserComponent,
+                  TerraFileInputComponent,
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -216,7 +221,9 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraCardComponent,
                   TerraNavigatorComponent,
                   TerraToggleComponent,
-                  TerraSyntaxEditorComponent
+                  TerraSyntaxEditorComponent,
+                  TerraFileBrowserComponent,
+                  TerraFileInputComponent,
               ],
               exports:         [
                   TerraAlertPanelComponent,
@@ -258,7 +265,9 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraCardComponent,
                   TerraNavigatorComponent,
                   TerraToggleComponent,
-                  TerraSyntaxEditorComponent
+                  TerraSyntaxEditorComponent,
+                  TerraFileBrowserComponent,
+                  TerraFileInputComponent,
               ],
               imports:         [
                   BrowserAnimationsModule,
@@ -276,7 +285,8 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
               ],
               providers:       [
                   COMPILER_PROVIDERS,
-                  TerraNavigatorSplitViewConfig
+                  TerraNavigatorSplitViewConfig,
+                  TerraFrontendStorageService,
               ],
               bootstrap:       [
                   TerraComponentsComponent

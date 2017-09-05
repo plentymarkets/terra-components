@@ -28,7 +28,7 @@ export class TerraButtonComponent
     @Input() inputIsActive:boolean;
     @Input() inputIsFlagged:boolean;
     @Input() inputIsDivider:boolean;
-    @Output() outputClicked = new EventEmitter<any>();
+    @Output() outputClicked = new EventEmitter<Event>();
 
     constructor()
     {
@@ -39,8 +39,8 @@ export class TerraButtonComponent
         this.inputIsDivider = false;
     }
 
-    private click():void
+    private click( event: Event ):void
     {
-        this.outputClicked.emit(null);
+        this.outputClicked.emit(event);
     }
 }
