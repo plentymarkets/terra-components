@@ -1,4 +1,4 @@
-import * as Interact from "interactjs";
+import * as Interact from 'interactjs';
 
 export interface DropEvent
 {
