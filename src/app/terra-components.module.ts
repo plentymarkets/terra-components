@@ -68,6 +68,7 @@ import { TerraDynamicComponentLoaderComponent } from './dynamic-component-loader
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TerraColorPickerComponent } from "./forms/input/color-picker/terra-color-picker.component";
 import { TerraInteractModule } from "./interactables/interact.module";
+import { TerraSliderComponent } from "./forms/slider/terra-slider.component";
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -178,7 +179,8 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraNavigatorComponent,
                   TerraToggleComponent,
                   TerraSyntaxEditorComponent,
-                  TerraMultiSplitViewComponent
+                  TerraMultiSplitViewComponent,
+                  TerraSliderComponent,
               ],
               entryComponents: [
                   TerraTextInputComponent,
@@ -217,7 +219,8 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraCardComponent,
                   TerraNavigatorComponent,
                   TerraToggleComponent,
-                  TerraSyntaxEditorComponent
+                  TerraSyntaxEditorComponent,
+                  TerraSliderComponent,
               ],
               exports:         [
                   TerraAlertPanelComponent,
@@ -259,7 +262,8 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraCardComponent,
                   TerraNavigatorComponent,
                   TerraToggleComponent,
-                  TerraSyntaxEditorComponent
+                  TerraSyntaxEditorComponent,
+                  TerraSliderComponent,
               ],
               imports:         [
                   BrowserAnimationsModule,

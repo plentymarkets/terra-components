@@ -1,0 +1,14 @@
+<div class="slider">
+    <div>
+        <div #sliderBar
+             class="slider-bar"
+             (click)="onBarClicked($event)"></div>
+
+        <div class="slider-handle"
+             [style.left.px]="handlePosition"
+             [terra-draggable]
+             [terra-draggable-restrict]="'self'"
+             [terra-draggable-grid]="grid"
+             (terra-draggable-onMove)="onDrag( $event )"></div>
+    </div>
+</div>
