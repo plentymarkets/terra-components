@@ -19,7 +19,7 @@
             [disabled]="inputIsDisabled"
             [hidden]="inputIsHidden"
             [type]="inputType"
-            (click)="click()">
+            (click)="click($event)">
         <span *ngIf="inputIcon" class="icon_dist_top" [ngClass]="inputIcon"></span>
         {{inputCaption}}
     </button>

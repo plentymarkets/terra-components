@@ -4,5 +4,25 @@
   },
   "terraMultiSelectBox": {
     "selectAll": "Alle"
+  },
+  "terraFileBrowser": {
+    "cancel": "Abbrechen",
+    "create": "Erstellen",
+    "delete": "Löschen",
+    "myFiles": "Meine Dateien",
+    "createFolder": "Ordner erstellen",
+    "confirmDelete": "Löschen bestätigen",
+    "deleteFolder": "Ordner löschen",
+    "deleteFile": "Datei löschen",
+    "folderName": "Ordnername",
+    "folderIsEmpty": "Der Ordner ist leer.",
+    "uploadFile": "Datei hochladen",
+    "fileURL": "Datei-URL",
+    "copyToClipboard": "In Zwischenablage kopieren"
+  },
+  "terraFileInput": {
+    "choose": "Wählen",
+    "cancel": "Abbrechen",
+    "chooseFile": "Datei wählen"
   }
 }

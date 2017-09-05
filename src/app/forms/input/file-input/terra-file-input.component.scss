@@ -1,0 +1,72 @@
+@import "../terra-input.component";
+@import "../terra-input-group";
+
+.file-select {
+  .file-preview {
+    flex: 1;
+    width: 100%;
+    background-color: $gray-light-4;
+    padding: 12px;
+    display: flex;
+    border: 1px solid $gray-light-2;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    border-bottom: none;
+    margin-bottom: -1px;
+    min-height: 150px;
+    position: relative;
+    flex-direction: column;
+
+    > span {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+      align-items: center;
+      flex: 1;
+
+      > [class^="icon-"] {
+        display: inline-flex;
+        margin: 0 auto;
+        font-size: 7.5em;
+
+        > [class^="path"]:before {
+          color: $gray;
+        }
+      }
+    }
+  }
+
+  /deep/
+  .modal-dialog {
+    .modal-body {
+      max-height: 70vh;
+      height: 70vh;
+    }
+  }
+
+  @media(min-width: 544px)
+  {
+    /deep/
+    .modal-dialog {
+      max-width: 80%;
+    }
+  }
+
+}
+
+/deep/
+.preview-overlay {
+  .modal-body {
+    & > span {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+  }
+}
