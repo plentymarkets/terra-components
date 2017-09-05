@@ -32,6 +32,9 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     @ViewChild('overlay')
     public overlay: TerraOverlayComponent;
 
+    @ViewChild('previewOverlay')
+    public previewOverlay: TerraOverlayComponent;
+
     private _selectedUrl: string;
 
     public get selectedUrl(): string
@@ -76,6 +79,14 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
         this.selectedUrl = this.value;
     }
 
+    public onPreviewClicked()
+    {
+        if ( this.isWebImage( this.value ) )
+        {
+            this.previewOverlay.showOverlay();
+        }
+    }
+
     public showFileBrowser()
     {
         this.overlay.showOverlay();
@@ -98,5 +109,14 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     public isWebImage( filename: string ): boolean
     {
         return !!filename && FileType.isWebImage( filename );
+    }
+
+    public getFilename( path: string ): string
+    {
+        if ( !path )
+        {
+            return "";
+        }
+        return PathHelper.basename( path );
     }
 }

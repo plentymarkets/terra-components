@@ -39,17 +39,34 @@
     }
   }
 
+  /deep/
+  .modal-dialog {
+    .modal-body {
+      max-height: 70vh;
+      height: 70vh;
+    }
+  }
+
   @media(min-width: 544px)
   {
     /deep/
     .modal-dialog {
       max-width: 80%;
-
-      .modal-body {
-        max-height: 70vh;
-        height: 70vh;
-      }
     }
   }
 
+}
+
+/deep/
+.preview-overlay {
+  .modal-body {
+    & > span {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+  }
 }
