@@ -1,6 +1,8 @@
-# Unreleased
+<a name="1.4.2"></a>
+# 1.5.0 (05.09.2017)
 ### Feature
 * ***terra-multi-split-view** added new interface property _inputs_ to be able to pass a list of input variables to the component, that is added to the split view. This now allows data-binding as usual and will replace interface property _parameter_.
+* ***terra-file-browser** add new file -browser component
 
 <a name="1.4.1"></a>
 # 1.4.1 (04.09.2017)
