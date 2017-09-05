@@ -23,6 +23,7 @@ import { isNullOrUndefined } from 'util';
 export class TerraTextInputComponent extends TerraInputComponent
 {
     @Input() inputIsPassword:boolean;
+    @Input() inputIsReadonly:boolean;
 
     /**
      * @deprecated
