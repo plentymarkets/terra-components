@@ -20,6 +20,9 @@ export class TerraSliderComponent implements OnInit
     public inputValueChange: EventEmitter<number> = new EventEmitter<number>();
 
     @Input()
+    public inputName: string;
+
+    @Input()
     public inputMin: number = 0;
 
     @Input()
@@ -27,6 +30,15 @@ export class TerraSliderComponent implements OnInit
 
     @Input()
     public inputInterval: number = 0;
+
+    @Input()
+    public inputPrecision: number = null;
+
+    @Input()
+    public inputShowMinMax: boolean = false;
+
+    @Input()
+    public inputShowTicks: boolean = true;
 
     @ViewChild('sliderBar', { read: ElementRef })
     private sliderBarElement: ElementRef;
@@ -38,8 +50,7 @@ export class TerraSliderComponent implements OnInit
     public get handlePosition(): number
     {
         let sliderWidth: number = this.sliderBarElement.nativeElement.getBoundingClientRect().width;
-        let percentage: number = ( this.inputValue / Math.abs( this.inputMin - this.inputMax ) );
-
+        let percentage: number = Math.abs( this.inputMin - this.inputValue) / Math.abs( this.inputMin - this.inputMax );
         if ( percentage < 0 )
         {
             return 0;
@@ -58,18 +69,22 @@ export class TerraSliderComponent implements OnInit
         let sliderWidth: number = this.sliderBarElement.nativeElement.getBoundingClientRect().width;
         let percentage: number = ( value / sliderWidth ) * 100;
         let percentageValue: number = Math.abs( this.inputMin - this.inputMax ) / 100;
-        this.inputValue = Math.round(this.inputMin + (percentage * percentageValue));
+        // console.log( percentage + "% * " + percentageValue + " = " + percentage * percentageValue );
+        this.inputValue = this.inputMin + (percentage * percentageValue);
 
-        let diff = this.inputValue % this.inputInterval;
-        if ( diff !== 0 )
+        if ( this.inputInterval > 0 )
         {
-            if ( diff < this.inputInterval / 2 )
+            let diff = this.inputValue % this.inputInterval;
+            if ( diff !== 0 )
             {
-                this.inputValue -= diff;
-            }
-            else
-            {
-                this.inputValue += this.inputInterval - diff;
+                if ( diff < this.inputInterval / 2 )
+                {
+                    this.inputValue -= diff;
+                }
+                else
+                {
+                    this.inputValue += this.inputInterval - diff;
+                }
             }
         }
 
@@ -108,7 +123,55 @@ export class TerraSliderComponent implements OnInit
     {
         if ( isNullOrUndefined( this.inputValue ) )
         {
-            this.inputValue = (this.inputMax + this.inputMin ) / 2;
+            this.inputValue = this.inputMin + (Math.abs(this.inputMin - this.inputMax) / 2);
+        }
+
+        if ( isNullOrUndefined( this.inputPrecision ) )
+        {
+            if ( this.inputInterval > 0 )
+            {
+                let numberOfSteps: number = Math.abs( this.inputMin - this.inputMax ) / this.inputInterval;
+                let stepSize: number = Math.abs( this.inputMin - this.inputMax ) / numberOfSteps;
+                let steps: number[] = [];
+                let current: number = this.inputMin;
+                while( current <= this.inputMax )
+                {
+                    steps.push( current );
+                    current += stepSize;
+                }
+
+                this.inputPrecision = Math.max(
+                    ...steps.map( step => {
+                        let parts = ("" + step).split(".");
+                        if ( !parts[1] )
+                        {
+                            return 0;
+                        }
+                        else
+                        {
+                            let match = /[1-9]/g.exec(parts[1].substr(0, 3));
+                            if ( match )
+                            {
+                                return match.index;
+                            }
+                            else
+                            {
+                                return 0;
+                            }
+                        }
+                    })
+                );
+            }
+            else
+            {
+                this.inputPrecision = 5 - Math.max( ("" + this.inputMin).length, ("" + this.inputMax).length );
+            }
+
+        }
+
+        if ( this.inputPrecision > 3 )
+        {
+            this.inputPrecision = 3
         }
     }
 
@@ -126,5 +189,29 @@ export class TerraSliderComponent implements OnInit
     {
         let sliderRect = this.sliderBarElement.nativeElement.getBoundingClientRect();
         this.handlePosition = position - sliderRect.left;
+    }
+
+    public getTicks()
+    {
+        let tickPositions: number[] = [];
+        if ( this.inputInterval > 0 )
+        {
+            let numberOfTicks: number = Math.abs( this.inputMin - this.inputMax ) / this.inputInterval;
+            for ( let i = 1; i < numberOfTicks; i++ )
+            {
+                tickPositions.push( i * (100 / numberOfTicks) );
+            }
+        }
+        else
+        {
+            tickPositions = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+        }
+
+        return tickPositions.map( (percentage: number) => {
+            return {
+                position: percentage,
+                caption: this.inputMin + (Math.abs(this.inputMin - this.inputMax) * (percentage / 100))
+            };
+        });
     }
 }
