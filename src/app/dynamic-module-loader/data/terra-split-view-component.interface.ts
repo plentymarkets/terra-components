@@ -5,6 +5,7 @@ import { TerraMultiSplitViewInterface } from '../../split-view/multi/data/terra-
  * @author pweyrich
  */
 
+// TODO (@pweyrich): Remove extension if deprecated interface property 'parameter' is removed
 export class TerraSplitViewComponentInterface extends TerraDynamicLoadedComponent
 {
     public splitViewInstance:TerraMultiSplitViewInterface;
