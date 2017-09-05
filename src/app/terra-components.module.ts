@@ -68,6 +68,7 @@ import { TerraDynamicComponentLoaderComponent } from './dynamic-component-loader
 import { TerraFileBrowserComponent } from "./file-browser/terra-file-browser.component";
 import { TerraFileInputComponent } from "./forms/input/file-input/terra-file-input.component";
 import { TerraFrontendStorageService } from "./file-browser/terra-frontend-storage.service";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TerraColorPickerComponent } from "./forms/input/color-picker/terra-color-picker.component";
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -269,6 +270,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraFileInputComponent,
               ],
               imports:         [
+                  BrowserAnimationsModule,
                   CommonModule,
                   FormsModule,
                   ReactiveFormsModule,
