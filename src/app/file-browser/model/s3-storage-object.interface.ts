@@ -1,4 +1,4 @@
-export interface S3StorageObject
+export interface S3StorageObjectInterface
 {
     eTag: string;
     key: string;
@@ -8,7 +8,7 @@ export interface S3StorageObject
     storageClass: "STANDARD" | "STANDARD_IA" | "GLACIER" | "RRS"
 }
 
-export function createS3StorageObject( key ): S3StorageObject
+export function createS3StorageObject( key ): S3StorageObjectInterface
 {
     return {
         eTag: "",

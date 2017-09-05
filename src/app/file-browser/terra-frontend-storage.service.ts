@@ -14,7 +14,7 @@ export class TerraFrontendStorageService extends TerraBaseService
 {
     private _storageInitialized: boolean = false;
     private _storageObjectList: TerraStorageObjectList;
-    private _storageObservers: Observer<TerraStorageObjectList>[] = [];
+    private _storageObservers: Array<Observer<TerraStorageObjectList>> = [];
 
     public queue: TerraUploadQueue = new TerraUploadQueue();
 
@@ -99,7 +99,7 @@ export class TerraFrontendStorageService extends TerraBaseService
             return [];
         }
 
-        let uploadItems: TerraUploadItem[] = [];
+        let uploadItems: Array<TerraUploadItem> = [];
         for( let i = 0; i < files.length; i++ )
         {
             uploadItems.push(
@@ -117,7 +117,7 @@ export class TerraFrontendStorageService extends TerraBaseService
             return TerraUploadItem.DONE;
         }
 
-        let item = new TerraUploadItem( file, path, this );
+        let item: TerraUploadItem = new TerraUploadItem( file, path, this );
         item.beforeUpload( () => {
             this._storageObjectList.insertObject(
                 createS3StorageObject( item.pathname )

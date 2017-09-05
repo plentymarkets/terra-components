@@ -26,7 +26,7 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
     private _translationPrefix: string = "terraFileBrowser";
 
     @Input()
-    public inputAllowedExtensions: string[] = [];
+    public inputAllowedExtensions: Array<string> = [];
 
     @Output()
     public outputSelected: EventEmitter<string> = new EventEmitter<string>();
@@ -52,6 +52,17 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
 
     private _currentRoot: TerraStorageObject;
 
+    private _selectedStorageObjectName: string;
+
+    private _globalListeners: {[event: string]: (...args: any[]) => void} = {};
+
+    constructor(
+        private frontendStorageService: TerraFrontendStorageService,
+        private translation: TranslationService,
+        private changeDetector: ChangeDetectorRef  )
+    {
+    }
+
     public get currentRoot(): TerraStorageObject
     {
         if ( this._currentRoot )
@@ -66,7 +77,6 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
         return null;
     }
 
-    private _selectedStorageObjectName: string;
     public get selectedStorageObject(): TerraStorageObject
     {
         if ( !this.currentRoot || !this._selectedStorageObjectName )
@@ -90,10 +100,10 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
         }
     }
 
-    public get parentObjects(): TerraStorageObject[]
+    public get parentObjects(): Array<TerraStorageObject>
     {
         let current: TerraStorageObject = this.currentRoot;
-        let parents: TerraStorageObject[] = [];
+        let parents: Array<TerraStorageObject> = [];
         while( current )
         {
             parents.push( current );
@@ -103,18 +113,10 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
         return parents.reverse();
     }
 
-    private _globalListeners: {[event: string]: (...args: any[]) => void} = {};
-
-    constructor(
-        private frontendStorageService: TerraFrontendStorageService,
-        private translation: TranslationService,
-        private changeDetector: ChangeDetectorRef  )
-    {
-    }
-
     public ngOnInit(): void
     {
-        let registerGlobalEvent = ( event: string, callback: ( event: Event ) => void ) => {
+        let registerGlobalEvent: (event: string, callback: (event: Event) => void ) => void;
+        registerGlobalEvent = ( event: string, callback: ( event: Event ) => void ) => {
             this._globalListeners[event] = callback;
             document.addEventListener( event, callback.bind( this ) );
         };

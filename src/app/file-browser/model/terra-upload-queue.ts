@@ -4,7 +4,7 @@ import { Observer } from "rxjs/Observer";
 
 export class TerraUploadQueue
 {
-    private items: TerraUploadItem[] = [];
+    private items: Array<TerraUploadItem> = [];
     private size: number = 0;
 
     public progress: Observable<number>;
@@ -19,7 +19,7 @@ export class TerraUploadQueue
             observer.next( this._progressValue );
 
             return () => {
-                let idx = this._progressListeners.indexOf( observer );
+                let idx: number = this._progressListeners.indexOf( observer );
                 if ( idx >= 0 )
                 {
                     this._progressListeners.splice( idx, 1 );
@@ -99,7 +99,7 @@ export class TerraUploadQueue
     private uploadItem( item: TerraUploadItem ): Promise<void>
     {
         return new Promise( (resolve: (resp: void) => void, reject: (err: any) => void) => {
-            let xhr = item._xhr = new XMLHttpRequest();
+            let xhr: XMLHttpRequest = item._xhr = new XMLHttpRequest();
 
             item.emit('beforeUpload', item.file );
 
@@ -172,7 +172,7 @@ export class TerraUploadQueue
             }, 0);
 
         let progress = 100 - Math.round( (notLoaded / this.size) * 100 );
-        this._progressListeners.forEach( listener => {
+        this._progressListeners.forEach( (listener: Observer<number>) => {
             listener.next( progress || 0 );
         });
     }

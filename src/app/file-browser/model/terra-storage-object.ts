@@ -1,8 +1,8 @@
-import { createS3StorageObject, S3StorageObject } from "./s3-storage-object.interface";
+import { createS3StorageObject, S3StorageObjectInterface } from "./s3-storage-object.interface";
 import { PathHelper } from "../helper/path.helper";
 export class TerraStorageObject
 {
-    private _s3Object: S3StorageObject;
+    private _s3Object: S3StorageObjectInterface;
     private _children: TerraStorageObject[] = [];
     private _parent: TerraStorageObject;
 
@@ -76,13 +76,13 @@ export class TerraStorageObject
         });
     }
 
-    constructor( s3Object: S3StorageObject, parent?: TerraStorageObject )
+    constructor( s3Object: S3StorageObjectInterface, parent?: TerraStorageObject )
     {
         this._s3Object = s3Object;
         this._parent = parent;
     }
 
-    public addChild( s3object: S3StorageObject, paths?: string[] ): void
+    public addChild( s3object: S3StorageObjectInterface, paths?: string[] ): void
     {
         if ( this.isFile )
         {

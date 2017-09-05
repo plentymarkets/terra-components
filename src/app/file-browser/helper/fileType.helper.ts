@@ -14,7 +14,8 @@ export class FileType
             'jpg',
             'jpeg',
             'png',
-            'gif'
+            'gif',
+            'svg'
         ].indexOf( extension ) >= 0;
     }
 
