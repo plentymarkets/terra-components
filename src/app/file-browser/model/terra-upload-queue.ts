@@ -164,7 +164,7 @@ export class TerraUploadQueue
     private onProgress(): void
     {
         let notLoaded: number = this.items
-            .map( item => {
+            .map( (item: TerraUploadItem) => {
                 return item.file.size;
             })
             .reduce( (prev: number, current: number) => {
