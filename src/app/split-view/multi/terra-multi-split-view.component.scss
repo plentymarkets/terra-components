@@ -257,10 +257,14 @@
 {
     height: 0px;
     min-height: 0px !important;
-    animation-name: slideDownAnimation;
-    animation-duration: 0.5s;
     position: relative;
     overflow: hidden;
+}
+
+/deep/ .tab-content .slideDown
+{
+    animation-name: slideDownAnimation;
+    animation-duration: 0.5s;
 }
 
 @keyframes slideDownAnimation
@@ -287,8 +291,12 @@
 {
     height: calc(100vh - 124px);
     position: absolute;
-    bottom: 0px;
     width: 100%;
+}
+
+/deep/ .tab-content .slideDown > div
+{
+    bottom: 0px;
 }
 
 .ellipsis
@@ -339,4 +347,3 @@
         color: $brand-primary-darker;
     }
 }
-

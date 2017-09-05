@@ -11,6 +11,8 @@ import {
 } from '@angular/core';
 import { JitCompiler } from '@angular/compiler';
 import { TerraMultiSplitViewInterface } from '../split-view/multi/data/terra-multi-split-view.interface';
+import { isNullOrUndefined } from 'util';
+import { TerraDynamicLoadedComponentInputInterface } from './data/terra-dynamic-loaded-component-input.interface';
 
 @Component({
                selector: 'terra-dynamic-module-loader',
@@ -22,7 +24,8 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
     @Input() inputModule:any;
     @Input() inputMainComponentName:string;
-    @Input() inputParameter:any;
+    @Input() inputParameter:any; // TODO: remove input if old split-view is removed
+    @Input() inputInputs:Array<TerraDynamicLoadedComponentInputInterface>;
     @Input() inputView:TerraMultiSplitViewInterface;
     private _resolvedData:ModuleWithProviders;
 
@@ -62,13 +65,28 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                                   this._cmpRef = this.viewChildTarget.createComponent(factory);
 
                                   // pass the delivered parameter to the component
-                                  this._cmpRef.instance.parameter = this.inputParameter;
+                                  this._cmpRef.instance.parameter = this.inputParameter; // TODO: deprecated if old split view is removed
+
+                                  // add inputs to component for data binding purposes
+                                  if(!isNullOrUndefined(this.inputInputs))
+                                  {
+                                      this.inputInputs.forEach(
+                                          (input:TerraDynamicLoadedComponentInputInterface) =>
+                                          {
+                                              if (!isNullOrUndefined(input)
+                                              && !isNullOrUndefined(input.name))
+                                              {
+                                                  this._cmpRef.instance[input.name] = input.value;
+                                              }
+                                          }
+                                      );
+                                  }
 
                                   // pass the instance of the loaded view back to the component
                                   this._cmpRef.instance.splitViewInstance = this.inputView;
                               }
                           }
-                      )
+                      );
 
                   });
     }
