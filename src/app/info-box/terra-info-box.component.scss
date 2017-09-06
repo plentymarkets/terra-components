@@ -62,3 +62,8 @@
     margin:5px 2px 0px 0px;
     color: $gray-light-2;
 }
+
+:host /deep/ .btn-handler
+{
+    display: inline;
+}

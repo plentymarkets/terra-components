@@ -1,5 +1,5 @@
 <div [ngClass]="{'disabled-chk': inputIsDisabled}">
-    <label class="input-control checkbox small-check">
+    <label class="input-control checkbox small-check" style="margin-bottom: .5rem">
         <input type="checkbox" [(ngModel)]="value"
                (change)="onChange()"
                [disabled]="inputIsDisabled"
