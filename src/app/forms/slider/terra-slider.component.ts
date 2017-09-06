@@ -44,7 +44,7 @@ export class TerraSliderComponent implements OnInit
     public inputShowMinMax: boolean = false;
 
     @Input()
-    public inputShowTicks: boolean = true;
+    public inputShowTicks: boolean = false;
 
     @ViewChild('sliderBar', { read: ElementRef })
     private sliderBarElement: ElementRef;
