@@ -70,6 +70,7 @@ import { TerraFileInputComponent } from "./forms/input/file-input/terra-file-inp
 import { TerraFrontendStorageService } from "./file-browser/terra-frontend-storage.service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TerraColorPickerComponent } from "./forms/input/color-picker/terra-color-picker.component";
+import { TerraInteractModule } from "./interactables/interact.module";
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -281,7 +282,8 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   ButtonsModule.forRoot(),
                   TranslationModule.forRoot(),
                   MyDatePickerModule,
-                  AceEditorModule
+                  AceEditorModule,
+                  TerraInteractModule
               ],
               providers:       [
                   COMPILER_PROVIDERS,

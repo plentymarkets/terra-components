@@ -15,7 +15,8 @@
       "dom"
     ],
     "types": [
-      "node"
+      "node",
+      "interact.js"
     ]
   },
   "exclude": [
