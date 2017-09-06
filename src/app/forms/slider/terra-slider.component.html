@@ -1,6 +1,6 @@
 <div class="slider" [class.has-ticks]="inputShowTicks">
     <div class="slider-label" *ngIf="inputName">{{ inputName }}</div>
-
+    
     <div class="slider-container">
         <span *ngIf="inputShowMinMax">{{ inputMin.toFixed(inputPrecision) }}</span>
         <div class="slider-inner">
@@ -8,7 +8,7 @@
                 <div #sliderBar
                      class="slider-bar"
                      (click)="onBarClicked($event)"></div>
-
+                
                 <div class="slider-handle"
                      [style.left.px]="handlePosition"
                      [terra-draggable]
@@ -17,7 +17,7 @@
                      (terra-draggable-onMove)="onDrag( $event )">
                     {{ inputValue.toFixed(inputPrecision) }}
                 </div>
-
+                
                 <div *ngIf="inputShowTicks" class="slider-ticks">
                     <span *ngFor="let tick of getTicks()" [style.left.%]="tick.position">{{ tick.caption.toFixed(inputPrecision) }}</span>
                 </div>
