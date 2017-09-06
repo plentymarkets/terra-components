@@ -69,6 +69,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         return this._selectedValue.value;
     }
 
+    public get currentValue():TerraSuggestionBoxValueInterface
+    {
+        return this._currentValue;
+    }
+
     private _selectedValue:TerraSuggestionBoxValueInterface;
     private _currentValue:TerraSuggestionBoxValueInterface;
     private tempInputListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
@@ -284,7 +289,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this.toggleOpen = false;
     }
 
-    public onChange()
+    public onChange():void
     {
         let currentList = [];
         let searchString = this._currentValue.caption;
@@ -339,5 +344,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 caption: ''
             };
         this._value = null;
+        this.toggleOpen = false;
     }
 }
