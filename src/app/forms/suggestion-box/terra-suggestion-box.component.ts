@@ -14,17 +14,17 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 
 @Component({
-               selector:  'terra-suggestion-box',
-               styles:    [require('./terra-suggestion-box.component.scss')],
-               template:  require('./terra-suggestion-box.component.html'),
-               providers: [
-                   {
-                       provide:     NG_VALUE_ACCESSOR,
-                       useExisting: forwardRef(() => TerraSuggestionBoxComponent),
-                       multi:       true
-                   }
-               ]
-           })
+    selector:  'terra-suggestion-box',
+    styles:    [require('./terra-suggestion-box.component.scss')],
+    template:  require('./terra-suggestion-box.component.html'),
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraSuggestionBoxComponent),
+            multi:       true
+        }
+    ]
+})
 export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 {
     @Input() inputName:string;
@@ -39,25 +39,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
     private _isValid:boolean;
-    private _isInit:boolean;
     private _value:number | string;
     private clickListener:(event:Event) => void;
     private tempInputListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
 
-    constructor(private elementRef:ElementRef)
+    constructor(private _elementRef:ElementRef)
     {
-        this.clickListener = (event) =>
-        {
-            this.clickedOutside(event);
-        };
-
-        this._isInit = false;
-        this.inputTooltipPlacement = 'top';
-        this._selectedValue =
-            {
-                value:   '',
-                caption: ''
-            };
     }
 
     public get isValid():boolean
@@ -72,10 +59,21 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     ngOnInit()
     {
+        this.clickListener = (event) =>
+        {
+            this.clickedOutside(event);
+        };
+
+        this.inputTooltipPlacement = 'top';
+        this._selectedValue =
+            {
+                value:   '',
+                caption: ''
+            };
+
         this._isValid = true;
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
-        this._isInit = true;
     }
 
     ngOnChanges(changes:SimpleChanges)
@@ -85,9 +83,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
            && this.inputListBoxValues.indexOf(this._selectedValue) == -1)
         {
             setTimeout(() =>
-                       {
-                           this.select(this.inputListBoxValues[0]);
-                       });
+            {
+                this.select(this.inputListBoxValues[0]);
+            });
         }
     }
 
@@ -127,15 +125,15 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         {
             this.inputListBoxValues
                 .forEach((item:TerraSuggestionBoxValueInterface) =>
-                         {
-                             if(item.value == value)
-                             {
-                                 this._selectedValue = {
-                                     caption: item.caption,
-                                     value:   item.value
-                                 };
-                             }
-                         });
+                {
+                    if(item.value == value)
+                    {
+                        this._selectedValue = {
+                            caption: item.caption,
+                            value:   item.value
+                        };
+                    }
+                });
         }
         else
         {
@@ -173,7 +171,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     private clickedOutside(event):void
     {
-        if(!this.elementRef.nativeElement.contains(event.target))
+        if(!this._elementRef.nativeElement.contains(event.target))
         {
             this.toggleOpen = false;
         }
