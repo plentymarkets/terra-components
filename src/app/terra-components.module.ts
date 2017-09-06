@@ -72,6 +72,7 @@ import { TerraFrontendStorageService } from "./file-browser/terra-frontend-stora
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TerraColorPickerComponent } from "./forms/input/color-picker/terra-color-picker.component";
 import { TerraInteractModule } from "./interactables/interact.module";
+import { TerraSliderComponent } from "./forms/slider/terra-slider.component";
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -183,6 +184,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraToggleComponent,
                   TerraSyntaxEditorComponent,
                   TerraMultiSplitViewComponent,
+                  TerraSliderComponent,
                   TerraFileBrowserComponent,
                   TerraFileInputComponent,
               ],
@@ -225,6 +227,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraToggleComponent,
                   TerraSyntaxEditorComponent,
                   TerraMultiSplitViewComponent,
+                  TerraSliderComponent,
                   TerraFileBrowserComponent,
                   TerraFileInputComponent
               ],
@@ -270,6 +273,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
                   TerraToggleComponent,
                   TerraSyntaxEditorComponent,
                   TerraMultiSplitViewComponent,
+                  TerraSliderComponent,
                   TerraFileBrowserComponent,
                   TerraFileInputComponent,
               ],
