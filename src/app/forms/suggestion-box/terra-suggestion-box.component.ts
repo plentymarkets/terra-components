@@ -80,7 +80,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
         if(changes["inputListBoxValues"]
            && changes["inputListBoxValues"].currentValue.length > 0
-           && this.inputListBoxValues.indexOf(this._selectedValue) == -1)
+           && this.inputListBoxValues.find((x) => this._selectedValue === x))
         {
             setTimeout(() =>
             {
@@ -123,17 +123,15 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
         if(!isNullOrUndefined(value))
         {
-            this.inputListBoxValues
-                .forEach((item:TerraSuggestionBoxValueInterface) =>
-                {
-                    if(item.value == value)
-                    {
-                        this._selectedValue = {
-                            caption: item.caption,
-                            value:   item.value
-                        };
-                    }
-                });
+            let selectedValue = this.inputListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item.value === value);
+
+            if(selectedValue)
+            {
+                this._selectedValue = {
+                    caption: selectedValue.caption,
+                    value:   selectedValue.value
+                };
+            }
         }
         else
         {
@@ -183,6 +181,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             caption: value.caption,
             value:   value.value
         };
+
         this.onTouchedCallback();
         this.onChangeCallback(value.value);
         this.outputValueChanged.emit(value);
@@ -196,7 +195,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
         if(searchString !== '')
         {
-            if(this.tempInputListBoxValues != null && this.tempInputListBoxValues.length == 0)
+            if(this.tempInputListBoxValues !== null && this.tempInputListBoxValues.length === 0)
             {
                 this.tempInputListBoxValues = this.inputListBoxValues;
             }
@@ -205,7 +204,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             {
                 for(let value in this.tempInputListBoxValues)
                 {
-                    if(this.tempInputListBoxValues[value].caption.search(searchString) != -1)
+                    if(this.tempInputListBoxValues[value].caption.toUpperCase().search(searchString.toUpperCase()) !== -1)
                     {
                         currentList.push(this.tempInputListBoxValues[value]);
                     }
@@ -220,5 +219,16 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
             this.value = this._selectedValue;
         }
+    }
+
+    public resetComponentValue():void
+    {
+        this.value = null;
+
+        this._selectedValue =
+            {
+                value:   '',
+                caption: ''
+            };
     }
 }
