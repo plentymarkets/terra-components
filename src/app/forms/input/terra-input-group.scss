@@ -1,0 +1,42 @@
+.input-group
+{
+  margin-bottom: 12px;
+
+  /deep/
+  & > * {
+    width: 100%;
+
+    .input-unit-v1,
+    .select-box-wrapper,
+    .btn
+    {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    &:first-child
+    {
+      .input-unit-v1,
+      .select-box-wrapper,
+      .btn
+      {
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+      }
+    }
+
+    &:last-child
+    {
+      .input-unit-v1,
+      .select-box-wrapper,
+      .btn
+      {
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+      }
+    }
+  }
+  & > .input-group-btn {
+    width: auto;
+  }
+}

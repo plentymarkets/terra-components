@@ -1,12 +1,17 @@
 import {
-    Directive, ElementRef, EventEmitter, Input, OnChanges, Output,
+    Directive,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
     SimpleChanges
-} from "@angular/core";
-import * as Interact from "interactjs";
-import { GridOptions } from "./gridOptions.interface";
-import { DraggableOptions } from "./draggableOptions.interface";
-import { RestrictOptions } from "./restrictOptions.interface";
-import { InertiaOptions } from "./inertiaOptions.interface";
+} from '@angular/core';
+import * as Interact from 'interactjs';
+import { GridOptions } from './gridOptions.interface';
+import { DraggableOptions } from './draggableOptions.interface';
+import { RestrictOptions } from './restrictOptions.interface';
+import { InertiaOptions } from './inertiaOptions.interface';
 
 @Directive({
     selector: '[terra-draggable]'

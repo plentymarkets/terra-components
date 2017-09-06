@@ -1,6 +1,14 @@
-import { Directive, ElementRef, Input, OnChanges, EventEmitter, Output, SimpleChanges } from "@angular/core";
-import * as Interact from "interactjs";
-import { DropEvent } from "./dropEvent.interface";
+import {
+    Directive,
+    ElementRef,
+    Input,
+    OnChanges,
+    EventEmitter,
+    Output,
+    SimpleChanges
+} from '@angular/core';
+import * as Interact from 'interactjs';
+import { DropEvent } from './dropEvent.interface';
 
 export type AcceptFn = ( args: {
     interactEvent: Interact.InteractEvent,

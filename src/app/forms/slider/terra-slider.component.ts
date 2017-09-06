@@ -1,9 +1,15 @@
 import {
-    ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
     ViewChild
-} from "@angular/core";
-import { isNullOrUndefined } from "util";
-import { GridOptions } from "../../interactables/gridOptions.interface";
+} from '@angular/core';
+import { isNullOrUndefined } from 'util';
+import { GridOptions } from '../../interactables/gridOptions.interface';
 
 @Component({
     selector: 'terra-slider',
