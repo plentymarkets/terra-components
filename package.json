@@ -36,6 +36,7 @@
     "bootstrap": "4.0.0-alpha.4",
     "bootstrap-loader": "2.1.0",
     "core-js": "^2.4.1",
+    "interactjs": "^1.2.9",
     "jquery": "^3.2.1",
     "moment": "^2.18.1",
     "mydatepicker": "^2.0.23",
@@ -45,6 +46,7 @@
     "zone.js": "0.8.16"
   },
   "devDependencies": {
+    "@types/interact.js": "^1.0.22",
     "@types/jasmine": "^2.5.46",
     "@types/jquery": "^3.2.10",
     "@types/node": "^8.0.19",

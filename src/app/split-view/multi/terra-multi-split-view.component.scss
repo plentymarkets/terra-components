@@ -271,7 +271,7 @@
 {
     from
     {
-        height: 0px;
+        height: 0;
     }
     to
     {
@@ -289,14 +289,15 @@
 
 .slideDown > div
 {
-    height: calc(100vh - 124px);
-    position: absolute;
+    height: calc(100vh - 138px);
+    //position: absolute;
+    bottom: 0;
     width: 100%;
 }
 
 /deep/ .tab-content .slideDown > div
 {
-    bottom: 0px;
+    bottom: 0;
 }
 
 .ellipsis
