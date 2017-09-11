@@ -2,9 +2,9 @@
     <terra-base-toolbar>
         <div class="btn-group" role="group">
             <terra-button inputIcon="icon-control_start icon_dist_top" class="terra-button"
-                          [inputIsDisabled]="inputPagingData.page == 1"
+                          [inputIsDisabled]="inputPagingData.page <= 1"
                           (outputClicked)="onFirstPage()"></terra-button>
-            <terra-button inputIcon="icon-back icon_dist_top" class="terra-button" [inputIsDisabled]="inputPagingData.page == 1"
+            <terra-button inputIcon="icon-back icon_dist_top" class="terra-button" [inputIsDisabled]="inputPagingData.page <= 1"
                           (outputClicked)="onPrevPage()"></terra-button>
         </div>
         <div class="btn-group" role="group">
@@ -12,7 +12,8 @@
                 <form (submit)="onToPage($event, pager.value)" role="form">
                     <terra-number-input #pager
                                         class="pager-page terra-number-input"
-                                        [inputMinValue]="1">
+                                        [inputMinValue]="1"
+                                        [inputMaxValue]="inputPagingData.lastPageNumber">
                     </terra-number-input>
                 </form>
             </div>
@@ -21,10 +22,10 @@
         
         <div class="btn-group" role="group">
             <terra-button inputIcon="icon-next icon_dist_top" class="terra-button"
-                          [inputIsDisabled]="inputPagingData.page == inputPagingData.lastPageNumber"
+                          [inputIsDisabled]="inputPagingData.page == inputPagingData.lastPageNumber || inputPagingData.lastPageNumber == 0"
                           (outputClicked)="onNextPage()"></terra-button>
             <terra-button inputIcon="icon-last icon_dist_top" class="terra-button"
-                          [inputIsDisabled]="inputPagingData.page == inputPagingData.lastPageNumber"
+                          [inputIsDisabled]="inputPagingData.page == inputPagingData.lastPageNumber || inputPagingData.lastPageNumber == 0"
                           (outputClicked)="onLastPage()"></terra-button>
             <terra-button inputIcon="icon-reload icon_dist_top" class="terra-button" [inputIsPrimary]="true"
                           (outputClicked)="onReload()"></terra-button>
