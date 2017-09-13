@@ -25,8 +25,9 @@ import { isNullOrUndefined } from 'util';
 export class TerraTextInputComponent extends TerraInputComponent
 {
     @Input() inputIsPassword:boolean;
-    @Output() outputOnInput:EventEmitter<any> = new EventEmitter<any>();
     @Input() inputIsReadonly:boolean;
+
+    @Output() outputOnInput:EventEmitter<any> = new EventEmitter<any>();
 
     /**
      * @deprecated
