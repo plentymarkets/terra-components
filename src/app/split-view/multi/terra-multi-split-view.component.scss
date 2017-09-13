@@ -279,17 +279,9 @@
     }
 }
 
-.slideDown > .offsetHeight
-{
-    height: calc(100vh - 174px);
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-}
-
 .slideDown > div
 {
-    height: calc(100vh - 138px);
+    height: 100%;
     //position: absolute;
     bottom: 0;
     width: 100%;

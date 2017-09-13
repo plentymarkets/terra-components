@@ -3,7 +3,7 @@
         <thead>
         <tr *ngIf="inputHeaderList">
             <ng-template ngFor let-header [ngForOf]="inputHeaderList">
-                <th width="{{header.width}}px"
+                <th *ngIf="!header.isCheckBox" width="{{header.width}}px"
                     [container]="'body'"
                     [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                     [tooltip]="header.tooltipText"
@@ -37,7 +37,8 @@
                                               [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
                                               [inputCaption]="button.caption"
                                               [inputIsSmall]="true"
-                                              [inputTooltipText]="button.tooltipText"></terra-button>
+                                              [inputTooltipText]="button.tooltipText">
+                                </terra-button>
                             </ng-template>
                         </div>
                     </td>

@@ -6,10 +6,10 @@ import { TerraSimpleTableHeaderCellInterface } from './cell/terra-simple-table-h
 import { TerraSimpleTableRowInterface } from './row/terra-simple-table-row.interface';
 
 @Component({
-               selector: 'terra-simple-table',
-               styles:   [require('./terra-simple-table.component.scss')],
-               template: require('./terra-simple-table.component.html')
-           })
+    selector: 'terra-simple-table',
+    styles:   [require('./terra-simple-table.component.scss')],
+    template: require('./terra-simple-table.component.html')
+})
 export class TerraSimpleTableComponent
 {
     @Input() inputHeaderList:Array<TerraSimpleTableHeaderCellInterface>;

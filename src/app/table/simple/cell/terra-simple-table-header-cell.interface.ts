@@ -7,4 +7,5 @@ export interface TerraSimpleTableHeaderCellInterface
     width:number;
     tooltipText?:string;
     tooltipPlacement?:string;
+    isCheckBox?:boolean;
 }
