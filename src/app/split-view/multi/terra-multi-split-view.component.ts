@@ -99,16 +99,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             }
         );
 
-        this.inputConfig.deleteViewEventEmitter.subscribe((value:{ view:TerraMultiSplitViewInterface, isSelected:boolean }) =>
+        this.inputConfig.deleteViewEventEmitter.subscribe((value:TerraMultiSplitViewInterface) =>
             {
                 // update modules array
-                let viewToSelect:TerraMultiSplitViewInterface = this.removeFromModules(value.view);
+                let viewToSelect:TerraMultiSplitViewInterface = this.removeFromModules(value);
 
                 // select the parent view
-                if(value.isSelected)
-                {
-                    this.setSelectedView(viewToSelect);
-                }
+                this.setSelectedView(viewToSelect);
             }
         );
 
