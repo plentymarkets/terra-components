@@ -12,6 +12,7 @@
                 <form (submit)="onToPage($event, pager.value)" role="form">
                     <terra-number-input #pager
                                         class="pager-page terra-number-input"
+                                        [inputIsDisabled]="inputPagingData.totalsCount == 0"
                                         [inputMinValue]="1"
                                         [inputMaxValue]="inputPagingData.lastPageNumber">
                     </terra-number-input>
