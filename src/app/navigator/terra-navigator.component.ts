@@ -125,13 +125,20 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
                 this.initRootPaths(this.inputNodes, null);
                 this.refreshNodeVisibilities(this.inputNodes);
+
+                this.addSearchNode(item);
             });
 
         this.inputNavigatorService.observableNewNodesByRoute
-            .subscribe((item:Array<TerraNavigatorNodeInterface<D>>) =>
+            .subscribe((items:Array<TerraNavigatorNodeInterface<D>>) =>
             {
-                this.addNodesRecursive(item);
+                this.addNodesRecursive(items);
                 this.refreshNodeVisibilities(this.inputNodes);
+
+                items.forEach((item) =>
+                {
+                    this.addSearchNode(item);
+                })
             });
 
         this.updateSearchNodes();
@@ -147,6 +154,8 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
             this.initRootPaths(changes['inputNodes'].currentValue, null);
             this.refreshNodeVisibilities(changes['inputNodes'].currentValue);
+
+            this.updateSearchNodes();
 
             this._terraNavigatorSplitViewConfig
                 .addModule({
@@ -322,14 +331,17 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
     private updateSearchNodes():void
     {
+        // reset node list
+        this._searchNodeList = [];
+
         // convert tree model into flat hierarchy
         this.inputNodes.forEach((node:TerraNavigatorNodeInterface<D>) =>
         {
-            this.getNodePaths(node, this._searchNodeList);
+            this.addSearchNode(node);
         });
     }
 
-    private getNodePaths(node:TerraNavigatorNodeInterface<D>, pathList:Array<TerraSuggestionBoxValueInterface>):void
+    private addSearchNode(node:TerraNavigatorNodeInterface<D>):void
     {
         // check for null pointer
         if(isNullOrUndefined(node))
@@ -342,7 +354,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         {
             node.children.forEach((child:TerraNavigatorNodeInterface<D>) =>
             {
-                this.getNodePaths(child, pathList);
+                this.addSearchNode(child);
             });
         }
         // only add nodes without children <=> leaves
@@ -352,9 +364,9 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             if(isNullOrUndefined(node.isVisible) || node.isVisible) //TODO: rename in hidden!
             {
                 // add node to the flat list
-                pathList.push(
+                this._searchNodeList.push(
                     {
-                        value: this.getNodeRoute(node),
+                        value:   this.getNodeRoute(node),
                         caption: this.getNodePath(node)
                     }
                 );
@@ -372,11 +384,14 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         let route:string = '';
         let nodes:Array<TerraNavigatorNodeInterface<D>> = this.inputNodes;
 
-        node.rootPath.forEach((root) =>
+        if(!isNullOrUndefined(node.rootPath))
         {
-            route = route + '/' + nodes[root].route;
-            nodes = nodes[root].children;
-        });
+            node.rootPath.forEach((root) =>
+            {
+                route = route + '/' + nodes[root].route;
+                nodes = nodes[root].children;
+            });
+        }
 
         return route;
     }
@@ -386,19 +401,22 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         let route:string = '';
         let nodes:Array<TerraNavigatorNodeInterface<D>> = this.inputNodes;
 
-        node.rootPath.forEach((root) =>
+        if(!isNullOrUndefined(node.rootPath))
         {
-            let translatedNodeName:string = this.translation.translate(nodes[root].nodeName);
-            if(route === '')
+            node.rootPath.forEach((root) =>
             {
-                route = translatedNodeName;
-            }
-            else
-            {
-                route += ' » ' + translatedNodeName;
-            }
-            nodes = nodes[root].children;
-        });
+                let translatedNodeName:string = this.translation.translate(nodes[root].nodeName);
+                if(route === '')
+                {
+                    route = translatedNodeName;
+                }
+                else
+                {
+                    route += ' » ' + translatedNodeName;
+                }
+                nodes = nodes[root].children;
+            });
+        }
 
         return route;
     }
