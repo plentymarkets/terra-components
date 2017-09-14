@@ -110,7 +110,8 @@ export class TerraBaseService
 
                 // START Very unclean workaround! Normally we should get a 403 status code as response
                 // when user has no permission
-                let errorMessage = this.getErrorMessage(error);
+                let errorMessage:string = this.getErrorMessage(error);
+
                 let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage();
 
                 if(error.status == 401 && errorMessage === "This action is unauthorized.")
