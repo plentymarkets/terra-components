@@ -24,5 +24,8 @@
     "choose": "Select",
     "cancel": "Cancel",
     "chooseFile": "Select file"
+  },
+  "terraSuggestionBox": {
+    "noSuggestions": "No suggestions"
   }
 }

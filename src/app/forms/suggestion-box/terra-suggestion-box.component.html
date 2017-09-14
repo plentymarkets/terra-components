@@ -17,6 +17,9 @@
     </terra-text-input>
     
     <div class="select-box-dropdown">
+        <span *ngIf="inputListBoxValues.length == 0">
+            <i>{{'terraSuggestionBox.noSuggestions' | translate:lang }}</i>
+        </span>
         <span *ngFor="let item of inputListBoxValues; let index=index;"
               (click)="select(item)"
               [ngClass]="{active: item.value === _selectedValue?.value}">
