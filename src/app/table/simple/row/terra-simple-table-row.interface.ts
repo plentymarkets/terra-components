@@ -5,5 +5,6 @@ import { TerraSimpleTableCellInterface } from '../cell/terra-simple-table-cell.i
 export interface TerraSimpleTableRowInterface
 {
     cellList:Array<TerraSimpleTableCellInterface>,
+    selected?:boolean;
     textColorCss?:string;
 }

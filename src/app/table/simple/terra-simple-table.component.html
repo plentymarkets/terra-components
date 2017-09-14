@@ -2,8 +2,15 @@
     <table class="table simple-table table-bordered" [ngClass]="{'table-striped': inputIsStriped}">
         <thead>
         <tr *ngIf="inputHeaderList">
+            <th *ngIf="inputHasCheckboxes"
+                width="40px">
+                <terra-checkbox #viewChildHeaderCheckbox
+                                (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
+                                [value]="_isHeaderCheckboxChecked">
+                </terra-checkbox>
+            </th>
             <ng-template ngFor let-header [ngForOf]="inputHeaderList">
-                <th *ngIf="!header.isCheckBox" width="{{header.width}}px"
+                <th width="{{header.width}}"
                     [container]="'body'"
                     [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                     [tooltip]="header.tooltipText"
@@ -16,6 +23,12 @@
         <tbody [ngClass]="{'highlighting': inputUseHighlighting}">
         <ng-template ngFor let-row [ngForOf]="inputRowList">
             <tr [ngClass]="row.textColorCss">
+                <td *ngIf="inputHasCheckboxes">
+                    <terra-checkbox #rowCheckbox
+                                    [value]="row.selected"
+                                    (change)="onRowCheckboxChange(rowCheckbox.value, row)">
+                    </terra-checkbox>
+                </td>
                 <ng-template ngFor let-cell [ngForOf]="row.cellList">
                     <template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>

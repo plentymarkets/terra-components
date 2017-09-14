@@ -21,11 +21,11 @@ import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/ter
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
 
 @Component({
-               selector:  'terra-data-table',
-               providers: [TerraDataTableContextMenuService],
-               styles:    [require('./terra-data-table.component.scss')],
-               template:  require('./terra-data-table.component.html')
-           })
+    selector:  'terra-data-table',
+    providers: [TerraDataTableContextMenuService],
+    styles:    [require('./terra-data-table.component.scss')],
+    template:  require('./terra-data-table.component.html')
+})
 export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> implements OnChanges
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
@@ -91,8 +91,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             });
     }
 
-    private onRowCheckboxChange(isChecked:boolean,
-                                row:TerraDataTableRowInterface<D>):void
+    private onRowCheckboxChange(isChecked:boolean, row:TerraDataTableRowInterface<D>):void
     {
         this.changeRowState(isChecked, row);
 
@@ -120,8 +119,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         return 'top';
     }
 
-    private changeRowState(isChecked:boolean,
-                           rowToChange:TerraDataTableRowInterface<D>):void
+    private changeRowState(isChecked:boolean, rowToChange:TerraDataTableRowInterface<D>):void
     {
         rowToChange.selected = isChecked;
 
@@ -157,9 +155,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         {
             this._rowList
                 .forEach((row) =>
-                         {
-                             row.isActive = false;
-                         });
+                {
+                    row.isActive = false;
+                });
 
             row.isActive = true;
             row.clickFunction();
@@ -187,19 +185,19 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
         this.rowList
             .forEach((row:TerraDataTableRowInterface<D>) =>
-                     {
-                         if(row.contextMenuLinkList)
-                         {
-                             row.contextMenuLinkList.forEach((link:TerraDataTableContextMenuEntryInterface<D>) =>
-                                                             {
-                                                                 link.subject
-                                                                     .subscribe((valueToClick:TerraDataTableContextMenuEntryInterface<D>) =>
-                                                                                {
-                                                                                    valueToClick.clickFunction(valueToClick)
-                                                                                })
-                                                             })
-                         }
-                     });
+            {
+                if(row.contextMenuLinkList)
+                {
+                    row.contextMenuLinkList.forEach((link:TerraDataTableContextMenuEntryInterface<D>) =>
+                    {
+                        link.subject
+                            .subscribe((valueToClick:TerraDataTableContextMenuEntryInterface<D>) =>
+                            {
+                                valueToClick.clickFunction(valueToClick)
+                            })
+                    })
+                }
+            });
     }
 
     public deleteRow(rowToDelete:TerraDataTableRowInterface<D>):void

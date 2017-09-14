@@ -8,9 +8,10 @@
         <thead>
         <tr>
             <th *ngIf="inputHasCheckboxes" width="25px">
-                <terra-checkbox #viewChildHeaderCheckbox type="checkbox"
+                <terra-checkbox #viewChildHeaderCheckbox
                                 (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
-                                [value]="_isHeaderCheckboxChecked"></terra-checkbox>
+                                [value]="_isHeaderCheckboxChecked">
+                </terra-checkbox>
             </th>
             <ng-template ngFor let-header [ngForOf]="_headerList">
                 <th *ngIf="!header.isHidden"
@@ -30,8 +31,10 @@
             <tr [ngClass]="{'selected': row.selected, 'isActive': row.isActive}"
                 [context-menu]="row.contextMenuLinkList">
                 <td *ngIf="inputHasCheckboxes">
-                    <terra-checkbox #rowCheckbox type="checkbox" [value]="row.selected"
-                                    (change)="onRowCheckboxChange(rowCheckbox.value, row)"></terra-checkbox>
+                    <terra-checkbox #rowCheckbox type="checkbox"
+                                    [value]="row.selected"
+                                    (change)="onRowCheckboxChange(rowCheckbox.value, row)">
+                    </terra-checkbox>
                 </td>
                 <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
                     <template #tdTooltip>
@@ -59,7 +62,8 @@
                                               [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
                                               [inputCaption]="button.caption"
                                               [inputIsSmall]="true"
-                                              [inputTooltipText]="button.tooltipText"></terra-button>
+                                              [inputTooltipText]="button.tooltipText">
+                                </terra-button>
                             </ng-template>
                         </div>
                     </td>

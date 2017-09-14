@@ -4,8 +4,7 @@
 export interface TerraSimpleTableHeaderCellInterface
 {
     caption:string;
-    width:number;
+    width:string;
     tooltipText?:string;
     tooltipPlacement?:string;
-    isCheckBox?:boolean;
 }
