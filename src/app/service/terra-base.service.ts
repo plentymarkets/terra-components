@@ -59,7 +59,8 @@ export class TerraBaseService
 
     protected setToHeader(key:string, value:string):void
     {
-        this.headers.set(key, value);
+        this.headers.set(key,
+                         value);
     }
 
     protected deleteFromHeader(key:string):void
@@ -71,7 +72,8 @@ export class TerraBaseService
     {
         if(localStorage.getItem('accessToken'))
         {
-            this.setToHeader('Authorization', 'Bearer ' + localStorage.getItem('accessToken'));
+            this.setToHeader('Authorization',
+                             'Bearer ' + localStorage.getItem('accessToken'));
         }
     }
 
@@ -108,7 +110,7 @@ export class TerraBaseService
 
                 // START Very unclean workaround! Normally we should get a 403 status code as response
                 // when user has no permission
-                let errorMessage:string = error.json().error.message;
+                let errorMessage = this.getErrorMessage(error);
                 let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage();
 
                 if(error.status == 401 && errorMessage === "This action is unauthorized.")
@@ -160,6 +162,19 @@ export class TerraBaseService
         return req;
     }
 
+    private getErrorMessage(error:any):string
+    {
+        try
+        {
+            let errorMessage:string = error.json().error.message;
+            return errorMessage;
+        }
+        catch(e)
+        {
+        }
+        return null;
+    }
+
     /**
      * Workaround to prevent the injection of the TranslationService in every Service, that extends TerraBaseService
      * @returns {string}
@@ -191,7 +206,7 @@ export class TerraBaseService
         let response:any = JSON.parse(exception._body);
 
         // check which exception type has been received
-        if (!isNullOrUndefined(response.error) && !isNullOrUndefined(response.message))
+        if(!isNullOrUndefined(response.error) && !isNullOrUndefined(response.message))
         {
             // show alert
             this._alert.addAlert(
@@ -236,7 +251,8 @@ export class TerraBaseService
               .map(
                   (key) =>
                   {
-                      searchParams.set(key, params[key]);
+                      searchParams.set(key,
+                                       params[key]);
                   });
 
         return searchParams;
