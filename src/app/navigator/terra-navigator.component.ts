@@ -51,11 +51,6 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
     ngOnInit()
     {
-        if(isNullOrUndefined(this.inputBaseRoute) || isNullOrUndefined(this.inputRouter))
-        {
-            console.error('\'inputRouter\' and \'inputBaseRoute\' must be defined, in order to be able to search the navigator');
-        }
-
         if(isNullOrUndefined(this.inputModuleWidth))
         {
             this.inputModuleWidth = 'col-xs-12 col-md-12 col-lg-12';
