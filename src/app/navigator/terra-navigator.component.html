@@ -2,4 +2,8 @@
                   [inputUpdateViewport]="_updateViewport"
                   [inputModules]="_terraNavigatorSplitViewConfig.modules"
                   [inputShowBreadcrumbs]="true">
+    <terra-suggestion-box *ngIf="inputBaseRoute && inputRouter"
+        [inputListBoxValues]="_searchNodeList"
+        (outputValueChanged)="openSelectedNode($event)">
+    </terra-suggestion-box>
 </terra-split-view>
