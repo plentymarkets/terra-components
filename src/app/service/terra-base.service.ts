@@ -108,18 +108,19 @@ export class TerraBaseService
 
                 // START Very unclean workaround! Normally we should get a 403 status code as response
                 // when user has no permission
-                let errorMessage:string = error.json().error.message;
+                let errorMessage:string = this.getErrorMessage(error);
+
                 let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage();
 
                 if(error.status == 401 && errorMessage === "This action is unauthorized.")
                 {
                     this._alert
                         .addAlert({
-                                      msg:              missingUserPermissionAlertMessage,
-                                      closable:         true,
-                                      type:             'danger',
-                                      dismissOnTimeout: 0
-                                  });
+                            msg:              missingUserPermissionAlertMessage,
+                            closable:         true,
+                            type:             'danger',
+                            dismissOnTimeout: 0
+                        });
                 }
                 // END Very unclean workaround!
                 else if(error.status == 401)
@@ -148,16 +149,29 @@ export class TerraBaseService
             }).share();
 
         req.subscribe(() =>
-                      {
-                          this._terraLoadingSpinnerService.stop();
-                      },
-                      error =>
-                      {
-                          this._terraLoadingSpinnerService.stop();
-                      }
+            {
+                this._terraLoadingSpinnerService.stop();
+            },
+            error =>
+            {
+                this._terraLoadingSpinnerService.stop();
+            }
         );
 
         return req;
+    }
+
+    private getErrorMessage(error:any):string
+    {
+        try
+        {
+            let errorMessage:string = error.json().error.message;
+            return errorMessage;
+        }
+        catch(e)
+        {
+            return null;
+        }
     }
 
     /**
@@ -191,7 +205,7 @@ export class TerraBaseService
         let response:any = JSON.parse(exception._body);
 
         // check which exception type has been received
-        if (!isNullOrUndefined(response.error) && !isNullOrUndefined(response.message))
+        if(!isNullOrUndefined(response.error) && !isNullOrUndefined(response.message))
         {
             // show alert
             this._alert.addAlert(
