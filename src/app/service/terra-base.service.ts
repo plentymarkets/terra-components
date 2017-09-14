@@ -171,8 +171,8 @@ export class TerraBaseService
         }
         catch(e)
         {
+            return null;
         }
-        return null;
     }
 
     /**
