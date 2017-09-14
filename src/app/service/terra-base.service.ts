@@ -59,8 +59,7 @@ export class TerraBaseService
 
     protected setToHeader(key:string, value:string):void
     {
-        this.headers.set(key,
-                         value);
+        this.headers.set(key, value);
     }
 
     protected deleteFromHeader(key:string):void
@@ -72,8 +71,7 @@ export class TerraBaseService
     {
         if(localStorage.getItem('accessToken'))
         {
-            this.setToHeader('Authorization',
-                             'Bearer ' + localStorage.getItem('accessToken'));
+            this.setToHeader('Authorization', 'Bearer ' + localStorage.getItem('accessToken'));
         }
     }
 
@@ -118,11 +116,11 @@ export class TerraBaseService
                 {
                     this._alert
                         .addAlert({
-                                      msg:              missingUserPermissionAlertMessage,
-                                      closable:         true,
-                                      type:             'danger',
-                                      dismissOnTimeout: 0
-                                  });
+                            msg:              missingUserPermissionAlertMessage,
+                            closable:         true,
+                            type:             'danger',
+                            dismissOnTimeout: 0
+                        });
                 }
                 // END Very unclean workaround!
                 else if(error.status == 401)
@@ -151,13 +149,13 @@ export class TerraBaseService
             }).share();
 
         req.subscribe(() =>
-                      {
-                          this._terraLoadingSpinnerService.stop();
-                      },
-                      error =>
-                      {
-                          this._terraLoadingSpinnerService.stop();
-                      }
+            {
+                this._terraLoadingSpinnerService.stop();
+            },
+            error =>
+            {
+                this._terraLoadingSpinnerService.stop();
+            }
         );
 
         return req;
@@ -252,8 +250,7 @@ export class TerraBaseService
               .map(
                   (key) =>
                   {
-                      searchParams.set(key,
-                                       params[key]);
+                      searchParams.set(key, params[key]);
                   });
 
         return searchParams;
