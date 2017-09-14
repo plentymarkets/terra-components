@@ -353,13 +353,17 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         // only add nodes without children <=> leaves
         else
         {
-            // add node to the flat list
-            pathList.push(
-                {
-                    value: this.getNodeRoute(node),
-                    caption: this.getNodePath(node)
-                }
-            );
+            // check if node is visible
+            if(isNullOrUndefined(node.isVisible) || node.isVisible) //TODO: rename in hidden!
+            {
+                // add node to the flat list
+                pathList.push(
+                    {
+                        value: this.getNodeRoute(node),
+                        caption: this.getNodePath(node)
+                    }
+                );
+            }
         }
     }
 
