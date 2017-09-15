@@ -1,6 +1,8 @@
 import {
     Component,
+    EventEmitter,
     Input,
+    Output,
     ViewChild
 } from '@angular/core';
 import { TerraSimpleTableHeaderCellInterface } from './cell/terra-simple-table-header-cell.interface';
@@ -12,18 +14,20 @@ import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.comp
     styles:   [require('./terra-simple-table.component.scss')],
     template: require('./terra-simple-table.component.html')
 })
-export class TerraSimpleTableComponent
+export class TerraSimpleTableComponent<D>
 {
     @Input() inputHeaderList:Array<TerraSimpleTableHeaderCellInterface>;
-    @Input() inputRowList:Array<TerraSimpleTableRowInterface>;
+    @Input() inputRowList:Array<TerraSimpleTableRowInterface<D>>;
     @Input() inputUseHighlighting:boolean = false;
     @Input() inputIsStriped:boolean = false;
     @Input() inputHasCheckboxes:boolean = false;
 
+    @Output() outputHeaderCheckBoxChanged:EventEmitter<boolean> = new EventEmitter();
+
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
 
     private _isHeaderCheckboxChecked:boolean = false;
-    private _selectedRowList:Array<TerraSimpleTableRowInterface> = [];
+    private _selectedRowList:Array<TerraSimpleTableRowInterface<D>> = [];
 
     constructor()
     {
@@ -54,12 +58,12 @@ export class TerraSimpleTableComponent
      *
      * @returns {Array<TerraSimpleTableRowInterface>}
      */
-    public get rowList():Array<TerraSimpleTableRowInterface>
+    public get rowList():Array<TerraSimpleTableRowInterface<D>>
     {
         return this.inputRowList;
     }
 
-    public set rowList(value:Array<TerraSimpleTableRowInterface>)
+    public set rowList(value:Array<TerraSimpleTableRowInterface<D>>)
     {
         this.inputRowList = value;
     }
@@ -69,7 +73,7 @@ export class TerraSimpleTableComponent
      *
      * @param rowToDelete
      */
-    public deleteRow(rowToDelete:TerraSimpleTableRowInterface):void
+    public deleteRow(rowToDelete:TerraSimpleTableRowInterface<D>):void
     {
         let index = this.inputRowList.indexOf(rowToDelete);
 
@@ -90,14 +94,16 @@ export class TerraSimpleTableComponent
     {
         this._isHeaderCheckboxChecked = isChecked;
 
-        this.rowList.forEach(
+        this.outputHeaderCheckBoxChanged.emit(isChecked);
+
+        this.inputRowList.forEach(
             (row) =>
             {
                 this.changeRowState(isChecked, row);
             });
     }
 
-    private onRowCheckboxChange(isChecked:boolean, row:TerraSimpleTableRowInterface):void
+    private onRowCheckboxChange(isChecked:boolean, row:TerraSimpleTableRowInterface<D>):void
     {
         this.changeRowState(isChecked, row);
 
@@ -105,7 +111,7 @@ export class TerraSimpleTableComponent
         {
             this._isHeaderCheckboxChecked = false;
         }
-        else if(this._selectedRowList.length > 0 && this.rowList.length == this._selectedRowList.length)
+        else if(this._selectedRowList.length > 0 && this.inputRowList.length == this._selectedRowList.length)
         {
             this._isHeaderCheckboxChecked = true;
         }
@@ -115,7 +121,7 @@ export class TerraSimpleTableComponent
         }
     }
 
-    private changeRowState(isChecked:boolean, rowToChange:TerraSimpleTableRowInterface):void
+    private changeRowState(isChecked:boolean, rowToChange:TerraSimpleTableRowInterface<D>):void
     {
         rowToChange.selected = isChecked;
 
