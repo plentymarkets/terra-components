@@ -26,6 +26,9 @@
     "chooseFile": "Datei wählen"
   },
   "terraSuggestionBox": {
-    "noSuggestions": "Keine Vorschläge"
+    "suggestions": "Vorschläge",
+    "recentlyUsed": "Zuletzt verwendet",
+    "noSuggestions": "Keine Vorschläge",
+    "noRecentlyUsed": "Keine zuletzt verwendeten Elemente"
   }
 }

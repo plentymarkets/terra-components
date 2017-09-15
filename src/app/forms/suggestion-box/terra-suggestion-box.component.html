@@ -16,15 +16,35 @@
                       [(ngModel)]="_selectedValue.caption">
     </terra-text-input>
     
-    <div class="select-box-dropdown">
-        <span *ngIf="inputListBoxValues.length == 0">
-            <i>{{'terraSuggestionBox.noSuggestions' | translate:lang }}</i>
+    <!-- lastly selected values -->
+    <div *ngIf="_selectedValue.caption.length < 3" class="select-box-dropdown">
+        <span *ngIf="_lastSelectedValues.length === 0">
+            <i> {{'terraSuggestionBox.noRecentlyUsed' | translate:lang }} </i>
         </span>
-        <span *ngFor="let item of inputListBoxValues; let index=index;"
-              (click)="select(item)"
-              [ngClass]="{active: item.value === _selectedValue?.value}">
-          <span class="{{item.icon}}" *ngIf="item.icon"></span>
+        <span *ngIf="_lastSelectedValues.length > 0">
+            <i><b> {{'terraSuggestionBox.recentlyUsed' | translate:lang }} </b></i>
+        </span>
+        <span *ngFor="let item of _lastSelectedValues"
+              (click)="select(item)">
+            <span class="{{item.icon}}" *ngIf="item.icon"></span>
             <span [innerHtml]="item.caption"></span>
         </span>
     </div>
+    
+    <!-- suggestions -->
+    <div *ngIf="_selectedValue.caption.length >= 3" class="select-box-dropdown">
+        <span *ngIf="inputListBoxValues.length === 0">
+            <i>{{'terraSuggestionBox.noSuggestions' | translate:lang }}</i>
+        </span>
+        <span *ngIf="inputListBoxValues.length > 0">
+            <i><b> {{'terraSuggestionBox.suggestions' | translate:lang }} </b></i>
+        </span>
+         <span *ngFor="let item of inputListBoxValues"
+               (click)="select(item)"
+               [ngClass]="{active: item.value === _selectedValue?.value || item.value === _tmpSelectedValue?.value}">
+            <span class="{{item.icon}}" *ngIf="item.icon"></span>
+            <span [innerHtml]="item.caption"></span>
+        </span>
+    </div>
+    
 </div>
