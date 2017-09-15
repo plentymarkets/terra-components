@@ -8,6 +8,7 @@
                   'open': _toggleOpen
                 }"
      (click)="onClick($event)"
+     (keydown)="onKeyDown($event)"
      container="body">
     
     <terra-text-input [inputName]="inputName"
