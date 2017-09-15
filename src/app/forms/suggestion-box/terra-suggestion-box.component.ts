@@ -38,6 +38,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     @Output() outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
 
     private _selectedValue:TerraSuggestionBoxValueInterface;
+    private _tmpSelectedValue:TerraSuggestionBoxValueInterface;
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
     private _isValid:boolean;
@@ -73,6 +74,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 value:   '',
                 caption: ''
             };
+        this._tmpSelectedValue = null;
 
         this._isValid = true;
         this._toggleOpen = false;
@@ -144,6 +146,8 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 value:   this.inputListBoxValues[0].value
             };
         }
+
+        this._tmpSelectedValue = this._selectedValue;
     }
 
     private onClick(evt:Event):void
@@ -189,6 +193,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
         // update last selected values
         this.updateLastSelectedValues();
+
+        // update temp selected value
+        this._tmpSelectedValue = this._selectedValue;
 
         // execute callback functions
         this.onTouchedCallback();
@@ -267,5 +274,52 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 value:   '',
                 caption: ''
             };
+
+        this._tmpSelectedValue = null;
+    }
+
+    private onKeyDown(event:KeyboardEvent):void
+    {
+        // check if there is any selected value yet
+        if(isNullOrUndefined(this._tmpSelectedValue))
+        {
+            this._tmpSelectedValue = this.inputListBoxValues[0];
+        }
+        else
+        {
+            let index:number = this.inputListBoxValues.findIndex((item:TerraSuggestionBoxValueInterface) =>
+                item.value === this._tmpSelectedValue.value
+            );
+
+            // check if element has been found
+            if (index >= 0)
+            {
+                // determine the key, that has been pressed
+                switch(event.key)
+                {
+                    case 'ArrowDown':
+                        if(index + 1 < this.inputListBoxValues.length)
+                        {
+                            this._tmpSelectedValue = this.inputListBoxValues[index + 1];
+                        }
+                        break;
+                    case 'ArrowUp':
+                        if(index - 1 < this.inputListBoxValues.length)
+                        {
+                            this._tmpSelectedValue = this.inputListBoxValues[index - 1];
+                        }
+                        break;
+                    case 'Enter':
+                        this.select(this._tmpSelectedValue);
+                        break;
+                    case 'Escape':
+                        this.toggleOpen = false;
+                        break;
+                }
+            }
+        }
+
+        // stop event bubbling
+        event.stopPropagation();
     }
 }
