@@ -74,3 +74,8 @@
 {
     padding: 0px 28px 0px 12px !important;
 }
+
+/deep/ .btn-toolbar > terra-pager > .pager > terra-base-toolbar > .btn-toolbar
+{
+    padding: 0px;
+}

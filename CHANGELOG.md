@@ -4,7 +4,7 @@
 * **terra-file-input** and **terra-file-browser** Added new components to manage files on S3-Bucket and display file-inputs as form control.
 * **interactables** Added directives to use [interact.js](http://interactjs.io/) inside terra-components
 * **terra-slider** Added new component to display sliders as form inputs
-
+* **terra-data-table** Added input 'inputHasPager' for separate usage of pager and table. The Date Table uses the pager by default.
 
 <a name="1.4.1"></a>
 # 1.4.1 (04.09.2017)
