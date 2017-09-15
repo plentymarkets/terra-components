@@ -13,6 +13,8 @@ import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.in
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 
+const MAX_LASTLY_USED_ENTRIES = 5;
+
 @Component({
     selector:  'terra-suggestion-box',
     styles:    [require('./terra-suggestion-box.component.scss')],
@@ -42,6 +44,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     private _value:number | string;
     private clickListener:(event:Event) => void;
     private tempInputListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
+    private _lastSelectedValues:Array<TerraSuggestionBoxValueInterface>;
 
     constructor(private _elementRef:ElementRef)
     {
@@ -74,6 +77,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this._isValid = true;
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
+        this._lastSelectedValues = [];
     }
 
     ngOnChanges(changes:SimpleChanges)
@@ -177,14 +181,47 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     private select(value:TerraSuggestionBoxValueInterface):void
     {
+        // update selected value
         this._selectedValue = {
             caption: value.caption,
             value:   value.value
         };
 
+        // update last selected values
+        this.updateLastSelectedValues();
+
+        // execute callback functions
         this.onTouchedCallback();
         this.onChangeCallback(value.value);
         this.outputValueChanged.emit(value);
+    }
+
+    private updateLastSelectedValues():void
+    {
+        // check if newly selected value has been selected lastly
+        let valueSelected:TerraSuggestionBoxValueInterface =
+            this._lastSelectedValues.find((value:TerraSuggestionBoxValueInterface) =>
+                value.caption === this._selectedValue.caption &&
+                value.value === this._selectedValue.value
+            );
+
+        // add value to the last selected values, if it is not already added
+        if (isNullOrUndefined(valueSelected))
+        {
+            let length:number = this._lastSelectedValues.unshift(
+                {
+                    caption: this._selectedValue.caption,
+                    value: this._selectedValue.value
+                }
+            );
+
+            // check if length of the array exceeds the maximum amount of "lastly used" entries
+            if(length > MAX_LASTLY_USED_ENTRIES)
+            {
+                // remove last element of the array
+                this._lastSelectedValues.pop();
+            }
+        }
     }
 
     public onChange()
