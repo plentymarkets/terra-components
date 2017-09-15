@@ -24,5 +24,11 @@
     "choose": "Select",
     "cancel": "Cancel",
     "chooseFile": "Select file"
+  },
+  "terraSuggestionBox": {
+    "suggestions": "Suggestions",
+    "recentlyUsed": "Recently used",
+    "noSuggestions": "No suggestions",
+    "noRecentlyUsed": "No recently used elements"
   }
 }
