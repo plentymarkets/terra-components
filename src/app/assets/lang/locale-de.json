@@ -30,5 +30,8 @@
     "recentlyUsed": "Zuletzt verwendet",
     "noSuggestions": "Keine Vorschläge",
     "noRecentlyUsed": "Keine zuletzt verwendeten Elemente"
+  },
+  "terraNavigator": {
+    "search": "Suche"
   }
 }
