@@ -243,6 +243,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     private onKeyDown(event:KeyboardEvent):void
     {
+        // check if one of the dedicated keys has been pressed
+        if(!(event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'Enter' || event.key === 'Escape'))
+        {
+            return;
+        }
+
         // check if there is any selected value yet
         if(isNullOrUndefined(this._tmpSelectedValue))
         {
@@ -255,7 +261,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             );
 
             // check if element has been found
-            if (index >= 0)
+            if(index >= 0)
             {
                 // determine the key, that has been pressed
                 switch(event.key)
@@ -267,7 +273,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                         }
                         break;
                     case 'ArrowUp':
-                        if(index - 1 < this.inputListBoxValues.length)
+                        if(index - 1 >= 0)
                         {
                             this._tmpSelectedValue = this.inputListBoxValues[index - 1];
                         }
@@ -279,6 +285,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                         this.toggleOpen = false;
                         break;
                 }
+            }
+            else
+            {
+                this._tmpSelectedValue = this.inputListBoxValues[0];
             }
         }
 
