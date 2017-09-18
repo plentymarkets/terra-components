@@ -6,6 +6,7 @@
         *ngIf="inputBaseRoute && inputRouter"
         [inputName]="'terraNavigator.search' | translate:lang"
         [inputListBoxValues]="_searchNodeList"
+        [inputWithRecentlyUsed]="true"
         (outputValueChanged)="openSelectedNode($event)">
     </terra-suggestion-box>
 </terra-split-view>
