@@ -256,6 +256,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
         else
         {
+            // get the array index of the selected value
             let index:number = this.inputListBoxValues.findIndex((item:TerraSuggestionBoxValueInterface) =>
                 item.value === this._tmpSelectedValue.value
             );
