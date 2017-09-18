@@ -25,21 +25,18 @@
     }
 }
 
-//ToDo: Fix Divider Problem
-///deep/
-//{
-//    terra-navigator .divider
-//    {
-//    display: none !important;
-//    }
-//
-//    terra-navigator .hasDivider
-//    {
-//        padding: 0 !important;
-//    }
-//
-//    terra-navigator .btn-group-menu
-//    {
-//        margin: 0 1px !important;
-//    }
-//}
+// customize split view
+:host /deep/ .side-scroller,
+:host /deep/ .content
+{
+    width: 25%;
+    border-right: 1px solid #C7C7C7;
+    padding-right: 1px;
+}
+
+// customize select box margin
+:host /deep/ .select-box-wrapper,
+:host /deep/ .input-unit-v1
+{
+    margin-bottom: 3px !important;
+}
