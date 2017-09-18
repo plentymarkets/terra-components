@@ -79,74 +79,71 @@ export class TerraBaseService
     {
         this._terraLoadingSpinnerService.start();
 
-        let req = request.map(
-            (response:Response) =>
+        let req = request.map((response:Response) =>
+        {
+            if(response.status == 204)
             {
-                if(response.status == 204)
-                {
-                    return response.text();
-                }
-                else if(!isNullOrUndefined(isPdf) && isPdf == true)
-                {
-                    return response.text();
-                }
-                else
-                {
-                    return response.text() === '' ? {} : response.json();
-                }
-            }).catch(
-            (error:any) =>
+                return response.text();
+            }
+            else if(!isNullOrUndefined(isPdf) && isPdf == true)
             {
-                if(err)
-                {
-                    err(error);
-                }
-                else
-                {
-                    this.handleException(error);
-                }
+                return response.text();
+            }
+            else
+            {
+                return response.text() === '' ? {} : response.json();
+            }
+        }).catch((error:any) =>
+        {
+            if(err)
+            {
+                err(error);
+            }
+            else
+            {
+                this.handleException(error);
+            }
 
-                // START Very unclean workaround! Normally we should get a 403 status code as response
-                // when user has no permission
-                let errorMessage:string = this.getErrorMessage(error);
+            // START Very unclean workaround! Normally we should get a 403 status code as response
+            // when user has no permission
+            let errorMessage:string = this.getErrorMessage(error);
 
-                let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage();
+            let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage();
 
-                if(error.status == 401 && errorMessage === "This action is unauthorized.")
+            if(error.status == 401 && errorMessage === "This action is unauthorized.")
+            {
+                this._alert.addAlert({
+                    msg:              missingUserPermissionAlertMessage,
+                    closable:         true,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                });
+            }
+            // END Very unclean workaround!
+            else if(error.status == 401)
+            {
+                let event:CustomEvent = new CustomEvent('login');
+                //Workaround for plugins in Angular (loaded via iFrame)
+                if(window.parent != null)
                 {
-                    this._alert
-                        .addAlert({
-                            msg:              missingUserPermissionAlertMessage,
-                            closable:         true,
-                            type:             'danger',
-                            dismissOnTimeout: 0
-                        });
-                }
-                // END Very unclean workaround!
-                else if(error.status == 401)
-                {
-                    let event:CustomEvent = new CustomEvent('login');
-                    //Workaround for plugins in Angular (loaded via iFrame)
-                    if(window.parent != null)
+                    //workaround for plugins in GWT (loaded via iFrame)
+                    if(window.parent.window.parent != null)
                     {
-                        //workaround for plugins in GWT (loaded via iFrame)
-                        if(window.parent.window.parent != null)
-                        {
-                            window.parent.window.parent.window.dispatchEvent(event);
-                        }
-                        else
-                        {
-                            window.parent.window.dispatchEvent(event);
-                        }
+                        window.parent.window.parent.window.dispatchEvent(event);
                     }
                     else
                     {
-                        window.dispatchEvent(event);
+                        window.parent.window.dispatchEvent(event);
                     }
                 }
+                else
+                {
+                    window.dispatchEvent(event);
+                }
+            }
 
-                return Observable.throw(error);
-            }).share();
+            return Observable.throw(error);
+        }).share();
 
         req.subscribe(() =>
             {
@@ -246,12 +243,10 @@ export class TerraBaseService
     {
         let searchParams:URLSearchParams = new URLSearchParams();
 
-        Object.keys(params)
-              .map(
-                  (key) =>
-                  {
-                      searchParams.set(key, params[key]);
-                  });
+        Object.keys(params).map((key) =>
+        {
+            searchParams.set(key, params[key]);
+        });
 
         return searchParams;
     }
