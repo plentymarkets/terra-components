@@ -35,6 +35,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     @Input() inputTooltipText:string;
     @Input() inputTooltipPlacement:string;
     @Input() inputListBoxValues:Array<TerraSuggestionBoxValueInterface>;
+    @Input() inputWithRecentlyUsed:boolean;
     @Output() outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
 
     private _selectedValue:TerraSuggestionBoxValueInterface;
@@ -188,7 +189,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         };
 
         // update last selected values
-        this.updateLastSelectedValues();
+        if(this.inputWithRecentlyUsed)
+        {
+            this.updateLastSelectedValues();
+        }
 
         // execute callback functions
         this.onTouchedCallback();
