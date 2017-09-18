@@ -4,7 +4,8 @@
      [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
      container="body">
-    <label htmlFor="{{inputName}}">{{inputName}}
+    <label htmlFor="{{inputName}}">
+        <span translate>{{inputLabel}}</span>
         <span *ngIf="inputIsRequired">*</span>
     </label>
     <textarea id="{{inputId}}"
