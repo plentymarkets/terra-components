@@ -59,18 +59,21 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                 console.error('You have to define an initial breadcrumb!!!');
             }
 
-            this._terraNavigatorSplitViewConfig
-                .addModule({
-                               module:            TerraButtonGroupModule.forRoot(),
-                               instanceKey:       0,
-                               defaultWidth:      this.inputModuleWidth,
-                               hidden:            false,
-                               name:              this.inputFirstBreadcrumbName,
-                               mainComponentName: 'TerraButtonGroupComponent',
-                               parameter:         {
-                                   nodes: this.inputNodes
-                               }
-                           });
+            if(this.inputNodes.length)
+            {
+                this._terraNavigatorSplitViewConfig
+                    .addModule({
+                                   module:            TerraButtonGroupModule.forRoot(),
+                                   instanceKey:       0,
+                                   defaultWidth:      this.inputModuleWidth,
+                                   hidden:            false,
+                                   name:              this.inputFirstBreadcrumbName,
+                                   mainComponentName: 'TerraButtonGroupComponent',
+                                   parameter:         {
+                                       nodes: this.inputNodes
+                                   }
+                               });
+            }
         }
 
         this._terraNavigatorSplitViewConfig.observableNodeClicked
@@ -125,6 +128,29 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                        {
                            this.addNodesRecursive(item);
                            this.refreshNodeVisibilities(this.inputNodes);
+                       });
+
+        this.inputNavigatorService.observableRefresh
+            .subscribe(() =>
+                       {
+                           this.initRootPaths(this.inputNodes, null);
+                           this.refreshNodeVisibilities(this.inputNodes);
+
+                           this._terraNavigatorSplitViewConfig
+                               .addModule({
+                                              module:            TerraButtonGroupModule.forRoot(),
+                                              instanceKey:       0,
+                                              defaultWidth:      this.inputModuleWidth,
+                                              hidden:            false,
+                                              name:              this.inputFirstBreadcrumbName,
+                                              mainComponentName: 'TerraButtonGroupComponent',
+                                              parameter:         {
+                                                  nodes: this.inputNodes
+                                              }
+                                          });
+
+                           //this.initRootPaths(item, null);
+                           //this.refreshNodeVisibilities(item);
                        });
 
         this._isInit = true;
@@ -234,7 +260,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
     {
         position++;
 
-        if(position === rootIndex.length)
+        if(!isNullOrUndefined(rootIndex) && position === rootIndex.length)
         {
             let newRootPath = newNode.rootPath;
 
@@ -251,11 +277,11 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                           isActive:  newNode.isActive
                       });
         }
-        else if(!isNullOrUndefined(data[rootIndex[position]].children))
+        else if(!isNullOrUndefined(rootIndex) && !isNullOrUndefined(data[rootIndex[position]].children))
         {
             this.addNodeAt(data[rootIndex[position]].children, rootIndex, position, newNode);
         }
-        else
+        else if(!isNullOrUndefined(rootIndex))
         {
             data[rootIndex[position]].children = [];
             this.addNodeAt(data[rootIndex[position]].children, rootIndex, position, newNode);

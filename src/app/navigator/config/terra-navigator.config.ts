@@ -11,9 +11,11 @@ export class TerraNavigatorConfig<D>
 {
     public observableNewNodeByRootPath:Observable<TerraNavigatorNodeInterface<D>>;
     public observableNewNodesByRoute:Observable<Array<TerraNavigatorNodeInterface<D>>>;
+    public observableRefresh:Observable<any>;
 
     private _subscriberNewNodeByRootPath:Subscriber<TerraNavigatorNodeInterface<D>>;
     private _subscriberNewNodesByRoute:Subscriber<Array<TerraNavigatorNodeInterface<D>>>;
+    private _subscriberRefresh:Subscriber<any>;
 
     constructor()
     {
@@ -27,6 +29,12 @@ export class TerraNavigatorConfig<D>
             (subscriber:Subscriber<Array<TerraNavigatorNodeInterface<D>>>) =>
             {
                 this._subscriberNewNodesByRoute = subscriber;
+            });
+
+        this.observableRefresh = new Observable<any>(
+            (subscriber:Subscriber<any>) =>
+            {
+                this._subscriberRefresh = subscriber;
             });
     }
 
@@ -43,6 +51,14 @@ export class TerraNavigatorConfig<D>
         if(this._subscriberNewNodesByRoute)
         {
             this._subscriberNewNodesByRoute.next(newNodes);
+        }
+    }
+
+    public refresh()
+    {
+        if(this._subscriberRefresh)
+        {
+            this._subscriberRefresh.next();
         }
     }
 }
