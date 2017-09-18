@@ -18,7 +18,7 @@
     </terra-text-input>
     
     <!-- lastly selected values -->
-    <div *ngIf="_selectedValue.caption.length < 3" class="select-box-dropdown">
+    <div *ngIf="inputWithRecentlyUsed" [hidden]="_selectedValue.caption.length >= 3" class="select-box-dropdown">
         <span *ngIf="_lastSelectedValues.length === 0">
             <i> {{'terraSuggestionBox.noRecentlyUsed' | translate:lang }} </i>
         </span>
@@ -33,7 +33,7 @@
     </div>
     
     <!-- suggestions -->
-    <div *ngIf="_selectedValue.caption.length >= 3" class="select-box-dropdown">
+    <div [hidden]="_selectedValue.caption.length < 3 && inputWithRecentlyUsed" class="select-box-dropdown">
         <span *ngIf="inputListBoxValues.length === 0">
             <i>{{'terraSuggestionBox.noSuggestions' | translate:lang }}</i>
         </span>
@@ -42,7 +42,7 @@
         </span>
          <span *ngFor="let item of inputListBoxValues"
                (click)="select(item)"
-               [ngClass]="{active: item.value === _selectedValue?.value || item.value === _tmpSelectedValue?.value}">
+               [ngClass]="{active: item.value === _selectedValue?.value}">
             <span class="{{item.icon}}" *ngIf="item.icon"></span>
             <span [innerHtml]="item.caption"></span>
         </span>
