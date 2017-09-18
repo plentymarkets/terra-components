@@ -270,17 +270,30 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                     case 'ArrowDown':
                         if(index + 1 < this.inputListBoxValues.length)
                         {
+                            // open dropdown if not already opened
+                            if(!this.toggleOpen)
+                            {
+                                this.toggleOpen = true;
+                            }
+                            // select next element
                             this._tmpSelectedValue = this.inputListBoxValues[index + 1];
                         }
                         break;
                     case 'ArrowUp':
                         if(index - 1 >= 0)
                         {
+                            // open dropdown if not already opened
+                            if(!this.toggleOpen)
+                            {
+                                this.toggleOpen = true;
+                            }
+                            // select previous element
                             this._tmpSelectedValue = this.inputListBoxValues[index - 1];
                         }
                         break;
                     case 'Enter':
-                        this.select(this._tmpSelectedValue);
+                        this.select(this._tmpSelectedValue); // select the chosen element
+                        this.toggleOpen = false; // close the dropdown
                         break;
                     case 'Escape':
                         this.toggleOpen = false;
