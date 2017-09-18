@@ -9,4 +9,5 @@ export interface TerraSimpleTableRowInterface<D>
     selected?:boolean;
     value?:D;
     textColorCss?:string;
+    backgroundColor?:string;
 }
