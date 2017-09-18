@@ -206,12 +206,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             );
 
         // add value to the last selected values, if it is not already added
-        if (isNullOrUndefined(valueSelected))
+        if(isNullOrUndefined(valueSelected))
         {
             let length:number = this._lastSelectedValues.unshift(
                 {
                     caption: this._selectedValue.caption,
-                    value: this._selectedValue.value
+                    value:   this._selectedValue.value
                 }
             );
 
