@@ -42,7 +42,7 @@
         </span>
          <span *ngFor="let item of inputListBoxValues"
                (click)="select(item)"
-               [ngClass]="{active: item.value === _selectedValue?.value}">
+               [ngClass]="{active: item.value === _selectedValue?.value, selected: item.value === _tmpSelectedValue?.value}">
             <span class="{{item.icon}}" *ngIf="item.icon"></span>
             <span [innerHtml]="item.caption"></span>
         </span>
