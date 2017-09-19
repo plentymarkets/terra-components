@@ -39,6 +39,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     @Output() outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
 
     private _selectedValue:TerraSuggestionBoxValueInterface;
+    private _tmpSelectedValue:TerraSuggestionBoxValueInterface;
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
     private _isValid:boolean;
@@ -76,6 +77,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 value:   '',
                 caption: ''
             };
+        this._tmpSelectedValue = null;
 
         this._isValid = true;
         this._toggleOpen = false;
@@ -155,6 +157,8 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 value:   this.inputListBoxValues[0].value
             };
         }
+
+        this._tmpSelectedValue = this._selectedValue;
     }
 
     private onClick(evt:Event):void
@@ -168,6 +172,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         if(this._toggleOpen !== value && value == true)
         {
             document.addEventListener('click', this.clickListener);
+            this.focusSelectedElement();
         }
         else if(this._toggleOpen !== value && value == false)
         {
@@ -203,6 +208,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         {
             this.updateLastSelectedValues();
         }
+
+        // update temp selected value
+        this._tmpSelectedValue = this._selectedValue;
 
         // execute callback functions
         this.onTouchedCallback();
@@ -274,5 +282,107 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 value:   '',
                 caption: ''
             };
+
+        this._tmpSelectedValue = null;
+    }
+
+    private onKeyDown(event:KeyboardEvent):void
+    {
+        // check if one of the dedicated keys has been pressed
+        if(!(event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'Enter' || event.key === 'Escape'))
+        {
+            return;
+        }
+
+        // check if there is any selected value yet
+        if(isNullOrUndefined(this._tmpSelectedValue))
+        {
+            this._tmpSelectedValue = this.inputListBoxValues[0];
+        }
+        else
+        {
+            // get the array index of the selected value
+            let index:number = this.inputListBoxValues.findIndex((item:TerraSuggestionBoxValueInterface) =>
+                item.value === this._tmpSelectedValue.value
+            );
+
+            // check if element has been found
+            if(index >= 0)
+            {
+                // determine the key, that has been pressed
+                switch(event.key)
+                {
+                    case 'ArrowDown': // mark the succeeding list element
+                        if(index + 1 < this.inputListBoxValues.length)
+                        {
+                            // open dropdown if not already opened
+                            if(!this.toggleOpen)
+                            {
+                                this.toggleOpen = true;
+                            }
+                            // mark next element for selection
+                            this._tmpSelectedValue = this.inputListBoxValues[index + 1];
+                            // adjust scrolling viewport
+                            this.focusSelectedElement();
+                        }
+                        break;
+                    case 'ArrowUp': // mark the preceding list element
+                        if(index - 1 >= 0)
+                        {
+                            // open dropdown if not already opened
+                            if(!this.toggleOpen)
+                            {
+                                this.toggleOpen = true;
+                            }
+                            // mark previous element for selection
+                            this._tmpSelectedValue = this.inputListBoxValues[index - 1];
+                            // adjust scrolling viewport
+                            this.focusSelectedElement();
+                        }
+                        break;
+                    case 'Enter': // select the marked element
+                        this.select(this._tmpSelectedValue); // select the chosen element
+                        this.toggleOpen = false; // close the dropdown
+                        break;
+                    case 'Escape': // close the dropdown
+                        this.toggleOpen = false; // close the dropdown
+                        break;
+                }
+            }
+            else
+            {
+                this._tmpSelectedValue = this.inputListBoxValues[0];
+            }
+        }
+
+        // stop event bubbling
+        event.stopPropagation();
+    }
+
+    private focusSelectedElement():void
+    {
+        // get the temporary selected DOM element
+        let selectedElement:HTMLElement = $('.select-box-dropdown > span.selected').get().pop();
+
+        // check if the element has been found
+        if(selectedElement)
+        {
+            // scroll to the selected element
+            selectedElement.parentElement.scrollTop = selectedElement.offsetTop - selectedElement.parentElement.offsetTop;
+        }
+    }
+    
+    /**
+     * workaround to prevent calling the select() method on the label click
+     * @param event
+     */
+    private onInputClick(event:any):void
+    {
+        // check if the input has been clicked
+        if(event.target.nodeName === 'INPUT')
+        {
+            // select the input text <-> mark all
+            event.target.select();
+        }
     }
 }

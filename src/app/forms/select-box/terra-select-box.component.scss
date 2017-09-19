@@ -59,6 +59,12 @@
         padding: .25em 1em;
         line-height: 18px;
         &:hover,
+        &.selected
+        {
+            background: $grey-3;
+            color: black;
+            cursor: pointer;
+        }
         &.active
         {
             background: $brand-primary;

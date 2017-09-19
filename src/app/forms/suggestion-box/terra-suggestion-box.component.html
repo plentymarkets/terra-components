@@ -8,10 +8,12 @@
                   'open': _toggleOpen
                 }"
      (click)="onClick($event)"
+     (keydown)="onKeyDown($event)"
      container="body">
     
     <terra-text-input [inputName]="inputName"
                       (outputOnInput)="onChange()"
+                      (click)="onInputClick($event)"
                       [(ngModel)]="_selectedValue.caption">
     </terra-text-input>
     
@@ -27,7 +29,7 @@
         </span>
         <span *ngFor="let item of _displayListBoxValues"
               (click)="select(item)"
-              [ngClass]="{active: item.value === _selectedValue?.value}">
+              [ngClass]="{active: item.value === _selectedValue?.value, selected: item.value === _tmpSelectedValue?.value}">
             <span class="{{item.icon}}" *ngIf="item.icon"></span>
             <span [innerHtml]="item.caption"></span>
         </span>
