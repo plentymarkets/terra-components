@@ -44,8 +44,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     private _isValid:boolean;
     private _value:number | string;
     private clickListener:(event:Event) => void;
-    private tempInputListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
+    private _displayListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
     private _lastSelectedValues:Array<TerraSuggestionBoxValueInterface>;
+    private _listBoxHeadingKey:string;
+    private _noEntriesTextKey:string;
 
     constructor(private _elementRef:ElementRef)
     {
@@ -79,6 +81,14 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
         this._lastSelectedValues = [];
+        this._listBoxHeadingKey = '';
+        this._noEntriesTextKey = this.inputWithRecentlyUsed? 'terraSuggestionBox.noRecentlyUsed': 'terraSuggestionBox.noSuggestions';
+
+        if(!this.inputWithRecentlyUsed)
+        {
+            // initialize the displayed list with all possible values
+            this._displayListBoxValues = this.inputListBoxValues;
+        }
     }
 
     ngOnChanges(changes:SimpleChanges)
@@ -230,36 +240,29 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     public onChange()
     {
-        let currentList = [];
         let searchString = this._selectedValue.caption;
         this.toggleOpen = true;
 
-        if(searchString !== '')
+        if(searchString.length >= 3)
         {
-            if(this.tempInputListBoxValues !== null && this.tempInputListBoxValues.length === 0)
-            {
-                this.tempInputListBoxValues = this.inputListBoxValues;
-            }
-
-            if(this._selectedValue.caption.length >= 3)
-            {
-                for(let value in this.tempInputListBoxValues)
-                {
-                    if(this.tempInputListBoxValues[value].caption.toUpperCase().search(searchString.toUpperCase()) !== -1)
-                    {
-                        currentList.push(this.tempInputListBoxValues[value]);
-                    }
-                }
-
-                this.inputListBoxValues = currentList;
-            }
-            else
-            {
-                this.inputListBoxValues = this.tempInputListBoxValues;
-            }
-
-            this.value = this._selectedValue;
+            this._listBoxHeadingKey = 'terraSuggestionBox.suggestions';
+            this._noEntriesTextKey = 'terraSuggestionBox.noSuggestions';
+            this._displayListBoxValues = this.inputListBoxValues.filter(
+                (value:TerraSuggestionBoxValueInterface) => value.caption.toUpperCase().search(searchString.toUpperCase()) !== -1
+            );
         }
+        else if(this.inputWithRecentlyUsed)
+        {
+            this._listBoxHeadingKey = 'terraSuggestionBox.recentlyUsed';
+            this._noEntriesTextKey = 'terraSuggestionBox.noRecentlyUsed';
+            this._displayListBoxValues = this._lastSelectedValues;
+        }
+        else
+        {
+            this._displayListBoxValues = this.inputListBoxValues;
+        }
+
+        this.value = this._selectedValue;
     }
 
     public resetComponentValue():void
