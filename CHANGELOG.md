@@ -8,6 +8,7 @@
 * **terra-suggestion-box** 
 	- Enable the user to navigate through the dropdown using the arrow keys
 	- Select the entered text when the input is focused, to be able to delete the input with one action
+	- Added optional Input `inputWithRecentlyUsed` to enable a list of recently used elements
 
 <a name="1.4.1"></a>
 # 1.4.1 (04.09.2017)
