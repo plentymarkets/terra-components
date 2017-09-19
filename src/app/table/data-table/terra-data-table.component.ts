@@ -33,6 +33,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @Input() inputService:S;
     @Input() inputDataType:string;
     @Input() inputHasCheckboxes:boolean;
+    @Input() inputHasPager:boolean;
     @Input() inputHasInitialLoading:boolean;
 
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
@@ -67,6 +68,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this._hasCheckboxes = true;
         this.inputHasCheckboxes = true;
         this.inputHasInitialLoading = false;
+        this.inputHasPager = true;
     }
 
 

@@ -1,5 +1,9 @@
-<terra-pager [inputPagingSize]="pagingSize" [inputDefaultPagingSize]="defaultPagingSize" [inputPagingData]="pagingData"
-             (outputDoPaging)="doPaging($event)"></terra-pager>
+<terra-pager *ngIf="inputHasPager"
+             [inputPagingSize]="pagingSize"
+             [inputDefaultPagingSize]="defaultPagingSize"
+             [inputPagingData]="pagingData"
+             (outputDoPaging)="doPaging($event)">
+</terra-pager>
 <!--<terra-button (clicked)="openOverlayDataTableSettings()" icon="icon-settings" caption="Table Settings" [isSmall]="true" tooltipText="Einstellungen"></terra-button>-->
 
 <div class="table-responsive">
