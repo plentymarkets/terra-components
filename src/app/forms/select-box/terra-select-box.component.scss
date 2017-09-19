@@ -72,6 +72,15 @@
             cursor: pointer;
         }
     }
+    .select-box-dropdown-heading
+    {
+        &:hover
+        {
+            background-color: white;
+            color: inherit;
+            cursor: default;
+        }
+    }
 }
 
 .open
