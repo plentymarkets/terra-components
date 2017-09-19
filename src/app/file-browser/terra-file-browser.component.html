@@ -10,16 +10,20 @@
     </terra-base-toolbar>
     <terra-base-toolbar>
         <div class="btn-group" role="group">
-            <terra-button [inputIcon]="'icon-upload'" [inputTooltipText]="_translationPrefix + '.uploadFile' | translate:lang" (outputClicked)="showFileChooser()"></terra-button>
-            <terra-button [inputIcon]="'icon-folder_add'" [inputTooltipText]="_translationPrefix + '.createFolder' | translate:lang" (outputClicked)="createDirectory()"></terra-button>
+            <terra-button [inputIcon]="'icon-upload'" [inputTooltipText]="_translationPrefix + '.uploadFile' | translate:lang"
+                          (outputClicked)="showFileChooser()">
+            </terra-button>
+            <terra-button [inputIcon]="'icon-folder_add'" [inputTooltipText]="_translationPrefix + '.createFolder' | translate:lang"
+                          (outputClicked)="createDirectory()">
+            </terra-button>
         </div>
-
+        
         <label style="width:0; height: 0; visibility: hidden;" #fileChooser>
             <input type="file" (change)="selectFiles($event)">
         </label>
-
+    
     </terra-base-toolbar>
-
+    
     <div class="file-browser-content">
         <div class="prompt" [class.in]="showNewDirectoryPrompt">
             <span class="prompt-title">{{ _translationPrefix + '.createFolder' | translate:lang }}</span>
@@ -32,7 +36,7 @@
                               [inputCaption]="_translationPrefix + '.cancel' | translate:lang"
                               [inputIsSmall]="true"
                               (outputClicked)="showNewDirectoryPrompt = false"></terra-button>
-
+                
                 <terra-button [inputIcon]="'icon-success'"
                               [inputCaption]="_translationPrefix + '.create' | translate:lang"
                               [inputIsSmall]="true"
@@ -41,26 +45,31 @@
                               (outputClicked)="createDirectory()"></terra-button>
             </div>
         </div>
-
+        
         <div class="prompt" [class.in]="deletableObjectKey">
             <span class="prompt-title">{{ _translationPrefix + '.confirmDelete' | translate:lang }}</span>
             <div class="pull-lg-right">
                 <terra-button [inputIcon]="'icon-close'"
                               [inputCaption]="_translationPrefix + '.cancel' | translate:lang"
                               [inputIsSmall]="true"
-                              (outputClicked)="deletableObjectKey = null"></terra-button>
-
+                              (outputClicked)="deletableObjectKey = null">
+                </terra-button>
+                
                 <terra-button [inputIcon]="'icon-success'"
                               [inputCaption]="_translationPrefix + '.delete' | translate:lang"
                               [inputIsSmall]="true"
                               [inputIsTertiary]="true"
-                              (outputClicked)="deleteObject()"></terra-button>
+                              (outputClicked)="deleteObject()">
+                </terra-button>
             </div>
         </div>
-
+        
         <ul class="file-list" *ngIf="storageList && currentRoot.hasChildren">
-            <li *ngFor="let item of currentRoot.children" (click)="selectObject(item)" [class.disabled]="!isAllowed(item.key)" [class.selected]="item === selectedStorageObject">
-                <div class="upload-progress" *ngIf="uploadProgresses.hasOwnProperty(item.key) && uploadProgresses[item.key] < 100 && uploadProgresses[item.key] > 0" [style.width.%]="uploadProgresses[item.key]">
+            <li *ngFor="let item of currentRoot.children" (click)="selectObject(item)" [class.disabled]="!isAllowed(item.key)"
+                [class.selected]="item === selectedStorageObject">
+                <div class="upload-progress"
+                     *ngIf="uploadProgresses.hasOwnProperty(item.key) && uploadProgresses[item.key] < 100 && uploadProgresses[item.key] > 0"
+                     [style.width.%]="uploadProgresses[item.key]">
                     <span [class]="getIconClass( item.key )">
                         <span class="path1"></span>
                         <span class="path2"></span>
@@ -84,7 +93,7 @@
                 </div>
             </li>
         </ul>
-
+        
         <div class="file-list-empty" *ngIf="storageList && !currentRoot.hasChildren">
             <div>
                 <span>{{ _translationPrefix + '.folderIsEmpty' | translate:lang }}</span>
@@ -102,7 +111,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="preview-container" [class.in]="!!selectedStorageObject">
             <div class="preview-title">
                 <span class="preview-title-name">{{ selectedStorageObject?.name }}</span>
@@ -110,7 +119,8 @@
                 <span class="preview-title-date">{{ getFormattedDate( selectedStorageObject?.lastModified ) }}</span>
             </div>
             <span class="preview-content">
-                <span *ngIf="isWebImage( selectedStorageObject?.name )" [style.background-image]="'url(' + selectedStorageObject?.publicUrl + ')'"></span>
+                <span *ngIf="isWebImage( selectedStorageObject?.name )"
+                      [style.background-image]="'url(' + selectedStorageObject?.publicUrl + ')'"></span>
                 <span *ngIf="!isWebImage( selectedStorageObject?.name )">
                     <span [class]="getIconClass(selectedStorageObject?.key)">
                         <span class="path1"></span>
@@ -130,7 +140,7 @@
                     </terra-button>
                 </div>
             </span>
-
+            
             <div class="input-group">
                 <terra-text-input #urlInput
                                   [inputName]="_translationPrefix + '.fileURL' | translate:lang"
@@ -144,8 +154,10 @@
                 </terra-button>
             </div>
         </div>
-
-        <div class="file-drop" [class.in]="isFileDragged" (drop)="dropFiles($event)" #fileDropzone><span>{{ _translationPrefix + '.uploadFile' | translate:lang }}</span></div>
+        
+        <div class="file-drop" [class.in]="isFileDragged" (drop)="dropFiles($event)" #fileDropzone>
+            <span>{{ _translationPrefix + '.uploadFile' | translate:lang }}</span>
+        </div>
     </div>
 
 </div>

@@ -1,6 +1,7 @@
 import { TerraDataTableCellInterface } from '../cell/terra-data-table-cell.interface';
 import { TerraDataTableContextMenuEntryInterface } from '../../data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
 import { TerraBaseData } from '../../../data/terra-base.data';
+
 /**
  * @author mkunze
  */

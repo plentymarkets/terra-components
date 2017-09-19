@@ -84,7 +84,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this._hasLabel = this.inputName != null;
         this._lastSelectedValues = [];
         this._listBoxHeadingKey = '';
-        this._noEntriesTextKey = this.inputWithRecentlyUsed? 'terraSuggestionBox.noRecentlyUsed': 'terraSuggestionBox.noSuggestions';
+        this._noEntriesTextKey = this.inputWithRecentlyUsed ? 'terraSuggestionBox.noRecentlyUsed' : 'terraSuggestionBox.noSuggestions';
 
         if(!this.inputWithRecentlyUsed)
         {
@@ -371,7 +371,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             selectedElement.parentElement.scrollTop = selectedElement.offsetTop - selectedElement.parentElement.offsetTop;
         }
     }
-    
+
     /**
      * workaround to prevent calling the select() method on the label click
      * @param event

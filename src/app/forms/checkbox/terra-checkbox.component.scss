@@ -15,7 +15,8 @@ input[type="checkbox"]
     }
 }
 
-.input-control.checkbox .check.invalid {
+.input-control.checkbox .check.invalid
+{
     border-color: $brand-secondary !important;
 }
 

@@ -13,10 +13,10 @@ import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import { TranslationService } from 'angular-l10n';
 
 @Component({
-               selector: 'terra-multi-select-box',
-               styles:   [require('./terra-multi-select-box.component.scss')],
-               template: require('./terra-multi-select-box.component.html')
-           })
+    selector: 'terra-multi-select-box',
+    styles:   [require('./terra-multi-select-box.component.scss')],
+    template: require('./terra-multi-select-box.component.html')
+})
 export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
@@ -54,19 +54,19 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
 
             this.inputValueList
                 .forEach((item:TerraMultiSelectBoxValueInterface) =>
-                         {
-                             item.selected = false;
+                {
+                    item.selected = false;
 
-                             valueCopy.forEach((key:any) =>
-                                               {
-                                                   if(item.value == key)
-                                                   {
-                                                       item.selected = true;
-                                                       this._selectedValueList.push(item.value);
-                                                       return;
-                                                   }
-                                               });
-                         });
+                    valueCopy.forEach((key:any) =>
+                    {
+                        if(item.value == key)
+                        {
+                            item.selected = true;
+                            this._selectedValueList.push(item.value);
+                            return;
+                        }
+                    });
+                });
 
             setTimeout(() => this.inputSelectedValueListChange.emit(this._selectedValueList), 0);
         }
@@ -88,11 +88,10 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
             this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
 
             //this is necessary for language switch
-            this.translation.translationChanged.subscribe(
-                () =>
-                {
-                    this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
-                });
+            this.translation.translationChanged.subscribe(() =>
+            {
+                this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
+            });
         }
 
         this._isInit = true;
@@ -108,14 +107,13 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
         {
             let temp:Array<any> = [];
 
-            changes['inputValueList'].currentValue
-                                     .forEach((item:TerraMultiSelectBoxValueInterface) =>
-                                              {
-                                                  if(item.selected && item.selected == true)
-                                                  {
-                                                      temp.push(item.value);
-                                                  }
-                                              });
+            changes['inputValueList'].currentValue.forEach((item:TerraMultiSelectBoxValueInterface) =>
+            {
+                if(item.selected && item.selected == true)
+                {
+                    temp.push(item.value);
+                }
+            });
 
             setTimeout(() => this.inputSelectedValueList = temp, 0);
         }
@@ -130,11 +128,10 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
     {
         this.viewChildHeaderCheckbox.value = isChecked;
 
-        this.inputValueList
-            .forEach((value:TerraMultiSelectBoxValueInterface) =>
-                     {
-                         this.changeValueState(isChecked, value);
-                     });
+        this.inputValueList.forEach((value:TerraMultiSelectBoxValueInterface) =>
+        {
+            this.changeValueState(isChecked, value);
+        });
 
         this.inputSelectedValueList = this._selectedValueList;
     }
@@ -197,14 +194,13 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
 
         if(valueList && valueList.length > 0)
         {
-            valueList
-                .forEach((item:TerraMultiSelectBoxValueInterface) =>
-                         {
-                             if(item.selected == true)
-                             {
-                                 result.push(item.value);
-                             }
-                         });
+            valueList.forEach((item:TerraMultiSelectBoxValueInterface) =>
+            {
+                if(item.selected == true)
+                {
+                    result.push(item.value);
+                }
+            });
         }
 
         return result;

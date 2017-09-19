@@ -15,10 +15,10 @@ import { isNullOrUndefined } from 'util';
 import { TerraDynamicLoadedComponentInputInterface } from './data/terra-dynamic-loaded-component-input.interface';
 
 @Component({
-               selector: 'terra-dynamic-module-loader',
-               template: require('./terra-dynamic-module-loader.component.html'),
-               styles:   [require('./terra-dynamic-module-loader.component.scss')]
-           })
+    selector: 'terra-dynamic-module-loader',
+    template: require('./terra-dynamic-module-loader.component.html'),
+    styles:   [require('./terra-dynamic-module-loader.component.scss')]
+})
 export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestroy
 {
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
@@ -51,43 +51,41 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
 
     private updateComponent():void
     {
-        this._jitCompiler
-            .compileModuleAndAllComponentsAsync(this._resolvedData.ngModule)
+        this._jitCompiler.compileModuleAndAllComponentsAsync(this._resolvedData.ngModule)
             .then((moduleWithFactories:ModuleWithComponentFactories<any>) =>
-                  {
-                      moduleWithFactories.componentFactories.forEach
-                      (
-                          (factory) =>
-                          {
-                              if(this.inputMainComponentName === factory.componentType.name)
-                              {
-                                  // create the component
-                                  this._cmpRef = this.viewChildTarget.createComponent(factory);
+            {
+                moduleWithFactories.componentFactories.forEach
+                (
+                    (factory) =>
+                    {
+                        if(this.inputMainComponentName === factory.componentType.name)
+                        {
+                            // create the component
+                            this._cmpRef = this.viewChildTarget.createComponent(factory);
 
-                                  // pass the delivered parameter to the component
-                                  this._cmpRef.instance.parameter = this.inputParameter; // TODO: deprecated if old split view is removed
+                            // pass the delivered parameter to the component
+                            this._cmpRef.instance.parameter = this.inputParameter; // TODO: deprecated if old split view is removed
 
-                                  // add inputs to component for data binding purposes
-                                  if(!isNullOrUndefined(this.inputInputs))
-                                  {
-                                      this.inputInputs.forEach(
-                                          (input:TerraDynamicLoadedComponentInputInterface) =>
-                                          {
-                                              if (!isNullOrUndefined(input)
-                                              && !isNullOrUndefined(input.name))
-                                              {
-                                                  this._cmpRef.instance[input.name] = input.value;
-                                              }
-                                          }
-                                      );
-                                  }
+                            // add inputs to component for data binding purposes
+                            if(!isNullOrUndefined(this.inputInputs))
+                            {
+                                this.inputInputs.forEach((input:TerraDynamicLoadedComponentInputInterface) =>
+                                    {
+                                        if(!isNullOrUndefined(input)
+                                           && !isNullOrUndefined(input.name))
+                                        {
+                                            this._cmpRef.instance[input.name] = input.value;
+                                        }
+                                    }
+                                );
+                            }
 
-                                  // pass the instance of the loaded view back to the component
-                                  this._cmpRef.instance.splitViewInstance = this.inputView;
-                              }
-                          }
-                      );
+                            // pass the instance of the loaded view back to the component
+                            this._cmpRef.instance.splitViewInstance = this.inputView;
+                        }
+                    }
+                );
 
-                  });
+            });
     }
 }

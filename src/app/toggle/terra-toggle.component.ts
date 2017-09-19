@@ -17,11 +17,11 @@ export const TOGGLE_CONTROL_VALUE_ACCESSOR:any = {
 };
 
 @Component({
-               selector:  'terra-toggle',
-               styles:    [require('./terra-toggle.component.scss')],
-               template:  require('./terra-toggle.component.html'),
-               providers: [TOGGLE_CONTROL_VALUE_ACCESSOR]
-           })
+    selector:  'terra-toggle',
+    styles:    [require('./terra-toggle.component.scss')],
+    template:  require('./terra-toggle.component.html'),
+    providers: [TOGGLE_CONTROL_VALUE_ACCESSOR]
+})
 export class TerraToggleComponent implements ControlValueAccessor
 {
     @Input() inputIsSmall:boolean;

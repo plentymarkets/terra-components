@@ -6,10 +6,10 @@ import { TerraBaseTreeComponent } from './base/terra-base-tree.component';
 import { TerraLeafInterface } from './leaf/terra-leaf.interface';
 
 @Component({
-               selector: 'terra-tree',
-               styles:   [require('./terra-tree.component.scss')],
-               template: require('./terra-tree.component.html')
-           })
+    selector: 'terra-tree',
+    styles:   [require('./terra-tree.component.scss')],
+    template: require('./terra-tree.component.html')
+})
 export class TerraTreeComponent extends TerraBaseTreeComponent
 {
     /**

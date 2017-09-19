@@ -1,4 +1,5 @@
 import { TerraMultiSplitViewInterface } from './terra-multi-split-view.interface';
+
 /**
  * @author pweyrich
  */

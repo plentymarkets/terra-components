@@ -13,10 +13,10 @@ import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interfa
  * @author mfrank
  */
 @Component({
-               selector: 'terra-overlay',
-               template: require('./terra-overlay.component.html'),
-               styles:   [require('./terra-overlay.component.scss')]
-           })
+    selector: 'terra-overlay',
+    template: require('./terra-overlay.component.html'),
+    styles:   [require('./terra-overlay.component.scss')]
+})
 export class TerraOverlayComponent implements AfterViewInit
 {
     @ViewChild('viewChildOverlay') viewChildOverlay:ModalDirective;

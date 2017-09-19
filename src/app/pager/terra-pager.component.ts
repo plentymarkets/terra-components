@@ -11,10 +11,10 @@ import { TerraNumberInputComponent } from '../forms/input/number-input/terra-num
 import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-select-box.interface';
 
 @Component({
-               selector: 'terra-pager',
-               styles:   [require('./terra-pager.component.scss')],
-               template: require('./terra-pager.component.html')
-           })
+    selector: 'terra-pager',
+    styles:   [require('./terra-pager.component.scss')],
+    template: require('./terra-pager.component.html')
+})
 export class TerraPagerComponent implements OnInit
 {
     @ViewChild(TerraNumberInputComponent) viewChildCurrentPageInput:TerraNumberInputComponent;

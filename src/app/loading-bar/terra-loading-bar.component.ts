@@ -10,17 +10,18 @@ import {
 } from './event/terra-loading-bar.event';
 
 @Component({
-               selector: 'terra-loading-bar',
-               styles:   [require('./terra-loading-bar.component.scss')],
-               template: require('./terra-loading-bar.component.html')
-           })
+    selector: 'terra-loading-bar',
+    styles:   [require('./terra-loading-bar.component.scss')],
+    template: require('./terra-loading-bar.component.html')
+})
 export class TerraLoadingBarComponent implements OnInit
 {
     @Input() inputColor:string = 'black';
     @Input() inputHeight:string = '2px';
     @Input() inputShow:boolean = true;
 
-    @Input() set progress(value:string)
+    @Input()
+    set progress(value:string)
     {
         if(value != null)
         {
@@ -43,23 +44,23 @@ export class TerraLoadingBarComponent implements OnInit
     ngOnInit():any
     {
         this.service.observable.subscribe((event:TerraLoadingBarEvent) =>
-                                          {
-                                              if(event.type === TerraLoadingBarEventType.PROGRESS)
-                                              {
-                                                  this.progress = event.value;
-                                              }
-                                              else if(event.type === TerraLoadingBarEventType.COLOR)
-                                              {
-                                                  this.inputColor = event.value;
-                                              }
-                                              else if(event.type === TerraLoadingBarEventType.HEIGHT)
-                                              {
-                                                  this.inputHeight = event.value;
-                                              }
-                                              else if(event.type === TerraLoadingBarEventType.VISIBLE)
-                                              {
-                                                  this.inputShow = event.value;
-                                              }
-                                          });
+        {
+            if(event.type === TerraLoadingBarEventType.PROGRESS)
+            {
+                this.progress = event.value;
+            }
+            else if(event.type === TerraLoadingBarEventType.COLOR)
+            {
+                this.inputColor = event.value;
+            }
+            else if(event.type === TerraLoadingBarEventType.HEIGHT)
+            {
+                this.inputHeight = event.value;
+            }
+            else if(event.type === TerraLoadingBarEventType.VISIBLE)
+            {
+                this.inputShow = event.value;
+            }
+        });
     }
 }

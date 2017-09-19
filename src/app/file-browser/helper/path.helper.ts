@@ -1,17 +1,17 @@
 export class PathHelper
 {
-    public static readonly DELIMITER: string = "/";
+    public static readonly DELIMITER:string = "/";
 
-    private static getPaths( path: string ): string[]
+    private static getPaths(path:string):string[]
     {
-        let paths: string[] = path.split( this.DELIMITER );
-        while( paths.length > 0 && paths[0].length <= 0 )
+        let paths:string[] = path.split(this.DELIMITER);
+        while(paths.length > 0 && paths[0].length <= 0)
         {
             paths.shift();
         }
 
-        let lastIdx: number = paths.length - 1;
-        while( lastIdx > 0 && paths[lastIdx].length <= 0 )
+        let lastIdx:number = paths.length - 1;
+        while(lastIdx > 0 && paths[lastIdx].length <= 0)
         {
             paths.pop();
             lastIdx--;
@@ -20,76 +20,81 @@ export class PathHelper
         return paths;
     }
 
-    public static isAbsolute( path: string ): boolean
+    public static isAbsolute(path:string):boolean
     {
         return path.charAt(0) === this.DELIMITER;
     }
 
-    public static isDirectory( path: string ): boolean
+    public static isDirectory(path:string):boolean
     {
-        return path.charAt( path.length - 1 ) === this.DELIMITER;
+        return path.charAt(path.length - 1) === this.DELIMITER;
     }
 
-    public static isFile( path: string ): boolean
+    public static isFile(path:string):boolean
     {
-        return path.charAt( path.length - 1 ) !== this.DELIMITER;
+        return path.charAt(path.length - 1) !== this.DELIMITER;
     }
 
-    public static basename( path: string ): string
+    public static basename(path:string):string
     {
-        let paths: string[] = this.getPaths( path );
-        let i: number = paths.length - 1;
+        let paths:string[] = this.getPaths(path);
+        let i:number = paths.length - 1;
         return paths[i];
     }
 
-    public static dirname( path: string ): string
+    public static dirname(path:string):string
     {
-        let prefix: string = this.isAbsolute( path ) ? "/" : "";
-        let paths: string[] = this.getPaths( path );
+        let prefix:string = this.isAbsolute(path) ? "/" : "";
+        let paths:string[] = this.getPaths(path);
         paths.pop();
 
-        return prefix + paths.join( this.DELIMITER );
+        return prefix + paths.join(this.DELIMITER);
     }
 
-    public static extName( path: string ): string
+    public static extName(path:string):string
     {
-        if ( this.isDirectory( path ) )
+        if(this.isDirectory(path))
         {
             return "";
         }
 
-        let filename: string = this.basename( path );
-        let splittedFilename: string[] = filename.split(".");
+        let filename:string = this.basename(path);
+        let splittedFilename:string[] = filename.split(".");
         return splittedFilename.pop();
     }
 
-    public static join( ...paths: string[] ): string
+    public static join(...paths:string[]):string
     {
-        return paths.map( (path: string) => {
-            if ( path.charAt(0) === this.DELIMITER )
+        return paths.map((path:string) =>
+        {
+            if(path.charAt(0) === this.DELIMITER)
             {
                 path = path.substr(1);
             }
-            if ( path.charAt( path.length - 1) === this.DELIMITER )
+            if(path.charAt(path.length - 1) === this.DELIMITER)
             {
                 path = path.substr(0, path.length - 1);
             }
 
             return path;
-        }).join( this.DELIMITER );
+        }).join(this.DELIMITER);
     }
 
-    public static sizeString( size: number ): string
+    public static sizeString(size:number):string
     {
-        let units: string[] = ['B', 'kB', 'MB', 'GB', 'TB'];
-        let unitIdx: number = 0;
-        while( size > 1000 )
+        let units:string[] = ['B',
+                              'kB',
+                              'MB',
+                              'GB',
+                              'TB'];
+        let unitIdx:number = 0;
+        while(size > 1000)
         {
             size = size / 1000;
             unitIdx++;
         }
 
-        while ( unitIdx >= units.length )
+        while(unitIdx >= units.length)
         {
             unitIdx--;
             size = size * 1000;
