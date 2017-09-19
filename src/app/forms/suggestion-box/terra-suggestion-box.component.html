@@ -12,6 +12,7 @@
     
     <terra-text-input [inputName]="inputName"
                       (outputOnInput)="onChange()"
+                      (click)="onInputClick($event)"
                       [(ngModel)]="_selectedValue.caption">
     </terra-text-input>
     

@@ -231,4 +231,18 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 caption: ''
             };
     }
+    
+    /**
+     * workaround to prevent calling the select() method on the label click
+     * @param event
+     */
+    private onInputClick(event:any):void
+    {
+        // check if the input has been clicked
+        if(event.target.nodeName === 'INPUT')
+        {
+            // select the input text <-> mark all
+            event.target.select();
+        }
+    }
 }
