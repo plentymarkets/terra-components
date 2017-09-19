@@ -359,6 +359,19 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         event.stopPropagation();
     }
 
+    private focusSelectedElement():void
+    {
+        // get the temporary selected DOM element
+        let selectedElement:HTMLElement = $('.select-box-dropdown > span.selected').get().pop();
+
+        // check if the element has been found
+        if(selectedElement)
+        {
+            // scroll to the selected element
+            selectedElement.parentElement.scrollTop = selectedElement.offsetTop - selectedElement.parentElement.offsetTop;
+        }
+    }
+    
     /**
      * workaround to prevent calling the select() method on the label click
      * @param event
@@ -370,19 +383,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         {
             // select the input text <-> mark all
             event.target.select();
-        }
-    }
-
-    private focusSelectedElement():void
-    {
-        // get the temporary selected DOM element
-        let selectedElement:HTMLElement = $('.select-box-dropdown > span.selected').get().pop();
-
-        // check if the element has been found
-        if(selectedElement)
-        {
-            // scroll to the selected element
-            selectedElement.parentElement.scrollTop = selectedElement.offsetTop - selectedElement.parentElement.offsetTop;
         }
     }
 }
