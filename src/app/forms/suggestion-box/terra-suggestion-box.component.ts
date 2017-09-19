@@ -157,6 +157,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         if(this._toggleOpen !== value && value == true)
         {
             document.addEventListener('click', this.clickListener);
+            this.focusSelectedElement();
         }
         else if(this._toggleOpen !== value && value == false)
         {
@@ -267,7 +268,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 // determine the key, that has been pressed
                 switch(event.key)
                 {
-                    case 'ArrowDown':
+                    case 'ArrowDown': // mark the succeeding list element
                         if(index + 1 < this.inputListBoxValues.length)
                         {
                             // open dropdown if not already opened
@@ -275,11 +276,13 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                             {
                                 this.toggleOpen = true;
                             }
-                            // select next element
+                            // mark next element for selection
                             this._tmpSelectedValue = this.inputListBoxValues[index + 1];
+                            // adjust scrolling viewport
+                            this.focusSelectedElement();
                         }
                         break;
-                    case 'ArrowUp':
+                    case 'ArrowUp': // mark the preceding list element
                         if(index - 1 >= 0)
                         {
                             // open dropdown if not already opened
@@ -287,16 +290,18 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                             {
                                 this.toggleOpen = true;
                             }
-                            // select previous element
+                            // mark previous element for selection
                             this._tmpSelectedValue = this.inputListBoxValues[index - 1];
+                            // adjust scrolling viewport
+                            this.focusSelectedElement();
                         }
                         break;
-                    case 'Enter':
+                    case 'Enter': // select the marked element
                         this.select(this._tmpSelectedValue); // select the chosen element
                         this.toggleOpen = false; // close the dropdown
                         break;
-                    case 'Escape':
-                        this.toggleOpen = false;
+                    case 'Escape': // close the dropdown
+                        this.toggleOpen = false; // close the dropdown
                         break;
                 }
             }
@@ -308,5 +313,18 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
         // stop event bubbling
         event.stopPropagation();
+    }
+
+    private focusSelectedElement():void
+    {
+        // get the temporary selected DOM element
+        let selectedElement:HTMLElement = $('.select-box-dropdown > span.selected').get().pop();
+
+        // check if the element has been found
+        if(selectedElement)
+        {
+            // scroll to the selected element
+            selectedElement.parentElement.scrollTop = selectedElement.offsetTop - selectedElement.parentElement.offsetTop;
+        }
     }
 }
