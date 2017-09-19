@@ -12,10 +12,10 @@ import { isNullOrUndefined } from 'util';
  * @author mscharf
  */
 @Component({
-               selector: 'terra-button-group',
-               template: require('./terra-button-group.component.html'),
-               styles:   [require('./terra-button-group.component.scss')]
-           })
+    selector: 'terra-button-group',
+    template: require('./terra-button-group.component.html'),
+    styles:   [require('./terra-button-group.component.scss')]
+})
 export class TerraButtonGroupComponent<D> implements OnInit
 {
     @Input() parameter:any;
@@ -31,48 +31,48 @@ export class TerraButtonGroupComponent<D> implements OnInit
     {
         this._terraNavigatorSplitViewConfig.observableUpdateActiveItem
             .subscribe((nodes:Array<TerraNavigatorNodeInterface<D>>) =>
-                       {
-                           this.setRecursiveItemActive(nodes);
-                       });
+            {
+                this.setRecursiveItemActive(nodes);
+            });
 
         this.parameter.nodes
             .forEach((item:TerraNavigatorNodeInterface<D>) =>
-                     {
-                         let hasChildren = false;
+            {
+                let hasChildren = false;
 
-                         if(!isNullOrUndefined(item.children))
-                         {
-                             hasChildren = true;
-                         }
+                if(!isNullOrUndefined(item.children))
+                {
+                    hasChildren = true;
+                }
 
-                         let button:TerraButtonGroupInterface = {
-                             caption:       item.nodeName,
-                             clickFunction: () =>
-                                            {
-                                                this._terraNavigatorSplitViewConfig.openNextLevel(item);
+                let button:TerraButtonGroupInterface = {
+                    caption:       item.nodeName,
+                    clickFunction: () =>
+                                   {
+                                       this._terraNavigatorSplitViewConfig.openNextLevel(item);
 
-                                                item.isButtonClicked = true;
+                                       item.isButtonClicked = true;
 
-                                                this._buttonList
-                                                    .forEach((btnItem) =>
-                                                             {
-                                                                 btnItem.isActive = false;
-                                                             });
+                                       this._buttonList
+                                           .forEach((btnItem) =>
+                                           {
+                                               btnItem.isActive = false;
+                                           });
 
-                                                button.isActive = true;
-                                            },
-                             hasChildren:   hasChildren,
-                             isVisible:     isNullOrUndefined(item.isVisible) || item.isVisible,
-                         };
+                                       button.isActive = true;
+                                   },
+                    hasChildren:   hasChildren,
+                    isVisible:     isNullOrUndefined(item.isVisible) || item.isVisible,
+                };
 
-                         this._buttonList
-                             .push(button);
+                this._buttonList
+                    .push(button);
 
-                         if(!isNullOrUndefined(item.nodeIcon))
-                         {
-                             this._buttonList[this._buttonList.length - 1].icon = item.nodeIcon;
-                         }
-                     });
+                if(!isNullOrUndefined(item.nodeIcon))
+                {
+                    this._buttonList[this._buttonList.length - 1].icon = item.nodeIcon;
+                }
+            });
 
         this.setRecursiveItemActive(this.parameter.nodes);
     }
@@ -80,33 +80,33 @@ export class TerraButtonGroupComponent<D> implements OnInit
     private setRecursiveItemActive(list:Array<TerraNavigatorNodeInterface<D>>)
     {
         list.forEach((item:TerraNavigatorNodeInterface<D>) =>
-                     {
-                         if(item.isActive)
-                         {
-                             setTimeout(() =>
-                                        {
-                                            this._terraNavigatorSplitViewConfig
-                                                .openNextLevel(item);
-                                        });
+        {
+            if(item.isActive)
+            {
+                setTimeout(() =>
+                {
+                    this._terraNavigatorSplitViewConfig
+                        .openNextLevel(item);
+                });
 
-                             let btn:TerraButtonGroupInterface =
-                                 this._buttonList.find((btn:TerraButtonGroupInterface) =>
-                                                       {
-                                                           return btn.caption === item.nodeName;
-                                                       });
+                let btn:TerraButtonGroupInterface =
+                    this._buttonList.find((btn:TerraButtonGroupInterface) =>
+                    {
+                        return btn.caption === item.nodeName;
+                    });
 
-                             if(!isNullOrUndefined(btn))
-                             {
-                                 btn.isActive = item.isActive;
-                             }
-                         }
-                         else
-                         {
-                             if(item.children)
-                             {
-                                 this.setRecursiveItemActive(item.children);
-                             }
-                         }
-                     });
+                if(!isNullOrUndefined(btn))
+                {
+                    btn.isActive = item.isActive;
+                }
+            }
+            else
+            {
+                if(item.children)
+                {
+                    this.setRecursiveItemActive(item.children);
+                }
+            }
+        });
     }
 }

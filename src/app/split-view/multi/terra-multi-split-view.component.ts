@@ -32,8 +32,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     @HostListener('window:resize')
     onWindowResize()
     {
-        this.zone.runOutsideAngular(
-            () =>
+        this.zone.runOutsideAngular(() =>
             {
                 // debounce resize, wait for resize to finish before updating the viewport
                 if(this.resizeTimeout)

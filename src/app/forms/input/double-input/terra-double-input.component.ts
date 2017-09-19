@@ -8,17 +8,17 @@ import { TerraRegex } from '../../../regex/terra-regex';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-               selector:  'terra-double-input',
-               styles:    [require('./terra-double-input.component.scss')],
-               template:  require('./terra-double-input.component.html'),
-               providers: [
-                   {
-                       provide:     NG_VALUE_ACCESSOR,
-                       useExisting: forwardRef(() => TerraDoubleInputComponent),
-                       multi:       true
-                   }
-               ]
-           })
+    selector:  'terra-double-input',
+    styles:    [require('./terra-double-input.component.scss')],
+    template:  require('./terra-double-input.component.html'),
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraDoubleInputComponent),
+            multi:       true
+        }
+    ]
+})
 export class TerraDoubleInputComponent extends TerraInputComponent
 {
     @Input() inputIsPriceInput:boolean;

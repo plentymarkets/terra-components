@@ -58,12 +58,28 @@
         width: 100%;
         padding: .25em 1em;
         line-height: 18px;
+        min-height: 24px;
         &:hover,
+        &.selected
+        {
+            background: $grey-3;
+            color: black;
+            cursor: pointer;
+        }
         &.active
         {
             background: $brand-primary;
             color: white;
             cursor: pointer;
+        }
+    }
+    .select-box-dropdown-heading
+    {
+        &:hover
+        {
+            background-color: white;
+            color: inherit;
+            cursor: default;
         }
     }
 }

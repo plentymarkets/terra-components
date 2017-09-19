@@ -4,14 +4,15 @@ import {
 } from '@angular/core';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { TerraTileBoxColor } from './data/terra-tile-box-color';
+
 /**
  * @author mkunze
  */
 @Component({
-               selector: 'terra-tile-box',
-               styles:   [require('./terra-tile-box.component.scss')],
-               template: require('./terra-tile-box.component.html')
-           })
+    selector: 'terra-tile-box',
+    styles:   [require('./terra-tile-box.component.scss')],
+    template: require('./terra-tile-box.component.html')
+})
 export class TerraTileBoxComponent
 {
     @Input() inputTitle:string;

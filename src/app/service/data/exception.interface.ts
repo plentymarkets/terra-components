@@ -3,7 +3,7 @@
  */
 export interface Exception
 {
-    message: string;
-    code?: number;
-    exception: string;
+    message:string;
+    code?:number;
+    exception:string;
 }

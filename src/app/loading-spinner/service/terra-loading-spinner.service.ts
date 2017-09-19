@@ -21,9 +21,9 @@ export class TerraLoadingSpinnerService
     constructor(private zone:NgZone)
     {
         this.observable = new Observable<boolean>((subscriber:Subscriber<boolean>) =>
-                                                  {
-                                                      this._subscriber = subscriber;
-                                                  });
+        {
+            this._subscriber = subscriber;
+        });
     }
 
     public start():void
@@ -45,20 +45,20 @@ export class TerraLoadingSpinnerService
 
             // to send no change detection run the setTimeout outside of angular
             this.zone.runOutsideAngular(() =>
-                                        {
-                                            // set timeout to stop the loading-spinner from blinking because of sequential started events
-                                            setTimeout(() =>
-                                                       {
-                                                           if(!this.isLoading)
-                                                           {
-                                                               // run inside angular zone to detect changes from isLoading to false
-                                                               this.zone.run(() =>
-                                                                             {
-                                                                                 this._subscriber.next(this.isLoading);
-                                                                             });
-                                                           }
-                                                       }, 100);
-                                        }
+                {
+                    // set timeout to stop the loading-spinner from blinking because of sequential started events
+                    setTimeout(() =>
+                    {
+                        if(!this.isLoading)
+                        {
+                            // run inside angular zone to detect changes from isLoading to false
+                            this.zone.run(() =>
+                            {
+                                this._subscriber.next(this.isLoading);
+                            });
+                        }
+                    }, 100);
+                }
             )
         }
     }

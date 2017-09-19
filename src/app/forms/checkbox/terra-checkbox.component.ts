@@ -11,17 +11,17 @@ import {
 } from '@angular/forms';
 
 @Component({
-               selector:  'terra-checkbox',
-               styles:    [require('./terra-checkbox.component.scss')],
-               template:  require('./terra-checkbox.component.html'),
-               providers: [
-                   {
-                       provide:     NG_VALUE_ACCESSOR,
-                       useExisting: forwardRef(() => TerraCheckboxComponent),
-                       multi:       true
-                   }
-               ]
-           })
+    selector:  'terra-checkbox',
+    styles:    [require('./terra-checkbox.component.scss')],
+    template:  require('./terra-checkbox.component.html'),
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraCheckboxComponent),
+            multi:       true
+        }
+    ]
+})
 export class TerraCheckboxComponent implements ControlValueAccessor
 {
     @Input() inputIsDisabled:boolean;

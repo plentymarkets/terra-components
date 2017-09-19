@@ -13,17 +13,17 @@ import {
  * @author mfrank
  */
 @Component({
-               selector:  'terra-radio-button',
-               template:  require('./terra-radio-button.component.html'),
-               styles:    [require('./terra-radio-button.component.scss')],
-               providers: [
-                   {
-                       provide:     NG_VALUE_ACCESSOR,
-                       useExisting: forwardRef(() => TerraRadioButtonComponent),
-                       multi:       true
-                   }
-               ]
-           })
+    selector:  'terra-radio-button',
+    template:  require('./terra-radio-button.component.html'),
+    styles:    [require('./terra-radio-button.component.scss')],
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraRadioButtonComponent),
+            multi:       true
+        }
+    ]
+})
 export class TerraRadioButtonComponent implements ControlValueAccessor
 {
     @Input() inputCaption:string;

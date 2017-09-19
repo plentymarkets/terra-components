@@ -7,10 +7,10 @@ import { TerraBaseData } from '../../../data/terra-base.data';
  * @author mkunze
  */
 @Component({
-               selector: 'context-menu-holder',
-               styles:   [require('./terra-data-table-context-menu.component.scss')],
-               template: require('./terra-data-table-context-menu.component.html')
-           })
+    selector: 'context-menu-holder',
+    styles:   [require('./terra-data-table-context-menu.component.scss')],
+    template: require('./terra-data-table-context-menu.component.html')
+})
 export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 {
     private _contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
