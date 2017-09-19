@@ -84,7 +84,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this._hasLabel = this.inputName != null;
         this._lastSelectedValues = [];
         this._listBoxHeadingKey = '';
-        this._noEntriesTextKey = this.inputWithRecentlyUsed? 'terraSuggestionBox.noRecentlyUsed': 'terraSuggestionBox.noSuggestions';
+        this._noEntriesTextKey = this.inputWithRecentlyUsed ? 'terraSuggestionBox.noRecentlyUsed' : 'terraSuggestionBox.noSuggestions';
 
         if(!this.inputWithRecentlyUsed)
         {
@@ -255,19 +255,16 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         {
             this._listBoxHeadingKey = 'terraSuggestionBox.suggestions';
             this._noEntriesTextKey = 'terraSuggestionBox.noSuggestions';
-            this._displayListBoxValues = this.inputListBoxValues.filter(
-                (value:TerraSuggestionBoxValueInterface) =>
+            this._displayListBoxValues = this.inputListBoxValues.filter((value:TerraSuggestionBoxValueInterface) =>
+            {
+                let searchStringIncluded:boolean = true;
+                searchString.split(' ').forEach((word:string) =>
                 {
-                    searchString.split(' ').forEach((word:string) =>
-                    {
-                        if (value.caption.toUpperCase().search(word.toUpperCase()) == -1)
-                        {
-                            return false;
-                        }
-                    });
-                    return true;
-                }
-            );
+                    searchStringIncluded = searchStringIncluded &&
+                                           value.caption.toUpperCase().search(word.toUpperCase()) !== -1
+                });
+                return searchStringIncluded;
+            });
         }
         else if(this.inputWithRecentlyUsed)
         {
