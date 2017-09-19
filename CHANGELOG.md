@@ -5,6 +5,7 @@
 * **interactables** Added directives to use [interact.js](http://interactjs.io/) inside terra-components
 * **terra-slider** Added new component to display sliders as form inputs
 * **terra-data-table** Added input 'inputHasPager' for separate usage of pager and table. The Date Table uses the pager by default.
+* **terra-suggestion-box** select the entered text when the input is focused, to be able to delete the input with one action
 
 <a name="1.4.1"></a>
 # 1.4.1 (04.09.2017)
