@@ -212,7 +212,15 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             {
                 for(let value in this.tempInputListBoxValues)
                 {
-                    if(this.tempInputListBoxValues[value].caption.toUpperCase().search(searchString.toUpperCase()) !== -1)
+                    let searchStringIncluded:boolean = true;
+                    searchString.split(' ').forEach((word:string) =>
+                        {
+                            searchStringIncluded = searchStringIncluded &&
+                                this.tempInputListBoxValues[value].caption.toUpperCase().search(word.toUpperCase()) !== -1
+                        }
+                    );
+
+                    if(searchStringIncluded)
                     {
                         currentList.push(this.tempInputListBoxValues[value]);
                     }
