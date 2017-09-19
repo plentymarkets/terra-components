@@ -35,7 +35,7 @@
         <span *ngIf="inputListBoxValues.length === 0">
             <i>{{'terraSuggestionBox.noSuggestions' | translate:lang }}</i>
         </span>
-        <span *ngIf="inputListBoxValues.length > 0">
+        <span *ngIf="inputListBoxValues.length > 0 && inputWithRecentlyUsed">
             <i><b> {{'terraSuggestionBox.suggestions' | translate:lang }} </b></i>
         </span>
          <span *ngFor="let item of inputListBoxValues"
