@@ -1,34 +1,34 @@
 {
-  "terraDataTable": {
-    "initialLoading": "Click on search to display {{ dataType }}"
-  },
-  "terraMultiSelectBox": {
-    "selectAll": "All"
-  },
-  "terraFileBrowser": {
-    "cancel": "Cancel",
-    "create": "Create",
-    "delete": "Delete",
-    "myFiles": "My files",
-    "createFolder": "Create folder",
-    "confirmDelete": "Confirm deletion",
-    "deleteFolder": "Delete folder",
-    "deleteFile": "Delete file",
-    "folderName": "Folder name",
-    "folderIsEmpty": "Folder is empty.",
-    "uploadFile": "Upload file",
-    "fileURL": "File URL",
-    "copyToClipboard": "Copy to clipboard"
-  },
-  "terraFileInput": {
-    "choose": "Select",
-    "cancel": "Cancel",
-    "chooseFile": "Select file"
-  },
-  "terraSuggestionBox": {
-    "suggestions": "Suggestions",
-    "recentlyUsed": "Recently used",
-    "noSuggestions": "No suggestions",
-    "noRecentlyUsed": "No recently used elements"
-  }
+	"terraDataTable": {
+		"initialLoading": "Click on search to display {{ dataType }}"
+	},
+	"terraMultiSelectBox": {
+		"selectAll": "All"
+	},
+	"terraFileBrowser": {
+		"cancel": "Cancel",
+		"create": "Create",
+		"delete": "Delete",
+		"myFiles": "My files",
+		"createFolder": "Create folder",
+		"confirmDelete": "Confirm deletion",
+		"deleteFolder": "Delete folder",
+		"deleteFile": "Delete file",
+		"folderName": "Folder name",
+		"folderIsEmpty": "Folder is empty.",
+		"uploadFile": "Upload file",
+		"fileURL": "File URL",
+		"copyToClipboard": "Copy to clipboard"
+	},
+	"terraFileInput": {
+		"choose": "Select",
+		"cancel": "Cancel",
+		"chooseFile": "Select file"
+	},
+	"terraSuggestionBox": {
+		"suggestions": "Suggestions",
+		"recentlyUsed": "Recently used",
+		"noSuggestions": "No suggestions",
+		"noRecentlyUsed": "No recently used elements"
+	}
 }

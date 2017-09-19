@@ -6,10 +6,10 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector: 'terra-card',
-               styles:   [require('./terra-card.component.scss')],
-               template: require('./terra-card.component.html')
-           })
+    selector: 'terra-card',
+    styles:   [require('./terra-card.component.scss')],
+    template: require('./terra-card.component.html')
+})
 export class TerraCardComponent implements AfterContentChecked
 {
     @ViewChild('header') viewChildHeader;
