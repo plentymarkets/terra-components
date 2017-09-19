@@ -297,12 +297,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         // check if there is any selected value yet
         if(isNullOrUndefined(this._tmpSelectedValue))
         {
-            this._tmpSelectedValue = this.inputListBoxValues[0];
+            this._tmpSelectedValue = this._displayListBoxValues[0];
         }
         else
         {
             // get the array index of the selected value
-            let index:number = this.inputListBoxValues.findIndex((item:TerraSuggestionBoxValueInterface) =>
+            let index:number = this._displayListBoxValues.findIndex((item:TerraSuggestionBoxValueInterface) =>
                 item.value === this._tmpSelectedValue.value
             );
 
@@ -313,7 +313,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 switch(event.key)
                 {
                     case 'ArrowDown': // mark the succeeding list element
-                        if(index + 1 < this.inputListBoxValues.length)
+                        if(index + 1 < this._displayListBoxValues.length)
                         {
                             // open dropdown if not already opened
                             if(!this.toggleOpen)
@@ -321,7 +321,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                                 this.toggleOpen = true;
                             }
                             // mark next element for selection
-                            this._tmpSelectedValue = this.inputListBoxValues[index + 1];
+                            this._tmpSelectedValue = this._displayListBoxValues[index + 1];
                             // adjust scrolling viewport
                             this.focusSelectedElement();
                         }
@@ -335,7 +335,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                                 this.toggleOpen = true;
                             }
                             // mark previous element for selection
-                            this._tmpSelectedValue = this.inputListBoxValues[index - 1];
+                            this._tmpSelectedValue = this._displayListBoxValues[index - 1];
                             // adjust scrolling viewport
                             this.focusSelectedElement();
                         }
@@ -351,7 +351,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             }
             else
             {
-                this._tmpSelectedValue = this.inputListBoxValues[0];
+                this._tmpSelectedValue = this._displayListBoxValues[0];
             }
         }
 
