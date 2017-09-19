@@ -85,6 +85,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this._lastSelectedValues = [];
         this._listBoxHeadingKey = '';
         this._noEntriesTextKey = this.inputWithRecentlyUsed? 'terraSuggestionBox.noRecentlyUsed': 'terraSuggestionBox.noSuggestions';
+
+        if(!this.inputWithRecentlyUsed)
+        {
+            // initialize the displayed list with all possible values
+            this._displayListBoxValues = this.inputListBoxValues;
+        }
     }
 
     ngOnChanges(changes:SimpleChanges)
@@ -258,6 +264,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this._listBoxHeadingKey = 'terraSuggestionBox.recentlyUsed';
             this._noEntriesTextKey = 'terraSuggestionBox.noRecentlyUsed';
             this._displayListBoxValues = this._lastSelectedValues;
+        }
+        else
+        {
+            this._displayListBoxValues = this.inputListBoxValues;
         }
 
         this.value = this._selectedValue;
