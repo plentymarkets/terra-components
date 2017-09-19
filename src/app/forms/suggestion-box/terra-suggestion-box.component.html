@@ -19,10 +19,10 @@
     
     <!-- lastly selected values -->
     <div *ngIf="inputWithRecentlyUsed" [hidden]="_selectedValue.caption.length >= 3" class="select-box-dropdown">
-        <span *ngIf="_lastSelectedValues.length === 0">
+        <span *ngIf="_lastSelectedValues.length === 0" (click)="$event.stopPropagation()">
             <i> {{'terraSuggestionBox.noRecentlyUsed' | translate:lang }} </i>
         </span>
-        <span *ngIf="_lastSelectedValues.length > 0">
+        <span *ngIf="_lastSelectedValues.length > 0" class="select-box-dropdown-heading" (click)="$event.stopPropagation()">
             <i><b> {{'terraSuggestionBox.recentlyUsed' | translate:lang }} </b></i>
         </span>
         <span *ngFor="let item of _lastSelectedValues"
@@ -34,10 +34,10 @@
     
     <!-- suggestions -->
     <div [hidden]="_selectedValue.caption.length < 3 && inputWithRecentlyUsed" class="select-box-dropdown">
-        <span *ngIf="inputListBoxValues.length === 0">
+        <span *ngIf="inputListBoxValues.length === 0" (click)="$event.stopPropagation()">
             <i>{{'terraSuggestionBox.noSuggestions' | translate:lang }}</i>
         </span>
-        <span *ngIf="inputListBoxValues.length > 0">
+        <span *ngIf="inputListBoxValues.length > 0 && inputWithRecentlyUsed" class="select-box-dropdown-heading" (click)="$event.stopPropagation()">
             <i><b> {{'terraSuggestionBox.suggestions' | translate:lang }} </b></i>
         </span>
          <span *ngFor="let item of inputListBoxValues"
