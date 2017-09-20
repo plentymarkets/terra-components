@@ -263,6 +263,13 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this._noEntriesTextKey = 'terraSuggestionBox.noSuggestions';
             this._displayListBoxValues = this.inputListBoxValues.filter((value:TerraSuggestionBoxValueInterface) =>
             {
+                // check if search string has a full match
+                if(value.caption.toUpperCase().includes(searchString.toUpperCase()))
+                {
+                    return true;
+                }
+
+                // search for partial strings
                 let searchStringIncluded:boolean = true;
                 searchString.split(' ').forEach((word:string) =>
                 {
