@@ -266,8 +266,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 let searchStringIncluded:boolean = true;
                 searchString.split(' ').forEach((word:string) =>
                 {
-                    searchStringIncluded = searchStringIncluded &&
-                                           value.caption.toUpperCase().search(word.toUpperCase()) !== -1
+                    searchStringIncluded = searchStringIncluded && value.caption.toUpperCase().includes(word.toUpperCase())
                 });
                 return searchStringIncluded;
             });
