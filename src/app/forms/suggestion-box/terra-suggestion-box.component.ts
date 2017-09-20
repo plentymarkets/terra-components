@@ -197,6 +197,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     private select(value:TerraSuggestionBoxValueInterface):void
     {
+        // check if value is available
+        if(!this._displayListBoxValues.find((elem) => elem === value))
+        {
+            return;
+        }
+
         // update selected value
         this._selectedValue = {
             caption: value.caption,
@@ -257,11 +263,17 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this._noEntriesTextKey = 'terraSuggestionBox.noSuggestions';
             this._displayListBoxValues = this.inputListBoxValues.filter((value:TerraSuggestionBoxValueInterface) =>
             {
+                // check if search string has a full match
+                if(value.caption.toUpperCase().includes(searchString.toUpperCase()))
+                {
+                    return true;
+                }
+
+                // search for partial strings
                 let searchStringIncluded:boolean = true;
                 searchString.split(' ').forEach((word:string) =>
                 {
-                    searchStringIncluded = searchStringIncluded &&
-                                           value.caption.toUpperCase().search(word.toUpperCase()) !== -1
+                    searchStringIncluded = searchStringIncluded && value.caption.toUpperCase().includes(word.toUpperCase())
                 });
                 return searchStringIncluded;
             });
@@ -348,8 +360,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                         }
                         break;
                     case 'Enter': // select the marked element
-                        this.select(this._tmpSelectedValue); // select the chosen element
-                        this.toggleOpen = false; // close the dropdown
+                        // check if element is really available
+                        if (this._displayListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item === this._tmpSelectedValue))
+                        {
+                            this.select(this._tmpSelectedValue); // select the chosen element
+                            this.toggleOpen = false; // close the dropdown
+                        }
                         break;
                     case 'Escape': // close the dropdown
                         this.toggleOpen = false; // close the dropdown

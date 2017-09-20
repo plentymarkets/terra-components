@@ -12,6 +12,9 @@ import { TerraNavigatorNodeInterface } from './data/terra-navigator-node.interfa
 import { TerraButtonGroupModule } from './button-group/terra-button-group.module';
 import { TerraNavigatorConfig } from './config/terra-navigator.config';
 import { isNullOrUndefined } from 'util';
+import { TerraSuggestionBoxValueInterface } from '../forms/suggestion-box/data/terra-suggestion-box.interface';
+import { Router } from '@angular/router';
+import { TranslationService } from 'angular-l10n';
 
 /**
  * @author mscharf
@@ -27,19 +30,23 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
     @Input() inputNavigatorService:TerraNavigatorConfig<D>;
     @Input() inputModuleWidth:string;
     @Input() inputFirstBreadcrumbName:string;
+    @Input() inputRouter:Router;
+    @Input() inputBaseRoute:string;
 
     @Output() outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
     @Output() outputNodeClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
 
     private _isInit:boolean;
     private _updateViewport:boolean;
+    private _searchNodeList:Array<TerraSuggestionBoxValueInterface>;
 
-    constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig<D>)
+    constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig<D>, private translation:TranslationService)
     {
         this._isInit = false;
         this.outputEndpointClicked = new EventEmitter();
         this.outputNodeClicked = new EventEmitter();
         this._updateViewport = true;
+        this._searchNodeList = [];
     }
 
     ngOnInit()
@@ -118,14 +125,23 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
                 this.initRootPaths(this.inputNodes, null);
                 this.refreshNodeVisibilities(this.inputNodes);
+
+                this.addSearchNode(item);
             });
 
         this.inputNavigatorService.observableNewNodesByRoute
-            .subscribe((item:Array<TerraNavigatorNodeInterface<D>>) =>
+            .subscribe((items:Array<TerraNavigatorNodeInterface<D>>) =>
             {
-                this.addNodesRecursive(item);
+                this.addNodesRecursive(items);
                 this.refreshNodeVisibilities(this.inputNodes);
+
+                items.forEach((item) =>
+                {
+                    this.addSearchNode(item);
+                })
             });
+
+        this.updateSearchNodes();
 
         this._isInit = true;
     }
@@ -138,6 +154,8 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
             this.initRootPaths(changes['inputNodes'].currentValue, null);
             this.refreshNodeVisibilities(changes['inputNodes'].currentValue);
+
+            this.updateSearchNodes();
 
             this._terraNavigatorSplitViewConfig
                 .addModule({
@@ -282,7 +300,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                     }
                 }
             }
-        )
+        );
     }
 
     private getTotalVisibleChildren(rootNode:TerraNavigatorNodeInterface<D>):number
@@ -309,5 +327,97 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
         // return count of children
         return childrenCount;
+    }
+
+    private updateSearchNodes():void
+    {
+        // reset node list
+        this._searchNodeList = [];
+
+        // convert tree model into flat hierarchy
+        this.inputNodes.forEach((node:TerraNavigatorNodeInterface<D>) =>
+        {
+            this.addSearchNode(node);
+        });
+    }
+
+    private addSearchNode(node:TerraNavigatorNodeInterface<D>):void
+    {
+        // check for null pointer
+        if(isNullOrUndefined(node))
+        {
+            return;
+        }
+
+        // seek trough its children, if existing
+        if(!isNullOrUndefined(node.children) && node.children.length > 0)
+        {
+            node.children.forEach((child:TerraNavigatorNodeInterface<D>) =>
+            {
+                this.addSearchNode(child);
+            });
+        }
+        // only add nodes without children <=> leaves
+        else
+        {
+            // check if node is visible
+            if(isNullOrUndefined(node.isVisible) || node.isVisible) //TODO: rename in hidden!
+            {
+                // add node to the flat list
+                this._searchNodeList.push(
+                    {
+                        value:   this.getNodeRoute(node),
+                        caption: this.getNodePath(node)
+                    }
+                );
+            }
+        }
+    }
+
+    private openSelectedNode(suggest:TerraSuggestionBoxValueInterface):void
+    {
+        this.inputRouter.navigateByUrl(this.inputBaseRoute + suggest.value);
+    }
+
+    private getNodeRoute(node:TerraNavigatorNodeInterface<D>):string
+    {
+        let route:string = '';
+        let nodes:Array<TerraNavigatorNodeInterface<D>> = this.inputNodes;
+
+        if(!isNullOrUndefined(node.rootPath))
+        {
+            node.rootPath.forEach((root) =>
+            {
+                route = route + '/' + nodes[root].route;
+                nodes = nodes[root].children;
+            });
+        }
+
+        return route;
+    }
+
+    private getNodePath(node:TerraNavigatorNodeInterface<D>):string
+    {
+        let route:string = '';
+        let nodes:Array<TerraNavigatorNodeInterface<D>> = this.inputNodes;
+
+        if(!isNullOrUndefined(node.rootPath))
+        {
+            node.rootPath.forEach((root) =>
+            {
+                let translatedNodeName:string = this.translation.translate(nodes[root].nodeName);
+                if(route === '')
+                {
+                    route = translatedNodeName;
+                }
+                else
+                {
+                    route += ' » ' + translatedNodeName;
+                }
+                nodes = nodes[root].children;
+            });
+        }
+
+        return route;
     }
 }
