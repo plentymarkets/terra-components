@@ -11,10 +11,10 @@ import {
  * @author mscharf
  */
 @Component({
-               selector: 'terra-filter',
-               styles:   [require('./terra-filter.component.scss')],
-               template: require('./terra-filter.component.html')
-           })
+    selector: 'terra-filter',
+    styles:   [require('./terra-filter.component.scss')],
+    template: require('./terra-filter.component.html')
+})
 export class TerraFilterComponent implements OnInit
 {
     @ViewChild('viewChildInputList') viewChildInputList;

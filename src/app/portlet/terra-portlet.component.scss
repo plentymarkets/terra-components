@@ -30,7 +30,7 @@
         padding: 12px;
         font-size: $font-size-base;
         overflow: hidden;
-
+        
         table.table
         {
             thead
@@ -86,9 +86,11 @@
             }
         }
     }
-
-    &.collapsable {
-        .portlet_head {
+    
+    &.collapsable
+    {
+        .portlet_head
+        {
             cursor: pointer;
         }
     }
@@ -121,8 +123,9 @@
         float: right;
         padding: 3px 3px;
         transition: all 100ms ease;
-
-        &.rotated {
+        
+        &.rotated
+        {
             transform: rotate(180deg);
         }
     }

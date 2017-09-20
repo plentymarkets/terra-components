@@ -26,9 +26,9 @@ export class TerraLoadingBarService
     constructor()
     {
         this.observable = new Observable<TerraLoadingBarEvent>((subscriber:Subscriber<TerraLoadingBarEvent>) =>
-                                                               {
-                                                                   this._subscriber = subscriber;
-                                                               });
+        {
+            this._subscriber = subscriber;
+        });
     }
 
     public set progress(value:number)
@@ -108,15 +108,15 @@ export class TerraLoadingBarService
         this.visible = true;
         // Run the timer with milliseconds iterval
         this._intervalCounterId = setInterval(() =>
-                                              {
-                                                  // Increment the progress and update view component
-                                                  this.progress++;
-                                                  // If the progress is 100% - call complete
-                                                  if(this.progress === 100)
-                                                  {
-                                                      this.complete();
-                                                  }
-                                              }, this._interval);
+        {
+            // Increment the progress and update view component
+            this.progress++;
+            // If the progress is 100% - call complete
+            if(this.progress === 100)
+            {
+                this.complete();
+            }
+        }, this._interval);
     }
 
     public stop():void
@@ -139,15 +139,15 @@ export class TerraLoadingBarService
         this.progress = 100;
         this.stop();
         setTimeout(() =>
-                   {
-                       // Hide it away
-                       this.visible = false;
-                       setTimeout(() =>
-                                  {
-                                      // Drop to 0
-                                      this.progress = 0;
-                                  }, 250);
-                   }, 250);
+        {
+            // Hide it away
+            this.visible = false;
+            setTimeout(() =>
+            {
+                // Drop to 0
+                this.progress = 0;
+            }, 250);
+        }, 250);
     }
 
 }

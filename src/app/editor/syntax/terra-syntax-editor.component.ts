@@ -21,10 +21,10 @@ import 'brace/ext/error_marker';
 import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
 
 @Component({
-               selector: 'terra-syntax-editor',
-               template: require('./terra-syntax-editor.component.html'),
-               styles:   [require('./terra-syntax-editor.component.scss')]
-           })
+    selector: 'terra-syntax-editor',
+    template: require('./terra-syntax-editor.component.html'),
+    styles:   [require('./terra-syntax-editor.component.scss')]
+})
 export class TerraSyntaxEditorComponent implements AfterViewInit
 {
     @ViewChild('aceEditor') editor:AceEditorComponent;

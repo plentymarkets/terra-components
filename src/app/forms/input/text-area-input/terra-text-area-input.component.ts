@@ -8,17 +8,17 @@ import { TerraRegex } from '../../../regex/terra-regex';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-               selector:  'terra-text-area-input',
-               styles:    [require('./terra-text-area-input.component.scss')],
-               template:  require('./terra-text-area-input.component.html'),
-               providers: [
-                   {
-                       provide:     NG_VALUE_ACCESSOR,
-                       useExisting: forwardRef(() => TerraTextAreaInputComponent),
-                       multi:       true
-                   }
-               ]
-           })
+    selector:  'terra-text-area-input',
+    styles:    [require('./terra-text-area-input.component.scss')],
+    template:  require('./terra-text-area-input.component.html'),
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraTextAreaInputComponent),
+            multi:       true
+        }
+    ]
+})
 export class TerraTextAreaInputComponent extends TerraInputComponent
 {
     /**

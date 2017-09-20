@@ -10,9 +10,9 @@ import { TerraBaseData } from '../../../../data/terra-base.data';
  * @author mkunze
  */
 @Directive({
-               selector: '[context-menu]',
-               host:     {'(contextmenu)': 'rightClicked($event)'}
-           })
+    selector: '[context-menu]',
+    host:     {'(contextmenu)': 'rightClicked($event)'}
+})
 export class TerraDataTableContextMenuDirective<D extends TerraBaseData>
 {
     @Input('context-menu') inputLinks:Array<TerraDataTableContextMenuEntryInterface<D>>;
@@ -24,9 +24,9 @@ export class TerraDataTableContextMenuDirective<D extends TerraBaseData>
     rightClicked(event:MouseEvent)
     {
         this._contextMenuService.show.next({
-                                               event: event,
-                                               obj:   this.inputLinks
-                                           });
+            event: event,
+            obj:   this.inputLinks
+        });
         event.preventDefault();
     }
 }

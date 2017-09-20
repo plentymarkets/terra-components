@@ -6,10 +6,10 @@ import { TerraBaseTreeComponent } from '../base/terra-base-tree.component';
 import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
 
 @Component({
-               selector: 'terra-checkbox-tree',
-               styles:   [require('./terra-checkbox-tree.component.scss')],
-               template: require('./terra-checkbox-tree.component.html')
-           })
+    selector: 'terra-checkbox-tree',
+    styles:   [require('./terra-checkbox-tree.component.scss')],
+    template: require('./terra-checkbox-tree.component.html')
+})
 /**
  * TODO FUNKTIONIERT NOCH NICHT
  */

@@ -1,4 +1,5 @@
-export enum TerraLoadingBarEventType {
+export enum TerraLoadingBarEventType
+{
     PROGRESS,
     HEIGHT,
     COLOR,

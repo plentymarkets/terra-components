@@ -20,17 +20,17 @@ import moment = require('moment');
  * @author mfrank
  */
 @Component({
-               selector:  'terra-date-picker',
-               styles:    [require('./terra-date-picker.component.scss')],
-               template:  require('./terra-date-picker.component.html'),
-               providers: [
-                   {
-                       provide:     NG_VALUE_ACCESSOR,
-                       useExisting: forwardRef(() => TerraDatePickerComponent),
-                       multi:       true
-                   }
-               ]
-           })
+    selector:  'terra-date-picker',
+    styles:    [require('./terra-date-picker.component.scss')],
+    template:  require('./terra-date-picker.component.html'),
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraDatePickerComponent),
+            multi:       true
+        }
+    ]
+})
 export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 {
     @Input() inputName:string;

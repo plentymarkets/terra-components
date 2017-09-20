@@ -3,14 +3,15 @@ import {
     Input
 } from '@angular/core';
 import { TerraTileBoxInterface } from '../box/data/terra-tile-box.interface';
+
 /**
  * @author mkunze
  */
 @Component({
-               selector: 'terra-tile-box-panel',
-               styles:   [require('./terra-tile-box-panel.component.scss')],
-               template: require('./terra-tile-box-panel.component.html')
-           })
+    selector: 'terra-tile-box-panel',
+    styles:   [require('./terra-tile-box-panel.component.scss')],
+    template: require('./terra-tile-box-panel.component.html')
+})
 export class TerraTileBoxPanelComponent
 {
     @Input() inputTileBoxList:Array<TerraTileBoxInterface>;

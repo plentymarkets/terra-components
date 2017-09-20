@@ -4,16 +4,18 @@ import { TerraDropzoneDirective } from './dropzone.directive';
 import { TerraResizableDirective } from './resizable.directive';
 
 @NgModule({
-    imports: [],
+    imports:      [],
     declarations: [
         TerraDraggableDirective,
         TerraDropzoneDirective,
         TerraResizableDirective
     ],
-    exports: [
+    exports:      [
         TerraDraggableDirective,
         TerraDropzoneDirective,
         TerraResizableDirective
     ]
 })
-export class TerraInteractModule { }
+export class TerraInteractModule
+{
+}

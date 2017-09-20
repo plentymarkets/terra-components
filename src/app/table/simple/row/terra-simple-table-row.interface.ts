@@ -1,4 +1,5 @@
 import { TerraSimpleTableCellInterface } from '../cell/terra-simple-table-cell.interface';
+
 /**
  * @author mkunze
  */

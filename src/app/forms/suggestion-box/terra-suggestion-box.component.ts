@@ -84,7 +84,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this._hasLabel = this.inputName != null;
         this._lastSelectedValues = [];
         this._listBoxHeadingKey = '';
-        this._noEntriesTextKey = this.inputWithRecentlyUsed? 'terraSuggestionBox.noRecentlyUsed': 'terraSuggestionBox.noSuggestions';
+        this._noEntriesTextKey = this.inputWithRecentlyUsed ? 'terraSuggestionBox.noRecentlyUsed' : 'terraSuggestionBox.noSuggestions';
 
         if(!this.inputWithRecentlyUsed)
         {
@@ -261,9 +261,16 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         {
             this._listBoxHeadingKey = 'terraSuggestionBox.suggestions';
             this._noEntriesTextKey = 'terraSuggestionBox.noSuggestions';
-            this._displayListBoxValues = this.inputListBoxValues.filter(
-                (value:TerraSuggestionBoxValueInterface) => value.caption.toUpperCase().search(searchString.toUpperCase()) !== -1
-            );
+            this._displayListBoxValues = this.inputListBoxValues.filter((value:TerraSuggestionBoxValueInterface) =>
+            {
+                let searchStringIncluded:boolean = true;
+                searchString.split(' ').forEach((word:string) =>
+                {
+                    searchStringIncluded = searchStringIncluded &&
+                                           value.caption.toUpperCase().search(word.toUpperCase()) !== -1
+                });
+                return searchStringIncluded;
+            });
         }
         else if(this.inputWithRecentlyUsed)
         {
@@ -381,7 +388,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             selectedElement.parentElement.scrollTop = selectedElement.offsetTop - selectedElement.parentElement.offsetTop;
         }
     }
-    
+
     /**
      * workaround to prevent calling the select() method on the label click
      * @param event

@@ -6,10 +6,10 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector: 'terra-button',
-               styles:   [require('./terra-button.component.scss')],
-               template: require('./terra-button.component.html')
-           })
+    selector: 'terra-button',
+    styles:   [require('./terra-button.component.scss')],
+    template: require('./terra-button.component.html')
+})
 export class TerraButtonComponent
 {
     @Input() inputIsPrimary:boolean;
@@ -39,7 +39,7 @@ export class TerraButtonComponent
         this.inputIsDivider = false;
     }
 
-    private click( event: Event ):void
+    private click(event:Event):void
     {
         this.outputClicked.emit(event);
     }

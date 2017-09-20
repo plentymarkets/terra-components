@@ -45,15 +45,17 @@
                       (outputClicked)="showFileBrowser()">
         </terra-button>
     </div>
-
+    
     <terra-overlay #overlay
                    [inputPrimaryButtonInterface]="primaryOverlayButton"
                    [inputSecondaryButtonInterface]="secondaryOverlayButton"
                    (outputOnShow)="fileBrowser.selectUrl(value)"
                    (outputOnHide)="selectedUrl = value">
-        <terra-file-browser #fileBrowser [inputAllowedExtensions]="inputAllowedExtensions" (outputSelected)="selectedUrl = $event"></terra-file-browser>
+        <terra-file-browser #fileBrowser [inputAllowedExtensions]="inputAllowedExtensions"
+                            (outputSelected)="selectedUrl = $event">
+        </terra-file-browser>
     </terra-overlay>
-
+    
     <terra-overlay #previewOverlay [inputOverlayTitle]="getFilename(value)" class="preview-overlay">
         <span *ngIf="isWebImage(value)" [style.background-image]="'url(' + value + ')'"></span>
     </terra-overlay>

@@ -44,12 +44,12 @@ export class TerraAlertComponent
         }
 
         this._alerts.push({
-                              msg:              alert.msg,
-                              closable:         alert.closable,
-                              type:             alert.type,
-                              dismissOnTimeout: alert.dismissOnTimeout,
-                              identifier:       alert.identifier
-                          });
+            msg:              alert.msg,
+            closable:         alert.closable,
+            type:             alert.type,
+            dismissOnTimeout: alert.dismissOnTimeout,
+            identifier:       alert.identifier
+        });
     }
 
     public closeAlertByIdentifier(identifier:string)

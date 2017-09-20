@@ -135,11 +135,11 @@ export class TerraInputComponent implements ControlValueAccessor
                         emptyMessage = this.inputEmptyMessage;
 
                         this._alert.addAlert({
-                                                 msg:              emptyMessage,
-                                                 closable:         true,
-                                                 type:             'danger',
-                                                 dismissOnTimeout: 0
-                                             });
+                            msg:              emptyMessage,
+                            closable:         true,
+                            type:             'danger',
+                            dismissOnTimeout: 0
+                        });
                     }
                 }
                 else if(!isNullOrUndefined(this.value) && this.value.length > 0)
@@ -156,11 +156,11 @@ export class TerraInputComponent implements ControlValueAccessor
                         invalidMessage = this.inputInvalidMessage;
 
                         this._alert.addAlert({
-                                                 msg:              invalidMessage,
-                                                 closable:         true,
-                                                 type:             'danger',
-                                                 dismissOnTimeout: 0
-                                             });
+                            msg:              invalidMessage,
+                            closable:         true,
+                            type:             'danger',
+                            dismissOnTimeout: 0
+                        });
                     }
                 }
             }
