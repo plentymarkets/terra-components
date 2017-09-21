@@ -434,6 +434,15 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
     }
 
+
+    /**
+     * Algorithm to evaluate levenshtein's distance (https://de.wikipedia.org/wiki/Levenshtein-Distanz).
+     * Implementation by hiddentao -> https://github.com/hiddentao/fast-levenshtein
+     * 
+     * @param {string} str1
+     * @param {string} str2
+     * @returns {any}
+     */
     private getLevenshteinDistance(str1:string, str2:string) {
         let prevRow = [],
             str2Char = [];
