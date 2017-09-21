@@ -279,6 +279,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                     if(!suggestion.includes(word.toUpperCase()))
                     {
                         searchStringIncluded = false;
+                        return; // exit forEach-Loop
                     }
                 });
                 return searchStringIncluded;
