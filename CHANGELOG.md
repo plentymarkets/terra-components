@@ -1,3 +1,7 @@
+# Unreleased
+### Feature
+* **terra-suggestion-box** misspelled inputs are accepted for suggestions
+
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
 ### Feature
