@@ -279,9 +279,9 @@
     }
 }
 
-.slideDown > .offsetHeight
+/deep/ .tab-content > .offsetHeight
 {
-    height: calc(100vh - 174px);
+    height: calc(100vh - 211px);
     position: absolute;
     bottom: 0px;
     width: 100%;
@@ -289,15 +289,16 @@
 
 .slideDown > div
 {
-    height: calc(100vh - 138px);
-    //position: absolute;
-    bottom: 0;
+    height: 100%;
+    position: absolute;
+    bottom: 0px;
     width: 100%;
 }
 
 /deep/ .tab-content .slideDown > div
 {
-    bottom: 0;
+    height: calc(100vh - 174px) !important;
+    position: absolute;
 }
 
 .ellipsis
