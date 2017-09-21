@@ -415,4 +415,61 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             event.target.select();
         }
     }
+
+    private getLevenshteinDistance(str1:string, str2:string) {
+        let prevRow = [],
+            str2Char = [];
+
+        let str1Len = str1.length,
+            str2Len = str2.length;
+
+        // base cases
+        if (str1Len === 0) return str2Len;
+        if (str2Len === 0) return str1Len;
+
+        // two rows
+        let curCol, nextCol, i, j, tmp;
+
+        // initialise previous row
+        for (i=0; i<str2Len; ++i) {
+            prevRow[i] = i;
+            str2Char[i] = str2.charCodeAt(i);
+        }
+        prevRow[str2Len] = str2Len;
+
+        let strCmp;
+
+        // calculate current row distance from previous row without collator
+        for (i = 0; i < str1Len; ++i) {
+            nextCol = i + 1;
+
+            for (j = 0; j < str2Len; ++j) {
+                curCol = nextCol;
+
+                // substution
+                strCmp = str1.charCodeAt(i) === str2Char[j];
+
+                nextCol = prevRow[j] + (strCmp ? 0 : 1);
+
+                // insertion
+                tmp = curCol + 1;
+                if (nextCol > tmp) {
+                    nextCol = tmp;
+                }
+                // deletion
+                tmp = prevRow[j + 1] + 1;
+                if (nextCol > tmp) {
+                    nextCol = tmp;
+                }
+
+                // copy current col value into previous (in preparation for next iteration)
+                prevRow[j] = curCol;
+            }
+
+            // copy last col value into previous (in preparation for next iteration)
+            prevRow[j] = nextCol;
+        }
+
+        return nextCol;
+    }
 }
