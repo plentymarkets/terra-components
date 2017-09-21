@@ -13,6 +13,7 @@ import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.in
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 
+const FAULT_TOLERANCE = 2;
 const MAX_LASTLY_USED_ENTRIES = 5;
 
 @Component({
@@ -276,10 +277,27 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 let searchStringIncluded:boolean = true;
                 searchString.split(' ').forEach((word:string) =>
                 {
+                    // check if every substring of the search string is included in the given suggestion
                     if(!suggestion.includes(word.toUpperCase()))
                     {
-                        searchStringIncluded = false;
-                        return; // exit forEach-Loop
+                        // if substring isn't included, consider misspelling
+                        let misspelledMatch:boolean = false;
+                        suggestion.split(' ').forEach((val:string) =>
+                        {
+                            // calculate levenshtein's distance to evaluate the similarity of the strings
+                            if(this.getLevenshteinDistance(val.substr(0, word.length), word.toUpperCase()) <= FAULT_TOLERANCE)
+                            {
+                                misspelledMatch = true;
+                                return; // exit forEach-Loop
+                            }
+                        });
+
+                        // if neither a misspelled match has been found
+                        if(!misspelledMatch)
+                        {
+                            searchStringIncluded = false;
+                            return; // exit forEach-Loop
+                        }
                     }
                 });
                 return searchStringIncluded;
