@@ -441,9 +441,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      * 
      * @param {string} str1
      * @param {string} str2
-     * @returns {any}
+     * @returns {number}
      */
-    private getLevenshteinDistance(str1:string, str2:string) {
+    private getLevenshteinDistance(str1:string, str2:string):number
+    {
         let prevRow = [],
             str2Char = [];
 
