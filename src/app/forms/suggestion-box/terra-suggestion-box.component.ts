@@ -263,8 +263,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this._noEntriesTextKey = 'terraSuggestionBox.noSuggestions';
             this._displayListBoxValues = this.inputListBoxValues.filter((value:TerraSuggestionBoxValueInterface) =>
             {
+                // cache suggestion
+                let suggestion:string = value.caption.toUpperCase();
+
                 // check if search string has a full match
-                if(value.caption.toUpperCase().includes(searchString.toUpperCase()))
+                if(suggestion.includes(searchString.toUpperCase()))
                 {
                     return true;
                 }
@@ -273,7 +276,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 let searchStringIncluded:boolean = true;
                 searchString.split(' ').forEach((word:string) =>
                 {
-                    searchStringIncluded = searchStringIncluded && value.caption.toUpperCase().includes(word.toUpperCase())
+                    if(!suggestion.includes(word.toUpperCase()))
+                    {
+                        searchStringIncluded = false;
+                    }
                 });
                 return searchStringIncluded;
             });
