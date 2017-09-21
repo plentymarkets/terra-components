@@ -266,13 +266,13 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 // cache suggestion
                 let suggestion:string = value.caption.toUpperCase();
 
-                // check if search string has a full match
+                // check if search string is included in the given suggestion
                 if(suggestion.includes(searchString.toUpperCase()))
                 {
                     return true;
                 }
 
-                // search for partial strings
+                // consider space separated search strings
                 let searchStringIncluded:boolean = true;
                 searchString.split(' ').forEach((word:string) =>
                 {
