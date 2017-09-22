@@ -23,6 +23,7 @@ export class TerraSimpleTableComponent<D>
     @Input() inputHasCheckboxes:boolean = false;
 
     @Output() outputHeaderCheckBoxChanged:EventEmitter<boolean> = new EventEmitter();
+    @Output() outputRowCheckBoxChanged:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
 
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
 
@@ -106,12 +107,13 @@ export class TerraSimpleTableComponent<D>
     private onRowCheckboxChange(isChecked:boolean, row:TerraSimpleTableRowInterface<D>):void
     {
         this.changeRowState(isChecked, row);
+        this.outputRowCheckBoxChanged.emit(row);
 
-        if(this._selectedRowList.length == 0)
+        if(this._selectedRowList.length === 0)
         {
             this._isHeaderCheckboxChecked = false;
         }
-        else if(this._selectedRowList.length > 0 && this.inputRowList.length == this._selectedRowList.length)
+        else if(this._selectedRowList.length > 0 && this.inputRowList.length === this._selectedRowList.length)
         {
             this._isHeaderCheckboxChecked = true;
         }
@@ -129,7 +131,7 @@ export class TerraSimpleTableComponent<D>
 
         this._selectedRowList.forEach((row) =>
         {
-            if(row == rowToChange)
+            if(row === rowToChange)
             {
                 rowFound = true;
             }
