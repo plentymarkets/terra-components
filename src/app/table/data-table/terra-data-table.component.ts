@@ -19,6 +19,7 @@ import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector:  'terra-data-table',
@@ -107,7 +108,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     private checkTooltipPlacement(placement:string):string
     {
-        if(placement !== null && placement !== '')
+        if(!isNullOrUndefined(placement) && placement !== '')
         {
             return placement;
         }
@@ -183,11 +184,10 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             {
                 row.contextMenuLinkList.forEach((link:TerraDataTableContextMenuEntryInterface<D>) =>
                 {
-                    link.subject
-                        .subscribe((valueToClick:TerraDataTableContextMenuEntryInterface<D>) =>
-                        {
-                            valueToClick.clickFunction(valueToClick)
-                        })
+                    link.subject.subscribe((valueToClick:TerraDataTableContextMenuEntryInterface<D>) =>
+                    {
+                        valueToClick.clickFunction(valueToClick)
+                    })
                 })
             }
         });
@@ -229,7 +229,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
         this._isHeaderCheckboxChecked = false;
 
-        if(this.rowList !== null)
+        if(!isNullOrUndefined(this.rowList))
         {
             this.rowList.forEach((row:TerraDataTableRowInterface<D>) =>
             {
@@ -273,8 +273,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         //TODO check
         restCall.subscribe(this.onSuccessFunction, error =>
             {
-                if(error.status == 401 ||
-                   error.status == 500)
+                if(error.status == 401 || error.status == 500)
                 {
                     //TODO
                     alert(error.status);
@@ -285,7 +284,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     public getTextAlign(item:TerraDataTableHeaderCellInterface):any
     {
-        if(item.textAlign !== undefined && item.textAlign != null)
+        if(!isNullOrUndefined(item.textAlign))
         {
             return {'text-align': item.textAlign};
         }
