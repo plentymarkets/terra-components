@@ -1,3 +1,7 @@
+#Unreleased
+### Feature
+* **terra-multi-split-view** added `setSelectedView` method to the config, to be able to manually select a specific view
+
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
 ### Feature
