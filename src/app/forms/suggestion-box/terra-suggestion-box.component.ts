@@ -438,40 +438,55 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     /**
      * Algorithm to evaluate levenshtein's distance (https://de.wikipedia.org/wiki/Levenshtein-Distanz).
      * Implementation by hiddentao -> https://github.com/hiddentao/fast-levenshtein
-     * 
+     *
      * @param {string} str1
      * @param {string} str2
      * @returns {number}
      */
     private getLevenshteinDistance(str1:string, str2:string):number
     {
-        let prevRow = [],
-            str2Char = [];
+        let prevRow:Array<number> = [];
+        let str2Char:Array<number> = [];
 
-        let str1Len = str1.length,
-            str2Len = str2.length;
+        let str1Len:number = str1.length;
+        let str2Len:number = str2.length;
 
         // base cases
-        if (str1Len === 0) return str2Len;
-        if (str2Len === 0) return str1Len;
+        if(str1Len === 0)
+        {
+            return str2Len;
+        }
+
+        if(str2Len === 0)
+        {
+            return str1Len;
+        }
 
         // two rows
-        let curCol, nextCol, i, j, tmp;
+        let curCol:number;
+        let nextCol:number;
+        let i:number;
+        let j:number;
+        let tmp:number;
 
         // initialise previous row
-        for (i=0; i<str2Len; ++i) {
+        for(i = 0; i < str2Len; ++i)
+        {
             prevRow[i] = i;
             str2Char[i] = str2.charCodeAt(i);
         }
+
         prevRow[str2Len] = str2Len;
 
-        let strCmp;
+        let strCmp:boolean;
 
         // calculate current row distance from previous row without collator
-        for (i = 0; i < str1Len; ++i) {
+        for(i = 0; i < str1Len; ++i)
+        {
             nextCol = i + 1;
 
-            for (j = 0; j < str2Len; ++j) {
+            for(j = 0; j < str2Len; ++j)
+            {
                 curCol = nextCol;
 
                 // substution
@@ -481,12 +496,15 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
                 // insertion
                 tmp = curCol + 1;
-                if (nextCol > tmp) {
+                if(nextCol > tmp)
+                {
                     nextCol = tmp;
                 }
+
                 // deletion
                 tmp = prevRow[j + 1] + 1;
-                if (nextCol > tmp) {
+                if(nextCol > tmp)
+                {
                     nextCol = tmp;
                 }
 
