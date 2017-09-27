@@ -11,6 +11,7 @@ export class TerraMultiSplitViewConfig
     private _deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _resizeViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+    private _setSelectedViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
 
     public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
     {
@@ -99,6 +100,11 @@ export class TerraMultiSplitViewConfig
         this._resizeViewEventEmitter.next(view);
     }
 
+    public setSelectedView(view:TerraMultiSplitViewInterface):void
+    {
+        this._setSelectedViewEventEmitter.next(view);
+    }
+
     public reset():void
     {
         this._views = [];
@@ -111,6 +117,8 @@ export class TerraMultiSplitViewConfig
         this._resizeViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
         this._selectBreadcrumbEventEmitter.unsubscribe();
         this._selectBreadcrumbEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
+        this._setSelectedViewEventEmitter.unsubscribe();
+        this._setSelectedViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
     }
 
     public get deleteViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
@@ -146,5 +154,10 @@ export class TerraMultiSplitViewConfig
     public get selectBreadcrumbEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
     {
         return this._selectBreadcrumbEventEmitter;
+    }
+
+    public get setSelectedViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
+    {
+        return this._setSelectedViewEventEmitter;
     }
 }
