@@ -282,8 +282,8 @@ export class TerraBaseService
             return url;
         }
 
-        // initialize divider for parameters
-        let divider:string = '?';
+        // initialize separator for parameters
+        let separator:string = '?';
 
         // add parameters to the url
         for(let obj in params)
@@ -295,10 +295,10 @@ export class TerraBaseService
                 if(!isNullOrUndefined(params[obj]))
                 {
                     // append parameter to the url
-                    url += divider + obj + '=' + params[obj];
+                    url += separator + obj + '=' + params[obj];
 
-                    // set divider for subsequent parameters
-                    divider = '&';
+                    // set separator for subsequent parameters
+                    separator = '&';
                 }
             }
         }
