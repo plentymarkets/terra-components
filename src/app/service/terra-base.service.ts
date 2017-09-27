@@ -285,6 +285,12 @@ export class TerraBaseService
         // initialize separator for parameters
         let separator:string = '?';
 
+        // check if any parameter has already been appended
+        if(url.split('/').pop().includes('?'))
+        {
+            separator = '&';
+        }
+
         // add parameters to the url
         for(let obj in params)
         {
