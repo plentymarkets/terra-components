@@ -6,110 +6,99 @@
     margin: 0;
     height: 33px;
     display: flex;
-}
-
-.terra-breadcrumbs li
-{
-    float: left;
-    cursor: pointer;
-}
-
-.terra-breadcrumbs li div
-{
-    text-decoration: none;
-    padding: 8px 0 6px 28px;
-    background: $gray-light-3;
-    position: relative;
-    display: block;
-    float: left;
-    color: $gray-dark;
-    white-space: nowrap;
-    
-    &:hover
+    li
     {
-        background: $brand-primary;
+        float: left;
+        cursor: pointer;
+        div
+        {
+            text-decoration: none;
+            padding: 8px 0 6px 28px;
+            background: $gray-light-3;
+            position: relative;
+            display: block;
+            float: left;
+            color: $gray-dark;
+            white-space: nowrap;
+            &:hover
+            {
+                background: $blue;
+            }
+            &.active
+            {
+                color: #FFFFFF;
+                background: $blue;
+                cursor: default;
+                &:after
+                {
+                    border-left-color: $blue;
+                    cursor: default;
+                }
+            }
+            &::after
+            {
+                content: " ";
+                display: block;
+                width: 0;
+                height: 0;
+                border-top: 25px solid transparent;
+                border-bottom: 25px solid transparent;
+                border-left: 18px solid $gray-light-3;
+                position: absolute;
+                top: 60%;
+                margin-top: -28px;
+                left: 100%;
+                z-index: 2;
+            }
+            &:not(.active):hover
+            {
+                color: $white;
+                background-color: $blue !important;
+                &:after
+                {
+                    border-left-color: $blue !important;
+                }
+            }
+            &::before
+            {
+                content: " ";
+                display: block;
+                width: 0;
+                height: 0;
+                border-top: 25px solid transparent;
+                border-bottom: 25px solid transparent;
+                border-left: 19px solid $gray-light-4;
+                position: absolute;
+                top: 60%;
+                margin-top: -28px;
+                margin-left: 1px;
+                left: 100%;
+                z-index: 1;
+            }
+        }
+        &:last-child div
+        {
+            &.active:after
+            {
+                border-color: $brand-primary-darker;
+                cursor: default;
+            }
+            &::after
+            {
+                border: 7px solid #E0E0E0;
+                height: 47px;
+            }
+            &:not(.active):hover:after
+            {
+                border-color: $brand-primary !important;
+            }
+        }
+        &:first-child div
+        {
+            padding-left: 16px;
+        }
     }
 }
-
-.terra-breadcrumbs li div.active
-{
-    color: #FFFFFF;
-    background: $brand-primary-darker;
-    cursor: default;
-}
-
-.terra-breadcrumbs li div.active:after
-{
-    border-left-color: $brand-primary-darker;
-    cursor: default;
-}
-
-.terra-breadcrumbs li:last-child div.active:after
-{
-    border-color: $brand-primary-darker;
-    cursor: default;
-}
-
-.terra-breadcrumbs li div::after
-{
-    content: " ";
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    border-left: 18px solid $gray-light-3;
-    position: absolute;
-    top: 60%;
-    margin-top: -28px;
-    left: 100%;
-    z-index: 2;
-}
-
-.terra-breadcrumbs li div:not(.active):hover
-{
-    color: $white;
-    background-color: $brand-primary !important;
-}
-
-.terra-breadcrumbs li div:not(.active):hover:after
-{
-    border-left-color: $brand-primary !important;
-}
-
-.terra-breadcrumbs li:last-child div::after
-{
-    border: 7px solid #E0E0E0;
-    height: 47px;
-}
-
-.terra-breadcrumbs li:last-child div:not(.active):hover:after
-{
-    border-color: $brand-primary !important;
-}
-
-.terra-breadcrumbs li div::before
-{
-    content: " ";
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    border-left: 19px solid $gray-light-4;
-    position: absolute;
-    top: 60%;
-    margin-top: -28px;
-    margin-left: 1px;
-    left: 100%;
-    z-index: 1;
-}
-
-.terra-breadcrumbs li:first-child div
-{
-    padding-left: 16px;
-}
-
 .side-scroller
 {
     position: relative;
@@ -167,8 +156,7 @@
 }
 
 ///// Fixed Columns for Terra-Navigator ///////
-@media (min-width: 768px)
-{
+@media (min-width: 768px) {
     .col-md-300px
     {
         float: left;

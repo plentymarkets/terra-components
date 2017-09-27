@@ -6,63 +6,131 @@
     margin: 0;
     height: 33px;
     display: flex;
-}
-
-.terra-breadcrumbs li
-{
-    float: left;
-    cursor: pointer;
-}
-
-.terra-breadcrumbs li div
-{
-    text-decoration: none;
-    padding: 6px 16px;
-    background: $gray-light-3;
-    position: relative;
-    display: block;
-    float: left;
-    color: $gray-dark;
-    white-space: nowrap;
-    
-    &:hover
+    li
     {
-        background: $brand-primary;
+        float: left;
+        cursor: pointer;
+        div
+        {
+            span
+            {
+                font-weight: 500;
+            }
+            text-decoration: none;
+            padding: 7px 10px;
+            position: relative;
+            display: block;
+            float: left;
+            color: $grey-9;
+            white-space: nowrap;
+            &:hover
+            {
+                color: $blue;
+                .caret
+                {
+                    &::before
+                    {
+                        background-color: $blue;
+                    }
+                }
+            }
+            &.active
+            {
+                color: $blue;
+                cursor: default;
+                .caret
+                {
+                    &::before
+                    {
+                        background-color: $blue;
+                    }
+                }
+            }
+            &:not(.active):hover
+            {
+                color: $blue;
+                .caret
+                {
+                    &::before
+                    {
+                        background-color: $blue;
+                    }
+                }
+            }
+            .caret
+            {
+                padding: 6px 12px 6px 6px;
+                overflow: hidden;
+                &::after
+                {
+                    position: absolute;
+                    top: 11.5px;
+                    right: 7.5px;
+                    display: inline-block;
+                    width: 0;
+                    height: 0;
+                    vertical-align: middle;
+                    content: "";
+                    border: solid white;
+                    border-width: 0 1px 1px 0;
+                    padding: 2px;
+                    transform: rotate(45deg);
+                    overflow: hidden;
+                }
+                &::before
+                {
+                    content: "";
+                    padding: 8px;
+                    background-color: #636671;
+                    border-radius: 8px;
+                    position: absolute;
+                }
+                
+                &:hover
+                {
+                    .context-menu
+                    {
+                        display: block;
+                        visibility: visible;
+                        opacity: 1;
+                        transition: all 0.2s ease;
+                        transition-delay: 0.2s;
+                    }
+                }
+            }
+            .context-menu
+            {
+                top: 33px;
+                li
+                {
+                    float: none;
+                }
+            }
+        }
+        &:last-child
+        {
+            .icon-next
+            {
+                display: none;
+            }
+        }
+        &:first-child div
+        {
+            padding-left: 16px;
+        }
+        .icon-next
+        {
+            padding: 6px 0px;
+            &::before
+            {
+                display: inline-block;
+                line-height: 30px;
+                vertical-align: middle;
+                font-size: $font-size-6;
+                color: $grey-4;
+            }
+        }
     }
-}
-
-.terra-breadcrumbs li div.active
-{
-    color: #FFFFFF;
-    background: $brand-primary-darker;
-    cursor: default;
-}
-
-.terra-breadcrumbs li div .caret
-{
-    margin-right: -16px;
-    padding: 8px 0;
-}
-
-.terra-breadcrumbs li div .context-menu
-{
-    top: 33px;
-}
-
-.terra-breadcrumbs .context-menu li
-{
-    float: none;
-}
-
-.terra-breadcrumbs li div:not(.active):hover
-{
-    color: $white;
-    background-color: $brand-primary !important;
-}
-
-.terra-breadcrumbs li:first-child div
-{
-    padding-left: 16px;
 }
 
 .side-scroller
@@ -111,6 +179,10 @@
     white-space: normal;
     position: relative;
     padding: 0;
+    &:not(.first)
+    {
+        background-color: $white;
+    }
 }
 
 .view > div
@@ -220,39 +292,6 @@
     }
 }
 
-.caret
-{
-    padding: 6px 0px 6px 0px;
-    overflow: hidden;
-    &::before
-    {
-        display: inline-block;
-        width: 0;
-        height: 0;
-        margin-left: 7px;
-        margin-right: 7px;
-        vertical-align: middle;
-        content: "";
-        border-top: 0.3em solid;
-        border-right: 0.3em solid transparent;
-        border-left: 0.3em solid transparent;
-        overflow: hidden;
-    }
-    
-    &:hover
-    {
-        background-color: $brand-primary-darker;
-        .context-menu
-        {
-            display: block;
-            visibility: visible;
-            opacity: 1;
-            transition: all 0.2s ease;
-            transition-delay: 0.2s;
-        }
-    }
-}
-
 .slideDown
 {
     height: 0px;
@@ -348,4 +387,12 @@
     {
         color: $brand-primary-darker;
     }
+}
+
+:host /deep/ .terra-breadcrumbs-wrapper .btn-toolbar
+{
+    background-color: white;
+    border-bottom: 1px solid $grey-3;
+    border-radius: 0px;
+    margin-left: -3px;
 }
