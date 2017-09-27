@@ -274,7 +274,7 @@ export class TerraBaseService
      * @param {TerraPagerParameterInterface} params
      * @returns {string}
      */
-    private addParamsToUrl(url:string, params:TerraPagerParameterInterface):string
+    protected addParamsToUrl(url:string, params:TerraPagerParameterInterface):string
     {
         // check if params are given
         if(isNullOrUndefined(params))
