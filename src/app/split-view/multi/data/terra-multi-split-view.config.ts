@@ -29,7 +29,7 @@ export class TerraMultiSplitViewConfig
                     if(isNullOrUndefined(this.currentSelectedView))
                     {
                         this.currentSelectedView = view;
-                        this.views.push(view);
+                        this._views.push(view);
                     }
                     else
                     {
@@ -129,16 +129,6 @@ export class TerraMultiSplitViewConfig
     public get addViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
     {
         return this._addViewEventEmitter;
-    }
-
-    public get views():Array<TerraMultiSplitViewInterface>
-    {
-        return this._views;
-    }
-
-    public set views(value:Array<TerraMultiSplitViewInterface>)
-    {
-        this._views = value;
     }
 
     public get currentSelectedView():TerraMultiSplitViewInterface
