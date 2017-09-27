@@ -1,3 +1,7 @@
+#Unreleased
+### Bug Fixes
+* **terra-multi-split-view** disable public access to the data model, since it shouldn't be edited manually
+
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
 ### Feature
