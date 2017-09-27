@@ -1,4 +1,7 @@
 #Unreleased
+### Feature
+* **terra-base-service** new method `addParamsToUrl` that generically appends query parameters to a given url
+
 ### Bug Fixes
 * **terra-multi-split-view** disable public access to the data model, since it shouldn't be edited manually
 
