@@ -35,7 +35,7 @@
         font-size: $font-size-base;
         overflow: hidden;
         border-radius: 5px;
-        
+
         table.table
         {
             thead
@@ -97,6 +97,10 @@
         .portlet_head
         {
             cursor: pointer;
+        }
+        .portlet_body
+        {
+            overflow: hidden;
         }
     }
 }
