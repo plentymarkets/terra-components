@@ -66,80 +66,76 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                 console.error('You have to define an initial breadcrumb!!!');
             }
 
-            this._terraNavigatorSplitViewConfig
-                .addModule({
-                    module:            TerraButtonGroupModule.forRoot(),
-                    instanceKey:       0,
-                    defaultWidth:      this.inputModuleWidth,
-                    hidden:            false,
-                    name:              this.inputFirstBreadcrumbName,
-                    mainComponentName: 'TerraButtonGroupComponent',
-                    parameter:         {
-                        nodes: this.inputNodes
-                    }
-                });
+            this._terraNavigatorSplitViewConfig.addModule({
+                module:            TerraButtonGroupModule.forRoot(),
+                instanceKey:       0,
+                defaultWidth:      this.inputModuleWidth,
+                hidden:            false,
+                name:              this.inputFirstBreadcrumbName,
+                mainComponentName: 'TerraButtonGroupComponent',
+                parameter:         {
+                    nodes: this.inputNodes
+                }
+            });
         }
 
-        this._terraNavigatorSplitViewConfig.observableNodeClicked
-            .subscribe((item:TerraNavigatorNodeInterface<D>) =>
+        this._terraNavigatorSplitViewConfig.observableNodeClicked.subscribe((item:TerraNavigatorNodeInterface<D>) =>
+        {
+            if(isNullOrUndefined(item.rootPath))
             {
-                if(isNullOrUndefined(item.rootPath))
-                {
-                    this.initRootPaths(this.inputNodes, null);
-                }
-
-                this.outputNodeClicked.emit(item);
-
-                if(!isNullOrUndefined(item.children))
-                {
-                    this._terraNavigatorSplitViewConfig.modules[0].defaultWidth = 'col-xs-6 col-md-6 col-lg-6';
-
-                    this._terraNavigatorSplitViewConfig
-                        .addModule({
-                            module:            TerraButtonGroupModule.forRoot(),
-                            instanceKey:       item.rootPath.length,
-                            defaultWidth:      'col-xs-6 col-md-6 col-lg-6',
-                            hidden:            false,
-                            name:              item.nodeName,
-                            mainComponentName: 'TerraButtonGroupComponent',
-                            parameter:         {
-                                nodes: item.children
-                            }
-                        });
-                }
-                else
-                {
-                    while(this._terraNavigatorSplitViewConfig.modules.length > item.rootPath.length)
-                    {
-                        this._terraNavigatorSplitViewConfig.modules.pop();
-                    }
-
-                    this.outputEndpointClicked.emit(item);
-                }
-            });
-
-        this.inputNavigatorService.observableNewNodeByRootPath
-            .subscribe((item:TerraNavigatorNodeInterface<D>) =>
-            {
-                this.addNodeAt(this.inputNodes, item.rootPath, -1, item);
-
                 this.initRootPaths(this.inputNodes, null);
-                this.refreshNodeVisibilities(this.inputNodes);
+            }
 
-                this.addSearchNode(item);
-            });
+            this.outputNodeClicked.emit(item);
 
-        this.inputNavigatorService.observableNewNodesByRoute
-            .subscribe((items:Array<TerraNavigatorNodeInterface<D>>) =>
+            if(!isNullOrUndefined(item.children))
             {
-                this.addNodesRecursive(items);
-                this.refreshNodeVisibilities(this.inputNodes);
+                this._terraNavigatorSplitViewConfig.modules[0].defaultWidth = 'col-xs-6 col-md-6 col-lg-6';
 
-                items.forEach((item) =>
+                this._terraNavigatorSplitViewConfig
+                    .addModule({
+                        module:            TerraButtonGroupModule.forRoot(),
+                        instanceKey:       item.rootPath.length,
+                        defaultWidth:      'col-xs-6 col-md-6 col-lg-6',
+                        hidden:            false,
+                        name:              item.nodeName,
+                        mainComponentName: 'TerraButtonGroupComponent',
+                        parameter:         {
+                            nodes: item.children
+                        }
+                    });
+            }
+            else
+            {
+                while(this._terraNavigatorSplitViewConfig.modules.length > item.rootPath.length)
                 {
-                    this.addSearchNode(item);
-                })
-            });
+                    this._terraNavigatorSplitViewConfig.modules.pop();
+                }
+
+                this.outputEndpointClicked.emit(item);
+            }
+        });
+
+        this.inputNavigatorService.observableNewNodeByRootPath.subscribe((item:TerraNavigatorNodeInterface<D>) =>
+        {
+            this.addNodeAt(this.inputNodes, item.rootPath, -1, item);
+
+            this.initRootPaths(this.inputNodes, null);
+            this.refreshNodeVisibilities(this.inputNodes);
+
+            this.addSearchNode(item);
+        });
+
+        this.inputNavigatorService.observableNewNodesByRoute.subscribe((items:Array<TerraNavigatorNodeInterface<D>>) =>
+        {
+            this.addNodesRecursive(items);
+            this.refreshNodeVisibilities(this.inputNodes);
+
+            items.forEach((item) =>
+            {
+                this.addSearchNode(item);
+            })
+        });
 
         this.updateSearchNodes();
 
@@ -157,18 +153,17 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
             this.updateSearchNodes();
 
-            this._terraNavigatorSplitViewConfig
-                .addModule({
-                    module:            TerraButtonGroupModule.forRoot(),
-                    instanceKey:       0,
-                    defaultWidth:      this.inputModuleWidth,
-                    hidden:            false,
-                    name:              this.inputFirstBreadcrumbName,
-                    mainComponentName: 'TerraButtonGroupComponent',
-                    parameter:         {
-                        nodes: changes['inputNodes'].currentValue
-                    }
-                });
+            this._terraNavigatorSplitViewConfig.addModule({
+                module:            TerraButtonGroupModule.forRoot(),
+                instanceKey:       0,
+                defaultWidth:      this.inputModuleWidth,
+                hidden:            false,
+                name:              this.inputFirstBreadcrumbName,
+                mainComponentName: 'TerraButtonGroupComponent',
+                parameter:         {
+                    nodes: changes['inputNodes'].currentValue
+                }
+            });
         }
     }
 
@@ -311,18 +306,17 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         // go deep into the children
         if(!isNullOrUndefined(rootNode.children))
         {
-            rootNode.children
-                    .forEach((node) =>
-                        {
-                            if(node.isVisible || node.isVisible === undefined)
-                            {
-                                childrenCount++;
-                            }
+            rootNode.children.forEach((node) =>
+                {
+                    if(node.isVisible || node.isVisible === undefined)
+                    {
+                        childrenCount++;
+                    }
 
-                            // recursive
-                            childrenCount += this.getTotalVisibleChildren(node);
-                        }
-                    );
+                    // recursive
+                    childrenCount += this.getTotalVisibleChildren(node);
+                }
+            );
         }
 
         // return count of children

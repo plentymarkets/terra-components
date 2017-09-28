@@ -1,4 +1,5 @@
 <terra-split-view class="terra-navigator"
+                  [ngClass]="{'has-search': inputBaseRoute && inputRouter}"
                   [inputUpdateViewport]="_updateViewport"
                   [inputModules]="_terraNavigatorSplitViewConfig.modules"
                   [inputShowBreadcrumbs]="true">

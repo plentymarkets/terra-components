@@ -12,6 +12,7 @@ import { TerraBaseParameterInterface } from '../data/terra-base-parameter.interf
 import { TerraAlertComponent } from '../alert/terra-alert.component';
 import { Exception } from './data/exception.interface';
 import { isNullOrUndefined } from 'util';
+import { TerraPagerParameterInterface } from '../pager/data/terra-pager.parameter.interface';
 
 /**
  * @author mfrank
@@ -264,5 +265,50 @@ export class TerraBaseService
             return "Missing permissions";
         }
         //END workaround
+    }
+
+    /**
+     * Appends the given parameters to the given url
+     *
+     * @param {string} url
+     * @param {TerraPagerParameterInterface} params
+     * @returns {string}
+     */
+    protected addParamsToUrl(url:string, params:TerraPagerParameterInterface):string
+    {
+        // check if params are given
+        if(isNullOrUndefined(params))
+        {
+            return url;
+        }
+
+        // initialize separator for parameters
+        let separator:string = '?';
+
+        // check if any parameter has already been appended
+        if(url.split('/').pop().includes('?'))
+        {
+            separator = '&';
+        }
+
+        // add parameters to the url
+        for(let obj in params)
+        {
+            // check if parameter is defined
+            if(!isNullOrUndefined(obj))
+            {
+                // check if parameter's value is set
+                if(!isNullOrUndefined(params[obj]))
+                {
+                    // append parameter to the url
+                    url += separator + obj + '=' + params[obj];
+
+                    // set separator for subsequent parameters
+                    separator = '&';
+                }
+            }
+        }
+
+        return url;
     }
 }

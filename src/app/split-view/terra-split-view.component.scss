@@ -1,3 +1,11 @@
+:host-context(.terra-navigator.has-search)
+{
+    .side-scroller.offset
+    {
+        height: calc(100% - 86px) !important;
+    }
+}
+
 .terra-breadcrumbs
 {
     list-style: none;
