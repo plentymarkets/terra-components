@@ -41,7 +41,10 @@
             font-weight: $font-weight-2;
         }
     }
-    
+    &:hover
+    {
+        border: 1px solid $blue;
+    }
     &.disabled
     {
         background-color: $grey-3;
@@ -49,7 +52,6 @@
         
         label, .select-box
         {
-            //background-color: #F2F2F2;
             cursor: not-allowed;
         }
         .select-box-dropdown
@@ -64,10 +66,6 @@
         {
             display: block;
         }
-    }
-    &:hover
-    {
-        border: 1px solid $blue;
     }
     
     .select-box-dropdown
@@ -90,26 +88,16 @@
             padding: .25em 1em;
             line-height: 18px;
             min-height: 24px;
+            cursor: pointer;
             &:hover,
             &.selected
             {
                 background: $grey-3;
-                cursor: pointer;
             }
             &.active
             {
                 background: $blue;
                 color: white;
-                cursor: pointer;
-            }
-        }
-        .select-box-dropdown-heading
-        {
-            &:hover
-            {
-                background-color: white;
-                color: inherit;
-                cursor: default;
             }
         }
     }
