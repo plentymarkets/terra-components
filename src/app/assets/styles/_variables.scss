@@ -250,7 +250,7 @@ $list-inline-padding: 5px !default;
 $line-height-lg: (4 / 3) !default;
 $line-height-sm: 1.5 !default;
 
-$border-radius: .15rem !default;
+$border-radius: 5px !default;
 $border-radius-lg: .25rem !default;
 $border-radius-sm: .2rem !default;
 
@@ -1253,3 +1253,5 @@ $grey-10: #5B5D66;
 $grey-11: #494C56;
 $grey-12: #2F323A;
 $black: #000000;
+
+$border-radius: 5px;
