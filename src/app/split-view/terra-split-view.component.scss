@@ -128,7 +128,7 @@
     bottom: 0;
 }
 
-.view
+.view:not(.first)
 {
     vertical-align: top;
     height: 100%;
@@ -137,6 +137,10 @@
     white-space: normal;
     position: relative;
     padding: 0;
+    &:not(.first)
+    {
+        background-color: $white;
+    }
 }
 
 .view.hasDivider

@@ -179,7 +179,11 @@
     white-space: normal;
     position: relative;
     padding: 0;
-    &:not(.first)
+    //&:not(.first)
+    //{
+    //    background-color: $white;
+    //}
+    &.isBackgroundColorWhite
     {
         background-color: $white;
     }
