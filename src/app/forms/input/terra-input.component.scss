@@ -1,21 +1,17 @@
 //List of variables
 $zIndex-2: 200;
 $zIndex-3: 300;
+$color: $gray-dark;
+$background: white;
+$active-background: white;
+$border-color: $gray-light-2;
+$border-active: $gray-light;
+$border-width: 1px;
+$border-radius: 5px;
 
-/*------------------------------------*\
-    $FORMS
-\*------------------------------------*/
-
-::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    red;
-}
-
-input, textarea, .form-control
-{
-    &.input_inset_inner
-    {
-        padding: 10px 0.65rem 0px;
-    }
+::-webkit-input-placeholder
+{ /* WebKit, Blink, Edge */
+    color: red;
 }
 
 input:focus
@@ -60,59 +56,9 @@ input[type="search"]::-webkit-search-decoration
     -webkit-appearance: none;
 }
 
-.inline-form
-{
-    fieldset, .inline-container
-    {
-        position: relative;
-    }
-    
-    input[type=submit], button, .btn
-    {
-        font-size: $font-size-small-2;
-        padding: 0.65rem 1.3rem;
-        background: $gray-dark;
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 1;
-        width: auto;
-        
-        &:hover, &:focus
-        {
-            background: $gray;
-            color: $white;
-            outline: none;
-        }
-    }
-}
-
 /*------------------------------------*\
-    $SPECIFIC FORMS
+    $FORMS
 \*------------------------------------*/
-
-/* Search Form */
-.search-field
-{
-    padding-right: 3em;
-}
-
-.inline-form .search-submit
-{
-    background: none;
-    padding: 0.78em 1em;
-    border: 0;
-    border-left: 1px solid $gray;
-    color: $gray;
-}
-
-$color: $gray-dark;
-$background: white;
-$active-background: white;
-$border-color: $gray-light-2;
-$border-active: $gray-light;
-$border-width: 1px;
-$border-radius: 5px;
 
 .input-unit-v1
 {
@@ -290,22 +236,11 @@ label
     {
         position: static;
     }
-}
-
-.input-unit-v1.multiple
-{
-    display: flex;
-    flex-flow: row nowrap;
-    
-    & > input
+    textarea
     {
-        width: 70%;
-    }
-    
-    & > select
-    {
-        width: 30%;
-        border-left: $border-width solid $border-color;
+        -webkit-appearance: textarea;
+        resize: none;
+        padding-top: 3px;
     }
 }
 
@@ -327,9 +262,3 @@ label
     }
 }
 
-textarea
-{
-    -webkit-appearance: textarea;
-    resize: none;
-    padding-top: 3px;
-}
