@@ -9,29 +9,29 @@ import { TerraPagerInterface } from './data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-select-box.interface';
 
 @Component({
-               selector: 'terra-pager',
-               styles:   [require('./terra-pager.component.scss')],
-               template: require('./terra-pager.component.html')
-           })
+    selector: 'terra-pager',
+    styles:   [require('./terra-pager.component.scss')],
+    template: require('./terra-pager.component.html')
+})
 export class TerraPagerComponent implements OnInit
 {
     @Input() inputPagingData:TerraPagerInterface;
     @Input() inputDefaultPagingSize:number;
     @Input() inputPagingSize:Array<TerraSelectBoxValueInterface>;
-    
+
     @Output() outputDoPaging = new EventEmitter<TerraPagerInterface>();
-    
+
     constructor()
     {
     }
-    
+
     ngOnInit()
     {
         if(!this.inputDefaultPagingSize)
         {
             this.inputDefaultPagingSize = 25;
         }
-        
+
         if(!this.inputPagingSize)
         {
             this.inputPagingSize = [
@@ -53,7 +53,7 @@ export class TerraPagerComponent implements OnInit
                 }
             ];
         }
-        
+
         if(!this.inputPagingData)
         {
             this.inputPagingData = {
@@ -68,36 +68,36 @@ export class TerraPagerComponent implements OnInit
             };
         }
     }
-    
+
     public onFirstPage():void
     {
         this.inputPagingData.page = 1;
         this.outputDoPaging.emit(this.inputPagingData);
     }
-    
+
     public onPrevPage():void
     {
         this.inputPagingData.page -= 1;
         this.outputDoPaging.emit(this.inputPagingData);
     }
-    
+
     public onNextPage():void
     {
         this.inputPagingData.page += 1;
         this.outputDoPaging.emit(this.inputPagingData);
     }
-    
+
     public onLastPage():void
     {
         this.inputPagingData.page = this.inputPagingData.lastPageNumber;
         this.outputDoPaging.emit(this.inputPagingData);
     }
-    
+
     public onReload():void
     {
         this.outputDoPaging.emit(this.inputPagingData);
     }
-    
+
     public onToPage(event:any,
                     pageNumber:number):void
     {
@@ -105,7 +105,7 @@ export class TerraPagerComponent implements OnInit
         this.inputPagingData.page = pageNumber;
         this.outputDoPaging.emit(this.inputPagingData);
     }
-    
+
     public onChangeOffsetTo(selectedOffset:TerraSelectBoxValueInterface):void
     {
         this.inputPagingData.page = 1;
