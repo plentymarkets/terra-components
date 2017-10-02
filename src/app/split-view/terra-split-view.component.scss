@@ -67,7 +67,7 @@
                 height: 0;
                 border-top: 25px solid transparent;
                 border-bottom: 25px solid transparent;
-                border-left: 19px solid $gray-light-4;
+                border-left: 19px solid $white;
                 position: absolute;
                 top: 60%;
                 margin-top: -28px;
@@ -80,7 +80,7 @@
         {
             &.active:after
             {
-                border-color: $brand-primary-darker;
+                border-color: $blue;
                 cursor: default;
             }
             &::after
@@ -90,7 +90,7 @@
             }
             &:not(.active):hover:after
             {
-                border-color: $brand-primary !important;
+                border-color: $blue !important;
             }
         }
         &:first-child div
