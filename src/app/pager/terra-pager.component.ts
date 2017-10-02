@@ -3,11 +3,9 @@ import {
     EventEmitter,
     Input,
     OnInit,
-    Output,
-    ViewChild
+    Output
 } from '@angular/core';
 import { TerraPagerInterface } from './data/terra-pager.interface';
-import { TerraNumberInputComponent } from '../forms/input/number-input/terra-number-input.component';
 import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-select-box.interface';
 
 @Component({
@@ -17,8 +15,6 @@ import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-sel
 })
 export class TerraPagerComponent implements OnInit
 {
-    @ViewChild(TerraNumberInputComponent) viewChildCurrentPageInput:TerraNumberInputComponent;
-
     @Input() inputPagingData:TerraPagerInterface;
     @Input() inputDefaultPagingSize:number;
     @Input() inputPagingSize:Array<TerraSelectBoxValueInterface>;
@@ -71,74 +67,49 @@ export class TerraPagerComponent implements OnInit
                 isLastPage:     false
             };
         }
-
-        this.updateCurrentPageInput();
-    }
-
-    private updateCurrentPageInput()
-    {
-        this.viewChildCurrentPageInput.value = this.inputPagingData.page;
     }
 
     public onFirstPage():void
     {
         this.inputPagingData.page = 1;
-        this.updateCurrentPageInput();
-
-        this.outputDoPaging
-            .emit(this.inputPagingData);
+        this.outputDoPaging.emit(this.inputPagingData);
     }
 
     public onPrevPage():void
     {
         this.inputPagingData.page -= 1;
-        this.updateCurrentPageInput();
-
-        this.outputDoPaging
-            .emit(this.inputPagingData);
+        this.outputDoPaging.emit(this.inputPagingData);
     }
 
     public onNextPage():void
     {
         this.inputPagingData.page += 1;
-        this.updateCurrentPageInput();
-
-        this.outputDoPaging
-            .emit(this.inputPagingData);
+        this.outputDoPaging.emit(this.inputPagingData);
     }
 
     public onLastPage():void
     {
         this.inputPagingData.page = this.inputPagingData.lastPageNumber;
-        this.updateCurrentPageInput();
-
-        this.outputDoPaging
-            .emit(this.inputPagingData);
+        this.outputDoPaging.emit(this.inputPagingData);
     }
 
     public onReload():void
     {
-        this.outputDoPaging
-            .emit(this.inputPagingData);
+        this.outputDoPaging.emit(this.inputPagingData);
     }
 
     public onToPage(event:any,
                     pageNumber:number):void
     {
         event.preventDefault();
-
         this.inputPagingData.page = pageNumber;
-
-        this.outputDoPaging
-            .emit(this.inputPagingData);
+        this.outputDoPaging.emit(this.inputPagingData);
     }
 
     public onChangeOffsetTo(selectedOffset:TerraSelectBoxValueInterface):void
     {
         this.inputPagingData.page = 1;
-        this.updateCurrentPageInput();
         this.inputPagingData.itemsPerPage = selectedOffset.value;
-
         this.outputDoPaging.emit(this.inputPagingData);
     }
 }
