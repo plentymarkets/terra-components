@@ -133,10 +133,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             this.modules.push(
                 {
-                    views:               [],
-                    identifier:          view.mainComponentName,
-                    width:               view.defaultWidth,
-                    currentSelectedView: view
+                    views:                 [],
+                    identifier:            view.mainComponentName,
+                    width:                 view.defaultWidth,
+                    currentSelectedView:   view,
+                    isBackgroundColorGrey: view.isBackgroundColorGrey
                 }
             );
         }
