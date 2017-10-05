@@ -6,7 +6,7 @@ import 'rxjs/add/operator/debounceTime';
 
 /**
  * @author pweyrich
- * implemented by cory rylan (see https://coryrylan.com/blog/creating-a-custom-debounce-click-directive-in-angularO)
+ * implemented by cory rylan (see https://coryrylan.com/blog/creating-a-custom-debounce-click-directive-in-angular)
  */
 @Directive({
     selector: '[appDebounceClick]'
