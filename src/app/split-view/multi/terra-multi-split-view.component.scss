@@ -81,7 +81,7 @@
                 {
                     content: "";
                     padding: 8px;
-                    background-color: #636671;
+                    background-color: $grey-9;
                     border-radius: 8px;
                     position: absolute;
                 }
@@ -97,13 +97,15 @@
                         transition-delay: 0.2s;
                     }
                 }
-            }
-            .context-menu
-            {
-                top: 33px;
-                li
+                .context-menu
                 {
-                    float: none;
+                    top: 33px;
+                    li
+                    {
+                        float: none;
+                        min-width: 150px;
+                        max-width: 200px;
+                    }
                 }
             }
         }
@@ -248,52 +250,6 @@
     height: 525px;
 }
 
-.context-menu
-{
-    position: absolute;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.2s ease;
-    transition-delay: 0.2s;
-    padding: 5px 0px;
-    background-color: $brand-primary-darker;
-    
-    border-left: 1px solid $brand-primary-darker;
-    border-right: 1px solid $brand-primary-darker;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    
-    top: 29px;
-    right: 0px;
-    display: block;
-    list-style-type: none;
-    margin: 0;
-    
-    text-align: left;
-    z-index: 99999;
-    a
-    {
-        cursor: pointer;
-        background: $gray-light-2-half;
-        padding: 4px 12px;
-        display: block;
-        text-decoration: none;
-        background: $brand-primary-darker;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        &:hover
-        {
-            background-color: #F5F5F5;
-            color: $brand-primary-darker;
-        }
-        span
-        {
-            vertical-align: -1px;
-        }
-    }
-}
-
 .slideDown
 {
     height: 0px;
@@ -350,45 +306,6 @@
     vertical-align: top;
     max-width: 150px;
     display: inline-block;
-}
-
-.close-contact-icon
-{
-    position: absolute;
-    right: 2px;
-    margin-left: 6px;
-    display: inline-block !important;
-    font-size: 1.0em;
-    color: $white;
-    padding: 10px 1px;
-    opacity: 1;
-    text-shadow: none;
-    font-weight: bold;
-    &:before
-    {
-        padding: 10px 1px;
-    }
-    &:hover
-    {
-        color: $brand-secondary;
-        opacity: 1;
-    }
-}
-
-.dropdown-list-name
-{
-    width: 150px;
-}
-
-.dropdown-list-name a
-{
-    display: inline-block;
-    width: 100%;
-    text-overflow: ellipsis;
-    &:hover ~ .close-contact-icon
-    {
-        color: $brand-primary-darker;
-    }
 }
 
 :host /deep/ .terra-breadcrumbs-wrapper .btn-toolbar
