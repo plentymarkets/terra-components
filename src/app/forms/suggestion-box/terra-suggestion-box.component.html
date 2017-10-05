@@ -27,6 +27,7 @@
               (click)="$event.stopPropagation()">
             <i><b> {{ _listBoxHeadingKey | translate:lang }} </b></i>
         </span>
+        
         <span *ngFor="let item of _displayListBoxValues"
               (click)="select(item)"
               [ngClass]="{active: item.value === _selectedValue?.value, selected: item.value === _tmpSelectedValue?.value}">

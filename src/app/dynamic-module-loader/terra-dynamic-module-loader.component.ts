@@ -54,9 +54,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
         this._jitCompiler.compileModuleAndAllComponentsAsync(this._resolvedData.ngModule)
             .then((moduleWithFactories:ModuleWithComponentFactories<any>) =>
             {
-                moduleWithFactories.componentFactories.forEach
-                (
-                    (factory) =>
+                moduleWithFactories.componentFactories.forEach((factory) =>
                     {
                         if(this.inputMainComponentName === factory.componentType.name)
                         {
@@ -71,8 +69,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                             {
                                 this.inputInputs.forEach((input:TerraDynamicLoadedComponentInputInterface) =>
                                     {
-                                        if(!isNullOrUndefined(input)
-                                           && !isNullOrUndefined(input.name))
+                                        if(!isNullOrUndefined(input) && !isNullOrUndefined(input.name))
                                         {
                                             this._cmpRef.instance[input.name] = input.value;
                                         }

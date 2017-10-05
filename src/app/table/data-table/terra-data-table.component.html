@@ -4,7 +4,6 @@
              [inputPagingData]="pagingData"
              (outputDoPaging)="doPaging($event)">
 </terra-pager>
-<!--<terra-button (clicked)="openOverlayDataTableSettings()" icon="icon-settings" caption="Table Settings" [isSmall]="true" tooltipText="Einstellungen"></terra-button>-->
 
 <div class="table-responsive">
     <context-menu-holder></context-menu-holder>
@@ -80,21 +79,3 @@
          class="initial-loading-warn">{{_langPrefix+'.initialLoading' | translate:lang:{ dataType: inputDataType} }}
     </div>
 </div>
-
-<!--<terra-viewChildOverlay #viewChildOverlayDataTableSettings [inputSaveButtonTooltip]="saveButtonTooltip"-->
-<!--[inputCancelButtonTooltip]="cancelButtonTooltip" overlayTitle="Data Table Settings" [inputIsCloseable]="false"-->
-<!--[inputIsLarge]="true" [inputHasSaveButton]="true" [inputHasSecondaryButton]="true"-->
-<!--(outputPrimaryButtonClicked)="primaryClicked($event)" (outputSecondaryButtonClicked)="secondaryClicked($event)">-->
-<!--<h5>Spalten ein- / ausblenden</h5>-->
-<!--<div>-->
-<!--<ng-template ngFor let-row [ngForOf]="overlayRowList">-->
-<!--<div>-->
-<!--<terra-checkbox #overlayRowCheckbox type="checkbox" [value]="row.selected"-->
-<!--(change)="onOverlayCheckboxChange(overlayRowCheckbox.value, row)"></terra-checkbox>-->
-<!--<ng-template ngFor let-cell [ngForOf]="row.cellList">-->
-<!--<span *ngIf="!cell.isHidden">{{cell.caption}}</span>-->
-<!--</ng-template>-->
-<!--</div>-->
-<!--</ng-template>-->
-<!--</div>-->
-<!--</terra-viewChildOverlay>-->

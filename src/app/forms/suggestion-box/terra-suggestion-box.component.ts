@@ -45,10 +45,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     private _isValid:boolean;
     private _value:number | string;
     private clickListener:(event:Event) => void;
-    private _displayListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
-    private _lastSelectedValues:Array<TerraSuggestionBoxValueInterface>;
-    private _listBoxHeadingKey:string;
-    private _noEntriesTextKey:string;
+    protected _displayListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
+    protected _lastSelectedValues:Array<TerraSuggestionBoxValueInterface>;
+    protected _listBoxHeadingKey:string;
+    protected _noEntriesTextKey:string;
 
     constructor(private _elementRef:ElementRef)
     {
@@ -197,6 +197,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     private select(value:TerraSuggestionBoxValueInterface):void
     {
+        // check if value is available
+        if(!this._displayListBoxValues.find((elem) => elem === value))
+        {
+            return;
+        }
+
         // update selected value
         this._selectedValue = {
             caption: value.caption,
@@ -255,9 +261,22 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         {
             this._listBoxHeadingKey = 'terraSuggestionBox.suggestions';
             this._noEntriesTextKey = 'terraSuggestionBox.noSuggestions';
-            this._displayListBoxValues = this.inputListBoxValues.filter(
-                (value:TerraSuggestionBoxValueInterface) => value.caption.toUpperCase().search(searchString.toUpperCase()) !== -1
-            );
+            this._displayListBoxValues = this.inputListBoxValues.filter((value:TerraSuggestionBoxValueInterface) =>
+            {
+                // check if search string has a full match
+                if(value.caption.toUpperCase().includes(searchString.toUpperCase()))
+                {
+                    return true;
+                }
+
+                // search for partial strings
+                let searchStringIncluded:boolean = true;
+                searchString.split(' ').forEach((word:string) =>
+                {
+                    searchStringIncluded = searchStringIncluded && value.caption.toUpperCase().includes(word.toUpperCase())
+                });
+                return searchStringIncluded;
+            });
         }
         else if(this.inputWithRecentlyUsed)
         {
@@ -341,8 +360,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                         }
                         break;
                     case 'Enter': // select the marked element
-                        this.select(this._tmpSelectedValue); // select the chosen element
-                        this.toggleOpen = false; // close the dropdown
+                        // check if element is really available
+                        if (this._displayListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item === this._tmpSelectedValue))
+                        {
+                            this.select(this._tmpSelectedValue); // select the chosen element
+                            this.toggleOpen = false; // close the dropdown
+                        }
                         break;
                     case 'Escape': // close the dropdown
                         this.toggleOpen = false; // close the dropdown
@@ -384,5 +407,15 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             // select the input text <-> mark all
             event.target.select();
         }
+    }
+
+    public get selectedValue():TerraSuggestionBoxValueInterface
+    {
+        return this._selectedValue;
+    }
+
+    public set selectedValue(value:TerraSuggestionBoxValueInterface)
+    {
+        this._selectedValue = value;
     }
 }

@@ -279,6 +279,14 @@
     }
 }
 
+/deep/ .tab-content > .offsetHeight
+{
+    height: calc(100vh - 211px);
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
 .slideDown > div
 {
     height: 100%;

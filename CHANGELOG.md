@@ -1,4 +1,14 @@
-# Unreleased
+#Unreleased
+### Feature
+* **terra-base-service** new method `addParamsToUrl` that generically appends query parameters to a given url
+* **terra-multi-split-view** added `setSelectedView` method to the config, to be able to manually select a specific view
+
+### Bug Fixes
+* **terra-multi-split-view** disable public access to the data model, since it shouldn't be edited manually
+* **terra-navigator** reduce height if search bar is enabled
+
+<a name="1.4.2"></a>
+# 1.4.2 (20.09.2017)
 ### Feature
 * **terra-multi-split-view** added new interface property _inputs_ to be able to pass a list of input variables to the component, that is added to the split view. This now allows data-binding as usual and will replace interface property _parameter_.
 * **terra-file-input** and **terra-file-browser** Added new components to manage files on S3-Bucket and display file-inputs as form control.
@@ -9,6 +19,7 @@
 	- Enable the user to navigate through the dropdown using the arrow keys
 	- Select the entered text when the input is focused, to be able to delete the input with one action
 	- Added optional Input `inputWithRecentlyUsed` to enable a list of recently used elements
+	- Allow a space separated list of search strings
 
 <a name="1.4.1"></a>
 # 1.4.1 (04.09.2017)

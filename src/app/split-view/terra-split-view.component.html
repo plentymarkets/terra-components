@@ -9,6 +9,11 @@
         </ng-template>
     </ul>
 </terra-base-toolbar>
+
+<div class="content">
+    <ng-content></ng-content>
+</div>
+
 <div *ngIf="inputModules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
     <ng-template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">
         <div *ngIf="!module.hidden"

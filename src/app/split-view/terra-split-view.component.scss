@@ -1,3 +1,11 @@
+:host-context(.terra-navigator.has-search)
+{
+    .side-scroller.offset
+    {
+        height: calc(100% - 86px) !important;
+    }
+}
+
 .terra-breadcrumbs
 {
     list-style: none;
@@ -201,12 +209,4 @@
 /deep/ .hasSplitView .modal-body
 {
     height: 525px;
-}
-
-:host-context(.terra-navigator) .side-scroller
-{
-    overflow-y: auto;
-    width: 25%;
-    border-right: 1px solid #C7C7C7;
-    padding-right: 1px;
 }
