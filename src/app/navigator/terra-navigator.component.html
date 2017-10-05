@@ -10,4 +10,6 @@
         [inputWithRecentlyUsed]="true"
         (outputValueChanged)="openSelectedNode($event)">
     </terra-suggestion-box>
+    <ng-content *ngIf="!inputBaseRoute || !inputRouter">
+    </ng-content>
 </terra-split-view>

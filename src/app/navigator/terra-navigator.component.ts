@@ -360,7 +360,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                 // add node to the flat list
                 this._searchNodeList.push(
                     {
-                        value:   this.getNodeRoute(node),
+                        value:   node,
                         caption: this.getNodePath(node)
                     }
                 );
@@ -370,7 +370,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
     private openSelectedNode(suggest:TerraSuggestionBoxValueInterface):void
     {
-        this.inputRouter.navigateByUrl(this.inputBaseRoute + suggest.value);
+        this.inputRouter.navigateByUrl(this.inputBaseRoute + this.getNodeRoute(suggest.value));
     }
 
     private getNodeRoute(node:TerraNavigatorNodeInterface<D>):string
@@ -413,5 +413,10 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         }
 
         return route;
+    }
+
+    public get searchNodeList():Array<TerraSuggestionBoxValueInterface>
+    {
+        return this._searchNodeList;
     }
 }
