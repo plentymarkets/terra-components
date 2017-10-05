@@ -19,7 +19,10 @@ import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 
 @Component({
     selector:  'terra-data-table',
@@ -51,6 +54,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _initialLoadingMessage:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     private _langPrefix:string = 'terraDataTable';
+    private _requestPending:boolean;
 
     /**
      * @deprecated
@@ -270,7 +274,12 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     public doSearch(restCall:Observable<I>):void
     {
-        //TODO check
+        if(isNullOrUndefined(restCall))
+        {
+            return;
+        }
+
+        this._requestPending = true;
         restCall.subscribe(this.onSuccessFunction, error =>
             {
                 if(error.status == 401 || error.status == 500)
@@ -278,8 +287,12 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
                     //TODO
                     alert(error.status);
                 }
+            },
+            () =>
+            {
+                this._requestPending = false;
             }
-        )
+        );
     }
 
     public getTextAlign(item:TerraDataTableHeaderCellInterface):any
