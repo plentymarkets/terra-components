@@ -3,6 +3,11 @@ import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/debounceTime';
 
+
+/**
+ * @author pweyrich
+ * implemented by cory rylan (see https://coryrylan.com/blog/creating-a-custom-debounce-click-directive-in-angularO)
+ */
 @Directive({
     selector: '[appDebounceClick]'
 })
