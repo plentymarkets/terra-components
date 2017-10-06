@@ -26,7 +26,8 @@ export class TerraBaseService
 
     constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private _baseHttp:Http,
-                private _baseUrl:string)
+                private _baseUrl:string,
+                private _isPlugin:boolean)
     {
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.setAuthorization();
@@ -113,22 +114,34 @@ export class TerraBaseService
 
             if(error.status == 401 && errorMessage === "This action is unauthorized.")
             {
-                this._alert.addAlert({
-                    msg:              missingUserPermissionAlertMessage,
-                    closable:         true,
-                    type:             'danger',
-                    dismissOnTimeout: 0
-                });
+                if(this._isPlugin)
+                {
+                    this._alert.addAlertForPlugin({
+                        msg:              missingUserPermissionAlertMessage,
+                        closable:         true,
+                        type:             'danger',
+                        dismissOnTimeout: 0
+                    });
+                }
+                else
+                {
+                    this._alert.addAlert({
+                        msg:              missingUserPermissionAlertMessage,
+                        closable:         true,
+                        type:             'danger',
+                        dismissOnTimeout: 0
+                    });
+                }
             }
             // END Very unclean workaround!
             else if(error.status == 401)
             {
                 let event:CustomEvent = new CustomEvent('login');
                 //Workaround for plugins in Angular (loaded via iFrame)
-                if(window.parent != null)
+                if(window.parent !== null)
                 {
                     //workaround for plugins in GWT (loaded via iFrame)
-                    if(window.parent.window.parent != null)
+                    if(window.parent.window.parent !== null)
                     {
                         window.parent.window.parent.window.dispatchEvent(event);
                     }
@@ -205,15 +218,24 @@ export class TerraBaseService
         // check which exception type has been received
         if(!isNullOrUndefined(response.error) && !isNullOrUndefined(response.message))
         {
-            // show alert
-            this._alert.addAlert(
-                {
+            if(this._isPlugin)
+            {
+                this._alert.addAlertForPlugin({
                     msg:              this.getErrorString() + ': ' + response.message,
                     closable:         true,
                     type:             'danger',
                     dismissOnTimeout: 0
-                }
-            );
+                });
+            }
+            else
+            {
+                this._alert.addAlert({
+                    msg:              this.getErrorString() + ': ' + response.message,
+                    closable:         true,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                });
+            }
         }
         // default exception type
         else
@@ -224,15 +246,24 @@ export class TerraBaseService
             // get error code
             let errorCode:string = error.code ? ' ' + error.code : '';
 
-            // show alert
-            this._alert.addAlert(
-                {
+            if(this._isPlugin)
+            {
+                this._alert.addAlertForPlugin({
                     msg:              this.getErrorString() + errorCode + ': ' + error.message,
                     closable:         true,
                     type:             'danger',
                     dismissOnTimeout: 0
-                }
-            );
+                });
+            }
+            else
+            {
+                this._alert.addAlert({
+                    msg:              this.getErrorString() + errorCode + ': ' + error.message,
+                    closable:         true,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                });
+            }
         }
     }
 
