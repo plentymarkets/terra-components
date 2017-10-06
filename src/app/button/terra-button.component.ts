@@ -37,10 +37,14 @@ export class TerraButtonComponent
         this.inputIsActive = false;
         this.inputIsFlagged = false;
         this.inputIsDivider = false;
+        this.inputIsDisabled = false;
     }
 
     private click(event:Event):void
     {
-        this.outputClicked.emit(event);
+        if(this.inputIsDisabled === false)
+        {
+            this.outputClicked.emit(event);
+        }
     }
 }

@@ -413,6 +413,27 @@ input[type="button"]
 {
     display: inline-block;
     position: relative;
+    &.disabled
+    {
+        cursor: not-allowed;
+        .btn
+        {
+            background-color: $gray-light-3;
+            color: $gray-light-2;
+            opacity: 1;
+            cursor: not-allowed;
+            &:hover,
+            &:focus,
+            &.focus,
+            &:active,
+            &.active
+            {
+                background-color: $gray-light-3;
+                color: $gray-light-2;
+                cursor: not-allowed;
+            }
+        }
+    }
 }
 
 .activated
