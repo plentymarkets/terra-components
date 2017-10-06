@@ -27,7 +27,6 @@
 # 1.4.1 (04.09.2017)
 
 ### Feature
-
 * **terra-base-service** Generally catch exceptions that are returned from a rest call and show corresponding alert. The programmer is also still able to specify a custom exception handling function.
 
 <a name="1.4.0"></a>
