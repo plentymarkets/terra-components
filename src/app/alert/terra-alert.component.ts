@@ -38,8 +38,6 @@ export class TerraAlertComponent
 
     public addAlert(alert:TerraAlertInterface):void
     {
-        alert.closable = true;
-        
         if(alert.dismissOnTimeout == null)
         {
             alert.dismissOnTimeout = 5000;
@@ -47,7 +45,7 @@ export class TerraAlertComponent
 
         this._alerts.push({
             msg:              alert.msg,
-            closable:         alert.closable,
+            closable:         true,
             type:             alert.type,
             dismissOnTimeout: alert.dismissOnTimeout,
             identifier:       alert.identifier
