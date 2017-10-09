@@ -27,11 +27,16 @@ export class TerraBaseService
     constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private _baseHttp:Http,
                 private _baseUrl:string,
-                private _isPlugin:boolean)
+                private _isPlugin?:boolean)
     {
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.setAuthorization();
         this.url = _baseUrl;
+
+        if(isNullOrUndefined(this._isPlugin))
+        {
+            this._isPlugin = false;
+        }
     }
 
     get http():Http
