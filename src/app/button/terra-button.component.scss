@@ -115,9 +115,16 @@ button:focus
     {
         background: $alert-green;
         color: white;
-        &:hover
+        &:hover,
+        &:focus,
+        &.focus
         {
-            background: darken($alert-green, 10%);
+            background-color: darken($alert-green, 10%);
+            &:active,
+            &.active
+            {
+                background-color: $alert-green;
+            }
         }
     }
     
@@ -162,6 +169,79 @@ button:focus
     {
         background-color: $blue !important;
         color: $white !important;
+    }
+    
+    &.btn-link
+    {
+        background-color: transparent;
+        color: $grey-9;
+        &:hover,
+        &:focus,
+        &.focus
+        {
+            background-color: transparent;
+            color: $grey-11;
+            &:active,
+            &.active
+            {
+                background-color: transparent;
+                color: $grey-9;
+            }
+        }
+        &.btn-brand-primary
+        {
+            background-color: transparent;
+            color: $blue;
+            &:hover,
+            &:focus,
+            &.focus
+            {
+                background-color: transparent;
+                color: $blue-hover;
+                &:active,
+                &.active
+                {
+                    background-color: transparent;
+                    color: $blue;
+                }
+            }
+        }
+        &.btn-brand-secondary
+        {
+            background-color: transparent;
+            color: $alert-red;
+            &:hover,
+            &:focus,
+            &.focus
+            {
+                background-color: transparent;
+                color: darken($alert-red, 10%);
+                &:active,
+                &.active
+                {
+                    background-color: transparent;
+                    color: $alert-red;
+                }
+            }
+        }
+        &.btn-tertiary
+        {
+            background-color: transparent;
+            color: $alert-green;
+            &:hover,
+            &:focus,
+            &.focus
+            {
+                background-color: transparent;
+                color: darken($alert-green, 10%);
+                &:active,
+                &.active
+                {
+                    background-color: transparent;
+                    color: $alert-green;
+                }
+            }
+        }
     }
 }
 
