@@ -38,6 +38,8 @@ export class TerraAlertComponent
 
     public addAlert(alert:TerraAlertInterface):void
     {
+        alert.closable = true;
+        
         if(alert.dismissOnTimeout == null)
         {
             alert.dismissOnTimeout = 5000;
