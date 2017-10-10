@@ -175,6 +175,8 @@ button:focus
     {
         background-color: transparent;
         color: $grey-9;
+        font-weight: $font-weight-3;
+        
         &:hover,
         &:focus,
         &.focus
