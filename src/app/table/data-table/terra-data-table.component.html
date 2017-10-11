@@ -50,9 +50,11 @@
                         [tooltip]="tdTooltip"
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
                         [ngStyle]="getTextAlign(_headerList[i])">
-                        <span [ngClass]="cell.icon"
-                              [ngStyle]="{color: cell.color}">{{cell.caption}}
+                        <span [ngStyle]="{color: cell.color}">
+                            <span [ngClass]="cell.icon"></span>
+                            <span>{{cell.caption}}</span>
                         </span>
+                            
                         <div class="btn-group" *ngIf="cell.buttonList">
                             <ng-template ngFor let-button [ngForOf]="cell.buttonList">
                                 <terra-button *ngIf="!button.isHidden"
