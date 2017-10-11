@@ -44,7 +44,15 @@ export class TerraAlertComponent
             alert.dismissOnTimeout = 5000;
         }
 
-        let event:CustomEvent = new CustomEvent('status', {detail: alert});
+        let event:CustomEvent = new CustomEvent('status', {
+            detail: {
+                message:          alert.msg,
+                closable:         alert.closable,
+                type:             alert.type,
+                dismissOnTimeout: alert.dismissOnTimeout,
+                identifier:       alert.identifier
+            }
+        });
 
         window.parent.window.dispatchEvent(event);
     }
@@ -58,7 +66,7 @@ export class TerraAlertComponent
 
         this._alerts.push({
             msg:              alert.msg,
-            closable:         true,
+            closable:         alert.closable,
             type:             alert.type,
             dismissOnTimeout: alert.dismissOnTimeout,
             identifier:       alert.identifier
