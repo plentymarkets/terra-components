@@ -4,6 +4,7 @@ import {
     Input,
     Output
 } from '@angular/core';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'terra-button',
@@ -45,6 +46,7 @@ export class TerraButtonComponent
     private click(event:Event):void
     {
         if(this.inputIsDisabled === false)
+        if(isNullOrUndefined(this.inputIsDisabled) || this.inputIsDisabled === false)
         {
             this.outputClicked.emit(event);
         }

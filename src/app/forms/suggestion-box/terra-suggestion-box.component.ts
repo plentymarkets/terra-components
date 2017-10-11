@@ -45,10 +45,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     private _isValid:boolean;
     private _value:number | string;
     private clickListener:(event:Event) => void;
-    private _displayListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
-    private _lastSelectedValues:Array<TerraSuggestionBoxValueInterface>;
-    private _listBoxHeadingKey:string;
-    private _noEntriesTextKey:string;
+    protected _displayListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
+    protected _lastSelectedValues:Array<TerraSuggestionBoxValueInterface>;
+    protected _listBoxHeadingKey:string;
+    protected _noEntriesTextKey:string;
 
     constructor(private _elementRef:ElementRef)
     {
@@ -97,7 +97,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
         if(changes["inputListBoxValues"]
            && changes["inputListBoxValues"].currentValue.length > 0
-           && this.inputListBoxValues.find((x) => this._selectedValue === x))
+           && !this.inputListBoxValues.find((x) => this._selectedValue === x))
         {
             setTimeout(() =>
             {
@@ -407,5 +407,15 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             // select the input text <-> mark all
             event.target.select();
         }
+    }
+
+    public get selectedValue():TerraSuggestionBoxValueInterface
+    {
+        return this._selectedValue;
+    }
+
+    public set selectedValue(value:TerraSuggestionBoxValueInterface)
+    {
+        this._selectedValue = value;
     }
 }

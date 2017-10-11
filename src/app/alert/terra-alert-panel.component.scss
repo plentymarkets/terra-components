@@ -3,11 +3,11 @@
 {
     position: fixed;
     right: 14px;
-    top: 68px;
-    z-index: 1031;
+    top: 71px;
     max-height: 500px;
     max-width: 350px;
     overflow-y: auto;
+    z-index: $zindex-alert-panel;
     .alert
     {
         position: relative;

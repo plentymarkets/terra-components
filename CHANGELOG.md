@@ -4,7 +4,10 @@
 * **terra-multi-split-view** added `setSelectedView` method to the config, to be able to manually select a specific view
 
 ### Bug Fixes
-* **terra-multi-split-view** disable public access to the data model, since it shouldn't be edited manually
+* **terra-multi-split-view** 
+	- disable public access to the data model, since it shouldn't be edited manually
+	- prevent adding two views with the same name to the same hierarchy level
+* **terra-navigator** reduce height if search bar is enabled
 
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
