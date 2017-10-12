@@ -54,7 +54,7 @@
         justify-content: space-between;
         .info-box-id
         {
-            margin: 5px 2px 0px 0px;
+            margin: 7px 4px 0px 0px;
             color: $grey-8;
         }
     }
@@ -73,10 +73,6 @@
     div
     {
         text-overflow: ellipsis;
-    }
-    
-    i, span, p, h1, h2, h3, h4, h5, h6
-    {
         overflow: hidden;
     }
 }
