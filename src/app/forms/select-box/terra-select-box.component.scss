@@ -47,8 +47,12 @@
     }
     &.disabled
     {
-        background-color: $grey-3;
+        background-color: $grey-2;
         border: 1px solid $grey-3;
+        .select-box
+        {
+            filter: opacity(30%);
+        }
         
         label, .select-box
         {
