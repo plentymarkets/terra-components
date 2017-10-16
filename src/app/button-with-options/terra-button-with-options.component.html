@@ -12,7 +12,7 @@
     <!-- options dropdown -->
     <ul *ngIf="_optionsToggle" class="context-menu">
         <li *ngFor="let option of inputOptions">
-            <a (click)="optionsClick(option)">
+            <a (click)="optionsClick(option)" [ngClass]="{'disabled': option.isDisabled}">
                 <span *ngIf="option.icon" class="left-icon" [ngClass]="option.icon"></span>
                 {{ option.caption }}
             </a>

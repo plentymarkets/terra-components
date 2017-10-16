@@ -155,5 +155,15 @@ p, span, a {
                 opacity: 1;
             }
         }
+    
+        &.disabled
+        {
+            color:$grey-6 !important;
+            &:hover
+            {
+                background-color: inherit;
+                cursor: not-allowed;
+            }
+        }
     }
 }
