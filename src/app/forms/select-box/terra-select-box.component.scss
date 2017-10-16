@@ -3,15 +3,16 @@
 .select-box-wrapper
 {
     position: relative;
-    margin-bottom: 12px;
-    background-color: #FFFFFF;
+    background-color: $white;
     border-radius: $border-radius;
     border: 1px solid $white;
+    margin-bottom: 3px;
+
     cursor: pointer;
     
     .select-box
     {
-        height: $terra-btn-md-height;
+        height: $terra-btn-md-height - 2;
         line-height: $terra-btn-md-height - 2;
         display: inline-block;
         width: 100%;

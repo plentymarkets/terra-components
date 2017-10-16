@@ -64,7 +64,7 @@ input[type="search"]::-webkit-search-decoration
 {
     position: relative;
     width: 100%;
-    margin-bottom: 12px;
+    margin-bottom: 3px;
     height: $terra-btn-md-height;
     line-height: 0px;
     background-color: $background;
@@ -247,22 +247,3 @@ label
         padding-top: 3px;
     }
 }
-
-/*------------------------------------*\
-    $INPUT GROUP
-\*------------------------------------*/
-
-/deep/
-{
-    .input-group-v
-    {
-        margin-bottom: 12px;
-        .input-unit-v1,
-        .select-box-wrapper
-        {
-            margin-top: 3px;
-            margin-bottom: 0px;
-        }
-    }
-}
-
