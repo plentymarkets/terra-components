@@ -29,7 +29,7 @@ export class TerraButtonWithOptionsComponent
     @Input() inputOptions:Array<TerraButtonInterface>;
 
     // view children
-    @ViewChild(TerraButtonComponent) private toggleButton:TerraButtonComponent
+    @ViewChild(TerraButtonComponent) private toggleButton:TerraButtonComponent;
 
     private _optionsToggle:boolean;
     private clickListener:(event:Event) => void;
