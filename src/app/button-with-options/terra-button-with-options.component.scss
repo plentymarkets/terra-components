@@ -1,54 +1,8 @@
-.dropdown-menu
+:host .context-menu
 {
-    display: block;
-    background: $grey-9;
-    height: auto;
-    border: none;
-    border-radius: 5px;
-    font-size: $font-size-1;
-    
-    ul
-    {
-        padding: 0;
-        margin: 0;
-        
-        .option
-        {
-            height: auto;
-            text-align: left;
-            display: block;
-            float: none;
-            padding: 0;
-            margin: 0;
-            border: none;
-            background: none;
-            
-            &:hover, &:focus, &.active
-            {
-                background: $grey-11;
-            }
-            
-            .nav-link
-            {
-                cursor: pointer;
-                display: inline-block;
-                background: none;
-                text-overflow: ellipsis;
-                //padding: 0px 20px;
-                white-space: nowrap;
-                overflow: hidden;
-                line-height: 1;
-                color: $white;
-    
-                padding: 4px 12px;
-                //display: block;
-                text-decoration: none;
-                
-                &:hover, &:focus, &.active
-                {
-                    color: white;
-                }
-            }
-        }
-    }
+    visibility: visible;
+    opacity: 1;
+    top: 38px;
+    left: 0;
+    right: initial;
 }
