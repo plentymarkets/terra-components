@@ -2,6 +2,7 @@
 ### Feature
 * **terra-base-service** new method `addParamsToUrl` that generically appends query parameters to a given url
 * **terra-multi-split-view** added `setSelectedView` method to the config, to be able to manually select a specific view
+* **terra-button-with-options** new component, that looks like a usual button, but opens a dropdown with options on click.
 
 ### Bug Fixes
 * **terra-multi-split-view** 
