@@ -94,3 +94,66 @@ p, span, a {
     font-size: $font-size-3;
     font-weight: $font-weight-1;
 }
+/// context-menu ////
+
+.context-menu
+{
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    transition-delay: 0.2s;
+    padding: 5px 0px;
+    background-color: $grey-9;
+    border-radius: 5px;
+    
+    top: 29px;
+    right: 0px;
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    
+    text-align: left;
+    z-index: 99999;
+    a
+    {
+        cursor: pointer;
+        padding: 4px 18px 4px 10px;
+        display: list-item;
+        width: 100%;
+        text-decoration: none;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: $font-size-1;
+        line-height: $font-size-5;
+        font-weight: $font-weight-1;
+        color: $white !important;
+        
+        &:hover
+        {
+            background-color: $grey-11;
+        }
+        
+        .left-icon
+        {
+            padding-right: 2px;
+            &:before
+            {
+                vertical-align: middle;
+            }
+        }
+        .right-icon
+        {
+            position: absolute;
+            right: 4px;
+            line-height: $font-size-5;
+            
+            &:hover
+            {
+                color: $blue;
+                opacity: 1;
+            }
+        }
+    }
+}
