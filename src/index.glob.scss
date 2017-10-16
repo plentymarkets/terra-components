@@ -153,11 +153,21 @@ p, span, a
             position: absolute;
             right: 4px;
             line-height: $font-size-5;
-
+            
             &:hover
             {
                 color: $blue;
                 opacity: 1;
+            }
+        }
+        
+        &.disabled
+        {
+            color:$grey-6 !important;
+            &:hover
+            {
+                background-color: inherit;
+                cursor: not-allowed;
             }
         }
     }
