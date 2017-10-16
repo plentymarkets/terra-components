@@ -422,13 +422,11 @@ fieldset[disabled] a.btn
         .btn-divider:active,
         .btn-divider:focus
         {
-            background-color: $white !important;
+            background-color: transparent !important;
             margin-bottom: 3px !important;
             margin-top: 3px !important;
             cursor: default;
             height: 1px;
-            border-bottom: 1px solid $grey-6;
-            border-top: 0 solid $grey-6;
         }
     }
 }
