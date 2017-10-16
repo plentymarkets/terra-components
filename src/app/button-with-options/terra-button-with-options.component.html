@@ -16,7 +16,7 @@
         <li class="option" *ngFor="let option of inputOptions">
             <a class="nav-link" (click)="optionsClick(option)">
                 <span *ngIf="option.icon" [ngClass]="option.icon"></span>
-                <span>{{ option.caption }}</span>
+                {{ option.caption }}
             </a>
         </li>
     </ul>
