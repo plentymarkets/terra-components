@@ -51,6 +51,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _initialLoadingMessage:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     private _langPrefix:string = 'terraDataTable';
+    private _requestPending:boolean;
 
     /**
      * @deprecated
@@ -270,7 +271,12 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     public doSearch(restCall:Observable<I>):void
     {
-        //TODO check
+        if(isNullOrUndefined(restCall))
+        {
+            return;
+        }
+
+        this._requestPending = true;
         restCall.subscribe(this.onSuccessFunction, error =>
             {
                 if(error.status == 401 || error.status == 500)
@@ -278,8 +284,12 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
                     //TODO
                     alert(error.status);
                 }
+            },
+            () =>
+            {
+                this._requestPending = false;
             }
-        )
+        );
     }
 
     public getTextAlign(item:TerraDataTableHeaderCellInterface):any

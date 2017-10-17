@@ -2,6 +2,9 @@
 ### Feature
 * **terra-base-service** new method `addParamsToUrl` that generically appends query parameters to a given url
 * **terra-multi-split-view** added `setSelectedView` method to the config, to be able to manually select a specific view
+* **terra-pager** clicks on paging buttons are now debounced
+* **terra-data-table** only one paging request can now be pending at the same time
+* **terra-button-with-options** new component, that looks like a usual button, but opens a dropdown with options on click.
 
 ### Bug Fixes
 * **terra-multi-split-view** 
@@ -27,7 +30,6 @@
 # 1.4.1 (04.09.2017)
 
 ### Feature
-
 * **terra-base-service** Generally catch exceptions that are returned from a rest call and show corresponding alert. The programmer is also still able to specify a custom exception handling function.
 
 <a name="1.4.0"></a>

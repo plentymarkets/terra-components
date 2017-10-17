@@ -30,11 +30,17 @@
     max-width: 77%;
 }
 
-:host /deep/ .info-box-text div
+:host /deep/ .info-box-text
 {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    div{
+        text-overflow: ellipsis;
+        /* overflow: hidden; */
+        white-space: nowrap;
+    }
+    
+    i, span, p, h1, h2, h3, h4, h5, h6{
+        overflow: hidden;
+    }
 }
 
 .empty
