@@ -1,6 +1,5 @@
 .table-responsive
 {
-    border-radius: 5px;
     table.table
     {
         margin-bottom: 1rem;
@@ -15,7 +14,14 @@
                     font-variant: all-small-caps;
                     padding: 6px 9px;
                     border: none;
+                    &:first-child{
+                        border-radius: 0 0 0 $border-radius;
+                    }
+                    &:last-child{
+                        border-radius: 0 0 $border-radius 0;
+                    }
                 }
+                
             }
         }
         tbody

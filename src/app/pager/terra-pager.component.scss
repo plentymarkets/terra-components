@@ -10,7 +10,7 @@
         .btn-toolbar
         {
             background-color: $grey-2;
-            border-radius: $border-radius;
+            border-radius: $border-radius $border-radius 0 0;
         }
         .form-group
         {
