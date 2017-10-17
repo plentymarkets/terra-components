@@ -10,6 +10,7 @@
         .btn-toolbar
         {
             background-color: $grey-2;
+            border-radius: $border-radius;
         }
         .form-group
         {
@@ -37,10 +38,11 @@
         }
         .pager-text
         {
-            line-height: $terra-btn-md-height;
+            line-height: $terra-btn-sm-height;
             float: left;
-            font-size: $font-size-lg;
-            margin-left: .5rem;
+            font-size: $font-size-2;
+            font-weight: $font-weight-2;
+            margin: 0 6px;
         }
         
         @include media-breakpoint-down(sm)
@@ -63,10 +65,6 @@
 {
     margin-bottom: 0px !important;
     line-height: 0px !important;
-    input
-    {
-        height: $terra-btn-md-height - 2 !important;
-    }
 }
 
 :host /deep/ .select-box-wrapper
