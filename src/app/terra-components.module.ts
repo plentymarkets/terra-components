@@ -74,6 +74,7 @@ import { TerraColorPickerComponent } from "./forms/input/color-picker/terra-colo
 import { TerraInteractModule } from "./interactables/interact.module";
 import { TerraSliderComponent } from "./forms/slider/terra-slider.component";
 import { TerraDataTableNoResultNoticeComponent} from './table/data-table/pre-search-notice/terra-data-table-no-result-notice.component';
+import { TerraButtonWithOptionsComponent } from './button-with-options/terra-button-with-options.component';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -190,7 +191,8 @@ export { TerraDataTableNoResultNoticeComponent} from './table/data-table/pre-sea
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
-        TerraDataTableNoResultNoticeComponent
+        TerraDataTableNoResultNoticeComponent,
+        TerraButtonWithOptionsComponent
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -233,7 +235,8 @@ export { TerraDataTableNoResultNoticeComponent} from './table/data-table/pre-sea
         TerraMultiSplitViewComponent,
         TerraSliderComponent,
         TerraFileBrowserComponent,
-        TerraFileInputComponent
+        TerraFileInputComponent,
+        TerraButtonWithOptionsComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -280,7 +283,8 @@ export { TerraDataTableNoResultNoticeComponent} from './table/data-table/pre-sea
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
-        TerraDataTableNoResultNoticeComponent
+        TerraDataTableNoResultNoticeComponent,
+        TerraButtonWithOptionsComponent
     ],
     imports:         [
         BrowserModule,
