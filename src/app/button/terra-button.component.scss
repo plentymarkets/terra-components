@@ -36,6 +36,26 @@ button:focus
                 color: $grey-7;
                 cursor: not-allowed;
             }
+            &.btn-link
+            {
+                background-color: transparent;
+                color: $grey-4;
+                font-weight: $font-weight-3;
+    
+                &:hover,
+                &:focus,
+                &.focus
+                {
+                    background-color: transparent;
+                    color: $grey-4;
+                    &:active,
+                    &.active
+                    {
+                        background-color: transparent;
+                        color: $grey-4;
+                    }
+                }
+            }
         }
     }
 }
