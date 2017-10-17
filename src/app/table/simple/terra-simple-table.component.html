@@ -2,8 +2,15 @@
     <table class="table simple-table table-bordered" [ngClass]="{'table-striped': inputIsStriped}">
         <thead>
         <tr *ngIf="inputHeaderList">
+            <th *ngIf="inputHasCheckboxes"
+                width="40px">
+                <terra-checkbox #viewChildHeaderCheckbox
+                                (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
+                                [value]="_isHeaderCheckboxChecked">
+                </terra-checkbox>
+            </th>
             <ng-template ngFor let-header [ngForOf]="inputHeaderList">
-                <th width="{{header.width}}px"
+                <th width="{{header.width}}"
                     [container]="'body'"
                     [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                     [tooltip]="header.tooltipText"
@@ -15,7 +22,13 @@
         </thead>
         <tbody [ngClass]="{'highlighting': inputUseHighlighting}">
         <ng-template ngFor let-row [ngForOf]="inputRowList">
-            <tr [ngClass]="row.textColorCss">
+            <tr [ngClass]="row.textColorCss" [ngStyle]="{'background-color': row.backgroundColor}">
+                <td *ngIf="inputHasCheckboxes">
+                    <terra-checkbox #rowCheckbox
+                                    [value]="row.selected"
+                                    (change)="onRowCheckboxChange(rowCheckbox.value, row)">
+                    </terra-checkbox>
+                </td>
                 <ng-template ngFor let-cell [ngForOf]="row.cellList">
                     <template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>
@@ -37,7 +50,8 @@
                                               [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
                                               [inputCaption]="button.caption"
                                               [inputIsSmall]="true"
-                                              [inputTooltipText]="button.tooltipText"></terra-button>
+                                              [inputTooltipText]="button.tooltipText">
+                                </terra-button>
                             </ng-template>
                         </div>
                     </td>
