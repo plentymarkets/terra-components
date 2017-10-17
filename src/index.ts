@@ -74,3 +74,4 @@ export * from './app/split-view/multi/data/terra-multi-split-view.config';
 export * from './app/split-view/multi/data/terra-multi-split-view.interface';
 export * from './app/dynamic-module-loader/data/terra-split-view-component.interface';
 export * from './app/dynamic-component-loader/terra-dynamic-component-loader.component';
+export * from './app/table/data-table/pre-search-notice/terra-data-table-no-result-notice.component';
