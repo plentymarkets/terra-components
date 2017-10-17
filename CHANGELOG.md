@@ -11,6 +11,7 @@
 	- disable public access to the data model, since it shouldn't be edited manually
 	- prevent adding two views with the same name to the same hierarchy level
 * **terra-navigator** reduce height if search bar is enabled
+* **terra-base-service** avoid to show error message if code of error is null
 
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
