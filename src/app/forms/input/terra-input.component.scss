@@ -66,10 +66,16 @@ input[type="search"]::-webkit-search-decoration
     width: 100%;
     margin-bottom: 3px;
     height: $terra-btn-md-height;
-    line-height: 0px;
+    line-height: $terra-btn-md-height;
     background-color: $background;
     border-radius: $border-radius;
     border: 1px solid $white;
+    
+    &.isSmall
+    {
+        height: $terra-btn-sm-height;
+        line-height: $terra-btn-sm-height;
+    }
     
     &:hover
     {
@@ -151,8 +157,8 @@ textarea
 {
     color: $grey-10;
     border: none;
+    border-radius: $border-radius;
     box-shadow: none;
-    line-height: 1.2em !important;
     padding: 13px 7px 0px 7px;
     width: 100%;
     font-size: $font-size-3;
@@ -160,8 +166,15 @@ textarea
     text-align: left;
     outline: none !important;
     transition: all .2s;
-    height: 100%;
-    border-radius: $border-radius;
+    height: $terra-btn-md-height - 2;
+    line-height: $terra-btn-md-height - 2;
+    
+    &.isSmall
+    {
+        height: $terra-btn-sm-height - 4;
+        line-height: $terra-btn-sm-height - 4;
+        padding: 0px 7px 0px 120px;
+    }
     
     &:focus,
     &.filled
@@ -245,5 +258,7 @@ label
         -webkit-appearance: textarea;
         resize: none;
         padding-top: 3px;
+        height: initial;
+        line-height: 1.2em;
     }
 }

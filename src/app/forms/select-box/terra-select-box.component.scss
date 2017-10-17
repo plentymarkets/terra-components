@@ -26,6 +26,16 @@
         background-image: none \9;
         background-size: 8px 10px;
         color: $grey-10;
+        
+        &.isSmall
+        {
+            height: $terra-btn-sm-height - 2;
+            line-height: $terra-btn-sm-height - 2;
+            &.labeled
+            {
+                padding: 0px 7px 0px 120px;
+            }
+        }
         &.error
         {
             border-color: $error;
@@ -86,6 +96,12 @@
         background: white;
         display: none;
         overflow: auto;
+        
+        &.isSmall
+        {
+            top: $terra-btn-sm-height;
+        }
+        
         > span
         {
             display: block;
