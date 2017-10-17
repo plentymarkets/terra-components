@@ -55,7 +55,7 @@
                             <span [ngClass]="cell.icon"></span>
                             <span>{{cell.caption}}</span>
                         </span>
-                            
+
                         <div class="btn-group" *ngIf="cell.buttonList">
                             <ng-template ngFor let-button [ngForOf]="cell.buttonList">
                                 <terra-button *ngIf="!button.isHidden"
