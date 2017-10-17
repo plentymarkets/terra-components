@@ -2,7 +2,7 @@ import {
     Component,
     Input,
     ElementRef,
-    ViewChild,
+    ViewChild
 } from '@angular/core';
 import { TerraButtonInterface } from '../button/data/terra-button.interface';
 import { isNullOrUndefined } from 'util';
