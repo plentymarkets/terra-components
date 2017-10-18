@@ -11,6 +11,7 @@ Use `arrow up` / `arrow down` to navigate throught table rows.
 Use `space` or `enter` to toggle checkbox of selected row 
 or `ctrl`/`cmd` + `space`/`enter` to toggle checkbox in table header.
 Toggling checkboxes required `[inputHasCheckbox]="true"`
+* **terra-data-table-no-result-notice-component** new component, that can be used to display a notice whenever no results are available
 
 ### Bug Fixes
 * **terra-multi-split-view** 
