@@ -64,7 +64,7 @@ input[type="search"]::-webkit-search-decoration
 {
     position: relative;
     width: 100%;
-    margin-bottom: 3px;
+    margin-bottom: var(--input-unit-v1-margin-bottom, 3px);
     height: $terra-btn-md-height;
     line-height: $terra-btn-md-height;
     background-color: $background;
@@ -74,7 +74,7 @@ input[type="search"]::-webkit-search-decoration
     &.isSmall
     {
         height: $terra-btn-sm-height;
-        line-height: $terra-btn-sm-height;
+        line-height: $terra-btn-sm-height - 2;
     }
     
     &:hover
@@ -159,11 +159,11 @@ textarea
     border: none;
     border-radius: $border-radius;
     box-shadow: none;
-    padding: 13px 7px 0px 7px;
-    width: 100%;
+    padding: var(--input-padding, 13px 7px 0px 7px);
+    width: var(--input-width, 100%);
     font-size: $font-size-3;
     font-weight: $font-weight-2;
-    text-align: left;
+    text-align: var(--input-text-align, left);
     outline: none !important;
     transition: all .2s;
     height: $terra-btn-md-height - 2;
@@ -173,7 +173,7 @@ textarea
     {
         height: $terra-btn-sm-height - 4;
         line-height: $terra-btn-sm-height - 4;
-        padding: 0px 7px 0px 120px;
+        padding: var(--input-padding, 0px 7px 0px 120px);
     }
     
     &:focus,

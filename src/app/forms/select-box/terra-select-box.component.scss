@@ -6,7 +6,7 @@
     background-color: $white;
     border-radius: $border-radius;
     border: 1px solid $white;
-    margin-bottom: 3px;
+    margin-bottom: var(--select-box-wrapper-margin-bottom, 3px);
 
     cursor: pointer;
     
@@ -15,7 +15,7 @@
         height: $terra-btn-md-height - 2;
         line-height: $terra-btn-md-height - 2;
         display: inline-block;
-        width: 100%;
+        width: var(--select-box-width, 100%);
         max-width: 100%;
         vertical-align: middle;
         -moz-appearance: none;
