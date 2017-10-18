@@ -20,6 +20,7 @@ import { TerraDataTableContextMenuService } from './context-menu/service/terra-d
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
 import { isNullOrUndefined } from 'util';
+import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 
 @Component({
     selector:  'terra-data-table',
@@ -36,7 +37,10 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @Input() inputHasCheckboxes:boolean;
     @Input() inputHasPager:boolean;
     @Input() inputHasInitialLoading:boolean;
-
+    @Input() inputNoResultTextPrimary:string;
+    @Input() inputNoResultTextSecondary:string;
+    @Input() inputNoResultButtons:Array<TerraButtonInterface>;
+        
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
 

@@ -105,7 +105,10 @@ export class TerraSimpleTableComponent<D>
         this.inputRowList.forEach(
             (row) =>
             {
-                this.changeRowState(isChecked, row);
+                if ( !row.disabled )
+                {
+                    this.changeRowState(isChecked, row);
+                }
             });
     }
 
@@ -130,7 +133,7 @@ export class TerraSimpleTableComponent<D>
 
     private onRowClick(row:TerraSimpleTableRowInterface<D>):void
     {
-        if(this.inputUseHighlighting)
+        if(this.inputUseHighlighting && !row.disabled)
         {
             this.inputHighlightedRow = row;
             this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
@@ -167,7 +170,21 @@ export class TerraSimpleTableComponent<D>
     {
         if(this.inputHighlightedRow)
         {
-            let highlightIndex:number = this.inputRowList.indexOf(this.inputHighlightedRow);
+            let i: number = nextSibling ? 1 : -1;
+            let highlightIndex:number = this.inputRowList.indexOf(this.inputHighlightedRow) + i;
+
+            while( highlightIndex >= 0 && highlightIndex < this.inputRowList.length )
+            {
+                if ( !this.inputRowList[highlightIndex].disabled )
+                {
+                    this.inputHighlightedRow = this.inputRowList[highlightIndex];
+                    this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
+                    break;
+                }
+                highlightIndex += i;
+            }
+
+            /*
             if(nextSibling && highlightIndex < this.inputRowList.length - 1)
             {
                 this.inputHighlightedRow = this.inputRowList[highlightIndex + 1];
@@ -178,6 +195,7 @@ export class TerraSimpleTableComponent<D>
                 this.inputHighlightedRow = this.inputRowList[highlightIndex - 1];
                 this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
             }
+            */
         }
     }
 
