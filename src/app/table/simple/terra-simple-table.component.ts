@@ -23,16 +23,17 @@ export class TerraSimpleTableComponent<D>
     @Input() inputIsStriped:boolean = false;
     @Input() inputHasCheckboxes:boolean = false;
     @Input() inputEnableHotkeys:boolean = false;
+    @Input() inputHighlightedRow: TerraSimpleTableRowInterface<D>;
 
     @Output() outputHeaderCheckBoxChanged:EventEmitter<boolean> = new EventEmitter();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
     @Output() outputRowClicked:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
+    @Output() outputHighlightedRowChange: EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
 
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
 
     private _isHeaderCheckboxChecked:boolean = false;
     private _selectedRowList:Array<TerraSimpleTableRowInterface<D>> = [];
-    private _highlightedRow: TerraSimpleTableRowInterface<D>;
 
     constructor()
     {
@@ -131,23 +132,31 @@ export class TerraSimpleTableComponent<D>
     {
         if ( this.inputUseHighlighting )
         {
-            this._highlightedRow = row;
+            this.inputHighlightedRow = row;
+            this.outputHighlightedRowChange.emit( this.inputHighlightedRow );
         }
         this.outputRowClicked.emit( row );
     }
 
     private onKeydown( event: KeyboardEvent ): void
     {
-        if ( this.inputEnableHotkeys && this.inputUseHighlighting && this._highlightedRow )
+        if ( this.inputEnableHotkeys && this.inputUseHighlighting && this.inputHighlightedRow )
         {
             if ( event.which === Key.DownArrow || event.which === Key.UpArrow )
             {
                 this.highlightSiblingRow( event.which === Key.DownArrow )
             }
 
-            if ( event.which === Key.Space || event.which === Key.Enter )
+            if ( (event.which === Key.Space || event.which === Key.Enter) && this.inputHasCheckboxes )
             {
-                this.changeRowState( !this._highlightedRow.selected, this._highlightedRow );
+                if ( event.ctrlKey || event.metaKey )
+                {
+                    this.onHeaderCheckboxChange( !this._isHeaderCheckboxChecked );
+                }
+                else
+                {
+                    this.changeRowState( !this.inputHighlightedRow.selected, this.inputHighlightedRow );
+                }
             }
 
             event.preventDefault();
@@ -156,16 +165,18 @@ export class TerraSimpleTableComponent<D>
 
     private highlightSiblingRow( nextSibling: boolean )
     {
-        if ( this._highlightedRow )
+        if ( this.inputHighlightedRow )
         {
-            let highlightIndex: number = this.inputRowList.indexOf( this._highlightedRow );
+            let highlightIndex: number = this.inputRowList.indexOf( this.inputHighlightedRow );
             if ( nextSibling && highlightIndex < this.inputRowList.length - 1 )
             {
-                this._highlightedRow = this.inputRowList[highlightIndex + 1];
+                this.inputHighlightedRow = this.inputRowList[highlightIndex + 1];
+                this.outputHighlightedRowChange.emit( this.inputHighlightedRow );
             }
             if ( !nextSibling && highlightIndex > 0 )
             {
-                this._highlightedRow = this.inputRowList[highlightIndex - 1];
+                this.inputHighlightedRow = this.inputRowList[highlightIndex - 1];
+                this.outputHighlightedRowChange.emit( this.inputHighlightedRow );
             }
         }
     }
