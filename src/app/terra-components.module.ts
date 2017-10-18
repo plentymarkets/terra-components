@@ -73,6 +73,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TerraColorPickerComponent } from "./forms/input/color-picker/terra-color-picker.component";
 import { TerraInteractModule } from "./interactables/interact.module";
 import { TerraSliderComponent } from "./forms/slider/terra-slider.component";
+import { TerraButtonWithOptionsComponent } from './button-with-options/terra-button-with-options.component';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -188,6 +189,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
+        TerraButtonWithOptionsComponent
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -230,7 +232,8 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
         TerraMultiSplitViewComponent,
         TerraSliderComponent,
         TerraFileBrowserComponent,
-        TerraFileInputComponent
+        TerraFileInputComponent,
+        TerraButtonWithOptionsComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -277,6 +280,7 @@ export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
+        TerraButtonWithOptionsComponent
     ],
     imports:         [
         BrowserModule,

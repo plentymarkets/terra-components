@@ -2,6 +2,7 @@
              [inputPagingSize]="pagingSize"
              [inputDefaultPagingSize]="defaultPagingSize"
              [inputPagingData]="pagingData"
+             [inputRequestPending]="_requestPending"
              (outputDoPaging)="doPaging($event)">
 </terra-pager>
 
@@ -11,9 +12,10 @@
         <thead>
         <tr>
             <th *ngIf="inputHasCheckboxes" width="25px">
-                <terra-checkbox #viewChildHeaderCheckbox type="checkbox"
+                <terra-checkbox #viewChildHeaderCheckbox
                                 (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
-                                [value]="_isHeaderCheckboxChecked"></terra-checkbox>
+                                [value]="_isHeaderCheckboxChecked">
+                </terra-checkbox>
             </th>
             <ng-template ngFor let-header [ngForOf]="_headerList">
                 <th *ngIf="!header.isHidden"
@@ -53,7 +55,7 @@
                             <span [ngClass]="cell.icon"></span>
                             <span>{{cell.caption}}</span>
                         </span>
-                            
+
                         <div class="btn-group" *ngIf="cell.buttonList">
                             <ng-template ngFor let-button [ngForOf]="cell.buttonList">
                                 <terra-button *ngIf="!button.isHidden"

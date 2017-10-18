@@ -117,9 +117,9 @@ p, span, a
     display: block;
     list-style-type: none;
     margin: 0;
-    
     text-align: left;
-    z-index: 99999;
+    z-index: $zindex-context-menu;
+
     a
     {
         cursor: pointer;
@@ -160,7 +160,6 @@ p, span, a
                 opacity: 1;
             }
         }
-        
         &.disabled
         {
             color:$grey-6 !important;
