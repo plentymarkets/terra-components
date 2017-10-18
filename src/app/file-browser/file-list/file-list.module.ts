@@ -5,9 +5,11 @@ import {
 } from '@angular/core';
 import { TerraFileListComponent } from './file-list.component';
 import { TerraComponentsModule } from '../../terra-components.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
+        CommonModule,
         forwardRef(() => TerraComponentsModule.forRoot())
     ],
     declarations: [

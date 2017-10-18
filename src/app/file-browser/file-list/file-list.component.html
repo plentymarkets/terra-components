@@ -1,6 +1,33 @@
+<terra-base-toolbar>
+    <ul class="terra-breadcrumbs" *ngIf="_storageList">
+        <li *ngFor="let parent of parentStorageObjects; let last = last" (click)="this._currentStorageRoot = object">
+            <div [class.active]="last">
+                <span>{{ parent.name || "Meine Dateien" }}</span>
+            </div>
+        </li>
+    </ul>
+</terra-base-toolbar>
+<terra-base-toolbar>
+    <!--div class="btn-group" role="group">
+        <terra-button [inputIcon]="'icon-upload'" [inputTooltipText]="_translationPrefix + '.uploadFile' | translate:lang"
+                      (outputClicked)="showFileChooser()">
+        </terra-button>
+        <terra-button [inputIcon]="'icon-folder_add'" [inputTooltipText]="_translationPrefix + '.createFolder' | translate:lang"
+                      (outputClicked)="createDirectory()">
+        </terra-button>
+    </div>
+    
+    <label style="width:0; height: 0; visibility: hidden;" #fileChooser>
+        <input type="file" (change)="selectFiles($event)">
+    </label-->
+
+</terra-base-toolbar>
+
 <terra-simple-table
     [inputHeaderList]="_fileTableHeaderList"
     [inputRowList]="_fileTableRowList"
     [inputIsStriped]="true"
-    [inputUseHighlighting]="true">
+    [inputUseHighlighting]="true"
+    [inputHasCheckboxes]="true"
+    [inputEnableHotkeys]="true">
 </terra-simple-table>
