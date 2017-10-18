@@ -5,6 +5,7 @@
 * **terra-pager** clicks on paging buttons are now debounced
 * **terra-data-table** only one paging request can now be pending at the same time
 * **terra-button-with-options** new component, that looks like a usual button, but opens a dropdown with options on click.
+* **terra-data-table-no-result-notice-component** new component, that can be used to display a notice whenever no results are available
 
 ### Bug Fixes
 * **terra-multi-split-view** 
