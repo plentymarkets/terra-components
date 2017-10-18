@@ -8,6 +8,7 @@ import {
 import { TerraSimpleTableHeaderCellInterface } from './cell/terra-simple-table-header-cell.interface';
 import { TerraSimpleTableRowInterface } from './row/terra-simple-table-row.interface';
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
+import { Key } from 'ts-keycode-enum';
 
 @Component({
     selector: 'terra-simple-table',
@@ -21,14 +22,17 @@ export class TerraSimpleTableComponent<D>
     @Input() inputUseHighlighting:boolean = false;
     @Input() inputIsStriped:boolean = false;
     @Input() inputHasCheckboxes:boolean = false;
+    @Input() inputEnableHotkeys:boolean = false;
 
     @Output() outputHeaderCheckBoxChanged:EventEmitter<boolean> = new EventEmitter();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
+    @Output() outputRowClicked:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
 
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
 
     private _isHeaderCheckboxChecked:boolean = false;
     private _selectedRowList:Array<TerraSimpleTableRowInterface<D>> = [];
+    private _highlightedRow: TerraSimpleTableRowInterface<D>;
 
     constructor()
     {
@@ -120,6 +124,49 @@ export class TerraSimpleTableComponent<D>
         else
         {
             this.viewChildHeaderCheckbox.isIndeterminate = true;
+        }
+    }
+
+    private onRowClick( row: TerraSimpleTableRowInterface<D> ): void
+    {
+        if ( this.inputUseHighlighting )
+        {
+            this._highlightedRow = row;
+        }
+        this.outputRowClicked.emit( row );
+    }
+
+    private onKeydown( event: KeyboardEvent ): void
+    {
+        if ( this.inputEnableHotkeys && this.inputUseHighlighting && this._highlightedRow )
+        {
+            if ( event.which === Key.DownArrow || event.which === Key.UpArrow )
+            {
+                this.highlightSiblingRow( event.which === Key.DownArrow )
+            }
+
+            if ( event.which === Key.Space || event.which === Key.Enter )
+            {
+                this.changeRowState( !this._highlightedRow.selected, this._highlightedRow );
+            }
+
+            event.preventDefault();
+        }
+    }
+
+    private highlightSiblingRow( nextSibling: boolean )
+    {
+        if ( this._highlightedRow )
+        {
+            let highlightIndex: number = this.inputRowList.indexOf( this._highlightedRow );
+            if ( nextSibling && highlightIndex < this.inputRowList.length - 1 )
+            {
+                this._highlightedRow = this.inputRowList[highlightIndex + 1];
+            }
+            if ( !nextSibling && highlightIndex > 0 )
+            {
+                this._highlightedRow = this.inputRowList[highlightIndex - 1];
+            }
         }
     }
 
