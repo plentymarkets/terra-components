@@ -23,12 +23,12 @@ export class TerraSimpleTableComponent<D>
     @Input() inputIsStriped:boolean = false;
     @Input() inputHasCheckboxes:boolean = false;
     @Input() inputEnableHotkeys:boolean = false;
-    @Input() inputHighlightedRow: TerraSimpleTableRowInterface<D>;
+    @Input() inputHighlightedRow:TerraSimpleTableRowInterface<D>;
 
     @Output() outputHeaderCheckBoxChanged:EventEmitter<boolean> = new EventEmitter();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
     @Output() outputRowClicked:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
-    @Output() outputHighlightedRowChange: EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
+    @Output() outputHighlightedRowChange:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
 
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
 
@@ -128,34 +128,34 @@ export class TerraSimpleTableComponent<D>
         }
     }
 
-    private onRowClick( row: TerraSimpleTableRowInterface<D> ): void
+    private onRowClick(row:TerraSimpleTableRowInterface<D>):void
     {
-        if ( this.inputUseHighlighting )
+        if(this.inputUseHighlighting)
         {
             this.inputHighlightedRow = row;
-            this.outputHighlightedRowChange.emit( this.inputHighlightedRow );
+            this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
         }
-        this.outputRowClicked.emit( row );
+        this.outputRowClicked.emit(row);
     }
 
-    private onKeydown( event: KeyboardEvent ): void
+    private onKeydown(event:KeyboardEvent):void
     {
-        if ( this.inputEnableHotkeys && this.inputUseHighlighting && this.inputHighlightedRow )
+        if(this.inputEnableHotkeys && this.inputUseHighlighting && this.inputHighlightedRow)
         {
-            if ( event.which === Key.DownArrow || event.which === Key.UpArrow )
+            if(event.which === Key.DownArrow || event.which === Key.UpArrow)
             {
-                this.highlightSiblingRow( event.which === Key.DownArrow )
+                this.highlightSiblingRow(event.which === Key.DownArrow)
             }
 
-            if ( (event.which === Key.Space || event.which === Key.Enter) && this.inputHasCheckboxes )
+            if((event.which === Key.Space || event.which === Key.Enter) && this.inputHasCheckboxes)
             {
-                if ( event.ctrlKey || event.metaKey )
+                if(event.ctrlKey || event.metaKey)
                 {
-                    this.onHeaderCheckboxChange( !this._isHeaderCheckboxChecked );
+                    this.onHeaderCheckboxChange(!this._isHeaderCheckboxChecked);
                 }
                 else
                 {
-                    this.changeRowState( !this.inputHighlightedRow.selected, this.inputHighlightedRow );
+                    this.changeRowState(!this.inputHighlightedRow.selected, this.inputHighlightedRow);
                 }
             }
 
@@ -163,20 +163,20 @@ export class TerraSimpleTableComponent<D>
         }
     }
 
-    private highlightSiblingRow( nextSibling: boolean )
+    private highlightSiblingRow(nextSibling:boolean)
     {
-        if ( this.inputHighlightedRow )
+        if(this.inputHighlightedRow)
         {
-            let highlightIndex: number = this.inputRowList.indexOf( this.inputHighlightedRow );
-            if ( nextSibling && highlightIndex < this.inputRowList.length - 1 )
+            let highlightIndex:number = this.inputRowList.indexOf(this.inputHighlightedRow);
+            if(nextSibling && highlightIndex < this.inputRowList.length - 1)
             {
                 this.inputHighlightedRow = this.inputRowList[highlightIndex + 1];
-                this.outputHighlightedRowChange.emit( this.inputHighlightedRow );
+                this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
             }
-            if ( !nextSibling && highlightIndex > 0 )
+            if(!nextSibling && highlightIndex > 0)
             {
                 this.inputHighlightedRow = this.inputRowList[highlightIndex - 1];
-                this.outputHighlightedRowChange.emit( this.inputHighlightedRow );
+                this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
             }
         }
     }
