@@ -1,4 +1,4 @@
-:host /deep/ .no-result
+.no-result
 {
     text-align: center;
     font-family: "plenty", Helvetica, Arial, sans-serif !important;
@@ -9,12 +9,12 @@
     border-radius: 0;
     .text-prime
     {
-        color: #555555;
+        color: $gray;
         font-size: 2.7rem; 
     }
     .text-second
     {
         font-size: 1.3rem;
-        color: #adadad;
+        color: #adadad; // TODO: replace with variable
     }
 }
