@@ -6,6 +6,7 @@
     margin: 0;
     height: 33px;
     display: flex;
+
     li
     {
         float: left;
@@ -235,4 +236,12 @@
 /deep/ .hasSplitView .modal-body
 {
     height: 525px;
+}
+
+terra-base-toolbar
+{
+    --toolbar-margin: 0 0 0 -3px;
+    --toolbar-border-radius: none;
+    --toolbar-background: $white;
+    --toolbar-border-bottom: 1px solid $grey-4;
 }

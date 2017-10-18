@@ -318,7 +318,7 @@
 .terra-breadcrumbs-wrapper
 {
     --toolbar-margin: 0 0 0 -3px;
-    --toolbar-border-radius: 0;
+    --toolbar-border-radius: none;
     --toolbar-background: $white;
-    --toolbar-border-bottom: 1px solid $grey-3;
+    --toolbar-border-bottom: 1px solid $grey-4;
 }
