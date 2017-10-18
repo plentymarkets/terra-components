@@ -8,6 +8,7 @@ import {
 import { TerraSimpleTableHeaderCellInterface } from './cell/terra-simple-table-header-cell.interface';
 import { TerraSimpleTableRowInterface } from './row/terra-simple-table-row.interface';
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
+import { Key } from 'ts-keycode-enum';
 
 @Component({
     selector: 'terra-simple-table',
@@ -21,9 +22,13 @@ export class TerraSimpleTableComponent<D>
     @Input() inputUseHighlighting:boolean = false;
     @Input() inputIsStriped:boolean = false;
     @Input() inputHasCheckboxes:boolean = false;
+    @Input() inputEnableHotkeys:boolean = false;
+    @Input() inputHighlightedRow:TerraSimpleTableRowInterface<D>;
 
     @Output() outputHeaderCheckBoxChanged:EventEmitter<boolean> = new EventEmitter();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
+    @Output() outputRowClicked:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
+    @Output() outputHighlightedRowChange:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
 
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
 
@@ -120,6 +125,59 @@ export class TerraSimpleTableComponent<D>
         else
         {
             this.viewChildHeaderCheckbox.isIndeterminate = true;
+        }
+    }
+
+    private onRowClick(row:TerraSimpleTableRowInterface<D>):void
+    {
+        if(this.inputUseHighlighting)
+        {
+            this.inputHighlightedRow = row;
+            this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
+        }
+        this.outputRowClicked.emit(row);
+    }
+
+    private onKeydown(event:KeyboardEvent):void
+    {
+        if(this.inputEnableHotkeys && this.inputUseHighlighting && this.inputHighlightedRow)
+        {
+            if(event.which === Key.DownArrow || event.which === Key.UpArrow)
+            {
+                this.highlightSiblingRow(event.which === Key.DownArrow)
+            }
+
+            if((event.which === Key.Space || event.which === Key.Enter) && this.inputHasCheckboxes)
+            {
+                if(event.ctrlKey || event.metaKey)
+                {
+                    this.onHeaderCheckboxChange(!this._isHeaderCheckboxChecked);
+                }
+                else
+                {
+                    this.changeRowState(!this.inputHighlightedRow.selected, this.inputHighlightedRow);
+                }
+            }
+
+            event.preventDefault();
+        }
+    }
+
+    private highlightSiblingRow(nextSibling:boolean)
+    {
+        if(this.inputHighlightedRow)
+        {
+            let highlightIndex:number = this.inputRowList.indexOf(this.inputHighlightedRow);
+            if(nextSibling && highlightIndex < this.inputRowList.length - 1)
+            {
+                this.inputHighlightedRow = this.inputRowList[highlightIndex + 1];
+                this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
+            }
+            if(!nextSibling && highlightIndex > 0)
+            {
+                this.inputHighlightedRow = this.inputRowList[highlightIndex - 1];
+                this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
+            }
         }
     }
 

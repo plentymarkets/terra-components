@@ -43,6 +43,7 @@
 		"ng2-ace-editor": "^0.3.1",
 		"ngx-bootstrap": "1.9.3",
 		"rxjs": "5.4.3",
+		"ts-keycode-enum": "^1.0.4",
 		"zone.js": "0.8.18"
 	},
 	"devDependencies": {

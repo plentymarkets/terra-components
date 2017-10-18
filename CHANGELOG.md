@@ -5,6 +5,12 @@
 * **terra-pager** clicks on paging buttons are now debounced
 * **terra-data-table** only one paging request can now be pending at the same time
 * **terra-button-with-options** new component, that looks like a usual button, but opens a dropdown with options on click.
+* **terra-simple-table** Add hotkeys to control simple table:
+Enable hotkeys by setting `[inputEnableHotkeys]="true"` and `[inputUseHighlighting]="true"`
+Use `arrow up` / `arrow down` to navigate throught table rows. 
+Use `space` or `enter` to toggle checkbox of selected row 
+or `ctrl`/`cmd` + `space`/`enter` to toggle checkbox in table header.
+Toggling checkboxes required `[inputHasCheckbox]="true"`
 
 ### Bug Fixes
 * **terra-multi-split-view** 
