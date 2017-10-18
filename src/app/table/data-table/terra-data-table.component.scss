@@ -76,6 +76,11 @@ table.table
             }
         }
     }
+    tbody.highlighting tr.disabled
+    {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
 }
 
 .no-margin

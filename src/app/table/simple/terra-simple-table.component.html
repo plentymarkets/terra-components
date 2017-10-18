@@ -20,12 +20,17 @@
             </ng-template>
         </tr>
         </thead>
-        <tbody>
+        <tbody [class.highlighting]="inputUseHighlighting">
         <ng-template ngFor let-row [ngForOf]="inputRowList">
-            <tr [ngClass]="row.textColorCss" [ngStyle]="{'background-color': row.backgroundColor}" [class.isActive]="row === inputHighlightedRow" (click)="onRowClick(row)">
+            <tr [ngClass]="row.textColorCss"
+                [ngStyle]="{'background-color': row.backgroundColor}"
+                [class.isActive]="row === inputHighlightedRow"
+                [class.disabled]="row.disabled"
+                (click)="onRowClick(row)">
                 <td *ngIf="inputHasCheckboxes">
                     <terra-checkbox #rowCheckbox
                                     [value]="row.selected"
+                                    [inputIsDisabled]="row.disabled"
                                     (change)="onRowCheckboxChange(rowCheckbox.value, row)">
                     </terra-checkbox>
                 </td>
@@ -46,7 +51,7 @@
                                               [inputIsPrimary]="button.isPrimary"
                                               [inputIsSecondary]="button.isSecondary"
                                               [inputIsTertiary]="button.isTertiary"
-                                              [inputIsDisabled]="button.isDisabled"
+                                              [inputIsDisabled]="button.isDisabled || row.disabled "
                                               [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
                                               [inputCaption]="button.caption"
                                               [inputIsSmall]="true"
