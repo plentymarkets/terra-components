@@ -73,7 +73,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TerraColorPickerComponent } from "./forms/input/color-picker/terra-color-picker.component";
 import { TerraInteractModule } from "./interactables/interact.module";
 import { TerraSliderComponent } from "./forms/slider/terra-slider.component";
-import { TerraDataTableNoResultNoticeComponent} from './table/data-table/pre-search-notice/terra-data-table-no-result-notice.component';
+import { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.component';
 import { TerraButtonWithOptionsComponent } from './button-with-options/terra-button-with-options.component';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
@@ -142,7 +142,7 @@ export { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra
 export { TerraCardComponent } from './card/terra-card.component';
 export { TerraSyntaxEditorComponent } from './editor/syntax/terra-syntax-editor.component';
 export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.data';
-export { TerraDataTableNoResultNoticeComponent} from './table/data-table/pre-search-notice/terra-data-table-no-result-notice.component';
+export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.component';
 
 @NgModule({
     declarations:    [
@@ -191,7 +191,7 @@ export { TerraDataTableNoResultNoticeComponent} from './table/data-table/pre-sea
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
-        TerraDataTableNoResultNoticeComponent,
+        TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent
     ],
     entryComponents: [
@@ -283,7 +283,7 @@ export { TerraDataTableNoResultNoticeComponent} from './table/data-table/pre-sea
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
-        TerraDataTableNoResultNoticeComponent,
+        TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent
     ],
     imports:         [
