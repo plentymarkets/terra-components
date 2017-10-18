@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TerraAlertInterface } from './data/terra-alert.interface';
+import { isNullOrUndefined } from 'util';
 
 /**
  * @author mkunze
@@ -9,7 +10,7 @@ export class TerraAlertComponent
 {
     private _alerts:Array<TerraAlertInterface> = [];
     private static _instance:TerraAlertComponent = null;
-    private static _isCreating:Boolean = false;
+    private static _isCreating:boolean = false;
 
     constructor()
     {
@@ -36,16 +37,36 @@ export class TerraAlertComponent
         this._alerts.splice(i, 1);
     }
 
+    public addAlertForPlugin(alert:TerraAlertInterface):void
+    {
+        if(isNullOrUndefined(alert.dismissOnTimeout))
+        {
+            alert.dismissOnTimeout = 5000;
+        }
+
+        let event:CustomEvent = new CustomEvent('status', {
+            detail: {
+                message:          alert.msg,
+                closable:         alert.closable,
+                type:             alert.type,
+                dismissOnTimeout: alert.dismissOnTimeout,
+                identifier:       alert.identifier
+            }
+        });
+
+        window.parent.window.dispatchEvent(event);
+    }
+
     public addAlert(alert:TerraAlertInterface):void
     {
-        if(alert.dismissOnTimeout == null)
+        if(isNullOrUndefined(alert.dismissOnTimeout))
         {
             alert.dismissOnTimeout = 5000;
         }
 
         this._alerts.push({
             msg:              alert.msg,
-            closable:         true,
+            closable:         alert.closable,
             type:             alert.type,
             dismissOnTimeout: alert.dismissOnTimeout,
             identifier:       alert.identifier

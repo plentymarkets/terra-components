@@ -2,6 +2,7 @@ export * from './app/alert/terra-alert-panel.component';
 export * from './app/alert/terra-alert.component';
 export * from './app/button/data/terra-button.interface';
 export * from './app/button/terra-button.component';
+export * from './app/button-with-options/terra-button-with-options.component';
 export * from './app/data/terra-base.data';
 export * from './app/filter/terra-filter.component';
 export * from './app/forms/checkbox/terra-checkbox.component';

@@ -361,7 +361,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                         break;
                     case 'Enter': // select the marked element
                         // check if element is really available
-                        if (this._displayListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item === this._tmpSelectedValue))
+                        if(this._displayListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item === this._tmpSelectedValue))
                         {
                             this.select(this._tmpSelectedValue); // select the chosen element
                             this.toggleOpen = false; // close the dropdown
