@@ -186,6 +186,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             return;
         }
 
+        module.isBackgroundColorGrey = view.isBackgroundColorGrey;
+        
         // check whether the view is already opened
         if(module.currentSelectedView === view)
         {

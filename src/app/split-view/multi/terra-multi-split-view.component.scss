@@ -186,6 +186,14 @@
     &.isBackgroundColorGrey
     {
         background-color: transparent;
+        
+        &.first
+        {
+            &.last
+            {
+                background-color: $white;
+            }
+        }
     }
 }
 
@@ -308,10 +316,10 @@
     display: inline-block;
 }
 
-:host /deep/ .terra-breadcrumbs-wrapper .btn-toolbar
+.terra-breadcrumbs-wrapper
 {
-    background-color: white;
-    border-bottom: 1px solid $grey-3;
-    border-radius: 0px;
-    margin-left: -3px;
+    --toolbar-margin: 0 0 0 -3px;
+    --toolbar-border-radius: 0;
+    --toolbar-background: $white;
+    --toolbar-border-bottom: 1px solid $grey-3;
 }

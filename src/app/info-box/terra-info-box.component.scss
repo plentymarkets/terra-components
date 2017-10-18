@@ -60,13 +60,14 @@
     }
 }
 
-:host-context(.view.isBackgroundColorGrey)
-{
-    .info-box:not(.selected)
-    {
-        background-color: $white;
-    }
-}
+//adaptable background-color //add only after view-background-color-fix
+//:host-context(.view.isBackgroundColorGrey)
+//{
+//    .info-box:not(.selected)
+//    {
+//        background-color: $white;
+//    }
+//}
 
 :host /deep/ .info-box-text div
 {
