@@ -22,7 +22,7 @@
         </thead>
         <tbody>
         <ng-template ngFor let-row [ngForOf]="inputRowList">
-            <tr [ngClass]="row.textColorCss" [ngStyle]="{'background-color': row.backgroundColor}" [class.isActive]="row === _highlightedRow" (click)="onRowClick(row)">
+            <tr [ngClass]="row.textColorCss" [ngStyle]="{'background-color': row.backgroundColor}" [class.isActive]="row === inputHighlightedRow" (click)="onRowClick(row)">
                 <td *ngIf="inputHasCheckboxes">
                     <terra-checkbox #rowCheckbox
                                     [value]="row.selected"
