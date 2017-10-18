@@ -19,18 +19,26 @@ import { FileType } from "./helper/fileType.helper";
 import * as moment from "moment";
 import { TranslationService } from "angular-l10n";
 import { Subscription } from "rxjs/Subscription";
+import { FileBrowserSplitConfig } from './config/file-browser-split.config';
+import { TerraBaseStorageService } from './terra-base-storage.interface';
 
 @Component({
     selector: 'terra-file-browser',
     template: require('./terra-file-browser.component.html'),
-    styles:   [require('./terra-file-browser.component.scss')]
+    styles:   [require('./terra-file-browser.component.scss')],
+    providers: [FileBrowserSplitConfig]
 })
-export class TerraFileBrowserComponent implements OnInit, OnDestroy
+export class TerraFileBrowserComponent implements OnInit
 {
-    private _translationPrefix:string = "terraFileBrowser";
+    //private _translationPrefix:string = "terraFileBrowser";
 
     @Input()
     public inputAllowedExtensions:Array<string> = [];
+
+    @Input()
+    public inputStorageService: TerraBaseStorageService;
+
+    /*
 
     @Output()
     public outputSelected:EventEmitter<string> = new EventEmitter<string>();
@@ -59,12 +67,20 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
     private _selectedStorageObjectName:string;
 
     private _globalListeners:{ [event:string]:(...args:any[]) => void } = {};
+    */
 
-    constructor(private frontendStorageService:TerraFrontendStorageService,
-                private translation:TranslationService,
-                private changeDetector:ChangeDetectorRef)
+    constructor(private _splitConfig: FileBrowserSplitConfig)
     {
     }
+
+    public ngOnInit():void
+    {
+        this._splitConfig.showFileList({
+            storageService: this.inputStorageService
+        });
+    }
+
+    /*
 
     public get currentRoot():TerraStorageObject
     {
@@ -118,6 +134,8 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
 
     public ngOnInit():void
     {
+        this.splitConfig.showFileList();
+
         let registerGlobalEvent:(event:string, callback:(event:Event) => void) => void;
 
         registerGlobalEvent = (event:string, callback:(event:Event) => void) =>
@@ -349,4 +367,5 @@ export class TerraFileBrowserComponent implements OnInit, OnDestroy
                || this.inputAllowedExtensions.indexOf(PathHelper.extName(filename)) >= 0
                || PathHelper.isDirectory(filename)
     }
+    */
 }

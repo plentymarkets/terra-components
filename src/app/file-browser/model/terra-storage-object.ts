@@ -35,6 +35,15 @@ export class TerraStorageObject
         return this._s3Object.size;
     }
 
+    public get sizeString(): string
+    {
+        if(typeof this.size !== "number")
+        {
+            return "0B";
+        }
+        return PathHelper.sizeString(this.size);
+    }
+
     public get name():string
     {
         return PathHelper.basename(this._s3Object.key);

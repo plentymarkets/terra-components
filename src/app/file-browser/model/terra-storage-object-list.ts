@@ -13,16 +13,18 @@ export class TerraStorageObjectList
         this.root = new TerraStorageObject(createS3StorageObject("/"));
     }
 
-    public insertObjects(objects:S3StorageObjectInterface[]):void
+    public insertObjects(objects:S3StorageObjectInterface[]):TerraStorageObjectList
     {
         objects.forEach((object:S3StorageObjectInterface) =>
         {
             this.insertObject(object);
         });
+        return this;
     }
 
-    public insertObject(s3object:S3StorageObjectInterface):void
+    public insertObject(s3object:S3StorageObjectInterface):TerraStorageObjectList
     {
         this.root.addChild(s3object);
+        return this;
     }
 }
