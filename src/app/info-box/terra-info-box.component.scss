@@ -1,76 +1,84 @@
 .info-box
 {
-    background-color: $gray-light-5;
-    border: 1px solid $gray-light-2-half;
+    background-color: $grey-2;
     -moz-border-radius: $border-radius;
     -webkit-border-radius: $border-radius;
     border-radius: $border-radius;
-    padding: 0.5rem;
+    padding: 8px;
     min-width: 200px;
     margin: 4px 0px;
     height: 150px;
     &.selected
     {
-        background-color: $brand-primary-lighter;
-        border: 1px solid $brand-primary;
+        background-color: $blue;
+        
+        .info-box-inner
+        {
+            .info-box-text
+            {
+                color: $white;
+            }
+        }
+        .info-box-footer
+        {
+            .info-box-id
+            {
+                color: $white;
+            }
+        }
+    }
+    &.empty
+    {
+        background: $gray-light-3;
+        justify-content: center;
+        line-height: 8rem;
+    }
+    .info-box-inner
+    {
+        display: flex;
+        justify-content: space-between;
+        height: calc(100% - 26px);
+        
+        .info-box-text
+        {
+            padding-right: 0.8rem;
+            padding-bottom: 0.4rem;
+            max-width: 77%;
+            white-space: nowrap;
+            color: $grey-11;
+        }
+    }
+    .info-box-footer
+    {
+        display: flex;
+        justify-content: space-between;
+        .info-box-id
+        {
+            margin: 7px 4px 0px 0px;
+            color: $grey-8;
+        }
     }
 }
 
-.info-box-inner
-{
-    display: flex;
-    justify-content: space-between;
-    height: calc(100% - 26px);
-}
+//adaptable background-color //add only after view-background-color-fix
+//:host-context(.view.isBackgroundColorGrey)
+//{
+//    .info-box:not(.selected)
+//    {
+//        background-color: $white;
+//    }
+//}
 
-.info-box-text
-{
-    padding-right: 0.8rem;
-    padding-bottom: 0.4rem;
-    max-width: 77%;
-}
-
-:host /deep/ .info-box-text
+:host /deep/ .info-box-text div
 {
     div
     {
         text-overflow: ellipsis;
-        /* overflow: hidden; */
-        white-space: nowrap;
+        overflow: hidden;
     }
     
     i, span, p, h1, h2, h3, h4, h5, h6
     {
         overflow: hidden;
     }
-}
-
-.empty
-{
-    background: $gray-light-3;
-    justify-content: center;
-    line-height: 8rem;
-}
-
-.add
-{
-    // TODO add icon to symbolize adding function
-    background: $gray-light-3;
-}
-
-.info-box-footer
-{
-    display: flex;
-    justify-content: space-between;
-}
-
-.info-box-id
-{
-    margin: 5px 2px 0px 0px;
-    color: $gray-light-2;
-}
-
-:host /deep/ .btn-handler
-{
-    display: inline;
 }

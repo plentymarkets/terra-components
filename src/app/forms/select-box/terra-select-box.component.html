@@ -14,7 +14,7 @@
         <span *ngIf="inputIsRequired">*</span>
     </label>
     
-    <div class="select-box" [ngClass]="{'error': !_isValid, 'labeled': _hasLabel}">
+    <div class="select-box" [ngClass]="{'error': !_isValid, 'labeled': _hasLabel, 'isSmall': inputIsSmall}">
         <span *ngIf="_selectedValue; then selectedValue else firstInList"></span>
         <ng-template #selectedValue>
             <span class="{{_selectedValue?.icon}}" *ngIf="_selectedValue?.icon"></span>
@@ -27,7 +27,7 @@
     
     </div>
     
-    <div class="select-box-dropdown">
+    <div class="select-box-dropdown" [ngClass]="{'isSmall': inputIsSmall}">
         <span *ngIf="_selectedValue; then selectedValueActive else firstInListActive"></span>
         
         <ng-template #selectedValueActive>

@@ -20,6 +20,7 @@ export class TerraInputComponent implements ControlValueAccessor
     @Input() inputMinLength:number;
     @Input() inputMinValue:number;
     @Input() inputPlaceholder:string;
+    @Input() inputIsSmall:boolean;
 
     private _isValid:boolean;
     private _regex:string;
@@ -43,6 +44,7 @@ export class TerraInputComponent implements ControlValueAccessor
         this.regex = _inputRegex;
         this.isValid = true;
         this.inputTooltipPlacement = 'top';
+        this.inputIsSmall = false;
     }
 
     public get isDisabled():boolean

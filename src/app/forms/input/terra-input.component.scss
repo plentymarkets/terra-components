@@ -1,27 +1,17 @@
 //List of variables
 $zIndex-2: 200;
 $zIndex-3: 300;
+$color: $gray-dark;
+$background: white;
+$active-background: white;
+$border-color: $gray-light-2;
+$border-active: $gray-light;
+$border-width: 1px;
+$border-radius: 5px;
 
-/*------------------------------------*\
-    $FORMS
-\*------------------------------------*/
-
-::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    red;
-}
-
-input, textarea, .form-control
-{
-    &.input_inset_inner
-    {
-        padding: 10px 0.65rem 0px;
-    }
-}
-
-textarea
-{
-    -webkit-appearance: textarea;
-    resize: none;
+::-webkit-input-placeholder
+{ /* WebKit, Blink, Edge */
+    color: red;
 }
 
 input:focus
@@ -66,105 +56,66 @@ input[type="search"]::-webkit-search-decoration
     -webkit-appearance: none;
 }
 
-.inline-form
-{
-    fieldset, .inline-container
-    {
-        position: relative;
-    }
-    
-    input[type=submit], button, .btn
-    {
-        font-size: $font-size-small-2;
-        padding: 0.65rem 1.3rem;
-        background: $gray-dark;
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 1;
-        width: auto;
-        
-        &:hover, &:focus
-        {
-            background: $gray;
-            color: $white;
-            outline: none;
-        }
-    }
-}
-
-/* Validation */
-input.error
-{
-    border-color: $error;
-}
-
-input.valid
-{
-    border-color: $valid;
-}
-
-label.is-error
-{
-    color: $error;
-}
-
-label.is-valid
-{
-    color: $valid;
-}
-
 /*------------------------------------*\
-    $SPECIFIC FORMS
+    $FORMS
 \*------------------------------------*/
-
-/* Search Form */
-.search-field
-{
-    padding-right: 3em;
-}
-
-.inline-form .search-submit
-{
-    background: none;
-    padding: 0.78em 1em;
-    border: 0;
-    border-left: 1px solid $gray;
-    color: $gray;
-}
-
-$color: $gray-dark;
-$background: white;
-$active-background: white;
-$border-color: $gray-light-2;
-$border-active: $gray-light;
-$border-width: 1px;
 
 .input-unit-v1
 {
     position: relative;
     width: 100%;
-    margin-bottom: 12px;
-    border: $border-width solid $border-color;
-    border-radius: $border-radius;
+    margin-bottom: var(--input-unit-v1-margin-bottom, 3px);
     height: $terra-btn-md-height;
-    line-height: 0px;
+    line-height: $terra-btn-md-height;
+    background-color: $background;
+    border-radius: $border-radius;
+    border: 1px solid $white;
+    
+    &.isSmall
+    {
+        height: $terra-btn-sm-height;
+        line-height: $terra-btn-sm-height - 2;
+    }
+    
+    &:hover
+    {
+        border: 1px solid $blue;
+    }
     
     &.error
     {
         z-index: $zIndex-3;
-        border-color: $brand-danger;
+        border: 1px solid $alert-red;
         input
         {
-            color: $brand-danger;
+            color: $alert-red;
         }
         label
         {
-            color: $brand-danger;
+            color: $alert-red;
         }
         i
         {
-            background-color: $brand-danger;
+            background-color: $alert-red;
+            color: white;
+        }
+    }
+    
+    &.valid
+    {
+        z-index: $zIndex-2;
+        border: 1px solid $blue;
+        input
+        {
+            color: $blue;
+        }
+        label
+        {
+            color: $blue;
+        }
+        i
+        {
+            background-color: $blue;
             color: white;
         }
     }
@@ -172,25 +123,30 @@ $border-width: 1px;
     &.success
     {
         z-index: $zIndex-2;
-        border-color: $brand-success;
+        border: 1px solid $alert-green;
         input
         {
-            color: $brand-success;
+            color: $alert-green;
         }
         label
         {
-            color: $brand-success;
+            color: $alert-green;
         }
         i
         {
-            background-color: $brand-success;
+            background-color: $alert-green;
             color: white;
         }
     }
     
     &.disabled
     {
-        opacity: .65;
+        background-color: $grey-2;
+        border: 1px solid $grey-3;
+        input
+        {
+            color: $grey-5;
+        }
     }
 }
 
@@ -199,19 +155,26 @@ input:not([type="checkbox"]),
 input:not([type="radio"]),
 textarea
 {
-    
-    color: $color;
-    background-color: $background;
+    color: $grey-10;
     border: none;
-    box-shadow: none; //inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
-    line-height: 1.2em !important;
-    padding: 16px 12px 2px 12px;
-    width: 100%;
-    font-size: 1em;
-    text-align: left;
+    border-radius: $border-radius;
+    box-shadow: none;
+    padding: var(--input-padding, 13px 7px 0px 7px);
+    width: var(--input-width, 100%);
+    font-size: $font-size-3;
+    font-weight: $font-weight-2;
+    text-align: var(--input-text-align, left);
     outline: none !important;
     transition: all .2s;
-    height: 100%;
+    height: $terra-btn-md-height - 2;
+    line-height: $terra-btn-md-height - 2;
+    
+    &.isSmall
+    {
+        height: $terra-btn-sm-height - 4;
+        line-height: $terra-btn-sm-height - 4;
+        padding: var(--input-padding, 0px 7px 0px 120px);
+    }
     
     &:focus,
     &.filled
@@ -224,13 +187,11 @@ textarea
     &.disabled,
     &:disabled
     {
-        background-color: $gray-light-4;
-        border-color: $gray-light-3;
+        background-color: $grey-2;
         cursor: not-allowed;
         
         & ~ label
         {
-            color: $gray-light-3;
             cursor: not-allowed;
         }
     }
@@ -265,16 +226,15 @@ textarea
 
 label
 {
-    font-size: .8em;
+    font-size: $font-size-1;
     line-height: 1em !important;
-    text-transform: uppercase;
-    letter-spacing: .1px;
-    font-weight: 600;
+    font-variant: all-small-caps;
+    font-weight: $font-weight-1;
     
     width: 100%;
-    padding: 2px 5px 0;
+    padding: 5px 7px 0;
     margin-bottom: 0;
-    color: $gray-light;
+    color: $grey-7;
     
     position: absolute;
     top: 0;
@@ -286,37 +246,19 @@ label
     -moz-osx-font-smoothing: grayscale;
 }
 
-.input-unit-v1.multiple
+.textarea-wrapper
 {
-    display: flex;
-    flex-flow: row nowrap;
-    
-    & > input
+    height: initial;
+    label
     {
-        width: 70%;
+        position: static;
     }
-    
-    & > select
+    textarea
     {
-        width: 30%;
-        border-left: $border-width solid $border-color;
-    }
-}
-
-/*------------------------------------*\
-    $INPUT GROUP
-\*------------------------------------*/
-
-/deep/
-{
-    .input-group-v
-    {
-        margin-bottom: 12px;
-        .input-unit-v1,
-        .select-box-wrapper
-        {
-            margin-top: 3px;
-            margin-bottom: 0px;
-        }
+        -webkit-appearance: textarea;
+        resize: none;
+        padding-top: 3px;
+        height: initial;
+        line-height: 1.2em;
     }
 }

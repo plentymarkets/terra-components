@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table simple-table table-bordered" [ngClass]="{'table-striped': inputIsStriped}" tabindex="0" (keydown)="onKeydown($event)">
+    <table class="table simple-table" tabindex="0" (keydown)="onKeydown($event)">
         <thead>
         <tr *ngIf="inputHeaderList">
             <th *ngIf="inputHasCheckboxes"
