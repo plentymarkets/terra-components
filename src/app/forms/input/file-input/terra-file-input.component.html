@@ -49,7 +49,6 @@
     <terra-overlay #overlay
                    [inputPrimaryButtonInterface]="primaryOverlayButton"
                    [inputSecondaryButtonInterface]="secondaryOverlayButton"
-                   (outputOnShow)="fileBrowser.selectUrl(value)"
                    (outputOnHide)="selectedUrl = value">
         <terra-file-browser #fileBrowser [inputAllowedExtensions]="inputAllowedExtensions"
                             (outputSelected)="selectedUrl = $event">

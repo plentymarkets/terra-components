@@ -69,13 +69,13 @@ export class TerraFileBrowserComponent implements OnInit
     private _globalListeners:{ [event:string]:(...args:any[]) => void } = {};
     */
 
-    constructor(private _splitConfig: FileBrowserSplitConfig)
+    constructor(public splitConfig: FileBrowserSplitConfig)
     {
     }
 
     public ngOnInit():void
     {
-        this._splitConfig.showFileList({
+        this.splitConfig.showFileList({
             storageService: this.inputStorageService
         });
     }

@@ -29,5 +29,6 @@
     [inputIsStriped]="true"
     [inputUseHighlighting]="true"
     [inputHasCheckboxes]="true"
-    [inputEnableHotkeys]="true">
+    [inputEnableHotkeys]="true"
+    (outputHighlightedRowChange)="onActiveRowChange($event)">
 </terra-simple-table>

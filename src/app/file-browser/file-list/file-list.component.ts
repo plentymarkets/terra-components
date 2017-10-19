@@ -1,9 +1,14 @@
 import {
     ChangeDetectorRef,
     Component,
+    EventEmitter,
+    forwardRef,
+    Inject,
     Input,
+    NgZone,
     OnDestroy,
-    OnInit
+    OnInit,
+    Output
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { TerraStorageObjectList } from '../model/terra-storage-object-list';
@@ -15,6 +20,8 @@ import { TerraFrontendStorageService } from '../terra-frontend-storage.service';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { PathHelper } from '../helper/path.helper';
+import { TerraFileBrowserComponent } from '../terra-file-browser.component';
+import { FileType } from '../helper/fileType.helper';
 
 @Component({
     selector: 'terra-file-list',
@@ -37,14 +44,14 @@ export class TerraFileListComponent implements OnInit, OnDestroy
         return this._storageService || this._frontendStorageService;
     }
 
-    @Input()
-    public inputAllowedExtensions: string[];
-
     private _storageSubscription: Subscription;
 
     private _storageList: TerraStorageObjectList;
 
     private _currentStorageRoot: TerraStorageObject;
+
+    private _imagePreviewTimeout: number;
+    private _previewStorageObject: TerraStorageObject;
 
     public get currentStorageRoot(): TerraStorageObject
     {
@@ -86,7 +93,9 @@ export class TerraFileListComponent implements OnInit, OnDestroy
 
     constructor(
         private _changeDetector: ChangeDetectorRef,
-        private _frontendStorageService: TerraFrontendStorageService )
+        private _frontendStorageService: TerraFrontendStorageService,
+        private _zone: NgZone,
+        @Inject(forwardRef(() => TerraFileBrowserComponent)) private _parentFileBrowser: TerraFileBrowserComponent )
     {
     }
 
@@ -98,6 +107,7 @@ export class TerraFileListComponent implements OnInit, OnDestroy
                                             this._storageList = storageList;
                                             this.renderFileList();
                                         });
+        console.log( this._parentFileBrowser );
     }
 
     public ngOnDestroy(): void
@@ -126,12 +136,13 @@ export class TerraFileListComponent implements OnInit, OnDestroy
                     return {
                         cellList: [
                             { caption: storageObject.name },
-                            { caption: storageObject.publicUrl },
-                            { caption: storageObject.sizeString },
-                            { caption: moment(storageObject.lastModified).format('YYYY-MM-DD HH:mm') },
+                            { caption: storageObject.isFile ? storageObject.publicUrl : "" },
+                            { caption: storageObject.isFile ? storageObject.sizeString : "" },
+                            { caption: storageObject.isFile ? moment(storageObject.lastModified).format('YYYY-MM-DD HH:mm') : "" },
                             { buttonList: [ deleteButton ] }
                         ],
-                        value: storageObject
+                        value: storageObject,
+                        disabled: !this.isAllowed( storageObject.key )
                     };
                 }
             )
@@ -151,8 +162,29 @@ export class TerraFileListComponent implements OnInit, OnDestroy
             return false;
         }
 
-        return this.inputAllowedExtensions.length <= 0
-               || this.inputAllowedExtensions.indexOf(PathHelper.extName(filename)) >= 0
+        return this._parentFileBrowser.inputAllowedExtensions.length <= 0
+               || this._parentFileBrowser.inputAllowedExtensions.indexOf(PathHelper.extName(filename)) >= 0
                || PathHelper.isDirectory(filename)
+    }
+
+    private onActiveRowChange( row: TerraSimpleTableRowInterface<TerraStorageObject> )
+    {
+        if(this._imagePreviewTimeout)
+        {
+            clearTimeout(this._imagePreviewTimeout);
+        }
+        let debounceFn = () => {
+            let storageObject:TerraStorageObject = row.value;
+
+            if(storageObject && FileType.isWebImage(storageObject.key))
+            {
+                this._previewStorageObject = row.value;
+            }
+            else
+            {
+                this._previewStorageObject = null;
+            }
+        };
+        this._imagePreviewTimeout = setTimeout(debounceFn.bind(this), 500);
     }
 }

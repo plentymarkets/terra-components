@@ -11,7 +11,7 @@ import { TerraImageEditorModule } from '../image-editor/image-editor.module';
 import { TerraMultiSplitViewConfig } from '../../split-view/multi/data/terra-multi-split-view.config';
 import { TerraMultiSplitViewInterface } from '../../split-view/multi/data/terra-multi-split-view.interface';
 
-const SPLIT_WIDTH_FULL      = "col-xs-12";
+const SPLIT_WIDTH_FULL      = "col-xs-12 col-md-12 col-lg-12";
 const SPLIT_WIDTH_CONTENT   = "col-xs-12 col-md-9 col-lg-10";
 const SPLIT_WIDTH_SIDEBAR   = "col-xs-12 col-md-3 col-lg-2";
 
@@ -45,6 +45,8 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
                     return { name: key, value: inputValues[key] };
                 })
             };
+
+            this.addView( this._fileListView );
         }
         else
         {
@@ -52,8 +54,6 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
                 return { name: key, value: inputValues[key] };
             });
         }
-
-        this.addView( this._fileListView );
 
         this._changeDetector.detectChanges();
     }
@@ -81,9 +81,9 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
             this.showFileList();
         }
 
-        this._fileListView.defaultWidth = SPLIT_WIDTH_CONTENT;
+        this.resizeView( this._fileListView, SPLIT_WIDTH_CONTENT );
 
-        if ( !this._imageEditorView )
+        if ( !this._imagePreviewView )
         {
             this._imagePreviewView = {
                 module: TerraImagePreviewModule.forRoot(),
@@ -99,7 +99,7 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
         }
         else
         {
-            this._imageEditorView.inputs = Object.keys(inputValues).map( key => {
+            this._imagePreviewView.inputs = Object.keys(inputValues).map( key => {
                 return { name: key, value: inputValues[key] };
             });
         }
@@ -117,7 +117,7 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
 
         if ( this._fileListView )
         {
-            this._fileListView.defaultWidth = SPLIT_WIDTH_FULL;
+            this.resizeView( this._fileListView, SPLIT_WIDTH_FULL );
         }
         else
         {
