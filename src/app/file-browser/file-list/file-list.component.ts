@@ -178,11 +178,11 @@ export class TerraFileListComponent implements OnInit, OnDestroy
 
             if(storageObject && FileType.isWebImage(storageObject.key))
             {
-                this._previewStorageObject = row.value;
+                this._parentFileBrowser.splitConfig.showImagePreview();
             }
             else
             {
-                this._previewStorageObject = null;
+                this._parentFileBrowser.splitConfig.hideImagePreview();
             }
         };
         this._imagePreviewTimeout = setTimeout(debounceFn.bind(this), 500);

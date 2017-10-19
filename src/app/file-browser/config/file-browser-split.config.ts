@@ -1,4 +1,3 @@
-
 import {
     ChangeDetectorRef,
     Injectable
@@ -27,147 +26,42 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
         super();
     }
 
-    public showFileList( inputValues: {[key: string]: any} = {} )
+
+    public init()
     {
-        if ( this._imageEditorView )
-        {
-            this.hideImageEditor();
-        }
+        this._fileListView = {
+            module: TerraFileListModule.forRoot(),
+            defaultWidth: SPLIT_WIDTH_CONTENT,
+            focusedWidth: SPLIT_WIDTH_FULL,
+            name: "File List",
+            mainComponentName: TerraFileListModule.getMainComponent()
+        };
+        this.addView( this._fileListView );
 
-        if ( !this._fileListView )
-        {
-            this._fileListView = {
-                module: TerraFileListModule.forRoot(),
-                defaultWidth: SPLIT_WIDTH_FULL,
-                name: "File List",
-                mainComponentName: TerraFileListModule.getMainComponent(),
-                inputs: Object.keys(inputValues).map( key => {
-                    return { name: key, value: inputValues[key] };
-                })
-            };
+        this._imagePreviewView = {
+            module: TerraImagePreviewModule.forRoot(),
+            defaultWidth: "",
+            focusedWidth: SPLIT_WIDTH_SIDEBAR,
+            name: 'Image Preview',
+            mainComponentName: TerraImagePreviewModule.getMainComponent()
+        };
+        this.addView( this._imagePreviewView );
 
-            this.addView( this._fileListView );
-        }
-        else
-        {
-            this._fileListView.inputs = Object.keys(inputValues).map( key => {
-                return { name: key, value: inputValues[key] };
-            });
-        }
+        setTimeout((() => {
+            this.setSelectedView( this._fileListView );
+        }).bind(this));
 
-        this._changeDetector.detectChanges();
     }
 
-    public hideFileList()
+    public showImagePreview()
     {
-        if ( this._imagePreviewView )
-        {
-            this.hideImagePreview();
-        }
-
-        if ( this._fileListView )
-        {
-            this.removeView( this._fileListView );
-            this._fileListView = null;
-        }
-
-        this._changeDetector.detectChanges();
-    }
-
-    public showImagePreview( inputValues: {[key: string]: any} = {} )
-    {
-        if ( !this._fileListView )
-        {
-            this.showFileList();
-        }
-
-        this.resizeView( this._fileListView, SPLIT_WIDTH_CONTENT );
-
-        if ( !this._imagePreviewView )
-        {
-            this._imagePreviewView = {
-                module: TerraImagePreviewModule.forRoot(),
-                defaultWidth: SPLIT_WIDTH_SIDEBAR,
-                name: 'Image Preview',
-                mainComponentName: TerraImagePreviewModule.getMainComponent(),
-                inputs: Object.keys(inputValues).map( key => {
-                    return { name: key, value: inputValues[key] };
-                })
-            };
-
-            this.addView( this._imagePreviewView );
-        }
-        else
-        {
-            this._imagePreviewView.inputs = Object.keys(inputValues).map( key => {
-                return { name: key, value: inputValues[key] };
-            });
-        }
-
-        this._changeDetector.detectChanges();
+        this.setSelectedView( this._imagePreviewView );
     }
 
     public hideImagePreview()
     {
-        if ( this._imagePreviewView )
-        {
-            this.removeView( this._imagePreviewView );
-            this._imagePreviewView = null;
-        }
-
-        if ( this._fileListView )
-        {
-            this.resizeView( this._fileListView, SPLIT_WIDTH_FULL );
-        }
-        else
-        {
-            this.showFileList();
-        }
-
-        this._changeDetector.detectChanges();
+        this.setSelectedView( this._fileListView );
     }
 
-    public showImageEditor( inputValues: {[key: string]: any} = {} )
-    {
-        if ( this._fileListView )
-        {
-            this.hideFileList();
-        }
 
-        if ( !this._imageEditorView )
-        {
-            this._imageEditorView = {
-                module: TerraImageEditorModule.forRoot(),
-                defaultWidth: SPLIT_WIDTH_FULL,
-                name: "Image Editor",
-                mainComponentName: TerraImageEditorModule.getMainComponent(),
-                inputs: Object.keys(inputValues).map( key => {
-                    return { name: key, value: inputValues[key] };
-                })
-            };
-
-            this.addView( this._imageEditorView );
-        }
-        else
-        {
-            this._imageEditorView.inputs = Object.keys(inputValues).map( key => {
-                return { name: key, value: inputValues[key] };
-            });
-        }
-
-        this._changeDetector.detectChanges();
-    }
-
-    public hideImageEditor()
-    {
-        if ( this._imageEditorView )
-        {
-            this.removeView( this._imageEditorView );
-            this._imageEditorView = null;
-        }
-
-        this.showFileList();
-
-        this._changeDetector.detectChanges();
-    }
 }

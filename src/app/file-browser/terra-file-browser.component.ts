@@ -75,9 +75,7 @@ export class TerraFileBrowserComponent implements OnInit
 
     public ngOnInit():void
     {
-        this.splitConfig.showFileList({
-            storageService: this.inputStorageService
-        });
+        this.splitConfig.init();
     }
 
     /*
