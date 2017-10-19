@@ -258,29 +258,21 @@
     height: 525px;
 }
 
-.slideDown
+/deep/ .tab-content .fadeIn
 {
-    height: 0px;
-    min-height: 0px !important;
-    position: relative;
-    overflow: hidden;
+    animation-name: fadeInAnimation;
+    animation-duration: 0.25s;
 }
 
-/deep/ .tab-content .slideDown
-{
-    animation-name: slideDownAnimation;
-    animation-duration: 0.5s;
-}
-
-@keyframes slideDownAnimation
+@keyframes fadeInAnimation
 {
     from
     {
-        height: 0;
+        opacity: 0;
     }
     to
     {
-        height: 100%;
+        opacity: 1;
     }
 }
 
@@ -290,19 +282,6 @@
     position: absolute;
     bottom: 0px;
     width: 100%;
-}
-
-.slideDown > div
-{
-    height: calc(100% - 8px);
-    //position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-/deep/ .tab-content .slideDown > div
-{
-    bottom: 0;
 }
 
 .ellipsis
