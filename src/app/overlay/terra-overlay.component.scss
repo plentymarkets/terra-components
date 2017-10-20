@@ -1,5 +1,32 @@
+.modal-title
+{
+    line-height: 2.3;
+    font-weight: $font-weight-3;
+}
+
 .modal-body
 {
     max-height: 525px;
     overflow-y: auto;
+}
+
+.modal-dialog
+{
+    margin: 0;
+    position: relative;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    min-width: 300px;
+}
+
+.modal.fade .modal-dialog
+{
+    transform: translate(-50%, -100%);
+    transition: transform .3s ease-out, -webkit-transform .3s ease-out;
+}
+
+.modal.in .modal-dialog
+{
+    transform: translate(-50%, -50%);
 }

@@ -1,13 +1,16 @@
 .portlet
 {
-    background: $gray-light-4;
     margin-bottom: 6px;
     .portlet_head
     {
-        padding: 6px 9px;
-        background: $brand-primary;
-        color: white;
-        font-size: $font-size-lg;
+        padding: 8px 9px 4px 9px;
+        background: transparent;
+        span
+        {
+            color: $grey-12;
+            font-size: $font-size-4;
+            font-weight: $font-weight-2;
+        }
         &.error-bottom
         {
             border-bottom: 5px solid $error;
@@ -27,9 +30,10 @@
     
     .portlet_body
     {
+        background-color: $grey-2;
         padding: 12px;
-        font-size: $font-size-base;
-        
+        border-radius: 5px;
+
         table.table
         {
             thead

@@ -5,6 +5,7 @@
                 <div class="{{ module.mainComponentName + '_' + module.instanceKey }}">
                     <span>{{ module.name | translate: lang}}</span>
                 </div>
+                <a class="icon-next"></a>
             </li>
         </ng-template>
     </ul>
@@ -24,7 +25,6 @@
                                          [inputParameter]="module.parameter"
                                          [inputMainComponentName]="module.mainComponentName">
             </terra-dynamic-module-loader>
-            <div class="divider" *ngIf="!(last && !first)"></div>
         </div>
     </ng-template>
 </div>

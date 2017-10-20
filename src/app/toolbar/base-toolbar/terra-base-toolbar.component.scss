@@ -1,9 +1,10 @@
 .btn-toolbar
 {
-    background: $gray-light-4;
+    background: var(--toolbar-background, $grey-2);
     padding: 4px;
-    margin: 0;
-    margin-bottom: 3px;
+    margin: var(--toolbar-margin, 0 0 3px 0);
+    border-radius: var(--toolbar-border-radius, 0 0 $border-radius $border-radius);
+    border-bottom: var(--toolbar-border-bottom, none)
 }
 
 .sticky
@@ -13,17 +14,8 @@
     z-index: $zindex-toolbar-sticky;
 }
 
-:host /deep/ .terra-number-input input
-{
-    text-align: right !important;
-}
-
 :host /deep/ .btn-toolbar .btn-group
 {
     margin: 0;
-}
-
-:host /deep/ .btn-toolbar .btn-group:not(:last-child)
-{
     padding-right: 12px;
 }

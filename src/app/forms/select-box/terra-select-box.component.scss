@@ -3,129 +3,123 @@
 .select-box-wrapper
 {
     position: relative;
-    margin-bottom: 12px;
-    background-color: #FFFFFF;
+    background-color: $white;
+    border-radius: $border-radius;
+    border: 1px solid $white;
+    margin-bottom: var(--select-box-wrapper-margin-bottom, 3px);
+
+    cursor: pointer;
+    
     .select-box
     {
-        height: $terra-btn-md-height;
+        height: $terra-btn-md-height - 2;
         line-height: $terra-btn-md-height - 2;
         display: inline-block;
-        width: 100%;
+        width: var(--select-box-width, 100%);
         max-width: 100%;
         vertical-align: middle;
-        border: 1px solid $gray-light-2;
         -moz-appearance: none;
         -webkit-appearance: none;
-        padding: 0px 12px 0px 12px;
+        padding: 0px 12px;
         background-position: calc(100% - 1rem) 1.2rem;
-        border: $border-width solid $border-color;
-        border-radius: $border-radius;
         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat right .75rem center;
         background-image: none \9;
         background-size: 8px 10px;
+        color: $grey-10;
+        
+        &.isSmall
+        {
+            height: $terra-btn-sm-height - 2;
+            line-height: $terra-btn-sm-height - 2;
+            &.labeled
+            {
+                padding: 0px 7px 0px 120px;
+            }
+        }
         &.error
         {
             border-color: $error;
             color: $error;
-            //background: url('/app/assets/images/error-arrow.png') no-repeat right .75rem center;
             background-size: 8px 10px;
         }
+        &.labeled
+        {
+            line-height: 24px;
+            padding: 13px 7px 0px 7px;
+        }
+        span
+        {
+            font-weight: $font-weight-2;
+        }
+    }
+    &:hover
+    {
+        border: 1px solid $blue;
+    }
+    &.disabled
+    {
+        background-color: $grey-2;
+        border: 1px solid $grey-3;
+        .select-box
+        {
+            filter: opacity(30%);
+        }
         
-    }
-    .labeled
-    {
-        line-height: 1.2em;
-        padding: 16px 12px 2px 12px;
-    }
-}
-
-.select-box-dropdown
-{
-    position: absolute;
-    z-index: 99999;
-    top: $terra-btn-md-height;
-    left: 0;
-    min-width: 100%;
-    width: auto;
-    max-height: 12rem;
-    border: 1px solid $gray-light-2;
-    border-radius: $border-radius;
-    background: white;
-    display: none;
-    overflow: auto;
-    > span
-    {
-        display: block;
-        width: 100%;
-        padding: .25em 1em;
-        line-height: 18px;
-        min-height: 24px;
-        &:hover,
-        &.selected
+        label, .select-box
         {
-            background: $grey-3;
-            cursor: pointer;
+            cursor: not-allowed;
         }
-        &.active
+        .select-box-dropdown
         {
-            background: $brand-primary;
-            color: white;
-            cursor: pointer;
+            display: none !important;
         }
     }
-    .select-box-dropdown-heading
-    {
-        &:hover
-        {
-            background-color: white;
-            color: inherit;
-            cursor: default;
-        }
-    }
-}
-
-.open
-{
-    .select-box-dropdown
-    {
-        display: block;
-    }
-}
-
-.disabled
-{
-    opacity: .65;
-    background-color: transparent !important;
     
-    label, .select-box
+    &.open
     {
-        //background-color: #F2F2F2;
-        cursor: not-allowed;
+        .select-box-dropdown
+        {
+            display: block;
+        }
     }
+    
     .select-box-dropdown
     {
-        display: none !important;
+        position: absolute;
+        z-index: 99999;
+        top: $terra-btn-md-height;
+        left: 0;
+        min-width: 100%;
+        width: auto;
+        max-height: 12rem;
+        border-radius: $border-radius;
+        background: white;
+        display: none;
+        overflow: auto;
+        
+        &.isSmall
+        {
+            top: $terra-btn-sm-height;
+        }
+        
+        > span
+        {
+            display: block;
+            width: 100%;
+            padding: .25em 1em;
+            line-height: 18px;
+            min-height: 24px;
+            cursor: pointer;
+            &:hover,
+            &.selected
+            {
+                background: $grey-3;
+            }
+            &.active
+            {
+                background: $blue;
+                color: white;
+            }
+        }
     }
 }
-
-.input-unit-v1.select-box-wrapper .select-box
-{
-    border: none;
-    padding: 7px 9px 0px 12px;
-}
-
-.input-unit-v1.select-box-wrapper
-{
-    overflow: inherit;
-}
-
-.input-unit-v1 .select-box-dropdown
-{
-    width: auto;
-    top: $terra-btn-md-height;
-    left: -1px;
-    right: -1px;
-}
-
-
-

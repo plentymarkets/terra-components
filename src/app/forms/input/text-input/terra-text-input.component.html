@@ -2,7 +2,7 @@
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
      [isDisabled]="!inputTooltipText"
-     [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
+     [ngClass]="{'error': !isValid, 'disabled': isDisabled, 'isSmall': inputIsSmall}"
      container="body">
     <label htmlFor="{{inputName}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
@@ -15,6 +15,7 @@
            (input)="onInput()"
            autocomplete="off"
            [disabled]="isDisabled"
+           [ngClass]="{'isSmall' : inputIsSmall}"
            pattern="{{regex}}"
            maxlength="{{inputMaxLength}}"
            [readonly]="inputIsReadonly"
