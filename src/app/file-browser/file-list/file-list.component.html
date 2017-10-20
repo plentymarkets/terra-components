@@ -1,6 +1,6 @@
 <terra-base-toolbar>
     <ul class="terra-breadcrumbs" *ngIf="_storageList">
-        <li *ngFor="let parent of parentStorageObjects; let last = last" (click)="this._currentStorageRoot = object">
+        <li *ngFor="let parent of parentStorageObjects; let last = last" (click)="this.currentStorageRoot = object">
             <div [class.active]="last">
                 <span>{{ parent.name || "Meine Dateien" }}</span>
             </div>
@@ -30,5 +30,6 @@
     [inputUseHighlighting]="true"
     [inputHasCheckboxes]="true"
     [inputEnableHotkeys]="true"
-    (outputHighlightedRowChange)="onActiveRowChange($event)">
+    (outputHighlightedRowChange)="onActiveRowChange($event)"
+    (outputRowClicked)="currentStorageRoot = $event.value">
 </terra-simple-table>

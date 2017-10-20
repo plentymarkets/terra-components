@@ -3,6 +3,7 @@ import {
     S3StorageObjectInterface
 } from "./s3-storage-object.interface";
 import { PathHelper } from "../helper/path.helper";
+import { FileType } from '../helper/fileType.helper';
 
 export class TerraStorageObject
 {
@@ -47,6 +48,16 @@ export class TerraStorageObject
     public get name():string
     {
         return PathHelper.basename(this._s3Object.key);
+    }
+
+    public get icon():string
+    {
+        if ( this.isDirectory )
+        {
+            return "icon-folder";
+        }
+
+        return FileType.mapIconClass( this.name );
     }
 
     public get isDirectory():boolean

@@ -51,7 +51,6 @@ export class TerraFileListComponent implements OnInit, OnDestroy
     private _currentStorageRoot: TerraStorageObject;
 
     private _imagePreviewTimeout: number;
-    private _previewStorageObject: TerraStorageObject;
 
     public get currentStorageRoot(): TerraStorageObject
     {
@@ -66,6 +65,15 @@ export class TerraFileListComponent implements OnInit, OnDestroy
         }
 
         return null;
+    }
+
+    public set currentStorageRoot( storageObject: TerraStorageObject )
+    {
+        if ( (!storageObject || storageObject.isDirectory) && this._currentStorageRoot !== storageObject )
+        {
+            this._currentStorageRoot = storageObject;
+            this.renderFileList();
+        }
     }
 
     public get parentStorageObjects():Array<TerraStorageObject>
@@ -94,7 +102,6 @@ export class TerraFileListComponent implements OnInit, OnDestroy
     constructor(
         private _changeDetector: ChangeDetectorRef,
         private _frontendStorageService: TerraFrontendStorageService,
-        private _zone: NgZone,
         @Inject(forwardRef(() => TerraFileBrowserComponent)) private _parentFileBrowser: TerraFileBrowserComponent )
     {
     }
@@ -135,7 +142,7 @@ export class TerraFileListComponent implements OnInit, OnDestroy
                     };
                     return {
                         cellList: [
-                            { caption: storageObject.name },
+                            { caption: storageObject.name, icon: storageObject.icon  },
                             { caption: storageObject.isFile ? storageObject.publicUrl : "" },
                             { caption: storageObject.isFile ? storageObject.sizeString : "" },
                             { caption: storageObject.isFile ? moment(storageObject.lastModified).format('YYYY-MM-DD HH:mm') : "" },
