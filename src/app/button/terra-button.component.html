@@ -15,7 +15,8 @@
                       'btn-sm' : inputIsSmall,
                       'btn-lg' : inputIsLarge,
                       'activated' : inputIsActive && !inputIsDivider,
-                      'btn-divider' : inputIsDivider }"
+                      'btn-divider' : inputIsDivider,
+                      'btn-link' : inputIsLink }"
             [hidden]="inputIsHidden"
             [type]="inputType"
             (click)="click($event)">

@@ -8,7 +8,7 @@
 
 <div class="table-responsive">
     <context-menu-holder></context-menu-holder>
-    <table class="table data-table table-striped table-bordered">
+    <table class="table data-table">
         <thead>
         <tr>
             <th *ngIf="inputHasCheckboxes" width="25px">
@@ -55,7 +55,7 @@
                             <span [ngClass]="cell.icon"></span>
                             <span>{{cell.caption}}</span>
                         </span>
-
+                        
                         <div class="btn-group" *ngIf="cell.buttonList">
                             <ng-template ngFor let-button [ngForOf]="cell.buttonList">
                                 <terra-button *ngIf="!button.isHidden"
@@ -82,8 +82,7 @@
     <div *ngIf="!_rowList || _rowList && rowList.length < 1 && (
             (inputNoResultButtons && inputNoResultButtons.length > 0)
          || (inputNoResultTextPrimary && inputNoResultTextPrimary.length > 0) 
-         || (inputNoResultTextSecondary && inputNoResultTextSecondary.length > 0) )" 
-                class="initial-loading-warn">
+         || (inputNoResultTextSecondary && inputNoResultTextSecondary.length > 0) )">
         <no-result-notice
             [inputButtons]="inputNoResultButtons"
             [inputTextPrimary]="inputNoResultTextPrimary"

@@ -133,10 +133,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             this.modules.push(
                 {
-                    views:               [],
-                    identifier:          view.mainComponentName,
-                    width:               view.defaultWidth,
-                    currentSelectedView: view
+                    views:                 [],
+                    identifier:            view.mainComponentName,
+                    width:                 view.defaultWidth,
+                    currentSelectedView:   view,
+                    isBackgroundColorGrey: view.isBackgroundColorGrey
                 }
             );
         }
@@ -185,6 +186,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             return;
         }
 
+        module.isBackgroundColorGrey = view.isBackgroundColorGrey;
+        
         // check whether the view is already opened
         if(module.currentSelectedView === view)
         {

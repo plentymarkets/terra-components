@@ -29,6 +29,7 @@ export class TerraButtonComponent
     @Input() inputIsActive:boolean;
     @Input() inputIsFlagged:boolean;
     @Input() inputIsDivider:boolean;
+    @Input() inputIsLink:boolean;
     @Output() outputClicked = new EventEmitter<Event>();
 
     constructor()
@@ -38,6 +39,7 @@ export class TerraButtonComponent
         this.inputIsActive = false;
         this.inputIsFlagged = false;
         this.inputIsDivider = false;
+        this.inputIsLink = false;
         this.inputIsDisabled = false;
     }
 

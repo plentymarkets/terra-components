@@ -1,17 +1,1 @@
 @import "../terra-input.component";
-
-.input-unit-v1
-{
-    height: initial;
-}
-
-//To fix the scrolling
-label
-{
-    position: static;
-}
-
-textarea
-{
-    padding-top: 3px;
-}
