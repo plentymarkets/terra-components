@@ -102,14 +102,13 @@ export class TerraSimpleTableComponent<D>
 
         this.outputHeaderCheckBoxChanged.emit(isChecked);
 
-        this.inputRowList.forEach(
-            (row) =>
+        this.inputRowList.forEach((row) =>
+        {
+            if(!row.disabled)
             {
-                if ( !row.disabled )
-                {
-                    this.changeRowState(isChecked, row);
-                }
-            });
+                this.changeRowState(isChecked, row);
+            }
+        });
     }
 
     private onRowCheckboxChange(isChecked:boolean, row:TerraSimpleTableRowInterface<D>):void
@@ -170,12 +169,12 @@ export class TerraSimpleTableComponent<D>
     {
         if(this.inputHighlightedRow)
         {
-            let i: number = nextSibling ? 1 : -1;
+            let i:number = nextSibling ? 1 : -1;
             let highlightIndex:number = this.inputRowList.indexOf(this.inputHighlightedRow) + i;
 
-            while( highlightIndex >= 0 && highlightIndex < this.inputRowList.length )
+            while(highlightIndex >= 0 && highlightIndex < this.inputRowList.length)
             {
-                if ( !this.inputRowList[highlightIndex].disabled )
+                if(!this.inputRowList[highlightIndex].disabled)
                 {
                     this.inputHighlightedRow = this.inputRowList[highlightIndex];
                     this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
