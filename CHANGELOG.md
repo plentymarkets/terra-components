@@ -20,6 +20,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 	- disable public access to the data model, since it shouldn't be edited manually
 	- prevent adding two views with the same name to the same hierarchy level
 * **terra-navigator** reduce height if search bar is enabled
+* **terra-select-box** Drop down closes if user had clicked on another select box
 
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
