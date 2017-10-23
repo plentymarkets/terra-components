@@ -102,16 +102,16 @@ button:focus
     &.btn-primary,
     &.btn-brand-primary
     {
-        background-color: $blue;
+        background-color: $grey-9;
         &:hover,
         &:focus,
         &.focus
         {
-            background-color: $blue-hover;
+            background-color: $grey-11;
             &:active,
             &.active
             {
-                background-color: $blue;
+                background-color: $grey-9;
             }
         }
     }
