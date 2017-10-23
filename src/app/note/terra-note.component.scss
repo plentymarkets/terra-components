@@ -7,7 +7,8 @@
     padding: 8px;
     min-width: 200px;
     margin: 4px 0px;
-    height: 150px;
+    height: auto;
+    overflow-x: auto;
     &.selected
     {
         background-color: $blue;
@@ -51,19 +52,5 @@
             margin: 7px 4px 0px 0px;
             color: $grey-8;
         }
-    }
-}
-
-:host /deep/ .note-text div
-{
-    div
-    {
-        text-overflow: ellipsis;
-        overflow: hidden;
-    }
-    
-    i, span, p, h1, h2, h3, h4, h5, h6
-    {
-        overflow: hidden;
     }
 }
