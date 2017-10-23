@@ -1,0 +1,69 @@
+.note
+{
+    background-color: $grey-2;
+    -moz-border-radius: $border-radius;
+    -webkit-border-radius: $border-radius;
+    border-radius: $border-radius;
+    padding: 8px;
+    min-width: 200px;
+    margin: 4px 0px;
+    height: 150px;
+    &.selected
+    {
+        background-color: $blue;
+        
+        .note-inner
+        {
+            .note-text
+            {
+                color: $white;
+            }
+        }
+        .note-footer
+        {
+            .note-id
+            {
+                color: $white;
+            }
+        }
+    }
+    .note-inner
+    {
+        display: flex;
+        justify-content: space-between;
+        height: calc(100% - 26px);
+        
+        .note-text
+        {
+            padding-right: 0.8rem;
+            padding-bottom: 0.4rem;
+            max-width: 77%;
+            white-space: nowrap;
+            color: $grey-11;
+        }
+    }
+    .note-footer
+    {
+        display: flex;
+        justify-content: space-between;
+        .note-id
+        {
+            margin: 7px 4px 0px 0px;
+            color: $grey-8;
+        }
+    }
+}
+
+:host /deep/ .note-text div
+{
+    div
+    {
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    
+    i, span, p, h1, h2, h3, h4, h5, h6
+    {
+        overflow: hidden;
+    }
+}
