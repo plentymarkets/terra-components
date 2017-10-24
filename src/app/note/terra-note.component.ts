@@ -13,6 +13,8 @@ export class TerraNoteComponent implements OnInit
 {
     @Input() inputIsSelected:boolean;
     @Input() inputId:number;
+    @Input() inputHeaderText:string;
+    @Input() inputNoteText:string;
 
     constructor()
     {

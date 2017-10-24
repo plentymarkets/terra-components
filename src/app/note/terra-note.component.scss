@@ -1,6 +1,6 @@
 .note
 {
-    background-color: $grey-2;
+    background-color: #F9F3E7;
     -moz-border-radius: $border-radius;
     -webkit-border-radius: $border-radius;
     border-radius: $border-radius;
@@ -41,12 +41,20 @@
             max-width: 77%;
             white-space: nowrap;
             color: $grey-11;
+            hr
+            {
+                margin: 0;
+            }
+            div
+            {
+                white-space: pre-wrap;
+            }
         }
     }
     .note-footer
     {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         .note-id
         {
             margin: 7px 4px 0px 0px;
