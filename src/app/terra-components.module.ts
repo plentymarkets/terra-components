@@ -75,6 +75,7 @@ import { TerraInteractModule } from "./interactables/interact.module";
 import { TerraSliderComponent } from "./forms/slider/terra-slider.component";
 import { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.component';
 import { TerraButtonWithOptionsComponent } from './button-with-options/terra-button-with-options.component';
+import { FixedHeaderDirective } from './table/fixed-header/fixed-header.directive';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -192,7 +193,8 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraFileBrowserComponent,
         TerraFileInputComponent,
         TerraNoResultNoticeComponent,
-        TerraButtonWithOptionsComponent
+        TerraButtonWithOptionsComponent,
+        FixedHeaderDirective
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -284,7 +286,8 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraFileBrowserComponent,
         TerraFileInputComponent,
         TerraNoResultNoticeComponent,
-        TerraButtonWithOptionsComponent
+        TerraButtonWithOptionsComponent,
+        FixedHeaderDirective
     ],
     imports:         [
         BrowserModule,

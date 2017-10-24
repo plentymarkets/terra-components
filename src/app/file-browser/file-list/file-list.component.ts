@@ -1,6 +1,8 @@
 import {
+    AfterViewInit,
     ChangeDetectorRef,
     Component,
+    ElementRef,
     EventEmitter,
     forwardRef,
     Inject,
@@ -8,20 +10,22 @@ import {
     NgZone,
     OnDestroy,
     OnInit,
-    Output
+    Output,
+    ViewChild
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { TerraStorageObjectList } from '../model/terra-storage-object-list';
 import { TerraSimpleTableHeaderCellInterface } from '../../table/simple/cell/terra-simple-table-header-cell.interface';
 import { TerraSimpleTableRowInterface } from '../../table/simple/row/terra-simple-table-row.interface';
 import { TerraStorageObject } from '../model/terra-storage-object';
-import * as moment from "moment";
+import * as moment from 'moment';
 import { TerraFrontendStorageService } from '../terra-frontend-storage.service';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { PathHelper } from '../helper/path.helper';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
 import { FileType } from '../helper/fileType.helper';
+import { TerraSimpleTableComponent } from '../../table/simple/terra-simple-table.component';
 
 @Component({
     selector: 'terra-file-list',
@@ -30,8 +34,9 @@ import { FileType } from '../helper/fileType.helper';
 })
 export class TerraFileListComponent implements OnInit, OnDestroy
 {
+    private _translationPrefix: string = 'terraFileBrowser';
 
-    public _storageService: TerraBaseStorageService;
+    private _storageService: TerraBaseStorageService;
 
     @Input()
     public set storageService( service: TerraBaseStorageService )
@@ -89,12 +94,30 @@ export class TerraFileListComponent implements OnInit, OnDestroy
         return parents.reverse();
     }
 
+    private _showNewDirectoryPrompt: boolean = false;
+
+    private _newDirectoryName: string;
+
+    public get newDirectoryName(): string
+    {
+        return this._newDirectoryName;
+    }
+
+    public set newDirectoryName( name: string )
+    {
+        this._newDirectoryName = this.storageService.prepareKey( name, true );
+    }
+
+    private _objectsToDelete: Array<TerraStorageObject> = [];
+
+    private _selectedStorageObjects: Array<TerraStorageObject> = [];
+
     private _fileTableHeaderList: Array<TerraSimpleTableHeaderCellInterface> = [
-        { caption: "Dateiname", width: "30%" },
-        { caption: "Datei-URL", width: "50%" },
-        { caption: "Dateigröße", width: "7.5%" },
-        { caption: "Letze Änderung", width: "12.5%" },
-        { caption: "", width: "1" }
+        { caption: 'Dateiname', width: '30%' },
+        { caption: 'Datei-URL', width: '50%' },
+        { caption: 'Dateigröße', width: '7.5%' },
+        { caption: 'Letze Änderung', width: '12.5%' },
+        { caption: '', width: '1' }
     ];
 
     private _fileTableRowList: Array<TerraSimpleTableRowInterface<TerraStorageObject>> = [];
@@ -114,7 +137,6 @@ export class TerraFileListComponent implements OnInit, OnDestroy
                                             this._storageList = storageList;
                                             this.renderFileList();
                                         });
-        console.log( this._parentFileBrowser );
     }
 
     public ngOnDestroy(): void
@@ -125,6 +147,33 @@ export class TerraFileListComponent implements OnInit, OnDestroy
         }
     }
 
+    private createDirectory()
+    {
+        let path:string = PathHelper.join(
+            this.currentStorageRoot ? this.currentStorageRoot.key : '/',
+            this.newDirectoryName
+        );
+        this._showNewDirectoryPrompt = false;
+        this._newDirectoryName = null;
+        this.storageService.createDirectory( path );
+    }
+
+    private deleteObjects()
+    {
+        let keyList = [];
+        let extractKeys = ( objects: Array<TerraStorageObject> ) => {
+            objects.forEach( (object: TerraStorageObject) => {
+                keyList.push( object.key );
+                if ( object.isDirectory )
+                {
+                    extractKeys( object.children );
+                }
+            });
+        };
+        extractKeys( this._objectsToDelete );
+        this.storageService.deleteFiles( keyList );
+    }
+
     private renderFileList(): void
     {
         if ( this.currentStorageRoot )
@@ -133,8 +182,9 @@ export class TerraFileListComponent implements OnInit, OnDestroy
                 ( storageObject: TerraStorageObject) => {
                     let deleteButton: TerraButtonInterface = {
                         icon: 'icon-delete',
-                        clickFunction: () => {
-                            console.log( "delete", storageObject );
+                        clickFunction: (event: Event) => {
+                            this._objectsToDelete = [storageObject];
+                            event.stopPropagation();
                         },
                         isSecondary: true,
                         tooltipText: 'Datei löschen',
@@ -143,9 +193,9 @@ export class TerraFileListComponent implements OnInit, OnDestroy
                     return {
                         cellList: [
                             { caption: storageObject.name, icon: storageObject.icon  },
-                            { caption: storageObject.isFile ? storageObject.publicUrl : "" },
-                            { caption: storageObject.isFile ? storageObject.sizeString : "" },
-                            { caption: storageObject.isFile ? moment(storageObject.lastModified).format('YYYY-MM-DD HH:mm') : "" },
+                            { caption: storageObject.isFile ? storageObject.publicUrl : '' },
+                            { caption: storageObject.isFile ? storageObject.sizeString : '' },
+                            { caption: storageObject.isFile ? moment(storageObject.lastModified).format('YYYY-MM-DD HH:mm') : '' },
                             { buttonList: [ deleteButton ] }
                         ],
                         value: storageObject,
@@ -158,7 +208,7 @@ export class TerraFileListComponent implements OnInit, OnDestroy
         {
             this._fileTableRowList = [];
         }
-
+        this._selectedStorageObjects = [];
         this._changeDetector.detectChanges();
     }
 
@@ -185,7 +235,7 @@ export class TerraFileListComponent implements OnInit, OnDestroy
 
             if(storageObject && FileType.isWebImage(storageObject.key))
             {
-                this._parentFileBrowser.splitConfig.showImagePreview();
+                this._parentFileBrowser.splitConfig.showImagePreview(storageObject);
             }
             else
             {
@@ -194,4 +244,27 @@ export class TerraFileListComponent implements OnInit, OnDestroy
         };
         this._imagePreviewTimeout = setTimeout(debounceFn.bind(this), 500);
     }
+
+    public onSelectionChange( rows: Array<TerraSimpleTableRowInterface<TerraStorageObject>> )
+    {
+        this._selectedStorageObjects = rows.map( (row: TerraSimpleTableRowInterface<TerraStorageObject>) => {
+            return row.value;
+        });
+    }
+
+    public onFileSelect(event:Event):void
+    {
+        if(event.srcElement)
+        {
+            this.storageService
+                .uploadFiles(
+                    (<any>event.srcElement).files || [],
+                    this.currentStorageRoot ? this.currentStorageRoot.key : '/'
+                );
+
+            // unset value of file input to allow selecting same file again
+            (<HTMLInputElement>event.target).value = '';
+        }
+    }
+
 }

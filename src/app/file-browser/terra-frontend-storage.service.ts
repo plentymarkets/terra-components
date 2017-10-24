@@ -142,14 +142,17 @@ export class TerraFrontendStorageService extends TerraBaseStorageService
         return item;
     }
 
-    public deleteFile(key:string):Observable<void>
+    public deleteFiles(keyList:string[]):Observable<void>
     {
         this.setAuthorization();
         let request = this.mapRequest(
             this.http.delete(
-                this.url + "?key=" + key,
+                "/rest/storage/frontend/files",
                 {
-                    headers: this.headers
+                    headers: this.headers,
+                    params: {
+                        keyList: keyList
+                    }
                 }
             )
         );
@@ -157,7 +160,7 @@ export class TerraFrontendStorageService extends TerraBaseStorageService
         request.subscribe(
             () =>
             {
-                this._storageList.root.removeChild( key );
+                keyList.forEach( key => this._storageList.root.removeChild( key ) );
                 this._storageListSubject.next( this._storageList );
             },
             err =>

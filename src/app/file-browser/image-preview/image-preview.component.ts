@@ -12,5 +12,5 @@ import { TerraStorageObject } from '../model/terra-storage-object';
 export class TerraImagePreviewComponent
 {
     @Input()
-    public inputStorageObject: TerraStorageObject;
+    public inputStorageObject: string;
 }

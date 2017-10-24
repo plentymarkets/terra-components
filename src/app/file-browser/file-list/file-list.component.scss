@@ -1,1 +1,60 @@
 @import "../../split-view/multi/terra-multi-split-view.component";
+
+:host
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.file-list-container
+{
+    flex: 1;
+    overflow-y: hidden;
+    position: relative;
+}
+
+.prompt
+{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 90%;
+    margin-left: -45%;
+    background: $grey-2;
+    border: 1px solid $gray-light-3;
+    border-top: none;
+    padding: 4px 8px;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    transform: translateY(-100%);
+    transition: transform 150ms ease;
+    z-index: 1;
+    
+    &.in
+    {
+        transform: translateY(0);
+    }
+    
+    .prompt-title
+    {
+        font-size: 1.2em;
+        font-weight: 500;
+        margin-bottom: 8px;
+        display: block;
+    }
+}
+
+@media(min-width: 544px)
+{
+    .prompt
+    {
+        width: 400px;
+        margin-left: -200px;
+    }
+}

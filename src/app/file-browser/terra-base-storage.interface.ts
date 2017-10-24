@@ -14,7 +14,7 @@ export abstract class TerraBaseStorageService extends TerraBaseService
 
     public abstract uploadFiles( files: FileList | File[], path: string ): TerraUploadItem[];
 
-    public abstract deleteFile( key: string ): Observable<any>;
+    public abstract deleteFiles( keys: string[] ): Observable<any>;
 
     public prepareKey(value:string, isName:boolean = false):string
     {
