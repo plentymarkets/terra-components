@@ -33,5 +33,8 @@
 	},
 	"terraNavigator": {
 		"search": "Search"
+	},
+	"terraPager": {
+		"page": "Page"
 	}
 }

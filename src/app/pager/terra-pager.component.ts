@@ -25,6 +25,7 @@ export class TerraPagerComponent implements OnInit
     @Output() outputDoPaging = new EventEmitter<TerraPagerInterface>();
 
     private _pagingClicks = new Subject();
+    private _translationPrefix:string = "terraPager";
 
     constructor(private zone:NgZone)
     {
