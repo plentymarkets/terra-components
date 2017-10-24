@@ -5,7 +5,9 @@ import {
     Input,
     ModuleWithComponentFactories,
     ModuleWithProviders,
+    OnChanges,
     OnDestroy,
+    SimpleChanges,
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
@@ -19,7 +21,7 @@ import { TerraDynamicLoadedComponentInputInterface } from './data/terra-dynamic-
     template: require('./terra-dynamic-module-loader.component.html'),
     styles:   [require('./terra-dynamic-module-loader.component.scss')]
 })
-export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestroy
+export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChanges, OnDestroy
 {
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
     @Input() inputModule:any;
@@ -35,13 +37,21 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
     {
     }
 
-    ngAfterViewInit()
+    public ngAfterViewInit()
     {
         this._resolvedData = this.inputModule as ModuleWithProviders;
         this.updateComponent();
     }
 
-    ngOnDestroy()
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if ( changes.hasOwnProperty('inputInputs') )
+        {
+            this.assignInputProperties();
+        }
+    }
+
+    public ngOnDestroy()
     {
         if(this._cmpRef)
         {
@@ -65,17 +75,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                             this._cmpRef.instance.parameter = this.inputParameter; // TODO: deprecated if old split view is removed
 
                             // add inputs to component for data binding purposes
-                            if(!isNullOrUndefined(this.inputInputs))
-                            {
-                                this.inputInputs.forEach((input:TerraDynamicLoadedComponentInputInterface) =>
-                                    {
-                                        if(!isNullOrUndefined(input) && !isNullOrUndefined(input.name))
-                                        {
-                                            this._cmpRef.instance[input.name] = input.value;
-                                        }
-                                    }
-                                );
-                            }
+                            this.assignInputProperties();
 
                             // pass the instance of the loaded view back to the component
                             this._cmpRef.instance.splitViewInstance = this.inputView;
@@ -84,5 +84,20 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnDestr
                 );
 
             });
+    }
+
+    private assignInputProperties()
+    {
+        if(!isNullOrUndefined(this.inputInputs) && this._cmpRef)
+        {
+            this.inputInputs.forEach((input:TerraDynamicLoadedComponentInputInterface) =>
+                {
+                    if(!isNullOrUndefined(input) && !isNullOrUndefined(input.name))
+                    {
+                        this._cmpRef.instance[input.name] = input.value;
+                    }
+                }
+            );
+        }
     }
 }
