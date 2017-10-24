@@ -1,5 +1,5 @@
 <div class="portlet" [class.collapsable]="inputIsCollapsable">
-    <div class="portlet_head" (click)="toggleCollapse()">
+    <div class="portlet_head" (click)="toggleCollapse()" *ngIf="inputPortletHeader.length">
         <span>{{inputPortletHeader}}</span>
         <span class="icon-collapse_down" [class.rotated]="inputCollapsed" *ngIf="inputIsCollapsable"></span>
     </div>

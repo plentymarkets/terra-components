@@ -1,10 +1,10 @@
-<div class="input-unit-v1"
+<div class="input-unit-v1 textarea-wrapper"
      tooltipPlacement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
      [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
      container="body">
-    <label htmlFor="{{inputName}}">{{inputName}}
+    <label class="textarea-label" htmlFor="{{inputName}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
     <textarea id="{{inputId}}"

@@ -1,6 +1,6 @@
 {
 	"name": "@plentymarkets/terra-components",
-	"version": "2.1.13-zlk",
+	"version": "2.1.18-zlk",
 	"homepage": "https://github.com/plentymarkets/terra-components#readme",
 	"author": "plentymarkets",
 	"description": "plentymarkets terra components",
@@ -43,6 +43,7 @@
 		"ng2-ace-editor": "^0.3.1",
 		"ngx-bootstrap": "1.9.3",
 		"rxjs": "5.4.3",
+		"ts-keycode-enum": "^1.0.4",
 		"zone.js": "0.8.18"
 	},
 	"devDependencies": {

@@ -1,4 +1,4 @@
-<terra-pager *ngIf="inputHasPager"
+<terra-pager *ngIf="inputHasPager && _rowList && _rowList.length > 0"
              [inputPagingSize]="pagingSize"
              [inputDefaultPagingSize]="defaultPagingSize"
              [inputPagingData]="pagingData"
@@ -8,16 +8,17 @@
 
 <div class="table-responsive">
     <context-menu-holder></context-menu-holder>
-    <table class="table data-table table-striped table-bordered">
+    <table class="table data-table">
         <thead>
         <tr>
             <th *ngIf="inputHasCheckboxes" width="25px">
-                <terra-checkbox #viewChildHeaderCheckbox type="checkbox"
+                <terra-checkbox #viewChildHeaderCheckbox
                                 (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
-                                [value]="_isHeaderCheckboxChecked"></terra-checkbox>
+                                [value]="_isHeaderCheckboxChecked">
+                </terra-checkbox>
             </th>
             <ng-template ngFor let-header [ngForOf]="_headerList">
-                <th *ngIf="!header.isHidden"
+                <th *ngIf="!header.isHidden && _rowList && _rowList.length > 0"
                     width="{{header.width}}px"
                     [container]="'body'"
                     [placement]="checkTooltipPlacement(header.tooltipPlacement)"
@@ -29,7 +30,7 @@
             </ng-template>
         </tr>
         </thead>
-        <tbody *ngIf="_rowList">
+        <tbody *ngIf="_rowList && _rowList.length > 0">
         <ng-template ngFor let-row [ngForOf]="_rowList">
             <tr [ngClass]="{'selected': row.selected, 'isActive': row.isActive}"
                 [context-menu]="row.contextMenuLinkList">
@@ -54,7 +55,7 @@
                             <span [ngClass]="cell.icon"></span>
                             <span>{{cell.caption}}</span>
                         </span>
-                            
+                        
                         <div class="btn-group" *ngIf="cell.buttonList">
                             <ng-template ngFor let-button [ngForOf]="cell.buttonList">
                                 <terra-button *ngIf="!button.isHidden"
@@ -77,7 +78,16 @@
         </ng-template>
         </tbody>
     </table>
-    <div *ngIf="!_rowList && !inputHasInitialLoading"
-         class="initial-loading-warn">{{_langPrefix+'.initialLoading' | translate:lang:{ dataType: inputDataType} }}
+    
+    <div *ngIf="!_rowList || _rowList && rowList.length < 1 && (
+            (inputNoResultButtons && inputNoResultButtons.length > 0)
+         || (inputNoResultTextPrimary && inputNoResultTextPrimary.length > 0) 
+         || (inputNoResultTextSecondary && inputNoResultTextSecondary.length > 0) )">
+        <no-result-notice
+            [inputButtons]="inputNoResultButtons"
+            [inputTextPrimary]="inputNoResultTextPrimary"
+            [inputTextSecondary]="inputNoResultTextSecondary">
+        </no-result-notice>
     </div>
+
 </div>

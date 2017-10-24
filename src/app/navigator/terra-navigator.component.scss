@@ -29,14 +29,17 @@
 :host /deep/ .side-scroller,
 :host /deep/ .content
 {
-    width: 25%;
+    width: 16.7%;
     border-right: 1px solid #C7C7C7;
     padding-right: 1px;
 }
 
-// customize select box margin
-:host /deep/ .select-box-wrapper,
+:host /deep/ .select-box-wrapper
+{
+    margin: 3px !important;
+}
+
 :host /deep/ .input-unit-v1
 {
-    margin-bottom: 3px !important;
+    margin-bottom: 0px !important
 }

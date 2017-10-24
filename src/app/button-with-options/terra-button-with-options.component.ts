@@ -1,7 +1,7 @@
 import {
     Component,
-    Input,
     ElementRef,
+    Input,
     ViewChild
 } from '@angular/core';
 import { TerraButtonInterface } from '../button/data/terra-button.interface';
@@ -11,7 +11,7 @@ import { TerraButtonComponent } from '../button/terra-button.component';
 @Component({
     selector: 'terra-button-with-options',
     template: require('./terra-button-with-options.component.html'),
-    styles: [require('./terra-button-with-options.component.scss')]
+    styles:   [require('./terra-button-with-options.component.scss')]
 })
 export class TerraButtonWithOptionsComponent
 {
@@ -40,7 +40,7 @@ export class TerraButtonWithOptionsComponent
         this.clickListener = (event) =>
         {
             // check if it has been clicked elsewhere
-            if (!this.elementRef.nativeElement.contains(event.target))
+            if(!this.elementRef.nativeElement.contains(event.target))
             {
                 this._optionsToggle = false;
             }

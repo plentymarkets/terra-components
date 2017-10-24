@@ -21,32 +21,27 @@ body
 
 .tooltip
 {
-    font-size: .75rem;
-}
-
-.tooltip.top .tooltip-arrow
-{
-    border-top-color: #354763;
-}
-
-.tooltip.left .tooltip-arrow
-{
-    border-left-color: #354763;
-}
-
-.tooltip.bottom .tooltip-arrow
-{
-    border-bottom-color: #354763;
-}
-
-.tooltip.right .tooltip-arrow
-{
-    border-right-color: #354763;
-}
-
-.tooltip-inner
-{
-    background-color: #354763;
+    font-size: $font-size-2;
+    &.top .tooltip-arrow
+    {
+        border-top-color: #354763;
+    }
+    &.left .tooltip-arrow
+    {
+        border-left-color: #354763;
+    }
+    &.bottom .tooltip-arrow
+    {
+        border-bottom-color: #354763;
+    }
+    &.right .tooltip-arrow
+    {
+        border-right-color: #354763;
+    }
+    .tooltip-inner
+    {
+        background-color: #354763;
+    }
 }
 
 .terra-view
@@ -63,37 +58,47 @@ body
 .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12,
 .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12
 {
-    position: relative;
-    min-height: 1px;
     padding-right: 4px;
     padding-left: 4px;
     transition: all 0.3s ease;
 }
 
-h1 {
+h1
+{
     font-size: $font-size-7;
     font-weight: $font-bold;
 }
-h2 {
+
+h2
+{
     font-size: $font-size-6;
     font-weight: $font-bold;
 }
-h3 {
+
+h3
+{
     font-size: $font-size-5;
     font-weight: $font-bold;
 }
-h4 {
+
+h4
+{
     font-size: $font-size-5;
     font-weight: $font-weight-1;
 }
-h5 {
+
+h5
+{
     font-size: $font-size-4;
     font-weight: $font-bold;
 }
-p, span, a {
+
+p, span, a
+{
     font-size: $font-size-3;
     font-weight: $font-weight-1;
 }
+
 /// context-menu ////
 
 .context-menu
@@ -112,9 +117,9 @@ p, span, a {
     display: block;
     list-style-type: none;
     margin: 0;
-    
     text-align: left;
     z-index: $zindex-context-menu;
+
     a
     {
         cursor: pointer;
@@ -155,7 +160,6 @@ p, span, a {
                 opacity: 1;
             }
         }
-    
         &.disabled
         {
             color:$grey-6 !important;
@@ -164,6 +168,18 @@ p, span, a {
                 background-color: inherit;
                 cursor: not-allowed;
             }
+        }
+    }
+}
+
+.tab-wrapper
+{
+    .nav-item:first-child
+    {
+        .context-menu
+        {
+            left: 0px;
+            right: initial;
         }
     }
 }

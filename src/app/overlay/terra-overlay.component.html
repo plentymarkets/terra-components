@@ -3,7 +3,10 @@
     <div class="modal-dialog modal-lg" [ngClass]="{'modal-lg': inputIsLarge, 'modal-sm': inputIsSmall}">
         <div class="modal-content">
             <div class="modal-header" *ngIf="inputIsCloseable && inputOverlayTitle">
-                <terra-button *ngIf="inputIsCloseable" [inputIsAlignRight]="true" inputIcon="icon-close"
+                <terra-button *ngIf="inputIsCloseable"
+                              [inputIsAlignRight]="true"
+                              inputIcon="icon-close"
+                              [inputIsLink]="true"
                               (outputClicked)="hideOverlay()"></terra-button>
                 <h4 class="modal-title">{{inputOverlayTitle}}</h4>
             </div>
@@ -11,26 +14,25 @@
                 <ng-content></ng-content>
             </div>
             <div class="modal-footer" *ngIf="inputPrimaryButtonInterface || inputSecondaryButtonInterface">
+    
+                <terra-button *ngIf="inputSecondaryButtonInterface"
+                              [inputIsAlignRight]="false"
+                              [inputCaption]="inputSecondaryButtonInterface.caption"
+                              [inputTooltipText]="inputSecondaryButtonInterface.tooltipText"
+                              inputTooltipPlacement="bottom"
+                              [inputIsDisabled]="inputSecondaryButtonInterface.isDisabled"
+                              [inputIsLink]="true"
+                              (outputClicked)="inputSecondaryButtonInterface.clickFunction()"></terra-button>
                 
                 <terra-button *ngIf="inputPrimaryButtonInterface"
                               [inputIsAlignRight]="false"
-                              [inputIsPrimary]="true"
+                              [inputIsSecondary]="true"
                               [inputCaption]="inputPrimaryButtonInterface.caption"
-                              [inputIcon]="inputPrimaryButtonInterface.icon"
                               [inputTooltipText]="inputPrimaryButtonInterface.tooltipText"
                               inputTooltipPlacement="bottom"
                               [inputIsDisabled]="inputPrimaryButtonInterface.isDisabled"
                               (outputClicked)="inputPrimaryButtonInterface.clickFunction()"></terra-button>
                 
-                <terra-button *ngIf="inputSecondaryButtonInterface"
-                              [inputIsAlignRight]="false"
-                              [inputIsSecondary]="true"
-                              [inputCaption]="inputSecondaryButtonInterface.caption"
-                              [inputIcon]="inputSecondaryButtonInterface.icon"
-                              [inputTooltipText]="inputSecondaryButtonInterface.tooltipText"
-                              inputTooltipPlacement="bottom"
-                              [inputIsDisabled]="inputSecondaryButtonInterface.isDisabled"
-                              (outputClicked)="inputSecondaryButtonInterface.clickFunction()"></terra-button>
             </div>
         </div>
     </div>

@@ -1,5 +1,10 @@
+:host-context(terra-taglist)
+{
+    width: 80%;
+}
+
 .taglist
 {
     display: flex;
-    flex-wrap: wrap;
+    width: 100%;
 }
