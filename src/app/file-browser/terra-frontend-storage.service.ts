@@ -147,12 +147,9 @@ export class TerraFrontendStorageService extends TerraBaseStorageService
         this.setAuthorization();
         let request = this.mapRequest(
             this.http.delete(
-                "/rest/storage/frontend/files",
+                "/rest/storage/frontend/files?" + keyList.map( key => "keyList[]=" + key).join("&"),
                 {
-                    headers: this.headers,
-                    params: {
-                        keyList: keyList
-                    }
+                    headers: this.headers
                 }
             )
         );

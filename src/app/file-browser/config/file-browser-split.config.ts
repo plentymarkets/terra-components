@@ -21,6 +21,7 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
     private _fileListView: TerraMultiSplitViewInterface;
     private _imagePreviewView: TerraMultiSplitViewInterface;
     private _imageEditorView: TerraMultiSplitViewInterface;
+    private _imagePreviewStorageObject: TerraStorageObject = null;
 
     constructor( private _changeDetector: ChangeDetectorRef )
     {
@@ -39,31 +40,36 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
         };
         this.addView( this._fileListView );
 
+        this._imagePreviewView = {
+            module: TerraImagePreviewModule.forRoot(),
+            defaultWidth: "",
+            focusedWidth: SPLIT_WIDTH_SIDEBAR,
+            name: 'Image Preview',
+            mainComponentName: TerraImagePreviewModule.getMainComponent(),
+            inputs: [
+                {
+                    name: 'inputStorageObject',
+                    value: null
+                }
+            ]
+        };
+        this.addView( this._imagePreviewView, this._fileListView );
 
-
-        //setTimeout((() => {
-        //    this.setSelectedView( this._fileListView );
-        //}).bind(this));
+        setTimeout((() => {
+            this.setSelectedView( this._fileListView );
+        }).bind(this));
 
     }
 
     public showImagePreview( storageObject: TerraStorageObject )
     {
-        this._imagePreviewView = {
-            module: TerraImagePreviewModule.forRoot(),
-            defaultWidth: "",
-            focusedWidth: SPLIT_WIDTH_SIDEBAR,
-            name: 'Image Preview' + storageObject.name,
-            mainComponentName: TerraImagePreviewModule.getMainComponent(),
-            inputs: [
-                {
-                    name: 'inputStorageObject',
-                    value: storageObject.name
-                }
-            ]
-        };
-        this.addView( this._imagePreviewView, this._fileListView );
-        //this.setSelectedView( this._imagePreviewView );
+        this._imagePreviewView.inputs = [
+            {
+                name: 'inputStorageObject',
+                value: storageObject
+            }
+        ];
+        this.setSelectedView( this._imagePreviewView );
     }
 
     public hideImagePreview()

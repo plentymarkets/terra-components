@@ -172,6 +172,7 @@ export class TerraFileListComponent implements OnInit, OnDestroy
         };
         extractKeys( this._objectsToDelete );
         this.storageService.deleteFiles( keyList );
+        this._objectsToDelete = [];
     }
 
     private renderFileList(): void
