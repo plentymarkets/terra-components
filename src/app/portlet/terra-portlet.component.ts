@@ -13,6 +13,7 @@ import {
     transition,
     trigger
 } from "@angular/animations";
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector:   'terra-portlet',
@@ -62,6 +63,7 @@ export class TerraPortletComponent implements OnChanges
 
     constructor()
     {
+        this.inputPortletHeader = isNullOrUndefined(this.inputPortletHeader) ? '' : this.inputPortletHeader;
     }
 
     public ngOnChanges(changes:SimpleChanges):void
