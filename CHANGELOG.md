@@ -21,6 +21,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 	- prevent adding two views with the same name to the same hierarchy level
 * **terra-navigator** reduce height if search bar is enabled
 * **terra-select-box** Drop down closes if user had clicked on another select box
+* **terra-pager** Added missing translation
 
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
