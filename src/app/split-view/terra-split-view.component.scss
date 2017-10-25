@@ -186,6 +186,11 @@
     }
 }
 
+.view.isBackgroundColorGrey
+{
+    background-color: transparent !important;
+}
+
 ///// Fixed Columns for Terra-Navigator ///////
 @media (min-width: 768px) {
     .col-md-300px
