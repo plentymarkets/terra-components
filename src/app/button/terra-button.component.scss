@@ -352,39 +352,6 @@ fieldset[disabled] a.btn
             @include border-left-radius(0);
         }
     }
-    //&:not(:first-child)
-    //{
-    //    .btn
-    //    {
-    //        margin-left: 1px;
-    //    }
-    //}
-    //&:first-child:not(:last-child)
-    //{
-    //    > .btn-handler > .btn,
-    //    > .btn-handler > .flag
-    //    {
-    //        border-radius: $border-radius 0 0 $border-radius;
-    //    }
-    //}
-    //
-    //&:not(:first-child):not(:last-child)
-    //{
-    //    > .btn-handler > .btn,
-    //    > .btn-handler > .flag
-    //    {
-    //        border-radius: 0;
-    //    }
-    //}
-    //
-    //&:last-child:not(:first-child)
-    //{
-    //    > .btn-handler > .btn,
-    //    > .btn-handler > .flag
-    //    {
-    //        border-radius: 0 $border-radius $border-radius 0;
-    //    }
-    //}
 }
 
 ////////////// Button Group Vertical & Menu //////////////
