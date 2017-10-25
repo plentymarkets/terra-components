@@ -183,7 +183,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         if(this._toggleOpen !== value && value == true)
         {
-            document.addEventListener('click', this.clickListener);
+            document.addEventListener('click', this.clickListener, true);
         }
         else if(this._toggleOpen !== value && value == false)
         {

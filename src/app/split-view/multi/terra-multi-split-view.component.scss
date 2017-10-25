@@ -186,14 +186,10 @@
     &.isBackgroundColorGrey
     {
         background-color: transparent;
-        
-        &.first
-        {
-            &.last
-            {
-                background-color: $white;
-            }
-        }
+    }
+    &.workaround
+    {
+        background-color: $white;
     }
 }
 
