@@ -1,1 +1,8 @@
-<h1>Image Preview: {{ inputStorageObject?.name }}</h1>
+<div *ngIf="inputStorageObject" class="image-preview-container">
+    <h5>{{ inputStorageObject.name }}</h5>
+    <div>
+        <span [style.background-image]="'url(' + inputStorageObject.publicUrl + ')'"></span>
+    </div>
+    
+    <terra-text-input inputName="Alternativtext"></terra-text-input>
+</div>
