@@ -44,14 +44,14 @@
 
 .pager
 {
-    --input-text-align: right;
+    --input-text-align: center;
     --toolbar-border-radius: $border-radius $border-radius 0 0;
     --toolbar-margin: 0;
     --select-box-width: 65px;
     --select-box-wrapper-margin-bottom: 0;
     --input-unit-v1-margin-bottom: 0;
-    --input-width: 2.5rem;
-    --input-padding: .5rem .35rem;
+    --input-width: 34px;
+    --input-padding: .5rem .15rem;
     
     .form-group
     {
