@@ -123,7 +123,6 @@ export class TerraBaseService
                 {
                     this._alert.addAlertForPlugin({
                         msg:              missingUserPermissionAlertMessage,
-                        closable:         true,
                         type:             'danger',
                         dismissOnTimeout: 0
                     });
@@ -132,7 +131,6 @@ export class TerraBaseService
                 {
                     this._alert.addAlert({
                         msg:              missingUserPermissionAlertMessage,
-                        closable:         true,
                         type:             'danger',
                         dismissOnTimeout: 0
                     });
@@ -227,7 +225,6 @@ export class TerraBaseService
             {
                 this._alert.addAlertForPlugin({
                     msg:              this.getErrorString() + ': ' + response.message,
-                    closable:         true,
                     type:             'danger',
                     dismissOnTimeout: 0
                 });
@@ -236,7 +233,6 @@ export class TerraBaseService
             {
                 this._alert.addAlert({
                     msg:              this.getErrorString() + ': ' + response.message,
-                    closable:         true,
                     type:             'danger',
                     dismissOnTimeout: 0
                 });
@@ -255,7 +251,6 @@ export class TerraBaseService
             {
                 this._alert.addAlertForPlugin({
                     msg:              this.getErrorString() + errorCode + ': ' + error.message,
-                    closable:         true,
                     type:             'danger',
                     dismissOnTimeout: 0
                 });
@@ -264,7 +259,6 @@ export class TerraBaseService
             {
                 this._alert.addAlert({
                     msg:              this.getErrorString() + errorCode + ': ' + error.message,
-                    closable:         true,
                     type:             'danger',
                     dismissOnTimeout: 0
                 });
