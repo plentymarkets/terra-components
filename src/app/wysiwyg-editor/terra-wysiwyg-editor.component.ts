@@ -24,6 +24,7 @@ export class TerraWysiwygEditorComponent implements OnInit
 
     public ngOnInit():void
     {
+        // overwrite default placeholder if input is defined
         if(this.inputPlaceholder)
         {
             this._placeholder = this.inputPlaceholder;
