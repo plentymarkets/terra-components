@@ -35,6 +35,7 @@
     "search": "Suche"
   },
   "terraPager": {
-    "page": "Seite"
+    "page": "Seite",
+    "of": "von"
   }
 }
