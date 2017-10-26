@@ -20,7 +20,7 @@
         <div *ngIf="!module.hidden"
              id="{{ module.mainComponentName + '_' + module.instanceKey }}"
              class="view {{ module.defaultWidth }}"
-             [ngClass]="{'hasDivider': !(last && !first), 'first': first, 'last': (last && !first)}">
+             [ngClass]="{'first': first, 'last': (last && !first), isBackgroundColorGrey: module.isBackgroundColorGrey}">
             <terra-dynamic-module-loader [inputModule]="module.module"
                                          [inputParameter]="module.parameter"
                                          [inputMainComponentName]="module.mainComponentName">

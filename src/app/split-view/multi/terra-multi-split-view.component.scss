@@ -142,95 +142,57 @@
     overflow-x: hidden;
     height: 100%;
     white-space: nowrap;
-}
-
-.side-scroller.offset
-{
-    height: calc(100% - 50px) !important;
-}
-
-.side-scroller > *
-{
-    display: inline-block;
-}
-
-.divider
-{
-    width: 1px;
-    height: 200% !important;
-    background-color: $gray-light-2-half;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-}
-
-/deep/
-{
-    terra-split-view terra-split-view .divider
+    font-size: 0;
+    &.offset
     {
-        display: none !important;
+        height: calc(100% - 42px) !important;
     }
-}
-
-.view
-{
-    vertical-align: top;
-    height: 100%;
-    overflow: hidden;
-    white-space: normal;
-    position: relative;
-    padding: 0;
-    background-color: $white;
+    > *
+    {
+        display: inline-block;
+    }
     
-    &.isBackgroundColorGrey
+    .view
     {
-        background-color: transparent;
-    }
-    &.workaround
-    {
+        font-size: $font-size-3;
+        vertical-align: top;
+        height: 100%;
+        overflow: hidden;
+        white-space: normal;
+        position: relative;
         background-color: $white;
+        
+        &.isBackgroundColorGrey
+        {
+            background-color: transparent;
+            
+            &.first
+            {
+                &.last
+                {
+                    background-color: $white;
+                }
+            }
+        }
+        &.first
+        {
+            padding-left: 5px;
+        }
+        > div
+        {
+            height: 100%;
+            min-height: 100%;
+            overflow-y: auto;
+        }
+        &.workaround
+        {
+            background-color: $white;
+        }
     }
 }
 
-.view > div
-{
-    height: 100%;
-    min-height: 100%;
-    overflow-y: auto;
-}
 
-.view.hasDivider
-{
-    padding: 0 5px 0 4px;
-    margin-right: -4px;
-}
 
-/deep/
-{
-    terra-split-view terra-split-view .hasDivider
-    {
-        padding: 0 !important;
-    }
-}
-
-.view.first
-{
-    padding-left: 0 !important;
-}
-
-.view.last
-{
-    padding: 0 0 0 4px;
-}
-
-/deep/
-{
-    terra-split-view terra-split-view .view.last
-    {
-        padding: 0 !important;
-    }
-}
 
 // TODO: @vwiebe, refactoring
 
@@ -254,7 +216,7 @@
     height: 525px;
 }
 
-/deep/ .tab-content .fadeIn
+/deep/ .side-scroller .fadeIn
 {
     animation-name: fadeInAnimation;
     animation-duration: 0.25s;
