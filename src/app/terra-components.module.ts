@@ -14,6 +14,7 @@ import {
     ModalModule,
     TooltipModule
 } from 'ngx-bootstrap';
+import { QuillModule } from 'ngx-quill';
 import { TerraComponentsComponent } from './terra-components.component';
 import { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
 import { TerraNumberInputComponent } from './forms/input/number-input/terra-number-input.component';
@@ -75,6 +76,7 @@ import { TerraInteractModule } from "./interactables/interact.module";
 import { TerraSliderComponent } from "./forms/slider/terra-slider.component";
 import { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.component';
 import { TerraButtonWithOptionsComponent } from './button-with-options/terra-button-with-options.component';
+import { TerraWysiwygEditorComponent } from './wysiwyg-editor/terra-wysiwyg-editor.component';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -192,7 +194,8 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraFileBrowserComponent,
         TerraFileInputComponent,
         TerraNoResultNoticeComponent,
-        TerraButtonWithOptionsComponent
+        TerraButtonWithOptionsComponent,
+        TerraWysiwygEditorComponent
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -236,7 +239,8 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
-        TerraButtonWithOptionsComponent
+        TerraButtonWithOptionsComponent,
+        TerraWysiwygEditorComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -284,7 +288,8 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraFileBrowserComponent,
         TerraFileInputComponent,
         TerraNoResultNoticeComponent,
-        TerraButtonWithOptionsComponent
+        TerraButtonWithOptionsComponent,
+        TerraWysiwygEditorComponent
     ],
     imports:         [
         BrowserModule,
@@ -300,7 +305,8 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TranslationModule.forRoot(),
         MyDatePickerModule,
         AceEditorModule,
-        TerraInteractModule
+        TerraInteractModule,
+        QuillModule
     ],
     providers:       [
         COMPILER_PROVIDERS,
