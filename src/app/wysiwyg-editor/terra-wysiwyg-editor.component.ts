@@ -18,7 +18,7 @@ import {
     styles:   [require('./terra-wysiwyg-editor.component.scss')],
     providers: [{
         provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => TerraWysiwygEditorComponent),
+        useExisting: TerraWysiwygEditorComponent,
         multi: true
     }]
 })
