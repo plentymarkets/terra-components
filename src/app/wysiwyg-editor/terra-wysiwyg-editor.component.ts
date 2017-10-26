@@ -12,13 +12,13 @@ import {
 } from '@angular/forms';
 
 @Component({
-    selector: 'terra-wysiwyg-editor',
-    template: require('./terra-wysiwyg-editor.component.html'),
-    styles:   [require('./terra-wysiwyg-editor.component.scss')],
+    selector:  'terra-wysiwyg-editor',
+    template:  require('./terra-wysiwyg-editor.component.html'),
+    styles:    [require('./terra-wysiwyg-editor.component.scss')],
     providers: [{
-        provide: NG_VALUE_ACCESSOR,
+        provide:     NG_VALUE_ACCESSOR,
         useExisting: TerraWysiwygEditorComponent,
-        multi: true
+        multi:       true
     }]
 })
 export class TerraWysiwygEditorComponent implements OnInit, ControlValueAccessor
@@ -38,8 +38,12 @@ export class TerraWysiwygEditorComponent implements OnInit, ControlValueAccessor
         this._placeholder = this.translation.translate('terraEditor.insertText');
 
         // initialize callbacks
-        this._onChangeCallback = () => {};
-        this._onTouchedCallback = () => {};
+        this._onChangeCallback = () =>
+        {
+        };
+        this._onTouchedCallback = () =>
+        {
+        };
     }
 
     public ngOnInit():void
