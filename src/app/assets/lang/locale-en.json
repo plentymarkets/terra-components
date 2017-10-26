@@ -33,5 +33,8 @@
 	},
 	"terraNavigator": {
 		"search": "Search"
+	},
+	"terraEditor": {
+		"insertText": "Insert text here.."
 	}
 }

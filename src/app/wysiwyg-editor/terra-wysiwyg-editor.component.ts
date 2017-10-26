@@ -1,16 +1,32 @@
 import {
-    Component
+    Component,
+    Input,
+    OnInit
 } from '@angular/core';
+import { TranslationService } from 'angular-l10n';
 
 @Component({
     selector: 'terra-wysiwyg-editor',
     template: require('./terra-wysiwyg-editor.component.html'),
-    styles: [require('./terra-wysiwyg-editor.component.scss')]
+    styles:   [require('./terra-wysiwyg-editor.component.scss')]
 })
-export class TerraWysiwygEditorComponent
+export class TerraWysiwygEditorComponent implements OnInit
 {
-    constructor()
-    {
+    @Input() inputPlaceholder:string;
 
+    private _placeholder:string;
+
+    constructor(private translation:TranslationService)
+    {
+        // initialize placeholder
+        this._placeholder = this.translation.translate('terraEditor.insertText');
+    }
+
+    public ngOnInit():void
+    {
+        if(this.inputPlaceholder)
+        {
+            this._placeholder = this.inputPlaceholder;
+        }
     }
 }
