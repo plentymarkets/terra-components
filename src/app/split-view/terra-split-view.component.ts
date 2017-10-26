@@ -12,6 +12,7 @@ import { TerraSplitViewInterface } from './data/terra-split-view.interface';
     template: require('./terra-split-view.component.html'),
     styles:   [require('./terra-split-view.component.scss')]
 })
+/** @deprecated - please use `TerraMultiSplitViewComponent` instead */
 export class TerraSplitViewComponent implements OnChanges, OnDestroy
 {
     @Input() inputModules:Array<TerraSplitViewInterface>;
@@ -64,7 +65,7 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
 
                             if(elementOffsetLeft < viewContainer.offset().left)
                             {
-                                offset = viewContainerScrollLeft + elementOffsetLeft - 10;
+                                offset = viewContainerScrollLeft + elementOffsetLeft;
                             }
                             else if(elementOffsetLeft + elementWidth + 30 > viewContainerOffsetLeft + viewContainerWidth)
                             {

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+@import './app/assets/styles/_variables.scss';
 
 body
 {
@@ -47,7 +48,6 @@ body
 .terra-view
 {
     height: 100%;
-    padding: 4px 0px 0px 3px;
 }
 
 ///////////////// COLUMNS /////////////////
@@ -61,6 +61,21 @@ body
     padding-right: 4px;
     padding-left: 4px;
     transition: all 0.3s ease;
+}
+
+.view
+{
+    .row
+    {
+        > div
+        {
+            padding-left: 0px;
+            &:last-child
+            {
+                padding-right: 0px;
+            }
+        }
+    }
 }
 
 h1
@@ -119,7 +134,7 @@ p, span, a
     margin: 0;
     text-align: left;
     z-index: $zindex-context-menu;
-
+    
     a
     {
         cursor: pointer;
@@ -162,7 +177,7 @@ p, span, a
         }
         &.disabled
         {
-            color:$grey-6 !important;
+            color: $grey-6 !important;
             &:hover
             {
                 background-color: inherit;

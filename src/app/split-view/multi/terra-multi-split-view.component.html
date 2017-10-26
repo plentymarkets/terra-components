@@ -1,4 +1,3 @@
-<script src="terra-multi-split-view.component.ts"></script>
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs" class="terra-breadcrumbs-wrapper">
     <ul class="terra-breadcrumbs">
         <ng-template ngFor let-module [ngForOf]="modules" let-index="index">
@@ -28,7 +27,7 @@
 </terra-base-toolbar>
 <div *ngIf="modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
     <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first" let-index="index">
-        <div class="view {{ module.width }}" id="module{{index}}" [ngClass]="{'hasDivider': !last, 'first': first, 'last': last, isBackgroundColorGrey: module.isBackgroundColorGrey, 'workaround': false}">
+        <div class="view {{ module.width }}" id="module{{index}}" [ngClass]="{'first': first, 'last': last, isBackgroundColorGrey: module.isBackgroundColorGrey, 'workaround': false}">
             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                 <div *ngIf="module.currentSelectedView === view" class="{{ view.mainComponentName + '_' + i}} fadeIn">
                     <div [ngClass]="{'offsetHeight': inputShowBreadcrumbs}">
