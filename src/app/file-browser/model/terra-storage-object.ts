@@ -26,6 +26,11 @@ export class TerraStorageObject
         return this._s3Object.publicUrl;
     }
 
+    public get previewUrl():string
+    {
+        return this._s3Object.previewUrl || this._s3Object.publicUrl;
+    }
+
     public get lastModified():Date
     {
         return new Date(this._s3Object.lastModified);
@@ -99,6 +104,24 @@ export class TerraStorageObject
             }
             return 0;
         });
+    }
+
+    public get fileCount(): number
+    {
+        if ( this.isFile )
+        {
+            return 1;
+        }
+        else
+        {
+            return this.children
+                       .map( (child: TerraStorageObject) => {
+                           return child.fileCount;
+                       })
+                       .reduce( (sum: number, current: number) => {
+                           return sum + current;
+                       }, 0);
+        }
     }
 
     constructor(s3Object:S3StorageObjectInterface, parent?:TerraStorageObject)

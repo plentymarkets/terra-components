@@ -5,7 +5,8 @@ export interface S3StorageObjectInterface
     lastModified:string;
     size:number;
     publicUrl:string;
-    storageClass:"STANDARD" | "STANDARD_IA" | "GLACIER" | "RRS"
+    previewUrl?:string;
+    storageClass:"STANDARD" | "STANDARD_IA" | "GLACIER" | "RRS";
 }
 
 export function createS3StorageObject(key):S3StorageObjectInterface

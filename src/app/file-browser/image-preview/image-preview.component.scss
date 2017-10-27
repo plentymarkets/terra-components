@@ -9,3 +9,59 @@
     margin-left: 3px;
     padding: 4px;
 }
+
+h5
+{
+    margin: 0.5rem 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    
+    span
+    {
+        display: block;
+        font-size: .7rem;
+        color: $text-muted;
+        margin-top: 4px;
+    }
+}
+
+.preview-container
+{
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    margin-bottom: .5rem;
+    
+    > div
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+}
+
+.loader
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    
+    .icon-loading
+    {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 5rem;
+        --icon-color: #fff;
+    }
+}

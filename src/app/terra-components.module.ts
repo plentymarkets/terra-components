@@ -76,6 +76,7 @@ import { TerraSliderComponent } from "./forms/slider/terra-slider.component";
 import { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.component';
 import { TerraButtonWithOptionsComponent } from './button-with-options/terra-button-with-options.component';
 import { FixedHeaderDirective } from './table/fixed-header/fixed-header.directive';
+import { TerraFileBrowserService } from './file-browser/terra-file-browser.service';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -309,6 +310,7 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         COMPILER_PROVIDERS,
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
+        TerraFileBrowserService,
     ],
     bootstrap:       [
         TerraComponentsComponent

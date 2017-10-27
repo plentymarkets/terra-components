@@ -26,8 +26,8 @@
                 [ngStyle]="{'background-color': row.backgroundColor}"
                 [class.isActive]="row === inputHighlightedRow"
                 [class.disabled]="row.disabled"
-                (click)="onRowClick(row)">
-                <td *ngIf="inputHasCheckboxes" width="40px">
+                (click)="onRowClick($event, row)">
+                <td *ngIf="inputHasCheckboxes" width="40px" (click)="onCheckboxClick($event)">
                     <terra-checkbox #rowCheckbox
                                     [value]="row.selected"
                                     [inputIsDisabled]="row.disabled"

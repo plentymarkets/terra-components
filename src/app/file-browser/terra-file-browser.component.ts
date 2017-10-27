@@ -21,6 +21,7 @@ import { TranslationService } from "angular-l10n";
 import { Subscription } from "rxjs/Subscription";
 import { FileBrowserSplitConfig } from './config/file-browser-split.config';
 import { TerraBaseStorageService } from './terra-base-storage.interface';
+import { TerraFileBrowserService } from './terra-file-browser.service';
 
 @Component({
     selector: 'terra-file-browser',
@@ -35,9 +36,18 @@ export class TerraFileBrowserComponent implements OnInit
     @Input()
     public inputAllowedExtensions:Array<string> = [];
 
-    @Input()
-    public inputStorageService: TerraBaseStorageService;
+    private _storageService: TerraBaseStorageService;
 
+    @Input()
+    public set inputStorageService( service: TerraBaseStorageService )
+    {
+        this._storageService = service;
+    }
+
+    public get inputStorageService(): TerraBaseStorageService
+    {
+        return this._storageService || this._frontendStorageService;
+    }
     /*
 
     @Output()
@@ -69,13 +79,15 @@ export class TerraFileBrowserComponent implements OnInit
     private _globalListeners:{ [event:string]:(...args:any[]) => void } = {};
     */
 
-    constructor(public splitConfig: FileBrowserSplitConfig)
+    constructor(
+        public splitConfig: FileBrowserSplitConfig,
+        private _frontendStorageService: TerraFrontendStorageService )
     {
     }
 
     public ngOnInit():void
     {
-        this.splitConfig.init();
+        this.splitConfig.init( this.inputStorageService );
     }
 
     /*

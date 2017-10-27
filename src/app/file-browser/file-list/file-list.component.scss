@@ -17,6 +17,39 @@
     flex: 1;
     overflow-y: hidden;
     position: relative;
+    
+    .file-drop
+    {
+        position: absolute;
+        top: 32px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: transparentize( $brand-primary, 0.3 );
+        z-index: 2;
+        border-radius: $border-radius;
+        display: none;
+        flex-direction: row;
+        align-items: center;
+        
+        &.in {
+            display: flex;
+        }
+        
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            color: #fff;
+            font-size: 2rem;
+            
+            .icon-upload {
+                font-size: 7.5rem;
+            }
+            
+        }
+    }
 }
 
 .prompt
@@ -48,6 +81,34 @@
         margin-bottom: 8px;
         display: block;
     }
+}
+
+.empty-directory
+{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    > div
+    {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    p
+    {
+        text-align: center;
+        font-size: 2em;
+        color: $text-muted;
+    }
+}
+
+.file-list-container.empty .prompt
+{
+    top: 0;
 }
 
 @media(min-width: 544px)

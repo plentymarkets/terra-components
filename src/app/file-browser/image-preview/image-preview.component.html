@@ -1,8 +1,21 @@
-<div *ngIf="inputStorageObject" class="image-preview-container">
-    <h5>{{ inputStorageObject.name }}</h5>
-    <div>
-        <span [style.background-image]="'url(' + inputStorageObject.publicUrl + ')'"></span>
+<div *ngIf="inputStorageObject">
+    <h5>
+        {{ inputStorageObject.name }}
+        <span>{{ _metadata.width || '-' }} x {{ _metadata.height || '-' }} px</span>
+    </h5>
+    <div class="preview-container">
+        <div [style.background-image]="'url(' + inputStorageObject.previewUrl + ')'"></div>
     </div>
     
-    <terra-text-input inputName="Alternativtext"></terra-text-input>
+    
+    <terra-text-input inputName="Alternativtext" [(ngModel)]="_metadata.altText"></terra-text-input>
+    
+    <terra-button [inputCaption]="'speichern'"
+                  [inputIsTertiary]="true"
+                  [inputIcon]="'icon-save'"
+                  [inputIsAlignRight]="true"
+                  [inputTooltipText]="'Metadaten speichern'"
+                  (outputClicked)="updateMetadata()"></terra-button>
+    
+    <div class="loader" *ngIf="_isLoading"><div class="icon-loading"></div></div>
 </div>

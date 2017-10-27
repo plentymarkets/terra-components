@@ -152,7 +152,13 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         }
     }
 
-    private onRowClick(row:TerraSimpleTableRowInterface<D>):void
+    private onCheckboxClick(event: Event):void
+    {
+        // do not emit 'outputRowClicked' when toggling checkbox
+        event.stopPropagation();
+    }
+
+    private onRowClick(event: MouseEvent, row:TerraSimpleTableRowInterface<D>):void
     {
         if(this.inputUseHighlighting && !row.disabled)
         {

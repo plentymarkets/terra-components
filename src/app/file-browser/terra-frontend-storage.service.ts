@@ -8,6 +8,7 @@ import { Observable } from "rxjs/Observable";
 import { createS3StorageObject } from "./model/s3-storage-object.interface";
 import { TerraBaseStorageService } from './terra-base-storage.interface';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { TerraImageMetadata } from './model/terra-image-metadata.interface';
 
 @Injectable()
 export class TerraFrontendStorageService extends TerraBaseStorageService
@@ -26,6 +27,8 @@ export class TerraFrontendStorageService extends TerraBaseStorageService
     {
         return this.queue.progress;
     }
+
+    private _metadataCache: {[storageKey: string]: TerraImageMetadata } = {};
 
     constructor(_terraLoadingSpinnerService:TerraLoadingSpinnerService, _http:Http)
     {
@@ -93,7 +96,7 @@ export class TerraFrontendStorageService extends TerraBaseStorageService
         return uploadItems;
     }
 
-    public uploadFile(file:File, path:string = "/"):TerraUploadItem
+    private uploadFile(file:File, path:string = "/"):TerraUploadItem
     {
         if(!file)
         {
@@ -140,6 +143,63 @@ export class TerraFrontendStorageService extends TerraBaseStorageService
         this.queue.startUpload();
 
         return item;
+    }
+
+    public getMetadata( key: string ): Observable<TerraImageMetadata>
+    {
+        if ( this._metadataCache.hasOwnProperty( key ) )
+        {
+            return Observable.from( [this._metadataCache[key]] );
+        }
+
+        this.setAuthorization();
+        let request = this.mapRequest(
+            this.http.get(
+                "/rest/storage/frontend/file/metadata?key=" + key,
+                {
+                    headers: this.headers
+                }
+            )
+        );
+
+        request.subscribe(
+            (metadata) => {
+                this._metadataCache[key] = metadata;
+            },
+            () => {
+                delete this._metadataCache[key];
+            }
+        );
+
+        return request;
+    }
+
+    public updateMetadata( key: string, metadata: TerraImageMetadata ): Observable<any>
+    {
+        this.setAuthorization();
+        let request = this.mapRequest(
+            this.http.post(
+                "/rest/storage/frontend/file/metadata",
+                {
+                    key: key,
+                    metadata: metadata
+                },
+                {
+                    headers: this.headers
+                }
+            )
+        );
+
+        request.subscribe(
+            () => {
+                this._metadataCache[key] = metadata;
+            },
+           () => {
+                delete this._metadataCache[key];
+            }
+        );
+
+        return request;
     }
 
     public deleteFiles(keyList:string[]):Observable<void>
