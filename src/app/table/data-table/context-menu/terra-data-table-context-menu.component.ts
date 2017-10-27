@@ -37,9 +37,9 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
     get locationCss()
     {
         return {
-            'display': this._isShown ? 'block' : 'none',
-            left:      this._mouseLocation.left + 'px',
-            top:       this._mouseLocation.top + 'px',
+            visibility: this._isShown ? 'visible' : 'hidden',
+            left: this._mouseLocation.left - window.pageXOffset + 'px',
+            top:  this._mouseLocation.top - window.pageYOffset + 'px',
         };
     }
 
