@@ -1,10 +1,12 @@
+$padding-border: 16px;
+
 .note
 {
     background-color: $yellow-light;
     -moz-border-radius: $border-radius;
     -webkit-border-radius: $border-radius;
     border-radius: $border-radius;
-    padding: 16px;
+    padding: $padding-border;
     min-width: 200px;
     margin: 4px 0px;
     height: auto;
@@ -41,7 +43,6 @@
         .note-text
         {
             padding-right: 0.8rem;
-            padding-bottom: 0.4rem;
             max-width: 77%;
             white-space: nowrap;
             color: $grey-11;
@@ -54,15 +55,19 @@
                 white-space: pre-wrap;
             }
         }
-    }
-    .note-footer
-    {
-        display: flex;
-        justify-content: flex-end;
-        .note-id
+        .note-sidebar
         {
-            margin: 7px 4px 0px 0px;
-            color: $grey-8;
+            display:flex;
+            align-items: flex-end;
+            flex-direction: column;
+            .note-id
+            {
+                margin-top: auto;
+                color: $grey-8;
+                width: 100%;
+                text-align: center;
+                padding-top: $padding-border;
+            }
         }
     }
 }

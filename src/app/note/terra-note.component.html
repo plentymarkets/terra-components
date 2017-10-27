@@ -6,11 +6,11 @@
             <hr>
             <div [innerHTML]="inputNoteText"></div>
         </div>
-        <div class="btn-group-vertical" role="group">
-            <ng-content select="[buttons]"></ng-content>
+        <div class="note-sidebar">
+            <div class="btn-group-vertical" role="group">
+                <ng-content select="[buttons]"></ng-content>
+            </div>
+            <span *ngIf="inputId" class="note-id">#{{ inputId }}</span>
         </div>
-    </div>
-    <div class="note-footer">
-        <span *ngIf="inputId" class="note-id">#{{ inputId }}</span>
     </div>
 </div>
