@@ -2,7 +2,7 @@
      [ngClass]="{'selected': inputIsSelected}">
     <div class="note-inner">
         <div class="note-text pull-sm-left">
-            {{inputHeaderText}}
+            <span class="note-header">{{inputHeaderText}}</span>
             <hr>
             <div [innerHTML]="inputNoteText"></div>
         </div>
