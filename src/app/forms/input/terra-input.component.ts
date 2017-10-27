@@ -138,7 +138,6 @@ export class TerraInputComponent implements ControlValueAccessor
 
                         this._alert.addAlert({
                             msg:              emptyMessage,
-                            closable:         true,
                             type:             'danger',
                             dismissOnTimeout: 0
                         });
@@ -159,7 +158,6 @@ export class TerraInputComponent implements ControlValueAccessor
 
                         this._alert.addAlert({
                             msg:              invalidMessage,
-                            closable:         true,
                             type:             'danger',
                             dismissOnTimeout: 0
                         });

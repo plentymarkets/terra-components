@@ -1,42 +1,13 @@
-/deep/
-{
-    terra-navigator
-    {
-        .divider
-        {
-            display: none !important;
-        }
-        .hasDivider
-        {
-            padding: 0 !important;
-        }
-        .view
-        {
-            padding: 0 2px !important;
-        }
-        .view .last
-        {
-            padding: 0 !important;
-        }
-        .side-scroller
-        {
-            margin-right: -2px;
-        }
-    }
-}
-
 // customize split view
 :host /deep/ .side-scroller,
 :host /deep/ .content
 {
     width: 16.7%;
-    border-right: 1px solid #C7C7C7;
-    padding-right: 1px;
 }
 
 :host /deep/ .select-box-wrapper
 {
-    margin: 3px !important;
+    margin: 4px;
 }
 
 :host /deep/ .input-unit-v1
