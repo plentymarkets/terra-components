@@ -41,7 +41,7 @@ button:focus
                 background-color: transparent;
                 color: $grey-4;
                 font-weight: $font-weight-3;
-    
+                
                 &:hover,
                 &:focus,
                 &.focus
@@ -58,6 +58,46 @@ button:focus
             }
         }
     }
+    .flag
+    {
+        position: absolute;
+        right: 0;
+        top: 0;
+        overflow: hidden;
+        width: 15px;
+        height: 15px;
+        border-top-right-radius: 0.2rem;
+        cursor: pointer;
+        
+        &.disabled
+        {
+            cursor: not-allowed;
+        }
+        
+        span
+        {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: $white;
+            text-align: center;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            width: 20px;
+            display: block;
+            position: absolute;
+            top: -2px;
+            right: -7px;
+            cursor: pointer;
+            background: $brand-yellow;
+            border-top: 10px solid $brand-yellow;
+            &.disabled
+            {
+                background: $brand-yellow-light;
+                border-top: 10px solid $brand-yellow-light;
+                cursor: not-allowed;
+            }
+        }
+    }
 }
 
 .btn
@@ -65,7 +105,6 @@ button:focus
     height: $terra-btn-md-height;
     line-height: $terra-btn-md-height;
     display: inline-block;
-    padding: 0 8px !important;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -81,7 +120,9 @@ button:focus
     width: 100%;
     overflow: hidden;
     text-decoration: none;
-    @include button-size($btn-padding-y, $btn-padding-x, $font-size-3, $border-radius);
+    padding: var(--btn-padding, 0 8px);
+    border-radius: $border-radius;
+    font-size: $font-size-3;
     @include transition(all .2s ease-in-out);
     @include button-variant($white, $grey-9, transparent);
     
@@ -102,16 +143,16 @@ button:focus
     &.btn-primary,
     &.btn-brand-primary
     {
-        background-color: $blue;
+        background-color: $grey-9;
         &:hover,
         &:focus,
         &.focus
         {
-            background-color: $blue-hover;
+            background-color: $grey-11;
             &:active,
             &.active
             {
-                background-color: $blue;
+                background-color: $grey-9;
             }
         }
     }
@@ -164,7 +205,8 @@ button:focus
         // line-height: ensure even-numbered height of button next to large input
         height: $terra-btn-lg-height;
         line-height: $terra-btn-lg-height;
-        @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $font-size-5, $btn-border-radius-lg);
+        padding: var(--btn-lg-padding, 0 8px);
+        font-size: $font-size-5;
         span
         {
             top: 4px;
@@ -177,7 +219,8 @@ button:focus
         // line-height: ensure proper height of button next to small input
         height: $terra-btn-sm-height;
         line-height: $terra-btn-sm-height;
-        @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-1, $btn-border-radius-sm);
+        padding: var(--btn-sm-padding, 0 8px);
+        font-size: $font-size-1;
         span
         {
             top: 3px;
@@ -267,47 +310,6 @@ button:focus
     }
 }
 
-.flag
-{
-    position: absolute;
-    right: 0;
-    top: 0;
-    overflow: hidden;
-    width: 15px;
-    height: 15px;
-    border-top-right-radius: 0.2rem;
-    cursor: pointer;
-    
-    &.disabled
-    {
-        cursor: not-allowed;
-    }
-    
-    span
-    {
-        font-weight: 600;
-        font-size: 1.1rem;
-        color: $white;
-        text-align: center;
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-        width: 20px;
-        display: block;
-        position: absolute;
-        top: -2px;
-        right: -7px;
-        cursor: pointer;
-        background: $brand-yellow;
-        border-top: 10px solid $brand-yellow;
-        &.disabled
-        {
-            background: $brand-yellow-light;
-            border-top: 10px solid $brand-yellow-light;
-            cursor: not-allowed;
-        }
-    }
-}
-
 // Future-proof disabling of clicks on `<a>` elements
 a.btn.disabled,
 fieldset[disabled] a.btn
@@ -317,136 +319,123 @@ fieldset[disabled] a.btn
 
 ////////////// Button Group (Horizontal) //////////////
 
-/deep/
+:host-context(.btn-group)
 {
-    .btn-group > terra-button
+    float: left;
+    &:not(:first-child) .btn
     {
-        float: left;
-        &:not(:first-child) .btn
+        border-left: 1px solid $grey-2;
+    }
+
+    &:first-child
+    {
+        margin-left: 0;
+        &:not(:last-child) > .btn-handler > .btn,
+        &:not(:last-child) > .btn-handler > .flag
         {
-            border-left: 1px solid $grey-2;
+            @include border-right-radius(0);
         }
-        
-        &:not(:first-child):not(:last-child) > .btn-handler > .btn,
-        &:not(:first-child):not(:last-child) > .btn-handler > .flag
+    }
+
+    &:not(:first-child):not(:last-child) > .btn-handler > .btn,
+    &:not(:first-child):not(:last-child) > .btn-handler > .flag
+    {
+        border-radius: 0;
+    }
+
+    &:last-child
+    {
+        margin-left: 0;
+        &:not(:first-child) > .btn-handler > .btn,
+        &:not(:first-child) > .btn-handler > .flag
         {
-            border-radius: 0;
-        }
-        
-        &:first-child
-        {
-            margin-left: 0;
-            &:not(:last-child) > .btn-handler > .btn,
-            &:not(:last-child) > .btn-handler > .flag
-            {
-                @include border-right-radius(0);
-            }
-        }
-        
-        &:last-child
-        {
-            margin-left: 0;
-            &:not(:first-child) > .btn-handler > .btn,
-            &:not(:first-child) > .btn-handler > .flag
-            {
-                @include border-left-radius(0);
-            }
+            @include border-left-radius(0);
         }
     }
 }
 
-////////////// Button Group Vertical //////////////
+////////////// Button Group Vertical & Menu //////////////
 
-/deep/
+:host-context(.btn-group-vertical, .btn-group-menu), .btn-group-menu
 {
-    .btn-group-vertical, .btn-group-menu
+    .btn,
+    .btn-handler
     {
         display: block;
+        float: none;
+        max-width: 100%;
+        width: 100%;
+        text-align: left;
+    }
+    &:first-child:not(:last-child) .btn
+    {
+        border-radius: $border-radius $border-radius 0 0;
+        margin: 0px 0px 1px 0px;
+    }
+    
+    &:not(:first-child):not(:last-child) .btn
+    {
+        border-radius: 0;
+        margin: 1px 0;
+    }
+    
+    &:last-child:not(:first-child) .btn
+    {
+        border-radius: 0 0 $border-radius $border-radius;
+        margin: 1px 0px 0px 0px;
+    }
+    
+    &:last-child:not(:first-child) .flag
+    {
+        border-radius: 0 0 $border-radius $border-radius;
+    }
+    
+    &:not(:first-child):not(:last-child) .flag
+    {
+        border-radius: 0;
+    }
+    
+    &:first-child:not(:last-child) .flag
+    {
+        border-radius: $border-radius $border-radius 0 0;
+    }
+}
+
+:host-context(.btn-group-menu), .btn-group-menu
+{
+    .btn
+    {
+        padding: 0px 18px 0px 9px !important;
+        border-radius: $border-radius !important;
+        margin: 1px 0px;
         
-        .btn,
-        .btn-handler
+        .icon-right
         {
-            display: block;
-            float: none;
-            max-width: 100%;
-            width: 100%;
-            text-align: left;
-        }
-        
-        terra-button:last-child:not(:first-child) .flag
-        {
-            border-bottom-left-radius: 3px;
-            border-bottom-right-radius: 3px;
-            border-top-right-radius: 0;
-            border-top-left-radius: 0;
-        }
-        
-        terra-button:first-child:not(:last-child) .flag
-        {
-            border-top-right-radius: 3px;
-            border-top-left-radius: 3px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-        
-        terra-button:not(:first-child):not(:last-child) .flag
-        {
-            border-radius: 0;
-        }
-        
-        terra-button:first-child:not(:last-child) .btn,
-        .btn-handler:first-child:not(:last-child) .btn
-        {
-            border-top-right-radius: 3px;
-            border-top-left-radius: 3px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-            margin: 0px 0px 1px 0px;
-        }
-        terra-button:last-child:not(:first-child) .btn,
-        .btn-handler:last-child:not(:first-child) .btn
-        {
-            border-bottom-left-radius: 3px;
-            border-bottom-right-radius: 3px;
-            border-top-right-radius: 0;
-            border-top-left-radius: 0;
-            margin: 1px 0px 0px 0px;
-        }
-        terra-button:not(:first-child):not(:last-child) .btn,
-        .btn-handler:not(:first-child):not(:last-child) .btn
-        {
-            border-radius: 0;
-            margin: 1px 0;
+            margin-top: 8px;
+            position: absolute !important;
+            right: 0;
+            top: initial !important;
         }
     }
-    .btn-group-menu
+    
+    .btn-divider,
+    .btn-divider:hover,
+    .btn-divider:active,
+    .btn-divider:focus
     {
-        margin-top: 4px;
-        
+        background-color: transparent !important;
+        margin-bottom: 3px !important;
+        margin-top: 3px !important;
+        cursor: default;
+        height: 1px;
+    }
+    &:first-child:not(:last-child),
+    .btn-handler:first-child:not(:last-child)
+    {
         .btn
         {
-            padding: 0px 18px 0px 9px !important;
-            border-radius: 5px !important;
-            
-            .icon-right
-            {
-                margin-top: 8px;
-                position: absolute !important;
-                right: 0px;
-                top: initial !important;
-            }
-        }
-        
-        .btn-divider,
-        .btn-divider:hover,
-        .btn-divider:active,
-        .btn-divider:focus
-        {
-            background-color: transparent !important;
-            margin-bottom: 3px !important;
-            margin-top: 3px !important;
-            cursor: default;
-            height: 1px;
+            margin-top: 4px !important;
         }
     }
 }
+
