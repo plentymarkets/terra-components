@@ -36,10 +36,17 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 
     get locationCss()
     {
+        // 70 (navbar) + 46 (tabbar) + 33 (breadcrumbs)
+        let offsetTop:number = 158;
+        let offsetLeft:number;
+        let anchor = $('.context-menu#menu');
+
+        offsetLeft = anchor.closest('terra-data-table').offset().left;
+
         return {
             visibility: this._isShown ? 'visible' : 'hidden',
-            left: this._mouseLocation.left - window.pageXOffset + 'px',
-            top:  this._mouseLocation.top - window.pageYOffset + 'px',
+            left:       this._mouseLocation.left - offsetLeft + 'px',
+            top:        this._mouseLocation.top - offsetTop + 'px',
         };
     }
 
