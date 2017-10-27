@@ -45,8 +45,8 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 
         return {
             visibility: this._isShown ? 'visible' : 'hidden',
-            left:       this._mouseLocation.left - offsetLeft + 'px',
-            top:        this._mouseLocation.top - offsetTop + 'px',
+            left:       this._mouseLocation.left - offsetLeft - 2 + 'px',
+            top:        this._mouseLocation.top - offsetTop - 2 + 'px',
         };
     }
 
