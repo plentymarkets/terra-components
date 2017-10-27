@@ -292,7 +292,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 let currentBreadcrumb = $('.' + id); // TODO: vwiebe, fix scope
                 let breadCrumbContainer = currentBreadcrumb.closest('.terra-breadcrumbs');
                 let viewContainer = anchor.parent();
-                let offset = 3;
+                let offset = -1;
                 let prevSplitView = currentBreadcrumb.closest('.view').prev();
 
                 // focus breadcrumbs

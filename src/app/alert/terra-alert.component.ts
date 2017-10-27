@@ -47,7 +47,6 @@ export class TerraAlertComponent
         let event:CustomEvent = new CustomEvent('status', {
             detail: {
                 message:          alert.msg,
-                closable:         alert.closable,
                 type:             alert.type,
                 dismissOnTimeout: alert.dismissOnTimeout,
                 identifier:       alert.identifier
@@ -66,7 +65,6 @@ export class TerraAlertComponent
 
         this._alerts.push({
             msg:              alert.msg,
-            closable:         alert.closable,
             type:             alert.type,
             dismissOnTimeout: alert.dismissOnTimeout,
             identifier:       alert.identifier

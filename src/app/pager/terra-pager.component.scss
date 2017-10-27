@@ -3,58 +3,37 @@
 @import "../forms/select-box/terra-select-box.component";
 @import "../forms/input/terra-input.component";
 
-/deep/
-{
-    .pager
-    {
-        .terra-select-box,
-        .form-group
-        {
-            float: left;
-        }
-        .pager-text
-        {
-            line-height: $terra-btn-sm-height;
-            float: left;
-            font-size: $font-size-2;
-            font-weight: $font-weight-2;
-            margin: 0 6px;
-        }
-        
-        @include media-breakpoint-down(sm)
-        {
-            .pager
-            {
-                .btn-group
-                {
-                    float: none;
-                    margin-top: .2rem;
-                    margin-bottom: .2rem;
-                }
-            }
-        }
-    }
-    
-}
-
-/deep/ .btn-toolbar > terra-pager > .pager > terra-base-toolbar > .btn-toolbar
-{
-    padding: 0px;
-}
-
 .pager
 {
-    --input-text-align: right;
+    --input-text-align: center;
     --toolbar-border-radius: $border-radius $border-radius 0 0;
     --toolbar-margin: 0;
     --select-box-width: 65px;
     --select-box-wrapper-margin-bottom: 0;
     --input-unit-v1-margin-bottom: 0;
-    --input-width: 2.5rem;
-    --input-padding: .5rem .35rem;
+    --input-width: 34px;
+    --input-padding: .5rem .15rem;
+    --btn-sm-padding: 0 7px;
     
     .form-group
     {
         margin: 0;
+        float: left;
+    }
+    .pager-text
+    {
+        line-height: $terra-btn-sm-height;
+        float: left;
+        font-size: $font-size-2;
+        font-weight: $font-weight-2;
+        margin: 0 6px;
+    }
+    .terra-select-box
+    {
+        float: left;
+    }
+    .btn-group
+    {
+        padding-right: 7px;
     }
 }

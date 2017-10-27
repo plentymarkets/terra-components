@@ -149,57 +149,46 @@
     overflow-x: hidden;
     height: 100%;
     white-space: nowrap;
+    font-size: 0px;
 }
 
 .side-scroller.offset
 {
-    height: calc(100% - 50px) !important;
+    height: calc(100% - 42px) !important;
 }
 
 .side-scroller > *
 {
     display: inline-block;
 }
-
-.divider
+.view
 {
-    width: 1px;
-    background-color: $gray-light-2-half;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.view:not(.first)
-{
+    font-size: $font-size-3;
     vertical-align: top;
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
     white-space: normal;
     position: relative;
-    padding: 0;
-    &:not(.first)
+    background-color: $white;
+    
+    &:first-child
     {
-        background-color: $white;
+        background-color: $grey-2;
     }
 }
 
-.view.hasDivider
+/deep/ .terra-navigator
 {
-    padding: 0 5px 0 4px;
-    margin-right: -4px;
+    .view
+    {
+        background-color: $grey-2;
+    }
 }
 
-.view.first
+.view.isBackgroundColorGrey
 {
-    padding-left: 0 !important;
-}
-
-.view.last
-{
-    padding: 0 0 0 4px;
+    background-color: transparent !important;
 }
 
 ///// Fixed Columns for Terra-Navigator ///////
@@ -218,19 +207,9 @@
 
 // TODO: @vwiebe, refactoring
 
-/deep/ terra-split-view .modal-content terra-split-view .hasDivider
-{
-    padding: 0 3px 0 4px !important;
-}
-
 /deep/ terra-split-view .modal-content terra-split-view .view.last:not(.first)
 {
     padding: 0 0 0 4px !important;
-}
-
-/deep/ terra-split-view .modal-content terra-split-view .divider
-{
-    display: block !important;
 }
 
 /deep/ .hasSplitView .modal-body
