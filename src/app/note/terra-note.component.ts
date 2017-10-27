@@ -1,7 +1,6 @@
 import {
     Component,
-    Input,
-    OnInit
+    Input
 } from '@angular/core';
 
 @Component({
@@ -9,7 +8,7 @@ import {
     styles:   [require('./terra-note.component.scss')],
     template: require('./terra-note.component.html')
 })
-export class TerraNoteComponent implements OnInit
+export class TerraNoteComponent
 {
     @Input() inputIsSelected:boolean;
     @Input() inputId:number;
@@ -17,10 +16,6 @@ export class TerraNoteComponent implements OnInit
     @Input() inputNoteText:string;
 
     constructor()
-    {
-    }
-
-    ngOnInit()
     {
     }
 }
