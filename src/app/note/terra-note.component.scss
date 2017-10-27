@@ -30,10 +30,6 @@ $padding-border: 16px;
             }
         }
     }
-    .note-header
-    {
-        font-weight: bold;
-    }
     .note-inner
     {
         display: flex;
@@ -46,6 +42,10 @@ $padding-border: 16px;
             max-width: 77%;
             white-space: normal;
             color: $grey-11;
+            .note-header
+            {
+                font-weight: bold;
+            }
             hr
             {
                 margin: 0;
