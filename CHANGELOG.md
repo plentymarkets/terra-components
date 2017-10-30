@@ -14,6 +14,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-simple-table** Add option to disable single rows to `TerraSimpleTableRowInterface`. Disabled rows may not be highlighted (using `inputUseHighlighting`) or selected when having checkboxes activated (`inputHasCheckbox`)
 * **terra-data-table-no-result-notice-component** new component, that can be used to display a notice whenever no results are available
 * **terra-number-input** removed spin-buttons
+* **terra-pager** limit page number input to a valid range
 * **terra-wysiwyg-editor** new component, that realizes a wysiwyg editor with several features.
 
 ### Bug Fixes
