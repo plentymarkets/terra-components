@@ -40,13 +40,18 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
         let offsetTop:number = 158;
         let offsetLeft:number;
         let anchor = $('.context-menu#menu');
+        let isMenuAtBottom:boolean;
+        if(anchor.offset().top + anchor.height() > innerHeight)
+        {
+            isMenuAtBottom = true;
+        }
 
         offsetLeft = anchor.closest('terra-data-table').offset().left;
 
         return {
             visibility: this._isShown ? 'visible' : 'hidden',
             left:       this._mouseLocation.left - offsetLeft - 2 + 'px',
-            top:        this._mouseLocation.top - offsetTop - 2 + 'px',
+            top:        isMenuAtBottom ? this._mouseLocation.top - offsetTop - anchor.height() + 'px' : this._mouseLocation.top - offsetTop - 2 + 'px'
         };
     }
 
