@@ -13,7 +13,7 @@ or `ctrl`/`cmd` + `space`/`enter` to toggle checkbox in table header.
 Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-simple-table** Add option to disable single rows to `TerraSimpleTableRowInterface`. Disabled rows may not be highlighted (using `inputUseHighlighting`) or selected when having checkboxes activated (`inputHasCheckbox`)
 * **terra-data-table-no-result-notice-component** new component, that can be used to display a notice whenever no results are available
-
+* **terra-number-input** removed spin-buttons
 
 ### Bug Fixes
 * **terra-multi-split-view** 
