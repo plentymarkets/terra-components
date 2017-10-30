@@ -3,6 +3,6 @@
         <li *ngIf="!link.isDivider" (click)="link.subject.next(link)">
             <a>{{link.title}}</a>
         </li>
-        <span *ngIf="link.isDivider" class="context-menu-divider"></span>
+        <div *ngIf="link.isDivider" class="context-menu-divider"></div>
     </ng-template>
 </ul>

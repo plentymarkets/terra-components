@@ -7,3 +7,12 @@
     min-width: max-content;
     max-width: 250px;
 }
+
+.context-menu-divider
+{
+    background: $grey-3;
+    cursor: default;
+    height: 1px;
+    overflow: hidden;
+    margin: 0.5rem 0;
+}
