@@ -1,9 +1,10 @@
 <terra-base-toolbar>
     <ul class="terra-breadcrumbs" *ngIf="_storageList">
-        <li *ngFor="let parent of parentStorageObjects; let last = last" (click)="this.currentStorageRoot = object">
+        <li *ngFor="let parent of parentStorageObjects; let last = last" (click)="currentStorageRoot = parent">
             <div [class.active]="last">
-                <span>{{ parent.name || _translationPrefix + ".myFiles" | translate:lang }}</span>
+                <span>{{ parent.name || inputStorageService.name }}</span>
             </div>
+            <a class="icon-next"></a>
         </li>
     </ul>
 </terra-base-toolbar>
@@ -15,6 +16,7 @@
                       (outputClicked)="fileChooser.click()">
         </terra-button>
         <terra-button inputIcon="icon-folder_add"
+                      *ngIf="_parentFileBrowser.inputAllowFolders"
                       [inputTooltipText]="_translationPrefix + '.createFolder' | translate:lang"
                       (outputClicked)="_showNewDirectoryPrompt = true">
         </terra-button>
@@ -100,6 +102,7 @@
                 </terra-button>
     
                 <terra-button inputIcon="icon-folder_add"
+                              *ngIf="_parentFileBrowser.inputAllowFolders"
                               [inputCaption]="_translationPrefix + '.createFolder' | translate:lang"
                               (outputClicked)="_showNewDirectoryPrompt = true">
                 </terra-button>

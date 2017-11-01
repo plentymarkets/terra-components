@@ -1,21 +1,26 @@
 <div *ngIf="inputStorageObject">
-    <h5>
-        {{ inputStorageObject.name }}
-        <span>{{ _metadata.width || '-' }} x {{ _metadata.height || '-' }} px</span>
-    </h5>
-    <div class="preview-container">
-        <div [style.background-image]="'url(' + inputStorageObject.previewUrl + ')'"></div>
+    <terra-base-toolbar *ngIf="_canHandleMetadata">
+        <div class="btn-group" role="group">
+            <terra-button inputIcon="icon-save"
+                          [inputTooltipText]="'Metadaten speichern'"
+                          (outputClicked)="updateMetadata()">
+            </terra-button>
+        </div>
+    </terra-base-toolbar>
+    
+    <div class="image-preview">
+        <div class="preview-container">
+            <div [style.background-image]="'url(' + inputStorageObject.previewUrl + ')'"></div>
+        </div>
+        
+        <div *ngIf="_canHandleMetadata">
+            <terra-text-input inputName="Größe"
+                              [inputIsReadonly]="true"
+                              [inputValue]="_metadata.width ? (_metadata.width + ' x ' + _metadata.height + ' px') : '-'"></terra-text-input>
+            
+            <terra-text-input inputName="Alternativtext" [(ngModel)]="_metadata.altText"></terra-text-input>
+        </div>
     </div>
-    
-    
-    <terra-text-input inputName="Alternativtext" [(ngModel)]="_metadata.altText"></terra-text-input>
-    
-    <terra-button [inputCaption]="'speichern'"
-                  [inputIsTertiary]="true"
-                  [inputIcon]="'icon-save'"
-                  [inputIsAlignRight]="true"
-                  [inputTooltipText]="'Metadaten speichern'"
-                  (outputClicked)="updateMetadata()"></terra-button>
     
     <div class="loader" *ngIf="_isLoading"><div class="icon-loading"></div></div>
 </div>

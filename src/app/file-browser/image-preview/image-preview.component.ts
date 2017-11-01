@@ -6,7 +6,10 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { TerraStorageObject } from '../model/terra-storage-object';
-import { TerraBaseStorageService } from '../terra-base-storage.interface';
+import {
+    TerraBaseMetadataStorageService,
+    TerraBaseStorageService
+} from '../terra-base-storage.interface';
 import { TerraImageMetadata } from '../model/terra-image-metadata.interface';
 
 @Component({
@@ -25,7 +28,7 @@ export class TerraImagePreviewComponent
         this._inputStorageObject = object;
         this._metadata = {};
         this._isLoading = true;
-        if ( object && this.inputStorageService )
+        if ( object && this.inputStorageService && this.inputStorageService instanceof TerraBaseMetadataStorageService )
         {
             this.inputStorageService
                 .getMetadata( object.key )
@@ -34,6 +37,10 @@ export class TerraImagePreviewComponent
                     this._isLoading = false;
                     this._changeDetector.detectChanges();
                 });
+        }
+        else
+        {
+            this._isLoading = false;
         }
     }
 
@@ -45,6 +52,11 @@ export class TerraImagePreviewComponent
     @Input()
     public inputStorageService: TerraBaseStorageService;
 
+    private get _canHandleMetadata(): boolean
+    {
+        return this.inputStorageService instanceof TerraBaseMetadataStorageService;
+    }
+
     private _metadata: TerraImageMetadata = {};
 
     private _isLoading: boolean = true;
@@ -55,6 +67,9 @@ export class TerraImagePreviewComponent
 
     private updateMetadata()
     {
-        this.inputStorageService.updateMetadata( this.inputStorageObject.key, this._metadata );
+        if( this.inputStorageService instanceof TerraBaseMetadataStorageService )
+        {
+            this.inputStorageService.updateMetadata( this.inputStorageObject.key, this._metadata );
+        }
     }
 }

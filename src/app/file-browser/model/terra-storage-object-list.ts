@@ -27,4 +27,20 @@ export class TerraStorageObjectList
         this.root.addChild(s3object);
         return this;
     }
+
+    public get flatList(): TerraStorageObject[]
+    {
+        let result = [];
+        let appendChildren = ( object: TerraStorageObject ) => {
+            result.push( object );
+            object.children
+                  .forEach(( child: TerraStorageObject) => {
+                      appendChildren( child );
+                  });
+        };
+
+        appendChildren( this.root );
+
+        return result;
+    }
 }

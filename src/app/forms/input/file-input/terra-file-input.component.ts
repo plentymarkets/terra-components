@@ -2,7 +2,9 @@ import {
     Component,
     forwardRef,
     Input,
+    OnChanges,
     OnInit,
+    SimpleChanges,
     ViewChild
 } from "@angular/core";
 import { TerraOverlayComponent } from "../../../overlay/terra-overlay.component";
@@ -13,6 +15,10 @@ import { TerraOverlayButtonInterface } from "../../../overlay/data/terra-overlay
 import { PathHelper } from "../../../file-browser/helper/path.helper";
 import { FileType } from "../../../file-browser/helper/fileType.helper";
 import { TranslationService } from "angular-l10n";
+import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
+import { TerraFileBrowserComponent } from '../../../file-browser/terra-file-browser.component';
+import { TerraBaseStorageService } from '../../../file-browser/terra-base-storage.interface';
+import { TerraFrontendStorageService } from '../../../file-browser/terra-frontend-storage.service';
 
 @Component({
     selector:  'terra-file-input',
@@ -26,14 +32,31 @@ import { TranslationService } from "angular-l10n";
         }
     ]
 })
-export class TerraFileInputComponent extends TerraInputComponent implements OnInit
+export class TerraFileInputComponent extends TerraInputComponent
 {
     private _translationPrefix:string = "terraFileInput";
+
     @Input()
     public inputShowPreview:boolean = false;
 
     @Input()
     public inputAllowedExtensions:string[] = [];
+
+    @Input()
+    public inputAllowFolders:boolean = true;
+
+    private _storageService: TerraBaseStorageService;
+
+    @Input()
+    public set inputStorageService( service: TerraBaseStorageService )
+    {
+        this._storageService = service;
+    }
+
+    public get inputStorageService(): TerraBaseStorageService
+    {
+        return this._storageService || this._frontendStorageService;
+    }
 
     @ViewChild('overlay')
     public overlay:TerraOverlayComponent;
@@ -41,27 +64,14 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     @ViewChild('previewOverlay')
     public previewOverlay:TerraOverlayComponent;
 
-    private _selectedUrl:string;
-
-    public get selectedUrl():string
-    {
-        return this._selectedUrl;
-    }
-
-    public set selectedUrl(value:string)
-    {
-        this.primaryOverlayButton.isDisabled = !value || value.length <= 0;
-
-        this._selectedUrl = value;
-    }
-
+    private _selectedObjectUrl:string;
+    
     public primaryOverlayButton:TerraOverlayButtonInterface = {
         icon:          'icon-success',
         caption:       this.translation.translate(this._translationPrefix + ".choose"),
         isDisabled:    true,
-        clickFunction: () =>
-                       {
-                           this.value = this.selectedUrl;
+        clickFunction: () => {
+                           this.value = this._selectedObjectUrl;
                            this.overlay.hideOverlay();
                        }
     };
@@ -70,21 +80,32 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
         icon:          'icon-close',
         caption:       this.translation.translate(this._translationPrefix + ".cancel"),
         isDisabled:    false,
-        clickFunction: () =>
-                       {
-                           this.selectedUrl = this.value;
+        clickFunction: () => {
+                           this._selectedObjectUrl = this.value;
                            this.overlay.hideOverlay();
                        }
     };
 
-    constructor(private translation:TranslationService)
+    constructor(private translation:TranslationService, private _frontendStorageService: TerraFrontendStorageService )
     {
         super(TerraRegex.MIXED);
     }
 
     public ngOnInit():void
     {
-        this.selectedUrl = this.value;
+    }
+
+    public onSelectedObjectChange( selectedObject: TerraStorageObject )
+    {
+        if ( !selectedObject || selectedObject.isDirectory )
+        {
+            this.primaryOverlayButton.isDisabled = true;
+        }
+        else
+        {
+            this.primaryOverlayButton.isDisabled = false;
+            this._selectedObjectUrl = selectedObject.publicUrl;
+        }
     }
 
     public onPreviewClicked()

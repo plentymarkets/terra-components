@@ -2,11 +2,8 @@ import {
     ChangeDetectorRef,
     Injectable
 } from '@angular/core';
-import { TerraSplitConfigBase } from '../../split-view/data/terra-split-config-base';
-import { TerraSplitViewInterface } from '../../split-view/data/terra-split-view.interface';
 import { TerraImagePreviewModule } from '../image-preview/image-preview.module';
 import { TerraFileListModule } from '../file-list/file-list.module';
-import { TerraImageEditorModule } from '../image-editor/image-editor.module';
 import { TerraMultiSplitViewConfig } from '../../split-view/multi/data/terra-multi-split-view.config';
 import { TerraMultiSplitViewInterface } from '../../split-view/multi/data/terra-multi-split-view.interface';
 import { TerraStorageObject } from '../model/terra-storage-object';
@@ -21,8 +18,6 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
 {
     private _fileListView: TerraMultiSplitViewInterface;
     private _imagePreviewView: TerraMultiSplitViewInterface;
-    private _imageEditorView: TerraMultiSplitViewInterface;
-    private _imagePreviewStorageObject: TerraStorageObject = null;
     private _storageService: TerraBaseStorageService;
 
     constructor( private _changeDetector: ChangeDetectorRef )

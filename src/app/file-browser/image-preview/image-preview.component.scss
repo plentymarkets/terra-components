@@ -5,47 +5,51 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: $grey-2;
     margin-left: 3px;
-    padding: 4px;
+    overflow-y: auto;
+    
+    > div {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
 }
 
-h5
+.image-preview
 {
-    margin: 0.5rem 0;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    background-color: $grey-2;
+    padding: 4px;
+    flex: 1;
     
-    span
+    .preview-container
+    {
+        width: 100%;
+        padding-top: 100%;
+        position: relative;
+        margin-bottom: .5rem;
+        
+        > div
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+    }
+    
+    .preview-size
     {
         display: block;
         font-size: .7rem;
         color: $text-muted;
-        margin-top: 4px;
     }
 }
 
-.preview-container
-{
-    width: 100%;
-    padding-top: 100%;
-    position: relative;
-    margin-bottom: .5rem;
     
-    > div
-    {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center center;
-    }
-}
-
 .loader
 {
     position: absolute;

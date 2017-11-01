@@ -3,15 +3,11 @@ import {
     ChangeDetectorRef,
     Component,
     ElementRef,
-    EventEmitter,
     forwardRef,
-    HostListener,
     Inject,
     Input,
-    NgZone,
     OnDestroy,
     OnInit,
-    Output,
     ViewChild
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -20,7 +16,6 @@ import { TerraSimpleTableHeaderCellInterface } from '../../table/simple/cell/ter
 import { TerraSimpleTableRowInterface } from '../../table/simple/row/terra-simple-table-row.interface';
 import { TerraStorageObject } from '../model/terra-storage-object';
 import * as moment from 'moment';
-import { TerraFrontendStorageService } from '../terra-frontend-storage.service';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { PathHelper } from '../helper/path.helper';
@@ -29,6 +24,8 @@ import { FileType } from '../helper/fileType.helper';
 import { TerraSimpleTableComponent } from '../../table/simple/terra-simple-table.component';
 import { TerraFileBrowserService } from '../terra-file-browser.service';
 import { TerraUploadItem } from '../model/terra-upload-item';
+import { ClipboardHelper } from '../helper/clipboard.helper';
+import { TerraSimpleTableCellInterface } from '../../table/simple/cell/terra-simple-table-cell.interface';
 
 @Component({
                selector: 'terra-file-list',
@@ -44,6 +41,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnDestroy
 
     @ViewChild('fileDropzone', {read: ElementRef})
     private _fileDropzoneElement:ElementRef;
+
+    @ViewChild(TerraSimpleTableComponent)
+    private _fileTableComponent: TerraSimpleTableComponent<TerraStorageObject>;
 
     private _isDragActive:boolean = false;
     private _dragSubscription:Subscription;
@@ -77,6 +77,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnDestroy
 
     public set currentStorageRoot(storageObject:TerraStorageObject)
     {
+        if ( this._imagePreviewObject && storageObject !== this._imagePreviewObject )
+        {
+            this._imagePreviewObject = null;
+            this._parentFileBrowser.splitConfig.hideImagePreview();
+        }
+
         if((!storageObject || storageObject.isDirectory) && this._currentStorageRoot !== storageObject)
         {
             this._currentStorageRoot = storageObject;
@@ -88,6 +94,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnDestroy
     {
         let current:TerraStorageObject = this.currentStorageRoot;
         let parents:Array<TerraStorageObject> = [];
+
+        if ( this._imagePreviewObject )
+        {
+            parents.push( this._imagePreviewObject )
+        }
+
         while(current)
         {
             parents.push(current);
@@ -131,28 +143,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnDestroy
 
     private _selectedStorageObjects:Array<TerraStorageObject> = [];
 
-    private _fileTableHeaderList:Array<TerraSimpleTableHeaderCellInterface> = [
-        {
-            caption: 'Dateiname',
-            width:   '30%'
-        },
-        {
-            caption: 'Datei-URL',
-            width:   '50%'
-        },
-        {
-            caption: 'Dateigröße',
-            width:   '7.5%'
-        },
-        {
-            caption: 'Letze Änderung',
-            width:   '12.5%'
-        },
-        {
-            caption: '',
-            width:   '1'
-        }
-    ];
+    private _fileTableHeaderList:Array<TerraSimpleTableHeaderCellInterface> = [];
 
     private _fileTableRowList:Array<TerraSimpleTableRowInterface<TerraStorageObject>> = [];
 
@@ -164,6 +155,27 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnDestroy
 
     public ngOnInit():void
     {
+        if ( this.inputStorageService.isPublic )
+        {
+            this._fileTableHeaderList = [
+                { caption: 'Dateiname', width: '30%' },
+                { caption: 'Datei-URL', width: '50%' },
+                { caption: '', width: '1' },
+                { caption: 'Dateigröße', width: '7.5%' },
+                { caption: 'Letzte Änderung', width: '12.5%' },
+                { caption: '', width: '1' }
+            ];
+        }
+        else
+        {
+            this._fileTableHeaderList = [
+                { caption: 'Dateiname', width: '80%' },
+                { caption: 'Dateigröße', width: '7.5%' },
+                { caption: 'Letzte Änderung', width: '12.5%' },
+                { caption: '', width: '1' }
+            ];
+        }
+
         this._storageSubscription = this.inputStorageService
                                         .getStorageList()
                                         .subscribe((storageList) => {
@@ -174,6 +186,25 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnDestroy
         this._dragSubscription = this._fileBrowserService.isDragActive.subscribe((isDragActive:boolean) => {
             this._isDragActive = isDragActive;
             this._changeDetector.detectChanges();
+        });
+
+        this._parentFileBrowser.onSelectedUrlChange.subscribe( (selectedUrl: string) => {
+            if ( selectedUrl && this._storageList )
+            {
+                let object: TerraStorageObject = this._storageList.flatList.find( object => object.publicUrl === selectedUrl );
+
+                if ( object )
+                {
+                    this.currentStorageRoot = object.parent;
+                    if( FileType.isWebImage(object.key) )
+                    {
+                        this._imagePreviewObject = object;
+                        this._parentFileBrowser.splitConfig.showImagePreview(object);
+                    }
+                    let row: TerraSimpleTableRowInterface<TerraStorageObject> = this._fileTableRowList.find( r => r.value === object );
+                    this._fileTableComponent.inputHighlightedRow = row;
+                }
+            }
         });
     }
 
@@ -237,6 +268,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnDestroy
         {
             this._fileTableRowList = this.currentStorageRoot
                                          .children
+                                         .filter( (storageObject: TerraStorageObject) => {
+                                            return storageObject.isFile || this._parentFileBrowser.inputAllowFolders;
+                                         })
                                          .sort((objectA:TerraStorageObject, objectB:TerraStorageObject) => {
                                              return objectA.name.localeCompare( objectB.name );
                                          })
@@ -251,18 +285,41 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnDestroy
                                                  tooltipText:      'Datei löschen',
                                                  tooltipPlacement: 'left'
                                              };
+
+                                             let clipboardButton:TerraButtonInterface = {
+                                                 icon: 'icon-copy_clipboard',
+                                                 clickFunction: (event: Event) => {
+                                                     ClipboardHelper.copyText(storageObject.publicUrl);
+                                                     event.stopPropagation();
+                                                 },
+                                                 tooltipText: 'In Zwischenablage kopieren',
+                                                 tooltipPlacement: 'left'
+                                             };
+
+                                             let cellList: Array<TerraSimpleTableCellInterface> = [];
+                                             cellList.push(
+                                                 { caption: storageObject.name, icon: this._uploadStatus[storageObject.key] ? 'icon-loading' : storageObject.icon}
+                                             );
+
+                                             if ( this.inputStorageService.isPublic )
+                                             {
+                                                 cellList.push(
+                                                     { caption: storageObject.isFile? storageObject.publicUrl : ''},
+                                                     { buttonList: storageObject.isFile ? [clipboardButton] : []}
+                                                 );
+                                             }
+                                             cellList.push(
+                                                 { caption: storageObject.isFile ? storageObject.sizeString : ''},
+                                                 { caption: storageObject.isFile ? moment(storageObject.lastModified).format('YYYY-MM-DD HH:mm') : '' },
+                                                 { buttonList: [deleteButton] }
+                                             );
+
                                              return {
-                                                 cellList: [
-                                                     { caption: storageObject.name, icon: this._uploadStatus[storageObject.key] ? 'icon-loading' : storageObject.icon},
-                                                     { caption: storageObject.isFile ? storageObject.publicUrl : ''},
-                                                     { caption: storageObject.isFile ? storageObject.sizeString : ''},
-                                                     { caption: storageObject.isFile ? moment(storageObject.lastModified).format('YYYY-MM-DD HH:mm') : '' },
-                                                     { buttonList: [deleteButton] }
-                                                 ],
+                                                 cellList: cellList,
                                                  value:    storageObject,
                                                  disabled: !this.isAllowed(storageObject.key)
                                              };
-                                         })
+                                         });
         }
         else
         {
@@ -303,6 +360,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnDestroy
                 this._imagePreviewObject = null;
                 this._parentFileBrowser.splitConfig.hideImagePreview();
             }
+
+            this._parentFileBrowser.outputSelectedChange.emit( storageObject );
         };
         this._imagePreviewTimeout = setTimeout(debounceFn.bind(this), 500);
     }

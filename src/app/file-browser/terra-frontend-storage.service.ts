@@ -6,13 +6,17 @@ import { Http } from "@angular/http";
 import { TerraStorageObjectList } from "./model/terra-storage-object-list";
 import { Observable } from "rxjs/Observable";
 import { createS3StorageObject } from "./model/s3-storage-object.interface";
-import { TerraBaseStorageService } from './terra-base-storage.interface';
+import { TerraBaseMetadataStorageService } from './terra-base-storage.interface';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
 
 @Injectable()
-export class TerraFrontendStorageService extends TerraBaseStorageService
+export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 {
+    public isPublic: boolean = true;
+
+    public name: string = "Meine Dateien";
+
     private _storageInitialized:boolean = false;
 
     private _storageListSubject: BehaviorSubject<TerraStorageObjectList> = new BehaviorSubject(null);

@@ -7,6 +7,10 @@ import { TerraImageMetadata } from './model/terra-image-metadata.interface';
 
 export abstract class TerraBaseStorageService extends TerraBaseService
 {
+    public abstract name: string;
+
+    public abstract isPublic: boolean;
+
     public abstract getStorageList(): BehaviorSubject<TerraStorageObjectList>;
 
     public abstract createDirectory( path: string ): Observable<any>;
@@ -14,10 +18,6 @@ export abstract class TerraBaseStorageService extends TerraBaseService
     public abstract uploadFiles( files: FileList | File[], path: string ): TerraUploadItem[];
 
     public abstract deleteFiles( keys: string[] ): Observable<any>;
-
-    public abstract getMetadata( key: string ): Observable<TerraImageMetadata>;
-
-    public abstract updateMetadata( key: string, metadata: TerraImageMetadata ): Observable<any>;
 
     public prepareKey(value:string, isName:boolean = false, isDirectory: boolean = false):string
     {
@@ -45,4 +45,11 @@ export abstract class TerraBaseStorageService extends TerraBaseService
 
         return value;
     }
+}
+
+export abstract class TerraBaseMetadataStorageService extends TerraBaseStorageService
+{
+    public abstract getMetadata( key: string ): Observable<TerraImageMetadata>;
+
+    public abstract updateMetadata( key: string, metadata: TerraImageMetadata ): Observable<any>;
 }

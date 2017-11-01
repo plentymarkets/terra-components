@@ -49,9 +49,13 @@
     <terra-overlay #overlay
                    [inputPrimaryButtonInterface]="primaryOverlayButton"
                    [inputSecondaryButtonInterface]="secondaryOverlayButton"
-                   (outputOnHide)="selectedUrl = value" class="hasSplitView">
-        <terra-file-browser #fileBrowser [inputAllowedExtensions]="inputAllowedExtensions"
-                            (outputSelected)="selectedUrl = $event">
+                   (outputOnShow)="fileBrowser.selectUrl(value)"
+                   (outputOnHide)="_selectedObjectUrl = value" class="hasSplitView">
+        <terra-file-browser #fileBrowser
+                            [inputAllowedExtensions]="inputAllowedExtensions"
+                            [inputAllowFolders]="inputAllowFolders"
+                            [inputStorageService]="inputStorageService"
+                            (outputSelectedChange)="onSelectedObjectChange($event)">
         </terra-file-browser>
     </terra-overlay>
     
