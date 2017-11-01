@@ -1,7 +1,6 @@
 <div>
-    <quill-editor
-        [placeholder]="_placeholder"
-        [(ngModel)]="_value"
-        (onContentChanged)="ngModelChange.emit(_value)">
+    <quill-editor [placeholder]="_placeholder"
+                  [(ngModel)]="_value"
+                  (onContentChanged)="ngModelChange.emit(_value)">
     </quill-editor>
 </div>

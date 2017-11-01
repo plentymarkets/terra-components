@@ -14,7 +14,11 @@ import {
 @Component({
     selector:  'terra-wysiwyg-editor',
     template:  require('./terra-wysiwyg-editor.component.html'),
-    styles:    [require('./terra-wysiwyg-editor.component.scss')],
+    styles:    [
+        require('./terra-wysiwyg-editor.component.scss'),
+        require('quill/dist/quill.bubble.css'),
+        require('quill/dist/quill.snow.css')
+    ],
     providers: [{
         provide:     NG_VALUE_ACCESSOR,
         useExisting: TerraWysiwygEditorComponent,
