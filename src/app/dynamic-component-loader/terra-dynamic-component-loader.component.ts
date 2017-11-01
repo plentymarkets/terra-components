@@ -32,6 +32,7 @@ export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDe
     {
         if(changes["inputComponent"])
         {
+            this.ngOnDestroy();
             this.updateComponent();
         }
     }
