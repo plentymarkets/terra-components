@@ -3,7 +3,7 @@
         <li *ngFor="let parent of parentStorageObjects; let first = first; let last = last" (click)="currentStorageRoot = parent">
             <div [class.active]="last">
                 <span>{{ parent.name || activeStorageService.name }}</span>
-                <a class="caret" *ngIf="first">
+                <a class="caret" *ngIf="first && inputStorageServices.length > 1">
                     <ul class="context-menu">
                         <li *ngFor="let storageService of inputStorageServices">
                             <a (click)="activeStorageService = storageService" [class.active]="storageService === activeStorageService">
@@ -16,6 +16,10 @@
             <a class="icon-next"></a>
         </li>
     </ul>
+    <div class="loading-placeholder" *ngIf="!_storageList">
+        <p>Dateien werden geladen</p>
+        <span class="icon-loading"></span>
+    </div>
 </terra-base-toolbar>
 
 <terra-base-toolbar>

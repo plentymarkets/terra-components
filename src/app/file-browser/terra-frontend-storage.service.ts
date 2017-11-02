@@ -25,7 +25,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         return this._storageListSubject.getValue();
     }
 
-    public queue:TerraUploadQueue = new TerraUploadQueue();
+    public queue:TerraUploadQueue = new TerraUploadQueue( "/rest/storage/frontend/file" );
 
     public get uploadProgress():Observable<number>
     {
@@ -39,7 +39,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         super(_terraLoadingSpinnerService, _http, "/rest/storage/frontend/file");
     }
 
-    public getStorageList(): BehaviorSubject<TerraStorageObjectList>
+    public getStorageList(): Observable<TerraStorageObjectList>
     {
         if ( !this._storageInitialized )
         {

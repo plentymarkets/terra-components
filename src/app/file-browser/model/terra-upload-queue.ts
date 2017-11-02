@@ -2,6 +2,8 @@ import { TerraUploadItem } from "./terra-upload-item";
 import { Observable } from "rxjs/Observable";
 import { Observer } from "rxjs/Observer";
 
+export type UploadQueueUrlFactory = (storageKey: string) => string;
+
 export class TerraUploadQueue
 {
     private items:Array<TerraUploadItem> = [];
@@ -12,7 +14,8 @@ export class TerraUploadQueue
     private _progressListeners:Array<Observer<number>> = [];
     private _progressValue:number = -1;
 
-    constructor()
+
+    constructor( private _uploadUrl: string | UploadQueueUrlFactory, private _uploadMethod: "GET" | "POST" | "DELETE" | "PUT" = "POST" )
     {
         this.progress = new Observable((observer:Observer<number>) =>
         {
@@ -139,8 +142,8 @@ export class TerraUploadQueue
             };
 
             xhr.open(
-                "POST",
-                "/rest/storage/frontend/file?key=" + item.pathname,
+                this._uploadMethod,
+                this.getUploadUrl( item.pathname ),
                 true
             );
 
@@ -186,5 +189,17 @@ export class TerraUploadQueue
             }
         });
         return parsed;
+    }
+
+    private getUploadUrl( storageKey: string ): string
+    {
+        if ( typeof this._uploadUrl === "function" )
+        {
+            return this._uploadUrl(storageKey);
+        }
+        else
+        {
+            return this._uploadUrl + "?key=" + storageKey;
+        }
     }
 }

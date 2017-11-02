@@ -1,5 +1,5 @@
-import { TerraFrontendStorageService } from "../terra-frontend-storage.service";
 import { PathHelper } from "../helper/path.helper";
+import { TerraBaseStorageService } from '../terra-base-storage.interface';
 
 export type UploadCallback = (response:string, status:number, headers:{ [key:string]:string }) => void;
 
@@ -33,7 +33,7 @@ export class TerraUploadItem
     private _onError:UploadCallback[] = [];
     private _onProgress:Array<(progress:number) => void> = [];
 
-    constructor(public file:File, private _path:string, private _uploadService:TerraFrontendStorageService)
+    constructor(public file:File, private _path:string, private _uploadService:TerraBaseStorageService)
     {
         if(!file)
         {

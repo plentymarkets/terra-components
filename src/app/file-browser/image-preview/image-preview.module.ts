@@ -3,7 +3,6 @@ import {
     ModuleWithProviders,
     NgModule
 } from '@angular/core';
-//import { TerraComponentsModule } from '../../terra-components.module';
 import { TerraImagePreviewComponent } from './image-preview.component';
 import { FormsModule } from '@angular/forms';
 import { TranslationModule } from 'angular-l10n';

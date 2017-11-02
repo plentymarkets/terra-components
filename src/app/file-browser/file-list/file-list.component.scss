@@ -11,14 +11,31 @@
     flex-direction: column;
 }
 
+.loading-placeholder
+{
+    p
+    {
+        padding: 8px 0 9px 16px;
+        margin: 0;
+        display: inline-block;
+        color: $text-muted;
+    }
+    
+    .icon-loading
+    {
+        float: right;
+        font-size: 36px;
+    }
+}
+
 .terra-breadcrumbs
 {
     .caret
     {
         &:after
         {
-            top: 13.5px;
-            right: 8px;
+            top: 13.5px !important;
+            right: 8px !important;
         }
     }
     
@@ -31,6 +48,9 @@
         {
             a
             {
+                position: relative;
+                padding-left: 14px;
+                
                 &.active
                 {
                     &:before
@@ -38,10 +58,13 @@
                         content: "";
                         width: 4px;
                         height: 4px;
-                        margin: 2px 0;
                         border-radius: 50%;
                         background-color: #fff;
                         display: inline-block;
+                        position: absolute;
+                        top: 50%;
+                        left: 5px;
+                        margin-top: -3px;
                     }
                 }
             }

@@ -63,13 +63,18 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         if ( service !== this._activeStorageService )
         {
             if ( this._storageSubscription )
-
             {
                 this._storageSubscription.unsubscribe();
             }
 
             this._storageList = null;
+            this._currentStorageRoot = null;
             this._activeStorageService = service;
+            if ( this._imagePreviewObject )
+            {
+                this._imagePreviewObject = null;
+                this._parentFileBrowser.splitConfig.hideImagePreview();
+            }
             this.renderFileList();
             this._storageSubscription = this.activeStorageService
                                             .getStorageList()
@@ -382,6 +387,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             this._fileTableRowList = [];
         }
         this._selectedStorageObjects = [];
+        this._parentFileBrowser.outputSelectedChange.emit( null );
         this._changeDetector.detectChanges();
     }
 

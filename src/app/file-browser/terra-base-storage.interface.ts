@@ -1,9 +1,9 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { TerraBaseService } from '../service/terra-base.service';
 import { Observable } from 'rxjs/Observable';
 import { TerraUploadItem } from './model/terra-upload-item';
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
+import { TerraUploadQueue } from './model/terra-upload-queue';
 
 export abstract class TerraBaseStorageService extends TerraBaseService
 {
@@ -11,7 +11,9 @@ export abstract class TerraBaseStorageService extends TerraBaseService
 
     public abstract isPublic: boolean;
 
-    public abstract getStorageList(): BehaviorSubject<TerraStorageObjectList>;
+    public abstract queue: TerraUploadQueue;
+
+    public abstract getStorageList(): Observable<TerraStorageObjectList>;
 
     public abstract createDirectory( path: string ): Observable<any>;
 
