@@ -34,6 +34,10 @@
 	"terraNavigator": {
 		"search": "Search"
 	},
+	"terraPager": {
+		"page": "Page",
+		"of": "of"
+	},
 	"terraEditor": {
 		"insertText": "Insert text.."
 	}
