@@ -18,7 +18,7 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
 {
     private _fileListView: TerraMultiSplitViewInterface;
     private _imagePreviewView: TerraMultiSplitViewInterface;
-    private _storageService: TerraBaseStorageService;
+    private _storageServices: Array<TerraBaseStorageService>;
 
     constructor( private _changeDetector: ChangeDetectorRef )
     {
@@ -26,9 +26,9 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
     }
 
 
-    public init( storageService: TerraBaseStorageService )
+    public init( storageServices: Array<TerraBaseStorageService> )
     {
-        this._storageService = storageService;
+        this._storageServices = storageServices;
 
         this._fileListView = {
             module: TerraFileListModule.forRoot(),
@@ -38,8 +38,8 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
             mainComponentName: TerraFileListModule.getMainComponent(),
             inputs: [
                 {
-                    name: 'inputStorageService',
-                    value: this._storageService
+                    name: 'inputStorageServices',
+                    value: this._storageServices
                 }
             ]
         };
@@ -57,8 +57,8 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
                     value: null
                 },
                 {
-                    name: 'inputStorageService',
-                    value: this._storageService
+                    name: 'inputStorageServices',
+                    value: this._storageServices
                 }
             ]
         };
@@ -78,8 +78,8 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
                 value: storageObject
             },
             {
-                name: 'inputStorageService',
-                value: this._storageService
+                name: 'inputStorageServices',
+                value: this._storageServices
             }
         ];
         this.setSelectedView( this._imagePreviewView );

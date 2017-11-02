@@ -45,17 +45,17 @@ export class TerraFileInputComponent extends TerraInputComponent
     @Input()
     public inputAllowFolders:boolean = true;
 
-    private _storageService: TerraBaseStorageService;
+    private _storageServices: Array<TerraBaseStorageService>;
 
     @Input()
-    public set inputStorageService( service: TerraBaseStorageService )
+    public set inputStorageServices( services: Array<TerraBaseStorageService> )
     {
-        this._storageService = service;
+        this._storageServices = services;
     }
 
-    public get inputStorageService(): TerraBaseStorageService
+    public get inputStorageServices(): Array<TerraBaseStorageService>
     {
-        return this._storageService || this._frontendStorageService;
+        return this._storageServices || [this._frontendStorageService];
     }
 
     @ViewChild('overlay')

@@ -11,6 +11,44 @@
     flex-direction: column;
 }
 
+.terra-breadcrumbs
+{
+    .caret
+    {
+        &:after
+        {
+            top: 13.5px;
+            right: 8px;
+        }
+    }
+    
+    .context-menu
+    {
+        left: 0;
+        right: auto;
+        
+        li
+        {
+            a
+            {
+                &.active
+                {
+                    &:before
+                    {
+                        content: "";
+                        width: 4px;
+                        height: 4px;
+                        margin: 2px 0;
+                        border-radius: 50%;
+                        background-color: #fff;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 .file-list-container
 {

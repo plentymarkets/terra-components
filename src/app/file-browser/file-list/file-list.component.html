@@ -1,8 +1,17 @@
 <terra-base-toolbar>
     <ul class="terra-breadcrumbs" *ngIf="_storageList">
-        <li *ngFor="let parent of parentStorageObjects; let last = last" (click)="currentStorageRoot = parent">
+        <li *ngFor="let parent of parentStorageObjects; let first = first; let last = last" (click)="currentStorageRoot = parent">
             <div [class.active]="last">
-                <span>{{ parent.name || inputStorageService.name }}</span>
+                <span>{{ parent.name || activeStorageService.name }}</span>
+                <a class="caret" *ngIf="first">
+                    <ul class="context-menu">
+                        <li *ngFor="let storageService of inputStorageServices">
+                            <a (click)="activeStorageService = storageService" [class.active]="storageService === activeStorageService">
+                                {{ storageService.name }}
+                            </a>
+                        </li>
+                    </ul>
+                </a>
             </div>
             <a class="icon-next"></a>
         </li>

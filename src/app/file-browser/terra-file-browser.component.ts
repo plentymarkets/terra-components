@@ -43,17 +43,22 @@ export class TerraFileBrowserComponent implements OnInit
 
     public onSelectedUrlChange: EventEmitter<string> = new EventEmitter();
 
-    private _storageService: TerraBaseStorageService;
+    private _storageServices: Array<TerraBaseStorageService>;
 
     @Input()
-    public set inputStorageService( service: TerraBaseStorageService )
+    public set inputStorageServices( services: Array<TerraBaseStorageService> )
     {
-        this._storageService = service;
+        this._storageServices = services;
     }
 
-    public get inputStorageService(): TerraBaseStorageService
+    public get inputStorageServices(): Array<TerraBaseStorageService>
     {
-        return this._storageService || this._frontendStorageService;
+        if ( this._storageServices && this._storageServices.length > 0 )
+        {
+            return this._storageServices;
+        }
+
+        return [this._frontendStorageService]
     }
 
     constructor(
@@ -64,7 +69,7 @@ export class TerraFileBrowserComponent implements OnInit
 
     public ngOnInit():void
     {
-        this.splitConfig.init( this.inputStorageService );
+        this.splitConfig.init( this.inputStorageServices );
     }
 
     public selectUrl( publicUrl: string )
