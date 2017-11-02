@@ -23,6 +23,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-navigator** reduce height if search bar is enabled
 * **terra-base-service** avoid to show error message if code of error is null
 * **terra-select-box** Drop down closes if user had clicked on another select box
+* **terra-pager** Added missing translation
 
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
