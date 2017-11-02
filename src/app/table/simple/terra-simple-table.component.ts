@@ -177,7 +177,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
                 this.highlightSiblingRow(event.which === Key.DownArrow)
             }
 
-            if((event.which === Key.Space || event.which === Key.Enter) && this.inputHasCheckboxes)
+            if(event.which === Key.Space && this.inputHasCheckboxes)
             {
                 if(event.ctrlKey || event.metaKey)
                 {
@@ -187,6 +187,11 @@ export class TerraSimpleTableComponent<D> implements OnChanges
                 {
                     this.changeRowState(!this.inputHighlightedRow.selected, this.inputHighlightedRow);
                 }
+            }
+
+            if(event.which === Key.Enter)
+            {
+                this.outputRowClicked.emit(this.inputHighlightedRow);
             }
 
             event.preventDefault();
