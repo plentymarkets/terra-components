@@ -22,8 +22,9 @@
             (click)="click($event)">
         <span *ngIf="inputIcon" class="icon_dist_top" [ngClass]="inputIcon"></span>
         {{inputCaption}}
+        <ng-content select="[btn-inner]"></ng-content>
     </button>
-    <ng-content></ng-content>
+    <ng-content select="[btn-outer]"></ng-content>
     <div *ngIf="inputIsFlagged" class="flag" [ngClass]="{'disabled': inputIsDisabled}">
         <span [ngClass]="{'disabled': inputIsDisabled}"></span>
     </div>

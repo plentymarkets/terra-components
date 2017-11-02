@@ -36,7 +36,7 @@ input[type="checkbox"]
 
 .input-control.checkbox
 {
-    margin: 0 0.1rem;
+    margin: 0 0.1rem 0 0;
     min-width: 1rem;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -69,6 +69,7 @@ input[type="checkbox"]
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
+    border-radius: $border-radius;
 }
 
 .input-control.checkbox .check:hover
@@ -170,6 +171,7 @@ input[type="checkbox"]
     width: 1rem;
     height: 1rem;
     margin-bottom: .125rem;
+    border-radius: 4px;
 }
 
 .input-control.small-check .check:before
