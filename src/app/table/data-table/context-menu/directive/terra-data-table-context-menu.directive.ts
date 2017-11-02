@@ -30,8 +30,7 @@ export class TerraDataTableContextMenuDirective<D extends TerraBaseData> impleme
     rightClicked(event:MouseEvent)
     {
         this._contextMenuService.show.next({
-            event: event,
-            obj:   this.inputLinks
+            event: event
         });
         event.preventDefault();
     }
