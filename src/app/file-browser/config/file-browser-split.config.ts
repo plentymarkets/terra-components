@@ -1,7 +1,4 @@
-import {
-    ChangeDetectorRef,
-    Injectable
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { TerraImagePreviewModule } from '../image-preview/image-preview.module';
 import { TerraFileListModule } from '../file-list/file-list.module';
 import { TerraMultiSplitViewConfig } from '../../split-view/multi/data/terra-multi-split-view.config';
@@ -19,12 +16,6 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
     private _fileListView: TerraMultiSplitViewInterface;
     private _imagePreviewView: TerraMultiSplitViewInterface;
     private _storageServices: Array<TerraBaseStorageService>;
-
-    constructor( private _changeDetector: ChangeDetectorRef )
-    {
-        super();
-    }
-
 
     public init( storageServices: Array<TerraBaseStorageService> )
     {
@@ -57,8 +48,8 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
                     value: null
                 },
                 {
-                    name: 'inputStorageServices',
-                    value: this._storageServices
+                    name: 'inputStorageService',
+                    value: null
                 }
             ]
         };
@@ -70,16 +61,16 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
 
     }
 
-    public showImagePreview( storageObject: TerraStorageObject )
+    public showImagePreview( storageObject: TerraStorageObject, storageService: TerraBaseStorageService )
     {
         this._imagePreviewView.inputs = [
             {
-                name: 'inputStorageObject',
-                value: storageObject
+                name: 'inputStorageService',
+                value: storageService
             },
             {
-                name: 'inputStorageServices',
-                value: this._storageServices
+                name: 'inputStorageObject',
+                value: storageObject
             }
         ];
         this.setSelectedView( this._imagePreviewView );

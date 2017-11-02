@@ -9,13 +9,14 @@ import { createS3StorageObject } from "./model/s3-storage-object.interface";
 import { TerraBaseMetadataStorageService } from './terra-base-storage.interface';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
+import { TranslationService } from 'angular-l10n';
 
 @Injectable()
 export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 {
     public isPublic: boolean = true;
 
-    public name: string = "Meine Dateien";
+    public name: string;
 
     private _storageInitialized:boolean = false;
 
@@ -34,9 +35,10 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
     private _metadataCache: {[storageKey: string]: TerraImageMetadata } = {};
 
-    constructor(_terraLoadingSpinnerService:TerraLoadingSpinnerService, _http:Http)
+    constructor(_terraLoadingSpinnerService:TerraLoadingSpinnerService, _http:Http, _translation: TranslationService)
     {
         super(_terraLoadingSpinnerService, _http, "/rest/storage/frontend/file");
+        this.name = _translation.translate('terraFileBrowser.myFiles');
     }
 
     public getStorageList(): Observable<TerraStorageObjectList>

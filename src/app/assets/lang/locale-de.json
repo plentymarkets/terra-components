@@ -20,7 +20,13 @@
 		"folderIsEmpty": "Der Ordner ist leer.",
 		"uploadFile": "Datei hochladen",
 		"fileURL": "Datei-URL",
-		"copyToClipboard": "In Zwischenablage kopieren"
+		"copyToClipboard": "In Zwischenablage kopieren",
+		"saveMetadata": "Metadaten speichern",
+        "altText": "Alternativtext",
+        "imageSize": "Größe",
+        "fileSize": "Dateigröße",
+        "fileName": "Dateiname",
+        "lastChange": "Letzte Änderung"
 	},
 	"terraFileInput": {
 		"choose": "Wählen",

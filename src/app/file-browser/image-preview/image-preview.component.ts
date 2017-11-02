@@ -2,8 +2,6 @@ import {
     ChangeDetectorRef,
     Component,
     Input,
-    OnChanges,
-    SimpleChanges
 } from '@angular/core';
 import { TerraStorageObject } from '../model/terra-storage-object';
 import {
@@ -13,12 +11,14 @@ import {
 import { TerraImageMetadata } from '../model/terra-image-metadata.interface';
 
 @Component({
-               selector: 'terra-image-preview',
-               template: require('./image-preview.component.html'),
-               styles: [require('./image-preview.component.scss')]
-           })
+   selector: 'terra-image-preview',
+   template: require('./image-preview.component.html'),
+   styles: [require('./image-preview.component.scss')]
+})
 export class TerraImagePreviewComponent
 {
+
+    private _translationPrefix: string = "terraFileBrowser";
 
     private _inputStorageObject: TerraStorageObject;
 

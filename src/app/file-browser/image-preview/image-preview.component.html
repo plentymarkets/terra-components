@@ -2,7 +2,7 @@
     <terra-base-toolbar *ngIf="_canHandleMetadata">
         <div class="btn-group" role="group">
             <terra-button inputIcon="icon-save"
-                          [inputTooltipText]="'Metadaten speichern'"
+                          [inputTooltipText]="_translationPrefix + '.saveMetadata' | translate:lang"
                           (outputClicked)="updateMetadata()">
             </terra-button>
         </div>
@@ -14,11 +14,11 @@
         </div>
         
         <div *ngIf="_canHandleMetadata">
-            <terra-text-input inputName="Größe"
+            <terra-text-input [inputName]="_translationPrefix + '.imageSize' | translate:lang"
                               [inputIsReadonly]="true"
                               [inputValue]="_metadata.width ? (_metadata.width + ' x ' + _metadata.height + ' px') : '-'"></terra-text-input>
             
-            <terra-text-input inputName="Alternativtext" [(ngModel)]="_metadata.altText"></terra-text-input>
+            <terra-text-input [inputName]="_translationPrefix + '.altText' | translate:lang" [(ngModel)]="_metadata.altText"></terra-text-input>
         </div>
     </div>
     

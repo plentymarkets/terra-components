@@ -28,6 +28,7 @@ import { TerraFileBrowserService } from '../terra-file-browser.service';
 import { TerraUploadItem } from '../model/terra-upload-item';
 import { ClipboardHelper } from '../helper/clipboard.helper';
 import { TerraSimpleTableCellInterface } from '../../table/simple/cell/terra-simple-table-cell.interface';
+import { TranslationService } from 'angular-l10n';
 
 @Component({
                selector: 'terra-file-list',
@@ -124,14 +125,14 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public set currentStorageRoot(storageObject:TerraStorageObject)
     {
-        if ( this._imagePreviewObject && storageObject !== this._imagePreviewObject )
-        {
-            this._imagePreviewObject = null;
-            this._parentFileBrowser.splitConfig.hideImagePreview();
-        }
-
         if((!storageObject || storageObject.isDirectory) && this._currentStorageRoot !== storageObject)
         {
+            if ( this._imagePreviewObject && storageObject !== this._imagePreviewObject )
+            {
+                this._imagePreviewObject = null;
+                this._parentFileBrowser.splitConfig.hideImagePreview();
+            }
+            
             this._currentStorageRoot = storageObject;
             this.renderFileList();
         }
@@ -196,6 +197,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     constructor(private _changeDetector:ChangeDetectorRef,
                 private _fileBrowserService:TerraFileBrowserService,
+                private _translationService: TranslationService,
                 @Inject(forwardRef(() => TerraFileBrowserComponent)) private _parentFileBrowser:TerraFileBrowserComponent)
     {
     }
@@ -227,7 +229,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                     if( FileType.isWebImage(object.key) )
                     {
                         this._imagePreviewObject = object;
-                        this._parentFileBrowser.splitConfig.showImagePreview(object);
+                        this._parentFileBrowser.splitConfig.showImagePreview(object, this.activeStorageService);
                     }
                     let row: TerraSimpleTableRowInterface<TerraStorageObject> = this._fileTableRowList.find( r => r.value === object );
                     this._fileTableComponent.inputHighlightedRow = row;
@@ -305,20 +307,20 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             if ( this.activeStorageService.isPublic )
             {
                 this._fileTableHeaderList = [
-                    { caption: 'Dateiname', width: '30%' },
-                    { caption: 'Datei-URL', width: '50%' },
+                    { caption: this._translationService.translate(this._translationPrefix + '.fileName'), width: '30%' },
+                    { caption: this._translationService.translate(this._translationPrefix + '.fileURL'), width: '50%' },
                     { caption: '', width: '1' },
-                    { caption: 'Dateigröße', width: '7.5%' },
-                    { caption: 'Letzte Änderung', width: '12.5%' },
+                    { caption: this._translationService.translate(this._translationPrefix + '.fileSize'), width: '7.5%' },
+                    { caption: this._translationService.translate(this._translationPrefix + '.lastChange'), width: '12.5%' },
                     { caption: '', width: '1' }
                 ];
             }
             else
             {
                 this._fileTableHeaderList = [
-                    { caption: 'Dateiname', width: '80%' },
-                    { caption: 'Dateigröße', width: '7.5%' },
-                    { caption: 'Letzte Änderung', width: '12.5%' },
+                    { caption: this._translationService.translate(this._translationPrefix + '.fileName'), width: '80%' },
+                    { caption: this._translationService.translate(this._translationPrefix + '.fileSize'), width: '7.5%' },
+                    { caption: this._translationService.translate(this._translationPrefix + '.lastChange'), width: '12.5%' },
                     { caption: '', width: '1' }
                 ];
             }
@@ -343,7 +345,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                                                      event.stopPropagation();
                                                  },
                                                  isSecondary:      true,
-                                                 tooltipText:      'Datei löschen',
+                                                 tooltipText:      this._translationService.translate(this._translationPrefix + '.deleteFile'),
                                                  tooltipPlacement: 'left'
                                              };
 
@@ -353,7 +355,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                                                      ClipboardHelper.copyText(storageObject.publicUrl);
                                                      event.stopPropagation();
                                                  },
-                                                 tooltipText: 'In Zwischenablage kopieren',
+                                                 tooltipText: this._translationService.translate(this._translationPrefix + '.copyToClipboard'),
                                                  tooltipPlacement: 'left'
                                              };
 
@@ -415,7 +417,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             if(storageObject && FileType.isWebImage(storageObject.key))
             {
                 this._imagePreviewObject = storageObject;
-                this._parentFileBrowser.splitConfig.showImagePreview(storageObject);
+                this._parentFileBrowser.splitConfig.showImagePreview(storageObject, this.activeStorageService);
             }
             else
             {
