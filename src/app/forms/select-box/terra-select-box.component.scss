@@ -120,6 +120,17 @@
                 background: $blue;
                 color: white;
             }
+            &.highlight
+            {
+                font-weight: bolder;
+                color: $alert-green;
+            }
+            &.deep
+            {
+                font-style: italic;
+                color: $grey-8;
+                font-weight: lighter;
+            }
         }
     }
 }

@@ -76,11 +76,11 @@ input[type="search"]::-webkit-search-decoration
     position: relative;
     width: 100%;
     margin-bottom: var(--input-unit-v1-margin-bottom, 3px);
-    height: $terra-btn-md-height;
-    line-height: $terra-btn-md-height;
+    height: var(--input-unit-v1-height, $terra-btn-md-height);
+    line-height: var(--input-unit-v1-line-height, $terra-btn-md-height);
     background-color: $background;
     border-radius: $border-radius;
-    border: 1px solid $white;
+    border: var(--input-unit-v1-border, 1px solid $white);
     
     &.isSmall
     {
@@ -90,7 +90,7 @@ input[type="search"]::-webkit-search-decoration
     
     &:hover
     {
-        border: 1px solid $blue;
+        border: var(--input-unit-v1-border-hover, 1px solid $blue);
     }
     
     &.error
