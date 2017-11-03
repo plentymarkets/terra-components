@@ -33,5 +33,9 @@
 	},
 	"terraNavigator": {
 		"search": "Suche"
-	}
+	},
+    "terraPager": {
+        "page": "Seite",
+        "of": "von"
+    }
 }
