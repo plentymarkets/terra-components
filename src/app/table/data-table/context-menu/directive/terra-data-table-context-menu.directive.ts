@@ -21,7 +21,7 @@ export class TerraDataTableContextMenuDirective<D extends TerraBaseData> impleme
     constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
     {
     }
-    
+
     ngOnInit():void
     {
         this._contextMenuService.init.next(this.inputLinks);
@@ -31,7 +31,7 @@ export class TerraDataTableContextMenuDirective<D extends TerraBaseData> impleme
     {
         this._contextMenuService.show.next({
             event: event,
-            obj: this.inputLinks
+            obj:   this.inputLinks
         });
         event.preventDefault();
     }
