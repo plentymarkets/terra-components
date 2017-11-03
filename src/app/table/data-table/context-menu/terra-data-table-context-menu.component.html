@@ -1,6 +1,6 @@
 <ul class="context-menu" id="menu" [ngStyle]="_locationCss">
     <ng-template ngFor let-link [ngForOf]="_contextMenuLinkList">
-        <li *ngIf="!link.isDivider" (click)="link.subject.next(link)">
+        <li *ngIf="!link.isDivider" (click)="link.clickFunction(link.data)">
             <a>{{link.title}}</a>
         </li>
         <div *ngIf="link.isDivider" class="context-menu-divider"></div>

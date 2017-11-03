@@ -31,7 +31,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
     constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
     {
         _contextMenuService.show.subscribe(
-            e => this.showMenu(e.event));
+            e => this.showMenu(e.event, e.obj));
         
         _contextMenuService.init.subscribe(
             e => this._contextMenuLinkList = e
@@ -51,9 +51,10 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
         document.removeEventListener('click', this.clickListener);
     }
 
-    showMenu(event)
+    showMenu(event:MouseEvent, contextMenuLinkList:TerraDataTableContextMenuEntryInterface<D>[])
     {
         this._isShown = true;
+        this._contextMenuLinkList = contextMenuLinkList;
         this._mouseLocation = {
             left: event.clientX,
             top:  event.clientY
