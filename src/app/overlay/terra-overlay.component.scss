@@ -6,7 +6,8 @@
 
 .modal-body
 {
-    max-height: 525px;
+    max-height: var(--modal-body-max-height, 525px);
+    height: var(--modal-body-height, initial);
     overflow-y: auto;
 }
 
@@ -29,4 +30,25 @@
 .modal.in .modal-dialog
 {
     transform: translate(-50%, -50%);
+}
+
+@media(min-width: 544px)
+{
+    .modal-dialog
+    {
+        max-width: 600px;
+        
+        &.modal-sm
+        {
+            max-width: 300px;
+        }
+        &.modal-lg
+        {
+            max-width: 900px;
+        }
+        &.modal-xl
+        {
+            max-width: 1200px;
+        }
+    }
 }

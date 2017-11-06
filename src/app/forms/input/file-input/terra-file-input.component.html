@@ -49,6 +49,7 @@
     <terra-overlay #overlay
                    [inputPrimaryButtonInterface]="primaryOverlayButton"
                    [inputSecondaryButtonInterface]="secondaryOverlayButton"
+                   [inputIsExtraLarge]="true"
                    (outputOnShow)="fileBrowser.selectUrl(value)"
                    (outputOnHide)="_selectedObjectUrl = value" class="hasSplitView">
         <terra-file-browser #fileBrowser
