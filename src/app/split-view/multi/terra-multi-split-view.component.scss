@@ -191,9 +191,6 @@
     }
 }
 
-
-
-
 // TODO: @vwiebe, refactoring
 
 /deep/ terra-split-view .modal-content terra-split-view .hasDivider
@@ -232,14 +229,6 @@
     {
         opacity: 1;
     }
-}
-
-/deep/ .tab-content > .offsetHeight
-{
-    height: calc(100vh - 211px);
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
 }
 
 .ellipsis

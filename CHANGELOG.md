@@ -13,6 +13,8 @@ or `ctrl`/`cmd` + `space`/`enter` to toggle checkbox in table header.
 Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-simple-table** Add option to disable single rows to `TerraSimpleTableRowInterface`. Disabled rows may not be highlighted (using `inputUseHighlighting`) or selected when having checkboxes activated (`inputHasCheckbox`)
 * **terra-data-table-no-result-notice-component** new component, that can be used to display a notice whenever no results are available
+* **terra-number-input** removed spin-buttons
+* **terra-pager** limit page number input to a valid range
 * **terra-note** Added new component to display notes which auto adjust the height by its content.
 
 ### Bug Fixes
@@ -20,7 +22,9 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 	- disable public access to the data model, since it shouldn't be edited manually
 	- prevent adding two views with the same name to the same hierarchy level
 * **terra-navigator** reduce height if search bar is enabled
+* **terra-base-service** avoid to show error message if code of error is null
 * **terra-select-box** Drop down closes if user had clicked on another select box
+* **terra-pager** Added missing translation
 
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)

@@ -11,7 +11,10 @@ import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loa
 import { TerraBaseParameterInterface } from '../data/terra-base-parameter.interface';
 import { TerraAlertComponent } from '../alert/terra-alert.component';
 import { Exception } from './data/exception.interface';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 import { TerraPagerParameterInterface } from '../pager/data/terra-pager.parameter.interface';
 
 /**
@@ -237,6 +240,11 @@ export class TerraBaseService
                     dismissOnTimeout: 0
                 });
             }
+        }
+        // return if error code is null
+        else if(isNull(response.error.code))
+        {
+            return;
         }
         // default exception type
         else

@@ -27,18 +27,17 @@
 </terra-base-toolbar>
 <div *ngIf="modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
     <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first" let-index="index">
-        <div class="view {{ module.width }}" id="module{{index}}" [ngClass]="{'first': first, 'last': last, isBackgroundColorGrey: module.isBackgroundColorGrey, 'workaround': false}">
+        <div class="view {{ module.width }}" id="module{{index}}"
+             [ngClass]="{'first': first, 'last': last, isBackgroundColorGrey: module.isBackgroundColorGrey, 'workaround': false}">
             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                 <div *ngIf="module.currentSelectedView === view" class="{{ view.mainComponentName + '_' + i}} fadeIn">
-                    <div [ngClass]="{'offsetHeight': inputShowBreadcrumbs}">
-                        <terra-dynamic-module-loader
-                            [inputModule]="view.module"
-                            [inputParameter]="view.parameter"
-                            [inputInputs]="view.inputs"
-                            [inputView]="view"
-                            [inputMainComponentName]="view.mainComponentName">
-                        </terra-dynamic-module-loader>
-                    </div>
+                    <terra-dynamic-module-loader
+                        [inputModule]="view.module"
+                        [inputParameter]="view.parameter"
+                        [inputInputs]="view.inputs"
+                        [inputView]="view"
+                        [inputMainComponentName]="view.mainComponentName">
+                    </terra-dynamic-module-loader>
                 </div>
             </ng-template>
         </div>
