@@ -77,6 +77,7 @@ import { TerraButtonWithOptionsComponent } from './button-with-options/terra-but
 import { FixedHeaderDirective } from './table/fixed-header/fixed-header.directive';
 import { TerraFileBrowserService } from './file-browser/terra-file-browser.service';
 import { TerraFileBrowserComponent } from './file-browser/terra-file-browser.component';
+import { TerraNoteComponent } from './note/terra-note.component';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -195,7 +196,8 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraFileInputComponent,
         TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent,
-        FixedHeaderDirective
+        FixedHeaderDirective,
+        TerraNoteComponent
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -239,7 +241,8 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
-        TerraButtonWithOptionsComponent
+        TerraButtonWithOptionsComponent,
+        TerraNoteComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -288,7 +291,8 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraFileInputComponent,
         TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent,
-        FixedHeaderDirective
+        FixedHeaderDirective,
+        TerraNoteComponent
     ],
     imports:         [
         BrowserModule,

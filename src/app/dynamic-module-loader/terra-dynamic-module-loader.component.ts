@@ -71,14 +71,14 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
                             // create the component
                             this._cmpRef = this.viewChildTarget.createComponent(factory);
 
+                            // pass the instance of the loaded view back to the component
+                            this._cmpRef.instance.splitViewInstance = this.inputView;
+
                             // pass the delivered parameter to the component
                             this._cmpRef.instance.parameter = this.inputParameter; // TODO: deprecated if old split view is removed
 
                             // add inputs to component for data binding purposes
                             this.assignInputProperties();
-
-                            // pass the instance of the loaded view back to the component
-                            this._cmpRef.instance.splitViewInstance = this.inputView;
                         }
                     }
                 );
