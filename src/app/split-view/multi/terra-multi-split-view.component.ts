@@ -135,7 +135,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 {
                     views:                 [],
                     identifier:            view.mainComponentName,
-                    width:                 view.defaultWidth,
+                    width:                 view.focusedWidth ? view.focusedWidth : view.defaultWidth,
                     currentSelectedView:   view,
                     isBackgroundColorGrey: view.isBackgroundColorGrey
                 }
