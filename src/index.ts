@@ -85,6 +85,5 @@ export * from './app/file-browser/model/terra-upload-item';
 export * from './app/file-browser/model/terra-upload-queue';
 export * from './app/file-browser/terra-base-storage.interface';
 export * from './app/file-browser/terra-frontend-storage.service';
-export * from './app/file-browser/terra-plugin-storage.service';
 export * from './app/no-result/terra-no-result-notice.component';
 export * from './app/note/terra-note.component';
