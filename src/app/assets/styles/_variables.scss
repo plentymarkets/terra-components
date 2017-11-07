@@ -400,6 +400,10 @@ $zindex-context-menu: 99999 !default;
 $navbar-border-radius: $border-radius !default;
 $navbar-padding-horizontal: $spacer !default;
 $navbar-padding-vertical: ($spacer / 2) !default;
+$navbar-height: 70px;
+
+// Tabbar
+$tabbar-height: 46px;
 
 $navbar-dark-color: rgba(255, 255, 255, .5) !default;
 $navbar-dark-hover-color: rgba(255, 255, 255, .75) !default;
