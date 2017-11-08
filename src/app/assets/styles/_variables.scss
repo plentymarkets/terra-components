@@ -400,6 +400,10 @@ $zindex-context-menu: 99999 !default;
 $navbar-border-radius: $border-radius !default;
 $navbar-padding-horizontal: $spacer !default;
 $navbar-padding-vertical: ($spacer / 2) !default;
+$navbar-height: 70px;
+
+// Tabbar
+$tabbar-height: 46px;
 
 $navbar-dark-color: rgba(255, 255, 255, .5) !default;
 $navbar-dark-hover-color: rgba(255, 255, 255, .75) !default;
@@ -1225,6 +1229,8 @@ $alert-red: #F11539;
 $alert-green: #6AD26A;
 $blue: #24B3E0;
 $blue-hover: #1FA1C9;
+$yellow-light: #FFF5AF;
+$yellow: #FDEA5F;
 
 $medium-grey-1: #ACADB2;
 $light-grey-1: #F4F5F5;
