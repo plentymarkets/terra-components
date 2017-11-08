@@ -76,7 +76,7 @@ import { TerraInteractModule } from "./interactables/interact.module";
 import { TerraSliderComponent } from "./forms/slider/terra-slider.component";
 import { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.component';
 import { TerraButtonWithOptionsComponent } from './button-with-options/terra-button-with-options.component';
-import { TerraWysiwygEditorComponent } from './wysiwyg-editor/terra-wysiwyg-editor.component';
+import { TerraNotesEditorComponent } from './notes-editor/terra-notes-editor.component';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -195,7 +195,7 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraFileInputComponent,
         TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent,
-        TerraWysiwygEditorComponent
+        TerraNotesEditorComponent
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -240,7 +240,7 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraFileBrowserComponent,
         TerraFileInputComponent,
         TerraButtonWithOptionsComponent,
-        TerraWysiwygEditorComponent
+        TerraNotesEditorComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -289,7 +289,7 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraFileInputComponent,
         TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent,
-        TerraWysiwygEditorComponent
+        TerraNotesEditorComponent
     ],
     imports:         [
         BrowserModule,

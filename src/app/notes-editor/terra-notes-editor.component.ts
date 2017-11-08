@@ -12,20 +12,20 @@ import {
 } from '@angular/forms';
 
 @Component({
-    selector:  'terra-wysiwyg-editor',
-    template:  require('./terra-wysiwyg-editor.component.html'),
+    selector:  'terra-notes-editor',
+    template:  require('./terra-notes-editor.component.html'),
     styles:    [
-        require('./terra-wysiwyg-editor.component.scss'),
+        require('./terra-notes-editor.component.scss'),
         require('quill/dist/quill.bubble.css'),
         require('quill/dist/quill.snow.css')
     ],
     providers: [{
         provide:     NG_VALUE_ACCESSOR,
-        useExisting: TerraWysiwygEditorComponent,
+        useExisting: TerraNotesEditorComponent,
         multi:       true
     }]
 })
-export class TerraWysiwygEditorComponent implements OnInit, ControlValueAccessor
+export class TerraNotesEditorComponent implements OnInit, ControlValueAccessor
 {
     @Input() inputPlaceholder:string;
 

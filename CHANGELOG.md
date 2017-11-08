@@ -15,7 +15,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-data-table-no-result-notice-component** new component, that can be used to display a notice whenever no results are available
 * **terra-number-input** removed spin-buttons
 * **terra-pager** limit page number input to a valid range
-* **terra-wysiwyg-editor** new component, that realizes a wysiwyg editor with several features.
+* **terra-notes-editor** new component, that realizes an editor for notes with several features.
 
 ### Bug Fixes
 * **terra-multi-split-view** 
