@@ -14,12 +14,6 @@
     z-index: $zindex-toolbar-sticky;
 }
 
-:host /deep/ .btn-toolbar .btn-group
-{
-    margin: 0;
-    padding-right: 12px;
-}
-
 :host-context(.btn-toolbar .pager)  //if pager placed in toolbar, style the toolbar contained in pager like this
 {
     --toolbar-padding: 6px 4px 4px 4px;
