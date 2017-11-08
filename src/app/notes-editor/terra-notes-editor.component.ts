@@ -35,11 +35,27 @@ export class TerraNotesEditorComponent implements OnInit, ControlValueAccessor
     private _value:string;
     private _onChangeCallback:() => void;
     private _onTouchedCallback:() => void;
+    private _modules:{ [index: string]: Object };
 
     constructor(private translation:TranslationService)
     {
         // initialize placeholder
         this._placeholder = this.translation.translate('terraEditor.insertText');
+        
+        this._modules = {
+            toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+
+                ['link', 'image']                         // link and image, video
+            ]
+        };
 
         // initialize callbacks
         this._onChangeCallback = () =>
