@@ -21,7 +21,10 @@ import moment = require('moment');
  */
 @Component({
     selector:  'terra-date-picker',
-    styles:    [require('./terra-date-picker.component.scss')],
+    styles:    [
+        require('./terra-date-picker.component.scss'),
+        require('./terra-date-picker.component.glob.scss').toString()
+    ],
     template:  require('./terra-date-picker.component.html'),
     providers: [
         {
