@@ -1,46 +1,18 @@
-.context-menu ul
-{
-    display: block;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    text-align: left;
-    position: absolute;
-    z-index: 99999;
-    width: 11.6rem;
-    border: 1px solid grey;
-}
-
-.context-menu ul li
-{
-    padding: .25em .5em;
-    border-top: 1px solid #F2F2F2;
-    display: block;
-    text-decoration: none;
-    background: #E0E0E0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 11.5rem;
-    cursor: pointer;
-}
-
-.context-menu ul li:hover
-{
-    background: #008EBD;
-    color: white;
-}
-
 .context-menu
 {
-    position: fixed;
-    z-index: 99999;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transition: none;
+    min-width: max-content;
+    max-width: max-content;
 }
 
-.context-menu ul .context-menu-divider
+.context-menu-divider
 {
-    background: grey;
+    background: $grey-3;
     cursor: default;
     height: 1px;
     overflow: hidden;
+    margin: 0.5rem 0;
 }
