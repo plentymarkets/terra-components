@@ -34,10 +34,10 @@
 	"terraNavigator": {
 		"search": "Suche"
 	},
-    "terraPager": {
-        "page": "Seite",
-        "of": "von"
-    },
+	"terraPager": {
+		"page": "Seite",
+		"of": "von"
+	},
 	"terraEditor": {
 		"insertText": "Text eingeben.."
 	}
