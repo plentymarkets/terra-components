@@ -16,6 +16,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-number-input** removed spin-buttons
 * **terra-pager** limit page number input to a valid range
 * **terra-note** Added new component to display notes which auto adjust the height by its content.
+* **terra-select-box** Added input `inputOpenOnTop` for opening the select box drop down on top of input 
 
 ### Bug Fixes
 * **terra-multi-split-view** 
