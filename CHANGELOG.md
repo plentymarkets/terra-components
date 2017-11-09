@@ -15,6 +15,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-data-table-no-result-notice-component** new component, that can be used to display a notice whenever no results are available
 * **terra-number-input** removed spin-buttons
 * **terra-pager** limit page number input to a valid range
+* **terra-note** Added new component to display notes which auto adjust the height by its content.
 
 ### Bug Fixes
 * **terra-multi-split-view** 
@@ -23,6 +24,8 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-navigator** reduce height if search bar is enabled
 * **terra-base-service** avoid to show error message if code of error is null
 * **terra-select-box** Drop down closes if user had clicked on another select box
+* **terra-pager** Added missing translation
+* **context-menu-holder** Adapted new styles and change structure to make components usable again
 
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
