@@ -12,13 +12,12 @@
 /src/**/*.d.ts
 
 # IDEs and editors
-/.idea
+/.idea/
 *.iml
 .project
 .classpath
 *.launch
 .settings/
-*.iml
 
 # misc
 /.sass-cache
