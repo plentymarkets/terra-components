@@ -42,6 +42,14 @@ module.exports = function (options) {
                     exclude: [helpers.root('src/index.html')]
                 },
                 {
+                    test: /\.css$/,
+                    use: [
+                        'to-string-loader',
+                        'style-loader',
+                        'css-loader'
+                    ]
+                },
+                {
                     test: /\.scss$/,
                     exclude: [/\.glob\.scss$/],
                     loaders: [

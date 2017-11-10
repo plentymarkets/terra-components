@@ -17,6 +17,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-pager** limit page number input to a valid range
 * **terra-note** Added new component to display notes which auto adjust the height by its content.
 * **terra-multi-split-view-config** new method `isViewVisible` that can be used to check whether a view object is currently visible
+* **terra-note-editor** new component based on [quill](https://quilljs.com/), that realizes an editor for notes with several features.
 
 ### Bug Fixes
 * **terra-multi-split-view** 
