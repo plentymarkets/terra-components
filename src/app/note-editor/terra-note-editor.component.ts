@@ -12,20 +12,20 @@ import {
 } from '@angular/forms';
 
 @Component({
-    selector:  'terra-notes-editor',
-    template:  require('./terra-notes-editor.component.html'),
+    selector:  'terra-note-editor',
+    template:  require('./terra-note-editor.component.html'),
     styles:    [
-        require('./terra-notes-editor.component.scss'),
+        require('./terra-note-editor.component.scss'),
         require('quill/dist/quill.bubble.css'),
         require('quill/dist/quill.snow.css')
     ],
     providers: [{
         provide:     NG_VALUE_ACCESSOR,
-        useExisting: TerraNotesEditorComponent,
+        useExisting: TerraNoteEditorComponent,
         multi:       true
     }]
 })
-export class TerraNotesEditorComponent implements OnInit, ControlValueAccessor
+export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
 {
     @Input() inputPlaceholder:string;
 
@@ -40,7 +40,7 @@ export class TerraNotesEditorComponent implements OnInit, ControlValueAccessor
     constructor(private translation:TranslationService)
     {
         // initialize placeholder
-        this._placeholder = this.translation.translate('terraEditor.insertText');
+        this._placeholder = this.translation.translate('terraNoteEditor.insertText');
         
         this._modules = {
             toolbar: [
@@ -50,8 +50,6 @@ export class TerraNotesEditorComponent implements OnInit, ControlValueAccessor
                 [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
 
                 [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
 
                 ['link', 'image']                         // link and image, video
             ]
