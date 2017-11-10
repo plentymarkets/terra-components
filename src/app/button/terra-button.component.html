@@ -9,12 +9,13 @@
      [ngClass]="{'pull-xs-right': inputIsAlignRight,
                  'disabled': inputIsDisabled}">
     <button class="btn"
-            [ngClass]="{'btn-brand-primary' : inputIsPrimary,
-                      'btn-brand-secondary' : inputIsSecondary,
+            [ngClass]="{'btn-primary' : inputIsPrimary,
+                      'btn-secondary' : inputIsSecondary,
                       'btn-tertiary': inputIsTertiary,
                       'btn-sm' : inputIsSmall,
                       'btn-lg' : inputIsLarge,
                       'activated' : inputIsActive && !inputIsDivider,
+                      'highlighted' : inputIsHighlighted,
                       'btn-divider' : inputIsDivider,
                       'btn-link' : inputIsLink }"
             [hidden]="inputIsHidden"
