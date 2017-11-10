@@ -11,7 +11,7 @@
     <table class="table data-table">
         <thead>
         <tr>
-            <th *ngIf="inputHasCheckboxes" width="25px">
+            <th *ngIf="inputHasCheckboxes && _rowList.length" width="25px">
                 <terra-checkbox #viewChildHeaderCheckbox
                                 (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
                                 [value]="_isHeaderCheckboxChecked">
