@@ -9,6 +9,7 @@ import {
     TerraBaseStorageService
 } from '../terra-base-storage.interface';
 import { TerraImageMetadata } from '../model/terra-image-metadata.interface';
+import { isNullOrUndefined } from 'util';
 
 @Component({
    selector: 'terra-image-preview',
@@ -18,7 +19,7 @@ import { TerraImageMetadata } from '../model/terra-image-metadata.interface';
 export class TerraImagePreviewComponent
 {
 
-    private _translationPrefix: string = "terraFileBrowser";
+    private _translationPrefix: string = 'terraFileBrowser';
 
     private _inputStorageObject: TerraStorageObject;
 
@@ -28,7 +29,7 @@ export class TerraImagePreviewComponent
         this._inputStorageObject = object;
         this._metadata = {};
         this._isLoading = true;
-        if ( object && this.inputStorageService && this.inputStorageService instanceof TerraBaseMetadataStorageService )
+        if ( !isNullOrUndefined(object) && this.inputStorageService && this.inputStorageService instanceof TerraBaseMetadataStorageService )
         {
             this.inputStorageService
                 .getMetadata( object.key )
@@ -65,7 +66,7 @@ export class TerraImagePreviewComponent
     {
     }
 
-    private updateMetadata()
+    private updateMetadata():void
     {
         if( this.inputStorageService instanceof TerraBaseMetadataStorageService )
         {

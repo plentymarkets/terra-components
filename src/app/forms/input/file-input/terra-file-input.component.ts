@@ -2,23 +2,20 @@ import {
     Component,
     forwardRef,
     Input,
-    OnChanges,
-    OnInit,
-    SimpleChanges,
     ViewChild
-} from "@angular/core";
-import { TerraOverlayComponent } from "../../../overlay/terra-overlay.component";
-import { TerraInputComponent } from "../terra-input.component";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { TerraRegex } from "../../../regex/terra-regex";
-import { TerraOverlayButtonInterface } from "../../../overlay/data/terra-overlay-button.interface";
-import { PathHelper } from "../../../file-browser/helper/path.helper";
-import { FileType } from "../../../file-browser/helper/fileType.helper";
-import { TranslationService } from "angular-l10n";
+} from '@angular/core';
+import { TerraOverlayComponent } from '../../../overlay/terra-overlay.component';
+import { TerraInputComponent } from '../terra-input.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TerraRegex } from '../../../regex/terra-regex';
+import { TerraOverlayButtonInterface } from '../../../overlay/data/terra-overlay-button.interface';
+import { PathHelper } from '../../../file-browser/helper/path.helper';
+import { FileType } from '../../../file-browser/helper/fileType.helper';
+import { TranslationService } from 'angular-l10n';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
-import { TerraFileBrowserComponent } from '../../../file-browser/terra-file-browser.component';
 import { TerraBaseStorageService } from '../../../file-browser/terra-base-storage.interface';
 import { TerraFrontendStorageService } from '../../../file-browser/terra-frontend-storage.service';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector:  'terra-file-input',
@@ -34,7 +31,7 @@ import { TerraFrontendStorageService } from '../../../file-browser/terra-fronten
 })
 export class TerraFileInputComponent extends TerraInputComponent
 {
-    private _translationPrefix:string = "terraFileInput";
+    private _translationPrefix:string = 'terraFileInput';
 
     @Input()
     public inputShowPreview:boolean = false;
@@ -68,7 +65,7 @@ export class TerraFileInputComponent extends TerraInputComponent
     
     public primaryOverlayButton:TerraOverlayButtonInterface = {
         icon:          'icon-success',
-        caption:       this.translation.translate(this._translationPrefix + ".choose"),
+        caption:       this.translation.translate(this._translationPrefix + '.choose'),
         isDisabled:    true,
         clickFunction: () => {
                            this.value = this._selectedObjectUrl;
@@ -78,7 +75,7 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     public secondaryOverlayButton:TerraOverlayButtonInterface = {
         icon:          'icon-close',
-        caption:       this.translation.translate(this._translationPrefix + ".cancel"),
+        caption:       this.translation.translate(this._translationPrefix + '.cancel'),
         isDisabled:    false,
         clickFunction: () => {
                            this._selectedObjectUrl = this.value;
@@ -95,9 +92,9 @@ export class TerraFileInputComponent extends TerraInputComponent
     {
     }
 
-    public onSelectedObjectChange( selectedObject: TerraStorageObject )
+    public onSelectedObjectChange( selectedObject: TerraStorageObject ):void
     {
-        if ( !selectedObject || selectedObject.isDirectory )
+        if ( isNullOrUndefined(selectedObject) || selectedObject.isDirectory )
         {
             this.primaryOverlayButton.isDisabled = true;
         }
@@ -108,7 +105,7 @@ export class TerraFileInputComponent extends TerraInputComponent
         }
     }
 
-    public onPreviewClicked()
+    public onPreviewClicked():void
     {
         if(this.isWebImage(this.value))
         {
@@ -116,35 +113,35 @@ export class TerraFileInputComponent extends TerraInputComponent
         }
     }
 
-    public showFileBrowser()
+    public showFileBrowser():void
     {
         this.overlay.showOverlay();
     }
 
     public getIconClass(filename:string):string
     {
-        if(!filename)
+        if( isNullOrUndefined(filename) )
         {
-            return "";
+            return '';
         }
 
         if(PathHelper.isDirectory(filename))
         {
-            return "icon-folder";
+            return 'icon-folder';
         }
         return FileType.mapIconClass(filename);
     }
 
     public isWebImage(filename:string):boolean
     {
-        return !!filename && FileType.isWebImage(filename);
+        return !isNullOrUndefined(filename) && FileType.isWebImage(filename);
     }
 
     public getFilename(path:string):string
     {
-        if(!path)
+        if( isNullOrUndefined(path) )
         {
-            return "";
+            return '';
         }
         return PathHelper.basename(path);
     }

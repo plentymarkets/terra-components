@@ -6,9 +6,9 @@ import { TerraMultiSplitViewInterface } from '../../split-view/multi/data/terra-
 import { TerraStorageObject } from '../model/terra-storage-object';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 
-const SPLIT_WIDTH_FULL      = "col-xs-12 col-md-12 col-lg-12";
-const SPLIT_WIDTH_CONTENT   = "col-xs-12 col-md-9 col-lg-10";
-const SPLIT_WIDTH_SIDEBAR   = "col-xs-12 col-md-3 col-lg-2";
+const SPLIT_WIDTH_FULL      = 'col-xs-12 col-md-12 col-lg-12';
+const SPLIT_WIDTH_CONTENT   = 'col-xs-12 col-md-9 col-lg-10';
+const SPLIT_WIDTH_SIDEBAR   = 'col-xs-12 col-md-3 col-lg-2';
 
 @Injectable()
 export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
@@ -17,7 +17,7 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
     private _imagePreviewView: TerraMultiSplitViewInterface;
     private _storageServices: Array<TerraBaseStorageService>;
 
-    public init( storageServices: Array<TerraBaseStorageService> )
+    public init( storageServices: Array<TerraBaseStorageService> ):void
     {
         this._storageServices = storageServices;
 
@@ -25,7 +25,7 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
             module: TerraFileListModule.forRoot(),
             defaultWidth: SPLIT_WIDTH_CONTENT,
             focusedWidth: SPLIT_WIDTH_FULL,
-            name: "File List",
+            name: 'File List',
             mainComponentName: TerraFileListModule.getMainComponent(),
             inputs: [
                 {
@@ -38,7 +38,7 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
 
         this._imagePreviewView = {
             module: TerraImagePreviewModule.forRoot(),
-            defaultWidth: "",
+            defaultWidth: '',
             focusedWidth: SPLIT_WIDTH_SIDEBAR,
             name: 'Image Preview',
             mainComponentName: TerraImagePreviewModule.getMainComponent(),
@@ -61,7 +61,7 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
 
     }
 
-    public showImagePreview( storageObject: TerraStorageObject, storageService: TerraBaseStorageService )
+    public showImagePreview( storageObject: TerraStorageObject, storageService: TerraBaseStorageService ):void
     {
         this._imagePreviewView.inputs = [
             {
@@ -76,7 +76,7 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
         this.setSelectedView( this._imagePreviewView );
     }
 
-    public hideImagePreview()
+    public hideImagePreview():void
     {
         this.setSelectedView( this._fileListView );
     }

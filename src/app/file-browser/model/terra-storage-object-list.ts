@@ -1,8 +1,8 @@
-import { TerraStorageObject } from "./terra-storage-object";
+import { TerraStorageObject } from './terra-storage-object';
 import {
     createS3StorageObject,
     S3StorageObjectInterface
-} from "./s3-storage-object.interface";
+} from './s3-storage-object.interface';
 
 export class TerraStorageObjectList
 {
@@ -10,7 +10,7 @@ export class TerraStorageObjectList
 
     constructor()
     {
-        this.root = new TerraStorageObject(createS3StorageObject("/"));
+        this.root = new TerraStorageObject(createS3StorageObject('/'));
     }
 
     public insertObjects(objects:S3StorageObjectInterface[]):TerraStorageObjectList

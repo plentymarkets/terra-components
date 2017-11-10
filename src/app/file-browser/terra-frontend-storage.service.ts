@@ -1,15 +1,16 @@
-import { Injectable } from "@angular/core";
-import { TerraUploadItem } from "./model/terra-upload-item";
-import { TerraUploadQueue } from "./model/terra-upload-queue";
-import { TerraLoadingSpinnerService } from "../loading-spinner/service/terra-loading-spinner.service";
-import { Http } from "@angular/http";
-import { TerraStorageObjectList } from "./model/terra-storage-object-list";
-import { Observable } from "rxjs/Observable";
-import { createS3StorageObject } from "./model/s3-storage-object.interface";
+import { Injectable } from '@angular/core';
+import { TerraUploadItem } from './model/terra-upload-item';
+import { TerraUploadQueue } from './model/terra-upload-queue';
+import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
+import { Http } from '@angular/http';
+import { TerraStorageObjectList } from './model/terra-storage-object-list';
+import { Observable } from 'rxjs/Observable';
+import { createS3StorageObject } from './model/s3-storage-object.interface';
 import { TerraBaseMetadataStorageService } from './terra-base-storage.interface';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
 import { TranslationService } from 'angular-l10n';
+import { isNullOrUndefined } from 'util';
 
 @Injectable()
 export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
@@ -26,7 +27,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         return this._storageListSubject.getValue();
     }
 
-    public queue:TerraUploadQueue = new TerraUploadQueue( "/rest/storage/frontend/file" );
+    public queue:TerraUploadQueue = new TerraUploadQueue( '/rest/storage/frontend/file' );
 
     public get uploadProgress():Observable<number>
     {
@@ -37,7 +38,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
     constructor(_terraLoadingSpinnerService:TerraLoadingSpinnerService, _http:Http, _translation: TranslationService)
     {
-        super(_terraLoadingSpinnerService, _http, "/rest/storage/frontend/file");
+        super(_terraLoadingSpinnerService, _http, '/rest/storage/frontend/file');
         this.name = _translation.translate('terraFileBrowser.myFiles');
     }
 
@@ -53,14 +54,14 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
     public createDirectory(path:string):Observable<void>
     {
-        if(path.charAt(0) === "/")
+        if(path.charAt(0) === '/')
         {
             path = path.substr(1);
         }
 
-        if(path.charAt(path.length - 1) !== "/")
+        if(path.charAt(path.length - 1) !== '/')
         {
-            path += "/";
+            path += '/';
         }
 
         path = this.prepareKey(path);
@@ -68,7 +69,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         this.setAuthorization();
         let request:Observable<void> = this.mapRequest(
             this.http.post(
-                this.url + "?key=" + path,
+                this.url + '?key=' + path,
                 null,
                 {
                     headers: this.headers
@@ -86,9 +87,9 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         return request;
     }
 
-    public uploadFiles(files:FileList | File[], path:string = "/"):TerraUploadItem[]
+    public uploadFiles(files:FileList | File[], path:string = '/'):TerraUploadItem[]
     {
-        if(!files || files.length <= 0)
+        if(isNullOrUndefined(files) || files.length <= 0)
         {
             return [];
         }
@@ -102,9 +103,9 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         return uploadItems;
     }
 
-    private uploadFile(file:File, path:string = "/"):TerraUploadItem
+    private uploadFile(file:File, path:string = '/'):TerraUploadItem
     {
-        if(!file)
+        if( isNullOrUndefined(file) )
         {
             return TerraUploadItem.DONE;
         }
@@ -127,7 +128,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
                    lastModified: (new Date()).toISOString(),
                    size:         file.size,
                    publicUrl:    s3Data.publicUrl,
-                   storageClass: "STANDARD"
+                   storageClass: 'STANDARD'
                 })
             );
         });
@@ -161,7 +162,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         this.setAuthorization();
         let request = this.mapRequest(
             this.http.get(
-                "/rest/storage/frontend/file/metadata?key=" + key,
+                this.url + '/metadata?key=' + key,
                 {
                     headers: this.headers
                 }
@@ -185,7 +186,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         this.setAuthorization();
         let request = this.mapRequest(
             this.http.post(
-                "/rest/storage/frontend/file/metadata",
+                this.url + '/metadata',
                 {
                     key: key,
                     metadata: metadata
@@ -213,7 +214,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         this.setAuthorization();
         let request = this.mapRequest(
             this.http.delete(
-                "/rest/storage/frontend/files?" + keyList.map( key => "keyList[]=" + key).join("&"),
+                '/rest/storage/frontend/files?' + keyList.map( key => 'keyList[]=' + key).join('&'),
                 {
                     headers: this.headers
                 }
@@ -236,14 +237,14 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         return request;
     }
 
-    private initStorageList(continuationToken?:string)
+    private initStorageList(continuationToken?:string):void
     {
         this._storageInitialized = true;
 
-        let url = "/rest/storage/frontend/files";
-        if(continuationToken)
+        let url = '/rest/storage/frontend/files';
+        if( !isNullOrUndefined(continuationToken) )
         {
-            url += "?continuationToken=" + continuationToken;
+            url += '?continuationToken=' + continuationToken;
         }
 
         this.setAuthorization();

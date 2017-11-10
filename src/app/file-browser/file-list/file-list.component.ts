@@ -29,6 +29,7 @@ import { TerraUploadItem } from '../model/terra-upload-item';
 import { ClipboardHelper } from '../helper/clipboard.helper';
 import { TerraSimpleTableCellInterface } from '../../table/simple/cell/terra-simple-table-cell.interface';
 import { TranslationService } from 'angular-l10n';
+import { isNullOrUndefined } from 'util';
 
 @Component({
                selector: 'terra-file-list',
@@ -46,12 +47,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public get activeStorageService(): TerraBaseStorageService
     {
-        if ( this._activeStorageService )
+        if ( !isNullOrUndefined(this._activeStorageService) )
         {
             return this._activeStorageService;
         }
 
-        if ( this.inputStorageServices )
+        if ( !isNullOrUndefined(this.inputStorageServices) )
         {
             return this.inputStorageServices[0];
         }
@@ -63,7 +64,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     {
         if ( service !== this._activeStorageService )
         {
-            if ( this._storageSubscription )
+            if ( !isNullOrUndefined(this._storageSubscription) )
             {
                 this._storageSubscription.unsubscribe();
             }
@@ -110,12 +111,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public get currentStorageRoot():TerraStorageObject
     {
-        if(this._currentStorageRoot)
+        if( !isNullOrUndefined(this._currentStorageRoot) )
         {
             return this._currentStorageRoot;
         }
 
-        if(this._storageList)
+        if( !isNullOrUndefined(this._storageList) )
         {
             return this._storageList.root;
         }
@@ -125,7 +126,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public set currentStorageRoot(storageObject:TerraStorageObject)
     {
-        if((!storageObject || storageObject.isDirectory) && this._currentStorageRoot !== storageObject)
+        if((isNullOrUndefined(storageObject) || storageObject.isDirectory) && this._currentStorageRoot !== storageObject)
         {
             if ( this._imagePreviewObject && storageObject !== this._imagePreviewObject )
             {
@@ -143,12 +144,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         let current:TerraStorageObject = this.currentStorageRoot;
         let parents:Array<TerraStorageObject> = [];
 
-        if ( this._imagePreviewObject )
+        if ( !isNullOrUndefined(this._imagePreviewObject) )
         {
             parents.push( this._imagePreviewObject )
         }
 
-        while(current)
+        while( !isNullOrUndefined(current) )
         {
             parents.push(current);
             current = current.parent;
@@ -159,7 +160,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private _showNewDirectoryPrompt:boolean = false;
 
-    private _newDirectoryName:string = "";
+    private _newDirectoryName:string = '';
 
     public get newDirectoryName():string
     {
@@ -175,7 +176,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private get _deleteCount():number
     {
-        if ( !this._objectsToDelete )
+        if ( isNullOrUndefined(this._objectsToDelete) )
         {
             return 0;
         }
@@ -204,13 +205,13 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public ngOnInit():void
     {
-        if ( this.inputStorageServices && this.inputStorageServices.length > 0 )
+        if ( !isNullOrUndefined(this.inputStorageServices) && this.inputStorageServices.length > 0 )
         {
             this.activeStorageService = this.inputStorageServices[0];
         }
         else
         {
-            console.error("At least one instance of TerraBaseStorageService is required");
+            console.error('At least one instance of TerraBaseStorageService is required');
         }
 
         this._dragSubscription = this._fileBrowserService.isDragActive.subscribe((isDragActive:boolean) => {
@@ -223,7 +224,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             {
                 let object: TerraStorageObject = this._storageList.flatList.find( object => object.publicUrl === selectedUrl );
 
-                if ( object )
+                if ( !isNullOrUndefined(object) )
                 {
                     this.currentStorageRoot = object.parent;
                     if( FileType.isWebImage(object.key) )
@@ -245,7 +246,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if ( changes.hasOwnProperty("inputStorageServices") && changes["inputStorageServices"].previousValue === null )
+        if ( changes.hasOwnProperty('inputStorageServices') && changes['inputStorageServices'].previousValue === null )
         {
             this.activeStorageService = this.inputStorageServices[0];
         }
@@ -253,12 +254,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public ngOnDestroy():void
     {
-        if(this._storageSubscription)
+        if( !isNullOrUndefined(this._storageSubscription) )
         {
             this._storageSubscription.unsubscribe();
         }
 
-        if(this._dragSubscription)
+        if( !isNullOrUndefined(this._dragSubscription) )
         {
             this._dragSubscription.unsubscribe();
         }
@@ -267,7 +268,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     }
 
-    private createDirectory()
+    private createDirectory():void
     {
         let path:string = PathHelper.join(
             this.currentStorageRoot ? this.currentStorageRoot.key : '/',
@@ -278,7 +279,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this.activeStorageService.createDirectory(path);
     }
 
-    private deleteObjects()
+    private deleteObjects():void
     {
         let keyList = [];
         let extractKeys = (objects:Array<TerraStorageObject>) => {
@@ -293,7 +294,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         extractKeys(this._objectsToDelete);
         this.activeStorageService.deleteFiles(keyList);
         this._objectsToDelete = [];
-        if ( this._imagePreviewObject && keyList.indexOf( this._imagePreviewObject.key) )
+        if ( !isNullOrUndefined(this._imagePreviewObject) && keyList.indexOf( this._imagePreviewObject.key) )
         {
             this._imagePreviewObject = null;
             this._parentFileBrowser.splitConfig.hideImagePreview();
@@ -302,7 +303,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private renderFileList():void
     {
-        if ( this.activeStorageService )
+        if ( !isNullOrUndefined(this.activeStorageService) )
         {
             if ( this.activeStorageService.isPublic )
             {
@@ -327,7 +328,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         }
 
 
-        if(this.currentStorageRoot)
+        if( !isNullOrUndefined(this.currentStorageRoot) )
         {
             this._fileTableRowList = this.currentStorageRoot
                                          .children
@@ -395,7 +396,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private isAllowed(filename:string):boolean
     {
-        if(!filename)
+        if( isNullOrUndefined(filename) )
         {
             return false;
         }
@@ -405,16 +406,16 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                || PathHelper.isDirectory(filename)
     }
 
-    private onActiveRowChange(row:TerraSimpleTableRowInterface<TerraStorageObject>)
+    private onActiveRowChange(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
     {
-        if(this._imagePreviewTimeout)
+        if( isNullOrUndefined(this._imagePreviewTimeout) )
         {
             clearTimeout(this._imagePreviewTimeout);
         }
         let debounceFn = () => {
             let storageObject:TerraStorageObject = row.value;
 
-            if(storageObject && FileType.isWebImage(storageObject.key))
+            if( !isNullOrUndefined(storageObject) && FileType.isWebImage(storageObject.key))
             {
                 this._imagePreviewObject = storageObject;
                 this._parentFileBrowser.splitConfig.showImagePreview(storageObject, this.activeStorageService);
@@ -430,7 +431,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._imagePreviewTimeout = setTimeout(debounceFn.bind(this), 500);
     }
 
-    public onSelectionChange(rows:Array<TerraSimpleTableRowInterface<TerraStorageObject>>)
+    public onSelectionChange(rows:Array<TerraSimpleTableRowInterface<TerraStorageObject>>):void
     {
         this._selectedStorageObjects = rows.map((row:TerraSimpleTableRowInterface<TerraStorageObject>) => {
             return row.value;
@@ -439,7 +440,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public onFileSelect(event:Event):void
     {
-        if(event.srcElement)
+        if( !isNullOrUndefined(event.srcElement) )
         {
             this.activeStorageService
                 .uploadFiles(
@@ -452,9 +453,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         }
     }
 
-    public onFileDrop(event:DragEvent)
+    public onFileDrop(event:DragEvent):void
     {
-        if(event.dataTransfer.files)
+        if( !isNullOrUndefined(event.dataTransfer.files) )
         {
             this.activeStorageService.uploadFiles(
                 event.dataTransfer.files,
@@ -463,7 +464,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         }
     }
 
-    private uploadFiles(fileList:FileList | File[])
+    private uploadFiles(fileList:FileList | File[]):void
     {
         let uploadPrefix:string = this.currentStorageRoot ? this.currentStorageRoot.key : '/';
         this.activeStorageService

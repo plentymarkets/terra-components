@@ -35,7 +35,7 @@ export class TerraFileBrowserService
         }
     }
 
-    private isDropzone( element: HTMLElement )
+    private isDropzone( element: HTMLElement ):boolean
     {
         return this._dropzones.some(
             (dropzone: HTMLElement) => {
@@ -51,17 +51,17 @@ export class TerraFileBrowserService
             let setEffect = ( event: DragEvent ) => {
                 if( this.isDropzone( <HTMLElement>event.target ) )
                 {
-                    event.dataTransfer.effectAllowed = "copy";
-                    event.dataTransfer.dropEffect = "copy"
+                    event.dataTransfer.effectAllowed = 'copy';
+                    event.dataTransfer.dropEffect = 'copy'
                 }
                 else
                 {
-                    event.dataTransfer.effectAllowed = "none";
-                    event.dataTransfer.dropEffect = "none"
+                    event.dataTransfer.effectAllowed = 'none';
+                    event.dataTransfer.dropEffect = 'none'
                 }
-            }
+            };
 
-            window.addEventListener( "dragenter", (event: DragEvent) => {
+            window.addEventListener( 'dragenter', (event: DragEvent) => {
                 this._dragenterTarget = event.target;
                 event.preventDefault();
                 if ( !this.isDragActive.value )
@@ -70,12 +70,12 @@ export class TerraFileBrowserService
                 }
             });
 
-            window.addEventListener( "dragover", (event: DragEvent) => {
+            window.addEventListener( 'dragover', (event: DragEvent) => {
                 event.preventDefault();
                 setEffect( event );
             });
 
-            window.addEventListener( "dragleave", (event: DragEvent) => {
+            window.addEventListener( 'dragleave', (event: DragEvent) => {
                 if ( event.target === this._dragenterTarget )
                 {
                     this._dragenterTarget = null;
@@ -83,7 +83,7 @@ export class TerraFileBrowserService
                 }
             });
 
-            window.addEventListener( "drop", (event: DragEvent) => {
+            window.addEventListener( 'drop', (event: DragEvent) => {
                 event.preventDefault();
                 this._dragenterTarget = null;
                 if ( this.isDragActive.value )

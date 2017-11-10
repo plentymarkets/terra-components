@@ -4,11 +4,12 @@ import {
     Input,
     OnInit,
     Output,
-} from "@angular/core";
-import { TerraFrontendStorageService } from "./terra-frontend-storage.service";
-import { TerraStorageObject } from "./model/terra-storage-object";
+} from '@angular/core';
+import { TerraFrontendStorageService } from './terra-frontend-storage.service';
+import { TerraStorageObject } from './model/terra-storage-object';
 import { FileBrowserSplitConfig } from './config/file-browser-split.config';
 import { TerraBaseStorageService } from './terra-base-storage.interface';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'terra-file-browser',
@@ -40,7 +41,7 @@ export class TerraFileBrowserComponent implements OnInit
 
     public get inputStorageServices(): Array<TerraBaseStorageService>
     {
-        if ( this._storageServices && this._storageServices.length > 0 )
+        if ( !isNullOrUndefined(this._storageServices) && this._storageServices.length > 0 )
         {
             return this._storageServices;
         }
@@ -59,7 +60,7 @@ export class TerraFileBrowserComponent implements OnInit
         this.splitConfig.init( this.inputStorageServices );
     }
 
-    public selectUrl( publicUrl: string )
+    public selectUrl( publicUrl: string ):void
     {
         this.onSelectedUrlChange.emit( publicUrl );
     }

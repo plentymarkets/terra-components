@@ -1,9 +1,10 @@
 import {
     createS3StorageObject,
     S3StorageObjectInterface
-} from "./s3-storage-object.interface";
-import { PathHelper } from "../helper/path.helper";
+} from './s3-storage-object.interface';
+import { PathHelper } from '../helper/path.helper';
 import { FileType } from '../helper/fileType.helper';
+import { isNullOrUndefined } from 'util';
 
 export class TerraStorageObject
 {
@@ -43,9 +44,9 @@ export class TerraStorageObject
 
     public get sizeString(): string
     {
-        if(typeof this.size !== "number")
+        if(typeof this.size !== 'number')
         {
-            return "0B";
+            return '0B';
         }
         return PathHelper.sizeString(this.size);
     }
@@ -59,7 +60,7 @@ export class TerraStorageObject
     {
         if ( this.isDirectory )
         {
-            return "icon-folder";
+            return 'icon-folder';
         }
 
         return FileType.mapIconClass( this.name );
@@ -134,7 +135,7 @@ export class TerraStorageObject
     {
         if(this.isFile)
         {
-            console.error("Cannot add child object to file-like object.");
+            console.error('Cannot add child object to file-like object.');
             return;
         }
 
@@ -174,7 +175,7 @@ export class TerraStorageObject
             if(!child)
             {
                 let s3Object = createS3StorageObject(
-                    PathHelper.join(this.key, nextPath) + "/"
+                    PathHelper.join(this.key, nextPath) + '/'
                 );
                 child = new TerraStorageObject(s3Object, this);
                 this.children.push(child);
@@ -186,14 +187,14 @@ export class TerraStorageObject
 
     public removeChild(key:string):void
     {
-        let paths:string[] = key.split("/").filter(path => path.length > 0);
+        let paths:string[] = key.split('/').filter(path => path.length > 0);
         let nextPath = paths.shift();
         let child = this.getChild(nextPath);
         if(child)
         {
             if(paths.length > 0)
             {
-                child.removeChild(paths.join("/"));
+                child.removeChild(paths.join('/'));
             }
             else
             {
@@ -221,19 +222,19 @@ export class TerraStorageObject
 
     public find(key:string):TerraStorageObject
     {
-        if(!key)
+        if( isNullOrUndefined(key) )
         {
             return null;
         }
 
-        let paths:string[] = key.split("/").filter(key => key.length > 0);
+        let paths:string[] = key.split('/').filter(key => key.length > 0);
         let nextPath = paths.shift();
         let child = this.getChild(nextPath);
-        if(child)
+        if( !isNullOrUndefined(child) )
         {
             if(paths.length > 0)
             {
-                return child.find(paths.join("/"));
+                return child.find(paths.join('/'));
             }
 
             return child;

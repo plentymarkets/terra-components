@@ -6,17 +6,17 @@ export interface S3StorageObjectInterface
     size:number;
     publicUrl:string;
     previewUrl?:string;
-    storageClass:"STANDARD" | "STANDARD_IA" | "GLACIER" | "RRS";
+    storageClass:'STANDARD' | 'STANDARD_IA' | 'GLACIER' | 'RRS';
 }
 
 export function createS3StorageObject( key: string ):S3StorageObjectInterface
 {
     return {
-        eTag:         "",
+        eTag:         '',
         key:          key,
         lastModified: (new Date()).toISOString(),
         size:         0,
-        publicUrl:    "",
-        storageClass: "STANDARD"
+        publicUrl:    '',
+        storageClass: 'STANDARD'
     };
 }
