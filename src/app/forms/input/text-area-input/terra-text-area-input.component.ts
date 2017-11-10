@@ -22,7 +22,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 export class TerraTextAreaInputComponent extends TerraInputComponent
 {
     /**
-     * @deprecated
+     * @deprecated inputType is no longer used.  It will be removed in one of the upcoming releases.
      * @param v
      */
     @Input() set inputType(v:string)
@@ -31,7 +31,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
     }
 
     /**
-     * @deprecated
+     * @deprecated inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.
      * @param v
      */
     @Input()
@@ -42,7 +42,13 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
         this.value = v;
     }
 
+    /**
+     * @description Set the number of maximum rows.
+     * */
     @Input() inputMaxRows:number;
+    /**
+     * @deprecated Will be removed in an upcoming release.
+     * */
     @Input() inputMaxCols:number;
 
     constructor()
