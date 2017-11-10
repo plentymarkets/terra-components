@@ -17,4 +17,5 @@ export interface TerraButtonInterface
     isDisabled?:boolean;
     isHidden?:boolean;
     isDivider?:boolean;
+    isHighlighted?:boolean;
 }

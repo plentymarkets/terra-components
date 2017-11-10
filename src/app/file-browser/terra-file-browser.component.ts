@@ -14,8 +14,11 @@ import { isNullOrUndefined } from 'util';
 @Component({
     selector: 'terra-file-browser',
     template: require('./terra-file-browser.component.html'),
-    styles:   [require('./terra-file-browser.component.scss')],
-    providers: [FileBrowserSplitConfig]
+    providers: [FileBrowserSplitConfig],
+    styles:   [
+        require('./terra-file-browser.component.scss'),
+        require('./terra-file-browser.component.glob.scss').toString()
+    ],
 })
 export class TerraFileBrowserComponent implements OnInit
 {

@@ -14,6 +14,7 @@ import {
     ModalModule,
     TooltipModule
 } from 'ngx-bootstrap';
+import { QuillModule } from 'ngx-quill';
 import { TerraComponentsComponent } from './terra-components.component';
 import { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
 import { TerraNumberInputComponent } from './forms/input/number-input/terra-number-input.component';
@@ -77,6 +78,7 @@ import { TerraButtonWithOptionsComponent } from './button-with-options/terra-but
 import { FixedHeaderDirective } from './table/fixed-header/fixed-header.directive';
 import { TerraFileBrowserService } from './file-browser/terra-file-browser.service';
 import { TerraFileBrowserComponent } from './file-browser/terra-file-browser.component';
+import { TerraNoteEditorComponent } from './note-editor/terra-note-editor.component';
 import { TerraNoteComponent } from './note/terra-note.component';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
@@ -197,6 +199,7 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
+        TerraNoteEditorComponent,
         TerraNoteComponent
     ],
     entryComponents: [
@@ -242,6 +245,7 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraFileBrowserComponent,
         TerraFileInputComponent,
         TerraButtonWithOptionsComponent,
+        TerraNoteEditorComponent,
         TerraNoteComponent
     ],
     exports:         [
@@ -292,6 +296,7 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
+        TerraNoteEditorComponent,
         TerraNoteComponent
     ],
     imports:         [
@@ -308,7 +313,8 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TranslationModule.forRoot(),
         MyDatePickerModule,
         AceEditorModule,
-        TerraInteractModule
+        TerraInteractModule,
+        QuillModule
     ],
     providers:       [
         COMPILER_PROVIDERS,

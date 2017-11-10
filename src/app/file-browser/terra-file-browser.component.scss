@@ -1,20 +1,6 @@
 @import "../split-view/terra-split-view.component";
 @import "../forms/input/terra-input-group";
 
-/deep/
-terra-file-browser
-{
-    height: 100%;
-    display: block;
-    
-    > div
-    {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-}
-
 .file-browser-content
 {
     position: relative;

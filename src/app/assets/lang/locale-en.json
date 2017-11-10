@@ -45,5 +45,8 @@
 	"terraPager": {
 		"page": "Page",
 		"of": "of"
+	},
+	"terraNoteEditor": {
+		"insertText": "Insert text.."
 	}
 }
