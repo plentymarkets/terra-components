@@ -69,6 +69,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this.inputHasCheckboxes = true;
         this.inputHasInitialLoading = false;
         this.inputHasPager = true;
+        
+        this.rowList = [];
     }
 
 
