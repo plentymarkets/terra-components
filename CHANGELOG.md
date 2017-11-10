@@ -16,6 +16,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-number-input** removed spin-buttons
 * **terra-pager** limit page number input to a valid range
 * **terra-note** Added new component to display notes which auto adjust the height by its content.
+* **terra-note-editor** new component based on [quill](https://quilljs.com/), that realizes an editor for notes with several features.
 
 ### Bug Fixes
 * **terra-multi-split-view** 
