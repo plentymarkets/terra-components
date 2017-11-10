@@ -16,16 +16,45 @@ import { TerraButtonComponent } from '../button/terra-button.component';
 export class TerraButtonWithOptionsComponent
 {
     // terra button inputs
+    /**
+     * @description set the caption.
+     * */
     @Input() inputCaption:string;
+    /**
+     * @description set an icon (e.g. icon-save).
+     * */
     @Input() inputIcon:string;
+    /**
+     * @description if true, the button gets the primary color blue. Default false.
+     * */
     @Input() inputIsPrimary:boolean;
+    /**
+     * @description if true, the button gets the secondary color red. Default false.
+     * */
     @Input() inputIsSecondary:boolean;
+    /**
+     * @description if true, the button gets the tertiary color green. Default false.
+     * */
     @Input() inputIsTertiary:boolean;
+    /**
+     * @description if true, the button will be disabled. Default false.
+     * */
     @Input() inputIsDisabled:boolean;
+    /**
+     * @description set the tooltip.
+     * */
     @Input() inputTooltipText:string;
+    /**
+     * @description set the tooltip placement (bottom, top, left, right). Default top.
+     * */
     @Input() inputTooltipPlacement:string; //top, bottom, left, right
-
+    /**
+     * @description set the tooltip placement (bottom, top, left, right). Default top.
+     * */
     // new inputs
+    /**
+     * @description set an array of buttons which will be shown as a menu with options. Use the TerraButtonInterface to set the buttons of the menu.
+     * */
     @Input() inputOptions:Array<TerraButtonInterface>;
 
     // view children
