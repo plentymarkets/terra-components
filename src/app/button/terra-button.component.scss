@@ -100,8 +100,10 @@ button:focus
     }
 }
 
+
 .btn
 {
+   
     height: $terra-btn-md-height;
     line-height: $terra-btn-md-height;
     display: inline-block;
@@ -140,52 +142,83 @@ button:focus
         }
     }
     
-    &.btn-primary,
-    &.btn-brand-primary
+    &.btn-primary
     {
-        background-color: $blue;
-        &:hover,
-        &:focus,
-        &.focus
+        &:not(.highlighted)
         {
-            background-color: $blue-hover;
-            &:active,
-            &.active
+            background-color: $blue;
+            &:hover,
+            &:focus,
+            &.focus
             {
-                background-color: $blue;
+                background-color: $blue-hover;
+                &:active,
+                &.active
+                {
+                    background-color: $blue;
+                }
             }
         }
-    }
-    &.btn-secondary,
-    &.btn-brand-secondary
-    {
-        background-color: $alert-red;
-        &:hover,
-        &:focus,
-        &.focus
+        &.highlighted
         {
-            background-color: darken($alert-red, 10%);
-            &:active,
-            &.active
+            @keyframes highlight-primary
             {
-                background-color: $alert-red;
+                100%  {background-color: $blue}
             }
+            animation: highlight-primary 1500ms ease-in-out 0ms infinite alternate;
+        }
+    }
+    &.btn-secondary
+    {
+        &:not(.highlighted)
+        {
+            background-color: $alert-red;
+            &:hover,
+            &:focus,
+            &.focus
+            {
+                background-color: darken($alert-red, 10%);
+                &:active,
+                &.active
+                {
+                    background-color: $alert-red;
+                }
+            }
+        }
+        &.highlighted
+        {
+            @keyframes highlight-secondary
+            {
+                100%  {background-color: $alert-red}
+            }
+            animation: highlight-secondary 1500ms ease-in-out 0ms infinite alternate;
         }
     }
     &.btn-tertiary
     {
-        background: $alert-green;
-        color: white;
-        &:hover,
-        &:focus,
-        &.focus
+        &:not(.highlighted)
         {
-            background-color: darken($alert-green, 10%);
-            &:active,
-            &.active
+            background: $alert-green;
+            color: white;
+            &:hover,
+            &:focus,
+            &.focus
             {
-                background-color: $alert-green;
+                background-color: darken($alert-green, 10%);
+                &:active,
+                &.active
+                {
+                    background-color: $alert-green;
+                }
             }
+        }
+        &.highlighted
+        {
+            @keyframes highlight-tertiary
+            {
+                100%  {background-color: $alert-green}
+            }
+            animation: highlight-tertiary 1500ms ease-in-out 0ms infinite alternate;
         }
     }
     
@@ -253,7 +286,7 @@ button:focus
                 color: $grey-9;
             }
         }
-        &.btn-brand-primary
+        &.btn-primary
         {
             background-color: transparent;
             color: $blue;
@@ -271,7 +304,7 @@ button:focus
                 }
             }
         }
-        &.btn-brand-secondary
+        &.btn-secondary
         {
             background-color: transparent;
             color: $alert-red;

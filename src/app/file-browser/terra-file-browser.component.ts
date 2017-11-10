@@ -23,7 +23,10 @@ import { Subscription } from "rxjs/Subscription";
 @Component({
     selector: 'terra-file-browser',
     template: require('./terra-file-browser.component.html'),
-    styles:   [require('./terra-file-browser.component.scss')]
+    styles:   [
+        require('./terra-file-browser.component.scss'),
+        require('./terra-file-browser.component.glob.scss').toString()
+    ],
 })
 export class TerraFileBrowserComponent implements OnInit, OnDestroy
 {
