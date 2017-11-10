@@ -50,7 +50,6 @@ module.exports = function (options) {
                     ]
                 },
                 {
-
                     test: /\.scss$/,
                     exclude: [/\.glob\.scss$/],
                     loaders: [
