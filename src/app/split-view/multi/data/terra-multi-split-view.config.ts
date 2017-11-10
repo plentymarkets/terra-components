@@ -19,7 +19,7 @@ export class TerraMultiSplitViewConfig
     
     public constructor()
     {
-        this._visibleViews = [];
+        this._visibleViews = {};
     }
     
     public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
