@@ -24,10 +24,23 @@ import {
 })
 export class TerraCheckboxComponent implements ControlValueAccessor
 {
+    /**
+     * @description If true, the check box will be disabled. Default false.
+     * */
     @Input() inputIsDisabled:boolean;
+    /**
+     * @description Set the caption.
+     * */
     @Input() inputCaption:string;
+    /**
+     * @description Set an icon (e.g. icon-save).
+     * */
     @Input() inputIcon:string;
+    /**
+     * @description Set the id.
+     * */
     @Input() inputId:string;
+    
     @Output() valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     //The internal data model
