@@ -19,12 +19,29 @@ export class TerraFilterComponent implements OnInit
 {
     @ViewChild('viewChildInputList') viewChildInputList;
 
+    /**
+     * @description set the tooltip of search button.
+     * */
     @Input() inputSearchLabel:string;
+    /**
+     * @description set the tooltip of reset button.
+     * */
     @Input() inputResetLabel:string;
+    /**
+     * @deprecated will be removed in an upcoming release.
+     * */
     @Input() inputInputList:any[];
-
+    /**
+     * @description set the function which will executed on search button click.
+     * */
     @Output() outputOnSearchBtnClicked = new EventEmitter<any>();
+    /**
+     * @description set the function which will executed on reset button click.
+     * */
     @Output() outputOnResetBtnClicked = new EventEmitter<any>();
+    /**
+     * @description set the function which will executed on enter.
+     * */
     @Output() outputOnEnterSubmit = new EventEmitter<any>();
 
     constructor()
