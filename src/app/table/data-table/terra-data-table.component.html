@@ -19,12 +19,12 @@
             </th>
             <ng-template ngFor let-header [ngForOf]="_headerList">
                 <th *ngIf="!header.isHidden && _rowList && _rowList.length > 0"
-                    width="{{header.width}}px">
+                    width="{{header.width}}px" 
+                    [ngStyle]="getTextAlign(header)">
                     <span [container]="'body'"
                           [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                           [tooltip]="header.tooltipText"
-                          [isDisabled]="!header.tooltipText || header.tooltipText.length == 0"
-                          [ngStyle]="getTextAlign(header)">
+                          [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
                           {{header.caption}}
                     </span>
                 </th>
