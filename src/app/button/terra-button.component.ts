@@ -25,7 +25,7 @@ export class TerraButtonComponent
     @Input() inputCaption:string;
     @Input() inputIcon:string;
     /**
-     * @description Set the html native 'type' attribute e.g 'submit or 'reset'. Default 'button'.
+     * @description Set the html native 'type' attribute, e.g., 'submit or 'reset'. Default 'button'.
      * */
     @Input() inputType:string;
     @Input() inputIsAlignRight:boolean;
@@ -40,15 +40,15 @@ export class TerraButtonComponent
      * */
     @Input() inputIsActive:boolean;
     /**
-     * @description If true, a triangular yellow flag appears at the upper right corner of the button to indicate e.g. a state in which the button should be clicked by user. Default false.
+     * @description If true, a triangular yellow flag appears at the upper right corner of the button to indicate, e.g., a state in which the button should be clicked by the user. Default false.
      * */
     @Input() inputIsFlagged:boolean;
     /**
-     * @description If true, a none clickable element is set to optically divide a vertical button group. Default false.
+     * @description If true, a none-clickable element is set to optically divide a vertical button group. Default false.
      * */
     @Input() inputIsDivider:boolean;
     /**
-     * @description If true, the button will appear as a link, which coloured blue on hover. Default false.
+     * @description If true, the button will appear as a link which changes to blue on hover. Default false.
      * */
     @Input() inputIsLink:boolean;
     @Input() inputIsHighlighted: boolean;
