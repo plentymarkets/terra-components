@@ -3,6 +3,13 @@ import { TerraButtonInterface } from '../../../button/data/terra-button.interfac
 /**
  * @author mkunze
  */
+
+export enum TerraRefTypeEnum
+{
+    email = 'mailto',
+    phone = 'tel'
+}
+
 export interface TerraDataTableCellInterface
 {
     identifier:string;
@@ -13,4 +20,5 @@ export interface TerraDataTableCellInterface
     tooltipText?:string;
     tooltipPlacement?:string;
     color?:string;
+    href?:TerraRefTypeEnum;
 }
