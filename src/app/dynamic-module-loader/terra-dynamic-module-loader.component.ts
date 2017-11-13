@@ -98,6 +98,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
                     }
                 }
             );
+            this._cmpRef.changeDetectorRef.detectChanges();
         }
     }
 }

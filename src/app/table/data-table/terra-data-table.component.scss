@@ -2,11 +2,17 @@
 {
     table.table
     {
+        &[tabindex]
+        {
+            outline: none;
+        }
+        
         margin-bottom: 1rem;
         thead
         {
             background: $grey-9;
             color: white;
+            border-radius: 0 0 $border-radius $border-radius;
             tr
             {
                 th

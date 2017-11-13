@@ -8,7 +8,7 @@
     border: 1px solid $white;
     margin: var(--select-box-wrapper-margin, 0px);
     margin-bottom: var(--select-box-wrapper-margin-bottom, 3px);
-
+    
     cursor: pointer;
     
     .select-box
@@ -50,6 +50,11 @@
         }
         span
         {
+            width: calc(100% - 20px);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
             font-weight: $font-weight-2;
         }
     }

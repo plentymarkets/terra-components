@@ -67,7 +67,6 @@ import { TerraSplitViewComponent } from './split-view/terra-split-view.component
 import { CommonModule } from '@angular/common';
 import { TerraDynamicComponentLoaderComponent } from './dynamic-component-loader/terra-dynamic-component-loader.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { TerraFileBrowserComponent } from "./file-browser/terra-file-browser.component";
 import { TerraFileInputComponent } from "./forms/input/file-input/terra-file-input.component";
 import { TerraFrontendStorageService } from "./file-browser/terra-frontend-storage.service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -76,6 +75,9 @@ import { TerraInteractModule } from "./interactables/interact.module";
 import { TerraSliderComponent } from "./forms/slider/terra-slider.component";
 import { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.component';
 import { TerraButtonWithOptionsComponent } from './button-with-options/terra-button-with-options.component';
+import { FixedHeaderDirective } from './table/fixed-header/fixed-header.directive';
+import { TerraFileBrowserService } from './file-browser/terra-file-browser.service';
+import { TerraFileBrowserComponent } from './file-browser/terra-file-browser.component';
 import { TerraNoteEditorComponent } from './note-editor/terra-note-editor.component';
 import { TerraNoteComponent } from './note/terra-note.component';
 
@@ -196,6 +198,7 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraFileInputComponent,
         TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent,
+        FixedHeaderDirective,
         TerraNoteEditorComponent,
         TerraNoteComponent
     ],
@@ -292,6 +295,7 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         TerraFileInputComponent,
         TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent,
+        FixedHeaderDirective,
         TerraNoteEditorComponent,
         TerraNoteComponent
     ],
@@ -316,6 +320,7 @@ export { TerraNoResultNoticeComponent} from './no-result/terra-no-result-notice.
         COMPILER_PROVIDERS,
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
+        TerraFileBrowserService,
     ],
     bootstrap:       [
         TerraComponentsComponent
@@ -333,6 +338,7 @@ export class TerraComponentsModule
                         TerraBaseService,
                         TerraNavigatorSplitViewConfig,
                         TerraUrlParamsDecorator,
+                        TerraFrontendStorageService,
                         TerraAlertComponent]
         };
     }
@@ -347,6 +353,7 @@ export class TerraComponentsModule
                         TerraBaseService,
                         TerraNavigatorSplitViewConfig,
                         TerraUrlParamsDecorator,
+                        TerraFrontendStorageService,
                         TerraAlertComponent]
         };
     }
