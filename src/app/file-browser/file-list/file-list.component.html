@@ -17,7 +17,7 @@
         </li>
     </ul>
     <div class="loading-placeholder" *ngIf="!_storageList">
-        <p>Dateien werden geladen</p>
+        <p>{{ _translationPrefix + '.loadingFiles' | translate:lang }}</p>
         <span class="icon-loading"></span>
     </div>
 </terra-base-toolbar>
@@ -106,7 +106,7 @@
     
     <div *ngIf="_fileTableRowList.length <= 0" class="empty-directory">
         <div>
-            <p>Keine Dateien</p>
+            <p>{{ _translationPrefix + '.noFiles' | translate:lang }}</p>
             
             <div>
                 <terra-button inputIcon="icon-upload"
