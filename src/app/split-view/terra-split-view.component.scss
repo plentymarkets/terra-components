@@ -205,16 +205,12 @@
     }
 }
 
-// TODO: @vwiebe, refactoring
-
-/deep/ terra-split-view .modal-content terra-split-view .view.last:not(.first)
+/deep/ terra-split-view .modal-content terra-split-view
 {
-    padding: 0 0 0 4px !important;
-}
-
-/deep/ .hasSplitView .modal-body
-{
-    height: 525px;
+    .view.last:not(.first)
+    {
+        padding: 0 0 0 4px !important;
+    }
 }
 
 terra-base-toolbar
