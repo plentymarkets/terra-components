@@ -48,9 +48,7 @@ export class TerraButtonWithOptionsComponent
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      * */
     @Input() inputTooltipPlacement:string; //top, bottom, left, right
-    /**
-     * @description Set the tooltip placement (bottom, top, left, right). Default top.
-     * */
+
     // new inputs
     /**
      * @description Set an array of buttons which will be shown as a menu with options. Use the TerraButtonInterface to set the buttons of the menu.
