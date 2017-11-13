@@ -1,44 +1,54 @@
 {
-	"terraDataTable": {
-		"initialLoading": "Suche ausführen, um {{ dataType }} anzuzeigen"
-	},
-	"terraMultiSelectBox": {
-		"selectAll": "Alle"
-	},
-	"terraFileBrowser": {
-		"cancel": "Abbrechen",
-		"create": "Erstellen",
-		"delete": "Löschen",
-		"myFiles": "Meine Dateien",
-		"createFolder": "Ordner erstellen",
-		"confirmDelete": "Löschen bestätigen",
-		"deleteFolder": "Ordner löschen",
-		"deleteFile": "Datei löschen",
-		"folderName": "Ordnername",
-		"folderIsEmpty": "Der Ordner ist leer.",
-		"uploadFile": "Datei hochladen",
-		"fileURL": "Datei-URL",
-		"copyToClipboard": "In Zwischenablage kopieren"
-	},
-	"terraFileInput": {
-		"choose": "Wählen",
-		"cancel": "Abbrechen",
-		"chooseFile": "Datei wählen"
-	},
-	"terraSuggestionBox": {
-		"suggestions": "Vorschläge",
-		"recentlyUsed": "Zuletzt verwendet",
-		"noSuggestions": "Keine Vorschläge",
-		"noRecentlyUsed": "Keine zuletzt verwendeten Elemente"
-	},
-	"terraNavigator": {
-		"search": "Suche"
-	},
-	"terraPager": {
-		"page": "Seite",
-		"of": "von"
-	},
-	"terraNoteEditor": {
-		"insertText": "Text eingeben.."
-	}
+    "terraDataTable":      {
+        "initialLoading": "Suche ausführen, um {{ dataType }} anzuzeigen"
+    },
+    "terraMultiSelectBox": {
+        "selectAll": "Alle"
+    },
+    "terraFileBrowser":    {
+        "cancel":              "Abbrechen",
+        "create":              "Erstellen",
+        "delete":              "Löschen",
+        "myFiles":             "Meine Dateien",
+        "createFolder":        "Ordner erstellen",
+        "confirmDelete":       "Datei löschen?",
+        "confirmDeleteMany":   "{{ count }} Dateien löschen?",
+        "deleteFolder":        "Ordner löschen",
+        "deleteFile":          "Datei löschen",
+        "deleteSelectedFiles": "Ausgewählte Dateien löschen",
+        "folderName":          "Ordnername",
+        "folderIsEmpty":       "Der Ordner ist leer.",
+        "uploadFile":          "Datei hochladen",
+        "fileURL":             "Datei-URL",
+        "copyToClipboard":     "In Zwischenablage kopieren",
+        "saveMetadata":        "Metadaten speichern",
+        "altText":             "Alternativtext",
+        "imageSize":           "Größe",
+        "fileSize":            "Dateigröße",
+        "fileName":            "Dateiname",
+        "lastChange":          "Letzte Änderung",
+        "loadingFiles":        "Dateien werden geladen",
+        "noFiles":             "Keine Dateien"
+    },
+    "terraFileInput":      {
+        "choose":     "Wählen",
+        "cancel":     "Abbrechen",
+        "chooseFile": "Datei wählen"
+    },
+    "terraSuggestionBox":  {
+        "suggestions":    "Vorschläge",
+        "recentlyUsed":   "Zuletzt verwendet",
+        "noSuggestions":  "Keine Vorschläge",
+        "noRecentlyUsed": "Keine zuletzt verwendeten Elemente"
+    },
+    "terraNavigator":      {
+        "search": "Suche"
+    },
+    "terraPager":          {
+        "page": "Seite",
+        "of":   "von"
+    },
+    "terraNoteEditor":     {
+        "insertText": "Text eingeben.."
+    }
 }
