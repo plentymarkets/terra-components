@@ -45,7 +45,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
      * */
     @Input() inputIsRequired:boolean;
     /**
-     * @description If false, the input will appear with a red border to indicate that entered value is not valid. Default true.
+     * @description If false, the input will appear with a red border to indicate that the entered value is not valid. Default true.
      * */
     @Input() inputIsValid:boolean;
     /**
@@ -53,11 +53,11 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
      * */
     @Input() inputIsDisabled:boolean;
     /**
-     * @description If true, the calender will be opened on top. Default false.
+     * @description If true, the calendar will be opened on top. Default false.
      * */
     @Input() inputOpenCalendarTop:boolean;
     /**
-     * @description Set the displayed format of date. Default 'dd.mm.yyyy'.
+     * @description Set the date format. Default 'dd.mm.yyyy'.
      * */
     @Input() inputDisplayDateFormat:string;
 
