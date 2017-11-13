@@ -44,7 +44,7 @@
                         text-decoration: underline;
                         &:hover
                         {
-                            color: $black; //TODO: exchange color.. It should not be $white, $blue or usual text color $grey-11
+                            color: $blue;
                         }
                     }
                 }
@@ -72,6 +72,14 @@
         {
             background-color: $blue;
             color: white;
+            td a[href]
+            {
+                color:$white;
+                &:hover
+                {
+                    color:$black;
+                }
+            }
         }
     }
     tbody.highlighting tr.disabled
