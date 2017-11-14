@@ -6,13 +6,19 @@ export class TerraMultiSplitViewConfig
 {
     private _views:Array<TerraMultiSplitViewInterface> = [];
     private _currentSelectedView:TerraMultiSplitViewInterface;
+    private _visibleViews:{ [index: string]: TerraMultiSplitViewInterface };
 
     private _addViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _resizeViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _setSelectedViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
-
+    
+    public constructor()
+    {
+        this._visibleViews = {};
+    }
+    
     public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
     {
         if(view.parameter)
@@ -141,9 +147,39 @@ export class TerraMultiSplitViewConfig
     {
         return this._currentSelectedView;
     }
+    
+    public isViewVisible(value:TerraMultiSplitViewInterface)
+    {
+        if(value.parent)
+        {
+            if(this._visibleViews[value.parent.name])
+            {
+                return this._visibleViews[value.parent.name] === value;
+            }
+        }
+        else
+        {
+            if(this._visibleViews['root'])
+            {
+                return this._visibleViews['root'] === value;
+            }
+        }
+    }
 
     public set currentSelectedView(value:TerraMultiSplitViewInterface)
     {
+        if(value)
+        {
+            if(value.parent)
+            {
+                this._visibleViews[value.parent.name] = value;
+            }
+            else
+            {
+                this._visibleViews['root'] = value;
+            }
+        }
+        
         this._currentSelectedView = value;
     }
 
