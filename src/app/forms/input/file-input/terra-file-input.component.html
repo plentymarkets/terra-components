@@ -49,6 +49,7 @@
     <terra-overlay #overlay
                    [inputPrimaryButtonInterface]="primaryOverlayButton"
                    [inputSecondaryButtonInterface]="secondaryOverlayButton"
+                   [inputIsExtraLarge]="true"
                    (outputOnShow)="fileBrowser.selectUrl(value)"
                    (outputOnHide)="selectedUrl = value">
         <terra-file-browser #fileBrowser [inputAllowedExtensions]="inputAllowedExtensions"
