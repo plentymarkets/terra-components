@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { isNullOrUndefined } from 'util';
 
-export type UploadQueueUrlFactory = (storageKey: string) => string;
+export type UploadQueueUrlFactory = (storageKey:string) => string;
 
 export class TerraUploadQueue
 {
@@ -16,7 +16,7 @@ export class TerraUploadQueue
     private _progressValue:number = -1;
 
 
-    constructor( private _uploadUrl: string | UploadQueueUrlFactory, private _uploadMethod: 'GET' | 'POST' | 'DELETE' | 'PUT' = 'POST' )
+    constructor(private _uploadUrl:string | UploadQueueUrlFactory, private _uploadMethod:'GET' | 'POST' | 'DELETE' | 'PUT' = 'POST')
     {
         this.progress = new Observable((observer:Observer<number>) =>
         {
@@ -84,7 +84,7 @@ export class TerraUploadQueue
         {
             let nextItem:TerraUploadItem = this.items.shift();
 
-            if( isNullOrUndefined(nextItem) )
+            if(isNullOrUndefined(nextItem))
             {
                 resolve(null);
             }
@@ -144,7 +144,7 @@ export class TerraUploadQueue
 
             xhr.open(
                 this._uploadMethod,
-                this.getUploadUrl( item.pathname ),
+                this.getUploadUrl(item.pathname),
                 true
             );
 
@@ -161,10 +161,12 @@ export class TerraUploadQueue
     private onProgress():void
     {
         let notLoaded:number = this.items
-                                   .map((item:TerraUploadItem) => {
+                                   .map((item:TerraUploadItem) =>
+                                   {
                                        return item.file.size;
                                    })
-                                   .reduce((prev:number, current:number) => {
+                                   .reduce((prev:number, current:number) =>
+                                   {
                                        return prev + current;
                                    }, 0);
 
@@ -183,7 +185,7 @@ export class TerraUploadQueue
             let pivot = header.indexOf(':');
             let key:string = header.substr(0, pivot).trim().toLowerCase();
             let value:string = header.substr(pivot + 1).trim();
-            if( !isNullOrUndefined(key) )
+            if(!isNullOrUndefined(key))
             {
                 parsed[key] = parsed[key] ? parsed[key] + ', ' + value : value;
             }
@@ -191,9 +193,9 @@ export class TerraUploadQueue
         return parsed;
     }
 
-    private getUploadUrl( storageKey: string ): string
+    private getUploadUrl(storageKey:string):string
     {
-        if ( typeof this._uploadUrl === 'function' )
+        if(typeof this._uploadUrl === 'function')
         {
             return this._uploadUrl(storageKey);
         }

@@ -2,21 +2,16 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    forwardRef,
-    Inject,
     Input,
     OnChanges,
-    OnInit,
     Output,
     SimpleChanges,
-    ViewChild,
-    ViewContainerRef
+    ViewChild
 } from '@angular/core';
 import { TerraSimpleTableHeaderCellInterface } from './cell/terra-simple-table-header-cell.interface';
 import { TerraSimpleTableRowInterface } from './row/terra-simple-table-row.interface';
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
 import { Key } from 'ts-keycode-enum';
-import { FixedHeaderDirective } from '../fixed-header/fixed-header.directive';
 
 @Component({
     selector: 'terra-simple-table',
@@ -46,15 +41,15 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     private _isHeaderCheckboxChecked:boolean = false;
     private _selectedRowList:Array<TerraSimpleTableRowInterface<D>> = [];
 
-    public onRowListChange: EventEmitter<void> = new EventEmitter();
+    public onRowListChange:EventEmitter<void> = new EventEmitter();
 
-    constructor( private _elementRef: ElementRef )
+    constructor(private _elementRef:ElementRef)
     {
     }
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if ( changes.hasOwnProperty("inputRowList") )
+        if(changes.hasOwnProperty("inputRowList"))
         {
             this._isHeaderCheckboxChecked = false;
             this.onRowListChange.emit();
@@ -152,13 +147,13 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         }
     }
 
-    private onCheckboxClick(event: Event):void
+    private onCheckboxClick(event:Event):void
     {
         // do not emit 'outputRowClicked' when toggling checkbox
         event.stopPropagation();
     }
 
-    private onRowClick(event: MouseEvent, row:TerraSimpleTableRowInterface<D>):void
+    private onRowClick(event:MouseEvent, row:TerraSimpleTableRowInterface<D>):void
     {
         if(this.inputUseHighlighting && !row.disabled)
         {
@@ -216,17 +211,17 @@ export class TerraSimpleTableComponent<D> implements OnChanges
                 highlightIndex += i;
             }
 
-            if ( highlightIndex >= 0 && highlightIndex < this.inputRowList.length )
+            if(highlightIndex >= 0 && highlightIndex < this.inputRowList.length)
             {
-                let activeRow:HTMLElement = this._elementRef.nativeElement.querySelector('table tbody tr:nth-child(' + (highlightIndex+1) + ')');
-                let viewport: ClientRect = this.scrollContainer.nativeElement.getBoundingClientRect();
-                let activeRowPosition: ClientRect = activeRow.getBoundingClientRect();
+                let activeRow:HTMLElement = this._elementRef.nativeElement.querySelector('table tbody tr:nth-child(' + (highlightIndex + 1) + ')');
+                let viewport:ClientRect = this.scrollContainer.nativeElement.getBoundingClientRect();
+                let activeRowPosition:ClientRect = activeRow.getBoundingClientRect();
 
-                if ( viewport.bottom < activeRowPosition.bottom )
+                if(viewport.bottom < activeRowPosition.bottom)
                 {
                     this.scrollContainer.nativeElement.scrollTop += (activeRowPosition.bottom - viewport.bottom);
                 }
-                else if ( viewport.top > activeRowPosition.top )
+                else if(viewport.top > activeRowPosition.top)
                 {
                     this.scrollContainer.nativeElement.scrollTop -= (viewport.top - activeRowPosition.top);
                 }
@@ -264,6 +259,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
             this._selectedRowList.splice(index, 1);
         }
 
-        this.outputSelectedRowsChange.emit( this._selectedRowList );
+        this.outputSelectedRowsChange.emit(this._selectedRowList);
     }
 }

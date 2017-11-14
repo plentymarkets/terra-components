@@ -4,7 +4,6 @@ import {
     Directive,
     ElementRef,
     forwardRef,
-    HostListener,
     Inject
 } from '@angular/core';
 import { TerraSimpleTableComponent } from '../simple/terra-simple-table.component';
@@ -16,15 +15,13 @@ const FIXED_CLASS = "fixed-header";
 })
 export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
 {
-    private _tableElement: HTMLTableElement;
-    private _tableHeadElement: HTMLTableSectionElement;
-    private _tableBodyElement: HTMLTableSectionElement;
-    private _columnWidths: Array<number> = [];
+    private _tableElement:HTMLTableElement;
+    private _tableHeadElement:HTMLTableSectionElement;
+    private _tableBodyElement:HTMLTableSectionElement;
+    private _columnWidths:Array<number> = [];
 
-    constructor(
-        private _elementRef: ElementRef,
-        @Inject(forwardRef(() => TerraSimpleTableComponent)) private _tableComponent
-    )
+    constructor(private _elementRef:ElementRef,
+                @Inject(forwardRef(() => TerraSimpleTableComponent)) private _tableComponent)
     {
     }
 
@@ -38,7 +35,7 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
     public ngAfterViewChecked():void
     {
         // check if table has at least one row
-        if( this._tableElement && this._tableBodyElement.querySelector('tr:first-child') )
+        if(this._tableElement && this._tableBodyElement.querySelector('tr:first-child'))
         {
             this.updateColumnWidths();
         }
@@ -53,22 +50,23 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
 
         // adjust difference between header width and body width
         let headerWidth:number = this._tableHeadElement.getBoundingClientRect().width;
-        let bodyWidth:number   = this._tableBodyElement.getBoundingClientRect().width;
+        let bodyWidth:number = this._tableBodyElement.getBoundingClientRect().width;
         this._tableHeadElement.style.paddingRight = (headerWidth - bodyWidth) + 'px';
 
         // assign column widths
         this.getColumnWidths()
-            .forEach( (width: number, index: number) => {
-                headerCol = <HTMLElement>this._tableHeadElement.querySelector('tr th:nth-child(' + (index+1) + ')');
-                if ( headerCol )
+            .forEach((width:number, index:number) =>
+            {
+                headerCol = <HTMLElement>this._tableHeadElement.querySelector('tr th:nth-child(' + (index + 1) + ')');
+                if(headerCol)
                 {
                     headerCol.style.width = width + '%';
                 }
 
-                for( let i = 0; i < rows.length; i++ )
+                for(let i = 0; i < rows.length; i++)
                 {
-                    bodyCol = <HTMLElement>rows.item(i).querySelector('tr td:nth-child(' + (index+1) + ')');
-                    if ( bodyCol )
+                    bodyCol = <HTMLElement>rows.item(i).querySelector('tr td:nth-child(' + (index + 1) + ')');
+                    if(bodyCol)
                     {
                         bodyCol.style.width = width + '%';
                     }
@@ -77,17 +75,17 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
             });
     }
 
-    private getColumnWidths(): Array<number>
+    private getColumnWidths():Array<number>
     {
-        let firstRow: HTMLElement = <HTMLElement>this._tableBodyElement.querySelector('tr:first-child');
-        if ( firstRow )
+        let firstRow:HTMLElement = <HTMLElement>this._tableBodyElement.querySelector('tr:first-child');
+        if(firstRow)
         {
             let rowWidth:number = firstRow.getBoundingClientRect().width;
             let columns:NodeListOf<HTMLElement> = firstRow.querySelectorAll('td');
-            if ( rowWidth > 0 && columns.length !== this._columnWidths.length )
+            if(rowWidth > 0 && columns.length !== this._columnWidths.length)
             {
                 this._columnWidths = [];
-                for( let i = 0; i < columns.length; i++ )
+                for(let i = 0; i < columns.length; i++)
                 {
                     this._columnWidths.push(
                         (columns.item(i).getBoundingClientRect().width / rowWidth) * 100

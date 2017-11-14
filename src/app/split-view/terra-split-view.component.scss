@@ -161,6 +161,7 @@
 {
     display: inline-block;
 }
+
 .view
 {
     font-size: $font-size-3;
@@ -192,7 +193,8 @@
 }
 
 ///// Fixed Columns for Terra-Navigator ///////
-@media (min-width: 768px) {
+@media (min-width: 768px)
+{
     .col-md-300px
     {
         float: left;

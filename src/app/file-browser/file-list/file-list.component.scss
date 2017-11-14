@@ -72,7 +72,6 @@
     }
 }
 
-
 .file-list-container
 {
     flex: 1;
@@ -86,18 +85,20 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: transparentize( $brand-primary, 0.3 );
+        background-color: transparentize($brand-primary, 0.3);
         z-index: 2;
         border-radius: $border-radius;
         display: none;
         flex-direction: row;
         align-items: center;
         
-        &.in {
+        &.in
+        {
             display: flex;
         }
         
-        div {
+        div
+        {
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -105,7 +106,8 @@
             color: $white;
             font-size: 2rem;
             
-            .icon-upload {
+            .icon-upload
+            {
                 font-size: 7.5rem;
             }
             

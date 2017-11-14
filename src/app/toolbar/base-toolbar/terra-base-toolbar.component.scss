@@ -14,7 +14,7 @@
     z-index: $zindex-toolbar-sticky;
 }
 
-:host-context(.btn-toolbar .pager)  //if pager placed in toolbar, style the toolbar contained in pager like this
+:host-context(.btn-toolbar .pager) //if pager placed in toolbar, style the toolbar contained in pager like this
 {
     --toolbar-padding: 6px 4px 4px 4px;
     --toolbar-margin: 0 0 -4px 0;

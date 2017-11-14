@@ -36,11 +36,11 @@ export class TerraUploadItem
 
     constructor(public file:File, private _path:string, private _uploadService:TerraBaseStorageService)
     {
-        if( isNullOrUndefined(file) )
+        if(isNullOrUndefined(file))
         {
             this.uploaded = true;
         }
-        if( !isNullOrUndefined(this._path) && this._path.charAt(0) === '/')
+        if(!isNullOrUndefined(this._path) && this._path.charAt(0) === '/')
         {
             this._path = this._path.substr(1);
         }
@@ -79,7 +79,7 @@ export class TerraUploadItem
     public cancelUpload():void
     {
         this._uploadService.queue.remove(this);
-        if( !isNullOrUndefined(this._xhr) )
+        if(!isNullOrUndefined(this._xhr))
         {
             this._xhr.abort();
         }

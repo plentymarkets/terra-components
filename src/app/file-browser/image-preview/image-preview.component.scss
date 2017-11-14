@@ -8,7 +8,8 @@
     margin-left: 3px;
     overflow-y: auto;
     
-    > div {
+    > div
+    {
         display: flex;
         flex-direction: column;
         height: 100%;
@@ -49,7 +50,6 @@
     }
 }
 
-    
 .loader
 {
     position: absolute;

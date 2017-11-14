@@ -1,4 +1,3 @@
-import { Subject } from 'rxjs/Rx';
 import { TerraBaseData } from '../../../../data/terra-base.data';
 
 /**
