@@ -30,6 +30,7 @@ export class TerraButtonComponent
     @Input() inputIsFlagged:boolean;
     @Input() inputIsDivider:boolean;
     @Input() inputIsLink:boolean;
+    @Input() inputIsHighlighted: boolean;
     @Output() outputClicked = new EventEmitter<Event>();
 
     constructor()
@@ -41,6 +42,7 @@ export class TerraButtonComponent
         this.inputIsDivider = false;
         this.inputIsLink = false;
         this.inputIsDisabled = false;
+        this.inputIsHighlighted = false;
     }
 
     private click(event:Event):void

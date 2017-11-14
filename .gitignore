@@ -2,6 +2,8 @@
 
 # compiled output
 /dist
+/component-documentation/build
+/component-documentation/icons
 /tmp
 
 # dependencies
@@ -12,13 +14,12 @@
 /src/**/*.d.ts
 
 # IDEs and editors
-/.idea
+/.idea/
 *.iml
 .project
 .classpath
 *.launch
 .settings/
-*.iml
 
 # misc
 /.sass-cache

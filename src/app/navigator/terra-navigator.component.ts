@@ -22,7 +22,10 @@ import { TranslationService } from 'angular-l10n';
 @Component({
     selector: 'terra-navigator',
     template: require('./terra-navigator.component.html'),
-    styles:   [require('./terra-navigator.component.scss')]
+    styles:   [
+        require('./terra-navigator.component.scss'),
+        require('./terra-navigator.component.glob.scss').toString()
+    ],
 })
 export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 {

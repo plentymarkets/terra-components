@@ -4,7 +4,8 @@
     //overflow: hidden;
     padding: 0;
     margin: 0;
-    height: 33px;
+    //height: 33px;
+    height: $breadcumb-height;
     display: flex;
     li
     {
@@ -17,7 +18,8 @@
                 font-weight: 500;
             }
             text-decoration: none;
-            padding: 7px 10px;
+            //padding: 7px 10px;
+            padding: 9px 10px 8px;
             position: relative;
             display: block;
             float: left;
@@ -123,6 +125,7 @@
         .icon-next
         {
             padding: 6px 0px;
+            line-height: 34px;
             &::before
             {
                 display: inline-block;
@@ -191,9 +194,6 @@
     }
 }
 
-
-
-
 // TODO: @vwiebe, refactoring
 
 /deep/ terra-split-view .modal-content terra-split-view .hasDivider
@@ -232,14 +232,6 @@
     {
         opacity: 1;
     }
-}
-
-/deep/ .tab-content > .offsetHeight
-{
-    height: calc(100vh - 211px);
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
 }
 
 .ellipsis

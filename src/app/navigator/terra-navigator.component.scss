@@ -1,16 +1,5 @@
-// customize split view
-:host /deep/ .side-scroller,
-:host /deep/ .content
+.terra-navigator
 {
-    width: 16.7%;
-}
-
-:host /deep/ .select-box-wrapper
-{
-    margin: 4px;
-}
-
-:host /deep/ .input-unit-v1
-{
-    margin-bottom: 0px !important
+    --input-unit-v1-margin-bottom: 0px;
+    --select-box-wrapper-margin: 4px;
 }

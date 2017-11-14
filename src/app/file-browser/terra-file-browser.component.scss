@@ -1,20 +1,6 @@
 @import "../split-view/terra-split-view.component";
 @import "../forms/input/terra-input-group";
 
-/deep/
-terra-file-browser
-{
-    height: 100%;
-    display: block;
-    
-    > div
-    {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-}
-
 .file-browser-content
 {
     position: relative;
@@ -53,12 +39,12 @@ terra-file-browser
             &.selected
             {
                 background-color: $brand-primary;
-                color: #FFFFFF;
+                color: $white;
                 
                 [class^="icon-"]:before,
                 [class^="icon-"] *:before
                 {
-                    color: #FFFFFF;
+                    color: $white;
                 }
             }
             
@@ -86,7 +72,7 @@ terra-file-browser
                 top: 0;
                 left: 0;
                 bottom: 0;
-                color: #FFFFFF;
+                color: $white;
                 background-color: $brand-primary;
                 overflow: hidden;
                 white-space: nowrap;
@@ -134,7 +120,7 @@ terra-file-browser
         left: 50%;
         width: 90%;
         margin-left: -45%;
-        background: #FFFFFF;
+        background: $white;
         border: 1px solid #CCCCCC;
         border-top: none;
         padding: 4px 8px;
@@ -178,7 +164,7 @@ terra-file-browser
         border: 3px dashed $brand-primary;
         border-radius: $border-radius;
         display: none;
-        color: #FFFFFF;
+        color: $white;
         flex-direction: row;
         align-items: center;
         
@@ -206,7 +192,7 @@ terra-file-browser
         transform: translateY(100%);
         transition: transform 150ms ease;
         border-top: 1px solid #CCCCCC;
-        background-color: #FFFFFF;
+        background-color: $white;
         display: flex;
         flex-direction: column;
         padding: 4px 8px;
