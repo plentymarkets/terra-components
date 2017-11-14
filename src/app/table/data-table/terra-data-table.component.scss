@@ -2,11 +2,17 @@
 {
     table.table
     {
+        &[tabindex]
+        {
+            outline: none;
+        }
+        
         margin-bottom: 1rem;
         thead
         {
             background: $grey-9;
             color: white;
+            border-radius: 0 0 $border-radius $border-radius;
             tr
             {
                 th
@@ -14,10 +20,12 @@
                     font-variant: all-small-caps;
                     padding: 6px 9px;
                     border: none;
-                    &:first-child{
+                    &:first-child
+                    {
                         border-radius: 0 0 0 $border-radius;
                     }
-                    &:last-child{
+                    &:last-child
+                    {
                         border-radius: 0 0 $border-radius 0;
                     }
                 }

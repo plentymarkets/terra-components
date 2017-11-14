@@ -1,6 +1,6 @@
 <div bsModal #viewChildOverlay="bs-modal" class="modal fade" tabindex="-1" role="dialog" (onHidden)="emitOutputOnHide()"
      (onShown)="emitOutputOnShow()">
-    <div class="modal-dialog modal-lg" [ngClass]="{'modal-lg': inputIsLarge, 'modal-sm': inputIsSmall}">
+    <div class="modal-dialog modal-lg" [ngClass]="{'modal-xl': inputIsExtraLarge, 'modal-lg': inputIsLarge, 'modal-sm': inputIsSmall}">
         <div class="modal-content">
             <div class="modal-header" *ngIf="inputIsCloseable && inputOverlayTitle">
                 <terra-button *ngIf="inputIsCloseable"
@@ -14,7 +14,7 @@
                 <ng-content></ng-content>
             </div>
             <div class="modal-footer" *ngIf="inputPrimaryButtonInterface || inputSecondaryButtonInterface">
-    
+
                 <terra-button *ngIf="inputSecondaryButtonInterface"
                               [inputIsAlignRight]="false"
                               [inputCaption]="inputSecondaryButtonInterface.caption"
@@ -32,7 +32,7 @@
                               inputTooltipPlacement="bottom"
                               [inputIsDisabled]="inputPrimaryButtonInterface.isDisabled"
                               (outputClicked)="inputPrimaryButtonInterface.clickFunction()"></terra-button>
-                
+
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
-import { TerraFrontendStorageService } from "../terra-frontend-storage.service";
-import { PathHelper } from "../helper/path.helper";
+import { PathHelper } from '../helper/path.helper';
+import { TerraBaseStorageService } from '../terra-base-storage.interface';
+import { isNullOrUndefined } from 'util';
 
 export type UploadCallback = (response:string, status:number, headers:{ [key:string]:string }) => void;
 
@@ -10,16 +11,16 @@ export class TerraUploadItem
 
     public get filename():string
     {
-        let filenames = this.file.name.split(".");
+        let filenames = this.file.name.split('.');
         let extname = filenames.pop();
-        return this._uploadService.prepareKey(filenames.join(""), true) + "." + extname;
+        return this._uploadService.prepareKey(this.file.name, true);
     }
 
     public get pathname():string
     {
         let pathname = this._uploadService.prepareKey(PathHelper.join(this._path, this.filename));
 
-        if(pathname.charAt(0) === "/")
+        if(pathname.charAt(0) === '/')
         {
             pathname = pathname.substr(1);
         }
@@ -33,13 +34,13 @@ export class TerraUploadItem
     private _onError:UploadCallback[] = [];
     private _onProgress:Array<(progress:number) => void> = [];
 
-    constructor(public file:File, private _path:string, private _uploadService:TerraFrontendStorageService)
+    constructor(public file:File, private _path:string, private _uploadService:TerraBaseStorageService)
     {
-        if(!file)
+        if(isNullOrUndefined(file))
         {
             this.uploaded = true;
         }
-        if(this._path && this._path.charAt(0) === "/")
+        if(!isNullOrUndefined(this._path) && this._path.charAt(0) === '/')
         {
             this._path = this._path.substr(1);
         }
@@ -78,7 +79,7 @@ export class TerraUploadItem
     public cancelUpload():void
     {
         this._uploadService.queue.remove(this);
-        if(this._xhr)
+        if(!isNullOrUndefined(this._xhr))
         {
             this._xhr.abort();
         }

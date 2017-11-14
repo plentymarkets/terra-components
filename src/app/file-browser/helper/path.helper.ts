@@ -1,6 +1,6 @@
 export class PathHelper
 {
-    public static readonly DELIMITER:string = "/";
+    public static readonly DELIMITER:string = '/';
 
     private static getPaths(path:string):string[]
     {
@@ -44,7 +44,7 @@ export class PathHelper
 
     public static dirname(path:string):string
     {
-        let prefix:string = this.isAbsolute(path) ? "/" : "";
+        let prefix:string = this.isAbsolute(path) ? '/' : '';
         let paths:string[] = this.getPaths(path);
         paths.pop();
 
@@ -55,11 +55,11 @@ export class PathHelper
     {
         if(this.isDirectory(path))
         {
-            return "";
+            return '';
         }
 
         let filename:string = this.basename(path);
-        let splittedFilename:string[] = filename.split(".");
+        let splittedFilename:string[] = filename.split('.');
         return splittedFilename.pop();
     }
 
