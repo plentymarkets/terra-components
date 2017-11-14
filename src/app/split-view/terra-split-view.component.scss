@@ -161,6 +161,7 @@
 {
     display: inline-block;
 }
+
 .view
 {
     font-size: $font-size-3;
@@ -176,19 +177,10 @@
     {
         background-color: $grey-2;
     }
-}
-
-/deep/ .terra-navigator
-{
-    .view
+    &.isBackgroundColorGrey
     {
-        background-color: $grey-2;
+        background-color: transparent !important;
     }
-}
-
-.view.isBackgroundColorGrey
-{
-    background-color: transparent !important;
 }
 
 ///// Fixed Columns for Terra-Navigator ///////
@@ -202,14 +194,6 @@
     {
         float: left;
         width: calc(100% - 300px);
-    }
-}
-
-/deep/ terra-split-view .modal-content terra-split-view
-{
-    .view.last:not(.first)
-    {
-        padding: 0 0 0 4px !important;
     }
 }
 
