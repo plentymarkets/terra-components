@@ -2,17 +2,20 @@ import {
     Component,
     forwardRef,
     Input,
-    OnInit,
     ViewChild
-} from "@angular/core";
-import { TerraOverlayComponent } from "../../../overlay/terra-overlay.component";
-import { TerraInputComponent } from "../terra-input.component";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { TerraRegex } from "../../../regex/terra-regex";
-import { TerraOverlayButtonInterface } from "../../../overlay/data/terra-overlay-button.interface";
-import { PathHelper } from "../../../file-browser/helper/path.helper";
-import { FileType } from "../../../file-browser/helper/fileType.helper";
-import { TranslationService } from "angular-l10n";
+} from '@angular/core';
+import { TerraOverlayComponent } from '../../../overlay/terra-overlay.component';
+import { TerraInputComponent } from '../terra-input.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TerraRegex } from '../../../regex/terra-regex';
+import { TerraOverlayButtonInterface } from '../../../overlay/data/terra-overlay-button.interface';
+import { PathHelper } from '../../../file-browser/helper/path.helper';
+import { FileType } from '../../../file-browser/helper/fileType.helper';
+import { TranslationService } from 'angular-l10n';
+import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
+import { TerraBaseStorageService } from '../../../file-browser/terra-base-storage.interface';
+import { TerraFrontendStorageService } from '../../../file-browser/terra-frontend-storage.service';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector:  'terra-file-input',
@@ -26,14 +29,31 @@ import { TranslationService } from "angular-l10n";
         }
     ]
 })
-export class TerraFileInputComponent extends TerraInputComponent implements OnInit
+export class TerraFileInputComponent extends TerraInputComponent
 {
-    private _translationPrefix:string = "terraFileInput";
+    private _translationPrefix:string = 'terraFileInput';
+
     @Input()
     public inputShowPreview:boolean = false;
 
     @Input()
     public inputAllowedExtensions:string[] = [];
+
+    @Input()
+    public inputAllowFolders:boolean = true;
+
+    private _storageServices:Array<TerraBaseStorageService>;
+
+    @Input()
+    public set inputStorageServices(services:Array<TerraBaseStorageService>)
+    {
+        this._storageServices = services;
+    }
+
+    public get inputStorageServices():Array<TerraBaseStorageService>
+    {
+        return this._storageServices || [this._frontendStorageService];
+    }
 
     @ViewChild('overlay')
     public overlay:TerraOverlayComponent;
@@ -41,53 +61,53 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     @ViewChild('previewOverlay')
     public previewOverlay:TerraOverlayComponent;
 
-    private _selectedUrl:string;
-
-    public get selectedUrl():string
-    {
-        return this._selectedUrl;
-    }
-
-    public set selectedUrl(value:string)
-    {
-        this.primaryOverlayButton.isDisabled = !value || value.length <= 0;
-
-        this._selectedUrl = value;
-    }
+    private _selectedObjectUrl:string;
 
     public primaryOverlayButton:TerraOverlayButtonInterface = {
         icon:          'icon-success',
-        caption:       this.translation.translate(this._translationPrefix + ".choose"),
+        caption:       this.translation.translate(this._translationPrefix + '.choose'),
         isDisabled:    true,
         clickFunction: () =>
                        {
-                           this.value = this.selectedUrl;
+                           this.value = this._selectedObjectUrl;
                            this.overlay.hideOverlay();
                        }
     };
 
     public secondaryOverlayButton:TerraOverlayButtonInterface = {
         icon:          'icon-close',
-        caption:       this.translation.translate(this._translationPrefix + ".cancel"),
+        caption:       this.translation.translate(this._translationPrefix + '.cancel'),
         isDisabled:    false,
         clickFunction: () =>
                        {
-                           this.selectedUrl = this.value;
+                           this._selectedObjectUrl = this.value;
                            this.overlay.hideOverlay();
                        }
     };
 
-    constructor(private translation:TranslationService)
+    constructor(private translation:TranslationService, private _frontendStorageService:TerraFrontendStorageService)
     {
         super(TerraRegex.MIXED);
     }
 
     public ngOnInit():void
     {
-        this.selectedUrl = this.value;
     }
 
-    public onPreviewClicked()
+    public onSelectedObjectChange(selectedObject:TerraStorageObject):void
+    {
+        if(isNullOrUndefined(selectedObject) || selectedObject.isDirectory)
+        {
+            this.primaryOverlayButton.isDisabled = true;
+        }
+        else
+        {
+            this.primaryOverlayButton.isDisabled = false;
+            this._selectedObjectUrl = selectedObject.publicUrl;
+        }
+    }
+
+    public onPreviewClicked():void
     {
         if(this.isWebImage(this.value))
         {
@@ -95,35 +115,35 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
         }
     }
 
-    public showFileBrowser()
+    public showFileBrowser():void
     {
         this.overlay.showOverlay();
     }
 
     public getIconClass(filename:string):string
     {
-        if(!filename)
+        if(isNullOrUndefined(filename))
         {
-            return "";
+            return '';
         }
 
         if(PathHelper.isDirectory(filename))
         {
-            return "icon-folder";
+            return 'icon-folder';
         }
         return FileType.mapIconClass(filename);
     }
 
     public isWebImage(filename:string):boolean
     {
-        return !!filename && FileType.isWebImage(filename);
+        return !isNullOrUndefined(filename) && FileType.isWebImage(filename);
     }
 
     public getFilename(path:string):string
     {
-        if(!path)
+        if(isNullOrUndefined(path))
         {
-            return "";
+            return '';
         }
         return PathHelper.basename(path);
     }

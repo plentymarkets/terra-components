@@ -1,4 +1,4 @@
-<ul [hidden]="_contextMenuLinkList == 0"  class="context-menu" id="menu" [ngStyle]="_locationCss">
+<ul [hidden]="_contextMenuLinkList == 0" class="context-menu" id="menu" [ngStyle]="_locationCss">
     <ng-template ngFor let-link [ngForOf]="_contextMenuLinkList">
         <li *ngIf="!link.isDivider" (click)="link.clickFunction(link.data)">
             <a>{{link.title}}</a>

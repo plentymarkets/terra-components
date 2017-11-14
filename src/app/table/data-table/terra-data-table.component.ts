@@ -17,7 +17,6 @@ import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.comp
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
-import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
@@ -40,7 +39,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @Input() inputNoResultTextPrimary:string;
     @Input() inputNoResultTextSecondary:string;
     @Input() inputNoResultButtons:Array<TerraButtonInterface>;
-        
+
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
 
@@ -69,6 +68,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this.inputHasCheckboxes = true;
         this.inputHasInitialLoading = false;
         this.inputHasPager = true;
+
+        this.rowList = [];
     }
 
 
