@@ -18,6 +18,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-note** Added new component to display notes which auto adjust the height by its content.
 * **terra-file-browser** Add new component to upload and manage files. Uses frontend storage by default and provides properties to register custom services to handle files from different resources. 
 * **terra-note-editor** new component based on [quill](https://quilljs.com/), that realizes an editor for notes with several features.
+* **terra-data-table** always update paging data on successful request
 
 ### Bug Fixes
 * **terra-multi-split-view** 

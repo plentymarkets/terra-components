@@ -268,7 +268,24 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
 
         this._requestPending = true;
-        restCall.subscribe(this.onSuccessFunction, error =>
+        restCall.subscribe(
+            (res:TerraPagerInterface) =>
+            {
+                // update paging data
+                this.pagingData = {
+                    page:           res.page,
+                    totalsCount:    res.totalsCount,
+                    isLastPage:     res.isLastPage,
+                    lastPageNumber: res.lastPageNumber,
+                    firstOnPage:    res.firstOnPage,
+                    lastOnPage:     res.lastOnPage,
+                    itemsPerPage:   res.itemsPerPage
+                };
+
+                // execute custom success function
+                this.onSuccessFunction(res);
+            },
+            error =>
             {
                 if(error.status == 401 || error.status == 500)
                 {
