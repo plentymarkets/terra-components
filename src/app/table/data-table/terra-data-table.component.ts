@@ -17,7 +17,6 @@ import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.comp
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
-import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
@@ -272,24 +271,19 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         restCall.subscribe(
             (res:TerraPagerInterface) =>
             {
-                // check if all paging data is defined in the response
-                if(res.page && res.totalsCount && res.isLastPage && res.lastPageNumber && res.firstOnPage && res.lastOnPage && res.itemsPerPage)
-                {
-                    // update paging data
-                    this.pagingData = {
-                        page:           res.page,
-                        totalsCount:    res.totalsCount,
-                        isLastPage:     res.isLastPage,
-                        lastPageNumber: res.lastPageNumber,
-                        firstOnPage:    res.firstOnPage,
-                        lastOnPage:     res.lastOnPage,
-                        itemsPerPage:   res.itemsPerPage
-                    };
-                }
+                // update paging data
+                this.pagingData = {
+                    page:           res.page,
+                    totalsCount:    res.totalsCount,
+                    isLastPage:     res.isLastPage,
+                    lastPageNumber: res.lastPageNumber,
+                    firstOnPage:    res.firstOnPage,
+                    lastOnPage:     res.lastOnPage,
+                    itemsPerPage:   res.itemsPerPage
+                };
 
                 // execute custom success function
                 this.onSuccessFunction(res);
-
             },
             error =>
             {
