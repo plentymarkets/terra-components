@@ -19,6 +19,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-multi-split-view-config** new method `isViewVisible` that can be used to check whether a view object is currently visible
 * **terra-file-browser** Add new component to upload and manage files. Uses frontend storage by default and provides properties to register custom services to handle files from different resources. 
 * **terra-note-editor** new component based on [quill](https://quilljs.com/), that realizes an editor for notes with several features.
+* **terra-data-table** moved tooltips for data table headers inside the caption span for better alignment
 
 ### Bug Fixes
 * **terra-multi-split-view** 

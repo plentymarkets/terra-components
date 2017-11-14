@@ -9,7 +9,7 @@ export interface S3StorageObjectInterface
     storageClass:'STANDARD' | 'STANDARD_IA' | 'GLACIER' | 'RRS';
 }
 
-export function createS3StorageObject( key: string ):S3StorageObjectInterface
+export function createS3StorageObject(key:string):S3StorageObjectInterface
 {
     return {
         eTag:         '',

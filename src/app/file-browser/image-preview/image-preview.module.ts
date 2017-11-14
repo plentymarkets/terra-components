@@ -10,27 +10,27 @@ import { TerraComponentsModule } from '../../terra-components.module';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
-  imports: [
-      CommonModule,
-      forwardRef(() => TerraComponentsModule.forRoot()),
-      TranslationModule,
-      FormsModule
-  ],
-  declarations: [
-      TerraImagePreviewComponent
-  ]
+    imports:      [
+        CommonModule,
+        forwardRef(() => TerraComponentsModule.forRoot()),
+        TranslationModule,
+        FormsModule
+    ],
+    declarations: [
+        TerraImagePreviewComponent
+    ]
 })
 export class TerraImagePreviewModule
 {
-    static forRoot(): ModuleWithProviders
+    static forRoot():ModuleWithProviders
     {
         return {
-            ngModule: TerraImagePreviewModule,
+            ngModule:  TerraImagePreviewModule,
             providers: []
         };
     }
 
-    static getMainComponent(): string
+    static getMainComponent():string
     {
         return 'TerraImagePreviewComponent';
     }

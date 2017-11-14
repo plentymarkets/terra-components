@@ -42,15 +42,15 @@ export class TerraFileInputComponent extends TerraInputComponent
     @Input()
     public inputAllowFolders:boolean = true;
 
-    private _storageServices: Array<TerraBaseStorageService>;
+    private _storageServices:Array<TerraBaseStorageService>;
 
     @Input()
-    public set inputStorageServices( services: Array<TerraBaseStorageService> )
+    public set inputStorageServices(services:Array<TerraBaseStorageService>)
     {
         this._storageServices = services;
     }
 
-    public get inputStorageServices(): Array<TerraBaseStorageService>
+    public get inputStorageServices():Array<TerraBaseStorageService>
     {
         return this._storageServices || [this._frontendStorageService];
     }
@@ -62,12 +62,13 @@ export class TerraFileInputComponent extends TerraInputComponent
     public previewOverlay:TerraOverlayComponent;
 
     private _selectedObjectUrl:string;
-    
+
     public primaryOverlayButton:TerraOverlayButtonInterface = {
         icon:          'icon-success',
         caption:       this.translation.translate(this._translationPrefix + '.choose'),
         isDisabled:    true,
-        clickFunction: () => {
+        clickFunction: () =>
+                       {
                            this.value = this._selectedObjectUrl;
                            this.overlay.hideOverlay();
                        }
@@ -77,13 +78,14 @@ export class TerraFileInputComponent extends TerraInputComponent
         icon:          'icon-close',
         caption:       this.translation.translate(this._translationPrefix + '.cancel'),
         isDisabled:    false,
-        clickFunction: () => {
+        clickFunction: () =>
+                       {
                            this._selectedObjectUrl = this.value;
                            this.overlay.hideOverlay();
                        }
     };
 
-    constructor(private translation:TranslationService, private _frontendStorageService: TerraFrontendStorageService )
+    constructor(private translation:TranslationService, private _frontendStorageService:TerraFrontendStorageService)
     {
         super(TerraRegex.MIXED);
     }
@@ -92,9 +94,9 @@ export class TerraFileInputComponent extends TerraInputComponent
     {
     }
 
-    public onSelectedObjectChange( selectedObject: TerraStorageObject ):void
+    public onSelectedObjectChange(selectedObject:TerraStorageObject):void
     {
-        if ( isNullOrUndefined(selectedObject) || selectedObject.isDirectory )
+        if(isNullOrUndefined(selectedObject) || selectedObject.isDirectory)
         {
             this.primaryOverlayButton.isDisabled = true;
         }
@@ -120,7 +122,7 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     public getIconClass(filename:string):string
     {
-        if( isNullOrUndefined(filename) )
+        if(isNullOrUndefined(filename))
         {
             return '';
         }
@@ -139,7 +141,7 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     public getFilename(path:string):string
     {
-        if( isNullOrUndefined(path) )
+        if(isNullOrUndefined(path))
         {
             return '';
         }

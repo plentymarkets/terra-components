@@ -42,7 +42,7 @@ export class TerraStorageObject
         return this._s3Object.size;
     }
 
-    public get sizeString(): string
+    public get sizeString():string
     {
         if(typeof this.size !== 'number')
         {
@@ -58,12 +58,12 @@ export class TerraStorageObject
 
     public get icon():string
     {
-        if ( this.isDirectory )
+        if(this.isDirectory)
         {
             return 'icon-folder';
         }
 
-        return FileType.mapIconClass( this.name );
+        return FileType.mapIconClass(this.name);
     }
 
     public get isDirectory():boolean
@@ -107,19 +107,21 @@ export class TerraStorageObject
         });
     }
 
-    public get fileCount(): number
+    public get fileCount():number
     {
-        if ( this.isFile )
+        if(this.isFile)
         {
             return 1;
         }
         else
         {
             return this.children
-                       .map( (child: TerraStorageObject) => {
+                       .map((child:TerraStorageObject) =>
+                       {
                            return child.fileCount;
                        })
-                       .reduce( (sum: number, current: number) => {
+                       .reduce((sum:number, current:number) =>
+                       {
                            return sum + current;
                        }, 0);
         }
@@ -222,7 +224,7 @@ export class TerraStorageObject
 
     public find(key:string):TerraStorageObject
     {
-        if( isNullOrUndefined(key) )
+        if(isNullOrUndefined(key))
         {
             return null;
         }
@@ -230,7 +232,7 @@ export class TerraStorageObject
         let paths:string[] = key.split('/').filter(key => key.length > 0);
         let nextPath = paths.shift();
         let child = this.getChild(nextPath);
-        if( !isNullOrUndefined(child) )
+        if(!isNullOrUndefined(child))
         {
             if(paths.length > 0)
             {

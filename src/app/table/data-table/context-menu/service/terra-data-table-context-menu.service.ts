@@ -11,7 +11,7 @@ export class TerraDataTableContextMenuService<D extends TerraBaseData>
 {
     public show:Subject<{ event:MouseEvent, obj:TerraDataTableContextMenuEntryInterface<D>[] }> =
         new Subject<{ event:MouseEvent, obj:TerraDataTableContextMenuEntryInterface<D>[] }>();
-    
-    public init:Subject<TerraDataTableContextMenuEntryInterface<D>[]> = 
+
+    public init:Subject<TerraDataTableContextMenuEntryInterface<D>[]> =
         new Subject<TerraDataTableContextMenuEntryInterface<D>[]>();
 }

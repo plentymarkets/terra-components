@@ -45,7 +45,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if ( changes.hasOwnProperty('inputInputs') )
+        if(changes.hasOwnProperty('inputInputs'))
         {
             this.assignInputProperties();
         }

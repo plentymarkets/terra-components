@@ -12,10 +12,10 @@ import { TerraBaseStorageService } from './terra-base-storage.interface';
 import { isNullOrUndefined } from 'util';
 
 @Component({
-    selector: 'terra-file-browser',
-    template: require('./terra-file-browser.component.html'),
+    selector:  'terra-file-browser',
+    template:  require('./terra-file-browser.component.html'),
     providers: [FileBrowserSplitConfig],
-    styles:   [
+    styles:    [
         require('./terra-file-browser.component.scss'),
         require('./terra-file-browser.component.glob.scss').toString()
     ],
@@ -32,19 +32,19 @@ export class TerraFileBrowserComponent implements OnInit
     @Output()
     public outputSelectedChange:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
-    public onSelectedUrlChange: EventEmitter<string> = new EventEmitter();
+    public onSelectedUrlChange:EventEmitter<string> = new EventEmitter();
 
-    private _storageServices: Array<TerraBaseStorageService>;
+    private _storageServices:Array<TerraBaseStorageService>;
 
     @Input()
-    public set inputStorageServices( services: Array<TerraBaseStorageService> )
+    public set inputStorageServices(services:Array<TerraBaseStorageService>)
     {
         this._storageServices = services;
     }
 
-    public get inputStorageServices(): Array<TerraBaseStorageService>
+    public get inputStorageServices():Array<TerraBaseStorageService>
     {
-        if ( !isNullOrUndefined(this._storageServices) && this._storageServices.length > 0 )
+        if(!isNullOrUndefined(this._storageServices) && this._storageServices.length > 0)
         {
             return this._storageServices;
         }
@@ -52,19 +52,18 @@ export class TerraFileBrowserComponent implements OnInit
         return [this._frontendStorageService]
     }
 
-    constructor(
-        public splitConfig: FileBrowserSplitConfig,
-        private _frontendStorageService: TerraFrontendStorageService )
+    constructor(public splitConfig:FileBrowserSplitConfig,
+                private _frontendStorageService:TerraFrontendStorageService)
     {
     }
 
     public ngOnInit():void
     {
-        this.splitConfig.init( this.inputStorageServices );
+        this.splitConfig.init(this.inputStorageServices);
     }
 
-    public selectUrl( publicUrl: string ):void
+    public selectUrl(publicUrl:string):void
     {
-        this.onSelectedUrlChange.emit( publicUrl );
+        this.onSelectedUrlChange.emit(publicUrl);
     }
 }

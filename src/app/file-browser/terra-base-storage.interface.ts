@@ -7,21 +7,21 @@ import { TerraUploadQueue } from './model/terra-upload-queue';
 
 export abstract class TerraBaseStorageService extends TerraBaseService
 {
-    public abstract name: string;
+    public abstract name:string;
 
-    public abstract isPublic: boolean;
+    public abstract isPublic:boolean;
 
-    public abstract queue: TerraUploadQueue;
+    public abstract queue:TerraUploadQueue;
 
-    public abstract getStorageList(): Observable<TerraStorageObjectList>;
+    public abstract getStorageList():Observable<TerraStorageObjectList>;
 
-    public abstract createDirectory( path: string ): Observable<any>;
+    public abstract createDirectory(path:string):Observable<any>;
 
-    public abstract uploadFiles( files: FileList | File[], path: string ): TerraUploadItem[];
+    public abstract uploadFiles(files:FileList | File[], path:string):TerraUploadItem[];
 
-    public abstract deleteFiles( keys: string[] ): Observable<any>;
+    public abstract deleteFiles(keys:string[]):Observable<any>;
 
-    public prepareKey(value:string, isName:boolean = false, isDirectory: boolean = false):string
+    public prepareKey(value:string, isName:boolean = false, isDirectory:boolean = false):string
     {
         value = value
             .replace(/\s+/g, '_')                 // Replace whitespaces
@@ -51,7 +51,7 @@ export abstract class TerraBaseStorageService extends TerraBaseService
 
 export abstract class TerraBaseMetadataStorageService extends TerraBaseStorageService
 {
-    public abstract getMetadata( key: string ): Observable<TerraImageMetadata>;
+    public abstract getMetadata(key:string):Observable<TerraImageMetadata>;
 
-    public abstract updateMetadata( key: string, metadata: TerraImageMetadata ): Observable<any>;
+    public abstract updateMetadata(key:string, metadata:TerraImageMetadata):Observable<any>;
 }

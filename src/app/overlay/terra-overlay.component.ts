@@ -39,7 +39,7 @@ export class TerraOverlayComponent implements AfterViewInit
         this.inputIsExtraLarge = false;
         this.inputIsLarge = false;
         this.inputIsSmall = false;
-        
+
 
         this.outputOnHide = new EventEmitter<ModalDirective>();
         this.outputOnShow = new EventEmitter<ModalDirective>();

@@ -1,9 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { TerraMultiSplitViewInterface } from './terra-multi-split-view.interface';
-import {
-    isNull,
-    isNullOrUndefined
-} from 'util';
+import { isNullOrUndefined } from 'util';
 
 export class TerraMultiSplitViewConfig
 {

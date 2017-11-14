@@ -10,7 +10,7 @@ import { TranslationModule } from 'angular-l10n';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-    imports: [
+    imports:      [
         CommonModule,
         forwardRef(() => TerraComponentsModule.forRoot()),
         TranslationModule,
@@ -22,15 +22,15 @@ import { FormsModule } from '@angular/forms';
 })
 export class TerraFileListModule
 {
-    static forRoot(): ModuleWithProviders
+    static forRoot():ModuleWithProviders
     {
         return {
-            ngModule: TerraFileListModule,
+            ngModule:  TerraFileListModule,
             providers: []
         };
     }
 
-    static getMainComponent(): string
+    static getMainComponent():string
     {
         return 'TerraFileListComponent';
     }
