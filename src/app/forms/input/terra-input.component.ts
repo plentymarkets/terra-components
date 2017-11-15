@@ -8,18 +8,51 @@ import { isNullOrUndefined } from 'util';
 
 export class TerraInputComponent implements ControlValueAccessor
 {
+    /**
+     * @description Set the label.
+     * */
     @Input() inputName:string;
+    /**
+     * @description If true, a * indicates that the value is required. Default false.
+     * */
     @Input() inputIsRequired:boolean;
     @Input() inputEmptyMessage:string;
     @Input() inputInvalidMessage:string;
+    /**
+     * @description Set the tooltip.
+     * */
     @Input() inputTooltipText:string;
+    /**
+     * @description If true, the button will be disabled. Default false.
+     * */
     @Input() inputIsDisabled:boolean;
-    @Input() inputTooltipPlacement:string; //top, bottom, left, right (default: top)
+    /**
+     * @description Set the tooltip placement (bottom, top, left, right). Default top.
+     * */
+    @Input() inputTooltipPlacement:string;
+    /**
+     * @description Set a maximum number of characters allowed.
+     * */
     @Input() inputMaxLength:number;
+    /**
+     * @description Set the maximum number value allowed.
+     * */
     @Input() inputMaxValue:number;
+    /**
+     * @description Set a minimum number of characters allowed.
+     * */
     @Input() inputMinLength:number;
+    /**
+     * @description Set the minimum number value allowed.
+     * */
     @Input() inputMinValue:number;
+    /**
+     * @description Set a text placeholder.
+     * */
     @Input() inputPlaceholder:string;
+    /**
+     * @description If true, the button will be small. Default false.
+     * */
     @Input() inputIsSmall:boolean;
 
     private _isValid:boolean;
