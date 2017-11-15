@@ -198,3 +198,11 @@ p, span, a
         }
     }
 }
+
+.rating-positive {
+    color: $yellow;
+}
+
+.rating-negative {
+    color: $alert-red;
+}
