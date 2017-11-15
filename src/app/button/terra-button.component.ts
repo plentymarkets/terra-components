@@ -51,7 +51,7 @@ export class TerraButtonComponent
      * @description If true, the button will appear as a link which changes to blue on hover. Default false.
      * */
     @Input() inputIsLink:boolean;
-    @Input() inputIsHighlighted: boolean;
+    @Input() inputIsHighlighted:boolean;
     @Output() outputClicked = new EventEmitter<Event>();
 
     constructor()

@@ -18,9 +18,9 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
     private clickListener:(event:Event) => void;
     private _locationCss:any = {
         visibility: 'hidden',
-        left:        0,
-        top:         0,
-        right:       0
+        left:       0,
+        top:        0,
+        right:      0
     };
 
     private _mouseLocation:{ left:number, top:number } = {
@@ -32,7 +32,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
     {
         _contextMenuService.show.subscribe(
             e => this.showMenu(e.event, e.obj));
-        
+
         _contextMenuService.init.subscribe(
             e => this._contextMenuLinkList = e
         );
@@ -59,40 +59,40 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
             left: event.clientX,
             top:  event.clientY
         };
-        
+
         this._locationCss = this.calcMenuPosition();
 
         event.stopPropagation();
         document.addEventListener('click', this.clickListener);
     }
-    
-    private calcMenuPosition():{visibility: string, left: string, top: string}
+
+    private calcMenuPosition():{ visibility:string, left:string, top:string }
     {
-        // 70 (navbar) + 46 (tabbar) + 33 (breadcrumbs)
-        let offsetTop:number = 158;
+        // 70 (navbar) + 46 (tabbar) + 36 (breadcrumbs)
+        let offsetTop:number = 161;
         let offsetLeft:number;
         let anchor = $('.context-menu#menu');
         let isMenuAtBottom:boolean;
         let contextMenuHeight:number = anchor.height();
         let contextMenuWidth:number = anchor.width();
         let tableWidth:number;
-        
-        if(this._mouseLocation.top +  contextMenuHeight > innerHeight)
+
+        if(this._mouseLocation.top + contextMenuHeight > innerHeight)
         {
             isMenuAtBottom = true;
         }
-        
+
         let dataTableElement = anchor.closest('terra-data-table');
-        
+
         offsetLeft = dataTableElement.offset().left;
-        
+
         tableWidth = dataTableElement.find('tbody').width();
-        
-        if(Math.abs(this._mouseLocation.left - offsetLeft - 2) +contextMenuWidth > tableWidth)
+
+        if(Math.abs(this._mouseLocation.left - offsetLeft - 2) + contextMenuWidth > tableWidth)
         {
             offsetLeft = offsetLeft + contextMenuWidth - 6
         }
-        
+
         return {
             visibility: this._isShown ? 'visible' : 'hidden',
             left:       this._mouseLocation.left - offsetLeft - 2 + 'px',
