@@ -100,10 +100,9 @@ button:focus
     }
 }
 
-
 .btn
 {
-   
+    
     height: $terra-btn-md-height;
     line-height: $terra-btn-md-height;
     display: inline-block;
@@ -163,7 +162,10 @@ button:focus
         {
             @keyframes highlight-primary
             {
-                100%  {background-color: $blue}
+                100%
+                {
+                    background-color: $blue
+                }
             }
             animation: highlight-primary 1500ms ease-in-out 0ms infinite alternate;
         }
@@ -189,7 +191,10 @@ button:focus
         {
             @keyframes highlight-secondary
             {
-                100%  {background-color: $alert-red}
+                100%
+                {
+                    background-color: $alert-red
+                }
             }
             animation: highlight-secondary 1500ms ease-in-out 0ms infinite alternate;
         }
@@ -216,7 +221,10 @@ button:focus
         {
             @keyframes highlight-tertiary
             {
-                100%  {background-color: $alert-green}
+                100%
+                {
+                    background-color: $alert-green
+                }
             }
             animation: highlight-tertiary 1500ms ease-in-out 0ms infinite alternate;
         }
@@ -359,7 +367,7 @@ fieldset[disabled] a.btn
     {
         border-left: 1px solid $grey-2;
     }
-
+    
     &:first-child
     {
         margin-left: 0;
@@ -369,13 +377,13 @@ fieldset[disabled] a.btn
             @include border-right-radius(0);
         }
     }
-
+    
     &:not(:first-child):not(:last-child) > .btn-handler > .btn,
     &:not(:first-child):not(:last-child) > .btn-handler > .flag
     {
         border-radius: 0;
     }
-
+    
     &:last-child
     {
         margin-left: 0;

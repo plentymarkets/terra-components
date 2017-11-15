@@ -30,7 +30,7 @@ export class TerraButtonComponent
     @Input() inputIsFlagged:boolean;
     @Input() inputIsDivider:boolean;
     @Input() inputIsLink:boolean;
-    @Input() inputIsHighlighted: boolean;
+    @Input() inputIsHighlighted:boolean;
     @Output() outputClicked = new EventEmitter<Event>();
 
     constructor()

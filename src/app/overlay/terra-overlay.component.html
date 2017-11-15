@@ -14,7 +14,7 @@
                 <ng-content></ng-content>
             </div>
             <div class="modal-footer" *ngIf="inputPrimaryButtonInterface || inputSecondaryButtonInterface">
-    
+
                 <terra-button *ngIf="inputSecondaryButtonInterface"
                               [inputIsAlignRight]="false"
                               [inputCaption]="inputSecondaryButtonInterface.caption"
@@ -32,7 +32,7 @@
                               inputTooltipPlacement="bottom"
                               [inputIsDisabled]="inputPrimaryButtonInterface.isDisabled"
                               (outputClicked)="inputPrimaryButtonInterface.clickFunction()"></terra-button>
-                
+
             </div>
         </div>
     </div>
