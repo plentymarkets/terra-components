@@ -158,29 +158,6 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         }
     }
 
-    public get myDateModel():IMyDateModel
-    {
-        return this._myDateModel;
-    }
-
-    public set myDateModel(value:IMyDateModel)
-    {
-        this._myDateModel = value;
-
-        if(this.myDateModel.epoc === 0)
-        {
-            this.myDateModel.date = null;
-        }
-
-        this.onTouchedCallback();
-        this.onChangeCallback(this.myDateModel.epoc);
-    }
-
-    public onDateChanged(event:IMyDateModel):void
-    {
-        this.myDateModel = event;
-    }
-
     public clearDate():void
     {
         this.viewChildMyDatePicker.clearDate();
