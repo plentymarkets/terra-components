@@ -21,6 +21,9 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class TerraDoubleInputComponent extends TerraInputComponent
 {
+    /**
+     * @description If true, the value will be right-aligned.
+     * */
     @Input() inputIsPriceInput:boolean;
 
     constructor()
