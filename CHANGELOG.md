@@ -17,6 +17,9 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-pager** limit page number input to a valid range
 * **terra-note** Added new component to display notes which auto adjust the height by its content.
 * **terra-select-box** Added input `inputOpenOnTop` for opening the select box drop down on top of input 
+* **terra-file-browser** Add new component to upload and manage files. Uses frontend storage by default and provides properties to register custom services to handle files from different resources. 
+* **terra-note-editor** new component based on [quill](https://quilljs.com/), that realizes an editor for notes with several features.
+* **terra-data-table** moved tooltips for data table headers inside the caption span for better alignment
 
 ### Bug Fixes
 * **terra-multi-split-view** 

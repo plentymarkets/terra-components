@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive" #scrollContainer>
     <table class="table simple-table" tabindex="0" (keydown)="onKeydown($event)">
         <thead>
         <tr *ngIf="inputHeaderList">
@@ -26,19 +26,20 @@
                 [ngStyle]="{'background-color': row.backgroundColor}"
                 [class.isActive]="row === inputHighlightedRow"
                 [class.disabled]="row.disabled"
-                (click)="onRowClick(row)">
-                <td *ngIf="inputHasCheckboxes">
+                (click)="onRowClick($event, row)">
+                <td *ngIf="inputHasCheckboxes" width="40px" (click)="onCheckboxClick($event)">
                     <terra-checkbox #rowCheckbox
                                     [value]="row.selected"
                                     [inputIsDisabled]="row.disabled"
                                     (change)="onRowCheckboxChange(rowCheckbox.value, row)">
                     </terra-checkbox>
                 </td>
-                <ng-template ngFor let-cell [ngForOf]="row.cellList">
+                <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
                     <template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>
                     </template>
                     <td [container]="'body'"
+                        width="{{ inputHeaderList[i].width }}"
                         [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
                         [tooltip]="tdTooltip"
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0">
@@ -47,7 +48,7 @@
                         <div class="btn-group" *ngIf="cell.buttonList" [ngClass]="{'pull-xs-right': cell.buttonListAlignRight}">
                             <ng-template ngFor let-button [ngForOf]="cell.buttonList">
                                 <terra-button *ngIf="!button.isHidden"
-                                              (outputClicked)="button.clickFunction()"
+                                              (outputClicked)="button.clickFunction($event)"
                                               [inputIcon]="button.icon"
                                               [inputIsPrimary]="button.isPrimary"
                                               [inputIsSecondary]="button.isSecondary"

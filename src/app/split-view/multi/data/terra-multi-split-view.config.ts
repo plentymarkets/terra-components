@@ -1,9 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { TerraMultiSplitViewInterface } from './terra-multi-split-view.interface';
-import {
-    isNull,
-    isNullOrUndefined
-} from 'util';
+import { isNullOrUndefined } from 'util';
 
 export class TerraMultiSplitViewConfig
 {
@@ -15,7 +12,7 @@ export class TerraMultiSplitViewConfig
     private _resizeViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _setSelectedViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
-
+    
     public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
     {
         if(view.parameter)

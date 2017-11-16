@@ -99,10 +99,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
            && changes["inputListBoxValues"].currentValue.length > 0
            && !this.inputListBoxValues.find((x) => this._selectedValue === x))
         {
-            setTimeout(() =>
-            {
-                this.select(this.inputListBoxValues[0]);
-            });
+            this.select(this.inputListBoxValues[0]);
         }
     }
 

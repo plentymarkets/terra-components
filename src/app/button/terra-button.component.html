@@ -9,12 +9,13 @@
      [ngClass]="{'pull-xs-right': inputIsAlignRight,
                  'disabled': inputIsDisabled}">
     <button class="btn"
-            [ngClass]="{'btn-brand-primary' : inputIsPrimary,
-                      'btn-brand-secondary' : inputIsSecondary,
+            [ngClass]="{'btn-primary' : inputIsPrimary,
+                      'btn-secondary' : inputIsSecondary,
                       'btn-tertiary': inputIsTertiary,
                       'btn-sm' : inputIsSmall,
                       'btn-lg' : inputIsLarge,
                       'activated' : inputIsActive && !inputIsDivider,
+                      'highlighted' : inputIsHighlighted,
                       'btn-divider' : inputIsDivider,
                       'btn-link' : inputIsLink }"
             [hidden]="inputIsHidden"
@@ -25,7 +26,9 @@
         <ng-content select="[btn-inner]"></ng-content>
     </button>
     <ng-content select="[btn-outer]"></ng-content>
-    <div *ngIf="inputIsFlagged" class="flag" [ngClass]="{'disabled': inputIsDisabled}">
+    <div *ngIf="inputIsFlagged && !inputIsHidden"
+         class="flag"
+         [ngClass]="{'disabled': inputIsDisabled}">
         <span [ngClass]="{'disabled': inputIsDisabled}"></span>
     </div>
 </div>

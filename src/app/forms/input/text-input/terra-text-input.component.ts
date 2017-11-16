@@ -24,13 +24,19 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraTextInputComponent extends TerraInputComponent
 {
+    /**
+     * @description If true, the type of input will be 'password'.
+     * */
     @Input() inputIsPassword:boolean;
+    /**
+     * @description If true, the value cannot be changed. Default false.
+     * */
     @Input() inputIsReadonly:boolean;
 
     @Output() outputOnInput:EventEmitter<any> = new EventEmitter<any>();
 
     /**
-     * @deprecated
+     * @deprecated inputType is no longer used.  It will be removed in one of the upcoming releases.
      * @param v
      */
     @Input()
@@ -40,7 +46,7 @@ export class TerraTextInputComponent extends TerraInputComponent
     }
 
     /**
-     * @deprecated
+     * @deprecated inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.
      * @param v
      */
     @Input()

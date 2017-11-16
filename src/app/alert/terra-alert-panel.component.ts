@@ -7,7 +7,10 @@ import { TerraAlertInterface } from './data/terra-alert.interface';
  */
 @Component({
     selector: 'terra-alert-panel',
-    styles:   [require('./terra-alert-panel.component.scss')],
+    styles:   [
+        require('./terra-alert-panel.component.scss'),
+        require('./terra-alert-panel.component.glob.scss').toString()
+    ],
     template: require('./terra-alert-panel.component.html')
 })
 

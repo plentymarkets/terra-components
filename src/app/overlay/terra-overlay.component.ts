@@ -28,6 +28,7 @@ export class TerraOverlayComponent implements AfterViewInit
     @Input() inputIsCloseable:boolean;
     @Input() inputIsLarge:boolean;
     @Input() inputIsSmall:boolean;
+    @Input() inputIsExtraLarge:boolean;
     @Output() outputOnHide:EventEmitter<ModalDirective>;
     @Output() outputOnShow:EventEmitter<ModalDirective>;
 
@@ -35,8 +36,10 @@ export class TerraOverlayComponent implements AfterViewInit
     {
         this.inputIsStatic = false;
         this.inputIsCloseable = true;
+        this.inputIsExtraLarge = false;
         this.inputIsLarge = false;
         this.inputIsSmall = false;
+
 
         this.outputOnHide = new EventEmitter<ModalDirective>();
         this.outputOnShow = new EventEmitter<ModalDirective>();

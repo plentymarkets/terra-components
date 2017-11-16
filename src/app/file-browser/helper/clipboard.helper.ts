@@ -17,21 +17,21 @@ export class ClipboardHelper
 
     public static copyText(text:string):boolean
     {
-        let container:HTMLElement = ClipboardHelper.createElement("div", {
-            position: "fixed",
-            left:     "0px",
-            top:      "0px",
-            width:    "0px",
-            height:   "0px",
-            display:  "block",
-            opacity:  "0",
-            zIndex:   "10000"
+        let container:HTMLElement = ClipboardHelper.createElement('div', {
+            position: 'fixed',
+            left:     '0px',
+            top:      '0px',
+            width:    '0px',
+            height:   '0px',
+            display:  'block',
+            opacity:  '0',
+            zIndex:   '10000'
         });
 
-        let textarea:HTMLTextAreaElement = ClipboardHelper.createElement<HTMLTextAreaElement>("textarea", {
-            width:   "1px",
-            height:  "1px",
-            padding: "0px"
+        let textarea:HTMLTextAreaElement = ClipboardHelper.createElement<HTMLTextAreaElement>('textarea', {
+            width:   '1px',
+            height:  '1px',
+            padding: '0px'
         });
 
         textarea.value = text;
