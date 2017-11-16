@@ -34,6 +34,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input() inputIsRequired:boolean;
     @Input() inputIsDisabled:boolean;
     @Input() inputIsSmall:boolean;
+    @Input() inputOpenOnTop:boolean;
     @Input() inputTooltipText:string;
     @Input() inputTooltipPlacement:string;
     @Input() inputListBoxValues:Array<TerraSelectBoxValueInterface>;
@@ -91,6 +92,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this._isInit = false;
         this.inputTooltipPlacement = 'top';
         this.inputIsSmall = false;
+        this.inputOpenOnTop = false;
     }
 
     ngOnInit()
