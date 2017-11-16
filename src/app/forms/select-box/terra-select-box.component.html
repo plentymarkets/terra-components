@@ -27,7 +27,7 @@
     
     </div>
     
-    <div class="select-box-dropdown" [ngClass]="{'isSmall': inputIsSmall}">
+    <div class="select-box-dropdown" [ngClass]="{'isSmall': inputIsSmall, 'openOnTop': inputOpenOnTop}">
         <span *ngIf="_selectedValue; then selectedValueActive else firstInListActive"></span>
         
         <ng-template #selectedValueActive>

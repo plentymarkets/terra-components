@@ -94,6 +94,7 @@
         position: absolute;
         z-index: 99999;
         top: $terra-btn-md-height;
+        bottom: initial;
         left: 0;
         min-width: 100%;
         width: auto;
@@ -102,6 +103,12 @@
         background: white;
         display: none;
         overflow: auto;
+        
+        &.openOnTop
+        {
+            top: initial;
+            bottom: $terra-btn-md-height;
+        }
         
         &.isSmall
         {
