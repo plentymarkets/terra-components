@@ -1,5 +1,13 @@
 .table-responsive
 {
+    table.data-table {
+        tr.disabled
+        {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+    
     table.table
     {
         &[tabindex]
