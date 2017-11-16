@@ -1,4 +1,6 @@
-<div class="slider" [class.has-ticks]="inputShowTicks">
+<div class="slider"
+     [class.has-ticks]="inputShowTicks"
+     [class.disabled]="inputIsDisabled">
     <div class="slider-label" *ngIf="inputName">{{ inputName }}</div>
     
     <div class="slider-container">

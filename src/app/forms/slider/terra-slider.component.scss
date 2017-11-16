@@ -105,4 +105,24 @@
             }
         }
     }
+    
+    &.disabled
+    {
+        background-color: $grey-2;
+        border: 1px solid $grey-3;
+        
+        label, .slider-bar, .slider-handle
+        {
+            cursor: not-allowed !important;
+        }
+        
+        .slider-inner {
+            filter: opacity(30%) !important;
+        }
+    
+        .slider-handle:hover
+        {
+            background-color: $brand-primary !important;
+        }
+    }
 }
