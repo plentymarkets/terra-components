@@ -4,7 +4,10 @@
         tr.disabled
         {
             opacity: 0.5;
-            cursor: not-allowed;
+            
+            td {
+                cursor: not-allowed;    
+            }
         }
     }
     
@@ -81,11 +84,6 @@
             background-color: $blue;
             color: white;
         }
-    }
-    tbody.highlighting tr.disabled
-    {
-        opacity: 0.5;
-        cursor: not-allowed;
     }
 }
 
