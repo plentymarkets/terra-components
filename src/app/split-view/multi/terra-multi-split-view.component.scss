@@ -27,42 +27,24 @@
             &:hover
             {
                 color: $blue;
-                .caret
-                {
-                    &::before
-                    {
-                        background-color: $blue;
-                    }
-                }
             }
             &.active
             {
                 color: $blue;
                 cursor: default;
-                .caret
-                {
-                    &::before
-                    {
-                        background-color: $blue;
-                    }
-                }
             }
             &:not(.active):hover
             {
                 color: $blue;
-                .caret
-                {
-                    &::before
-                    {
-                        background-color: $blue;
-                    }
-                }
             }
-            .caret
+            .icon-caret
             {
                 padding: 6px 12px 6px 6px;
                 overflow: hidden;
+                font-size: 22px;
+                line-height: 18px;
                 &::after
+                    
                 {
                     position: absolute;
                     top: 11.5px;
@@ -78,15 +60,6 @@
                     transform: rotate(45deg);
                     overflow: hidden;
                 }
-                &::before
-                {
-                    content: "";
-                    padding: 8px;
-                    background-color: $grey-9;
-                    border-radius: 8px;
-                    position: absolute;
-                }
-                
                 &:hover
                 {
                     .context-menu
