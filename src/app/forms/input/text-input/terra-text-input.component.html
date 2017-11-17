@@ -4,10 +4,10 @@
      [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled, 'isSmall': inputIsSmall}"
      container="body">
-    <label htmlFor="{{inputName}}">{{inputName}}
+    <label htmlFor="{{_id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
-    <input id="{{inputName}}"
+    <input id="{{_id}}"
            [type]="inputIsPassword?'password':'text'"
            [(ngModel)]="value"
            name="{{inputName}}"
