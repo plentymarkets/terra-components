@@ -46,6 +46,9 @@ export class TerraSliderComponent implements OnInit
     @Input()
     public inputShowTicks:boolean = false;
 
+    @Input()
+    public inputIsDisabled:boolean = false;
+
     @ViewChild('sliderBar', {read: ElementRef})
     private sliderBarElement:ElementRef;
 
@@ -194,8 +197,11 @@ export class TerraSliderComponent implements OnInit
 
     private moveToPosition(position:number)
     {
-        let sliderRect = this.sliderBarElement.nativeElement.getBoundingClientRect();
-        this.handlePosition = position - sliderRect.left;
+        if(!this.inputIsDisabled)
+        {
+            let sliderRect = this.sliderBarElement.nativeElement.getBoundingClientRect();
+            this.handlePosition = position - sliderRect.left;
+        }
     }
 
     public getTicks()
