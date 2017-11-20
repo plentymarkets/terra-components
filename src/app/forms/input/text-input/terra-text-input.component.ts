@@ -74,7 +74,7 @@ export class TerraTextInputComponent extends TerraInputComponent
         }
 
         // generate the id of the input instance
-        this._id = `terra-text-input_#${nextId++}`;
+        this._id = `text-input_#${nextId++}`;
     }
 
     public onInput():void
