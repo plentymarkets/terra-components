@@ -30,6 +30,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-select-box** Drop down closes if user had clicked on another select box
 * **terra-pager** Added missing translation
 * **context-menu-holder** Adapted new styles and change structure to make components usable again
+* **terra-inputs** now using unique ids to reference the label for an input element
 
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
