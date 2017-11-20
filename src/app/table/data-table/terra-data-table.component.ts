@@ -89,7 +89,10 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
         this.rowList.forEach((row) =>
         {
-            this.changeRowState(isChecked, row);
+            if(!row.disabled)
+            {
+                this.changeRowState(isChecked, row);    
+            }
         });
     }
 
@@ -153,7 +156,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     private rowClicked(cell:TerraDataTableCellInterface, row:TerraDataTableRowInterface<D>):void
     {
-        if(!cell.buttonList)
+        if(!cell.buttonList && !row.disabled)
         {
             this._rowList.forEach((row) =>
             {
