@@ -17,7 +17,8 @@ import {
     styles:    [
         require('./terra-note-editor.component.scss'),
         require('quill/dist/quill.bubble.css'),
-        require('quill/dist/quill.snow.css')
+        require('quill/dist/quill.snow.css'),
+        require('./terra-note-editor.component.glob.scss').toString()
     ],
     providers: [{
         provide:     NG_VALUE_ACCESSOR,

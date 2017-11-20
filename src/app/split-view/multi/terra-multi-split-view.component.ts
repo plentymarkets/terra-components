@@ -20,7 +20,10 @@ import {
 @Component({
     selector: 'terra-multi-split-view',
     template: require('./terra-multi-split-view.component.html'),
-    styles:   [require('./terra-multi-split-view.component.scss')]
+    styles:   [
+        require('./terra-multi-split-view.component.scss'),
+        require('./terra-multi-split-view.component.glob.scss').toString()
+    ],
 })
 export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {
