@@ -4,7 +4,7 @@
 {
     margin-bottom: 12px;
     
-    & > *
+    & > .input-group-text
     {
         width: 100%;
         
@@ -14,32 +14,24 @@
         {
             margin-bottom: 0;
             border-radius: 0;
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
         }
         
-        &:first-child
-        {
-            .input-unit-v1,
-            .select-box-wrapper,
-            .btn
-            {
-                border-top-left-radius: $border-radius;
-                border-bottom-left-radius: $border-radius;
-            }
-        }
-        
-        &:last-child
-        {
-            .input-unit-v1,
-            .select-box-wrapper,
-            .btn
-            {
-                border-top-right-radius: $border-radius;
-                border-bottom-right-radius: $border-radius;
-            }
-        }
     }
+    
     & > .input-group-btn
     {
         width: auto;
+        
+        .input-unit-v1,
+        .select-box-wrapper,
+        .btn
+        {
+            margin-bottom: 0;
+            border-radius: 0;
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+        }
     }
 }
