@@ -12,14 +12,17 @@ Use `space` or `enter` to toggle checkbox of selected row
 or `ctrl`/`cmd` + `space`/`enter` to toggle checkbox in table header.
 Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-simple-table** Add option to disable single rows to `TerraSimpleTableRowInterface`. Disabled rows may not be highlighted (using `inputUseHighlighting`) or selected when having checkboxes activated (`inputHasCheckbox`)
+* **terra-data-table** Add option to disable single rows to `TerraDataTableRowInterface`. Disabled rows may not be highlighted or selected when having checkboxes activated (`inputHasCheckbox`)
 * **terra-data-table-no-result-notice-component** new component, that can be used to display a notice whenever no results are available
 * **terra-number-input** removed spin-buttons
 * **terra-pager** limit page number input to a valid range
 * **terra-note** Added new component to display notes which auto adjust the height by its content.
-* **terra-multi-split-view-config** new method `isViewVisible` that can be used to check whether a view object is currently visible
+* **terra-select-box** Added input `inputOpenOnTop` for opening the select box drop down on top of input 
 * **terra-file-browser** Add new component to upload and manage files. Uses frontend storage by default and provides properties to register custom services to handle files from different resources. 
 * **terra-note-editor** new component based on [quill](https://quilljs.com/), that realizes an editor for notes with several features.
 * **terra-data-table** moved tooltips for data table headers inside the caption span for better alignment
+* **terra-slider** added input `inputIsDisabled` to disable the slider.
+* **terra-note-editor** adjust editor's default height
 * **terra-data-table** new interface property `href` that adds support for email and phone links in data table cells
 
 ### Bug Fixes
@@ -28,6 +31,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 	- prevent adding two views with the same name to the same hierarchy level
 * **terra-navigator** reduce height if search bar is enabled
 * **terra-base-service** avoid to show error message if code of error is null
+* **terra-suggestion-box** displayed values are reinitialized if `inputListBoxValues` have changed
 * **terra-select-box** Drop down closes if user had clicked on another select box
 * **terra-pager** Added missing translation
 * **context-menu-holder** Adapted new styles and change structure to make components usable again

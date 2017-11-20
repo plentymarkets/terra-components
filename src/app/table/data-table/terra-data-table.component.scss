@@ -1,5 +1,16 @@
 .table-responsive
 {
+    table.data-table {
+        tr.disabled
+        {
+            opacity: 0.5;
+            
+            td {
+                cursor: not-allowed;    
+            }
+        }
+    }
+    
     table.table
     {
         &[tabindex]
@@ -89,11 +100,6 @@
                 }
             }
         }
-    }
-    tbody.highlighting tr.disabled
-    {
-        opacity: 0.5;
-        cursor: not-allowed;
     }
 }
 
