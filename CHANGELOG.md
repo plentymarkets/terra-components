@@ -23,6 +23,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-data-table** moved tooltips for data table headers inside the caption span for better alignment
 * **terra-slider** added input `inputIsDisabled` to disable the slider.
 * **terra-note-editor** adjust editor's default height
+* **terra-data-table** new interface property `href` that adds support for email and phone links in data table cells
 
 ### Bug Fixes
 * **terra-multi-split-view** 

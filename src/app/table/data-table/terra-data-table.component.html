@@ -55,8 +55,9 @@
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
                         [ngStyle]="getTextAlign(_headerList[i])">
                         <span [ngStyle]="{color: cell.color}">
-                            <span [ngClass]="cell.icon"></span>
-                            <span>{{cell.caption}}</span>
+                            <span *ngIf="cell.icon" [ngClass]="cell.icon"></span>
+                            <span *ngIf="!cell.href">{{cell.caption}}</span>
+                            <a *ngIf="cell.href" href="{{cell.href}}:{{cell.caption}}" (click)="$event.stopPropagation()">{{cell.caption}}</a>
                         </span>
                         
                         <div class="btn-group" *ngIf="cell.buttonList">

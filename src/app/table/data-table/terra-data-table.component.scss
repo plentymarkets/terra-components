@@ -58,6 +58,14 @@
                     {
                         font-size: $font-size-2;
                     }
+                    a[href]
+                    {
+                        text-decoration: underline;
+                        &:hover
+                        {
+                            color: $blue;
+                        }
+                    }
                 }
             }
         }
@@ -83,6 +91,14 @@
         {
             background-color: $blue;
             color: white;
+            td a[href]
+            {
+                color:$white;
+                &:hover
+                {
+                    color:$black;
+                }
+            }
         }
     }
 }
