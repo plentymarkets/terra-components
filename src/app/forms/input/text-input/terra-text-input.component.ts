@@ -59,6 +59,9 @@ export class TerraTextInputComponent extends TerraInputComponent
         this.value = v;
     }
 
+    /**
+     * @description a unique string identifier for the specific input instance.
+     */
     private _id:string;
 
     constructor()
@@ -70,6 +73,7 @@ export class TerraTextInputComponent extends TerraInputComponent
             this.inputIsPassword = false;
         }
 
+        // generate the id of the input instance
         this._id = `terra-text-input_#${nextId++}`;
     }
 
