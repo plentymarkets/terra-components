@@ -138,7 +138,7 @@
 {
     .side-scroller.offset
     {
-        height: calc(100% - 86px) !important;
+        height: calc(100% - 86px);
     }
 }
 
@@ -150,11 +150,10 @@
     height: 100%;
     white-space: nowrap;
     font-size: 0px;
-}
-
-.side-scroller.offset
-{
-    height: calc(100% - 42px) !important;
+    &.offset
+    {
+        height: var(--side-scroller-offset, calc(100% - 42px));
+    }
 }
 
 .side-scroller > *
@@ -177,19 +176,10 @@
     {
         background-color: $grey-2;
     }
-}
-
-/deep/ .terra-navigator
-{
-    .view
+    &.isBackgroundColorGrey
     {
-        background-color: $grey-2;
+        background-color: transparent !important;
     }
-}
-
-.view.isBackgroundColorGrey
-{
-    background-color: transparent !important;
 }
 
 ///// Fixed Columns for Terra-Navigator ///////
@@ -205,18 +195,6 @@
         float: left;
         width: calc(100% - 300px);
     }
-}
-
-// TODO: @vwiebe, refactoring
-
-/deep/ terra-split-view .modal-content terra-split-view .view.last:not(.first)
-{
-    padding: 0 0 0 4px !important;
-}
-
-/deep/ .hasSplitView .modal-body
-{
-    height: 525px;
 }
 
 terra-base-toolbar

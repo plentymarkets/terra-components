@@ -101,6 +101,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         {
             this.select(this.inputListBoxValues[0]);
         }
+        if(changes["inputListBoxValues"])
+        {
+            this._displayListBoxValues = this.inputListBoxValues;
+        }
     }
 
     private onTouchedCallback:() => void = () =>

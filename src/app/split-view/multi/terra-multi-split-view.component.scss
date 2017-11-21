@@ -1,7 +1,6 @@
 .terra-breadcrumbs
 {
     list-style: none;
-    //overflow: hidden;
     padding: 0;
     margin: 0;
     //height: 33px;
@@ -28,42 +27,24 @@
             &:hover
             {
                 color: $blue;
-                .caret
-                {
-                    &::before
-                    {
-                        background-color: $blue;
-                    }
-                }
             }
             &.active
             {
                 color: $blue;
                 cursor: default;
-                .caret
-                {
-                    &::before
-                    {
-                        background-color: $blue;
-                    }
-                }
             }
             &:not(.active):hover
             {
                 color: $blue;
-                .caret
-                {
-                    &::before
-                    {
-                        background-color: $blue;
-                    }
-                }
             }
-            .caret
+            .icon-caret
             {
                 padding: 6px 12px 6px 6px;
                 overflow: hidden;
+                font-size: 22px;
+                line-height: 18px;
                 &::after
+                    
                 {
                     position: absolute;
                     top: 11.5px;
@@ -79,15 +60,6 @@
                     transform: rotate(45deg);
                     overflow: hidden;
                 }
-                &::before
-                {
-                    content: "";
-                    padding: 8px;
-                    background-color: $grey-9;
-                    border-radius: 8px;
-                    position: absolute;
-                }
-                
                 &:hover
                 {
                     .context-menu
@@ -192,45 +164,23 @@
             background-color: $white;
         }
     }
-}
-
-// TODO: @vwiebe, refactoring
-
-/deep/ terra-split-view .modal-content terra-split-view .hasDivider
-{
-    padding: 0 3px 0 4px !important;
-}
-
-/deep/ terra-split-view .modal-content terra-split-view .view.last:not(.first)
-{
-    padding: 0 0 0 4px !important;
-}
-
-/deep/ terra-split-view .modal-content terra-split-view .divider
-{
-    display: block !important;
-}
-
-/deep/ .hasSplitView .modal-body
-{
-    height: 525px;
-}
-
-/deep/ .side-scroller .fadeIn
-{
-    animation-name: fadeInAnimation;
-    animation-duration: 0.25s;
-}
-
-@keyframes fadeInAnimation
-{
-    from
+    
+    .fadeIn
     {
-        opacity: 0;
+        animation-name: fadeInAnimation;
+        animation-duration: 0.25s;
     }
-    to
+    
+    @keyframes fadeInAnimation
     {
-        opacity: 1;
+        from
+        {
+            opacity: 0;
+        }
+        to
+        {
+            opacity: 1;
+        }
     }
 }
 
