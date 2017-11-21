@@ -23,25 +23,27 @@ body
 .tooltip
 {
     font-size: $font-size-2;
+    opacity: 1 !important;
+
     &.top .tooltip-arrow
     {
-        border-top-color: #354763;
+        border-top-color: $terra-tooltip-color;
     }
     &.left .tooltip-arrow
     {
-        border-left-color: #354763;
+        border-left-color: $terra-tooltip-color;
     }
     &.bottom .tooltip-arrow
     {
-        border-bottom-color: #354763;
+        border-bottom-color: $terra-tooltip-color;
     }
     &.right .tooltip-arrow
     {
-        border-right-color: #354763;
+        border-right-color: $terra-tooltip-color;
     }
     .tooltip-inner
     {
-        background-color: #354763;
+        background-color: $terra-tooltip-color;
     }
 }
 
