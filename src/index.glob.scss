@@ -63,21 +63,6 @@ body
     transition: all 0.3s ease;
 }
 
-.view
-{
-    .row
-    {
-        > div
-        {
-            padding-left: 0px;
-            &:last-child
-            {
-                padding-right: 0px;
-            }
-        }
-    }
-}
-
 h1
 {
     font-size: $font-size-7;
