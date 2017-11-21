@@ -3,14 +3,14 @@ import { TerraNodeInterface } from './terra-node.interface';
 import { isNullOrUndefined } from 'util';
 import { EventEmitter } from '@angular/core';
 
-export class TerraNodeTreeConfig
+export class TerraNodeTreeConfig<D>
 {
-    private _list:Array<TerraNodeInterface> = [];
-    private _currentSelectedNode:TerraNodeInterface;
+    private _list:Array<TerraNodeInterface<D>> = [];
+    private _currentSelectedNode:TerraNodeInterface<D>;
 
-    private _addNodeEventEmitter:EventEmitter<TerraNodeInterface> = new EventEmitter<TerraNodeInterface>();
+    private _addNodeEventEmitter:EventEmitter<TerraNodeInterface<D>> = new EventEmitter<TerraNodeInterface<D>>();
 
-    public addNode(node:TerraNodeInterface, parent?:TerraNodeInterface):void
+    public addNode(node:TerraNodeInterface<D>, parent?:TerraNodeInterface<D>):void
     {
         if(isNullOrUndefined(parent))
         {
@@ -33,32 +33,32 @@ export class TerraNodeTreeConfig
         this.addNodeEventEmitter.next(node);
     }
 
-    public removeNode(node:TerraNodeInterface):void
+    public removeNode(node:TerraNodeInterface<D>):void
     {
 
     }
 
-    public updateNode(node:TerraNodeInterface):void
+    public updateNode(node:TerraNodeInterface<D>):void
     {
 
     }
 
-    public get list():Array<TerraNodeInterface>
+    public get list():Array<TerraNodeInterface<D>>
     {
         return this._list;
     }
 
-    public get addNodeEventEmitter():EventEmitter<TerraNodeInterface>
+    public get addNodeEventEmitter():EventEmitter<TerraNodeInterface<D>>
     {
         return this._addNodeEventEmitter;
     }
 
-    public set currentSelectedNode(value:TerraNodeInterface)
+    public set currentSelectedNode(value:TerraNodeInterface<D>)
     {
         this._currentSelectedNode = value;
     }
 
-    public get currentSelectedNode():TerraNodeInterface
+    public get currentSelectedNode():TerraNodeInterface<D>
     {
         return this._currentSelectedNode;
     }
@@ -68,6 +68,6 @@ export class TerraNodeTreeConfig
         this._list = [];
         this._currentSelectedNode = null;
         this._addNodeEventEmitter.unsubscribe();
-        this._addNodeEventEmitter = new EventEmitter<TerraNodeInterface>();
+        this._addNodeEventEmitter = new EventEmitter<TerraNodeInterface<D>>();
     }
 }
