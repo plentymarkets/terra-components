@@ -136,6 +136,7 @@ p, span, a
         line-height: $font-size-5;
         font-weight: $font-weight-1;
         color: $white !important;
+        -webkit-font-smoothing: initial;
         
         &:hover
         {
