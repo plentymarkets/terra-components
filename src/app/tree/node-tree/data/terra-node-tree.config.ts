@@ -48,21 +48,61 @@ export class TerraNodeTreeConfig<D>
         
         if(isNullOrUndefined(foundNode))
         {
-           console.error('Node ' + node.name + ' with id ' + node.id + ' not found!')
+           console.error('Node ' + node.name + ' with id ' + node.id + ' not found!');
         }
         else
         {
-            let parent:TerraNodeInterface<D> = foundNode.parent;
-            
-            let index:number = parent.children.indexOf(foundNode);
-            
-            parent.children.splice(index, 1);
+            this.internalRemoveNode(node);
+        }
+    }
+    
+    private internalRemoveNode(node:TerraNodeInterface<D>)
+    {
+        let parent:TerraNodeInterface<D> = node.parent;
+    
+        let index:number = parent.children.indexOf(node);
+    
+        parent.children.splice(index, 1);
+    }
+    
+    public removeNodeById(id:string|number)
+    {
+        let foundNode:TerraNodeInterface<D> = this.recursiveFindNodeById(this.list, id);
+    
+        if(isNullOrUndefined(foundNode))
+        {
+            console.error('Node with id ' + id + ' not found!');
+        }
+        else
+        {
+            this.internalRemoveNode(foundNode)
         }
     }
 
-    public updateNode(node:TerraNodeInterface<D>):void
+    public updateNodeById(id:string|number, newNode:TerraNodeInterface<D>):void
     {
-
+        if(newNode.id.toString() !== id.toString())
+        {
+            console.warn('ID ' + id + ' is different from new node ID!');
+        }
+        
+        let foundNode = this.recursiveFindNodeById(this.list, id);
+    
+        if(isNullOrUndefined(foundNode))
+        {
+            console.error('Node with id ' + id + ' not found!');
+        }
+        else
+        {
+            foundNode.id = newNode.id;
+            foundNode.name = newNode.name;
+            foundNode.children = newNode.children;
+            foundNode.icon = newNode.icon;
+            foundNode.isActive = newNode.isActive;
+            foundNode.isOpen = newNode.isOpen;
+            foundNode.isVisible = newNode.isVisible;
+            foundNode.value = newNode.value;
+        }
     }
 
     public findNodeById(id:string|number):TerraNodeInterface<D>
@@ -85,7 +125,7 @@ export class TerraNodeTreeConfig<D>
             {
                 foundNode = node;
             
-                return foundNode
+                return foundNode;
             }
             else if(node.children)
             {
@@ -111,7 +151,7 @@ export class TerraNodeTreeConfig<D>
             {
                 foundNode = node;
             
-                return foundNode
+                return foundNode;
             }
             else if(node.children)
             {
