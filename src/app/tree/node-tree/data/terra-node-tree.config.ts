@@ -38,13 +38,26 @@ export class TerraNodeTreeConfig<D>
         }
         else
         {
-            console.error('Node with id ' + nodeToAdd.id + ' already added!');
+            console.error('Node ' + nodeToAdd.name + ' with id ' + nodeToAdd.id + ' already added!');
         }
     }
 
     public removeNode(node:TerraNodeInterface<D>):void
     {
-
+        let foundNode:TerraNodeInterface<D> = this.recursiveFindNode(this.list, node);
+        
+        if(isNullOrUndefined(foundNode))
+        {
+           console.error('Node ' + node.name + ' with id ' + node.id + ' not found!')
+        }
+        else
+        {
+            let parent:TerraNodeInterface<D> = foundNode.parent;
+            
+            let index:number = parent.children.indexOf(foundNode);
+            
+            parent.children.splice(index, 1);
+        }
     }
 
     public updateNode(node:TerraNodeInterface<D>):void
@@ -54,9 +67,64 @@ export class TerraNodeTreeConfig<D>
 
     public findNodeById(id:string|number):TerraNodeInterface<D>
     {
-        return this._list.find((node:TerraNodeInterface<D>)=>{
-            return node.id.toString() === id.toString();
-        });
+        return this.recursiveFindNodeById(this.list, id);
+    }
+    
+    public findNode(node:TerraNodeInterface<D>):TerraNodeInterface<D>
+    {
+        return this.recursiveFindNode(this.list, node);
+    }
+    
+    private recursiveFindNode(nodeList:Array<TerraNodeInterface<D>>, nodeToFind:TerraNodeInterface<D>):TerraNodeInterface<D>
+    {
+        let foundNode:TerraNodeInterface<D> = null;
+        
+        for(let node of nodeList)
+        {
+            if(node === nodeToFind)
+            {
+                foundNode = node;
+            
+                return foundNode
+            }
+            else if(node.children)
+            {
+                foundNode = this.recursiveFindNode(node.children, nodeToFind);
+            
+                if(foundNode != null)
+                {
+                    break;
+                }
+            }
+        }
+    
+        return foundNode;
+    }
+    
+    private recursiveFindNodeById(nodeList:Array<TerraNodeInterface<D>>, id:string|number):TerraNodeInterface<D>
+    {
+        let foundNode:TerraNodeInterface<D> = null;
+        
+        for(let node of nodeList)
+        {
+            if(node.id.toString() === id.toString())
+            {
+                foundNode = node;
+            
+                return foundNode
+            }
+            else if(node.children)
+            {
+                foundNode = this.recursiveFindNodeById(node.children, id);
+            
+                if(foundNode != null)
+                {
+                    break;
+                }
+            }
+        }
+    
+        return foundNode;
     }
 
     public get list():Array<TerraNodeInterface<D>>

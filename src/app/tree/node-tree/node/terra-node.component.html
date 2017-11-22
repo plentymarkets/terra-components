@@ -7,14 +7,14 @@
             [placement]="'top'">
         <span *ngIf="inputNode.icon" class="icon_dist_top" [ngClass]="inputNode.icon"></span>
         {{inputNode.name | translate:lang }}
-        <span *ngIf="inputNode.children"
+        <span *ngIf="inputNode.children && inputNode.children.length > 0"
               class="icon-right icon-collapse_up"
               [ngClass]="{'icon-collapse_up' : inputNode.isOpen, 'icon-collapse_down': !inputNode.isOpen}"></span>
     </button>
 </div>
 
-<ul *ngIf="inputNode.children && inputNode.isOpen">
-    <ng-template ngFor let-node [ngForOf]="inputNode.children" *ngIf="inputNode.children">
+<ul *ngIf="inputNode.children && inputNode.children.length > 0 && inputNode.isOpen">
+    <ng-template ngFor let-node [ngForOf]="inputNode.children">
         <li>
             <terra-node [inputNode]="node" [inputConfig]="inputConfig"></terra-node>
         </li>
