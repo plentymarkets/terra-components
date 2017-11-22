@@ -10,27 +10,36 @@ export class TerraNodeTreeConfig<D>
 
     private _addNodeEventEmitter:EventEmitter<TerraNodeInterface<D>> = new EventEmitter<TerraNodeInterface<D>>();
 
-    public addNode(node:TerraNodeInterface<D>, parent?:TerraNodeInterface<D>):void
+    public addNode(nodeToAdd:TerraNodeInterface<D>, parent?:TerraNodeInterface<D>):void
     {
-        if(isNullOrUndefined(parent))
-        {
-            this._list.push(node);
-        }
-        else
-        {
-            node.parent = parent;
+        let alreadyAddedNode:TerraNodeInterface<D> = this.findNodeById(nodeToAdd.id);
 
-            if(isNullOrUndefined(parent.children))
+        if(isNullOrUndefined(alreadyAddedNode))
+        {
+            if(isNullOrUndefined(parent))
             {
-                parent.children = [node];
+                this._list.push(nodeToAdd);
             }
             else
             {
-                parent.children.push(node);
-            }
-        }
+                nodeToAdd.parent = parent;
 
-        this.addNodeEventEmitter.next(node);
+                if(isNullOrUndefined(parent.children))
+                {
+                    parent.children = [nodeToAdd];
+                }
+                else
+                {
+                    parent.children.push(nodeToAdd);
+                }
+            }
+
+            this.addNodeEventEmitter.next(nodeToAdd);
+        }
+        else
+        {
+            console.error('Node with id ' + nodeToAdd.id + ' already added!');
+        }
     }
 
     public removeNode(node:TerraNodeInterface<D>):void
@@ -41,6 +50,13 @@ export class TerraNodeTreeConfig<D>
     public updateNode(node:TerraNodeInterface<D>):void
     {
 
+    }
+
+    public findNodeById(id:string|number):TerraNodeInterface<D>
+    {
+        return this._list.find((node:TerraNodeInterface<D>)=>{
+            return node.id.toString() === id.toString();
+        });
     }
 
     public get list():Array<TerraNodeInterface<D>>
