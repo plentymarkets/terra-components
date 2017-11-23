@@ -198,30 +198,19 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     private select(value:TerraSuggestionBoxValueInterface):void
     {
+        // check if value is available
+        if(!this._displayListBoxValues.find((elem) => elem === value))
+        {
+            return;
+        }
 
-        // update selected value
-        this._selectedValue = {
-            caption: value.caption,
-            value:   value.value
-        };
+        this.updateSelectedSuggestionBoxEntry(value);
 
         // update last selected values
         if(this.inputWithRecentlyUsed)
         {
-            // check if value is available
-            if(!this._displayListBoxValues.find((elem) => elem === value))
-            {
-                this.updateLastSelectedValues();
-            }
+            this.updateLastSelectedValues();
         }
-
-        // update temp selected value
-        this._tmpSelectedValue = this._selectedValue;
-
-        // execute callback functions
-        this.onTouchedCallback();
-        this.onChangeCallback(value.value);
-        this.outputValueChanged.emit(value);
     }
 
     private updateLastSelectedValues():void
@@ -257,8 +246,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         let searchString = this._selectedValue.caption;
         this.toggleOpen = true;
 
-        //console.log("update temp selected value: " + this._selectedValue.caption); // update temp selected value
-        //this.updateSelectedValue(searchString);
+        this.updateSelectedValue(searchString);
 
         if(searchString.length >= 3)
         {
@@ -433,8 +421,30 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                     caption: searchString
                 };
         }
-        console.log(suggestionBoxEntry);
-        this.select(suggestionBoxEntry);
+
+        this.updateSelectedSuggestionBoxEntry(suggestionBoxEntry);
+    }
+
+    private updateSelectedSuggestionBoxEntry(suggestionBoxEntry:TerraSuggestionBoxValueInterface)
+    {
+        if(isNullOrUndefined(suggestionBoxEntry))
+        {
+            return;
+        }
+
+        // update selected value
+        this._selectedValue = {
+            caption: suggestionBoxEntry.caption,
+            value:   suggestionBoxEntry.value
+        };
+
+        // update temp selected value
+        this._tmpSelectedValue = this._selectedValue;
+
+        // execute callback functions
+        this.onTouchedCallback();
+        this.onChangeCallback(suggestionBoxEntry.value);
+        this.outputValueChanged.emit(suggestionBoxEntry);
     }
 
     private getSuggestionBoxEntryForCaption(caption:string):TerraSuggestionBoxValueInterface
