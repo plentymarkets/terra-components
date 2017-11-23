@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Observable';
+
 export interface TerraNodeInterface<D>
 {
     id:string|number;
@@ -9,4 +11,6 @@ export interface TerraNodeInterface<D>
     isActive?:boolean;
     isOpen?:boolean;
     value?:D;
+    onClick?:()=>void;
+    onLazyLoad?:()=>Observable<any>;
 }

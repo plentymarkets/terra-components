@@ -26,23 +26,38 @@ export class TerraNodeComponent<D>
 
     protected onNodeClick():void
     {
+        let doStuff:boolean = true;
+
+        if(!isNullOrUndefined(this.inputNode.onLazyLoad))
+        {
+            this.inputNode.onLazyLoad().subscribe(()=>{
+                this.doStuff();
+            });
+            doStuff = false;
+        }
+
+        if(!isNullOrUndefined(this.inputNode.onClick))
+        {
+            this.inputNode.onClick();
+            this.doStuff();
+            doStuff = false;
+        }
+
+        if(doStuff)
+        {
+            this.doStuff();
+        }
+
+    }
+
+    doStuff()
+    {
         this.recursiveSetInactive(this.inputConfig.list);
 
         this.inputNode.isActive = true;
-        //this.setParentActive(this.inputNode);
         this.inputConfig.currentSelectedNode = this.inputNode;
         this.inputNode.isOpen = !this.inputNode.isOpen;
     }
-
-    //private setParentActive(node:TerraNodeInterface<D>):void
-    //{
-    //    if(!isNullOrUndefined(node.parent))
-    //    {
-    //        node.parent.isActive = true;
-    //
-    //        this.setParentActive(node.parent);
-    //    }
-    //}
 
     private recursiveSetInactive(nodeList:Array<TerraNodeInterface<D>>):void
     {

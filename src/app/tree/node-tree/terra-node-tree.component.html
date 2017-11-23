@@ -1,8 +1,6 @@
 <ul class="terra-node-navigator">
 
     <ng-template ngFor let-node [ngForOf]="inputConfig.list">
-        <li class="tree-node">
             <terra-node [inputNode]="node" [inputConfig]="inputConfig"></terra-node>
-        </li>
     </ng-template>
 </ul>

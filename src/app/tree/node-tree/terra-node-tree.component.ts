@@ -25,13 +25,6 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 
     public ngOnInit():void
     {
-        this.inputConfig.addNodeEventEmitter.subscribe((value:TerraNodeInterface<D>) =>
-                                                       {
-                                                           if(!isNullOrUndefined(value.parent))
-                                                           {
-                                                               value.parent.isOpen = true;
-                                                           }
-                                                       });
     }
 
     public ngOnDestroy():void

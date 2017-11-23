@@ -8,33 +8,29 @@ export class TerraNodeTreeConfig<D>
     private _list:Array<TerraNodeInterface<D>> = [];
     private _currentSelectedNode:TerraNodeInterface<D>;
 
-    private _addNodeEventEmitter:EventEmitter<TerraNodeInterface<D>> = new EventEmitter<TerraNodeInterface<D>>();
-
     public addNode(nodeToAdd:TerraNodeInterface<D>, parent?:TerraNodeInterface<D>):void
     {
         let alreadyAddedNode:TerraNodeInterface<D> = this.findNodeById(nodeToAdd.id);
 
         if(isNullOrUndefined(alreadyAddedNode))
         {
-            if(isNullOrUndefined(parent))
+            if(isNullOrUndefined(this.currentSelectedNode) && isNullOrUndefined(parent))
             {
                 this._list.push(nodeToAdd);
             }
             else
             {
-                nodeToAdd.parent = parent;
+                nodeToAdd.parent = !isNullOrUndefined(parent) ? parent : this.currentSelectedNode;
 
-                if(isNullOrUndefined(parent.children))
+                if(isNullOrUndefined(nodeToAdd.parent.children))
                 {
-                    parent.children = [nodeToAdd];
+                    nodeToAdd.parent.children = [nodeToAdd];
                 }
                 else
                 {
-                    parent.children.push(nodeToAdd);
+                    nodeToAdd.parent.children.push(nodeToAdd);
                 }
             }
-
-            this.addNodeEventEmitter.next(nodeToAdd);
         }
         else
         {
@@ -59,10 +55,13 @@ export class TerraNodeTreeConfig<D>
     private internalRemoveNode(node:TerraNodeInterface<D>)
     {
         let parent:TerraNodeInterface<D> = node.parent;
-    
-        let index:number = parent.children.indexOf(node);
-    
-        parent.children.splice(index, 1);
+
+        if(!isNullOrUndefined(parent))
+        {
+            let index:number = parent.children.indexOf(node);
+
+            parent.children.splice(index, 1);
+        }
     }
     
     public removeNodeById(id:string|number)
@@ -171,12 +170,29 @@ export class TerraNodeTreeConfig<D>
     {
         return this._list;
     }
-
-    public get addNodeEventEmitter():EventEmitter<TerraNodeInterface<D>>
+    
+    public set list(value:Array<TerraNodeInterface<D>>)
     {
-        return this._addNodeEventEmitter;
+        this.recursiveSetParent(value);
+        this._list = value;
     }
 
+    private recursiveSetParent(list:Array<TerraNodeInterface<D>>, parent?:TerraNodeInterface<D>)
+    {
+        for(let node of list)
+        {
+            if(!isNullOrUndefined(parent))
+            {
+                node.parent = parent;
+            }
+
+            if(!isNullOrUndefined(node.children))
+            {
+                this.recursiveSetParent(node.children, node);
+            }
+        }
+    }
+    
     public set currentSelectedNode(value:TerraNodeInterface<D>)
     {
         this._currentSelectedNode = value;
@@ -191,7 +207,5 @@ export class TerraNodeTreeConfig<D>
     {
         this._list = [];
         this._currentSelectedNode = null;
-        this._addNodeEventEmitter.unsubscribe();
-        this._addNodeEventEmitter = new EventEmitter<TerraNodeInterface<D>>();
     }
 }
