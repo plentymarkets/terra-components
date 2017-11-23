@@ -18,19 +18,17 @@ import { isNullOrUndefined } from 'util';
     styles:    [
         require('./terra-file-browser.component.scss'),
         require('./terra-file-browser.component.glob.scss').toString()
-    ],
+    ]
 })
 export class TerraFileBrowserComponent implements OnInit
 {
+    @Input() public inputIsImagePreviewEnabled:boolean = true;
 
-    @Input()
-    public inputAllowedExtensions:Array<string> = [];
+    @Input() public inputAllowedExtensions:Array<string> = [];
 
-    @Input()
-    public inputAllowFolders:boolean = true;
+    @Input() public inputAllowFolders:boolean = true;
 
-    @Output()
-    public outputSelectedChange:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
+    @Output() public outputSelectedChange:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
     public onSelectedUrlChange:EventEmitter<string> = new EventEmitter();
 
@@ -59,7 +57,7 @@ export class TerraFileBrowserComponent implements OnInit
 
     public ngOnInit():void
     {
-        this.splitConfig.init(this.inputStorageServices);
+        this.splitConfig.init(this.inputStorageServices, this.inputIsImagePreviewEnabled);
     }
 
     public selectUrl(publicUrl:string):void
