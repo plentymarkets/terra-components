@@ -417,7 +417,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         let fallbackSuggestionBoxEntry:TerraSuggestionBoxValueInterface = TerraSuggestionBoxHelper.generateSuggestionBoxEntryFromCaption(
             searchString);
 
-        //suggestion box entry which we want to use as new choosed entry
+        //suggestion box entry which we want to use as new selected entry
         let suggestionBoxEntry:TerraSuggestionBoxValueInterface = TerraSuggestionBoxHelper.getSuggestionBoxEntryForCaption(searchString,
             this._displayListBoxValues, fallbackSuggestionBoxEntry);
 
