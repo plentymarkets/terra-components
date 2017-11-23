@@ -31,7 +31,7 @@ export class TerraNodeComponent<D>
         if(!isNullOrUndefined(this.inputNode.onLazyLoad))
         {
             this.inputNode.onLazyLoad().subscribe(()=>{
-                this.doStuff();
+                this.handleInputNode();
             });
             doStuff = false;
         }
@@ -39,18 +39,18 @@ export class TerraNodeComponent<D>
         if(!isNullOrUndefined(this.inputNode.onClick))
         {
             this.inputNode.onClick();
-            this.doStuff();
+            this.handleInputNode();
             doStuff = false;
         }
 
         if(doStuff)
         {
-            this.doStuff();
+            this.handleInputNode();
         }
 
     }
 
-    doStuff()
+    handleInputNode()
     {
         this.recursiveSetInactive(this.inputConfig.list);
 
