@@ -12,6 +12,7 @@ import {
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
+import { TerraSuggestionBoxHelper } from './helper/terra-suggestion-box.helper';
 
 const MAX_LASTLY_USED_ENTRIES = 5;
 
@@ -246,7 +247,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         let searchString = this._selectedValue.caption;
         this.toggleOpen = true;
 
-        this.updateSelectedValue(searchString);
+        this.updateSelectedSuggestionBoxEntryBySearchString(searchString);
 
         if(searchString.length >= 3)
         {
@@ -410,9 +411,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this._selectedValue = value;
     }
 
-    private updateSelectedValue(searchString:string)
+    private updateSelectedSuggestionBoxEntryBySearchString(searchString:string)
     {
-        let suggestionBoxEntry:TerraSuggestionBoxValueInterface = this.getSuggestionBoxEntryForCaption(searchString);
+        let suggestionBoxEntry:TerraSuggestionBoxValueInterface = TerraSuggestionBoxHelper.getSuggestionBoxEntryForCaption(searchString,
+            this._displayListBoxValues);
         if(isNullOrUndefined(suggestionBoxEntry))
         {
             suggestionBoxEntry =
@@ -447,20 +449,5 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this.outputValueChanged.emit(suggestionBoxEntry);
     }
 
-    private getSuggestionBoxEntryForCaption(caption:string):TerraSuggestionBoxValueInterface
-    {
-        if(isNullOrUndefined(this._displayListBoxValues))
-        {
-            return null;
-        }
-        for(let value of this._displayListBoxValues)
-        {
-            if(value.value === caption)
-            {
-                return value;
-            }
-        }
-        return null;
-    }
 }
 
