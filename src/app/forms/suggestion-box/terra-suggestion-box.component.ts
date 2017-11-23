@@ -198,11 +198,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     private select(value:TerraSuggestionBoxValueInterface):void
     {
-        // check if value is available
-        if(!this._displayListBoxValues.find((elem) => elem === value))
-        {
-            return;
-        }
 
         // update selected value
         this._selectedValue = {
@@ -213,7 +208,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         // update last selected values
         if(this.inputWithRecentlyUsed)
         {
-            this.updateLastSelectedValues();
+            // check if value is available
+            if(!this._displayListBoxValues.find((elem) => elem === value))
+            {
+                this.updateLastSelectedValues();
+            }
         }
 
         // update temp selected value
@@ -257,6 +256,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
         let searchString = this._selectedValue.caption;
         this.toggleOpen = true;
+
+        //console.log("update temp selected value: " + this._selectedValue.caption); // update temp selected value
+        //this.updateSelectedValue(searchString);
 
         if(searchString.length >= 3)
         {
@@ -419,4 +421,36 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
         this._selectedValue = value;
     }
+
+    private updateSelectedValue(searchString:string)
+    {
+        let suggestionBoxEntry:TerraSuggestionBoxValueInterface = this.getSuggestionBoxEntryForCaption(searchString);
+        if(isNullOrUndefined(suggestionBoxEntry))
+        {
+            suggestionBoxEntry =
+                {
+                    value:   searchString,
+                    caption: searchString
+                };
+        }
+        console.log(suggestionBoxEntry);
+        this.select(suggestionBoxEntry);
+    }
+
+    private getSuggestionBoxEntryForCaption(caption:string):TerraSuggestionBoxValueInterface
+    {
+        if(isNullOrUndefined(this._displayListBoxValues))
+        {
+            return null;
+        }
+        for(let value of this._displayListBoxValues)
+        {
+            if(value.value === caption)
+            {
+                return value;
+            }
+        }
+        return null;
+    }
 }
+
