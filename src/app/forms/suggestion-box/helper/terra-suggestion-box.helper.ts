@@ -5,11 +5,12 @@ export class TerraSuggestionBoxHelper
 {
 
     public static getSuggestionBoxEntryForCaption(caption:string,
-                                                  terraSuggestionBoxValues:Array<TerraSuggestionBoxValueInterface>):TerraSuggestionBoxValueInterface
+                                                  terraSuggestionBoxValues:Array<TerraSuggestionBoxValueInterface>,
+                                                  fallbackValue:TerraSuggestionBoxValueInterface):TerraSuggestionBoxValueInterface
     {
         if(isNullOrUndefined(terraSuggestionBoxValues))
         {
-            return null;
+            return fallbackValue;
         }
         for(let value of terraSuggestionBoxValues)
         {
@@ -18,6 +19,15 @@ export class TerraSuggestionBoxHelper
                 return value;
             }
         }
-        return null;
+        return fallbackValue;
+    }
+
+    static generateSuggestionBoxEntryFromCaption(searchString:string):TerraSuggestionBoxValueInterface
+    {
+        let suggestionBoxEntry:TerraSuggestionBoxValueInterface = {
+            value:   searchString,
+            caption: searchString
+        };
+        return suggestionBoxEntry;
     }
 }
