@@ -446,6 +446,5 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this.onChangeCallback(suggestionBoxEntry.value);
         this.outputValueChanged.emit(suggestionBoxEntry);
     }
-
 }
 
