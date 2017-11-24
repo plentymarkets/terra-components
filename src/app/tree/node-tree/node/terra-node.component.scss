@@ -5,6 +5,17 @@ li
     display: block;
 }
 
+ul
+{
+    display: inline-block;
+    border-left: 1px solid #BDBDBD;
+    
+    &:hover
+    {
+        border-left:  1px solid #676767;
+    }
+}
+
 button.btn
 {
     margin-bottom: 1px;
