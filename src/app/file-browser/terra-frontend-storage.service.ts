@@ -17,6 +17,8 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 {
     public isPublic:boolean = true;
 
+    public isImagePreviewEnabled = true;
+
     public name:string;
 
     private _storageInitialized:boolean = false;
@@ -170,8 +172,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
             )
         );
 
-        request.subscribe(
-            (metadata) =>
+        request.subscribe((metadata) =>
             {
                 this._metadataCache[key] = metadata;
             },
@@ -200,8 +201,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
             )
         );
 
-        request.subscribe(
-            () =>
+        request.subscribe(() =>
             {
                 this._metadataCache[key] = metadata;
             },
@@ -226,13 +226,12 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
             )
         );
 
-        request.subscribe(
-            () =>
+        request.subscribe(() =>
             {
                 keyList.forEach(key => this._storageList.root.removeChild(key));
                 this._storageListSubject.next(this._storageList);
             },
-            err =>
+            (err:any) =>
             {
                 this._storageInitialized = false;
                 this._storageListSubject.next(null);
@@ -253,9 +252,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         }
 
         this.setAuthorization();
-        this.mapRequest(
-            this.http.get(url, {headers: this.headers})
-        ).subscribe(results =>
+        this.mapRequest(this.http.get(url, {headers: this.headers})).subscribe(results =>
             {
                 let storageList:TerraStorageObjectList = this._storageListSubject.getValue() || new TerraStorageObjectList();
                 storageList.insertObjects(results.objects);
@@ -266,7 +263,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
                     this.initStorageList(results.nextContinuationToken);
                 }
             },
-            err =>
+            (err:any) =>
             {
                 console.error(err);
                 this._storageInitialized = false;

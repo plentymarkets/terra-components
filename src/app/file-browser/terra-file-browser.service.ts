@@ -49,7 +49,6 @@ export class TerraFileBrowserService
     {
         this.zone.runOutsideAngular(() =>
         {
-
             let setEffect = (event:DragEvent) =>
             {
                 if(this.isDropzone(<HTMLElement>event.target))
