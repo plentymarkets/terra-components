@@ -16,8 +16,16 @@ ul
     }
 }
 
+[class^="icon-"]
+{
+    position: absolute !important;
+    right: 4px;
+    top: 8px !important;
+}
+
 button.btn
 {
     margin-bottom: 1px;
     width: 130px;
+    text-align: left;
 }
