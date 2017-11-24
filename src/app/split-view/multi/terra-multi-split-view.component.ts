@@ -17,6 +17,8 @@ import {
     Routes
 } from '@angular/router';
 
+let nextSplitViewId:number = 0;
+
 @Component({
     selector: 'terra-multi-split-view',
     template: require('./terra-multi-split-view.component.html'),
@@ -62,10 +64,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private resizeTimeout:number;
 
+    private splitViewId:number;
+
     constructor(private zone:NgZone)
     {
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
+        this.splitViewId = nextSplitViewId++;
     }
 
     ngOnDestroy()
@@ -276,8 +281,15 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     public updateViewport(view:TerraMultiSplitViewInterface, skipAnimation?:boolean):void
     {
+        // check if view is defined
+        if(isNullOrUndefined(view))
+        {
+            return;
+        }
+
         this.zone.runOutsideAngular(() =>
         {
+            let splitViewId:number = this.splitViewId;
             setTimeout(function()
             {
                 let id:string = view.mainComponentName;
@@ -291,7 +303,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     moduleIndex++;
                 }
 
-                let anchor = $('#module' + moduleIndex);
+                let anchor = $('#splitview' + splitViewId + '_module' + moduleIndex);
                 let currentBreadcrumb = $('.' + id); // TODO: vwiebe, fix scope
                 let breadCrumbContainer = currentBreadcrumb.closest('.terra-breadcrumbs');
                 let viewContainer = anchor.parent();
