@@ -67,6 +67,10 @@ export class TerraNodeComponent<D>
     private handleInputNode():void
     {
         this.inputConfig.currentSelectedNode = this.inputNode;
+    }
+
+    protected handleIconClick():void
+    {
         this.inputNode.isOpen = !this.inputNode.isOpen;
     }
 }
