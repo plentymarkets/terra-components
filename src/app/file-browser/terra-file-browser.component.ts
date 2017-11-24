@@ -22,8 +22,6 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraFileBrowserComponent implements OnInit
 {
-    @Input() public inputIsImagePreviewEnabled:boolean = true;
-
     @Input() public inputAllowedExtensions:Array<string> = [];
 
     @Input() public inputAllowFolders:boolean = true;
@@ -57,7 +55,7 @@ export class TerraFileBrowserComponent implements OnInit
 
     public ngOnInit():void
     {
-        this.splitConfig.init(this.inputStorageServices, this.inputIsImagePreviewEnabled);
+        this.splitConfig.init(this.inputStorageServices);
     }
 
     public selectUrl(publicUrl:string):void

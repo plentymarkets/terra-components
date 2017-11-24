@@ -17,9 +17,7 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
     private _imagePreviewView:TerraMultiSplitViewInterface;
     private _storageServices:Array<TerraBaseStorageService>;
 
-    public isImagePreviewEnabled:boolean;
-
-    public init(storageServices:Array<TerraBaseStorageService>, isImagePreviewEnabled:boolean):void
+    public init(storageServices:Array<TerraBaseStorageService>):void
     {
         this._storageServices = storageServices;
 
