@@ -7,67 +7,66 @@ import { TerraNodeTreeConfig } from '../data/terra-node-tree.config';
 import { isNullOrUndefined } from 'util';
 
 @Component({
-               selector: 'terra-node',
-               styles:   [require('./terra-node.component.scss')],
-               template: require('./terra-node.component.html')
-           })
+    selector: 'terra-node',
+    styles:   [require('./terra-node.component.scss')],
+    template: require('./terra-node.component.html')
+})
 export class TerraNodeComponent<D>
 {
-    @Input()
-    inputNode:TerraNodeInterface<D>;
+    /**
+     * @description The node interface.
+     */
+    @Input() inputNode:TerraNodeInterface<D>;
 
-    @Input()
-    inputConfig:TerraNodeTreeConfig<D>;
+    /**
+     * @description The config to handle actions on tree or node.
+     */
+    @Input() inputConfig:TerraNodeTreeConfig<D>;
+
+    //to check if lazy loading has finished to avoid firing a REST-Call again
+    private hasLoaded:boolean = false;
 
     constructor()
     {
-
     }
 
+    //handle the node click
     protected onNodeClick():void
     {
-        let doStuff:boolean = true;
+        let doHandleInputNode:boolean = true;
 
-        if(!isNullOrUndefined(this.inputNode.onLazyLoad))
+        //check if lazy loading is desired
+        if(!this.hasLoaded && !isNullOrUndefined(this.inputNode.onLazyLoad))
         {
-            this.inputNode.onLazyLoad().subscribe(()=>{
-                this.handleInputNode();
-            });
-            doStuff = false;
+            //subscribe to Observable
+            this.inputNode.onLazyLoad().subscribe(() =>
+                {
+                    this.handleInputNode();
+                    this.hasLoaded = true;
+                },
+                () =>
+                {
+                    this.hasLoaded = false;
+                });
+            doHandleInputNode = false;
         }
 
+        //check if click function is set
         if(!isNullOrUndefined(this.inputNode.onClick))
         {
             this.inputNode.onClick();
-            this.handleInputNode();
-            doStuff = false;
         }
 
-        if(doStuff)
+        if(doHandleInputNode)
         {
             this.handleInputNode();
         }
-
     }
 
-    handleInputNode()
+    //do stuff with node
+    private handleInputNode():void
     {
-        this.recursiveSetInactive(this.inputConfig.list);
-
-        this.inputNode.isActive = true;
         this.inputConfig.currentSelectedNode = this.inputNode;
         this.inputNode.isOpen = !this.inputNode.isOpen;
-    }
-
-    private recursiveSetInactive(nodeList:Array<TerraNodeInterface<D>>):void
-    {
-        nodeList.forEach((node:TerraNodeInterface<D>)=>{
-            node.isActive = false;
-
-            if(!isNullOrUndefined(node.children) && node.children.length > 0)
-            {
-                this.recursiveSetInactive(node.children);
-            }
-        });
     }
 }

@@ -15,12 +15,13 @@ import { isNullOrUndefined } from 'util';
            })
 export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 {
-    @Input()
-    inputConfig:TerraNodeTreeConfig<D>;
+    /**
+     * @description The config to handle actions on tree or node.
+     */
+    @Input() inputConfig:TerraNodeTreeConfig<D>;
 
     constructor()
     {
-
     }
 
     public ngOnInit():void
