@@ -21,6 +21,8 @@ ul
     position: absolute !important;
     right: 4px;
     top: 8px !important;
+    height: calc(100% - 8px);
+    padding-left: 10px;
 }
 
 button.btn

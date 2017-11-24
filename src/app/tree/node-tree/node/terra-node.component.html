@@ -5,7 +5,7 @@
                 (click)="onNodeClick($event)"
                 container="body"
                 [tooltip]="inputNode.name | translate:lang"
-                [placement]="'top'"
+                [placement]="'right'"
                 [disabled]="isLoading && inputNode.onLazyLoad">
             <span *ngIf="inputNode.icon" class="icon_dist_top" [ngClass]="inputNode.icon"></span>
             {{inputNode.name | translate:lang }}
