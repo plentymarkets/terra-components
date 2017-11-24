@@ -50,6 +50,8 @@ export class TerraNodeTreeConfig<D>
                 {
                     nodeToAdd.parent.children.push(nodeToAdd);
                 }
+
+                nodeToAdd.parent.isOpen = true;
             }
         }
         else
@@ -105,6 +107,11 @@ export class TerraNodeTreeConfig<D>
             let index:number = parent.children.indexOf(node);
 
             parent.children.splice(index, 1);
+        }
+
+        if(node === this.currentSelectedNode)
+        {
+            this._currentSelectedNode = null;
         }
     }
 
