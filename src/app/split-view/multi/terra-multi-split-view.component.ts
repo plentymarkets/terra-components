@@ -436,7 +436,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             }
             else
             {
-                // update the ..
+                // check if vertical selection has to be changed
                 if(module.currentSelectedView === view)
                 {
                     // rebuild modules array depending on the selected view
