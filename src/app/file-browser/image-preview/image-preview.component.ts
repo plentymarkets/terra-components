@@ -18,7 +18,6 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraImagePreviewComponent
 {
-
     private _translationPrefix:string = 'terraFileBrowser';
 
     private _inputStorageObject:TerraStorageObject;
@@ -31,14 +30,12 @@ export class TerraImagePreviewComponent
         this._isLoading = true;
         if(!isNullOrUndefined(object) && this.inputStorageService && this.inputStorageService instanceof TerraBaseMetadataStorageService)
         {
-            this.inputStorageService
-                .getMetadata(object.key)
-                .subscribe((data:TerraImageMetadata) =>
-                {
-                    this._metadata = data;
-                    this._isLoading = false;
-                    this._changeDetector.detectChanges();
-                });
+            this.inputStorageService.getMetadata(object.key).subscribe((data:TerraImageMetadata) =>
+            {
+                this._metadata = data;
+                this._isLoading = false;
+                this._changeDetector.detectChanges();
+            });
         }
         else
         {

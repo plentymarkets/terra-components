@@ -11,6 +11,8 @@ export abstract class TerraBaseStorageService extends TerraBaseService
 
     public abstract isPublic:boolean;
 
+    public abstract isImagePreviewEnabled:boolean;
+
     public abstract queue:TerraUploadQueue;
 
     public abstract getStorageList():Observable<TerraStorageObjectList>;

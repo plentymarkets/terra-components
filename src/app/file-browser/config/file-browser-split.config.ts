@@ -74,7 +74,11 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
                 value: storageObject
             }
         ];
-        this.setSelectedView(this._imagePreviewView);
+
+        if(storageService.isImagePreviewEnabled)
+        {
+            this.setSelectedView(this._imagePreviewView);
+        }
     }
 
     public hideImagePreview():void
