@@ -411,7 +411,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this._selectedValue = value;
     }
 
-    private updateSelectedSuggestionBoxEntryBySearchString(searchString:string)
+    private updateSelectedSuggestionBoxEntryBySearchString(searchString:string):void
     {
         //suggestion box entry we use when we do not find a suggestion box value which matches our search string
         let fallbackSuggestionBoxEntry:TerraSuggestionBoxValueInterface = TerraSuggestionBoxHelper.generateSuggestionBoxEntryFromCaption(
@@ -424,7 +424,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this.updateSelectedSuggestionBoxEntry(suggestionBoxEntry);
     }
 
-    private updateSelectedSuggestionBoxEntry(suggestionBoxEntry:TerraSuggestionBoxValueInterface)
+    private updateSelectedSuggestionBoxEntry(suggestionBoxEntry:TerraSuggestionBoxValueInterface):void
     {
         //do nothing if input provides no meaningful information
         if(isNullOrUndefined(suggestionBoxEntry))
