@@ -52,10 +52,16 @@ export class TerraNodeComponent<D>
 
     handleInputNode()
     {
-        this.recursiveSetInactive(this.inputConfig.list);
+
 
         this.inputNode.isActive = true;
         this.inputConfig.currentSelectedNode = this.inputNode;
+
+    }
+
+    handleIconClick()
+    {
+        this.recursiveSetInactive(this.inputConfig.list);
         this.inputNode.isOpen = !this.inputNode.isOpen;
     }
 
