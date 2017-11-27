@@ -208,7 +208,7 @@ gulp.task('copy-lang', function ()
 gulp.task('copy-to-terra', function ()
 {
     return gulp.src('dist/**/*.*')
-        .pipe(gulp.dest('../terra/node_modules/@plentymarkets/terra-components/'));
+        .pipe(gulp.dest('../plugin-payment-paypal-ui/node_modules/@plentymarkets/terra-components/'));
 });
 
 //publish to npm
