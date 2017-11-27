@@ -8,7 +8,7 @@
 {
     max-height: var(--modal-body-max-height, 525px);
     height: var(--modal-body-height, initial);
-    overflow-y: auto;
+    overflow-y: visible;
 }
 
 .modal-dialog
