@@ -28,9 +28,9 @@ export interface TerraNodeInterface<D>
     parent?:TerraNodeInterface<D>;
 
     /**
-     * @description Check if visible or not. Optional.
+     * @description Check if hidden or not. Optional.
      */
-    isVisible?:boolean;
+    isHidden?:boolean;
 
     /**
      * @description Set a node active. Optional.

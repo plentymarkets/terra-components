@@ -161,7 +161,7 @@ export class TerraNodeTreeConfig<D>
             foundNode.icon = newNode.icon;
             foundNode.isActive = newNode.isActive;
             foundNode.isOpen = newNode.isOpen;
-            foundNode.isVisible = newNode.isVisible;
+            foundNode.isHidden = newNode.isHidden;
             foundNode.value = newNode.value;
         }
     }
