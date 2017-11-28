@@ -23,8 +23,6 @@ export class TerraNodeComponent<D>
      */
     @Input() inputConfig:TerraNodeTreeConfig<D>;
 
-    //to check if lazy loading has finished to avoid firing a REST-Call again
-    private hasLoaded:boolean = false;
     private isLoading:boolean = false;
 
     constructor()
@@ -50,19 +48,19 @@ export class TerraNodeComponent<D>
         event.stopPropagation();
 
         //check if lazy loading is desired
-        if(!this.hasLoaded && !isNullOrUndefined(this.inputNode.onLazyLoad))
+        if(!this.inputNode.hasLoaded && !isNullOrUndefined(this.inputNode.onLazyLoad))
         {
-            this.hasLoaded = true;
+            this.inputNode.hasLoaded = true;
             this.isLoading = true;
             //subscribe to Observable
             this.inputNode.onLazyLoad().subscribe(() =>
                 {
-                    this.hasLoaded = true;
+                    this.inputNode.hasLoaded = true;
                     this.isLoading = false;
                 },
                 () =>
                 {
-                    this.hasLoaded = false;
+                    this.inputNode.hasLoaded = false;
                     this.isLoading = false;
                 });
         }

@@ -56,4 +56,9 @@ export interface TerraNodeInterface<D>
      * @description Lazy loading function to get data from server. Optional.
      */
     onLazyLoad?:()=>Observable<any>;
+
+    /**
+     * @description Check if lazy loading has finished to avoid firing a REST-Call again
+     */
+    hasLoaded?:boolean;
 }
