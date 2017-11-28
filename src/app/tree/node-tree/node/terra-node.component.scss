@@ -19,10 +19,32 @@ ul
 [class^="icon-"]
 {
     position: absolute !important;
-    right: 4px;
-    top: 8px !important;
-    height: calc(100% - 8px);
-    padding-left: 10px;
+    right: 1px;
+    height: calc(100% - 1px);
+    top: 0px !important;
+    padding-top: 4px;
+    
+    &:before
+    {
+        vertical-align: middle;
+    }
+    
+    &:hover
+    {
+       background-color: $grey-9;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+}
+
+.activated > [class^="icon-"]
+{
+    &:hover
+    {
+        background-color: $blue-hover;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+    }
 }
 
 button.btn
