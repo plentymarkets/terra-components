@@ -36,7 +36,18 @@ export class TerraNodeComponent<D>
     {
         event.stopPropagation();
 
-        let doHandleInputNode:boolean = true;
+        //check if click function is set
+        if(!isNullOrUndefined(this.inputNode.onClick))
+        {
+            this.inputNode.onClick();
+        }
+
+        this.inputConfig.currentSelectedNode = this.inputNode;
+    }
+
+    protected handleIconClick(event:Event):void
+    {
+        event.stopPropagation();
 
         //check if lazy loading is desired
         if(!this.hasLoaded && !isNullOrUndefined(this.inputNode.onLazyLoad))
@@ -46,7 +57,6 @@ export class TerraNodeComponent<D>
             //subscribe to Observable
             this.inputNode.onLazyLoad().subscribe(() =>
                 {
-                    this.handleInputNode();
                     this.hasLoaded = true;
                     this.isLoading = false;
                 },
@@ -55,30 +65,10 @@ export class TerraNodeComponent<D>
                     this.hasLoaded = false;
                     this.isLoading = false;
                 });
-            doHandleInputNode = false;
         }
-
-        //check if click function is set
-        if(!isNullOrUndefined(this.inputNode.onClick))
+        else
         {
-            this.inputNode.onClick();
+            this.inputNode.isOpen = !this.inputNode.isOpen;
         }
-
-        if(doHandleInputNode)
-        {
-            this.handleInputNode();
-        }
-    }
-
-    //do stuff with node
-    private handleInputNode():void
-    {
-        this.inputConfig.currentSelectedNode = this.inputNode;
-    }
-
-    protected handleIconClick(event:Event):void
-    {
-        event.stopPropagation();
-        this.inputNode.isOpen = !this.inputNode.isOpen;
     }
 }

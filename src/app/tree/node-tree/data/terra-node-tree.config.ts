@@ -80,6 +80,27 @@ export class TerraNodeTreeConfig<D>
     }
 
     /**
+     * @description Adds a list of nodes to a given parentId.
+     * @param parentId The identifier of the parent node.
+     * @param nodeList The node list to be added.
+     */
+    public addChildrenToNodeById(parentId:string | number, nodeList:Array<TerraNodeInterface<D>>):void
+    {
+        let foundNode = this.recursiveFindNodeById(this.list, parentId);
+
+        if(isNullOrUndefined(foundNode))
+        {
+            console.error('Node with id ' + parentId + ' not found!');
+        }
+        else
+        {
+            nodeList.forEach((node:TerraNodeInterface<D>)=>{
+                this.addNode(node, foundNode);
+            });
+        }
+    }
+
+    /**
      * @description Removes a given node.
      * @param node The node to be removed.
      */
