@@ -7,6 +7,7 @@
                 [tooltip]="inputNode.name | translate:lang"
                 [placement]="'right'"
                 [disabled]="isLoading && inputNode.onLazyLoad">
+            <span *ngIf="!inputNode.icon" class="icon_dist_top icon-placeholder"></span>
             <span *ngIf="inputNode.icon" class="icon_dist_top" [ngClass]="inputNode.icon"></span>
             {{inputNode.name | translate:lang }}
             <span *ngIf="inputNode.children && inputNode.children.length > 0"
