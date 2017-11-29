@@ -20,6 +20,8 @@ import { TerraDataTableContextMenuService } from './context-menu/service/terra-d
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
+import { TerraRefTypeInterface } from './cell/terra-ref-type.interface';
+import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 
 @Component({
     selector:  'terra-data-table',
@@ -296,5 +298,24 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         {
             return {'text-align': "left"};
         }
+    }
+
+    private getCellDataType(data:any):string
+    {
+        function isRefType(arg:any): arg is TerraRefTypeInterface
+        {
+            return arg
+                   && arg.type && typeof arg.type == 'string'
+                   && arg.value && typeof arg.value == 'string';
+        }
+
+        if (typeof data === 'object')
+        {
+            if(isRefType(data))
+            {
+                return 'TerraRefTypeInterface';
+            }
+        }
+        return typeof data;
     }
 }
