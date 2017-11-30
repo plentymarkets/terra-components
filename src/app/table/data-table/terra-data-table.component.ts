@@ -337,6 +337,24 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             return arg && implementsInterface;
         }
 
+        function isButtonArray(arg:any): arg is Array<TerraButtonInterface>
+        {
+            // check if it is an array
+            if (!isArray(arg))
+            {
+                return false;
+            }
+
+            // check if every element of the array implements the button interface
+            let implementsInterface:boolean = true;
+            arg.forEach((elem:any) =>
+            {
+                implementsInterface = implementsInterface && elem.clickFunction && typeof elem.clickFunction == 'function';
+            });
+
+            return arg && implementsInterface;
+        }
+
         if(typeof data === 'object')
         {
             if(isRefType(data))
@@ -345,7 +363,11 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             }
             else if(isTagArray(data))
             {
-                return 'tags'
+                return 'tags';
+            }
+            if(isButtonArray(data))
+            {
+                return 'buttons';
             }
             else if(isTextType(data))
             {
