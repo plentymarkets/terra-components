@@ -165,9 +165,11 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                     }
                 });
         }
-        else
+        else if (!isNullOrUndefined(this.inputListBoxValues[0]))
         {
             this._selectedValue = this.inputListBoxValues[0];
+            this.onTouchedCallback();
+            this.onChangeCallback(this.inputListBoxValues[0].value);
         }
     }
 
