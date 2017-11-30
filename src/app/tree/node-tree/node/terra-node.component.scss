@@ -52,11 +52,24 @@ ul
 button.btn
 {
     margin-bottom: 1px;
-    width: 160px;
+    width: 173px;
     text-align: left;
 }
 
 .icon-placeholder
 {
     padding-right: 23px;
+}
+
+.icon_dist_top
+{
+    top: -9px !important;
+}
+
+.buttonText
+{
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 7em;
 }
