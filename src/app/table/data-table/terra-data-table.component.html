@@ -109,7 +109,7 @@
                             <a href="{{cell.data.type}}:{{cell.data.value}}" (click)="$event.stopPropagation()">{{cell.data.value}}</a>
                         </div>
         
-                        <div *ngSwitchCase="'Array<TerraButtonInterface>'" class="btn-group" >
+                        <div *ngSwitchCase="'buttons'" class="btn-group" >
                             <ng-template ngFor let-button [ngForOf]="cell.buttonList">
                                 <terra-button *ngIf="!button.isHidden"
                                               (outputClicked)="button.clickFunction()"
