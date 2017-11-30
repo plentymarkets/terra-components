@@ -36,6 +36,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-pager** Added missing translation
 * **context-menu-holder** Adapted new styles and change structure to make components usable again
 * **terra-no-result-notice** Changed the component selector to terra-no-result-notice to fit established standard
+* **terra-tag-list** exchange interface for `inputTagList`
 
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
