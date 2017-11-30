@@ -3,7 +3,7 @@ import {
     Input,
     OnInit
 } from '@angular/core';
-import { TerraTagComponent } from '../tag/terra-tag.component';
+import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 
 @Component({
     selector: 'terra-taglist',
@@ -12,7 +12,7 @@ import { TerraTagComponent } from '../tag/terra-tag.component';
 })
 export class TerraTaglistComponent implements OnInit
 {
-    @Input() inputTagList:Array<TerraTagComponent>;
+    @Input() inputTagList:Array<TerraTagInterface>;
 
     constructor()
     {
