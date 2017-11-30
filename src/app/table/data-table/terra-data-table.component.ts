@@ -97,7 +97,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         {
             if(!row.disabled)
             {
-                this.changeRowState(isChecked, row);    
+                this.changeRowState(isChecked, row);
             }
         });
     }
@@ -306,23 +306,23 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     private getCellDataType(data:any):string
     {
-        function isRefType(arg:any): arg is TerraRefTypeInterface
+        function isRefType(arg:any):arg is TerraRefTypeInterface
         {
             return arg
                    && arg.type && typeof arg.type == 'string'
                    && arg.value && typeof arg.value == 'string';
         }
-        
-        function isTextType(arg:any): arg is TerraDataTableTextInterface
+
+        function isTextType(arg:any):arg is TerraDataTableTextInterface
         {
             return arg
-                    && arg.caption && typeof arg.caption == 'string';
+                   && arg.caption && typeof arg.caption == 'string';
         }
 
-        function isTagArray(arg:any): arg is Array<TerraTagInterface>
+        function isTagArray(arg:any):arg is Array<TerraTagInterface>
         {
             // check if it is an array
-            if (!isArray(arg))
+            if(!isArray(arg))
             {
                 return false;
             }
@@ -337,10 +337,10 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             return arg && implementsInterface;
         }
 
-        function isButtonArray(arg:any): arg is Array<TerraButtonInterface>
+        function isButtonArray(arg:any):arg is Array<TerraButtonInterface>
         {
             // check if it is an array
-            if (!isArray(arg))
+            if(!isArray(arg))
             {
                 return false;
             }
