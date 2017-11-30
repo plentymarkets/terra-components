@@ -361,6 +361,10 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             {
                 return 'TerraRefTypeInterface';
             }
+            else if(isTextType(data))
+            {
+                return 'TerraDataTableTextInterface';
+            }
             else if(isTagArray(data))
             {
                 return 'tags';
@@ -368,10 +372,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             else if(isButtonArray(data))
             {
                 return 'buttons';
-            }
-            else if(isTextType(data))
-            {
-                return 'TerraDataTableTextInterface';
             }
         }
         return typeof data;
