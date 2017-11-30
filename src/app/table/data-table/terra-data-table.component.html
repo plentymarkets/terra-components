@@ -110,9 +110,9 @@
                         </div>
         
                         <div *ngSwitchCase="'buttons'" class="btn-group" >
-                            <ng-template ngFor let-button [ngForOf]="cell.buttonList">
+                            <ng-template ngFor let-button [ngForOf]="cell.data">
                                 <terra-button *ngIf="!button.isHidden"
-                                              (outputClicked)="button.clickFunction()"
+                                              (outputClicked)="button.clickFunction();$event.stopPropagation()"
                                               [inputIcon]="button.icon"
                                               [inputIsPrimary]="button.isPrimary"
                                               [inputIsSecondary]="button.isSecondary"
