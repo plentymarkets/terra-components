@@ -18,7 +18,10 @@ import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
-import { isNullOrUndefined } from 'util';
+import {
+    isArray,
+    isNullOrUndefined
+} from 'util';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { TerraRefTypeInterface } from './cell/terra-ref-type.interface';
 import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
@@ -309,11 +312,33 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
                    && arg.value && typeof arg.value == 'string';
         }
 
-        if (typeof data === 'object')
+        function isTagArray(arg:any): arg is Array<TerraTagInterface>
+        {
+            // check if it is an array
+            if (!isArray(arg))
+            {
+                return false;
+            }
+
+            // check if every element of the array implements the tag interface
+            let implementsInterface:boolean = true;
+            arg.forEach((elem:any) =>
+            {
+                implementsInterface = implementsInterface && elem.badge && typeof elem.badge == 'string';
+            });
+
+            return arg && implementsInterface;
+        }
+
+        if(typeof data === 'object')
         {
             if(isRefType(data))
             {
                 return 'TerraRefTypeInterface';
+            }
+            if(isTagArray(data))
+            {
+                return 'tags'
             }
         }
         return typeof data;
