@@ -25,6 +25,7 @@ import {
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { TerraRefTypeInterface } from './cell/terra-ref-type.interface';
 import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
+import { TerraDataTableTextInterface } from './cell/terra-data-table-text.interface';
 
 @Component({
     selector:  'terra-data-table',
@@ -311,6 +312,12 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
                    && arg.type && typeof arg.type == 'string'
                    && arg.value && typeof arg.value == 'string';
         }
+        
+        function isTextType(arg:any): arg is TerraDataTableTextInterface
+        {
+            return arg
+                    && arg.caption && typeof arg.caption == 'string';
+        }
 
         function isTagArray(arg:any): arg is Array<TerraTagInterface>
         {
@@ -336,9 +343,13 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             {
                 return 'TerraRefTypeInterface';
             }
-            if(isTagArray(data))
+            else if(isTagArray(data))
             {
                 return 'tags'
+            }
+            else if(isTextType(data))
+            {
+                return 'TerraDataTableTextInterface';
             }
         }
         return typeof data;
