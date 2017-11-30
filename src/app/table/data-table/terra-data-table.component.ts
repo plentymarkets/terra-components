@@ -365,7 +365,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             {
                 return 'tags';
             }
-            if(isButtonArray(data))
+            else if(isButtonArray(data))
             {
                 return 'buttons';
             }
