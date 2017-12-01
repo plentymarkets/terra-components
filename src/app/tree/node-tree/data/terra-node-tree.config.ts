@@ -51,7 +51,8 @@ export class TerraNodeTreeConfig<D>
                     nodeToAdd.parent.children.push(nodeToAdd);
                 }
 
-                nodeToAdd.parent.isOpen = true;
+                this.recursiveOpenParent(nodeToAdd);
+                //nodeToAdd.parent.isOpen = true;
             }
         }
         else
