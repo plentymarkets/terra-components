@@ -10,7 +10,7 @@
             <span *ngIf="!inputNode.icon" class="icon_dist_top icon-placeholder"></span>
             <span *ngIf="inputNode.icon" class="icon_dist_top" [ngClass]="inputNode.icon"></span>
             <div class="buttonText">{{inputNode.name | translate:lang }}</div>
-            <span *ngIf="inputNode.children && inputNode.children.length > 0"
+            <span *ngIf="(inputNode.children && inputNode.children.length > 0) || inputNode.onLazyLoad"
                   class="icon-right icon-collapse_up"
                   [ngClass]="{'icon-collapse_up' : inputNode.isOpen, 'icon-collapse_down': !inputNode.isOpen}"
                   (click)="handleIconClick($event)"></span>
