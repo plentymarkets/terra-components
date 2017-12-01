@@ -1,0 +1,22 @@
+<form [formGroup]="_dynamicFormGroup"
+      (ngSubmit)="validate($event)"
+      role="form">
+    <terra-base-toolbar>
+        <terra-button [inputIcon]="'icon-save'"
+                      [inputTooltipText]="'save' | translate:lang"
+                      [inputType]="'submit'">
+        </terra-button>
+        <terra-button [inputIcon]="'icon-reset'"
+                      [inputTooltipText]="'reset' | translate:lang"
+                      (outputClicked)="onResetClick()">
+        </terra-button>
+    </terra-base-toolbar>
+    
+    <div [class]="inputPortletStyle">
+        <terra-portlet>
+            
+            <terra-dynamic-switch [inputFormFields]="inputFormFields" [inputFormGroup]="_dynamicFormGroup"></terra-dynamic-switch>
+        
+        </terra-portlet>
+    </div>
+</form>

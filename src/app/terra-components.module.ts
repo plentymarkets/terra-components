@@ -80,6 +80,9 @@ import { TerraFileBrowserService } from './file-browser/terra-file-browser.servi
 import { TerraFileBrowserComponent } from './file-browser/terra-file-browser.component';
 import { TerraNoteEditorComponent } from './note-editor/terra-note-editor.component';
 import { TerraNoteComponent } from './note/terra-note.component';
+import { TerraDynamicFormComponent } from './forms/dynamic-form/terra-dynamic-form.component';
+import { TerraDynamicSwitchComponent } from './forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
+import { TerraFormFieldControlService } from './forms/dynamic-form/service/terra-form-field-control.service';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -200,7 +203,9 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
-        TerraNoteComponent
+        TerraNoteComponent,
+        TerraDynamicFormComponent,
+        TerraDynamicSwitchComponent
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -246,7 +251,9 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraFileInputComponent,
         TerraButtonWithOptionsComponent,
         TerraNoteEditorComponent,
-        TerraNoteComponent
+        TerraNoteComponent,
+        TerraDynamicFormComponent,
+        TerraDynamicSwitchComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -297,7 +304,10 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
-        TerraNoteComponent
+        TerraNoteComponent,
+        TerraDynamicFormComponent,
+        TerraDynamicSwitchComponent
+
     ],
     imports:         [
         BrowserModule,
@@ -321,6 +331,7 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
         TerraFileBrowserService,
+        TerraFormFieldControlService
     ],
     bootstrap:       [
         TerraComponentsComponent
