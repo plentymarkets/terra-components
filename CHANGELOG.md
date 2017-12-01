@@ -29,6 +29,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-multi-split-view** 
 	- disable public access to the data model, since it shouldn't be edited manually
 	- prevent adding two views with the same name to the same hierarchy level
+	- fix scope problems with nested split-views
 * **terra-navigator** reduce height if search bar is enabled
 * **terra-base-service** avoid to show error message if code of error is null
 * **terra-suggestion-box** displayed values are reinitialized if `inputListBoxValues` have changed
