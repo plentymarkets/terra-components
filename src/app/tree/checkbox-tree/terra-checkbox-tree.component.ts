@@ -1,6 +1,7 @@
 import {
     Component,
-    Input
+    Input,
+    OnInit,
 } from '@angular/core';
 import { TerraBaseTreeComponent } from '../base/terra-base-tree.component';
 import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
@@ -10,10 +11,7 @@ import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
     styles:   [require('./terra-checkbox-tree.component.scss')],
     template: require('./terra-checkbox-tree.component.html')
 })
-/**
- * TODO FUNKTIONIERT NOCH NICHT
- */
-export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent
+export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implements OnInit
 {
 
     /**
@@ -38,16 +36,12 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent
 
     selectedLeafList:Array<TerraLeafInterface> = [];
 
-    onCheckboxValueChange(event,
-                          leaf:TerraLeafInterface)
+    onCheckboxValueChange(leaf:TerraLeafInterface)
     {
-        leaf.checkboxChecked = event.currentTarget.checked;
-
-        // this.recursiveAddLeafToList(leaf);
-
+        leaf.checkboxChecked = !leaf.checkboxChecked;
+        leaf.isIndeterminate = false;
         this.recursiveCheckboxCheck(leaf);
-
-        // alert(this.selectedLeafList.length);
+        this.upRecursiveCheckParentLeafs(leaf);
     }
 
     recursiveAddLeafToList(leaf:TerraLeafInterface)
@@ -72,7 +66,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent
         }
     }
 
-    recursiveCheckboxCheck(leaf:TerraLeafInterface)
+    recursiveCheckboxCheck(leaf:TerraLeafInterface):void
     {
         if(leaf.subLeafList)
         {
@@ -85,6 +79,87 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent
                     this.recursiveCheckboxCheck(subLeaf);
                 }
             }
+        }
+    }
+
+    private upRecursiveCheckParentLeafs(leaf:TerraLeafInterface):void
+    {
+        let allChildrenChecked:boolean = true;
+        let noChildChecked:boolean = true;
+        let isIndeterminate:boolean = false;
+
+        if(leaf.leafParent)
+        {
+            for(let subLeaf of leaf.leafParent.subLeafList)
+            {
+                allChildrenChecked = subLeaf.checkboxChecked && allChildrenChecked;
+                noChildChecked = !subLeaf.checkboxChecked && noChildChecked;
+                if(subLeaf.isIndeterminate)
+                {
+                    isIndeterminate = subLeaf.isIndeterminate;
+                }
+            }
+            if(allChildrenChecked)
+            {
+                leaf.leafParent.isIndeterminate = false;
+                leaf.leafParent.checkboxChecked = true;
+                this.upRecursiveCheckParentLeafs(leaf.leafParent);
+            }
+            else if(noChildChecked && isIndeterminate)
+            {
+                leaf.leafParent.checkboxChecked = null;
+                leaf.leafParent.isIndeterminate = true;
+                this.upRecursiveCheckParentLeafs(leaf.leafParent);
+            }
+            else if(noChildChecked)
+            {
+                leaf.leafParent.isIndeterminate = false;
+                leaf.leafParent.checkboxChecked = false;
+                this.upRecursiveCheckParentLeafs(leaf.leafParent);
+            }
+            else
+            {
+                leaf.leafParent.checkboxChecked = null;
+                leaf.leafParent.isIndeterminate = true;
+                if(leaf.leafParent.leafParent)
+                {
+                    this.recursiveSetIndeterminate(leaf.leafParent.leafParent);
+                }
+            }
+        }
+    }
+
+    private linkParentsToLeafList(leafList:Array<TerraLeafInterface>):void
+    {
+        for(let leaf of leafList)
+        {
+            if(leaf.subLeafList)
+            {
+                for(let subLeaf of leaf.subLeafList)
+                {
+                    subLeaf.leafParent = leaf;
+                    if(subLeaf.subLeafList)
+                    {
+                        this.linkParentsToLeafList(subLeaf.subLeafList);
+                    }
+                }
+            }
+        }
+    }
+
+    ngOnInit()
+    {
+        super.ngOnInit();
+        this.linkParentsToLeafList(this.inputLeafList);
+    }
+
+    private recursiveSetIndeterminate(leaf:TerraLeafInterface)
+    {
+        leaf.checkboxChecked = null;
+        leaf.isIndeterminate = true;
+        if(leaf.leafParent)
+        {
+            this.recursiveSetIndeterminate(leaf.leafParent);
         }
     }
 }

@@ -18,4 +18,6 @@ export interface TerraLeafInterface
     parentLeafList?:Array<TerraLeafInterface>;
     value?:any; //for checkbox-tree
     checkboxChecked?:boolean; //for checkbox-tree
+    isIndeterminate?:boolean; //for checkbox-tree
+    leafParent?:TerraLeafInterface;
 }

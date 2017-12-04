@@ -30,7 +30,6 @@ export class TerraBaseTreeComponent implements OnInit
 
     ngOnInit():void
     {
-
         if(!this.inputCompleteLeafList)
         {
             this.inputCompleteLeafList = this.inputLeafList;

@@ -2,18 +2,20 @@
     <ul>
         <ng-template ngFor let-leaf [ngForOf]="inputLeafList">
             <li class="node leaf" [ngClass]="{'collapsed': !leaf.isOpen, 'active': leaf.isActive}">
-                <div class="leaf-titel" (click)="onLeafClick(leaf)">
-                    <label class="input-control checkbox small-check">
-                        <input type="checkbox" (change)="onCheckboxValueChange($event, leaf)" (checked)="leaf.checkboxChecked">
-                        <span class="check"></span>
-                    </label>
-                    <span>
-                        {{leaf.caption}}
-                    </span>
+                <div class="leaf-titel flex-container" (click)="onLeafClick(leaf)">
+                    <terra-checkbox
+                        (valueChange)="onCheckboxValueChange(leaf)"
+                        [value]="leaf.checkboxChecked"
+                        [isIndeterminate]="leaf.isIndeterminate">
+                    </terra-checkbox>
+                    <span class="leafTitle"> {{leaf.caption}}</span>
                 </div>
                 <span class="node-toggle" *ngIf="leaf.subLeafList" (click)="toggleOpen(leaf)"></span>
-                <terra-checkbox-tree [inputLeafList]="leaf.subLeafList" [inputParentLeafList]="leafList"
-                                     [inputCompleteLeafList]="inputCompleteLeafList" *ngIf="leaf.subLeafList"></terra-checkbox-tree>
+                <terra-checkbox-tree [inputLeafList]="leaf.subLeafList"
+                                     [inputParentLeafList]="leafList"
+                                     [inputCompleteLeafList]="inputCompleteLeafList"
+                                     *ngIf="leaf.subLeafList">
+                </terra-checkbox-tree>
             </li>
         </ng-template>
     </ul>
