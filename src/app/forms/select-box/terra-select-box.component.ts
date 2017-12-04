@@ -114,7 +114,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
            && changes["inputListBoxValues"].currentValue.length > 0
            && !this.inputListBoxValues.find((x) => this._selectedValue === x))
         {
-            this.select(this.inputListBoxValues[0]);
+            this._selectedValue = this.inputListBoxValues[0];
         }
     }
 
