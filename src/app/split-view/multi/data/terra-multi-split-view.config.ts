@@ -86,8 +86,8 @@ export class TerraMultiSplitViewConfig
     {
         for(let originView of originViews)
         {
-            if(((originView.parameter && newView.parameter && JSON.stringify(originView.parameter) === JSON.stringify(newView.parameter)) ||
-                (originView.inputs && newView.inputs && JSON.stringify(originView.inputs) === JSON.stringify(newView.inputs))) &&
+            if((originView.parameter && newView.parameter && JSON.stringify(originView.parameter) === JSON.stringify(newView.parameter)) ||
+                (originView.inputs && newView.inputs && JSON.stringify(originView.inputs) === JSON.stringify(newView.inputs)) ||
                (originView.name === newView.name) && originView.module.ngModule == newView.module.ngModule)
             {
                 return originView;
