@@ -55,10 +55,13 @@ export class TerraInputComponent implements ControlValueAccessor
      * */
     @Input() inputIsSmall:boolean;
     
-    private _innnerValue:any;
     private _isValid:boolean;
     private _regex:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+    
+    
+    //The internal data model
+    private _innerValue:any;
 
     //The internal data model
 
@@ -103,16 +106,16 @@ export class TerraInputComponent implements ControlValueAccessor
     //get accessor
     public get value():any
     {
-        return this._innnerValue;
+        return this._innerValue;
     };
 
     //set accessor including call the onchange callback
     public set value(v:any)
     {
-        if(v !== this._innnerValue)
+        if(v !== this._innerValue)
         {
-            this._innnerValue = v;
-            this.onChangeCallback(this._innnerValue);
+            this._innerValue = v;
+            this.onChangeCallback(this._innerValue);
         }
     }
 
@@ -125,9 +128,9 @@ export class TerraInputComponent implements ControlValueAccessor
     //From ControlValueAccessor interface
     writeValue(value:any)
     {
-        if(value !== this._innnerValue)
+        if(value !== this._innerValue)
         {
-            this._innnerValue = value;
+            this._innerValue = value;
         }
     }
 
