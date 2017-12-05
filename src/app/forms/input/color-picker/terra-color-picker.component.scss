@@ -4,7 +4,7 @@
 {
     label
     {
-
+        
         input[type="color"]
         {
             visibility: hidden;
@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
         }
-
+        
         .color-picker
         {
             cursor: pointer;
@@ -23,20 +23,20 @@
             width: 34px;
             height: 34px;
             border-left: 1px solid $gray-light-2;
-
+            
             [class^="icon-"]
             {
                 position: absolute;
                 bottom: 2px;
                 right: 2px;
             }
-
+            
             &.text-invert
             {
                 color: #FFFFFF;
             }
         }
-
+        
     }
-
+    
 }

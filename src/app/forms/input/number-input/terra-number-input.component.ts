@@ -25,6 +25,7 @@ export class TerraNumberInputComponent extends TerraInputComponent
     {
         super(TerraRegex.NUMERIC);
     }
+
     /**
      * @deprecated inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.
      * */

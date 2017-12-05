@@ -117,10 +117,11 @@
             cursor: not-allowed !important;
         }
         
-        .slider-inner {
+        .slider-inner
+        {
             filter: opacity(30%) !important;
         }
-    
+
         .slider-handle:hover
         {
             background-color: $grey-9 !important;

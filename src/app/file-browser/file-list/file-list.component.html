@@ -72,8 +72,14 @@
     </div>
     
     <div class="prompt" [class.in]="_objectsToDelete.length > 0">
-        <span class="prompt-title" *ngIf="_objectsToDelete.length === 1">{{ _translationPrefix + '.confirmDelete' | translate:lang }}</span>
-        <span class="prompt-title" *ngIf="_objectsToDelete.length > 1">{{ _translationPrefix + '.confirmDeleteMany' | translate:lang:{count: _deleteCount } }}</span>
+        <span class="prompt-title"
+              *ngIf="_objectsToDelete.length === 1">
+            {{ _translationPrefix + '.confirmDelete' | translate:lang }}
+        </span>
+        <span class="prompt-title"
+              *ngIf="_objectsToDelete.length > 1">
+            {{ _translationPrefix + '.confirmDeleteMany' | translate:lang:{count: _deleteCount } }}
+        </span>
         <div class="pull-lg-right">
             <terra-button [inputIcon]="'icon-close'"
                           [inputCaption]="_translationPrefix + '.cancel' | translate:lang"
@@ -90,18 +96,17 @@
         </div>
     </div>
     
-    <terra-simple-table
-        *ngIf="_fileTableRowList.length > 0"
-        fixed-header
-        [inputHeaderList]="_fileTableHeaderList"
-        [inputRowList]="_fileTableRowList"
-        [inputIsStriped]="true"
-        [inputUseHighlighting]="true"
-        [inputHasCheckboxes]="true"
-        [inputEnableHotkeys]="true"
-        (outputHighlightedRowChange)="onActiveRowChange($event)"
-        (outputRowClicked)="currentStorageRoot = $event.value"
-        (outputSelectedRowsChange)="onSelectionChange($event)">
+    <terra-simple-table *ngIf="_fileTableRowList.length > 0"
+                        fixed-header
+                        [inputHeaderList]="_fileTableHeaderList"
+                        [inputRowList]="_fileTableRowList"
+                        [inputIsStriped]="true"
+                        [inputUseHighlighting]="true"
+                        [inputHasCheckboxes]="true"
+                        [inputEnableHotkeys]="true"
+                        (outputHighlightedRowChange)="onActiveRowChange($event)"
+                        (outputRowClicked)="currentStorageRoot = $event.value"
+                        (outputSelectedRowsChange)="onSelectionChange($event)">
     </terra-simple-table>
     
     <div *ngIf="_fileTableRowList.length <= 0" class="empty-directory">
@@ -113,7 +118,7 @@
                               [inputCaption]="_translationPrefix + '.uploadFile' | translate:lang"
                               (outputClicked)="fileChooser.click()">
                 </terra-button>
-    
+                
                 <terra-button inputIcon="icon-folder_add"
                               *ngIf="_parentFileBrowser.inputAllowFolders"
                               [inputCaption]="_translationPrefix + '.createFolder' | translate:lang"
@@ -130,6 +135,6 @@
             <span class="icon-upload"></span>
             {{ _translationPrefix + '.uploadFile' | translate:lang }}
         </div>
-        
+    
     </div>
 </div>
