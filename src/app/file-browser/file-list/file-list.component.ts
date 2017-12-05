@@ -318,7 +318,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this._fileTableHeaderList = [
                     {
                         caption: this._translationService.translate(this._translationPrefix + '.fileName'),
-                        width:   '75%'
+                        width:   '80%'
                     },
                     {
                         caption: this._translationService.translate(this._translationPrefix + '.fileSize'),
@@ -326,11 +326,15 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                     },
                     {
                         caption: this._translationService.translate(this._translationPrefix + '.lastChange'),
-                        width:   '10%'
+                        width:   '12.5%'
                     },
                     {
                         caption: '',
-                        width:   '7.5%'
+                        width:   '1'
+                    },
+                    {
+                        caption: '',
+                        width:   '1'
                     }
                 ];
             }
@@ -440,16 +444,25 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                     }
                 );
 
-                let actionButtons:Array<TerraButtonInterface> = [deleteButton];
                 if(this.activeStorageService instanceof TerraBasePrivateStorageService && storageObject.isFile)
                 {
-                    // add download button to list of action buttons
-                    actionButtons.unshift(downloadButton)
+                    cellList.push(
+                        {
+                            buttonList: [downloadButton]
+                        }
+                    );
                 }
-
+                else
+                {
+                    cellList.push(
+                        {
+                            buttonList: []
+                        }
+                    );
+                }
                 cellList.push(
                     {
-                        buttonList: actionButtons
+                        buttonList: [deleteButton]
                     }
                 );
 
