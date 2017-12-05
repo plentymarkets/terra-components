@@ -18,9 +18,12 @@
                               [inputIsReadonly]="true"
                               [ngModel]="_metadata.width ? (_metadata.width + ' x ' + _metadata.height + ' px') : '-'"></terra-text-input>
             
-            <terra-text-input [inputName]="_translationPrefix + '.altText' | translate:lang" [(ngModel)]="_metadata.altText"></terra-text-input>
+            <terra-text-input [inputName]="_translationPrefix + '.altText' | translate:lang"
+                              [(ngModel)]="_metadata.altText"></terra-text-input>
         </div>
     </div>
     
-    <div class="loader" *ngIf="_isLoading"><div class="icon-loading"></div></div>
+    <div class="loader" *ngIf="_isLoading">
+        <div class="icon-loading"></div>
+    </div>
 </div>
