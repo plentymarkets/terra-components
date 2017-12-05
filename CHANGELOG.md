@@ -39,6 +39,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-no-result-notice** Changed the component selector to terra-no-result-notice to fit established standard
 * **terra-tag-list** exchange interface for `inputTagList`
 * **terra-data-table** refactored `TerraDataTableCellInterface` to only use one dedicated property `data` to pass cell data
+* **terra-checkbox** Added top and bottom margin to checkbox
 
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
