@@ -206,7 +206,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             return;
         }
 
-        this.updateSelectedSuggestionBoxEntry(value);
+        this.changeSelectedSuggestionBoxEntry(value);
 
         // update last selected values
         if(this.inputWithRecentlyUsed)
@@ -250,7 +250,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         let searchString:string = this._selectedValue.caption;
         this.toggleOpen = true;
 
-        this.updateSelectedSuggestionBoxEntryBySearchString(searchString);
+        this.changeSelectedSuggestionBoxEntryBySearchString(searchString);
 
         if(searchString.length >= 3)
         {
@@ -414,7 +414,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this._selectedValue = value;
     }
 
-    private updateSelectedSuggestionBoxEntryBySearchString(searchString:string):void
+    private changeSelectedSuggestionBoxEntryBySearchString(searchString:string):void
     {
         //suggestion box entry we use when we do not find a suggestion box value which matches our search string
         let fallbackSuggestionBoxEntry:TerraSuggestionBoxValueInterface = TerraSuggestionBoxHelper.generateSuggestionBoxEntryFromCaption(
@@ -424,10 +424,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         let suggestionBoxEntry:TerraSuggestionBoxValueInterface = TerraSuggestionBoxHelper.getSuggestionBoxEntryForCaption(searchString,
             this._displayListBoxValues, fallbackSuggestionBoxEntry);
 
-        this.updateSelectedSuggestionBoxEntry(suggestionBoxEntry);
+        this.changeSelectedSuggestionBoxEntry(suggestionBoxEntry);
     }
 
-    private updateSelectedSuggestionBoxEntry(suggestionBoxEntry:TerraSuggestionBoxValueInterface):void
+    private changeSelectedSuggestionBoxEntry(suggestionBoxEntry:TerraSuggestionBoxValueInterface):void
     {
         //do nothing if input provides no meaningful information
         if(isNullOrUndefined(suggestionBoxEntry))
