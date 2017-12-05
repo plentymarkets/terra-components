@@ -208,12 +208,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
         this.changeSelectedSuggestionBoxEntry(value);
 
-        // update last selected values
-        if(this.inputWithRecentlyUsed)
-        {
-            this.updateLastSelectedValues();
-        }
-
         this.outputValueSelected.emit(value);
     }
 
@@ -440,6 +434,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             caption: suggestionBoxEntry.caption,
             value:   suggestionBoxEntry.value
         };
+
+        // update last selected values
+        if(this.inputWithRecentlyUsed)
+        {
+            this.updateLastSelectedValues();
+        }
 
         // update temp selected value
         this._tmpSelectedValue = this._selectedValue;
