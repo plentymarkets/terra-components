@@ -18,7 +18,10 @@ import { TerraSimpleTableHeaderCellInterface } from '../../table/simple/cell/ter
 import { TerraSimpleTableRowInterface } from '../../table/simple/row/terra-simple-table-row.interface';
 import { TerraStorageObject } from '../model/terra-storage-object';
 import * as moment from 'moment';
-import { TerraBaseStorageService } from '../terra-base-storage.interface';
+import {
+    TerraBasePrivateStorageService,
+    TerraBaseStorageService
+} from '../terra-base-storage.interface';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { PathHelper } from '../helper/path.helper';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
@@ -310,7 +313,28 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     {
         if(!isNullOrUndefined(this.activeStorageService))
         {
-            if(this.activeStorageService.isPublic)
+            if(this.activeStorageService instanceof TerraBasePrivateStorageService)
+            {
+                this._fileTableHeaderList = [
+                    {
+                        caption: this._translationService.translate(this._translationPrefix + '.fileName'),
+                        width:   '75%'
+                    },
+                    {
+                        caption: this._translationService.translate(this._translationPrefix + '.fileSize'),
+                        width:   '7.5%'
+                    },
+                    {
+                        caption: this._translationService.translate(this._translationPrefix + '.lastChange'),
+                        width:   '10%'
+                    },
+                    {
+                        caption: '',
+                        width:   '7.5%'
+                    }
+                ];
+            }
+            else
             {
                 this._fileTableHeaderList = [
                     {
@@ -324,27 +348,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                     {
                         caption: '',
                         width:   '1'
-                    },
-                    {
-                        caption: this._translationService.translate(this._translationPrefix + '.fileSize'),
-                        width:   '7.5%'
-                    },
-                    {
-                        caption: this._translationService.translate(this._translationPrefix + '.lastChange'),
-                        width:   '12.5%'
-                    },
-                    {
-                        caption: '',
-                        width:   '1'
-                    }
-                ];
-            }
-            else
-            {
-                this._fileTableHeaderList = [
-                    {
-                        caption: this._translationService.translate(this._translationPrefix + '.fileName'),
-                        width:   '80%'
                     },
                     {
                         caption: this._translationService.translate(this._translationPrefix + '.fileSize'),
@@ -375,6 +378,17 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 }
             ).map((storageObject:TerraStorageObject) =>
             {
+                let downloadButton:TerraButtonInterface = {
+                    icon:             'icon-download',
+                    clickFunction:    (event:Event) =>
+                                      {
+                                          (<TerraBasePrivateStorageService> this.activeStorageService).downloadFile(storageObject.key);
+                                          event.stopPropagation();
+                                      },
+                    tooltipText:      this._translationService.translate(this._translationPrefix + '.downloadFile'),
+                    tooltipPlacement: 'left'
+                };
+
                 let deleteButton:TerraButtonInterface = {
                     icon:             'icon-delete',
                     clickFunction:    (event:Event) =>
@@ -406,7 +420,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                     }
                 );
 
-                if(this.activeStorageService.isPublic)
+                if(!(this.activeStorageService instanceof TerraBasePrivateStorageService))
                 {
                     cellList.push(
                         {
@@ -423,9 +437,19 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                     },
                     {
                         caption: storageObject.isFile ? moment(storageObject.lastModified).format('YYYY-MM-DD HH:mm') : ''
-                    },
+                    }
+                );
+
+                let actionButtons:Array<TerraButtonInterface> = [deleteButton];
+                if(this.activeStorageService instanceof TerraBasePrivateStorageService && storageObject.isFile)
+                {
+                    // add download button to list of action buttons
+                    actionButtons.unshift(downloadButton)
+                }
+
+                cellList.push(
                     {
-                        buttonList: [deleteButton]
+                        buttonList: actionButtons
                     }
                 );
 
