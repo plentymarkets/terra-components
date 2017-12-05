@@ -262,7 +262,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 let searchStringIncluded:boolean = true;
                 searchString.split(' ').forEach((word:string) =>
                 {
-                    searchStringIncluded = searchStringIncluded && value.caption.toUpperCase().includes(word.toUpperCase())
+                    searchStringIncluded = searchStringIncluded && value.caption.toUpperCase().includes(word.toUpperCase());
                 });
                 return searchStringIncluded;
             });
@@ -410,11 +410,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     private changeSelectedSuggestionBoxEntryBySearchString(searchString:string):void
     {
-        //suggestion box entry we use when we do not find a suggestion box value which matches our search string
+        // suggestion box entry we use when we do not find a suggestion box value which matches our search string
         let fallbackSuggestionBoxEntry:TerraSuggestionBoxValueInterface = TerraSuggestionBoxHelper.generateSuggestionBoxEntryFromCaption(
             searchString);
 
-        //suggestion box entry which we want to use as new selected entry
+        // suggestion box entry which we want to use as new selected entry
         let suggestionBoxEntry:TerraSuggestionBoxValueInterface = TerraSuggestionBoxHelper.getSuggestionBoxEntryForCaption(searchString,
             this._displayListBoxValues, fallbackSuggestionBoxEntry);
 
@@ -423,7 +423,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     private changeSelectedSuggestionBoxEntry(suggestionBoxEntry:TerraSuggestionBoxValueInterface):void
     {
-        //do nothing if input provides no meaningful information
+        // do nothing if input provides no meaningful information
         if(isNullOrUndefined(suggestionBoxEntry))
         {
             return;
