@@ -59,11 +59,8 @@ export class TerraInputComponent implements ControlValueAccessor
     private _regex:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     
-    
     //The internal data model
     private _innerValue:any;
-
-    //The internal data model
 
     //Placeholders for the callbacks which are later provided
     //by the Control Value Accessor
