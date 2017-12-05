@@ -19,7 +19,7 @@
             </th>
             <ng-template ngFor let-header [ngForOf]="_headerList">
                 <th *ngIf="!header.isHidden && _rowList && _rowList.length > 0"
-                    width="{{header.width}}px" 
+                    width="{{header.width}}px"
                     [ngStyle]="getTextAlign(header)">
                     <span [container]="'body'"
                           [placement]="checkTooltipPlacement(header.tooltipPlacement)"
@@ -47,7 +47,9 @@
                     <template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>
                     </template>
-                    <td *ngIf="!cell.isHidden"
+                    
+                    <!-- LEGACY INTERFACE!!!! -->
+                    <td *ngIf="!cell.isHidden && !cell.data"
                         (click)="rowClicked(cell, row)"
                         [container]="'body'"
                         [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
@@ -57,7 +59,10 @@
                         <span [ngStyle]="{color: cell.color}">
                             <span *ngIf="cell.icon" [ngClass]="cell.icon"></span>
                             <span *ngIf="!cell.href">{{cell.caption}}</span>
-                            <a *ngIf="cell.href" href="{{cell.href}}:{{cell.caption}}" (click)="$event.stopPropagation()">{{cell.caption}}</a>
+                            <a *ngIf="cell.href" href="{{cell.href}}:{{cell.caption}}"
+                               (click)="$event.stopPropagation()">
+                                {{cell.caption}}
+                            </a>
                         </span>
                         
                         <div class="btn-group" *ngIf="cell.buttonList">
@@ -75,6 +80,57 @@
                                               [inputTooltipText]="button.tooltipText">
                                 </terra-button>
                             </ng-template>
+                        </div>
+                    </td>
+                    
+                    <!-- new cell interface -->
+                    <td *ngIf="!cell.isHidden && cell.data"
+                        [ngSwitch]="getCellDataType(cell.data)"
+                        [ngStyle]="getTextAlign(_headerList[i])"
+                        (click)="rowClicked(cell, row)"
+                        [tooltip]="tdTooltip"
+                        [container]="'body'"
+                        [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
+                        [placement]="checkTooltipPlacement(cell.tooltipPlacement)">
+                        
+                        <div *ngSwitchCase="'string'">
+                            <span>{{cell.data}}</span>
+                        </div>
+                        
+                        <div *ngSwitchCase="'number'">
+                            <span>{{cell.data | number}}</span>
+                        </div>
+                        
+                        <div *ngSwitchCase="'TerraDataTableTextInterface'">
+                            <span [ngStyle]="{color: cell.data.color}">
+                                <span *ngIf="cell.data.icon" [ngClass]="cell.data.icon"></span>
+                                <span> {{cell.data.caption}} </span>
+                            </span>
+                        </div>
+                        
+                        <div *ngSwitchCase="'TerraRefTypeInterface'">
+                            <a href="{{cell.data.type}}:{{cell.data.value}}" (click)="$event.stopPropagation()">{{cell.data.value}}</a>
+                        </div>
+                        
+                        <div *ngSwitchCase="'buttons'" class="btn-group">
+                            <ng-template ngFor let-button [ngForOf]="cell.data">
+                                <terra-button *ngIf="!button.isHidden"
+                                              (outputClicked)="button.clickFunction();$event.stopPropagation()"
+                                              [inputIcon]="button.icon"
+                                              [inputIsPrimary]="button.isPrimary"
+                                              [inputIsSecondary]="button.isSecondary"
+                                              [inputIsTertiary]="button.isTertiary"
+                                              [inputIsDisabled]="button.isDisabled"
+                                              [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
+                                              [inputCaption]="button.caption"
+                                              [inputIsSmall]="true"
+                                              [inputTooltipText]="button.tooltipText">
+                                </terra-button>
+                            </ng-template>
+                        </div>
+                        
+                        <div *ngSwitchCase="'tags'">
+                            <terra-taglist [inputTagList]="cell.data"></terra-taglist>
                         </div>
                     </td>
                 </ng-template>
