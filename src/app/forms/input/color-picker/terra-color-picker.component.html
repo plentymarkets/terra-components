@@ -12,12 +12,12 @@
                pattern="{{regex}}"
                [disabled]="isDisabled"
                [required]="inputIsRequired">
-
+        
         <div class="color-picker" [style.background-color]="value" [class.text-invert]="isDark()">
             <i class="icon-collapse_down"></i>
         </div>
     </label>
-
+    
     <input type="text"
            [(ngModel)]="color"
            pattern="{{regex}}"

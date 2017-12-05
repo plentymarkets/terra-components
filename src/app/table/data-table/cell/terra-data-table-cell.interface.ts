@@ -9,8 +9,6 @@ import {
 /**
  * @author mkunze
  */
-
-
 export interface TerraDataTableCellInterface
 {
     identifier:string;
