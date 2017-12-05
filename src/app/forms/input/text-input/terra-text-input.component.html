@@ -4,7 +4,7 @@
      [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled, 'isSmall': inputIsSmall}"
      container="body">
-    <label htmlFor="{{inputName}}">{{inputName}}
+    <label *ngIf="inputInnerValue" htmlFor="{{inputName}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
     <input id="{{inputName}}"
@@ -15,11 +15,11 @@
            (input)="onInput()"
            autocomplete="off"
            [disabled]="isDisabled"
-           [ngClass]="{'isSmall' : inputIsSmall}"
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !inputInnerValue }"
            pattern="{{regex}}"
            maxlength="{{inputMaxLength}}"
            minlength="{{inputMinLength}}"
            [readonly]="inputIsReadonly"
-           placeholder="{{inputPlaceholder}}"
+           placeholder="{{inputName}}"
            required>
 </div>
