@@ -54,12 +54,8 @@ export class TerraInputComponent implements ControlValueAccessor
      * @description If true, the button will be small. Default false.
      * */
     @Input() inputIsSmall:boolean;
-    /**
-     *@description The current value of the element
-     */
-    @Input() inputInnerValue:any;
     
-    
+    private _innnerValue:any;
     private _isValid:boolean;
     private _regex:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
@@ -107,16 +103,16 @@ export class TerraInputComponent implements ControlValueAccessor
     //get accessor
     public get value():any
     {
-        return this.inputInnerValue;
+        return this._innnerValue;
     };
 
     //set accessor including call the onchange callback
     public set value(v:any)
     {
-        if(v !== this.inputInnerValue)
+        if(v !== this._innnerValue)
         {
-            this.inputInnerValue = v;
-            this.onChangeCallback(this.inputInnerValue);
+            this._innnerValue = v;
+            this.onChangeCallback(this._innnerValue);
         }
     }
 
@@ -129,9 +125,9 @@ export class TerraInputComponent implements ControlValueAccessor
     //From ControlValueAccessor interface
     writeValue(value:any)
     {
-        if(value !== this.inputInnerValue)
+        if(value !== this._innnerValue)
         {
-            this.inputInnerValue = value;
+            this._innnerValue = value;
         }
     }
 
