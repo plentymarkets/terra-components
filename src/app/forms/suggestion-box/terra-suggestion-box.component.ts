@@ -38,6 +38,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     @Input() inputListBoxValues:Array<TerraSuggestionBoxValueInterface>;
     @Input() inputWithRecentlyUsed:boolean;
     @Output() outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
+    @Output() outputValueSelected = new EventEmitter<TerraSuggestionBoxValueInterface>();
 
     private _selectedValue:TerraSuggestionBoxValueInterface;
     private _tmpSelectedValue:TerraSuggestionBoxValueInterface;
@@ -212,6 +213,8 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         {
             this.updateLastSelectedValues();
         }
+
+        this.outputValueSelected.emit(value);
     }
 
     private updateLastSelectedValues():void
@@ -244,7 +247,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     public onChange()
     {
-        let searchString = this._selectedValue.caption;
+        let searchString:string = this._selectedValue.caption;
         this.toggleOpen = true;
 
         this.updateSelectedSuggestionBoxEntryBySearchString(searchString);

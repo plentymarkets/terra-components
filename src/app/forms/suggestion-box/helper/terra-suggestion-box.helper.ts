@@ -22,11 +22,11 @@ export class TerraSuggestionBoxHelper
         return fallbackValue;
     }
 
-    static generateSuggestionBoxEntryFromCaption(searchString:string):TerraSuggestionBoxValueInterface
+    public static generateSuggestionBoxEntryFromCaption(caption:string):TerraSuggestionBoxValueInterface
     {
         let suggestionBoxEntry:TerraSuggestionBoxValueInterface = {
-            value:   searchString,
-            caption: searchString
+            value:   caption,
+            caption: caption
         };
         return suggestionBoxEntry;
     }
