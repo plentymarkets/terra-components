@@ -154,8 +154,20 @@
     }
 }
 
-div.disabled .selbtngroup
+div.disabled .selectiongroup
 {
-    opacity: .65;
-    background-color: #EEE;
+    input.selection
+    {
+        opacity: .65;
+        background-color: $grey-2;
+        border: 1px 0 1px 1px solid $grey-5;
+    }
+    
+    .selbtngroup
+    {
+        opacity: .65;
+        background-color: $grey-2;
+        border: 1px 1px 1px 0 solid $grey-5;
+    }
+    
 }
