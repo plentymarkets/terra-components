@@ -537,7 +537,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private getLastSelectedOfModule(module:TerraMultiSplitViewDetail):TerraMultiSplitViewInterface
     {
-        if (module.lastSelectedView && module.views.find((v:TerraMultiSplitViewInterface) => v === module.lastSelectedView))
+        if(module.lastSelectedView && module.views.find((v:TerraMultiSplitViewInterface) => v === module.lastSelectedView))
         {
             return module.lastSelectedView;
         }

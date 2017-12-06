@@ -19,7 +19,7 @@
             </th>
             <ng-template ngFor let-header [ngForOf]="_headerList">
                 <th *ngIf="!header.isHidden && _rowList && _rowList.length > 0"
-                    width="{{header.width}}px" 
+                    width="{{header.width}}px"
                     [ngStyle]="getTextAlign(header)">
                     <span [container]="'body'"
                           [placement]="checkTooltipPlacement(header.tooltipPlacement)"
@@ -59,7 +59,10 @@
                         <span [ngStyle]="{color: cell.color}">
                             <span *ngIf="cell.icon" [ngClass]="cell.icon"></span>
                             <span *ngIf="!cell.href">{{cell.caption}}</span>
-                            <a *ngIf="cell.href" href="{{cell.href}}:{{cell.caption}}" (click)="$event.stopPropagation()">{{cell.caption}}</a>
+                            <a *ngIf="cell.href" href="{{cell.href}}:{{cell.caption}}"
+                               (click)="$event.stopPropagation()">
+                                {{cell.caption}}
+                            </a>
                         </span>
                         
                         <div class="btn-group" *ngIf="cell.buttonList">
@@ -79,7 +82,7 @@
                             </ng-template>
                         </div>
                     </td>
-    
+                    
                     <!-- new cell interface -->
                     <td *ngIf="!cell.isHidden && cell.data"
                         [ngSwitch]="getCellDataType(cell.data)"
@@ -89,7 +92,7 @@
                         [container]="'body'"
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
                         [placement]="checkTooltipPlacement(cell.tooltipPlacement)">
-        
+                        
                         <div *ngSwitchCase="'string'">
                             <span>{{cell.data}}</span>
                         </div>
@@ -104,12 +107,12 @@
                                 <span> {{cell.data.caption}} </span>
                             </span>
                         </div>
-        
+                        
                         <div *ngSwitchCase="'TerraRefTypeInterface'">
                             <a href="{{cell.data.type}}:{{cell.data.value}}" (click)="$event.stopPropagation()">{{cell.data.value}}</a>
                         </div>
-        
-                        <div *ngSwitchCase="'buttons'" class="btn-group" >
+                        
+                        <div *ngSwitchCase="'buttons'" class="btn-group">
                             <ng-template ngFor let-button [ngForOf]="cell.data">
                                 <terra-button *ngIf="!button.isHidden"
                                               (outputClicked)="button.clickFunction();$event.stopPropagation()"
