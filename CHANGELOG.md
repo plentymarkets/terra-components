@@ -38,6 +38,8 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **context-menu-holder** Adapted new styles and change structure to make components usable again
 * **terra-no-result-notice** Changed the component selector to terra-no-result-notice to fit established standard
 * **terra-tag-list** exchange interface for `inputTagList`
+* **terra-data-table** refactored `TerraDataTableCellInterface` to only use one dedicated property `data` to pass cell data
+* **terra-inputs** now using unique ids to reference the label for an input element
 
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
