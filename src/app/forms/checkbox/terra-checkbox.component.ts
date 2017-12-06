@@ -40,7 +40,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      * @description Set the id.
      * */
     @Input() inputId:string;
-    
+
     @Output() valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     //The internal data model

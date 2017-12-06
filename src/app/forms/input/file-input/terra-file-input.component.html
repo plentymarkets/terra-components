@@ -20,11 +20,11 @@
                  [isDisabled]="!inputTooltipText"
                  [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
                  container="body">
-                <label htmlFor="{{inputName}}">{{inputName}}
+                <label htmlFor="{{_id}}">{{inputName}}
                     <span *ngIf="inputIsRequired">*</span>
                 </label>
                 <input #valueInput
-                       id="{{inputName}}"
+                       id="{{_id}}"
                        type="text"
                        [(ngModel)]="value"
                        name="{{inputName}}"
