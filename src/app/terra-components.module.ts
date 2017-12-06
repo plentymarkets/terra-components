@@ -83,7 +83,7 @@ import { TerraNoteComponent } from './note/terra-note.component';
 import { TerraDynamicFormComponent } from './forms/dynamic-form/terra-dynamic-form.component';
 import { TerraDynamicSwitchComponent } from './forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
 import { TerraFormFieldControlService } from './forms/dynamic-form/service/terra-form-field-control.service';
-
+import { TerraDynamicFormService } from './forms/dynamic-form/service/terra-dynamic-form.service';
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
 export { TerraButtonInterface } from './button/data/terra-button.interface';
@@ -307,7 +307,6 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraNoteComponent,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent
-
     ],
     imports:         [
         BrowserModule,
@@ -331,7 +330,8 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
         TerraFileBrowserService,
-        TerraFormFieldControlService
+        TerraFormFieldControlService,
+        TerraDynamicFormService
     ],
     bootstrap:       [
         TerraComponentsComponent

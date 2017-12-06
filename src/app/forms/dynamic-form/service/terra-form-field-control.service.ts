@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TerraFormFieldBaseBean } from '../data/terra-form-field-base.bean';
+import { TerraFormFieldBase } from '../data/terra-form-field-base';
 import {
     FormBuilder,
     FormControl,
@@ -7,8 +7,12 @@ import {
     ValidatorFn,
     Validators
 } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
-import { TerraFormGroupHelper } from '../data/terra-form-group-helper';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
+import { TerraFormFieldHorizontalContainer } from '../data/terra-form-field-horizontal-container';
+import { TerraFormFieldConditionalContainer } from '../data/terra-form-field-conditional-container';
 
 /**
  * @author mfrank
@@ -16,52 +20,53 @@ import { TerraFormGroupHelper } from '../data/terra-form-group-helper';
 @Injectable()
 export class TerraFormFieldControlService
 {
-    constructor(private _formBuilder:FormBuilder)
-    {}
+    dynamicFormGroup:FormGroup;
+    formFieldsToGroup:{ [key:string]:FormControl };
+    defaultValues:{ [key:string]:string | number | boolean };
+    translationMapping:{ [key:string]:string };
 
-    public initFormGroupHelper(formFields:Array<TerraFormFieldBaseBean<any>>,
-                               formGroupHelper:TerraFormGroupHelper = new TerraFormGroupHelper(),
-                               isDisabled:boolean = false):TerraFormGroupHelper
+    constructor(private _formBuilder:FormBuilder)
     {
-        formFields.forEach((formField:TerraFormFieldBaseBean<any>) =>
+        this.formFieldsToGroup = {};
+        this.defaultValues = {};
+        this.translationMapping = {};
+    }
+
+    private initFormGroupHelper(formFields:Array<TerraFormFieldBase<any>>,
+                               isDisabled:boolean = false):void
+    {
+        formFields.forEach((formField:TerraFormFieldBase<any>) =>
         {
-            if(formField.controlType === 'horizontalContainer' && !isNullOrUndefined(formField.containerEntries))
+            if(formField instanceof TerraFormFieldHorizontalContainer && !isNullOrUndefined(formField.containerEntries))
             {
-                this.initFormGroupHelper(formField.containerEntries, formGroupHelper, false);
+                this.initFormGroupHelper(formField.containerEntries, false);
             }
-            else if(formField.controlType === 'conditionalContainer' && !isNullOrUndefined(formField.conditionalEntries))
+            else if(formField instanceof TerraFormFieldConditionalContainer && !isNullOrUndefined(formField.conditionalEntries))
             {
-                formGroupHelper.formFieldsToGroup[formField.key] = new FormControl(formField.defaultValue, null);
+                this.formFieldsToGroup[formField.key] = new FormControl(formField.value, null);
 
                 for(let key in formField.conditionalEntries)
                 {
                     if(formField.conditionalEntries.hasOwnProperty(key))
                     {
-                        this.initFormGroupHelper(formField.conditionalEntries[key], formGroupHelper,  true);
+                        this.initFormGroupHelper(formField.conditionalEntries[key],  true);
                     }
                 }
             }
             else
             {
-                formGroupHelper.formFieldsToGroup[formField.key] = new FormControl(formField.value, this.generateValidators(formField));
+                this.formFieldsToGroup[formField.key] = new FormControl(formField.value, this.generateValidators(formField));
                 if(isDisabled)
                 {
-                    formGroupHelper.formFieldsToGroup[formField.key].disable({onlySelf: true, emitEvent: false});
+                    this.formFieldsToGroup[formField.key].disable({onlySelf: true, emitEvent: false});
                 }
-                formGroupHelper.defaultValues[formField.key] = formField.value;
-                formGroupHelper.translationMapping[formField.key] = formField.label;
+                this.defaultValues[formField.key] = formField.value;
+                this.translationMapping[formField.key] = formField.label;
             }
         });
-
-        return formGroupHelper;
     }
 
-    public createFormGroup(formGroupHelper:TerraFormGroupHelper):FormGroup
-    {
-        return this._formBuilder.group(formGroupHelper.formFieldsToGroup);
-    }
-
-    private generateValidators(formField:TerraFormFieldBaseBean<any>):Array<ValidatorFn>
+    private generateValidators(formField:TerraFormFieldBase<any>):Array<ValidatorFn>
     {
         let validators:Array<ValidatorFn> = [];
 
@@ -70,8 +75,43 @@ export class TerraFormFieldControlService
             validators.push(Validators.required);
         }
 
-        // TODO add more validators
+        if(formField.minLength >= 0)
+        {
+            validators.push(Validators.minLength(formField.minLength));
+        }
+
+        if(formField.maxlength >= 0)
+        {
+            validators.push(Validators.maxLength(formField.maxlength));
+        }
+
+        // TODO implement, if Angular version is or higher 4.4
+        //if(!isNull(formField.minValue))
+        //{
+        //    validators.push(Validators.minValue(formField.minValue));
+        //}
+        //
+        //if(!isNull(formField.maxValue))
+        //{
+        //    validators.push(Validators.maxValue(formField.maxValue));
+        //}
+
+        if(formField.pattern !== '')
+        {
+            validators.push(Validators.pattern(formField.pattern));
+        }
 
         return validators;
+    }
+
+    public createFormGroup(formFields:Array<TerraFormFieldBase<any>>):void
+    {
+        this.initFormGroupHelper(formFields, false);
+        this.dynamicFormGroup = this._formBuilder.group(this.formFieldsToGroup);
+    }
+
+    public resetForm():void
+    {
+        this.dynamicFormGroup.reset(this.defaultValues);
     }
 }

@@ -1,20 +1,29 @@
-import { TerraFormFieldBaseBean } from './terra-form-field-base.bean';
+import {
+    TerraFormFieldBase,
+    TerraFormFieldBaseOptions
+} from './terra-form-field-base';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 
 /**
  * @author mfrank
  */
-export class TerraFormFieldConditionalContainerBean extends TerraFormFieldBaseBean<string>
+export interface TerraFormFieldConditionalContainerOptions extends TerraFormFieldBaseOptions<string>
 {
-    controlType = 'conditionalContainer';
+    conditionalValues?:Array<TerraSelectBoxValueInterface> | Array<{ [key:string]:string | number | boolean }>;
+    conditionalEntries?:{ [key:string]:Array<TerraFormFieldBase<any>> };
+}
+
+export class TerraFormFieldConditionalContainer extends TerraFormFieldBase<string>
+{
     conditionalType:string;
     conditionalValues:Array<TerraSelectBoxValueInterface> | Array<{ [key:string]:string | number | boolean }>;
-    conditionalEntries:{ [key:string]:Array<TerraFormFieldBaseBean<any>> };
+    conditionalEntries:{ [key:string]:Array<TerraFormFieldBase<any>> };
 
-    constructor(options: {} = {}) {
-        super(options);
-        this.conditionalType = options['conditionalType'] || '';
-        this.conditionalValues = options['conditionalValues'] || '';
-        this.conditionalEntries = options['conditionalEntries'] || '';
+    constructor(key:string, conditionalType:string, options:TerraFormFieldConditionalContainerOptions = {}) {
+        super(key, 'conditionalContainer', options);
+
+        this.conditionalType = conditionalType;
+        this.conditionalValues = options['conditionalValues'] || [];
+        this.conditionalEntries = options['conditionalEntries'] || {};
     }
 }
