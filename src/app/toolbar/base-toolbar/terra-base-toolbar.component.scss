@@ -1,22 +1,21 @@
 .btn-toolbar
 {
-    background: $gray-light-4;
-    padding: 4px;
-    margin: 0;
-    margin-bottom: 3px;
+    background: var(--toolbar-background, $grey-2);
+    padding: var(--toolbar-padding, 4px);
+    margin: var(--toolbar-margin, 0 0 3px 0);
+    border-radius: var(--toolbar-border-radius, 0 0 $border-radius $border-radius);
+    border-bottom: var(--toolbar-border-bottom, none)
 }
 
-:host /deep/ .terra-number-input input
+.sticky
 {
-    text-align: right !important;
+    top: 0;
+    position: sticky;
+    z-index: $zindex-toolbar-sticky;
 }
 
-:host /deep/ .btn-toolbar .btn-group
+:host-context(.btn-toolbar .pager) //if pager placed in toolbar, style the toolbar contained in pager like this
 {
-    margin: 0;
-}
-
-:host /deep/ .btn-toolbar .btn-group:not(:last-child)
-{
-    padding-right: 12px;
+    --toolbar-padding: 6px 4px 4px 4px;
+    --toolbar-margin: 0 0 -4px 0;
 }

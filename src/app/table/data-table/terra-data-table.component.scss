@@ -1,76 +1,105 @@
-table.table
+.table-responsive
 {
-    margin-bottom: 1rem;
-    thead
+    table.data-table
     {
-        background: $brand-primary;
-        color: white;
-        tr
+        tr.disabled
         {
-            th
-            {
-                border: 1px solid white;
-                font-weight: normal;
-                border-top: 1px solid $brand-primary;
-                border-bottom: 1px solid $brand-primary;
-                padding: 6px 9px;
-                &:first-child
-                {
-                    border-left: 1px solid $brand-primary;
-                }
-                &:last-child
-                {
-                    border-right: 1px solid $brand-primary;
-                }
-            }
-        }
-    }
-    tbody
-    {
-        tr
-        {
+            opacity: 0.5;
+            
             td
             {
-                padding: 4px 9px;
-                vertical-align: middle;
-                border: 1px solid darken($gray-light-3, 20%);
-                white-space: nowrap;
+                cursor: not-allowed;
             }
         }
     }
-    span
+    
+    table.table
     {
-        display: inline-block;
-        overflow: hidden;
-        max-width: 99%;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        vertical-align: middle;
-    }
-    > tbody tr:hover
-    {
-        background: $gray-light-3;
-        color: $gray-dark;
-        cursor: pointer;
-    }
-    tbody tr.selected:nth-of-type(odd)
-    {
-        background-color: lighten($brand-primary-lighter, 5);
-    }
-    tbody tr.selected:nth-of-type(even)
-    {
-        background-color: lighten($brand-primary-lighter, 15);
-    }
-    tbody tr.isActive
-    {
-        background-color: $gray-light;
-        color: $white;
-        & td
+        &[tabindex]
         {
-            border-right: $table-border-width solid $white;
-            &:last-child
+            outline: none;
+        }
+        
+        margin-bottom: 1rem;
+        thead
+        {
+            background: $grey-9;
+            color: white;
+            border-radius: 0 0 $border-radius $border-radius;
+            tr
             {
-                border-right: $table-border-width solid $table-border-color;
+                th
+                {
+                    font-variant: all-small-caps;
+                    padding: 6px 9px;
+                    border: none;
+                    &:first-child
+                    {
+                        border-radius: 0 0 0 $border-radius;
+                    }
+                    &:last-child
+                    {
+                        border-radius: 0 0 $border-radius 0;
+                    }
+                }
+                
+            }
+        }
+        tbody
+        {
+            tr
+            {
+                color: $grey-11;
+                td
+                {
+                    padding: 8px 9px;
+                    vertical-align: middle;
+                    border-bottom: 1px solid $grey-1;
+                    white-space: nowrap;
+                    span
+                    {
+                        font-size: $font-size-2;
+                    }
+                    a[href]
+                    {
+                        text-decoration: underline;
+                        &:hover
+                        {
+                            color: $blue;
+                        }
+                    }
+                }
+            }
+        }
+        span
+        {
+            display: inline-block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+        > tbody tr:hover
+        {
+            background: $grey-2;
+            cursor: pointer;
+        }
+        tbody tr.selected
+        {
+            background-color: $blue;
+            color: white;
+        }
+        tbody tr.isActive
+        {
+            background-color: $blue;
+            color: white;
+            td a[href]
+            {
+                color: $white;
+                &:hover
+                {
+                    color: $black;
+                }
             }
         }
     }
@@ -91,7 +120,6 @@ table.table
 .initial-loading-warn
 {
     text-align: center;
-    font-family: "plenty", Helvetica, Arial, sans-serif !important;
     display: block;
     padding: 8.3em .3em .3em .5em;
     color: #555555;
@@ -101,7 +129,8 @@ table.table
     border-radius: 0;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px)
+{
     table, td, tr, th, thead, tbody
     {
         display: block;

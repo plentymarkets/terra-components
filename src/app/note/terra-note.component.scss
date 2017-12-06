@@ -1,0 +1,75 @@
+$padding-border: 16px;
+
+.note
+{
+    background-color: $yellow-light;
+    -moz-border-radius: $border-radius;
+    -webkit-border-radius: $border-radius;
+    border-radius: $border-radius;
+    padding: $padding-border;
+    min-width: 200px;
+    margin: 4px 0px;
+    height: auto;
+    overflow-x: auto;
+    &.selected
+    {
+        background-color: $blue;
+        
+        .note-inner
+        {
+            .note-text
+            {
+                color: $white;
+            }
+        }
+        .note-footer
+        {
+            .note-id
+            {
+                color: $white;
+            }
+        }
+    }
+    .note-inner
+    {
+        display: flex;
+        justify-content: space-between;
+        height: calc(100% - 26px);
+        
+        .note-text
+        {
+            padding-right: 0.8rem;
+            max-width: 77%;
+            white-space: normal;
+            color: $grey-11;
+            .note-header
+            {
+                font-weight: bold;
+            }
+            hr
+            {
+                margin: 0;
+            }
+            div
+            {
+                white-space: pre-wrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+        .note-sidebar
+        {
+            display: flex;
+            align-items: flex-end;
+            flex-direction: column;
+            .note-id
+            {
+                margin-top: auto;
+                color: $grey-8;
+                width: 100%;
+                text-align: center;
+                padding-top: $padding-border;
+            }
+        }
+    }
+}

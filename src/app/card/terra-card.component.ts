@@ -6,10 +6,10 @@ import {
 } from '@angular/core';
 
 @Component({
-               selector: 'terra-card',
-               styles:   [require('./terra-card.component.scss')],
-               template: require('./terra-card.component.html')
-           })
+    selector: 'terra-card',
+    styles:   [require('./terra-card.component.scss')],
+    template: require('./terra-card.component.html')
+})
 export class TerraCardComponent implements AfterContentChecked
 {
     @ViewChild('header') viewChildHeader;
@@ -18,13 +18,13 @@ export class TerraCardComponent implements AfterContentChecked
     @Input() inputPlaceholderIcon:string;
     private showHeader:boolean;
     private showFooter:boolean;
-    
+
     constructor()
     {
         this.showHeader = false;
         this.showFooter = false;
     }
-    
+
     ngAfterContentChecked()
     {
         this.showHeader = this.viewChildHeader.nativeElement.children.length > 0;

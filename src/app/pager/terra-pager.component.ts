@@ -2,40 +2,43 @@ import {
     Component,
     EventEmitter,
     Input,
+    NgZone,
     OnInit,
-    Output,
-    ViewChild
+    Output
 } from '@angular/core';
 import { TerraPagerInterface } from './data/terra-pager.interface';
-import { TerraNumberInputComponent } from '../forms/input/number-input/terra-number-input.component';
 import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-select-box.interface';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
-               selector: 'terra-pager',
-               styles:   [require('./terra-pager.component.scss')],
-               template: require('./terra-pager.component.html')
-           })
+    selector: 'terra-pager',
+    styles:   [require('./terra-pager.component.scss')],
+    template: require('./terra-pager.component.html')
+})
 export class TerraPagerComponent implements OnInit
 {
-    @ViewChild(TerraNumberInputComponent) viewChildCurrentPageInput:TerraNumberInputComponent;
-    
     @Input() inputPagingData:TerraPagerInterface;
     @Input() inputDefaultPagingSize:number;
     @Input() inputPagingSize:Array<TerraSelectBoxValueInterface>;
-    
+    @Input() inputRequestPending:boolean;
+
     @Output() outputDoPaging = new EventEmitter<TerraPagerInterface>();
-    
-    constructor()
+
+    private _pagingClicks = new Subject();
+
+    constructor(private zone:NgZone)
     {
     }
-    
+
     ngOnInit()
     {
+        this._pagingClicks.debounceTime(500).subscribe((e:TerraPagerInterface) => this.outputDoPaging.emit(e));
+
         if(!this.inputDefaultPagingSize)
         {
             this.inputDefaultPagingSize = 25;
         }
-        
+
         if(!this.inputPagingSize)
         {
             this.inputPagingSize = [
@@ -57,7 +60,7 @@ export class TerraPagerComponent implements OnInit
                 }
             ];
         }
-        
+
         if(!this.inputPagingData)
         {
             this.inputPagingData = {
@@ -71,74 +74,68 @@ export class TerraPagerComponent implements OnInit
                 isLastPage:     false
             };
         }
-        
-        this.updateCurrentPageInput();
     }
-    
-    private updateCurrentPageInput()
-    {
-        this.viewChildCurrentPageInput.value = this.inputPagingData.page;
-    }
-    
+
     public onFirstPage():void
     {
-        this.inputPagingData.page = 1;
-        this.updateCurrentPageInput();
-        
-        this.outputDoPaging
-            .emit(this.inputPagingData);
+        if(!this.inputRequestPending)
+        {
+            this.inputPagingData.page = 1;
+        }
+        this.notify();
     }
-    
+
     public onPrevPage():void
     {
-        this.inputPagingData.page -= 1;
-        this.updateCurrentPageInput();
-        
-        this.outputDoPaging
-            .emit(this.inputPagingData);
+        if(!this.inputRequestPending)
+        {
+            this.inputPagingData.page -= 1;
+        }
+        this.notify();
     }
-    
+
     public onNextPage():void
     {
-        this.inputPagingData.page += 1;
-        this.updateCurrentPageInput();
-        
-        this.outputDoPaging
-            .emit(this.inputPagingData);
+        if(!this.inputRequestPending)
+        {
+            this.inputPagingData.page += 1;
+        }
+        this.notify();
     }
-    
+
     public onLastPage():void
     {
-        this.inputPagingData.page = this.inputPagingData.lastPageNumber;
-        this.updateCurrentPageInput();
-        
-        this.outputDoPaging
-            .emit(this.inputPagingData);
+        if(!this.inputRequestPending)
+        {
+            this.inputPagingData.page = this.inputPagingData.lastPageNumber;
+        }
+        this.notify();
     }
-    
+
     public onReload():void
     {
-        this.outputDoPaging
-            .emit(this.inputPagingData);
+        this.notify();
     }
-    
-    public onToPage(event:any,
-                    pageNumber:number):void
+
+    public onToPage(event:any, pageNumber:number):void
     {
         event.preventDefault();
-        
-        this.inputPagingData.page = pageNumber;
-        
-        this.outputDoPaging
-            .emit(this.inputPagingData);
+        this.inputPagingData.page = Math.max(1, Math.min(this.inputPagingData.lastPageNumber, pageNumber)); // Limit page number to valid range [1, lastPageNumber]
+        this.outputDoPaging.emit(this.inputPagingData);
     }
-    
+
     public onChangeOffsetTo(selectedOffset:TerraSelectBoxValueInterface):void
     {
         this.inputPagingData.page = 1;
-        this.updateCurrentPageInput();
         this.inputPagingData.itemsPerPage = selectedOffset.value;
-        
         this.outputDoPaging.emit(this.inputPagingData);
+    }
+
+    private notify():void
+    {
+        if(!this.inputRequestPending)
+        {
+            this._pagingClicks.next(this.inputPagingData);
+        }
     }
 }

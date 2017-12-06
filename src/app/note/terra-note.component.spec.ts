@@ -1,11 +1,11 @@
 // /* tslint:disable:no-unused-variable */
 //
 // import { TestBed, async } from '@angular/core/testing';
-// import { PlentyDclWrapperComponent } from './plenty-dcl-wrapper.component';
+// import { TerraNoteComponent } from './terra-note.component';
 //
-// describe('Component: TerraDclWrapperComponent', () => {
+// describe('Component: TerraNoteComponent', () => {
 //   it('should create an instance', () => {
-//     let component = new PlentyDclWrapperComponent();
+//     let component = new TerraNoteComponent();
 //     expect(component).toBeTruthy();
 //   });
 // });

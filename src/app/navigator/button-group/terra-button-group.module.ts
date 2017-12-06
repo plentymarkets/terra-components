@@ -5,15 +5,15 @@ import { TooltipModule } from 'ngx-bootstrap';
 import { TranslationModule } from 'angular-l10n';
 
 @NgModule({
-              imports:      [
-                  CommonModule,
-                  TooltipModule.forRoot(),
-                  TranslationModule.forChild()
-              ],
-              declarations: [
-                  TerraButtonGroupComponent
-              ]
-          })
+    imports:      [
+        CommonModule,
+        TooltipModule.forRoot(),
+        TranslationModule.forChild()
+    ],
+    declarations: [
+        TerraButtonGroupComponent
+    ]
+})
 export class TerraButtonGroupModule
 {
     static forRoot()

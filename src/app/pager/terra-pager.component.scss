@@ -3,74 +3,37 @@
 @import "../forms/select-box/terra-select-box.component";
 @import "../forms/input/terra-input.component";
 
-/deep/
+.pager
 {
-    .pager
-    {
-        .form-group
-        {
-            margin: 0;
-            label
-            {
-                display: inline-block;
-            }
-            span
-            {
-                display: inline-block;
-                padding: 5px 0;
-                vertical-align: top;
-            }
-            .pager-page input
-            {
-                width: 2.5rem !important;
-                padding: .5rem .35rem !important;
-            }
-        }
-        .terra-select-box,
-        .form-group
-        {
-            float: left;
-        }
-        .pager-text
-        {
-            line-height: $terra-btn-md-height;
-            float: left;
-            font-size: $font-size-lg;
-            margin-left: .5rem;
-        }
-        
-        @include media-breakpoint-down(sm)
-        {
-            .pager
-            {
-                .btn-group
-                {
-                    float: none;
-                    margin-top: .2rem;
-                    margin-bottom: .2rem;
-                }
-            }
-        }
-    }
+    --input-text-align: center;
+    --toolbar-border-radius: $border-radius $border-radius 0 0;
+    --toolbar-margin: 0;
+    --select-box-width: 65px;
+    --select-box-wrapper-margin-bottom: 0;
+    --input-unit-v1-margin-bottom: 0;
+    --input-width: 34px;
+    --input-padding: .5rem .15rem;
+    --btn-sm-padding: 0 7px;
     
-}
-
-:host /deep/ .input-unit-v1
-{
-    margin-bottom: 0px !important;
-    line-height: 0px !important;
-    input
+    .form-group
     {
-        height: $terra-btn-md-height - 2 !important;
+        margin: 0;
+        float: left;
     }
-}
-
-:host /deep/ .select-box-wrapper
-{
-    margin-bottom: 0px !important;
-}
-
-:host /deep/ .select-box
-{
-    padding: 0px 28px 0px 12px !important;
+    .pager-text
+    {
+        line-height: $terra-btn-sm-height;
+        float: left;
+        font-size: $font-size-2;
+        font-weight: $font-weight-2;
+        margin: 0 6px;
+    }
+    .terra-select-box
+    {
+        float: left;
+    }
+    .btn-group
+    {
+        padding-right: 7px;
+    }
 }

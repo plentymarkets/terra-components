@@ -21,10 +21,10 @@ import 'brace/ext/error_marker';
 import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
 
 @Component({
-               selector: 'terra-syntax-editor',
-               template: require('./terra-syntax-editor.component.html'),
-               styles:   [require('./terra-syntax-editor.component.scss')]
-           })
+    selector: 'terra-syntax-editor',
+    template: require('./terra-syntax-editor.component.html'),
+    styles:   [require('./terra-syntax-editor.component.scss')]
+})
 export class TerraSyntaxEditorComponent implements AfterViewInit
 {
     @ViewChild('aceEditor') editor:AceEditorComponent;
@@ -32,40 +32,40 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
     @Input() inputOptions:Object;
     private _inputEditorMode:string;
     private _inputText:string;
-    
+
     constructor()
     {
         this.inputOptions = {
             maxLines: 10000
         };
     }
-    
+
     ngAfterViewInit()
     {
         this.editor.getEditor().clearSelection();
         this.editor.getEditor().$blockScrolling = Infinity;
         this.editor.getEditor().setShowPrintMargin(false);
     }
-    
+
     public setAnnotationList(list:Array<TerraSyntaxEditorData>):void
     {
         this.editor.getEditor().getSession().setAnnotations(list);
     }
-    
+
     @Input()
     public set inputEditorMode(value:string)
     {
         this._inputEditorMode = value;
         this.editor.setMode(value);
     }
-    
+
     @Input()
     public set inputText(value:string)
     {
         this._inputText = value;
         this.editor.setText(value);
     }
-    
+
     public get inputText():string
     {
         return this._inputText;

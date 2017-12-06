@@ -1,4 +1,5 @@
 @import "_variables";
+@import "_loading.icon";
 // Typography
 //
 // Font, line-height, and color for body text, headings, and more.
@@ -61,6 +62,1110 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-exch_adre_type
+{
+    &:before
+    {
+        content: $icon-exch_adre_type;
+    }
+}
+
+.icon-ship_amaz_1st
+{
+    &:before
+    {
+        content: $icon-ship_amaz_1st;
+    }
+}
+
+.icon-ship_amaz_2nd
+{
+    &:before
+    {
+        content: $icon-ship_amaz_2nd;
+    }
+}
+
+.icon-ship_amaz_prime_1st
+{
+    &:before
+    {
+        content: $icon-ship_amaz_prime_1st;
+    }
+}
+
+.icon-ship_amaz_prime_2nd
+{
+    &:before
+    {
+        content: $icon-ship_amaz_prime_2nd;
+    }
+}
+
+.icon-ship_amaz_prime
+{
+    &:before
+    {
+        content: $icon-ship_amaz_prime;
+    }
+}
+
+.icon-caret
+{
+    &:before
+    {
+        content: $icon-caret;
+    }
+}
+
+.icon-item-artikel
+{
+    &:before
+    {
+        content: $icon-item-artikel;
+    }
+}
+
+.icon-align_center
+{
+    &:before
+    {
+        content: $icon-align_center;
+    }
+}
+
+.icon-align_justify
+{
+    &:before
+    {
+        content: $icon-align_justify;
+    }
+}
+
+.icon-align_left
+{
+    &:before
+    {
+        content: $icon-align_left;
+    }
+}
+
+.icon-align_right
+{
+    &:before
+    {
+        content: $icon-align_right;
+    }
+}
+
+.icon-device_desktop
+{
+    &:before
+    {
+        content: $icon-device_desktop;
+    }
+}
+
+.icon-device_laptop
+{
+    &:before
+    {
+        content: $icon-device_laptop;
+    }
+}
+
+.icon-device_mobile
+{
+    &:before
+    {
+        content: $icon-device_mobile;
+    }
+}
+
+.icon-device_tablet
+{
+    &:before
+    {
+        content: $icon-device_tablet;
+    }
+}
+
+.icon-ebay
+{
+    &:before
+    {
+        content: $icon-ebay;
+    }
+}
+
+.icon-switch_editor
+{
+    &:before
+    {
+        content: $icon-switch_editor;
+    }
+}
+
+.icon-text_bold
+{
+    &:before
+    {
+        content: $icon-text_bold;
+    }
+}
+
+.icon-text_italic
+{
+    &:before
+    {
+        content: $icon-text_italic;
+    }
+}
+
+.icon-text_strikethrough
+{
+    &:before
+    {
+        content: $icon-text_strikethrough;
+    }
+}
+
+.icon-text_underline
+{
+    &:before
+    {
+        content: $icon-text_underline;
+    }
+}
+
+.icon-click_and_collect
+{
+    &:before
+    {
+        content: $icon-click_and_collect;
+    }
+}
+
+.icon-ebay_basket
+{
+    &:before
+    {
+        content: $icon-ebay_basket;
+    }
+}
+
+.icon-ebay_plus
+{
+    &:before
+    {
+        content: $icon-ebay_plus;
+    }
+}
+
+.icon-hood
+{
+    &:before
+    {
+        content: $icon-hood;
+    }
+}
+
+.icon-reverse_fullscreen
+{
+    &:before
+    {
+        content: $icon-reverse_fullscreen;
+    }
+}
+
+.icon-ricardo
+{
+    &:before
+    {
+        content: $icon-ricardo;
+    }
+}
+
+.icon-backend_ceres
+{
+    &:before
+    {
+        content: $icon-backend_ceres;
+    }
+}
+
+.icon-backend_io
+{
+    &:before
+    {
+        content: $icon-backend_io;
+    }
+}
+
+.icon-shipping_cbc_logistics
+{
+    &:before
+    {
+        content: $icon-shipping_cbc_logistics;
+    }
+}
+
+.icon-application_double
+{
+    &:before
+    {
+        content: $icon-application_double;
+    }
+}
+
+.icon-box_minus_disabled
+{
+    &:before
+    {
+        content: $icon-box_minus_disabled;
+    }
+}
+
+.icon-box_minus
+{
+    &:before
+    {
+        content: $icon-box_minus;
+    }
+}
+
+.icon-box_plus_disabled
+{
+    &:before
+    {
+        content: $icon-box_plus_disabled;
+    }
+}
+
+.icon-box_plus
+{
+    &:before
+    {
+        content: $icon-box_plus;
+    }
+}
+
+.icon-icon_questionmark_bck
+{
+    &:before
+    {
+        content: $icon-icon_questionmark_bck;
+    }
+}
+
+.icon-manual_search
+{
+    &:before
+    {
+        content: $icon-manual_search;
+    }
+}
+
+.icon-pay_5_paypal
+{
+    &:before
+    {
+        content: $icon-pay_5_paypal;
+    }
+}
+
+.icon-pay_25_laredoute
+{
+    &:before
+    {
+        content: $icon-pay_25_laredoute;
+    }
+}
+
+.icon-pay_amazon_payment
+{
+    &:before
+    {
+        content: $icon-pay_amazon_payment;
+    }
+}
+
+.icon-pay_amazon
+{
+    &:before
+    {
+        content: $icon-pay_amazon;
+    }
+}
+
+.icon-pay_bill
+{
+    &:before
+    {
+        content: $icon-pay_bill;
+    }
+}
+
+.icon-pay_billsafe
+{
+    &:before
+    {
+        content: $icon-pay_billsafe;
+    }
+}
+
+.icon-pay_cash_in_advance
+{
+    &:before
+    {
+        content: $icon-pay_cash_in_advance;
+    }
+}
+
+.icon-pay_cash_on_delivery
+{
+    &:before
+    {
+        content: $icon-pay_cash_on_delivery;
+    }
+}
+
+.icon-pay_cash
+{
+    &:before
+    {
+        content: $icon-pay_cash;
+    }
+}
+
+.icon-pay_cheque
+{
+    &:before
+    {
+        content: $icon-pay_cheque;
+    }
+}
+
+.icon-pay_clickandbuy
+{
+    &:before
+    {
+        content: $icon-pay_clickandbuy;
+    }
+}
+
+.icon-pay_concardis
+{
+    &:before
+    {
+        content: $icon-pay_concardis;
+    }
+}
+
+.icon-pay_coupon
+{
+    &:before
+    {
+        content: $icon-pay_coupon;
+    }
+}
+
+.icon-pay_credit_card
+{
+    &:before
+    {
+        content: $icon-pay_credit_card;
+    }
+}
+
+.icon-pay_crefopay
+{
+    &:before
+    {
+        content: $icon-pay_crefopay;
+    }
+}
+
+.icon-pay_debit
+{
+    &:before
+    {
+        content: $icon-pay_debit;
+    }
+}
+
+.icon-pay_ec
+{
+    &:before
+    {
+        content: $icon-pay_ec;
+    }
+}
+
+.icon-pay_eos
+{
+    &:before
+    {
+        content: $icon-pay_eos;
+    }
+}
+
+.icon-pay_expercash
+{
+    &:before
+    {
+        content: $icon-pay_expercash;
+    }
+}
+
+.icon-pay_gartenxxl
+{
+    &:before
+    {
+        content: $icon-pay_gartenxxl;
+    }
+}
+
+.icon-pay_gimahhot
+{
+    &:before
+    {
+        content: $icon-pay_gimahhot;
+    }
+}
+
+.icon-pay_heidelpay
+{
+    &:before
+    {
+        content: $icon-pay_heidelpay;
+    }
+}
+
+.icon-pay_hitmeister
+{
+    &:before
+    {
+        content: $icon-pay_hitmeister;
+    }
+}
+
+.icon-pay_iclear
+{
+    &:before
+    {
+        content: $icon-pay_iclear;
+    }
+}
+
+.icon-pay_iloxx
+{
+    &:before
+    {
+        content: $icon-pay_iloxx;
+    }
+}
+
+.icon-pay_klarna
+{
+    &:before
+    {
+        content: $icon-pay_klarna;
+    }
+}
+
+.icon-pay_masterpayment
+{
+    &:before
+    {
+        content: $icon-pay_masterpayment;
+    }
+}
+
+.icon-pay_meinpaket
+{
+    &:before
+    {
+        content: $icon-pay_meinpaket;
+    }
+}
+
+.icon-pay_neckermann
+{
+    &:before
+    {
+        content: $icon-pay_neckermann;
+    }
+}
+
+.icon-pay_other
+{
+    &:before
+    {
+        content: $icon-pay_other;
+    }
+}
+
+.icon-pay_pay_card
+{
+    &:before
+    {
+        content: $icon-pay_pay_card;
+    }
+}
+
+.icon-pay_paymorrow_new
+{
+    &:before
+    {
+        content: $icon-pay_paymorrow_new;
+    }
+}
+
+.icon-pay_paymorrow
+{
+    &:before
+    {
+        content: $icon-pay_paymorrow;
+    }
+}
+
+.icon-pay_payolution
+{
+    &:before
+    {
+        content: $icon-pay_payolution;
+    }
+}
+
+.icon-pay_payone
+{
+    &:before
+    {
+        content: $icon-pay_payone;
+    }
+}
+
+.icon-pay_paypal_express
+{
+    &:before
+    {
+        content: $icon-pay_paypal_express;
+    }
+}
+
+.icon-pay_paypal_qr
+{
+    &:before
+    {
+        content: $icon-pay_paypal_qr;
+    }
+}
+
+.icon-pay_pixmania
+{
+    &:before
+    {
+        content: $icon-pay_pixmania;
+    }
+}
+
+.icon-pay_plus
+{
+    &:before
+    {
+        content: $icon-pay_plus;
+    }
+}
+
+.icon-pay_postpay
+{
+    &:before
+    {
+        content: $icon-pay_postpay;
+    }
+}
+
+.icon-pay_rakuten
+{
+    &:before
+    {
+        content: $icon-pay_rakuten;
+    }
+}
+
+.icon-pay_ratepay
+{
+    &:before
+    {
+        content: $icon-pay_ratepay;
+    }
+}
+
+.icon-pay_saferpay
+{
+    &:before
+    {
+        content: $icon-pay_saferpay;
+    }
+}
+
+.icon-pay_sagepay
+{
+    &:before
+    {
+        content: $icon-pay_sagepay;
+    }
+}
+
+.icon-pay_santander
+{
+    &:before
+    {
+        content: $icon-pay_santander;
+    }
+}
+
+.icon-pay_shopgate
+{
+    &:before
+    {
+        content: $icon-pay_shopgate;
+    }
+}
+
+.icon-pay_skrill
+{
+    &:before
+    {
+        content: $icon-pay_skrill;
+    }
+}
+
+.icon-pay_sofortueberweisung
+{
+    &:before
+    {
+        content: $icon-pay_sofortueberweisung;
+    }
+}
+
+.icon-pay_wirecard
+{
+    &:before
+    {
+        content: $icon-pay_wirecard;
+    }
+}
+
+.icon-pay_worldpay
+{
+    &:before
+    {
+        content: $icon-pay_worldpay;
+    }
+}
+
+.icon-pay_zalando
+{
+    &:before
+    {
+        content: $icon-pay_zalando;
+    }
+}
+
+.icon-pay_zentralverkauf
+{
+    &:before
+    {
+        content: $icon-pay_zentralverkauf;
+    }
+}
+
+.icon-shipping_bilog
+{
+    &:before
+    {
+        content: $icon-shipping_bilog;
+    }
+}
+
+.icon-shipping_bps
+{
+    &:before
+    {
+        content: $icon-shipping_bps;
+    }
+}
+
+.icon-shipping_bvw
+{
+    &:before
+    {
+        content: $icon-shipping_bvw;
+    }
+}
+
+.icon-shipping_dachser
+{
+    &:before
+    {
+        content: $icon-shipping_dachser;
+    }
+}
+
+.icon-shipping_db_schenker
+{
+    &:before
+    {
+        content: $icon-shipping_db_schenker;
+    }
+}
+
+.icon-shipping_deutschepost
+{
+    &:before
+    {
+        content: $icon-shipping_deutschepost;
+    }
+}
+
+.icon-shipping_dhl_packstation
+{
+    &:before
+    {
+        content: $icon-shipping_dhl_packstation;
+    }
+}
+
+.icon-shipping_dhl
+{
+    &:before
+    {
+        content: $icon-shipping_dhl;
+    }
+}
+
+.icon-shipping_dpd
+{
+    &:before
+    {
+        content: $icon-shipping_dpd;
+    }
+}
+
+.icon-shipping_ems_garantpost
+{
+    &:before
+    {
+        content: $icon-shipping_ems_garantpost;
+    }
+}
+
+.icon-shipping_ereturn
+{
+    &:before
+    {
+        content: $icon-shipping_ereturn;
+    }
+}
+
+.icon-shipping_esellersfriend
+{
+    &:before
+    {
+        content: $icon-shipping_esellersfriend;
+    }
+}
+
+.icon-shipping_fedex
+{
+    &:before
+    {
+        content: $icon-shipping_fedex;
+    }
+}
+
+.icon-shipping_gel_express
+{
+    &:before
+    {
+        content: $icon-shipping_gel_express;
+    }
+}
+
+.icon-shipping_gls
+{
+    &:before
+    {
+        content: $icon-shipping_gls;
+    }
+}
+
+.icon-shipping_hbh
+{
+    &:before
+    {
+        content: $icon-shipping_hbh;
+    }
+}
+
+.icon-shipping_hermes
+{
+    &:before
+    {
+        content: $icon-shipping_hermes;
+    }
+}
+
+.icon-shipping_ids_logistik
+{
+    &:before
+    {
+        content: $icon-shipping_ids_logistik;
+    }
+}
+
+.icon-shipping_ilopack
+{
+    &:before
+    {
+        content: $icon-shipping_ilopack;
+    }
+}
+
+.icon-shipping_iloxx
+{
+    &:before
+    {
+        content: $icon-shipping_iloxx;
+    }
+}
+
+.icon-shipping_lkv
+{
+    &:before
+    {
+        content: $icon-shipping_lkv;
+    }
+}
+
+.icon-shipping_other
+{
+    &:before
+    {
+        content: $icon-shipping_other;
+    }
+}
+
+.icon-shipping_post_at
+{
+    &:before
+    {
+        content: $icon-shipping_post_at;
+    }
+}
+
+.icon-shipping_pvs_logistik
+{
+    &:before
+    {
+        content: $icon-shipping_pvs_logistik;
+    }
+}
+
+.icon-shipping_rhenus
+{
+    &:before
+    {
+        content: $icon-shipping_rhenus;
+    }
+}
+
+.icon-shipping_selbstabholer
+{
+    &:before
+    {
+        content: $icon-shipping_selbstabholer;
+    }
+}
+
+.icon-shipping_shippingcenter
+{
+    &:before
+    {
+        content: $icon-shipping_shippingcenter;
+    }
+}
+
+.icon-shipping_spedition
+{
+    &:before
+    {
+        content: $icon-shipping_spedition;
+    }
+}
+
+.icon-shipping_swiss_post
+{
+    &:before
+    {
+        content: $icon-shipping_swiss_post;
+    }
+}
+
+.icon-shipping_tnt
+{
+    &:before
+    {
+        content: $icon-shipping_tnt;
+    }
+}
+
+.icon-shipping_trans-o-flex
+{
+    &:before
+    {
+        content: $icon-shipping_trans-o-flex;
+    }
+}
+
+.icon-shipping_ups
+{
+    &:before
+    {
+        content: $icon-shipping_ups;
+    }
+}
+
+.icon-shipping_yousellwesend
+{
+    &:before
+    {
+        content: $icon-shipping_yousellwesend;
+    }
+}
+
+.icon-customer_link
+{
+    &:before
+    {
+        content: $icon-customer_link;
+    }
+}
+
+.icon-design_inline_edit
+{
+    &:before
+    {
+        content: $icon-design_inline_edit;
+    }
+}
+
+.icon-document_show
+{
+    &:before
+    {
+        content: $icon-document_show;
+    }
+}
+
+.icon-dunning_level_1
+{
+    &:before
+    {
+        content: $icon-dunning_level_1;
+    }
+}
+
+.icon-dunning_level_2
+{
+    &:before
+    {
+        content: $icon-dunning_level_2;
+    }
+}
+
+.icon-dunning_level_3
+{
+    &:before
+    {
+        content: $icon-dunning_level_3;
+    }
+}
+
+.icon-dunning_level_4
+{
+    &:before
+    {
+        content: $icon-dunning_level_4;
+    }
+}
+
+.icon-dunning_level_5
+{
+    &:before
+    {
+        content: $icon-dunning_level_5;
+    }
+}
+
+.icon-email_sent
+{
+    &:before
+    {
+        content: $icon-email_sent;
+    }
+}
+
+.icon-file_extension_odt
+{
+    &:before
+    {
+        content: $icon-file_extension_odt;
+    }
+}
+
+.icon-payment_sepa_pain
+{
+    &:before
+    {
+        content: $icon-payment_sepa_pain;
+    }
+}
+
+.icon-shipping_centre
+{
+    &:before
+    {
+        content: $icon-shipping_centre;
+    }
+}
+
+.icon-order_new
+{
+    &:before
+    {
+        content: $icon-order_new;
+    }
+}
+
+.icon-gutschrift_erzeugen
+{
+    &:before
+    {
+        content: $icon-gutschrift_erzeugen;
+    }
+}
+
+.icon-gutschrift_stornieren
+{
+    &:before
+    {
+        content: $icon-gutschrift_stornieren;
+    }
+}
+
 .icon-icon-reversal_document-13
 {
     &:before
@@ -117,32 +1222,11 @@
     }
 }
 
-.icon-image .path1
+.icon-image
 {
     &:before
     {
-        content: $icon-image-path1;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-image .path2
-{
-    &:before
-    {
-        content: $icon-image-path2;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-image .path3
-{
-    &:before
-    {
-        content: $icon-image-path3;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
+        content: $icon-image;
     }
 }
 
@@ -239,45 +1323,6 @@
     &:before
     {
         content: $icon-dunning_level;
-    }
-}
-
-.icon-file_extension_odt .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_odt-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_odt .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_odt-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_odt .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_odt-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_odt .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_odt-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
     }
 }
 
@@ -569,45 +1614,6 @@
     }
 }
 
-.icon-customer_link .path1
-{
-    &:before
-    {
-        content: $icon-customer_link-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-customer_link .path2
-{
-    &:before
-    {
-        content: $icon-customer_link-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-customer_link .path3
-{
-    &:before
-    {
-        content: $icon-customer_link-path3;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-customer_link .path4
-{
-    &:before
-    {
-        content: $icon-customer_link-path4;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
 .icon-customer_new_password
 {
     &:before
@@ -712,45 +1718,6 @@
     }
 }
 
-.icon-design_inline_edit .path1
-{
-    &:before
-    {
-        content: $icon-design_inline_edit-path1;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-design_inline_edit .path2
-{
-    &:before
-    {
-        content: $icon-design_inline_edit-path2;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-design_inline_edit .path3
-{
-    &:before
-    {
-        content: $icon-design_inline_edit-path3;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-design_inline_edit .path4
-{
-    &:before
-    {
-        content: $icon-design_inline_edit-path4;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
 .icon-design_publish
 {
     &:before
@@ -764,45 +1731,6 @@
     &:before
     {
         content: $icon-design_transfer;
-    }
-}
-
-.icon-document_show .path1
-{
-    &:before
-    {
-        content: $icon-document_show-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-document_show .path2
-{
-    &:before
-    {
-        content: $icon-document_show-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-document_show .path3
-{
-    &:before
-    {
-        content: $icon-document_show-path3;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-document_show .path4
-{
-    &:before
-    {
-        content: $icon-document_show-path4;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
     }
 }
 
@@ -854,217 +1782,11 @@
     }
 }
 
-.icon-dunning_letter .path1
+.icon-dunning_letter
 {
     &:before
     {
-        content: $icon-dunning_letter-path1;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-dunning_letter .path2
-{
-    &:before
-    {
-        content: $icon-dunning_letter-path2;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-dunning_letter .path3
-{
-    &:before
-    {
-        content: $icon-dunning_letter-path3;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-dunning_letter .path4
-{
-    &:before
-    {
-        content: $icon-dunning_letter-path4;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-dunning_letter .path5
-{
-    &:before
-    {
-        content: $icon-dunning_letter-path5;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-dunning_level_1 .path1
-{
-    &:before
-    {
-        content: $icon-dunning_level_1-path1;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-dunning_level_1 .path2
-{
-    &:before
-    {
-        content: $icon-dunning_level_1-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-dunning_level_1 .path3
-{
-    &:before
-    {
-        content: $icon-dunning_level_1-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-dunning_level_1 .path4
-{
-    &:before
-    {
-        content: $icon-dunning_level_1-path4;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-dunning_level_2 .path1
-{
-    &:before
-    {
-        content: $icon-dunning_level_2-path1;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-dunning_level_2 .path2
-{
-    &:before
-    {
-        content: $icon-dunning_level_2-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-dunning_level_2 .path3
-{
-    &:before
-    {
-        content: $icon-dunning_level_2-path3;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-dunning_level_3 .path1
-{
-    &:before
-    {
-        content: $icon-dunning_level_3-path1;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-dunning_level_3 .path2
-{
-    &:before
-    {
-        content: $icon-dunning_level_3-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-dunning_level_3 .path3
-{
-    &:before
-    {
-        content: $icon-dunning_level_3-path3;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-dunning_level_4 .path1
-{
-    &:before
-    {
-        content: $icon-dunning_level_4-path1;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-dunning_level_4 .path2
-{
-    &:before
-    {
-        content: $icon-dunning_level_4-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-dunning_level_4 .path3
-{
-    &:before
-    {
-        content: $icon-dunning_level_4-path3;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-dunning_level_5 .path1
-{
-    &:before
-    {
-        content: $icon-dunning_level_5-path1;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-dunning_level_5 .path2
-{
-    &:before
-    {
-        content: $icon-dunning_level_5-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-dunning_level_5 .path3
-{
-    &:before
-    {
-        content: $icon-dunning_level_5-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-dunning_level_5 .path4
-{
-    &:before
-    {
-        content: $icon-dunning_level_5-path4;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
+        content: $icon-dunning_letter;
     }
 }
 
@@ -1097,45 +1819,6 @@
     &:before
     {
         content: $icon-email_send;
-    }
-}
-
-.icon-email_sent .path1
-{
-    &:before
-    {
-        content: $icon-email_sent-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-email_sent .path2
-{
-    &:before
-    {
-        content: $icon-email_sent-path2;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-email_sent .path3
-{
-    &:before
-    {
-        content: $icon-email_sent-path3;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-email_sent .path4
-{
-    &:before
-    {
-        content: $icon-email_sent-path4;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
     }
 }
 
@@ -1211,619 +1894,115 @@
     }
 }
 
-.icon-file_extension_css .path1
+.icon-file_extension_css
 {
     &:before
     {
-        content: $icon-file_extension_css-path1;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_css;
     }
 }
 
-.icon-file_extension_css .path2
+.icon-file_extension_csv
 {
     &:before
     {
-        content: $icon-file_extension_css-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_csv;
     }
 }
 
-.icon-file_extension_css .path3
+.icon-file_extension_doc
 {
     &:before
     {
-        content: $icon-file_extension_css-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_doc;
     }
 }
 
-.icon-file_extension_css .path4
+.icon-file_extension_docx
 {
     &:before
     {
-        content: $icon-file_extension_css-path4;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
+        content: $icon-file_extension_docx;
     }
 }
 
-.icon-file_extension_csv .path1
+.icon-file_extension_gif
 {
     &:before
     {
-        content: $icon-file_extension_csv-path1;
-        color: rgb(0, 0, 0);
+        content: $icon-file_extension_gif;
     }
 }
 
-.icon-file_extension_csv .path2
+.icon-file_extension_gzip
 {
     &:before
     {
-        content: $icon-file_extension_csv-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_gzip;
     }
 }
 
-.icon-file_extension_csv .path3
+.icon-file_extension_hh
 {
     &:before
     {
-        content: $icon-file_extension_csv-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_hh;
     }
 }
 
-.icon-file_extension_csv .path4
+.icon-file_extension_html
 {
     &:before
     {
-        content: $icon-file_extension_csv-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_html;
     }
 }
 
-.icon-file_extension_doc .path1
+.icon-file_extension_ico
 {
     &:before
     {
-        content: $icon-file_extension_doc-path1;
-        color: rgb(0, 0, 0);
+        content: $icon-file_extension_ico;
     }
 }
 
-.icon-file_extension_doc .path2
+.icon-file_extension_jpeg
 {
     &:before
     {
-        content: $icon-file_extension_doc-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_jpeg;
     }
 }
 
-.icon-file_extension_doc .path3
+.icon-file_extension_jpg
 {
     &:before
     {
-        content: $icon-file_extension_doc-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_jpg;
     }
 }
 
-.icon-file_extension_doc .path4
+.icon-file_extension_js
 {
     &:before
     {
-        content: $icon-file_extension_doc-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_js;
     }
 }
 
-.icon-file_extension_docx .path1
+.icon-file_extension_json
 {
     &:before
     {
-        content: $icon-file_extension_docx-path1;
-        color: rgb(0, 0, 0);
+        content: $icon-file_extension_json;
     }
 }
 
-.icon-file_extension_docx .path2
+.icon-file_extension_md
 {
     &:before
     {
-        content: $icon-file_extension_docx-path2;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_docx .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_docx-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_docx .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_docx-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_docx .path5
-{
-    &:before
-    {
-        content: $icon-file_extension_docx-path5;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_docx .path6
-{
-    &:before
-    {
-        content: $icon-file_extension_docx-path6;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_gif .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_gif-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_gif .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_gif-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_gif .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_gif-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_gif .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_gif-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_gzip .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_gzip-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_gzip .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_gzip-path2;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_gzip .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_gzip-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_gzip .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_gzip-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_gzip .path5
-{
-    &:before
-    {
-        content: $icon-file_extension_gzip-path5;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_gzip .path6
-{
-    &:before
-    {
-        content: $icon-file_extension_gzip-path6;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_hh .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_hh-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_hh .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_hh-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_hh .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_hh-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_html .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_html-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_html .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_html-path2;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_html .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_html-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_html .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_html-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_html .path5
-{
-    &:before
-    {
-        content: $icon-file_extension_html-path5;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_html .path6
-{
-    &:before
-    {
-        content: $icon-file_extension_html-path6;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_ico .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_ico-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_ico .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_ico-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_ico .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_ico-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_ico .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_ico-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_jpeg .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_jpeg-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_jpeg .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_jpeg-path2;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_jpeg .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_jpeg-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_jpeg .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_jpeg-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_jpeg .path5
-{
-    &:before
-    {
-        content: $icon-file_extension_jpeg-path5;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_jpeg .path6
-{
-    &:before
-    {
-        content: $icon-file_extension_jpeg-path6;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_jpg .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_jpg-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_jpg .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_jpg-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_jpg .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_jpg-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_jpg .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_jpg-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_js .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_js-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_js .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_js-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_js .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_js-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_json .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_json-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_json .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_json-path2;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_json .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_json-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_json .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_json-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_json .path5
-{
-    &:before
-    {
-        content: $icon-file_extension_json-path5;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_json .path6
-{
-    &:before
-    {
-        content: $icon-file_extension_json-path6;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_md .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_md-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_md .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_md-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_md .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_md-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_md;
     }
 }
 
@@ -1835,531 +2014,99 @@
     }
 }
 
-.icon-file_extension_pdf .path1
+.icon-file_extension_pdf
 {
     &:before
     {
-        content: $icon-file_extension_pdf-path1;
-        color: rgb(0, 0, 0);
+        content: $icon-file_extension_pdf;
     }
 }
 
-.icon-file_extension_pdf .path2
+.icon-file_extension_png
 {
     &:before
     {
-        content: $icon-file_extension_pdf-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_png;
     }
 }
 
-.icon-file_extension_pdf .path3
+.icon-file_extension_rtf
 {
     &:before
     {
-        content: $icon-file_extension_pdf-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_rtf;
     }
 }
 
-.icon-file_extension_pdf .path4
+.icon-file_extension_swf
 {
     &:before
     {
-        content: $icon-file_extension_pdf-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_swf;
     }
 }
 
-.icon-file_extension_png .path1
+.icon-file_extension_tar
 {
     &:before
     {
-        content: $icon-file_extension_png-path1;
-        color: rgb(0, 0, 0);
+        content: $icon-file_extension_tar;
     }
 }
 
-.icon-file_extension_png .path2
+.icon-file_extension_tiff
 {
     &:before
     {
-        content: $icon-file_extension_png-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_tiff;
     }
 }
 
-.icon-file_extension_png .path3
+.icon-file_extension_twig
 {
     &:before
     {
-        content: $icon-file_extension_png-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_twig;
     }
 }
 
-.icon-file_extension_png .path4
+.icon-file_extension_txt
 {
     &:before
     {
-        content: $icon-file_extension_png-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_txt;
     }
 }
 
-.icon-file_extension_rtf .path1
+.icon-file_extension_xls
 {
     &:before
     {
-        content: $icon-file_extension_rtf-path1;
-        color: rgb(0, 0, 0);
+        content: $icon-file_extension_xls;
     }
 }
 
-.icon-file_extension_rtf .path2
+.icon-file_extension_xlsx
 {
     &:before
     {
-        content: $icon-file_extension_rtf-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_xlsx;
     }
 }
 
-.icon-file_extension_rtf .path3
+.icon-file_extension_xml
 {
     &:before
     {
-        content: $icon-file_extension_rtf-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_xml;
     }
 }
 
-.icon-file_extension_rtf .path4
+.icon-file_extension_zip
 {
     &:before
     {
-        content: $icon-file_extension_rtf-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_swf .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_swf-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_swf .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_swf-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_swf .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_swf-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_swf .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_swf-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_tar .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_tar-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_tar .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_tar-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_tar .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_tar-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_tar .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_tar-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_tiff .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_tiff-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_tiff .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_tiff-path2;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_tiff .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_tiff-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_tiff .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_tiff-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_tiff .path5
-{
-    &:before
-    {
-        content: $icon-file_extension_tiff-path5;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_tiff .path6
-{
-    &:before
-    {
-        content: $icon-file_extension_tiff-path6;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_twig .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_twig-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_twig .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_twig-path2;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_twig .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_twig-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_twig .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_twig-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_twig .path5
-{
-    &:before
-    {
-        content: $icon-file_extension_twig-path5;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_twig .path6
-{
-    &:before
-    {
-        content: $icon-file_extension_twig-path6;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_txt .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_txt-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_txt .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_txt-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_txt .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_txt-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_txt .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_txt-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_xls .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_xls-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_xls .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_xls-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_xls .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_xls-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_xls .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_xls-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_xlsx .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_xlsx-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_xlsx .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_xlsx-path2;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_xlsx .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_xlsx-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_xlsx .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_xlsx-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_xlsx .path5
-{
-    &:before
-    {
-        content: $icon-file_extension_xlsx-path5;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_xlsx .path6
-{
-    &:before
-    {
-        content: $icon-file_extension_xlsx-path6;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_xml .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_xml-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_xml .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_xml-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_xml .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_xml-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_xml .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_xml-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_zip .path1
-{
-    &:before
-    {
-        content: $icon-file_extension_zip-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-file_extension_zip .path2
-{
-    &:before
-    {
-        content: $icon-file_extension_zip-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_zip .path3
-{
-    &:before
-    {
-        content: $icon-file_extension_zip-path3;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-file_extension_zip .path4
-{
-    &:before
-    {
-        content: $icon-file_extension_zip-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
+        content: $icon-file_extension_zip;
     }
 }
 
@@ -3163,101 +2910,11 @@
     }
 }
 
-.icon-order_new .path1
+.icon-order_not_possible
 {
     &:before
     {
-        content: $icon-order_new-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-order_new .path2
-{
-    &:before
-    {
-        content: $icon-order_new-path2;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-order_new .path3
-{
-    &:before
-    {
-        content: $icon-order_new-path3;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-order_new .path4
-{
-    &:before
-    {
-        content: $icon-order_new-path4;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-order_new .path5
-{
-    &:before
-    {
-        content: $icon-order_new-path5;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-order_not_possible .path1
-{
-    &:before
-    {
-        content: $icon-order_not_possible-path1;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-order_not_possible .path2
-{
-    &:before
-    {
-        content: $icon-order_not_possible-path2;
-        margin-left: -1em;
-        color: rgb(29, 29, 27);
-    }
-}
-
-.icon-order_not_possible .path3
-{
-    &:before
-    {
-        content: $icon-order_not_possible-path3;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-order_not_possible .path4
-{
-    &:before
-    {
-        content: $icon-order_not_possible-path4;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-order_not_possible .path5
-{
-    &:before
-    {
-        content: $icon-order_not_possible-path5;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
+        content: $icon-order_not_possible;
     }
 }
 
@@ -3442,95 +3099,6 @@
     &:before
     {
         content: $icon-payment_register_incoming;
-    }
-}
-
-.icon-payment_sepa_pain .path1
-{
-    &:before
-    {
-        content: $icon-payment_sepa_pain-path1;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-payment_sepa_pain .path2
-{
-    &:before
-    {
-        content: $icon-payment_sepa_pain-path2;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-payment_sepa_pain .path3
-{
-    &:before
-    {
-        content: $icon-payment_sepa_pain-path3;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-payment_sepa_pain .path4
-{
-    &:before
-    {
-        content: $icon-payment_sepa_pain-path4;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-payment_sepa_pain .path5
-{
-    &:before
-    {
-        content: $icon-payment_sepa_pain-path5;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-payment_sepa_pain .path6
-{
-    &:before
-    {
-        content: $icon-payment_sepa_pain-path6;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-payment_sepa_pain .path7
-{
-    &:before
-    {
-        content: $icon-payment_sepa_pain-path7;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-payment_sepa_pain .path8
-{
-    &:before
-    {
-        content: $icon-payment_sepa_pain-path8;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-payment_sepa_pain .path9
-{
-    &:before
-    {
-        content: $icon-payment_sepa_pain-path9;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
     }
 }
 
@@ -4235,135 +3803,6 @@
     &:before
     {
         content: $icon-settings;
-    }
-}
-
-.icon-shipping_centre .path1
-{
-    &:before
-    {
-        content: $icon-shipping_centre-path1;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-shipping_centre .path2
-{
-    &:before
-    {
-        content: $icon-shipping_centre-path2;
-        margin-left: -1em;
-        color: rgb(255, 255, 255);
-    }
-}
-
-.icon-shipping_centre .path3
-{
-    &:before
-    {
-        content: $icon-shipping_centre-path3;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-shipping_centre .path4
-{
-    &:before
-    {
-        content: $icon-shipping_centre-path4;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-shipping_centre .path5
-{
-    &:before
-    {
-        content: $icon-shipping_centre-path5;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-shipping_centre .path6
-{
-    &:before
-    {
-        content: $icon-shipping_centre-path6;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-shipping_centre .path7
-{
-    &:before
-    {
-        content: $icon-shipping_centre-path7;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-shipping_centre .path8
-{
-    &:before
-    {
-        content: $icon-shipping_centre-path8;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-shipping_centre .path9
-{
-    &:before
-    {
-        content: $icon-shipping_centre-path9;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-shipping_centre .path10
-{
-    &:before
-    {
-        content: $icon-shipping_centre-path10;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-shipping_centre .path11
-{
-    &:before
-    {
-        content: $icon-shipping_centre-path11;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-shipping_centre .path12
-{
-    &:before
-    {
-        content: $icon-shipping_centre-path12;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
-    }
-}
-
-.icon-shipping_centre .path13
-{
-    &:before
-    {
-        content: $icon-shipping_centre-path13;
-        margin-left: -1em;
-        color: rgb(0, 0, 0);
     }
 }
 

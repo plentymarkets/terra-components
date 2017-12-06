@@ -3,21 +3,21 @@ import {
     Input,
     OnInit
 } from '@angular/core';
-import { TerraTagComponent } from '../tag/terra-tag.component';
+import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 
 @Component({
-               selector: 'terra-taglist',
-               styles:   [require('./terra-taglist.component.scss')],
-               template: require('./terra-taglist.component.html')
-           })
+    selector: 'terra-taglist',
+    styles:   [require('./terra-taglist.component.scss')],
+    template: require('./terra-taglist.component.html')
+})
 export class TerraTaglistComponent implements OnInit
 {
-    @Input() inputTagList:Array<TerraTagComponent>;
-    
+    @Input() inputTagList:Array<TerraTagInterface>;
+
     constructor()
     {
     }
-    
+
     ngOnInit()
     {
     }
