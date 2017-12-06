@@ -1,3 +1,9 @@
+<terra-portlet *ngIf="inputShowGroupFunctions" inputPortletHeader="{{'terraDataTable.groupFunction' | translate:lang}}">
+    <ng-content>
+    
+    </ng-content>
+</terra-portlet>
+
 <terra-pager *ngIf="inputHasPager && _rowList && _rowList.length > 0"
              [inputPagingSize]="pagingSize"
              [inputDefaultPagingSize]="defaultPagingSize"

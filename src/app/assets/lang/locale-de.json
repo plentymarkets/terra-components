@@ -1,6 +1,6 @@
 {
 	"terraDataTable": {
-		"initialLoading": "Suche ausführen, um {{ dataType }} anzuzeigen"
+		"groupFunction": "Gruppenfunktion"
 	},
 	"terraMultiSelectBox": {
 		"selectAll": "Alle"

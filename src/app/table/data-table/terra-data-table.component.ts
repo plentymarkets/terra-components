@@ -45,6 +45,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @Input() inputNoResultTextPrimary:string;
     @Input() inputNoResultTextSecondary:string;
     @Input() inputNoResultButtons:Array<TerraButtonInterface>;
+    @Input() inputShowGroupFunctions:boolean = false;
 
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
