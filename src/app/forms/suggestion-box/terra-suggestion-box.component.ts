@@ -12,6 +12,7 @@ import {
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
+import { TerraSuggestionBoxHelper } from './helper/terra-suggestion-box.helper';
 
 const MAX_LASTLY_USED_ENTRIES = 5;
 
@@ -37,6 +38,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     @Input() inputListBoxValues:Array<TerraSuggestionBoxValueInterface>;
     @Input() inputWithRecentlyUsed:boolean;
     @Output() outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
+    @Output() outputValueSelected = new EventEmitter<TerraSuggestionBoxValueInterface>();
 
     private _selectedValue:TerraSuggestionBoxValueInterface;
     private _tmpSelectedValue:TerraSuggestionBoxValueInterface;
@@ -204,25 +206,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             return;
         }
 
-        // update selected value
-        this._selectedValue = {
-            caption: value.caption,
-            value:   value.value
-        };
+        this.changeSelectedSuggestionBoxEntry(value);
 
-        // update last selected values
-        if(this.inputWithRecentlyUsed)
-        {
-            this.updateLastSelectedValues();
-        }
-
-        // update temp selected value
-        this._tmpSelectedValue = this._selectedValue;
-
-        // execute callback functions
-        this.onTouchedCallback();
-        this.onChangeCallback(value.value);
-        this.outputValueChanged.emit(value);
+        this.outputValueSelected.emit(value);
     }
 
     private updateLastSelectedValues():void
@@ -255,8 +241,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     public onChange()
     {
-        let searchString = this._selectedValue.caption;
+        let searchString:string = this._selectedValue.caption;
         this.toggleOpen = true;
+
+        this.changeSelectedSuggestionBoxEntryBySearchString(searchString);
 
         if(searchString.length >= 3)
         {
@@ -274,7 +262,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 let searchStringIncluded:boolean = true;
                 searchString.split(' ').forEach((word:string) =>
                 {
-                    searchStringIncluded = searchStringIncluded && value.caption.toUpperCase().includes(word.toUpperCase())
+                    searchStringIncluded = searchStringIncluded && value.caption.toUpperCase().includes(word.toUpperCase());
                 });
                 return searchStringIncluded;
             });
@@ -419,4 +407,47 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
         this._selectedValue = value;
     }
+
+    private changeSelectedSuggestionBoxEntryBySearchString(searchString:string):void
+    {
+        // suggestion box entry we use when we do not find a suggestion box value which matches our search string
+        let fallbackSuggestionBoxEntry:TerraSuggestionBoxValueInterface = TerraSuggestionBoxHelper.generateSuggestionBoxEntryFromCaption(
+            searchString);
+
+        // suggestion box entry which we want to use as new selected entry
+        let suggestionBoxEntry:TerraSuggestionBoxValueInterface = TerraSuggestionBoxHelper.getSuggestionBoxEntryForCaption(searchString,
+            this._displayListBoxValues, fallbackSuggestionBoxEntry);
+
+        this.changeSelectedSuggestionBoxEntry(suggestionBoxEntry);
+    }
+
+    private changeSelectedSuggestionBoxEntry(suggestionBoxEntry:TerraSuggestionBoxValueInterface):void
+    {
+        // do nothing if input provides no meaningful information
+        if(isNullOrUndefined(suggestionBoxEntry))
+        {
+            return;
+        }
+
+        // update selected value
+        this._selectedValue = {
+            caption: suggestionBoxEntry.caption,
+            value:   suggestionBoxEntry.value
+        };
+
+        // update last selected values
+        if(this.inputWithRecentlyUsed)
+        {
+            this.updateLastSelectedValues();
+        }
+
+        // update temp selected value
+        this._tmpSelectedValue = this._selectedValue;
+
+        // execute callback functions
+        this.onTouchedCallback();
+        this.onChangeCallback(suggestionBoxEntry.value);
+        this.outputValueChanged.emit(suggestionBoxEntry);
+    }
 }
+
