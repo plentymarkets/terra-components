@@ -95,20 +95,20 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         if(leaf.leafParent)
         {
             let parentLeaf:TerraCheckboxLeafInterface = leaf.leafParent;
-            let state:LeafState = this.checkStateOfLeafLevel(parentLeaf);
+            let parentLeafState:ParentLeafState = this.getParentLeafState(parentLeaf);
 
             // All checkboxes on this leaf level are checked
-            if(state.allChildrenAreChecked)
+            if(parentLeafState.allChildrenAreChecked)
             {
                 this.updateStateValuesOfLeaf(parentLeaf, false, true);
             }
             // No checkbox on this leaf level is checked but one or more set to indeterminate
-            else if(state.noChildrenAreChecked && state.isIndeterminate)
+            else if(parentLeafState.noChildrenAreChecked && parentLeafState.isIndeterminate)
             {
                 this.updateStateValuesOfLeaf(parentLeaf, true, null);
             }
             // No checkbox on this leaf level is checked
-            else if(state.noChildrenAreChecked)
+            else if(parentLeafState.noChildrenAreChecked)
             {
                 this.updateStateValuesOfLeaf(parentLeaf, false, false);
             }
@@ -129,37 +129,39 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         leaf.checkboxChecked = checkboxChecked;
     }
 
-    private checkStateOfLeafLevel(leaf:TerraCheckboxLeafInterface):LeafState
+    private getParentLeafState(leaf:TerraCheckboxLeafInterface):ParentLeafState
     {
-        let leafState:LeafState = new LeafState();
+        let parentLeafState:ParentLeafState = new ParentLeafState();
 
         for(let subLeaf of leaf.subLeafList)
         {
-            leafState.allChildrenAreChecked = subLeaf.checkboxChecked && leafState.allChildrenAreChecked;
-            leafState.noChildrenAreChecked = !subLeaf.checkboxChecked && leafState.noChildrenAreChecked;
+            parentLeafState.allChildrenAreChecked = subLeaf.checkboxChecked && parentLeafState.allChildrenAreChecked;
+            parentLeafState.noChildrenAreChecked = !subLeaf.checkboxChecked && parentLeafState.noChildrenAreChecked;
             if(subLeaf.isIndeterminate)
             {
-                leafState.isIndeterminate = true;
+                parentLeafState.isIndeterminate = true;
             }
         }
 
-        return leafState;
+        return parentLeafState;
     }
 
-    private linkParentsToLeafList(leafList:Array<TerraCheckboxLeafInterface>):void
+    private appendParentsToLeafList(leafList:Array<TerraCheckboxLeafInterface>):void
     {
         for(let leaf of leafList)
         {
-            if(leaf.subLeafList)
+            this.recursiveAppendParentToSubLeafs(leaf);
+        }
+    }
+
+    private recursiveAppendParentToSubLeafs(leaf:TerraCheckboxLeafInterface):void
+    {
+        if(leaf.subLeafList)
+        {
+            for(let subLeaf of leaf.subLeafList)
             {
-                for(let subLeaf of leaf.subLeafList)
-                {
-                    subLeaf.leafParent = leaf;
-                    if(subLeaf.subLeafList)
-                    {
-                        this.linkParentsToLeafList(subLeaf.subLeafList);
-                    }
-                }
+                subLeaf.leafParent = leaf;
+                this.recursiveAppendParentToSubLeafs(subLeaf);
             }
         }
     }
@@ -167,7 +169,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
     ngOnInit()
     {
         super.ngOnInit();
-        this.linkParentsToLeafList(this.inputLeafList);
+        this.appendParentsToLeafList(this.inputLeafList);
     }
 
     private recursiveSetIndeterminateToParent(leaf:TerraCheckboxLeafInterface):void
@@ -181,7 +183,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         }
     }
 }
-export class LeafState
+export class ParentLeafState
 {
     allChildrenAreChecked:boolean = true;
     noChildrenAreChecked:boolean = true;
