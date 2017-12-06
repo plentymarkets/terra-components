@@ -78,13 +78,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this._parentFileBrowser.splitConfig.hideImagePreview();
             }
             this.renderFileList();
-            this._storageSubscription = this.activeStorageService
-                                            .getStorageList()
-                                            .subscribe((storageList) =>
-                                            {
-                                                this._storageList = storageList;
-                                                this.renderFileList();
-                                            });
+            this._storageSubscription = this.activeStorageService.getStorageList().subscribe((storageList) =>
+            {
+                this._storageList = storageList;
+                this.renderFileList();
+            });
         }
 
     }
@@ -367,71 +365,76 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
         if(!isNullOrUndefined(this.currentStorageRoot))
         {
-            this._fileTableRowList = this.currentStorageRoot
-                                         .children
-                                         .filter((storageObject:TerraStorageObject) =>
-                                         {
-                                             return storageObject.isFile || this._parentFileBrowser.inputAllowFolders;
-                                         })
-                                         .sort((objectA:TerraStorageObject, objectB:TerraStorageObject) =>
-                                         {
-                                             return objectA.name.localeCompare(objectB.name);
-                                         })
-                                         .map((storageObject:TerraStorageObject) =>
-                                         {
-                                             let deleteButton:TerraButtonInterface = {
-                                                 icon:             'icon-delete',
-                                                 clickFunction:    (event:Event) =>
-                                                                   {
-                                                                       this._objectsToDelete = [storageObject];
-                                                                       event.stopPropagation();
-                                                                   },
-                                                 isSecondary:      true,
-                                                 tooltipText:      this._translationService.translate(this._translationPrefix + '.deleteFile'),
-                                                 tooltipPlacement: 'left'
-                                             };
+            this._fileTableRowList = this.currentStorageRoot.children.filter((storageObject:TerraStorageObject) =>
+                {
+                    return storageObject.isFile || this._parentFileBrowser.inputAllowFolders;
+                }
+            ).sort((objectA:TerraStorageObject, objectB:TerraStorageObject) =>
+                {
+                    return objectA.name.localeCompare(objectB.name);
+                }
+            ).map((storageObject:TerraStorageObject) =>
+            {
+                let deleteButton:TerraButtonInterface = {
+                    icon:             'icon-delete',
+                    clickFunction:    (event:Event) =>
+                                      {
+                                          this._objectsToDelete = [storageObject];
+                                          event.stopPropagation();
+                                      },
+                    isSecondary:      true,
+                    tooltipText:      this._translationService.translate(this._translationPrefix + '.deleteFile'),
+                    tooltipPlacement: 'left'
+                };
 
-                                             let clipboardButton:TerraButtonInterface = {
-                                                 icon:             'icon-copy_clipboard',
-                                                 clickFunction:    (event:Event) =>
-                                                                   {
-                                                                       ClipboardHelper.copyText(storageObject.publicUrl);
-                                                                       event.stopPropagation();
-                                                                   },
-                                                 tooltipText:      this._translationService.translate(this._translationPrefix + '.copyToClipboard'),
-                                                 tooltipPlacement: 'left'
-                                             };
+                let clipboardButton:TerraButtonInterface = {
+                    icon:             'icon-copy_clipboard',
+                    clickFunction:    (event:Event) =>
+                                      {
+                                          ClipboardHelper.copyText(storageObject.publicUrl);
+                                          event.stopPropagation();
+                                      },
+                    tooltipText:      this._translationService.translate(this._translationPrefix + '.copyToClipboard'),
+                    tooltipPlacement: 'left'
+                };
 
-                                             let cellList:Array<TerraSimpleTableCellInterface> = [];
-                                             cellList.push(
-                                                 {
-                                                     caption: storageObject.name,
-                                                     icon:    this._uploadStatus[storageObject.key] ? 'icon-loading' : storageObject.icon
-                                                 }
-                                             );
+                let cellList:Array<TerraSimpleTableCellInterface> = [];
+                cellList.push(
+                    {
+                        caption: storageObject.name,
+                        icon:    this._uploadStatus[storageObject.key] ? 'icon-loading' : storageObject.icon
+                    }
+                );
 
-                                             if(this.activeStorageService.isPublic)
-                                             {
-                                                 cellList.push(
-                                                     {caption: storageObject.isFile ? storageObject.publicUrl : ''},
-                                                     {buttonList: storageObject.isFile ? [clipboardButton] : []}
-                                                 );
-                                             }
-                                             cellList.push(
-                                                 {caption: storageObject.isFile ? storageObject.sizeString : ''},
-                                                 {
-                                                     caption: storageObject.isFile ? moment(storageObject.lastModified)
-                                                         .format('YYYY-MM-DD HH:mm') : ''
-                                                 },
-                                                 {buttonList: [deleteButton]}
-                                             );
+                if(this.activeStorageService.isPublic)
+                {
+                    cellList.push(
+                        {
+                            caption: storageObject.isFile ? storageObject.publicUrl : ''
+                        },
+                        {
+                            buttonList: storageObject.isFile ? [clipboardButton] : []
+                        }
+                    );
+                }
+                cellList.push(
+                    {
+                        caption: storageObject.isFile ? storageObject.sizeString : ''
+                    },
+                    {
+                        caption: storageObject.isFile ? moment(storageObject.lastModified).format('YYYY-MM-DD HH:mm') : ''
+                    },
+                    {
+                        buttonList: [deleteButton]
+                    }
+                );
 
-                                             return {
-                                                 cellList: cellList,
-                                                 value:    storageObject,
-                                                 disabled: !this.isAllowed(storageObject.key)
-                                             };
-                                         });
+                return {
+                    cellList: cellList,
+                    value:    storageObject,
+                    disabled: !this.isAllowed(storageObject.key)
+                };
+            });
         }
         else
         {

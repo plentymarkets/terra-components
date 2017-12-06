@@ -70,11 +70,14 @@
     {
         border-color: $gray-light-3;
         cursor: not-allowed;
-        
-        &:before
-        {
-            border-color: $gray-light-2;
-        }
+    }
+    .check.disabled:before
+    {
+        border-color: $white;
+    }
+    .check.disabled.active:before
+    {
+        border-color: $gray-light-3;
     }
 }
 

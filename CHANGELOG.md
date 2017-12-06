@@ -29,12 +29,16 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 * **terra-multi-split-view** 
 	- disable public access to the data model, since it shouldn't be edited manually
 	- prevent adding two views with the same name to the same hierarchy level
+	- fix scope problems with nested split-views
 * **terra-navigator** reduce height if search bar is enabled
 * **terra-base-service** avoid to show error message if code of error is null
 * **terra-suggestion-box** displayed values are reinitialized if `inputListBoxValues` have changed
 * **terra-select-box** Drop down closes if user had clicked on another select box
 * **terra-pager** Added missing translation
 * **context-menu-holder** Adapted new styles and change structure to make components usable again
+* **terra-no-result-notice** Changed the component selector to terra-no-result-notice to fit established standard
+* **terra-tag-list** exchange interface for `inputTagList`
+* **terra-data-table** refactored `TerraDataTableCellInterface` to only use one dedicated property `data` to pass cell data
 * **terra-inputs** now using unique ids to reference the label for an input element
 
 <a name="1.4.2"></a>
