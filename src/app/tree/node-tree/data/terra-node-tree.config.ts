@@ -18,7 +18,7 @@ export class TerraNodeTreeConfig<D>
      * @param nodeToAdd The provided node to add to the tree.
      * @param parent Optional. The provided parent where nodeToAdd should be added to.
      */
-    public addNode(nodeToAdd:TerraNodeInterface<D>, parent?:TerraNodeInterface<D>):void
+    public addNode(nodeToAdd:TerraNodeInterface<D>, openParents?:boolean, parent?:TerraNodeInterface<D>):void
     {
         //check if the node to add is already added
         let alreadyAddedNode:TerraNodeInterface<D> = this.findNodeById(nodeToAdd.id);
@@ -51,8 +51,11 @@ export class TerraNodeTreeConfig<D>
                     nodeToAdd.parent.children.push(nodeToAdd);
                 }
 
-                this.recursiveOpenParent(nodeToAdd);
-                //nodeToAdd.parent.isOpen = true;
+                if(openParents)
+                {
+                    this.recursiveOpenParent(nodeToAdd);
+                    //nodeToAdd.parent.isOpen = true;
+                }
             }
         }
         else
@@ -76,7 +79,7 @@ export class TerraNodeTreeConfig<D>
         }
         else
         {
-            this.addNode(node, foundNode);
+            this.addNode(node, false, foundNode);
         }
     }
 
@@ -95,8 +98,9 @@ export class TerraNodeTreeConfig<D>
         }
         else
         {
-            nodeList.forEach((node:TerraNodeInterface<D>)=>{
-                this.addNode(node, foundNode);
+            nodeList.forEach((node:TerraNodeInterface<D>) =>
+            {
+                this.addNode(node, true, foundNode);
             });
         }
     }
