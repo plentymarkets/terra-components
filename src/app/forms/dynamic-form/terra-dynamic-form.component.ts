@@ -1,7 +1,9 @@
 import {
     Component,
     Input,
-    OnInit
+    OnChanges,
+    OnInit,
+    SimpleChanges
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { TerraFormFieldControlService } from './service/terra-form-field-control.service';
@@ -18,7 +20,7 @@ import { TerraDynamicFormService } from './service/terra-dynamic-form.service';
     template: require('./terra-dynamic-form.component.html'),
     providers: [TerraDynamicFormService]
 })
-export class TerraDynamicFormComponent implements OnInit
+export class TerraDynamicFormComponent implements OnInit, OnChanges
 {
     @Input() public inputFormFunctions:DynamicFormFunctionsHandler<any>;
     @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
@@ -39,6 +41,14 @@ export class TerraDynamicFormComponent implements OnInit
             console.error('inputFormStructure and inputFormFunctions must be set.');
         }
         else
+        {
+            this._formFieldControlService.createFormGroup(this.inputFormFields);
+        }
+    }
+
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes['inputFormFields'])
         {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
         }
