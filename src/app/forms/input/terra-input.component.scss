@@ -158,6 +158,11 @@ input[type="search"]::-webkit-search-decoration
         {
             color: $grey-5;
         }
+        
+        label
+        {
+            cursor: not-allowed;
+        }
     }
 }
 
