@@ -112,10 +112,13 @@ export class TerraCheckboxComponent implements ControlValueAccessor
         return this._isIndeterminate;
     }
 
+    @Input()
     public set isIndeterminate(value:boolean)
     {
-        //TODO is this correct?
-        this._innerValue = false;
+        if(value)
+        {
+            this._innerValue = false;
+        }
         this._isIndeterminate = value;
     }
 
