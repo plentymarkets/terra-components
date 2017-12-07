@@ -69,9 +69,14 @@ export class TerraNodeTreeConfig<D>
      * @param parentId The identifier of the parent node.
      * @param node The node to be added.
      */
-    public addChildToNodeById(parentId:string | number, node:TerraNodeInterface<D>):void
+    public addChildToNodeById(parentId:string | number, node:TerraNodeInterface<D>, openParents?:boolean):void
     {
         let foundNode = this.recursiveFindNodeById(this.list, parentId);
+
+        if(isNullOrUndefined(openParents))
+        {
+            openParents = false;
+        }
 
         if(isNullOrUndefined(foundNode))
         {
@@ -79,7 +84,7 @@ export class TerraNodeTreeConfig<D>
         }
         else
         {
-            this.addNode(node, false, foundNode);
+            this.addNode(node, openParents, foundNode);
         }
     }
 
