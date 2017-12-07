@@ -2,6 +2,7 @@
 # 2.1.33-zlk (07.12.2017)
 
 ### Feature
+* **terra-checkbox-tree** component accomplished. Basic comportment implemented
 * **terra-base-service** new method `addParamsToUrl` that generically appends query parameters to a given url
 * **terra-multi-split-view** added `setSelectedView` method to the config, to be able to manually select a specific view
 * **terra-pager** clicks on paging buttons are now debounced
