@@ -157,5 +157,8 @@
 
 .highlight
 {
-    display: none;
+    &:hover
+    {
+        border: 1px solid $blue-hover;
+    }
 }
