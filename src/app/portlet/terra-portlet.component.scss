@@ -33,7 +33,7 @@
         background-color: $grey-2;
         padding: 12px;
         border-radius: 5px;
-
+        
         table.table
         {
             thead
@@ -153,4 +153,9 @@
     {
         margin: 1rem 0;
     }
+}
+
+.highlight
+{
+    display: none;
 }
