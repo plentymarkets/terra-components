@@ -1,6 +1,9 @@
 <a name="2.1.34-zlk"></a>
 # 2.1.34-zlk (XX.XX.XXXX)
 
+### Bug Fixes
+* **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
+
 ### Feature
 * **terra-checkbox-tree** component accomplished. Basic comportment implemented
 
