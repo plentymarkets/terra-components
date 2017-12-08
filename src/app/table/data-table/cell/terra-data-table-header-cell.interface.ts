@@ -1,6 +1,8 @@
 /**
  * @author mkunze
  */
+import { TerraTextAlignEnum } from './terra-text-align.interface';
+
 export interface TerraDataTableHeaderCellInterface
 {
     caption:string;
@@ -9,5 +11,8 @@ export interface TerraDataTableHeaderCellInterface
     isHidden?:boolean;
     tooltipText?:string;
     tooltipPlacement?:string;
-    textAlign?:string;
+    /**
+     * @deprecated type 'string' will be removed in next major release. Please only use values of type TerraTextAlignEnum instead.
+     */
+    textAlign?:string | TerraTextAlignEnum;
 }
