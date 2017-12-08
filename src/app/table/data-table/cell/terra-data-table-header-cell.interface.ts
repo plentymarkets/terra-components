@@ -1,7 +1,7 @@
 /**
  * @author mkunze
  */
-import { TerraTextAlignEnum } from './terra-text-align.interface';
+import { TerraTextAlignEnum } from './terra-text-align.enum';
 
 export interface TerraDataTableHeaderCellInterface
 {
