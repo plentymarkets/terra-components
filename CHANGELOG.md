@@ -1,4 +1,12 @@
-#Unreleased
+<a name="2.1.34-zlk"></a>
+# 2.1.34-zlk (XX.XX.XXXX)
+
+### Feature
+* **terra-checkbox-tree** component accomplished. Basic comportment implemented
+
+<a name="2.1.33-zlk"></a>
+# 2.1.33-zlk (07.12.2017)
+
 ### Feature
 * **terra-base-service** new method `addParamsToUrl` that generically appends query parameters to a given url
 * **terra-multi-split-view** added `setSelectedView` method to the config, to be able to manually select a specific view
@@ -43,6 +51,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
+
 ### Feature
 * **terra-multi-split-view** added new interface property _inputs_ to be able to pass a list of input variables to the component, that is added to the split view. This now allows data-binding as usual and will replace interface property _parameter_.
 * **terra-file-input** and **terra-file-browser** Added new components to manage files on S3-Bucket and display file-inputs as form control.
