@@ -18,7 +18,7 @@ export class TerraNodeTreeConfig<D>
      * @param nodeToAdd The provided node to add to the tree.
      * @param parent Optional. The provided parent where nodeToAdd should be added to.
      */
-    public addNode(nodeToAdd:TerraNodeInterface<D>, openParents?:boolean, parent?:TerraNodeInterface<D>):void
+    public addNode(nodeToAdd:TerraNodeInterface<D>, parent?:TerraNodeInterface<D>, openParents?:boolean):void
     {
         //check if the node to add is already added
         let alreadyAddedNode:TerraNodeInterface<D> = this.findNodeById(nodeToAdd.id);
@@ -51,10 +51,9 @@ export class TerraNodeTreeConfig<D>
                     nodeToAdd.parent.children.push(nodeToAdd);
                 }
 
-                if(openParents)
+                if(!isNullOrUndefined(openParents) && openParents)
                 {
                     this.recursiveOpenParent(nodeToAdd);
-                    //nodeToAdd.parent.isOpen = true;
                 }
             }
         }
@@ -73,18 +72,13 @@ export class TerraNodeTreeConfig<D>
     {
         let foundNode = this.recursiveFindNodeById(this.list, parentId);
 
-        if(isNullOrUndefined(openParents))
-        {
-            openParents = false;
-        }
-
         if(isNullOrUndefined(foundNode))
         {
             console.error('Node with id ' + parentId + ' not found!');
         }
         else
         {
-            this.addNode(node, openParents, foundNode);
+            this.addNode(node, foundNode, openParents);
         }
     }
 
@@ -93,7 +87,7 @@ export class TerraNodeTreeConfig<D>
      * @param parentId The identifier of the parent node.
      * @param nodeList The node list to be added.
      */
-    public addChildrenToNodeById(parentId:string | number, nodeList:Array<TerraNodeInterface<D>>):void
+    public addChildrenToNodeById(parentId:string | number, nodeList:Array<TerraNodeInterface<D>>, openParents?:boolean):void
     {
         let foundNode = this.recursiveFindNodeById(this.list, parentId);
 
@@ -105,7 +99,7 @@ export class TerraNodeTreeConfig<D>
         {
             nodeList.forEach((node:TerraNodeInterface<D>) =>
             {
-                this.addNode(node, true, foundNode);
+                this.addNode(node, foundNode, openParents);
             });
         }
     }

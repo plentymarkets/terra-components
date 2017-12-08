@@ -57,6 +57,7 @@ export class TerraNodeComponent<D>
                 {
                     this.inputNode.hasLoaded = true;
                     this.isLoading = false;
+                    this.inputNode.isOpen = true;
                 },
                 () =>
                 {
