@@ -1,6 +1,9 @@
 <a name="2.1.34-zlk"></a>
 # 2.1.34-zlk (XX.XX.XXXX)
 
+### Bug Fixes
+* **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+
 ### Feature
 * **terra-checkbox-tree** component accomplished. Basic comportment implemented
 
