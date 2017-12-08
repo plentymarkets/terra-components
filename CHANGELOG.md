@@ -3,7 +3,8 @@
 
 ### Feature
 * **terra-checkbox-tree** component accomplished. Basic comportment implemented
-
+* **terra-portlet** add new input for component to highlight portlets. Edit css for highlighting portlets. 
+ 
 <a name="2.1.33-zlk"></a>
 # 2.1.33-zlk (07.12.2017)
 
