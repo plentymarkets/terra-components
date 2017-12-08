@@ -12,6 +12,7 @@ import { TerraSimpleTableHeaderCellInterface } from './cell/terra-simple-table-h
 import { TerraSimpleTableRowInterface } from './row/terra-simple-table-row.interface';
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
 import { Key } from 'ts-keycode-enum';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'terra-simple-table',
@@ -101,6 +102,18 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         let index = this.inputRowList.indexOf(rowToDelete);
 
         this.inputRowList.splice(index, 1);
+    }
+
+    public getTextAlign(textAlign:string):any
+    {
+        if(!isNullOrUndefined(textAlign))
+        {
+            return {'text-align': textAlign};
+        }
+        else
+        {
+            return {'text-align': "left"};
+        }
     }
 
     private checkTooltipPlacement(placement:string):string

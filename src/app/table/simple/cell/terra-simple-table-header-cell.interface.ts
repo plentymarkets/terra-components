@@ -7,4 +7,5 @@ export interface TerraSimpleTableHeaderCellInterface
     width:string;
     tooltipText?:string;
     tooltipPlacement?:string;
+    textAlign?:string;
 }
