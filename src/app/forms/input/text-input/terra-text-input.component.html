@@ -11,7 +11,7 @@
            [type]="inputIsPassword?'password':'text'"
            [(ngModel)]="value"
            name="{{inputName}}"
-           (blur)="onBlur()"
+           (blur)="onCustomBlur(value)"
            (input)="onInput()"
            autocomplete="off"
            [disabled]="isDisabled"

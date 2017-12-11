@@ -117,7 +117,7 @@ export class TerraInputComponent implements ControlValueAccessor
     }
 
     //Set touched on blur
-    private onBlur():void
+    public onBlur():void
     {
         this.onTouchedCallback();
     }

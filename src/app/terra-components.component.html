@@ -1,0 +1,9 @@
+<form [formGroup]="_contactForm" novalidate>
+    <terra-text-input [inputIsIban]="true"
+                      [(ngModel)]="ronny"
+                      formControlName="iban">
+    </terra-text-input>
+</form>
+
+
+<terra-button inputCaption="Teste" (outputClicked)="blaaa()"></terra-button>
