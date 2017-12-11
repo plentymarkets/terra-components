@@ -26,6 +26,7 @@ import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { TerraRefTypeInterface } from './cell/terra-ref-type.interface';
 import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 import { TerraDataTableTextInterface } from './cell/terra-data-table-text.interface';
+import { TerraDataTableSortOrder } from './terra-data-table-sort-order.enum';
 
 @Component({
     selector:  'terra-data-table',
@@ -68,12 +69,17 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @Input()
     private _hasCheckboxes:boolean;
 
+    private _sortOrderEnum = TerraDataTableSortOrder;
+    private _sortColumn:TerraDataTableHeaderCellInterface;
+    private _sortOrder:TerraDataTableSortOrder;
+
     constructor()
     {
         this._hasCheckboxes = true;
         this.inputHasCheckboxes = true;
         this.inputHasInitialLoading = false;
         this.inputHasPager = true;
+        this._sortColumn = null;
 
         this.rowList = [];
     }
@@ -182,6 +188,10 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     public set headerList(value:Array<TerraDataTableHeaderCellInterface>)
     {
         this._headerList = value;
+
+        // sort by the first column
+        this._sortColumn = this.headerList[0];
+        this._sortOrder = TerraDataTableSortOrder.DESCENDING;
     }
 
     public get rowList():Array<TerraDataTableRowInterface<D>>
@@ -375,5 +385,25 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             }
         }
         return typeof data;
+    }
+
+    private onColumnHeaderClick(header:TerraDataTableHeaderCellInterface):void
+    {
+        this.changeSortColumn(header);
+    }
+
+    private changeSortColumn(header:TerraDataTableHeaderCellInterface)
+    {
+        if(this._sortColumn === header)
+        {
+            this._sortOrder = this._sortOrder === TerraDataTableSortOrder.DESCENDING ?
+                TerraDataTableSortOrder.ASCENDING :
+                TerraDataTableSortOrder.DESCENDING;
+        }
+        else
+        {
+            this._sortColumn = header;
+            this._sortOrder = TerraDataTableSortOrder.DESCENDING; // default is descending
+        }
     }
 }

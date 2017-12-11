@@ -20,12 +20,15 @@
             <ng-template ngFor let-header [ngForOf]="_headerList">
                 <th *ngIf="!header.isHidden && _rowList && _rowList.length > 0"
                     width="{{header.width}}px"
-                    [ngStyle]="getTextAlign(header)">
+                    [ngStyle]="getTextAlign(header)"
+                    (click)="onColumnHeaderClick(header)">
                     <span [container]="'body'"
                           [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                           [tooltip]="header.tooltipText"
                           [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
                           {{header.caption}}
+                        <span *ngIf="header === _sortColumn && _sortOrder === _sortOrderEnum.ASCENDING" class="icon-sort_asc"></span>
+                        <span *ngIf="header === _sortColumn && _sortOrder === _sortOrderEnum.DESCENDING" class="icon-sort_desc"></span>
                     </span>
                 </th>
             </ng-template>
