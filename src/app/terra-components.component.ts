@@ -8,10 +8,6 @@ import {
     Translation,
     TranslationService
 } from 'angular-l10n';
-import {
-    FormControl,
-    FormGroup
-} from '@angular/forms';
 
 @Component({
     selector: 'app-root',
@@ -21,8 +17,6 @@ import {
 export class TerraComponentsComponent extends Translation implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
-
-    private _contactForm:FormGroup;
 
     public constructor(private viewContainerRef:ViewContainerRef,
                        public locale:LocaleService,
@@ -75,14 +69,5 @@ export class TerraComponentsComponent extends Translation implements OnInit
 
     ngOnInit()
     {
-        this._contactForm = new FormGroup({
-            iban: new FormControl()
-        });
-
-    }
-
-    blaaa():void
-    {
-        let test = this._contactForm.valid;
     }
 }
