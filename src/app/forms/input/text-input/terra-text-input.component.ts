@@ -10,6 +10,8 @@ import { TerraRegex } from '../../../regex/terra-regex';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 
+let nextId:number = 0;
+
 @Component({
     selector:  'terra-text-input',
     styles:    [
@@ -60,6 +62,11 @@ export class TerraTextInputComponent extends TerraInputComponent
         this.value = v;
     }
 
+    /**
+     * @description a unique string identifier for the specific input instance.
+     */
+    private _id:string;
+
     constructor()
     {
         super(TerraRegex.MIXED);
@@ -68,6 +75,9 @@ export class TerraTextInputComponent extends TerraInputComponent
         {
             this.inputIsPassword = false;
         }
+
+        // generate the id of the input instance
+        this._id = `text-input_#${nextId++}`;
     }
 
     public onInput():void

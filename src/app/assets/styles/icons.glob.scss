@@ -60,6 +60,22 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-open_external_link
+{
+    &:before
+    {
+        content: $icon-open_external_link;
+    }
+}
+
+.icon-unlock_contact
+{
+    &:before
+    {
+        content: $icon-unlock_contact;
+    }
+}
+
 .icon-exch_adre_type
 {
     &:before

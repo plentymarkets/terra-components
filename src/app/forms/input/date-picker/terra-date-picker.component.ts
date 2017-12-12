@@ -16,6 +16,8 @@ import {
 } from 'mydatepicker';
 import moment = require('moment');
 
+let nextId:number = 0;
+
 /**
  * @author mfrank
  */
@@ -63,8 +65,11 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 
     @ViewChild('viewChildMyDatePicker') viewChildMyDatePicker:MyDatePicker;
 
+    /**
+     * @description a unique string identifier for the specific input instance.
+     */
+    private _id:string;
     private _value:IMyDateModel;
-    private _myDateModel:IMyDateModel;
     private _currentLocale:string;
     private _datePickerOptions:IMyOptions;
 
@@ -77,6 +82,9 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.inputDisplayDateFormat = 'dd.mm.yyyy';
 
         this._currentLocale = localStorage.getItem('plentymarkets_lang_');
+
+        // generate the id of the input instance
+        this._id = `date-picker_#${nextId}`;
     }
 
     ngOnChanges()

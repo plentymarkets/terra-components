@@ -7,6 +7,8 @@ import { TerraInputComponent } from '../terra-input.component';
 import { TerraRegex } from '../../../regex/terra-regex';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
+let nextId:number = 0;
+
 @Component({
     selector:  'terra-double-input',
     styles:    [require('./terra-double-input.component.scss')],
@@ -26,16 +28,28 @@ export class TerraDoubleInputComponent extends TerraInputComponent
      * */
     @Input() inputIsPriceInput:boolean;
 
-    constructor()
-    {
-        super(TerraRegex.DOUBLE);
-    }
-
+    /**
+     * @deprecated
+     * @param {number} v
+     */
     @Input()
     public set inputValue(v:number)
     {
         console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
 
         this.value = v;
+    }
+
+    /**
+     * @description a unique string identifier for the specific input instance.
+     */
+    private _id:string;
+
+    constructor()
+    {
+        super(TerraRegex.DOUBLE);
+
+        // generate the id of the input instance
+        this._id = `double-input_#${nextId}`;
     }
 }

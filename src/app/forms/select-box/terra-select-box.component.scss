@@ -11,6 +11,11 @@
     
     cursor: pointer;
     
+    label &.disabled
+    {
+        cursor: not-allowed;
+    }
+    
     .select-box
     {
         height: $terra-btn-md-height - 2;
@@ -65,13 +70,13 @@
     &.disabled
     {
         background-color: $grey-2;
-        border: 1px solid $grey-3;
+        border: 1px solid $grey-5;
         .select-box
         {
             filter: opacity(30%);
         }
         
-        label, .select-box
+        .select-box
         {
             cursor: not-allowed;
         }
