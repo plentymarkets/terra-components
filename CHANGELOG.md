@@ -5,6 +5,7 @@
 * **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
 
 ### Feature
+* **terra-input** Add input for IBAN validation. Add function to validate input (OnBlur). Add Tooltip for invalid Iban.
 * **terra-checkbox-tree** component accomplished. Basic comportment implemented
 
 <a name="2.1.33-zlk"></a>
