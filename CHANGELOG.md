@@ -6,6 +6,7 @@
 * **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
 
 ### Feature
+* **terra-input** Add input for IBAN validation. Add function to validate input (OnBlur). Add Tooltip for invalid Iban.
 * **terra-checkbox-tree** component accomplished. Basic comportment implemented
 * **terra-simple-table** new interface property `textAlign` that uses `TerraTextAlignEnum` to align captions in table header cells
 * **terra-data-table** constraint interface property `textAlign` with `TerraTextAlignEnum`. Property type string is deprecated
