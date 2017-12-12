@@ -93,17 +93,10 @@ export class TerraTextInputComponent extends TerraInputComponent
 
     private onCustomBlur(iban:string):void
     {
-        if(this.inputIsIban === true)
+        if(this.inputIsIban)
         {
             this.isValid = IBAN.isValid(iban);
-            if(this.isValid)
-            {
-                this.inputTooltipText = null;
-            }
-            else
-            {
-                this.inputTooltipText = this._translation.translate('terraTextInput.invalidIban');
-            }
+            this.inputTooltipText = this.isValid ? null : this._translation.translate('terraTextInput.invalidIban');
         }
 
         this.onBlur();
