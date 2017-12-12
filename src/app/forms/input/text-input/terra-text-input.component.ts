@@ -96,13 +96,13 @@ export class TerraTextInputComponent extends TerraInputComponent
         if(this.inputIsIban === true)
         {
             this.isValid = IBAN.isValid(iban);
-            if(this.isValid === false)
+            if(this.isValid)
             {
-                this.inputTooltipText = this._translation.translate('terraTextInput.invalidIban');
+                this.inputTooltipText = null;
             }
             else
             {
-                this.inputTooltipText = null;
+                this.inputTooltipText = this._translation.translate('terraTextInput.invalidIban');
             }
         }
 
