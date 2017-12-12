@@ -51,6 +51,7 @@
                 text-align: right;
                 vertical-align: bottom;
                 padding-right: 4px;
+                border-radius: $border-radius;
                 
                 .btnclear
                 {
@@ -72,7 +73,6 @@
                 .btnpicker
                 {
                     background-color: transparent;
-                    color: $brand-primary;
                     width: 24px;
                     border: 0px;
                     //css for myDateModel select button
@@ -152,4 +152,22 @@
             }
         }
     }
+}
+
+div.disabled .selectiongroup
+{
+    background-color: $grey-2;
+    
+    input.selection
+    {
+        opacity: unset !important;
+        background-color: $grey-2;
+    }
+    
+    .selbtngroup
+    {
+        opacity: unset !important;
+        background-color: $grey-2;
+    }
+    
 }

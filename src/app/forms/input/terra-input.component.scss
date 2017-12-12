@@ -153,10 +153,15 @@ input[type="search"]::-webkit-search-decoration
     &.disabled
     {
         background-color: $grey-2;
-        border: 1px solid $grey-3;
+        border: 1px solid $grey-5;
         input
         {
             color: $grey-5;
+        }
+        
+        label
+        {
+            cursor: not-allowed;
         }
     }
 }

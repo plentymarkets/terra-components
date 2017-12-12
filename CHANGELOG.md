@@ -1,6 +1,10 @@
 <a name="2.1.34-zlk"></a>
 # 2.1.34-zlk (XX.XX.XXXX)
 
+### Bug Fixes
+* **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
+* **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+
 ### Feature
 * **terra-checkbox-tree** component accomplished. Basic comportment implemented
 * **terra-simple-table** new interface property `textAlign` that uses `TerraTextAlignEnum` to align captions in table header cells
