@@ -10,6 +10,8 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 
+let nextId:number = 0;
+
 @Component({
     selector:  'terra-checkbox',
     styles:    [require('./terra-checkbox.component.scss')],
@@ -43,6 +45,11 @@ export class TerraCheckboxComponent implements ControlValueAccessor
 
     @Output() valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
+    /**
+     * @description a unique string identifier for the specific input instance.
+     */
+    private _id:string;
+
     //The internal data model
     private _innerValue:boolean = false;
     private _isIndeterminate:boolean = false;
@@ -60,6 +67,8 @@ export class TerraCheckboxComponent implements ControlValueAccessor
 
     constructor()
     {
+        // generate the id of the input instance
+        this._id = `text-input_#${nextId++}`;
     }
 
     //get accessor
