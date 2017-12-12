@@ -13,6 +13,7 @@ import { TerraSimpleTableRowInterface } from './row/terra-simple-table-row.inter
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
 import { Key } from 'ts-keycode-enum';
 import { isNullOrUndefined } from 'util';
+import { TerraTextAlignEnum } from '../data-table/cell/terra-text-align.enum';
 
 @Component({
     selector: 'terra-simple-table',
@@ -106,13 +107,21 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     public getTextAlign(textAlign:string):any
     {
-        if(!isNullOrUndefined(textAlign))
+        switch(textAlign)
         {
-            return {'text-align': textAlign};
-        }
-        else
-        {
-            return {'text-align': "left"};
+            case TerraTextAlignEnum.LEFT:
+            {
+                return {'text-align': TerraTextAlignEnum.LEFT};
+            }
+            case TerraTextAlignEnum.RIGHT:
+            {
+                return {'text-align': TerraTextAlignEnum.RIGHT};
+            }
+            case TerraTextAlignEnum.CENTER:
+            {
+                return {'text-align': TerraTextAlignEnum.CENTER};
+            }
+            default: return TerraTextAlignEnum.LEFT;
         }
     }
 
