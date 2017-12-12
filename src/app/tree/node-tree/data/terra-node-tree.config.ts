@@ -1,5 +1,7 @@
 import { TerraNodeInterface } from './terra-node.interface';
 import { isNullOrUndefined } from 'util';
+import { TerraSuggestionBoxValueInterface } from '../../../forms/suggestion-box/data/terra-suggestion-box.interface';
+import { TranslationService } from 'angular-l10n';
 
 export class TerraNodeTreeConfig<D>
 {
@@ -12,6 +14,13 @@ export class TerraNodeTreeConfig<D>
      * @description The current selected node.
      */
     private _currentSelectedNode:TerraNodeInterface<D>;
+
+    private _searchNodeList:Array<TerraSuggestionBoxValueInterface> = [];
+
+    constructor(public _translation:TranslationService)
+    {
+
+    }
 
     /**
      * @description Adds a node.
@@ -56,11 +65,84 @@ export class TerraNodeTreeConfig<D>
                     this.recursiveOpenParent(nodeToAdd);
                 }
             }
+
+            this.addSearchNode(nodeToAdd);
         }
         else
         {
             console.error('Node ' + nodeToAdd.name + ' with id ' + nodeToAdd.id + ' already added!');
         }
+    }
+
+    private updateSearchNodes():void
+    {
+        // reset node list
+        this._searchNodeList = [];
+
+        // convert tree model into flat hierarchy
+        this._list.forEach((node:TerraNodeInterface<D>) =>
+        {
+            this.addSearchNode(node);
+        });
+    }
+
+    private addSearchNode(node:TerraNodeInterface<D>):void
+    {
+        // check for null pointer
+        if(isNullOrUndefined(node))
+        {
+            return;
+        }
+
+        // seek trough its children, if existing
+        if(!isNullOrUndefined(node.children) && node.children.length > 0)
+        {
+            node.children.forEach((child:TerraNodeInterface<D>) =>
+            {
+                this.addSearchNode(child);
+            });
+        }
+        // only add nodes without children <=> leaves
+        else
+        {
+            // check if node is visible
+            if(isNullOrUndefined(node.isHidden) || !node.isHidden)
+            {
+                // add node to the flat list
+                this._searchNodeList.push(
+                    {
+                        value:   node,
+                        caption: this.getRecursiveNodePath(node, null)
+                    }
+                );
+            }
+        }
+    }
+
+    private getRecursiveNodePath(node:TerraNodeInterface<D>, name:string):string
+    {
+        if(!isNullOrUndefined(node))
+        {
+            if(isNullOrUndefined(name))
+            {
+                name = this._translation.translate(node.name);
+            }
+            else
+            {
+                name = this._translation.translate(node.name) + ' » ' + name;
+            }
+
+            if(!isNullOrUndefined(node.parent))
+            {
+                return this.getRecursiveNodePath(node.parent, name);
+            }
+            else
+            {
+                return name;
+            }
+        }
+
+        return name;
     }
 
     /**
@@ -279,6 +361,7 @@ export class TerraNodeTreeConfig<D>
     {
         this.recursiveSetParent(value);
         this._list = value;
+        this.updateSearchNodes();
     }
 
     //set parents to all nodes
@@ -368,5 +451,10 @@ export class TerraNodeTreeConfig<D>
                 this.recursiveSetNodeInactive(node.children);
             }
         });
+    }
+
+    public get searchNodeList():Array<TerraSuggestionBoxValueInterface>
+    {
+        return this._searchNodeList;
     }
 }
