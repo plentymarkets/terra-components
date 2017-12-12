@@ -2,6 +2,7 @@
 # 2.1.34-zlk (XX.XX.XXXX)
 
 ### Bug Fixes
+* **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
 * **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
 
 ### Feature
