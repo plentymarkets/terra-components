@@ -92,6 +92,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     ngOnInit():void
     {
+        this.initPagingData();
+
+        // check if rest route is given
         if(!this.inputRestRoute || this.inputRestRoute === '')
         {
             console.error('Rest route not defined');
@@ -111,6 +114,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     private onHeaderCheckboxChange(isChecked:boolean):void
     {
+        // TODO: generalize with resetSelectedRows
         this._isHeaderCheckboxChecked = isChecked;
 
         this.rowList.forEach((row) =>
@@ -215,17 +219,22 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     public doPaging(pagerData:TerraPagerInterface):void
     {
-        this.outputDoPagingEvent.emit(pagerData);
-
-        this._isHeaderCheckboxChecked = false;
-
-        if(!isNullOrUndefined(this.rowList))
+        if(this.inputRestRoute)
         {
-            this.rowList.forEach((row:TerraDataTableRowInterface<D>) =>
-            {
-                this.changeRowState(false, row);
-            });
+            // update paging data with data from the pager
+            this.updatePagingData(pagerData);
+
+            // request data from server
+            this.getResults();
         }
+        else
+        {
+            // TODO: remove when deprecated stuff is removed
+            this.outputDoPagingEvent.emit(pagerData);
+        }
+
+        // reset row selections
+        this.resetSelectedRows();
     }
 
     public doSearch(restCall:Observable<I>):void
@@ -235,20 +244,27 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             return;
         }
 
-        this._requestPending = true;
-        restCall.subscribe(this.onSuccessFunction, error =>
-            {
-                if(error.status == 401 || error.status == 500)
+        if(this.inputRestRoute)
+        {
+            this.getResults();
+        }
+        else
+        {
+            this._requestPending = true;
+            restCall.subscribe(this.onSuccessFunction, error =>
                 {
-                    //TODO
-                    alert(error.status);
+                    if(error.status == 401 || error.status == 500)
+                    {
+                        //TODO
+                        alert(error.status);
+                    }
+                },
+                () =>
+                {
+                    this._requestPending = false;
                 }
-            },
-            () =>
-            {
-                this._requestPending = false;
-            }
-        );
+            );
+        }
     }
 
     public getTextAlign(item:TerraDataTableHeaderCellInterface):any
@@ -376,6 +392,58 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             page:         this.pagingData.page,
             itemsPerPage: this.pagingData.itemsPerPage
         };
-        this._service.getResults(params, this._sortColumn.identifier).subscribe(this.onSuccessFunction);
+        this._service.getResults(params, this._sortColumn.identifier).subscribe((res:TerraPagerInterface) =>
+        {
+            // update paging data
+            this.pagingData = {
+                page: res.page,
+                itemsPerPage: res.itemsPerPage,
+                totalsCount: res.totalsCount,
+                isLastPage: res.isLastPage,
+                lastPageNumber: res.lastPageNumber,
+                firstOnPage: res.firstOnPage,
+                lastOnPage: res.lastOnPage
+            };
+
+            // execute custom success function
+            this.onSuccessFunction(res);
+        });
+    }
+
+    private updatePagingData(pagerData:TerraPagerInterface)
+    {
+        this.pagingData.page = pagerData.page;
+        this.pagingData.itemsPerPage = pagerData.itemsPerPage;
+    }
+
+    private resetSelectedRows()
+    {
+        this._isHeaderCheckboxChecked = false;
+
+        if(!isNullOrUndefined(this.rowList))
+        {
+            this.rowList.forEach((row:TerraDataTableRowInterface<D>) =>
+            {
+                this.changeRowState(false, row);
+            });
+        }
+    }
+
+    private initPagingData()
+    {
+        let itemsPerPage:number = 25;
+        if(this.defaultPagingSize)
+        {
+            itemsPerPage = this.defaultPagingSize;
+        }
+        else if(this.pagingSize && this.pagingSize[0])
+        {
+            itemsPerPage = this.pagingSize[0].value;
+        }
+
+        this.pagingData = {
+            page: 1,
+            itemsPerPage: itemsPerPage
+        };
     }
 }
