@@ -41,7 +41,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
 
     /**
-     * @deprecated
+     * @deprecated Please use `inputRestRoute` instead
      */
     @Input() inputService:S;
     /**
@@ -59,14 +59,14 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
 
+    public rowList:Array<TerraDataTableRowInterface<D>>;
+    public onSuccessFunction:(res) => void;
+    public pagingData:TerraPagerInterface;
+    public pagingSize:Array<TerraSelectBoxValueInterface>;
+    public defaultPagingSize:number;
     private _headerList:Array<TerraDataTableHeaderCellInterface>;
-    private _rowList:Array<TerraDataTableRowInterface<D>>;
     private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
     private _isHeaderCheckboxChecked:boolean = false;
-    private _pagingData:TerraPagerInterface;
-    private _pagingSize:Array<TerraSelectBoxValueInterface>;
-    private _onSuccessFunction:(res) => void;
-    private _defaultPagingSize:number;
     private _requestPending:boolean;
 
     /**
@@ -184,9 +184,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         if(!row.disabled)
         {
-            this._rowList.forEach((row) =>
+            this.rowList.forEach((r) =>
             {
-                row.isActive = false;
+                r.isActive = false;
             });
 
             row.isActive = true;
@@ -206,16 +206,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         // sort by the first column
         this._sortColumn = this.headerList[0];
         this._sortOrder = TerraDataTableSortOrder.DESCENDING;
-    }
-
-    public get rowList():Array<TerraDataTableRowInterface<D>>
-    {
-        return this._rowList;
-    }
-
-    public set rowList(value:Array<TerraDataTableRowInterface<D>>)
-    {
-        this._rowList = value;
     }
 
     public deleteRow(rowToDelete:TerraDataTableRowInterface<D>):void
@@ -238,16 +228,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         return this._selectedRowList;
     }
 
-    public set pagingData(value:TerraPagerInterface)
-    {
-        this._pagingData = value;
-    }
-
-    public get pagingData():TerraPagerInterface
-    {
-        return this._pagingData;
-    }
-
     public doPaging(pagerData:TerraPagerInterface):void
     {
         this.outputDoPagingEvent.emit(pagerData);
@@ -261,36 +241,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
                 this.changeRowState(false, row);
             });
         }
-    }
-
-    public get pagingSize():Array<TerraSelectBoxValueInterface>
-    {
-        return this._pagingSize;
-    }
-
-    public set pagingSize(value:Array<TerraSelectBoxValueInterface>)
-    {
-        this._pagingSize = value;
-    }
-
-    public get defaultPagingSize():number
-    {
-        return this._defaultPagingSize;
-    }
-
-    public set defaultPagingSize(value:number)
-    {
-        this._defaultPagingSize = value;
-    }
-
-    public get onSuccessFunction():(res:any) => void
-    {
-        return this._onSuccessFunction;
-    }
-
-    public set onSuccessFunction(value:(res:any) => void)
-    {
-        this._onSuccessFunction = value;
     }
 
     public doSearch(restCall:Observable<I>):void
