@@ -53,7 +53,7 @@
                     
                     <!-- LEGACY INTERFACE!!!! -->
                     <td *ngIf="!cell.isHidden && !cell.data"
-                        (click)="rowClicked(cell, row)"
+                        (click)="rowClicked(row)"
                         [container]="'body'"
                         [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
                         [tooltip]="tdTooltip"
@@ -71,7 +71,7 @@
                         <div class="btn-group" *ngIf="cell.buttonList">
                             <ng-template ngFor let-button [ngForOf]="cell.buttonList">
                                 <terra-button *ngIf="!button.isHidden"
-                                              (outputClicked)="button.clickFunction()"
+                                              (outputClicked)="button.clickFunction();$event.stopPropagation()"
                                               [inputIcon]="button.icon"
                                               [inputIsPrimary]="button.isPrimary"
                                               [inputIsSecondary]="button.isSecondary"
@@ -90,7 +90,7 @@
                     <td *ngIf="!cell.isHidden && cell.data"
                         [ngSwitch]="getCellDataType(cell.data)"
                         [ngStyle]="getTextAlign(_headerList[i])"
-                        (click)="rowClicked(cell, row)"
+                        (click)="rowClicked(row)"
                         [tooltip]="tdTooltip"
                         [container]="'body'"
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"

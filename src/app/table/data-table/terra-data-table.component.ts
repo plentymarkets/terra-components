@@ -3,6 +3,7 @@ import {
     EventEmitter,
     Input,
     OnChanges,
+    OnInit,
     Output,
     SimpleChanges,
     ViewChild
@@ -15,9 +16,7 @@ import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraBaseData } from '../../data/terra-base.data';
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
-import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
-import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
 import {
     isArray,
     isNullOrUndefined
@@ -27,18 +26,27 @@ import { TerraRefTypeInterface } from './cell/terra-ref-type.interface';
 import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 import { TerraDataTableTextInterface } from './cell/terra-data-table-text.interface';
 import { TerraDataTableSortOrder } from './terra-data-table-sort-order.enum';
+import { TerraDataTableService } from './terra-data-table.service';
+import { TerraPagerParameterInterface } from '../../pager/data/terra-pager.parameter.interface';
 
 @Component({
     selector:  'terra-data-table',
-    providers: [TerraDataTableContextMenuService],
+    providers: [TerraDataTableContextMenuService,
+                TerraDataTableService],
     styles:    [require('./terra-data-table.component.scss')],
     template:  require('./terra-data-table.component.html')
 })
-export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> implements OnChanges
+export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> implements OnInit, OnChanges
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
 
+    /**
+     * @deprecated
+     */
     @Input() inputService:S;
+    /**
+     * @deprecated
+     */
     @Input() inputDataType:string;
     @Input() inputHasCheckboxes:boolean;
     @Input() inputHasPager:boolean;
@@ -46,6 +54,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @Input() inputNoResultTextPrimary:string;
     @Input() inputNoResultTextSecondary:string;
     @Input() inputNoResultButtons:Array<TerraButtonInterface>;
+    @Input() inputRestRoute:string;
 
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
@@ -58,9 +67,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _pagingSize:Array<TerraSelectBoxValueInterface>;
     private _onSuccessFunction:(res) => void;
     private _defaultPagingSize:number;
-    private _initialLoadingMessage:string;
-    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
-    private _langPrefix:string = 'terraDataTable';
     private _requestPending:boolean;
 
     /**
@@ -73,7 +79,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _sortColumn:TerraDataTableHeaderCellInterface;
     private _sortOrder:TerraDataTableSortOrder;
 
-    constructor()
+    constructor(private _service:TerraDataTableService)
     {
         this._hasCheckboxes = true;
         this.inputHasCheckboxes = true;
@@ -84,6 +90,14 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this.rowList = [];
     }
 
+    ngOnInit():void
+    {
+        if(!this.inputRestRoute || this.inputRestRoute === '')
+        {
+            console.error('Rest route not defined');
+        }
+        this._service.url = this.inputRestRoute;
+    }
 
     ngOnChanges(changes:SimpleChanges):void
     {
@@ -166,9 +180,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
     }
 
-    private rowClicked(cell:TerraDataTableCellInterface, row:TerraDataTableRowInterface<D>):void
+    private rowClicked(row:TerraDataTableRowInterface<D>):void
     {
-        if(!cell.buttonList && !row.disabled)
+        if(!row.disabled)
         {
             this._rowList.forEach((row) =>
             {
@@ -389,21 +403,44 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     private onColumnHeaderClick(header:TerraDataTableHeaderCellInterface):void
     {
-        this.changeSortColumn(header);
+        // change sorting column and order only if no request is pending
+        if(!this._service.isLoading)
+        {
+            this.changeSortColumn(header);
+        }
     }
 
     private changeSortColumn(header:TerraDataTableHeaderCellInterface)
     {
+        // clicked on the same column?
         if(this._sortColumn === header)
         {
-            this._sortOrder = this._sortOrder === TerraDataTableSortOrder.DESCENDING ?
-                TerraDataTableSortOrder.ASCENDING :
-                TerraDataTableSortOrder.DESCENDING;
+            // only change sorting order
+            this.toggleSortingOrder();
         }
         else
         {
             this._sortColumn = header;
             this._sortOrder = TerraDataTableSortOrder.DESCENDING; // default is descending
         }
+
+        // get Results with updated parameter
+        this.getResults();
+    }
+
+    private toggleSortingOrder():void
+    {
+        this._sortOrder = this._sortOrder === TerraDataTableSortOrder.DESCENDING ?
+            TerraDataTableSortOrder.ASCENDING :
+            TerraDataTableSortOrder.DESCENDING;
+    }
+
+    private getResults():void
+    {
+        let params:TerraPagerParameterInterface = {
+            page:         this.pagingData.page,
+            itemsPerPage: this.pagingData.itemsPerPage
+        };
+        this._service.getResults(params, this._sortColumn.identifier).subscribe(this.onSuccessFunction);
     }
 }
