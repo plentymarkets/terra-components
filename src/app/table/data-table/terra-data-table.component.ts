@@ -208,21 +208,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this._sortOrder = TerraDataTableSortOrder.DESCENDING;
     }
 
-    public deleteRow(rowToDelete:TerraDataTableRowInterface<D>):void
-    {
-        let index = this.rowList.indexOf(rowToDelete);
-
-        this.rowList.splice(index, 1);
-
-        let selectedIndex = this.selectedRowList.indexOf(rowToDelete);
-
-        // check if row exists in selectedRowList
-        if(selectedIndex != null)
-        {
-            this.selectedRowList.splice(selectedIndex, 1);
-        }
-    }
-
     public get selectedRowList():Array<TerraDataTableRowInterface<D>>
     {
         return this._selectedRowList;
