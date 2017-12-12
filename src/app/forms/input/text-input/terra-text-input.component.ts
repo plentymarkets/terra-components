@@ -10,6 +10,7 @@ import { TerraRegex } from '../../../regex/terra-regex';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import * as IBAN from 'iban';
+import { TranslationService } from 'angular-l10n';
 
 let nextId:number = 0;
 
@@ -71,7 +72,7 @@ export class TerraTextInputComponent extends TerraInputComponent
      */
     private _id:string;
 
-    constructor()
+    constructor(private _translation:TranslationService)
     {
         super(TerraRegex.MIXED);
 
@@ -95,6 +96,14 @@ export class TerraTextInputComponent extends TerraInputComponent
         if(this.inputIsIban === true)
         {
             this.isValid = IBAN.isValid(iban);
+            if(this.isValid === false)
+            {
+                this.inputTooltipText = this._translation.translate('terraTextInput.invalidIban');
+            }
+            else
+            {
+                this.inputTooltipText = null;
+            }
         }
 
         this.onBlur();
