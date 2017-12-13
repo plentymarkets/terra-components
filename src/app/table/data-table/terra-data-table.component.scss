@@ -129,6 +129,31 @@
     border-radius: 0;
 }
 
+.group_function
+{
+    margin-bottom: 6px;
+    
+    .group_function_head
+    {
+        padding: 1px 9px 4px 4px;
+        background: transparent;
+        
+        span
+        {
+            color: $grey-12;
+            font-size: $font-size-4;
+            font-weight: $font-weight-2;
+        }
+    }
+    
+    .group_function_body
+    {
+        background-color: $grey-2;
+        padding: 12px;
+        border-radius: 5px;
+    }
+}
+
 @media (max-width: 767px)
 {
     table, td, tr, th, thead, tbody
