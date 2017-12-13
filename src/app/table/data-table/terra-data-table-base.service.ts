@@ -7,12 +7,30 @@ import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-
 export abstract class TerraDataTableBaseService<T> extends TerraBaseService
 {
     public requestPending:boolean;
-    public onSuccessFunction:(res) => void;
+    public onSuccessFunction:(res:Array<T>) => void;
     public pagingData:TerraPagerParameterInterface;
     public pagingSize:Array<TerraSelectBoxValueInterface>;
     public defaultPagingSize:number;
 
-    //private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
+    public getResults(params?:TerraPagerParameterInterface, sortBy?:string):Observable<TerraPagerInterface>
+    {
+        // add sortBy attribute to pager params
+        if(params && sortBy)
+        {
+            params['sortBy'] = sortBy;
+        }
 
-    public abstract getResults(params?:TerraPagerParameterInterface, orderBy?:string):Observable<TerraPagerInterface>
+        // request table data from the server
+        this.requestPending = true;
+        let request = this.requestTableData(params);
+        request.subscribe(
+            (res:TerraPagerInterface) => this.onSuccessFunction(res.entries),
+            (error:any) => {},
+            () => this.requestPending = false
+        );
+
+        return request;
+    }
+
+    public abstract requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface>
 }

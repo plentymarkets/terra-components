@@ -422,9 +422,6 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
         {
             // update paging data
             this.updatePagingData(res);
-
-            // execute custom success function
-            this.inputService.onSuccessFunction(res);
         });
     }
 }
