@@ -1,6 +1,5 @@
 import {
     Component,
-    ElementRef,
     EventEmitter,
     Input,
     OnChanges,
@@ -50,6 +49,7 @@ import {
             })),
             transition('hidden <=> collapsed', [
                 animate(300)
+
             ])
         ])
     ]
@@ -110,18 +110,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         else
         {
             return 'hidden';
-        }
-    }
-
-    private getGroupFunctionElementHeight():string
-    {
-        if(!isNullOrUndefined(this.viewChildGroupFunctionElement))
-        {
-            return this.viewChildGroupFunctionElement.nativeElement.offsetHeight;
-        }
-        else
-        {
-            return '';
         }
     }
 
