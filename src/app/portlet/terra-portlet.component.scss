@@ -88,6 +88,7 @@
             overflow: hidden;
         }
     }
+    
 }
 
 .config-table
@@ -157,8 +158,14 @@
 
 .highlight
 {
+    margin: 1px;
     &:hover
     {
-        border: 1px solid $blue-hover;
+        .portlet
+        {
+            margin: -1px;
+            border-radius: 5px;
+            border: 1px solid $blue-hover;
+        }
     }
 }
