@@ -20,7 +20,7 @@
             <ng-template ngFor let-header [ngForOf]="_headerList">
                 <th *ngIf="!header.isHidden && _rowList && _rowList.length > 0"
                     width="{{header.width}}px"
-                    [ngStyle]="getTextAlign(header)">
+                    [ngStyle]="{ 'text-align': getTextAlign(header) }">
                     <span [container]="'body'"
                           [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                           [tooltip]="header.tooltipText"
@@ -55,7 +55,7 @@
                         [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
                         [tooltip]="tdTooltip"
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
-                        [ngStyle]="getTextAlign(_headerList[i])">
+                        [ngStyle]="{ 'text-align': getTextAlign(_headerList[i]) }">
                         <span [ngStyle]="{color: cell.color}">
                             <span *ngIf="cell.icon" [ngClass]="cell.icon"></span>
                             <span *ngIf="!cell.href">{{cell.caption}}</span>
@@ -86,7 +86,7 @@
                     <!-- new cell interface -->
                     <td *ngIf="!cell.isHidden && cell.data"
                         [ngSwitch]="getCellDataType(cell.data)"
-                        [ngStyle]="getTextAlign(_headerList[i])"
+                        [ngStyle]="{ 'text-align': getTextAlign(_headerList[i]) }"
                         (click)="rowClicked(cell, row)"
                         [tooltip]="tdTooltip"
                         [container]="'body'"
