@@ -68,7 +68,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     constructor()
     {
         // generate the id of the input instance
-        this._id = `text-input_#${nextId++}`;
+        this._id = `checkbox_#${nextId++}`;
     }
 
     //get accessor
