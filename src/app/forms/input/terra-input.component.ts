@@ -47,7 +47,7 @@ export class TerraInputComponent implements ControlValueAccessor
      * */
     @Input() inputMinValue:number;
     /**
-     * @description Set a text placeholder.
+     * @deprecated inputPlaceholder is deprecated and will be removed in one of the upcoming releases. Use inputName instead.
      * */
     @Input() inputPlaceholder:string;
     /**
@@ -58,7 +58,7 @@ export class TerraInputComponent implements ControlValueAccessor
     private _isValid:boolean;
     private _regex:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
-    
+
     //The internal data model
     private _innerValue:any;
 
