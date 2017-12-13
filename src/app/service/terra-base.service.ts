@@ -95,7 +95,7 @@ export class TerraBaseService
             {
                 return response.text();
             }
-            else if(!isNullOrUndefined(isRaw) && isRaw == true)
+            else if(isRaw)
             {
                 return response;
             }
