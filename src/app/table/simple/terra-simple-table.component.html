@@ -14,7 +14,8 @@
                     [container]="'body'"
                     [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                     [tooltip]="header.tooltipText"
-                    [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
+                    [isDisabled]="!header.tooltipText || header.tooltipText.length == 0"
+                    [ngStyle]="{ 'text-align': header.textAlign } ">
                     <span>{{header.caption}}</span>
                 </th>
             </ng-template>

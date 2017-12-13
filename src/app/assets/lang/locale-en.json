@@ -49,6 +49,9 @@
 		"of": "of"
 	},
 	"terraNoteEditor": {
-		"insertText": "Insert text.."
+		"insertText": "Insert text."
+	},
+	"terraTextInput": {
+		"invalidIban": "IBAN is not valid."
 	}
 }
