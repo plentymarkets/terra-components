@@ -11,11 +11,8 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { TerraDataTableHeaderCellInterface } from './cell/terra-data-table-header-cell.interface';
 import { TerraDataTableRowInterface } from './row/terra-data-table-row.interface';
-import { TerraBaseService } from '../../service/terra-base.service';
 import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
-import { TerraBaseData } from '../../data/terra-base.data';
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
-import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import {
     isArray,
@@ -26,83 +23,85 @@ import { TerraRefTypeInterface } from './cell/terra-ref-type.interface';
 import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 import { TerraDataTableTextInterface } from './cell/terra-data-table-text.interface';
 import { TerraDataTableSortOrder } from './terra-data-table-sort-order.enum';
-import { TerraDataTableService } from './terra-data-table.service';
+import { TerraDataTableBaseService } from './terra-data-table-base.service';
 import { TerraPagerParameterInterface } from '../../pager/data/terra-pager.parameter.interface';
 
 @Component({
     selector:  'terra-data-table',
-    providers: [TerraDataTableContextMenuService,
-                TerraDataTableService],
+    providers: [TerraDataTableContextMenuService],
     styles:    [require('./terra-data-table.component.scss')],
     template:  require('./terra-data-table.component.html')
 })
-export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> implements OnInit, OnChanges
+export class TerraDataTableComponent<T> implements OnInit, OnChanges
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
 
+    @Input() inputService:TerraDataTableBaseService<T>;
+    @Input() inputHeaderList:Array<TerraDataTableHeaderCellInterface>;
+    @Input() inputRowList:Array<TerraDataTableRowInterface<T>>;
+
     /**
-     * @deprecated Please use `inputRestRoute` instead
+     * ability to sort the table by its columns
      */
-    @Input() inputService:S;
+    @Input() inputIsSortable:boolean;
     /**
      * @deprecated
      */
     @Input() inputDataType:string;
     @Input() inputHasCheckboxes:boolean;
     @Input() inputHasPager:boolean;
+    /**
+     * @deprecated
+     */
     @Input() inputHasInitialLoading:boolean;
+    /**
+     * Primary text for no results notice
+     */
     @Input() inputNoResultTextPrimary:string;
+    /**
+     * Secondary text for no results notice
+     */
     @Input() inputNoResultTextSecondary:string;
+    /**
+     * Buttons for no results notice
+     */
     @Input() inputNoResultButtons:Array<TerraButtonInterface>;
-    @Input() inputRestRoute:string;
 
-    @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
-    @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
+    /**
+     * @deprecated
+     * @type {EventEmitter<TerraPagerInterface>}
+     */
+    @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface<T>>();
+    @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
 
-    public rowList:Array<TerraDataTableRowInterface<D>>;
-    public onSuccessFunction:(res) => void;
-    public pagingData:TerraPagerInterface;
-    public pagingSize:Array<TerraSelectBoxValueInterface>;
-    public defaultPagingSize:number;
-    private _headerList:Array<TerraDataTableHeaderCellInterface>;
-    private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
     private _isHeaderCheckboxChecked:boolean = false;
     private _requestPending:boolean;
 
     /**
      * @deprecated
      */
-    @Input()
-    private _hasCheckboxes:boolean;
+    @Input() private _hasCheckboxes:boolean;
 
     private _sortOrderEnum = TerraDataTableSortOrder;
     private _sortColumn:TerraDataTableHeaderCellInterface;
     private _sortOrder:TerraDataTableSortOrder;
+    private _selectedRowList:Array<TerraDataTableRowInterface<T>>;
 
-    constructor(private _service:TerraDataTableService)
+    constructor()
     {
         this._hasCheckboxes = true;
         this.inputHasCheckboxes = true;
         this.inputHasInitialLoading = false;
         this.inputHasPager = true;
         this._sortColumn = null;
-
-        this.rowList = [];
     }
 
-    ngOnInit():void
+    public ngOnInit():void
     {
         this.initPagingData();
-
-        // check if rest route is given
-        if(!this.inputRestRoute || this.inputRestRoute === '')
-        {
-            console.error('Rest route not defined');
-        }
-        this._service.url = this.inputRestRoute;
     }
 
-    ngOnChanges(changes:SimpleChanges):void
+    public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes['_hasCheckboxes'])
         {
@@ -110,38 +109,149 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
                 '_hasCheckboxes is deprecated. It will be removed in one of the upcoming releases. Please use inputHasCheckboxes instead.');
             this.inputHasCheckboxes = changes['_hasCheckboxes'].currentValue;
         }
+
+        if(changes['inputHeaderList'])
+        {
+            if(this.inputIsSortable)
+            {
+                this.resetSorting();
+            }
+        }
+    }
+
+    private initPagingData()
+    {
+        let itemsPerPage:number = 25;
+        if(this.inputService.defaultPagingSize)
+        {
+            itemsPerPage = this.inputService.defaultPagingSize;
+        }
+        else if(this.inputService.pagingSize && this.inputService.pagingSize[0])
+        {
+            itemsPerPage = this.inputService.pagingSize[0].value;
+        }
+
+        this.inputService.pagingData = {
+            page:         1,
+            itemsPerPage: itemsPerPage
+        };
+    }
+
+    private updatePagingData(pagerData:TerraPagerInterface<T>)
+    {
+        this.inputService.pagingData.page = pagerData.page;
+        this.inputService.pagingData.itemsPerPage = pagerData.itemsPerPage;
     }
 
     private onHeaderCheckboxChange(isChecked:boolean):void
     {
-        // TODO: generalize with resetSelectedRows
-        this._isHeaderCheckboxChecked = isChecked;
+        if(isChecked)
+        {
+            this.selectAllRows();
+        }
+        else
+        {
+            this.resetSelectedRows();
+        }
+    }
 
-        this.rowList.forEach((row) =>
+    private onRowCheckboxChange(isChecked:boolean, row:TerraDataTableRowInterface<T>):void
+    {
+        // notify component user
+        this.outputRowCheckBoxChanged.emit(row);
+
+        // update row selection
+        if(isChecked)
+        {
+            this.selectRow(row);
+        }
+        else
+        {
+            this.deselectRow(row);
+        }
+
+        // update header checkbox state
+        this.updateHeaderCheckboxState();
+    }
+
+    private updateHeaderCheckboxState()
+    {
+        if(this.selectedRowList.length == 0) // anything selected?
+        {
+            this._isHeaderCheckboxChecked = false;
+        }
+        else if(this.selectedRowList.length > 0 && this.inputRowList.length == this.selectedRowList.length) // all selected?
+        {
+            this._isHeaderCheckboxChecked = true;
+        }
+        else // some rows selected
+        {
+            this.viewChildHeaderCheckbox.isIndeterminate = true;
+        }
+    }
+
+    private selectRow(row:TerraDataTableRowInterface<T>):void
+    {
+        // check if row is already selected
+        if(this.selectedRowList.find((r:TerraDataTableRowInterface<T>) => r === row))
+        {
+            return;
+        }
+
+        // add row to selected row list
+        this.selectedRowList.push(row);
+    }
+
+    private deselectRow(row:TerraDataTableRowInterface<T>):void
+    {
+        // get index of the row in the selected row list
+        let rowIndex:number = this.selectedRowList.indexOf(row);
+
+        // check if selected row list contains the given row
+        if(rowIndex >= 0)
+        {
+            // remove row from selected row list
+            this.selectedRowList.splice(rowIndex, 1);
+        }
+    }
+
+    private selectAllRows()
+    {
+        this._isHeaderCheckboxChecked = true;
+
+        this.inputRowList.forEach((row) =>
         {
             if(!row.disabled)
             {
-                this.changeRowState(isChecked, row);
+                this.selectRow(row);
             }
         });
     }
 
-    private onRowCheckboxChange(isChecked:boolean, row:TerraDataTableRowInterface<D>):void
+    private resetSelectedRows()
     {
-        this.changeRowState(isChecked, row);
-        this.outputRowCheckBoxChanged.emit(row);
+        this._isHeaderCheckboxChecked = false;
 
-        if(this.selectedRowList.length == 0)
+        // reset selected row list
+        this._selectedRowList = [];
+    }
+
+    public get selectedRowList():Array<TerraDataTableRowInterface<T>>
+    {
+        return this._selectedRowList;
+    }
+
+    private rowClicked(row:TerraDataTableRowInterface<T>):void
+    {
+        if(!row.disabled)
         {
-            this._isHeaderCheckboxChecked = false;
-        }
-        else if(this.selectedRowList.length > 0 && this.rowList.length == this.selectedRowList.length)
-        {
-            this._isHeaderCheckboxChecked = true;
-        }
-        else
-        {
-            this.viewChildHeaderCheckbox.isIndeterminate = true;
+            this.inputRowList.forEach((r) =>
+            {
+                r.isActive = false;
+            });
+
+            row.isActive = true;
+            row.clickFunction();
         }
     }
 
@@ -154,117 +264,17 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
         return 'top';
     }
-
-    private changeRowState(isChecked:boolean, rowToChange:TerraDataTableRowInterface<D>):void
+    
+    public doPaging(pagerData:TerraPagerInterface<T>):void
     {
-        rowToChange.selected = isChecked;
+        // update paging data with data from the pager
+        this.updatePagingData(pagerData);
 
-        let rowFound:boolean = false;
-
-        this.selectedRowList.forEach((row) =>
-        {
-            if(row == rowToChange)
-            {
-                rowFound = true;
-            }
-        });
-
-        if(rowToChange.selected)
-        {
-            if(!rowFound)
-            {
-                this.selectedRowList.push(rowToChange);
-            }
-        }
-        else
-        {
-            let index = this.selectedRowList.indexOf(rowToChange);
-
-            this.selectedRowList.splice(index, 1);
-        }
-    }
-
-    private rowClicked(row:TerraDataTableRowInterface<D>):void
-    {
-        if(!row.disabled)
-        {
-            this.rowList.forEach((r) =>
-            {
-                r.isActive = false;
-            });
-
-            row.isActive = true;
-            row.clickFunction();
-        }
-    }
-
-    public get headerList():Array<TerraDataTableHeaderCellInterface>
-    {
-        return this._headerList;
-    }
-
-    public set headerList(value:Array<TerraDataTableHeaderCellInterface>)
-    {
-        this._headerList = value;
-
-        // sort by the first column
-        this._sortColumn = this.headerList[0];
-        this._sortOrder = TerraDataTableSortOrder.DESCENDING;
-    }
-
-    public get selectedRowList():Array<TerraDataTableRowInterface<D>>
-    {
-        return this._selectedRowList;
-    }
-
-    public doPaging(pagerData:TerraPagerInterface):void
-    {
-        if(this.inputRestRoute)
-        {
-            // update paging data with data from the pager
-            this.updatePagingData(pagerData);
-
-            // request data from server
-            this.getResults();
-        }
-        else
-        {
-            // TODO: remove when deprecated stuff is removed
-            this.outputDoPagingEvent.emit(pagerData);
-        }
+        // request data from server
+        this.getResults();
 
         // reset row selections
         this.resetSelectedRows();
-    }
-
-    public doSearch(restCall:Observable<I>):void
-    {
-        if(isNullOrUndefined(restCall))
-        {
-            return;
-        }
-
-        if(this.inputRestRoute)
-        {
-            this.getResults();
-        }
-        else
-        {
-            this._requestPending = true;
-            restCall.subscribe(this.onSuccessFunction, error =>
-                {
-                    if(error.status == 401 || error.status == 500)
-                    {
-                        //TODO
-                        alert(error.status);
-                    }
-                },
-                () =>
-                {
-                    this._requestPending = false;
-                }
-            );
-        }
     }
 
     public getTextAlign(item:TerraDataTableHeaderCellInterface):any
@@ -355,7 +365,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private onColumnHeaderClick(header:TerraDataTableHeaderCellInterface):void
     {
         // change sorting column and order only if no request is pending
-        if(!this._service.isLoading)
+        if(!this.inputService.requestPending && this.inputIsSortable)
         {
             this.changeSortColumn(header);
         }
@@ -386,64 +396,33 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             TerraDataTableSortOrder.DESCENDING;
     }
 
+    private resetSorting():void
+    {
+        this._sortColumn = this.inputHeaderList[0];
+        this._sortOrder = TerraDataTableSortOrder.DESCENDING;
+    }
+
     private getResults():void
     {
         let params:TerraPagerParameterInterface = {
-            page:         this.pagingData.page,
-            itemsPerPage: this.pagingData.itemsPerPage
+            page:         this.inputService.pagingData.page,
+            itemsPerPage: this.inputService.pagingData.itemsPerPage
         };
-        this._service.getResults(params, this._sortColumn.identifier).subscribe((res:TerraPagerInterface) =>
+        this.inputService.getResults(params, this._sortColumn.identifier).subscribe((res:TerraPagerInterface<T>) =>
         {
             // update paging data
-            this.pagingData = {
-                page: res.page,
-                itemsPerPage: res.itemsPerPage,
-                totalsCount: res.totalsCount,
-                isLastPage: res.isLastPage,
+            this.inputService.pagingData = {
+                page:           res.page,
+                itemsPerPage:   res.itemsPerPage,
+                totalsCount:    res.totalsCount,
+                isLastPage:     res.isLastPage,
                 lastPageNumber: res.lastPageNumber,
-                firstOnPage: res.firstOnPage,
-                lastOnPage: res.lastOnPage
+                firstOnPage:    res.firstOnPage,
+                lastOnPage:     res.lastOnPage
             };
 
             // execute custom success function
-            this.onSuccessFunction(res);
+            this.inputService.onSuccessFunction(res);
         });
-    }
-
-    private updatePagingData(pagerData:TerraPagerInterface)
-    {
-        this.pagingData.page = pagerData.page;
-        this.pagingData.itemsPerPage = pagerData.itemsPerPage;
-    }
-
-    private resetSelectedRows()
-    {
-        this._isHeaderCheckboxChecked = false;
-
-        if(!isNullOrUndefined(this.rowList))
-        {
-            this.rowList.forEach((row:TerraDataTableRowInterface<D>) =>
-            {
-                this.changeRowState(false, row);
-            });
-        }
-    }
-
-    private initPagingData()
-    {
-        let itemsPerPage:number = 25;
-        if(this.defaultPagingSize)
-        {
-            itemsPerPage = this.defaultPagingSize;
-        }
-        else if(this.pagingSize && this.pagingSize[0])
-        {
-            itemsPerPage = this.pagingSize[0].value;
-        }
-
-        this.pagingData = {
-            page: 1,
-            itemsPerPage: itemsPerPage
-        };
     }
 }

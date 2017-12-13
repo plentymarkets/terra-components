@@ -13,7 +13,7 @@
         <tr>
             <th *ngIf="inputHasCheckboxes && rowList.length" width="25px">
                 <terra-checkbox #viewChildHeaderCheckbox
-                                (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
+                                (change)="onHeaderCheckboxChange($event)"
                                 [value]="_isHeaderCheckboxChecked">
                 </terra-checkbox>
             </th>
@@ -27,8 +27,8 @@
                           [tooltip]="header.tooltipText"
                           [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
                           {{header.caption}}
-                        <span *ngIf="header === _sortColumn && _sortOrder === _sortOrderEnum.ASCENDING" class="icon-sort_asc"></span>
-                        <span *ngIf="header === _sortColumn && _sortOrder === _sortOrderEnum.DESCENDING" class="icon-sort_desc"></span>
+                        <span *ngIf="this.inputIsSortable && header === _sortColumn && _sortOrder === _sortOrderEnum.ASCENDING" class="icon-sort_asc"></span>
+                        <span *ngIf="this.inputIsSortable && header === _sortColumn && _sortOrder === _sortOrderEnum.DESCENDING" class="icon-sort_desc"></span>
                     </span>
                 </th>
             </ng-template>
@@ -40,10 +40,10 @@
                 [class.disabled]="row.disabled"
                 [context-menu]="row.contextMenuLinkList">
                 <td *ngIf="inputHasCheckboxes">
-                    <terra-checkbox #rowCheckbox type="checkbox"
+                    <terra-checkbox type="checkbox"
                                     [value]="row.selected"
                                     [inputIsDisabled]="row.disabled"
-                                    (change)="onRowCheckboxChange(rowCheckbox.value, row)">
+                                    (change)="onRowCheckboxChange($event, row)">
                     </terra-checkbox>
                 </td>
                 <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">

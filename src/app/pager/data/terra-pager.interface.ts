@@ -1,4 +1,4 @@
-export interface TerraPagerInterface
+export interface TerraPagerInterface<T>
 {
     page:number;
     itemsPerPage:number;
@@ -8,4 +8,5 @@ export interface TerraPagerInterface
     firstOnPage?:number;
     lastOnPage?:number;
     pagingUnit?:string; //Label for pager items
+    entries?:Array<T>;
 }
