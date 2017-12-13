@@ -18,8 +18,14 @@ import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
-import { isNullOrUndefined } from 'util';
+import {
+    isArray,
+    isNullOrUndefined
+} from 'util';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
+import { TerraRefTypeInterface } from './cell/terra-ref-type.interface';
+import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
+import { TerraDataTableTextInterface } from './cell/terra-data-table-text.interface';
 
 @Component({
     selector:  'terra-data-table',
@@ -91,7 +97,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         {
             if(!row.disabled)
             {
-                this.changeRowState(isChecked, row);    
+                this.changeRowState(isChecked, row);
             }
         });
     }
@@ -296,5 +302,78 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         {
             return {'text-align': "left"};
         }
+    }
+
+    private getCellDataType(data:any):string
+    {
+        function isRefType(arg:any):arg is TerraRefTypeInterface
+        {
+            return arg
+                   && arg.type && typeof arg.type == 'string'
+                   && arg.value && typeof arg.value == 'string';
+        }
+
+        function isTextType(arg:any):arg is TerraDataTableTextInterface
+        {
+            return arg
+                   && arg.caption && typeof arg.caption == 'string';
+        }
+
+        function isTagArray(arg:any):arg is Array<TerraTagInterface>
+        {
+            // check if it is an array
+            if(!isArray(arg))
+            {
+                return false;
+            }
+
+            // check if every element of the array implements the tag interface
+            let implementsInterface:boolean = true;
+            arg.forEach((elem:any) =>
+            {
+                implementsInterface = implementsInterface && elem.badge && typeof elem.badge == 'string';
+            });
+
+            return arg && implementsInterface;
+        }
+
+        function isButtonArray(arg:any):arg is Array<TerraButtonInterface>
+        {
+            // check if it is an array
+            if(!isArray(arg))
+            {
+                return false;
+            }
+
+            // check if every element of the array implements the button interface
+            let implementsInterface:boolean = true;
+            arg.forEach((elem:any) =>
+            {
+                implementsInterface = implementsInterface && elem.clickFunction && typeof elem.clickFunction == 'function';
+            });
+
+            return arg && implementsInterface;
+        }
+
+        if(typeof data === 'object')
+        {
+            if(isRefType(data))
+            {
+                return 'TerraRefTypeInterface';
+            }
+            else if(isTextType(data))
+            {
+                return 'TerraDataTableTextInterface';
+            }
+            else if(isTagArray(data))
+            {
+                return 'tags';
+            }
+            else if(isButtonArray(data))
+            {
+                return 'buttons';
+            }
+        }
+        return typeof data;
     }
 }

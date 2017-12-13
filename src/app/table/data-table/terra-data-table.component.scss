@@ -1,12 +1,14 @@
 .table-responsive
 {
-    table.data-table {
+    table.data-table
+    {
         tr.disabled
         {
             opacity: 0.5;
             
-            td {
-                cursor: not-allowed;    
+            td
+            {
+                cursor: not-allowed;
             }
         }
     }
@@ -93,10 +95,10 @@
             color: white;
             td a[href]
             {
-                color:$white;
+                color: $white;
                 &:hover
                 {
-                    color:$black;
+                    color: $black;
                 }
             }
         }

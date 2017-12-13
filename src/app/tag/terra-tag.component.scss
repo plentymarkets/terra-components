@@ -7,7 +7,7 @@
     border-radius: $border-radius;
     display: block;
     padding: 4px;
-    margin-top: 7px;
+    margin-top: var(--tag-top-margin, 7px);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -42,4 +42,10 @@
 :host-context(terra-tag:not(:only-child))
 {
     max-width: 50%;
+}
+
+// TODO @pweyrich & @zakpur: move to terra-data-table.component.scss
+:host-context(terra-data-table)
+{
+    --tag-top-margin: 0;
 }

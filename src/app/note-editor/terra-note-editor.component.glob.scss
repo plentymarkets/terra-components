@@ -11,7 +11,7 @@ quill-editor
         button:hover, button:focus, button.ql-active
         {
             color: $blue;
-    
+
             .ql-stroke
             {
                 stroke: $blue;
@@ -21,7 +21,7 @@ quill-editor
                 fill: $blue;
             }
         }
-    
+
         .ql-picker-item
         {
             &.ql-selected, &:hover

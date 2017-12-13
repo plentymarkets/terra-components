@@ -17,6 +17,8 @@ import { TerraBaseStorageService } from '../../../file-browser/terra-base-storag
 import { TerraFrontendStorageService } from '../../../file-browser/terra-frontend-storage.service';
 import { isNullOrUndefined } from 'util';
 
+let nextId:number = 0;
+
 @Component({
     selector:  'terra-file-input',
     template:  require('./terra-file-input.component.html'),
@@ -62,6 +64,7 @@ export class TerraFileInputComponent extends TerraInputComponent
     public previewOverlay:TerraOverlayComponent;
 
     private _selectedObjectUrl:string;
+    private _id:string;
 
     public primaryOverlayButton:TerraOverlayButtonInterface = {
         icon:          'icon-success',
@@ -88,6 +91,9 @@ export class TerraFileInputComponent extends TerraInputComponent
     constructor(private translation:TranslationService, private _frontendStorageService:TerraFrontendStorageService)
     {
         super(TerraRegex.MIXED);
+
+        // generate the id of the input instance
+        this._id = `file-input_#${nextId}`;
     }
 
     public ngOnInit():void
