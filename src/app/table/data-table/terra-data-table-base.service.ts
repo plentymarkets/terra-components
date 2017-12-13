@@ -8,11 +8,11 @@ export abstract class TerraDataTableBaseService<T> extends TerraBaseService
 {
     public requestPending:boolean;
     public onSuccessFunction:(res) => void;
-    public pagingData:TerraPagerInterface<T>;
+    public pagingData:TerraPagerParameterInterface;
     public pagingSize:Array<TerraSelectBoxValueInterface>;
     public defaultPagingSize:number;
 
     //private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
 
-    public abstract getResults(params?:TerraPagerParameterInterface, orderBy?:string):Observable<TerraPagerInterface<T>>
+    public abstract getResults(params?:TerraPagerParameterInterface, orderBy?:string):Observable<TerraPagerInterface>
 }

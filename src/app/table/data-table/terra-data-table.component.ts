@@ -71,7 +71,7 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
      * @deprecated
      * @type {EventEmitter<TerraPagerInterface>}
      */
-    @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface<T>>();
+    @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
 
     private _isHeaderCheckboxChecked:boolean = false;
@@ -137,8 +137,18 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
         };
     }
 
-    private updatePagingData(pagerData:TerraPagerInterface<T>)
+    private updatePagingData(pagerData:TerraPagerInterface)
     {
+        this._pagingData = {
+            page:           res.page,
+            itemsPerPage:   res.itemsPerPage,
+            totalsCount:    res.totalsCount,
+            isLastPage:     res.isLastPage,
+            lastPageNumber: res.lastPageNumber,
+            firstOnPage:    res.firstOnPage,
+            lastOnPage:     res.lastOnPage
+        };
+
         this.inputService.pagingData.page = pagerData.page;
         this.inputService.pagingData.itemsPerPage = pagerData.itemsPerPage;
     }
@@ -265,7 +275,7 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
         return 'top';
     }
     
-    public doPaging(pagerData:TerraPagerInterface<T>):void
+    public doPaging(pagerData:TerraPagerInterface):void
     {
         // update paging data with data from the pager
         this.updatePagingData(pagerData);
@@ -408,18 +418,10 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
             page:         this.inputService.pagingData.page,
             itemsPerPage: this.inputService.pagingData.itemsPerPage
         };
-        this.inputService.getResults(params, this._sortColumn.identifier).subscribe((res:TerraPagerInterface<T>) =>
+        this.inputService.getResults(params, this._sortColumn.identifier).subscribe((res:TerraPagerInterface) =>
         {
             // update paging data
-            this.inputService.pagingData = {
-                page:           res.page,
-                itemsPerPage:   res.itemsPerPage,
-                totalsCount:    res.totalsCount,
-                isLastPage:     res.isLastPage,
-                lastPageNumber: res.lastPageNumber,
-                firstOnPage:    res.firstOnPage,
-                lastOnPage:     res.lastOnPage
-            };
+            this.updatePagingData(res);
 
             // execute custom success function
             this.inputService.onSuccessFunction(res);
