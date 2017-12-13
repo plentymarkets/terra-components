@@ -158,9 +158,10 @@
 
 .highlight
 {
-    margin: 1px;
+    
     &:hover
     {
+        margin: 1px 1px 6px 1px;
         .portlet
         {
             margin: -1px;
