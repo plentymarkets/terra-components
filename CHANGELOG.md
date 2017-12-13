@@ -1,5 +1,5 @@
 <a name="2.1.34-zlk"></a>
-# 2.1.34-zlk (XX.XX.XXXX)
+# 2.1.34-zlk (13.12.2017)
 
 ### Bug Fixes
 * **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
