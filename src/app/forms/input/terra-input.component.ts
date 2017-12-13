@@ -54,7 +54,7 @@ export class TerraInputComponent implements ControlValueAccessor
      * @description If true, the button will be small. Default false.
      * */
     @Input() inputIsSmall:boolean;
-    
+
     private _isValid:boolean;
     private _regex:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
