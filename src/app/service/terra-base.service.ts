@@ -85,7 +85,7 @@ export class TerraBaseService
         }
     }
 
-    protected mapRequest(request:Observable<Response>, err?:(error:any) => void, isPdf?:boolean):Observable<any>
+    protected mapRequest(request:Observable<Response>, err?:(error:any) => void, isRaw?:boolean):Observable<any>
     {
         this._terraLoadingSpinnerService.start();
 
@@ -95,9 +95,9 @@ export class TerraBaseService
             {
                 return response.text();
             }
-            else if(!isNullOrUndefined(isPdf) && isPdf == true)
+            else if(!isNullOrUndefined(isRaw) && isRaw == true)
             {
-                return response.text();
+                return response;
             }
             else
             {
