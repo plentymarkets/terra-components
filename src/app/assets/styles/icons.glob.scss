@@ -12,7 +12,6 @@
     url('../fonts/plentysans-light-webfont.woff') format('woff');
     font-weight: 300;
     font-style: normal;
-    
 }
 
 @font-face
@@ -22,7 +21,6 @@
     url('../fonts/plentysans-regular-webfont.woff') format('woff');
     font-weight: 400;
     font-style: normal;
-    
 }
 
 @font-face
@@ -60,6 +58,22 @@
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-open_external_link
+{
+    &:before
+    {
+        content: $icon-open_external_link;
+    }
+}
+
+.icon-unlock_contact
+{
+    &:before
+    {
+        content: $icon-unlock_contact;
+    }
 }
 
 .icon-exch_adre_type

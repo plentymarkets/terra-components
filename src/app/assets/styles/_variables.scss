@@ -669,6 +669,8 @@ $pre-color: $gray-dark !default;
 $pre-border-color: #CCCCCC !default;
 $pre-scrollable-max-height: 340px !default;
 
+$icon-open_external_link: "\eafc";
+$icon-unlock_contact: "\eafd";
 $icon-exch_adre_type: "\e94e";
 $icon-ship_amaz_1st: "\eaf7";
 $icon-ship_amaz_2nd: "\eaf8";
@@ -1234,6 +1236,8 @@ $grey-10: #5B5D66;
 $grey-11: #494C56;
 $grey-12: #2F323A;
 $black: #000000;
+
+$terra-tooltip-color: $grey-12;
 
 $border-radius: 5px;
 
