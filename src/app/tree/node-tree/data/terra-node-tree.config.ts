@@ -5,16 +5,8 @@ import { TranslationService } from 'angular-l10n';
 
 export class TerraNodeTreeConfig<D>
 {
-    /**
-     * @description The list full of nodes.
-     */
     private _list:Array<TerraNodeInterface<D>> = [];
-
-    /**
-     * @description The current selected node.
-     */
     private _currentSelectedNode:TerraNodeInterface<D>;
-
     private _searchNodeList:Array<TerraSuggestionBoxValueInterface> = [];
 
     constructor(public _translation:TranslationService)
@@ -26,6 +18,7 @@ export class TerraNodeTreeConfig<D>
      * @description Adds a node.
      * @param nodeToAdd The provided node to add to the tree.
      * @param parent Optional. The provided parent where nodeToAdd should be added to.
+     * @param openParents Optional. Open all parents.
      */
     public addNode(nodeToAdd:TerraNodeInterface<D>, parent?:TerraNodeInterface<D>, openParents?:boolean):void
     {
@@ -149,6 +142,7 @@ export class TerraNodeTreeConfig<D>
      * @description Adds a node to a given parentId.
      * @param parentId The identifier of the parent node.
      * @param node The node to be added.
+     * @param openParents Optional. Open all parents.
      */
     public addChildToNodeById(parentId:string | number, node:TerraNodeInterface<D>, openParents?:boolean):void
     {
@@ -168,6 +162,7 @@ export class TerraNodeTreeConfig<D>
      * @description Adds a list of nodes to a given parentId.
      * @param parentId The identifier of the parent node.
      * @param nodeList The node list to be added.
+     * @param openParents Optional. Open all parents.
      */
     public addChildrenToNodeById(parentId:string | number, nodeList:Array<TerraNodeInterface<D>>, openParents?:boolean):void
     {
@@ -419,6 +414,7 @@ export class TerraNodeTreeConfig<D>
     {
         this._list = [];
         this._currentSelectedNode = null;
+        this._searchNodeList = null;
     }
 
     /**
@@ -453,6 +449,10 @@ export class TerraNodeTreeConfig<D>
         });
     }
 
+    /**
+     *
+     * @description A flat list of all nodes to be used with search box.
+     */
     public get searchNodeList():Array<TerraSuggestionBoxValueInterface>
     {
         return this._searchNodeList;

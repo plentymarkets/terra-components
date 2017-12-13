@@ -5,8 +5,6 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraNodeTreeConfig } from './data/terra-node-tree.config';
-import { TerraNodeInterface } from './data/terra-node.interface';
-import { isNullOrUndefined } from 'util';
 
 @Component({
                selector: 'terra-node-tree',
