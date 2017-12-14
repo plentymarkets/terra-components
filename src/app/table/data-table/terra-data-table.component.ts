@@ -372,6 +372,7 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
 
     private resetSorting():void
     {
+        // sort by the first sortable column, if available
         let defaultSortColumn:TerraDataTableHeaderCellInterface = this.getFirstSortableColumn();
         if(this.inputHeaderList && defaultSortColumn)
         {
@@ -400,9 +401,6 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
 
     private getResults():void
     {
-        if(this.inputIsSortable)
-        {
-            this.inputService.getResults();
-        }
+        this.inputService.getResults();
     }
 }
