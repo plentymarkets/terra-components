@@ -11,7 +11,7 @@ import {
  */
 export interface TerraDataTableCellInterface
 {
-    identifier:string;
+    // TODO: make this mandatory and remove all deprecated properties
     data?:string | number | TerraDataTableTextInterface | TerraRefTypeInterface | Array<TerraButtonInterface> | Array<TerraTagInterface>;
     isHidden?:boolean;
     tooltipText?:string;

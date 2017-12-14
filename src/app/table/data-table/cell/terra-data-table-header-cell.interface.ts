@@ -4,8 +4,8 @@
 export interface TerraDataTableHeaderCellInterface
 {
     caption:string;
-    identifier:string;
     width:number;
+    sortBy?:string;
     isHidden?:boolean;
     tooltipText?:string;
     tooltipPlacement?:string;

@@ -43,7 +43,7 @@ export abstract class TerraDataTableBaseService<T> extends TerraBaseService
         }
 
         // add sortBy attribute to pager params
-        if(params && sortBy)
+        if(params && sortBy && sortBy !== '')
         {
             params['sortBy'] = sortBy;
         }

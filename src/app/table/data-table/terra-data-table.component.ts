@@ -341,8 +341,8 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
 
     private onColumnHeaderClick(header:TerraDataTableHeaderCellInterface):void
     {
-        // change sorting column and order only if no request is pending
-        if(!this.inputService.requestPending && this.inputIsSortable)
+        // change sorting column and order only if no request is pending and sortBy attribute is given
+        if(!this.inputService.requestPending && this.inputIsSortable && header.sortBy)
         {
             this.changeSortColumn(header);
         }
@@ -384,6 +384,9 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
 
     private getResults():void
     {
-        this.inputService.getResults();
+        if(this.inputIsSortable)
+        {
+            this.inputService.getResults(null, this._sortColumn.sortBy);
+        }
     }
 }
