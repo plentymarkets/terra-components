@@ -75,7 +75,6 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
 
     private _isHeaderCheckboxChecked:boolean = false;
-    private _requestPending:boolean;
 
     /**
      * @deprecated
@@ -86,6 +85,7 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
     private _sortColumn:TerraDataTableHeaderCellInterface;
     private _sortOrder:TerraDataTableSortOrder;
     private _selectedRowList:Array<TerraDataTableRowInterface<T>>;
+    private _pagingData:TerraPagerInterface;
 
     constructor()
     {
@@ -140,13 +140,13 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
     private updatePagingData(pagerData:TerraPagerInterface)
     {
         this._pagingData = {
-            page:           res.page,
-            itemsPerPage:   res.itemsPerPage,
-            totalsCount:    res.totalsCount,
-            isLastPage:     res.isLastPage,
-            lastPageNumber: res.lastPageNumber,
-            firstOnPage:    res.firstOnPage,
-            lastOnPage:     res.lastOnPage
+            page:           pagerData.page,
+            itemsPerPage:   pagerData.itemsPerPage,
+            totalsCount:    pagerData.totalsCount,
+            isLastPage:     pagerData.isLastPage,
+            lastPageNumber: pagerData.lastPageNumber,
+            firstOnPage:    pagerData.firstOnPage,
+            lastOnPage:     pagerData.lastOnPage
         };
 
         this.inputService.pagingData.page = pagerData.page;
@@ -408,20 +408,19 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
 
     private resetSorting():void
     {
-        this._sortColumn = this.inputHeaderList[0];
-        this._sortOrder = TerraDataTableSortOrder.DESCENDING;
+        if(this.inputHeaderList && this.inputHeaderList[0])
+        {
+            this._sortColumn = this.inputHeaderList[0];
+            this._sortOrder = TerraDataTableSortOrder.DESCENDING;
+        }
     }
 
-    private getResults():void
+    public getResults():void
     {
         let params:TerraPagerParameterInterface = {
             page:         this.inputService.pagingData.page,
             itemsPerPage: this.inputService.pagingData.itemsPerPage
         };
-        this.inputService.getResults(params, this._sortColumn.identifier).subscribe((res:TerraPagerInterface) =>
-        {
-            // update paging data
-            this.updatePagingData(res);
-        });
+        this.inputService.getResults(params).subscribe((res:TerraPagerInterface) => this.updatePagingData(res));
     }
 }
