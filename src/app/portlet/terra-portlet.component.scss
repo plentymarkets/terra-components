@@ -1,6 +1,8 @@
 .portlet
 {
     margin-bottom: 6px;
+    border: 1px solid transparent;
+    border-radius: 5px;
     .portlet_head
     {
         padding: 8px 9px 4px 9px;
@@ -88,6 +90,7 @@
             overflow: hidden;
         }
     }
+    
 }
 
 .config-table
@@ -159,12 +162,6 @@
 {
     &:hover
     {
-        margin: 1px 1px 6px 1px;
-        .portlet
-        {
-            margin: -1px;
-            border-radius: 5px;
-            border: 1px solid $blue-hover;
-        }
+        border: 1px solid $blue-hover;
     }
 }
