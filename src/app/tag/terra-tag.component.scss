@@ -1,6 +1,6 @@
 .tag
 {
-    background-color: $grey-9;
+    background-color: var(--tag-background-color, $grey-9);
     border: none;
     -moz-border-radius: $border-radius;
     -webkit-border-radius: $border-radius;
@@ -48,4 +48,5 @@
 :host-context(terra-data-table)
 {
     --tag-top-margin: 0;
+    --tag-background-color: $cyan-dark;
 }
