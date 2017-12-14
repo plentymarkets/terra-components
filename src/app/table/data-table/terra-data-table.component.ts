@@ -56,14 +56,18 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
 
     private _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
-
-    private _sortOrderEnum = TerraDataTableSortOrder;
     private _selectedRowList:Array<TerraDataTableRowInterface<T>>;
+    private _sortOrderEnum = TerraDataTableSortOrder;
 
     constructor()
     {
+        // set default input values
         this.inputHasCheckboxes = true;
         this.inputHasPager = true;
+        this.inputIsSortable = false;
+
+        // initialize local variables
+        this._selectedRowList = [];
         this._headerCheckbox = {
             checked:         false,
             isIndeterminate: false
