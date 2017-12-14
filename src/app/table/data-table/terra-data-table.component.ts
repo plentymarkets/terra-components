@@ -44,16 +44,8 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
      * ability to sort the table by its columns
      */
     @Input() inputIsSortable:boolean;
-    /**
-     * @deprecated
-     */
-    @Input() inputDataType:string;
     @Input() inputHasCheckboxes:boolean;
     @Input() inputHasPager:boolean;
-    /**
-     * @deprecated
-     */
-    @Input() inputHasInitialLoading:boolean;
     /**
      * Primary text for no results notice
      */
@@ -67,19 +59,10 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
      */
     @Input() inputNoResultButtons:Array<TerraButtonInterface>;
 
-    /**
-     * @deprecated
-     * @type {EventEmitter<TerraPagerInterface>}
-     */
-    @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
 
     private _isHeaderCheckboxChecked:boolean = false;
 
-    /**
-     * @deprecated
-     */
-    @Input() private _hasCheckboxes:boolean;
 
     private _sortOrderEnum = TerraDataTableSortOrder;
     private _sortColumn:TerraDataTableHeaderCellInterface;
@@ -89,9 +72,7 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
 
     constructor()
     {
-        this._hasCheckboxes = true;
         this.inputHasCheckboxes = true;
-        this.inputHasInitialLoading = false;
         this.inputHasPager = true;
         this._sortColumn = null;
     }
