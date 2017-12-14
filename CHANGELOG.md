@@ -1,3 +1,9 @@
+<a name="2.1.36-zlk"></a>
+# 2.1.36-zlk (DD.MM.YYYY)
+
+### Feature
+* **terra-tag** changed color of tags in data-table
+
 <a name="2.1.35-zlk"></a>
 # 2.1.35-zlk (13.12.2017)
 
