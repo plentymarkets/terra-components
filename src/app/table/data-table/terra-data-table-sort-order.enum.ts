@@ -1,5 +1,5 @@
 export enum TerraDataTableSortOrder
 {
-    DESCENDING,
-    ASCENDING
+    DESCENDING = 'desc',
+    ASCENDING = 'asc'
 }

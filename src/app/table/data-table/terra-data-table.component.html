@@ -29,10 +29,10 @@
                           [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
                           {{header.caption}}
                         <span class="icon-sort_asc"
-                              *ngIf="this.inputIsSortable && header === _sortColumn && _sortOrder === _sortOrderEnum.ASCENDING">
+                              *ngIf="this.inputIsSortable && header?.sortBy === inputService.sortBy && inputService.sortOrder === _sortOrderEnum.ASCENDING">
                         </span>
                         <span class="icon-sort_desc"
-                              *ngIf="this.inputIsSortable && header === _sortColumn && _sortOrder === _sortOrderEnum.DESCENDING">
+                              *ngIf="this.inputIsSortable && header?.sortBy === inputService.sortBy && inputService.sortOrder === _sortOrderEnum.DESCENDING">
                         </span>
                     </span>
                 </th>

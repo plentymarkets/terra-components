@@ -5,6 +5,8 @@ import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 import { Http } from '@angular/http';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
+import { TerraDataTableSortOrder } from './terra-data-table-sort-order.enum';
+import { TerraDataTableHeaderCellInterface } from './cell/terra-data-table-header-cell.interface';
 
 export abstract class TerraDataTableBaseService<T> extends TerraBaseService
 {
@@ -13,6 +15,9 @@ export abstract class TerraDataTableBaseService<T> extends TerraBaseService
     public pagingData:TerraPagerInterface;
     public pagingSize:Array<TerraSelectBoxValueInterface>;
     public defaultPagingSize:number;
+    public filterParameter:TerraPagerParameterInterface;
+    public sortBy:string;
+    public sortOrder:TerraDataTableSortOrder;
 
     constructor(private _loadingSpinnerService:TerraLoadingSpinnerService, private _httpService:Http)
     {
@@ -32,9 +37,11 @@ export abstract class TerraDataTableBaseService<T> extends TerraBaseService
         };
     }
 
-    public getResults(params?:TerraPagerParameterInterface, sortBy?:string):Observable<TerraPagerInterface>
+    public getResults():Observable<TerraPagerInterface>
     {
-        if(!params && this.pagingData && this.pagingData.page && this.pagingData.itemsPerPage)
+        // initialize pagination parameters
+        let params:TerraPagerParameterInterface = {};
+        if(this.pagingData && this.pagingData.page && this.pagingData.itemsPerPage)
         {
             params = {
                 page:         this.pagingData.page,
@@ -42,10 +49,22 @@ export abstract class TerraDataTableBaseService<T> extends TerraBaseService
             };
         }
 
-        // add sortBy attribute to pager params
-        if(params && sortBy && sortBy !== '')
+        // use filter params if available
+        if(this.filterParameter && this.filterParameter.page && this.pagingData.itemsPerPage)
         {
-            params['sortBy'] = sortBy;
+            params = this.filterParameter;
+        }
+
+        // add sortBy attribute to pager params
+        if(this.sortBy && this.sortBy !== '')
+        {
+            params['sortBy'] = this.sortBy;
+
+            // sort order is only considered if sortBy attribute is given
+            if(this.sortOrder)
+            {
+                params['sortOrder'] = this.sortOrder;
+            }
         }
 
         // request table data from the server

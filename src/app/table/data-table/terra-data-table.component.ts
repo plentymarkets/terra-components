@@ -24,9 +24,9 @@ import { TerraDataTableBaseService } from './terra-data-table-base.service';
 
 @Component({
     selector:  'terra-data-table',
-    providers: [TerraDataTableContextMenuService],
     styles:    [require('./terra-data-table.component.scss')],
-    template:  require('./terra-data-table.component.html')
+    template:  require('./terra-data-table.component.html'),
+    providers: [TerraDataTableContextMenuService]
 })
 export class TerraDataTableComponent<T> implements OnInit, OnChanges
 {
@@ -58,8 +58,6 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
     private _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
 
     private _sortOrderEnum = TerraDataTableSortOrder;
-    private _sortColumn:TerraDataTableHeaderCellInterface;
-    private _sortOrder:TerraDataTableSortOrder;
     private _selectedRowList:Array<TerraDataTableRowInterface<T>>;
 
     constructor()
@@ -70,7 +68,6 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
             checked:         false,
             isIndeterminate: false
         };
-        this._sortColumn = null;
     }
 
     public ngOnInit():void
@@ -351,15 +348,15 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
     private changeSortColumn(header:TerraDataTableHeaderCellInterface)
     {
         // clicked on the same column?
-        if(this._sortColumn === header)
+        if(this.inputService.sortBy === header.sortBy)
         {
             // only change sorting order
             this.toggleSortingOrder();
         }
         else
         {
-            this._sortColumn = header;
-            this._sortOrder = TerraDataTableSortOrder.DESCENDING; // default is descending
+            this.inputService.sortBy = header.sortBy;
+            this.inputService.sortOrder = TerraDataTableSortOrder.DESCENDING; // default is descending
         }
 
         // get Results with updated parameter
@@ -368,25 +365,44 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
 
     private toggleSortingOrder():void
     {
-        this._sortOrder = this._sortOrder === TerraDataTableSortOrder.DESCENDING ?
+        this.inputService.sortOrder = this.inputService.sortOrder === TerraDataTableSortOrder.DESCENDING ?
             TerraDataTableSortOrder.ASCENDING :
             TerraDataTableSortOrder.DESCENDING;
     }
 
     private resetSorting():void
     {
-        if(this.inputHeaderList && this.inputHeaderList[0])
+        let defaultSortColumn:TerraDataTableHeaderCellInterface = this.getFirstSortableColumn();
+        if(this.inputHeaderList && defaultSortColumn)
         {
-            this._sortColumn = this.inputHeaderList[0];
-            this._sortOrder = TerraDataTableSortOrder.DESCENDING;
+            this.inputService.sortBy = defaultSortColumn.sortBy;
+            this.inputService.sortOrder = TerraDataTableSortOrder.DESCENDING;
         }
+    }
+
+    private getFirstSortableColumn():TerraDataTableHeaderCellInterface
+    {
+        // check if header list is given
+        if(this.inputHeaderList)
+        {
+            // find first header cell where sortBy attribute is given
+            let headerCell:TerraDataTableHeaderCellInterface;
+            headerCell = this.inputHeaderList.find((header:TerraDataTableHeaderCellInterface) => !isNullOrUndefined(header.sortBy));
+            if(headerCell)
+            {
+                return headerCell;
+            }
+        }
+
+        // return null if nothing is found
+        return null;
     }
 
     private getResults():void
     {
         if(this.inputIsSortable)
         {
-            this.inputService.getResults(null, this._sortColumn.sortBy);
+            this.inputService.getResults();
         }
     }
 }
