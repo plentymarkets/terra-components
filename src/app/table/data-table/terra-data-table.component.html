@@ -28,8 +28,12 @@
                           [tooltip]="header.tooltipText"
                           [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
                           {{header.caption}}
-                        <span *ngIf="this.inputIsSortable && header === _sortColumn && _sortOrder === _sortOrderEnum.ASCENDING" class="icon-sort_asc"></span>
-                        <span *ngIf="this.inputIsSortable && header === _sortColumn && _sortOrder === _sortOrderEnum.DESCENDING" class="icon-sort_desc"></span>
+                        <span class="icon-sort_asc"
+                              *ngIf="this.inputIsSortable && header === _sortColumn && _sortOrder === _sortOrderEnum.ASCENDING">
+                        </span>
+                        <span class="icon-sort_desc"
+                              *ngIf="this.inputIsSortable && header === _sortColumn && _sortOrder === _sortOrderEnum.DESCENDING">
+                        </span>
                     </span>
                 </th>
             </ng-template>
