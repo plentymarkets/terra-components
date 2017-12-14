@@ -5,14 +5,11 @@ import {
     OnChanges,
     OnInit,
     Output,
-    SimpleChanges,
-    ViewChild
+    SimpleChanges
 } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { TerraDataTableHeaderCellInterface } from './cell/terra-data-table-header-cell.interface';
 import { TerraDataTableRowInterface } from './row/terra-data-table-row.interface';
 import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
-import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import {
     isArray,
@@ -24,7 +21,6 @@ import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 import { TerraDataTableTextInterface } from './cell/terra-data-table-text.interface';
 import { TerraDataTableSortOrder } from './terra-data-table-sort-order.enum';
 import { TerraDataTableBaseService } from './terra-data-table-base.service';
-import { TerraPagerParameterInterface } from '../../pager/data/terra-pager.parameter.interface';
 
 @Component({
     selector:  'terra-data-table',
@@ -34,8 +30,6 @@ import { TerraPagerParameterInterface } from '../../pager/data/terra-pager.param
 })
 export class TerraDataTableComponent<T> implements OnInit, OnChanges
 {
-    @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
-
     @Input() inputService:TerraDataTableBaseService<T>;
     @Input() inputHeaderList:Array<TerraDataTableHeaderCellInterface>;
     @Input() inputRowList:Array<TerraDataTableRowInterface<T>>;
@@ -61,8 +55,7 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
 
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
 
-    private _isHeaderCheckboxChecked:boolean = false;
-
+    private _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
 
     private _sortOrderEnum = TerraDataTableSortOrder;
     private _sortColumn:TerraDataTableHeaderCellInterface;
@@ -73,6 +66,10 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
     {
         this.inputHasCheckboxes = true;
         this.inputHasPager = true;
+        this._headerCheckbox = {
+            checked:         false,
+            isIndeterminate: false
+        };
         this._sortColumn = null;
     }
 
@@ -161,15 +158,15 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
     {
         if(this.selectedRowList.length == 0) // anything selected?
         {
-            this._isHeaderCheckboxChecked = false;
+            this._headerCheckbox.checked = false;
         }
         else if(this.selectedRowList.length > 0 && this.inputRowList.length == this.selectedRowList.length) // all selected?
         {
-            this._isHeaderCheckboxChecked = true;
+            this._headerCheckbox.checked = true;
         }
         else // some rows selected
         {
-            this.viewChildHeaderCheckbox.isIndeterminate = true;
+            this._headerCheckbox.isIndeterminate = true;
         }
     }
 
@@ -200,7 +197,7 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
 
     private selectAllRows()
     {
-        this._isHeaderCheckboxChecked = true;
+        this._headerCheckbox.checked = true;
 
         this.inputRowList.forEach((row) =>
         {
@@ -213,7 +210,7 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
 
     private resetSelectedRows()
     {
-        this._isHeaderCheckboxChecked = false;
+        this._headerCheckbox.checked = false;
 
         // reset selected row list
         this._selectedRowList = [];
@@ -247,7 +244,7 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
 
         return 'top';
     }
-    
+
     public doPaging(pagerData:TerraPagerInterface):void
     {
         // request data from server
