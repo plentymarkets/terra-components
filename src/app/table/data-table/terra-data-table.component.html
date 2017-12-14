@@ -1,7 +1,7 @@
 <terra-pager *ngIf="inputHasPager && inputRowList && inputRowList.length > 0"
              [inputPagingSize]="inputService.pagingSize"
              [inputDefaultPagingSize]="inputService.defaultPagingSize"
-             [inputPagingData]="_pagingData"
+             [inputPagingData]="inputService.pagingData"
              [inputRequestPending]="inputService.requestPending"
              (outputDoPaging)="doPaging($event)">
 </terra-pager>

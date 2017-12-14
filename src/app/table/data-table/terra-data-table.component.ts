@@ -68,7 +68,6 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
     private _sortColumn:TerraDataTableHeaderCellInterface;
     private _sortOrder:TerraDataTableSortOrder;
     private _selectedRowList:Array<TerraDataTableRowInterface<T>>;
-    private _pagingData:TerraPagerInterface;
 
     constructor()
     {
@@ -79,7 +78,7 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
 
     public ngOnInit():void
     {
-        this.initPagingData();
+        this.initPagination();
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -100,7 +99,10 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
         }
     }
 
-    private initPagingData()
+    /**
+     * default initialization of the paging information which are stored in the input service
+     */
+    private initPagination()
     {
         let itemsPerPage:number = 25;
         if(this.inputService.defaultPagingSize)
@@ -112,26 +114,16 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
             itemsPerPage = this.inputService.pagingSize[0].value;
         }
 
-        this.inputService.pagingData = {
-            page:         1,
-            itemsPerPage: itemsPerPage
-        };
-    }
-
-    private updatePagingData(pagerData:TerraPagerInterface)
-    {
-        this._pagingData = {
-            page:           pagerData.page,
-            itemsPerPage:   pagerData.itemsPerPage,
-            totalsCount:    pagerData.totalsCount,
-            isLastPage:     pagerData.isLastPage,
-            lastPageNumber: pagerData.lastPageNumber,
-            firstOnPage:    pagerData.firstOnPage,
-            lastOnPage:     pagerData.lastOnPage
-        };
-
-        this.inputService.pagingData.page = pagerData.page;
-        this.inputService.pagingData.itemsPerPage = pagerData.itemsPerPage;
+        // init paging data
+        this.inputService.updatePagingData({
+            page:           1,
+            itemsPerPage:   itemsPerPage,
+            totalsCount:    1,
+            isLastPage:     true,
+            lastPageNumber: 1,
+            lastOnPage:     1,
+            firstOnPage:    1
+        });
     }
 
     private onHeaderCheckboxChange(isChecked:boolean):void
@@ -258,9 +250,6 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
     
     public doPaging(pagerData:TerraPagerInterface):void
     {
-        // update paging data with data from the pager
-        this.updatePagingData(pagerData);
-
         // request data from server
         this.getResults();
 
@@ -396,12 +385,8 @@ export class TerraDataTableComponent<T> implements OnInit, OnChanges
         }
     }
 
-    public getResults():void
+    private getResults():void
     {
-        let params:TerraPagerParameterInterface = {
-            page:         this.inputService.pagingData.page,
-            itemsPerPage: this.inputService.pagingData.itemsPerPage
-        };
-        this.inputService.getResults(params).subscribe((res:TerraPagerInterface) => this.updatePagingData(res));
+        this.inputService.getResults();
     }
 }
