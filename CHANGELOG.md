@@ -7,6 +7,9 @@
 ### Feature
 * **terra-checkbox-tree** component accomplished. Basic comportment implemented
 
+### Breaking Changes
+* **terra-data-table** 
+
 <a name="2.1.33-zlk"></a>
 # 2.1.33-zlk (07.12.2017)
 
