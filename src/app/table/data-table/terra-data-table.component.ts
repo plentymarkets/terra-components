@@ -107,7 +107,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     private get getCollapsedState():string
     {
-        if(this.inputShowGroupFunctions === true)
+        if(this.inputShowGroupFunctions)
         {
             return 'collapsed';
         }
