@@ -1,14 +1,39 @@
-<a name="2.1.34-zlk"></a>
-# 2.1.34-zlk (XX.XX.XXXX)
-
-### Bug Fixes
-* **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+<a name="2.1.36-zlk"></a>
+# 2.1.36-zlk (XX.12.2017)
 
 ### Feature
-* **terra-checkbox-tree** component accomplished. Basic comportment implemented
+* **terra-portlet** add new input `inputHighlightPortlet` for component to highlight portlets. Edit css for highlighting portlets. 
 
 ### Breaking Changes
 * **terra-data-table** 
+	- Table is now sortable. Use the sortBy interface property to state whether a column is sortable
+	- Refactoring -> Removed deprecated interface and input properties
+	- New `TerraDataTableBaseService` which replaces custom directives and configs, and stores all information needed for retrieving data from the server
+
+<a name="2.1.35-zlk"></a>
+# 2.1.35-zlk (13.12.2017)
+
+### Bug Fixes 
+* **terra-simple-table** **terra-data-table** fix setting of text-align
+* **TerraBaseService** improve repsonse type of service
+
+### Feature
+* **tooltips** updated tooltip background color 
+* **terra-text-input** **terra-number-input** updated tooltip background color 
+* **terra-slider** adjusted styling for terra-slider-component
+
+<a name="2.1.34-zlk"></a>
+# 2.1.34-zlk (13.12.2017)
+
+### Bug Fixes
+* **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
+* **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+
+### Feature
+* **terra-input** Add input for IBAN validation. Add function to validate input (OnBlur). Add Tooltip for invalid Iban.
+* **terra-checkbox-tree** component accomplished. Basic comportment implemented
+* **terra-simple-table** new interface property `textAlign` that uses `TerraTextAlignEnum` to align captions in table header cells
+* **terra-data-table** constraint interface property `textAlign` with `TerraTextAlignEnum`. Property type string is deprecated
 
 <a name="2.1.33-zlk"></a>
 # 2.1.33-zlk (07.12.2017)

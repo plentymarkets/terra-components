@@ -21,7 +21,7 @@
             <ng-template ngFor let-header [ngForOf]="inputHeaderList">
                 <th *ngIf="!header.isHidden && inputRowList && inputRowList.length > 0"
                     width="{{header.width}}px"
-                    [ngStyle]="getTextAlign(header)"
+                    [ngStyle]="{ 'text-align': header.textAlign }"
                     (click)="onColumnHeaderClick(header)">
                     <span [container]="'body'"
                           [placement]="checkTooltipPlacement(header.tooltipPlacement)"
@@ -55,10 +55,10 @@
                     <template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>
                     </template>
-                    
+               
                     <td *ngIf="!cell.isHidden"
                         [ngSwitch]="getCellDataType(cell.data)"
-                        [ngStyle]="getTextAlign(inputHeaderList[i])"
+                        [ngStyle]="{ 'text-align': inputHeaderList[i].textAlign }"
                         (click)="rowClicked(row)"
                         [tooltip]="tdTooltip"
                         [container]="'body'"

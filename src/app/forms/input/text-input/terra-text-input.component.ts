@@ -9,6 +9,8 @@ import { TerraInputComponent } from '../terra-input.component';
 import { TerraRegex } from '../../../regex/terra-regex';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
+import * as IBAN from 'iban';
+import { TranslationService } from 'angular-l10n';
 
 let nextId:number = 0;
 
@@ -33,6 +35,9 @@ export class TerraTextInputComponent extends TerraInputComponent
      * @description If true, the type of input will be 'password'.
      * */
     @Input() inputIsPassword:boolean;
+
+    @Input() inputIsIban:boolean = false;
+
     /**
      * @description If true, the value cannot be changed. Default false.
      * */
@@ -67,7 +72,7 @@ export class TerraTextInputComponent extends TerraInputComponent
      */
     private _id:string;
 
-    constructor()
+    constructor(private _translation:TranslationService)
     {
         super(TerraRegex.MIXED);
 
@@ -84,5 +89,16 @@ export class TerraTextInputComponent extends TerraInputComponent
     {
         this.outputOnInput.emit();
 
+    }
+
+    private onCustomBlur(iban:string):void
+    {
+        if(this.inputIsIban)
+        {
+            this.isValid = IBAN.isValid(iban);
+            this.inputTooltipText = this.isValid ? null : this._translation.translate('terraTextInput.invalidIban');
+        }
+
+        this.onBlur();
     }
 }

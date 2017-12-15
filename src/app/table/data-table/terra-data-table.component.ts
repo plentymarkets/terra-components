@@ -255,18 +255,6 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         this.resetSelectedRows();
     }
 
-    public getTextAlign(item:TerraDataTableHeaderCellInterface):any
-    {
-        if(!isNullOrUndefined(item.textAlign))
-        {
-            return {'text-align': item.textAlign};
-        }
-        else
-        {
-            return {'text-align': "left"};
-        }
-    }
-
     private getCellDataType(data:any):string
     {
         function isRefType(arg:any):arg is TerraRefTypeInterface
