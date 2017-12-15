@@ -30,35 +30,56 @@ import { TerraDataTableBaseService } from './terra-data-table-base.service';
 })
 export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 {
+    /**
+     * @description Service, that is used to request the table data from the server
+     */
     @Input() inputService:TerraDataTableBaseService<T, P>;
+    /**
+     * @description List of header cell elements
+     */
     @Input() inputHeaderList:Array<TerraDataTableHeaderCellInterface>;
+    /**
+     * @description List of table rows containing all the data
+     */
     @Input() inputRowList:Array<TerraDataTableRowInterface<T>>;
 
     /**
-     * ability to sort the table by its columns
+     * @description enables the user to sort the table by selected columns
      */
     @Input() inputIsSortable:boolean;
+    /**
+     * @description show checkboxes in the table, to be able to select any row
+     */
     @Input() inputHasCheckboxes:boolean;
+    /**
+     * @description show/hides the pager above the table
+     */
     @Input() inputHasPager:boolean;
     /**
-     * Primary text for no results notice
+     * @description Primary text for no results notice
      */
     @Input() inputNoResultTextPrimary:string;
     /**
-     * Secondary text for no results notice
+     * @description Secondary text for no results notice
      */
     @Input() inputNoResultTextSecondary:string;
     /**
-     * Buttons for no results notice
+     * @description Buttons for no results notice
      */
     @Input() inputNoResultButtons:Array<TerraButtonInterface>;
 
+    /**
+     * @description EventEmitter that notifies when a row has been selected via the select box. This is enabled, only if `inputHasCheckboxes` is true.
+     */
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
 
     private _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
     private _selectedRowList:Array<TerraDataTableRowInterface<T>>;
     private _sortOrderEnum = TerraDataTableSortOrder;
 
+    /**
+     * @description Constructor initializing the table component
+     */
     constructor()
     {
         // set default input values
@@ -74,11 +95,18 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         };
     }
 
+    /**
+     * @description Initialization routine. It sets up the pager.
+     */
     public ngOnInit():void
     {
         this.initPagination();
     }
 
+    /**
+     * @description Change detection routine. It resets the sorting configuration if the header list is updated.
+     * @param {SimpleChanges} changes
+     */
     public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes['inputHeaderList'])
@@ -210,6 +238,10 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         this._selectedRowList = [];
     }
 
+    /**
+     * @description Getter for selectedRowList
+     * @returns {Array<TerraDataTableRowInterface<T>>}
+     */
     public get selectedRowList():Array<TerraDataTableRowInterface<T>>
     {
         return this._selectedRowList;
@@ -239,7 +271,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         return 'top';
     }
 
-    public doPaging(pagerData:TerraPagerInterface):void
+    private doPaging(pagerData:TerraPagerInterface):void
     {
         // request data from server
         this.getResults();
