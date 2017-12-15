@@ -99,7 +99,7 @@ export class TerraNodeTreeConfig<D>
         else
         {
             // check if node is visible
-            if(isNullOrUndefined(node.isHidden) || !node.isHidden)
+            if(!isNullOrUndefined(node.isVisible) && node.isVisible)
             {
                 // add node to the flat list
                 this._searchNodeList.push(
@@ -263,7 +263,7 @@ export class TerraNodeTreeConfig<D>
             foundNode.icon = newNode.icon;
             foundNode.isActive = newNode.isActive;
             foundNode.isOpen = newNode.isOpen;
-            foundNode.isHidden = newNode.isHidden;
+            foundNode.isVisible = newNode.isVisible;
             foundNode.value = newNode.value;
         }
     }
