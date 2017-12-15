@@ -42,10 +42,14 @@ import {
     animations: [
         trigger('collapsedState', [
             state('hidden', style({
-                height: '0'
+                height:          '0',
+                overflow:        'hidden',
+                'margin-bottom': '0'
             })),
             state('collapsed', style({
-                height: '*'
+                height:          '*',
+                overflow:        'initial',
+                'margin-bottom': '6px'
             })),
             transition('hidden <=> collapsed', [
                 animate(300)
