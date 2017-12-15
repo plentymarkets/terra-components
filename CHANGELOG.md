@@ -3,6 +3,7 @@
 
 ### Feature
 * **terra-portlet** add new input `inputHighlightPortlet` for component to highlight portlets. Edit css for highlighting portlets. 
+* **terra-multi-selectbox** adjusted styling
 
 <a name="2.1.35-zlk"></a>
 # 2.1.35-zlk (13.12.2017)
