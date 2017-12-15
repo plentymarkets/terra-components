@@ -7,6 +7,9 @@ import { Http } from '@angular/http';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
 import { TerraDataTableSortOrder } from './terra-data-table-sort-order.enum';
 
+/**
+ * @author pweyrich
+ */
 export abstract class TerraDataTableBaseService<T,P> extends TerraBaseService
 {
     public requestPending:boolean;
@@ -23,6 +26,10 @@ export abstract class TerraDataTableBaseService<T,P> extends TerraBaseService
         super(_loadingSpinnerService, _httpService, '');
     }
 
+    /**
+     * @description Updates the stored paging data with the given data
+     * @param {TerraPagerInterface} pagerData
+     */
     public updatePagingData(pagerData:TerraPagerInterface)
     {
         this.pagingData = {
@@ -36,6 +43,11 @@ export abstract class TerraDataTableBaseService<T,P> extends TerraBaseService
         };
     }
 
+    /**
+     * @description Wrapper for the abstract requestTableData method. All the default behaviour when retrieving data is implemented here.
+     * @param {boolean} fromFilter
+     * @returns {Observable<TerraPagerInterface>}
+     */
     public getResults(fromFilter?:boolean):Observable<TerraPagerInterface>
     {
         // initialize pagination parameters
@@ -91,5 +103,10 @@ export abstract class TerraDataTableBaseService<T,P> extends TerraBaseService
         return request;
     }
 
+    /**
+     * @description Placeholder for the specific data-retrieval method. In General the specific rest call is given here.
+     * @param {TerraPagerParameterInterface} params
+     * @returns {Observable<TerraPagerInterface>}
+     */
     public abstract requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface>
 }
