@@ -48,7 +48,7 @@ export abstract class TerraDataTableBaseService<T,P> extends TerraBaseService
         }
 
         // set page and itemsPerPage attribute
-        // important: this must be done after the filter parameters have been applied,...
+        // IMPORTANT: this must be done after the filter parameters have been applied,...
         // since they can also have a page and itemsPerPage attribute, but those should be ignored!!
         if(this.pagingData && this.pagingData.page && this.pagingData.itemsPerPage)
         {
