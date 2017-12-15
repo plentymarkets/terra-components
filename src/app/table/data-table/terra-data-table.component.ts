@@ -74,7 +74,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
-    @Output() outputGroupFunctionExecuteButtonClicked:EventEmitter<Event> = new EventEmitter();
+    @Output() outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<D>>> = new EventEmitter();
 
     private _headerList:Array<TerraDataTableHeaderCellInterface>;
     private _rowList:Array<TerraDataTableRowInterface<D>>;
@@ -416,6 +416,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     private onGroupFunctionExecuteButtonClicked(event:Event):void
     {
-        this.outputGroupFunctionExecuteButtonClicked.emit();
+        this.outputGroupFunctionExecuteButtonClicked.emit(this.rowList);
     }
 }
