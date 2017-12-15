@@ -81,13 +81,6 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes['_hasCheckboxes'])
-        {
-            console.warn(
-                '_hasCheckboxes is deprecated. It will be removed in one of the upcoming releases. Please use inputHasCheckboxes instead.');
-            this.inputHasCheckboxes = changes['_hasCheckboxes'].currentValue;
-        }
-
         if(changes['inputHeaderList'])
         {
             if(this.inputIsSortable)
@@ -226,7 +219,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     {
         if(!row.disabled)
         {
-            this.inputRowList.forEach((r) =>
+            this.inputRowList.forEach((r:TerraDataTableRowInterface<T>) =>
             {
                 r.isActive = false;
             });
@@ -333,11 +326,11 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         // change sorting column and order only if no request is pending and sortBy attribute is given
         if(!this.inputService.requestPending && this.inputIsSortable && header.sortBy)
         {
-            this.changeSortColumn(header);
+            this.changeSortingColumn(header);
         }
     }
 
-    private changeSortColumn(header:TerraDataTableHeaderCellInterface)
+    private changeSortingColumn(header:TerraDataTableHeaderCellInterface)
     {
         // clicked on the same column?
         if(this.inputService.sortBy === header.sortBy)
