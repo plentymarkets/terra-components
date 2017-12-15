@@ -22,6 +22,9 @@ import { TerraDataTableTextInterface } from './cell/terra-data-table-text.interf
 import { TerraDataTableSortOrder } from './terra-data-table-sort-order.enum';
 import { TerraDataTableBaseService } from './terra-data-table-base.service';
 
+/**
+ * @author pweyrich
+ */
 @Component({
     selector:  'terra-data-table',
     styles:    [require('./terra-data-table.component.scss')],
