@@ -28,9 +28,9 @@ import { TerraDataTableBaseService } from './terra-data-table-base.service';
     template:  require('./terra-data-table.component.html'),
     providers: [TerraDataTableContextMenuService]
 })
-export class TerraDataTableComponent<T> implements OnInit, OnChanges
+export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 {
-    @Input() inputService:TerraDataTableBaseService<T>;
+    @Input() inputService:TerraDataTableBaseService<T, P>;
     @Input() inputHeaderList:Array<TerraDataTableHeaderCellInterface>;
     @Input() inputRowList:Array<TerraDataTableRowInterface<T>>;
 

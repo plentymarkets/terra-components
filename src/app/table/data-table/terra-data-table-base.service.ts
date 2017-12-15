@@ -6,16 +6,15 @@ import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-
 import { Http } from '@angular/http';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
 import { TerraDataTableSortOrder } from './terra-data-table-sort-order.enum';
-import { TerraDataTableHeaderCellInterface } from './cell/terra-data-table-header-cell.interface';
 
-export abstract class TerraDataTableBaseService<T> extends TerraBaseService
+export abstract class TerraDataTableBaseService<T,P> extends TerraBaseService
 {
     public requestPending:boolean;
     public onSuccessFunction:(res:Array<T>) => void;
     public pagingData:TerraPagerInterface;
     public pagingSize:Array<TerraSelectBoxValueInterface>;
     public defaultPagingSize:number;
-    public filterParameter:TerraPagerParameterInterface;
+    public filterParameter:P;
     public sortBy:string;
     public sortOrder:TerraDataTableSortOrder;
 
@@ -37,22 +36,31 @@ export abstract class TerraDataTableBaseService<T> extends TerraBaseService
         };
     }
 
-    public getResults():Observable<TerraPagerInterface>
+    public getResults(fromFilter?:boolean):Observable<TerraPagerInterface>
     {
         // initialize pagination parameters
         let params:TerraPagerParameterInterface = {};
-        if(this.pagingData && this.pagingData.page && this.pagingData.itemsPerPage)
-        {
-            params = {
-                page:         this.pagingData.page,
-                itemsPerPage: this.pagingData.itemsPerPage
-            };
-        }
 
         // use filter params if available
-        if(this.filterParameter && this.filterParameter.page && this.pagingData.itemsPerPage)
+        if(this.filterParameter)
         {
             params = this.filterParameter;
+        }
+
+        // set page and itemsPerPage attribute
+        // important: this must be done after the filter parameters have been applied,...
+        // since they can also have a page and itemsPerPage attribute, but those should be ignored!!
+        if(this.pagingData && this.pagingData.page && this.pagingData.itemsPerPage)
+        {
+            params.page = this.pagingData.page;
+            params.itemsPerPage = this.pagingData.itemsPerPage;
+        }
+
+        // if search is triggered by a filter component, always retrieve the first page
+        // TODO: maybe implement another behavior by checking if filter params have changed
+        if(fromFilter)
+        {
+            params.page = 1;
         }
 
         // add sortBy attribute to pager params
