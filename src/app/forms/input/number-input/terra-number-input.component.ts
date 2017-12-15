@@ -32,17 +32,6 @@ export class TerraNumberInputComponent extends TerraInputComponent
     }
 
     /**
-     * @deprecated inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.
-     * */
-    @Input()
-    public set inputValue(v:number)
-    {
-        console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-
-        this.value = v;
-    }
-
-    /**
      * @description a unique string identifier for the specific input instance.
      */
     private _id:string;

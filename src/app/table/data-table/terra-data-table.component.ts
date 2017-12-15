@@ -62,15 +62,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _langPrefix:string = 'terraDataTable';
     private _requestPending:boolean;
 
-    /**
-     * @deprecated
-     */
-    @Input()
-    private _hasCheckboxes:boolean;
-
     constructor()
     {
-        this._hasCheckboxes = true;
         this.inputHasCheckboxes = true;
         this.inputHasInitialLoading = false;
         this.inputHasPager = true;
@@ -81,12 +74,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes['_hasCheckboxes'])
-        {
-            console.warn(
-                '_hasCheckboxes is deprecated. It will be removed in one of the upcoming releases. Please use inputHasCheckboxes instead.');
-            this.inputHasCheckboxes = changes['_hasCheckboxes'].currentValue;
-        }
     }
 
     private onHeaderCheckboxChange(isChecked:boolean):void
@@ -157,20 +144,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             let index = this.selectedRowList.indexOf(rowToChange);
 
             this.selectedRowList.splice(index, 1);
-        }
-    }
-
-    private rowClicked(cell:TerraDataTableCellInterface, row:TerraDataTableRowInterface<D>):void
-    {
-        if(!cell.buttonList && !row.disabled)
-        {
-            this._rowList.forEach((row) =>
-            {
-                row.isActive = false;
-            });
-
-            row.isActive = true;
-            row.clickFunction();
         }
     }
 
@@ -290,18 +263,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
                 this._requestPending = false;
             }
         );
-    }
-
-    public getTextAlign(item:TerraDataTableHeaderCellInterface):string
-    {
-        if(!isNullOrUndefined(item.textAlign))
-        {
-            return item.textAlign;
-        }
-        else
-        {
-            return 'left';
-        }
     }
 
     private getCellDataType(data:any):string

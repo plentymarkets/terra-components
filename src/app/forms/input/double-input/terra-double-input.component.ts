@@ -29,18 +29,6 @@ export class TerraDoubleInputComponent extends TerraInputComponent
     @Input() inputIsPriceInput:boolean;
 
     /**
-     * @deprecated
-     * @param {number} v
-     */
-    @Input()
-    public set inputValue(v:number)
-    {
-        console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-
-        this.value = v;
-    }
-
-    /**
      * @description a unique string identifier for the specific input instance.
      */
     private _id:string;

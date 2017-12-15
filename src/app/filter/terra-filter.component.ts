@@ -28,10 +28,6 @@ export class TerraFilterComponent implements OnInit
      * */
     @Input() inputResetLabel:string;
     /**
-     * @deprecated Will be removed in an upcoming release.
-     * */
-    @Input() inputInputList:any[];
-    /**
      * @description Set the function which will be executed on click of the search button.
      * */
     @Output() outputOnSearchBtnClicked = new EventEmitter<any>();

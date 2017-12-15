@@ -43,29 +43,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 
     private clickListener:(event:Event) => void;
 
-    /**
-     * @deprecated
-     * @param value
-     */
-    @Input()
-    set inputSelectedValue(value:number | string)
-    {
-        console.warn('inputSelectedValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-        if(value !== undefined && value != null)
-        {
-            this.inputListBoxValues
-                .forEach((item:TerraSelectBoxValueInterface) =>
-                {
-                    if(item.value == value)
-                    {
-                        this._selectedValue = item;
-                    }
-                });
-
-            this.inputSelectedValueChange.emit(this._selectedValue.value);
-        }
-    }
-
     get inputSelectedValue():number | string
     {
         return this._selectedValue.value;
