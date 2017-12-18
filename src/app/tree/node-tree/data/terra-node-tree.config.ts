@@ -200,7 +200,7 @@ export class TerraNodeTreeConfig<D>
     }
 
     //removes a given node
-    private internalRemoveNode(node:TerraNodeInterface<D>)
+    private internalRemoveNode(node:TerraNodeInterface<D>):void
     {
         let parent:TerraNodeInterface<D> = node.parent;
 
@@ -221,7 +221,7 @@ export class TerraNodeTreeConfig<D>
      * @description Removes a node by ID.
      * @param id The ID of the node to be removed.
      */
-    public removeNodeById(id:string | number)
+    public removeNodeById(id:string | number):void
     {
         let foundNode:TerraNodeInterface<D> = this.recursiveFindNodeById(this.list, id);
 

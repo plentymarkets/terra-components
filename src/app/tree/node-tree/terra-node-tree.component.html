@@ -1,6 +1,6 @@
 <ng-content></ng-content>
 <ul class="terra-node-tree">
-    <ng-template ngFor let-node [ngForOf]="inputConfig.list">
+    <ng-container *ngFor="let node of inputConfig.list">
         <terra-node *ngIf="node.isVisible" [inputNode]="node" [inputConfig]="inputConfig"></terra-node>
-    </ng-template>
+    </ng-container>
 </ul>
