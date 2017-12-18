@@ -12,6 +12,12 @@
                                 [formControlName]="formField.key"
                                 [inputName]="formField.label  | translate:lang"
                                 [inputIsRequired]="formField?.required"></terra-number-input>
+    
+            <terra-double-input *ngSwitchCase="'inputDouble'"
+                                [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                                [formControlName]="formField.key"
+                                [inputName]="formField.label  | translate:lang"
+                                [inputIsRequired]="formField?.required"></terra-double-input>
             
             <terra-select-box *ngSwitchCase="'selectBox'"
                               [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
