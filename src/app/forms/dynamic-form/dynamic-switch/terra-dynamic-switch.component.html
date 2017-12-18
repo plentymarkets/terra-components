@@ -5,25 +5,29 @@
                               [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                               [formControlName]="formField.key"
                               [inputName]="formField.label  | translate:lang"
-                              [inputIsRequired]="formField?.required"></terra-text-input>
+                              [inputIsRequired]="formField?.required">
+            </terra-text-input>
             
             <terra-text-area-input *ngSwitchCase="'inputTextArea'"
                                    [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                                    [formControlName]="formField.key"
                                    [inputName]="formField.label  | translate:lang"
-                                   [inputIsRequired]="formField?.required"></terra-text-area-input>
+                                   [inputIsRequired]="formField?.required">
+            </terra-text-area-input>
             
             <terra-number-input *ngSwitchCase="'inputNumber'"
                                 [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                 [formControlName]="formField.key"
                                 [inputName]="formField.label  | translate:lang"
-                                [inputIsRequired]="formField?.required"></terra-number-input>
-    
+                                [inputIsRequired]="formField?.required">
+            </terra-number-input>
+            
             <terra-double-input *ngSwitchCase="'inputDouble'"
                                 [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                 [formControlName]="formField.key"
                                 [inputName]="formField.label  | translate:lang"
-                                [inputIsRequired]="formField?.required"></terra-double-input>
+                                [inputIsRequired]="formField?.required">
+            </terra-double-input>
             
             <terra-select-box *ngSwitchCase="'selectBox'"
                               [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
@@ -32,6 +36,13 @@
                               [inputIsRequired]="formField?.required"
                               [inputListBoxValues]="formField.selectBoxValues">
             </terra-select-box>
+            
+            <terra-date-picker *ngSwitchCase="'datePicker'"
+                               [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                               [formControlName]="formField.key"
+                               [inputName]="formField.label | translate:lang"
+                               [inputIsRequired]="formField?.required">
+            </terra-date-picker>
             
             <ng-container *ngSwitchCase="'horizontalContainer'">
                 <div class="horizontalGroup">
@@ -71,7 +82,7 @@
                                         [(ngModel)]="inputFormGroup.value[formField.key]"
                                         (ngModelChange)="onConditionChanged(formField)">
                         </terra-checkbox>
-    
+                        
                         <div class="conditionalSwitch">
                             <terra-dynamic-switch [inputFormGroup]="inputFormGroup"
                                                   [inputFormFields]="formField.conditionalEntries[inputFormGroup.value[formField.key]]"
