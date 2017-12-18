@@ -24,6 +24,10 @@ let nextId:number = 0;
 export class TerraTextAreaInputComponent extends TerraInputComponent
 {
     /**
+     * @description If true, a * indicates that the value is required. Default false.
+     */
+    @Input() inputIsRequired:boolean;
+    /**
      * @deprecated inputType is no longer used.  It will be removed in one of the upcoming releases.
      * @param v
      */

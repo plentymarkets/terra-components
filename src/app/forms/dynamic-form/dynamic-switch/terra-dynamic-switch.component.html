@@ -7,6 +7,12 @@
                               [inputName]="formField.label  | translate:lang"
                               [inputIsRequired]="formField?.required"></terra-text-input>
             
+            <terra-text-area-input *ngSwitchCase="'inputTextArea'"
+                                   [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
+                                   [formControlName]="formField.key"
+                                   [inputName]="formField.label  | translate:lang"
+                                   [inputIsRequired]="formField?.required"></terra-text-area-input>
+            
             <terra-number-input *ngSwitchCase="'inputNumber'"
                                 [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                 [formControlName]="formField.key"
