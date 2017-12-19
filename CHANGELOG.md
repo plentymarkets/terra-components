@@ -1,4 +1,37 @@
-#Unreleased
+<a name="2.1.36-zlk"></a>
+# 2.1.36-zlk (XX.12.2017)
+
+### Feature
+* **terra-portlet** add new input `inputHighlightPortlet` for component to highlight portlets. Edit css for highlighting portlets. 
+
+<a name="2.1.35-zlk"></a>
+# 2.1.35-zlk (13.12.2017)
+
+### Bug Fixes 
+* **terra-simple-table** **terra-data-table** fix setting of text-align
+* **TerraBaseService** improve repsonse type of service
+
+### Feature
+* **tooltips** updated tooltip background color 
+* **terra-text-input** **terra-number-input** updated tooltip background color 
+* **terra-slider** adjusted styling for terra-slider-component
+
+<a name="2.1.34-zlk"></a>
+# 2.1.34-zlk (13.12.2017)
+
+### Bug Fixes
+* **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
+* **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+
+### Feature
+* **terra-input** Add input for IBAN validation. Add function to validate input (OnBlur). Add Tooltip for invalid Iban.
+* **terra-checkbox-tree** component accomplished. Basic comportment implemented
+* **terra-simple-table** new interface property `textAlign` that uses `TerraTextAlignEnum` to align captions in table header cells
+* **terra-data-table** constraint interface property `textAlign` with `TerraTextAlignEnum`. Property type string is deprecated
+
+<a name="2.1.33-zlk"></a>
+# 2.1.33-zlk (07.12.2017)
+
 ### Feature
 * **terra-base-service** new method `addParamsToUrl` that generically appends query parameters to a given url
 * **terra-multi-split-view** added `setSelectedView` method to the config, to be able to manually select a specific view
@@ -43,6 +76,7 @@ Toggling checkboxes required `[inputHasCheckbox]="true"`
 
 <a name="1.4.2"></a>
 # 1.4.2 (20.09.2017)
+
 ### Feature
 * **terra-multi-split-view** added new interface property _inputs_ to be able to pass a list of input variables to the component, that is added to the split view. This now allows data-binding as usual and will replace interface property _parameter_.
 * **terra-file-input** and **terra-file-browser** Added new components to manage files on S3-Bucket and display file-inputs as form control.
