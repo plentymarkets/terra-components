@@ -5,6 +5,7 @@ import { isNull } from 'util';
  */
 export interface TerraFormFieldBaseOptions<T>
 {
+    id?:number;
     value?:T,
     label?:string,
     required?:boolean
@@ -20,6 +21,7 @@ export interface TerraFormFieldBaseOptions<T>
  */
 export class TerraFormFieldBase<T>
 {
+    id?:number;
     value:T;
     key:string;
     label:string;
@@ -46,6 +48,7 @@ export class TerraFormFieldBase<T>
             throw new Error('controlType can no tbe null');
         }
 
+        this.id = options.id;
         this.key = key;
         this.controlType = controlType;
 
