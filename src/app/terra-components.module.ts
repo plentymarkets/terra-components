@@ -80,6 +80,7 @@ import { TerraFileBrowserService } from './file-browser/terra-file-browser.servi
 import { TerraFileBrowserComponent } from './file-browser/terra-file-browser.component';
 import { TerraNoteEditorComponent } from './note-editor/terra-note-editor.component';
 import { TerraNoteComponent } from './note/terra-note.component';
+import { TerraTimePickerComponent } from './forms/input/time-picker/terra-time-picker.component';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -200,6 +201,7 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
+        TerraTimePickerComponent,
         TerraNoteComponent
     ],
     entryComponents: [
@@ -246,6 +248,7 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraFileInputComponent,
         TerraButtonWithOptionsComponent,
         TerraNoteEditorComponent,
+        TerraTimePickerComponent,
         TerraNoteComponent
     ],
     exports:         [
@@ -297,6 +300,7 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
+        TerraTimePickerComponent,
         TerraNoteComponent
     ],
     imports:         [

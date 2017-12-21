@@ -1,0 +1,42 @@
+<div class="input-unit-v1"
+     [ngClass]="{'error': !inputIsValid, 'disabled': inputIsDisabled}">
+    <div class="timeFormatGroup">
+        <terra-radio-button inputValue="12"
+                            inputCaption="12-Stunden"
+                            [(ngModel)]="_valueFormat"
+                            (ngModelChange)="changeValues()"
+                            >
+        </terra-radio-button>
+        
+        <terra-radio-button inputValue="24"
+                            inputCaption="24-Stunden"
+                            [(ngModel)]="_valueFormat"
+                            (ngModelChange)="changeValues()">
+        </terra-radio-button>
+    </div>
+    <div class="am-pm" *ngIf="!is24HourFormat">
+        <terra-radio-button inputValue="AM"
+                            inputCaption="AM"
+                            [(ngModel)]="_valueFormat"
+                            (ngModelChange)="changeValues()"
+        >
+        </terra-radio-button>
+    
+        <terra-radio-button inputValue="PM"
+                            inputCaption="PM"
+                            [(ngModel)]="_valueFormat"
+                            (ngModelChange)="changeValues()">
+        </terra-radio-button>
+    </div>
+    <terra-select-box
+                      class="time"
+                      [inputListBoxValues]="valueHours"
+                      inputDisabled="true"
+                      inputName="Stunden">
+    </terra-select-box>
+    <terra-select-box class="time"
+                      [inputListBoxValues]="valuesMinutes"
+                      inputDisabled="true"
+                      inputName="Minuten">
+    </terra-select-box>
+</div>
