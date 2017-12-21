@@ -10,6 +10,7 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector:  'terra-note-editor',
@@ -29,6 +30,42 @@ import {
 export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
 {
     @Input() inputPlaceholder:string;
+
+    private _editorStyles: {[property:string]:any} = {};
+
+    @Input()
+    public set inputEditorStyles( styles: {[property:string]:any} )
+    {
+        this._editorStyles = styles;
+    }
+
+    public get inputEditorStyles():{[property:string]:any}
+    {
+        let styles = this._editorStyles;
+        if ( isNullOrUndefined( styles.minHeight ) )
+        {
+            styles.minHeight = "100px";
+        }
+        return styles;
+    }
+
+    private _inputEditorModules:{ [index:string]:Object };
+
+    @Input()
+    public set inputEditorModules(modules:{ [index:string]:Object })
+    {
+        this._modules = this._modules;
+    }
+
+    public get inputEditorModules():{ [index:string]:Object }
+    {
+        if ( isNullOrUndefined( this._inputEditorModules ) )
+        {
+            return this._modules;
+        }
+
+        return this._inputEditorModules;
+    }
 
     @Output() ngModelChange:EventEmitter<string> = new EventEmitter();
 
