@@ -61,4 +61,9 @@ export interface TerraNodeInterface<D>
      * @description Check if lazy loading has finished to avoid firing a REST-Call again
      */
     hasLoaded?:boolean;
+
+    /**
+     * @description used for search
+     */
+    tags?:Array<string>;
 }
