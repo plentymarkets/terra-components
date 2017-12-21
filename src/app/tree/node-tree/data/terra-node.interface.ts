@@ -63,6 +63,11 @@ export interface TerraNodeInterface<D>
     hasLoaded?:boolean;
 
     /**
+     * @description Check if lazy loading is called
+     */
+    isLoading?:boolean;
+
+    /**
      * @description used for search
      */
     tags?:Array<string>;

@@ -1,13 +1,11 @@
 import { TerraNodeInterface } from './terra-node.interface';
 import { isNullOrUndefined } from 'util';
-import { TerraSuggestionBoxValueInterface } from '../../../forms/suggestion-box/data/terra-suggestion-box.interface';
 import { TranslationService } from 'angular-l10n';
 
 export class TerraNodeTreeConfig<D>
 {
     private _list:Array<TerraNodeInterface<D>> = [];
     private _currentSelectedNode:TerraNodeInterface<D>;
-    private _searchNodeList:Array<TerraSuggestionBoxValueInterface> = [];
 
     constructor(public _translation:TranslationService)
     {
@@ -55,60 +53,13 @@ export class TerraNodeTreeConfig<D>
 
                 if(!isNullOrUndefined(openParents) && openParents)
                 {
-                    this.recursiveOpenParent(nodeToAdd);
+                    this.toggleOpenParent(nodeToAdd, openParents);
                 }
             }
-
-            this.addSearchNode(nodeToAdd);
         }
         else
         {
             console.error('Node ' + nodeToAdd.name + ' with id ' + nodeToAdd.id + ' already added!');
-        }
-    }
-
-    private updateSearchNodes():void
-    {
-        // reset node list
-        this._searchNodeList = [];
-
-        // convert tree model into flat hierarchy
-        this._list.forEach((node:TerraNodeInterface<D>) =>
-        {
-            this.addSearchNode(node);
-        });
-    }
-
-    private addSearchNode(node:TerraNodeInterface<D>):void
-    {
-        // check for null pointer
-        if(isNullOrUndefined(node))
-        {
-            return;
-        }
-
-        // seek trough its children, if existing
-        if(!isNullOrUndefined(node.children) && node.children.length > 0)
-        {
-            node.children.forEach((child:TerraNodeInterface<D>) =>
-            {
-                this.addSearchNode(child);
-            });
-        }
-        // only add nodes without children <=> leaves
-        else
-        {
-            // check if node is visible
-            if(!isNullOrUndefined(node.isVisible) && node.isVisible)
-            {
-                // add node to the flat list
-                this._searchNodeList.push(
-                    {
-                        value:   node,
-                        caption: this.getRecursiveNodePath(node, null)
-                    }
-                );
-            }
         }
     }
 
@@ -356,7 +307,6 @@ export class TerraNodeTreeConfig<D>
     {
         this.recursiveSetParent(value);
         this._list = value;
-        this.updateSearchNodes();
     }
 
     //set parents to all nodes
@@ -376,14 +326,70 @@ export class TerraNodeTreeConfig<D>
         }
     }
 
-    //open all parents of given node
-    private recursiveOpenParent(node:TerraNodeInterface<D>)
+    /**
+     * @description Open all parents of given node.
+     * @param node The node to open its parents.
+     * @param isOpen Toggle open or not.
+     */
+    public toggleOpenParent(node:TerraNodeInterface<D>, isOpen:boolean):void
     {
         if(!isNullOrUndefined(node.parent))
         {
-            node.parent.isOpen = true;
+            node.parent.isOpen = isOpen;
 
-            this.recursiveOpenParent(node.parent);
+            this.toggleOpenParent(node.parent, isOpen);
+        }
+    }
+
+    /**
+     * @description Close all nodes.
+     */
+    public closeAllNodes():void
+    {
+        this.toggleOpenChildren(this.list, false);
+    }
+
+    /**
+     * @description Open all parents of given node.
+     * @param nodeList The node list to open its children.
+     * @param isOpen Toggle open or not.
+     */
+    public toggleOpenChildren(nodeList:Array<TerraNodeInterface<D>>, isOpen:boolean):void
+    {
+        nodeList.forEach((node:TerraNodeInterface<D>) =>
+        {
+            node.isOpen = isOpen;
+
+            if(!isNullOrUndefined(node.children))
+            {
+                this.toggleOpenChildren(node.children, isOpen);
+            }
+        });
+    }
+
+    public handleLazyLoading(node:TerraNodeInterface<D>):void
+    {
+        //check if lazy loading is desired
+        if(!node.hasLoaded && !isNullOrUndefined(node.onLazyLoad))
+        {
+            node.hasLoaded = true;
+            node.isLoading = true;
+            //subscribe to Observable
+            node.onLazyLoad().subscribe(() =>
+                {
+                    node.hasLoaded = true;
+                    node.isLoading = false;
+                    node.isOpen = true;
+                },
+                () =>
+                {
+                    node.hasLoaded = false;
+                    node.isLoading = false;
+                });
+        }
+        else
+        {
+            node.isOpen = !node.isOpen;
         }
     }
 
@@ -393,7 +399,7 @@ export class TerraNodeTreeConfig<D>
      */
     public set currentSelectedNode(node:TerraNodeInterface<D>)
     {
-        this.recursiveOpenParent(node);
+        this.toggleOpenParent(node, true);
         this.recursiveSetNodeInactive(this.list);
         node.isActive = true;
         this._currentSelectedNode = node;
@@ -414,7 +420,6 @@ export class TerraNodeTreeConfig<D>
     {
         this._list = [];
         this._currentSelectedNode = null;
-        this._searchNodeList = null;
     }
 
     /**
@@ -450,11 +455,35 @@ export class TerraNodeTreeConfig<D>
     }
 
     /**
-     *
-     * @description A flat list of all nodes to be used with search box.
+     * @description Toggle the visibility for all children.
+     * @param nodeList The node list to toggle visibility of its children.
+     * @param isVisible Toggle visibility.
      */
-    public get searchNodeList():Array<TerraSuggestionBoxValueInterface>
+    public toggleVisiblityForAllChildren(nodeList:Array<TerraNodeInterface<D>>, isVisible:boolean):void
     {
-        return this._searchNodeList;
+        nodeList.forEach((node:TerraNodeInterface<D>) =>
+        {
+            node.isVisible = isVisible;
+
+            if(!isNullOrUndefined(node.children))
+            {
+                this.toggleVisiblityForAllChildren(node.children, isVisible);
+            }
+        })
+    }
+
+    /**
+     * @description Toggle the visibility for all parents.
+     * @param parentNode The node to toggle visibility of its parent.
+     * @param isVisible Toggle visibility.
+     */
+    public toggleVisibilityForAllParents(parentNode:TerraNodeInterface<D>, isVisible:boolean):void
+    {
+        parentNode.isVisible = isVisible;
+
+        if(!isNullOrUndefined(parentNode.parent))
+        {
+            this.toggleVisibilityForAllParents(parentNode.parent, isVisible);
+        }
     }
 }

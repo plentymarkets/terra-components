@@ -23,8 +23,6 @@ export class TerraNodeComponent<D>
      */
     @Input() inputConfig:TerraNodeTreeConfig<D>;
 
-    private isLoading:boolean = false;
-
     constructor()
     {
     }
@@ -47,27 +45,6 @@ export class TerraNodeComponent<D>
     {
         event.stopPropagation();
 
-        //check if lazy loading is desired
-        if(!this.inputNode.hasLoaded && !isNullOrUndefined(this.inputNode.onLazyLoad))
-        {
-            this.inputNode.hasLoaded = true;
-            this.isLoading = true;
-            //subscribe to Observable
-            this.inputNode.onLazyLoad().subscribe(() =>
-                {
-                    this.inputNode.hasLoaded = true;
-                    this.isLoading = false;
-                    this.inputNode.isOpen = true;
-                },
-                () =>
-                {
-                    this.inputNode.hasLoaded = false;
-                    this.isLoading = false;
-                });
-        }
-        else
-        {
-            this.inputNode.isOpen = !this.inputNode.isOpen;
-        }
+        this.inputConfig.handleLazyLoading(this.inputNode);
     }
 }
