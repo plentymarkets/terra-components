@@ -215,7 +215,14 @@ export class TerraNodeTreeConfig<D>
             foundNode.isActive = newNode.isActive;
             foundNode.isOpen = newNode.isOpen;
             foundNode.isVisible = newNode.isVisible;
+            foundNode.defaultVisibility = newNode.defaultVisibility;
+            foundNode.isLoading = newNode.isLoading;
+            foundNode.tags = newNode.tags;
             foundNode.value = newNode.value;
+            foundNode.parent = newNode.parent;
+            foundNode.hasLoaded = newNode.hasLoaded;
+            foundNode.onClick = newNode.onClick;
+            foundNode.onLazyLoad = newNode.onLazyLoad;
         }
     }
 
@@ -463,6 +470,14 @@ export class TerraNodeTreeConfig<D>
     {
         nodeList.forEach((node:TerraNodeInterface<D>) =>
         {
+            //if(node.isVisible)
+            //{
+            //    node.defaultVisibility = true;
+            //}
+            //else
+            //{
+            //    node.defaultVisibility = false;
+            //}
             node.isVisible = isVisible;
 
             if(!isNullOrUndefined(node.children))
@@ -479,6 +494,15 @@ export class TerraNodeTreeConfig<D>
      */
     public toggleVisibilityForAllParents(parentNode:TerraNodeInterface<D>, isVisible:boolean):void
     {
+        //if(parentNode.isVisible)
+        //{
+        //    parentNode.defaultVisibility = true;
+        //}
+        //else
+        //{
+        //    parentNode.defaultVisibility = false;
+        //}
+
         parentNode.isVisible = isVisible;
 
         if(!isNullOrUndefined(parentNode.parent))

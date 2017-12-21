@@ -34,6 +34,47 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 
     public ngOnInit():void
     {
+        this.handleVisibility(this.inputConfig.list);
+    }
+
+    private handleVisibility(nodeList:Array<TerraNodeInterface<D>>):void
+    {
+        nodeList.forEach((node:TerraNodeInterface<D>)=>{
+
+            if(node.isVisible)
+            {
+                node.defaultVisibility = true;
+            }
+            else
+            {
+                node.defaultVisibility = false;
+            }
+
+            if(!isNullOrUndefined(node.children))
+            {
+                this.handleVisibility(node.children);
+            }
+        });
+    }
+
+    private handleDefaultVisibility(nodeList:Array<TerraNodeInterface<D>>):void
+    {
+        nodeList.forEach((node:TerraNodeInterface<D>)=>{
+
+            if(node.defaultVisibility)
+            {
+                node.isVisible = true;
+            }
+            else
+            {
+                node.isVisible = false;
+            }
+
+            if(!isNullOrUndefined(node.children))
+            {
+                this.handleDefaultVisibility(node.children);
+            }
+        });
     }
 
     public ngOnDestroy():void
@@ -51,8 +92,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         }
         else
         {
-            this.inputConfig.toggleVisiblityForAllChildren(this.inputConfig.list, true);
-            this.inputConfig.closeAllNodes();
+            this.handleDefaultVisibility(this.inputConfig.list);
         }
     }
 
@@ -113,6 +153,11 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 
     private handleNodeVisibility(node:TerraNodeInterface<D>)
     {
+        if(!node.defaultVisibility)
+        {
+            return
+        }
+
         node.isVisible = true;
         this.inputConfig.toggleOpenParent(node, true);
 
