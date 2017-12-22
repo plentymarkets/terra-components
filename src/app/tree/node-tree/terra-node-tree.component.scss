@@ -1,11 +1,11 @@
-li
+.search-wrapper
 {
-    list-style-type: none;
-    border-left: 1px solid #BDBDBD;
+    padding: 4px 4px 1px 4px;
 }
-
-.terra-node-tree
+    
+ul
 {
-    margin-top: 2px;
-    padding-left: 0px;
+    background-color: $grey-11;
+    padding: 0px;
+    margin: 0px;
 }
