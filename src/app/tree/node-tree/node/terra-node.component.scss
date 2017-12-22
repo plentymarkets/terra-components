@@ -1,0 +1,79 @@
+@import "./../../../button/terra-button.component.scss";
+
+li
+{
+    list-style-type: none;
+}
+
+ul
+{
+    border-left: 1px solid #BDBDBD;
+    padding-left: 15px;
+    
+    &:hover
+    {
+        border-left:  1px solid #676767;
+    }
+}
+
+[class^="icon-"]
+{
+    position: absolute !important;
+    right: 0px;
+    height: calc(100% - 1px);
+    top: 0px !important;
+    padding-top: 4px;
+    padding-left: 22px;
+    padding-right: 6px;
+    
+    &:before
+    {
+        vertical-align: middle;
+    }
+    
+    &:hover
+    {
+       background-color: $grey-9;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+}
+
+.activated > [class^="icon-"]
+{
+    &:hover
+    {
+        background-color: $blue-hover;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+}
+
+.node
+{
+    margin-bottom: 1px;
+    width: 173px;
+    text-align: left;
+}
+
+.icon-placeholder
+{
+    padding-right: 23px;
+}
+
+.icon_dist_top
+{
+    top: -9px !important;
+}
+
+.buttonText
+{
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 7em;
+}
+
+.isLoading{
+    background-color: $dark-grey-3;
+}
