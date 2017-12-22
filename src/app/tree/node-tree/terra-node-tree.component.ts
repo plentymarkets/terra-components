@@ -162,7 +162,10 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         node.isVisible = true;
         this.inputConfig.toggleOpenParent(node, true);
 
-        this.inputConfig.handleLazyLoading(node);
+        if(!node.hasLoaded)
+        {
+            this.inputConfig.handleLazyLoading(node);
+        }
 
         if(!isNullOrUndefined(node.children))
         {
@@ -172,7 +175,10 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 
         if(!isNullOrUndefined(node.parent))
         {
-            this.inputConfig.handleLazyLoading(node.parent);
+            if(!node.parent.hasLoaded)
+            {
+                this.inputConfig.handleLazyLoading(node.parent);
+            }
             this.inputConfig.toggleVisibilityForAllParents(node.parent, true);
         }
     }

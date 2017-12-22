@@ -391,6 +391,7 @@ export class TerraNodeTreeConfig<D>
                     node.hasLoaded = true;
                     node.isLoading = false;
                     node.isOpen = true;
+                    this.setDefaultVisibilityToChildren(node.children);
                 },
                 () =>
                 {
@@ -401,6 +402,29 @@ export class TerraNodeTreeConfig<D>
         else
         {
             node.isOpen = !node.isOpen;
+        }
+    }
+
+    private setDefaultVisibilityToChildren(nodeList:Array<TerraNodeInterface<D>>)
+    {
+        if(!isNullOrUndefined(nodeList))
+        {
+            nodeList.forEach((node:TerraNodeInterface<D>) =>
+            {
+                if(node.isVisible)
+                {
+                    node.defaultVisibility = true;
+                }
+                else
+                {
+                    node.defaultVisibility = false;
+                }
+
+                if(!isNullOrUndefined(node.children))
+                {
+                    this.setDefaultVisibilityToChildren(node.children);
+                }
+            });
         }
     }
 
