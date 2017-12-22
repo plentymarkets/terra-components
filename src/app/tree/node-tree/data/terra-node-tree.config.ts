@@ -374,6 +374,10 @@ export class TerraNodeTreeConfig<D>
         });
     }
 
+    /**
+     * @description Call the lazy loading function of given node.
+     * @param node The node where lazy loading is defined.
+     */
     public handleLazyLoading(node:TerraNodeInterface<D>):void
     {
         //check if lazy loading is desired
@@ -470,14 +474,6 @@ export class TerraNodeTreeConfig<D>
     {
         nodeList.forEach((node:TerraNodeInterface<D>) =>
         {
-            //if(node.isVisible)
-            //{
-            //    node.defaultVisibility = true;
-            //}
-            //else
-            //{
-            //    node.defaultVisibility = false;
-            //}
             node.isVisible = isVisible;
 
             if(!isNullOrUndefined(node.children))
@@ -494,15 +490,6 @@ export class TerraNodeTreeConfig<D>
      */
     public toggleVisibilityForAllParents(parentNode:TerraNodeInterface<D>, isVisible:boolean):void
     {
-        //if(parentNode.isVisible)
-        //{
-        //    parentNode.defaultVisibility = true;
-        //}
-        //else
-        //{
-        //    parentNode.defaultVisibility = false;
-        //}
-
         parentNode.isVisible = isVisible;
 
         if(!isNullOrUndefined(parentNode.parent))

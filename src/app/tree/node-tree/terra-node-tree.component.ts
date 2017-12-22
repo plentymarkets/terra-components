@@ -93,10 +93,11 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         else
         {
             this.handleDefaultVisibility(this.inputConfig.list);
+            this.inputConfig.closeAllNodes();
         }
     }
 
-    private recursiveCheckList(list:Array<TerraNodeInterface<D>>)
+    private recursiveCheckList(list:Array<TerraNodeInterface<D>>):void
     {
         list.forEach((node:TerraNodeInterface<D>) =>
         {
@@ -151,7 +152,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         }
     }
 
-    private handleNodeVisibility(node:TerraNodeInterface<D>)
+    private handleNodeVisibility(node:TerraNodeInterface<D>):void
     {
         if(!node.defaultVisibility)
         {
