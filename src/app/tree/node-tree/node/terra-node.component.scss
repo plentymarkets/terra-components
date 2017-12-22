@@ -50,6 +50,11 @@ li
                     }
                 }
                 
+                &.isLoading
+                {
+                    background-color: $tree-icon-grey;
+                }
+                
                 &:hover
                 {
                     background-color: $blue;
