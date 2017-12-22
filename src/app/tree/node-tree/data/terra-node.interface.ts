@@ -58,7 +58,22 @@ export interface TerraNodeInterface<D>
     onLazyLoad?:()=>Observable<any>;
 
     /**
-     * @description Check if lazy loading has finished to avoid firing a REST-Call again
+     * @description Check if lazy loading has finished to avoid firing a REST-Call again.
      */
     hasLoaded?:boolean;
+
+    /**
+     * @description Check if lazy loading is called.
+     */
+    isLoading?:boolean;
+
+    /**
+     * @description Tags used for search.
+     */
+    tags?:Array<string>;
+
+    /**
+     * @description  set the default visibility to reset search.
+     */
+    defaultVisibility?:boolean;
 }

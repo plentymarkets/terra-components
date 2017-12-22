@@ -38,6 +38,8 @@ import { isNullOrUndefined } from 'util';
 export class TerraPortletComponent implements OnChanges
 {
 
+    @Input() inputHighlightPortlet:boolean = false;
+
     @Input() inputPortletHeader:string;
 
     @Input() inputIsCollapsable:boolean = false;

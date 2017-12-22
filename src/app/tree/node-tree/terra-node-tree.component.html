@@ -1,4 +1,4 @@
-<ng-content></ng-content>
+<terra-text-input *ngIf="inputShowSearch" [inputName]="'terraNodeTree.search' | translate:lang" (outputOnInput)="onChange()" [(ngModel)]="_searchValue"></terra-text-input>
 <ul class="terra-node-tree">
     <ng-container *ngFor="let node of inputConfig.list">
         <terra-node *ngIf="node.isVisible" [inputNode]="node" [inputConfig]="inputConfig"></terra-node>

@@ -1,12 +1,11 @@
 <li>
     <div class="btn-handler">
-        <button class="btn"
-                [ngClass]="{'activated' : inputNode.isActive}"
+        <div class="node btn"
+                [ngClass]="{'activated' : inputNode.isActive, 'isLoading' : inputNode.isLoading && inputNode.onLazyLoad}"
                 (click)="onNodeClick($event)"
                 container="body"
                 [tooltip]="inputNode.name | translate:lang"
-                [placement]="'right'"
-                [disabled]="isLoading && inputNode.onLazyLoad">
+                [placement]="'right'">
             <span *ngIf="!inputNode.icon" class="icon_dist_top icon-placeholder"></span>
             <span *ngIf="inputNode.icon" class="icon_dist_top" [ngClass]="inputNode.icon"></span>
             <div class="buttonText">{{inputNode.name | translate:lang }}</div>
@@ -14,7 +13,7 @@
                   class="icon-right icon-collapse_up"
                   [ngClass]="{'icon-collapse_up' : inputNode.isOpen, 'icon-collapse_down': !inputNode.isOpen}"
                   (click)="handleIconClick($event)"></span>
-        </button>
+        </div>
     </div>
     
     <ul *ngIf="inputNode.children && inputNode.children.length > 0 && inputNode.isOpen">
