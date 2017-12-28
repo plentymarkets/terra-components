@@ -100,3 +100,7 @@ export * from './app/forms/dynamic-form/data/terra-form-field-select-box';
 export * from './app/forms/dynamic-form/data/terra-form-field-horizontal-container';
 export * from './app/forms/dynamic-form/data/terra-form-field-conditional-container';
 export * from './app/forms/dynamic-form/handler/dynamic-form-functions.handler';
+export * from './app/tree/node-tree/terra-node-tree.component';
+export * from './app/tree/node-tree/data/terra-node-tree.config';
+export * from './app/tree/node-tree/data/terra-node.interface';
+export * from './app/tree/node-tree/node/terra-node.component';

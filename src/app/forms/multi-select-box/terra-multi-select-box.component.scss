@@ -1,16 +1,8 @@
 .multiselect-container
 {
-    .header-label
-    {
-        font-size: 1.3em;
-        line-height: 1em !important;
-        letter-spacing: .1px;
-    }
-    
     .multiselect-element
     {
-        margin-bottom: 1rem;
-        
+        margin-bottom: 8px;
         .multiselect
         {
             display: flex;
@@ -20,81 +12,46 @@
             .multiselect-header
             {
                 display: flex;
-                flex: 0 0 auto;
-                margin-bottom: 0.1em;
-                position: relative;
-                vertical-align: middle;
-                background-color: $brand-primary;
+                background-color: $grey-11;
+                border-top-left-radius: $border-radius;
+                border-top-right-radius: $border-radius;
                 
-                .checkbox-container
-                {
-                    padding: 0.375em 0.9em;
-                    position: relative;
-                    float: left;
-                    border-top-right-radius: 0;
-                    border-bottom-right-radius: 0;
-                }
-                
+                .checkbox-container,
                 .header-label
                 {
+                    margin: 0px;
+                    font-variant: all-small-caps;
+                    padding: 6px 9px;
                     color: $white;
-                    width: 100%;
-                    text-align: left;
-                    margin-bottom: 0;
-                    margin-left: -1px;
-                    font-size: 1rem;
-                    padding-top: 0.58em;
-                    padding-left: 0.5em;
                 }
             }
             
             .option-list
             {
-                
+                background: $white;
                 overflow: auto;
-                max-height: 146px;
+                max-height: 155px;
                 .input-group
                 {
-                    &:hover
-                    {
-                        .input-group-addon,
-                        .form-control
-                        {
-                            background: lighten($brand-primary, 60);
-                            cursor: pointer;
-                        }
-                    }
+                    margin-bottom: 0px;
+                    
+                    
                     .form-control,
                     .input-group-addon
                     {
-                        float: none;
-                        padding: 0.3rem 0.8rem;
-                        border-radius: 0;
-                        border-top: 0;
-                        background: transparent;
-                        
-                        &:first-child
-                        {
-                            border-left: 0;
-                        }
-                        &:last-child
-                        {
-                            border-right: 0;
-                        }
+                        padding: 6px 9px;
+                        border: none;
+                        border-bottom: 1px solid $grey-1;
+                        border-radius: 0px;
+                        font-size: 0.875rem;
+                        font-weight: normal;
+                        background:transparent;
+                        cursor: pointer;
                     }
-                }
-                & > div
-                {
-                    &:first-of-type
+                    
+                    &:hover
                     {
-                        .form-control
-                        {
-                            border-top: $border-width solid $gray-light-2;
-                        }
-                        .input-group-addon
-                        {
-                            border-top: $border-width solid $gray-light-2;
-                        }
+                        background: $grey-1;
                     }
                 }
             }
@@ -106,7 +63,6 @@
                 .multiselect-header
                 {
                     background-color: $error;
-                    border-color: $error;
                 }
             }
         }
@@ -116,38 +72,28 @@
             {
                 .multiselect-header
                 {
-                    background-color: $gray-light-2;
-                    border-color: $gray-light-2;
+                    background: $grey-5;
                     cursor: not-allowed;
-                    color: $white;
-                    opacity: .65;
-                    
-                    .header-label:hover
-                    {
-                        cursor: not-allowed;
-                    }
                 }
                 .option-list
                 {
                     .input-group
                     {
-                        .form-control
+                        .form-control,
+                        .input-group-addon
                         {
-                            color: $gray-light-3;
+                            color: $grey-5;
+                            cursor: not-allowed;
+                            &:hover
+                            {
+                                cursor: not-allowed;
+                                background: $white;
+                            }
                         }
                         &:hover
                         {
-                            
-                            .form-control
-                            {
-                                background: white;
-                                cursor: not-allowed;
-                            }
-                            .input-group-addon
-                            {
-                                background: white;
-                                cursor: not-allowed;
-                            }
+                            cursor: not-allowed;
+                            background: $white;
                         }
                     }
                 }
