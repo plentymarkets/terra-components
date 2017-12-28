@@ -38,6 +38,8 @@ export class TerraNodeComponent<D>
             this.inputNode.onClick();
         }
 
+        this.inputConfig.handleLazyLoading(this.inputNode);
+
         this.inputConfig.currentSelectedNode = this.inputNode;
     }
 

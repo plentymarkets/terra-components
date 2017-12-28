@@ -162,20 +162,19 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         node.isVisible = true;
         this.inputConfig.toggleOpenParent(node, true);
 
-        if(!node.hasLoaded)
+        if(!node.hasLoaded && !isNullOrUndefined(node.onLazyLoad))
         {
             this.inputConfig.handleLazyLoading(node);
         }
 
         if(!isNullOrUndefined(node.children))
         {
-            node.isOpen = true;
             this.inputConfig.toggleVisiblityForAllChildren(node.children, true);
         }
 
         if(!isNullOrUndefined(node.parent))
         {
-            if(!node.parent.hasLoaded)
+            if(!node.parent.hasLoaded && !isNullOrUndefined(node.parent.onLazyLoad))
             {
                 this.inputConfig.handleLazyLoading(node.parent);
             }
