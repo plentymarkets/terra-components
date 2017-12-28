@@ -10,14 +10,15 @@ import { TerraFormFieldControlService } from './service/terra-form-field-control
 import { TerraFormFieldBase } from './data/terra-form-field-base';
 import { DynamicFormFunctionsHandler } from './handler/dynamic-form-functions.handler';
 import { TerraDynamicFormService } from './service/terra-dynamic-form.service';
+import { TerraDatePickerComponent } from '../input/date-picker/terra-date-picker.component';
 
 
 /**
  * @author mfrank
  */
 @Component({
-    selector: 'terra-dynamic-form',
-    template: require('./terra-dynamic-form.component.html'),
+    selector:  'terra-dynamic-form',
+    template:  require('./terra-dynamic-form.component.html'),
     providers: [TerraDynamicFormService]
 })
 export class TerraDynamicFormComponent implements OnInit, OnChanges
@@ -60,7 +61,8 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         {
             if(this.inputRestRoute !== '')
             {
-                this.inputFormFunctions.saved(this._dynamicService.create(this._formFieldControlService.dynamicFormGroup.value, this.inputRestRoute));
+                this.inputFormFunctions.saved(this._dynamicService.create(this._formFieldControlService.dynamicFormGroup.value,
+                    this.inputRestRoute));
             }
             else
             {
