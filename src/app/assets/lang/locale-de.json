@@ -50,6 +50,12 @@
 		"of": "von"
 	},
 	"terraNoteEditor": {
-		"insertText": "Text eingeben.."
+		"insertText": "Text eingeben."
+	},
+	"terraTextInput": {
+		"invalidIban": "IBAN ist ungültig."
+	},
+	"terraNodeTree":{
+		"search": "Suche"
 	}
 }

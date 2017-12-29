@@ -28,7 +28,7 @@ export class TerraNumberInputComponent extends TerraInputComponent
         super(TerraRegex.NUMERIC);
 
         // generate the id of the input instance
-        this._id = `number-input_#${nextId}`;
+        this._id = `number-input_#${nextId++}`;
     }
 
     /**

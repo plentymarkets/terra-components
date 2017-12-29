@@ -50,6 +50,6 @@ export class TerraDoubleInputComponent extends TerraInputComponent
         super(TerraRegex.DOUBLE);
 
         // generate the id of the input instance
-        this._id = `double-input_#${nextId}`;
+        this._id = `double-input_#${nextId++}`;
     }
 }

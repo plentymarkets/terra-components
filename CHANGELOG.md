@@ -1,9 +1,36 @@
-<a name="2.1.34-zlk"></a>
-# 2.1.34-zlk (XX.XX.XXXX)
+<a name="2.1.36-zlk"></a>
+# 2.1.36-zlk (DD.MM.YYYY)
 
 ### Feature
+* **context-menu-holder** added background color for entries and TerraButtonColorEnum for dedicated color values
+* **terra-portlet** add new input `inputHighlightPortlet` for component to highlight portlets. Edit css for highlighting portlets. 
+* **terra-multi-selectbox** adjusted styling
+
+<a name="2.1.35-zlk"></a>
+# 2.1.35-zlk (13.12.2017)
+
+### Bug Fixes 
+* **terra-simple-table** **terra-data-table** fix setting of text-align
+* **TerraBaseService** improve repsonse type of service
+
+### Feature
+* **tooltips** updated tooltip background color 
+* **terra-text-input** **terra-number-input** updated tooltip background color 
+* **terra-slider** adjusted styling for terra-slider-component
+
+<a name="2.1.34-zlk"></a>
+# 2.1.34-zlk (13.12.2017)
+
+### Bug Fixes
+* **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
+* **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+
+### Feature
+* **terra-input** Add input for IBAN validation. Add function to validate input (OnBlur). Add Tooltip for invalid Iban.
 * **terra-checkbox-tree** component accomplished. Basic comportment implemented
 * **terra-file-browser** you are now able to download files
+* **terra-simple-table** new interface property `textAlign` that uses `TerraTextAlignEnum` to align captions in table header cells
+* **terra-data-table** constraint interface property `textAlign` with `TerraTextAlignEnum`. Property type string is deprecated
 
 <a name="2.1.33-zlk"></a>
 # 2.1.33-zlk (07.12.2017)
