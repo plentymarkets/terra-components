@@ -17,14 +17,14 @@
     <div class="am-pm" *ngIf="!is24HourFormat">
         <terra-radio-button inputValue="AM"
                             inputCaption="AM"
-                            [(ngModel)]="_valueFormat"
+                            [(ngModel)]="_valuePMAM"
                             (ngModelChange)="changeValues()"
         >
         </terra-radio-button>
     
         <terra-radio-button inputValue="PM"
                             inputCaption="PM"
-                            [(ngModel)]="_valueFormat"
+                            [(ngModel)]="_valuePMAM"
                             (ngModelChange)="changeValues()">
         </terra-radio-button>
     </div>
