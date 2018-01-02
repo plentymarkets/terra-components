@@ -10,6 +10,12 @@
 * **terra-multi-selectbox** adjusted styling
 
 <a name="2.1.35-zlk"></a>
+# 2.1.36-zlk (DD.MM.YYYY)
+
+### Bug Fixes 
+* **terra-suggestion-box** added missing styles for disabled state
+
+<a name="2.1.35-zlk"></a>
 # 2.1.35-zlk (13.12.2017)
 
 ### Bug Fixes 
