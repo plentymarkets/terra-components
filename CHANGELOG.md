@@ -1,3 +1,14 @@
+<a name="2.1.36-zlk"></a>
+# 2.1.36-zlk (DD.MM.YYYY)
+
+### Bug Fixes
+* **terra-text-input** **terra-number-input** **terra-double-input** fix missing label if value is 0
+
+### Feature
+* **context-menu-holder** added background color for entries and TerraButtonColorEnum for dedicated color values
+* **terra-portlet** add new input `inputHighlightPortlet` for component to highlight portlets. Edit css for highlighting portlets. 
+* **terra-multi-selectbox** adjusted styling
+
 <a name="2.1.35-zlk"></a>
 # 2.1.36-zlk (DD.MM.YYYY)
 
