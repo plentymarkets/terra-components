@@ -1,6 +1,9 @@
 import { EventEmitter } from '@angular/core';
 import { TerraMultiSplitViewInterface } from './terra-multi-split-view.interface';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 
 export class TerraMultiSplitViewConfig
 {
@@ -52,34 +55,46 @@ export class TerraMultiSplitViewConfig
                     }
                     else
                     {
-                        let viewExist:boolean = false;
-
-                        for(let child of parent.children)
-                        {
-                            // TODO very ugly way, maybe add an option to use an id?
-                            let hasSameParameter:boolean =
-                                (child.parameter && view.parameter && JSON.stringify(child.parameter) === JSON.stringify(view.parameter)) ||
-                                (child.inputs && view.inputs && JSON.stringify(child.inputs) === JSON.stringify(view.inputs)) ||
-                                (child.name === view.name);
-
-                            if(hasSameParameter && child.module.ngModule == view.module.ngModule)
-                            {
-                                view = child;
-                                viewExist = true;
-                                break;
-                            }
-                        }
-
-                        if(!viewExist)
-                        {
-                            parent.children.push(view);
-                        }
+                        view = TerraMultiSplitViewConfig.addViewIfNoDuplicateExist(parent, view);
                     }
                 }
 
                 this.addViewEventEmitter.next(view);
             }
         );
+    }
+
+    private static addViewIfNoDuplicateExist(parent, view):TerraMultiSplitViewInterface
+    {
+
+        let tmpView:TerraMultiSplitViewInterface = TerraMultiSplitViewConfig.returnDuplicateOfView(parent.children, view);
+
+        if(isNull(tmpView))
+        {
+            parent.children.push(view);
+        }
+        else
+        {
+            view = tmpView;
+        }
+
+        return view;
+    }
+
+    private static returnDuplicateOfView(originViews:Array<TerraMultiSplitViewInterface>,
+                                         newView:TerraMultiSplitViewInterface):TerraMultiSplitViewInterface
+    {
+        for(let originView of originViews)
+        {
+            if((originView.parameter && newView.parameter && JSON.stringify(originView.parameter) === JSON.stringify(newView.parameter)) ||
+                (originView.inputs && newView.inputs && JSON.stringify(originView.inputs) === JSON.stringify(newView.inputs)) ||
+               (originView.name === newView.name) && originView.module.ngModule == newView.module.ngModule)
+            {
+                return originView;
+            }
+        }
+
+        return null;
     }
 
     public removeView(view:TerraMultiSplitViewInterface):void
