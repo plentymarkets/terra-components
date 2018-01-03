@@ -2,7 +2,9 @@
 # 2.1.36-zlk (DD.MM.YYYY)
 
 ### Bug Fixes
-* **terra-text-input** **terra-number-input** **terra-double-input** fix missing label if value is 0
+* **terra-text-input** **terra-number-input** **terra-double-input** 
+- fix missing label if value is 0
+- fix missing required (*) if no value is set
 
 ### Feature
 * **context-menu-holder** added background color for entries and TerraButtonColorEnum for dedicated color values
