@@ -84,7 +84,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this._currentLocale = localStorage.getItem('plentymarkets_lang_');
 
         // generate the id of the input instance
-        this._id = `date-picker_#${nextId}`;
+        this._id = `date-picker_#${nextId++}`;
     }
 
     ngOnChanges()
