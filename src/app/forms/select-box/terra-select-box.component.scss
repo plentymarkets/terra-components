@@ -16,6 +16,11 @@
         cursor: not-allowed;
     }
     
+    &.error
+    {
+        border-color: $error;
+    }
+    
     .select-box
     {
         height: $terra-btn-md-height - 2;
@@ -63,7 +68,7 @@
             font-weight: $font-weight-2;
         }
     }
-    &:hover
+    &:not(.error):hover
     {
         border: 1px solid $blue;
     }
