@@ -1,5 +1,34 @@
+<a name="2.1.36-zlk"></a>
+# 2.1.36-zlk (DD.MM.YYYY)
+
+### Bug Fixes
+* **terra-text-input** **terra-number-input** **terra-double-input** fix missing label if value is 0
+
+### Feature
+* **context-menu-holder** added background color for entries and TerraButtonColorEnum for dedicated color values
+* **terra-portlet** add new input `inputHighlightPortlet` for component to highlight portlets. Edit css for highlighting portlets. 
+* **terra-multi-selectbox** adjusted styling
+
+<a name="2.1.35-zlk"></a>
+# 2.1.36-zlk (DD.MM.YYYY)
+
+### Bug Fixes 
+* **terra-suggestion-box** added missing styles for disabled state
+
+<a name="2.1.35-zlk"></a>
+# 2.1.35-zlk (13.12.2017)
+
+### Bug Fixes 
+* **terra-simple-table** **terra-data-table** fix setting of text-align
+* **TerraBaseService** improve repsonse type of service
+
+### Feature
+* **tooltips** updated tooltip background color 
+* **terra-text-input** **terra-number-input** updated tooltip background color 
+* **terra-slider** adjusted styling for terra-slider-component
+
 <a name="2.1.34-zlk"></a>
-# 2.1.34-zlk (XX.XX.XXXX)
+# 2.1.34-zlk (13.12.2017)
 
 ### Bug Fixes
 * **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
@@ -7,6 +36,7 @@
 * **terra-checkbox** fix issue with missing unique IDs
 
 ### Feature
+* **terra-input** Add input for IBAN validation. Add function to validate input (OnBlur). Add Tooltip for invalid Iban.
 * **terra-checkbox-tree** component accomplished. Basic comportment implemented
 * **terra-simple-table** new interface property `textAlign` that uses `TerraTextAlignEnum` to align captions in table header cells
 * **terra-data-table** constraint interface property `textAlign` with `TerraTextAlignEnum`. Property type string is deprecated

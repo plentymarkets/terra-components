@@ -4,7 +4,7 @@
      [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled, 'isSmall': inputIsSmall}"
      container="body">
-    <label htmlFor="{{_id}}">{{inputName}}
+    <label *ngIf="_innerValue || _innerValue === 0" htmlFor="{{_id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
     <input id="{{_id}}"
@@ -18,6 +18,6 @@
            step="1"
            min="{{inputMinValue}}"
            max="{{inputMaxValue}}"
-           placeholder="{{inputPlaceholder}}"
-           [ngClass]="{'isSmall' : inputIsSmall}">
+           placeholder="{{inputName}}"
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0 }">
 </div>

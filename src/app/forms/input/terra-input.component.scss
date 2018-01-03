@@ -9,11 +9,6 @@ $border-active: $gray-light;
 $border-width: 1px;
 $border-radius: 5px;
 
-::-webkit-input-placeholder
-{ /* WebKit, Blink, Edge */
-    color: red;
-}
-
 input:focus
 {
     outline: none;
@@ -37,22 +32,26 @@ input[type=number]
 
 ::-webkit-input-placeholder
 {
-    font-size: $font-size-base;
+    font-size: $font-size-3;
+    color: $grey-7;
 }
 
 :-moz-placeholder
 { /* Firefox 18- */
-    font-size: $font-size-base;
+    font-size: $font-size-3;
+    color: $grey-7;
 }
 
 ::-moz-placeholder
 { /* Firefox 19+ */
-    font-size: $font-size-base;
+    font-size: $font-size-3;
+    color: $grey-7;
 }
 
 :-ms-input-placeholder
 {
-    font-size: $font-size-base;
+    font-size: $font-size-3;
+    color: $grey-7;
 }
 
 input[type="search"]
@@ -153,7 +152,7 @@ input[type="search"]::-webkit-search-decoration
     &.disabled
     {
         background-color: $grey-2;
-        border: 1px solid $grey-5;
+        border: var(--input-unit-v1-border-disabled, 1px solid $grey-5);
         input
         {
             color: $grey-5;
@@ -234,6 +233,14 @@ textarea
             color: $gray-light !important;
         }
     }
+    
+    &.isEmpty
+    {
+        font-size: $font-size-base;
+        font-weight: normal;
+        padding: 0px 7px;
+    }
+    
     .price-input
     {
         text-align: right;

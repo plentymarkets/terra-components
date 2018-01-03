@@ -80,6 +80,8 @@ import { TerraFileBrowserService } from './file-browser/terra-file-browser.servi
 import { TerraFileBrowserComponent } from './file-browser/terra-file-browser.component';
 import { TerraNoteEditorComponent } from './note-editor/terra-note-editor.component';
 import { TerraNoteComponent } from './note/terra-note.component';
+import { TerraNodeTreeComponent } from './tree/node-tree/terra-node-tree.component';
+import { TerraNodeComponent } from './tree/node-tree/node/terra-node.component';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -148,6 +150,9 @@ export { TerraCardComponent } from './card/terra-card.component';
 export { TerraSyntaxEditorComponent } from './editor/syntax/terra-syntax-editor.component';
 export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.data';
 export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice.component';
+export { TerraNodeTreeComponent } from './tree/node-tree/terra-node-tree.component';
+export { TerraNodeTreeConfig } from './tree/node-tree/data/terra-node-tree.config';
+export { TerraNodeInterface } from './tree/node-tree/data/terra-node.interface';
 
 @NgModule({
     declarations:    [
@@ -200,7 +205,9 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
-        TerraNoteComponent
+        TerraNoteComponent,
+        TerraNodeTreeComponent,
+        TerraNodeComponent
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -246,7 +253,9 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraFileInputComponent,
         TerraButtonWithOptionsComponent,
         TerraNoteEditorComponent,
-        TerraNoteComponent
+        TerraNoteComponent,
+        TerraNodeTreeComponent,
+        TerraNodeComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -297,7 +306,8 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
-        TerraNoteComponent
+        TerraNoteComponent,
+        TerraNodeTreeComponent
     ],
     imports:         [
         BrowserModule,

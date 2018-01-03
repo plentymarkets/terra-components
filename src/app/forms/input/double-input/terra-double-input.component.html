@@ -4,11 +4,11 @@
      [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled, 'isSmall': inputIsSmall}"
      container="body">
-    <label htmlFor="{{_id}}">{{inputName}}
+    <label *ngIf="_innerValue || _innerValue === 0" htmlFor="{{_id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
     <input id="{{_id}}" [ngClass]="{'price-input': inputIsPriceInput}" type="number" [(ngModel)]="value" name="{{inputName}}"
            (blur)="onBlur()" autocomplete="off"
-           [disabled]="isDisabled" pattern="{{regex}}" step="0.01" placeholder="{{inputPlaceholder}}"
-           [ngClass]="{'isSmall' : inputIsSmall}">
+           [disabled]="isDisabled" pattern="{{regex}}" step="0.01" placeholder="{{inputName}}"
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0}">
 </div>

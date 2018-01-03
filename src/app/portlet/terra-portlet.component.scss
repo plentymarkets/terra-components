@@ -1,6 +1,8 @@
 .portlet
 {
     margin-bottom: 6px;
+    border: 1px solid transparent;
+    border-radius: 5px;
     .portlet_head
     {
         padding: 8px 9px 4px 9px;
@@ -33,7 +35,7 @@
         background-color: $grey-2;
         padding: 12px;
         border-radius: 5px;
-
+        
         table.table
         {
             thead
@@ -88,6 +90,7 @@
             overflow: hidden;
         }
     }
+    
 }
 
 .config-table
@@ -152,5 +155,13 @@
     hr
     {
         margin: 1rem 0;
+    }
+}
+
+.highlight
+{
+    &:hover
+    {
+        border: 1px solid $blue-hover;
     }
 }
