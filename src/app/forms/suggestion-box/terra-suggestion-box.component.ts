@@ -37,6 +37,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     @Input() inputListBoxValues:Array<TerraSuggestionBoxValueInterface>;
     @Input() inputWithRecentlyUsed:boolean;
     @Output() outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
+    @Output() outputClicked = new EventEmitter<Event>();
 
     private _selectedValue:TerraSuggestionBoxValueInterface;
     private _tmpSelectedValue:TerraSuggestionBoxValueInterface;
@@ -402,6 +403,8 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      */
     private onInputClick(event:any):void
     {
+        this.outputClicked.emit(event);
+        
         // check if the input has been clicked
         if(event.target.nodeName === 'INPUT')
         {
