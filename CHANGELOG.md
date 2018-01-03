@@ -33,6 +33,7 @@
 ### Bug Fixes
 * **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
 * **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+* **terra-checkbox** fix issue with missing unique IDs
 
 ### Feature
 * **terra-input** Add input for IBAN validation. Add function to validate input (OnBlur). Add Tooltip for invalid Iban.
