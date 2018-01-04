@@ -80,9 +80,9 @@ export class TerraFormFieldControlService
             validators.push(Validators.minLength(formField.minLength));
         }
 
-        if(formField.maxlength >= 0)
+        if(formField.maxLength >= 0)
         {
-            validators.push(Validators.maxLength(formField.maxlength));
+            validators.push(Validators.maxLength(formField.maxLength));
         }
 
         // TODO implement, if Angular version is or higher 4.4

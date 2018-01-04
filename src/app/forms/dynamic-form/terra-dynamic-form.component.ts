@@ -10,8 +10,6 @@ import { TerraFormFieldControlService } from './service/terra-form-field-control
 import { TerraFormFieldBase } from './data/terra-form-field-base';
 import { DynamicFormFunctionsHandler } from './handler/dynamic-form-functions.handler';
 import { TerraDynamicFormService } from './service/terra-dynamic-form.service';
-import { TerraDatePickerComponent } from '../input/date-picker/terra-date-picker.component';
-
 
 /**
  * @author mfrank

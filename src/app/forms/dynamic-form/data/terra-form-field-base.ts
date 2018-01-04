@@ -5,7 +5,6 @@ import { isNull } from 'util';
  */
 export interface TerraFormFieldBaseOptions<T>
 {
-    id?:number;
     value?:T,
     label?:string,
     required?:boolean
@@ -21,7 +20,6 @@ export interface TerraFormFieldBaseOptions<T>
  */
 export class TerraFormFieldBase<T>
 {
-    id?:number;
     value:T;
     key:string;
     label:string;
@@ -29,7 +27,7 @@ export class TerraFormFieldBase<T>
     // Validator
     required:boolean;
     minLength:number;
-    maxlength:number;
+    maxLength:number;
     minValue:number;
     maxValue:number;
     pattern:string | RegExp;
@@ -48,7 +46,6 @@ export class TerraFormFieldBase<T>
             throw new Error('controlType can no tbe null');
         }
 
-        this.id = options.id;
         this.key = key;
         this.controlType = controlType;
 
@@ -57,7 +54,7 @@ export class TerraFormFieldBase<T>
 
         this.required = !!options.required;
         this.minLength = options.minLength || -1;
-        this.maxlength = options.maxLength || -1;
+        this.maxLength = options.maxLength || -1;
         this.minValue = options.minValue || null;
         this.maxValue = options.maxValue || null;
         this.pattern = options.pattern || '';
