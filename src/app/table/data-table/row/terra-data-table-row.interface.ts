@@ -8,10 +8,6 @@ import { TerraBaseData } from '../../../data/terra-base.data';
 export interface TerraDataTableRowInterface<D>
 {
     cellList:Array<TerraDataTableCellInterface>;
-    /**
-     * @deprecated
-     */
-    selected?:boolean;
     data?:D;
     clickFunction?:() => void;
     contextMenuLinkList?:Array<TerraDataTableContextMenuEntryInterface<D>>;

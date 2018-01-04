@@ -13,6 +13,7 @@ import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import {
     isArray,
+    isNull,
     isNullOrUndefined
 } from 'util';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
@@ -148,31 +149,31 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         });
     }
 
-    private onHeaderCheckboxChange(isChecked:boolean):void
+    private onHeaderCheckboxChange():void
     {
-        if(isChecked)
-        {
-            this.selectAllRows();
-        }
-        else
+        if(this._headerCheckbox.checked)
         {
             this.resetSelectedRows();
         }
+        else
+        {
+            this.selectAllRows();
+        }
     }
 
-    private onRowCheckboxChange(isChecked:boolean, row:TerraDataTableRowInterface<T>):void
+    private onRowCheckboxChange(row:TerraDataTableRowInterface<T>):void
     {
         // notify component user
         this.outputRowCheckBoxChanged.emit(row);
 
         // update row selection
-        if(isChecked)
+        if(this.isSelectedRow(row))
         {
-            this.selectRow(row);
+            this.deselectRow(row);
         }
         else
         {
-            this.deselectRow(row);
+            this.selectRow(row);
         }
 
         // update header checkbox state
@@ -184,13 +185,16 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         if(this.selectedRowList.length == 0) // anything selected?
         {
             this._headerCheckbox.checked = false;
+            this._headerCheckbox.isIndeterminate = false;
         }
         else if(this.selectedRowList.length > 0 && this.inputRowList.length == this.selectedRowList.length) // all selected?
         {
             this._headerCheckbox.checked = true;
+            this._headerCheckbox.isIndeterminate = false;
         }
         else // some rows selected
         {
+            this._headerCheckbox.checked = false;
             this._headerCheckbox.isIndeterminate = true;
         }
     }
@@ -220,9 +224,10 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         }
     }
 
-    private selectAllRows()
+    private selectAllRows():void
     {
         this._headerCheckbox.checked = true;
+        this._headerCheckbox.isIndeterminate = false;
 
         this.inputRowList.forEach((row) =>
         {
@@ -233,12 +238,18 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         });
     }
 
-    private resetSelectedRows()
+    private resetSelectedRows():void
     {
         this._headerCheckbox.checked = false;
+        this._headerCheckbox.isIndeterminate = false;
 
         // reset selected row list
         this._selectedRowList = [];
+    }
+
+    private isSelectedRow(row:TerraDataTableRowInterface<T>):boolean
+    {
+        return this.selectedRowList.indexOf(row) >= 0;
     }
 
     /**
