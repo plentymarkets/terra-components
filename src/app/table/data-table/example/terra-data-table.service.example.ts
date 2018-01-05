@@ -29,16 +29,6 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
         super(_spinner, _http);
     }
 
-    public addEntry():void
-    {
-        this.data.push(
-            {
-                id: this.data.reduce((a:number,b:{id:number, value:number}) => { return Math.max(a, b.id)}, 0) + 1,
-                value: Math.random()
-            }
-        );
-    }
-
     public requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface>
     {
         // build up paging information
@@ -86,5 +76,15 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
 
         // return data
         return Observable.of(results);
+    }
+
+    public addEntry():void
+    {
+        this.data.push(
+            {
+                id: this.data.reduce((a:number,b:{id:number, value:number}) => { return Math.max(a, b.id)}, 0) + 1,
+                value: Math.random()
+            }
+        );
     }
 }
