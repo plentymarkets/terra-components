@@ -1,0 +1,22 @@
+<terra-base-toolbar>
+    <div class="btn-group" role="group">
+        <terra-button class="terra-button"
+                      inputIcon="icon-add"
+                      inputIsTertiary="true"
+                      inputTooltipText="'New entry'"
+                      (outputClicked)="_exampleService.addEntry()">
+        </terra-button>
+    </div>
+</terra-base-toolbar>
+
+
+<terra-data-table
+    [inputService]="_exampleService"
+    [inputHasCheckboxes]="true"
+    [inputIsSortable]="true"
+    [inputNoResultButtons]="_noResultButtons"
+    [inputNoResultTextPrimary]="_noResultTextPrimary"
+    [inputNoResultTextSecondary]="_noResultTextSecondary"
+    [inputRowList]="_rowList"
+    [inputHeaderList]="_headerList">
+</terra-data-table>
