@@ -50,6 +50,12 @@
                                [(ngModel)]="formField.value">
             </terra-date-picker>
             
+            <terra-tag *ngSwitchCase="'tag'"
+                       [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                       [inputBadge]="formField.label"
+                       [inputIsClickable]="true">
+            </terra-tag>
+            
             <ng-container *ngSwitchCase="'horizontalContainer'">
                 <div class="horizontalGroup">
                     <span class="horizontalGroupLabel">{{ formField.label }}: </span>
