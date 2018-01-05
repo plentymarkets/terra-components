@@ -15,7 +15,7 @@ export abstract class TerraDataTableBaseService<T,P> extends TerraBaseService
     public requestPending:boolean;
     public onSuccessFunction:(res:Array<T>) => void;
     public pagingData:TerraPagerInterface;
-    public pagingSize:Array<TerraSelectBoxValueInterface>;
+    public pagingSizes:Array<TerraSelectBoxValueInterface>;
     public defaultPagingSize:number;
     public filterParameter:P;
     public sortBy:string;

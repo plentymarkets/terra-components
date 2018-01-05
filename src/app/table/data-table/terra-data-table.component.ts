@@ -132,9 +132,9 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         {
             itemsPerPage = this.inputService.defaultPagingSize;
         }
-        else if(this.inputService.pagingSize && this.inputService.pagingSize[0])
+        else if(this.inputService.pagingSizes && this.inputService.pagingSizes[0])
         {
-            itemsPerPage = this.inputService.pagingSize[0].value;
+            itemsPerPage = this.inputService.pagingSizes[0].value;
         }
 
         // init paging data
