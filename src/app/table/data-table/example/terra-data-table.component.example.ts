@@ -15,7 +15,7 @@ import { TerraDataTableCellInterface } from '../cell/terra-data-table-cell.inter
     styles:   [require('./terra-data-table.component.example.scss')],
     providers: [TerraDataTableServiceExample]
 })
-export class ContactsDataTableComponent implements OnInit
+export class TerraDataTableComponentExample implements OnInit
 {
     private _noResultButtons:Array<TerraButtonInterface>;
     private _noResultTextPrimary:string;
@@ -72,13 +72,13 @@ export class ContactsDataTableComponent implements OnInit
             {
                 caption:   'ID',
                 sortBy:    'id',
-                width:     20,
-                textAlign: TerraTextAlignEnum.CENTER
+                width:     20
             },
             {
                 caption: 'value',
                 sortBy:  'value',
-                width:   20
+                width:   20,
+                textAlign: TerraTextAlignEnum.LEFT
             },
         ];
     }
@@ -115,5 +115,11 @@ export class ContactsDataTableComponent implements OnInit
 
             this._rowList = rowList;
         };
+    }
+
+    private addEntry():void
+    {
+        this._exampleService.addEntry();
+        this._exampleService.getResults();
     }
 }

@@ -4,6 +4,8 @@ import { TerraPagerParameterInterface } from '../../../pager/data/terra-pager.pa
 import { Observable } from 'rxjs/Observable';
 import { TerraPagerInterface } from '../../../pager/data/terra-pager.interface';
 import { TerraDataTableSortOrder } from '../terra-data-table-sort-order.enum';
+import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/terra-loading-spinner.service';
+import { Http } from '@angular/http';
 
 @Injectable()
 export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id:number, value:number }, TerraPagerParameterInterface>
@@ -22,6 +24,11 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
             value: Math.random()
         }];
 
+    constructor(private _spinner:TerraLoadingSpinnerService, private _http:Http)
+    {
+        super(_spinner, _http);
+    }
+
     public addEntry():void
     {
         this.data.push(
@@ -34,18 +41,24 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
 
     public requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface>
     {
+        // build up paging information
+        let firstOnPage:number = Math.max((params.page - 1) * params.itemsPerPage,0);
+        let lastOnPage:number = Math.min(params.page * params.itemsPerPage, this.data.length);
+        let lastPageNumber:number = Math.ceil(this.data.length / params.itemsPerPage);
+
         let results:TerraPagerInterface =
             {
-                page:           1,
-                itemsPerPage:   25,
-                totalsCount:    4,
-                isLastPage:     true,
-                lastPageNumber: 1,
-                firstOnPage:    1,
-                lastOnPage:     4,
+                page:           params.page,
+                itemsPerPage:   params.itemsPerPage,
+                totalsCount:    this.data.length,
+                isLastPage:     params.page === lastPageNumber,
+                lastPageNumber: lastPageNumber,
+                firstOnPage:    firstOnPage + 1,
+                lastOnPage:     lastOnPage,
                 entries:        this.data
             };
 
+        // apply sorting
         if(params)
         {
             if(params['sortBy'])
@@ -68,6 +81,10 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
             }
         }
 
+        // cut data that is not included in the requested page
+        results.entries = results.entries.slice(firstOnPage, lastOnPage);
+
+        // return data
         return Observable.of(results);
     }
 }
