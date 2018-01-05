@@ -12,6 +12,7 @@
 ### Bug Fixes
 * **terra-text-input** **terra-number-input** **terra-double-input** fix missing label if value is 0
 * **terra-suggestion-box** added missing styles for disabled state
+* **terra-select-box** fix missing red colored border indication for invalid state
 
 ### Feature
 * **context-menu-holder** added background color for entries and TerraButtonColorEnum for dedicated color values
