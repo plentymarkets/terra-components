@@ -19,18 +19,18 @@ export class TerraInfoBoxComponent implements OnInit
     @Input() inputIsSelected:boolean;
     @Input() inputId:number;
 
-    public get hasFooter(): boolean
-    {
-        return !isNullOrUndefined( this.inputId )
-               || ( !isNullOrUndefined( this.inputTagList ) && this.inputTagList.length > 0 );
-    }
-
     constructor()
     {
     }
 
     ngOnInit()
     {
+    }
+
+    public get hasFooter(): boolean
+    {
+        return !isNullOrUndefined( this.inputId )
+               || ( !isNullOrUndefined( this.inputTagList ) && this.inputTagList.length > 0 );
     }
 
 }
