@@ -32,7 +32,7 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
     public requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface>
     {
         // build up paging information
-        let firstOnPage:number = Math.max((params.page - 1) * params.itemsPerPage,0);
+        let firstOnPage:number = Math.max((params.page - 1) * params.itemsPerPage, 0);
         let lastOnPage:number = Math.min(params.page * params.itemsPerPage, this.data.length);
         let lastPageNumber:number = Math.ceil(this.data.length / params.itemsPerPage);
 
@@ -48,27 +48,10 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
                 entries:        this.data
             };
 
-        // apply sorting
-        if(params)
+        // apply sorting if sorting parameters are given
+        if(params && params['sortBy'] && params['sortOrder'])
         {
-            if(params['sortBy'])
-            {
-                let sortBy:string = params['sortBy'];
-                if(params['sortOrder'])
-                {
-                    let sortOrder:TerraDataTableSortOrder = params['sortOrder'];
-                    let comparator:(a:any, b:any) => number;
-                    if(sortOrder === TerraDataTableSortOrder.ASCENDING)
-                    {
-                        comparator = (a, b) => a[sortBy] - b[sortBy];
-                    }
-                    else
-                    {
-                        comparator = (a, b) => b[sortBy] - a[sortBy];
-                    }
-                    results.entries.sort(comparator)
-                }
-            }
+            this.applySorting(results.entries, params['sortBy'], params['sortOrder']);
         }
 
         // cut data that is not included in the requested page
@@ -78,11 +61,25 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
         return Observable.of(results);
     }
 
+    private applySorting(data:Array<any>, sortBy:string, sortOrder:TerraDataTableSortOrder):void
+    {
+        let comparator:(a:any, b:any) => number;
+        if(sortOrder === TerraDataTableSortOrder.ASCENDING)
+        {
+            comparator = (a, b) => a[sortBy] - b[sortBy];
+        }
+        else
+        {
+            comparator = (a, b) => b[sortBy] - a[sortBy];
+        }
+        data.sort(comparator);
+    }
+
     public addEntry():void
     {
         this.data.push(
             {
-                id: this.data.reduce((a:number,b:{id:number, value:number}) => { return Math.max(a, b.id)}, 0) + 1,
+                id:    this.data.reduce((a:number, b:{ id:number, value:number }) => { return Math.max(a, b.id) }, 0) + 1,
                 value: Math.random()
             }
         );

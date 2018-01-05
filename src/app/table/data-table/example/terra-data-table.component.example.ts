@@ -45,7 +45,7 @@ export class TerraDataTableComponentExample implements OnInit
 
         this.initTableHeader();
 
-        this.setOnSuccessFunction();
+        this.defineOnSuccessFunction();
     }
 
     public onSearchBtnClicked():void
@@ -83,38 +83,40 @@ export class TerraDataTableComponentExample implements OnInit
         ];
     }
 
-    private setOnSuccessFunction():void
+    private defineOnSuccessFunction():void
     {
-        this._exampleService.onSuccessFunction = (res:[{ id:number, value:number }]):void =>
+        this._exampleService.onSuccessFunction = (res:[{ id:number, value:number }]):void => this.generateTableData(res);
+    }
+
+    private generateTableData(res:[{ id:number, value:number }]):void
+    {
+        let rowList:Array<TerraDataTableRowInterface<{ id:number, value:number }>> = [];
+
+        res.forEach((entry:{ id:number, value:number }) =>
         {
-            let rowList:Array<TerraDataTableRowInterface<{ id:number, value:number }>> = [];
+            let cellList:Array<TerraDataTableCellInterface> =
+                [
+                    {
+                        data: entry.id
+                    },
+                    {
+                        data: entry.value
+                    }
+                ];
 
-            res.forEach((entry:{ id:number, value:number }) =>
-            {
-                let cellList:Array<TerraDataTableCellInterface> =
-                    [
-                        {
-                            data: entry.id
-                        },
-                        {
-                            data: entry.value
-                        }
-                    ];
+            let row = {
+                cellList:      cellList,
+                data:          entry,
+                clickFunction: ():void =>
+                               {
+                                   console.log('Row with id ' + entry.id + 'clicked');
+                               }
+            };
 
-                let row = {
-                    cellList:      cellList,
-                    data:          entry,
-                    clickFunction: ():void =>
-                                   {
-                                       console.log('Row with id ' + entry.id + 'clicked');
-                                   }
-                };
+            rowList.push(row);
+        });
 
-                rowList.push(row);
-            });
-
-            this._rowList = rowList;
-        };
+        this._rowList = rowList;
     }
 
     private addEntry():void
