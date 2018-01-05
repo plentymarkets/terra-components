@@ -9,6 +9,6 @@
     </label>
     <input id="{{_id}}" [ngClass]="{'price-input': inputIsPriceInput}" type="number" [(ngModel)]="value" name="{{inputName}}"
            (blur)="onBlur()" autocomplete="off"
-           [disabled]="isDisabled" pattern="{{regex}}" step="0.01" placeholder="{{inputName}}"
+           [disabled]="isDisabled" pattern="{{regex}}" step="{{_step}}" placeholder="{{inputName}}"
            [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0}">
 </div>
