@@ -180,22 +180,37 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         this.updateHeaderCheckboxState();
     }
 
+    private checkHeaderCheckbox():void
+    {
+        this._headerCheckbox.checked = true;
+        this._headerCheckbox.isIndeterminate = false;
+    }
+
+    private uncheckHeaderCheckbox():void
+    {
+        this._headerCheckbox.checked = false;
+        this._headerCheckbox.isIndeterminate = false;
+    }
+
+    private setHeaderCheckboxIndeterminate():void
+    {
+        this._headerCheckbox.checked = false;
+        this._headerCheckbox.isIndeterminate = true;
+    }
+
     private updateHeaderCheckboxState()
     {
-        if(this.selectedRowList.length == 0) // anything selected?
+        if(this.selectedRowList.length === 0) // anything selected?
         {
-            this._headerCheckbox.checked = false;
-            this._headerCheckbox.isIndeterminate = false;
+            this.uncheckHeaderCheckbox();
         }
-        else if(this.selectedRowList.length > 0 && this.inputRowList.length == this.selectedRowList.length) // all selected?
+        else if(this.selectedRowList.length > 0 && this.inputRowList.length === this.selectedRowList.length) // all selected?
         {
-            this._headerCheckbox.checked = true;
-            this._headerCheckbox.isIndeterminate = false;
+            this.checkHeaderCheckbox();
         }
-        else // some rows selected
+        else // some rows selected -> indeterminate
         {
-            this._headerCheckbox.checked = false;
-            this._headerCheckbox.isIndeterminate = true;
+            this.setHeaderCheckboxIndeterminate();
         }
     }
 
@@ -226,8 +241,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 
     private selectAllRows():void
     {
-        this._headerCheckbox.checked = true;
-        this._headerCheckbox.isIndeterminate = false;
+        this.checkHeaderCheckbox();
 
         this.inputRowList.forEach((row) =>
         {
@@ -240,8 +254,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 
     private resetSelectedRows():void
     {
-        this._headerCheckbox.checked = false;
-        this._headerCheckbox.isIndeterminate = false;
+        this.uncheckHeaderCheckbox();
 
         // reset selected row list
         this._selectedRowList = [];
