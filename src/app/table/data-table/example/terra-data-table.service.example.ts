@@ -26,10 +26,10 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
     {
         this.data.push(
             {
-                id: this.data.reduce((a,b) => { return Math.max(a, b.id)}, 0) + 1,
+                id: this.data.reduce((a:number,b:{id:number, value:number}) => { return Math.max(a, b.id)}, 0) + 1,
                 value: Math.random()
             }
-        )
+        );
     }
 
     public requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface>
