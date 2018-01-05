@@ -11,7 +11,8 @@
      (keydown)="onKeyDown($event)"
      container="body">
     
-    <terra-text-input [inputName]="inputName"
+    <terra-text-input [inputIsDisabled]="inputIsDisabled"
+                      [inputName]="inputName"
                       (outputOnInput)="onChange()"
                       (click)="onInputClick($event)"
                       [(ngModel)]="_selectedValue.caption">
