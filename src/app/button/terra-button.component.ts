@@ -2,6 +2,7 @@ import {
     Component,
     EventEmitter,
     Input,
+    OnInit,
     Output
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
@@ -11,7 +12,7 @@ import { isNullOrUndefined } from 'util';
     styles:   [require('./terra-button.component.scss')],
     template: require('./terra-button.component.html')
 })
-export class TerraButtonComponent
+export class TerraButtonComponent implements OnInit
 {
     @Input() inputIsPrimary:boolean;
     @Input() inputIsSecondary:boolean;
@@ -40,7 +41,8 @@ export class TerraButtonComponent
      * */
     @Input() inputIsActive:boolean;
     /**
-     * @description If true, a triangular yellow flag appears at the upper right corner of the button to indicate, e.g., a state in which the button should be clicked by the user. Default false.
+     * @description If true, a triangular yellow flag appears at the upper right corner of the button to indicate, e.g., a state in which
+     *     the button should be clicked by the user. Default false.
      * */
     @Input() inputIsFlagged:boolean;
     /**
@@ -53,6 +55,8 @@ export class TerraButtonComponent
     @Input() inputIsLink:boolean;
     @Input() inputIsHighlighted:boolean;
     @Output() outputClicked = new EventEmitter<Event>();
+
+    private _initialTooltipPlacement:string;
 
     constructor()
     {
@@ -67,11 +71,34 @@ export class TerraButtonComponent
         this.inputIsHighlighted = false;
     }
 
+    ngOnInit():void
+    {
+        this._initialTooltipPlacement = this.inputTooltipPlacement;
+    }
+
     private click(event:Event):void
     {
         if(isNullOrUndefined(this.inputIsDisabled) || this.inputIsDisabled === false)
         {
             this.outputClicked.emit(event);
+        }
+    }
+
+    private setTooltipPlacement(event:MouseEvent):void
+    {
+        let minimalDistanceToWindowEdge:number = 100;
+
+        if(window.innerWidth - event.clientX < minimalDistanceToWindowEdge)
+        {
+            this.inputTooltipPlacement = 'left';
+        }
+        else if(event.clientX < minimalDistanceToWindowEdge)
+        {
+            this.inputTooltipPlacement = 'right';
+        }
+        else
+        {
+            this.inputTooltipPlacement = this._initialTooltipPlacement;
         }
     }
 }
