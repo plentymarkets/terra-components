@@ -293,8 +293,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 let currentBreadcrumb = $('.' + id); // TODO: vwiebe, fix scope
                 let breadCrumbContainer = currentBreadcrumb.closest('.terra-breadcrumbs');
                 let viewContainer = anchor.parent();
-                let offset = -1;
-                let prevSplitView = currentBreadcrumb.closest('.view').prev();
 
                 // focus breadcrumbs
                 if(currentBreadcrumb[0] != null)
@@ -307,34 +305,22 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
                 // focus view horizontally
                 if(anchor[0] != null &&
-                   anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
-                   anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
+                   anchor[0].getBoundingClientRect().left > viewContainer.offset().left &&
+                   anchor[0].getBoundingClientRect().right <= viewContainer.offset().left + viewContainer.outerWidth())
                 {
                     return;
-                }
-
-                // offset fix for navigator
-                if(prevSplitView[0] != null)
-                {
-                    offset = offset + prevSplitView.width() + (3 * offset);
-                }
-
-                // offset fix for overlay
-                if($($(anchor[0].closest('.hasSplitView')).find(anchor))[0] != null)
-                {
-                    offset = offset + ($(window).width() / 2 - viewContainer.width() / 2);
                 }
 
                 viewContainer.stop();
 
                 if(skipAnimation)
                 {
-                    viewContainer.scrollLeft(anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset);
+                    viewContainer.scrollLeft(anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - viewContainer.offset().left + 1);
                 }
                 else
                 {
                     viewContainer.animate(
-                        {scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - offset)},
+                        {scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - viewContainer.offset().left) + 1},
                         this.ANIMATION_SPEED);
                 }
             });
