@@ -98,6 +98,11 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
             this.inputConfig.toggleVisiblityForAllChildren(this.inputConfig.list, false);
 
             this.recursiveCheckList(this.inputConfig.list);
+
+            if(this._doExecuteFuzzySearch)
+            {
+                this.doFuzzySearch(this.inputConfig.list);
+            }
         }
         else
         {
@@ -111,77 +116,79 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
     {
         list.forEach((node:TerraNodeInterface<D>) =>
         {
-            if(this._searchValue.includes(' '))
-            {
-                this._searchValue.split(' ').forEach((word:string) =>
-                {
-                    this.handleSearch(node, word);
-                });
-            }
-            else
-            {
+            //if(this._searchValue.includes(' '))
+            //{
+            //    this._searchValue.split(' ').forEach((word:string) =>
+            //    {
+            //        this.handleSearch(node, word);
+            //    });
+            //}
+            //else
+            //{
                 this.handleSearch(node, this._searchValue);
-            }
+            //}
 
             if(!isNullOrUndefined(node.children))
             {
                 this.recursiveCheckList(node.children);
             }
         });
+    }
 
-        if(this._doExecuteFuzzySearch)
+    private doFuzzySearch(list:Array<TerraNodeInterface<D>>):void
+    {
+        let options:FuseOptions = {
+            shouldSort:         true,
+            findAllMatches: true,
+            tokenize: true,
+            threshold:          0.3,
+            location:           0,
+            distance:           100,
+            maxPatternLength:   32,
+            minMatchCharLength: 1,
+            keys:               [
+                "tags",
+                "name"
+            ]
+        };
+
+        //cache to discard circular keys (i.e. parent)
+        let cache:Array<string> = [];
+
+        let jsonString:string =  JSON.stringify(list, function (key, value) {
+            if ((typeof value === 'undefined' ? 'undefined' : typeof(value)) === 'object' && value !== null) {
+                if (cache.indexOf(value) !== -1) {
+                    // Circular reference found, discard key
+                    return;
+                }
+                // Store value in our collection
+                cache.push(value);
+            }
+            return value;
+        });
+
+        cache = null;
+
+        let fuse:Fuse = new Fuse(JSON.parse(jsonString), options);
+
+        let foundList:Array<TerraNodeInterface<D>> = fuse.search(this._searchValue);
+
+        for(let node of foundList)
         {
-            let options:FuseOptions = {
-                shouldSort:         true,
-                threshold:          0.3,
-                location:           0,
-                distance:           100,
-                maxPatternLength:   32,
-                minMatchCharLength: 1,
-                keys:               [
-                    "tags",
-                    "name"
-                ]
-            };
+            let fuzzyNode:TerraNodeInterface<D> = this.inputConfig.findNodeById(node.id);
 
-            //cache to discard circular keys (i.e. parent)
-            let cache:Array<string> = [];
-
-            let jsonString:string =  JSON.stringify(list, function (key, value) {
-                if ((typeof value === 'undefined' ? 'undefined' : typeof(value)) === 'object' && value !== null) {
-                    if (cache.indexOf(value) !== -1) {
-                        // Circular reference found, discard key
-                        return;
-                    }
-                    // Store value in our collection
-                    cache.push(value);
-                }
-                return value;
-            });
-
-            cache = null;
-
-            let fuse:Fuse = new Fuse(JSON.parse(jsonString), options);
-
-            let foundList:Array<TerraNodeInterface<D>> = fuse.search(this._searchValue);
-
-            for(let node of foundList)
-            {
-                let fuzzyNode:TerraNodeInterface<D> = this.inputConfig.findNodeById(node.id);
-
-                this.handleNodeVisibility(fuzzyNode);
-            }
-
-            for(let node of list)
-            {
-                if(!isNullOrUndefined(node.children))
-                {
-                    this.recursiveCheckList(node.children);
-                }
-            }
-
-            this._doExecuteFuzzySearch = false;
+            this.handleNodeVisibility(fuzzyNode);
         }
+
+        for(let node of list)
+        {
+            if(!isNullOrUndefined(node.children))
+            {
+                this.doFuzzySearch(node.children);
+            }
+        }
+
+        this._doExecuteFuzzySearch = false;
     }
 
     private recursiveTranslateName(list:Array<TerraNodeInterface<D>>):void
