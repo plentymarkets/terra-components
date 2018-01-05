@@ -6,8 +6,8 @@
 	- Refactoring -> Removed deprecated interface and input properties
 	- New `TerraDataTableBaseService` which replaces custom directives and configs. It also stores all information needed for retrieving data from the server
 
-<a name="2.1.36-zlk"></a>
-# 2.1.36-zlk (DD.MM.YYYY)
+<a name="2.1.39-zlk"></a>
+# 2.1.39-zlk (05.01.2017)
 
 ### Bug Fixes
 * **terra-text-input** **terra-number-input** **terra-double-input** fix missing label if value is 0
