@@ -49,7 +49,7 @@ gulp.task('npm-publish', function (callback)
         'copy-fonts',
         'copy-images',
         'copy-lang',
-        //'publish',
+        'publish',
         callback
     );
 });
