@@ -13,7 +13,7 @@ var gitignore = require('gulp-gitignore');
 var shell = require('gulp-shell');
 var argv = require('yargs').argv;
 
-var version, level, sequence, subversion;
+var version, level, sequence, subversion, prerelease;
 
 /**
  *
@@ -26,6 +26,7 @@ var version, level, sequence, subversion;
  *                     If not set patch is default. See VERSIONING.md for further information.
  * @param subversion - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json). Use only, if really necessary!!
  * @param target     - Sets the target directory to copy build files to. Will copy files to 'node_modules/@plentymarkets/terra-components' in target directory
+ * @param prerelease - If set, a prerelease version is published using the beta label
  *
  **/
 gulp.task('build', function(callback)
@@ -33,6 +34,7 @@ gulp.task('build', function(callback)
     level = argv.level ? argv.level : 'patch';
     sequence = argv.publish ? 'npm-publish' : 'build-local';
     subversion = argv.subversion ? argv.subversion : '';
+    prerelease = !!argv.prerelease;
 
     runSequence(sequence, callback);
 });
@@ -47,7 +49,7 @@ gulp.task('npm-publish', function (callback)
         'copy-fonts',
         'copy-images',
         'copy-lang',
-        'publish',
+        //'publish',
         callback
     );
 });
@@ -99,16 +101,22 @@ gulp.task('changeVersion', function ()
     console.log('-------------------------------------------------');
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
     
-    json.version = json.version.replace('-' + subversion, '');
+    json.version = json.version.replace('-\w', '');
     
     //possible values are: patch, minor, major
-    json.version = semver.inc(json.version, level);
-    
-    if(subversion !== '')
+    if (prerelease)
     {
-        json.version += '-' + subversion;
+        json.version = semver.inc(json.version, 'prerelease', 'beta');
     }
-    
+    else
+    {
+        json.version = semver.inc(json.version, level);
+        if(subversion !== '')
+        {
+            json.version += '-' + subversion;
+        }
+    }
+
     version = json.version;
 
     console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
