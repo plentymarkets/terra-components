@@ -56,8 +56,6 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     constructor()
     {
         super(TerraRegex.DOUBLE);
-        
-        this.regex = TerraRegex.getDouble(this.inputDecimalCount);
 
         // generate the id of the input instance
         this._id = `double-input_#${nextId++}`;
@@ -65,6 +63,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     
     public ngOnInit():void
     {
+        this.regex = TerraRegex.getDouble(this.inputDecimalCount);
         this._step = 1 / (Math.pow(10, this.inputDecimalCount));
     }
 }
