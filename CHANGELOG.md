@@ -2,7 +2,9 @@
 # 2.1.39-zlk (05.01.2017)
 
 ### Bug Fixes
-* **terra-text-input** **terra-number-input** **terra-double-input** fix missing label if value is 0
+* **terra-text-input** **terra-number-input** **terra-double-input** 
+- fix missing label if value is 0
+- fix missing required (*) if no value is set
 * **terra-suggestion-box** added missing styles for disabled state
 * **terra-select-box** fix missing red colored border indication for invalid state
 
