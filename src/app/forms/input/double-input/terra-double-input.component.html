@@ -16,7 +16,7 @@
            autocomplete="off"
            [disabled]="isDisabled"
            pattern="{{regex}}"
-           step="0.01"
+           step="{{_step}}"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
            [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0}">
 </div>
