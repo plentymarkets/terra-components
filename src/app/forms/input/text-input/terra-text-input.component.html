@@ -20,6 +20,6 @@
            maxlength="{{inputMaxLength}}"
            minlength="{{inputMinLength}}"
            [readonly]="inputIsReadonly"
-           placeholder="{{inputName}}"
+           placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
            required>
 </div>

@@ -1,14 +1,18 @@
-<a name="2.1.38-zlk"></a>
-# 2.1.38-zlk (DD.MM.YYYY)
+<a name="2.1.40-zlk"></a>
+# 2.1.39-zlk (DD.MM.YYYY)
 
 ### Feature
 * **terra-tag** changed color of tags in data-table
 
-<a name="2.1.37-zlk"></a>
-# 2.1.37-zlk (22.12.2017)
+<a name="2.1.39-zlk"></a>
+# 2.1.39-zlk (05.01.2018)
 
 ### Bug Fixes
-* **terra-text-input** **terra-number-input** **terra-double-input** fix missing label if value is 0
+* **terra-text-input** **terra-number-input** **terra-double-input** 
+- fix missing label if value is 0
+- fix missing required (*) if no value is set
+* **terra-suggestion-box** added missing styles for disabled state
+* **terra-select-box** fix missing red colored border indication for invalid state
 
 ### Feature
 * **context-menu-holder** added background color for entries and TerraButtonColorEnum for dedicated color values
