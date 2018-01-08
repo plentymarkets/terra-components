@@ -95,3 +95,4 @@ export * from './app/tree/node-tree/terra-node-tree.component';
 export * from './app/tree/node-tree/data/terra-node-tree.config';
 export * from './app/tree/node-tree/data/terra-node.interface';
 export * from './app/tree/node-tree/node/terra-node.component';
+export * from './app/info/terra-info.component';

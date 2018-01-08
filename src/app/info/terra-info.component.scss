@@ -1,0 +1,60 @@
+.info-handler
+{
+    display: inline-block;
+    position: relative;
+    &.disabled
+    {
+        cursor: not-allowed;
+        .span
+        {
+            background-color: $grey-3;
+            color: $grey-7;
+            cursor: not-allowed;
+            &:hover,
+            &:active,
+            &.active
+            {
+                background-color: $grey-3;
+                color: $grey-7;
+                cursor: not-allowed;
+            }
+        }
+    }
+    
+    height: $terra-btn-md-height;
+    line-height: $terra-btn-md-height;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 0;
+    width: 100%;
+    overflow: hidden;
+    text-decoration: none;
+    padding: 0 8px;
+    border-radius: $border-radius;
+    font-size: $font-size-5;
+}
+
+.info-handler .info-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    position: absolute;
+    z-index: $zindex-info-text;
+}
+
+.info-handler:hover .info-text {
+    visibility: visible;
+}

@@ -388,6 +388,7 @@ $zindex-navbar: 1000 !default;
 $zindex-dropdown: 1000 !default;
 $zindex-popover: 1060 !default;
 $zindex-tooltip: 1070 !default;
+$zindex-info-text: $zindex-tooltip !default;
 $zindex-navbar-fixed: 1030 !default;
 $zindex-navbar-sticky: 1030 !default;
 $zindex-toolbar-sticky: 1000 !default;

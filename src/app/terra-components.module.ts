@@ -82,6 +82,7 @@ import { TerraNoteEditorComponent } from './note-editor/terra-note-editor.compon
 import { TerraNoteComponent } from './note/terra-note.component';
 import { TerraNodeTreeComponent } from './tree/node-tree/terra-node-tree.component';
 import { TerraNodeComponent } from './tree/node-tree/node/terra-node.component';
+import { TerraInfoComponent } from './info/terra-info.component';
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -207,7 +208,8 @@ export { TerraNodeInterface } from './tree/node-tree/data/terra-node.interface';
         TerraNoteEditorComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
-        TerraNodeComponent
+        TerraNodeComponent,
+        TerraInfoComponent
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -255,7 +257,8 @@ export { TerraNodeInterface } from './tree/node-tree/data/terra-node.interface';
         TerraNoteEditorComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
-        TerraNodeComponent
+        TerraNodeComponent,
+        TerraInfoComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -307,7 +310,8 @@ export { TerraNodeInterface } from './tree/node-tree/data/terra-node.interface';
         FixedHeaderDirective,
         TerraNoteEditorComponent,
         TerraNoteComponent,
-        TerraNodeTreeComponent
+        TerraNodeTreeComponent,
+        TerraInfoComponent
     ],
     imports:         [
         BrowserModule,
