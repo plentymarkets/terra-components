@@ -13,7 +13,6 @@ import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
 import {
     isArray,
-    isNull,
     isNullOrUndefined
 } from 'util';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
@@ -296,6 +295,18 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         }
 
         return 'top';
+    }
+
+    private isTableDataAvailable():boolean
+    {
+        return this.inputRowList && this.inputRowList.length > 0;
+    }
+
+    private isNoResultsNoticeDefined():boolean
+    {
+        return (this.inputNoResultButtons && this.inputNoResultButtons.length > 0) || // a button is given
+               (this.inputNoResultTextPrimary && this.inputNoResultTextPrimary.length > 0) || // a primary text is given
+               (this.inputNoResultTextSecondary && this.inputNoResultTextSecondary.length > 0); // a secondary text is given
     }
 
     private doPaging(pagerData:TerraPagerInterface):void
