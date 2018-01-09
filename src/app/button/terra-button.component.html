@@ -4,7 +4,7 @@
 <div [isDisabled]="!inputTooltipText"
      class="btn-handler"
      [tooltip]="tooltipTemplate"
-     [placement]="inputTooltipPlacement"
+     [placement]="_currentTooltipPlacement"
      [container]="'body'"
      (mouseover)="setTooltipPlacement($event)"
      [ngClass]="{'pull-xs-right': inputIsAlignRight,

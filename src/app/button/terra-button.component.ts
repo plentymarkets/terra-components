@@ -56,7 +56,7 @@ export class TerraButtonComponent implements OnInit
     @Input() inputIsHighlighted:boolean;
     @Output() outputClicked = new EventEmitter<Event>();
 
-    private _initialTooltipPlacement:string;
+    private _currentTooltipPlacement:string;
 
     constructor()
     {
@@ -73,7 +73,7 @@ export class TerraButtonComponent implements OnInit
 
     ngOnInit():void
     {
-        this._initialTooltipPlacement = this.inputTooltipPlacement;
+        this._currentTooltipPlacement = this.inputTooltipPlacement;
     }
 
     private click(event:Event):void
@@ -88,17 +88,15 @@ export class TerraButtonComponent implements OnInit
     {
         let minimalDistanceToWindowEdge:number = 100;
 
+        this._currentTooltipPlacement = this.inputTooltipPlacement;
+
         if(window.innerWidth - event.clientX < minimalDistanceToWindowEdge)
         {
-            this.inputTooltipPlacement = 'left';
+            this._currentTooltipPlacement = 'left';
         }
         else if(event.clientX < minimalDistanceToWindowEdge)
         {
-            this.inputTooltipPlacement = 'right';
-        }
-        else
-        {
-            this.inputTooltipPlacement = this._initialTooltipPlacement;
+            this._currentTooltipPlacement = 'right';
         }
     }
 }
