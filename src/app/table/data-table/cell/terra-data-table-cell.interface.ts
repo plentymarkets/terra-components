@@ -11,8 +11,7 @@ import {
  */
 export interface TerraDataTableCellInterface
 {
-    identifier:string;
-    data?:string | number | TerraDataTableTextInterface | TerraRefTypeInterface | Array<TerraButtonInterface> | Array<TerraTagInterface>;
+    data:string | number | TerraDataTableTextInterface | TerraRefTypeInterface | Array<TerraButtonInterface> | Array<TerraTagInterface>;
     isHidden?:boolean;
     tooltipText?:string;
     tooltipPlacement?:string;

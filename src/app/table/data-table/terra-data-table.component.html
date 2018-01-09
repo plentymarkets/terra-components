@@ -1,8 +1,8 @@
-<terra-pager *ngIf="inputHasPager && _rowList && _rowList.length > 0"
-             [inputPagingSize]="pagingSize"
-             [inputDefaultPagingSize]="defaultPagingSize"
-             [inputPagingData]="pagingData"
-             [inputRequestPending]="_requestPending"
+<terra-pager *ngIf="inputHasPager && inputRowList && inputRowList.length > 0"
+             [inputPagingSize]="inputService.pagingSizes"
+             [inputDefaultPagingSize]="inputService.defaultPagingSize"
+             [inputPagingData]="inputService.pagingData"
+             [inputRequestPending]="inputService.requestPending"
              (outputDoPaging)="doPaging($event)">
 </terra-pager>
 
@@ -11,83 +11,55 @@
     <table class="table data-table">
         <thead>
         <tr>
-            <th *ngIf="inputHasCheckboxes && _rowList.length" width="25px">
+            <th *ngIf="inputHasCheckboxes && inputRowList && inputRowList?.length" width="25px">
                 <terra-checkbox #viewChildHeaderCheckbox
-                                (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
-                                [value]="_isHeaderCheckboxChecked">
+                                (change)="onHeaderCheckboxChange()"
+                                [value]="_headerCheckbox.checked"
+                                [isIndeterminate]="_headerCheckbox.isIndeterminate">
                 </terra-checkbox>
             </th>
-            <ng-template ngFor let-header [ngForOf]="_headerList">
-                <th *ngIf="!header.isHidden && _rowList && _rowList.length > 0"
+            <ng-template ngFor let-header [ngForOf]="inputHeaderList">
+                <th *ngIf="!header.isHidden && inputRowList && inputRowList?.length > 0"
                     width="{{header.width}}px"
-                    [ngStyle]="{ 'text-align': getTextAlign(header) }">
+                    [ngStyle]="{ 'text-align': header.textAlign }"
+                    (click)="onColumnHeaderClick(header)">
                     <span [container]="'body'"
                           [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                           [tooltip]="header.tooltipText"
                           [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
                           {{header.caption}}
+                        <span class="icon-sort_asc"
+                              *ngIf="this.inputIsSortable && header?.sortBy === inputService.sortBy && inputService.sortOrder === _sortOrderEnum.ASCENDING">
+                        </span>
+                        <span class="icon-sort_desc"
+                              *ngIf="this.inputIsSortable && header?.sortBy === inputService.sortBy && inputService.sortOrder === _sortOrderEnum.DESCENDING">
+                        </span>
                     </span>
                 </th>
             </ng-template>
         </tr>
         </thead>
-        <tbody *ngIf="_rowList && _rowList.length > 0">
-        <ng-template ngFor let-row [ngForOf]="_rowList">
-            <tr [ngClass]="{'selected': row.selected, 'isActive': row.isActive}"
+        <tbody *ngIf="inputRowList && inputRowList.length > 0">
+        <ng-template ngFor let-row [ngForOf]="inputRowList">
+            <tr [ngClass]="{'selected': isSelectedRow(row), 'isActive': row.isActive}"
                 [class.disabled]="row.disabled"
                 [context-menu]="row.contextMenuLinkList">
                 <td *ngIf="inputHasCheckboxes">
-                    <terra-checkbox #rowCheckbox type="checkbox"
-                                    [value]="row.selected"
+                    <terra-checkbox type="checkbox"
+                                    [value]="isSelectedRow(row)"
                                     [inputIsDisabled]="row.disabled"
-                                    (change)="onRowCheckboxChange(rowCheckbox.value, row)">
+                                    (change)="onRowCheckboxChange(row)">
                     </terra-checkbox>
                 </td>
                 <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
                     <template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>
                     </template>
-                    
-                    <!-- LEGACY INTERFACE!!!! -->
-                    <td *ngIf="!cell.isHidden && !cell.data"
-                        (click)="rowClicked(cell, row)"
-                        [container]="'body'"
-                        [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
-                        [tooltip]="tdTooltip"
-                        [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
-                        [ngStyle]="{ 'text-align': getTextAlign(_headerList[i]) }">
-                        <span [ngStyle]="{color: cell.color}">
-                            <span *ngIf="cell.icon" [ngClass]="cell.icon"></span>
-                            <span *ngIf="!cell.href">{{cell.caption}}</span>
-                            <a *ngIf="cell.href" href="{{cell.href}}:{{cell.caption}}"
-                               (click)="$event.stopPropagation()">
-                                {{cell.caption}}
-                            </a>
-                        </span>
-                        
-                        <div class="btn-group" *ngIf="cell.buttonList">
-                            <ng-template ngFor let-button [ngForOf]="cell.buttonList">
-                                <terra-button *ngIf="!button.isHidden"
-                                              (outputClicked)="button.clickFunction()"
-                                              [inputIcon]="button.icon"
-                                              [inputIsPrimary]="button.isPrimary"
-                                              [inputIsSecondary]="button.isSecondary"
-                                              [inputIsTertiary]="button.isTertiary"
-                                              [inputIsDisabled]="button.isDisabled"
-                                              [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
-                                              [inputCaption]="button.caption"
-                                              [inputIsSmall]="true"
-                                              [inputTooltipText]="button.tooltipText">
-                                </terra-button>
-                            </ng-template>
-                        </div>
-                    </td>
-                    
-                    <!-- new cell interface -->
-                    <td *ngIf="!cell.isHidden && cell.data"
+               
+                    <td *ngIf="!cell.isHidden"
                         [ngSwitch]="getCellDataType(cell.data)"
-                        [ngStyle]="{ 'text-align': getTextAlign(_headerList[i]) }"
-                        (click)="rowClicked(cell, row)"
+                        [ngStyle]="{ 'text-align': inputHeaderList[i]?.textAlign }"
+                        (click)="rowClicked(row)"
                         [tooltip]="tdTooltip"
                         [container]="'body'"
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
@@ -139,10 +111,7 @@
         </tbody>
     </table>
     
-    <div *ngIf="!_rowList || _rowList && rowList.length < 1 && (
-            (inputNoResultButtons && inputNoResultButtons.length > 0)
-         || (inputNoResultTextPrimary && inputNoResultTextPrimary.length > 0) 
-         || (inputNoResultTextSecondary && inputNoResultTextSecondary.length > 0) )">
+    <div *ngIf="!isTableDataAvailable() && isNoResultsNoticeDefined()">
         <terra-no-result-notice
             [inputButtons]="inputNoResultButtons"
             [inputTextPrimary]="inputNoResultTextPrimary"
