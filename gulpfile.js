@@ -26,7 +26,7 @@ var version, level, sequence, subversion, prerelease;
  *                     If not set patch is default. See VERSIONING.md for further information.
  * @param subversion - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json). Use only, if really necessary!!
  * @param target     - Sets the target directory to copy build files to. Will copy files to 'node_modules/@plentymarkets/terra-components' in target directory
- * @param prerelease - If set, a prerelease version is published using the beta label
+ * @param prerelease - If set, a prerelease version is published using the 'rc' label. You can use prerelease OR subversion parameter. Both at the same time are not supported
  *
  **/
 gulp.task('build', function(callback)
@@ -106,7 +106,7 @@ gulp.task('changeVersion', function ()
     //possible values are: patch, minor, major
     if (prerelease)
     {
-        json.version = semver.inc(json.version, 'prerelease', 'beta');
+        json.version = semver.inc(json.version, 'prerelease', 'rc');
     }
     else
     {
