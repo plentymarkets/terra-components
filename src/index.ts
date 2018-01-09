@@ -91,3 +91,7 @@ export * from './app/no-result/terra-no-result-notice.component';
 export * from './app/note-editor/terra-note-editor.component';
 export * from './app/note/terra-note.component';
 export * from './app/forms/slider/terra-slider.component';
+export * from './app/tree/node-tree/terra-node-tree.component';
+export * from './app/tree/node-tree/data/terra-node-tree.config';
+export * from './app/tree/node-tree/data/terra-node.interface';
+export * from './app/tree/node-tree/node/terra-node.component';

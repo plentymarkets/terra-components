@@ -1,7 +1,7 @@
 import {
     Component,
     forwardRef,
-    Input
+    Input, OnInit
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { TerraRegex } from '../../../regex/terra-regex';
@@ -21,12 +21,20 @@ let nextId:number = 0;
         }
     ]
 })
-export class TerraDoubleInputComponent extends TerraInputComponent
+export class TerraDoubleInputComponent extends TerraInputComponent implements OnInit
 {
     /**
      * @description If true, the value will be right-aligned.
      * */
     @Input() inputIsPriceInput:boolean;
+
+    /**
+     * 
+     * @description Set the decimal count. Default is 2. (0.01)
+     */
+    @Input() inputDecimalCount:number = 2;
+    
+    private _step:number;
 
     /**
      * @description a unique string identifier for the specific input instance.
@@ -38,6 +46,12 @@ export class TerraDoubleInputComponent extends TerraInputComponent
         super(TerraRegex.DOUBLE);
 
         // generate the id of the input instance
-        this._id = `double-input_#${nextId}`;
+        this._id = `double-input_#${nextId++}`;
+    }
+    
+    public ngOnInit():void
+    {
+        this.regex = TerraRegex.getDouble(this.inputDecimalCount);
+        this._step = 1 / (Math.pow(10, this.inputDecimalCount));
     }
 }

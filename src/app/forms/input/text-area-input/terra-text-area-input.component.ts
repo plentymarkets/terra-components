@@ -40,6 +40,6 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance
-        this._id = `text-area-input_#${nextId}`;
+        this._id = `text-area-input_#${nextId++}`;
     }
 }
