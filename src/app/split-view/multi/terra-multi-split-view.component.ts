@@ -303,7 +303,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                         this.ANIMATION_SPEED);
                 }
 
-                // focus view horizontally
+                // check if viewport needs to be adjusted
                 if(anchor[0] != null &&
                    anchor[0].getBoundingClientRect().left > viewContainer.offset().left &&
                    anchor[0].getBoundingClientRect().right <= viewContainer.offset().left + viewContainer.outerWidth())
@@ -311,16 +311,18 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     return;
                 }
 
+                // interrupt all ongoing animations to prevent queue
                 viewContainer.stop();
 
+                // focus view horizontally
                 if(skipAnimation)
                 {
-                    viewContainer.scrollLeft(anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - viewContainer.offset().left + 1);
+                    viewContainer.scrollLeft(Math.ceil(anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - viewContainer.offset().left));
                 }
                 else
                 {
                     viewContainer.animate(
-                        {scrollLeft: (anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - viewContainer.offset().left) + 1},
+                        {scrollLeft: (Math.ceil(anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - viewContainer.offset().left))},
                         this.ANIMATION_SPEED);
                 }
             });
