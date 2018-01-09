@@ -11,29 +11,8 @@ import {
  */
 export interface TerraDataTableCellInterface
 {
-    identifier:string;
-    data?:string | number | TerraDataTableTextInterface | TerraRefTypeInterface | Array<TerraButtonInterface> | Array<TerraTagInterface>;
+    data:string | number | TerraDataTableTextInterface | TerraRefTypeInterface | Array<TerraButtonInterface> | Array<TerraTagInterface>;
     isHidden?:boolean;
     tooltipText?:string;
     tooltipPlacement?:string;
-    /**
-     * @deprecated
-     */
-    caption?:string | number;
-    /**
-     * @deprecated
-     */
-    icon?:string;
-    /**
-     * @deprecated
-     */
-    buttonList?:Array<TerraButtonInterface>;
-    /**
-     * @deprecated
-     */
-    color?:string;
-    /**
-     * @deprecated
-     */
-    href?:TerraRefTypeEnum;
 }
