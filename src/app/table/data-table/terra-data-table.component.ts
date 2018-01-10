@@ -148,7 +148,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         });
     }
 
-    private onHeaderCheckboxChange():void
+    private handleHeaderCheckboxChange():void
     {
         if(this._headerCheckbox.checked)
         {
@@ -160,7 +160,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         }
     }
 
-    private onRowCheckboxChange(row:TerraDataTableRowInterface<T>):void
+    private handleRowCheckboxChange(row:TerraDataTableRowInterface<T>):void
     {
         // notify component user
         this.outputRowCheckBoxChanged.emit(row);

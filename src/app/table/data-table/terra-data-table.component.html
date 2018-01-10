@@ -13,7 +13,7 @@
         <tr>
             <th *ngIf="inputHasCheckboxes && inputRowList && inputRowList?.length" width="25px">
                 <terra-checkbox #viewChildHeaderCheckbox
-                                (change)="onHeaderCheckboxChange()"
+                                (change)="handleHeaderCheckboxChange()"
                                 [value]="_headerCheckbox.checked"
                                 [isIndeterminate]="_headerCheckbox.isIndeterminate">
                 </terra-checkbox>
@@ -48,7 +48,7 @@
                     <terra-checkbox type="checkbox"
                                     [value]="isSelectedRow(row)"
                                     [inputIsDisabled]="row.disabled"
-                                    (change)="onRowCheckboxChange(row)">
+                                    (change)="handleRowCheckboxChange(row)">
                     </terra-checkbox>
                 </td>
                 <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
