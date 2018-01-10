@@ -7,4 +7,8 @@
     --input-unit-v1-border-hover: none;
     --input-unit-v1-height: 31px;
     --input-unit-v1-line-height: 31px;
+    &.disabled
+    {
+        --input-unit-v1-border-disabled: none;
+    }
 }
