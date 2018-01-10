@@ -383,7 +383,7 @@ export class TerraNodeTreeConfig<D>
         //check if lazy loading is desired
         if(!node.hasLoaded && !isNullOrUndefined(node.onLazyLoad))
         {
-            node.hasLoaded = true;
+            //node.hasLoaded = true;
             node.isLoading = true;
             //subscribe to Observable
             node.onLazyLoad().subscribe(() =>
