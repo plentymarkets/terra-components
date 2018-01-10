@@ -6,7 +6,7 @@
      [tooltip]="tooltipTemplate"
      [placement]="_currentTooltipPlacement"
      [container]="'body'"
-     (mouseover)="setTooltipPlacement($event)"
+     (mouseenter)="setTooltipPlacement($event)"
      [ngClass]="{'pull-xs-right': inputIsAlignRight,
                  'disabled': inputIsDisabled}">
     <button class="btn"

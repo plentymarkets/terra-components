@@ -86,6 +86,11 @@ export class TerraButtonComponent implements OnInit
 
     private setTooltipPlacement(event:MouseEvent):void
     {
+        if(isNullOrUndefined(this.inputTooltipText))
+        {
+            return;
+        }
+
         let minimalDistanceToWindowEdge:number = 100;
 
         this._currentTooltipPlacement = this.inputTooltipPlacement;
