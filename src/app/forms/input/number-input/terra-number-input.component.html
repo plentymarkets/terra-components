@@ -18,6 +18,6 @@
            step="1"
            min="{{inputMinValue}}"
            max="{{inputMaxValue}}"
-           placeholder="{{inputName}}"
+           placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
            [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0 }">
 </div>

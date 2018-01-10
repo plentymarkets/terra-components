@@ -6,6 +6,11 @@
     transition: none;
     min-width: max-content;
     max-width: max-content;
+    
+    a
+    {
+        --context-menu-a-font-size: 12px;
+    }
 }
 
 .context-menu-divider
