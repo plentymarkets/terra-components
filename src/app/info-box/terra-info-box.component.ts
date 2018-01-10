@@ -4,6 +4,7 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraTagInterface } from '../tag/data/terra-tag.interface';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'terra-info-box',
@@ -25,4 +26,11 @@ export class TerraInfoBoxComponent implements OnInit
     ngOnInit()
     {
     }
+
+    public get hasFooter(): boolean
+    {
+        return !isNullOrUndefined( this.inputId )
+               || ( !isNullOrUndefined( this.inputTagList ) && this.inputTagList.length > 0 );
+    }
+
 }
