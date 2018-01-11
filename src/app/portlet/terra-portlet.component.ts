@@ -14,6 +14,9 @@ import {
     trigger
 } from "@angular/animations";
 import { isNullOrUndefined } from 'util';
+import { TerraButtonComponent } from '../button/terra-button.component';
+import { forEach } from '@angular/router/src/utils/collection';
+import { TerraButtonInterface } from '../button/data/terra-button.interface';
 
 @Component({
     selector:   'terra-portlet',
@@ -47,6 +50,8 @@ export class TerraPortletComponent implements OnChanges
     @Input() inputCollapsed:boolean = false;
 
     @Output() inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+    
+    @Input() inputButtonList:Array<TerraButtonInterface> = [];
 
     private get collapsedState():string
     {
