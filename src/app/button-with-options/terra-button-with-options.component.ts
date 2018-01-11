@@ -7,6 +7,7 @@ import {
 import { TerraButtonInterface } from '../button/data/terra-button.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraButtonComponent } from '../button/terra-button.component';
+import { TerraTextAlignEnum } from '../table/data-table/cell/terra-text-align.enum';
 
 @Component({
     selector: 'terra-button-with-options',
@@ -55,10 +56,16 @@ export class TerraButtonWithOptionsComponent
      * */
     @Input() inputOptions:Array<TerraButtonInterface>;
 
+    /**
+     * @description Set the alignment of the context menu. Default right.
+     * */
+    @Input() inputOptionsAlignment:TerraTextAlignEnum;
+
     // view children
     @ViewChild(TerraButtonComponent) private toggleButton:TerraButtonComponent;
 
     private _optionsToggle:boolean;
+    private _alignRight:boolean;
     private clickListener:(event:Event) => void;
 
     constructor(private elementRef:ElementRef)
@@ -72,6 +79,9 @@ export class TerraButtonWithOptionsComponent
                 this._optionsToggle = false;
             }
         };
+
+        this.inputOptionsAlignment = TerraTextAlignEnum.RIGHT;
+        this._alignRight = true;
     }
 
     public ngOnInit():void
@@ -80,6 +90,25 @@ export class TerraButtonWithOptionsComponent
         if(isNullOrUndefined(this.inputOptions))
         {
             this.inputOptions = [];
+        }
+
+        switch(this.inputOptionsAlignment)
+        {
+            case TerraTextAlignEnum.LEFT:
+            {
+                this._alignRight = false;
+                break;
+            }
+            case TerraTextAlignEnum.RIGHT:
+            {
+                this._alignRight = true;
+                break;
+            }
+            case TerraTextAlignEnum.CENTER:
+            {
+                this._alignRight = false;
+                break;
+            }
         }
     }
 
