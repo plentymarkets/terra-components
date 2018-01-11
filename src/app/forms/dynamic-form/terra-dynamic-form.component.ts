@@ -11,6 +11,21 @@ import { TerraFormFieldBase } from './data/terra-form-field-base';
 import { DynamicFormFunctionsHandler } from './handler/dynamic-form-functions.handler';
 import { TerraDynamicFormService } from './service/terra-dynamic-form.service';
 
+export enum TerraHtmlMethods
+{
+    GET = 'get',
+    POST = 'post',
+    PUT = 'put',
+    DELETE = 'delete'
+}
+
+export interface TerraDynamicFormRequestParams
+{
+    route:string,
+    htmlMethod:TerraHtmlMethods
+    params?:{}
+}
+
 /**
  * @author mfrank
  */
@@ -24,20 +39,24 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     @Input() public inputFormFunctions:DynamicFormFunctionsHandler<any>;
     @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
     @Input() public inputPortletStyle:string;
-    @Input() public inputRestRoute:string;
+    @Input() public inputRequestParams:TerraDynamicFormRequestParams;
 
     constructor(private _formFieldControlService:TerraFormFieldControlService,
                 private _dynamicService:TerraDynamicFormService)
     {
         this.inputPortletStyle = 'col-xs-12 col-md-4';
-        this.inputRestRoute = '';
+        this.inputRequestParams = {
+            route:      '',
+            htmlMethod: null,
+            params:     {}
+        };
     }
 
     public ngOnInit():void
     {
         if(isNullOrUndefined(this.inputFormFields) || isNullOrUndefined(this.inputFormFunctions))
         {
-            console.error('inputFormStructure and inputFormFunctions must be set.');
+            console.error('inputFormFields and inputFormFunctions must be set.');
         }
         else
         {
@@ -57,10 +76,18 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     {
         if(this._formFieldControlService.dynamicFormGroup.valid)
         {
-            if(this.inputRestRoute !== '')
+            if(this.inputRequestParams.route !== '')
             {
-                this.inputFormFunctions.saved(this._dynamicService.create(this._formFieldControlService.dynamicFormGroup.value,
-                    this.inputRestRoute));
+                if(this.inputRequestParams.htmlMethod = TerraHtmlMethods.POST)
+                {
+                    this.inputFormFunctions.saved(this._dynamicService.create(this._formFieldControlService.dynamicFormGroup.value,
+                        this.inputRequestParams.route, this.inputRequestParams.params));
+                }
+                if(this.inputRequestParams.htmlMethod = TerraHtmlMethods.PUT)
+                {
+                    this.inputFormFunctions.saved(this._dynamicService.update(this._formFieldControlService.dynamicFormGroup.value,
+                        this.inputRequestParams.route, this.inputRequestParams.params));
+                }
             }
             else
             {

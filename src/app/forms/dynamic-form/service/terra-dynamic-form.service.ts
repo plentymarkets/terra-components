@@ -21,9 +21,20 @@ export class TerraDynamicFormService extends TerraBaseService
      * @param url
      * @return {any}
      */
-    create(data:any, url:string):Observable<any>
+    create(data:any, url:string, params:any):Observable<any>
     {
-        return Observable.of(data);
+        this.setAuthorization();
+
+        return this.mapRequest(
+            this.http.post(url,
+                {
+                    headers: this.headers,
+                    body:    data,
+                    search:  this.createUrlSearchParams(params)
+                })
+        );
+
+        //return Observable.of(data);
     }
 
     /**
@@ -31,9 +42,18 @@ export class TerraDynamicFormService extends TerraBaseService
      * @param url
      * @return {any}
      */
-    update(data:any, url:string):Observable<any>
+    update(data:any, url:string, params:any):Observable<any>
     {
-        return Observable.of(data);
+        return this.mapRequest(
+            this.http.put(url,
+                {
+                    headers: this.headers,
+                    body:    data,
+                    search:  this.createUrlSearchParams(params)
+                })
+        );
+
+        //return Observable.of(data);
     }
 
     /**
