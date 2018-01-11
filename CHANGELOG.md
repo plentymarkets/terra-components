@@ -1,3 +1,11 @@
+<a name="2.1.40-zlk"></a>
+# 2.1.39-zlk (DD.MM.YYYY)
+
+### Bug Fixes
+
+### Feature
+* **terra-portlet** add new input `inputButtonList` to add a button group into the portlet header
+
 <a name="2.1.39-zlk"></a>
 # 2.1.39-zlk (05.01.2017)
 
