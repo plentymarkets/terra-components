@@ -119,6 +119,10 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
                 this.resetSorting();
             }
         }
+        if(changes['inputRowList'])
+        {
+            this.resetSelectedRows();
+        }
     }
 
     /**
@@ -203,7 +207,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         {
             this.uncheckHeaderCheckbox();
         }
-        else if(this.selectedRowList.length > 0 && this.inputRowList.length === this.selectedRowList.length) // all selected?
+        else if(this.selectedRowList.length > 0 && this.inputRowList.filter(r => !r.disabled).length === this.selectedRowList.length) // all selected?
         {
             this.checkHeaderCheckbox();
         }
