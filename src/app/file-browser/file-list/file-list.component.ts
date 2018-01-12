@@ -313,7 +313,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     {
         if(!isNullOrUndefined(this.activeStorageService))
         {
-            this.createHeaderListOnAccessLevel();
+            this.createHeaderListDependingOnAccessLevel();
         }
 
         if(!isNullOrUndefined(this.currentStorageRoot))
@@ -330,7 +330,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._changeDetector.detectChanges();
     }
 
-    private fillTableRowList()
+    private fillTableRowList():void
     {
         this._fileTableRowList = this.currentStorageRoot.children.filter((storageObject:TerraStorageObject) =>
             {
@@ -346,7 +346,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         });
     }
 
-    private createTableRow(storageObject:TerraStorageObject)
+    private createTableRow(storageObject:TerraStorageObject):TerraSimpleTableRowInterface<TerraStorageObject>
     {
         let cellList:Array<TerraSimpleTableCellInterface> = [];
 
@@ -397,7 +397,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         };
     }
 
-    private addClipboardButton(storageObject:TerraStorageObject, cellList:Array<TerraSimpleTableCellInterface>)
+    private addClipboardButton(storageObject:TerraStorageObject, cellList:Array<TerraSimpleTableCellInterface>):void
     {
         let clipboardButton:TerraButtonInterface = {
             icon:             'icon-copy_clipboard',
@@ -417,7 +417,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         );
     }
 
-    private addDownloadButton(storageObject:TerraStorageObject, cellList:Array<TerraSimpleTableCellInterface>)
+    private addDownloadButton(storageObject:TerraStorageObject, cellList:Array<TerraSimpleTableCellInterface>):void
     {
         cellList.push({
             buttonList: [{
@@ -433,7 +433,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         });
     }
 
-    private addDeleteButton(storageObject:TerraStorageObject, cellList:Array<TerraSimpleTableCellInterface>)
+    private addDeleteButton(storageObject:TerraStorageObject, cellList:Array<TerraSimpleTableCellInterface>):void
     {
         cellList.push({
             buttonList: [{
@@ -452,7 +452,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         });
     }
 
-    private createHeaderListOnAccessLevel()
+    private createHeaderListDependingOnAccessLevel():void
     {
         if(this.activeStorageService instanceof TerraBasePrivateStorageService)
         {
@@ -464,7 +464,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         }
     }
 
-    private createPublicHeaderList()
+    private createPublicHeaderList():void
     {
         this._fileTableHeaderList = [
             {
@@ -494,7 +494,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         ];
     }
 
-    private createPrivateHeaderList()
+    private createPrivateHeaderList():void
     {
         this._fileTableHeaderList = [
             {
