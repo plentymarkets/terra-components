@@ -91,7 +91,7 @@
         }
         &:first-child div
         {
-            padding-left: 16px;
+            padding-left: 10px;
         }
         .icon-next
         {
@@ -147,10 +147,6 @@
                     background-color: $white;
                 }
             }
-        }
-        &.first
-        {
-            padding-left: 5px;
         }
         > div
         {
@@ -213,7 +209,7 @@
 
 .terra-breadcrumbs-wrapper
 {
-    --toolbar-margin: 0 0 0 -3px;
+    --toolbar-margin: 0;
     --toolbar-border-radius: none;
     --toolbar-background: $white;
     --toolbar-border-bottom: 1px solid $grey-4;
