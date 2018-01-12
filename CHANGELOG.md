@@ -10,13 +10,16 @@
 # 2.1.39-zlk (05.01.2017)
 
 ### Bug Fixes
-* **terra-text-input** **terra-number-input** **terra-double-input** fix missing label if value is 0
+* **terra-text-input** **terra-number-input** **terra-double-input** 
+- fix missing label if value is 0
+- fix missing required (*) if no value is set
 * **terra-suggestion-box** added missing styles for disabled state
 * **terra-select-box** fix missing red colored border indication for invalid state
 
 ### Feature
 * **context-menu-holder** added background color for entries and TerraButtonColorEnum for dedicated color values
 * **terra-portlet** add new input `inputHighlightPortlet` for component to highlight portlets. Edit css for highlighting portlets. 
+* **terra-data-table** add a group function to handle multiple items at once in the data table 
 * **terra-multi-selectbox** adjusted styling
 
 <a name="2.1.35-zlk"></a>

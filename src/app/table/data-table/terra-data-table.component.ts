@@ -21,15 +21,40 @@ import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 import { TerraDataTableTextInterface } from './cell/terra-data-table-text.interface';
 import { TerraDataTableSortOrder } from './terra-data-table-sort-order.enum';
 import { TerraDataTableBaseService } from './terra-data-table-base.service';
+import {
+    animate,
+    state,
+    style,
+    transition,
+    trigger
+} from '@angular/animations';
 
 /**
  * @author pweyrich
  */
 @Component({
-    selector:  'terra-data-table',
-    styles:    [require('./terra-data-table.component.scss')],
-    template:  require('./terra-data-table.component.html'),
-    providers: [TerraDataTableContextMenuService]
+    selector:   'terra-data-table',
+    template:   require('./terra-data-table.component.html'),
+    styles:     [require('./terra-data-table.component.scss')],
+    providers:  [TerraDataTableContextMenuService],
+    animations: [
+        trigger('collapsedState', [
+            state('hidden', style({
+                height:          '0',
+                overflow:        'hidden',
+                'margin-bottom': '0'
+            })),
+            state('collapsed', style({
+                height:          '*',
+                overflow:        'initial',
+                'margin-bottom': '6px'
+            })),
+            transition('hidden <=> collapsed', [
+                animate(300)
+
+            ])
+        ])
+    ]
 })
 export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 {
@@ -70,11 +95,14 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
      * @description Buttons for no results notice
      */
     @Input() inputNoResultButtons:Array<TerraButtonInterface>;
+    @Input() inputShowGroupFunctions:boolean = false;
+    @Input() inputGroupFunctionButtonIsDisabled:boolean = true;
 
     /**
      * @description EventEmitter that notifies when a row has been selected via the select box. This is enabled, only if `inputHasCheckboxes` is true.
      */
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
+    @Output() outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<T>>> = new EventEmitter();
 
     private _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
     private _selectedRowList:Array<TerraDataTableRowInterface<T>>;
@@ -150,6 +178,23 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
             lastOnPage:     1,
             firstOnPage:    1
         });
+    }
+
+    private get getCollapsedState():string
+    {
+        if(this.inputShowGroupFunctions)
+        {
+            return 'collapsed';
+        }
+        else
+        {
+            return 'hidden';
+        }
+    }
+
+    private onGroupFunctionExecuteButtonClicked(event:Event):void
+    {
+        this.outputGroupFunctionExecuteButtonClicked.emit(this.inputRowList);
     }
 
     private handleHeaderCheckboxChange():void
@@ -333,8 +378,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 
         function isTextType(arg:any):arg is TerraDataTableTextInterface
         {
-            return arg
-                   && arg.caption && typeof arg.caption == 'string';
+            return arg && arg.caption && typeof arg.caption == 'string';
         }
 
         function isTagArray(arg:any):arg is Array<TerraTagInterface>
