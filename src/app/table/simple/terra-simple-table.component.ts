@@ -56,8 +56,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     {
         if(changes.hasOwnProperty("inputRowList"))
         {
-            this._selectedRowList = [];
-            this.uncheckHeaderCheckbox();
+            this.resetSelectedRows();
             this.onRowListChange.emit();
         }
     }
