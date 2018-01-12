@@ -417,10 +417,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     private onGroupFunctionExecuteButtonClicked(event:Event):void
     {
-        this.outputGroupFunctionExecuteButtonClicked.emit(
-            this.rowList.filter((x:TerraDataTableRowInterface<D>) =>
-            {
-                return x.selected;
-            }));
+        this.outputGroupFunctionExecuteButtonClicked.emit(this._selectedRowList);
     }
 }
