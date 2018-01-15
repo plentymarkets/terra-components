@@ -1,4 +1,4 @@
-export class TerraBaseServiceHelper
+export class TerraPdfHelper
 {
     static createPdfBlob(base64String:string):Blob
     {
