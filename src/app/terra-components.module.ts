@@ -80,7 +80,12 @@ import { TerraFileBrowserService } from './file-browser/terra-file-browser.servi
 import { TerraFileBrowserComponent } from './file-browser/terra-file-browser.component';
 import { TerraNoteEditorComponent } from './note-editor/terra-note-editor.component';
 import { TerraNoteComponent } from './note/terra-note.component';
+<<<<<<< HEAD
 import { TerraTimePickerComponent } from './forms/input/time-picker/terra-time-picker.component';
+=======
+import { TerraNodeTreeComponent } from './tree/node-tree/terra-node-tree.component';
+import { TerraNodeComponent } from './tree/node-tree/node/terra-node.component';
+>>>>>>> beta7_zlk_release
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -149,6 +154,9 @@ export { TerraCardComponent } from './card/terra-card.component';
 export { TerraSyntaxEditorComponent } from './editor/syntax/terra-syntax-editor.component';
 export { TerraSyntaxEditorData } from './editor/syntax/data/terra-syntax-editor.data';
 export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice.component';
+export { TerraNodeTreeComponent } from './tree/node-tree/terra-node-tree.component';
+export { TerraNodeTreeConfig } from './tree/node-tree/data/terra-node-tree.config';
+export { TerraNodeInterface } from './tree/node-tree/data/terra-node.interface';
 
 @NgModule({
     declarations:    [
@@ -201,8 +209,14 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
+<<<<<<< HEAD
         TerraTimePickerComponent,
         TerraNoteComponent
+=======
+        TerraNoteComponent,
+        TerraNodeTreeComponent,
+        TerraNodeComponent
+>>>>>>> beta7_zlk_release
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -248,8 +262,14 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraFileInputComponent,
         TerraButtonWithOptionsComponent,
         TerraNoteEditorComponent,
+<<<<<<< HEAD
         TerraTimePickerComponent,
         TerraNoteComponent
+=======
+        TerraNoteComponent,
+        TerraNodeTreeComponent,
+        TerraNodeComponent
+>>>>>>> beta7_zlk_release
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -300,8 +320,13 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
+<<<<<<< HEAD
         TerraTimePickerComponent,
         TerraNoteComponent
+=======
+        TerraNoteComponent,
+        TerraNodeTreeComponent
+>>>>>>> beta7_zlk_release
     ],
     imports:         [
         BrowserModule,
@@ -324,7 +349,7 @@ export { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
         COMPILER_PROVIDERS,
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
-        TerraFileBrowserService,
+        TerraFileBrowserService
     ],
     bootstrap:       [
         TerraComponentsComponent
@@ -336,14 +361,16 @@ export class TerraComponentsModule
     {
         return {
             ngModule:  TerraComponentsModule,
-            providers: [TerraLoadingBarService,
-                        TerraLoadingSpinnerService,
-                        TerraDataTableContextMenuService,
-                        TerraBaseService,
-                        TerraNavigatorSplitViewConfig,
-                        TerraUrlParamsDecorator,
-                        TerraFrontendStorageService,
-                        TerraAlertComponent]
+            providers: [
+                TerraLoadingBarService,
+                TerraLoadingSpinnerService,
+                TerraDataTableContextMenuService,
+                TerraBaseService,
+                TerraNavigatorSplitViewConfig,
+                TerraUrlParamsDecorator,
+                TerraFrontendStorageService,
+                TerraAlertComponent
+            ]
         };
     }
 
@@ -351,14 +378,16 @@ export class TerraComponentsModule
     {
         return {
             ngModule:  TerraComponentsModule,
-            providers: [TerraLoadingBarService,
-                        TerraLoadingSpinnerService,
-                        TerraDataTableContextMenuService,
-                        TerraBaseService,
-                        TerraNavigatorSplitViewConfig,
-                        TerraUrlParamsDecorator,
-                        TerraFrontendStorageService,
-                        TerraAlertComponent]
+            providers: [
+                TerraLoadingBarService,
+                TerraLoadingSpinnerService,
+                TerraDataTableContextMenuService,
+                TerraBaseService,
+                TerraNavigatorSplitViewConfig,
+                TerraUrlParamsDecorator,
+                TerraFrontendStorageService,
+                TerraAlertComponent
+            ]
         };
     }
 }

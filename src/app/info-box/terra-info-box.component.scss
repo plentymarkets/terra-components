@@ -7,7 +7,8 @@
     padding: 8px;
     min-width: 200px;
     margin: 4px 0px;
-    height: 150px;
+    height: var(--input-info-box-height, 150px);
+    
     &.selected
     {
         background-color: $blue;
@@ -37,7 +38,11 @@
     {
         display: flex;
         justify-content: space-between;
-        height: calc(100% - 26px);
+        
+        &.has-footer
+        {
+            height: calc(100% - 26px);
+        }
         
         .info-box-text
         {

@@ -93,7 +93,7 @@ export class TerraFileInputComponent extends TerraInputComponent
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance
-        this._id = `file-input_#${nextId}`;
+        this._id = `file-input_#${nextId++}`;
     }
 
     public ngOnInit():void

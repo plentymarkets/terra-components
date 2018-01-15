@@ -1,6 +1,6 @@
 {
 	"terraDataTable": {
-		"initialLoading": "Suche ausführen, um {{ dataType }} anzuzeigen"
+		"groupFunction": "Gruppenfunktion"
 	},
 	"terraMultiSelectBox": {
 		"selectAll": "Alle"
@@ -28,7 +28,8 @@
 		"fileName": "Dateiname",
 		"lastChange": "Letzte Änderung",
 		"loadingFiles": "Dateien werden geladen",
-		"noFiles": "Keine Dateien"
+		"noFiles": "Keine Dateien",
+		"downloadFile": "Datei herunterladen"
 	},
 	"terraFileInput": {
 		"choose": "Wählen",
@@ -53,5 +54,8 @@
 	},
 	"terraTextInput": {
 		"invalidIban": "IBAN ist ungültig."
+	},
+	"terraNodeTree":{
+		"search": "Suche"
 	}
 }

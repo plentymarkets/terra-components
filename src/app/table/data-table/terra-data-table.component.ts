@@ -26,12 +26,37 @@ import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { TerraRefTypeInterface } from './cell/terra-ref-type.interface';
 import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 import { TerraDataTableTextInterface } from './cell/terra-data-table-text.interface';
+import {
+    animate,
+    state,
+    style,
+    transition,
+    trigger
+} from '@angular/animations';
 
 @Component({
-    selector:  'terra-data-table',
-    providers: [TerraDataTableContextMenuService],
-    styles:    [require('./terra-data-table.component.scss')],
-    template:  require('./terra-data-table.component.html')
+    selector:   'terra-data-table',
+    template:   require('./terra-data-table.component.html'),
+    styles:     [require('./terra-data-table.component.scss')],
+    providers:  [TerraDataTableContextMenuService],
+    animations: [
+        trigger('collapsedState', [
+            state('hidden', style({
+                height:          '0',
+                overflow:        'hidden',
+                'margin-bottom': '0'
+            })),
+            state('collapsed', style({
+                height:          '*',
+                overflow:        'initial',
+                'margin-bottom': '6px'
+            })),
+            transition('hidden <=> collapsed', [
+                animate(300)
+
+            ])
+        ])
+    ]
 })
 export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> implements OnChanges
 {
@@ -45,9 +70,12 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @Input() inputNoResultTextPrimary:string;
     @Input() inputNoResultTextSecondary:string;
     @Input() inputNoResultButtons:Array<TerraButtonInterface>;
+    @Input() inputShowGroupFunctions:boolean = false;
+    @Input() inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
 
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
+    @Output() outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<D>>> = new EventEmitter();
 
     private _headerList:Array<TerraDataTableHeaderCellInterface>;
     private _rowList:Array<TerraDataTableRowInterface<D>>;
@@ -78,6 +106,17 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this.rowList = [];
     }
 
+    private get getCollapsedState():string
+    {
+        if(this.inputShowGroupFunctions)
+        {
+            return 'collapsed';
+        }
+        else
+        {
+            return 'hidden';
+        }
+    }
 
     ngOnChanges(changes:SimpleChanges):void
     {
@@ -315,8 +354,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
         function isTextType(arg:any):arg is TerraDataTableTextInterface
         {
-            return arg
-                   && arg.caption && typeof arg.caption == 'string';
+            return arg && arg.caption && typeof arg.caption == 'string';
         }
 
         function isTagArray(arg:any):arg is Array<TerraTagInterface>
@@ -375,5 +413,10 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             }
         }
         return typeof data;
+    }
+
+    private onGroupFunctionExecuteButtonClicked(event:Event):void
+    {
+        this.outputGroupFunctionExecuteButtonClicked.emit(this._selectedRowList);
     }
 }
