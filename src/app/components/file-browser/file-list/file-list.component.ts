@@ -14,8 +14,8 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { TerraStorageObjectList } from '../model/terra-storage-object-list';
-import { TerraSimpleTableHeaderCellInterface } from '../../table/simple/cell/terra-simple-table-header-cell.interface';
-import { TerraSimpleTableRowInterface } from '../../table/simple/row/terra-simple-table-row.interface';
+import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
+import { TerraSimpleTableRowInterface } from '../../tables/simple/row/terra-simple-table-row.interface';
 import { TerraStorageObject } from '../model/terra-storage-object';
 import * as moment from 'moment';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
@@ -23,11 +23,11 @@ import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { PathHelper } from '../helper/path.helper';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
 import { FileType } from '../helper/fileType.helper';
-import { TerraSimpleTableComponent } from '../../table/simple/terra-simple-table.component';
+import { TerraSimpleTableComponent } from '../../tables/simple/terra-simple-table.component';
 import { TerraFileBrowserService } from '../terra-file-browser.service';
 import { TerraUploadItem } from '../model/terra-upload-item';
 import { ClipboardHelper } from '../helper/clipboard.helper';
-import { TerraSimpleTableCellInterface } from '../../table/simple/cell/terra-simple-table-cell.interface';
+import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-simple-table-cell.interface';
 import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 
