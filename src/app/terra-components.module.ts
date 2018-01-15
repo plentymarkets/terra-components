@@ -52,7 +52,7 @@ import { TerraTextAreaInputComponent } from './components/forms/input/text-area-
 import { TerraCardComponent } from './components/layouts/card/terra-card.component';
 import { TerraNavigatorComponent } from './components/navigator/terra-navigator.component';
 import { TerraToggleComponent } from './components/buttons/toggle/terra-toggle.component';
-import { TerraSyntaxEditorComponent } from './components/editors/syntax/terra-syntax-editor.component';
+import { TerraSyntaxEditorComponent } from './components/editors/syntax-editor/terra-syntax-editor.component';
 import { TerraMultiSplitViewComponent } from './components/split-view/multi/terra-multi-split-view.component';
 import { TerraSliderComponent } from './components/forms/slider/terra-slider.component';
 import { TerraFileBrowserComponent } from './components/file-browser/terra-file-browser.component';
