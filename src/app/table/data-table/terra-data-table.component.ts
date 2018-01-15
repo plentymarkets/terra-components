@@ -71,7 +71,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @Input() inputNoResultTextSecondary:string;
     @Input() inputNoResultButtons:Array<TerraButtonInterface>;
     @Input() inputShowGroupFunctions:boolean = false;
-    @Input() inputGroupFunctionButtonIsDisabled:boolean = true;
+    @Input() inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
 
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
@@ -417,6 +417,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     private onGroupFunctionExecuteButtonClicked(event:Event):void
     {
-        this.outputGroupFunctionExecuteButtonClicked.emit(this.rowList);
+        this.outputGroupFunctionExecuteButtonClicked.emit(this._selectedRowList);
     }
 }

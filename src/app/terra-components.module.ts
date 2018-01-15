@@ -330,7 +330,7 @@ export { TerraNodeInterface } from './tree/node-tree/data/terra-node.interface';
         COMPILER_PROVIDERS,
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
-        TerraFileBrowserService,
+        TerraFileBrowserService
     ],
     bootstrap:       [
         TerraComponentsComponent
@@ -342,14 +342,16 @@ export class TerraComponentsModule
     {
         return {
             ngModule:  TerraComponentsModule,
-            providers: [TerraLoadingBarService,
-                        TerraLoadingSpinnerService,
-                        TerraDataTableContextMenuService,
-                        TerraBaseService,
-                        TerraNavigatorSplitViewConfig,
-                        TerraUrlParamsDecorator,
-                        TerraFrontendStorageService,
-                        TerraAlertComponent]
+            providers: [
+                TerraLoadingBarService,
+                TerraLoadingSpinnerService,
+                TerraDataTableContextMenuService,
+                TerraBaseService,
+                TerraNavigatorSplitViewConfig,
+                TerraUrlParamsDecorator,
+                TerraFrontendStorageService,
+                TerraAlertComponent
+            ]
         };
     }
 
@@ -357,14 +359,16 @@ export class TerraComponentsModule
     {
         return {
             ngModule:  TerraComponentsModule,
-            providers: [TerraLoadingBarService,
-                        TerraLoadingSpinnerService,
-                        TerraDataTableContextMenuService,
-                        TerraBaseService,
-                        TerraNavigatorSplitViewConfig,
-                        TerraUrlParamsDecorator,
-                        TerraFrontendStorageService,
-                        TerraAlertComponent]
+            providers: [
+                TerraLoadingBarService,
+                TerraLoadingSpinnerService,
+                TerraDataTableContextMenuService,
+                TerraBaseService,
+                TerraNavigatorSplitViewConfig,
+                TerraUrlParamsDecorator,
+                TerraFrontendStorageService,
+                TerraAlertComponent
+            ]
         };
     }
 }
