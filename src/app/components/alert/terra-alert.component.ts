@@ -8,7 +8,7 @@ import { isNullOrUndefined } from 'util';
 @Injectable()
 export class TerraAlertComponent
 {
-    private _alerts:Array<TerraAlertInterface> = [];
+    public alerts:Array<TerraAlertInterface> = [];
     private static _instance:TerraAlertComponent = null;
     private static _isCreating:boolean = false;
 
@@ -34,7 +34,7 @@ export class TerraAlertComponent
 
     public closeAlert(i:number):void
     {
-        this._alerts.splice(i, 1);
+        this.alerts.splice(i, 1);
     }
 
     public addAlertForPlugin(alert:TerraAlertInterface):void
@@ -63,7 +63,7 @@ export class TerraAlertComponent
             alert.dismissOnTimeout = 5000;
         }
 
-        this._alerts.push({
+        this.alerts.push({
             msg:              alert.msg,
             type:             alert.type,
             dismissOnTimeout: alert.dismissOnTimeout,
@@ -73,24 +73,14 @@ export class TerraAlertComponent
 
     public closeAlertByIdentifier(identifier:string)
     {
-        for(let alert of this._alerts)
+        for(let alert of this.alerts)
         {
             if(alert.identifier == identifier)
             {
-                let index = this._alerts.indexOf(alert);
+                let index = this.alerts.indexOf(alert);
 
                 this.closeAlert(index);
             }
         }
-    }
-
-    public get alerts():Array<TerraAlertInterface>
-    {
-        return this._alerts;
-    }
-
-    public set alerts(value:Array<TerraAlertInterface>)
-    {
-        this._alerts = value;
     }
 }

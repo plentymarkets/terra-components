@@ -52,7 +52,7 @@ export class TerraRadioButtonComponent implements ControlValueAccessor
         this.onChangeCallback(this.value);
     }
 
-    private _value:any;
+    public value:any;
 
     private onTouchedCallback:() => void = () =>
     {
@@ -81,15 +81,5 @@ export class TerraRadioButtonComponent implements ControlValueAccessor
     public registerOnTouched(fn:any):void
     {
         this.onTouchedCallback = fn;
-    }
-
-    public get value():any
-    {
-        return this._value;
-    }
-
-    public set value(value:any)
-    {
-        this._value = value;
     }
 }
