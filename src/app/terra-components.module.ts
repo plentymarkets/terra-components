@@ -80,12 +80,9 @@ import { TerraFileBrowserService } from './file-browser/terra-file-browser.servi
 import { TerraFileBrowserComponent } from './file-browser/terra-file-browser.component';
 import { TerraNoteEditorComponent } from './note-editor/terra-note-editor.component';
 import { TerraNoteComponent } from './note/terra-note.component';
-<<<<<<< HEAD
 import { TerraTimePickerComponent } from './forms/input/time-picker/terra-time-picker.component';
-=======
 import { TerraNodeTreeComponent } from './tree/node-tree/terra-node-tree.component';
 import { TerraNodeComponent } from './tree/node-tree/node/terra-node.component';
->>>>>>> beta7_zlk_release
 
 export { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './alert/terra-alert.component';
@@ -209,14 +206,10 @@ export { TerraNodeInterface } from './tree/node-tree/data/terra-node.interface';
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
-<<<<<<< HEAD
         TerraTimePickerComponent,
-        TerraNoteComponent
-=======
         TerraNoteComponent,
         TerraNodeTreeComponent,
         TerraNodeComponent
->>>>>>> beta7_zlk_release
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -262,14 +255,10 @@ export { TerraNodeInterface } from './tree/node-tree/data/terra-node.interface';
         TerraFileInputComponent,
         TerraButtonWithOptionsComponent,
         TerraNoteEditorComponent,
-<<<<<<< HEAD
         TerraTimePickerComponent,
-        TerraNoteComponent
-=======
         TerraNoteComponent,
         TerraNodeTreeComponent,
         TerraNodeComponent
->>>>>>> beta7_zlk_release
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -320,13 +309,9 @@ export { TerraNodeInterface } from './tree/node-tree/data/terra-node.interface';
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
-<<<<<<< HEAD
         TerraTimePickerComponent,
-        TerraNoteComponent
-=======
         TerraNoteComponent,
         TerraNodeTreeComponent
->>>>>>> beta7_zlk_release
     ],
     imports:         [
         BrowserModule,
