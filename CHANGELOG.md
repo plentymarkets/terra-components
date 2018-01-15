@@ -1,5 +1,11 @@
+<a name="2.1.40-zlk"></a>
+# 2.1.39-zlk (DD.MM.YYYY)
+
+### Feature
+* **terra-tag** changed color of tags in data-table
+
 <a name="2.1.39-zlk"></a>
-# 2.1.39-zlk (05.01.2017)
+# 2.1.39-zlk (05.01.2018)
 
 ### Bug Fixes
 * **terra-text-input** **terra-number-input** **terra-double-input** 
@@ -13,6 +19,12 @@
 * **terra-portlet** add new input `inputHighlightPortlet` for component to highlight portlets. Edit css for highlighting portlets. 
 * **terra-data-table** add a group function to handle multiple items at once in the data table 
 * **terra-multi-selectbox** adjusted styling
+
+<a name="2.1.36-zlk"></a>
+# 2.1.36-zlk (22.12.2017)
+
+### Bug Fixes 
+* **terra-suggestion-box** added missing styles for disabled state
 
 <a name="2.1.35-zlk"></a>
 # 2.1.35-zlk (13.12.2017)
