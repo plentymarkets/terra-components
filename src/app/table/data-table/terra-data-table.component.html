@@ -1,7 +1,7 @@
 <div class="group_function" [@collapsedState]="getCollapsedState">
     <div class="group_function_head">
         <terra-button inputIcon="icon-execute"
-                      [inputIsDisabled]="inputGroupFunctionButtonIsDisabled"
+                      [inputIsDisabled]="inputGroupFunctionExecuteButtonIsDisabled"
                       (outputClicked)="onGroupFunctionExecuteButtonClicked($event)">
         </terra-button>
         <span>{{'terraDataTable.groupFunction' | translate:lang}}</span>

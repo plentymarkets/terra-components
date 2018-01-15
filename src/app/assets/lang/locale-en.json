@@ -28,7 +28,8 @@
 		"fileName": "File name",
 		"lastChange": "Last change",
 		"loadingFiles": "Loading files",
-		"noFiles": "No files"
+		"noFiles": "No files",
+		"downloadFile": "Download file"
 	},
 	"terraFileInput": {
 		"choose": "Select",
