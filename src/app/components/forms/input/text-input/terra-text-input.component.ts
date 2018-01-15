@@ -6,11 +6,11 @@ import {
     Output
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
-import { TerraRegex } from '../../../regex/terra-regex';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import * as IBAN from 'iban';
 import { TranslationService } from 'angular-l10n';
+import { TerraRegex } from '../../../../../';
 
 let nextId:number = 0;
 

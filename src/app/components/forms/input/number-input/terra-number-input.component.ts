@@ -4,8 +4,8 @@ import {
     Input
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
-import { TerraRegex } from '../../../regex/terra-regex';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TerraRegex } from '../../../../../';
 
 let nextId:number = 0;
 

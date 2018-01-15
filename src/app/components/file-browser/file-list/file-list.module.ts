@@ -3,11 +3,11 @@ import {
     ModuleWithProviders,
     NgModule
 } from '@angular/core';
-import { TerraImagePreviewComponent } from './image-preview.component';
-import { FormsModule } from '@angular/forms';
-import { TranslationModule } from 'angular-l10n';
-import { TerraComponentsModule } from '../../terra-components.module';
+import { TerraFileListComponent } from './file-list.component';
 import { CommonModule } from '@angular/common';
+import { TranslationModule } from 'angular-l10n';
+import { FormsModule } from '@angular/forms';
+import { TerraComponentsModule } from '../../../terra-components.module';
 
 @NgModule({
     imports:      [
@@ -17,21 +17,21 @@ import { CommonModule } from '@angular/common';
         FormsModule
     ],
     declarations: [
-        TerraImagePreviewComponent
+        TerraFileListComponent
     ]
 })
-export class TerraImagePreviewModule
+export class TerraFileListModule
 {
     static forRoot():ModuleWithProviders
     {
         return {
-            ngModule:  TerraImagePreviewModule,
+            ngModule:  TerraFileListModule,
             providers: []
         };
     }
 
     static getMainComponent():string
     {
-        return 'TerraImagePreviewComponent';
+        return 'TerraFileListComponent';
     }
 }

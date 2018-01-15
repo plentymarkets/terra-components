@@ -1,11 +1,12 @@
 import {
     Component,
     forwardRef,
-    Input, OnInit
+    Input,
+    OnInit
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
-import { TerraRegex } from '../../../regex/terra-regex';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TerraRegex } from '../../../../../';
 
 let nextId:number = 0;
 
@@ -29,11 +30,11 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     @Input() inputIsPriceInput:boolean;
 
     /**
-     * 
+     *
      * @description Set the decimal count. Default is 2. (0.01)
      */
     @Input() inputDecimalCount:number = 2;
-    
+
     private _step:number;
 
     /**
@@ -60,7 +61,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
         // generate the id of the input instance
         this._id = `double-input_#${nextId++}`;
     }
-    
+
     public ngOnInit():void
     {
         this.regex = TerraRegex.getDouble(this.inputDecimalCount);

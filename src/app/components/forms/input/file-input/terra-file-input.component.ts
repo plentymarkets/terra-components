@@ -4,18 +4,20 @@ import {
     Input,
     ViewChild
 } from '@angular/core';
-import { TerraOverlayComponent } from '../../../overlay/terra-overlay.component';
-import { TerraInputComponent } from '../terra-input.component';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TerraRegex } from '../../../regex/terra-regex';
-import { TerraOverlayButtonInterface } from '../../../overlay/data/terra-overlay-button.interface';
-import { PathHelper } from '../../../file-browser/helper/path.helper';
-import { FileType } from '../../../file-browser/helper/fileType.helper';
 import { TranslationService } from 'angular-l10n';
-import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
-import { TerraBaseStorageService } from '../../../file-browser/terra-base-storage.interface';
-import { TerraFrontendStorageService } from '../../../file-browser/terra-frontend-storage.service';
 import { isNullOrUndefined } from 'util';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TerraInputComponent } from '../terra-input.component';
+import {
+    FileType,
+    PathHelper,
+    TerraBaseStorageService,
+    TerraFrontendStorageService,
+    TerraOverlayButtonInterface,
+    TerraOverlayComponent,
+    TerraRegex,
+    TerraStorageObject
+} from '../../../../../';
 
 let nextId:number = 0;
 

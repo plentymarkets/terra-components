@@ -3,8 +3,8 @@ import {
     Input,
     OnInit
 } from '@angular/core';
-import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 import { isNullOrUndefined } from 'util';
+import { TerraTagInterface } from '../../../';
 
 @Component({
     selector: 'terra-info-box',
@@ -27,10 +27,8 @@ export class TerraInfoBoxComponent implements OnInit
     {
     }
 
-    public get hasFooter(): boolean
+    public get hasFooter():boolean
     {
-        return !isNullOrUndefined( this.inputId )
-               || ( !isNullOrUndefined( this.inputTagList ) && this.inputTagList.length > 0 );
+        return !isNullOrUndefined(this.inputId) || (!isNullOrUndefined(this.inputTagList) && this.inputTagList.length > 0);
     }
-
 }

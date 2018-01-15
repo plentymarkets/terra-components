@@ -1,9 +1,9 @@
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
-import { TerraBaseService } from '../service/terra-base.service';
 import { Observable } from 'rxjs/Observable';
 import { TerraUploadItem } from './model/terra-upload-item';
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
 import { TerraUploadQueue } from './model/terra-upload-queue';
+import { TerraBaseService } from '../../../';
 
 export abstract class TerraBaseStorageService extends TerraBaseService
 {
