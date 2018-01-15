@@ -51,7 +51,6 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
     private _value:any;
     private _valueFormat:any;
     private _valuePMAM:any;
-    private _isValid:boolean;
     private _values24:Array<TerraSelectBoxValueInterface> = [];
     private _values12:Array<TerraSelectBoxValueInterface> = [];
     private _valueHours:Array<TerraSelectBoxValueInterface> = [];
