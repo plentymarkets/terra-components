@@ -14,7 +14,7 @@
                             (ngModelChange)="changeValues()">
         </terra-radio-button>
     </div>
-    <div class="am-pm" *ngIf="!is24HourFormat">
+    <div class="am-pm" *ngIf="!_is24HourFormat">
         <terra-radio-button inputValue="AM"
                             inputCaption="AM"
                             [(ngModel)]="_valuePMAM"
@@ -30,12 +30,12 @@
     </div>
     <terra-select-box
                       class="time"
-                      [inputListBoxValues]="valueHours"
+                      [inputListBoxValues]="_valueHours"
                       inputDisabled="true"
                       [inputName]="'timepicker.hours' |  translate:lang">
     </terra-select-box>
     <terra-select-box class="time"
-                      [inputListBoxValues]="valuesMinutes"
+                      [inputListBoxValues]="_valuesMinutes"
                       inputDisabled="true"
                       [inputName]="'timepicker.minutes' |  translate:lang">
     </terra-select-box>

@@ -51,20 +51,16 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
      * */
     @Input() inputIsDisabled:boolean;
 
-    /**
-     * @description
-     */
-    @Input() inputTimeFormat:string;
 
 
     private _value:any;
     private _valueFormat:any;
     private _valuePMAM:any;
-    public values24:Array<TerraSelectBoxValueInterface> = [];
-    public values12:Array<TerraSelectBoxValueInterface> = [];
-    public valueHours:Array<TerraSelectBoxValueInterface> = [];
-    public valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
-    public is24HourFormat:boolean = true;
+    private _values24:Array<TerraSelectBoxValueInterface> = [];
+    private _values12:Array<TerraSelectBoxValueInterface> = [];
+    private _valueHours:Array<TerraSelectBoxValueInterface> = [];
+    private _valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
+    private _is24HourFormat:boolean = true;
 
     constructor()
     {
@@ -85,7 +81,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
         {
             if(!(hours <= 12 && hours > 0))
             {
-                this.values24.push(
+                this._values24.push(
                     {
                         value:   hours,
                         caption: hours
@@ -94,26 +90,25 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
             }
             else
             {
-                this.values24.push(
+                this._values24.push(
                     {
                         value:   hours,
                         caption: hours
                     }
                 );
 
-                this.values12.push(
+                this._values12.push(
                     {
                         value:   hours,
                         caption: hours
                     }
                 )
-
             }
         }
 
         for(minutes = 0; minutes <= 59; minutes++)
         {
-            this.valuesMinutes.push(
+            this._valuesMinutes.push(
                 {
                     value:   minutes,
                     caption: minutes
@@ -151,19 +146,20 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 
     public set value(value:any)
     {
+        this._value = value;
     }
 
     public changeValues():void
     {
         if(this._valueFormat === "24")
         {
-            this.valueHours = this.values24;
-            this.is24HourFormat = true;
+            this._valueHours = this._values24;
+            this._is24HourFormat = true;
         }
         else
         {
-            this.valueHours = this.values12;
-            this.is24HourFormat = false;
+            this._valueHours = this._values12;
+            this._is24HourFormat = false;
         }
     }
 
