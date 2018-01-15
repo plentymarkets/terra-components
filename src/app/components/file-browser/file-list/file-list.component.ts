@@ -22,7 +22,7 @@ import {
     TerraBasePrivateStorageService,
     TerraBaseStorageService
 } from '../terra-base-storage.interface';
-import { TerraButtonInterface } from '../../button/data/terra-button.interface';
+import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { PathHelper } from '../helper/path.helper';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
 import { FileType } from '../helper/fileType.helper';

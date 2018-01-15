@@ -4,7 +4,7 @@ import {
     OnInit
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
-import { TerraTagInterface } from '../../../';
+import { TerraTagInterface } from '../../../../';
 
 @Component({
     selector: 'terra-info-box',

@@ -1,4 +1,4 @@
-import { TerraButtonInterface } from '../../../button/data/terra-button.interface';
+import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.interface';
 import { TerraTileBoxColor } from './terra-tile-box-color';
 
 /**

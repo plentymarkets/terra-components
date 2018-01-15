@@ -1,5 +1,5 @@
 import { TerraBaseData } from '../../../../data/terra-base.data';
-import { TerraButtonColorEnum } from '../../../../button/enum/button-color.enum';
+import { TerraButtonColorEnum } from '../../../../buttons/button/enum/button-color.enum';
 
 /**
  * @author mkunze
