@@ -2,14 +2,14 @@
      [ngClass]="{'error': !inputIsValid, 'disabled': inputIsDisabled}">
     <div class="timeFormatGroup">
         <terra-radio-button inputValue="12"
-                            inputCaption="12-Stunden"
+                            [inputCaption]="'timepicker.hourFormat12' |  translate:lang"
                             [(ngModel)]="_valueFormat"
                             (ngModelChange)="changeValues()"
                             >
         </terra-radio-button>
         
         <terra-radio-button inputValue="24"
-                            inputCaption="24-Stunden"
+                            [inputCaption]="'timepicker.hourFormat24' |  translate:lang"
                             [(ngModel)]="_valueFormat"
                             (ngModelChange)="changeValues()">
         </terra-radio-button>
@@ -32,11 +32,11 @@
                       class="time"
                       [inputListBoxValues]="valueHours"
                       inputDisabled="true"
-                      inputName="Stunden">
+                      [inputName]="'timepicker.hours' |  translate:lang">
     </terra-select-box>
     <terra-select-box class="time"
                       [inputListBoxValues]="valuesMinutes"
                       inputDisabled="true"
-                      inputName="Minuten">
+                      [inputName]="'timepicker.minutes' |  translate:lang">
     </terra-select-box>
 </div>
