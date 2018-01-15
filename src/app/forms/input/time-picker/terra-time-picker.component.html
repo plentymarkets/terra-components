@@ -1,5 +1,5 @@
 <div class="input-unit-v1"
-     [ngClass]="{'error': !inputIsValid, 'disabled': inputIsDisabled}">
+     [ngClass]="{'error': !_isValid, 'disabled': inputIsDisabled}">
     <div class="timeFormatGroup">
         <terra-radio-button inputValue="12"
                             [inputCaption]="'timepicker.hourFormat12' |  translate:lang"
