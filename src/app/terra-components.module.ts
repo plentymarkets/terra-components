@@ -1,4 +1,3 @@
-import { TerraLoadingBarService } from './components/loading-bar/service/terra-loading-bar.service';
 import {
     ModuleWithProviders,
     NgModule
@@ -29,19 +28,18 @@ import { TerraSelectBoxComponent } from './components/forms/select-box/terra-sel
 import { TerraBaseToolbarComponent } from './components/toolbar/base-toolbar/terra-base-toolbar.component';
 import { TerraIndicatorComponent } from './components/indicator/terra-indicator.component';
 import { TerraPagerComponent } from './components/pager/terra-pager.component';
-import { TerraInfoBoxComponent } from './components/layout/info-box/terra-info-box.component';
-import { TerraTaglistComponent } from './components/layout/taglist/terra-taglist.component';
-import { TerraTagComponent } from './components/layout/tag/terra-tag.component';
-import { TerraLoadingBarComponent } from './components/loading-bar/terra-loading-bar.component';
+import { TerraInfoBoxComponent } from './components/layouts/info-box/terra-info-box.component';
+import { TerraTaglistComponent } from './components/layouts/taglist/terra-taglist.component';
+import { TerraTagComponent } from './components/layouts/tag/terra-tag.component';
 import { TerraLoadingSpinnerComponent } from './components/loading-spinner/terra-loading-spinner.component';
-import { TerraOverlayComponent } from './components/layout/overlay/terra-overlay.component';
+import { TerraOverlayComponent } from './components/layouts/overlay/terra-overlay.component';
 import { TerraDataTableComponent } from './components/tables/data-table/terra-data-table.component';
 import { TerraDataTableContextMenuComponent } from './components/tables/data-table/context-menu/terra-data-table-context-menu.component';
 import { TerraDataTableContextMenuDirective } from './components/tables/data-table/context-menu/directive/terra-data-table-context-menu.directive';
 import { TerraSimpleTableComponent } from './components/tables/simple/terra-simple-table.component';
 import { TerraDoubleInputComponent } from './components/forms/input/double-input/terra-double-input.component';
 import { TerraSplitViewComponent } from './components/split-view/terra-split-view.component';
-import { TerraPortletComponent } from './components/layout/portlet/terra-portlet.component';
+import { TerraPortletComponent } from './components/layouts/portlet/terra-portlet.component';
 import { TerraFilterComponent } from './components/filter/terra-filter.component';
 import { TerraMultiSelectBoxComponent } from './components/forms/multi-select-box/terra-multi-select-box.component';
 import { TerraDynamicComponentLoaderComponent } from './components/dynamic-component-loader/terra-dynamic-component-loader.component';
@@ -51,7 +49,7 @@ import { TerraTileBoxPanelComponent } from './components/tile/panel/terra-tile-b
 import { TerraSuggestionBoxComponent } from './components/forms/suggestion-box/terra-suggestion-box.component';
 import { TerraDatePickerComponent } from './components/forms/input/date-picker/terra-date-picker.component';
 import { TerraTextAreaInputComponent } from './components/forms/input/text-area-input/terra-text-area-input.component';
-import { TerraCardComponent } from './components/layout/card/terra-card.component';
+import { TerraCardComponent } from './components/layouts/card/terra-card.component';
 import { TerraNavigatorComponent } from './components/navigator/terra-navigator.component';
 import { TerraToggleComponent } from './components/buttons/toggle/terra-toggle.component';
 import { TerraSyntaxEditorComponent } from './components/editors/syntax/terra-syntax-editor.component';
@@ -62,7 +60,7 @@ import { TerraFileInputComponent } from './components/forms/input/file-input/ter
 import { TerraNoResultNoticeComponent } from './components/no-result/terra-no-result-notice.component';
 import { TerraButtonWithOptionsComponent } from './components/buttons/button-with-options/terra-button-with-options.component';
 import { FixedHeaderDirective } from './components/tables/fixed-header/fixed-header.directive';
-import { TerraNoteEditorComponent } from './components/note-editor/terra-note-editor.component';
+import { TerraNoteEditorComponent } from './components/editors/note-editor/terra-note-editor.component';
 import { TerraNoteComponent } from './components/note/terra-note.component';
 import { TerraNodeTreeComponent } from './components/tree/node-tree/terra-node-tree.component';
 import { TerraNodeComponent } from './components/tree/node-tree/node/terra-node.component';
@@ -158,7 +156,6 @@ import { TerraAlertComponent } from './components/alert/terra-alert.component';
         TerraInfoBoxComponent,
         TerraTaglistComponent,
         TerraTagComponent,
-        TerraLoadingBarComponent,
         TerraLoadingSpinnerComponent,
         TerraOverlayComponent,
         TerraDataTableComponent,
@@ -211,7 +208,6 @@ import { TerraAlertComponent } from './components/alert/terra-alert.component';
         TerraInfoBoxComponent,
         TerraTaglistComponent,
         TerraTagComponent,
-        TerraLoadingBarComponent,
         TerraLoadingSpinnerComponent,
         TerraOverlayComponent,
         TerraDataTableComponent,
@@ -259,7 +255,6 @@ import { TerraAlertComponent } from './components/alert/terra-alert.component';
         TerraInfoBoxComponent,
         TerraTaglistComponent,
         TerraTagComponent,
-        TerraLoadingBarComponent,
         TerraLoadingSpinnerComponent,
         TerraOverlayComponent,
         TerraDataTableComponent,
@@ -327,7 +322,6 @@ export class TerraComponentsModule
         return {
             ngModule:  TerraComponentsModule,
             providers: [
-                TerraLoadingBarService,
                 TerraLoadingSpinnerService,
                 TerraDataTableContextMenuService,
                 TerraBaseService,
@@ -344,7 +338,6 @@ export class TerraComponentsModule
         return {
             ngModule:  TerraComponentsModule,
             providers: [
-                TerraLoadingBarService,
                 TerraLoadingSpinnerService,
                 TerraDataTableContextMenuService,
                 TerraBaseService,

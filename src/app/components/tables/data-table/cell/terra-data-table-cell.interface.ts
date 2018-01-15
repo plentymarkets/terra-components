@@ -1,6 +1,6 @@
 import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.interface';
 import { TerraDataTableTextInterface } from './terra-data-table-text.interface';
-import { TerraTagInterface } from '../../../layout/tag/data/terra-tag.interface';
+import { TerraTagInterface } from '../../../layouts/tag/data/terra-tag.interface';
 import {
     TerraRefTypeEnum,
     TerraRefTypeInterface
