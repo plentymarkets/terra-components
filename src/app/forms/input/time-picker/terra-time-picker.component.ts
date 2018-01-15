@@ -18,7 +18,6 @@ import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select
     selector:  'terra-time-picker',
     styles:    [
         require('./terra-time-picker.component.scss'),
-        require('./terra-time-picker.component.glob.scss').toString()
     ],
     template:  require('./terra-time-picker.component.html'),
     providers: [
