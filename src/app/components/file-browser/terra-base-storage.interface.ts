@@ -9,8 +9,6 @@ export abstract class TerraBaseStorageService extends TerraBaseService
 {
     public abstract name:string;
 
-    public abstract isPublic:boolean;
-
     public abstract isImagePreviewEnabled:boolean;
 
     public abstract queue:TerraUploadQueue;
@@ -56,4 +54,9 @@ export abstract class TerraBaseMetadataStorageService extends TerraBaseStorageSe
     public abstract getMetadata(key:string):Observable<TerraImageMetadata>;
 
     public abstract updateMetadata(key:string, metadata:TerraImageMetadata):Observable<any>;
+}
+
+export abstract class TerraBasePrivateStorageService extends TerraBaseStorageService
+{
+    public abstract downloadFile(key:string):void;
 }

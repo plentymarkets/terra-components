@@ -18,7 +18,10 @@ import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/te
 import { TerraSimpleTableRowInterface } from '../../tables/simple/row/terra-simple-table-row.interface';
 import { TerraStorageObject } from '../model/terra-storage-object';
 import * as moment from 'moment';
-import { TerraBaseStorageService } from '../terra-base-storage.interface';
+import {
+    TerraBasePrivateStorageService,
+    TerraBaseStorageService
+} from '../terra-base-storage.interface';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { PathHelper } from '../helper/path.helper';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
@@ -310,139 +313,211 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     {
         if(!isNullOrUndefined(this.activeStorageService))
         {
-            if(this.activeStorageService.isPublic)
-            {
-                this._fileTableHeaderList = [
-                    {
-                        caption: this._translationService.translate(this._translationPrefix + '.fileName'),
-                        width:   '30%'
-                    },
-                    {
-                        caption: this._translationService.translate(this._translationPrefix + '.fileURL'),
-                        width:   '50%'
-                    },
-                    {
-                        caption: '',
-                        width:   '1'
-                    },
-                    {
-                        caption: this._translationService.translate(this._translationPrefix + '.fileSize'),
-                        width:   '7.5%'
-                    },
-                    {
-                        caption: this._translationService.translate(this._translationPrefix + '.lastChange'),
-                        width:   '12.5%'
-                    },
-                    {
-                        caption: '',
-                        width:   '1'
-                    }
-                ];
-            }
-            else
-            {
-                this._fileTableHeaderList = [
-                    {
-                        caption: this._translationService.translate(this._translationPrefix + '.fileName'),
-                        width:   '80%'
-                    },
-                    {
-                        caption: this._translationService.translate(this._translationPrefix + '.fileSize'),
-                        width:   '7.5%'
-                    },
-                    {
-                        caption: this._translationService.translate(this._translationPrefix + '.lastChange'),
-                        width:   '12.5%'
-                    },
-                    {
-                        caption: '',
-                        width:   '1'
-                    }
-                ];
-            }
+            this.createHeaderListDependingOnAccessLevel();
         }
-
 
         if(!isNullOrUndefined(this.currentStorageRoot))
         {
-            this._fileTableRowList = this.currentStorageRoot.children.filter((storageObject:TerraStorageObject) =>
-                {
-                    return storageObject.isFile || this._parentFileBrowser.inputAllowFolders;
-                }
-            ).sort((objectA:TerraStorageObject, objectB:TerraStorageObject) =>
-                {
-                    return objectA.name.localeCompare(objectB.name);
-                }
-            ).map((storageObject:TerraStorageObject) =>
-            {
-                let deleteButton:TerraButtonInterface = {
-                    icon:             'icon-delete',
-                    clickFunction:    (event:Event) =>
-                                      {
-                                          this._objectsToDelete = [storageObject];
-                                          event.stopPropagation();
-                                      },
-                    isSecondary:      true,
-                    tooltipText:      this._translationService.translate(this._translationPrefix + '.deleteFile'),
-                    tooltipPlacement: 'left'
-                };
-
-                let clipboardButton:TerraButtonInterface = {
-                    icon:             'icon-copy_clipboard',
-                    clickFunction:    (event:Event) =>
-                                      {
-                                          ClipboardHelper.copyText(storageObject.publicUrl);
-                                          event.stopPropagation();
-                                      },
-                    tooltipText:      this._translationService.translate(this._translationPrefix + '.copyToClipboard'),
-                    tooltipPlacement: 'left'
-                };
-
-                let cellList:Array<TerraSimpleTableCellInterface> = [];
-                cellList.push(
-                    {
-                        caption: storageObject.name,
-                        icon:    this._uploadStatus[storageObject.key] ? 'icon-loading' : storageObject.icon
-                    }
-                );
-
-                if(this.activeStorageService.isPublic)
-                {
-                    cellList.push(
-                        {
-                            caption: storageObject.isFile ? storageObject.publicUrl : ''
-                        },
-                        {
-                            buttonList: storageObject.isFile ? [clipboardButton] : []
-                        }
-                    );
-                }
-                cellList.push(
-                    {
-                        caption: storageObject.isFile ? storageObject.sizeString : ''
-                    },
-                    {
-                        caption: storageObject.isFile ? moment(storageObject.lastModified).format('YYYY-MM-DD HH:mm') : ''
-                    },
-                    {
-                        buttonList: [deleteButton]
-                    }
-                );
-
-                return {
-                    cellList: cellList,
-                    value:    storageObject,
-                    disabled: !this.isAllowed(storageObject.key)
-                };
-            });
+            this.fillTableRowList();
         }
         else
         {
             this._fileTableRowList = [];
         }
+
         this._selectedStorageObjects = [];
         this._parentFileBrowser.outputSelectedChange.emit(null);
         this._changeDetector.detectChanges();
+    }
+
+    private fillTableRowList():void
+    {
+        this._fileTableRowList = this.currentStorageRoot.children.filter((storageObject:TerraStorageObject) =>
+            {
+                return storageObject.isFile || this._parentFileBrowser.inputAllowFolders;
+            }
+        ).sort((objectA:TerraStorageObject, objectB:TerraStorageObject) =>
+            {
+                return objectA.name.localeCompare(objectB.name);
+            }
+        ).map((storageObject:TerraStorageObject) =>
+        {
+            return this.createTableRow(storageObject);
+        });
+    }
+
+    private createTableRow(storageObject:TerraStorageObject):TerraSimpleTableRowInterface<TerraStorageObject>
+    {
+        let cellList:Array<TerraSimpleTableCellInterface> = [];
+
+        cellList.push(
+            {
+                caption: storageObject.name,
+                icon:    this._uploadStatus[storageObject.key] ? 'icon-loading' : storageObject.icon
+            }
+        );
+
+        if(!(this.activeStorageService instanceof TerraBasePrivateStorageService))
+        {
+            cellList.push({
+                caption: storageObject.isFile ? storageObject.publicUrl : ''
+            });
+
+            this.addClipboardButton(storageObject, cellList);
+        }
+
+        cellList.push(
+            {
+                caption: storageObject.isFile ? storageObject.sizeString : ''
+            },
+            {
+                caption: storageObject.isFile ? moment(storageObject.lastModified).format('YYYY-MM-DD HH:mm') : ''
+            }
+        );
+
+        if(this.activeStorageService instanceof TerraBasePrivateStorageService && storageObject.isFile)
+        {
+            this.addDownloadButton(storageObject, cellList);
+        }
+        else
+        {
+            cellList.push(
+                {
+                    buttonList: []
+                }
+            );
+        }
+
+        this.addDeleteButton(storageObject, cellList);
+
+        return {
+            cellList: cellList,
+            value:    storageObject,
+            disabled: !this.isAllowed(storageObject.key)
+        };
+    }
+
+    private addClipboardButton(storageObject:TerraStorageObject, cellList:Array<TerraSimpleTableCellInterface>):void
+    {
+        let clipboardButton:TerraButtonInterface = {
+            icon:             'icon-copy_clipboard',
+            clickFunction:    (event:Event) =>
+                              {
+                                  ClipboardHelper.copyText(storageObject.publicUrl);
+                                  event.stopPropagation();
+                              },
+            tooltipText:      this._translationService.translate(this._translationPrefix + '.copyToClipboard'),
+            tooltipPlacement: 'left'
+        };
+
+        cellList.push(
+            {
+                buttonList: storageObject.isFile ? [clipboardButton] : []
+            }
+        );
+    }
+
+    private addDownloadButton(storageObject:TerraStorageObject, cellList:Array<TerraSimpleTableCellInterface>):void
+    {
+        cellList.push({
+            buttonList: [{
+                icon:             'icon-download',
+                clickFunction:    (event:Event) =>
+                                  {
+                                      (<TerraBasePrivateStorageService> this.activeStorageService).downloadFile(storageObject.key);
+                                      event.stopPropagation();
+                                  },
+                tooltipText:      this._translationService.translate(this._translationPrefix + '.downloadFile'),
+                tooltipPlacement: 'left'
+            }]
+        });
+    }
+
+    private addDeleteButton(storageObject:TerraStorageObject, cellList:Array<TerraSimpleTableCellInterface>):void
+    {
+        cellList.push({
+            buttonList: [{
+                icon:             'icon-delete',
+                clickFunction:    (event:Event) =>
+                                  {
+                                      this._objectsToDelete = [storageObject];
+                                      event.stopPropagation();
+                                  },
+                isSecondary:      true,
+                tooltipText:      storageObject.isFile ?
+                                      this._translationService.translate(this._translationPrefix + '.deleteFile') :
+                                      this._translationService.translate(this._translationPrefix + '.deleteFolder'),
+                tooltipPlacement: 'left'
+            }]
+        });
+    }
+
+    private createHeaderListDependingOnAccessLevel():void
+    {
+        if(this.activeStorageService instanceof TerraBasePrivateStorageService)
+        {
+            this.createPrivateHeaderList();
+        }
+        else
+        {
+            this.createPublicHeaderList();
+        }
+    }
+
+    private createPublicHeaderList():void
+    {
+        this._fileTableHeaderList = [
+            {
+                caption: this._translationService.translate(this._translationPrefix + '.fileName'),
+                width:   '30%'
+            },
+            {
+                caption: this._translationService.translate(this._translationPrefix + '.fileURL'),
+                width:   '50%'
+            },
+            {
+                caption: '',
+                width:   '1'
+            },
+            {
+                caption: this._translationService.translate(this._translationPrefix + '.fileSize'),
+                width:   '7.5%'
+            },
+            {
+                caption: this._translationService.translate(this._translationPrefix + '.lastChange'),
+                width:   '12.5%'
+            },
+            {
+                caption: '',
+                width:   '1'
+            }
+        ];
+    }
+
+    private createPrivateHeaderList():void
+    {
+        this._fileTableHeaderList = [
+            {
+                caption: this._translationService.translate(this._translationPrefix + '.fileName'),
+                width:   '80%'
+            },
+            {
+                caption: this._translationService.translate(this._translationPrefix + '.fileSize'),
+                width:   '7.5%'
+            },
+            {
+                caption: this._translationService.translate(this._translationPrefix + '.lastChange'),
+                width:   '12.5%'
+            },
+            {
+                caption: '',
+                width:   '1'
+            },
+            {
+                caption: '',
+                width:   '1'
+            }
+        ];
     }
 
     private isAllowed(filename:string):boolean

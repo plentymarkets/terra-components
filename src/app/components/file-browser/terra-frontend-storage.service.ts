@@ -15,8 +15,6 @@ import { TerraLoadingSpinnerService } from '../../../';
 @Injectable()
 export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 {
-    public isPublic:boolean = true;
-
     public isImagePreviewEnabled = true;
 
     public name:string;
