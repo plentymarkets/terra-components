@@ -1,0 +1,14 @@
+@import '../../../app/assets/styles/_variables.scss';
+
+terra-file-browser
+{
+    height: 100%;
+    display: block;
+    
+    > div
+    {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+}
