@@ -42,17 +42,6 @@ export enum DayFormat
 
 export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 {
-
-    /**
-     * @description Set the label.
-     * */
-    @Input() inputName:string;
-
-    /**
-     * @description If true, a * indicates that the value is required. Default false.
-     * */
-    @Input() inputIsRequired:boolean;
-
     /**
      * @description If true, the input will be disabled. Default false.
      * */
