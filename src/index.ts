@@ -96,3 +96,4 @@ export * from './app/tree/node-tree/data/terra-node-tree.config';
 export * from './app/tree/node-tree/data/terra-node.interface';
 export * from './app/tree/node-tree/node/terra-node.component';
 export * from './app/helpers/terra-pdf.helper';
+export * from './app/forms/input/time-picker/terra-time-picker.component';

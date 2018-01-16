@@ -14,7 +14,7 @@
                             (ngModelChange)="changeValues()">
         </terra-radio-button>
     </div>
-    <div class="am-pm" *ngIf="!_is24HourFormat">
+    <div *ngIf="!_is24HourFormat">
         <terra-radio-button inputValue="AM"
                             inputCaption="AM"
                             [(ngModel)]="_valuePMAM"
