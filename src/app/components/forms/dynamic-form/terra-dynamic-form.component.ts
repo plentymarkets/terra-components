@@ -78,12 +78,12 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         {
             if(this.inputRequestParams.route !== '')
             {
-                if(this.inputRequestParams.htmlMethod = TerraHtmlMethods.POST)
+                if(this.inputRequestParams.htmlMethod === TerraHtmlMethods.POST)
                 {
                     this.inputFormFunctions.saved(this._dynamicService.create(this._formFieldControlService.dynamicFormGroup.value,
                         this.inputRequestParams.route, this.inputRequestParams.params));
                 }
-                if(this.inputRequestParams.htmlMethod = TerraHtmlMethods.PUT)
+                if(this.inputRequestParams.htmlMethod === TerraHtmlMethods.PUT)
                 {
                     this.inputFormFunctions.saved(this._dynamicService.update(this._formFieldControlService.dynamicFormGroup.value,
                         this.inputRequestParams.route, this.inputRequestParams.params));
