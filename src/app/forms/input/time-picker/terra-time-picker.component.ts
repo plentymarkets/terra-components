@@ -49,13 +49,8 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 
 
 
-    @Input() private _selectedMinute:TerraSelectBoxValueInterface;
-
-    @Input() private _selectedHour:TerraSelectBoxValueInterface;
-
-
-
-
+    private _selectedMinute:TerraSelectBoxValueInterface;
+    private _selectedHour:TerraSelectBoxValueInterface;
     private _value:string;
     private _valueFormat:TimeFormat;
     private _valuePMAM:DayFormat;
