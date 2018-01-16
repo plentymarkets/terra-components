@@ -5,8 +5,8 @@ import {
     Component,
     forwardRef,
     Input,
-    OnChanges,
-    OnInit
+    OnInit,
+    ViewChild
 } from '@angular/core';
 import {
     ControlValueAccessor,
@@ -48,9 +48,14 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 
 
 
-    private _value:any;
-    private _valueFormat:any;
-    private _valuePMAM:any;
+    @Input() private _selectedMinute:TerraSelectBoxValueInterface;
+
+    @Input() private _selectedHour:TerraSelectBoxValueInterface;
+
+
+    private _value:string;
+    private _valueFormat:string;
+    private _valuePMAM:string;
     private _values24:Array<TerraSelectBoxValueInterface> = [];
     private _values12:Array<TerraSelectBoxValueInterface> = [];
     private _valueHours:Array<TerraSelectBoxValueInterface> = [];
@@ -127,6 +132,15 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 
     public get value()
     {
+        if(this._valueFormat === "12")
+        {
+            this._value = this._valuePMAM + ' ' + this._selectedHour.value + ':' + this._selectedMinute.value;
+        }
+        else
+        {
+            this._value = this._selectedHour.value + ':' + this._selectedMinute.value;
+        }
+
         return this._value;
     }
 
