@@ -14,6 +14,14 @@ import {
 } from '@angular/forms';
 import { TerraSelectBoxValueInterface } from '../../../components/forms/select-box/data/terra-select-box.interface';
 
+export enum TimeFormat
+{
+    EUROPEAN = '24',
+    AMERICAN = '12'
+
+}
+
+
 @Component({
     selector:  'terra-time-picker',
     styles:    [
@@ -28,6 +36,7 @@ import { TerraSelectBoxValueInterface } from '../../../components/forms/select-b
         }
     ]
 })
+
 export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 {
 
@@ -51,6 +60,8 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
     @Input() private _selectedMinute:TerraSelectBoxValueInterface;
 
     @Input() private _selectedHour:TerraSelectBoxValueInterface;
+
+
 
 
     private _value:string;

@@ -1,14 +1,14 @@
 <div class="input-unit-v1"
      [ngClass]="{'disabled': inputIsDisabled}">
     <div class="timeFormatGroup">
-        <terra-radio-button inputValue="12"
+        <terra-radio-button inputValue="{{TimeFormat.AMERICAN}}"
                             [inputCaption]="'timepicker.hourFormat12' |  translate:lang"
                             [(ngModel)]="_valueFormat"
                             (ngModelChange)="changeValues()"
                             >
         </terra-radio-button>
         
-        <terra-radio-button inputValue="24"
+        <terra-radio-button inputValue="{{TimeFormat.EUROPEAN}}"
                             [inputCaption]="'timepicker.hourFormat24' |  translate:lang"
                             [(ngModel)]="_valueFormat"
                             (ngModelChange)="changeValues()">
