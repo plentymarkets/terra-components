@@ -133,6 +133,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 
     public writeValue(value:any):void
     {
+        this._value = value;
     }
 
     public get value()
