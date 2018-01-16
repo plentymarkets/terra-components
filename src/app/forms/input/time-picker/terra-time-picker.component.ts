@@ -12,7 +12,7 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
+import { TerraSelectBoxValueInterface } from '../../../components/forms/select-box/data/terra-select-box.interface';
 
 @Component({
     selector:  'terra-time-picker',
@@ -74,30 +74,21 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 
         for(hours = 0; hours <= 23; hours++)
         {
-            if(!(hours <= 12 && hours > 0))
-            {
-                this._values24.push(
-                    {
-                        value:   hours,
-                        caption: hours
-                    }
-                )
-            }
-            else
-            {
-                this._values24.push(
-                    {
-                        value:   hours,
-                        caption: hours
-                    }
-                );
+            this._values24.push(
+                {
+                    value:   hours,
+                    caption: hours
+                }
+            );
 
+            if((hours <= 12 && hours > 0))
+            {
                 this._values12.push(
                     {
                         value:   hours,
                         caption: hours
                     }
-                )
+                );
             }
         }
 
