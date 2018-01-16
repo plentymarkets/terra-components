@@ -24,6 +24,13 @@
                                 [inputIsRequired]="formField?.required"
                                 [(ngModel)]="formField.value">
             </terra-number-input>
+    
+            <terra-checkbox *ngSwitchCase="'checkBox'"
+                            [formControlName]="formField.key"
+                            [inputCaption]="formField.label | translate:lang"
+                            [(ngModel)]="formField.value"
+                            (ngModelChange)="onConditionChanged(formField)">
+            </terra-checkbox>
             
             <terra-double-input *ngSwitchCase="'inputDouble'"
                                 [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
