@@ -6,7 +6,6 @@ import {
     forwardRef,
     Input,
     OnInit,
-    ViewChild
 } from '@angular/core';
 import {
     ControlValueAccessor,
@@ -18,9 +17,13 @@ export enum TimeFormat
 {
     EUROPEAN = '24',
     AMERICAN = '12'
-
 }
 
+export enum DayFormat
+{
+    AM = 'AM',
+    PM = 'PM'
+}
 
 @Component({
     selector:  'terra-time-picker',
@@ -65,13 +68,15 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 
 
     private _value:string;
-    private _valueFormat:string;
-    private _valuePMAM:string;
+    private _valueFormat:TimeFormat;
+    private _valuePMAM:DayFormat;
     private _values24:Array<TerraSelectBoxValueInterface> = [];
     private _values12:Array<TerraSelectBoxValueInterface> = [];
     private _valueHours:Array<TerraSelectBoxValueInterface> = [];
     private _valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
     private _is24HourFormat:boolean = true;
+    private _timeFormatEnum = TimeFormat;
+    private _dayFormat = DayFormat;
 
     constructor()
     {
@@ -143,7 +148,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 
     public get value()
     {
-        if(this._valueFormat === "12")
+        if(this._valueFormat === TimeFormat.AMERICAN)
         {
             this._value = this._valuePMAM + ' ' + this._selectedHour.value + ':' + this._selectedMinute.value;
         }
@@ -162,7 +167,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 
     public changeValues():void
     {
-        if(this._valueFormat === "24")
+        if(this._valueFormat === TimeFormat.EUROPEAN)
         {
             this._valueHours = this._values24;
             this._is24HourFormat = true;

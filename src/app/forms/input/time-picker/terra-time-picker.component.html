@@ -1,29 +1,29 @@
 <div class="input-unit-v1"
      [ngClass]="{'disabled': inputIsDisabled}">
     <div class="timeFormatGroup">
-        <terra-radio-button inputValue="{{TimeFormat.AMERICAN}}"
+        <terra-radio-button [inputValue]="_timeFormatEnum.AMERICAN"
                             [inputCaption]="'timepicker.hourFormat12' |  translate:lang"
                             [(ngModel)]="_valueFormat"
                             (ngModelChange)="changeValues()"
                             >
         </terra-radio-button>
         
-        <terra-radio-button inputValue="{{TimeFormat.EUROPEAN}}"
+        <terra-radio-button [inputValue]="_timeFormatEnum.EUROPEAN"
                             [inputCaption]="'timepicker.hourFormat24' |  translate:lang"
                             [(ngModel)]="_valueFormat"
                             (ngModelChange)="changeValues()">
         </terra-radio-button>
     </div>
     <div *ngIf="!_is24HourFormat">
-        <terra-radio-button inputValue="AM"
-                            inputCaption="AM"
+        <terra-radio-button [inputValue]="_dayFormat.AM"
+                            [inputCaption]="_dayFormat.AM"
                             [(ngModel)]="_valuePMAM"
                             (ngModelChange)="changeValues()"
         >
         </terra-radio-button>
     
-        <terra-radio-button inputValue="PM"
-                            inputCaption="PM"
+        <terra-radio-button [inputValue]="_dayFormat.PM"
+                            [inputCaption]="_dayFormat.PM"
                             [(ngModel)]="_valuePMAM"
                             (ngModelChange)="changeValues()">
         </terra-radio-button>
