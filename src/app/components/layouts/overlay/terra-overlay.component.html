@@ -26,13 +26,16 @@
                 
                 <terra-button *ngIf="inputPrimaryButtonInterface"
                               [inputIsAlignRight]="false"
-                              [inputIsSecondary]="true"
                               [inputCaption]="inputPrimaryButtonInterface.caption"
                               [inputTooltipText]="inputPrimaryButtonInterface.tooltipText"
                               inputTooltipPlacement="bottom"
                               [inputIsDisabled]="inputPrimaryButtonInterface.isDisabled"
+                              [inputIsPrimary] = "inputPrimaryButtonInterface.isPrimary"
+                              [inputIsSecondary] = "!inputPrimaryButtonInterface.isPrimary 
+                                                 && !inputPrimaryButtonInterface.isSecondary 
+                                                 && !inputPrimaryButtonInterface.isTertiary ? true : inputPrimaryButtonInterface.isSecondary"
+                              [inputIsTertiary] = "inputPrimaryButtonInterface.isTertiary"
                               (outputClicked)="inputPrimaryButtonInterface.clickFunction()"></terra-button>
-
             </div>
         </div>
     </div>
