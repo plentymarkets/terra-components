@@ -1,0 +1,17 @@
+@import '../../../app/assets/styles/_variables.scss';
+
+.terra-navigator
+{
+    .view
+    {
+        background-color: $grey-2;
+    }
+}
+
+terra-split-view .modal-content terra-split-view
+{
+    .view.last:not(.first)
+    {
+        padding: 0 0 0 4px !important;
+    }
+}

@@ -7,15 +7,17 @@ import {
 } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
-import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
-import { TerraBaseParameterInterface } from '../data/terra-base-parameter.interface';
-import { TerraAlertComponent } from '../alert/terra-alert.component';
 import { Exception } from './data/exception.interface';
 import {
     isNull,
     isNullOrUndefined
 } from 'util';
-import { TerraPagerParameterInterface } from '../pager/data/terra-pager.parameter.interface';
+import {
+    TerraAlertComponent,
+    TerraLoadingSpinnerService,
+    TerraPagerParameterInterface
+} from '../../';
+import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
 
 /**
  * @author mfrank
