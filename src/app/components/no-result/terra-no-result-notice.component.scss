@@ -1,0 +1,21 @@
+.no-result
+{
+    text-align: center;
+    font-family: "plenty", Helvetica, Arial, sans-serif !important;
+    display: block;
+    padding: 10em .3em .3em .5em;
+    text-decoration: none;
+    border: 0;
+    border-radius: 0;
+    .text-prime
+    {
+        color: $gray;
+        font-size: 2.7rem;
+    }
+    .text-second
+    {
+        font-size: 1.3rem;
+        color: #ADADAD; // TODO: replace with variable
+        margin-bottom: 10px;
+    }
+}

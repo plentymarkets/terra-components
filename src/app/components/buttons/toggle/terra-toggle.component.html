@@ -1,0 +1,22 @@
+<terra-button
+    tooltip="{{inputTooltipText}}"
+    placement="{{inputTooltipPlacement}}"
+    [hidden]="inputIsHidden"
+    [inputIsDisabled]="inputIsDisabled"
+    [inputIcon]="inputIcon"
+    [inputIsSmall]="inputIsSmall"
+    [inputIsLarge]="inputIsLarge"
+    (click)="toggle()"
+    container="body">
+
+    <div btn-inner class="toggle-wrapper"
+         [ngClass]="{'active':_isActive,
+                'sm': inputIsSmall,
+                'lg': inputIsLarge,
+                'pull-xs-right': inputIsAlignRight,
+                'disabled': inputIsDisabled
+                }">
+        <div class="slider"></div>
+    </div>
+
+</terra-button>

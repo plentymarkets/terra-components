@@ -1,0 +1,159 @@
+@import "../input/terra-input.component";
+
+.select-box-wrapper
+{
+    position: relative;
+    background-color: $white;
+    border-radius: $border-radius;
+    border: 1px solid $white;
+    margin: var(--select-box-wrapper-margin, 0px);
+    margin-bottom: var(--select-box-wrapper-margin-bottom, 3px);
+    
+    cursor: pointer;
+    
+    label &.disabled
+    {
+        cursor: not-allowed;
+    }
+    
+    &.error
+    {
+        border-color: $error;
+    }
+    
+    .select-box
+    {
+        height: $terra-btn-md-height - 2;
+        line-height: $terra-btn-md-height - 2;
+        display: inline-block;
+        width: var(--select-box-width, 100%);
+        max-width: 100%;
+        vertical-align: middle;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        padding: 0px 12px;
+        background-position: calc(100% - 1rem) 1.2rem;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat right .75rem center;
+        background-image: none \9;
+        background-size: 8px 10px;
+        color: $grey-10;
+        
+        &.isSmall
+        {
+            height: $terra-btn-sm-height - 2;
+            line-height: $terra-btn-sm-height - 2;
+            &.labeled
+            {
+                padding: 0px 7px 0px 120px;
+            }
+        }
+        &.error
+        {
+            border-color: $error;
+            color: $error;
+            background-size: 8px 10px;
+        }
+        &.labeled
+        {
+            line-height: 24px;
+            padding: 13px 7px 0px 7px;
+        }
+        span
+        {
+            width: calc(100% - 20px);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            font-weight: $font-weight-2;
+        }
+    }
+    &:not(.error):hover
+    {
+        border: 1px solid $blue;
+    }
+    &.disabled
+    {
+        background-color: $grey-2;
+        border: 1px solid $grey-5;
+        .select-box
+        {
+            filter: opacity(30%);
+        }
+        
+        .select-box
+        {
+            cursor: not-allowed;
+        }
+        .select-box-dropdown
+        {
+            display: none !important;
+        }
+    }
+    
+    &.open
+    {
+        .select-box-dropdown
+        {
+            display: block;
+        }
+    }
+    
+    .select-box-dropdown
+    {
+        position: absolute;
+        z-index: 99999;
+        top: $terra-btn-md-height;
+        bottom: initial;
+        left: 0;
+        min-width: 100%;
+        width: auto;
+        max-height: 12rem;
+        border-radius: $border-radius;
+        background: white;
+        display: none;
+        overflow: auto;
+        
+        &.openOnTop
+        {
+            top: initial;
+            bottom: $terra-btn-md-height;
+        }
+        
+        &.isSmall
+        {
+            top: $terra-btn-sm-height;
+        }
+        
+        > span
+        {
+            display: block;
+            width: 100%;
+            padding: .25em 1em;
+            line-height: 18px;
+            min-height: 24px;
+            cursor: pointer;
+            &:hover,
+            &.selected
+            {
+                background: $grey-3;
+            }
+            &.active
+            {
+                background: $blue;
+                color: white;
+            }
+            &.highlight
+            {
+                font-weight: bolder;
+                color: $alert-green;
+            }
+            &.deep
+            {
+                font-style: italic;
+                color: $grey-8;
+                font-weight: lighter;
+            }
+        }
+    }
+}

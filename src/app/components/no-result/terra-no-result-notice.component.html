@@ -1,0 +1,26 @@
+<div class="no-result">
+    <div class="text-prime">
+        {{ inputTextPrimary }}
+    </div>
+    <div class="text-second">
+        {{ inputTextSecondary }}
+    </div>
+    <div class="no-result-buttons">
+        <terra-button *ngFor='let button of inputButtons;'
+                      [inputIcon]="button.icon"
+                      [inputCaption]="button.caption"
+                      [inputTooltipText]="button.tooltipText"
+                      (outputClicked)="button.clickFunction()"
+                      [inputTooltipPlacement]="button.tooltipPlacement"
+                      [inputIsPrimary]="button.isPrimary"
+                      [inputIsSecondary]="button.isSecondary"
+                      [inputIsTertiary]="button.isTertiary"
+                      [inputIsActive]="button.isActive"
+                      [inputIsDisabled]="button.isDisabled"
+                      [inputIsHidden]="button.isHidden"
+                      [inputIsDivider]="button.isDivider"
+                      [inputIsSmall]="false"
+                      [inputIsHighlighted]="true">
+        </terra-button>
+    </div>
+</div>

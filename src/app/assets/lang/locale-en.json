@@ -1,8 +1,61 @@
 {
-  "terraDataTable": {
-    "initialLoading": "Click on search to display {{ dataType }}"
-  },
-  "terraMultiSelectBox": {
-    "selectAll": "All"
-  }
+	"terraDataTable": {
+		"groupFunction": "Group function"
+	},
+	"terraMultiSelectBox": {
+		"selectAll": "All"
+	},
+	"terraFileBrowser": {
+		"cancel": "Cancel",
+		"create": "Create",
+		"delete": "Delete",
+		"myFiles": "My files",
+		"createFolder": "Create folder",
+		"confirmDelete": "Delete this file?",
+		"confirmDeleteMany": "Delete {{ count }} files?",
+		"deleteFolder": "Delete folder",
+		"deleteFile": "Delete file",
+		"deleteSelectedFiles": "Delete selected files",
+		"folderName": "Folder name",
+		"folderIsEmpty": "Folder is empty.",
+		"uploadFile": "Upload file",
+		"fileURL": "File URL",
+		"copyToClipboard": "Copy to clipboard",
+		"saveMetadata": "Save metadata",
+		"altText": "Alternative text",
+		"imageSize": "Size",
+		"fileSize": "File size",
+		"fileName": "File name",
+		"lastChange": "Last change",
+		"loadingFiles": "Loading files",
+		"noFiles": "No files",
+		"downloadFile": "Download file"
+	},
+	"terraFileInput": {
+		"choose": "Select",
+		"cancel": "Cancel",
+		"chooseFile": "Select file"
+	},
+	"terraSuggestionBox": {
+		"suggestions": "Suggestions",
+		"recentlyUsed": "Recently used",
+		"noSuggestions": "No suggestions",
+		"noRecentlyUsed": "No recently used elements"
+	},
+	"terraNavigator": {
+		"search": "Search"
+	},
+	"terraPager": {
+		"page": "Page",
+		"of": "of"
+	},
+	"terraNoteEditor": {
+		"insertText": "Insert text."
+	},
+	"terraTextInput": {
+		"invalidIban": "IBAN is not valid."
+	},
+	"terraNodeTree":{
+		"search": "Search"
+	}
 }

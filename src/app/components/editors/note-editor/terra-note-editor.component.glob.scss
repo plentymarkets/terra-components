@@ -1,0 +1,44 @@
+@import '../../../assets/styles/variables';
+
+quill-editor
+{
+    .ql-container
+    {
+        background-color: $white;
+    }
+    .ql-snow.ql-toolbar
+    {
+        button:hover, button:focus, button.ql-active
+        {
+            color: $blue;
+
+            .ql-stroke
+            {
+                stroke: $blue;
+            }
+            .ql-fill
+            {
+                fill: $blue;
+            }
+        }
+
+        .ql-picker-item
+        {
+            &.ql-selected, &:hover
+            {
+                color: $blue;
+            }
+        }
+        .ql-picker-label
+        {
+            &.ql-active, &:hover
+            {
+                color: $blue;
+                .ql-stroke
+                {
+                    stroke: $blue;
+                }
+            }
+        }
+    }
+}

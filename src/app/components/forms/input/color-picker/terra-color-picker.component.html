@@ -1,0 +1,30 @@
+<div class="input-unit-v1"
+     placement="{{inputTooltipPlacement}}"
+     tooltip="{{inputTooltipText}}"
+     [isDisabled]="!inputTooltipText"
+     [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
+     container="body">
+    <label>{{inputName}}
+        <span *ngIf="inputIsRequired">*</span>
+        <input type="color"
+               [(ngModel)]="color"
+               autocomplete="off"
+               pattern="{{regex}}"
+               [disabled]="isDisabled"
+               [required]="inputIsRequired">
+        
+        <div class="color-picker" [style.background-color]="value" [class.text-invert]="isDark()">
+            <i class="icon-collapse_down"></i>
+        </div>
+    </label>
+    
+    <input type="text"
+           [(ngModel)]="color"
+           pattern="{{regex}}"
+           (blur)="onBlur()"
+           autocomplete="off"
+           [disabled]="isDisabled"
+           [required]="inputIsRequired"
+           placeholder="{{inputPlaceholder}}">
+
+</div>
