@@ -55,8 +55,8 @@ export class TerraInputComponent implements ControlValueAccessor
      * */
     @Input() inputIsSmall:boolean;
 
-    private _isValid:boolean;
-    private _regex:string;
+    public isValid:boolean;
+    public regex:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     //The internal data model
@@ -88,16 +88,6 @@ export class TerraInputComponent implements ControlValueAccessor
     public set isDisabled(value:boolean)
     {
         this.inputIsDisabled = value;
-    }
-
-    public get isValid():boolean
-    {
-        return this._isValid;
-    }
-
-    public set isValid(value:boolean)
-    {
-        this._isValid = value;
     }
 
     //get accessor
@@ -198,15 +188,5 @@ export class TerraInputComponent implements ControlValueAccessor
                 }
             }
         }
-    }
-
-    public get regex():string
-    {
-        return this._regex;
-    }
-
-    public set regex(value:string)
-    {
-        this._regex = value;
     }
 }

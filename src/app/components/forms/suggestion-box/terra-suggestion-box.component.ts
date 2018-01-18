@@ -38,11 +38,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     @Input() inputWithRecentlyUsed:boolean;
     @Output() outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
 
-    private _selectedValue:TerraSuggestionBoxValueInterface;
+    public isValid:boolean;
+    public selectedValue:TerraSuggestionBoxValueInterface;
     private _tmpSelectedValue:TerraSuggestionBoxValueInterface;
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
-    private _isValid:boolean;
     private _value:number | string;
     private clickListener:(event:Event) => void;
     protected _displayListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
@@ -54,16 +54,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
     }
 
-    public get isValid():boolean
-    {
-        return this._isValid;
-    }
-
-    public set isValid(value:boolean)
-    {
-        this._isValid = value;
-    }
-
     ngOnInit()
     {
         this.clickListener = (event) =>
@@ -72,14 +62,14 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         };
 
         this.inputTooltipPlacement = 'top';
-        this._selectedValue =
+        this.selectedValue =
             {
                 value:   '',
                 caption: ''
             };
         this._tmpSelectedValue = null;
 
-        this._isValid = true;
+        this.isValid = true;
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
         this._lastSelectedValues = [];
@@ -97,7 +87,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
         if(changes["inputListBoxValues"]
            && changes["inputListBoxValues"].currentValue.length > 0
-           && !this.inputListBoxValues.find((x) => this._selectedValue === x))
+           && !this.inputListBoxValues.find((x) => this.selectedValue === x))
         {
             this.select(this.inputListBoxValues[0]);
         }
@@ -145,7 +135,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
             if(selectedValue)
             {
-                this._selectedValue = {
+                this.selectedValue = {
                     caption: selectedValue.caption,
                     value:   selectedValue.value
                 };
@@ -153,13 +143,13 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
         else
         {
-            this._selectedValue = {
+            this.selectedValue = {
                 caption: this.inputListBoxValues[0].caption,
                 value:   this.inputListBoxValues[0].value
             };
         }
 
-        this._tmpSelectedValue = this._selectedValue;
+        this._tmpSelectedValue = this.selectedValue;
     }
 
     private onClick(evt:Event):void
@@ -205,7 +195,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
 
         // update selected value
-        this._selectedValue = {
+        this.selectedValue = {
             caption: value.caption,
             value:   value.value
         };
@@ -217,7 +207,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
 
         // update temp selected value
-        this._tmpSelectedValue = this._selectedValue;
+        this._tmpSelectedValue = this.selectedValue;
 
         // execute callback functions
         this.onTouchedCallback();
@@ -230,8 +220,8 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         // check if newly selected value has been selected lastly
         let valueSelected:TerraSuggestionBoxValueInterface =
             this._lastSelectedValues.find((value:TerraSuggestionBoxValueInterface) =>
-                value.caption === this._selectedValue.caption &&
-                value.value === this._selectedValue.value
+                value.caption === this.selectedValue.caption &&
+                value.value === this.selectedValue.value
             );
 
         // add value to the last selected values, if it is not already added
@@ -239,8 +229,8 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         {
             let length:number = this._lastSelectedValues.unshift(
                 {
-                    caption: this._selectedValue.caption,
-                    value:   this._selectedValue.value
+                    caption: this.selectedValue.caption,
+                    value:   this.selectedValue.value
                 }
             );
 
@@ -255,7 +245,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     public onChange()
     {
-        let searchString = this._selectedValue.caption;
+        let searchString = this.selectedValue.caption;
         this.toggleOpen = true;
 
         if(searchString.length >= 3)
@@ -290,14 +280,14 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this._displayListBoxValues = this.inputListBoxValues;
         }
 
-        this.value = this._selectedValue;
+        this.value = this.selectedValue;
     }
 
     public resetComponentValue():void
     {
         this.value = null;
 
-        this._selectedValue =
+        this.selectedValue =
             {
                 value:   '',
                 caption: ''
@@ -408,15 +398,5 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             // select the input text <-> mark all
             event.target.select();
         }
-    }
-
-    public get selectedValue():TerraSuggestionBoxValueInterface
-    {
-        return this._selectedValue;
-    }
-
-    public set selectedValue(value:TerraSuggestionBoxValueInterface)
-    {
-        this._selectedValue = value;
     }
 }

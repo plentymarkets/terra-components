@@ -3,7 +3,7 @@
      tooltip="{{inputTooltipText}}"
      [isDisabled]="!inputTooltipText"
      [ngClass]="{
-                  'error': !_isValid,
+                  'error': !isValid,
                   'disabled': inputIsDisabled,
                   'open': _toggleOpen
                 }"
@@ -14,7 +14,7 @@
         <span *ngIf="inputIsRequired">*</span>
     </label>
     
-    <div class="select-box" [ngClass]="{'error': !_isValid, 'labeled': _hasLabel, 'isSmall': inputIsSmall}">
+    <div class="select-box" [ngClass]="{'error': !isValid, 'labeled': _hasLabel, 'isSmall': inputIsSmall}">
         <span *ngIf="_selectedValue; then selectedValue else firstInList"></span>
         <ng-template #selectedValue>
             <span class="{{_selectedValue?.icon}}" *ngIf="_selectedValue?.icon"></span>
