@@ -7,11 +7,17 @@ import {
 } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
-import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
-import { TerraBaseParameterInterface } from '../data/terra-base-parameter.interface';
-import { TerraAlertComponent } from '../alert/terra-alert.component';
 import { Exception } from './data/exception.interface';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
+import {
+    TerraAlertComponent,
+    TerraLoadingSpinnerService,
+    TerraPagerParameterInterface
+} from '../../';
+import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
 
 /**
  * @author mfrank
@@ -25,11 +31,17 @@ export class TerraBaseService
 
     constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private _baseHttp:Http,
-                private _baseUrl:string)
+                private _baseUrl:string,
+                private _isPlugin?:boolean)
     {
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.setAuthorization();
         this.url = _baseUrl;
+
+        if(isNullOrUndefined(this._isPlugin))
+        {
+            this._isPlugin = false;
+        }
     }
 
     get http():Http
@@ -75,7 +87,7 @@ export class TerraBaseService
         }
     }
 
-    protected mapRequest(request:Observable<Response>, err?:(error:any) => void, isPdf?:boolean):Observable<any>
+    protected mapRequest(request:Observable<Response>, err?:(error:any) => void, isRaw?:boolean):Observable<any>
     {
         this._terraLoadingSpinnerService.start();
 
@@ -85,9 +97,9 @@ export class TerraBaseService
             {
                 return response.text();
             }
-            else if(!isNullOrUndefined(isPdf) && isPdf == true)
+            else if(isRaw)
             {
-                return response.text();
+                return response;
             }
             else
             {
@@ -112,22 +124,32 @@ export class TerraBaseService
 
             if(error.status == 401 && errorMessage === "This action is unauthorized.")
             {
-                this._alert.addAlert({
-                    msg:              missingUserPermissionAlertMessage,
-                    closable:         true,
-                    type:             'danger',
-                    dismissOnTimeout: 0
-                });
+                if(this._isPlugin)
+                {
+                    this._alert.addAlertForPlugin({
+                        msg:              missingUserPermissionAlertMessage,
+                        type:             'danger',
+                        dismissOnTimeout: 0
+                    });
+                }
+                else
+                {
+                    this._alert.addAlert({
+                        msg:              missingUserPermissionAlertMessage,
+                        type:             'danger',
+                        dismissOnTimeout: 0
+                    });
+                }
             }
             // END Very unclean workaround!
             else if(error.status == 401)
             {
                 let event:CustomEvent = new CustomEvent('login');
                 //Workaround for plugins in Angular (loaded via iFrame)
-                if(window.parent != null)
+                if(window.parent !== null)
                 {
                     //workaround for plugins in GWT (loaded via iFrame)
-                    if(window.parent.window.parent != null)
+                    if(window.parent.window.parent !== null)
                     {
                         window.parent.window.parent.window.dispatchEvent(event);
                     }
@@ -204,15 +226,27 @@ export class TerraBaseService
         // check which exception type has been received
         if(!isNullOrUndefined(response.error) && !isNullOrUndefined(response.message))
         {
-            // show alert
-            this._alert.addAlert(
-                {
+            if(this._isPlugin)
+            {
+                this._alert.addAlertForPlugin({
                     msg:              this.getErrorString() + ': ' + response.message,
-                    closable:         true,
                     type:             'danger',
                     dismissOnTimeout: 0
-                }
-            );
+                });
+            }
+            else
+            {
+                this._alert.addAlert({
+                    msg:              this.getErrorString() + ': ' + response.message,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                });
+            }
+        }
+        // return if error code is null
+        else if(isNull(response.error.code))
+        {
+            return;
         }
         // default exception type
         else
@@ -223,15 +257,22 @@ export class TerraBaseService
             // get error code
             let errorCode:string = error.code ? ' ' + error.code : '';
 
-            // show alert
-            this._alert.addAlert(
-                {
+            if(this._isPlugin)
+            {
+                this._alert.addAlertForPlugin({
                     msg:              this.getErrorString() + errorCode + ': ' + error.message,
-                    closable:         true,
                     type:             'danger',
                     dismissOnTimeout: 0
-                }
-            );
+                });
+            }
+            else
+            {
+                this._alert.addAlert({
+                    msg:              this.getErrorString() + errorCode + ': ' + error.message,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                });
+            }
         }
     }
 
@@ -264,5 +305,50 @@ export class TerraBaseService
             return "Missing permissions";
         }
         //END workaround
+    }
+
+    /**
+     * Appends the given parameters to the given url
+     *
+     * @param {string} url
+     * @param {TerraPagerParameterInterface} params
+     * @returns {string}
+     */
+    protected addParamsToUrl(url:string, params:TerraPagerParameterInterface):string
+    {
+        // check if params are given
+        if(isNullOrUndefined(params))
+        {
+            return url;
+        }
+
+        // initialize separator for parameters
+        let separator:string = '?';
+
+        // check if any parameter has already been appended
+        if(url.split('/').pop().includes('?'))
+        {
+            separator = '&';
+        }
+
+        // add parameters to the url
+        for(let obj in params)
+        {
+            // check if parameter is defined
+            if(!isNullOrUndefined(obj))
+            {
+                // check if parameter's value is set
+                if(!isNullOrUndefined(params[obj]))
+                {
+                    // append parameter to the url
+                    url += separator + obj + '=' + params[obj];
+
+                    // set separator for subsequent parameters
+                    separator = '&';
+                }
+            }
+        }
+
+        return url;
     }
 }

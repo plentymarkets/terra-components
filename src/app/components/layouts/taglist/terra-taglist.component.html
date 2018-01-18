@@ -1,0 +1,10 @@
+<div class="taglist">
+    <ng-template ngFor let-tag [ngForOf]="inputTagList">
+        <terra-tag [inputBadge]="tag.badge"
+                   [inputIsTaggable]="tag.isTaggable"
+                   [inputIsTagged]="tag.isTagged"
+                   [inputCustomClass]="tag.customClass">
+        </terra-tag>
+    </ng-template>
+</div>
+

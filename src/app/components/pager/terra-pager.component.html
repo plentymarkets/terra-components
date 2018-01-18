@@ -1,0 +1,67 @@
+<div class="pager">
+    <terra-base-toolbar>
+        <div class="btn-group" role="group">
+            <terra-button inputIcon="icon-control_start icon_dist_top"
+                          class="terra-button"
+                          [inputIsDisabled]="inputPagingData.page <= 1"
+                          [inputIsLink]="true"
+                          [inputIsSmall]="true"
+                          (outputClicked)="onFirstPage()"></terra-button>
+            <terra-button inputIcon="icon-back icon_dist_top"
+                          class="terra-button"
+                          [inputIsDisabled]="inputPagingData.page <= 1"
+                          [inputIsLink]="true"
+                          [inputIsSmall]="true"
+                          (outputClicked)="onPrevPage()"></terra-button>
+        </div>
+        <div class="btn-group" role="group">
+            <div class="pager-text">{{'terraPager.page' | translate:lang}}</div>
+            <div class="form-group">
+                <form (submit)="onToPage($event, pager.value)" role="form">
+                    <terra-number-input #pager
+                                        class="pager-page terra-number-input"
+                                        name="pager"
+                                        [inputIsDisabled]="inputPagingData.totalsCount == 0"
+                                        [inputMinValue]="1"
+                                        [inputMaxValue]="inputPagingData.lastPageNumber"
+                                        [(ngModel)]="inputPagingData.page"
+                                        [inputIsSmall]="true">
+                    </terra-number-input>
+                </form>
+            </div>
+            <div class="pager-text">{{'terraPager.of' | translate:lang}} {{inputPagingData.lastPageNumber}}</div>
+        </div>
+        
+        <div class="btn-group" role="group">
+            <terra-button inputIcon="icon-next icon_dist_top"
+                          class="terra-button"
+                          [inputIsDisabled]="inputPagingData.page == inputPagingData.lastPageNumber || inputPagingData.lastPageNumber == 0"
+                          [inputIsLink]="true"
+                          [inputIsSmall]="true"
+                          (outputClicked)="onNextPage()"></terra-button>
+            <terra-button inputIcon="icon-last icon_dist_top"
+                          class="terra-button"
+                          [inputIsDisabled]="inputPagingData.page == inputPagingData.lastPageNumber || inputPagingData.lastPageNumber == 0"
+                          [inputIsLink]="true"
+                          [inputIsSmall]="true"
+                          (outputClicked)="onLastPage()"></terra-button>
+            
+            <terra-select-box class="terra-select-box"
+                              [inputListBoxValues]="inputPagingSize"
+                              [inputIsDisabled]="inputPagingData.totalsCount == 0"
+                              [inputIsSmall]="true"
+                              [(ngModel)]="inputDefaultPagingSize"
+                              (outputValueChanged)="onChangeOffsetTo($event)">
+            </terra-select-box>
+            <!--<div class="pager-text">-->
+            <!--{{inputPagingData.pagingUnit}} {{inputPagingData.firstOnPage}}-{{inputPagingData.lastOnPage}} / {{inputPagingData.totalsCount}}-->
+            <!--</div>-->
+        </div>
+        <terra-button inputIcon="icon-reload icon_dist_top"
+                      class="terra-button"
+                      [inputIsDisabled]="inputPagingData.totalsCount == 0"
+                      [inputIsLink]="true"
+                      [inputIsSmall]="true"
+                      (outputClicked)="onReload()"></terra-button>
+    </terra-base-toolbar>
+</div>

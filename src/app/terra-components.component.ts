@@ -10,10 +10,10 @@ import {
 } from 'angular-l10n';
 
 @Component({
-               selector: 'app-root',
-               template: require('./terra-components.component.html'),
-               styles:   [require('./terra-components.component.scss')]
-           })
+    selector: 'app-root',
+    template: require('./terra-components.component.html'),
+    styles:   [require('./terra-components.component.scss')]
+})
 export class TerraComponentsComponent extends Translation implements OnInit
 {
     private _viewContainerRef:ViewContainerRef;
@@ -57,11 +57,11 @@ export class TerraComponentsComponent extends Translation implements OnInit
         //Definitions for i18n
         if(process.env.ENV === 'production')
         {
-            this.translation.addConfiguration().addProvider('app/assets/lang/locale-');
+            this.translation.addConfiguration().addProvider('app/assets/lang/locale-').disableI18nPlural();
         }
         else
         {
-            this.translation.addConfiguration().addProvider('src/app/assets/lang/locale-');
+            this.translation.addConfiguration().addProvider('src/app/assets/lang/locale-').disableI18nPlural();
         }
 
         this.translation.init();

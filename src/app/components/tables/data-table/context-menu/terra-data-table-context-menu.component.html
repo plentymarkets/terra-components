@@ -1,0 +1,8 @@
+<ul [hidden]="_contextMenuLinkList == 0" class="context-menu" id="menu" [ngStyle]="_locationCss">
+    <ng-template ngFor let-link [ngForOf]="_contextMenuLinkList">
+        <li *ngIf="!link.isDivider" (click)="link.clickFunction(link.data)" [ngStyle]="{ 'background': link.buttonColor }">
+            <a>{{link.title}}</a>
+        </li>
+        <div *ngIf="link.isDivider" class="context-menu-divider"></div>
+    </ng-template>
+</ul>

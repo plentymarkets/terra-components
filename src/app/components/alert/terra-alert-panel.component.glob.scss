@@ -1,0 +1,72 @@
+@import '../../../app/assets/styles/_variables.scss';
+
+.alert-wrapper,
+terra-alert-panel
+{
+    position: fixed;
+    right: 14px;
+    top: 71px;
+    max-height: 500px;
+    max-width: 350px;
+    overflow-y: auto;
+    z-index: $zindex-alert-panel;
+    .alert
+    {
+        position: relative;
+        padding: 3px 30px 3px 40px;
+        margin-bottom: .2rem;
+        word-wrap: break-word;
+        &:before
+        {
+            font-family: 'plentyicons' !important;
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            font-size: 1.1em;
+            position: absolute;
+            top: .4em;
+            left: .7em;
+        }
+        &.alert-danger
+        {
+            &:before
+            {
+                content: "\ea1e";
+            }
+        }
+        &.alert-success
+        {
+            &:before
+            {
+                content: "\e915";
+            }
+        }
+        &.alert-warning
+        {
+            &:before
+            {
+                content: "\e9b9";
+            }
+        }
+        &.alert-info
+        {
+            &:before
+            {
+                content: "\e9bc";
+            }
+        }
+    }
+    div.alert button.close
+    {
+        padding: 0px;
+        top: -5px;
+        right: -20px;
+        span
+        {
+            font-size: $font-size-5;
+        }
+    }
+}

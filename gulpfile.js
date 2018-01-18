@@ -12,7 +12,6 @@ var git = require('gulp-git');
 var gitignore = require('gulp-gitignore');
 var shell = require('gulp-shell');
 var argv = require('yargs').argv;
-var path = require('path');
 
 var version, level, sequence, subversion;
 
@@ -34,25 +33,21 @@ gulp.task('build', function(callback)
     level = argv.level ? argv.level : 'patch';
     sequence = argv.publish ? 'npm-publish' : 'build-local';
     subversion = argv.subversion ? argv.subversion : '';
-    
+
     runSequence(sequence, callback);
 });
 
 gulp.task('npm-publish', function (callback)
 {
     runSequence(
-        'gitInit',
-        'gitFetch',
         'changeVersion',
-        'gitCommit',
-        'gitPull',
         'clean-dist',
-        'gitPush',
         'compile-ts',
         'copy-files',
         'copy-fonts',
         'copy-images',
         'copy-lang',
+        'copy-tslint-rules',
         'publish',
         callback
     );
@@ -67,7 +62,8 @@ gulp.task('build-local', function (callback)
         'copy-fonts',
         'copy-images',
         'copy-lang',
-        'copy-to-target',
+        'copy-tslint-rules',
+        'copy-to-terra',
         callback
     );
 });
@@ -77,12 +73,12 @@ gulp.task('build-local', function (callback)
 gulp.task('gitInit', function ()
 {
     git.init(function (err)
-             {
-                 if(err)
-                 {
-                     throw err;
-                 }
-             });
+    {
+        if(err)
+        {
+            throw err;
+        }
+    });
 });
 
 //fetch data
@@ -101,7 +97,7 @@ gulp.task('gitFetch', function ()
 gulp.task('changeVersion', function ()
 {
     var json = JSON.parse(fs.readFileSync('./package.json'));
-    
+
     console.log('-------------------------------------------------');
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
     
@@ -116,10 +112,10 @@ gulp.task('changeVersion', function ()
     }
     
     version = json.version;
-    
+
     console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
     console.log('-------------------------------------------------');
-    
+
     return fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
 });
 
@@ -127,8 +123,8 @@ gulp.task('changeVersion', function ()
 gulp.task('gitCommit', function ()
 {
     return gulp.src('./*')
-               .pipe(gitignore())
-               .pipe(git.commit('update version to ' + version));
+        .pipe(gitignore())
+        .pipe(git.commit('update version to ' + version));
 });
 
 gulp.task('gitPull', function ()
@@ -140,7 +136,7 @@ gulp.task('gitPull', function ()
             throw err;
         }
     });
-    
+
 });
 
 gulp.task('clean-dist', function ()
@@ -167,61 +163,65 @@ gulp.task('compile-ts', function ()
         config.excluded,
         config.allTs
     ];
-    
+
     var tsResult = gulp.src(sourceTsFiles)
-                       .pipe(sourcemaps.init())
-                       .pipe(tsProject());
-    
+        .pipe(sourcemaps.init())
+        .pipe(tsProject());
+
     return merge([
-                     tsResult.dts.pipe(gulp.dest(config.tsOutputPath)),
-                     tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.tsOutputPath))
-                 ]);
+        tsResult.dts.pipe(gulp.dest(config.tsOutputPath)),
+        tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.tsOutputPath))
+    ]);
 });
 
 //copy files to dist
 gulp.task('copy-files', function ()
 {
     return gulp.src(['package.json',
-                     'README.md',
-                     config.allCSS,
-                     config.allSCSS,
-                     config.allHTML])
-               .pipe(gulp.dest(config.tsOutputPath));
+        'README.md',
+        config.allCSS,
+        config.allSCSS,
+        config.allHTML])
+        .pipe(gulp.dest(config.tsOutputPath));
 });
 
 //copy fonts to dist
 gulp.task('copy-fonts', function ()
 {
     return gulp.src(config.allFonts)
-               .pipe(gulp.dest(config.fontsOutputPath));
+        .pipe(gulp.dest(config.fontsOutputPath));
 });
 
 //copy images to dist
 gulp.task('copy-images', function ()
 {
     return gulp.src(config.allImages)
-               .pipe(gulp.dest(config.imagesOutputPath));
+        .pipe(gulp.dest(config.imagesOutputPath));
 });
 
 //copy lang to dist
 gulp.task('copy-lang', function ()
 {
     return gulp.src(config.allLang)
-               .pipe(gulp.dest(config.langOutputPath));
+        .pipe(gulp.dest(config.langOutputPath));
 });
 
-//copy files from dist to defined directory
-gulp.task('copy-to-target', function ()
+//copy lang to dist
+gulp.task('copy-tslint-rules', function ()
 {
-    var target = argv.target || '/workspace/terra';
+    return gulp.src(config.tslint)
+        .pipe(gulp.dest(config.tsOutputPath));
+});
+
+//copy files from dist to terra
+gulp.task('copy-to-terra', function ()
+{
     return gulp.src('dist/**/*.*')
-        .pipe(
-            gulp.dest( path.join( target, '/node_modules/@plentymarkets/terra-components/' ) )
-        );
+        .pipe(gulp.dest('../terra/node_modules/@plentymarkets/terra-components/'));
 });
 
 //publish to npm
 gulp.task('publish', shell.task([
-                                    'npm publish dist'
-                                ])
+        'npm publish dist'
+    ])
 );

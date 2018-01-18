@@ -1,0 +1,12 @@
+// customize split view
+terra-navigator
+{
+    terra-split-view
+    {
+        > .side-scroller,
+        > .content
+        {
+            width: 300px;
+        }
+    }
+}

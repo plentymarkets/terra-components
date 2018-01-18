@@ -1,0 +1,30 @@
+<terra-base-toolbar *ngIf="inputShowBreadcrumbs">
+    <ul class="terra-breadcrumbs">
+        <ng-template ngFor let-module [ngForOf]="inputModules" let-first="first">
+            <li *ngIf="inputModules" (click)="updateViewport(module.mainComponentName + '_' + module.instanceKey)">
+                <div class="{{ module.mainComponentName + '_' + module.instanceKey }}">
+                    <span>{{ module.name | translate: lang}}</span>
+                </div>
+                <a class="icon-next"></a>
+            </li>
+        </ng-template>
+    </ul>
+</terra-base-toolbar>
+
+<div class="content">
+    <ng-content></ng-content>
+</div>
+
+<div *ngIf="inputModules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
+    <ng-template ngFor let-module [ngForOf]="inputModules" let-last="last" let-first="first">
+        <div *ngIf="!module.hidden"
+             id="{{ module.mainComponentName + '_' + module.instanceKey }}"
+             class="view {{ module.defaultWidth }}"
+             [ngClass]="{'first': first, 'last': (last && !first), isBackgroundColorGrey: module.isBackgroundColorGrey}">
+            <terra-dynamic-module-loader [inputModule]="module.module"
+                                         [inputParameter]="module.parameter"
+                                         [inputMainComponentName]="module.mainComponentName">
+            </terra-dynamic-module-loader>
+        </div>
+    </ng-template>
+</div>

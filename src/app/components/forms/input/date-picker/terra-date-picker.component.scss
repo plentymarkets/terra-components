@@ -1,0 +1,11 @@
+@import "../terra-input.component";
+
+.input-unit-v1
+{
+    overflow: inherit;
+    
+    label &.disabled
+    {
+        cursor: not-allowed;
+    }
+}

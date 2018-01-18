@@ -1,0 +1,297 @@
+@import "../split-view/terra-split-view.component";
+
+.file-browser-content
+{
+    position: relative;
+    border-top: 1px solid #CCCCCC;
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    
+    ul.file-list
+    {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow-y: auto;
+        
+        & > li
+        {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            
+            &:nth-child(even)
+            {
+                background-color: $gray-light-4;
+            }
+            
+            &:hover
+            {
+                background-color: $gray-light-3;
+            }
+            
+            &.selected
+            {
+                background-color: $brand-primary;
+                color: $white;
+                
+                [class^="icon-"]:before,
+                [class^="icon-"] *:before
+                {
+                    color: $white;
+                }
+            }
+            
+            &.disabled
+            {
+                opacity: 0.7;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+            
+            & > div
+            {
+                padding: 2px 8px;
+                display: flex;
+                
+                &.waiting
+                {
+                    color: $gray-light-2;
+                }
+            }
+            
+            .upload-progress
+            {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                color: $white;
+                background-color: $brand-primary;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+            
+            [class^="icon-"]
+            {
+                margin-right: 8px;
+                display: inline-flex;
+                font-size: 18px;
+                line-height: 20px;
+            }
+        }
+    }
+    
+    .file-list-empty
+    {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+        > div
+        {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            span
+            {
+                color: $gray-light;
+                font-size: 2em;
+                margin-bottom: 12px;
+                
+            }
+            
+        }
+    }
+    
+    .prompt
+    {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 90%;
+        margin-left: -45%;
+        background: $white;
+        border: 1px solid #CCCCCC;
+        border-top: none;
+        padding: 4px 8px;
+        border-bottom-left-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+        transform: translateY(-100%);
+        transition: transform 150ms ease;
+        z-index: 1;
+        
+        &.in
+        {
+            transform: translateY(0);
+        }
+        
+        .prompt-title
+        {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+    }
+    
+    @media(min-width: 544px)
+    {
+        .prompt
+        {
+            width: 400px;
+            margin-left: -200px;
+        }
+    }
+    
+    .file-drop
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: transparentize($brand-primary, 0.5);
+        border: 3px dashed $brand-primary;
+        border-radius: $border-radius;
+        display: none;
+        color: $white;
+        flex-direction: row;
+        align-items: center;
+        
+        *
+        {
+            pointer-events: none;
+        }
+        
+        &.in
+        {
+            display: flex;
+        }
+        
+        span
+        {
+            font-size: 3em;
+            width: 100%;
+            text-align: center;
+        }
+    }
+    
+    .preview-container
+    {
+        
+        transform: translateY(100%);
+        transition: transform 150ms ease;
+        border-top: 1px solid #CCCCCC;
+        background-color: $white;
+        display: flex;
+        flex-direction: column;
+        padding: 4px 8px;
+        overflow-y: auto;
+        
+        &.in
+        {
+            transform: translateY(0);
+        }
+        
+        .preview-title
+        {
+            margin-bottom: 12px;
+            
+            .preview-title-name
+            {
+                font-size: 1.3em;
+                display: block;
+            }
+            
+            .preview-title-size,
+            .preview-title-date
+            {
+                float: left;
+                font-size: .8em;
+                color: $gray-light;
+            }
+            
+            .preview-title-date
+            {
+                float: right;
+            }
+            
+        }
+        
+        .preview-content
+        {
+            flex: 1;
+            width: 100%;
+            background-color: $gray-light-4;
+            padding: 12px;
+            display: flex;
+            border: 1px solid $gray-light-2;
+            margin-bottom: 12px;
+            border-radius: $border-radius;
+            min-height: 150px;
+            position: relative;
+            flex-direction: column;
+            
+            > span
+            {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+                align-items: center;
+                flex: 1;
+                
+                > [class^="icon-"]
+                {
+                    display: inline-flex;
+                    margin: 0 auto;
+                    font-size: 7.5em;
+                    
+                    > [class^="path"]:before
+                    {
+                        color: $gray;
+                    }
+                }
+            }
+            
+            .delete-btn
+            {
+                position: absolute;
+                top: 6px;
+                right: 6px;
+            }
+        }
+    }
+    
+    @media(min-width: 768px)
+    {
+        .preview-container
+        {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 25%;
+            min-width: 300px;
+            transform: translateX(100%);
+            border-left: 1px solid #CCCCCC;
+            border-top: none;
+            
+            &.in
+            {
+                transform: translateX(0);
+            }
+        }
+    }
+}

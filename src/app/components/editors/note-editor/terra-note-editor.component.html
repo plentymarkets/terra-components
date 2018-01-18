@@ -1,0 +1,8 @@
+<div>
+    <quill-editor [placeholder]="_placeholder"
+                  [(ngModel)]="_value"
+                  (onContentChanged)="ngModelChange.emit(_value)"
+                  [style]="{minHeight:'100px'}"
+                  [modules]="_modules">
+    </quill-editor>
+</div>
