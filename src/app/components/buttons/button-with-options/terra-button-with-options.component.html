@@ -1,0 +1,23 @@
+<terra-button #optionsToggleButton
+              [inputCaption]="inputCaption"
+              [inputIcon]="inputIcon"
+              [inputIsPrimary]="inputIsPrimary"
+              [inputIsSecondary]="inputIsSecondary"
+              [inputIsTertiary]="inputIsTertiary"
+              [inputIsDisabled]="inputIsDisabled"
+              [inputTooltipPlacement]="inputTooltipPlacement"
+              [inputTooltipText]="inputTooltipText"
+              (outputClicked)="toggleOptions()">
+    
+    <!-- options dropdown -->
+    <ul btn-outer *ngIf="_optionsToggle" class="context-menu" [ngClass]="{'alignRight': _alignRight}">
+        <li *ngFor="let option of inputOptions">
+            <a (click)="optionsClick(option)"
+               [ngClass]="{'disabled': option.isDisabled, 'alignRight': _alignRight}">
+                <span *ngIf="option.icon" class="left-icon" [ngClass]="option.icon"></span>
+                {{ option.caption }}
+            </a>
+        </li>
+    </ul>
+
+</terra-button>

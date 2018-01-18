@@ -1,0 +1,173 @@
+@import '../../../../../app/assets/styles/_variables.scss';
+
+.date-picker
+{
+    .mydp
+    {
+        border: none;
+        overflow: visible;
+        position: inherit;
+        height: 100%;
+        [class*=" icon-"]
+        {
+            font-family: mydatepicker !important;
+        }
+        .icon-cross,
+        .icon-calendar
+        {
+            font-size: 20px;
+        }
+        .selectiongroup
+        {
+            display: block;
+            overflow: visible;
+            position: inherit;
+            height: 100%;
+            
+            input
+            {
+                color: $grey-10;
+                border: none;
+                border-radius: $border-radius;
+                box-shadow: none;
+                padding: var(--input-padding, 13px 7px 0px 7px);
+                width: var(--input-width, calc(100% - 68px));
+                font-family: 'Roboto', sans-serif;
+                font-size: $font-size-3 !important;
+                font-weight: $font-weight-2;
+                text-align: var(--input-text-align, left);
+                outline: none !important;
+                transition: all .2s;
+                height: $terra-btn-md-height - 2;
+                line-height: $terra-btn-md-height - 2;
+                overflow: visible;
+                position: inherit;
+                display: inline-block;
+            }
+            .selbtngroup
+            {
+                width: 68px;
+                display: inline-block;
+                text-align: right;
+                vertical-align: bottom;
+                padding-right: 4px;
+                border-radius: $border-radius;
+                
+                .btnclear
+                {
+                    background-color: transparent;
+                    color: $brand-secondary;
+                    width: 22px;
+                    border: 0px;
+                    //css for clear selected myDateModel button
+                    .icon-cross
+                    {
+                        line-height: 1.5em !important;
+                        
+                        &:before
+                        {
+                            content: '\e910';
+                        }
+                    }
+                }
+                .btnpicker
+                {
+                    background-color: transparent;
+                    width: 24px;
+                    border: 0px;
+                    //css for myDateModel select button
+                    .icon-calendar
+                    {
+                        line-height: 1.5em !important;
+                        
+                        &:before
+                        {
+                            content: '\e925';
+                        }
+                    }
+                }
+            }
+        }
+        .selector
+        {
+            width: auto !important;
+            border: 1px solid $gray-light-2;
+            
+            &:before
+            {
+                border-bottom-color: $gray-light-2;
+            }
+            &:focus
+            {
+                border-color: $gray-light-2;
+                
+                &:before
+                {
+                    border-bottom-color: $gray-light-2;
+                }
+            }
+            .header
+            {
+                .icon-left
+                {
+                    &:focus
+                    {
+                        color: $black;
+                    }
+                    &:hover
+                    {
+                        color: $brand-primary;
+                    }
+                    &:before
+                    {
+                        content: '\e912';
+                    }
+                }
+                .icon-right
+                {
+                    &:focus
+                    {
+                        color: $black;
+                    }
+                    &:hover
+                    {
+                        color: $brand-primary;
+                    }
+                    &:before
+                    {
+                        content: '\e913';
+                    }
+                }
+                .monthlabel
+                {
+                    &:focus
+                    {
+                        color: $black;
+                    }
+                    &:hover
+                    {
+                        color: $brand-primary;
+                    }
+                }
+            }
+        }
+    }
+}
+
+div.disabled .selectiongroup
+{
+    background-color: $grey-2;
+    
+    input.selection
+    {
+        opacity: unset !important;
+        background-color: $grey-2;
+    }
+    
+    .selbtngroup
+    {
+        opacity: unset !important;
+        background-color: $grey-2;
+    }
+    
+}

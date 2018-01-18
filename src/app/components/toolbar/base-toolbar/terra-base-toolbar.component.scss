@@ -1,0 +1,21 @@
+.btn-toolbar
+{
+    background: var(--toolbar-background, $grey-2);
+    padding: var(--toolbar-padding, 4px);
+    margin: var(--toolbar-margin, 0 0 3px 0);
+    border-radius: var(--toolbar-border-radius, 0 0 $border-radius $border-radius);
+    border-bottom: var(--toolbar-border-bottom, none)
+}
+
+.sticky
+{
+    top: 0;
+    position: sticky;
+    z-index: $zindex-toolbar-sticky;
+}
+
+:host-context(.btn-toolbar .pager) //if pager placed in toolbar, style the toolbar contained in pager like this
+{
+    --toolbar-padding: 6px 4px 4px 4px;
+    --toolbar-margin: 0 0 -4px 0;
+}

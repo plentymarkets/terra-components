@@ -1,0 +1,22 @@
+<div class="info-box"
+     [ngClass]="{'add': inputAddBox,
+                 'empty': inputIsEmpty,
+                 'selected': inputIsSelected}">
+    <div class="info-box-inner"
+         [ngClass]="{'add': inputAddBox,
+                    'empty': inputIsEmpty,
+                    'has-footer': hasFooter}">
+        <div class="info-box-text pull-sm-left"
+             [ngClass]="{'add': inputAddBox,
+                        'empty': inputIsEmpty}">
+            <ng-content select="[body]"></ng-content>
+        </div>
+        <div class="btn-group-vertical" role="group">
+            <ng-content select="[buttons]"></ng-content>
+        </div>
+    </div>
+    <div class="info-box-footer" *ngIf="hasFooter">
+        <terra-taglist [inputTagList]="inputTagList"></terra-taglist>
+        <span *ngIf="inputId" class="info-box-id">#{{ inputId }}</span>
+    </div>
+</div>

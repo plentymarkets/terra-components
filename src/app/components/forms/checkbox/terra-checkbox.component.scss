@@ -1,0 +1,196 @@
+input[type="checkbox"]
+{
+    width: auto;
+    margin-right: 0.3em;
+}
+
+.disabled-chk
+{
+    cursor: not-allowed;
+    
+    .input-control.checkbox .check
+    {
+        cursor: not-allowed;
+    }
+}
+
+.input-control.checkbox .check.invalid
+{
+    border-color: $brand-secondary !important;
+}
+
+.checkbox
+{
+    display: inline-block;
+    cursor: pointer;
+}
+
+.checkbox-icon
+{
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: .125rem;
+    font-size: 1rem;
+}
+
+.input-control.checkbox
+{
+    margin: 0 0.1rem 0 0;
+    min-width: 1rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.input-control.checkbox input[type="checkbox"]
+{
+    position: absolute;
+    opacity: 0;
+    width: 0.0625rem;
+    height: 0.0625rem;
+}
+
+.input-control.checkbox .caption
+{
+    margin: 0 .125rem;
+    vertical-align: middle;
+}
+
+.input-control.checkbox .check
+{
+    width: 1.625rem;
+    height: 1.625rem;
+    background-color: #FFFFFF;
+    border: 1px #999999 solid;
+    padding: 0;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: $border-radius;
+}
+
+.input-control.checkbox .check:hover
+{
+    
+}
+
+.input-control.checkbox.text-left .check
+{
+    margin: 0 0 0 .3125rem;
+}
+
+.input-control.checkbox .check:focus
+{
+    border-color: #BCD9E2;
+}
+
+.input-control.checkbox .check:before
+{
+    position: absolute;
+    vertical-align: middle;
+    color: transparent;
+    font-size: 0;
+    content: "";
+    height: .3125rem;
+    width: .565rem;
+    background-color: transparent;
+    border-left: .1875rem solid;
+    border-bottom: .1875rem solid;
+    border-color: transparent;
+    left: 50%;
+    top: 50%;
+    margin-left: -0.325rem;
+    margin-top: -0.365rem;
+    display: block;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    transition: all 0.2s linear;
+}
+
+.input-control.checkbox input[type="checkbox"]:checked ~ .check:before
+{
+    border-color: #555555;
+    transition: all 0.2s linear;
+}
+
+.input-control.checkbox input[type="checkbox"]:disabled ~ .caption
+{
+    color: #CACACA;
+}
+
+.input-control.checkbox input[type="checkbox"]:disabled ~ .check
+{
+    border-color: #CACACA;
+}
+
+.input-control.checkbox input[type="checkbox"]:disabled:checked ~ .check:before
+{
+    border-color: #CACACA;
+}
+
+.input-control.checkbox input[data-show="indeterminate"] ~ .check:before,
+.input-control.checkbox input[data-show="indeterminate"]:checked ~ .check:before,
+.input-control.checkbox input.indeterminate:checked ~ .check:before,
+.input-control.checkbox input[type="checkbox"]:indeterminate ~ .check:before
+{
+    display: none;
+}
+
+.input-control.checkbox input[data-show="indeterminate"] ~ .check:after,
+.input-control.checkbox input[data-show="indeterminate"]:checked ~ .check:after,
+.input-control.checkbox input.indeterminate:checked ~ .check:after,
+.input-control.checkbox input[type="checkbox"]:indeterminate ~ .check:after
+{
+    position: absolute;
+    display: block;
+    content: "";
+    background-color: #1D1D1D;
+    height: .875rem;
+    width: .875rem;
+    left: 50%;
+    top: 50%;
+    margin-left: -0.4375rem;
+    margin-top: -0.4375rem;
+}
+
+.input-control.checkbox input[data-show="indeterminate"]:not(:checked) ~ .check:after
+{
+    background-color: transparent;
+}
+
+.input-control.checkbox input[data-show="indeterminate"]:disabled ~ .check:after
+{
+    background-color: #CACACA;
+}
+
+.input-control.small-check .check
+{
+    width: 1rem;
+    height: 1rem;
+    margin-bottom: .125rem;
+    border-radius: 4px;
+}
+
+.input-control.small-check .check:before
+{
+    width: 8px;
+    height: 4px;
+    margin-left: -4px;
+    margin-top: -3px;
+    border-width: 2px;
+}
+
+.input-control.small-check input[data-show="indeterminate"] ~ .check:after,
+.input-control.small-check input[data-show="indeterminate"]:checked ~ .check:after,
+.input-control.small-check input.indeterminate:checked ~ .check:after,
+.input-control.small-check input[type="checkbox"]:indeterminate ~ .check:after
+{
+    height: .13rem;
+    width: .375rem;
+    left: 50%;
+    top: 70%;
+    margin-left: -0.1875rem;
+    margin-top: -0.1875rem;
+}

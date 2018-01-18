@@ -1,6 +1,6 @@
 {
   "name": "@plentymarkets/terra-components",
-  "version": "1.2.3",
+  "version": "2.1.43-zlk",
   "homepage": "https://github.com/plentymarkets/terra-components#readme",
   "author": "plentymarkets",
   "description": "plentymarkets terra components",
@@ -79,8 +79,8 @@
     "run-sequence": "^2.0.0",
     "sass-loader": "^6.0.3",
     "sass-resources-loader": "1.2.1",
-    "style-loader": "^0.18.2",
-    "tslint": "^5.5.0",
+    "style-loader": "^0.18.2", 
+    "tslint": "^5.5.0", 
     "tslint-eslint-rules": "^4.1.1",
     "typescript": "~2.4.1",
     "url-loader": "^0.5.8",

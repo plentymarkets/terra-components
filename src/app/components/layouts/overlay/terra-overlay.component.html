@@ -1,0 +1,39 @@
+<div bsModal #viewChildOverlay="bs-modal" class="modal fade" tabindex="-1" role="dialog" (onHidden)="emitOutputOnHide()"
+     (onShown)="emitOutputOnShow()">
+    <div class="modal-dialog modal-lg" [ngClass]="{'modal-xl': inputIsExtraLarge, 'modal-lg': inputIsLarge, 'modal-sm': inputIsSmall}">
+        <div class="modal-content">
+            <div class="modal-header" *ngIf="inputIsCloseable && inputOverlayTitle">
+                <terra-button *ngIf="inputIsCloseable"
+                              [inputIsAlignRight]="true"
+                              inputIcon="icon-close"
+                              [inputIsLink]="true"
+                              (outputClicked)="hideOverlay()"></terra-button>
+                <h4 class="modal-title">{{inputOverlayTitle}}</h4>
+            </div>
+            <div class="modal-body">
+                <ng-content></ng-content>
+            </div>
+            <div class="modal-footer" *ngIf="inputPrimaryButtonInterface || inputSecondaryButtonInterface">
+
+                <terra-button *ngIf="inputSecondaryButtonInterface"
+                              [inputIsAlignRight]="false"
+                              [inputCaption]="inputSecondaryButtonInterface.caption"
+                              [inputTooltipText]="inputSecondaryButtonInterface.tooltipText"
+                              inputTooltipPlacement="bottom"
+                              [inputIsDisabled]="inputSecondaryButtonInterface.isDisabled"
+                              [inputIsLink]="true"
+                              (outputClicked)="inputSecondaryButtonInterface.clickFunction()"></terra-button>
+                
+                <terra-button *ngIf="inputPrimaryButtonInterface"
+                              [inputIsAlignRight]="false"
+                              [inputIsSecondary]="true"
+                              [inputCaption]="inputPrimaryButtonInterface.caption"
+                              [inputTooltipText]="inputPrimaryButtonInterface.tooltipText"
+                              inputTooltipPlacement="bottom"
+                              [inputIsDisabled]="inputPrimaryButtonInterface.isDisabled"
+                              (outputClicked)="inputPrimaryButtonInterface.clickFunction()"></terra-button>
+
+            </div>
+        </div>
+    </div>
+</div>

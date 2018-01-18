@@ -1,0 +1,27 @@
+<div class="filter-container">
+    <terra-base-toolbar>
+        <div class="btn-group" role="group">
+            <terra-button class="terra-button"
+                          inputTooltipText="{{inputSearchLabel}}"
+                          inputTooltipPlacement="bottom"
+                          [inputIcon]="'icon-search'"
+                          (outputClicked)="searchBtnClicked()">
+            </terra-button>
+            <terra-button class="terra-button"
+                          inputTooltipText="{{inputResetLabel}}"
+                          inputTooltipPlacement="bottom"
+                          [inputIcon]="'icon-reset'"
+                          (outputClicked)="resetBtnClicked()">
+            </terra-button>
+        </div>
+    </terra-base-toolbar>
+    
+    <div class="input-group-v">
+        <form (ngSubmit)="onSubmit()">
+            <ng-content></ng-content>
+            <button hidden="true" type="submit">
+                Submit
+            </button>
+        </form>
+    </div>
+</div>

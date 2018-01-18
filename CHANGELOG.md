@@ -1,3 +1,154 @@
+<a name="2.1.39-zlk"></a>
+# 2.1.39-zlk (05.01.2017)
+
+### Bug Fixes
+* **terra-text-input** **terra-number-input** **terra-double-input** 
+- fix missing label if value is 0
+- fix missing required (*) if no value is set
+* **terra-suggestion-box** added missing styles for disabled state
+* **terra-select-box** fix missing red colored border indication for invalid state
+
+### Feature
+* **context-menu-holder** added background color for entries and TerraButtonColorEnum for dedicated color values
+* **terra-portlet** add new input `inputHighlightPortlet` for component to highlight portlets. Edit css for highlighting portlets. 
+* **terra-data-table** add a group function to handle multiple items at once in the data table 
+* **terra-multi-selectbox** adjusted styling
+
+<a name="2.1.35-zlk"></a>
+# 2.1.35-zlk (13.12.2017)
+
+### Bug Fixes 
+* **terra-simple-table** **terra-data-table** fix setting of text-align
+* **TerraBaseService** improve repsonse type of service
+
+### Feature
+* **tooltips** updated tooltip background color 
+* **terra-text-input** **terra-number-input** updated tooltip background color 
+* **terra-slider** adjusted styling for terra-slider-component
+
+<a name="2.1.34-zlk"></a>
+# 2.1.34-zlk (13.12.2017)
+
+### Bug Fixes
+* **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
+* **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+* **terra-checkbox** fix issue with missing unique IDs
+
+### Feature
+* **terra-input** Add input for IBAN validation. Add function to validate input (OnBlur). Add Tooltip for invalid Iban.
+* **terra-checkbox-tree** component accomplished. Basic comportment implemented
+* **terra-file-browser** you are now able to download files
+* **terra-simple-table** new interface property `textAlign` that uses `TerraTextAlignEnum` to align captions in table header cells
+* **terra-data-table** constraint interface property `textAlign` with `TerraTextAlignEnum`. Property type string is deprecated
+
+<a name="2.1.33-zlk"></a>
+# 2.1.33-zlk (07.12.2017)
+
+### Feature
+* **terra-base-service** new method `addParamsToUrl` that generically appends query parameters to a given url
+* **terra-multi-split-view** added `setSelectedView` method to the config, to be able to manually select a specific view
+* **terra-pager** clicks on paging buttons are now debounced
+* **terra-data-table** only one paging request can now be pending at the same time
+* **terra-button-with-options** new component, that looks like a usual button, but opens a dropdown with options on click.
+* **terra-simple-table** Add hotkeys to control simple table:
+Enable hotkeys by setting `[inputEnableHotkeys]="true"` and `[inputUseHighlighting]="true"`
+Use `arrow up` / `arrow down` to navigate throught table rows. 
+Use `space` or `enter` to toggle checkbox of selected row 
+or `ctrl`/`cmd` + `space`/`enter` to toggle checkbox in table header.
+Toggling checkboxes required `[inputHasCheckbox]="true"`
+* **terra-simple-table** Add option to disable single rows to `TerraSimpleTableRowInterface`. Disabled rows may not be highlighted (using `inputUseHighlighting`) or selected when having checkboxes activated (`inputHasCheckbox`)
+* **terra-data-table** Add option to disable single rows to `TerraDataTableRowInterface`. Disabled rows may not be highlighted or selected when having checkboxes activated (`inputHasCheckbox`)
+* **terra-data-table-no-result-notice-component** new component, that can be used to display a notice whenever no results are available
+* **terra-number-input** removed spin-buttons
+* **terra-pager** limit page number input to a valid range
+* **terra-note** Added new component to display notes which auto adjust the height by its content.
+* **terra-select-box** Added input `inputOpenOnTop` for opening the select box drop down on top of input 
+* **terra-file-browser** Add new component to upload and manage files. Uses frontend storage by default and provides properties to register custom services to handle files from different resources. 
+* **terra-note-editor** new component based on [quill](https://quilljs.com/), that realizes an editor for notes with several features.
+* **terra-data-table** moved tooltips for data table headers inside the caption span for better alignment
+* **terra-slider** added input `inputIsDisabled` to disable the slider.
+* **terra-note-editor** adjust editor's default height
+* **terra-data-table** new interface property `href` that adds support for email and phone links in data table cells
+
+### Bug Fixes
+* **terra-multi-split-view** 
+	- disable public access to the data model, since it shouldn't be edited manually
+	- prevent adding two views with the same name to the same hierarchy level
+	- fix scope problems with nested split-views
+* **terra-navigator** reduce height if search bar is enabled
+* **terra-base-service** avoid to show error message if code of error is null
+* **terra-suggestion-box** displayed values are reinitialized if `inputListBoxValues` have changed
+* **terra-select-box** Drop down closes if user had clicked on another select box
+* **terra-pager** Added missing translation
+* **context-menu-holder** Adapted new styles and change structure to make components usable again
+* **terra-no-result-notice** Changed the component selector to terra-no-result-notice to fit established standard
+* **terra-tag-list** exchange interface for `inputTagList`
+* **terra-data-table** refactored `TerraDataTableCellInterface` to only use one dedicated property `data` to pass cell data
+* **terra-inputs** now using unique ids to reference the label for an input element
+
+<a name="1.4.2"></a>
+# 1.4.2 (20.09.2017)
+
+### Feature
+* **terra-multi-split-view** added new interface property _inputs_ to be able to pass a list of input variables to the component, that is added to the split view. This now allows data-binding as usual and will replace interface property _parameter_.
+* **terra-file-input** and **terra-file-browser** Added new components to manage files on S3-Bucket and display file-inputs as form control.
+* **interactables** Added directives to use [interact.js](http://interactjs.io/) inside terra-components
+* **terra-slider** Added new component to display sliders as form inputs
+* **terra-data-table** Added input 'inputHasPager' for separate usage of pager and table. The Date Table uses the pager by default.
+* **terra-suggestion-box** 
+	- Enable the user to navigate through the dropdown using the arrow keys
+	- Select the entered text when the input is focused, to be able to delete the input with one action
+	- Added optional Input `inputWithRecentlyUsed` to enable a list of recently used elements
+	- Allow a space separated list of search strings
+
+<a name="1.4.1"></a>
+# 1.4.1 (04.09.2017)
+
+### Feature
+* **terra-base-service** Generally catch exceptions that are returned from a rest call and show corresponding alert. The programmer is also still able to specify a custom exception handling function.
+
+<a name="1.4.0"></a>
+# 1.4.0 (04.09.2017) 
+
+### Feature
+* **terra-multi-split-view** 
+	- added function to close selected views via dropdown
+	- added new inputs _inputRouter_ and _inputComponentRoute_ to catch routing events and to access the routing config
+	- added _skipAnimation_ option to _updateViewport_ method to disable animation when changing the selected view
+* **terra-base-toolbar** Added input 'inputIsSticky' to set the toolbar sticky at top of containing container
+* **terra-color-picker** Added new component for selecting colors based on HTML5 color picker.  
+* **terra-portlet** Added input-property `inputIsCollapsable` to make portlets collapsable and properties 
+`inputIsCollapsed` and `inputIsCollapsedChange` to bind collapsed state from parent component.
+
+### Bug Fixes
+* **terra-multi-split-view**
+	- fixed bug when removing a view that is not selected (vertically)
+	- removed vertical animations for right positioning in plugins
+ 	- fixed problems with updating the viewport after resizing
+
+<a name="1.3.2"></a>
+# 1.3.2 (03.08.2017)
+### Feature
+* **terra-checkbox** added isValid property for Validation purposes
+* **terra-multi-split-view** 
+	- adjusted sliding animations; 
+	- fixed rendering of multiple views; 
+	- partially rebuild breadcrumbs on vertical selection changes; 
+	- added possibility to resize a view manually, after it has already been added to the split-view;
+	- added new interface property 'focusedWidth' to be able to automatically resize a view when it's focused.
+* **terra-info-box** restyled
+
+### Feature
+* **terra-suggestion-box** Allow html parsing
+
+### Bug Fixes
+* **terra-suggestion-box** Replace deprecated tooltipReplacement
+* **terra-tag** fix tag right margin in tag list
+* **terra-loading-spinner** fix bug with infinite loading animation
+* **terra-multi-split-view** 
+	- adjusted sliding animations; 
+	- fixed rendering of multiple views; 
+
 <a name="1.2.3"></a>
 # 1.2.3 (11.07.2017)
 
@@ -53,6 +204,12 @@
 * **terra-base-service** Fixed empty response handling
 
 <a name="1.1.0"></a>
+# 1.1.1 (08.05.2017)
+
+### Bug Fixes
+* **terra-button** changed colors and minor pseudo-class fixes
+
+<a name="1.1.0"></a>
 # 1.1.0 (05.05.2017)
 
 ### Feature
@@ -76,6 +233,12 @@
 * **terra-split-view** Fixed CSS for split view showing in an overlay.
 * **terra-data-table** Tooltip changes for cells and header.
 * **terra-simple-table** Tooltip changes for cells and header.
+
+<a name="1.0.3"></a>
+# 1.0.3 (28.04.2017)
+
+### Feature
+* **terra-navigator** Add double column navigation
 
 <a name="1.0.2"></a>
 # 1.0.2 (27.04.2017)

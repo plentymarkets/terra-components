@@ -1,0 +1,107 @@
+.radio-button
+{
+    display: inline-block;
+}
+
+.input-control.radio-button
+{
+    margin: 0 0.1rem;
+    min-width: 1rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    .caption
+    {
+        margin: 0 .125rem;
+        vertical-align: middle;
+    }
+    
+    .check
+    {
+        width: 1.625rem;
+        height: 1.625rem;
+        background-color: $white;
+        border: 1px $gray-light-2 solid;
+        border-radius: 100%;
+        padding: 0;
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        
+        &:focus
+        {
+            border-color: $brand-primary-light;
+        }
+        
+        &:before
+        {
+            position: absolute;
+            vertical-align: middle;
+            color: transparent;
+            font-size: 0;
+            content: "";
+            height: .565rem;
+            width: .565rem;
+            background-color: transparent;
+            border: .1875rem solid transparent;
+            border-radius: 100%;
+            left: 50%;
+            top: 50%;
+            margin-left: -0.325rem;
+            margin-top: -0.365rem;
+            display: block;
+        }
+        
+        &:hover
+        {
+            cursor: pointer;
+        }
+    }
+    
+    .check.active:before
+    {
+        border-color: $gray;
+        transition: all 0.2s linear;
+    }
+    
+    .check.disabled
+    {
+        border-color: $gray-light-3;
+        cursor: not-allowed;
+    }
+    .check.disabled:before
+    {
+        border-color: $white;
+    }
+    .check.disabled.active:before
+    {
+        border-color: $gray-light-3;
+    }
+}
+
+.caption.disabled
+{
+    color: $gray-light-3;
+    cursor: not-allowed;
+}
+
+.input-control.small-check
+{
+    .check
+    {
+        width: 1rem;
+        height: 1rem;
+        margin-bottom: .125rem;
+        
+        &:before
+        {
+            width: 8px;
+            height: 8px;
+            margin-left: -4px;
+            margin-top: -4px;
+            border-width: 4px;
+        }
+    }
+}

@@ -1,0 +1,42 @@
+@import "../terra-input.component";
+
+.input-unit-v1
+{
+    label
+    {
+        
+        input[type="color"]
+        {
+            visibility: hidden;
+            width: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .color-picker
+        {
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 34px;
+            height: 34px;
+            border-left: 1px solid $gray-light-2;
+            
+            [class^="icon-"]
+            {
+                position: absolute;
+                bottom: 2px;
+                right: 2px;
+            }
+            
+            &.text-invert
+            {
+                color: #FFFFFF;
+            }
+        }
+        
+    }
+    
+}

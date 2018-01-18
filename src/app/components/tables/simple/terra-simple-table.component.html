@@ -1,0 +1,71 @@
+<div class="table-responsive" #scrollContainer>
+    <table class="table simple-table" tabindex="0" (keydown)="onKeydown($event)">
+        <thead>
+        <tr *ngIf="inputHeaderList">
+            <th *ngIf="inputHasCheckboxes"
+                width="40px">
+                <terra-checkbox #viewChildHeaderCheckbox
+                                (change)="onHeaderCheckboxChange()"
+                                [value]="_headerCheckbox.checked"
+                                [isIndeterminate]="_headerCheckbox.isIndeterminate">
+                </terra-checkbox>
+            </th>
+            <ng-template ngFor let-header [ngForOf]="inputHeaderList">
+                <th width="{{header.width}}"
+                    [container]="'body'"
+                    [placement]="checkTooltipPlacement(header.tooltipPlacement)"
+                    [tooltip]="header.tooltipText"
+                    [isDisabled]="!header.tooltipText || header.tooltipText.length == 0"
+                    [ngStyle]="{ 'text-align': header.textAlign } ">
+                    <span>{{header.caption}}</span>
+                </th>
+            </ng-template>
+        </tr>
+        </thead>
+        <tbody [class.highlighting]="inputUseHighlighting">
+        <ng-template ngFor let-row [ngForOf]="inputRowList">
+            <tr [ngClass]="row.textColorCss"
+                [ngStyle]="{'background-color': row.backgroundColor}"
+                [class.isActive]="row === inputHighlightedRow"
+                [class.disabled]="row.disabled"
+                (click)="onRowClick(row)">
+                <td *ngIf="inputHasCheckboxes" width="40px" (click)="onCheckboxClick($event)">
+                    <terra-checkbox [value]="isSelectedRow(row)"
+                                    [inputIsDisabled]="row.disabled"
+                                    (change)="onRowCheckboxChange(row)">
+                    </terra-checkbox>
+                </td>
+                <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
+                    <template #tdTooltip>
+                        <div [innerHTML]="cell.tooltipText"></div>
+                    </template>
+                    <td [container]="'body'"
+                        width="{{ inputHeaderList[i].width }}"
+                        [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
+                        [tooltip]="tdTooltip"
+                        [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0">
+                        <span [ngClass]="cell.icon"></span>
+                        <span [innerHTML]="cell.caption"></span>
+                        <div class="btn-group" *ngIf="cell.buttonList" [ngClass]="{'pull-xs-right': cell.buttonListAlignRight}">
+                            <ng-template ngFor let-button [ngForOf]="cell.buttonList">
+                                <terra-button *ngIf="!button.isHidden"
+                                              (outputClicked)="button.clickFunction($event)"
+                                              [inputIcon]="button.icon"
+                                              [inputIsPrimary]="button.isPrimary"
+                                              [inputIsSecondary]="button.isSecondary"
+                                              [inputIsTertiary]="button.isTertiary"
+                                              [inputIsDisabled]="button.isDisabled || row.disabled "
+                                              [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
+                                              [inputCaption]="button.caption"
+                                              [inputIsSmall]="true"
+                                              [inputTooltipText]="button.tooltipText">
+                                </terra-button>
+                            </ng-template>
+                        </div>
+                    </td>
+                </ng-template>
+            </tr>
+        </ng-template>
+        </tbody>
+    </table>
+</div>

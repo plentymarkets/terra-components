@@ -1,0 +1,45 @@
+<terra-base-toolbar *ngIf="inputShowBreadcrumbs" class="terra-breadcrumbs-wrapper">
+    <ul class="terra-breadcrumbs">
+        <ng-template ngFor let-module [ngForOf]="modules" let-index="index">
+            <li class="module{{index}}"
+                (click)="setSelectedView(module.currentSelectedView)">
+                <div class="{{ module.identifier }}"
+                     [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
+                    <span class="ellipsis">{{module.currentSelectedView.name}}</span>
+                    <a class="icon-caret" *ngIf="module.views.length > 1">
+                        <ul class="context-menu">
+                            <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
+                                <li>
+                                    <a class="{{ view.mainComponentName + '_' + i }} "
+                                       (click)="setSelectedView(view)">
+                                        {{ view.name }}
+                                        <span class="right-icon icon-cancel" (click)="removeView(view,$event)"></span>
+                                    </a>
+                                </li>
+                            </ng-template>
+                        </ul>
+                    </a>
+                </div>
+                <a class="icon-next"></a>
+            </li>
+        </ng-template>
+    </ul>
+</terra-base-toolbar>
+<div *ngIf="modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
+    <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first" let-index="index">
+        <div class="view {{ module.width }}" id="splitview{{splitViewId}}_module{{index}}"
+             [ngClass]="{'first': first, 'last': last, isBackgroundColorGrey: module.isBackgroundColorGrey, 'workaround': false}">
+            <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
+                <div *ngIf="module.currentSelectedView === view" class="{{ view.mainComponentName + '_' + i}} fadeIn">
+                    <terra-dynamic-module-loader
+                        [inputModule]="view.module"
+                        [inputParameter]="view.parameter"
+                        [inputInputs]="view.inputs"
+                        [inputView]="view"
+                        [inputMainComponentName]="view.mainComponentName">
+                    </terra-dynamic-module-loader>
+                </div>
+            </ng-template>
+        </div>
+    </ng-template>
+</div>

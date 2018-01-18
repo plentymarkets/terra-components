@@ -1,0 +1,29 @@
+<div *ngIf="inputStorageObject">
+    <terra-base-toolbar *ngIf="_canHandleMetadata">
+        <div class="btn-group" role="group">
+            <terra-button inputIcon="icon-save"
+                          [inputTooltipText]="_translationPrefix + '.saveMetadata' | translate:lang"
+                          (outputClicked)="updateMetadata()">
+            </terra-button>
+        </div>
+    </terra-base-toolbar>
+    
+    <div class="image-preview">
+        <div class="preview-container">
+            <div [style.background-image]="'url(' + inputStorageObject.previewUrl + ')'"></div>
+        </div>
+        
+        <div *ngIf="_canHandleMetadata">
+            <terra-text-input [inputName]="_translationPrefix + '.imageSize' | translate:lang"
+                              [inputIsReadonly]="true"
+                              [ngModel]="_metadata.width ? (_metadata.width + ' x ' + _metadata.height + ' px') : '-'"></terra-text-input>
+            
+            <terra-text-input [inputName]="_translationPrefix + '.altText' | translate:lang"
+                              [(ngModel)]="_metadata.altText"></terra-text-input>
+        </div>
+    </div>
+    
+    <div class="loader" *ngIf="_isLoading">
+        <div class="icon-loading"></div>
+    </div>
+</div>
