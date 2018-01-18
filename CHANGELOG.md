@@ -37,6 +37,7 @@
 ### Feature
 * **terra-input** Add input for IBAN validation. Add function to validate input (OnBlur). Add Tooltip for invalid Iban.
 * **terra-checkbox-tree** component accomplished. Basic comportment implemented
+* **terra-file-browser** you are now able to download files
 * **terra-simple-table** new interface property `textAlign` that uses `TerraTextAlignEnum` to align captions in table header cells
 * **terra-data-table** constraint interface property `textAlign` with `TerraTextAlignEnum`. Property type string is deprecated
 
