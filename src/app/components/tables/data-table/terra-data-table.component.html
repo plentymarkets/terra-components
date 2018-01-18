@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<terra-pager *ngIf="inputHasPager && _rowList && _rowList.length > 0"
+<terra-pager *ngIf="inputHasPager && rowList && rowList.length > 0"
              [inputPagingSize]="pagingSize"
              [inputDefaultPagingSize]="defaultPagingSize"
              [inputPagingData]="pagingData"
@@ -25,14 +25,14 @@
     <table class="table data-table">
         <thead>
         <tr>
-            <th *ngIf="inputHasCheckboxes && _rowList.length" width="25px">
+            <th *ngIf="inputHasCheckboxes && rowList.length" width="25px">
                 <terra-checkbox #viewChildHeaderCheckbox
                                 (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
                                 [value]="_isHeaderCheckboxChecked">
                 </terra-checkbox>
             </th>
-            <ng-template ngFor let-header [ngForOf]="_headerList">
-                <th *ngIf="!header.isHidden && _rowList && _rowList.length > 0"
+            <ng-template ngFor let-header [ngForOf]="headerList">
+                <th *ngIf="!header.isHidden && rowList && rowList.length > 0"
                     width="{{header.width}}px"
                     [ngStyle]="{ 'text-align': getTextAlign(header) }">
                     <span [container]="'body'"
@@ -45,8 +45,8 @@
             </ng-template>
         </tr>
         </thead>
-        <tbody *ngIf="_rowList && _rowList.length > 0">
-        <ng-template ngFor let-row [ngForOf]="_rowList">
+        <tbody *ngIf="rowList && rowList.length > 0">
+        <ng-template ngFor let-row [ngForOf]="rowList">
             <tr [ngClass]="{'selected': row.selected, 'isActive': row.isActive}"
                 [class.disabled]="row.disabled"
                 [context-menu]="row.contextMenuLinkList">
@@ -69,7 +69,7 @@
                         [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
                         [tooltip]="tdTooltip"
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
-                        [ngStyle]="{ 'text-align': getTextAlign(_headerList[i]) }">
+                        [ngStyle]="{ 'text-align': getTextAlign(headerList[i]) }">
                         <span [ngStyle]="{color: cell.color}">
                             <span *ngIf="cell.icon" [ngClass]="cell.icon"></span>
                             <span *ngIf="!cell.href">{{cell.caption}}</span>
@@ -100,7 +100,7 @@
                     <!-- new cell interface -->
                     <td *ngIf="!cell.isHidden && cell.data"
                         [ngSwitch]="getCellDataType(cell.data)"
-                        [ngStyle]="{ 'text-align': getTextAlign(_headerList[i]) }"
+                        [ngStyle]="{ 'text-align': getTextAlign(headerList[i]) }"
                         (click)="rowClicked(cell, row)"
                         [tooltip]="tdTooltip"
                         [container]="'body'"
@@ -153,7 +153,7 @@
         </tbody>
     </table>
     
-    <div *ngIf="!_rowList || _rowList && rowList.length < 1 && (
+    <div *ngIf="!rowList || rowList && rowList.length < 1 && (
             (inputNoResultButtons && inputNoResultButtons.length > 0)
          || (inputNoResultTextPrimary && inputNoResultTextPrimary.length > 0) 
          || (inputNoResultTextSecondary && inputNoResultTextSecondary.length > 0) )">
