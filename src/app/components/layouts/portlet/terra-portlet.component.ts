@@ -14,7 +14,7 @@ import {
     trigger
 } from "@angular/animations";
 import { isNullOrUndefined } from 'util';
-import { TerraButtonInterface } from '../button/data/terra-button.interface';
+import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 
 @Component({
     selector:   'terra-portlet',
