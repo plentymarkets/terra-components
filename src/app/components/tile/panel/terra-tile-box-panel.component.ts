@@ -16,10 +16,10 @@ export class TerraTileBoxPanelComponent
 {
     @Input() inputTileBoxList:Array<TerraTileBoxInterface>;
     @Input() inputIsViewToggleable:boolean;
-    private _selectedTileBoxList:Array<TerraTileBoxInterface> = [];
+    public selectedTileBoxList:Array<TerraTileBoxInterface> = [];
+    public viewStyle:boolean = false;
 
     private _draggedIndex:number;
-    private _viewStyle:boolean = false;
 
     constructor()
     {
@@ -30,15 +30,15 @@ export class TerraTileBoxPanelComponent
     {
         tile.isSelected = !tile.isSelected;
 
-        let index = this._selectedTileBoxList.indexOf(tile);
+        let index = this.selectedTileBoxList.indexOf(tile);
 
         if(tile.isSelected && index == -1)
         {
-            this._selectedTileBoxList.push(tile);
+            this.selectedTileBoxList.push(tile);
         }
         else if(!tile.isSelected && index != -1)
         {
-            this._selectedTileBoxList.splice(index, 1)
+            this.selectedTileBoxList.splice(index, 1)
         }
     }
 
@@ -117,28 +117,6 @@ export class TerraTileBoxPanelComponent
                 }
             }
         }
-    }
-
-
-    public get selectedTileBoxList():Array<TerraTileBoxInterface>
-    {
-        return this._selectedTileBoxList;
-    }
-
-    public set selectedTileBoxList(value:Array<TerraTileBoxInterface>)
-    {
-        this._selectedTileBoxList = value;
-    }
-
-
-    public get viewStyle():boolean
-    {
-        return this._viewStyle;
-    }
-
-    public set viewStyle(value:boolean)
-    {
-        this._viewStyle = value;
     }
 
     private toggleView():void

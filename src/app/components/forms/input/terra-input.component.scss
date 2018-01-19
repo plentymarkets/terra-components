@@ -181,7 +181,7 @@ textarea
     text-align: var(--input-text-align, left);
     outline: none !important;
     transition: all .2s;
-    height: $terra-btn-md-height - 2;
+    height: var(--input-height, $terra-btn-md-height - 2);
     line-height: $terra-btn-md-height - 2;
     
     &.isSmall
