@@ -71,11 +71,11 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         return this._selectedValue.value;
     }
 
+    public isValid:boolean;
     private _value:number | string;
     private _selectedValue:TerraSelectBoxValueInterface;
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
-    private _isValid:boolean;
     private _isInit:boolean;
 
     /**
@@ -97,7 +97,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 
     ngOnInit()
     {
-        this._isValid = true;
+        this.isValid = true;
         this._toggleOpen = false;
         this._hasLabel = this.inputName != null;
         this._isInit = true;
@@ -171,16 +171,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             this.onTouchedCallback();
             this.onChangeCallback(this.inputListBoxValues[0].value);
         }
-    }
-
-    public get isValid():boolean
-    {
-        return this._isValid;
-    }
-
-    public set isValid(value:boolean)
-    {
-        this._isValid = value;
     }
 
     private set toggleOpen(value)

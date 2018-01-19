@@ -38,17 +38,14 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
 
     private onCheckboxValueChange(leaf:TerraCheckboxLeafInterface):void
     {
-        this.reverseLeafState(leaf);
+        this.resetIndeterminateLeafState(leaf);
         this.recursiveUpdateChildLeafs(leaf);
         this.recursiveUpdateParentLeafs(leaf);
     }
 
-    private reverseLeafState(leaf:TerraCheckboxLeafInterface)
+    private resetIndeterminateLeafState(leaf:TerraCheckboxLeafInterface)
     {
-        //reverse flag checkboxChecked
-        leaf.checkboxChecked = !leaf.checkboxChecked;
-
-        // reset the isIndeterminate flag on every change
+        // reset the isIndeterminate flag on every state change
         leaf.isIndeterminate = false;
     }
 

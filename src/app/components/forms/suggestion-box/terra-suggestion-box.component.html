@@ -3,7 +3,7 @@
      tooltip="{{inputTooltipText}}"
      [isDisabled]="!inputTooltipText"
      [ngClass]="{
-                  'error': !_isValid,
+                  'error': !isValid,
                   'disabled': inputIsDisabled,
                   'open': _toggleOpen
                 }"
@@ -15,7 +15,7 @@
                       [inputName]="inputName"
                       (outputOnInput)="onChange()"
                       (click)="onInputClick($event)"
-                      [(ngModel)]="_selectedValue.caption">
+                      [(ngModel)]="selectedValue.caption">
     </terra-text-input>
     
     <!-- suggestions -->
@@ -31,7 +31,7 @@
         
         <span *ngFor="let item of _displayListBoxValues"
               (click)="select(item)"
-              [ngClass]="{active: item.value === _selectedValue?.value, selected: item.value === _tmpSelectedValue?.value}">
+              [ngClass]="{active: item.value === selectedValue?.value, selected: item.value === _tmpSelectedValue?.value}">
             <span class="{{item.icon}}" *ngIf="item.icon"></span>
             <span [innerHtml]="item.caption"></span>
         </span>
