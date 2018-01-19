@@ -343,6 +343,18 @@ fieldset[disabled] a.btn
     pointer-events: none;
 }
 
+:host-context(.btn-block)
+{
+    .btn,
+    .btn-handler
+    {
+        display: block;
+        float: none;
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
 ////////////// Button Group (Horizontal) //////////////
 
 :host-context(.btn-group)
