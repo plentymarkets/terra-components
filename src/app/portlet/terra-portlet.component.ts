@@ -38,7 +38,6 @@ import { TerraButtonInterface } from '../button/data/terra-button.interface';
 })
 export class TerraPortletComponent implements OnChanges
 {
-
     @Input() inputHighlightPortlet:boolean = false;
 
     @Input() inputPortletHeader:string;
@@ -48,7 +47,10 @@ export class TerraPortletComponent implements OnChanges
     @Input() inputCollapsed:boolean = false;
 
     @Output() inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
-    
+
+    /**
+     * @description Sets the given buttons as a button group to the right side of the portlet header.
+     */
     @Input() inputButtonList:Array<TerraButtonInterface> = [];
 
     private get collapsedState():string
