@@ -1,0 +1,39 @@
+@import "~bootstrap/scss/mixins";
+@import "../buttons/button/terra-button.component";
+@import "../forms/select-box/terra-select-box.component";
+@import "../forms/input/terra-input.component";
+
+.pager
+{
+    --input-text-align: center;
+    --toolbar-border-radius: $border-radius $border-radius 0 0;
+    --toolbar-margin: 0;
+    --select-box-width: 65px;
+    --select-box-wrapper-margin-bottom: 0;
+    --input-unit-v1-margin-bottom: 0;
+    --input-width: 34px;
+    --input-padding: .5rem .15rem;
+    --btn-sm-padding: 0 7px;
+    
+    .form-group
+    {
+        margin: 0;
+        float: left;
+    }
+    .pager-text
+    {
+        line-height: $terra-btn-sm-height;
+        float: left;
+        font-size: $font-size-2;
+        font-weight: $font-weight-2;
+        margin: 0 6px;
+    }
+    .terra-select-box
+    {
+        float: left;
+    }
+    .btn-group
+    {
+        padding-right: 7px;
+    }
+}

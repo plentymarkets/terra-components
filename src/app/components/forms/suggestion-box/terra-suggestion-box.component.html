@@ -1,0 +1,40 @@
+<div class="select-box-wrapper"
+     placement="{{inputTooltipPlacement}}"
+     tooltip="{{inputTooltipText}}"
+     [isDisabled]="!inputTooltipText"
+     [ngClass]="{
+                  'error': !isValid,
+                  'disabled': inputIsDisabled,
+                  'open': _toggleOpen
+                }"
+     (click)="onClick($event)"
+     (keydown)="onKeyDown($event)"
+     container="body">
+    
+    <terra-text-input [inputIsDisabled]="inputIsDisabled"
+                      [inputName]="inputName"
+                      (outputOnInput)="onChange()"
+                      (click)="onInputClick($event)"
+                      [(ngModel)]="selectedValue.caption">
+    </terra-text-input>
+    
+    <!-- suggestions -->
+    <div class="select-box-dropdown">
+        <span *ngIf="_displayListBoxValues.length === 0" (click)="$event.stopPropagation()">
+            <i>{{ _noEntriesTextKey | translate:lang }} </i>
+        </span>
+        
+        <span *ngIf="_displayListBoxValues.length > 0 && inputWithRecentlyUsed" class="select-box-dropdown-heading"
+              (click)="$event.stopPropagation()">
+            <i><b> {{ _listBoxHeadingKey | translate:lang }} </b></i>
+        </span>
+        
+        <span *ngFor="let item of _displayListBoxValues"
+              (click)="select(item)"
+              [ngClass]="{active: item.value === selectedValue?.value, selected: item.value === _tmpSelectedValue?.value}">
+            <span class="{{item.icon}}" *ngIf="item.icon"></span>
+            <span [innerHtml]="item.caption"></span>
+        </span>
+    </div>
+
+</div>

@@ -1,0 +1,26 @@
+<div class="input-unit-v1"
+     placement="{{inputTooltipPlacement}}"
+     tooltip="{{inputTooltipText}}"
+     [isDisabled]="!inputTooltipText"
+     [ngClass]="{'error': !isValid, 'disabled': isDisabled, 'isSmall': inputIsSmall}"
+     container="body">
+
+    <label *ngIf="(_innerValue || _innerValue === 0) && inputName" htmlFor="{{_id}}">{{inputName}}
+        <span *ngIf="inputIsRequired">*</span>
+    </label>
+    <input id="{{_id}}"
+           [type]="inputIsPassword?'password':'text'"
+           [(ngModel)]="value"
+           name="{{inputName}}"
+           (blur)="onCustomBlur(value)"
+           (input)="onInput()"
+           autocomplete="off"
+           [disabled]="isDisabled"
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0 }"
+           pattern="{{regex}}"
+           maxlength="{{inputMaxLength}}"
+           minlength="{{inputMinLength}}"
+           [readonly]="inputIsReadonly"
+           placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
+           required>
+</div>
