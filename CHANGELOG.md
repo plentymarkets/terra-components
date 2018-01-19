@@ -1,3 +1,9 @@
+<a name="2.1.44-zlk"></a>
+# 2.1.44-zlk (DD.MM.YYYY)
+
+### Bug Fixes
+* **terra-button** fix styling when inputIsLink is used
+
 <a name="2.1.39-zlk"></a>
 # 2.1.39-zlk (05.01.2017)
 

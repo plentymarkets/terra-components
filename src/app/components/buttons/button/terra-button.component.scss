@@ -334,6 +334,10 @@ button:focus
 button.btn:focus
 {
     background-color: $grey-9;
+    
+    &.btn-link {
+        background-color: transparent;
+    }
 }
 
 // Future-proof disabling of clicks on `<a>` elements
