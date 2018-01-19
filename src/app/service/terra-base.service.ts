@@ -113,54 +113,56 @@ export class TerraBaseService
             }
             else
             {
-                this.handleException(error);
-            }
+                // START Very unclean workaround! Normally we should get a 403 status code as response
+                // when user has no permission
+                let errorMessage:string = this.getErrorMessage(error);
 
-            // START Very unclean workaround! Normally we should get a 403 status code as response
-            // when user has no permission
-            let errorMessage:string = this.getErrorMessage(error);
+                let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage();
 
-            let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage();
-
-            if(error.status == 401 && errorMessage === "This action is unauthorized.")
-            {
-                if(this._isPlugin)
+                if(error.status == 401 && errorMessage === "This action is unauthorized.")
                 {
-                    this._alert.addAlertForPlugin({
-                        msg:              missingUserPermissionAlertMessage,
-                        type:             'danger',
-                        dismissOnTimeout: 0
-                    });
-                }
-                else
-                {
-                    this._alert.addAlert({
-                        msg:              missingUserPermissionAlertMessage,
-                        type:             'danger',
-                        dismissOnTimeout: 0
-                    });
-                }
-            }
-            // END Very unclean workaround!
-            else if(error.status == 401)
-            {
-                let event:CustomEvent = new CustomEvent('login');
-                //Workaround for plugins in Angular (loaded via iFrame)
-                if(window.parent !== null)
-                {
-                    //workaround for plugins in GWT (loaded via iFrame)
-                    if(window.parent.window.parent !== null)
+                    if(this._isPlugin)
                     {
-                        window.parent.window.parent.window.dispatchEvent(event);
+                        this._alert.addAlertForPlugin({
+                            msg:              missingUserPermissionAlertMessage,
+                            type:             'danger',
+                            dismissOnTimeout: 0
+                        });
                     }
                     else
                     {
-                        window.parent.window.dispatchEvent(event);
+                        this._alert.addAlert({
+                            msg:              missingUserPermissionAlertMessage,
+                            type:             'danger',
+                            dismissOnTimeout: 0
+                        });
+                    }
+                }
+                // END Very unclean workaround!
+                else if(error.status == 401)
+                {
+                    let event:CustomEvent = new CustomEvent('login');
+                    //Workaround for plugins in Angular (loaded via iFrame)
+                    if(window.parent !== null)
+                    {
+                        //workaround for plugins in GWT (loaded via iFrame)
+                        if(window.parent.window.parent !== null)
+                        {
+                            window.parent.window.parent.window.dispatchEvent(event);
+                        }
+                        else
+                        {
+                            window.parent.window.dispatchEvent(event);
+                        }
+                    }
+                    else
+                    {
+                        window.dispatchEvent(event);
                     }
                 }
                 else
                 {
-                    window.dispatchEvent(event);
+                    this.handleException(error);
                 }
             }
 
