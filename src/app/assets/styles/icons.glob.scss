@@ -60,6 +60,22 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-colorpicker
+{
+    &:before
+    {
+        content: $icon-colorpicker;
+    }
+}
+
+.icon-servicecenter
+{
+    &:before
+    {
+        content: $icon-servicecenter;
+    }
+}
+
 .icon-open_external_link
 {
     &:before

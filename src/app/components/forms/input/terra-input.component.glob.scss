@@ -1,0 +1,37 @@
+@import '../../../../app/assets/styles/_variables.scss';
+
+.input-group
+{
+    margin-bottom: 12px;
+    
+    & > .input-group-text
+    {
+        width: 100%;
+        
+        .input-unit-v1,
+        .select-box-wrapper,
+        .btn
+        {
+            margin-bottom: 0;
+            border-radius: 0;
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
+        }
+        
+    }
+    
+    & > .input-group-btn
+    {
+        width: auto;
+        
+        .input-unit-v1,
+        .select-box-wrapper,
+        .btn
+        {
+            margin-bottom: 0;
+            border-radius: 0;
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+        }
+    }
+}
