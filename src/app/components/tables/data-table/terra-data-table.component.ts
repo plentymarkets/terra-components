@@ -77,6 +77,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
+    @Output() outputHeaderCheckboxChanged:EventEmitter<boolean> = new EventEmitter();
     @Output() outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<D>>> = new EventEmitter();
 
     public headerList:Array<TerraDataTableHeaderCellInterface>;
@@ -132,6 +133,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     private onHeaderCheckboxChange(isChecked:boolean):void
     {
+        this.outputHeaderCheckboxChanged.emit(isChecked);
+
         this._isHeaderCheckboxChecked = isChecked;
 
         this.rowList.forEach((row) =>
