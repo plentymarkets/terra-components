@@ -3,7 +3,7 @@ import {
     EventEmitter,
     forwardRef,
     Input,
-    Output,
+    Output
 } from '@angular/core';
 import {
     ControlValueAccessor,
