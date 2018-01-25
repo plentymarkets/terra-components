@@ -1,14 +1,16 @@
 import {
+    ChangeDetectorRef,
     Component,
     EventEmitter,
     forwardRef,
     Input,
-    Output
+    Output,
 } from '@angular/core';
 import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
+import { isNullOrUndefined } from 'util';
 
 let nextId:number = 0;
 
@@ -58,15 +60,13 @@ export class TerraCheckboxComponent implements ControlValueAccessor
 
     //Placeholders for the callbacks which are later provided
     //by the Control Value Accessor
-    private onTouchedCallback:() => void = () =>
-    {
+    private onTouchedCallback:() => void = () => {
     };
 
-    private onChangeCallback:(_:any) => void = (_) =>
-    {
+    private onChangeCallback:(_:any) => void = (_) => {
     };
 
-    constructor()
+    constructor(private cdRef:ChangeDetectorRef)
     {
         // generate the id of the input instance
         this._id = `checkbox_#${nextId++}`;
@@ -82,18 +82,17 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     @Input()
     public set value(v:boolean)
     {
-        this._isIndeterminate = false;
-
-        if(v !== this._innerValue)
+        if(!isNullOrUndefined(v) && v !== this._innerValue)
         {
+            this._isIndeterminate = false;
             this._innerValue = v;
             this.onChangeCallback(v);
         }
     }
 
-    onChange()
+    onChange(event:boolean)
     {
-        this.valueChange.emit(null);
+        this.valueChange.emit(event);
     }
 
     //From ControlValueAccessor interface
@@ -101,7 +100,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     {
         if(value !== this._innerValue)
         {
-            this._innerValue = value;
+            this.value = value;
         }
     }
 
@@ -127,7 +126,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     {
         if(value)
         {
-            this._innerValue = false;
+            this._innerValue = null;
         }
         this._isIndeterminate = value;
     }

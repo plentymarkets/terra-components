@@ -2,9 +2,9 @@
     <label class="input-control checkbox small-check" style="margin-bottom: .5rem; display: inline;">
         <input type="checkbox"
                [(ngModel)]="value"
-               (change)="onChange()"
+               (ngModelChange)="onChange($event)"
                [disabled]="inputIsDisabled"
-               [indeterminate]="isIndeterminate"
+               [indeterminate]="_isIndeterminate"
                id="{{_id}}">
         <span class="check" [ngClass]="{ 'invalid': !isValid }"></span>
         <span *ngIf="inputIcon" class="checkbox-icon" [ngClass]="inputIcon"></span>
