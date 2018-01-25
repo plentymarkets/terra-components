@@ -5,7 +5,9 @@
 
 ### Feature
 * **terra-portlet** add new input `inputButtonList` to add a button group into the portlet header
-* **terra-button** add properties `isSmall` and `isLarge` to button interface
+* **terra-button** 
+- add properties `isSmall` and `isLarge` to button interface
+- fix styling when inputIsLink is used
 
 <a name="2.1.39-zlk"></a>
 # 2.1.39-zlk (05.01.2017)
