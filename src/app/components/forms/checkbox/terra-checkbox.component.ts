@@ -1,5 +1,4 @@
 import {
-    ChangeDetectorRef,
     Component,
     EventEmitter,
     forwardRef,
@@ -66,7 +65,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     private onChangeCallback:(_:any) => void = (_) => {
     };
 
-    constructor(private cdRef:ChangeDetectorRef)
+    constructor()
     {
         // generate the id of the input instance
         this._id = `checkbox_#${nextId++}`;
