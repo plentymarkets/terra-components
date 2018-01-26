@@ -1,6 +1,8 @@
-<div class="info-handler icon-icon_questionmark_bck">
+<div class="info-handler icon-icon_questionmark_bck"
+     (mouseenter)="updateTextPosition()">
 
 </div>
 <span [innerHtml]="inputText"
-      class="info-text">
+      class="info-text"
+      [ngStyle]="{ 'width': _locationCss.width, 'height': _locationCss.height, 'top': _locationCss.top, 'left': _locationCss.left} ">
 </span>

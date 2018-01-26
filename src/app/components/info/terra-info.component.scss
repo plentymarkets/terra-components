@@ -42,11 +42,11 @@
     font-size: $font-size-5;
 }
 
-.info-text {
+.info-text
+{
     visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
+    background: black;
+    color: #FFFFFF;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
@@ -54,6 +54,7 @@
     z-index: $zindex-info-text;
 }
 
-.info-handler:hover ~ .info-text {
+.info-handler:hover ~ .info-text
+{
     visibility: visible;
 }
