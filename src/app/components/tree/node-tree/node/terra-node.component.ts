@@ -1,6 +1,7 @@
 import {
     Component,
-    Input
+    Input,
+    OnInit
 } from '@angular/core';
 import { TerraNodeInterface } from '../data/terra-node.interface';
 import { TerraNodeTreeConfig } from '../data/terra-node-tree.config';
@@ -11,7 +12,7 @@ import { isNullOrUndefined } from 'util';
     styles:   [require('./terra-node.component.scss')],
     template: require('./terra-node.component.html')
 })
-export class TerraNodeComponent<D>
+export class TerraNodeComponent<D> implements OnInit
 {
     /**
      * @description The node interface.
@@ -23,19 +24,20 @@ export class TerraNodeComponent<D>
      */
     @Input() inputConfig:TerraNodeTreeConfig<D>;
 
+    private _tooltip:string;
     constructor()
     {
     }
 
-    protected setTooltipforNode():string
+    public ngOnInit():void
     {
         if(!this.inputNode.tooltip)
         {
-            return this.inputNode.name;
+            this._tooltip = this.inputNode.name;
         }
         else
         {
-            return this.inputNode.tooltip;
+            this._tooltip = this.inputNode.tooltip;
         }
     }
 
