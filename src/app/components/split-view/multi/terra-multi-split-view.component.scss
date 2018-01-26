@@ -1,0 +1,216 @@
+.terra-breadcrumbs
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    //height: 33px;
+    height: $breadcumb-height;
+    display: flex;
+    li
+    {
+        float: left;
+        cursor: pointer;
+        div
+        {
+            span
+            {
+                font-weight: 500;
+            }
+            text-decoration: none;
+            //padding: 7px 10px;
+            padding: 9px 10px 8px;
+            position: relative;
+            display: block;
+            float: left;
+            color: $grey-9;
+            white-space: nowrap;
+            &:hover
+            {
+                color: $blue;
+            }
+            &.active
+            {
+                color: $blue;
+                cursor: default;
+            }
+            &:not(.active):hover
+            {
+                color: $blue;
+            }
+            .icon-caret
+            {
+                padding: 6px 0px 6px 6px;
+                overflow: hidden;
+                font-size: 22px;
+                line-height: 18px;
+                &::after
+                {
+                    position: absolute;
+                    top: 11.5px;
+                    right: 7.5px;
+                    display: inline-block;
+                    width: 0;
+                    height: 0;
+                    vertical-align: middle;
+                    content: "";
+                    border: solid white;
+                    border-width: 0 1px 1px 0;
+                    padding: 2px;
+                    transform: rotate(45deg);
+                    overflow: hidden;
+                }
+                &:hover
+                {
+                    .context-menu
+                    {
+                        display: block;
+                        visibility: visible;
+                        opacity: 1;
+                        transition: all 0.2s ease;
+                        transition-delay: 0.2s;
+                    }
+                }
+                .context-menu
+                {
+                    top: 33px;
+                    li
+                    {
+                        float: none;
+                        min-width: 150px;
+                        max-width: 200px;
+                    }
+                }
+            }
+        }
+        &:last-child
+        {
+            .icon-next
+            {
+                display: none;
+            }
+        }
+        &:first-child div
+        {
+            padding-left: 10px;
+        }
+        .icon-next
+        {
+            padding: 6px 0px;
+            line-height: 34px;
+            &::before
+            {
+                display: inline-block;
+                line-height: 30px;
+                vertical-align: middle;
+                font-size: $font-size-6;
+                color: $grey-4;
+            }
+        }
+    }
+}
+
+.side-scroller
+{
+    position: relative;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+    white-space: nowrap;
+    font-size: 0;
+    &.offset
+    {
+        height: calc(100% - 45px) !important;
+    }
+    > *
+    {
+        display: inline-block;
+    }
+    
+    .view
+    {
+        font-size: $font-size-3;
+        vertical-align: top;
+        height: 100%;
+        overflow: hidden;
+        white-space: normal;
+        position: relative;
+        background-color: $white;
+        
+        &.isBackgroundColorGrey
+        {
+            background-color: transparent;
+            
+            &.first
+            {
+                &.last
+                {
+                    background-color: $white;
+                }
+            }
+        }
+        > div
+        {
+            height: 100%;
+            min-height: 100%;
+            overflow-y: auto;
+        }
+        &.workaround
+        {
+            background-color: $white;
+        }
+        
+        //divide 2 views with the same background color with a border
+        &:not(.isBackgroundColorGrey),
+        &.workaround
+        {
+            + .view:not(.isBackgroundColorGrey),
+            + .view.workaround
+            {
+                border-left: 1px solid $grey-4;
+            }
+        }
+        &.isBackgroundColorGrey:not(.workaround)
+        {
+            + .view.isBackgroundColorGrey:not(.workaround)
+            {
+                border-left: 2px solid $white;
+            }
+        }
+    }
+    
+    .fadeIn
+    {
+        animation-name: fadeInAnimation;
+        animation-duration: 0.25s;
+    }
+    
+    @keyframes fadeInAnimation
+    {
+        from
+        {
+            opacity: 0;
+        }
+        to
+        {
+            opacity: 1;
+        }
+    }
+}
+
+.ellipsis
+{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    max-width: 150px;
+    display: inline-block;
+}
+
+.terra-breadcrumbs-wrapper
+{
+    --toolbar-margin: 0;
+    --toolbar-border-radius: none;
+    --toolbar-background: $white;
+    --toolbar-border-bottom: 1px solid $grey-4;
+}
