@@ -80,7 +80,7 @@ import { TerraDataTableContextMenuService } from './components/tables/data-table
 import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
-import { TerraInfoComponent } from './info/terra-info.component';
+import { TerraInfoComponent } from './components/info/terra-info.component';
 
 @NgModule({
     declarations:    [
