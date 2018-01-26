@@ -27,6 +27,18 @@ export class TerraNodeComponent<D>
     {
     }
 
+    protected setTooltipforNode():string
+    {
+        if(!this.inputNode.tooltip)
+        {
+            return this.inputNode.name;
+        }
+        else
+        {
+            return this.inputNode.tooltip;
+        }
+    }
+
     //handle the node click
     protected onNodeClick(event:Event):void
     {
