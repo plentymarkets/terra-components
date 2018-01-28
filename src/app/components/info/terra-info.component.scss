@@ -1,3 +1,8 @@
+.info-wrapper
+{
+    display: flex;
+}
+
 .info-handler
 {
     display: inline-block;
@@ -34,7 +39,6 @@
     -ms-user-select: none;
     user-select: none;
     border: 0;
-    width: 100%;
     overflow: hidden;
     text-decoration: none;
     padding: 0 8px;
