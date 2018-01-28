@@ -62,7 +62,7 @@ export class TerraInfoComponent implements AfterViewInit
 
     private getReferenceElemPosition():Position
     {
-        let referenceElem = $(this.inputReferenceId);
+        let referenceElem = $('terra-info').find(this.inputReferenceId);
 
         let position:Position;
 
