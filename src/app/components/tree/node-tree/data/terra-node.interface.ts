@@ -76,4 +76,9 @@ export interface TerraNodeInterface<D>
      * @description  set the default visibility to reset search.
      */
     defaultVisibility?:boolean;
+
+    /**
+     * @description  set a tooltip for the node. default will ne name.
+     */
+    tooltip?:string;
 }
