@@ -100,3 +100,4 @@ export * from './app/components/tables/data-table/cell/terra-text-align.enum';
 export * from './app/components/data/terra-base-parameter.interface';
 export * from './app/components/buttons/button/enum/button-color.enum';
 export * from './app/helpers/terra-converter.helper';
+export * from './app/helpers/url.helper';
