@@ -80,6 +80,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     ngOnInit()
     {
+        this.inputConfig.splitViewComponent = this;
+
         // catch routing events, but only those that select the tab where the split view is instantiated
         if(!isNullOrUndefined(this.inputRouter) && !isNullOrUndefined(this.inputComponentRoute))
         {

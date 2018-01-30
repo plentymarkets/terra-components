@@ -1,6 +1,7 @@
 import { EventEmitter } from '@angular/core';
 import { TerraMultiSplitViewInterface } from './terra-multi-split-view.interface';
 import { isNullOrUndefined } from 'util';
+import { TerraMultiSplitViewComponent } from '../terra-multi-split-view.component';
 
 export class TerraMultiSplitViewConfig
 {
@@ -13,6 +14,7 @@ export class TerraMultiSplitViewConfig
     private _deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _setSelectedViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+    private _splitViewComponent:TerraMultiSplitViewComponent;
 
     public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
     {
@@ -146,5 +148,10 @@ export class TerraMultiSplitViewConfig
     public get setSelectedViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
     {
         return this._setSelectedViewEventEmitter;
+    }
+
+    public set splitViewComponent(value:TerraMultiSplitViewComponent)
+    {
+        this._splitViewComponent = value;
     }
 }
