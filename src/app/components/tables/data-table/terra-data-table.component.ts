@@ -80,7 +80,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @Output() outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<D>>> = new EventEmitter();
 
     public headerList:Array<TerraDataTableHeaderCellInterface>;
-    public rowList:Array<TerraDataTableRowInterface<D>>;
+    private _rowList:Array<TerraDataTableRowInterface<D>>;
     public pagingData:TerraPagerInterface;
     public pagingSize:Array<TerraSelectBoxValueInterface>;
     public onSuccessFunction:(res) => void;
@@ -105,7 +105,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this.inputHasInitialLoading = false;
         this.inputHasPager = true;
 
-        this.rowList = [];
+        this._rowList = [];
     }
 
     private get getCollapsedState():string
@@ -134,7 +134,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         this._isHeaderCheckboxChecked = isChecked;
 
-        this.rowList.forEach((row) =>
+        this._rowList.forEach((row) =>
         {
             if(!row.disabled)
             {
@@ -152,7 +152,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         {
             this._isHeaderCheckboxChecked = false;
         }
-        else if(this.selectedRowList.length > 0 && this.rowList.length == this.selectedRowList.length)
+        else if(this.selectedRowList.length > 0 && this._rowList.length == this.selectedRowList.length)
         {
             this._isHeaderCheckboxChecked = true;
         }
@@ -205,7 +205,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         if(!cell.buttonList && !row.disabled)
         {
-            this.rowList.forEach((row) =>
+            this._rowList.forEach((row) =>
             {
                 row.isActive = false;
             });
@@ -217,9 +217,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     public deleteRow(rowToDelete:TerraDataTableRowInterface<D>):void
     {
-        let index = this.rowList.indexOf(rowToDelete);
+        let index = this._rowList.indexOf(rowToDelete);
 
-        this.rowList.splice(index, 1);
+        this._rowList.splice(index, 1);
 
         let selectedIndex = this.selectedRowList.indexOf(rowToDelete);
 
@@ -241,9 +241,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
         this._isHeaderCheckboxChecked = false;
 
-        if(!isNullOrUndefined(this.rowList))
+        if(!isNullOrUndefined(this._rowList))
         {
-            this.rowList.forEach((row:TerraDataTableRowInterface<D>) =>
+            this._rowList.forEach((row:TerraDataTableRowInterface<D>) =>
             {
                 this.changeRowState(false, row);
             });
@@ -361,4 +361,18 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         this.outputGroupFunctionExecuteButtonClicked.emit(this._selectedRowList);
     }
+
+    public get rowList():Array<TerraDataTableRowInterface<D>>
+    {
+        return this._rowList;
+    }
+
+    public set rowList(value:Array<TerraDataTableRowInterface<D>>)
+    {
+        // reset selected RowList
+        this._selectedRowList = [];
+
+        this._rowList = value;
+    }
+
 }
