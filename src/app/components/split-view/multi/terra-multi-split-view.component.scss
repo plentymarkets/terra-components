@@ -4,7 +4,7 @@
     padding: 0;
     margin: 0;
     //height: 33px;
-    height: $breadcumb-height;
+    height: var(--terra-breadcrumbs-height, $breadcumb-height);
     display: flex;
     li
     {
@@ -18,7 +18,7 @@
             }
             text-decoration: none;
             //padding: 7px 10px;
-            padding: 9px 10px 8px;
+            padding: var(--terra-breadcrumbs-li-padding, 9px 10px 8px);
             position: relative;
             display: block;
             float: left;
@@ -43,22 +43,7 @@
                 overflow: hidden;
                 font-size: 22px;
                 line-height: 18px;
-                &::after
-                {
-                    position: absolute;
-                    top: 11.5px;
-                    right: 7.5px;
-                    display: inline-block;
-                    width: 0;
-                    height: 0;
-                    vertical-align: middle;
-                    content: "";
-                    border: solid white;
-                    border-width: 0 1px 1px 0;
-                    padding: 2px;
-                    transform: rotate(45deg);
-                    overflow: hidden;
-                }
+
                 &:hover
                 {
                     .context-menu
@@ -72,7 +57,7 @@
                 }
                 .context-menu
                 {
-                    top: 33px;
+                    top: var(--terra-breadcrumbs-context-menu-top, 33px);
                     li
                     {
                         float: none;
@@ -96,11 +81,11 @@
         .icon-next
         {
             padding: 6px 0px;
-            line-height: 34px;
+            line-height: var(--terra-breadcrumbs-icon-next-line-height, 34px);
             &::before
             {
                 display: inline-block;
-                line-height: 30px;
+                line-height: var(--terra-breadcrumbs-icon-next-line-height-before, 30px);
                 vertical-align: middle;
                 font-size: $font-size-6;
                 color: $grey-4;

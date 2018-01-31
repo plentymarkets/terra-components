@@ -99,8 +99,9 @@ button:focus
 .btn
 {
     
-    height: $terra-btn-md-height;
-    line-height: $terra-btn-md-height;
+    height: var(--btn-height, $terra-btn-md-height);
+    line-height: var(--btn-line-height, $terra-btn-md-height);
+    padding: var(--btn-padding, 0 8px);
     display: inline-block;
     text-align: center;
     white-space: nowrap;
@@ -117,7 +118,7 @@ button:focus
     width: 100%;
     overflow: hidden;
     text-decoration: none;
-    padding: var(--btn-padding, 0 8px);
+    
     border-radius: $border-radius;
     font-size: $font-size-3;
     @include transition(all .2s ease-in-out);

@@ -182,7 +182,7 @@ textarea
     outline: none !important;
     transition: all .2s;
     height: var(--input-height, $terra-btn-md-height - 2);
-    line-height: $terra-btn-md-height - 2;
+    line-height: var(--input-line-height, $terra-btn-md-height - 2);
     
     &.isSmall
     {
