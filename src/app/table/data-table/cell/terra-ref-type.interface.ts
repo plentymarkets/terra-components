@@ -1,11 +1,13 @@
-export enum TerraRefTypeEnum
-{
+export enum TerraRefTypeEnum {
     email = 'mailto',
-    phone = 'tel'
+    phone = 'tel',
+    url = 'url',
+    fct = 'fct'
 }
 
-export interface TerraRefTypeInterface
-{
-    type:TerraRefTypeEnum,
-    value:string
+export interface TerraRefTypeInterface {
+    type: TerraRefTypeEnum,
+    value: any,
+    caption?: any,
+    target?: string,
 }

@@ -324,7 +324,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         {
             return arg
                    && arg.type && typeof arg.type == 'string'
-                   && arg.value && typeof arg.value == 'string';
+                   && arg.value && (typeof arg.value == 'string' || typeof arg.value == 'number' || typeof arg.value == 'function');
         }
 
         function isTextType(arg:any):arg is TerraDataTableTextInterface
