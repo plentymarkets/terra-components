@@ -1,3 +1,10 @@
+<a name=""></a>
+# Unreleased
+
+### Bug Fixes
+* **terra-data-table** reset selectedRowList if RowList is updated
+
+
 <a name="2.1.44-zlk"></a>
 # 2.1.44-zlk (29.01.2018)
 
