@@ -15,26 +15,35 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
 {
 
     /**
-     * current level leaf list
+     * @description current level leaf list
      */
     @Input() inputLeafList:Array<TerraCheckboxLeafInterface>;
 
     /**
-     * leafs one level higher than current leaf
+     * @description leafs one level higher than current leaf
      */
     @Input() inputParentLeafList:Array<TerraCheckboxLeafInterface>;
 
     /**
-     * complete leaf list for better and faster searching
+     * @description complete leaf list for better and faster searching
      */
     @Input() inputCompleteLeafList:Array<TerraCheckboxLeafInterface>;
+
+    /**
+     * @description get the current selected leaf list
+     */
+    public selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
 
     constructor()
     {
         super();
     }
 
-    selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
+    /**
+     * @description event which is triggered when any checkbox is clicked
+     * @param event
+     * @param leaf
+     */
 
     private onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
     {
@@ -49,6 +58,11 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         // reset the isIndeterminate flag on every state change
         leaf.isIndeterminate = false;
     }
+
+    /**
+     * @description
+     * @param leaf
+     */
 
     private recursiveAddLeafToList(leaf:TerraCheckboxLeafInterface):void
     {
@@ -72,6 +86,10 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         }
     }
 
+    /**
+     * @description
+     * @param leaf
+     */
     private recursiveUpdateChildLeafs(leaf:TerraCheckboxLeafInterface):void
     {
         if(leaf.subLeafList)

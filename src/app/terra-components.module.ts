@@ -81,6 +81,7 @@ import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
 import { TerraConverterHelper } from './helpers/terra-converter.helper';
+import { TerraComponentsExampleModule } from './terra-components-example.module';
 
 @NgModule({
     declarations:    [
@@ -134,7 +135,7 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
         TerraNoteEditorComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
-        TerraNodeComponent
+        TerraNodeComponent,
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -249,7 +250,8 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
         MyDatePickerModule,
         AceEditorModule,
         TerraInteractModule,
-        QuillModule
+        QuillModule,
+        TerraComponentsExampleModule.forRoot()
     ],
     providers:       [
         COMPILER_PROVIDERS,

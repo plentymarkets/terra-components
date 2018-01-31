@@ -12,6 +12,9 @@ var git = require('gulp-git');
 var gitignore = require('gulp-gitignore');
 var shell = require('gulp-shell');
 var argv = require('yargs').argv;
+var Dgeni = require('dgeni');
+var gulpTasks = require('./component-documentation/tasks/docuTasks.js');
+var paths = require('./component-documentation/tasks/paths');
 
 var version, level, sequence, subversion;
 
@@ -24,12 +27,13 @@ var version, level, sequence, subversion;
  * @param publish    - If set publish to npm, otherwise publish locally
  * @param level      - Possible values are major (1.x.x to 2.x.x), minor (x.1.x to x.2.x) or patch (x.x.1 to x.x.2).
  *                     If not set patch is default. See VERSIONING.md for further information.
- * @param subversion - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json). Use only, if really necessary!!
- * @param target     - Sets the target directory to copy build files to. Will copy files to 'node_modules/@plentymarkets/terra-components' in target directory
+ * @param subversion - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json). Use only, if really
+ *     necessary!!
+ * @param target     - Sets the target directory to copy build files to. Will copy files to 'node_modules/@plentymarkets/terra-components'
+ *     in target directory
  *
  **/
-gulp.task('build', function(callback)
-{
+gulp.task('build', function (callback) {
     level = argv.level ? argv.level : 'patch';
     sequence = argv.publish ? 'npm-publish' : 'build-local';
     subversion = argv.subversion ? argv.subversion : '';
@@ -37,8 +41,7 @@ gulp.task('build', function(callback)
     runSequence(sequence, callback);
 });
 
-gulp.task('npm-publish', function (callback)
-{
+gulp.task('npm-publish', function (callback) {
     runSequence(
         'changeVersion',
         'clean-dist',
@@ -52,8 +55,7 @@ gulp.task('npm-publish', function (callback)
     );
 });
 
-gulp.task('build-local', function (callback)
-{
+gulp.task('build-local', function (callback) {
     runSequence(
         'clean-dist',
         'compile-ts',
@@ -68,47 +70,39 @@ gulp.task('build-local', function (callback)
 
 
 //init git
-gulp.task('gitInit', function ()
-{
-    git.init(function (err)
-    {
-        if(err)
-        {
+gulp.task('gitInit', function () {
+    git.init(function (err) {
+        if (err) {
             throw err;
         }
     });
 });
 
 //fetch data
-gulp.task('gitFetch', function ()
-{
-    git.fetch('origin', '', function (err)
-    {
-        if(err)
-        {
+gulp.task('gitFetch', function () {
+    git.fetch('origin', '', function (err) {
+        if (err) {
             throw err;
         }
     });
 });
 
 //changing version of package.json for new publish
-gulp.task('changeVersion', function ()
-{
+gulp.task('changeVersion', function () {
     var json = JSON.parse(fs.readFileSync('./package.json'));
 
     console.log('-------------------------------------------------');
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
-    
+
     json.version = json.version.replace('-' + subversion, '');
-    
+
     //possible values are: patch, minor, major
     json.version = semver.inc(json.version, level);
-    
-    if(subversion !== '')
-    {
+
+    if (subversion !== '') {
         json.version += '-' + subversion;
     }
-    
+
     version = json.version;
 
     console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
@@ -118,45 +112,36 @@ gulp.task('changeVersion', function ()
 });
 
 //commit version changes
-gulp.task('gitCommit', function ()
-{
+gulp.task('gitCommit', function () {
     return gulp.src('./*')
         .pipe(gitignore())
         .pipe(git.commit('update version to ' + version));
 });
 
-gulp.task('gitPull', function ()
-{
-    return git.pull('origin', ['stable7'], function (err)
-    {
-        if(err)
-        {
+gulp.task('gitPull', function () {
+    return git.pull('origin', ['stable7'], function (err) {
+        if (err) {
             throw err;
         }
     });
 
 });
 
-gulp.task('clean-dist', function ()
-{
+gulp.task('clean-dist', function () {
     return del(config.tsOutputPath);
 });
 
 //push version changes
-gulp.task('gitPush', function ()
-{
-    git.push('origin', 'stable7', function (err)
-    {
-        if(err)
-        {
+gulp.task('gitPush', function () {
+    git.push('origin', 'stable7', function (err) {
+        if (err) {
             throw err;
         }
     });
 });
 
 //compile typescript files
-gulp.task('compile-ts', function ()
-{
+gulp.task('compile-ts', function () {
     var sourceTsFiles = [
         config.excluded,
         config.allTs
@@ -173,8 +158,7 @@ gulp.task('compile-ts', function ()
 });
 
 //copy files to dist
-gulp.task('copy-files', function ()
-{
+gulp.task('copy-files', function () {
     return gulp.src(['package.json',
         'README.md',
         config.allCSS,
@@ -184,31 +168,62 @@ gulp.task('copy-files', function ()
 });
 
 //copy fonts to dist
-gulp.task('copy-fonts', function ()
-{
+gulp.task('copy-fonts', function () {
     return gulp.src(config.allFonts)
         .pipe(gulp.dest(config.fontsOutputPath));
 });
 
 //copy images to dist
-gulp.task('copy-images', function ()
-{
+gulp.task('copy-images', function () {
     return gulp.src(config.allImages)
         .pipe(gulp.dest(config.imagesOutputPath));
 });
 
 //copy lang to dist
-gulp.task('copy-lang', function ()
-{
+gulp.task('copy-lang', function () {
     return gulp.src(config.allLang)
         .pipe(gulp.dest(config.langOutputPath));
 });
 
 //copy files from dist to terra
-gulp.task('copy-to-terra', function ()
-{
+gulp.task('copy-to-terra', function () {
     return gulp.src('dist/**/*.*')
         .pipe(gulp.dest('../terra/node_modules/@plentymarkets/terra-components/'));
+});
+
+gulp.task('copy-to-terra-doc', function () {
+    return gulp.src('dist/**/*.*')
+        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/'));
+});
+gulp.task('copy-api-to-terra-doc', function () {
+    return gulp.src('component-documentation/build/**/*.*')
+        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/component-documentation/build'));
+});
+
+//copy components from dist to terra-component-doc
+gulp.task('copy-components-to-doc', function () {
+    return gulp.src('src/app/**/example/*.ts')
+        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/app'));
+});
+
+gulp.task('copy-markdown-to-doc', function () {
+    return gulp.src('src/app/**/example/*.md')
+        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/app'));
+});
+
+//copy icon JSON to terra-component-doc
+gulp.task('copy-icon', function () {
+    return gulp.src('component-documentation/icons/**/*.*')
+        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/'));
+});
+
+gulp.task('copy-icon-description-json', function () {
+    return gulp.src('src/app/assets/styles/iconDescription.json')
+        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/component-documentation/build'));
+});
+gulp.task('copy-documentation-changelog', function () {
+    return gulp.src('component-documentation/documentation-changelog.json')
+        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/component-documentation/build'));
 });
 
 //publish to npm
@@ -216,3 +231,36 @@ gulp.task('publish', shell.task([
         'npm publish dist'
     ])
 );
+
+gulp.task('dgeni', function () {
+    try {
+        var dgeni = new Dgeni([require('./component-documentation/index')]);
+        return dgeni.generate();
+    } catch (x) {
+        console.log(x.stack);
+        throw x;
+    }
+});
+
+gulp.task('generateJson', function ()
+{
+    gulpTasks.buildJsonFile(paths.dataJsonOutputPath);
+});
+
+/**
+ * run "gulp generateDocu" to let Dgeni generate api files and to create json data.
+ */
+gulp.task('generateDocu', function (done) {
+    runSequence(
+        'build-local',
+        'dgeni',
+        'generateJson',
+        'copy-to-terra-doc',
+        'copy-components-to-doc',
+        'copy-api-to-terra-doc',
+        'copy-markdown-to-doc',
+        'copy-icon-description-json',
+        'copy-icon',
+        'copy-documentation-changelog',
+        done);
+});

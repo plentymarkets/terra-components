@@ -16,7 +16,7 @@ import { TranslationService } from 'angular-l10n';
 })
 export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 {
-    protected _searchValue:string;
+    private _searchValue:string;
 
     /**
      * @description The config to handle actions on tree or node.
@@ -39,7 +39,8 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 
     private handleVisibility(nodeList:Array<TerraNodeInterface<D>>):void
     {
-        nodeList.forEach((node:TerraNodeInterface<D>)=>{
+        nodeList.forEach((node:TerraNodeInterface<D>) =>
+        {
 
             if(node.isVisible)
             {
@@ -59,7 +60,8 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 
     private handleDefaultVisibility(nodeList:Array<TerraNodeInterface<D>>):void
     {
-        nodeList.forEach((node:TerraNodeInterface<D>)=>{
+        nodeList.forEach((node:TerraNodeInterface<D>) =>
+        {
 
             if(node.defaultVisibility)
             {
