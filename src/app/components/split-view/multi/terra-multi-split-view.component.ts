@@ -31,7 +31,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {
     @Input() inputConfig:TerraMultiSplitViewConfig;
     @Input() inputShowBreadcrumbs:boolean;
-    @Input() inputRouter:Router;     // to catch inputRouter events
+    @Input() inputRouter:Router;     // to catch inputRouter events // TODO: Inject router instead of passing it in via the input..
     @Input() inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
 
     @HostListener('window:resize')
@@ -532,5 +532,17 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
         // select the first view in the views array
         return module.views[0];
+    }
+
+    public handleBreadCrumbClick(view:TerraMultiSplitViewInterface)
+    {
+        if(view.url && this.inputRouter /* && routingActive*/) // TODO: handle it only when routing is activated
+        {
+            this.inputRouter.navigateByUrl(view.url);
+        }
+        else
+        {
+            this.setSelectedView(view);
+        }
     }
 }

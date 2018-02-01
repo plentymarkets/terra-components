@@ -20,4 +20,5 @@ export class TerraMultiSplitViewInterface
     inputs?:Array<TerraDynamicLoadedComponentInputInterface>;
     isBackgroundColorGrey?:boolean;
     id?:string;
+    url?:string;
 }
