@@ -202,13 +202,13 @@ gulp.task('copy-api-to-terra-doc', function () {
 
 //copy components from dist to terra-component-doc
 gulp.task('copy-components-to-doc', function () {
-    return gulp.src('src/app/**/example/*.ts')
-        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/app'));
+    return gulp.src('src/app/components/**/**/example/*.ts')
+        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/app/components'));
 });
 
 gulp.task('copy-markdown-to-doc', function () {
-    return gulp.src('src/app/**/example/*.md')
-        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/app'));
+    return gulp.src('src/app/components/**/example/*.md')
+        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/app/components'));
 });
 
 //copy icon JSON to terra-component-doc

@@ -4,7 +4,7 @@ module.exports = {
 
     buildJsonFile: function (jsonFilePath)
     {
-        var directories = filterArray('./src/app');
+        var directories = filterArray('./src/app/components');
         var dirLength = directories.length - 1;
         var excludedFileType = ['interface', 'config'];
 

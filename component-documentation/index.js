@@ -84,7 +84,7 @@ var apiDocsPackage = new DgeniPackage('material2-api-docs', dgeniPackageDeps)
         readTypeScriptModules.hidePrivateMembers = true;
 
         readTypeScriptModules.sourceFiles = [
-            'src/app/index.ts'
+            'src/index.ts'
 
         ];
 
