@@ -1,8 +1,8 @@
 .spinner
 {
-    width: 50px;
-    height: 50px;
-    margin: 10px;
+    width: var(--navbar-user-image-width, 50px);
+    height: var(--navbar-user-image-height, 50px);
+    margin: var(--navbar-user-image-margin, 10px);
     position: relative;
 }
 

@@ -23,8 +23,8 @@
     
     .select-box
     {
-        height: $terra-btn-md-height - 2;
-        line-height: $terra-btn-md-height - 2;
+        height: var(--select-box-height, $terra-btn-md-height - 2);
+        line-height: var(--select-box-line-height, $terra-btn-md-height - 2);
         display: inline-block;
         width: var(--select-box-width, 100%);
         max-width: 100%;

@@ -32,7 +32,7 @@
     
     .portlet_body
     {
-        background-color: $grey-2;
+        background-color: var(--portlet-body-background-color, $grey-2);
         padding: 12px;
         border-radius: 5px;
         

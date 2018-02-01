@@ -1,104 +1,106 @@
 .table-responsive
 {
-    table.data-table
+    table
     {
-        tr.disabled
+        &.data-table
         {
-            opacity: 0.5;
-            
-            td
+            tr.disabled
             {
-                cursor: not-allowed;
-            }
-        }
-    }
-    
-    table.table
-    {
-        &[tabindex]
-        {
-            outline: none;
-        }
-        
-        margin-bottom: 1rem;
-        thead
-        {
-            background: $grey-9;
-            color: white;
-            border-radius: 0 0 $border-radius $border-radius;
-            tr
-            {
-                th
-                {
-                    font-variant: all-small-caps;
-                    padding: 6px 9px;
-                    border: none;
-                    &:first-child
-                    {
-                        border-radius: 0 0 0 $border-radius;
-                    }
-                    &:last-child
-                    {
-                        border-radius: 0 0 $border-radius 0;
-                    }
-                }
+                opacity: 0.5;
                 
-            }
-        }
-        tbody
-        {
-            tr
-            {
-                color: $grey-11;
                 td
                 {
-                    padding: 8px 9px;
-                    vertical-align: middle;
-                    border-bottom: 1px solid $grey-1;
-                    white-space: nowrap;
-                    span
+                    cursor: not-allowed;
+                }
+            }
+        }
+        &.table
+        {
+            &[tabindex]
+            {
+                outline: none;
+            }
+            
+            margin-bottom: 1rem;
+            thead
+            {
+                background: $grey-9;
+                color: white;
+                border-radius: 0 0 $border-radius $border-radius;
+                tr
+                {
+                    th
                     {
-                        font-size: $font-size-2;
-                    }
-                    a[href]
-                    {
-                        text-decoration: underline;
-                        &:hover
+                        font-variant: all-small-caps;
+                        padding: var(--table-head-th-padding, 6px 9px);
+                        border: none;
+                        &:first-child
                         {
-                            color: $blue;
+                            border-radius: 0 0 0 $border-radius;
+                        }
+                        &:last-child
+                        {
+                            border-radius: 0 0 $border-radius 0;
+                        }
+                    }
+                    
+                }
+            }
+            tbody
+            {
+                tr
+                {
+                    color: $grey-11;
+                    td
+                    {
+                        padding: var(--table-body-td-padding, 8px 9px);
+                        vertical-align: middle;
+                        border-bottom: 1px solid $grey-1;
+                        white-space: nowrap;
+                        span
+                        {
+                            font-size: $font-size-2;
+                        }
+                        a[href]
+                        {
+                            text-decoration: underline;
+                            &:hover
+                            {
+                                color: $blue;
+                            }
                         }
                     }
                 }
             }
-        }
-        span
-        {
-            display: inline-block;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            vertical-align: middle;
-        }
-        > tbody tr:hover
-        {
-            background: $grey-2;
-            cursor: pointer;
-        }
-        tbody tr.selected
-        {
-            background-color: $blue;
-            color: white;
-        }
-        tbody tr.isActive
-        {
-            background-color: $blue;
-            color: white;
-            td a[href]
+            span
             {
-                color: $white;
-                &:hover
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                vertical-align: middle;
+            }
+            > tbody tr:hover
+            {
+                background: $grey-2;
+                cursor: pointer;
+            }
+            tbody tr.selected
+            {
+                background-color: $blue;
+                color: white;
+            }
+            tbody tr.isActive
+            {
+                background-color: $blue;
+                color: white;
+                td a[href]
                 {
-                    color: $black;
+                    color: $white;
+                    &:hover
+                    {
+                        color: $black;
+                    }
                 }
             }
         }
