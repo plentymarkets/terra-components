@@ -205,6 +205,23 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         // vertical selection has changed
         else
         {
+            // check if parent views are selected
+            let parent:TerraMultiSplitViewInterface = view;
+            while(!isNullOrUndefined(parent))
+            {
+                let parentModule:TerraMultiSplitViewDetail = this.getModuleOfView(parent);
+                if(parentModule)
+                {
+                    if(parent.parent)
+                    {
+                        parentModule.views = parent.parent.children;
+                    }
+                    parentModule.currentSelectedView = parent;
+                }
+                parent = parent.parent;
+            }
+
+            // rebuild modules for children views
             this.rebuildModules(view, module);
         }
 
@@ -338,8 +355,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
         let hierarchyLevel:number = this.getHierarchyLevelOfView(view);
 
-        // cut off last elements
-        this.modules = this.modules.slice(0, hierarchyLevel + 1);
+        // cut off last elements if existing
+        if(this.modules.length > hierarchyLevel)
+        {
+            this.modules = this.modules.slice(0, hierarchyLevel + 1);
+        }
 
         // rebuild
         if(!isNullOrUndefined(view.children))
@@ -534,8 +554,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         return module.views[0];
     }
 
-    public handleBreadCrumbClick(view:TerraMultiSplitViewInterface)
+    public handleBreadCrumbClick(view:TerraMultiSplitViewInterface, event:MouseEvent)
     {
+        // prevent event bubbling
+        event.stopPropagation();
+
         if(view.url && this.inputRouter /* && routingActive*/) // TODO: handle it only when routing is activated
         {
             this.inputRouter.navigateByUrl(view.url);
