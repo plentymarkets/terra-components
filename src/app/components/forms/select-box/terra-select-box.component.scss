@@ -44,7 +44,7 @@
             line-height: $terra-btn-sm-height - 2;
             &.labeled
             {
-                padding: 0px 7px 0px 120px;
+                padding: 0px 7px 0px 7px;
             }
         }
         &.error
@@ -56,7 +56,7 @@
         &.labeled
         {
             line-height: 24px;
-            padding: 13px 7px 0px 7px;
+            padding: var(--select-box-labeled-padding, 13px 7px 0px 7px);
         }
         span
         {
@@ -103,7 +103,7 @@
     {
         position: absolute;
         z-index: 99999;
-        top: $terra-btn-md-height;
+        top: var(--select-box-dropdown-top, $terra-btn-md-height);
         bottom: initial;
         left: 0;
         min-width: 100%;
@@ -113,6 +113,7 @@
         background: white;
         display: none;
         overflow: auto;
+        border: 1px solid $grey-4;
         
         &.openOnTop
         {

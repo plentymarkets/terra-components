@@ -16,19 +16,23 @@
     {
         .modal-header
         {
-            padding: 10px 14px;
+            padding: var(--modal-header-padding, 10px 14px);
             --btn-padding: 0;
+            .modal-title
+            {
+                line-height: var(--modal-title-line-height, 2.3);
+            }
         }
         .modal-body
         {
             max-height: var(--modal-body-max-height, 525px);
             height: var(--modal-body-height, initial);
             overflow-y: auto;
-            padding: 18px 14px;
+            padding: var(--modal-body-padding, 18px 14px);
         }
         .modal-footer
         {
-            padding: 10px 14px;
+            padding: var(--modal-footer-padding, 10px 14px);
         }
     }
 }

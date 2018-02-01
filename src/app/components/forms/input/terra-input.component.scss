@@ -188,7 +188,7 @@ textarea
     {
         height: $terra-btn-sm-height - 4;
         line-height: $terra-btn-sm-height - 4;
-        padding: var(--input-padding, 0px 7px 0px 120px);
+        padding: var(--input-padding, 0px 7px 0px 7px);
     }
     
     &:focus,
@@ -267,6 +267,8 @@ label
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    
+    display: var(--input-label-display, visible);
 }
 
 .textarea-wrapper

@@ -116,7 +116,7 @@ p, span, a
     background-color: $grey-9;
     border-radius: 5px;
     
-    top: 29px;
+    top: var(--context-menu-top, 29px);
     right: 0px;
     display: block;
     list-style-type: none;
