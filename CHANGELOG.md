@@ -1,4 +1,10 @@
 <a name="2.1.44-zlk"></a>
+# 2.1.46-zlk (02.02.2018)
+
+### Feature
+* **terra-base-service** now handles UiHashExpiredException 
+
+<a name="2.1.44-zlk"></a>
 # 2.1.44-zlk (29.01.2018)
 
 ### Bug Fixes
