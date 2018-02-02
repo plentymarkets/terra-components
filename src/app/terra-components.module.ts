@@ -84,6 +84,7 @@ import { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra
 import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
 import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
 import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
+import { TerraConverterHelper } from './helpers/terra-converter.helper';
 
 @NgModule({
     declarations:    [
@@ -266,7 +267,8 @@ import { TerraDynamicFormService } from './components/forms/dynamic-form/service
         TerraFrontendStorageService,
         TerraFileBrowserService,
         TerraFormFieldControlService,
-        TerraDynamicFormService
+        TerraDynamicFormService,
+        TerraConverterHelper
     ],
     bootstrap:       [
         TerraComponentsComponent

@@ -1,8 +1,18 @@
 <a name="2.1.44-zlk"></a>
-# 2.1.44-zlk (DD.MM.YYYY)
+# 2.1.46-zlk (02.02.2018)
+
+### Feature
+* **terra-base-service** now handles UiHashExpiredException 
+
+<a name="2.1.44-zlk"></a>
+# 2.1.44-zlk (29.01.2018)
 
 ### Bug Fixes
 * **terra-button** fix styling when inputIsLink is used
+
+### Feature
+* **terra-multi-split-view** divider styling 
+* **terra-overlay** changed footer & header height
 
 <a name="2.1.39-zlk"></a>
 # 2.1.39-zlk (05.01.2017)

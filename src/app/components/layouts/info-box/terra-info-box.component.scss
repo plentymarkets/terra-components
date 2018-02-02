@@ -51,7 +51,7 @@
             max-width: 77%;
             white-space: nowrap;
             color: $grey-11;
-            overflow: hidden;
+            overflow: var(--info-box-text-overflow, hidden);
         }
     }
     .info-box-footer

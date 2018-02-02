@@ -109,3 +109,4 @@ export * from './app/components/forms/dynamic-form/data/terra-form-field-horizon
 export * from './app/components/forms/dynamic-form/data/terra-form-field-conditional-container';
 export * from './app/components/forms/dynamic-form/handler/dynamic-form-functions.handler';
 export * from './app/components/forms/dynamic-form/data/terra-form-field-check-box';
+export * from './app/helpers/terra-converter.helper';

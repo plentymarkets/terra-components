@@ -36,8 +36,9 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
 
     selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
 
-    private onCheckboxValueChange(leaf:TerraCheckboxLeafInterface):void
+    private onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
     {
+        leaf.checkboxChecked = event;
         this.resetIndeterminateLeafState(leaf);
         this.recursiveUpdateChildLeafs(leaf);
         this.recursiveUpdateParentLeafs(leaf);
@@ -139,6 +140,10 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
                 parentLeafState.isIndeterminate = true;
             }
         }
+        if((!parentLeafState.allChildrenAreChecked && !parentLeafState.noChildrenAreChecked))
+        {
+            parentLeafState.isIndeterminate = true;
+        }
 
         return parentLeafState;
     }
@@ -180,6 +185,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         }
     }
 }
+
 export class ParentLeafState
 {
     allChildrenAreChecked:boolean = true;
