@@ -175,10 +175,10 @@ export class TerraBaseService
 
     private dispatchEvent(eventToDispatch:Event | CustomEvent):void
     {
-        if(window.parent !== null)
+        if(!isNullOrUndefined(window.parent))
         {
             //workaround for plugins in GWT (loaded via iFrame)
-            if(window.parent.window.parent !== null)
+            if(!isNullOrUndefined(window.parent.window.parent))
             {
                 window.parent.window.parent.window.dispatchEvent(eventToDispatch);
             }
