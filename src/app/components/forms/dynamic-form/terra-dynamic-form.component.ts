@@ -21,9 +21,9 @@ export enum TerraHtmlMethods
 
 export interface TerraDynamicFormRequestParams
 {
-    route:string,
-    htmlMethod:TerraHtmlMethods
-    params?:{}
+    route:string;
+    htmlMethod:TerraHtmlMethods;
+    params?:{};
 }
 
 /**
