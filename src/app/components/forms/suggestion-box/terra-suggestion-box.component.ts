@@ -394,7 +394,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     private onInputClick(event:any):void
     {
         this.outputClicked.emit(event);
-        
+
         // check if the input has been clicked
         if(event.target.nodeName === 'INPUT')
         {

@@ -10,56 +10,56 @@ li
     {
         width: 100%;
         
-            .btn
+        .btn
+        {
+            text-align: left;
+            padding: 0px;
+            border-radius: 0px;
+
+            .buttonText
             {
-                text-align: left;
-                padding: 0px;
-                border-radius: 0px;
-                
-                .buttonText
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            span
+            {
+                &.icon_dist_top
                 {
-                    display: inline-block;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
+                    padding: 8px;
+                    top: -9px;
                 }
-                
-                span
+
+                &.icon-right
                 {
-                    &.icon_dist_top
-                    {
-                        padding: 8px;
-                        top: -9px;
-                    }
-    
-                    &.icon-right
-                    {
-                        position: absolute;
-                        right: 0px;
-                        top: 0px;
-                        height: 36px;
-                        width: 40px;
-                        line-height: 36px;
-                        text-align: center;
-                        background-color: $tree-icon-grey;
-                        border-left: 1px solid $grey-11;
-                        
-                        &:hover
-                        {
-                            background: $tree-icon-grey-hover;
-                        }
-                    }
-                }
-                
-                &.isLoading
-                {
+                    position: absolute;
+                    right: 0px;
+                    top: 0px;
+                    height: 36px;
+                    width: 40px;
+                    line-height: 36px;
+                    text-align: center;
                     background-color: $tree-icon-grey;
-                }
-                
-                &:hover
-                {
-                    background-color: $blue;
+                    border-left: 1px solid $grey-11;
+
+                    &:hover
+                    {
+                        background: $tree-icon-grey-hover;
+                    }
                 }
             }
+
+            &.isLoading
+            {
+                background-color: $tree-icon-grey;
+            }
+
+            &:hover
+            {
+                background-color: $blue;
+            }
+        }
     }
     
     ul
@@ -78,7 +78,6 @@ li
         }
         
         to
-
         {
             padding-left: 16px;
         }

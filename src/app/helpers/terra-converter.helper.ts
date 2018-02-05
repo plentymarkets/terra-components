@@ -42,6 +42,6 @@ export class TerraConverterHelper
     public getLocaleDecimalValue(number:number, locale:LocaleService):string
     {
         let pipe = new DecimalPipe(locale.getDefaultLocale());
-        return pipe.transform(number,  '1.0-2');// max 2 digits after the comma
+        return pipe.transform(number, '1.0-2');// max 2 digits after the comma
     }
 }
