@@ -4,7 +4,8 @@ module.exports = {
 
     buildJsonFile: function (jsonFilePath)
     {
-        var directories = filterArray('./src/app/components');
+        var searchDirPath = './src/app/components';
+        var directories = filterArray(searchDirPath);
         var dirLength = directories.length - 1;
         var excludedFileType = ['interface', 'config'];
 
@@ -17,7 +18,7 @@ module.exports = {
             var searchName = exampleMetaData[0].substring(( exampleMetaData[0].lastIndexOf('/')) + 1);
             var selector = searchName.substring(0, searchName.indexOf('.'));
             var apiExamplePath = findExamplePath('./component-documentation/build', '', selector, excludedFileType);
-            var componentGroup = exampleMetaData[0].substring(10);
+            var componentGroup = exampleMetaData[0].replace(searchDirPath+'/','');
             componentGroup = componentGroup.substring(0, componentGroup.indexOf('/'));
             exampleMetaData['apiPath'] = apiExamplePath[0];
             exampleMetaData['componentSelector'] = selector;
