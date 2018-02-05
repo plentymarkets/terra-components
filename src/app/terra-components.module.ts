@@ -250,8 +250,7 @@ import { TerraComponentsExampleModule } from './terra-components-example.module'
         MyDatePickerModule,
         AceEditorModule,
         TerraInteractModule,
-        QuillModule,
-        TerraComponentsExampleModule.forRoot()
+        QuillModule
     ],
     providers:       [
         COMPILER_PROVIDERS,
