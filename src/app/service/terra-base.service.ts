@@ -14,10 +14,10 @@ import {
 } from 'util';
 import {
     TerraAlertComponent,
+    TerraBaseParameterInterface,
     TerraLoadingSpinnerService,
     TerraPagerParameterInterface
 } from '../../';
-import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
 
 /**
  * @author mfrank
@@ -25,9 +25,10 @@ import { TerraBaseParameterInterface } from '../components/data/terra-base-param
 @Injectable()
 export class TerraBaseService
 {
-    private _headers:Headers;
-    private _url:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+
+    public headers:Headers;
+    public url:string;
 
     constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private _baseHttp:Http,
@@ -47,26 +48,6 @@ export class TerraBaseService
     get http():Http
     {
         return this._baseHttp;
-    }
-
-    get headers():Headers
-    {
-        return this._headers;
-    }
-
-    set headers(value:Headers)
-    {
-        this._headers = value;
-    }
-
-    get url():string
-    {
-        return this._url;
-    }
-
-    set url(value:string)
-    {
-        this._url = value;
     }
 
     protected setToHeader(key:string, value:string):void
