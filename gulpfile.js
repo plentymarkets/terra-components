@@ -211,12 +211,6 @@ gulp.task('copy-markdown-to-doc', function () {
         .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/app/components'));
 });
 
-//copy icon JSON to terra-component-doc
-gulp.task('copy-icon', function () {
-    return gulp.src('component-documentation/icons/**/*.*')
-        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/'));
-});
-
 gulp.task('copy-icon-description-json', function () {
     return gulp.src('src/app/assets/styles/iconDescription.json')
         .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/component-documentation/build'));
@@ -260,7 +254,6 @@ gulp.task('generateDocu', function (done) {
         'copy-api-to-terra-doc',
         'copy-markdown-to-doc',
         'copy-icon-description-json',
-        'copy-icon',
         'copy-documentation-changelog',
         done);
 });
