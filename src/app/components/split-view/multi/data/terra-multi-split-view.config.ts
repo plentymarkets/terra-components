@@ -48,6 +48,7 @@ export class TerraMultiSplitViewConfig
     private _setSelectedViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
 
 
+    public routingConfig:Routes = [];
     private _routerStateSnapshot:RouterStateSnapshot;
     private _activatedRouteSnapshot:ActivatedRouteSnapshot;
 
@@ -174,10 +175,6 @@ export class TerraMultiSplitViewConfig
         this._setSelectedViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
     }
 
-
-    public _routingConfig:Routes = [];
-
-
     public navigateToViewByUrl(url:string):void
     {
         this._routerStateSnapshot = this._router.routerState.snapshot;
@@ -202,7 +199,7 @@ export class TerraMultiSplitViewConfig
             return;
         }
 
-        this.getResolveDataForUrl(url, this._routingConfig).subscribe(
+        this.getResolveDataForUrl(url, this.routingConfig).subscribe(
             (data:ResolvedData[]) =>
             {
                 this.addOrSelectViewsByUrl(url, data);
@@ -217,7 +214,7 @@ export class TerraMultiSplitViewConfig
     private addOrSelectViewsByUrl(url:string, resolveData:ResolvedData[]):void
     {
         let views:TerraMultiSplitViewInterface[] = this._views;
-        let routeConfig:Routes = this._routingConfig;
+        let routeConfig:Routes = this.routingConfig;
 
         url = UrlHelper.removeLeadingSlash(url);
         let urlParts:string[] = url.split('/');
@@ -320,7 +317,7 @@ export class TerraMultiSplitViewConfig
 
     private urlIsRedirected(url:string):string
     {
-        let routeConfig:Routes = this._routingConfig;
+        let routeConfig:Routes = this.routingConfig;
         let views:TerraMultiSplitViewInterface[] = this._views;
         url = UrlHelper.removeLeadingSlash(url);
         let urlParts:string[] = url.split('/');

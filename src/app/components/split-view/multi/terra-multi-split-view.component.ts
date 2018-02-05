@@ -12,6 +12,7 @@ import { TerraMultiSplitViewDetail } from './data/terra-multi-split-view-detail'
 import { TerraMultiSplitViewInterface } from './data/terra-multi-split-view.interface';
 import * as AngularRouter from '@angular/router'; // Required to use both Angular Router Events and ES6 Events
 import {
+    NavigationEnd,
     NavigationStart,
     Router,
     Routes
@@ -31,7 +32,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {
     @Input() inputConfig:TerraMultiSplitViewConfig;
     @Input() inputShowBreadcrumbs:boolean;
-    @Input() inputRouter:Router;     // to catch inputRouter events // TODO: Inject router instead of passing it in via the input..
     @Input() inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
 
     @HostListener('window:resize')
@@ -66,7 +66,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private splitViewId:number;
 
-    constructor(private zone:NgZone)
+    constructor(private zone:NgZone, private _router:Router)
     {
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
@@ -81,18 +81,23 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     ngOnInit()
     {
         // catch routing events, but only those that select the tab where the split view is instantiated
-        if(!isNullOrUndefined(this.inputRouter) && !isNullOrUndefined(this.inputComponentRoute))
+        if(!isNullOrUndefined(this.inputComponentRoute))
         {
             // check if the given route exists in the route config
             if(this.routeExists(this.inputComponentRoute))
             {
                 // register event listener // TODO: This is only needed when Routing functionality is not used
-                this.inputRouter.events
+                this._router.events
                     .filter((event:AngularRouter.Event) => event instanceof NavigationStart && event.url === this.inputComponentRoute)
                     .subscribe((path:NavigationStart) =>
                     {
                         this.updateViewport(this.inputConfig.currentSelectedView, true);
                     });
+
+                this._router.events.filter((event:AngularRouter.Event) => event instanceof NavigationEnd && event.url.startsWith(this.inputComponentRoute)).subscribe((event:NavigationEnd) =>
+                {
+                    this.inputConfig.navigateToViewByUrl(event.url);
+                });
             }
         }
 
@@ -518,7 +523,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         let routeLevel:number = 1;
 
         // get the routing config
-        let routes:Routes = this.inputRouter.config;
+        let routes:Routes = this._router.config;
 
         // scan the routing config
         while(routeLevel < path.length)
@@ -562,9 +567,9 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         // prevent event bubbling
         event.stopPropagation();
 
-        if(view.url && this.inputRouter /* && routingActive*/) // TODO: handle it only when routing is activated
+        if(view.url && this._router /* && routingActive*/) // TODO: handle it only when routing is activated
         {
-            this.inputRouter.navigateByUrl(view.url);
+            this._router.navigateByUrl(view.url);
         }
         else
         {

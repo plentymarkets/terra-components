@@ -101,3 +101,4 @@ export * from './app/components/data/terra-base-parameter.interface';
 export * from './app/components/buttons/button/enum/button-color.enum';
 export * from './app/helpers/terra-converter.helper';
 export * from './app/helpers/url.helper';
+export * from './app/components/split-view/multi/routing/terra-multi-split-view-routing.helper';

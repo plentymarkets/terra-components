@@ -81,6 +81,7 @@ import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
 import { TerraConverterHelper } from './helpers/terra-converter.helper';
+import { TerraMultiSplitViewRoutingHelper } from './components/split-view/multi/routing/terra-multi-split-view-routing.helper';
 
 @NgModule({
     declarations:    [
@@ -134,7 +135,8 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
         TerraNoteEditorComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
-        TerraNodeComponent
+        TerraNodeComponent,
+        TerraMultiSplitViewRoutingHelper
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -232,7 +234,8 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
         FixedHeaderDirective,
         TerraNoteEditorComponent,
         TerraNoteComponent,
-        TerraNodeTreeComponent
+        TerraNodeTreeComponent,
+        TerraMultiSplitViewRoutingHelper
     ],
     imports:         [
         BrowserModule,
