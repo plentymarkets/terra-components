@@ -5,9 +5,9 @@ import { isNull } from 'util';
  */
 export interface TerraFormFieldBaseOptions<T>
 {
-    value?:T,
-    label?:string,
-    required?:boolean
+    value?:T;
+    label?:string;
+    required?:boolean;
     minLength?:number;
     maxLength?:number;
     minValue?:number;
