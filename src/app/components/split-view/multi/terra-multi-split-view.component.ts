@@ -86,7 +86,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             // check if the given route exists in the route config
             if(this.routeExists(this.inputComponentRoute))
             {
-                // register event listener
+                // register event listener // TODO: This is only needed when Routing functionality is not used
                 this.inputRouter.events
                     .filter((event:AngularRouter.Event) => event instanceof NavigationStart && event.url === this.inputComponentRoute)
                     .subscribe((path:NavigationStart) =>
@@ -212,11 +212,14 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 let parentModule:TerraMultiSplitViewDetail = this.getModuleOfView(parent);
                 if(parentModule)
                 {
-                    if(parent.parent)
+                    if(!(parentModule.currentSelectedView === parent))
                     {
-                        parentModule.views = parent.parent.children;
+                        if(parent.parent)
+                        {
+                            parentModule.views = parent.parent.children;
+                        }
+                        parentModule.currentSelectedView = parent;
                     }
-                    parentModule.currentSelectedView = parent;
                 }
                 parent = parent.parent;
             }
