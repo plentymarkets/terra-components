@@ -8,12 +8,12 @@ import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select
  * @author mfrank
  */
 
-export interface TerraFormFieldSelectBoxOptions extends TerraFormFieldBaseOptions<string | number | boolean>
+export interface TerraFormFieldSelectBoxOptions extends TerraFormFieldBaseOptions<any>
 {
     selectBoxValues?:Array<TerraSelectBoxValueInterface>;
 }
 
-export class TerraFormFieldSelectBox extends TerraFormFieldBase<string | number | boolean>
+export class TerraFormFieldSelectBox extends TerraFormFieldBase<any>
 {
     selectBoxValues:Array<TerraSelectBoxValueInterface>;
 
