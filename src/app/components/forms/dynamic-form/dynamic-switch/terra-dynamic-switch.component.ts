@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+import {
+    Component,
+    Input
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { TerraFormFieldBase } from '../data/terra-form-field-base';
 import { TerraFormFieldConditionalContainer } from '../data/terra-form-field-conditional-container';
@@ -33,14 +36,20 @@ export class TerraDynamicSwitchComponent
                 {
                     formField.conditionalEntries[conditionalEntry].forEach((entry:TerraFormFieldBase<any>) =>
                     {
-                        this.inputFormGroup.get(entry.key).enable({onlySelf: true, emitEvent: false});
+                        this.inputFormGroup.get(entry.key).enable({
+                            onlySelf:  true,
+                            emitEvent: false
+                        });
                     });
                 }
                 else
                 {
                     formField.conditionalEntries[conditionalEntry].forEach((entry:TerraFormFieldBase<any>) =>
                     {
-                        this.inputFormGroup.get(entry.key).disable({onlySelf: true, emitEvent: false});
+                        this.inputFormGroup.get(entry.key).disable({
+                            onlySelf:  true,
+                            emitEvent: false
+                        });
                     });
                 }
             }

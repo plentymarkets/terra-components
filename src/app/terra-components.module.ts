@@ -85,6 +85,7 @@ import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dyn
 import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
 import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
 import { TerraConverterHelper } from './helpers/terra-converter.helper';
+import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
 
 @NgModule({
     declarations:    [
@@ -276,7 +277,7 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
 })
 export class TerraComponentsModule
 {
-    static forRoot():ModuleWithProviders
+    public static forRoot():ModuleWithProviders
     {
         return {
             ngModule:  TerraComponentsModule,
@@ -287,12 +288,13 @@ export class TerraComponentsModule
                 TerraNavigatorSplitViewConfig,
                 TerraUrlParamsDecorator,
                 TerraFrontendStorageService,
-                TerraAlertComponent
+                TerraAlertComponent,
+                TerraJsonToFormFieldService
             ]
         };
     }
 
-    static forChild():ModuleWithProviders
+    public static forChild():ModuleWithProviders
     {
         return {
             ngModule:  TerraComponentsModule,
@@ -303,7 +305,8 @@ export class TerraComponentsModule
                 TerraNavigatorSplitViewConfig,
                 TerraUrlParamsDecorator,
                 TerraFrontendStorageService,
-                TerraAlertComponent
+                TerraAlertComponent,
+                TerraJsonToFormFieldService
             ]
         };
     }

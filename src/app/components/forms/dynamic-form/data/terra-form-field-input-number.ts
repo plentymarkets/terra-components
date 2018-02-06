@@ -2,22 +2,23 @@ import {
     TerraFormFieldBase,
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
+import { ControlTypeEnum } from '../enum/controlType.enum';
 
 /**
  * @author mfrank
  */
-// .interafce oder .option?
-export interface TerraFormFieldInputNumberOptions extends TerraFormFieldBaseOptions<string>
+export interface TerraFormFieldInputNumberOptions extends TerraFormFieldBaseOptions<number>
 {
     type?:string;
 }
 
-export class TerraFormFieldInputNumber extends TerraFormFieldBase<string>
+export class TerraFormFieldInputNumber extends TerraFormFieldBase<number>
 {
-    type: string;
+    public type:string;
 
-    constructor(key:string, options:TerraFormFieldInputNumberOptions = {}) {
-        super(key, 'inputNumber', options);
+    constructor(key:string, options:TerraFormFieldInputNumberOptions = {})
+    {
+        super(key, ControlTypeEnum.INPUT_NUMBER, options);
 
         this.type = options['type'] || '';
     }

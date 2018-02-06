@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 /**
  * @author mfrank
  */
-// ToDo art des interfaces definieren (z.b. handler), oder allgemein (interface) bleiben
 export interface DynamicFormFunctionsHandler<D>
 {
     /**

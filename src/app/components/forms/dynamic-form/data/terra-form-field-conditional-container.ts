@@ -3,6 +3,7 @@ import {
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
+import { ControlTypeEnum } from '../enum/controlType.enum';
 
 /**
  * @author mfrank
@@ -15,12 +16,13 @@ export interface TerraFormFieldConditionalContainerOptions extends TerraFormFiel
 
 export class TerraFormFieldConditionalContainer extends TerraFormFieldBase<string>
 {
-    conditionalType:string;
-    conditionalValues:Array<TerraSelectBoxValueInterface> | Array<{ [key:string]:string | number | boolean }>;
-    conditionalEntries:{ [key:string]:Array<TerraFormFieldBase<any>> };
+    public conditionalType:string;
+    public conditionalValues:Array<TerraSelectBoxValueInterface> | Array<{ [key:string]:string | number | boolean }>;
+    public conditionalEntries:{ [key:string]:Array<TerraFormFieldBase<any>> };
 
-    constructor(key:string, conditionalType:string, options:TerraFormFieldConditionalContainerOptions = {}) {
-        super(key, 'conditionalContainer', options);
+    constructor(key:string, conditionalType:string, options:TerraFormFieldConditionalContainerOptions = {})
+    {
+        super(key, ControlTypeEnum.CONDITIONAL_CONTAINER, options);
 
         this.conditionalType = conditionalType;
         this.conditionalValues = options['conditionalValues'] || [];

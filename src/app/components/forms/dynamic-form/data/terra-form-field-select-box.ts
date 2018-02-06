@@ -3,6 +3,7 @@ import {
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
+import { ControlTypeEnum } from '../enum/controlType.enum';
 
 /**
  * @author mfrank
@@ -15,10 +16,11 @@ export interface TerraFormFieldSelectBoxOptions extends TerraFormFieldBaseOption
 
 export class TerraFormFieldSelectBox extends TerraFormFieldBase<any>
 {
-    selectBoxValues:Array<TerraSelectBoxValueInterface>;
+    public selectBoxValues:Array<TerraSelectBoxValueInterface>;
 
-    constructor(key:string, options:TerraFormFieldSelectBoxOptions = {}) {
-        super(key, 'selectBox', options);
+    constructor(key:string, options:TerraFormFieldSelectBoxOptions = {})
+    {
+        super(key, ControlTypeEnum.SELECT_BOX, options);
 
         this.selectBoxValues = options['selectBoxValues'] || [];
     }

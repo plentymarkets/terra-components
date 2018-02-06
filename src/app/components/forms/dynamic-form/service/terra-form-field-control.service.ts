@@ -7,10 +7,7 @@ import {
     ValidatorFn,
     Validators
 } from '@angular/forms';
-import {
-    isNull,
-    isNullOrUndefined
-} from 'util';
+import { isNullOrUndefined } from 'util';
 import { TerraFormFieldHorizontalContainer } from '../data/terra-form-field-horizontal-container';
 import { TerraFormFieldConditionalContainer } from '../data/terra-form-field-conditional-container';
 
@@ -20,10 +17,11 @@ import { TerraFormFieldConditionalContainer } from '../data/terra-form-field-con
 @Injectable()
 export class TerraFormFieldControlService
 {
-    dynamicFormGroup:FormGroup;
-    formFieldsToGroup:{ [key:string]:FormControl };
-    defaultValues:{ [key:string]:string | number | boolean };
-    translationMapping:{ [key:string]:string };
+    public dynamicFormGroup:FormGroup;
+    public defaultValues:{ [key:string]:string | number | boolean };
+    public translationMapping:{ [key:string]:string };
+
+    private formFieldsToGroup:{ [key:string]:FormControl };
 
     constructor(private _formBuilder:FormBuilder)
     {
@@ -32,8 +30,27 @@ export class TerraFormFieldControlService
         this.translationMapping = {};
     }
 
+    /**
+     * Creates a new FormGroup
+     *
+     * @param formFields
+     */
+    public createFormGroup(formFields:Array<TerraFormFieldBase<any>>):void
+    {
+        this.initFormGroupHelper(formFields, false);
+        this.dynamicFormGroup = this._formBuilder.group(this.formFieldsToGroup);
+    }
+
+    /**
+     * Resets the form to default values
+     */
+    public resetForm():void
+    {
+        this.dynamicFormGroup.reset(this.defaultValues);
+    }
+
     private initFormGroupHelper(formFields:Array<TerraFormFieldBase<any>>,
-                               isDisabled:boolean = false):void
+                                isDisabled:boolean = false):void
     {
         formFields.forEach((formField:TerraFormFieldBase<any>) =>
         {
@@ -49,7 +66,7 @@ export class TerraFormFieldControlService
                 {
                     if(formField.conditionalEntries.hasOwnProperty(key))
                     {
-                        this.initFormGroupHelper(formField.conditionalEntries[key],  true);
+                        this.initFormGroupHelper(formField.conditionalEntries[key], true);
                     }
                 }
             }
@@ -58,7 +75,10 @@ export class TerraFormFieldControlService
                 this.formFieldsToGroup[formField.key] = new FormControl(formField.value, this.generateValidators(formField));
                 if(isDisabled)
                 {
-                    this.formFieldsToGroup[formField.key].disable({onlySelf: true, emitEvent: false});
+                    this.formFieldsToGroup[formField.key].disable({
+                        onlySelf:  true,
+                        emitEvent: false
+                    });
                 }
                 this.defaultValues[formField.key] = formField.value;
                 this.translationMapping[formField.key] = formField.label;
@@ -86,15 +106,15 @@ export class TerraFormFieldControlService
         }
 
         // TODO implement, if Angular version is or higher 4.4
-        //if(!isNull(formField.minValue))
-        //{
+        // if(!isNull(formField.minValue))
+        // {
         //    validators.push(Validators.minValue(formField.minValue));
-        //}
+        // }
         //
-        //if(!isNull(formField.maxValue))
-        //{
+        // if(!isNull(formField.maxValue))
+        // {
         //    validators.push(Validators.maxValue(formField.maxValue));
-        //}
+        // }
 
         if(formField.pattern !== '')
         {
@@ -102,16 +122,5 @@ export class TerraFormFieldControlService
         }
 
         return validators;
-    }
-
-    public createFormGroup(formFields:Array<TerraFormFieldBase<any>>):void
-    {
-        this.initFormGroupHelper(formFields, false);
-        this.dynamicFormGroup = this._formBuilder.group(this.formFieldsToGroup);
-    }
-
-    public resetForm():void
-    {
-        this.dynamicFormGroup.reset(this.defaultValues);
     }
 }

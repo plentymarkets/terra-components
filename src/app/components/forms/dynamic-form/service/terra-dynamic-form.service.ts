@@ -21,7 +21,7 @@ export class TerraDynamicFormService extends TerraBaseService
      * @param url
      * @return {any}
      */
-    create(data:any, url:string, params:any):Observable<any>
+    public create(data:any, url:string, params:any):Observable<any>
     {
         return Observable.of(data);
     }
@@ -31,7 +31,7 @@ export class TerraDynamicFormService extends TerraBaseService
      * @param url
      * @return {any}
      */
-    update(data:any, url:string, params:any):Observable<any>
+    public update(data:any, url:string, params:any):Observable<any>
     {
         return Observable.of(data);
     }
@@ -41,7 +41,7 @@ export class TerraDynamicFormService extends TerraBaseService
      * @param url
      * @return {any}
      */
-    delete(data:any, url:string):Observable<any>
+    public delete(data:any, url:string):Observable<any>
     {
         return Observable.of(true);
     }

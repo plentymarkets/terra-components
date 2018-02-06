@@ -1,4 +1,5 @@
 import { isNull } from 'util';
+import { ControlTypeEnum } from '../enum/controlType.enum';
 
 /**
  * @author mfrank
@@ -20,21 +21,21 @@ export interface TerraFormFieldBaseOptions<T>
  */
 export class TerraFormFieldBase<T>
 {
-    value:T;
-    key:string;
-    label:string;
+    public value:T;
+    public key:string;
+    public label:string;
 
     // Validator
-    required:boolean;
-    minLength:number;
-    maxLength:number;
-    minValue:number;
-    maxValue:number;
-    pattern:string | RegExp;
+    public required:boolean;
+    public minLength:number;
+    public maxLength:number;
+    public minValue:number;
+    public maxValue:number;
+    public pattern:string | RegExp;
 
-    readonly controlType:string;
+    public readonly controlType:ControlTypeEnum;
 
-    constructor(key:string, controlType:string, options:TerraFormFieldBaseOptions<T> = {})
+    constructor(key:string, controlType:ControlTypeEnum, options:TerraFormFieldBaseOptions<T> = {})
     {
         if(isNull(key))
         {
