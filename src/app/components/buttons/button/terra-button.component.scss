@@ -102,6 +102,7 @@ button:focus
     height: var(--btn-height, $terra-btn-md-height);
     line-height: var(--btn-line-height, $terra-btn-md-height);
     padding: var(--btn-padding, 0 8px);
+    transition: ease height 0.6s, ease line-height 0.6s;
     display: inline-block;
     text-align: center;
     white-space: nowrap;

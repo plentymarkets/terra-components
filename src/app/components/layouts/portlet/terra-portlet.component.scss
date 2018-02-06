@@ -39,7 +39,8 @@
     .portlet_body
     {
         background-color: var(--portlet_body-background-color, $grey-2);
-        padding: 12px;
+        padding: var(--portlet_body-padding, 12px);
+        transition: ease padding .6s;
         border-radius: 5px;
         
         table.table

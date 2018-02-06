@@ -25,6 +25,7 @@
     {
         height: var(--select-box-height, $terra-btn-md-height - 2);
         line-height: var(--select-box-line-height, $terra-btn-md-height - 2);
+        transition: ease height 0.6s, ease line-height 0.6s;
         display: inline-block;
         width: var(--select-box-width, 100%);
         max-width: 100%;
@@ -57,6 +58,7 @@
         {
             line-height: 24px;
             padding: var(--select-box-labeled-padding, 13px 7px 0px 7px);
+            transition: ease padding .6s;
         }
         span
         {

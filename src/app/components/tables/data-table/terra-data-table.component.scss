@@ -33,6 +33,7 @@
                     {
                         font-variant: all-small-caps;
                         padding: var(--table-head-th-padding, 6px 9px);
+                        transition: ease padding 0.6s;
                         border: none;
                         &:first-child
                         {
@@ -54,6 +55,7 @@
                     td
                     {
                         padding: var(--table-body-td-padding, 8px 9px);
+                        transition: ease padding 0.6s;
                         vertical-align: middle;
                         border-bottom: 1px solid $grey-1;
                         white-space: nowrap;
@@ -152,8 +154,9 @@
     .group_function_body
     {
         background-color: $grey-2;
-        padding: 12px;
+        padding: var(--group_function_body-padding, 12px);
         border-radius: 5px;
+        transition: ease padding 0.6s;
     }
 }
 

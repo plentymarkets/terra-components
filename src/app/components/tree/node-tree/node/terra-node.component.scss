@@ -15,46 +15,46 @@ li
             text-align: left;
             padding: 0px;
             border-radius: 0px;
-
+            
             .buttonText
             {
                 display: inline-block;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
-
+            
             span
             {
                 &.icon_dist_top
                 {
                     padding: 8px;
-                    top: -9px;
+                    top: var(--terra-node-icon-dist-top-top, -9px);
                 }
-
+                
                 &.icon-right
                 {
                     position: absolute;
                     right: 0px;
                     top: 0px;
-                    height: 36px;
+                    height: var(--terra-node-icon-right-height, 36px);
                     width: 40px;
-                    line-height: 36px;
+                    line-height: var(--terra-node-icon-right-line-height, 36px);
                     text-align: center;
                     background-color: $tree-icon-grey;
                     border-left: 1px solid $grey-11;
-
+                    
                     &:hover
                     {
                         background: $tree-icon-grey-hover;
                     }
                 }
             }
-
+            
             &.isLoading
             {
                 background-color: $tree-icon-grey;
             }
-
+            
             &:hover
             {
                 background-color: $blue;
