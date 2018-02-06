@@ -18,6 +18,7 @@ import { TerraDynamicLoadedComponentInputInterface } from '../../../dynamic-modu
 import { Observable } from 'rxjs/Observable';
 import { UrlHelper } from '../../../../helpers/url.helper';
 import { TranslationService } from 'angular-l10n';
+import { TerraMultiSplitViewComponent } from '../terra-multi-split-view.component';
 
 export interface ResolvedData
 {
@@ -46,6 +47,7 @@ export class TerraMultiSplitViewConfig
     private _deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _setSelectedViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+    private _splitViewComponent:TerraMultiSplitViewComponent;
 
 
     public routingConfig:Routes = [];
@@ -485,5 +487,10 @@ export class TerraMultiSplitViewConfig
     public get setSelectedViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
     {
         return this._setSelectedViewEventEmitter;
+    }
+
+    public set splitViewComponent(value:TerraMultiSplitViewComponent)
+    {
+        this._splitViewComponent = value;
     }
 }
