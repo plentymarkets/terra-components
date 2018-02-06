@@ -21,7 +21,12 @@
 # 2.1.44-zlk (29.01.2018)
 
 ### Bug Fixes
-* **terra-button** fix styling when inputIsLink is used
+
+### Feature
+* **terra-portlet** add new input `inputButtonList` to add a button group into the portlet header
+* **terra-button** 
+- add properties `isSmall` and `isLarge` to button interface
+- fix styling when inputIsLink is used
 
 ### Feature
 * **terra-multi-split-view** divider styling 
