@@ -1,5 +1,5 @@
 <a name="2.1.47-zlk"></a>
-# 2.1.46-zlk (06.02.2018)
+# 2.1.47-zlk (06.02.2018)
 
 ### Feature
 * **terra-checkbox-tree** added value change output to the checkbox tree
