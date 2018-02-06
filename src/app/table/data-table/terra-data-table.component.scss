@@ -62,6 +62,7 @@
                     }
                     a[href]
                     {
+                        color: $gray-dark; 
                         text-decoration: underline;
                         &:hover
                         {

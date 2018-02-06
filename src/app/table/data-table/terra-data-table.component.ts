@@ -16,7 +16,7 @@ import {
     isNullOrUndefined
 } from 'util';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
-import { TerraRefTypeInterface } from './cell/terra-ref-type.interface';
+import { TerraRefTypeEnum, TerraRefTypeInterface } from './cell/terra-ref-type.interface';
 import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 import { TerraDataTableTextInterface } from './cell/terra-data-table-text.interface';
 import { TerraDataTableSortOrder } from './terra-data-table-sort-order.enum';
@@ -79,7 +79,8 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     private _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
     private _selectedRowList:Array<TerraDataTableRowInterface<T>>;
     private _sortOrderEnum = TerraDataTableSortOrder;
-
+    private _refTypeEnum = TerraRefTypeEnum;
+    
     /**
      * @description Constructor initializing the table component
      */

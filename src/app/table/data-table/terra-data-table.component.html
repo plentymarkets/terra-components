@@ -81,9 +81,9 @@
                         </div>
                         
                         <div *ngSwitchCase="'TerraRefTypeInterface'">
-                            <a *ngIf="cell.data.type === 'mailto' || cell.data.type === 'tel'" href="{{cell.data.type}}:{{cell.data.value}}" (click)="$event.stopPropagation()">{{ cell.data.caption || cell.data.value}}</a>
-                            <a *ngIf="cell.data.type === 'fct'" href="javascript:void(0);" (click)="cell.data.value(); $event.stopPropagation();">{{cell.data.caption}}</a>
-                            <a *ngIf="cell.data.type === 'url'" href="{{cell.data.value}}" target="{{cell.data.target || '_self'}}" (click)="$event.stopPropagation()">{{cell.data.caption || cell.data.value}}</a>
+                            <a *ngIf="cell.data.type === _refTypeEnum.email || cell.data.type === _refTypeEnum.phone" href="{{cell.data.type}}:{{cell.data.value}}" (click)="$event.stopPropagation()">{{ cell.data.caption || cell.data.value}}</a>
+                            <a *ngIf="cell.data.type === _refTypeEnum.function" href="javascript:void(0);" (click)="cell.data.value(); $event.stopPropagation();">{{cell.data.caption}}</a>
+                            <a *ngIf="cell.data.type === _refTypeEnum.url" href="{{cell.data.value}}" target="{{cell.data.target || '_self'}}" (click)="$event.stopPropagation()">{{cell.data.caption || cell.data.value}}</a>
                         </div>
                         
                         <div *ngSwitchCase="'buttons'" class="btn-group">

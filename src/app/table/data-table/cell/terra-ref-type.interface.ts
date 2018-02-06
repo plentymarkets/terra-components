@@ -2,12 +2,12 @@ export enum TerraRefTypeEnum {
     email = 'mailto',
     phone = 'tel',
     url = 'url',
-    fct = 'fct'
+    function = 'function'
 }
 
 export interface TerraRefTypeInterface {
-    type: TerraRefTypeEnum,
-    value: any,
-    caption?: any,
-    target?: string,
+    type: TerraRefTypeEnum;
+    value: string|number|Function;
+    caption?: any;
+    target?: string;
 }
