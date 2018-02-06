@@ -39,7 +39,8 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 
     private handleVisibility(nodeList:Array<TerraNodeInterface<D>>):void
     {
-        nodeList.forEach((node:TerraNodeInterface<D>)=>{
+        nodeList.forEach((node:TerraNodeInterface<D>) =>
+        {
 
             if(node.isVisible)
             {
@@ -59,7 +60,8 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 
     private handleDefaultVisibility(nodeList:Array<TerraNodeInterface<D>>):void
     {
-        nodeList.forEach((node:TerraNodeInterface<D>)=>{
+        nodeList.forEach((node:TerraNodeInterface<D>) =>
+        {
 
             if(node.defaultVisibility)
             {

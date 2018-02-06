@@ -4,13 +4,6 @@
     font-weight: $font-weight-3;
 }
 
-.modal-body
-{
-    max-height: var(--modal-body-max-height, 525px);
-    height: var(--modal-body-height, initial);
-    overflow-y: auto;
-}
-
 .modal-dialog
 {
     margin: 0;
@@ -19,6 +12,25 @@
     left: 50%;
     top: 50%;
     min-width: 300px;
+    .modal-content
+    {
+        .modal-header
+        {
+            padding: 10px 14px;
+            --btn-padding: 0;
+        }
+        .modal-body
+        {
+            max-height: var(--modal-body-max-height, 525px);
+            height: var(--modal-body-height, initial);
+            overflow-y: auto;
+            padding: 18px 14px;
+        }
+        .modal-footer
+        {
+            padding: 10px 14px;
+        }
+    }
 }
 
 .modal.fade .modal-dialog
@@ -52,3 +64,4 @@
         }
     }
 }
+

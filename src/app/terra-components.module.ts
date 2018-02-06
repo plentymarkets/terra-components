@@ -80,6 +80,7 @@ import { TerraDataTableContextMenuService } from './components/tables/data-table
 import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
+import { TerraConverterHelper } from './helpers/terra-converter.helper';
 
 @NgModule({
     declarations:    [
@@ -254,7 +255,8 @@ import { TerraAlertComponent } from './components/alert/terra-alert.component';
         COMPILER_PROVIDERS,
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
-        TerraFileBrowserService
+        TerraFileBrowserService,
+        TerraConverterHelper
     ],
     bootstrap:       [
         TerraComponentsComponent

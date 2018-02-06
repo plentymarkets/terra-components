@@ -155,7 +155,7 @@ export class Color
                 }
                 if(t < (2 / 3))
                 {
-                    return p + (q - p) * ( ( 2 / 3 ) - t) * 6;
+                    return p + (q - p) * ((2 / 3) - t) * 6;
                 }
                 return p;
             };
@@ -163,7 +163,7 @@ export class Color
             let q:number;
             if(color.l < 0.5)
             {
-                q = color.l * ( 1 + color.s );
+                q = color.l * (1 + color.s);
             }
             else
             {
@@ -172,9 +172,9 @@ export class Color
 
             let p:number = 2 * color.l - q;
 
-            r = hue2rgb(p, q, color.h + ( 1 / 3 ));
+            r = hue2rgb(p, q, color.h + (1 / 3));
             g = hue2rgb(p, q, color.h);
-            b = hue2rgb(p, q, color.h - ( 1 / 3 ));
+            b = hue2rgb(p, q, color.h - (1 / 3));
         }
 
         this.r = Math.round(r * 255);
@@ -271,7 +271,7 @@ export class Color
      */
     public getGrayscale():number
     {
-        return ( this.r * 0.299 ) + ( this.g * 0.587 ) + ( this.b * 0.114 );
+        return (this.r * 0.299) + (this.g * 0.587) + (this.b * 0.114);
     }
 
     /**
