@@ -43,6 +43,7 @@ export class TerraMultiSplitViewConfig
     private _views:Array<TerraMultiSplitViewInterface> = [];
 
     private _selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+    public deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _splitViewComponent:TerraMultiSplitViewComponent;
 
 
@@ -139,13 +140,16 @@ export class TerraMultiSplitViewConfig
             return;
         }
 
+        // update modules array
+        let viewToSelect:TerraMultiSplitViewInterface = this._splitViewComponent.removeFromModules(view);
+
+        // select the parent view
+        this._splitViewComponent.handleBreadCrumbClick(viewToSelect);
+
         if(this.removeViewAndChildren(view))
         {
-            // update modules array
-            let viewToSelect:TerraMultiSplitViewInterface = this._splitViewComponent.removeFromModules(view);
-
-            // select the parent view
-            this._splitViewComponent.setSelectedView(viewToSelect);
+            // notify user
+            this.deleteViewEventEmitter.next(view);
         }
     }
 
@@ -154,7 +158,7 @@ export class TerraMultiSplitViewConfig
         if(view.children && view.children.length > 0)
         {
             view.children.forEach((child:TerraMultiSplitViewInterface) => {
-                this.removeView(child);
+                this.removeViewAndChildren(child);
             });
         }
 

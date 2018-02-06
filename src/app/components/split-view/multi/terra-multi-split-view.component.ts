@@ -536,12 +536,15 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         return module.views[0];
     }
 
-    public handleBreadCrumbClick(view:TerraMultiSplitViewInterface, event:MouseEvent)
+    public handleBreadCrumbClick(view:TerraMultiSplitViewInterface, event?:MouseEvent)
     {
         // prevent event bubbling
-        event.stopPropagation();
+        if(event)
+        {
+            event.stopPropagation();
+        }
 
-        if(view.url && this._router /* && routingActive*/) // TODO: handle it only when routing is activated
+        if(view.url /* && routingActive*/) // TODO: handle it only when routing is activated
         {
             this._router.navigateByUrl(view.url);
         }
