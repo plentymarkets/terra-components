@@ -52,9 +52,9 @@ export class TerraMultiSplitViewConfig
     private _activatedRouteSnapshot:ActivatedRouteSnapshot;
 
     constructor(
-        private _router:Router,
-        private _injector:Injector,
-        private _translation:TranslationService)
+        private _router?:Router,
+        private _injector?:Injector,
+        private _translation?:TranslationService)
     {
 
     }
@@ -107,7 +107,7 @@ export class TerraMultiSplitViewConfig
                                 (child.parameter && view.parameter && JSON.stringify(child.parameter) === JSON.stringify(view.parameter)) ||
                                 (child.inputs && view.inputs && JSON.stringify(child.inputs) === JSON.stringify(view.inputs)) ||
                                 (child.name === view.name) ||
-                                (child.id === view.id && child.mainComponentName === view.mainComponentName);
+                                (view.id && child.id === view.id && child.mainComponentName === view.mainComponentName);
 
                             if(hasSameParameter && child.module.ngModule == view.module.ngModule)
                             {
