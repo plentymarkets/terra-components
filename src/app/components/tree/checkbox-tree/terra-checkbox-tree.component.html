@@ -15,6 +15,7 @@
                     *ngIf="leaf.subLeafList"
                     [inputLeafList]="leaf.subLeafList"
                     [inputParentLeafList]="leafList"
+                    (valueChange)="valueChange.emit($event)"
                     [inputCompleteLeafList]="inputCompleteLeafList">
                 </terra-checkbox-tree>
             </li>
