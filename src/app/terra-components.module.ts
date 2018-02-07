@@ -80,7 +80,12 @@ import { TerraDataTableContextMenuService } from './components/tables/data-table
 import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
+import { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra-dynamic-form.component';
+import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
+import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
+import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
 import { TerraConverterHelper } from './helpers/terra-converter.helper';
+import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
 
 @NgModule({
     declarations:    [
@@ -133,6 +138,8 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
         FixedHeaderDirective,
         TerraNoteEditorComponent,
         TerraNoteComponent,
+        TerraDynamicFormComponent,
+        TerraDynamicSwitchComponent,
         TerraNodeTreeComponent,
         TerraNodeComponent
     ],
@@ -180,6 +187,8 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
         TerraButtonWithOptionsComponent,
         TerraNoteEditorComponent,
         TerraNoteComponent,
+        TerraDynamicFormComponent,
+        TerraDynamicSwitchComponent,
         TerraNodeTreeComponent,
         TerraNodeComponent
     ],
@@ -232,6 +241,8 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
         FixedHeaderDirective,
         TerraNoteEditorComponent,
         TerraNoteComponent,
+        TerraDynamicFormComponent,
+        TerraDynamicSwitchComponent,
         TerraNodeTreeComponent
     ],
     imports:         [
@@ -256,6 +267,8 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
         TerraFileBrowserService,
+        TerraFormFieldControlService,
+        TerraDynamicFormService,
         TerraConverterHelper
     ],
     bootstrap:       [
@@ -264,7 +277,7 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
 })
 export class TerraComponentsModule
 {
-    static forRoot():ModuleWithProviders
+    public static forRoot():ModuleWithProviders
     {
         return {
             ngModule:  TerraComponentsModule,
@@ -275,12 +288,13 @@ export class TerraComponentsModule
                 TerraNavigatorSplitViewConfig,
                 TerraUrlParamsDecorator,
                 TerraFrontendStorageService,
-                TerraAlertComponent
+                TerraAlertComponent,
+                TerraJsonToFormFieldService
             ]
         };
     }
 
-    static forChild():ModuleWithProviders
+    public static forChild():ModuleWithProviders
     {
         return {
             ngModule:  TerraComponentsModule,
@@ -291,7 +305,8 @@ export class TerraComponentsModule
                 TerraNavigatorSplitViewConfig,
                 TerraUrlParamsDecorator,
                 TerraFrontendStorageService,
-                TerraAlertComponent
+                TerraAlertComponent,
+                TerraJsonToFormFieldService
             ]
         };
     }
