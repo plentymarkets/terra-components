@@ -15,7 +15,6 @@ import {
     Routes
 } from '@angular/router';
 import { TerraDynamicLoadedComponentInputInterface } from '../../../dynamic-module-loader/data/terra-dynamic-loaded-component-input.interface';
-import { Observable } from 'rxjs/Observable';
 import { UrlHelper } from '../../../../helpers/url.helper';
 import { TranslationService } from 'angular-l10n';
 import { TerraMultiSplitViewComponent } from '../terra-multi-split-view.component';
@@ -29,7 +28,7 @@ export interface ResolvedData
 export interface ResolverListItem
 {
     urlPart:string;
-    resolve:{
+    resolver:{
         key:string;
         service:Resolve<any>;
     };
@@ -217,16 +216,7 @@ export class TerraMultiSplitViewConfig
             return;
         }
 
-        this.getResolveDataForUrl(url, this.routingConfig).subscribe(
-            (data:ResolvedData[]) =>
-            {
-                this.addOrSelectViewsByUrl(url, data);
-            },
-            (error:any) =>
-            {
-                console.error(error);
-            }
-        );
+        this.getResolveDataForUrl(url, this.routingConfig);
     }
 
     private addOrSelectViewsByUrl(url:string, resolveData:ResolvedData[]):void
@@ -392,11 +382,12 @@ export class TerraMultiSplitViewConfig
         return null;
     }
 
-    private getResolveDataForUrl(url:string, routeConfig:Routes):Observable<ResolvedData[]>
+    private getResolveDataForUrl(url:string, routeConfig:Routes):void
     {
         let resolverList:ResolverListItem[] = this.getResolversForUrl(url, routeConfig);
+        let data:ResolvedData[];
 
-        return this.resolve(resolverList);
+        this.resolveInSequence(url, resolverList, data);
     }
 
     private getResolversForUrl(url:string, routeConfig:Routes):ResolverListItem[]
@@ -412,15 +403,17 @@ export class TerraMultiSplitViewConfig
             {
                 if(route.resolve)
                 {
+
                     for(let elem in route.resolve)
                     {
                         let resolver:ResolverListItem = {
                             urlPart: urlPart,
-                            resolve: {
+                            resolver: {
                                 key:     elem,
                                 service: this._injector.get(route.resolve[elem])
                             }
                         };
+
                         if(isNullOrUndefined(resolverList))
                         {
                             resolverList = [resolver];
@@ -442,46 +435,57 @@ export class TerraMultiSplitViewConfig
         return resolverList;
     }
 
-    private resolve(resolverList:ResolverListItem[]):Observable<ResolvedData[]>
+    private resolveInSequence(url:string, resolverList:ResolverListItem[], data:ResolvedData[]):void
     {
-        let resolver:ResolverListItem = resolverList.shift();
-        let observer:Observable<Array<ResolvedData>> = resolver.resolve.service.resolve(this._activatedRouteSnapshot, this._routerStateSnapshot);
-        observer = observer.map((value:any) =>
+        if(isNullOrUndefined(resolverList) || resolverList.length === 0)
         {
-            return [{
-                urlPart:  resolver.urlPart,
-                resolves: [
-                    {
-                        name:  resolver.resolve.key,
-                        value: value
-                    }
-                ]
-            }];
-        });
+            // all data resolved go to view addition/selection
+            console.log('done');
+            this.addOrSelectViewsByUrl(url, data);
+            return;
+        }
 
-        if(resolverList.length > 0)
+        let resolverListItem:ResolverListItem = resolverList.shift();
+        resolverListItem.resolver.service.resolve(this._activatedRouteSnapshot, this._routerStateSnapshot).subscribe((res:any) =>
         {
-            return Observable.combineLatest(observer, this.resolve(resolverList),
-                (resolveData1:ResolvedData[], resolveData2:ResolvedData[]) =>
+            let resolveData:TerraDynamicLoadedComponentInputInterface = {
+                name:  resolverListItem.resolver.key,
+                value: res
+            };
+
+            if(isNullOrUndefined(data))
+            {
+                data = [{
+                    urlPart:  resolverListItem.urlPart,
+                    resolves: [resolveData]
+                }];
+            }
+            else
+            {
+                let obj = data.find((dat) => dat.urlPart === resolverListItem.urlPart);
+                if(obj)
                 {
-                    let obj:ResolvedData = resolveData2.find((data:ResolvedData) => data.urlPart === resolveData1[0].urlPart);
-                    if(obj)
+                    if(isNullOrUndefined(obj.resolves))
                     {
-                        obj.resolves.push(...resolveData1[0].resolves);
+                        obj.resolves = [resolveData];
                     }
                     else
                     {
-                        resolveData2.push(resolveData1[0]);
+                        obj.resolves.push(resolveData);
                     }
-
-                    return resolveData2;
                 }
-            );
-        }
-        else
-        {
-            return observer;
-        }
+                else
+                {
+                    data.push({
+                        urlPart:  resolverListItem.urlPart,
+                        resolves: [resolveData]
+                    });
+                }
+            }
+
+            // go to the next resolver
+            this.resolveInSequence(url, resolverList, data);
+        });
     }
 
     public get selectBreadcrumbEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
@@ -493,4 +497,5 @@ export class TerraMultiSplitViewConfig
     {
         this._splitViewComponent = value;
     }
+
 }
