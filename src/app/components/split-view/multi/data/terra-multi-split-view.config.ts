@@ -194,6 +194,29 @@ export class TerraMultiSplitViewConfig
 
     public navigateToViewByUrl(url:string):void
     {
+        if(!this._splitViewComponent.inputHasRouting)
+        {
+            console.warn('Routing is deactivated. If you want to use routing for the split-view set the components input "inputHasRouting"');
+            return;
+        }
+
+        // check if the needed dependencies are injected
+        if(isNullOrUndefined(this._router))
+        {
+            console.error('_router is not defined.. Please inject the Router in your config-instance to make routing functionality available');
+            return;
+        }
+        if(isNullOrUndefined(this._injector))
+        {
+            console.error('_injector is not defined. Please inject the Injector in your config-instance to make routing functionality available');
+            return;
+        }
+        if(isNullOrUndefined(this._translation))
+        {
+            console.error('_translation is not defined. Please inject the TranslationService in your config-instance to make routing functionality available');
+            return;
+        }
+
         this._routerStateSnapshot = this._router.routerState.snapshot;
         this._activatedRouteSnapshot = this._routerStateSnapshot.root;
 
@@ -403,7 +426,6 @@ export class TerraMultiSplitViewConfig
             {
                 if(route.resolve)
                 {
-
                     for(let elem in route.resolve)
                     {
                         let resolver:ResolverListItem = {
@@ -440,7 +462,7 @@ export class TerraMultiSplitViewConfig
         if(isNullOrUndefined(resolverList) || resolverList.length === 0)
         {
             // all data resolved go to view addition/selection
-            console.log('done');
+            console.log('done'); // TODO remove when development is finished
             this.addOrSelectViewsByUrl(url, data);
             return;
         }
