@@ -108,6 +108,7 @@ export * from './app/components/forms/dynamic-form/data/terra-form-field-select-
 export * from './app/components/forms/dynamic-form/data/terra-form-field-horizontal-container';
 export * from './app/components/forms/dynamic-form/data/terra-form-field-conditional-container';
 export * from './app/components/forms/dynamic-form/data/terra-form-field-check-box';
+export * from './app/components/forms/dynamic-form/data/terra-form-field-date-picker';
 export * from './app/components/forms/dynamic-form/handler/dynamic-form-functions.handler';
 export * from './app/components/forms/dynamic-form/enum/controlType.enum';
 export * from './app/components/forms/dynamic-form/service/terra-json-to-form-field.service';

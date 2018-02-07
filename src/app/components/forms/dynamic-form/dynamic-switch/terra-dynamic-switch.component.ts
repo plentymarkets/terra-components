@@ -17,7 +17,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class TerraDynamicSwitchComponent
 {
-    private static DELAY_FOR_CHANGE_DETECTION:number = 1;
+    private readonly DELAY_FOR_CHANGE_DETECTION:number = 1;
 
     @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
     @Input() public inputFormGroup:FormGroup;
