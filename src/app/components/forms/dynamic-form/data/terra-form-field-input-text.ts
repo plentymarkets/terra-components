@@ -2,7 +2,7 @@ import {
     TerraFormFieldBase,
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
-import { ControlTypeEnum } from '../enum/controlType.enum';
+import { TerraControlTypeEnum } from '../enum/controlType.enum';
 
 /**
  * @author mfrank
@@ -18,7 +18,7 @@ export class TerraFormFieldInputText extends TerraFormFieldBase<string>
 
     constructor(key:string, options:TerraFormFieldInputTextOptions = {})
     {
-        super(key, ControlTypeEnum.INPUT_TEXT, options);
+        super(key, TerraControlTypeEnum.INPUT_TEXT, options);
 
         this.type = options['type'] || '';
     }

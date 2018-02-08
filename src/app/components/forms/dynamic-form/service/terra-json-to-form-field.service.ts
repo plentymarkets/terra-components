@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TerraFormFieldBase } from '../data/terra-form-field-base';
-import { ControlTypeEnum } from '../enum/controlType.enum';
+import { TerraControlTypeEnum } from '../enum/controlType.enum';
 import { TerraFormFieldInputText } from '../data/terra-form-field-input-text';
 
 /**
@@ -39,7 +39,7 @@ export class TerraJsonToFormFieldService
 
         switch(formFieldData.controlType)
         {
-            case ControlTypeEnum.INPUT_TEXT:
+            case TerraControlTypeEnum.INPUT_TEXT:
                 formField = new TerraFormFieldInputText(formFieldData.key, {label: formFieldData.label});
                 break;
             default:

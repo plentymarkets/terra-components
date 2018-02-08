@@ -1,7 +1,7 @@
 /**
  * @author mfrank
  */
-export enum ControlTypeEnum
+export enum TerraControlTypeEnum
 {
     CHECK_BOX = 'checkBox',
     CONDITIONAL_CONTAINER = 'conditionalContainer',

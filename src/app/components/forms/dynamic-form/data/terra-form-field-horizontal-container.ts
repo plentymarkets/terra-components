@@ -2,7 +2,7 @@ import {
     TerraFormFieldBase,
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
-import { ControlTypeEnum } from '../enum/controlType.enum';
+import { TerraControlTypeEnum } from '../enum/controlType.enum';
 
 /**
  * @author mfrank
@@ -18,7 +18,7 @@ export class TerraFormFieldHorizontalContainer extends TerraFormFieldBase<string
 
     constructor(key:string, options:TerraFormFieldHorizontalContainerOptions = {})
     {
-        super(key, ControlTypeEnum.HORIZONTAL_CONTAINER, options);
+        super(key, TerraControlTypeEnum.HORIZONTAL_CONTAINER, options);
 
         this.containerEntries = options['containerEntries'] || [];
     }
