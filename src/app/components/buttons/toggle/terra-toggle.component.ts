@@ -70,7 +70,7 @@ export class TerraToggleComponent implements ControlValueAccessor
         }
     }
 
-    //From ControlValueAccessor interface
+    // From ControlValueAccessor interface
     writeValue(value:boolean)
     {
         if(value !== this._isActive)
@@ -79,13 +79,13 @@ export class TerraToggleComponent implements ControlValueAccessor
         }
     }
 
-    //From ControlValueAccessor interface
+    // From ControlValueAccessor interface
     registerOnChange(fn:any)
     {
         this.onChangeCallback = fn;
     }
 
-    //From ControlValueAccessor interface
+    // From ControlValueAccessor interface
     registerOnTouched(fn:any)
     {
         this.onTouchedCallback = fn;

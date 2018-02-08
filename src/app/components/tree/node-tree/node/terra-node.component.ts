@@ -42,12 +42,12 @@ export class TerraNodeComponent<D> implements OnInit
         }
     }
 
-    //handle the node click
+    // handle the node click
     protected onNodeClick(event:Event):void
     {
         event.stopPropagation();
 
-        //check if click function is set
+        // check if click function is set
         if(!isNullOrUndefined(this.inputNode.onClick))
         {
             this.inputNode.onClick();

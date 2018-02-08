@@ -234,14 +234,14 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             {
                 this.isValid = false;
 
-                //if(this.inputIsRequired && (isNullOrUndefined(this.value) || this.value.length == 0))
+                // if(this.inputIsRequired && (isNullOrUndefined(this.value) || this.value.length == 0))
                 //{
                 //    let emptyMessage:string;
                 //
                 //    if(!this.inputEmptyMessage || this.inputEmptyMessage.length == 0)
                 //    {
-                //        ////TODO i18n
-                //        //emptyMessage = 'Mach eine Eingabe!';
+                //        //// TODO i18n
+                //        // emptyMessage = 'Mach eine Eingabe!';
                 //
                 //    }
                 //    else
@@ -256,14 +256,14 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                 //                             });
                 //    }
                 //}
-                //else if(!isNullOrUndefined(this.value) && this.value.length > 0)
+                // else if(!isNullOrUndefined(this.value) && this.value.length > 0)
                 //{
                 //    let invalidMessage:string;
                 //
                 //    if(!this.inputInvalidMessage || this.inputInvalidMessage.length == 0)
                 //    {
-                //        ////TODO i18n
-                //        //invalidMessage = 'Eingabe ungültig!';
+                //        //// TODO i18n
+                //        // invalidMessage = 'Eingabe ungültig!';
                 //    }
                 //    else
                 //    {

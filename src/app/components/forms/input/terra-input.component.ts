@@ -90,13 +90,13 @@ export class TerraInputComponent implements ControlValueAccessor
         this.inputIsDisabled = value;
     }
 
-    //get accessor
+    // get accessor
     public get value():any
     {
         return this._innerValue;
     };
 
-    //set accessor including call the onchange callback
+    // set accessor including call the onchange callback
     public set value(v:any)
     {
         if(v !== this._innerValue)
@@ -106,13 +106,13 @@ export class TerraInputComponent implements ControlValueAccessor
         }
     }
 
-    //Set touched on blur
+    // Set touched on blur
     public onBlur():void
     {
         this.onTouchedCallback();
     }
 
-    //From ControlValueAccessor interface
+    // From ControlValueAccessor interface
     writeValue(value:any)
     {
         if(value !== this._innerValue)
@@ -121,13 +121,13 @@ export class TerraInputComponent implements ControlValueAccessor
         }
     }
 
-    //From ControlValueAccessor interface
+    // From ControlValueAccessor interface
     registerOnChange(fn:any)
     {
         this.onChangeCallback = fn;
     }
 
-    //From ControlValueAccessor interface
+    // From ControlValueAccessor interface
     registerOnTouched(fn:any)
     {
         this.onTouchedCallback = fn;
@@ -151,8 +151,8 @@ export class TerraInputComponent implements ControlValueAccessor
 
                     if(!this.inputEmptyMessage || this.inputEmptyMessage.length == 0)
                     {
-                        ////TODO i18n
-                        //emptyMessage = 'Mach eine Eingabe!';
+                        //// TODO i18n
+                        // emptyMessage = 'Mach eine Eingabe!';
 
                     }
                     else
@@ -172,8 +172,8 @@ export class TerraInputComponent implements ControlValueAccessor
 
                     if(!this.inputInvalidMessage || this.inputInvalidMessage.length == 0)
                     {
-                        ////TODO i18n
-                        //invalidMessage = 'Eingabe ungültig!';
+                        //// TODO i18n
+                        // invalidMessage = 'Eingabe ungültig!';
                     }
                     else
                     {

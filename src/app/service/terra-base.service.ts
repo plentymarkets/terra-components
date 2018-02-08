@@ -134,7 +134,7 @@ export class TerraBaseService
             else if(error.status == 401)
             {
                 let loginEvent:CustomEvent = new CustomEvent('login');
-                //Workaround for plugins in Angular (loaded via iFrame)
+                // Workaround for plugins in Angular (loaded via iFrame)
                 this.dispatchEvent(loginEvent);
             }
 
@@ -158,7 +158,7 @@ export class TerraBaseService
     {
         if(!isNullOrUndefined(window.parent))
         {
-            //workaround for plugins in GWT (loaded via iFrame)
+            // workaround for plugins in GWT (loaded via iFrame)
             if(!isNullOrUndefined(window.parent.window.parent))
             {
                 window.parent.window.parent.window.dispatchEvent(eventToDispatch);
@@ -307,7 +307,7 @@ export class TerraBaseService
 
     private getMissingUserPermissionAlertMessage()
     {
-        //START workaround because we do not have a real translation solution in terra components
+        // START workaround because we do not have a real translation solution in terra components
         let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
         if(langInLocalStorage === "de")
         {
@@ -317,7 +317,7 @@ export class TerraBaseService
         {
             return "Missing permissions";
         }
-        //END workaround
+        // END workaround
     }
 
     /**

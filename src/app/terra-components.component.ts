@@ -54,7 +54,7 @@ export class TerraComponentsComponent extends Translation implements OnInit
 
         this.locale.init();
 
-        //Definitions for i18n
+        // Definitions for i18n
         if(process.env.ENV === 'production')
         {
             this.translation.addConfiguration().addProvider('app/assets/lang/locale-').disableI18nPlural();

@@ -55,7 +55,7 @@ export class TerraTileBoxPanelComponent
             }
         }
 
-        //awesome hack for firefox! it rocks!!!
+        // awesome hack for firefox! it rocks!!!
         event.dataTransfer.setData('text', 'anything');
     }
 

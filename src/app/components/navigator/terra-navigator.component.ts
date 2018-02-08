@@ -361,7 +361,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         else
         {
             // check if node is visible
-            if(isNullOrUndefined(node.isVisible) || node.isVisible) //TODO: rename in hidden!
+            if(isNullOrUndefined(node.isVisible) || node.isVisible) // TODO: rename in hidden!
             {
                 // add node to the flat list
                 this._searchNodeList.push(

@@ -20,28 +20,28 @@ export class TerraNodeTreeConfig<D>
      */
     public addNode(nodeToAdd:TerraNodeInterface<D>, parent?:TerraNodeInterface<D>, openParents?:boolean):void
     {
-        //check if the node to add is already added
+        // check if the node to add is already added
         let alreadyAddedNode:TerraNodeInterface<D> = this.findNodeById(nodeToAdd.id);
 
         if(isNullOrUndefined(alreadyAddedNode))
         {
-            //check children to set the parent correctly
+            // check children to set the parent correctly
             if(!isNullOrUndefined(nodeToAdd.children))
             {
                 this.recursiveSetParent(nodeToAdd.children, nodeToAdd);
             }
 
-            //add to first level if no parent nor current selected node is given
+            // add to first level if no parent nor current selected node is given
             if(isNullOrUndefined(this.currentSelectedNode) && isNullOrUndefined(parent))
             {
                 this._list.push(nodeToAdd);
             }
             else
             {
-                //set parent
+                // set parent
                 nodeToAdd.parent = !isNullOrUndefined(parent) ? parent : this.currentSelectedNode;
 
-                //check children of parent to decide where to add the node
+                // check children of parent to decide where to add the node
                 if(isNullOrUndefined(nodeToAdd.parent.children))
                 {
                     nodeToAdd.parent.children = [nodeToAdd];
@@ -150,7 +150,7 @@ export class TerraNodeTreeConfig<D>
         }
     }
 
-    //removes a given node
+    // removes a given node
     private internalRemoveNode(node:TerraNodeInterface<D>):void
     {
         let parent:TerraNodeInterface<D> = node.parent;
@@ -198,7 +198,7 @@ export class TerraNodeTreeConfig<D>
             console.warn('ID ' + id + ' is different from new node ID!');
         }
 
-        //search for node
+        // search for node
         let foundNode = this.recursiveFindNodeById(this.list, id);
 
         if(isNullOrUndefined(foundNode))
@@ -207,7 +207,7 @@ export class TerraNodeTreeConfig<D>
         }
         else
         {
-            //just copy stuff
+            // just copy stuff
             foundNode.id = newNode.id;
             foundNode.name = newNode.name;
             foundNode.children = newNode.children;
@@ -244,7 +244,7 @@ export class TerraNodeTreeConfig<D>
         return this.recursiveFindNode(this.list, node);
     }
 
-    //find node
+    // find node
     private recursiveFindNode(nodeList:Array<TerraNodeInterface<D>>, nodeToFind:TerraNodeInterface<D>):TerraNodeInterface<D>
     {
         let foundNode:TerraNodeInterface<D> = null;
@@ -271,7 +271,7 @@ export class TerraNodeTreeConfig<D>
         return foundNode;
     }
 
-    //find node by id
+    // find node by id
     private recursiveFindNodeById(nodeList:Array<TerraNodeInterface<D>>, id:string | number):TerraNodeInterface<D>
     {
         let foundNode:TerraNodeInterface<D> = null;
@@ -316,7 +316,7 @@ export class TerraNodeTreeConfig<D>
         this._list = value;
     }
 
-    //set parents to all nodes
+    // set parents to all nodes
     private recursiveSetParent(list:Array<TerraNodeInterface<D>>, parent?:TerraNodeInterface<D>)
     {
         for(let node of list)
@@ -380,12 +380,12 @@ export class TerraNodeTreeConfig<D>
      */
     public handleLazyLoading(node:TerraNodeInterface<D>):void
     {
-        //check if lazy loading is desired
+        // check if lazy loading is desired
         if(!node.hasLoaded && !isNullOrUndefined(node.onLazyLoad))
         {
             node.hasLoaded = true;
             node.isLoading = true;
-            //subscribe to Observable
+            // subscribe to Observable
             node.onLazyLoad().subscribe(() =>
                 {
                     node.hasLoaded = true;
@@ -475,7 +475,7 @@ export class TerraNodeTreeConfig<D>
         }
     }
 
-    //set all nodes inactive
+    // set all nodes inactive
     private recursiveSetNodeInactive(nodeList:Array<TerraNodeInterface<D>>):void
     {
         nodeList.forEach((node:TerraNodeInterface<D>) =>
