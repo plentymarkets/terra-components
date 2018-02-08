@@ -77,7 +77,11 @@ export class TerraMultiSplitViewConfig
                     }
                 }
 
-                this.addViewEventEmitter.next(view);
+                // synchronize modules array with input config
+                this._splitViewComponent.addToModulesIfNotExist(view);
+
+                // set the selected view
+                this._splitViewComponent.setSelectedView(view);
             }
         );
     }
@@ -96,19 +100,25 @@ export class TerraMultiSplitViewConfig
         if(viewIndex >= 0)
         {
             parent.children.splice(viewIndex, 1);
-            this.deleteViewEventEmitter.next(view);
+
+            // update modules array
+            let viewToSelect:TerraMultiSplitViewInterface = this._splitViewComponent.removeFromModules(view);
+
+            // select the parent view
+            this.setSelectedView(viewToSelect);
         }
     }
 
     public resizeView(view:TerraMultiSplitViewInterface, width:string):void
     {
         view.defaultWidth = width;
-        this.resizeViewEventEmitter.next(view);
+
+        this._splitViewComponent.resizeViewAndModule(view);
     }
 
     public setSelectedView(view:TerraMultiSplitViewInterface):void
     {
-        this._setSelectedViewEventEmitter.next(view);
+        this._splitViewComponent.setSelectedView(view);
     }
 
     public reset():void
