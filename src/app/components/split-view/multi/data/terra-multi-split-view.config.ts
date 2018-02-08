@@ -6,15 +6,12 @@ import { TerraMultiSplitViewComponent } from '../terra-multi-split-view.componen
 export class TerraMultiSplitViewConfig
 {
     public currentSelectedView:TerraMultiSplitViewInterface;
-    public resizeViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
-    
     private _views:Array<TerraMultiSplitViewInterface> = [];
 
-    private _addViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
-    private _deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
-    private _setSelectedViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+    public deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _splitViewComponent:TerraMultiSplitViewComponent;
+
 
     public addView(view:TerraMultiSplitViewInterface, parent?:TerraMultiSplitViewInterface):void
     {
@@ -117,37 +114,13 @@ export class TerraMultiSplitViewConfig
     public reset():void
     {
         this._views = [];
-        this.currentSelectedView = null;
-        this._addViewEventEmitter.unsubscribe();
-        this._addViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
-        this._deleteViewEventEmitter.unsubscribe();
-        this._deleteViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
-        this.resizeViewEventEmitter.unsubscribe();
-        this.resizeViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
         this._selectBreadcrumbEventEmitter.unsubscribe();
         this._selectBreadcrumbEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
-        this._setSelectedViewEventEmitter.unsubscribe();
-        this._setSelectedViewEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
-    }
-
-    public get deleteViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
-    {
-        return this._deleteViewEventEmitter;
-    }
-
-    public get addViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
-    {
-        return this._addViewEventEmitter;
     }
 
     public get selectBreadcrumbEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
     {
         return this._selectBreadcrumbEventEmitter;
-    }
-
-    public get setSelectedViewEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
-    {
-        return this._setSelectedViewEventEmitter;
     }
 
     public set splitViewComponent(value:TerraMultiSplitViewComponent)
