@@ -1,3 +1,9 @@
+# Unreleased
+### Bug Fixes
+
+### Feature
+* **terra-multi-split-view** remove event emitters/listeners that have been used to communicate between config and component to make communication synchronous.
+
 <a name="2.1.44-zlk"></a>
 # 2.1.44-zlk (29.01.2018)
 
