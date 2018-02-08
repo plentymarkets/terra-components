@@ -40,10 +40,10 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
     {
         if(this.inputUpdateViewport)
         {
-            if(changes["inputModules"].currentValue !== undefined && changes["inputModules"].currentValue.length > 0)
+            if(changes['inputModules'].currentValue !== undefined && changes['inputModules'].currentValue.length > 0)
             {
                 let currentModule = this.inputModules[this.inputModules.length - 1];
-                this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
+                this.updateViewport(currentModule.mainComponentName + '_' + currentModule.instanceKey);
             }
 
             // init breadcrumb sliding

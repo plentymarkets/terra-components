@@ -16,7 +16,7 @@ export class TerraAlertComponent
     {
         if(!TerraAlertComponent._isCreating)
         {
-            throw new Error("You can't call new in Singleton instances! Call TerraAlertComponent.getInstance() instead.");
+            throw new Error('You can't call new in Singleton instances! Call TerraAlertComponent.getInstance() instead.');
         }
     }
 

@@ -54,7 +54,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes.hasOwnProperty("inputRowList"))
+        if(changes.hasOwnProperty('inputRowList'))
         {
             this.resetSelectedRows();
             this.onRowListChange.emit();

@@ -71,7 +71,7 @@ export class Color
     private isHEX(color:string | ColorRGB | ColorHSL):boolean
     {
         let hexExp:RegExp = /^#[a-f0-9]{3}$|#[a-f0-9]{6}$/i;
-        return typeof color === "string" && hexExp.test(color);
+        return typeof color === 'string' && hexExp.test(color);
     }
 
     /**
@@ -188,10 +188,10 @@ export class Color
      */
     public toHEX():string
     {
-        return "#" +
-               ((this.r < 16) ? "0" : "") + this.r.toString(16) +
-               ((this.g < 16) ? "0" : "") + this.g.toString(16) +
-               ((this.b < 16) ? "0" : "") + this.b.toString(16);
+        return '#' +
+               ((this.r < 16) ? '0' : '') + this.r.toString(16) +
+               ((this.g < 16) ? '0' : '') + this.g.toString(16) +
+               ((this.b < 16) ? '0' : '') + this.b.toString(16);
     }
 
     /**
@@ -252,7 +252,7 @@ export class Color
                     h = (r - g) / diff + 4;
                     break;
                 default:
-                    throw new Error("This should never be reached!");
+                    throw new Error('This should never be reached!');
             }
 
             h = h / 6;

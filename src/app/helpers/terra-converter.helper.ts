@@ -1,6 +1,6 @@
-import { DecimalPipe } from "@angular/common";
+import { DecimalPipe } from '@angular/common';
 import { LocaleService } from 'angular-l10n';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class TerraConverterHelper

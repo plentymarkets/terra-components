@@ -5,7 +5,7 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraNodeTreeConfig } from './data/terra-node-tree.config';
-import { isNullOrUndefined } from "util";
+import { isNullOrUndefined } from 'util';
 import { TerraNodeInterface } from './data/terra-node.interface';
 import { TranslationService } from 'angular-l10n';
 

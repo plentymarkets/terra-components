@@ -27,7 +27,7 @@ export type AcceptFn = (args:{
 export class TerraDropzoneDirective implements OnChanges
 {
     @Input('terra-dropzone-accept')
-    public accept:AcceptFn | string = "";
+    public accept:AcceptFn | string = '';
 
     @Input('terra-dropzone-overlap')
     public overlap:'pointer' | 'center' | number = 'pointer';
@@ -114,7 +114,7 @@ export class TerraDropzoneDirective implements OnChanges
 
         };
 
-        if(typeof this.overlap === "string"
+        if(typeof this.overlap === 'string'
            && parseFloat(this.overlap) >= 0
            && parseFloat(this.overlap) <= 1)
         {
@@ -125,7 +125,7 @@ export class TerraDropzoneDirective implements OnChanges
             config.overlap = this.overlap;
         }
 
-        if(typeof this.accept === "string" && this.accept.length > 0)
+        if(typeof this.accept === 'string' && this.accept.length > 0)
         {
             config.accept = this.accept;
         }

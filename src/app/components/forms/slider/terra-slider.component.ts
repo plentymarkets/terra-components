@@ -152,7 +152,7 @@ export class TerraSliderComponent implements OnInit
                 this.inputPrecision = Math.max(
                     ...steps.map(step =>
                     {
-                        let parts = ("" + step).split(".");
+                        let parts = ('' + step).split('.');
                         if(!parts[1])
                         {
                             return 0;
@@ -174,7 +174,7 @@ export class TerraSliderComponent implements OnInit
             }
             else
             {
-                this.inputPrecision = 5 - Math.max(("" + this.inputMin).length, ("" + this.inputMax).length);
+                this.inputPrecision = 5 - Math.max(('' + this.inputMin).length, ('' + this.inputMax).length);
             }
 
         }

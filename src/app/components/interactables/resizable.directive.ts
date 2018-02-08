@@ -53,7 +53,7 @@ export class TerraResizableDirective implements OnChanges
     {
         Object.keys(changes).forEach((changedProperty:string) =>
         {
-            if(typeof changes[changedProperty].currentValue === "object")
+            if(typeof changes[changedProperty].currentValue === 'object')
             {
                 this.prepareImmutableInput(changedProperty);
             }
@@ -64,7 +64,7 @@ export class TerraResizableDirective implements OnChanges
 
     private prepareImmutableInput(input:string)
     {
-        if(this[input] && typeof this[input] === "object")
+        if(this[input] && typeof this[input] === 'object')
         {
             Object.keys(this[input])
                   .filter((property:string) =>
@@ -76,7 +76,7 @@ export class TerraResizableDirective implements OnChanges
                       // this[input]["_" + property] = this[input][property];
                       Object.defineProperty(
                           this[input],
-                          "_" + property,
+                          '_' + property,
                           {
                               configurable: false,
                               enumerable:   false,
@@ -93,11 +93,11 @@ export class TerraResizableDirective implements OnChanges
                               enumerable:   true,
                               get:          () =>
                                             {
-                                                return this[input]["_" + property]
+                                                return this[input]['_' + property]
                                             },
                               set:          (value) =>
                                             {
-                                                this[input]["_" + property] = value;
+                                                this[input]['_' + property] = value;
                                                 this.init();
                                             }
                           }

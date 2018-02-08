@@ -10,5 +10,5 @@ export interface DropEvent
     target:HTMLElement,
     timeStamp:number,
     dropData:any,
-    type:"drop"
+    type:'drop'
 }

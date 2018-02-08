@@ -96,8 +96,8 @@ export class TerraCheckboxComponent implements ControlValueAccessor
         this.valueChange.emit(event);
     }
 
-    //From ControlValueAccessor interface
-    writeValue(value:boolean)
+    // From ControlValueAccessor interface
+    public writeValue(value:boolean):void
     {
         if(value !== this._innerValue)
         {
@@ -105,14 +105,14 @@ export class TerraCheckboxComponent implements ControlValueAccessor
         }
     }
 
-    //From ControlValueAccessor interface
-    registerOnChange(fn:any)
+    // From ControlValueAccessor interface
+    public registerOnChange(fn:any):void
     {
         this.onChangeCallback = fn;
     }
 
-    //From ControlValueAccessor interface
-    registerOnTouched(fn:any)
+    // From ControlValueAccessor interface
+    public registerOnTouched(fn:any):void
     {
         this.onTouchedCallback = fn;
     }

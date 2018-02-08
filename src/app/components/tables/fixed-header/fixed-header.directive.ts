@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { TerraSimpleTableComponent } from '../simple/terra-simple-table.component';
 
-const FIXED_CLASS = "fixed-header";
+const FIXED_CLASS = 'fixed-header';
 
 @Directive({
     selector: 'terra-simple-table[fixed-header]'

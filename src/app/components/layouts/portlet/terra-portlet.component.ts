@@ -12,7 +12,7 @@ import {
     style,
     transition,
     trigger
-} from "@angular/animations";
+} from '@angular/animations';
 import { isNullOrUndefined } from 'util';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 
@@ -75,7 +75,7 @@ export class TerraPortletComponent implements OnChanges
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes.hasOwnProperty("inputIsCollapsable") && !this.inputIsCollapsable)
+        if(changes.hasOwnProperty('inputIsCollapsable') && !this.inputIsCollapsable)
         {
             this.inputCollapsed = false;
             setTimeout(() =>

@@ -111,7 +111,7 @@ export class TerraBaseService
 
                 this.dispatchEvent(routeToLoginEvent);
             }
-            else if(error.status == 401 && errorMessage === "This action is unauthorized.")
+            else if(error.status == 401 && errorMessage === 'This action is unauthorized.')
             {
                 if(this._isPlugin)
                 {
@@ -309,13 +309,13 @@ export class TerraBaseService
     {
         // START workaround because we do not have a real translation solution in terra components
         let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
-        if(langInLocalStorage === "de")
+        if(langInLocalStorage === 'de')
         {
-            return "Fehlende Berechtigungen";
+            return 'Fehlende Berechtigungen';
         }
         else
         {
-            return "Missing permissions";
+            return 'Missing permissions';
         }
         // END workaround
     }

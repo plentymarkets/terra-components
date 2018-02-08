@@ -30,7 +30,7 @@ export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDe
 
     ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes["inputComponent"])
+        if(changes['inputComponent'])
         {
             this.ngOnDestroy();
             this.updateComponent();
