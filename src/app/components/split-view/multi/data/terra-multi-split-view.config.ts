@@ -38,7 +38,6 @@ export interface ResolverListItem
 export class TerraMultiSplitViewConfig
 {
     public currentSelectedView:TerraMultiSplitViewInterface;
-
     private _views:Array<TerraMultiSplitViewInterface> = [];
 
     private _selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();

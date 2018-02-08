@@ -38,7 +38,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     @ViewChild('scrollContainer', {read: ElementRef}) scrollContainer:ElementRef;
 
-    private _headerCheckbox:{checked:boolean, isIndeterminate:boolean};
+    private _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
     private _selectedRowList:Array<TerraSimpleTableRowInterface<D>> = [];
 
     public onRowListChange:EventEmitter<void> = new EventEmitter();
@@ -46,7 +46,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     constructor(private _elementRef:ElementRef)
     {
         this._headerCheckbox = {
-            checked: false,
+            checked:         false,
             isIndeterminate: false
         };
         this._selectedRowList = [];

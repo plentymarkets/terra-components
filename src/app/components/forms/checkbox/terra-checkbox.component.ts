@@ -59,10 +59,12 @@ export class TerraCheckboxComponent implements ControlValueAccessor
 
     //Placeholders for the callbacks which are later provided
     //by the Control Value Accessor
-    private onTouchedCallback:() => void = () => {
+    private onTouchedCallback:() => void = () =>
+    {
     };
 
-    private onChangeCallback:(_:any) => void = (_) => {
+    private onChangeCallback:(_:any) => void = (_) =>
+    {
     };
 
     constructor()

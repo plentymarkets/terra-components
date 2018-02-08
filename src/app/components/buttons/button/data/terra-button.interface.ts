@@ -18,4 +18,6 @@ export interface TerraButtonInterface
     isHidden?:boolean;
     isDivider?:boolean;
     isHighlighted?:boolean;
+    isSmall?:boolean;
+    isLarge?:boolean;
 }
