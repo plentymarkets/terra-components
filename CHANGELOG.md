@@ -4,11 +4,35 @@
 ### Feature
 * **terra-multi-split-view** remove event emitters/listeners that have been used to communicate between config and component to make communication synchronous.
 
+<a name="2.1.47-zlk"></a>
+# 2.1.47-zlk (06.02.2018)
+
+### Feature
+* **terra-checkbox-tree** added value change output to the checkbox tree
+
+<a name="2.1.46-zlk"></a>
+# 2.1.46-zlk (02.02.2018)
+
+### Feature
+* **terra-base-service** now handles UiHashExpiredException 
+
+<a name="2.1.45-zlk"></a>
+# 2.1.45-zlk (01.02.2018)
+
+### Feature
+* **terra-info-box** added css variables
+* **terra-portlet** added css variables
+
 <a name="2.1.44-zlk"></a>
 # 2.1.44-zlk (29.01.2018)
 
 ### Bug Fixes
-* **terra-button** fix styling when inputIsLink is used
+
+### Feature
+* **terra-portlet** add new input `inputButtonList` to add a button group into the portlet header
+* **terra-button** 
+- add properties `isSmall` and `isLarge` to button interface
+- fix styling when inputIsLink is used
 
 ### Feature
 * **terra-multi-split-view** divider styling 

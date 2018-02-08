@@ -5,7 +5,7 @@ export interface TerraNodeInterface<D>
     /**
      * @description The identifier of node. It must be UNIQUE.
      */
-    id:string|number;
+    id:string | number;
 
     /**
      * @description The caption.
@@ -50,12 +50,12 @@ export interface TerraNodeInterface<D>
     /**
      * @description A click function to do something. Optional.
      */
-    onClick?:()=>void;
+    onClick?:() => void;
 
     /**
      * @description Lazy loading function to get data from server. Optional.
      */
-    onLazyLoad?:()=>Observable<any>;
+    onLazyLoad?:() => Observable<any>;
 
     /**
      * @description Check if lazy loading has finished to avoid firing a REST-Call again.

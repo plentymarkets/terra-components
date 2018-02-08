@@ -76,7 +76,7 @@ export class TerraSliderComponent implements OnInit
     public set handlePosition(value:number)
     {
         let sliderWidth:number = this.sliderBarElement.nativeElement.getBoundingClientRect().width;
-        let percentage:number = ( value / sliderWidth ) * 100;
+        let percentage:number = (value / sliderWidth) * 100;
         let percentageValue:number = Math.abs(this.inputMin - this.inputMax) / 100;
         // console.log( percentage + "% * " + percentageValue + " = " + percentage * percentageValue );
         this.inputValue = this.inputMin + (percentage * percentageValue);

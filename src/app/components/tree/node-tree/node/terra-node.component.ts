@@ -25,6 +25,7 @@ export class TerraNodeComponent<D> implements OnInit
     @Input() inputConfig:TerraNodeTreeConfig<D>;
 
     private _tooltip:string;
+
     constructor()
     {
     }
