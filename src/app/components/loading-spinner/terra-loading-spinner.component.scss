@@ -14,7 +14,7 @@
     background-color: #FFFFFF;
     opacity: 0.6;
     position: absolute;
-    top: 0;
+    top: var(--navbar-loading-spinner-double-bounce-top, 0);
     left: 0;
     
     -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
