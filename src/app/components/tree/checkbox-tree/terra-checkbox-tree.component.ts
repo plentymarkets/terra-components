@@ -1,7 +1,9 @@
 import {
     Component,
+    EventEmitter,
     Input,
-    OnInit
+    OnInit,
+    Output,
 } from '@angular/core';
 import { TerraBaseTreeComponent } from '../base/terra-base-tree.component';
 import { TerraCheckboxLeafInterface } from '../leaf/terra-checkbox-leaf.interface';
@@ -13,7 +15,6 @@ import { TerraCheckboxLeafInterface } from '../leaf/terra-checkbox-leaf.interfac
 })
 export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implements OnInit
 {
-
     /**
      * @description current level leaf list
      */
@@ -32,6 +33,9 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
     /**
      * @description get the current selected leaf list
      */
+
+    @Output() valueChange:EventEmitter<TerraCheckboxLeafInterface> = new EventEmitter<TerraCheckboxLeafInterface>();
+
     public selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
 
     constructor()
@@ -51,6 +55,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         this.resetIndeterminateLeafState(leaf);
         this.recursiveUpdateChildLeafs(leaf);
         this.recursiveUpdateParentLeafs(leaf);
+        this.valueChange.emit(leaf);
     }
 
     private resetIndeterminateLeafState(leaf:TerraCheckboxLeafInterface)
