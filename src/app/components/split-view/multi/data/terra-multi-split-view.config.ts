@@ -112,7 +112,6 @@ export class TerraMultiSplitViewConfig
     public resizeView(view:TerraMultiSplitViewInterface, width:string):void
     {
         view.defaultWidth = width;
-
         this._splitViewComponent.resizeViewAndModule(view);
     }
 
