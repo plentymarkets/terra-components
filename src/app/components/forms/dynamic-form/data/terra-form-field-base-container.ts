@@ -3,7 +3,6 @@ import {
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
-import { TerraFormFieldHorizontalContainerOptions } from '../../../../../../dist/app/components/forms/dynamic-form/data/terra-form-field-horizontal-container';
 
 /**
  * @author mfrank
