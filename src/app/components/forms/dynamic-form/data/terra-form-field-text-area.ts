@@ -5,7 +5,7 @@ import {
 import { TerraControlTypeEnum } from '../enum/controlType.enum';
 
 /**
- * @author mfrank
+ * @author dtrauf
  */
 export interface TerraFormFieldInputTextOptions extends TerraFormFieldBaseOptions<string>
 {
