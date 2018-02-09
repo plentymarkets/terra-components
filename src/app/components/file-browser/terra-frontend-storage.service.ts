@@ -37,7 +37,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
     private _metadataCache:{ [storageKey:string]:TerraImageMetadata } = {};
 
-    constructor(_terraLoadingSpinnerService:TerraLoadingSpinnerService, _http:Http, _translation:TranslationService)
+    public constructor(_terraLoadingSpinnerService:TerraLoadingSpinnerService, _http:Http, _translation:TranslationService)
     {
         super(_terraLoadingSpinnerService, _http, '/rest/storage/frontend/file');
         this.name = _translation.translate('terraFileBrowser.myFiles');

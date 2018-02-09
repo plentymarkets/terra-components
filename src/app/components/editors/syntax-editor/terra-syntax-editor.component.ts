@@ -33,7 +33,7 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
     private _inputEditorMode:string;
     private _inputText:string;
 
-    constructor()
+    public constructor()
     {
         this.inputOptions = {
             maxLines: 10000

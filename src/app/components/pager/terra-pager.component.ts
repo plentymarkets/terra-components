@@ -26,7 +26,7 @@ export class TerraPagerComponent implements OnInit
 
     private _pagingClicks = new Subject();
 
-    constructor(private zone:NgZone)
+    public constructor(private zone:NgZone)
     {
     }
 

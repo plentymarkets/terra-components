@@ -16,7 +16,7 @@ export class TerraTagComponent implements OnInit
     @Input() inputIsTaggable:boolean;
     @Input() inputCustomClass:string;
 
-    constructor()
+    public constructor()
     {
         this.inputIsTagged = false;
         this.inputIsTaggable = false;

@@ -62,7 +62,7 @@ export class TerraRadioButtonComponent implements ControlValueAccessor
     {
     };
 
-    constructor()
+    public constructor()
     {
         this.inputIsUncheckable = false;
         this.inputIsDisabled = false;

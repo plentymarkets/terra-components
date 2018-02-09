@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 })
 export class TerraLoadingSpinnerComponent
 {
-    constructor()
+    public constructor()
     {
     }
 }

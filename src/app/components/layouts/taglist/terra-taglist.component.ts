@@ -14,7 +14,7 @@ export class TerraTaglistComponent implements OnInit
 {
     @Input() inputTagList:Array<TerraTagInterface>;
 
-    constructor()
+    public constructor()
     {
     }
 

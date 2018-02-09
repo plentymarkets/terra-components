@@ -20,7 +20,7 @@ export class TerraFormFieldConditionalContainer extends TerraFormFieldBase<strin
     public conditionalValues:Array<TerraSelectBoxValueInterface> | Array<{ [key:string]:string | number | boolean }>;
     public conditionalEntries:{ [key:string]:Array<TerraFormFieldBase<any>> };
 
-    constructor(key:string, conditionalType:string, options:TerraFormFieldConditionalContainerOptions = {})
+    public constructor(key:string, conditionalType:string, options:TerraFormFieldConditionalContainerOptions = {})
     {
         super(key, ControlTypeEnum.CONDITIONAL_CONTAINER, options);
 

@@ -24,7 +24,7 @@ export class TerraBaseTreeComponent implements OnInit
      */
     @Input() inputCompleteLeafList:Array<TerraLeafInterface>;
 
-    constructor()
+    public constructor()
     {
     }
 

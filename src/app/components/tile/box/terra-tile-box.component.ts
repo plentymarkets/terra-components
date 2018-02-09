@@ -27,7 +27,7 @@ export class TerraTileBoxComponent
     @Input() inputIsLineView:boolean;
     @Input() inputButtonList:Array<TerraButtonInterface>;
 
-    constructor()
+    public constructor()
     {
     }
 

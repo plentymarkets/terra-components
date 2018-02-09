@@ -26,7 +26,7 @@ export class TerraNodeComponent<D> implements OnInit
 
     private _tooltip:string;
 
-    constructor()
+    public constructor()
     {
     }
 

@@ -55,7 +55,7 @@ export class TerraDropzoneDirective implements OnChanges
 
     private interactable:Interact.Interactable = null;
 
-    constructor(private el:ElementRef)
+    public constructor(private el:ElementRef)
     {
         this.init();
     }

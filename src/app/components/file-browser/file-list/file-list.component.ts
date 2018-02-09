@@ -200,7 +200,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private _fileTableRowList:Array<TerraSimpleTableRowInterface<TerraStorageObject>> = [];
 
-    constructor(private _changeDetector:ChangeDetectorRef,
+    public constructor(private _changeDetector:ChangeDetectorRef,
                 private _fileBrowserService:TerraFileBrowserService,
                 private _translationService:TranslationService,
                 @Inject(forwardRef(() => TerraFileBrowserComponent)) private _parentFileBrowser:TerraFileBrowserComponent)

@@ -16,7 +16,7 @@ export class TerraFormFieldHorizontalContainer extends TerraFormFieldBase<string
 {
     public containerEntries:Array<TerraFormFieldBase<any>>;
 
-    constructor(key:string, options:TerraFormFieldHorizontalContainerOptions = {})
+    public constructor(key:string, options:TerraFormFieldHorizontalContainerOptions = {})
     {
         super(key, ControlTypeEnum.HORIZONTAL_CONTAINER, options);
 

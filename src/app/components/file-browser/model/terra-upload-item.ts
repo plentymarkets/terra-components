@@ -34,7 +34,7 @@ export class TerraUploadItem
     private _onError:UploadCallback[] = [];
     private _onProgress:Array<(progress:number) => void> = [];
 
-    constructor(public file:File, private _path:string, private _uploadService:TerraBaseStorageService)
+    public constructor(public file:File, private _path:string, private _uploadService:TerraBaseStorageService)
     {
         if(isNullOrUndefined(file))
         {

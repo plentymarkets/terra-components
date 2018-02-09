@@ -68,7 +68,7 @@ export class TerraPortletComponent implements OnChanges
         return 'expanded';
     }
 
-    constructor()
+    public constructor()
     {
         this.inputPortletHeader = isNullOrUndefined(this.inputPortletHeader) ? '' : this.inputPortletHeader;
     }

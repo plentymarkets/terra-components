@@ -32,7 +32,7 @@ export class TerraOverlayComponent implements AfterViewInit
     @Output() outputOnHide:EventEmitter<ModalDirective>;
     @Output() outputOnShow:EventEmitter<ModalDirective>;
 
-    constructor()
+    public constructor()
     {
         this.inputIsStatic = false;
         this.inputIsCloseable = true;

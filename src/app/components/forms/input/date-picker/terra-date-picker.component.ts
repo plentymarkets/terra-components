@@ -73,7 +73,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     private _currentLocale:string;
     private _datePickerOptions:IMyOptions;
 
-    constructor()
+    public constructor()
     {
         this.inputIsRequired = false;
         this.inputIsDisabled = false;

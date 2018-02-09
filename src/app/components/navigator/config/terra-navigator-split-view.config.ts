@@ -18,7 +18,7 @@ export class TerraNavigatorSplitViewConfig<D> extends TerraSplitConfigBase
     private _subscriberNodeClicked:Subscriber<TerraNavigatorNodeInterface<D>>;
     private _subscriberUpdateActiveItem:Subscriber<Array<TerraNavigatorNodeInterface<D>>>;
 
-    constructor()
+    public constructor()
     {
         super();
 

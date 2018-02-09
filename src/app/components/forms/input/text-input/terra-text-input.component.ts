@@ -72,7 +72,7 @@ export class TerraTextInputComponent extends TerraInputComponent
      */
     private _id:string;
 
-    constructor(private _translation:TranslationService)
+    public constructor(private _translation:TranslationService)
     {
         super(TerraRegex.MIXED);
 

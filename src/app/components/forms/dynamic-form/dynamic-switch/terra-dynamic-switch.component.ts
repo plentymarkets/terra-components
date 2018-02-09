@@ -23,7 +23,7 @@ export class TerraDynamicSwitchComponent
     @Input() public inputFormGroup:FormGroup;
     @Input() public inputSubSwitch:boolean;
 
-    constructor()
+    public constructor()
     {
         this.inputSubSwitch = false;
     }

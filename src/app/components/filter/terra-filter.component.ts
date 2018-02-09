@@ -44,7 +44,7 @@ export class TerraFilterComponent implements OnInit
      * */
     @Output() outputOnEnterSubmit = new EventEmitter<any>();
 
-    constructor()
+    public constructor()
     {
     }
 

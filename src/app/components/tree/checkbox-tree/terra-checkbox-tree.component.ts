@@ -33,7 +33,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
 
     @Output() valueChange:EventEmitter<TerraCheckboxLeafInterface> = new EventEmitter<TerraCheckboxLeafInterface>();
 
-    constructor()
+    public constructor()
     {
         super();
     }

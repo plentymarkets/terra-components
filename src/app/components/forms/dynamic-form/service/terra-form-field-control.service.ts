@@ -23,7 +23,7 @@ export class TerraFormFieldControlService
 
     private formFieldsToGroup:{ [key:string]:FormControl };
 
-    constructor(private _formBuilder:FormBuilder)
+    public constructor(private _formBuilder:FormBuilder)
     {
         this.formFieldsToGroup = {};
         this.defaultValues = {};

@@ -19,7 +19,7 @@ export class TerraInfoBoxComponent implements OnInit
     @Input() inputIsSelected:boolean;
     @Input() inputId:number;
 
-    constructor()
+    public constructor()
     {
     }
 

@@ -54,7 +54,7 @@ export class TerraButtonComponent
     @Input() inputIsHighlighted:boolean;
     @Output() outputClicked = new EventEmitter<Event>();
 
-    constructor()
+    public constructor()
     {
         this.inputTooltipPlacement = 'top';
         this.inputType = 'button';

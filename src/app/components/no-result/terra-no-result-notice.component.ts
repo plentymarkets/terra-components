@@ -15,7 +15,7 @@ export class TerraNoResultNoticeComponent
     @Input() inputTextPrimary:string;
     @Input() inputTextSecondary:string;
 
-    constructor()
+    public constructor()
     {
     }
 }

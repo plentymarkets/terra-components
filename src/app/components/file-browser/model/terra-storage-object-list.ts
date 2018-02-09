@@ -8,7 +8,7 @@ export class TerraStorageObjectList
 {
     public root:TerraStorageObject;
 
-    constructor()
+    public constructor()
     {
         this.root = new TerraStorageObject(createS3StorageObject('/'));
     }

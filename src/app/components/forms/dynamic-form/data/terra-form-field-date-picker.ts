@@ -16,7 +16,7 @@ export class TerraFormFieldDatePicker extends TerraFormFieldBase<string>
 {
     public type:string;
 
-    constructor(key:string, options:TerraFormFieldDatePickerOptions = {})
+    public constructor(key:string, options:TerraFormFieldDatePickerOptions = {})
     {
         super(key, ControlTypeEnum.DATE_PICKER, options);
     }

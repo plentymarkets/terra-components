@@ -38,7 +38,7 @@ export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
     private _onTouchedCallback:() => void;
     private _modules:{ [index:string]:Object };
 
-    constructor(private translation:TranslationService)
+    public constructor(private translation:TranslationService)
     {
         // initialize placeholder
         this._placeholder = this.translation.translate('terraNoteEditor.insertText');

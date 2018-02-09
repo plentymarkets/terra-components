@@ -19,7 +19,7 @@ export class TerraCardComponent implements AfterContentChecked
     private showHeader:boolean;
     private showFooter:boolean;
 
-    constructor()
+    public constructor()
     {
         this.showHeader = false;
         this.showFooter = false;

@@ -24,7 +24,7 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
 
     public static ANIMATION_SPEED = 1000; // ms
 
-    constructor()
+    public constructor()
     {
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';

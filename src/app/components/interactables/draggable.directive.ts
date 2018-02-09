@@ -47,7 +47,7 @@ export class TerraDraggableDirective implements OnChanges
     @Output('terra-draggable-onEnd')
     public onEnd:EventEmitter<Interact.InteractEvent> = new EventEmitter<Interact.InteractEvent>();
 
-    constructor(private el:ElementRef)
+    public constructor(private el:ElementRef)
     {
         this.init();
     }

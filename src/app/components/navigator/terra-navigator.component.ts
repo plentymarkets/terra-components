@@ -43,7 +43,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
     private _updateViewport:boolean;
     private _searchNodeList:Array<TerraSuggestionBoxValueInterface>;
 
-    constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig<D>, private translation:TranslationService)
+    public constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig<D>, private translation:TranslationService)
     {
         this._isInit = false;
         this.outputEndpointClicked = new EventEmitter();

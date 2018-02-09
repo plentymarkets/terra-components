@@ -51,7 +51,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     protected _listBoxHeadingKey:string;
     protected _noEntriesTextKey:string;
 
-    constructor(private _elementRef:ElementRef)
+    public constructor(private _elementRef:ElementRef)
     {
     }
 
@@ -86,13 +86,13 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     ngOnChanges(changes:SimpleChanges)
     {
-        if(changes["inputListBoxValues"]
-           && changes["inputListBoxValues"].currentValue.length > 0
+        if(changes['inputListBoxValues']
+           && changes['inputListBoxValues'].currentValue.length > 0
            && !this.inputListBoxValues.find((x) => this.selectedValue === x))
         {
             this.select(this.inputListBoxValues[0]);
         }
-        if(changes["inputListBoxValues"])
+        if(changes['inputListBoxValues'])
         {
             this._displayListBoxValues = this.inputListBoxValues;
         }

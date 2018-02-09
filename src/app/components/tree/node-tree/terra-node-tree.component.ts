@@ -28,7 +28,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
      */
     @Input() inputShowSearch:boolean;
 
-    constructor(private _translation:TranslationService)
+    public constructor(private _translation:TranslationService)
     {
     }
 

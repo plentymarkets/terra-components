@@ -16,7 +16,7 @@ export class TerraFormFieldInputNumber extends TerraFormFieldBase<number>
 {
     public type:string;
 
-    constructor(key:string, options:TerraFormFieldInputNumberOptions = {})
+    public constructor(key:string, options:TerraFormFieldInputNumberOptions = {})
     {
         super(key, ControlTypeEnum.INPUT_NUMBER, options);
 

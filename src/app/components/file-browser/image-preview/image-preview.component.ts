@@ -60,7 +60,7 @@ export class TerraImagePreviewComponent
 
     private _isLoading:boolean = true;
 
-    constructor(private _changeDetector:ChangeDetectorRef)
+    public constructor(private _changeDetector:ChangeDetectorRef)
     {
     }
 

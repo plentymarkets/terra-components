@@ -21,7 +21,7 @@ export class TerraTileBoxPanelComponent
 
     private _draggedIndex:number;
 
-    constructor()
+    public constructor()
     {
         this.inputIsViewToggleable = false;
     }

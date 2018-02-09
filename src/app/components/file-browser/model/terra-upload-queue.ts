@@ -16,7 +16,7 @@ export class TerraUploadQueue
     private _progressValue:number = -1;
 
 
-    constructor(private _uploadUrl:string | UploadQueueUrlFactory, private _uploadMethod:'GET' | 'POST' | 'DELETE' | 'PUT' = 'POST')
+    public constructor(private _uploadUrl:string | UploadQueueUrlFactory, private _uploadMethod:'GET' | 'POST' | 'DELETE' | 'PUT' = 'POST')
     {
         this.progress = new Observable((observer:Observer<number>) =>
         {

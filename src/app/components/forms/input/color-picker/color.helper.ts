@@ -38,7 +38,7 @@ export class Color
      * Construct a new color instance. Accepts hexadecimal formatted colors as string or colors formatted as RGB or HSL.
      * @param color string|ColorRGB|ColorHSL
      */
-    constructor(color?:string | ColorRGB | ColorHSL)
+    public constructor(color?:string | ColorRGB | ColorHSL)
     {
         if(color)
         {

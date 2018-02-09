@@ -82,7 +82,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      *
      * @param elementRef
      */
-    constructor(private elementRef:ElementRef)
+    public constructor(private elementRef:ElementRef)
     {
         this.clickListener = (event) =>
         {
