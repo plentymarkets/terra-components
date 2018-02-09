@@ -20,7 +20,7 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
     private _tableBodyElement:HTMLTableSectionElement;
     private _columnWidths:Array<number> = [];
 
-    public constructor(private _elementRef:ElementRef,
+    constructor(private _elementRef:ElementRef,
                 @Inject(forwardRef(() => TerraSimpleTableComponent)) private _tableComponent)
     {
     }

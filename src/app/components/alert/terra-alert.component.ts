@@ -12,7 +12,7 @@ export class TerraAlertComponent
     private static _instance:TerraAlertComponent = null;
     private static _isCreating:boolean = false;
 
-    public constructor()
+    constructor()
     {
         if(!TerraAlertComponent._isCreating)
         {

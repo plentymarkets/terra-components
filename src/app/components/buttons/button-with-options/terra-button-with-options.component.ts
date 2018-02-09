@@ -68,7 +68,7 @@ export class TerraButtonWithOptionsComponent
     private _alignRight:boolean;
     private clickListener:(event:Event) => void;
 
-    public constructor(private elementRef: ElementRef)
+    constructor(private elementRef:ElementRef)
     {
         // define click listener
         this.clickListener = (event) =>

@@ -66,7 +66,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private splitViewId:number;
 
-    public constructor(private zone:NgZone)
+    constructor(private zone:NgZone)
     {
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';

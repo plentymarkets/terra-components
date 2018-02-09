@@ -33,7 +33,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
 
     private _cmpRef:ComponentRef<any>;
 
-    public constructor(private _jitCompiler:JitCompiler)
+    constructor(private _jitCompiler:JitCompiler)
     {
     }
 

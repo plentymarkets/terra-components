@@ -18,7 +18,7 @@ export class TerraLoadingSpinnerService
 
     private _subscriber:Subscriber<boolean>;
 
-    public constructor(private zone:NgZone)
+    constructor(private zone:NgZone)
     {
         this.observable = new Observable<boolean>((subscriber:Subscriber<boolean>) =>
         {

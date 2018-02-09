@@ -56,11 +56,6 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     private _innerValue:boolean = false;
     private _isIndeterminate:boolean = false;
     public isValid:boolean = true;
-    public constructor()
-    {
-        // generate the id of the input instance
-        this._id = `checkbox_#${nextId++}`;
-    }
 
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
@@ -72,11 +67,17 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     {
     };
 
+    constructor()
+    {
+        // generate the id of the input instance
+        this._id = `checkbox_#${nextId++}`;
+    }
+
     // get accessor
     public get value():boolean
     {
         return this._innerValue;
-    }
+    };
 
     // set accessor including call the onchange callback
     @Input()

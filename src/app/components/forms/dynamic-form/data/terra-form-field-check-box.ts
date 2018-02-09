@@ -13,7 +13,7 @@ export class TerraFormFieldCheckBox extends TerraFormFieldBase<boolean>
 {
     public type:string;
 
-    public constructor(key:string, options:TerraFormFieldCheckBoxOptions = {})
+    constructor(key:string, options:TerraFormFieldCheckBoxOptions = {})
     {
         super(key, ControlTypeEnum.CHECK_BOX, options);
 

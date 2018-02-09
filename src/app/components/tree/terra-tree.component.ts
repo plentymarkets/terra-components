@@ -27,7 +27,7 @@ export class TerraTreeComponent extends TerraBaseTreeComponent
      */
     @Input() inputCompleteLeafList:Array<TerraLeafInterface>;
 
-    public constructor()
+    constructor()
     {
         super();
     }

@@ -7,7 +7,7 @@ export class TerraNodeTreeConfig<D>
     private _list:Array<TerraNodeInterface<D>> = [];
     private _currentSelectedNode:TerraNodeInterface<D>;
 
-    public constructor(public _translation:TranslationService)
+    constructor(public _translation:TranslationService)
     {
 
     }

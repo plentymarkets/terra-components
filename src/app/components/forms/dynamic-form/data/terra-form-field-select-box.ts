@@ -18,7 +18,7 @@ export class TerraFormFieldSelectBox extends TerraFormFieldBase<any>
 {
     public selectBoxValues:Array<TerraSelectBoxValueInterface>;
 
-    public constructor(key:string, options:TerraFormFieldSelectBoxOptions = {})
+    constructor(key:string, options:TerraFormFieldSelectBoxOptions = {})
     {
         super(key, ControlTypeEnum.SELECT_BOX, options);
 

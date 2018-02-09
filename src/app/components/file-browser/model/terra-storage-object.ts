@@ -127,7 +127,7 @@ export class TerraStorageObject
         }
     }
 
-    public constructor(s3Object:S3StorageObjectInterface, parent?:TerraStorageObject)
+    constructor(s3Object:S3StorageObjectInterface, parent?:TerraStorageObject)
     {
         this._s3Object = s3Object;
         this._parent = parent;

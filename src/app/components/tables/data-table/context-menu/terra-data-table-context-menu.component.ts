@@ -28,7 +28,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
         top:  0
     };
 
-    public constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
+    constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
     {
         _contextMenuService.show.subscribe(
             e => this.showMenu(e.event, e.obj));

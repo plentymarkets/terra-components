@@ -14,7 +14,7 @@ export class TerraIndicatorComponent implements OnInit
     @Input() inputLabel:string;
     @Input() inputType:string;
 
-    public constructor()
+    constructor()
     {
         this.inputType = 'default';
     }

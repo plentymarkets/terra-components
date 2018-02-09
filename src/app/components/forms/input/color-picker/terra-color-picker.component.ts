@@ -21,7 +21,7 @@ import { TerraRegex } from '../../../../../';
 })
 export class TerraColorPickerComponent extends TerraInputComponent
 {
-    public constructor()
+    constructor()
     {
         super(TerraRegex.COLOR_HEX);
     }

@@ -15,7 +15,7 @@ export class TerraNoteComponent
     @Input() inputHeaderText:string;
     @Input() inputNoteText:string;
 
-    public constructor()
+    constructor()
     {
     }
 }

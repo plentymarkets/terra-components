@@ -18,7 +18,7 @@ export class TerraDataTableContextMenuDirective<D extends TerraBaseData> impleme
 {
     @Input('context-menu') inputLinks:Array<TerraDataTableContextMenuEntryInterface<D>>;
 
-    public constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
+    constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
     {
     }
 

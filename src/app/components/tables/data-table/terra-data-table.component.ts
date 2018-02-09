@@ -98,7 +98,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @Input()
     private _hasCheckboxes:boolean;
 
-    public constructor()
+    constructor()
     {
         this._hasCheckboxes = true;
         this.inputHasCheckboxes = true;

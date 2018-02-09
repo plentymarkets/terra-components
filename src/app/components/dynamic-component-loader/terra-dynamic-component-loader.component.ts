@@ -24,7 +24,7 @@ export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDe
 
     private _cmpRef:ComponentRef<any>;
 
-    public constructor(private _componentFactoryResolver:ComponentFactoryResolver)
+    constructor(private _componentFactoryResolver:ComponentFactoryResolver)
     {
     }
 

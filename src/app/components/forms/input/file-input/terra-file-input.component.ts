@@ -90,7 +90,7 @@ export class TerraFileInputComponent extends TerraInputComponent
                        }
     };
 
-    public constructor(private translation:TranslationService, private _frontendStorageService:TerraFrontendStorageService)
+    constructor(private translation:TranslationService, private _frontendStorageService:TerraFrontendStorageService)
     {
         super(TerraRegex.MIXED);
 

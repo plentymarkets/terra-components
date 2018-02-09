@@ -52,7 +52,7 @@ export class TerraSliderComponent implements OnInit
     @ViewChild('sliderBar', {read: ElementRef})
     private sliderBarElement:ElementRef;
 
-    public constructor(private element:ElementRef, private changeDetector:ChangeDetectorRef)
+    constructor(private element:ElementRef, private changeDetector:ChangeDetectorRef)
     {
     }
 

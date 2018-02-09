@@ -43,7 +43,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     public onRowListChange:EventEmitter<void> = new EventEmitter();
 
-    public constructor(private _elementRef:ElementRef)
+    constructor(private _elementRef:ElementRef)
     {
         this._headerCheckbox = {
             checked:         false,

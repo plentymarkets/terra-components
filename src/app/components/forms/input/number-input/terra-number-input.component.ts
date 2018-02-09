@@ -23,7 +23,7 @@ let nextId:number = 0;
 })
 export class TerraNumberInputComponent extends TerraInputComponent
 {
-    public constructor()
+    constructor()
     {
         super(TerraRegex.NUMERIC);
 

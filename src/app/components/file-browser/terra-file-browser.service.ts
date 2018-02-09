@@ -13,7 +13,7 @@ export class TerraFileBrowserService
 
     public isDragActive:BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-    public constructor(private zone:NgZone)
+    constructor(private zone:NgZone)
     {
     }
 

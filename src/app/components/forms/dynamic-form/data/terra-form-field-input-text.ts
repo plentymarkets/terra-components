@@ -16,7 +16,7 @@ export class TerraFormFieldInputText extends TerraFormFieldBase<string>
 {
     public type:string;
 
-    public constructor(key:string, options:TerraFormFieldInputTextOptions = {})
+    constructor(key:string, options:TerraFormFieldInputTextOptions = {})
     {
         super(key, ControlTypeEnum.INPUT_TEXT, options);
 

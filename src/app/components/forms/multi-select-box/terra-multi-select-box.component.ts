@@ -77,7 +77,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
 
     private _langPrefix:string = 'terraMultiSelectBox';
 
-    public constructor(public translation:TranslationService)
+    constructor(public translation:TranslationService)
     {
     }
 

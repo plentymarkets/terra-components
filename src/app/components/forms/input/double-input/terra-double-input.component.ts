@@ -54,7 +54,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
      */
     private _id:string;
 
-    public constructor()
+    constructor()
     {
         super(TerraRegex.DOUBLE);
 

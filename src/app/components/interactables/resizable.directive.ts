@@ -44,7 +44,7 @@ export class TerraResizableDirective implements OnChanges
     @Output('terra-resizable-onEnd')
     public onEnd:EventEmitter<Interact.InteractEvent> = new EventEmitter<Interact.InteractEvent>();
 
-    public constructor(private el:ElementRef)
+    constructor(private el:ElementRef)
     {
         this.init();
     }

@@ -35,7 +35,7 @@ export class TerraFormFieldBase<T>
 
     public readonly controlType:ControlTypeEnum;
 
-    public constructor(key:string, controlType:ControlTypeEnum, options:TerraFormFieldBaseOptions<T> = {})
+    constructor(key:string, controlType:ControlTypeEnum, options:TerraFormFieldBaseOptions<T> = {})
     {
         if(isNull(key))
         {

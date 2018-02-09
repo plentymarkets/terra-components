@@ -47,7 +47,7 @@ export class TerraToggleComponent implements ControlValueAccessor
     {
     };
 
-    public constructor()
+    constructor()
     {
         this.inputTooltipPlacement = 'top';
     }

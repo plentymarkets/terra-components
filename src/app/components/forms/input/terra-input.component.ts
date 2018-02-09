@@ -72,7 +72,7 @@ export class TerraInputComponent implements ControlValueAccessor
     {
     };
 
-    public constructor(private _inputRegex:string)
+    constructor(private _inputRegex:string)
     {
         this.regex = _inputRegex;
         this.isValid = true;

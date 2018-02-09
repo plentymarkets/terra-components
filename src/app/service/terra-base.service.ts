@@ -30,7 +30,7 @@ export class TerraBaseService
     public headers:Headers;
     public url:string;
 
-    public constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
+    constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private _baseHttp:Http,
                 private _baseUrl:string,
                 private _isPlugin?:boolean)

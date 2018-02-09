@@ -16,7 +16,7 @@ export class TerraBaseToolbarComponent
 
     @Input() inputIsSticky:boolean;
 
-    public constructor()
+    constructor()
     {
         this.inputIsSticky = false;
     }

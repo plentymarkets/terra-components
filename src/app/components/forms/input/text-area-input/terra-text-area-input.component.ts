@@ -62,7 +62,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
      */
     private _id:string;
 
-    public constructor()
+    constructor()
     {
         super(TerraRegex.MIXED);
 

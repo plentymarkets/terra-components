@@ -15,7 +15,7 @@ export class TerraNavigatorConfig<D>
     private _subscriberNewNodeByRootPath:Subscriber<TerraNavigatorNodeInterface<D>>;
     private _subscriberNewNodesByRoute:Subscriber<Array<TerraNavigatorNodeInterface<D>>>;
 
-    public constructor()
+    constructor()
     {
         this.observableNewNodeByRootPath = new Observable<TerraNavigatorNodeInterface<D>>(
             (subscriber:Subscriber<TerraNavigatorNodeInterface<D>>) =>
