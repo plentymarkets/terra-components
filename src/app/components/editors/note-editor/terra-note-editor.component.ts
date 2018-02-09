@@ -28,9 +28,11 @@ import {
 })
 export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
 {
-    @Input() inputPlaceholder:string;
+    @Input()
+    public inputPlaceholder:string;
 
-    @Output() ngModelChange:EventEmitter<string> = new EventEmitter();
+    @Output()
+    public ngModelChange:EventEmitter<string> = new EventEmitter();
 
     private _placeholder:string;
     private _value:string;

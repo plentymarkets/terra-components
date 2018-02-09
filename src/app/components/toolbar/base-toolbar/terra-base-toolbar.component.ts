@@ -13,8 +13,8 @@ import {
 })
 export class TerraBaseToolbarComponent
 {
-
-    @Input() inputIsSticky:boolean;
+    @Input()
+    public inputIsSticky:boolean;
 
     constructor()
     {

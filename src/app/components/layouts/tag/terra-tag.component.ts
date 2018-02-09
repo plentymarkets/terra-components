@@ -11,10 +11,17 @@ import {
 })
 export class TerraTagComponent implements OnInit
 {
-    @Input() inputBadge:string;
-    @Input() inputIsTagged:boolean;
-    @Input() inputIsTaggable:boolean;
-    @Input() inputCustomClass:string;
+    @Input()
+    public inputBadge:string;
+
+    @Input()
+    public inputIsTagged:boolean;
+
+    @Input()
+    public inputIsTaggable:boolean;
+
+    @Input()
+    public inputCustomClass:string;
 
     constructor()
     {

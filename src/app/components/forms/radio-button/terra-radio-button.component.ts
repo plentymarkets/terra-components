@@ -26,10 +26,17 @@ import {
 })
 export class TerraRadioButtonComponent implements ControlValueAccessor
 {
-    @Input() inputCaption:string;
-    @Input() inputValue:string | number | boolean;
-    @Input() inputIsDisabled:boolean;
-    @Input() inputIsUncheckable:boolean;
+    @Input()
+    public inputCaption:string;
+
+    @Input()
+    public inputValue:string | number | boolean;
+
+    @Input()
+    public inputIsDisabled:boolean;
+
+    @Input()
+    public inputIsUncheckable:boolean;
 
     @HostListener('click')
     public onClick():void

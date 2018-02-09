@@ -14,8 +14,12 @@ export class TerraCardComponent implements AfterContentChecked
 {
     @ViewChild('header') viewChildHeader;
     @ViewChild('footer') viewChildFooter;
-    @Input() inputImagePath:string;
-    @Input() inputPlaceholderIcon:string;
+
+    @Input()
+    public inputImagePath:string;
+
+    @Input()
+    public inputPlaceholderIcon:string;
     private showHeader:boolean;
     private showFooter:boolean;
 

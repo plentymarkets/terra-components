@@ -29,15 +29,29 @@ import { TranslationService } from 'angular-l10n';
 })
 export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 {
-    @Input() inputNodes:Array<TerraNavigatorNodeInterface<D>>;
-    @Input() inputNavigatorService:TerraNavigatorConfig<D>;
-    @Input() inputModuleWidth:string;
-    @Input() inputFirstBreadcrumbName:string;
-    @Input() inputRouter:Router;
-    @Input() inputBaseRoute:string;
+    @Input()
+    public inputNodes:Array<TerraNavigatorNodeInterface<D>>;
 
-    @Output() outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
-    @Output() outputNodeClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
+    @Input()
+    public inputNavigatorService:TerraNavigatorConfig<D>;
+
+    @Input()
+    public inputModuleWidth:string;
+
+    @Input()
+    public inputFirstBreadcrumbName:string;
+
+    @Input()
+    public inputRouter:Router;
+
+    @Input()
+    public inputBaseRoute:string;
+
+    @Output()
+    public outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
+
+    @Output()
+    public outputNodeClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
 
     private _isInit:boolean;
     private _updateViewport:boolean;

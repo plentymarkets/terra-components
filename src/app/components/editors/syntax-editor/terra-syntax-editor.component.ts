@@ -28,8 +28,12 @@ import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
 export class TerraSyntaxEditorComponent implements AfterViewInit
 {
     @ViewChild('aceEditor') editor:AceEditorComponent;
-    @Input() inputReadOnly:boolean;
-    @Input() inputOptions:Object;
+
+    @Input()
+    public inputReadOnly:boolean;
+
+    @Input()
+    public inputOptions:Object;
     private _inputEditorMode:string;
     private _inputText:string;
 

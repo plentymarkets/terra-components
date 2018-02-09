@@ -64,20 +64,44 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
 
-    @Input() inputService:S;
-    @Input() inputDataType:string;
-    @Input() inputHasCheckboxes:boolean;
-    @Input() inputHasPager:boolean;
-    @Input() inputHasInitialLoading:boolean;
-    @Input() inputNoResultTextPrimary:string;
-    @Input() inputNoResultTextSecondary:string;
-    @Input() inputNoResultButtons:Array<TerraButtonInterface>;
-    @Input() inputShowGroupFunctions:boolean = false;
-    @Input() inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
+    @Input()
+    public inputService:S;
 
-    @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
-    @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
-    @Output() outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<D>>> = new EventEmitter();
+    @Input()
+    public inputDataType:string;
+
+    @Input()
+    public inputHasCheckboxes:boolean;
+
+    @Input()
+    public inputHasPager:boolean;
+
+    @Input()
+    public inputHasInitialLoading:boolean;
+
+    @Input()
+    public inputNoResultTextPrimary:string;
+
+    @Input()
+    public inputNoResultTextSecondary:string;
+
+    @Input()
+    public inputNoResultButtons:Array<TerraButtonInterface>;
+
+    @Input()
+    public inputShowGroupFunctions:boolean = false;
+
+    @Input()
+    public inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
+
+    @Output()
+    public outputDoPagingEvent:EventEmitter<TerraPagerInterface> = new EventEmitter<TerraPagerInterface>();
+
+    @Output()
+    public outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
+
+    @Output()
+    public outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<D>>> = new EventEmitter();
 
     public headerList:Array<TerraDataTableHeaderCellInterface>;
     public rowList:Array<TerraDataTableRowInterface<D>>;

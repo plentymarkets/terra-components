@@ -14,8 +14,11 @@ import { TerraTileBoxInterface } from '../box/data/terra-tile-box.interface';
 })
 export class TerraTileBoxPanelComponent
 {
-    @Input() inputTileBoxList:Array<TerraTileBoxInterface>;
-    @Input() inputIsViewToggleable:boolean;
+    @Input()
+    public inputTileBoxList:Array<TerraTileBoxInterface>;
+
+    @Input()
+    public inputIsViewToggleable:boolean;
     public selectedTileBoxList:Array<TerraTileBoxInterface> = [];
     public viewStyle:boolean = false;
 

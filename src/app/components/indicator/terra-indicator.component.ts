@@ -11,8 +11,11 @@ import {
 })
 export class TerraIndicatorComponent implements OnInit
 {
-    @Input() inputLabel:string;
-    @Input() inputType:string;
+    @Input()
+    public inputLabel:string;
+
+    @Input()
+    public inputType:string;
 
     constructor()
     {

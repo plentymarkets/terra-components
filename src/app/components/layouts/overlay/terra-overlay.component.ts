@@ -21,16 +21,35 @@ export class TerraOverlayComponent implements AfterViewInit
 {
     @ViewChild('viewChildOverlay') viewChildOverlay:ModalDirective;
 
-    @Input() inputOverlayTitle:string;
-    @Input() inputPrimaryButtonInterface:TerraOverlayButtonInterface;
-    @Input() inputSecondaryButtonInterface:TerraOverlayButtonInterface;
-    @Input() inputIsStatic:boolean;
-    @Input() inputIsCloseable:boolean;
-    @Input() inputIsLarge:boolean;
-    @Input() inputIsSmall:boolean;
-    @Input() inputIsExtraLarge:boolean;
-    @Output() outputOnHide:EventEmitter<ModalDirective>;
-    @Output() outputOnShow:EventEmitter<ModalDirective>;
+    @Input()
+    public inputOverlayTitle:string;
+
+    @Input()
+    public inputPrimaryButtonInterface:TerraOverlayButtonInterface;
+
+    @Input()
+    public inputSecondaryButtonInterface:TerraOverlayButtonInterface;
+
+    @Input()
+    public inputIsStatic:boolean;
+
+    @Input()
+    public inputIsCloseable:boolean;
+
+    @Input()
+    public inputIsLarge:boolean;
+
+    @Input()
+    public inputIsSmall:boolean;
+
+    @Input()
+    public inputIsExtraLarge:boolean;
+
+    @Output()
+    public outputOnHide:EventEmitter<ModalDirective>;
+
+    @Output()
+    public outputOnShow:EventEmitter<ModalDirective>;
 
     constructor()
     {

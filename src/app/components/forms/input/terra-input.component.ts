@@ -10,50 +10,75 @@ export class TerraInputComponent implements ControlValueAccessor
 {
     /**
      * @description Set the label.
-     * */
-    @Input() inputName:string;
+     */
+    @Input()
+    public inputName:string;
+
     /**
      * @description If true, a * indicates that the value is required. Default false.
-     * */
-    @Input() inputIsRequired:boolean;
-    @Input() inputEmptyMessage:string;
-    @Input() inputInvalidMessage:string;
+     */
+    @Input()
+    public inputIsRequired:boolean;
+
+    @Input()
+    public inputEmptyMessage:string;
+
+    @Input()
+    public inputInvalidMessage:string;
+
     /**
      * @description Set the tooltip.
-     * */
-    @Input() inputTooltipText:string;
+     */
+    @Input()
+    public inputTooltipText:string;
+
     /**
      * @description If true, the button will be disabled. Default false.
-     * */
-    @Input() inputIsDisabled:boolean;
+     */
+    @Input()
+    public inputIsDisabled:boolean;
+
     /**
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
-     * */
-    @Input() inputTooltipPlacement:string;
+     */
+    @Input()
+    public inputTooltipPlacement:string;
+
     /**
      * @description Set a maximum number of characters allowed.
-     * */
-    @Input() inputMaxLength:number;
+     */
+    @Input()
+    public inputMaxLength:number;
+
     /**
      * @description Set the maximum number value allowed.
-     * */
-    @Input() inputMaxValue:number;
+     */
+    @Input()
+    public inputMaxValue:number;
+
     /**
      * @description Set a minimum number of characters allowed.
-     * */
-    @Input() inputMinLength:number;
+     */
+    @Input()
+    public inputMinLength:number;
+
     /**
      * @description Set the minimum number value allowed.
-     * */
-    @Input() inputMinValue:number;
+     */
+    @Input()
+    public inputMinValue:number;
+
     /**
      * @deprecated inputPlaceholder is deprecated and will be removed in one of the upcoming releases. Use inputName instead.
-     * */
-    @Input() inputPlaceholder:string;
+     */
+    @Input()
+    public inputPlaceholder:string;
+
     /**
      * @description If true, the button will be small. Default false.
-     * */
-    @Input() inputIsSmall:boolean;
+     */
+    @Input()
+    public inputIsSmall:boolean;
 
     public isValid:boolean;
     public regex:string;

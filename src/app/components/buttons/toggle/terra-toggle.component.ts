@@ -24,18 +24,38 @@ export const TOGGLE_CONTROL_VALUE_ACCESSOR:any = {
 })
 export class TerraToggleComponent implements ControlValueAccessor
 {
-    @Input() inputIsSmall:boolean;
-    @Input() inputIsLarge:boolean;
-    @Input() inputIsDisabled:boolean;
-    @Input() inputIcon:string;
-    @Input() inputIsAlignRight:boolean;
-    @Input() inputIsHidden:boolean;
-    @Input() inputTooltipText:string;
-    @Input() inputTooltipPlacement:string; //top, bottom, left, right
+    @Input()
+    public inputIsSmall:boolean;
 
-    @Output() deactivated = new EventEmitter<any>();
-    @Output() activated = new EventEmitter<any>();
-    @Output() toggled = new EventEmitter<boolean>();
+    @Input()
+    public inputIsLarge:boolean;
+
+    @Input()
+    public inputIsDisabled:boolean;
+
+    @Input()
+    public inputIcon:string;
+
+    @Input()
+    public inputIsAlignRight:boolean;
+
+    @Input()
+    public inputIsHidden:boolean;
+
+    @Input()
+    public inputTooltipText:string;
+
+    @Input()
+    public inputTooltipPlacement:string; // top, bottom, left, right
+
+    @Output()
+    public deactivated:EventEmitter<any> = new EventEmitter<any>();
+
+    @Output()
+    public activated:EventEmitter<any> = new EventEmitter<any>();
+
+    @Output()
+    public toggled:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     private _isActive:boolean = false;
 

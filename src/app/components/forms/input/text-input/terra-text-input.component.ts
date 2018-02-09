@@ -33,17 +33,22 @@ export class TerraTextInputComponent extends TerraInputComponent
 {
     /**
      * @description If true, the type of input will be 'password'.
-     * */
-    @Input() inputIsPassword:boolean;
+     */
+    @Input()
+    public inputIsPassword:boolean;
 
-    @Input() inputIsIban:boolean = false;
+
+    @Input()
+    public inputIsIban:boolean = false;
 
     /**
      * @description If true, the value cannot be changed. Default false.
-     * */
-    @Input() inputIsReadonly:boolean;
+     */
+    @Input()
+    public inputIsReadonly:boolean;
 
-    @Output() outputOnInput:EventEmitter<any> = new EventEmitter<any>();
+    @Output()
+    public outputOnInput:EventEmitter<any> = new EventEmitter<any>();
 
     /**
      * @deprecated inputType is no longer used.  It will be removed in one of the upcoming releases.

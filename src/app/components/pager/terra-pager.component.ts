@@ -17,12 +17,20 @@ import { Subject } from 'rxjs/Subject';
 })
 export class TerraPagerComponent implements OnInit
 {
-    @Input() inputPagingData:TerraPagerInterface;
-    @Input() inputDefaultPagingSize:number;
-    @Input() inputPagingSize:Array<TerraSelectBoxValueInterface>;
-    @Input() inputRequestPending:boolean;
+    @Input()
+    public inputPagingData:TerraPagerInterface;
 
-    @Output() outputDoPaging = new EventEmitter<TerraPagerInterface>();
+    @Input()
+    public inputDefaultPagingSize:number;
+
+    @Input()
+    public inputPagingSize:Array<TerraSelectBoxValueInterface>;
+
+    @Input()
+    public inputRequestPending:boolean;
+
+    @Output()
+    public outputDoPaging = new EventEmitter<TerraPagerInterface>();
 
     private _pagingClicks = new Subject();
 

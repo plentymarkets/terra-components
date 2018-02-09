@@ -29,10 +29,17 @@ let nextSplitViewId:number = 0;
 })
 export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {
-    @Input() inputConfig:TerraMultiSplitViewConfig;
-    @Input() inputShowBreadcrumbs:boolean;
-    @Input() inputRouter:Router;     // to catch inputRouter events
-    @Input() inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
+    @Input()
+    public inputConfig:TerraMultiSplitViewConfig;
+
+    @Input()
+    public inputShowBreadcrumbs:boolean;
+
+    @Input()
+    public inputRouter:Router;     // to catch inputRouter events
+
+    @Input()
+    public inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
 
     @HostListener('window:resize')
     onWindowResize()

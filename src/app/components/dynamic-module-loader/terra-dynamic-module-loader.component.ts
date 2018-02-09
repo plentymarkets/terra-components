@@ -24,11 +24,21 @@ import { TerraDynamicLoadedComponentInputInterface } from './data/terra-dynamic-
 export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChanges, OnDestroy
 {
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
-    @Input() inputModule:any;
-    @Input() inputMainComponentName:string;
-    @Input() inputParameter:any; // TODO: remove input if old split-view is removed
-    @Input() inputInputs:Array<TerraDynamicLoadedComponentInputInterface>;
-    @Input() inputView:TerraMultiSplitViewInterface;
+
+    @Input()
+    public inputModule:any;
+
+    @Input()
+    public inputMainComponentName:string;
+
+    @Input()
+    public inputParameter:any; // TODO: remove input if old split-view is removed
+
+    @Input()
+    public inputInputs:Array<TerraDynamicLoadedComponentInputInterface>;
+
+    @Input()
+    public inputView:TerraMultiSplitViewInterface;
     private _resolvedData:ModuleWithProviders;
 
     private _cmpRef:ComponentRef<any>;

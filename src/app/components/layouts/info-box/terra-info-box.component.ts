@@ -13,11 +13,20 @@ import { TerraTagInterface } from '../../../../';
 })
 export class TerraInfoBoxComponent implements OnInit
 {
-    @Input() inputTagList:Array<TerraTagInterface>;
-    @Input() inputAddBox:boolean;
-    @Input() inputIsEmpty:boolean;
-    @Input() inputIsSelected:boolean;
-    @Input() inputId:number;
+    @Input()
+    public inputTagList:Array<TerraTagInterface>;
+
+    @Input()
+    public inputAddBox:boolean;
+
+    @Input()
+    public inputIsEmpty:boolean;
+
+    @Input()
+    public inputIsSelected:boolean;
+
+    @Input()
+    public inputId:number;
 
     constructor()
     {

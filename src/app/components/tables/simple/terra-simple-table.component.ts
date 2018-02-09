@@ -20,19 +20,41 @@ import { Key } from 'ts-keycode-enum';
 })
 export class TerraSimpleTableComponent<D> implements OnChanges
 {
-    @Input() inputHeaderList:Array<TerraSimpleTableHeaderCellInterface>;
-    @Input() inputRowList:Array<TerraSimpleTableRowInterface<D>>;
-    @Input() inputUseHighlighting:boolean = false;
-    @Input() inputIsStriped:boolean = false;
-    @Input() inputHasCheckboxes:boolean = false;
-    @Input() inputEnableHotkeys:boolean = false;
-    @Input() inputHighlightedRow:TerraSimpleTableRowInterface<D>;
+    @Input()
+    public inputHeaderList:Array<TerraSimpleTableHeaderCellInterface>;
 
-    @Output() outputHeaderCheckBoxChanged:EventEmitter<boolean> = new EventEmitter();
-    @Output() outputRowCheckBoxChanged:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
-    @Output() outputRowClicked:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
-    @Output() outputHighlightedRowChange:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
-    @Output() outputSelectedRowsChange:EventEmitter<Array<TerraSimpleTableRowInterface<D>>> = new EventEmitter();
+    @Input()
+    public inputRowList:Array<TerraSimpleTableRowInterface<D>>;
+
+    @Input()
+    public inputUseHighlighting:boolean = false;
+
+    @Input()
+    public inputIsStriped:boolean = false;
+
+    @Input()
+    public inputHasCheckboxes:boolean = false;
+
+    @Input()
+    public inputEnableHotkeys:boolean = false;
+
+    @Input()
+    public inputHighlightedRow:TerraSimpleTableRowInterface<D>;
+
+    @Output()
+    public outputHeaderCheckBoxChanged:EventEmitter<boolean> = new EventEmitter();
+
+    @Output()
+    public outputRowCheckBoxChanged:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
+
+    @Output()
+    public outputRowClicked:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
+
+    @Output()
+    public outputHighlightedRowChange:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
+
+    @Output()
+    public outputSelectedRowsChange:EventEmitter<Array<TerraSimpleTableRowInterface<D>>> = new EventEmitter();
 
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
 

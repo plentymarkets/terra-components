@@ -29,15 +29,32 @@ const MAX_LASTLY_USED_ENTRIES = 5;
 })
 export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 {
-    @Input() inputName:string;
-    @Input() inputIsRequired:boolean;
-    @Input() inputIsDisabled:boolean;
-    @Input() inputTooltipText:string;
-    @Input() inputTooltipPlacement:string;
-    @Input() inputListBoxValues:Array<TerraSuggestionBoxValueInterface>;
-    @Input() inputWithRecentlyUsed:boolean;
-    @Output() outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
-    @Output() outputClicked = new EventEmitter<Event>();
+    @Input()
+    public inputName:string;
+
+    @Input()
+    public inputIsRequired:boolean;
+
+    @Input()
+    public inputIsDisabled:boolean;
+
+    @Input()
+    public inputTooltipText:string;
+
+    @Input()
+    public inputTooltipPlacement:string;
+
+    @Input()
+    public inputListBoxValues:Array<TerraSuggestionBoxValueInterface>;
+
+    @Input()
+    public inputWithRecentlyUsed:boolean;
+
+    @Output()
+    public outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
+
+    @Output()
+    public outputClicked = new EventEmitter<Event>();
 
     public isValid:boolean;
     public selectedValue:TerraSuggestionBoxValueInterface;

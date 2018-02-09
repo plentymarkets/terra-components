@@ -10,10 +10,17 @@ import {
 })
 export class TerraNoteComponent
 {
-    @Input() inputIsSelected:boolean;
-    @Input() inputId:number;
-    @Input() inputHeaderText:string;
-    @Input() inputNoteText:string;
+    @Input()
+    public inputIsSelected:boolean;
+
+    @Input()
+    public inputId:number;
+
+    @Input()
+    public inputHeaderText:string;
+
+    @Input()
+    public inputNoteText:string;
 
     constructor()
     {

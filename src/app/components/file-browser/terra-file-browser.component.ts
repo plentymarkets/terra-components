@@ -22,11 +22,14 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraFileBrowserComponent implements OnInit
 {
-    @Input() public inputAllowedExtensions:Array<string> = [];
+    @Input()
+    public inputAllowedExtensions:Array<string> = [];
 
-    @Input() public inputAllowFolders:boolean = true;
+    @Input()
+    public inputAllowFolders:boolean = true;
 
-    @Output() public outputSelectedChange:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
+    @Output()
+    public outputSelectedChange:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
     public onSelectedUrlChange:EventEmitter<string> = new EventEmitter();
 

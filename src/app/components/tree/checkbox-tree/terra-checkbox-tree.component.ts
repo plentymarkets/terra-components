@@ -15,23 +15,26 @@ import { TerraCheckboxLeafInterface } from '../leaf/terra-checkbox-leaf.interfac
 })
 export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implements OnInit
 {
-
     /**
      * current level leaf list
      */
-    @Input() inputLeafList:Array<TerraCheckboxLeafInterface>;
+    @Input()
+    public inputLeafList:Array<TerraCheckboxLeafInterface>;
 
     /**
      * leafs one level higher than current leaf
      */
-    @Input() inputParentLeafList:Array<TerraCheckboxLeafInterface>;
+    @Input()
+    public inputParentLeafList:Array<TerraCheckboxLeafInterface>;
 
     /**
      * complete leaf list for better and faster searching
      */
-    @Input() inputCompleteLeafList:Array<TerraCheckboxLeafInterface>;
+    @Input()
+    public inputCompleteLeafList:Array<TerraCheckboxLeafInterface>;
 
-    @Output() valueChange:EventEmitter<TerraCheckboxLeafInterface> = new EventEmitter<TerraCheckboxLeafInterface>();
+    @Output()
+    public valueChange:EventEmitter<TerraCheckboxLeafInterface> = new EventEmitter<TerraCheckboxLeafInterface>();
 
     constructor()
     {

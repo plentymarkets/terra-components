@@ -20,7 +20,9 @@ import { isNullOrUndefined } from 'util';
 export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDestroy, OnChanges
 {
     @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
-    @Input() inputComponent:Type<any>;
+
+    @Input()
+    public inputComponent:Type<any>;
 
     private _cmpRef:ComponentRef<any>;
 

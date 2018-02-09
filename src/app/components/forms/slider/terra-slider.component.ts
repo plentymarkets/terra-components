@@ -18,7 +18,6 @@ import { GridOptions } from '../../interactables/gridOptions.interface';
 })
 export class TerraSliderComponent implements OnInit
 {
-
     @Input()
     public inputValue:number;
 

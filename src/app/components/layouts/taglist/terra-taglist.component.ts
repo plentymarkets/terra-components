@@ -12,7 +12,8 @@ import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 })
 export class TerraTaglistComponent implements OnInit
 {
-    @Input() inputTagList:Array<TerraTagInterface>;
+    @Input()
+    public inputTagList:Array<TerraTagInterface>;
 
     constructor()
     {

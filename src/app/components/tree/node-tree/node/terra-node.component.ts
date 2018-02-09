@@ -17,12 +17,14 @@ export class TerraNodeComponent<D> implements OnInit
     /**
      * @description The node interface.
      */
-    @Input() inputNode:TerraNodeInterface<D>;
+    @Input()
+    public inputNode:TerraNodeInterface<D>;
 
     /**
      * @description The config to handle actions on tree or node.
      */
-    @Input() inputConfig:TerraNodeTreeConfig<D>;
+    @Input()
+    public inputConfig:TerraNodeTreeConfig<D>;
 
     private _tooltip:string;
 

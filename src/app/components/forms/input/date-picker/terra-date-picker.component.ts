@@ -40,28 +40,39 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 {
     /**
      * @description Set the label.
-     * */
-    @Input() public inputName:string;
+     */
+    @Input()
+    public inputName:string;
+
     /**
      * @description If true, a * indicates that the value is required. Default false.
-     * */
-    @Input() public inputIsRequired:boolean;
+     */
+    @Input()
+    public inputIsRequired:boolean;
+
     /**
      * @description If false, the input will appear with a red border to indicate that the entered value is not valid. Default true.
-     * */
-    @Input() public inputIsValid:boolean;
+     */
+    @Input()
+    public inputIsValid:boolean;
+
     /**
      * @description If true, the input will be disabled. Default false.
-     * */
-    @Input() public inputIsDisabled:boolean;
+     */
+    @Input()
+    public inputIsDisabled:boolean;
+
     /**
      * @description If true, the calendar will be opened on top. Default false.
-     * */
-    @Input() public inputOpenCalendarTop:boolean;
+     */
+    @Input()
+    public inputOpenCalendarTop:boolean;
+
     /**
      * @description Set the date format. Default 'dd.mm.yyyy'.
-     * */
-    @Input() public inputDisplayDateFormat:string;
+     */
+    @Input()
+    public inputDisplayDateFormat:string;
 
     @ViewChild('viewChildMyDatePicker') public viewChildMyDatePicker:MyDatePicker;
 

@@ -30,16 +30,35 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
-    @Input() inputName:string;
-    @Input() inputIsRequired:boolean;
-    @Input() inputIsDisabled:boolean;
-    @Input() inputIsSmall:boolean;
-    @Input() inputOpenOnTop:boolean;
-    @Input() inputTooltipText:string;
-    @Input() inputTooltipPlacement:string;
-    @Input() inputListBoxValues:Array<TerraSelectBoxValueInterface>;
-    @Output() outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
-    @Output() inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
+    @Input()
+    public inputName:string;
+
+    @Input()
+    public inputIsRequired:boolean;
+
+    @Input()
+    public inputIsDisabled:boolean;
+
+    @Input()
+    public inputIsSmall:boolean;
+
+    @Input()
+    public inputOpenOnTop:boolean;
+
+    @Input()
+    public inputTooltipText:string;
+
+    @Input()
+    public inputTooltipPlacement:string;
+
+    @Input()
+    public inputListBoxValues:Array<TerraSelectBoxValueInterface>;
+
+    @Output()
+    public outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
+
+    @Output()
+    public inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
 
     private clickListener:(event:Event) => void;
 

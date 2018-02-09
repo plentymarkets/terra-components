@@ -21,12 +21,14 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
     /**
      * @description The config to handle actions on tree or node.
      */
-    @Input() inputConfig:TerraNodeTreeConfig<D>;
+    @Input()
+    public inputConfig:TerraNodeTreeConfig<D>;
 
     /**
      * @description Shows the search box above the tree.
      */
-    @Input() inputShowSearch:boolean;
+    @Input()
+    public inputShowSearch:boolean;
 
     constructor(private _translation:TranslationService)
     {

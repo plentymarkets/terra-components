@@ -18,7 +18,8 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraButtonGroupComponent<D> implements OnInit
 {
-    @Input() parameter:any;
+    @Input()
+    public parameter:any;
 
     private _buttonList:Array<TerraButtonGroupInterface>;
 

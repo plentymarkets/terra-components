@@ -20,12 +20,24 @@ import { TranslationService } from 'angular-l10n';
 export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
-    @Input() inputIsDisabled:boolean;
-    @Input() inputIsError:boolean;
-    @Input() inputValueList:Array<TerraMultiSelectBoxValueInterface>;
-    @Input() inputName:string;
-    @Input() inputIsRequired:boolean;
-    @Output() inputSelectedValueListChange = new EventEmitter<Array<any>>();
+
+    @Input()
+    public inputIsDisabled:boolean;
+
+    @Input()
+    public inputIsError:boolean;
+
+    @Input()
+    public inputValueList:Array<TerraMultiSelectBoxValueInterface>;
+
+    @Input()
+    public inputName:string;
+
+    @Input()
+    public inputIsRequired:boolean;
+
+    @Output()
+    public inputSelectedValueListChange = new EventEmitter<Array<any>>();
 
     @Input()
     set inputSelectedValueList(value:Array<any>)
