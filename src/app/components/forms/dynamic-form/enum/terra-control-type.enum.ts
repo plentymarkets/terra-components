@@ -1,7 +1,7 @@
 /**
  * @author mfrank
  */
-export enum ControlTypeEnum
+export enum TerraControlTypeEnum
 {
     CHECK_BOX = 'checkBox',
     CONDITIONAL_CONTAINER = 'conditionalContainer',
@@ -10,5 +10,6 @@ export enum ControlTypeEnum
     INPUT_TEXT = 'inputText',
     INPUT_NUMBER = 'inputNumber',
     INPUT_DOUBLE = 'inputDouble',
-    SELECT_BOX = 'selectBox'
+    SELECT_BOX = 'selectBox',
+    VERTICAL_CONTAINER = 'verticalContainer'
 }

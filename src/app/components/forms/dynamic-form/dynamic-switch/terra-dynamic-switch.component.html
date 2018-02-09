@@ -67,6 +67,17 @@
                     </terra-dynamic-switch>
                 </div>
             </ng-container>
+    
+            <ng-container *ngSwitchCase="'verticalContainer'">
+                <div class="verticalGroup">
+                    <span class="verticalGroupLabel">{{ formField.label }}: </span>
+                    <terra-dynamic-switch class="subSwitch"
+                                          [inputFormGroup]="inputFormGroup"
+                                          [inputFormFields]="formField.containerEntries"
+                                          [inputSubSwitch]="true">
+                    </terra-dynamic-switch>
+                </div>
+            </ng-container>
             
             <ng-container *ngSwitchCase="'conditionalContainer'">
                 <div class="conditionalContainer">

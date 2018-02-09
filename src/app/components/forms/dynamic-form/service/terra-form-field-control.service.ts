@@ -10,6 +10,7 @@ import {
 import { isNullOrUndefined } from 'util';
 import { TerraFormFieldHorizontalContainer } from '../data/terra-form-field-horizontal-container';
 import { TerraFormFieldConditionalContainer } from '../data/terra-form-field-conditional-container';
+import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
 
 /**
  * @author mfrank
@@ -54,7 +55,7 @@ export class TerraFormFieldControlService
     {
         formFields.forEach((formField:TerraFormFieldBase<any>) =>
         {
-            if(formField instanceof TerraFormFieldHorizontalContainer && !isNullOrUndefined(formField.containerEntries))
+            if(formField instanceof TerraFormFieldBaseContainer && !isNullOrUndefined(formField.containerEntries))
             {
                 this.initFormGroupHelper(formField.containerEntries, false);
             }

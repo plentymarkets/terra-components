@@ -1,5 +1,5 @@
 import { isNull } from 'util';
-import { ControlTypeEnum } from '../enum/controlType.enum';
+import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
  * @author mfrank
@@ -33,9 +33,9 @@ export class TerraFormFieldBase<T>
     public maxValue:number;
     public pattern:string | RegExp;
 
-    public readonly controlType:ControlTypeEnum;
+    public readonly controlType:TerraControlTypeEnum;
 
-    constructor(key:string, controlType:ControlTypeEnum, options:TerraFormFieldBaseOptions<T> = {})
+    constructor(key:string, controlType:TerraControlTypeEnum, options:TerraFormFieldBaseOptions<T> = {})
     {
         if(isNull(key))
         {

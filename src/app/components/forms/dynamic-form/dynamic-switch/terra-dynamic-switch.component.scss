@@ -9,7 +9,7 @@
 .horizontalGroup
 {
     display: flex;
-    padding: 2px 0;
+    padding: 3px 0;
     
     .subSwitch
     {
@@ -29,6 +29,27 @@
     & :not(:last-child)
     {
         margin-right: 5px;
+    }
+}
+
+.verticalGroup
+{
+    padding: 3px 0;
+    margin: 0 5px;
+    
+    .subSwitch
+    {
+        width: 100%;
+    }
+    
+    .verticalGroupLabel
+    {
+        font-weight: bold;
+    }
+    
+    .verticalGroupEntry
+    {
+        width: 100%;
     }
 }
 
