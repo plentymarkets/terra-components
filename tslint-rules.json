@@ -32,9 +32,7 @@
           "protected-instance-field",
           "private-instance-field",
           "constructor",
-          "public-instance-method",
-          "protected-instance-method",
-          "private-instance-method"
+          "instance-method"
         ],
         "alphabetize": false
       }

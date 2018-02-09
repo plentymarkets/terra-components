@@ -20,7 +20,8 @@
 		"build": "gulp build",
 		"start": "npm run server:dev",
 		"server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch",
-		"gulp": "gulp"
+		"gulp": "gulp",
+		"lint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts'"
 	},
 	"dependencies": {
 		"@angular/animations": "~4.1.0",
