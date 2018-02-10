@@ -64,7 +64,7 @@ export class TerraOverlayComponent implements AfterViewInit
         this.outputOnShow = new EventEmitter<ModalDirective>();
     }
 
-    ngAfterViewInit()
+    public ngAfterViewInit()
     {
         if(!this.inputIsCloseable)
         {

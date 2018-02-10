@@ -144,7 +144,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
     }
 
-    ngOnChanges(changes:SimpleChanges):void
+    public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes['_hasCheckboxes'])
         {

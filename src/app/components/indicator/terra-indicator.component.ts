@@ -22,7 +22,7 @@ export class TerraIndicatorComponent implements OnInit
         this.inputType = 'default';
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
     }
 }

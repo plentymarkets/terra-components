@@ -100,7 +100,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
         }
     }
 
-    onChange(event:boolean)
+    public onChange(event:boolean):void
     {
         this.valueChange.emit(event);
     }

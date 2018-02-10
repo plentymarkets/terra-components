@@ -44,7 +44,7 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
         };
     }
 
-    ngAfterViewInit()
+    public ngAfterViewInit()
     {
         this.editor.getEditor().clearSelection();
         this.editor.getEditor().$blockScrolling = Infinity;

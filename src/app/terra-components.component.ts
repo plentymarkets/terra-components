@@ -67,7 +67,7 @@ export class TerraComponentsComponent extends Translation implements OnInit
         this.translation.init();
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
     }
 }

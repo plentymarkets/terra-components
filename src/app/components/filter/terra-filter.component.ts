@@ -59,7 +59,7 @@ export class TerraFilterComponent implements OnInit
     {
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
     }
 

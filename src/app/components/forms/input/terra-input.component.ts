@@ -138,7 +138,7 @@ export class TerraInputComponent implements ControlValueAccessor
     }
 
     // From ControlValueAccessor interface
-    writeValue(value:any)
+    public writeValue(value:any)
     {
         if(value !== this._innerValue)
         {
@@ -147,13 +147,13 @@ export class TerraInputComponent implements ControlValueAccessor
     }
 
     // From ControlValueAccessor interface
-    registerOnChange(fn:any)
+    public registerOnChange(fn:any)
     {
         this.onChangeCallback = fn;
     }
 
     // From ControlValueAccessor interface
-    registerOnTouched(fn:any)
+    public registerOnTouched(fn:any)
     {
         this.onTouchedCallback = fn;
     }

@@ -66,7 +66,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         this._searchNodeList = [];
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
         if(isNullOrUndefined(this.inputModuleWidth))
         {
@@ -161,7 +161,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         this._isInit = true;
     }
 
-    ngOnChanges(changes:SimpleChanges)
+    public ngOnChanges(changes:SimpleChanges)
     {
         if(this._isInit === true && changes['inputNodes'])
         {

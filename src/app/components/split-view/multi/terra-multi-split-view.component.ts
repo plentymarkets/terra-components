@@ -42,7 +42,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     public inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
 
     @HostListener('window:resize')
-    onWindowResize()
+    public onWindowResize():void
     {
         this.zone.runOutsideAngular(() =>
             {
@@ -80,12 +80,12 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.splitViewId = nextSplitViewId++;
     }
 
-    ngOnDestroy()
+    public ngOnDestroy()
     {
         this.inputConfig.reset();
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
         // catch routing events, but only those that select the tab where the split view is instantiated
         if(!isNullOrUndefined(this.inputRouter) && !isNullOrUndefined(this.inputComponentRoute))

@@ -93,7 +93,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
     {
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
         if(!this.inputName)
         {
@@ -113,7 +113,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
      *
      * @param changes
      */
-    ngOnChanges(changes:SimpleChanges)
+    public ngOnChanges(changes:SimpleChanges)
     {
         if(this._isInit == true && changes['inputValueList'] && changes['inputValueList'].currentValue.length > 0)
         {

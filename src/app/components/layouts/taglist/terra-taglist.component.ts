@@ -19,7 +19,7 @@ export class TerraTaglistComponent implements OnInit
     {
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
     }
 }

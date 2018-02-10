@@ -36,12 +36,12 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
         this.inputUpdateViewport = true;
     }
 
-    ngOnDestroy()
+    public ngOnDestroy()
     {
         this.inputModules.splice(0, this.inputModules.length);
     }
 
-    ngOnChanges(changes:SimpleChanges)
+    public ngOnChanges(changes:SimpleChanges)
     {
         if(this.inputUpdateViewport)
         {

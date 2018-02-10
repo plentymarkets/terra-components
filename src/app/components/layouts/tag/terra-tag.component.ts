@@ -30,7 +30,7 @@ export class TerraTagComponent implements OnInit
         this.inputCustomClass = null;
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
     }
 }

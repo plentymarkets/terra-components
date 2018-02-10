@@ -13,7 +13,7 @@ export class TerraUrlParamsDecorator
      * @param {URLSearchParams} urlSearchParams
      * @param {TerraPagerParameterInterface} terraPagerParameter
      */
-    public setTerraPagerParameter(urlSearchParams:URLSearchParams, terraPagerParameter:TerraPagerParameterInterface)
+    public setTerraPagerParameter(urlSearchParams:URLSearchParams, terraPagerParameter:TerraPagerParameterInterface):void
     {
         if(terraPagerParameter.page)
         {

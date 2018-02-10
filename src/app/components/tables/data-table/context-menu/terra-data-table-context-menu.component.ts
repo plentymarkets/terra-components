@@ -44,14 +44,14 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
         }
     }
 
-    clickedOutside()
+    public clickedOutside()
     {
         this._isShown = false;
         this._locationCss = this.calcMenuPosition();
         document.removeEventListener('click', this.clickListener);
     }
 
-    showMenu(event:MouseEvent, contextMenuLinkList:TerraDataTableContextMenuEntryInterface<D>[])
+    public showMenu(event:MouseEvent, contextMenuLinkList:TerraDataTableContextMenuEntryInterface<D>[])
     {
         this._isShown = true;
         this._contextMenuLinkList = contextMenuLinkList;

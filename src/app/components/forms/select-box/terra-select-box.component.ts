@@ -114,7 +114,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this.inputOpenOnTop = false;
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
         this.isValid = true;
         this._toggleOpen = false;
@@ -126,7 +126,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      *
      * @param changes
      */
-    ngOnChanges(changes:SimpleChanges)
+    public ngOnChanges(changes:SimpleChanges)
     {
         if(this._isInit == true
            && changes['inputListBoxValues']

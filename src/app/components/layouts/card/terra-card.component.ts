@@ -29,7 +29,7 @@ export class TerraCardComponent implements AfterContentChecked
         this.showFooter = false;
     }
 
-    ngAfterContentChecked()
+    public ngAfterContentChecked()
     {
         this.showHeader = this.viewChildHeader.nativeElement.children.length > 0;
         this.showFooter = this.viewChildFooter.nativeElement.children.length > 0;

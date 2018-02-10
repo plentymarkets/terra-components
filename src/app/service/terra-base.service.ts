@@ -45,7 +45,7 @@ export class TerraBaseService
         }
     }
 
-    get http():Http
+    public get http():Http
     {
         return this._baseHttp;
     }
@@ -305,7 +305,7 @@ export class TerraBaseService
         return searchParams;
     }
 
-    private getMissingUserPermissionAlertMessage()
+    private getMissingUserPermissionAlertMessage():string
     {
         // START workaround because we do not have a real translation solution in terra components
         let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');

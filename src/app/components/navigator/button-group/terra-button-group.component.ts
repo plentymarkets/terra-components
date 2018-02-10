@@ -28,7 +28,7 @@ export class TerraButtonGroupComponent<D> implements OnInit
         this._buttonList = [];
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
         this._terraNavigatorSplitViewConfig.observableUpdateActiveItem
             .subscribe((nodes:Array<TerraNavigatorNodeInterface<D>>) =>

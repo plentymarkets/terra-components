@@ -41,7 +41,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         super();
     }
 
-    selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
+    public selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
 
     private onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
     {
@@ -176,7 +176,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         }
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
         super.ngOnInit();
         this.appendParentsToLeafList(this.inputLeafList);

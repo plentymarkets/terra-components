@@ -72,7 +72,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
         this.clickListener = (event) =>
         {
@@ -101,7 +101,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
     }
 
-    ngOnChanges(changes:SimpleChanges)
+    public ngOnChanges(changes:SimpleChanges)
     {
         if(changes['inputListBoxValues']
            && changes['inputListBoxValues'].currentValue.length > 0

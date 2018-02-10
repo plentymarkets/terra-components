@@ -32,7 +32,7 @@ export class TerraInfoBoxComponent implements OnInit
     {
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
     }
 
