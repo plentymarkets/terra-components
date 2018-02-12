@@ -22,7 +22,7 @@ export class TerraFormFieldControlService
     public defaultValues:{ [key:string]:string | number | boolean };
     public translationMapping:{ [key:string]:string };
 
-    private formFieldsToGroup:{ [key:string]:FormControl };
+    private formFieldsToGroup:{ [key:string]:any };
 
     constructor(private _formBuilder:FormBuilder)
     {
@@ -38,7 +38,7 @@ export class TerraFormFieldControlService
      */
     public createFormGroup(formFields:Array<TerraFormFieldBase<any>>):void
     {
-        this.initFormGroupHelper(formFields, false);
+        this.formFieldsToGroup = this.initFormGroupHelper(formFields, {}, false);
         this.dynamicFormGroup = this._formBuilder.group(this.formFieldsToGroup);
     }
 
@@ -51,32 +51,40 @@ export class TerraFormFieldControlService
     }
 
     private initFormGroupHelper(formFields:Array<TerraFormFieldBase<any>>,
-                                isDisabled:boolean = false):void
+                                toGroup:{ [key:string]:any },
+                                isDisabled:boolean = false):{ [key:string]:any }
     {
         formFields.forEach((formField:TerraFormFieldBase<any>) =>
         {
             if(formField instanceof TerraFormFieldBaseContainer && !isNullOrUndefined(formField.containerEntries))
             {
-                this.initFormGroupHelper(formField.containerEntries, false);
+                toGroup[formField.key] = this._formBuilder.group(this.initFormGroupHelper(formField.containerEntries, {}, false));
             }
             else if(formField instanceof TerraFormFieldConditionalContainer && !isNullOrUndefined(formField.conditionalEntries))
             {
-                this.formFieldsToGroup[formField.key] = new FormControl(formField.value, null);
-
-                for(let key in formField.conditionalEntries)
-                {
-                    if(formField.conditionalEntries.hasOwnProperty(key))
-                    {
-                        this.initFormGroupHelper(formField.conditionalEntries[key], true);
-                    }
-                }
+                // TODO extract into own component  or condition refactoring
+                //let subGroup:{ [key:string]:any } = {};
+                //
+                //subGroup[formField.key] = new FormControl(formField.value, this.generateValidators(formField));
+                //
+                //this.defaultValues[formField.key] = formField.value;
+                //
+                //for(let key in formField.conditionalEntries)
+                //{
+                //    if(formField.conditionalEntries.hasOwnProperty(key))
+                //    {
+                //        subGroup[key] = this._formBuilder.group(this.initFormGroupHelper(formField.conditionalEntries[key], {}, true));
+                //    }
+                //}
+                //
+                //toGroup[formField.key] = this._formBuilder.group(subGroup);
             }
             else
             {
-                this.formFieldsToGroup[formField.key] = new FormControl(formField.value, this.generateValidators(formField));
+                toGroup[formField.key] = new FormControl(formField.value, this.generateValidators(formField));
                 if(isDisabled)
                 {
-                    this.formFieldsToGroup[formField.key].disable({
+                    toGroup[formField.key].disable({
                         onlySelf:  true,
                         emitEvent: false
                     });
@@ -85,6 +93,8 @@ export class TerraFormFieldControlService
                 this.translationMapping[formField.key] = formField.label;
             }
         });
+
+        return toGroup;
     }
 
     private generateValidators(formField:TerraFormFieldBase<any>):Array<ValidatorFn>

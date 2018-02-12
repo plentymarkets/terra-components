@@ -14,6 +14,9 @@ export interface TerraFormFieldConditionalContainerOptions extends TerraFormFiel
     conditionalEntries?:{ [key:string]:Array<TerraFormFieldBase<any>> };
 }
 
+/**
+ * @deprecated
+ */
 export class TerraFormFieldConditionalContainer extends TerraFormFieldBase<string>
 {
     public conditionalType:string;
