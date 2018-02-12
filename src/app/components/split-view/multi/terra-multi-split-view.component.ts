@@ -69,12 +69,14 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     private resizeTimeout:number;
 
     private splitViewId:number;
+    private tabDeselected:boolean;
 
     constructor(private zone:NgZone, private _router:Router)
     {
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
         this.splitViewId = nextSplitViewId++;
+        this.tabDeselected = false;
     }
 
     ngOnDestroy()
@@ -95,10 +97,27 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 if(this.inputHasRouting)
                 {
                     this._router.events.filter((event:AngularRouter.Event) =>
-                        event instanceof NavigationEnd && event.url.startsWith(this.inputComponentRoute)
+                        event instanceof NavigationEnd && event.url.startsWith(this.inputComponentRoute) && !this.tabDeselected
                     ).subscribe((event:NavigationEnd) =>
                     {
                         this.inputConfig.navigateToViewByUrl(event.url);
+                    });
+
+                    // TODO: Workaround since the tabbar cannot handle any routes besides those from the menu..
+                    this._router.events.filter((event:AngularRouter.Event) =>
+                        event instanceof NavigationEnd && event.url.startsWith(this.inputComponentRoute) && this.tabDeselected
+                    ).subscribe(() =>
+                    {
+                        this._router.navigateByUrl(this.inputConfig.currentSelectedView.url);
+                        this.updateViewport(this.inputConfig.currentSelectedView, true);
+                        this.tabDeselected = false;
+                    });
+
+                    this._router.events.filter((event:AngularRouter.Event) =>
+                        event instanceof NavigationEnd && !event.url.startsWith(this.inputComponentRoute)
+                    ).subscribe(() =>
+                    {
+                        this.tabDeselected = true;
                     });
                 }
                 else
