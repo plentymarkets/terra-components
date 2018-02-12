@@ -1,0 +1,23 @@
+.context-menu
+{
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transition: none;
+    min-width: max-content;
+    max-width: max-content;
+    
+    a
+    {
+        --context-menu-a-font-size: 12px;
+    }
+}
+
+.context-menu-divider
+{
+    background: $grey-3;
+    cursor: default;
+    height: 1px;
+    overflow: hidden;
+    margin: 0.5rem 0;
+}

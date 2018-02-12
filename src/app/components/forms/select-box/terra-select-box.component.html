@@ -1,0 +1,52 @@
+<div class="select-box-wrapper"
+     placement="{{inputTooltipPlacement}}"
+     tooltip="{{inputTooltipText}}"
+     [isDisabled]="!inputTooltipText"
+     [ngClass]="{
+                  'error': !isValid,
+                  'disabled': inputIsDisabled,
+                  'open': _toggleOpen
+                }"
+     (click)="onClick($event)"
+     container="body">
+    
+    <label *ngIf="_hasLabel" htmlFor="{{inputName}}">{{inputName}}
+        <span *ngIf="inputIsRequired">*</span>
+    </label>
+    
+    <div class="select-box" [ngClass]="{'error': !isValid, 'labeled': _hasLabel, 'isSmall': inputIsSmall}">
+        <span *ngIf="_selectedValue; then selectedValue else firstInList"></span>
+        <ng-template #selectedValue>
+            <span class="{{_selectedValue?.icon}}" *ngIf="_selectedValue?.icon"></span>
+            <span [innerHtml]="_selectedValue?.caption"></span>
+        </ng-template>
+        <ng-template #firstInList>
+            <span class="{{inputListBoxValues[0]?.icon}}" *ngIf="inputListBoxValues[0]?.icon"></span>
+            <span [innerHtml]="inputListBoxValues[0]?.caption"></span>
+        </ng-template>
+    
+    </div>
+    
+    <div class="select-box-dropdown" [ngClass]="{'isSmall': inputIsSmall, 'openOnTop': inputOpenOnTop}">
+        <span *ngIf="_selectedValue; then selectedValueActive else firstInListActive"></span>
+        
+        <ng-template #selectedValueActive>
+            <span *ngFor="let item of inputListBoxValues; let index=index;"
+                  (click)="select(item)"
+                  [ngClass]="{active: item.value === _selectedValue?.value}">
+                <span class="{{item.icon}}" *ngIf="item.icon"></span>
+                <span [innerHtml]="item.caption"></span>
+            </span>
+        </ng-template>
+        
+        <ng-template #firstInListActive>
+            <span *ngFor="let item of inputListBoxValues; let index=index;"
+                  (click)="select(item)"
+                  [ngClass]="{active: item.value === inputListBoxValues[0]?.value}">
+                <span class="{{item.icon}}" *ngIf="item.icon"></span>
+                <span [innerHtml]="item.caption"></span>
+            </span>
+        </ng-template>
+    
+    </div>
+</div>

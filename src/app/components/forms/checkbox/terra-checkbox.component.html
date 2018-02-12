@@ -1,0 +1,13 @@
+<div [ngClass]="{'disabled-chk': inputIsDisabled}">
+    <label class="input-control checkbox small-check" style="margin-bottom: .5rem; display: inline;">
+        <input type="checkbox"
+               [(ngModel)]="value"
+               (ngModelChange)="onChange($event)"
+               [disabled]="inputIsDisabled"
+               [indeterminate]="_isIndeterminate"
+               id="{{_id}}">
+        <span class="check" [ngClass]="{ 'invalid': !isValid }"></span>
+        <span *ngIf="inputIcon" class="checkbox-icon" [ngClass]="inputIcon"></span>
+        <span *ngIf="inputCaption" [ngClass]="{'disabled-chk': inputIsDisabled}">{{inputCaption}}</span>
+    </label>
+</div>

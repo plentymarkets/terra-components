@@ -6,6 +6,39 @@
 	- Refactoring -> Removed deprecated interface and input properties
 	- New `TerraDataTableBaseService` which replaces custom directives and configs. It also stores all information needed for retrieving data from the server
 
+
+<a name="2.1.47-zlk"></a>
+# 2.1.47-zlk (06.02.2018)
+
+### Feature
+* **terra-checkbox-tree** added value change output to the checkbox tree
+
+<a name="2.1.46-zlk"></a>
+# 2.1.46-zlk (02.02.2018)
+
+### Feature
+* **terra-base-service** now handles UiHashExpiredException 
+
+<a name="2.1.45-zlk"></a>
+# 2.1.45-zlk (01.02.2018)
+
+### Feature
+* **terra-info-box** added css variables
+* **terra-portlet** added css variables
+
+<a name="2.1.44-zlk"></a>
+# 2.1.44-zlk (29.01.2018)
+
+### Bug Fixes
+
+### Feature
+* **terra-portlet** add new input `inputButtonList` to add a button group into the portlet header
+* **terra-button** 
+- add properties `isSmall` and `isLarge` to button interface
+- fix styling when inputIsLink is used
+* **terra-multi-split-view** divider styling 
+* **terra-overlay** changed footer & header height
+
 <a name="2.1.39-zlk"></a>
 # 2.1.39-zlk (05.01.2017)
 
@@ -19,6 +52,7 @@
 ### Feature
 * **context-menu-holder** added background color for entries and TerraButtonColorEnum for dedicated color values
 * **terra-portlet** add new input `inputHighlightPortlet` for component to highlight portlets. Edit css for highlighting portlets. 
+* **terra-data-table** add a group function to handle multiple items at once in the data table 
 * **terra-multi-selectbox** adjusted styling
 
 <a name="2.1.35-zlk"></a>
@@ -44,6 +78,7 @@
 ### Feature
 * **terra-input** Add input for IBAN validation. Add function to validate input (OnBlur). Add Tooltip for invalid Iban.
 * **terra-checkbox-tree** component accomplished. Basic comportment implemented
+* **terra-file-browser** you are now able to download files
 * **terra-simple-table** new interface property `textAlign` that uses `TerraTextAlignEnum` to align captions in table header cells
 * **terra-data-table** constraint interface property `textAlign` with `TerraTextAlignEnum`. Property type string is deprecated
 

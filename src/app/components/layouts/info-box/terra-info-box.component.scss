@@ -1,0 +1,76 @@
+.info-box
+{
+    background-color: $grey-2;
+    -moz-border-radius: $border-radius;
+    -webkit-border-radius: $border-radius;
+    border-radius: $border-radius;
+    padding: 8px;
+    min-width: 200px;
+    margin: 4px 0px;
+    height: var(--input-info-box-height, 150px);
+    
+    &.selected
+    {
+        background-color: $blue;
+        
+        .info-box-inner
+        {
+            .info-box-text
+            {
+                color: $white;
+            }
+        }
+        .info-box-footer
+        {
+            .info-box-id
+            {
+                color: $white;
+            }
+        }
+    }
+    &.empty
+    {
+        background: $gray-light-3;
+        justify-content: center;
+        line-height: 8rem;
+    }
+    .info-box-inner
+    {
+        display: flex;
+        justify-content: space-between;
+        
+        &.has-footer
+        {
+            height: calc(100% - 26px);
+        }
+        
+        .info-box-text
+        {
+            padding-right: 0.8rem;
+            padding-bottom: 0.4rem;
+            max-width: 77%;
+            white-space: nowrap;
+            color: $grey-11;
+            overflow: var(--info-box-text-overflow, hidden);
+        }
+    }
+    .info-box-footer
+    {
+        display: flex;
+        justify-content: space-between;
+        .info-box-id
+        {
+            margin: 7px 4px 0px 0px;
+            color: $grey-8;
+        }
+    }
+}
+
+//adaptable background-color //add only after view-background-color-fix
+//:host-context(.view.isBackgroundColorGrey)
+//{
+//    .info-box:not(.selected)
+//    {
+//        background-color: $white;
+//    }
+//}
