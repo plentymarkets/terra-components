@@ -55,6 +55,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     @Output()
     public valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
+    public isValid:boolean = true;
 
     /**
      * @description a unique string identifier for the specific input instance.
@@ -64,22 +65,26 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     // The internal data model
     private _innerValue:boolean = false;
     private _isIndeterminate:boolean = false;
-    public isValid:boolean = true;
 
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
-    private onTouchedCallback:() => void = () =>
-    {
-    };
-
-    private onChangeCallback:(_:any) => void = (_) =>
-    {
-    };
+    private onTouchedCallback:() => void;
+    private onChangeCallback:(_:any) => void;
 
     constructor()
     {
         // generate the id of the input instance
         this._id = `checkbox_#${nextId++}`;
+
+        this.onTouchedCallback = ():void =>
+        {
+            return;
+        };
+
+        this.onChangeCallback = (_:any):void =>
+        {
+            return;
+        };
     }
 
     // get accessor

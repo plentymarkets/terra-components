@@ -18,8 +18,6 @@ import * as Interact from 'interactjs';
 })
 export class TerraResizableDirective implements OnChanges
 {
-    private interactable:Interact.Interactable;
-
     @Input('terra-resizable')
     public options:ResizeOptions = null;
 
@@ -43,6 +41,8 @@ export class TerraResizableDirective implements OnChanges
 
     @Output('terra-resizable-onEnd')
     public onEnd:EventEmitter<Interact.InteractEvent> = new EventEmitter<Interact.InteractEvent>();
+
+    private interactable:Interact.Interactable;
 
     constructor(private el:ElementRef)
     {

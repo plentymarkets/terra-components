@@ -19,7 +19,8 @@ import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interfa
 })
 export class TerraOverlayComponent implements AfterViewInit
 {
-    @ViewChild('viewChildOverlay') viewChildOverlay:ModalDirective;
+    @ViewChild('viewChildOverlay')
+    public viewChildOverlay:ModalDirective;
 
     @Input()
     public inputOverlayTitle:string;

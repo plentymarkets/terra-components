@@ -36,12 +36,12 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
     @Output()
     public valueChange:EventEmitter<TerraCheckboxLeafInterface> = new EventEmitter<TerraCheckboxLeafInterface>();
 
+    public selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
+
     constructor()
     {
         super();
     }
-
-    public selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
 
     private onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
     {
@@ -196,7 +196,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
 
 export class ParentLeafState
 {
-    allChildrenAreChecked:boolean = true;
-    noChildrenAreChecked:boolean = true;
-    isIndeterminate:boolean = false;
+    public allChildrenAreChecked:boolean = true;
+    public noChildrenAreChecked:boolean = true;
+    public isIndeterminate:boolean = false;
 }

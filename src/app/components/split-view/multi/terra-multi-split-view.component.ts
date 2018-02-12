@@ -29,6 +29,8 @@ let nextSplitViewId:number = 0;
 })
 export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {
+    public static ANIMATION_SPEED:number = 1000; // ms
+
     @Input()
     public inputConfig:TerraMultiSplitViewConfig;
 
@@ -40,6 +42,21 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     @Input()
     public inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
+
+    private _breadCrumbsPath:string;
+
+    private modules:Array<TerraMultiSplitViewDetail> = [];
+
+    private resizeTimeout:number;
+
+    private splitViewId:number;
+
+    constructor(private zone:NgZone)
+    {
+        this.inputShowBreadcrumbs = true; // default
+        this._breadCrumbsPath = '';
+        this.splitViewId = nextSplitViewId++;
+    }
 
     @HostListener('window:resize')
     public onWindowResize():void
@@ -60,24 +77,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     }
                 ).bind(this), 500);
             }
-        )
-    };
-
-    private _breadCrumbsPath:string;
-
-    private modules:Array<TerraMultiSplitViewDetail> = [];
-
-    public static ANIMATION_SPEED = 1000; // ms
-
-    private resizeTimeout:number;
-
-    private splitViewId:number;
-
-    constructor(private zone:NgZone)
-    {
-        this.inputShowBreadcrumbs = true; // default
-        this._breadCrumbsPath = '';
-        this.splitViewId = nextSplitViewId++;
+        );
     }
 
     public ngOnDestroy():void

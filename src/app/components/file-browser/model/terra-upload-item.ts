@@ -6,6 +6,8 @@ export type UploadCallback = (response:string, status:number, headers:{ [key:str
 
 export class TerraUploadItem
 {
+    public static DONE:TerraUploadItem = new TerraUploadItem(null, null, null);
+
     public _xhr:XMLHttpRequest;
     public uploaded:boolean = false;
 
@@ -107,6 +109,4 @@ export class TerraUploadItem
             }
         }
     }
-
-    public static DONE:TerraUploadItem = new TerraUploadItem(null, null, null);
 }

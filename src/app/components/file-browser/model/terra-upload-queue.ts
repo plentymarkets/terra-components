@@ -7,11 +7,12 @@ export type UploadQueueUrlFactory = (storageKey:string) => string;
 
 export class TerraUploadQueue
 {
+    public progress:Observable<number>;
+    public inProgress:Promise<void>;
+
     private items:Array<TerraUploadItem> = [];
     private size:number = 0;
 
-    public progress:Observable<number>;
-    public inProgress:Promise<void>;
     private _progressListeners:Array<Observer<number>> = [];
     private _progressValue:number = -1;
 

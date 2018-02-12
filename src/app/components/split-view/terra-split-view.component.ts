@@ -17,6 +17,8 @@ import { TerraSplitViewInterface } from './data/terra-split-view.interface';
 /** @deprecated - please use `TerraMultiSplitViewComponent` instead */
 export class TerraSplitViewComponent implements OnChanges, OnDestroy
 {
+    public static ANIMATION_SPEED:number = 1000; // ms
+
     @Input()
     public inputModules:Array<TerraSplitViewInterface>;
 
@@ -25,9 +27,8 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
 
     @Input()
     public inputUpdateViewport:boolean;
-    private _breadCrumbsPath:string;
 
-    public static ANIMATION_SPEED = 1000; // ms
+    private _breadCrumbsPath:string;
 
     constructor()
     {

@@ -23,6 +23,11 @@ let nextId:number = 0;
 })
 export class TerraNumberInputComponent extends TerraInputComponent
 {
+    /**
+     * @description a unique string identifier for the specific input instance.
+     */
+    private _id:string;
+
     constructor()
     {
         super(TerraRegex.NUMERIC);
@@ -41,9 +46,4 @@ export class TerraNumberInputComponent extends TerraInputComponent
 
         this.value = v;
     }
-
-    /**
-     * @description a unique string identifier for the specific input instance.
-     */
-    private _id:string;
 }

@@ -19,6 +19,7 @@ export class TerraTileBoxPanelComponent
 
     @Input()
     public inputIsViewToggleable:boolean;
+
     public selectedTileBoxList:Array<TerraTileBoxInterface> = [];
     public viewStyle:boolean = false;
 

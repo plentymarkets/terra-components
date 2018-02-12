@@ -18,8 +18,6 @@ import { InertiaOptions } from './inertiaOptions.interface';
 })
 export class TerraDraggableDirective implements OnChanges
 {
-    private interactable:Interact.Interactable;
-
     @Input('terra-draggable')
     public options?:DraggableOptions = null;
 
@@ -46,6 +44,8 @@ export class TerraDraggableDirective implements OnChanges
 
     @Output('terra-draggable-onEnd')
     public onEnd:EventEmitter<Interact.InteractEvent> = new EventEmitter<Interact.InteractEvent>();
+
+    private interactable:Interact.Interactable;
 
     constructor(private el:ElementRef)
     {

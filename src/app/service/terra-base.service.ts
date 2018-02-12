@@ -25,10 +25,10 @@ import {
 @Injectable()
 export class TerraBaseService
 {
-    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
-
     public headers:Headers;
     public url:string;
+
+    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private _baseHttp:Http,

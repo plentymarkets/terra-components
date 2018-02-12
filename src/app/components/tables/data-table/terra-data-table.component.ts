@@ -62,7 +62,8 @@ import {
 })
 export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> implements OnChanges
 {
-    @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
+    @ViewChild('viewChildHeaderCheckbox')
+    public viewChildHeaderCheckbox:TerraCheckboxComponent;
 
     @Input()
     public inputService:S;

@@ -7,11 +7,11 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class TerraFileBrowserService
 {
+    public isDragActive:BehaviorSubject<boolean> = new BehaviorSubject(false);
+
     private _dropzones:Array<HTMLElement> = [];
     private _globalListenersDefined:boolean = false;
     private _dragenterTarget:EventTarget = null;
-
-    public isDragActive:BehaviorSubject<boolean> = new BehaviorSubject(false);
 
     constructor(private zone:NgZone)
     {

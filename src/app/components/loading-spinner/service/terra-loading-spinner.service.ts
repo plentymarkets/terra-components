@@ -13,9 +13,9 @@ import {
 @Injectable()
 export class TerraLoadingSpinnerService
 {
-    private isLoading:boolean = false;
     public observable:Observable<boolean>;
 
+    private isLoading:boolean = false;
     private _subscriber:Subscriber<boolean>;
 
     constructor(private zone:NgZone)

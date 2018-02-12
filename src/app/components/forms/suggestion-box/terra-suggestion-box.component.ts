@@ -58,18 +58,34 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     public isValid:boolean;
     public selectedValue:TerraSuggestionBoxValueInterface;
-    private _tmpSelectedValue:TerraSuggestionBoxValueInterface;
-    private _toggleOpen:boolean;
-    private _hasLabel:boolean;
-    private _value:number | string;
-    private clickListener:(event:Event) => void;
+
     protected _displayListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
     protected _lastSelectedValues:Array<TerraSuggestionBoxValueInterface>;
     protected _listBoxHeadingKey:string;
     protected _noEntriesTextKey:string;
 
+    private _tmpSelectedValue:TerraSuggestionBoxValueInterface;
+    private _toggleOpen:boolean;
+    private _hasLabel:boolean;
+    private _value:number | string;
+    private clickListener:(event:Event) => void;
+
+    private onTouchedCallback:() => void;
+
+    private onChangeCallback:(_:any) => void;
+
+
     constructor(private _elementRef:ElementRef)
     {
+        this.onTouchedCallback = ():void =>
+        {
+            return;
+        };
+
+        this.onChangeCallback = (_:any):void =>
+        {
+            return;
+        };
     }
 
     public ngOnInit():void
@@ -114,14 +130,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this._displayListBoxValues = this.inputListBoxValues;
         }
     }
-
-    private onTouchedCallback:() => void = () =>
-    {
-    };
-
-    private onChangeCallback:(_:any) => void = (_) =>
-    {
-    };
 
     public registerOnChange(fn:any):void
     {

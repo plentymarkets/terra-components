@@ -19,7 +19,8 @@ import { TranslationService } from 'angular-l10n';
 })
 export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
 {
-    @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
+    @ViewChild('viewChildHeaderCheckbox')
+    public viewChildHeaderCheckbox:TerraCheckboxComponent;
 
     @Input()
     public inputIsDisabled:boolean;
@@ -40,7 +41,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
     public inputSelectedValueListChange:EventEmitter<Array<any>> = new EventEmitter<Array<any>>();
 
     @Input()
-    set inputSelectedValueList(value:Array<any>)
+    public set inputSelectedValueList(value:Array<any>)
     {
         if(value !== undefined && value != null)
         {
@@ -194,7 +195,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
         }
         else
         {
-            let index = this._selectedValueList.indexOf(valueToChange.value);
+            index = this._selectedValueList.indexOf(valueToChange.value);
 
             this._selectedValueList.splice(index, 1);
         }

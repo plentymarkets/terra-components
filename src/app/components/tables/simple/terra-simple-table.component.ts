@@ -56,14 +56,16 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     @Output()
     public outputSelectedRowsChange:EventEmitter<Array<TerraSimpleTableRowInterface<D>>> = new EventEmitter();
 
-    @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
+    @ViewChild('viewChildHeaderCheckbox')
+    public viewChildHeaderCheckbox:TerraCheckboxComponent;
 
-    @ViewChild('scrollContainer', {read: ElementRef}) scrollContainer:ElementRef;
+    @ViewChild('scrollContainer', {read: ElementRef})
+    public scrollContainer:ElementRef;
+
+    public onRowListChange:EventEmitter<void> = new EventEmitter();
 
     private _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
     private _selectedRowList:Array<TerraSimpleTableRowInterface<D>> = [];
-
-    public onRowListChange:EventEmitter<void> = new EventEmitter();
 
     constructor(private _elementRef:ElementRef)
     {
@@ -339,8 +341,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
                     this.scrollContainer.nativeElement.scrollTop -= (viewport.top - activeRowPosition.top);
                 }
             }
-
-
         }
     }
 }

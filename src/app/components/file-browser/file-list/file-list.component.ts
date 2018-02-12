@@ -41,10 +41,10 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
 {
-    private _translationPrefix:string = 'terraFileBrowser';
-
     @Input()
     public inputStorageServices:Array<TerraBaseStorageService> = null;
+
+    private _translationPrefix:string = 'terraFileBrowser';
 
     private _activeStorageService:TerraBaseStorageService;
 

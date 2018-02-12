@@ -54,7 +54,7 @@ export class TerraTextInputComponent extends TerraInputComponent
      * @param v
      */
     @Input()
-    set inputType(v:string)
+    public set inputType(v:string)
     {
         console.warn('inputType is no longer used.  It will be removed in one of the upcoming releases.');
     }

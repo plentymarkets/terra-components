@@ -60,14 +60,29 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Output()
     public inputSelectedValueChange:EventEmitter<TerraSelectBoxValueInterface> = new EventEmitter<TerraSelectBoxValueInterface>();
 
+    public isValid:boolean;
+
+    private _value:number | string;
+    private _selectedValue:TerraSelectBoxValueInterface;
+    private _toggleOpen:boolean;
+    private _hasLabel:boolean;
+    private _isInit:boolean;
     private clickListener:(event:Event) => void;
+
+    /**
+     *
+     * Two way data binding by ngModel
+     */
+    private onTouchedCallback:() => void;
+
+    private onChangeCallback:(_:any) => void;
 
     /**
      * @deprecated
      * @param value
      */
     @Input()
-    set inputSelectedValue(value:number | string)
+    public set inputSelectedValue(value:number | string)
     {
         console.warn('inputSelectedValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
         if(value !== undefined && value != null)
@@ -85,17 +100,10 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         }
     }
 
-    get inputSelectedValue():number | string
+    public get inputSelectedValue():number | string
     {
         return this._selectedValue.value;
     }
-
-    public isValid:boolean;
-    private _value:number | string;
-    private _selectedValue:TerraSelectBoxValueInterface;
-    private _toggleOpen:boolean;
-    private _hasLabel:boolean;
-    private _isInit:boolean;
 
     /**
      *
@@ -112,6 +120,17 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this.inputTooltipPlacement = 'top';
         this.inputIsSmall = false;
         this.inputOpenOnTop = false;
+
+
+        this.onTouchedCallback = ():void =>
+        {
+            return;
+        };
+
+        this.onChangeCallback = (_:any):void =>
+        {
+            return;
+        };
     }
 
     public ngOnInit():void
@@ -136,18 +155,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             this.select(this.inputListBoxValues[0]);
         }
     }
-
-    /**
-     *
-     * Two way data binding by ngModel
-     */
-    private onTouchedCallback:() => void = () =>
-    {
-    };
-
-    private onChangeCallback:(_:any) => void = (_) =>
-    {
-    };
 
     public registerOnChange(fn:any):void
     {
