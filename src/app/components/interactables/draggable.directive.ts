@@ -183,9 +183,9 @@ export class TerraDraggableDirective implements OnChanges
             }
 
             return {
-                x:     Math.round((x - offset.x ) / this.grid.x) * this.grid.x,
-                y:     Math.round((y - offset.y ) / this.grid.y) * this.grid.y,
-                range: ( this.grid.range || Infinity )
+                x:     Math.round((x - offset.x) / this.grid.x) * this.grid.x,
+                y:     Math.round((y - offset.y) / this.grid.y) * this.grid.y,
+                range: (this.grid.range || Infinity)
             }
         }
         else
