@@ -1,7 +1,6 @@
 import {
     Component,
-    Input,
-    OnInit
+    Input
 } from '@angular/core';
 
 @Component({
@@ -9,7 +8,7 @@ import {
     styles:   [require('./terra-indicator.component.scss')],
     template: require('./terra-indicator.component.html')
 })
-export class TerraIndicatorComponent implements OnInit
+export class TerraIndicatorComponent
 {
     @Input()
     public inputLabel:string;
@@ -20,9 +19,5 @@ export class TerraIndicatorComponent implements OnInit
     constructor()
     {
         this.inputType = 'default';
-    }
-
-    public ngOnInit()
-    {
     }
 }

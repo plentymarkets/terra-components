@@ -28,10 +28,6 @@ export class TerraNodeComponent<D> implements OnInit
 
     private _tooltip:string;
 
-    constructor()
-    {
-    }
-
     public ngOnInit():void
     {
         if(!this.inputNode.tooltip)

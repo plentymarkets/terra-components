@@ -1,7 +1,6 @@
 import {
     Component,
-    Input,
-    OnInit
+    Input
 } from '@angular/core';
 
 @Component({
@@ -9,7 +8,7 @@ import {
     styles:   [require('./terra-tag.component.scss')],
     template: require('./terra-tag.component.html')
 })
-export class TerraTagComponent implements OnInit
+export class TerraTagComponent
 {
     @Input()
     public inputBadge:string;
@@ -28,9 +27,5 @@ export class TerraTagComponent implements OnInit
         this.inputIsTagged = false;
         this.inputIsTaggable = false;
         this.inputCustomClass = null;
-    }
-
-    public ngOnInit()
-    {
     }
 }

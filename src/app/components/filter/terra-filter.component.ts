@@ -2,9 +2,7 @@ import {
     Component,
     EventEmitter,
     Input,
-    OnInit,
-    Output,
-    ViewChild
+    Output
 } from '@angular/core';
 
 /**
@@ -15,10 +13,8 @@ import {
     styles:   [require('./terra-filter.component.scss')],
     template: require('./terra-filter.component.html')
 })
-export class TerraFilterComponent implements OnInit
+export class TerraFilterComponent
 {
-    @ViewChild('viewChildInputList') viewChildInputList;
-
     /**
      * @description Set the tooltip of the search button.
      */
@@ -54,14 +50,6 @@ export class TerraFilterComponent implements OnInit
      */
     @Output()
     public outputOnEnterSubmit = new EventEmitter<any>();
-
-    constructor()
-    {
-    }
-
-    public ngOnInit()
-    {
-    }
 
     private searchBtnClicked():void
     {

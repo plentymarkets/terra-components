@@ -19,8 +19,4 @@ export class TerraNoResultNoticeComponent
 
     @Input()
     public inputTextSecondary:string;
-
-    constructor()
-    {
-    }
 }

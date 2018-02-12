@@ -27,10 +27,6 @@ export class TerraBaseTreeComponent implements OnInit
     @Input()
     public inputCompleteLeafList:Array<TerraLeafInterface>;
 
-    constructor()
-    {
-    }
-
     public ngOnInit():void
     {
         if(!this.inputCompleteLeafList)

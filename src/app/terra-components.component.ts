@@ -1,6 +1,5 @@
 import {
     Component,
-    OnInit,
     ViewContainerRef
 } from '@angular/core';
 import {
@@ -14,7 +13,7 @@ import {
     template: require('./terra-components.component.html'),
     styles:   [require('./terra-components.component.scss')]
 })
-export class TerraComponentsComponent extends Translation implements OnInit
+export class TerraComponentsComponent extends Translation
 {
     private _viewContainerRef:ViewContainerRef;
 
@@ -65,9 +64,5 @@ export class TerraComponentsComponent extends Translation implements OnInit
         }
 
         this.translation.init();
-    }
-
-    public ngOnInit()
-    {
     }
 }
