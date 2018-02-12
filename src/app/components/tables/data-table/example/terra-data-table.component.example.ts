@@ -3,11 +3,11 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraDataTableServiceExample } from './terra-data-table.service.example';
-import { TerraButtonInterface } from '../../../button/data/terra-button.interface';
 import { TerraDataTableRowInterface } from '../row/terra-data-table-row.interface';
 import { TerraDataTableHeaderCellInterface } from '../cell/terra-data-table-header-cell.interface';
 import { TerraTextAlignEnum } from '../cell/terra-text-align.enum';
 import { TerraDataTableCellInterface } from '../cell/terra-data-table-cell.interface';
+import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.interface';
 
 @Component({
     selector: 'terra-data-table-example',
