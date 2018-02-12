@@ -1,3 +1,8 @@
+# Unreleased
+
+### Feature
+* **url-helper** new component that offers methods to edit urls
+
 <a name="2.1.47-zlk"></a>
 # 2.1.47-zlk (06.02.2018)
 
