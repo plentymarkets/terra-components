@@ -180,7 +180,7 @@ export class TerraSliderComponent implements OnInit
 
         if(this.inputPrecision > 3)
         {
-            this.inputPrecision = 3
+            this.inputPrecision = 3;
         }
     }
 
@@ -224,7 +224,7 @@ export class TerraSliderComponent implements OnInit
                              60,
                              70,
                              80,
-                             90]
+                             90];
         }
 
         return tickPositions.map((percentage:number) =>

@@ -148,7 +148,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
         if(!isNullOrUndefined(this._imagePreviewObject))
         {
-            parents.push(this._imagePreviewObject)
+            parents.push(this._imagePreviewObject);
         }
 
         while(!isNullOrUndefined(current))
@@ -530,7 +530,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
         return this._parentFileBrowser.inputAllowedExtensions.length <= 0
                || this._parentFileBrowser.inputAllowedExtensions.indexOf(PathHelper.extName(filename)) >= 0
-               || PathHelper.isDirectory(filename)
+               || PathHelper.isDirectory(filename);
     }
 
     private onActiveRowChange(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
@@ -573,12 +573,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         {
             this.activeStorageService
                 .uploadFiles(
-                    (<any>event.srcElement).files || [],
+                    (<any> event.srcElement).files || [],
                     this.currentStorageRoot ? this.currentStorageRoot.key : '/'
                 );
 
             // unset value of file input to allow selecting same file again
-            (<HTMLInputElement>event.target).value = '';
+            (<HTMLInputElement> event.target).value = '';
         }
     }
 
@@ -598,7 +598,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         let uploadPrefix:string = this.currentStorageRoot ? this.currentStorageRoot.key : '/';
         this.activeStorageService
             .uploadFiles(
-                (<any>event.srcElement).files || [],
+                (<any> event.srcElement).files || [],
                 uploadPrefix
             )
             .forEach((uploadItem:TerraUploadItem) =>

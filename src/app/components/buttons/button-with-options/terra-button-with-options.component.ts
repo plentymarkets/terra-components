@@ -2,6 +2,7 @@ import {
     Component,
     ElementRef,
     Input,
+    OnInit,
     ViewChild
 } from '@angular/core';
 import { TerraButtonInterface } from '../button/data/terra-button.interface';
@@ -14,68 +15,69 @@ import { TerraTextAlignEnum } from '../../tables/data-table/cell/terra-text-alig
     template: require('./terra-button-with-options.component.html'),
     styles:   [require('./terra-button-with-options.component.scss')]
 })
-export class TerraButtonWithOptionsComponent
+export class TerraButtonWithOptionsComponent implements OnInit
 {
     // terra button inputs
     /**
      * @description Set the caption.
      */
     @Input()
-    public inputCaption: string;
+    public inputCaption:string;
 
     /**
      * @description Set an icon (e.g. icon-save).
      */
     @Input()
-    public inputIcon: string;
+    public inputIcon:string;
 
     /**
      * @description If true, the button gets the primary color blue. Default false.
      */
     @Input()
-    public inputIsPrimary: boolean;
+    public inputIsPrimary:boolean;
 
     /**
      * @description If true, the button gets the secondary color red. Default false.
      */
     @Input()
-    public inputIsSecondary: boolean;
+    public inputIsSecondary:boolean;
 
     /**
      * @description If true, the button gets the tertiary color green. Default false.
      */
     @Input()
-    public inputIsTertiary: boolean;
+    public inputIsTertiary:boolean;
 
     /**
      * @description If true, the button will be disabled. Default false.
      */
     @Input()
-    public inputIsDisabled: boolean;
+    public inputIsDisabled:boolean;
 
     /**
      * @description Set the tooltip.
      */
     @Input()
-    public inputTooltipText: string;
+    public inputTooltipText:string;
     /**
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      */
     @Input()
-    public inputTooltipPlacement: string; // top, bottom, left, right
+    public inputTooltipPlacement:string; // top, bottom, left, right
 
     // new inputs
     /**
-     * @description Set an array of buttons which will be shown as a menu with options. Use the TerraButtonInterface to set the buttons of the menu.
+     * @description Set an array of buttons which will be shown as a menu with options. Use the TerraButtonInterface to set the buttons of
+     *     the menu.
      */
     @Input()
-    public inputOptions: Array<TerraButtonInterface>;
+    public inputOptions:Array<TerraButtonInterface>;
 
     /**
      * @description Set the alignment of the context menu. Default right.
      */
     @Input()
-    public inputOptionsAlignment: TerraTextAlignEnum;
+    public inputOptionsAlignment:TerraTextAlignEnum;
 
     // view children
     @ViewChild(TerraButtonComponent) private toggleButton:TerraButtonComponent;

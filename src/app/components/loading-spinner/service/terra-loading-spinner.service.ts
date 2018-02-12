@@ -59,7 +59,7 @@ export class TerraLoadingSpinnerService
                         }
                     }, 100);
                 }
-            )
+            );
         }
     }
 }

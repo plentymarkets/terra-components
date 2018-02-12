@@ -126,7 +126,7 @@ export class TerraBaseTreeComponent implements OnInit
             {
                 foundLeaf = leaf;
 
-                return foundLeaf
+                return foundLeaf;
             }
             else if(leaf.subLeafList)
             {

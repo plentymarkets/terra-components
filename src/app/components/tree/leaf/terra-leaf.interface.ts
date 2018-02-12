@@ -13,7 +13,7 @@ export interface TerraLeafInterface
     clickFunction?:() => void;
     onOpenFunction?:() => void;
     isOnOpenFunctionCalled?:boolean;
-    contextMenu?:Array<any>;// TODO
+    contextMenu?:Array<any>; // TODO
     subLeafList?:Array<TerraLeafInterface>;
     parentLeafList?:Array<TerraLeafInterface>;
     value?:any; // for checkbox-tree

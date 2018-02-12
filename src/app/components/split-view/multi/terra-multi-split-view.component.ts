@@ -16,6 +16,7 @@ import {
     Router,
     Routes
 } from '@angular/router';
+import { Route } from '@angular/router/src/config';
 
 let nextSplitViewId:number = 0;
 
@@ -495,30 +496,30 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private routeExists(route:string):boolean
     {
-        // get the partials of the route
-        let path:Array<string> = route.split('/');
+        let routeParts:Array<string> = route.split('/');
 
         // start at element 1 not 0, since the route starts with a separator
         let routeLevel:number = 1;
 
         // get the routing config
-        let routes:Routes = this.inputRouter.config;
+        let registeredRoutes:Routes = this.inputRouter.config;
 
         // scan the routing config
-        while(routeLevel < path.length)
+        while(routeLevel < routeParts.length)
         {
-            if(isNullOrUndefined(routes))
+            if(isNullOrUndefined(registeredRoutes))
             {
                 return false;
             }
 
             // search the array for the route partial
-            let foundRoute = routes.find((route) => route.path === path[routeLevel]);
+            let foundRoute:Route = registeredRoutes.find(
+                (registeredRoute:Route) => registeredRoute.path === routeParts[routeLevel]);
             if(foundRoute) // the route partial is defined?
             {
                 // into deep
                 routeLevel++;
-                routes = foundRoute.children;
+                registeredRoutes = foundRoute.children;
             }
             else
             {

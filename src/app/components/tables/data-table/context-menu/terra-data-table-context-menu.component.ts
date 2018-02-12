@@ -41,7 +41,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
         {
             this.clickedOutside();
             event.stopPropagation();
-        }
+        };
     }
 
     public clickedOutside():void
@@ -90,7 +90,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 
         if(Math.abs(this._mouseLocation.left - offsetLeft - 2) + contextMenuWidth > tableWidth)
         {
-            offsetLeft = offsetLeft + contextMenuWidth - 6
+            offsetLeft = offsetLeft + contextMenuWidth - 6;
         }
 
         return {

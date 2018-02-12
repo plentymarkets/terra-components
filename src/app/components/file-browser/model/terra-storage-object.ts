@@ -189,9 +189,9 @@ export class TerraStorageObject
 
     public removeChild(key:string):void
     {
-        let paths:string[] = key.split('/').filter(path => path.length > 0);
-        let nextPath = paths.shift();
-        let child = this.getChild(nextPath);
+        let paths:string[] = this.splitKeyIntoPaths(key);
+        let nextPath:string = paths.shift();
+        let child:TerraStorageObject = this.getChild(nextPath);
         if(child)
         {
             if(paths.length > 0)
@@ -229,9 +229,9 @@ export class TerraStorageObject
             return null;
         }
 
-        let paths:string[] = key.split('/').filter(key => key.length > 0);
-        let nextPath = paths.shift();
-        let child = this.getChild(nextPath);
+        let paths:string[] = this.splitKeyIntoPaths(key);
+        let nextPath:string = paths.shift();
+        let child:TerraStorageObject = this.getChild(nextPath);
         if(!isNullOrUndefined(child))
         {
             if(paths.length > 0)
@@ -243,5 +243,10 @@ export class TerraStorageObject
         }
 
         return null;
+    }
+
+    private splitKeyIntoPaths(key:string):string[]
+    {
+        return key.split('/').filter((part:string):boolean => part.length > 0);
     }
 }

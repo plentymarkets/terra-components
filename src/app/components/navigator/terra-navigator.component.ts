@@ -153,7 +153,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             items.forEach((item:TerraNavigatorNodeInterface<D>):void =>
             {
                 this.addSearchNode(item);
-            })
+            });
         });
 
         this.updateSearchNodes();

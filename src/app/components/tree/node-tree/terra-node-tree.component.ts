@@ -160,7 +160,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
     {
         if(!node.defaultVisibility)
         {
-            return
+            return;
         }
 
         node.isVisible = true;

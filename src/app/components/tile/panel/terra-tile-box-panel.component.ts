@@ -42,7 +42,7 @@ export class TerraTileBoxPanelComponent
         }
         else if(!tile.isSelected && index != -1)
         {
-            this.selectedTileBoxList.splice(index, 1)
+            this.selectedTileBoxList.splice(index, 1);
         }
     }
 

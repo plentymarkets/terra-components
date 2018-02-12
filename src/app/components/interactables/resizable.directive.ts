@@ -93,7 +93,7 @@ export class TerraResizableDirective implements OnChanges
                               enumerable:   true,
                               get:          ():any  =>
                                             {
-                                                return this[input]['_' + property]
+                                                return this[input]['_' + property];
                                             },
                               set:          (value:any):void =>
                                             {
@@ -118,15 +118,15 @@ export class TerraResizableDirective implements OnChanges
             enabled:             !this.disabled,
             onstart:             (event:Interact.InteractEvent):void =>
                                  {
-                                     this.onStart.emit(event)
+                                     this.onStart.emit(event);
                                  },
             onmove:              (event:Interact.InteractEvent):void =>
                                  {
-                                     this.onMove.emit(event)
+                                     this.onMove.emit(event);
                                  },
             onend:               (event:Interact.InteractEvent):void =>
                                  {
-                                     this.onEnd.emit(event)
+                                     this.onEnd.emit(event);
                                  },
         };
 
@@ -175,7 +175,7 @@ export class TerraResizableDirective implements OnChanges
                 x:     Math.round((x - offset.x) / this.grid.x) * this.grid.x,
                 y:     Math.round((y - offset.y) / this.grid.y) * this.grid.y,
                 range: (this.grid.range || Infinity)
-            }
+            };
         }
         else
         {

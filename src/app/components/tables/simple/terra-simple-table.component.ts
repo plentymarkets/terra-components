@@ -283,7 +283,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         {
             if(event.which === Key.DownArrow || event.which === Key.UpArrow)
             {
-                this.highlightSiblingRow(event.which === Key.DownArrow)
+                this.highlightSiblingRow(event.which === Key.DownArrow);
             }
 
             if(event.which === Key.Space && this.inputHasCheckboxes)

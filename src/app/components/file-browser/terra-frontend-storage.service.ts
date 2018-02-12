@@ -19,6 +19,8 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
     public name:string;
 
+    public queue:TerraUploadQueue = new TerraUploadQueue('/rest/storage/frontend/file');
+
     private _storageInitialized:boolean = false;
 
     private _storageListSubject:BehaviorSubject<TerraStorageObjectList> = new BehaviorSubject(null);
@@ -27,8 +29,6 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
     {
         return this._storageListSubject.getValue();
     }
-
-    public queue:TerraUploadQueue = new TerraUploadQueue('/rest/storage/frontend/file');
 
     public get uploadProgress():Observable<number>
     {
@@ -96,10 +96,13 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         }
 
         let uploadItems:Array<TerraUploadItem> = [];
-        for(let i = 0; i < files.length; i++)
+
+        /* tslint:disable:prefer-for-of */
+        for(let i:number = 0; i < files.length; i++)
         {
             uploadItems.push(this.uploadFile(files[i], path));
         }
+        /* tslint:enable:prefer-for-of */
 
         return uploadItems;
     }

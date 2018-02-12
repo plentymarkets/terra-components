@@ -48,7 +48,7 @@ export class TerraFileBrowserComponent implements OnInit
             return this._storageServices;
         }
 
-        return [this._frontendStorageService]
+        return [this._frontendStorageService];
     }
 
     constructor(public splitConfig:FileBrowserSplitConfig,

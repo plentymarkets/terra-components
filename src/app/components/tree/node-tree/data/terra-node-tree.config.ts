@@ -182,7 +182,7 @@ export class TerraNodeTreeConfig<D>
         }
         else
         {
-            this.internalRemoveNode(foundNode)
+            this.internalRemoveNode(foundNode);
         }
     }
 
@@ -504,7 +504,7 @@ export class TerraNodeTreeConfig<D>
             {
                 this.toggleVisiblityForAllChildren(node.children, isVisible);
             }
-        })
+        });
     }
 
     /**

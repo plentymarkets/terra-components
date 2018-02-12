@@ -226,17 +226,17 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
     }
 
-    private rowClicked(cell:TerraDataTableCellInterface, row:TerraDataTableRowInterface<D>):void
+    private rowClicked(cell:TerraDataTableCellInterface, clickedRow:TerraDataTableRowInterface<D>):void
     {
-        if(!cell.buttonList && !row.disabled)
+        if(!cell.buttonList && !clickedRow.disabled)
         {
             this.rowList.forEach((row:TerraDataTableRowInterface<D>):void =>
             {
                 row.isActive = false;
             });
 
-            row.isActive = true;
-            row.clickFunction();
+            clickedRow.isActive = true;
+            clickedRow.clickFunction();
         }
     }
 

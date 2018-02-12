@@ -94,7 +94,7 @@ export class TerraDraggableDirective implements OnChanges
                               enumerable:   true,
                               get:          ():any =>
                                             {
-                                                return this[input]['_' + property]
+                                                return this[input]['_' + property];
                                             },
                               set:          (value:any):void =>
                                             {
@@ -186,7 +186,7 @@ export class TerraDraggableDirective implements OnChanges
                 x:     Math.round((x - offset.x) / this.grid.x) * this.grid.x,
                 y:     Math.round((y - offset.y) / this.grid.y) * this.grid.y,
                 range: (this.grid.range || Infinity)
-            }
+            };
         }
         else
         {

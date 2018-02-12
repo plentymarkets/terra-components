@@ -91,9 +91,9 @@ export class TerraButtonGroupComponent<D> implements OnInit
                 });
 
                 let btn:TerraButtonGroupInterface =
-                    this._buttonList.find((btn:TerraButtonGroupInterface) =>
+                    this._buttonList.find((button:TerraButtonGroupInterface) =>
                     {
-                        return btn.caption === item.nodeName;
+                        return button.caption === item.nodeName;
                     });
 
                 if(!isNullOrUndefined(btn))

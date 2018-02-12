@@ -57,7 +57,7 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
         this.getColumnWidths()
             .forEach((width:number, index:number) =>
             {
-                headerCol = <HTMLElement>this._tableHeadElement.querySelector('tr th:nth-child(' + (index + 1) + ')');
+                headerCol = <HTMLElement> this._tableHeadElement.querySelector('tr th:nth-child(' + (index + 1) + ')');
                 if(headerCol)
                 {
                     headerCol.style.width = width + '%';
@@ -65,7 +65,7 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
 
                 for(let i:number = 0; i < rows.length; i++)
                 {
-                    bodyCol = <HTMLElement>rows.item(i).querySelector('tr td:nth-child(' + (index + 1) + ')');
+                    bodyCol = <HTMLElement> rows.item(i).querySelector('tr td:nth-child(' + (index + 1) + ')');
                     if(bodyCol)
                     {
                         bodyCol.style.width = width + '%';
@@ -77,7 +77,7 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
 
     private getColumnWidths():Array<number>
     {
-        let firstRow:HTMLElement = <HTMLElement>this._tableBodyElement.querySelector('tr:first-child');
+        let firstRow:HTMLElement = <HTMLElement> this._tableBodyElement.querySelector('tr:first-child');
         if(firstRow)
         {
             let rowWidth:number = firstRow.getBoundingClientRect().width;

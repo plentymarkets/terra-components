@@ -86,6 +86,6 @@ export class TerraTileBoxComponent
             dark_blue:   isDarkBlue,
             is_selected: this.inputIsSelected,
             is_dragging: this.inputIsDragging
-        }
+        };
     }
 }

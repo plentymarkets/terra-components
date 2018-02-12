@@ -19,7 +19,7 @@ export type AcceptFn = (args:{
     draggable:Interact.Interactable,
     draggableElement:HTMLElement,
     dragData:any
-}) => boolean
+}) => boolean;
 
 @Directive({
     selector: '[terra-dropzone]'
@@ -69,7 +69,7 @@ export class TerraDropzoneDirective implements OnChanges
     {
         let createDropEvent:any = (event:DropEvent):DropEvent =>
         {
-            event.dropData = (<any>event.relatedTarget).IA_DRAG_DATA;
+            event.dropData = (<any> event.relatedTarget).IA_DRAG_DATA;
             return event;
         };
 
