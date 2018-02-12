@@ -4,7 +4,7 @@
  */
 export interface TerraTagInterface
 {
-    isTagged?:boolean
+    isTagged?:boolean;
     isTaggable?:boolean;
 
     /**
