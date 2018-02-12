@@ -72,7 +72,7 @@ export class TerraBaseService
     {
         this._terraLoadingSpinnerService.start();
 
-        let req = request.map((response:Response) =>
+        let req:Observable<any> = request.map((response:Response) =>
         {
             if(response.status == 204)
             {
@@ -105,7 +105,7 @@ export class TerraBaseService
 
             if(error.status === 403 && this.getErrorClass(error) === 'UIHashExpiredException')
             {
-                let routeToLoginEvent = new CustomEvent('CustomEvent');
+                let routeToLoginEvent:CustomEvent = new CustomEvent('CustomEvent');
 
                 routeToLoginEvent.initCustomEvent('routeToLogin', true, true, {});
 
@@ -145,7 +145,7 @@ export class TerraBaseService
             {
                 this._terraLoadingSpinnerService.stop();
             },
-            error =>
+            (error:any) =>
             {
                 this._terraLoadingSpinnerService.stop();
             }
@@ -297,7 +297,7 @@ export class TerraBaseService
     {
         let searchParams:URLSearchParams = new URLSearchParams();
 
-        Object.keys(params).map((key) =>
+        Object.keys(params).map((key:string) =>
         {
             searchParams.set(key, params[key]);
         });

@@ -71,13 +71,13 @@ export class TerraAlertComponent
         });
     }
 
-    public closeAlertByIdentifier(identifier:string)
+    public closeAlertByIdentifier(identifier:string):void
     {
         for(let alert of this.alerts)
         {
             if(alert.identifier == identifier)
             {
-                let index = this.alerts.indexOf(alert);
+                let index:number = this.alerts.indexOf(alert);
 
                 this.closeAlert(index);
             }

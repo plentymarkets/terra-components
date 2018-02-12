@@ -40,7 +40,7 @@ export class TerraComponentsComponent extends Translation
         }
         else
         {
-            let lang = navigator.language.slice(0, 2).toLocaleLowerCase();
+            let lang:string = navigator.language.slice(0, 2).toLocaleLowerCase();
 
             if(lang !== 'de' && lang !== 'en')
             {

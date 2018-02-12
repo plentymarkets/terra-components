@@ -1,6 +1,7 @@
 import {
     AfterContentChecked,
     Component,
+    ElementRef,
     Input,
     ViewChild
 } from '@angular/core';
@@ -12,8 +13,11 @@ import {
 })
 export class TerraCardComponent implements AfterContentChecked
 {
-    @ViewChild('header') viewChildHeader;
-    @ViewChild('footer') viewChildFooter;
+    @ViewChild('header')
+    public viewChildHeader:ElementRef;
+
+    @ViewChild('footer')
+    public viewChildFooter:ElementRef;
 
     @Input()
     public inputImagePath:string;
@@ -29,7 +33,7 @@ export class TerraCardComponent implements AfterContentChecked
         this.showFooter = false;
     }
 
-    public ngAfterContentChecked()
+    public ngAfterContentChecked():void
     {
         this.showHeader = this.viewChildHeader.nativeElement.children.length > 0;
         this.showFooter = this.viewChildFooter.nativeElement.children.length > 0;

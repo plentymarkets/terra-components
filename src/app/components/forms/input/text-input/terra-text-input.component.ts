@@ -37,7 +37,6 @@ export class TerraTextInputComponent extends TerraInputComponent
     @Input()
     public inputIsPassword:boolean;
 
-
     @Input()
     public inputIsIban:boolean = false;
 

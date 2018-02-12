@@ -73,11 +73,14 @@ export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
         };
 
         // initialize callbacks
-        this._onChangeCallback = () =>
+        this._onChangeCallback = ():void =>
         {
+            return;
         };
-        this._onTouchedCallback = () =>
+
+        this._onTouchedCallback = ():void =>
         {
+            return;
         };
     }
 

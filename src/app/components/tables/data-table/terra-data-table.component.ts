@@ -107,7 +107,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     public rowList:Array<TerraDataTableRowInterface<D>>;
     public pagingData:TerraPagerInterface;
     public pagingSize:Array<TerraSelectBoxValueInterface>;
-    public onSuccessFunction:(res) => void;
+    public onSuccessFunction:(res:I) => void;
     public defaultPagingSize:number;
     private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
     private _isHeaderCheckboxChecked:boolean = false;
@@ -158,7 +158,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         this._isHeaderCheckboxChecked = isChecked;
 
-        this.rowList.forEach((row) =>
+        this.rowList.forEach((row:TerraDataTableRowInterface<D>) =>
         {
             if(!row.disabled)
             {
@@ -202,7 +202,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
         let rowFound:boolean = false;
 
-        this.selectedRowList.forEach((row) =>
+        this.selectedRowList.forEach((row:TerraDataTableRowInterface<D>):void =>
         {
             if(row == rowToChange)
             {
@@ -219,7 +219,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
         else
         {
-            let index = this.selectedRowList.indexOf(rowToChange);
+            let index:number = this.selectedRowList.indexOf(rowToChange);
 
             this.selectedRowList.splice(index, 1);
         }
@@ -229,7 +229,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         if(!cell.buttonList && !row.disabled)
         {
-            this.rowList.forEach((row) =>
+            this.rowList.forEach((row:TerraDataTableRowInterface<D>):void =>
             {
                 row.isActive = false;
             });
@@ -241,11 +241,11 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     public deleteRow(rowToDelete:TerraDataTableRowInterface<D>):void
     {
-        let index = this.rowList.indexOf(rowToDelete);
+        let index:number = this.rowList.indexOf(rowToDelete);
 
         this.rowList.splice(index, 1);
 
-        let selectedIndex = this.selectedRowList.indexOf(rowToDelete);
+        let selectedIndex:number = this.selectedRowList.indexOf(rowToDelete);
 
         // check if row exists in selectedRowList
         if(selectedIndex != null)
@@ -282,7 +282,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
 
         this._requestPending = true;
-        restCall.subscribe(this.onSuccessFunction, error =>
+        restCall.subscribe(this.onSuccessFunction, (error:any):void =>
             {
                 if(error.status == 401 || error.status == 500)
                 {

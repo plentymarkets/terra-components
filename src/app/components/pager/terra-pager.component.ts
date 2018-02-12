@@ -30,15 +30,15 @@ export class TerraPagerComponent implements OnInit
     public inputRequestPending:boolean;
 
     @Output()
-    public outputDoPaging = new EventEmitter<TerraPagerInterface>();
+    public outputDoPaging:EventEmitter<TerraPagerInterface> = new EventEmitter<TerraPagerInterface>();
 
-    private _pagingClicks = new Subject();
+    private _pagingClicks:Subject<any> = new Subject();
 
     constructor(private zone:NgZone)
     {
     }
 
-    public ngOnInit()
+    public ngOnInit():void
     {
         this._pagingClicks.debounceTime(500).subscribe((e:TerraPagerInterface) => this.outputDoPaging.emit(e));
 

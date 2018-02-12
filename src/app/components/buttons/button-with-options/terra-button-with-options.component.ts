@@ -87,7 +87,7 @@ export class TerraButtonWithOptionsComponent
     constructor(private elementRef:ElementRef)
     {
         // define click listener
-        this.clickListener = (event) =>
+        this.clickListener = (event:Event):void =>
         {
             // check if it has been clicked elsewhere
             if(!this.elementRef.nativeElement.contains(event.target))

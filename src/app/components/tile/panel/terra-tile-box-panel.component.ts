@@ -29,11 +29,11 @@ export class TerraTileBoxPanelComponent
         this.inputIsViewToggleable = false;
     }
 
-    private onBoxClick(event, tile:TerraTileBoxInterface):void
+    private onBoxClick(event:Event, tile:TerraTileBoxInterface):void
     {
         tile.isSelected = !tile.isSelected;
 
-        let index = this.selectedTileBoxList.indexOf(tile);
+        let index:number = this.selectedTileBoxList.indexOf(tile);
 
         if(tile.isSelected && index == -1)
         {
@@ -45,7 +45,7 @@ export class TerraTileBoxPanelComponent
         }
     }
 
-    private onDragStart(event, draggingTile:TerraTileBoxInterface):void
+    private onDragStart(event:DragEvent, draggingTile:TerraTileBoxInterface):void
     {
         this._draggedIndex = this.inputTileBoxList.indexOf(draggingTile);
         draggingTile.isDragging = true;
@@ -62,7 +62,7 @@ export class TerraTileBoxPanelComponent
         event.dataTransfer.setData('text', 'anything');
     }
 
-    private onDragEnd(event, draggingTile:TerraTileBoxInterface):void
+    private onDragEnd(event:DragEvent, draggingTile:TerraTileBoxInterface):void
     {
         event.preventDefault();
 
@@ -75,7 +75,7 @@ export class TerraTileBoxPanelComponent
         }
     }
 
-    private onDragLeave(event, hoverTile:TerraTileBoxInterface):void
+    private onDragLeave(event:DragEvent, hoverTile:TerraTileBoxInterface):void
     {
         event.preventDefault();
 
@@ -85,7 +85,7 @@ export class TerraTileBoxPanelComponent
         }
     }
 
-    private onDrop(event, droppedTile:TerraTileBoxInterface):void
+    private onDrop(event:Event, droppedTile:TerraTileBoxInterface):void
     {
         event.preventDefault();
 
@@ -98,13 +98,13 @@ export class TerraTileBoxPanelComponent
             tile.isHover = false;
         }
 
-        let droppedIndex = this.inputTileBoxList.indexOf(droppedTile);
+        let droppedIndex:number = this.inputTileBoxList.indexOf(droppedTile);
 
         this.inputTileBoxList.splice(this._draggedIndex, 1);
         this.inputTileBoxList.splice(droppedIndex, 0, draggedTile);
     }
 
-    private onDragOver(event, hoverTile:TerraTileBoxInterface):void
+    private onDragOver(event:Event, hoverTile:TerraTileBoxInterface):void
     {
         event.preventDefault();
 

@@ -44,14 +44,14 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     @HostListener('window:resize')
     public onWindowResize():void
     {
-        this.zone.runOutsideAngular(() =>
+        this.zone.runOutsideAngular(():void =>
             {
                 // debounce resize, wait for resize to finish before updating the viewport
                 if(this.resizeTimeout)
                 {
                     clearTimeout(this.resizeTimeout);
                 }
-                this.resizeTimeout = setTimeout((() =>
+                this.resizeTimeout = setTimeout((():void =>
                     {
                         if(this.inputConfig.currentSelectedView)
                         {
@@ -80,12 +80,12 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.splitViewId = nextSplitViewId++;
     }
 
-    public ngOnDestroy()
+    public ngOnDestroy():void
     {
         this.inputConfig.reset();
     }
 
-    public ngOnInit()
+    public ngOnInit():void
     {
         // catch routing events, but only those that select the tab where the split view is instantiated
         if(!isNullOrUndefined(this.inputRouter) && !isNullOrUndefined(this.inputComponentRoute))
@@ -158,7 +158,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
 
         // get the module of the hierarchy
-        let module = this.modules[hierarchyLevel];
+        let module:TerraMultiSplitViewDetail = this.modules[hierarchyLevel];
 
         // initialize views array if null or undefined
         if(isNullOrUndefined(module.views))
@@ -167,14 +167,14 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
 
         // check if view is already added to module's views array
-        if(!module.views.find((elem) => elem === view))
+        if(!module.views.find((elem:TerraMultiSplitViewInterface) => elem === view))
         {
             // add view to the module's views array
             module.views.push(view);
         }
     }
 
-    private setSelectedView(view:TerraMultiSplitViewInterface)
+    private setSelectedView(view:TerraMultiSplitViewInterface):void
     {
         // check whether view is defined
         if(isNullOrUndefined(view))
@@ -228,28 +228,28 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.updateBreadCrumbs();
     }
 
-    private updateBreadCrumbs()
+    private updateBreadCrumbs():void
     {
         this.zone.runOutsideAngular(() =>
         {
             // init breadcrumb sliding
-            setTimeout(function()
+            setTimeout(function():void
             {
-                $('.terra-breadcrumbs').each(function()
+                $('.terra-breadcrumbs').each(function():void
                 {
-                    $(this).find('li').each(function()
+                    $(this).find('li').each(function():void
                     {
-                        let viewContainer = $(this).closest('.terra-breadcrumbs');
-                        let viewContainerOffsetLeft = viewContainer.offset().left;
-                        let viewContainerWidth = viewContainer.width();
+                        let viewContainer:JQuery = $(this).closest('.terra-breadcrumbs');
+                        let viewContainerOffsetLeft:number = viewContainer.offset().left;
+                        let viewContainerWidth:number = viewContainer.width();
 
                         $(this).off();
-                        $(this).mouseenter(function()
+                        $(this).mouseenter(function():void
                         {
-                            let elementWidth = $(this).width();
-                            let elementOffsetLeft = $(this).offset().left;
-                            let viewContainerScrollLeft = viewContainer.scrollLeft();
-                            let offset = 0;
+                            let elementWidth:number = $(this).width();
+                            let elementOffsetLeft:number = $(this).offset().left;
+                            let viewContainerScrollLeft:number = viewContainer.scrollLeft();
+                            let offset:number = 0;
 
                             if(elementOffsetLeft < viewContainer.offset().left)
                             {
@@ -283,7 +283,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.zone.runOutsideAngular(() =>
         {
             let splitViewId:number = this.splitViewId;
-            setTimeout(function()
+            setTimeout(function():void
             {
                 let id:string = view.mainComponentName;
 
@@ -296,10 +296,10 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     moduleIndex++;
                 }
 
-                let anchor = $('#splitview' + splitViewId + '_module' + moduleIndex);
-                let currentBreadcrumb = $('.' + id); // TODO: vwiebe, fix scope
-                let breadCrumbContainer = currentBreadcrumb.closest('.terra-breadcrumbs');
-                let viewContainer = anchor.parent();
+                let anchor:JQuery = $('#splitview' + splitViewId + '_module' + moduleIndex);
+                let currentBreadcrumb:JQuery = $('.' + id); // TODO: vwiebe, fix scope
+                let breadCrumbContainer:JQuery = currentBreadcrumb.closest('.terra-breadcrumbs');
+                let viewContainer:JQuery = anchor.parent();
 
                 // focus breadcrumbs
                 if(currentBreadcrumb[0] != null)
@@ -351,7 +351,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         // rebuild
         if(!isNullOrUndefined(view.children))
         {
-            view.children.forEach((child) =>
+            view.children.forEach((child:TerraMultiSplitViewInterface) =>
                 {
                     // add view to the modules array
                     this.addToModulesIfNotExist(child);
@@ -363,7 +363,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
 
         // update the corresponding module's current- and lastSelectedView
-        let moduleView:TerraMultiSplitViewInterface = module.views.find((v) => v === view);
+        let moduleView:TerraMultiSplitViewInterface = module.views.find((v:TerraMultiSplitViewInterface) => v === view);
 
         // an existing view has been SELECTED?
         if(moduleView)
@@ -386,7 +386,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
 
         // get the corresponding module
-        let module = this.getModuleOfView(view);
+        let module:TerraMultiSplitViewDetail = this.getModuleOfView(view);
 
         // check whether module is defined
         if(isNullOrUndefined(module))
@@ -400,7 +400,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             if(!isNullOrUndefined(view.children))
             {
-                view.children.forEach((elem) =>
+                view.children.forEach((elem:TerraMultiSplitViewInterface) =>
                     {
                         this.removeFromModules(elem);
                     }
@@ -412,7 +412,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         if(module.views.length <= 1)
         {
             // get the index of the module in the modules array
-            let moduleIndex:number = this.modules.findIndex((mod) => mod === module);
+            let moduleIndex:number = this.modules.findIndex((mod:TerraMultiSplitViewDetail) => mod === module);
 
             // check if the module has been found
             if(moduleIndex >= 0 && moduleIndex < this.modules.length)
@@ -427,7 +427,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         else
         {
             // get the index of the view in the module's views array
-            let viewIndex:number = module.views.findIndex((elem) => elem === view);
+            let viewIndex:number = module.views.findIndex((elem:TerraMultiSplitViewInterface) => elem === view);
 
             // check if the view has been found
             if(viewIndex >= 0 && viewIndex < module.views.length)
@@ -456,7 +456,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
     }
 
-    protected getModuleOfView(view):TerraMultiSplitViewDetail
+    protected getModuleOfView(view:TerraMultiSplitViewInterface):TerraMultiSplitViewDetail
     {
         // get hierarchy level of deleted view
         let hierarchyLevel:number = this.getHierarchyLevelOfView(view);

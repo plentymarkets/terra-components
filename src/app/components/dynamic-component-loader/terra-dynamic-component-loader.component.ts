@@ -1,6 +1,7 @@
 import {
     AfterViewInit,
     Component,
+    ComponentFactory,
     ComponentFactoryResolver,
     ComponentRef,
     Input,
@@ -19,7 +20,8 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDestroy, OnChanges
 {
-    @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
+    @ViewChild('viewChildTarget', {read: ViewContainerRef})
+    public viewChildTarget:ViewContainerRef;
 
     @Input()
     public inputComponent:Type<any>;
@@ -56,9 +58,9 @@ export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDe
     {
         if(!isNullOrUndefined(this.inputComponent))
         {
-            let componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.inputComponent);
+            let componentFactory:ComponentFactory<any> = this._componentFactoryResolver.resolveComponentFactory(this.inputComponent);
 
-            let viewContainerRef = this.viewChildTarget;
+            let viewContainerRef:ViewContainerRef = this.viewChildTarget;
             viewContainerRef.clear();
 
             this._cmpRef = viewContainerRef.createComponent(componentFactory);

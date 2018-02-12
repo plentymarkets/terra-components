@@ -55,10 +55,10 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     public inputListBoxValues:Array<TerraSelectBoxValueInterface>;
 
     @Output()
-    public outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
+    public outputValueChanged:EventEmitter<TerraSelectBoxValueInterface> = new EventEmitter<TerraSelectBoxValueInterface>();
 
     @Output()
-    public inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
+    public inputSelectedValueChange:EventEmitter<TerraSelectBoxValueInterface> = new EventEmitter<TerraSelectBoxValueInterface>();
 
     private clickListener:(event:Event) => void;
 
@@ -103,7 +103,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     constructor(private elementRef:ElementRef)
     {
-        this.clickListener = (event) =>
+        this.clickListener = (event:Event):void =>
         {
             this.clickedOutside(event);
         };
@@ -114,7 +114,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this.inputOpenOnTop = false;
     }
 
-    public ngOnInit()
+    public ngOnInit():void
     {
         this.isValid = true;
         this._toggleOpen = false;
@@ -126,12 +126,12 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      *
      * @param changes
      */
-    public ngOnChanges(changes:SimpleChanges)
+    public ngOnChanges(changes:SimpleChanges):void
     {
         if(this._isInit == true
            && changes['inputListBoxValues']
            && changes['inputListBoxValues'].currentValue.length > 0
-           && !this.inputListBoxValues.find((x) => this._selectedValue === x))
+           && !this.inputListBoxValues.find((x:TerraSelectBoxValueInterface):boolean => this._selectedValue === x))
         {
             this.select(this.inputListBoxValues[0]);
         }
@@ -192,7 +192,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         }
     }
 
-    private set toggleOpen(value)
+    private set toggleOpen(value:boolean)
     {
         if(this._toggleOpen !== value && value == true)
         {

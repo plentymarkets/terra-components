@@ -40,7 +40,7 @@ export class ClipboardHelper
         textarea.focus();
         textarea.select();
 
-        let success = ClipboardHelper.copySelection();
+        let success:boolean = ClipboardHelper.copySelection();
 
         document.body.removeChild(container);
 

@@ -36,39 +36,39 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
         this.inputUpdateViewport = true;
     }
 
-    public ngOnDestroy()
+    public ngOnDestroy():void
     {
         this.inputModules.splice(0, this.inputModules.length);
     }
 
-    public ngOnChanges(changes:SimpleChanges)
+    public ngOnChanges(changes:SimpleChanges):void
     {
         if(this.inputUpdateViewport)
         {
             if(changes['inputModules'].currentValue !== undefined && changes['inputModules'].currentValue.length > 0)
             {
-                let currentModule = this.inputModules[this.inputModules.length - 1];
+                let currentModule:TerraSplitViewInterface = this.inputModules[this.inputModules.length - 1];
                 this.updateViewport(currentModule.mainComponentName + '_' + currentModule.instanceKey);
             }
 
             // init breadcrumb sliding
-            setTimeout(function()
+            setTimeout(function():void
             {
-                $('.terra-breadcrumbs').each(function()
+                $('.terra-breadcrumbs').each(function():void
                 {
-                    $(this).find('li').each(function()
+                    $(this).find('li').each(function():void
                     {
-                        var viewContainer = $(this).closest('.terra-breadcrumbs');
-                        var viewContainerOffsetLeft = viewContainer.offset().left;
-                        var viewContainerWidth = viewContainer.width();
+                        var viewContainer:JQuery = $(this).closest('.terra-breadcrumbs');
+                        var viewContainerOffsetLeft:number = viewContainer.offset().left;
+                        var viewContainerWidth:number = viewContainer.width();
 
                         $(this).off();
-                        $(this).mouseenter(function()
+                        $(this).mouseenter(function():void
                         {
-                            var elementWidth = $(this).width();
-                            var elementOffsetLeft = $(this).offset().left;
-                            var viewContainerScrollLeft = viewContainer.scrollLeft();
-                            var offset = 0;
+                            let elementWidth:number = $(this).width();
+                            let elementOffsetLeft:number = $(this).offset().left;
+                            let viewContainerScrollLeft:number = viewContainer.scrollLeft();
+                            let offset:number = 0;
 
                             if(elementOffsetLeft < viewContainer.offset().left)
                             {
@@ -82,6 +82,7 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
                             {
                                 return;
                             }
+
                             viewContainer.stop();
                             viewContainer.animate({scrollLeft: offset}, 1200);
                         });
@@ -93,17 +94,17 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
 
     private updateViewport(id:string):void
     {
-        setTimeout(function()
+        setTimeout(function():void
         {
-            let anchor = $('#' + id);
-            let breadcrumb = $('.' + id);
-            let breadCrumbContainer = breadcrumb.closest('.terra-breadcrumbs');
-            let viewContainer = anchor.parent();
-            let offset = 3;
-            let prevSplitView = breadcrumb.closest('.view').prev();
+            let anchor:JQuery = $('#' + id);
+            let breadcrumb:JQuery = $('.' + id);
+            let breadCrumbContainer:JQuery = breadcrumb.closest('.terra-breadcrumbs');
+            let viewContainer:JQuery = anchor.parent();
+            let offset:number = 3;
+            let prevSplitView:JQuery = breadcrumb.closest('.view').prev();
 
             // update breadcrumbs
-            breadcrumb.closest('.terra-breadcrumbs').find('div').each(function()
+            breadcrumb.closest('.terra-breadcrumbs').find('div').each(function():void
             {
                 $(this).removeClass('active');
             });

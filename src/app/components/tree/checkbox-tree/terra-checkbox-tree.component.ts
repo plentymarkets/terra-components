@@ -52,7 +52,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         this.valueChange.emit(leaf);
     }
 
-    private resetIndeterminateLeafState(leaf:TerraCheckboxLeafInterface)
+    private resetIndeterminateLeafState(leaf:TerraCheckboxLeafInterface):void
     {
         // reset the isIndeterminate flag on every state change
         leaf.isIndeterminate = false;
@@ -66,7 +66,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         }
         else
         {
-            let leafIndex = this.selectedLeafList.indexOf(leaf);
+            let leafIndex:number = this.selectedLeafList.indexOf(leaf);
 
             this.selectedLeafList.splice(leafIndex, 1);
         }
@@ -176,7 +176,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         }
     }
 
-    public ngOnInit()
+    public ngOnInit():void
     {
         super.ngOnInit();
         this.appendParentsToLeafList(this.inputLeafList);

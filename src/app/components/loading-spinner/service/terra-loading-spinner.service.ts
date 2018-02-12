@@ -20,7 +20,7 @@ export class TerraLoadingSpinnerService
 
     constructor(private zone:NgZone)
     {
-        this.observable = new Observable<boolean>((subscriber:Subscriber<boolean>) =>
+        this.observable = new Observable<boolean>((subscriber:Subscriber<boolean>):void =>
         {
             this._subscriber = subscriber;
         });

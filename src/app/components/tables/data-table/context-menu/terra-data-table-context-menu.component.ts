@@ -14,7 +14,7 @@ import { TerraBaseData } from '../../../data/terra-base.data';
 export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 {
     private _contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
-    private _isShown = false;
+    private _isShown:boolean = false;
     private clickListener:(event:Event) => void;
     private _locationCss:any = {
         visibility: 'hidden',
@@ -31,27 +31,27 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
     constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
     {
         _contextMenuService.show.subscribe(
-            e => this.showMenu(e.event, e.obj));
+            (e:any):void => this.showMenu(e.event, e.obj));
 
         _contextMenuService.init.subscribe(
-            e => this._contextMenuLinkList = e
+            (e:any):void => this._contextMenuLinkList = e
         );
 
-        this.clickListener = (event) =>
+        this.clickListener = (event:Event):void =>
         {
             this.clickedOutside();
             event.stopPropagation();
         }
     }
 
-    public clickedOutside()
+    public clickedOutside():void
     {
         this._isShown = false;
         this._locationCss = this.calcMenuPosition();
         document.removeEventListener('click', this.clickListener);
     }
 
-    public showMenu(event:MouseEvent, contextMenuLinkList:TerraDataTableContextMenuEntryInterface<D>[])
+    public showMenu(event:MouseEvent, contextMenuLinkList:TerraDataTableContextMenuEntryInterface<D>[]):void
     {
         this._isShown = true;
         this._contextMenuLinkList = contextMenuLinkList;
@@ -71,7 +71,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
         // 70 (navbar) + 46 (tabbar) + 36 (breadcrumbs)
         let offsetTop:number = 161;
         let offsetLeft:number;
-        let anchor = $('.context-menu#menu');
+        let anchor:JQuery = $('.context-menu#menu');
         let isMenuAtBottom:boolean;
         let contextMenuHeight:number = anchor.height();
         let contextMenuWidth:number = anchor.width();
@@ -82,7 +82,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
             isMenuAtBottom = true;
         }
 
-        let dataTableElement = anchor.closest('terra-data-table');
+        let dataTableElement:JQuery = anchor.closest('terra-data-table');
 
         offsetLeft = dataTableElement.offset().left;
 

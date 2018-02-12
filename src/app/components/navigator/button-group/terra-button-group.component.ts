@@ -28,7 +28,7 @@ export class TerraButtonGroupComponent<D> implements OnInit
         this._buttonList = [];
     }
 
-    public ngOnInit()
+    public ngOnInit():void
     {
         this._terraNavigatorSplitViewConfig.observableUpdateActiveItem
             .subscribe((nodes:Array<TerraNavigatorNodeInterface<D>>) =>
@@ -39,7 +39,7 @@ export class TerraButtonGroupComponent<D> implements OnInit
         this.parameter.nodes
             .forEach((item:TerraNavigatorNodeInterface<D>) =>
             {
-                let hasChildren = false;
+                let hasChildren:boolean = false;
 
                 if(!isNullOrUndefined(item.children))
                 {
@@ -48,14 +48,14 @@ export class TerraButtonGroupComponent<D> implements OnInit
 
                 let button:TerraButtonGroupInterface = {
                     caption:       item.nodeName,
-                    clickFunction: () =>
+                    clickFunction: ():void =>
                                    {
                                        this._terraNavigatorSplitViewConfig.openNextLevel(item);
 
                                        item.isButtonClicked = true;
 
                                        this._buttonList
-                                           .forEach((btnItem) =>
+                                           .forEach((btnItem:TerraButtonGroupInterface):void =>
                                            {
                                                btnItem.isActive = false;
                                            });
@@ -78,7 +78,7 @@ export class TerraButtonGroupComponent<D> implements OnInit
         this.setRecursiveItemActive(this.parameter.nodes);
     }
 
-    private setRecursiveItemActive(list:Array<TerraNavigatorNodeInterface<D>>)
+    private setRecursiveItemActive(list:Array<TerraNavigatorNodeInterface<D>>):void
     {
         list.forEach((item:TerraNavigatorNodeInterface<D>) =>
         {

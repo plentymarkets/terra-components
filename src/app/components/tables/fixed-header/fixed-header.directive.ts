@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { TerraSimpleTableComponent } from '../simple/terra-simple-table.component';
 
-const FIXED_CLASS = 'fixed-header';
+const FIXED_CLASS:string = 'fixed-header';
 
 @Directive({
     selector: 'terra-simple-table[fixed-header]'
@@ -21,7 +21,7 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
     private _columnWidths:Array<number> = [];
 
     constructor(private _elementRef:ElementRef,
-                @Inject(forwardRef(() => TerraSimpleTableComponent)) private _tableComponent)
+                @Inject(forwardRef(() => TerraSimpleTableComponent)) private _tableComponent:any)
     {
     }
 
@@ -41,7 +41,7 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
         }
     }
 
-    private updateColumnWidths()
+    private updateColumnWidths():void
     {
 
         let rows:NodeListOf<HTMLElement> = this._tableBodyElement.querySelectorAll('tr');
@@ -63,7 +63,7 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
                     headerCol.style.width = width + '%';
                 }
 
-                for(let i = 0; i < rows.length; i++)
+                for(let i:number = 0; i < rows.length; i++)
                 {
                     bodyCol = <HTMLElement>rows.item(i).querySelector('tr td:nth-child(' + (index + 1) + ')');
                     if(bodyCol)
@@ -85,7 +85,7 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
             if(rowWidth > 0 && columns.length !== this._columnWidths.length)
             {
                 this._columnWidths = [];
-                for(let i = 0; i < columns.length; i++)
+                for(let i:number = 0; i < columns.length; i++)
                 {
                     this._columnWidths.push(
                         (columns.item(i).getBoundingClientRect().width / rowWidth) * 100

@@ -228,7 +228,7 @@ export class TerraRegex
         return this._COLOR_HEX
     }
 
-    private static _COLOR_HEX = '^#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?$';
+    private static _COLOR_HEX:string = '^#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?$';
     private static _NUMERIC:string = '^[-+]?\\d+$';
     private static _ONLY_STRING_WITH_SLASH_AND_UNDERSCORE:string = '^([a-zA-Z0-9]+)((\\/|_)([a-zA-Z0-9]+))*$';
     private static _START_WITH_CAPITAL:string = '^[A-Z][A-Za-z]*';

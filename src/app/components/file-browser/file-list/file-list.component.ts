@@ -81,7 +81,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this._parentFileBrowser.splitConfig.hideImagePreview();
             }
             this.renderFileList();
-            this._storageSubscription = this.activeStorageService.getStorageList().subscribe((storageList) =>
+            this._storageSubscription = this.activeStorageService.getStorageList().subscribe((storageList:TerraStorageObjectList):void =>
             {
                 this._storageList = storageList;
                 this.renderFileList();
@@ -228,7 +228,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         {
             if(selectedUrl && this._storageList)
             {
-                let object:TerraStorageObject = this._storageList.flatList.find(object => object.publicUrl === selectedUrl);
+                let object:TerraStorageObject = this._storageList.flatList.find(
+                    (storage:TerraStorageObject):boolean => storage.publicUrl === selectedUrl);
 
                 if(!isNullOrUndefined(object))
                 {
@@ -238,8 +239,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                         this._imagePreviewObject = object;
                         this._parentFileBrowser.splitConfig.showImagePreview(object, this.activeStorageService);
                     }
-                    let row:TerraSimpleTableRowInterface<TerraStorageObject> = this._fileTableRowList.find(r => r.value === object);
-                    this._fileTableComponent.inputHighlightedRow = row;
+                    this._fileTableComponent.inputHighlightedRow = this._fileTableRowList.find(
+                        (r:TerraSimpleTableRowInterface<TerraStorageObject>):boolean => r.value === object);
                 }
             }
         });
@@ -287,8 +288,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private deleteObjects():void
     {
-        let keyList = [];
-        let extractKeys = (objects:Array<TerraStorageObject>) =>
+        let keyList:Array<string> = [];
+        let extractKeys:Function = (objects:Array<TerraStorageObject>):void =>
         {
             objects.forEach((object:TerraStorageObject) =>
             {
@@ -401,7 +402,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     {
         let clipboardButton:TerraButtonInterface = {
             icon:             'icon-copy_clipboard',
-            clickFunction:    (event:Event) =>
+            clickFunction:    (event:Event):void =>
                               {
                                   ClipboardHelper.copyText(storageObject.publicUrl);
                                   event.stopPropagation();
@@ -422,7 +423,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         cellList.push({
             buttonList: [{
                 icon:             'icon-download',
-                clickFunction:    (event:Event) =>
+                clickFunction:    (event:Event):void =>
                                   {
                                       (<TerraBasePrivateStorageService> this.activeStorageService).downloadFile(storageObject.key);
                                       event.stopPropagation();
@@ -438,7 +439,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         cellList.push({
             buttonList: [{
                 icon:             'icon-delete',
-                clickFunction:    (event:Event) =>
+                clickFunction:    (event:Event):void =>
                                   {
                                       this._objectsToDelete = [storageObject];
                                       event.stopPropagation();
@@ -538,7 +539,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         {
             clearTimeout(this._imagePreviewTimeout);
         }
-        let debounceFn = () =>
+        let debounceFn:Function = ():void =>
         {
             let storageObject:TerraStorageObject = row.value;
 

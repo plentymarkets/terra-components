@@ -97,7 +97,7 @@ export class TerraNodeTreeConfig<D>
      */
     public addChildToNodeById(parentId:string | number, node:TerraNodeInterface<D>, openParents?:boolean):void
     {
-        let foundNode = this.recursiveFindNodeById(this.list, parentId);
+        let foundNode:TerraNodeInterface<D> = this.recursiveFindNodeById(this.list, parentId);
 
         if(isNullOrUndefined(foundNode))
         {
@@ -117,7 +117,7 @@ export class TerraNodeTreeConfig<D>
      */
     public addChildrenToNodeById(parentId:string | number, nodeList:Array<TerraNodeInterface<D>>, openParents?:boolean):void
     {
-        let foundNode = this.recursiveFindNodeById(this.list, parentId);
+        let foundNode:TerraNodeInterface<D> = this.recursiveFindNodeById(this.list, parentId);
 
         if(isNullOrUndefined(foundNode))
         {
@@ -199,7 +199,7 @@ export class TerraNodeTreeConfig<D>
         }
 
         // search for node
-        let foundNode = this.recursiveFindNodeById(this.list, id);
+        let foundNode:TerraNodeInterface<D> = this.recursiveFindNodeById(this.list, id);
 
         if(isNullOrUndefined(foundNode))
         {
@@ -317,7 +317,7 @@ export class TerraNodeTreeConfig<D>
     }
 
     // set parents to all nodes
-    private recursiveSetParent(list:Array<TerraNodeInterface<D>>, parent?:TerraNodeInterface<D>)
+    private recursiveSetParent(list:Array<TerraNodeInterface<D>>, parent?:TerraNodeInterface<D>):void
     {
         for(let node of list)
         {
@@ -405,7 +405,7 @@ export class TerraNodeTreeConfig<D>
         }
     }
 
-    private setDefaultVisibilityToChildren(nodeList:Array<TerraNodeInterface<D>>)
+    private setDefaultVisibilityToChildren(nodeList:Array<TerraNodeInterface<D>>):void
     {
         if(!isNullOrUndefined(nodeList))
         {

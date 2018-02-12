@@ -182,13 +182,14 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this._headerCheckbox.isIndeterminate = true;
     }
 
-    private updateHeaderCheckboxState()
+    private updateHeaderCheckboxState():void
     {
         if(this._selectedRowList.length === 0) // anything selected?
         {
             this.uncheckHeaderCheckbox();
         }
-        else if(this._selectedRowList.length > 0 && this.inputRowList.filter(r => !r.disabled).length === this._selectedRowList.length) // all selected?
+        else if(this._selectedRowList.length > 0 && this.inputRowList.filter(
+                (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === this._selectedRowList.length) // all selected?
         {
             this.checkHeaderCheckbox();
         }
@@ -233,7 +234,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     {
         this.checkHeaderCheckbox();
 
-        this.inputRowList.forEach((row) =>
+        this.inputRowList.forEach((row:TerraSimpleTableRowInterface<D>) =>
         {
             if(!row.disabled)
             {
@@ -305,7 +306,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         }
     }
 
-    private highlightSiblingRow(nextSibling:boolean)
+    private highlightSiblingRow(nextSibling:boolean):void
     {
         if(this.inputHighlightedRow)
         {

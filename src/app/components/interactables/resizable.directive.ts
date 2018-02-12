@@ -62,7 +62,7 @@ export class TerraResizableDirective implements OnChanges
         this.init();
     }
 
-    private prepareImmutableInput(input:string)
+    private prepareImmutableInput(input:string):void
     {
         if(this[input] && typeof this[input] === 'object')
         {
@@ -91,11 +91,11 @@ export class TerraResizableDirective implements OnChanges
                           {
                               configurable: true,
                               enumerable:   true,
-                              get:          () =>
+                              get:          ():any  =>
                                             {
                                                 return this[input]['_' + property]
                                             },
-                              set:          (value) =>
+                              set:          (value:any):void =>
                                             {
                                                 this[input]['_' + property] = value;
                                                 this.init();
@@ -116,15 +116,15 @@ export class TerraResizableDirective implements OnChanges
             preserveAspectRatio: !!this.options.preserveAspectRatio,
             inertia:             this.inertia,
             enabled:             !this.disabled,
-            onstart:             (event:Interact.InteractEvent) =>
+            onstart:             (event:Interact.InteractEvent):void =>
                                  {
                                      this.onStart.emit(event)
                                  },
-            onmove:              (event:Interact.InteractEvent) =>
+            onmove:              (event:Interact.InteractEvent):void =>
                                  {
                                      this.onMove.emit(event)
                                  },
-            onend:               (event:Interact.InteractEvent) =>
+            onend:               (event:Interact.InteractEvent):void =>
                                  {
                                      this.onEnd.emit(event)
                                  },
@@ -134,7 +134,7 @@ export class TerraResizableDirective implements OnChanges
         {
             resizableConfig.snap = {
                 targets:        [
-                    (x:number, y:number) =>
+                    (x:number, y:number):{ x:number, y:number, range:number } =>
                     {
                         return this.handleSnap(x, y);
                     }

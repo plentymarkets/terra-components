@@ -92,7 +92,7 @@ export class TerraMultiSplitViewConfig
 
         let parent:TerraMultiSplitViewInterface = view.parent;
 
-        let viewIndex:number = parent.children.findIndex((elem) => elem === view);
+        let viewIndex:number = parent.children.findIndex((elem:TerraMultiSplitViewInterface) => elem === view);
 
         if(viewIndex >= 0)
         {

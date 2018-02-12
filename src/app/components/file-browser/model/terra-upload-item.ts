@@ -11,14 +11,14 @@ export class TerraUploadItem
 
     public get filename():string
     {
-        let filenames = this.file.name.split('.');
-        let extname = filenames.pop();
+        let filenames:string[] = this.file.name.split('.');
+        let extname:string = filenames.pop();
         return this._uploadService.prepareKey(this.file.name, true);
     }
 
     public get pathname():string
     {
-        let pathname = this._uploadService.prepareKey(PathHelper.join(this._path, this.filename));
+        let pathname:string = this._uploadService.prepareKey(PathHelper.join(this._path, this.filename));
 
         if(pathname.charAt(0) === '/')
         {

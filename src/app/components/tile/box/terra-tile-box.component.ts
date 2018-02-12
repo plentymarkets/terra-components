@@ -48,7 +48,7 @@ export class TerraTileBoxComponent
     @Input()
     public inputButtonList:Array<TerraButtonInterface>;
 
-    private stopPropagation(event):void
+    private stopPropagation(event:Event):void
     {
         event.stopPropagation();
     }

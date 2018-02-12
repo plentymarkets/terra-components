@@ -15,7 +15,7 @@ import { TerraLoadingSpinnerService } from '../../../';
 @Injectable()
 export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 {
-    public isImagePreviewEnabled = true;
+    public isImagePreviewEnabled:boolean = true;
 
     public name:string;
 
@@ -119,7 +119,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
             );
         });
 
-        item.onSuccess((response) =>
+        item.onSuccess((response:string) =>
         {
             let s3Data:any = JSON.parse(response);
             this._storageListSubject.next(
@@ -161,7 +161,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         }
 
         this.setAuthorization();
-        let request = this.mapRequest(
+        let request:Observable<any> = this.mapRequest(
             this.http.get(
                 this.url + '/metadata?key=' + key,
                 {
@@ -170,7 +170,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
             )
         );
 
-        request.subscribe((metadata) =>
+        request.subscribe((metadata:any) =>
             {
                 this._metadataCache[key] = metadata;
             },
@@ -186,7 +186,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
     public updateMetadata(key:string, metadata:TerraImageMetadata):Observable<any>
     {
         this.setAuthorization();
-        let request = this.mapRequest(
+        let request:Observable<any> = this.mapRequest(
             this.http.post(
                 this.url + '/metadata',
                 {
@@ -215,21 +215,21 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
     public deleteFiles(keyList:string[]):Observable<void>
     {
         this.setAuthorization();
-        let request = this.mapRequest(
+        let request:Observable<any> = this.mapRequest(
             this.http.delete(
-                '/rest/storage/frontend/files?' + keyList.map(key => 'keyList[]=' + key).join('&'),
+                '/rest/storage/frontend/files?' + keyList.map((key:string):string => 'keyList[]=' + key).join('&'),
                 {
                     headers: this.headers
                 }
             )
         );
 
-        request.subscribe(() =>
+        request.subscribe(():void =>
             {
-                keyList.forEach(key => this._storageList.root.removeChild(key));
+                keyList.forEach((key:string):void => this._storageList.root.removeChild(key));
                 this._storageListSubject.next(this._storageList);
             },
-            (err:any) =>
+            (err:any):void =>
             {
                 this._storageInitialized = false;
                 this._storageListSubject.next(null);
@@ -243,14 +243,14 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
     {
         this._storageInitialized = true;
 
-        let url = '/rest/storage/frontend/files';
+        let url:string = '/rest/storage/frontend/files';
         if(!isNullOrUndefined(continuationToken))
         {
             url += '?continuationToken=' + continuationToken;
         }
 
         this.setAuthorization();
-        this.mapRequest(this.http.get(url, {headers: this.headers})).subscribe(results =>
+        this.mapRequest(this.http.get(url, {headers: this.headers})).subscribe((results:any):void =>
             {
                 let storageList:TerraStorageObjectList = this._storageListSubject.getValue() || new TerraStorageObjectList();
                 storageList.insertObjects(results.objects);
@@ -261,7 +261,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
                     this.initStorageList(results.nextContinuationToken);
                 }
             },
-            (err:any) =>
+            (err:any):void =>
             {
                 console.error(err);
                 this._storageInitialized = false;

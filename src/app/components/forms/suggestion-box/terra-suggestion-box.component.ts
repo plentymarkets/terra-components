@@ -13,7 +13,7 @@ import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.in
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 
-const MAX_LASTLY_USED_ENTRIES = 5;
+const MAX_LASTLY_USED_ENTRIES:number = 5;
 
 @Component({
     selector:  'terra-suggestion-box',
@@ -51,10 +51,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     public inputWithRecentlyUsed:boolean;
 
     @Output()
-    public outputValueChanged = new EventEmitter<TerraSuggestionBoxValueInterface>();
+    public outputValueChanged:EventEmitter<TerraSuggestionBoxValueInterface> = new EventEmitter<TerraSuggestionBoxValueInterface>();
 
     @Output()
-    public outputClicked = new EventEmitter<Event>();
+    public outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
 
     public isValid:boolean;
     public selectedValue:TerraSuggestionBoxValueInterface;
@@ -72,9 +72,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
     }
 
-    public ngOnInit()
+    public ngOnInit():void
     {
-        this.clickListener = (event) =>
+        this.clickListener = (event:Event):void =>
         {
             this.clickedOutside(event);
         };
@@ -101,11 +101,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
     }
 
-    public ngOnChanges(changes:SimpleChanges)
+    public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes['inputListBoxValues']
            && changes['inputListBoxValues'].currentValue.length > 0
-           && !this.inputListBoxValues.find((x) => this.selectedValue === x))
+           && !this.inputListBoxValues.find((x:TerraSuggestionBoxValueInterface):boolean => this.selectedValue === x))
         {
             this.select(this.inputListBoxValues[0]);
         }
@@ -149,7 +149,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
         if(!isNullOrUndefined(value))
         {
-            let selectedValue = this.inputListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item.value === value);
+            let selectedValue:TerraSuggestionBoxValueInterface = this.inputListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item.value === value);
 
             if(selectedValue)
             {
@@ -196,7 +196,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         return this._toggleOpen;
     }
 
-    private clickedOutside(event):void
+    private clickedOutside(event:Event):void
     {
         if(!this._elementRef.nativeElement.contains(event.target))
         {
@@ -207,7 +207,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     private select(value:TerraSuggestionBoxValueInterface):void
     {
         // check if value is available
-        if(!this._displayListBoxValues.find((elem) => elem === value))
+        if(!this._displayListBoxValues.find((elem:TerraSuggestionBoxValueInterface):boolean => elem === value))
         {
             return;
         }
@@ -261,9 +261,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
     }
 
-    public onChange()
+    public onChange():void
     {
-        let searchString = this.selectedValue.caption;
+        let searchString:any = this.selectedValue.caption;
         this.toggleOpen = true;
 
         if(searchString.length >= 3)

@@ -82,7 +82,7 @@ export class TerraSliderComponent implements OnInit
 
         if(this.inputInterval > 0)
         {
-            let diff = this.inputValue % this.inputInterval;
+            let diff:number = this.inputValue % this.inputInterval;
             if(diff !== 0)
             {
                 if(diff < this.inputInterval / 2)
@@ -149,16 +149,16 @@ export class TerraSliderComponent implements OnInit
                 }
 
                 this.inputPrecision = Math.max(
-                    ...steps.map(step =>
+                    ...steps.map((step:number):number =>
                     {
-                        let parts = ('' + step).split('.');
+                        let parts:string[] = ('' + step).split('.');
                         if(!parts[1])
                         {
                             return 0;
                         }
                         else
                         {
-                            let match = /[1-9]/g.exec(parts[1].substr(0, 3));
+                            let match:RegExpExecArray = /[1-9]/g.exec(parts[1].substr(0, 3));
                             if(match)
                             {
                                 return match.index;
@@ -184,32 +184,32 @@ export class TerraSliderComponent implements OnInit
         }
     }
 
-    public onDrag(event:Interact.InteractEvent)
+    public onDrag(event:Interact.InteractEvent):void
     {
         this.moveToPosition(event.pageX);
     }
 
-    public onBarClicked(event:MouseEvent)
+    public onBarClicked(event:MouseEvent):void
     {
         this.moveToPosition(event.pageX);
     }
 
-    private moveToPosition(position:number)
+    private moveToPosition(position:number):void
     {
         if(!this.inputIsDisabled)
         {
-            let sliderRect = this.sliderBarElement.nativeElement.getBoundingClientRect();
+            let sliderRect:any | ClientRect = this.sliderBarElement.nativeElement.getBoundingClientRect();
             this.handlePosition = position - sliderRect.left;
         }
     }
 
-    public getTicks()
+    public getTicks():{position:number, caution:number}[]
     {
         let tickPositions:number[] = [];
         if(this.inputInterval > 0)
         {
             let numberOfTicks:number = Math.abs(this.inputMin - this.inputMax) / this.inputInterval;
-            for(let i = 1; i < numberOfTicks; i++)
+            for(let i:number = 1; i < numberOfTicks; i++)
             {
                 tickPositions.push(i * (100 / numberOfTicks));
             }

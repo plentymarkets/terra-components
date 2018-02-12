@@ -37,19 +37,19 @@ export class TerraFilterComponent
      * @description Set the function which will be executed on click of the search button.
      */
     @Output()
-    public outputOnSearchBtnClicked = new EventEmitter<any>();
+    public outputOnSearchBtnClicked:EventEmitter<any> = new EventEmitter<any>();
 
     /**
      * @description Set the function which will be executed on click of the reset button.
      */
     @Output()
-    public outputOnResetBtnClicked = new EventEmitter<any>();
+    public outputOnResetBtnClicked:EventEmitter<any> = new EventEmitter<any>();
 
     /**
      * @description Set the function which will be executed on hitting enter.
      */
     @Output()
-    public outputOnEnterSubmit = new EventEmitter<any>();
+    public outputOnEnterSubmit:EventEmitter<any> = new EventEmitter<any>();
 
     private searchBtnClicked():void
     {

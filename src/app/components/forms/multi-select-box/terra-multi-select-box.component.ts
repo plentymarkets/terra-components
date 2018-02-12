@@ -37,14 +37,14 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
     public inputIsRequired:boolean;
 
     @Output()
-    public inputSelectedValueListChange = new EventEmitter<Array<any>>();
+    public inputSelectedValueListChange:EventEmitter<Array<any>> = new EventEmitter<Array<any>>();
 
     @Input()
     set inputSelectedValueList(value:Array<any>)
     {
         if(value !== undefined && value != null)
         {
-            let valueCopy = value.slice(0);
+            let valueCopy:any = value.slice(0);
 
             if(valueCopy.length == 0)
             {
@@ -59,7 +59,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
                 this.viewChildHeaderCheckbox.isIndeterminate = true;
             }
 
-            for(let i = this._selectedValueList.length; i >= 0; i--)
+            for(let i:number = this._selectedValueList.length; i >= 0; i--)
             {
                 this._selectedValueList.pop();
             }
@@ -93,7 +93,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
     {
     }
 
-    public ngOnInit()
+    public ngOnInit():void
     {
         if(!this.inputName)
         {
@@ -113,7 +113,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
      *
      * @param changes
      */
-    public ngOnChanges(changes:SimpleChanges)
+    public ngOnChanges(changes:SimpleChanges):void
     {
         if(this._isInit == true && changes['inputValueList'] && changes['inputValueList'].currentValue.length > 0)
         {
@@ -173,7 +173,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
 
         let valueFound:boolean = false;
 
-        let index = this._selectedValueList.indexOf(valueToChange.value);
+        let index:number = this._selectedValueList.indexOf(valueToChange.value);
 
         // check if value exists in list
         if(index == -1)
@@ -200,7 +200,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
         }
     }
 
-    private extractSelectedValues(valueList:Array<TerraMultiSelectBoxValueInterface>)
+    private extractSelectedValues(valueList:Array<TerraMultiSelectBoxValueInterface>):Array<any>
     {
         let result:Array<any> = [];
 
