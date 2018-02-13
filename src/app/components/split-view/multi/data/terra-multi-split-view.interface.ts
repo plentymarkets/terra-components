@@ -4,7 +4,7 @@ import { TerraDynamicLoadedComponentInputInterface } from '../../../dynamic-modu
 /**
  * @author pweyrich
  */
-export class TerraMultiSplitViewInterface
+export interface TerraMultiSplitViewInterface
 {
     parent?:TerraMultiSplitViewInterface;
     children?:Array<TerraMultiSplitViewInterface>;
