@@ -108,8 +108,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                         event instanceof NavigationEnd && event.url.startsWith(this.inputComponentRoute) && this.tabDeselected
                     ).subscribe(() =>
                     {
-                        this._router.navigateByUrl(this.inputConfig.currentSelectedView.url);
-                        this.updateViewport(this.inputConfig.currentSelectedView, true);
+                        if(this.inputConfig.currentSelectedView)
+                        {
+                            this._router.navigateByUrl(this.inputConfig.currentSelectedView.url);
+                            this.updateViewport(this.inputConfig.currentSelectedView, true);
+                        }
                         this.tabDeselected = false;
                     });
 
