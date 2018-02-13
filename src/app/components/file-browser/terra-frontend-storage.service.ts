@@ -9,8 +9,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
 import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
-import { TerraBaseMetadataStorageService } from './terra-base-storage.interface';
 import { TerraLoadingSpinnerService } from '../../../';
+import { TerraBaseMetadataStorageService } from './terra-base-metadata-storage.interface';
 
 @Injectable()
 export class TerraFrontendStorageService extends TerraBaseMetadataStorageService

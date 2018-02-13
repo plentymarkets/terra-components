@@ -3,13 +3,13 @@ import {
     Component,
     Input
 } from '@angular/core';
-import { TerraStorageObject } from '../model/terra-storage-object';
 import {
-    TerraBaseMetadataStorageService,
-    TerraBaseStorageService
-} from '../terra-base-storage.interface';
-import { TerraImageMetadata } from '../model/terra-image-metadata.interface';
+    TerraImageMetadata,
+    TerraStorageObject
+} from '../../../../';
+import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { isNullOrUndefined } from 'util';
+import { TerraBaseMetadataStorageService } from '../terra-base-metadata-storage.interface';
 
 @Component({
     selector: 'terra-image-preview',
