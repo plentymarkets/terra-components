@@ -141,8 +141,7 @@ import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/ser
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
         TerraNodeTreeComponent,
-        TerraNodeComponent,
-        TerraMultiSplitViewRoutingHelper
+        TerraNodeComponent
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -243,7 +242,6 @@ import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/ser
         TerraNoteEditorComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
-        TerraMultiSplitViewRoutingHelper,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent
     ],
