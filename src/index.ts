@@ -113,3 +113,4 @@ export * from './app/components/forms/dynamic-form/handler/dynamic-form-function
 export * from './app/components/forms/dynamic-form/enum/controlType.enum';
 export * from './app/components/forms/dynamic-form/service/terra-json-to-form-field.service';
 export * from './app/helpers/terra-converter.helper';
+export * from './app/helpers/url.helper';
