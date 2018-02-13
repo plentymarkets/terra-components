@@ -114,4 +114,3 @@ export * from './app/components/forms/dynamic-form/enum/controlType.enum';
 export * from './app/components/forms/dynamic-form/service/terra-json-to-form-field.service';
 export * from './app/helpers/terra-converter.helper';
 export * from './app/helpers/url.helper';
-export * from './app/components/split-view/multi/routing/terra-multi-split-view-routing.helper';
