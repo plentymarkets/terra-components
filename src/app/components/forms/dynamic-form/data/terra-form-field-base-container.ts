@@ -16,9 +16,9 @@ export class TerraFormFieldBaseContainer extends TerraFormFieldBase<string>
 {
     public containerEntries:Array<TerraFormFieldBase<any>>;
 
-    constructor(key:string, controlType:TerraControlTypeEnum, options:TerraFormFieldBaseContainerOptions = {})
+    constructor(key:string, controlType:TerraControlTypeEnum, label:string, options:TerraFormFieldBaseContainerOptions = {})
     {
-        super(key, controlType, options);
+        super(key, controlType, label, false, options);
 
         this.containerEntries = options['containerEntries'] || [];
     }

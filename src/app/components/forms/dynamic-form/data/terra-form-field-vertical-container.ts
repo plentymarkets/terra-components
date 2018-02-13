@@ -15,9 +15,9 @@ export class TerraFormFieldVerticalContainer extends TerraFormFieldBaseContainer
 {
     public containerEntries:Array<TerraFormFieldBase<any>>;
 
-    constructor(key:string, options:TerraFormFieldBaseContainerOptions = {})
+    constructor(key:string, label:string, options:TerraFormFieldBaseContainerOptions = {})
     {
-        super(key, TerraControlTypeEnum.VERTICAL_CONTAINER, options);
+        super(key, TerraControlTypeEnum.VERTICAL_CONTAINER, label, options);
 
         this.containerEntries = options['containerEntries'] || [];
     }

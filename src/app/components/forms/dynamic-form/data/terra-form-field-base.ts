@@ -7,8 +7,8 @@ import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 export interface TerraFormFieldBaseOptions<T>
 {
     value?:T;
-    label?:string;
-    required?:boolean;
+    tooltip?:string;
+    tooltipPlacement?:string;
     minLength?:number;
     maxLength?:number;
     minValue?:number;
@@ -25,6 +25,10 @@ export class TerraFormFieldBase<T>
     public key:string;
     public label:string;
 
+    // Tooltip
+    public tooltip:string;
+    public tooltipPlacement:string;
+
     // Validator
     public required:boolean;
     public minLength:number;
@@ -35,7 +39,7 @@ export class TerraFormFieldBase<T>
 
     public readonly controlType:TerraControlTypeEnum;
 
-    constructor(key:string, controlType:TerraControlTypeEnum, options:TerraFormFieldBaseOptions<T> = {})
+    constructor(key:string, controlType:TerraControlTypeEnum, label:string, required:boolean, options:TerraFormFieldBaseOptions<T> = {})
     {
         if(isNull(key))
         {
@@ -50,10 +54,12 @@ export class TerraFormFieldBase<T>
         this.key = key;
         this.controlType = controlType;
 
-        this.value = options.value;
-        this.label = options.label;
+        this.label = label;
+        this.required = required;
 
-        this.required = !!options.required;
+        this.value = options.value;
+        this.tooltip = options.tooltip || null;
+        this.tooltipPlacement = options.tooltipPlacement || 'top';
         this.minLength = options.minLength || -1;
         this.maxLength = options.maxLength || -1;
         this.minValue = options.minValue || null;

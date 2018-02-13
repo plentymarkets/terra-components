@@ -12,9 +12,9 @@ export class TerraFormFieldHorizontalContainer extends TerraFormFieldBaseContain
 {
     public containerEntries:Array<TerraFormFieldBase<any>>;
 
-    constructor(key:string, options:TerraFormFieldBaseContainerOptions = {})
+    constructor(key:string, label:string, options:TerraFormFieldBaseContainerOptions = {})
     {
-        super(key, TerraControlTypeEnum.HORIZONTAL_CONTAINER, options);
+        super(key, TerraControlTypeEnum.HORIZONTAL_CONTAINER, label, options);
 
         this.containerEntries = options['containerEntries'] || [];
     }

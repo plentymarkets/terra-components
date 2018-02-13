@@ -2,7 +2,7 @@ import {
     TerraFormFieldBase,
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
-import { TerraControlTypeEnum } from '../enum/controlType.enum';
+import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
  * @author dtrauf
@@ -16,9 +16,9 @@ export class TerraFormFieldInputDouble extends TerraFormFieldBase<number>
 {
     public type:string;
 
-    constructor(key:string, options:TerraFormFieldInputDoubleOptions = {})
+    constructor(key:string, label:string, required:boolean, options:TerraFormFieldInputDoubleOptions = {})
     {
-        super(key, TerraControlTypeEnum.INPUT_DOUBLE, options);
+        super(key, TerraControlTypeEnum.INPUT_DOUBLE, label, required, options);
 
         this.type = options['type'] || '';
     }

@@ -6,7 +6,9 @@
                               [formControlName]="formField.key"
                               [inputName]="formField.label  | translate:lang"
                               [inputIsRequired]="formField?.required"
-                              [(ngModel)]="formField.value">
+                              [(ngModel)]="formField.value"
+                              [inputTooltipText]="formField.tooltip"
+                              [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-text-input>
             
             <terra-text-area-input *ngSwitchCase="'inputTextArea'"
@@ -14,7 +16,9 @@
                                    [formControlName]="formField.key"
                                    [inputName]="formField.label  | translate:lang"
                                    [inputIsRequired]="formField?.required"
-                                   [(ngModel)]="formField.value">
+                                   [(ngModel)]="formField.value"
+                                   [inputTooltipText]="formField.tooltip"
+                                   [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-text-area-input>
             
             <terra-number-input *ngSwitchCase="'inputNumber'"
@@ -22,7 +26,9 @@
                                 [formControlName]="formField.key"
                                 [inputName]="formField.label  | translate:lang"
                                 [inputIsRequired]="formField?.required"
-                                [(ngModel)]="formField.value">
+                                [(ngModel)]="formField.value"
+                                [inputTooltipText]="formField.tooltip"
+                                [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-number-input>
     
             <terra-checkbox *ngSwitchCase="'checkBox'"
@@ -37,7 +43,9 @@
                                 [formControlName]="formField.key"
                                 [inputName]="formField.label  | translate:lang"
                                 [inputIsRequired]="formField?.required"
-                                [(ngModel)]="formField.value">
+                                [(ngModel)]="formField.value"
+                                [inputTooltipText]="formField.tooltip"
+                                [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-double-input>
             
             <terra-select-box *ngSwitchCase="'selectBox'"
@@ -46,7 +54,9 @@
                               [inputName]="formField.label | translate:lang"
                               [inputIsRequired]="formField?.required"
                               [inputListBoxValues]="formField.selectBoxValues"
-                              [(ngModel)]="formField.value">
+                              [(ngModel)]="formField.value"
+                              [inputTooltipText]="formField.tooltip"
+                              [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-select-box>
             
             <terra-date-picker *ngSwitchCase="'datePicker'"
