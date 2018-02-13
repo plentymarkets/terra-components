@@ -271,6 +271,11 @@ label
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    
+    & span
+    {
+        font-size: $font-size-1;
+    }
 }
 
 .textarea-wrapper
