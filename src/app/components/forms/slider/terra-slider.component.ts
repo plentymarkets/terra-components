@@ -203,7 +203,7 @@ export class TerraSliderComponent implements OnInit
         }
     }
 
-    public getTicks():{position:number, caution:number}[]
+    public getTicks():{position:number, caption:number}[]
     {
         let tickPositions:number[] = [];
         if(this.inputInterval > 0)

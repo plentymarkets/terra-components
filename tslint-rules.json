@@ -62,6 +62,7 @@
     "no-unused-variable": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
+    "max-classes-per-file": [true, 1],
     "object-literal-sort-keys": false,
     "one-line": [
       false,

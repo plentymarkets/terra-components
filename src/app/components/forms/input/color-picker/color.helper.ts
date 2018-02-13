@@ -134,32 +134,6 @@ export class Color
 
         if(color.s !== 0)
         {
-            let hue2rgb:(p:number, q:number, t:number) => number;
-            hue2rgb = (p:number, q:number, t:number):number =>
-            {
-                if(t < 0)
-                {
-                    t += 1;
-                }
-                if(t > 1)
-                {
-                    t -= 1;
-                }
-                if(t < (1 / 6))
-                {
-                    return p + (q - p) * 6 * t;
-                }
-                if(t < (1 / 2))
-                {
-                    return q;
-                }
-                if(t < (2 / 3))
-                {
-                    return p + (q - p) * ((2 / 3) - t) * 6;
-                }
-                return p;
-            };
-
             let q:number;
             if(color.l < 0.5)
             {
@@ -172,14 +146,39 @@ export class Color
 
             let p:number = 2 * color.l - q;
 
-            r = hue2rgb(p, q, color.h + (1 / 3));
-            g = hue2rgb(p, q, color.h);
-            b = hue2rgb(p, q, color.h - (1 / 3));
+            r = this.hue2rgb(p, q, color.h + (1 / 3));
+            g = this.hue2rgb(p, q, color.h);
+            b = this.hue2rgb(p, q, color.h - (1 / 3));
         }
 
         this.r = Math.round(r * 255);
         this.g = Math.round(g * 255);
         this.b = Math.round(b * 255);
+    }
+
+    private hue2rgb(p:number, q:number, t:number):number
+    {
+        if(t < 0)
+        {
+            t += 1;
+        }
+        if(t > 1)
+        {
+            t -= 1;
+        }
+        if(t < (1 / 6))
+        {
+            return p + (q - p) * 6 * t;
+        }
+        if(t < (1 / 2))
+        {
+            return q;
+        }
+        if(t < (2 / 3))
+        {
+            return p + (q - p) * ((2 / 3) - t) * 6;
+        }
+        return p;
     }
 
     /**
