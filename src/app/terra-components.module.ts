@@ -85,7 +85,6 @@ import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dyn
 import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
 import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
 import { TerraConverterHelper } from './helpers/terra-converter.helper';
-import { TerraMultiSplitViewRoutingHelper } from './components/split-view/multi/routing/terra-multi-split-view-routing.helper';
 import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
 
 @NgModule({
