@@ -2,7 +2,7 @@ import {
     TerraFormFieldBase,
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
-import { ControlTypeEnum } from '../enum/controlType.enum';
+import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 export interface TerraFormFieldCheckBoxOptions extends TerraFormFieldBaseOptions<boolean>
 {
@@ -13,9 +13,9 @@ export class TerraFormFieldCheckBox extends TerraFormFieldBase<boolean>
 {
     public type:string;
 
-    constructor(key:string, options:TerraFormFieldCheckBoxOptions = {})
+    constructor(key:string, label:string, required:boolean, options:TerraFormFieldCheckBoxOptions = {})
     {
-        super(key, ControlTypeEnum.CHECK_BOX, options);
+        super(key, TerraControlTypeEnum.CHECK_BOX, label, required, options);
 
         this.type = options['type'] || '';
     }
