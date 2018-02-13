@@ -39,9 +39,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     public inputShowBreadcrumbs:boolean;
 
     @Input()
-    public inputRouter:Router;     // to catch inputRouter events
-
-    @Input()
     public inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
 
     private _breadCrumbsPath:string;
@@ -52,7 +49,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private splitViewId:number;
 
-    constructor(private zone:NgZone)
+    constructor(private zone:NgZone, private _router:Router)
     {
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
@@ -89,13 +86,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     public ngOnInit():void
     {
         // catch routing events, but only those that select the tab where the split view is instantiated
-        if(!isNullOrUndefined(this.inputRouter) && !isNullOrUndefined(this.inputComponentRoute))
+        if(!isNullOrUndefined(this._router) && !isNullOrUndefined(this.inputComponentRoute))
         {
             // check if the given route exists in the route config
             if(this.routeExists(this.inputComponentRoute))
             {
                 // register event listener
-                this.inputRouter.events
+                this._router.events
                     .filter((event:AngularRouter.Event) => event instanceof NavigationStart && event.url === this.inputComponentRoute)
                     .subscribe((path:NavigationStart) =>
                     {
@@ -325,7 +322,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 // focus view horizontally
                 if(skipAnimation)
                 {
-                    viewContainer.scrollLeft(Math.ceil(anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - viewContainer.offset().left));
+                    viewContainer.scrollLeft(
+                        Math.ceil(anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - viewContainer.offset().left));
                 }
                 else
                 {
@@ -502,7 +500,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         let routeLevel:number = 1;
 
         // get the routing config
-        let registeredRoutes:Routes = this.inputRouter.config;
+        let registeredRoutes:Routes = this._router.config;
 
         // scan the routing config
         while(routeLevel < routeParts.length)
