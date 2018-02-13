@@ -39,12 +39,12 @@ export class TerraFormFieldBase<T>
     {
         if(isNull(key))
         {
-            throw new Error('key can no tbe null');
+            throw new Error('key can not be null');
         }
 
         if(isNull(controlType))
         {
-            throw new Error('controlType can no tbe null');
+            throw new Error('controlType can not be null');
         }
 
         this.key = key;
