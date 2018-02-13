@@ -2,6 +2,7 @@
 
 ### Feature
 * **url-helper** new component that offers methods to edit urls
+* **terra-multi-split-view** inject router instead of passing it via the input `inputRouter`.
 * **terra-multi-split-view** added routing functionality. You can now handle view addition/selection via routes. This feature is activated by setting the component's input `inputHasRouting`. Use the config's property `routingConfig` to pass in your routing configuration. 
 
 <a name="2.1.47-zlk"></a>
