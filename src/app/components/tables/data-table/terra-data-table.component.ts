@@ -173,11 +173,11 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this.changeRowState(isChecked, row);
         this.outputRowCheckBoxChanged.emit(row);
 
-        if(this.selectedRowList.length == 0)
+        if(this.selectedRowList.length === 0)
         {
             this._isHeaderCheckboxChecked = false;
         }
-        else if(this.selectedRowList.length > 0 && this.rowList.length == this.selectedRowList.length)
+        else if(this.selectedRowList.length > 0 && this.rowList.length === this.selectedRowList.length)
         {
             this._isHeaderCheckboxChecked = true;
         }
@@ -205,7 +205,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
         this.selectedRowList.forEach((row:TerraDataTableRowInterface<D>):void =>
         {
-            if(row == rowToChange)
+            if(row === rowToChange)
             {
                 rowFound = true;
             }
@@ -249,7 +249,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         let selectedIndex:number = this.selectedRowList.indexOf(rowToDelete);
 
         // check if row exists in selectedRowList
-        if(selectedIndex != null)
+        if(selectedIndex !== null)
         {
             this.selectedRowList.splice(selectedIndex, 1);
         }
@@ -285,7 +285,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this._requestPending = true;
         restCall.subscribe(this.onSuccessFunction, (error:any):void =>
             {
-                if(error.status == 401 || error.status == 500)
+                if(error.status === 401 || error.status === 500)
                 {
                     // TODO
                     alert(error.status);
@@ -315,13 +315,13 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         function isRefType(arg:any):arg is TerraRefTypeInterface
         {
             return arg
-                   && arg.type && typeof arg.type == 'string'
-                   && arg.value && typeof arg.value == 'string';
+                   && arg.type && typeof arg.type === 'string'
+                   && arg.value && typeof arg.value === 'string';
         }
 
         function isTextType(arg:any):arg is TerraDataTableTextInterface
         {
-            return arg && arg.caption && typeof arg.caption == 'string';
+            return arg && arg.caption && typeof arg.caption === 'string';
         }
 
         function isTagArray(arg:any):arg is Array<TerraTagInterface>
@@ -336,7 +336,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             let implementsInterface:boolean = true;
             arg.forEach((elem:any) =>
             {
-                implementsInterface = implementsInterface && elem.badge && typeof elem.badge == 'string';
+                implementsInterface = implementsInterface && elem.badge && typeof elem.badge === 'string';
             });
 
             return arg && implementsInterface;
@@ -354,7 +354,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             let implementsInterface:boolean = true;
             arg.forEach((elem:any) =>
             {
-                implementsInterface = implementsInterface && elem.clickFunction && typeof elem.clickFunction == 'function';
+                implementsInterface = implementsInterface && elem.clickFunction && typeof elem.clickFunction === 'function';
             });
 
             return arg && implementsInterface;

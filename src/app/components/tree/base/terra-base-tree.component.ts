@@ -44,7 +44,7 @@ export class TerraBaseTreeComponent implements OnInit
                     {
                         for(let leaf of this.inputLeafList)
                         {
-                            if(leaf == subLeaf)
+                            if(leaf === subLeaf)
                             {
                                 leaf.parentLeafList = this.inputParentLeafList;
                             }
@@ -58,12 +58,12 @@ export class TerraBaseTreeComponent implements OnInit
 
     private onLeafClick(clickedLeaf:TerraLeafInterface):void
     {
-        if(clickedLeaf.subLeafList != null && !clickedLeaf.avoidOpenOnClick)
+        if(clickedLeaf.subLeafList !== null && !clickedLeaf.avoidOpenOnClick)
         {
             this.toggleOpen(clickedLeaf);
         }
 
-        if(clickedLeaf.clickFunction != null && !clickedLeaf.isActive)
+        if(clickedLeaf.clickFunction !== null && !clickedLeaf.isActive)
         {
             clickedLeaf.clickFunction();
         }
@@ -107,7 +107,7 @@ export class TerraBaseTreeComponent implements OnInit
 
     private onArrowClick(clickedLeaf:TerraLeafInterface):void
     {
-        if(clickedLeaf.onOpenFunction != null && !clickedLeaf.isOnOpenFunctionCalled)
+        if(clickedLeaf.onOpenFunction !== null && !clickedLeaf.isOnOpenFunctionCalled)
         {
             clickedLeaf.onOpenFunction();
             clickedLeaf.isOnOpenFunctionCalled = true;
@@ -132,7 +132,7 @@ export class TerraBaseTreeComponent implements OnInit
             {
                 foundLeaf = this.recursiveSearchActiveLeaf(leaf.subLeafList);
 
-                if(foundLeaf != null)
+                if(foundLeaf !== null)
                 {
                     break;
                 }
@@ -149,6 +149,6 @@ export class TerraBaseTreeComponent implements OnInit
 
     private checkIfArrowNeeded(clickedLeaf:TerraLeafInterface):boolean
     {
-        return clickedLeaf.subLeafList != null || clickedLeaf.onOpenFunction != null;
+        return clickedLeaf.subLeafList !== null || clickedLeaf.onOpenFunction !== null;
     }
 }

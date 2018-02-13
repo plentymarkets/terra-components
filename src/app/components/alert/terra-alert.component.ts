@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { TerraAlertInterface } from './data/terra-alert.interface';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 
 /**
  * @author mkunze
@@ -23,7 +26,7 @@ export class TerraAlertComponent
 
     public static getInstance():TerraAlertComponent
     {
-        if(TerraAlertComponent._instance == null)
+        if(isNull(TerraAlertComponent._instance))
         {
             TerraAlertComponent._isCreating = true;
             TerraAlertComponent._instance = new TerraAlertComponent();
@@ -76,7 +79,7 @@ export class TerraAlertComponent
     {
         for(let alert of this.alerts)
         {
-            if(alert.identifier == identifier)
+            if(alert.identifier === identifier)
             {
                 let index:number = this.alerts.indexOf(alert);
 

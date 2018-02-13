@@ -34,7 +34,7 @@ export class TerraComponentsComponent extends Translation
 
         let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
 
-        if(langInLocalStorage != null)
+        if(langInLocalStorage !== null)
         {
             this.locale.setCurrentLanguage(langInLocalStorage);
         }

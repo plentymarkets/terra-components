@@ -36,11 +36,11 @@ export class TerraTileBoxPanelComponent
 
         let index:number = this.selectedTileBoxList.indexOf(tile);
 
-        if(tile.isSelected && index == -1)
+        if(tile.isSelected && index === -1)
         {
             this.selectedTileBoxList.push(tile);
         }
-        else if(!tile.isSelected && index != -1)
+        else if(!tile.isSelected && index !== -1)
         {
             this.selectedTileBoxList.splice(index, 1);
         }
@@ -53,7 +53,7 @@ export class TerraTileBoxPanelComponent
 
         for(let tile of this.inputTileBoxList)
         {
-            if(tile != draggingTile)
+            if(tile !== draggingTile)
             {
                 tile.isDropTarget = true;
             }
@@ -115,7 +115,7 @@ export class TerraTileBoxPanelComponent
 
             for(let tile of this.inputTileBoxList)
             {
-                if(tile != hoverTile)
+                if(tile !== hoverTile)
                 {
                     tile.isHover = false;
                 }

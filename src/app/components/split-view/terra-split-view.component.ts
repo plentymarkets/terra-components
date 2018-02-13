@@ -113,7 +113,7 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
             breadcrumb.addClass('active');
 
             // focus breadcrumbs
-            if(breadcrumb[0] != null)
+            if(breadcrumb[0] !== null)
             {
                 breadCrumbContainer.stop();
                 breadCrumbContainer.animate(
@@ -129,13 +129,13 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
             }
 
             // offset fix for navigator
-            if(prevSplitView[0] != null)
+            if(prevSplitView[0] !== null)
             {
                 offset = offset + prevSplitView.width() + (3 * offset);
             }
 
             // offset fix for overlay
-            if($($(anchor[0].closest('.hasSplitView')).find(anchor))[0] != null)
+            if($($(anchor[0].closest('.hasSplitView')).find(anchor))[0] !== null)
             {
                 offset = offset + ($(window).width() / 2 - viewContainer.width() / 2);
             }

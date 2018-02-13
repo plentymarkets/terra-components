@@ -85,12 +85,12 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     public set inputSelectedValue(value:number | string)
     {
         console.warn('inputSelectedValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-        if(value !== undefined && value != null)
+        if(!isNullOrUndefined(value))
         {
             this.inputListBoxValues
                 .forEach((item:TerraSelectBoxValueInterface) =>
                 {
-                    if(item.value == value)
+                    if(item.value === value)
                     {
                         this._selectedValue = item;
                     }
@@ -137,7 +137,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         this.isValid = true;
         this._toggleOpen = false;
-        this._hasLabel = this.inputName != null;
+        this._hasLabel = this.inputName !== null;
         this._isInit = true;
     }
 
@@ -147,7 +147,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(this._isInit == true
+        if(this._isInit === true
            && changes['inputListBoxValues']
            && changes['inputListBoxValues'].currentValue.length > 0
            && !this.inputListBoxValues.find((x:TerraSelectBoxValueInterface):boolean => this._selectedValue === x))
@@ -185,7 +185,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             this.inputListBoxValues
                 .forEach((item:TerraSelectBoxValueInterface) =>
                 {
-                    if(item.value == value)
+                    if(item.value === value)
                     {
                         this._selectedValue = item;
                     }
@@ -201,11 +201,11 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 
     private set toggleOpen(value:boolean)
     {
-        if(this._toggleOpen !== value && value == true)
+        if(this._toggleOpen !== value && value === true)
         {
             document.addEventListener('click', this.clickListener, true);
         }
-        else if(this._toggleOpen !== value && value == false)
+        else if(this._toggleOpen !== value && value === false)
         {
             document.removeEventListener('click', this.clickListener);
         }

@@ -8,13 +8,13 @@ export class TerraSplitConfigBase
     {
         for(let i:number = 0; i < this.modules.length; i++)
         {
-            let hasSameModuleName:boolean = this.modules[i].mainComponentName != null &&
-                                    this.modules[i].mainComponentName == module.mainComponentName;
+            let hasSameModuleName:boolean = this.modules[i].mainComponentName !== null &&
+                                    this.modules[i].mainComponentName === module.mainComponentName;
 
-            let hasSameInstanceKey:boolean = this.modules[i].instanceKey != null &&
-                                     this.modules[i].instanceKey == module.instanceKey;
+            let hasSameInstanceKey:boolean = this.modules[i].instanceKey !== null &&
+                                     this.modules[i].instanceKey === module.instanceKey;
 
-            let hasSameParams:boolean = JSON.stringify(this.modules[i].parameter) == JSON.stringify(module.parameter);
+            let hasSameParams:boolean = JSON.stringify(this.modules[i].parameter) === JSON.stringify(module.parameter);
 
             if(hasSameModuleName && hasSameInstanceKey)
             {

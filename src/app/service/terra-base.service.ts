@@ -74,7 +74,7 @@ export class TerraBaseService
 
         let req:Observable<any> = request.map((response:Response) =>
         {
-            if(response.status == 204)
+            if(response.status === 204)
             {
                 return response.text();
             }
@@ -111,7 +111,7 @@ export class TerraBaseService
 
                 this.dispatchEvent(routeToLoginEvent);
             }
-            else if(error.status == 401 && errorMessage === 'This action is unauthorized.')
+            else if(error.status === 401 && errorMessage === 'This action is unauthorized.')
             {
                 if(this._isPlugin)
                 {
@@ -131,7 +131,7 @@ export class TerraBaseService
                 }
             }
             // END Very unclean workaround!
-            else if(error.status == 401)
+            else if(error.status === 401)
             {
                 let loginEvent:CustomEvent = new CustomEvent('login');
                 // Workaround for plugins in Angular (loaded via iFrame)

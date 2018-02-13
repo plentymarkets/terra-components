@@ -261,7 +261,7 @@ export class TerraNodeTreeConfig<D>
             {
                 foundNode = this.recursiveFindNode(node.children, nodeToFind);
 
-                if(foundNode != null)
+                if(foundNode !== null)
                 {
                     break;
                 }
@@ -288,7 +288,7 @@ export class TerraNodeTreeConfig<D>
             {
                 foundNode = this.recursiveFindNodeById(node.children, id);
 
-                if(foundNode != null)
+                if(foundNode !== null)
                 {
                     break;
                 }

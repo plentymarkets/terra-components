@@ -63,7 +63,7 @@ export class TerraMultiSplitViewConfig
                                 (child.inputs && view.inputs && JSON.stringify(child.inputs) === JSON.stringify(view.inputs)) ||
                                 (child.name === view.name);
 
-                            if(hasSameParameter && child.module.ngModule == view.module.ngModule)
+                            if(hasSameParameter && child.module.ngModule === view.module.ngModule)
                             {
                                 view = child;
                                 viewExist = true;

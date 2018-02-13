@@ -105,7 +105,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
         this.isValid = true;
         this._toggleOpen = false;
-        this._hasLabel = this.inputName != null;
+        this._hasLabel = this.inputName !== null;
         this._lastSelectedValues = [];
         this._listBoxHeadingKey = '';
         this._noEntriesTextKey = this.inputWithRecentlyUsed ? 'terraSuggestionBox.noRecentlyUsed' : 'terraSuggestionBox.noSuggestions';
@@ -186,12 +186,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     public set toggleOpen(value:boolean)
     {
-        if(this._toggleOpen !== value && value == true)
+        if(this._toggleOpen !== value && value === true)
         {
             document.addEventListener('click', this.clickListener);
             this.focusSelectedElement();
         }
-        else if(this._toggleOpen !== value && value == false)
+        else if(this._toggleOpen !== value && value === false)
         {
             document.removeEventListener('click', this.clickListener);
         }

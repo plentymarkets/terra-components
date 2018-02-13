@@ -12,6 +12,7 @@ import { TerraSimpleTableHeaderCellInterface } from './cell/terra-simple-table-h
 import { TerraSimpleTableRowInterface } from './row/terra-simple-table-row.interface';
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
 import { Key } from 'ts-keycode-enum';
+import { isNull } from 'util';
 
 @Component({
     selector: 'terra-simple-table',
@@ -122,12 +123,12 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     private checkTooltipPlacement(placement:string):string
     {
-        if(placement != null && placement != '')
+        if(isNull(placement) || placement === '')
         {
-            return placement;
+            return 'top';
         }
 
-        return 'top';
+        return placement;
     }
 
     private onHeaderCheckboxChange():void

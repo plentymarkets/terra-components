@@ -300,7 +300,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 let viewContainer:JQuery = anchor.parent();
 
                 // focus breadcrumbs
-                if(currentBreadcrumb[0] != null)
+                if(currentBreadcrumb[0] !== null)
                 {
                     breadCrumbContainer.stop();
                     breadCrumbContainer.animate(
@@ -309,7 +309,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 }
 
                 // check if viewport needs to be adjusted
-                if(anchor[0] != null &&
+                if(anchor[0] !== null &&
                    anchor[0].getBoundingClientRect().left > viewContainer.offset().left &&
                    anchor[0].getBoundingClientRect().right <= viewContainer.offset().left + viewContainer.outerWidth())
                 {

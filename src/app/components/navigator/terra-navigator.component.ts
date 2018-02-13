@@ -254,7 +254,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             {
                 result.push(item.rootPath[item.rootPath.length - 1]);
 
-                if(item.children != null)
+                if(item.children !== null)
                 {
                     this.findRootPath(routeArray, routeIndex, item.children, result);
                 }

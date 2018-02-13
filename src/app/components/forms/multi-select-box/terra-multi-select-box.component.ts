@@ -11,6 +11,7 @@ import {
 import { TerraMultiSelectBoxValueInterface } from './data/terra-multi-select-box-value.interface';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import { TranslationService } from 'angular-l10n';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'terra-multi-select-box',
@@ -43,15 +44,15 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
     @Input()
     public set inputSelectedValueList(value:Array<any>)
     {
-        if(value !== undefined && value != null)
+        if(!isNullOrUndefined(value))
         {
             let valueCopy:any = value.slice(0);
 
-            if(valueCopy.length == 0)
+            if(valueCopy.length === 0)
             {
                 this.viewChildHeaderCheckbox.value = false;
             }
-            else if(this._selectedValueList.length > 0 && this.inputValueList.length == this._selectedValueList.length)
+            else if(this._selectedValueList.length > 0 && this.inputValueList.length === this._selectedValueList.length)
             {
                 this.viewChildHeaderCheckbox.value = true;
             }
@@ -72,7 +73,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
 
                     valueCopy.forEach((key:any) =>
                     {
-                        if(item.value == key)
+                        if(item.value === key)
                         {
                             item.selected = true;
                             this._selectedValueList.push(item.value);
@@ -116,13 +117,13 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
      */
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(this._isInit == true && changes['inputValueList'] && changes['inputValueList'].currentValue.length > 0)
+        if(this._isInit === true && changes['inputValueList'] && changes['inputValueList'].currentValue.length > 0)
         {
             let temp:Array<any> = [];
 
             changes['inputValueList'].currentValue.forEach((item:TerraMultiSelectBoxValueInterface) =>
             {
-                if(item.selected && item.selected == true)
+                if(item.selected && item.selected === true)
                 {
                     temp.push(item.value);
                 }
@@ -154,11 +155,11 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
         this.changeValueState(isChecked, value);
         this.inputSelectedValueList = this._selectedValueList;
 
-        if(this._selectedValueList.length == 0)
+        if(this._selectedValueList.length === 0)
         {
             this.viewChildHeaderCheckbox.value = false;
         }
-        else if(this._selectedValueList.length > 0 && this.inputValueList.length == this._selectedValueList.length)
+        else if(this._selectedValueList.length > 0 && this.inputValueList.length === this._selectedValueList.length)
         {
             this.viewChildHeaderCheckbox.value = true;
         }
@@ -177,13 +178,13 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
         let index:number = this._selectedValueList.indexOf(valueToChange.value);
 
         // check if value exists in list
-        if(index == -1)
+        if(index === -1)
         {
             valueFound = false;
         }
         else
         {
-            valueFound = this._selectedValueList[index] != null;
+            valueFound = this._selectedValueList[index] !== null;
         }
 
         if(valueToChange.selected)
@@ -209,7 +210,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
         {
             valueList.forEach((item:TerraMultiSelectBoxValueInterface) =>
             {
-                if(item.selected == true)
+                if(item.selected === true)
                 {
                     result.push(item.value);
                 }

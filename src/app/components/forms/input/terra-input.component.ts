@@ -175,11 +175,11 @@ export class TerraInputComponent implements ControlValueAccessor
             {
                 this.isValid = false;
 
-                if(this.inputIsRequired && (isNullOrUndefined(this.value) || this.value.length == 0))
+                if(this.inputIsRequired && (isNullOrUndefined(this.value) || this.value.length === 0))
                 {
                     let emptyMessage:string;
 
-                    if(!this.inputEmptyMessage || this.inputEmptyMessage.length == 0)
+                    if(!this.inputEmptyMessage || this.inputEmptyMessage.length === 0)
                     {
                         //// TODO i18n
                         // emptyMessage = 'Mach eine Eingabe!';
@@ -200,7 +200,7 @@ export class TerraInputComponent implements ControlValueAccessor
                 {
                     let invalidMessage:string;
 
-                    if(!this.inputInvalidMessage || this.inputInvalidMessage.length == 0)
+                    if(!this.inputInvalidMessage || this.inputInvalidMessage.length === 0)
                     {
                         //// TODO i18n
                         // invalidMessage = 'Eingabe ungültig!';
