@@ -14,7 +14,7 @@ import { GridOptions } from './gridOptions.interface';
 import * as Interact from 'interactjs';
 
 @Directive({
-    selector: '[terra-resizable]'
+    selector: '[terraResizable]'
 })
 export class TerraResizableDirective implements OnChanges
 {

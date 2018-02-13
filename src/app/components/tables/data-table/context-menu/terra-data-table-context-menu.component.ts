@@ -7,7 +7,7 @@ import { TerraBaseData } from '../../../data/terra-base.data';
  * @author mkunze
  */
 @Component({
-    selector: 'context-menu-holder',
+    selector: 'terra-context-menu-holder',
     styles:   [require('./terra-data-table-context-menu.component.scss')],
     template: require('./terra-data-table-context-menu.component.html')
 })

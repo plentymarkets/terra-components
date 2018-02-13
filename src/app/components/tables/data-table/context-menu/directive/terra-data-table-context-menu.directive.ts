@@ -11,7 +11,7 @@ import { TerraBaseData } from '../../../../data/terra-base.data';
  * @author mkunze
  */
 @Directive({
-    selector: '[context-menu]',
+    selector: '[contextMenu]',
     host:     {'(contextmenu)': 'rightClicked($event)'}
 })
 export class TerraDataTableContextMenuDirective<D extends TerraBaseData> implements OnInit

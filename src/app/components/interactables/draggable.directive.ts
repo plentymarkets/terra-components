@@ -14,7 +14,7 @@ import { RestrictOptions } from './restrictOptions.interface';
 import { InertiaOptions } from './inertiaOptions.interface';
 
 @Directive({
-    selector: '[terra-draggable]'
+    selector: '[terraDraggable]'
 })
 export class TerraDraggableDirective implements OnChanges
 {

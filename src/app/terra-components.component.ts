@@ -9,7 +9,7 @@ import {
 } from 'angular-l10n';
 
 @Component({
-    selector: 'app-root',
+    selector: 'terra-app-root',
     template: require('./terra-components.component.html'),
     styles:   [require('./terra-components.component.scss')]
 })

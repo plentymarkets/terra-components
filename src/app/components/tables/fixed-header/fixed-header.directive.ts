@@ -6,12 +6,12 @@ import {
     forwardRef,
     Inject
 } from '@angular/core';
-import { TerraSimpleTableComponent } from '../simple/terra-simple-table.component';
+import { TerraSimpleTableComponent } from '../../../../';
 
-const FIXED_CLASS:string = 'fixed-header';
+const FIXED_CLASS:string = 'fixedHeader';
 
 @Directive({
-    selector: 'terra-simple-table[fixed-header]'
+    selector: 'terra-simple-table[fixedHeader]'
 })
 export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
 {

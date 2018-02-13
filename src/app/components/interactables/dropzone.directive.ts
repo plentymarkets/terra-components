@@ -22,7 +22,7 @@ export type AcceptFn = (args:{
 }) => boolean;
 
 @Directive({
-    selector: '[terra-dropzone]'
+    selector: '[terraDropzone]'
 })
 export class TerraDropzoneDirective implements OnChanges
 {
