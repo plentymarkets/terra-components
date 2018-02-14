@@ -1,7 +1,9 @@
 import { TerraNodeInterface } from './terra-node.interface';
 import { isNullOrUndefined } from 'util';
 import { TranslationService } from 'angular-l10n';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class TerraNodeTreeConfig<D>
 {
     private _list:Array<TerraNodeInterface<D>> = [];

@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <p>Simple slider</p>
+            <terra-slider inputName="Simple slider"
+                          [inputMin]="0"
+                          [inputMax]="10">
+            </terra-slider>
+        </div>
+        <div class="col-md-6">
+            <p>Slider with fixed interval</p>
+            <terra-slider inputName="Fixed slider"
+                          [inputMin]="0"
+                          [inputMax]="10"
+                          [inputInterval]="1">
+            </terra-slider>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p>Slider with min/ max label</p>
+            <terra-slider inputName="Slider min-max"
+                          [inputMin]="0"
+                          [inputMax]="10"
+                          [inputInterval]="1"
+                          [inputShowMinMax]="true">
+            </terra-slider>
+        </div>
+        <div class="col-md-6">
+            <p>Slider with ticks</p>
+            <terra-slider inputName="Slider with ticks"
+                          [inputMin]="0"
+                          [inputMax]="10"
+                          [inputInterval]="1"
+                          [inputShowTicks]="true">
+            </terra-slider>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p>Slider with float values</p>
+            <terra-slider inputName="Float slider"
+                          [inputMin]="0"
+                          [inputMax]="1"
+                          [inputInterval]="0.1">
+            </terra-slider>
+        </div>
+        <div class="col-md-6">
+            <p>Slider with negative values</p>
+            <terra-slider inputName="Negative slider"
+                          [inputMin]="-5"
+                          [inputMax]="5">
+            </terra-slider>
+        </div>
+    </div>
+</div>

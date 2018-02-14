@@ -13,53 +13,58 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraButtonComponent
 {
+    /** @description If true, the button gets the primary color blue. Default false. */
     @Input()
     public inputIsPrimary:boolean;
 
+    /** @description If true, the button gets the secondary color red. Default false. */
     @Input()
     public inputIsSecondary:boolean;
 
-    /**
-     * @description If true, the button gets the tertiary color green. Default false.
-     */
+    /** @description If true, the button gets the tertiary color green. Default false.*/
     @Input()
     public inputIsTertiary:boolean;
 
+    /** @description If true, the button will be small. Default false.*/
     @Input()
     public inputIsSmall:boolean;
 
+    /** @description If true, the button will be large. Default false.*/
     @Input()
     public inputIsLarge:boolean;
 
+    /** @description If true, the button will be disabled. Default false.*/
     @Input()
     public inputIsDisabled:boolean;
 
+    /** @description Set the caption.*/
     @Input()
     public inputCaption:string;
 
+    /** @description Set an icon (e.g. icon-save).*/
     @Input()
     public inputIcon:string;
 
-    /**
-     * @description Set the html native 'type' attribute, e.g., 'submit or 'reset'. Default 'button'.
-     */
+    /** @description Set the html native 'type' attribute, e.g., 'submit or 'reset'. Default 'button'.*/
     @Input()
     public inputType:string;
 
+    /** @description  If true, the button will be aligned to the right side of another element. Default false.*/
     @Input()
     public inputIsAlignRight:boolean;
 
-    /**
-     * @description If true, the button will be hidden. Default false.
-     */
+    /** @description If true, the button will be hidden. Default false.*/
     @Input()
     public inputIsHidden:boolean;
 
+    /** @description Set the tooltip.*/
     @Input()
     public inputTooltipText:string;
 
+    /** @description Set the tooltip placement (bottom, top, left, right). Default top.*/
     @Input()
-    public inputTooltipPlacement:string; // top, bottom, left, right
+    public inputTooltipPlacement:string;
+
     /**
      * @description If true, the button color changes to blue and indicates its active state. Default false.
      */
@@ -91,6 +96,8 @@ export class TerraButtonComponent
     @Output()
     public outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
 
+    private _currentTooltipPlacement:string;
+
     constructor()
     {
         this.inputTooltipPlacement = 'top';
@@ -102,6 +109,8 @@ export class TerraButtonComponent
         this.inputIsLink = false;
         this.inputIsDisabled = false;
         this.inputIsHighlighted = false;
+        this._currentTooltipPlacement = this.inputTooltipPlacement;
+
     }
 
     private click(event:Event):void
@@ -109,6 +118,27 @@ export class TerraButtonComponent
         if(isNullOrUndefined(this.inputIsDisabled) || this.inputIsDisabled === false)
         {
             this.outputClicked.emit(event);
+        }
+    }
+
+    private setTooltipPlacement(event:MouseEvent):void
+    {
+        if(isNullOrUndefined(this.inputTooltipText))
+        {
+            return;
+        }
+
+        let minimalDistanceToWindowEdge:number = 100;
+
+        this._currentTooltipPlacement = this.inputTooltipPlacement;
+
+        if(window.innerWidth - event.clientX < minimalDistanceToWindowEdge)
+        {
+            this._currentTooltipPlacement = 'left';
+        }
+        else if(event.clientX < minimalDistanceToWindowEdge)
+        {
+            this._currentTooltipPlacement = 'right';
         }
     }
 }

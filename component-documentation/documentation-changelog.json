@@ -1,0 +1,35 @@
+{
+  "information": {
+    "name": "changelog",
+    "version": "1.0",
+    "terra-components-version": "2.1.33-zlk",
+    "change-date":"21-12-2017"
+  },
+  "new-release-changelog":
+  [
+    {
+      "component-name":"terra-button",
+      "date": "21-12-2017"
+    },
+    {
+      "component-name":"terra-card",
+      "date": "21-12-2017"
+    },
+    {
+      "component-name":"terra-button-with-options",
+      "date": "21-12-2017"
+    }
+  ],
+  "changelog":
+  [
+    {
+      "component-name":"terra-system-tree",
+      "date": "21-12-2017"
+    },
+    {
+      "component-name":"terra-dynamic-module-loader",
+      "date": "21-12-2017"
+    }
+
+  ]
+}
