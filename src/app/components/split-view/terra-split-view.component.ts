@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
 
+/** @deprecated - please use `TerraMultiSplitViewComponent` instead */
 @Component({
     selector: 'terra-split-view',
     template: require('./terra-split-view.component.html'),
@@ -14,7 +15,6 @@ import { TerraSplitViewInterface } from './data/terra-split-view.interface';
                require('./terra-split-view.component.glob.scss').toString()
     ]
 })
-/** @deprecated - please use `TerraMultiSplitViewComponent` instead */
 export class TerraSplitViewComponent implements OnChanges, OnDestroy
 {
     @Input() inputModules:Array<TerraSplitViewInterface>;
