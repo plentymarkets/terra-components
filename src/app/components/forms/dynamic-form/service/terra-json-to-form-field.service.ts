@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TerraFormFieldBase } from '../data/terra-form-field-base';
-import { ControlTypeEnum } from '../enum/controlType.enum';
+import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 import { TerraFormFieldInputText } from '../data/terra-form-field-input-text';
 
 /**
@@ -15,35 +15,48 @@ export class TerraJsonToFormFieldService
 
     /*
 
-    key
-    controlType as enum value
-    label
-    validators
-
-    selectBoxValues
+     private _formStructureJson:{ [key:string]:any } = {
+     input: {
+     type:     'inputText',
+     label:    'Input',
+     required: false,
+     options:  {
+     // common options
+     tooltip:      'Tooooooltip',
+     defaultValue: 'Hallo',
+     }
+     }
+     };
 
      */
 
-    public generateFormFields(formFieldsData:Array<{ [key:string]:any }>):Array<TerraFormFieldBase<any>>
+    public generateFormFields(formFieldsJSON:{ [key:string]:any }):Array<TerraFormFieldBase<any>>
     {
-        formFieldsData.forEach((formFieldData:{ [key:string]:any }) => {
-            this.formFields.push(this.createFormField(formFieldData));
+        //for(let key in formFieldsJSON)
+
+        Object.keys(formFieldsJSON).forEach((formFieldKey:string) =>
+        {
+            this.formFields.push(this.createFormField(formFieldKey, formFieldsJSON[formFieldKey]));
         });
+
+        //formFieldsJSON.forEach((formFieldData:{ [key:string]:any }) => {
+        //    this.formFields.push(this.createFormField(formFieldData));
+        //});
 
         return this.formFields;
     }
 
-    private createFormField(formFieldData:{ [key:string]:any }):TerraFormFieldBase<any>
+    private createFormField(formFieldKey:string, formFieldData:{ [key:string]:any }):TerraFormFieldBase<any>
     {
         let formField:TerraFormFieldBase<any>;
 
-        switch(formFieldData.controlType)
+        switch(formFieldData.type)
         {
-            case ControlTypeEnum.INPUT_TEXT:
-                formField = new TerraFormFieldInputText(formFieldData.key, {label: formFieldData.label});
+            case TerraControlTypeEnum.INPUT_TEXT:
+                formField = new TerraFormFieldInputText(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             default:
-                formField = new TerraFormFieldBase(formFieldData.key, formFieldData.controlType);
+                formField = new TerraFormFieldBase(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
         }
 

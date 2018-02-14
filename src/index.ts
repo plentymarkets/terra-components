@@ -106,11 +106,13 @@ export * from './app/components/forms/dynamic-form/data/terra-form-field-input-t
 export * from './app/components/forms/dynamic-form/data/terra-form-field-input-number';
 export * from './app/components/forms/dynamic-form/data/terra-form-field-select-box';
 export * from './app/components/forms/dynamic-form/data/terra-form-field-horizontal-container';
+export * from './app/components/forms/dynamic-form/data/terra-form-field-vertical-container';
 export * from './app/components/forms/dynamic-form/data/terra-form-field-conditional-container';
 export * from './app/components/forms/dynamic-form/data/terra-form-field-check-box';
 export * from './app/components/forms/dynamic-form/data/terra-form-field-date-picker';
 export * from './app/components/forms/dynamic-form/handler/dynamic-form-functions.handler';
-export * from './app/components/forms/dynamic-form/enum/controlType.enum';
+export * from './app/components/forms/dynamic-form/enum/terra-control-type.enum';
 export * from './app/components/forms/dynamic-form/service/terra-json-to-form-field.service';
 export * from './app/helpers/terra-converter.helper';
 export * from './app/components/pager/data/terra-pager.data';
+export * from './app/helpers/url.helper';
