@@ -1,5 +1,5 @@
 import { isNull } from 'util';
-import { ControlTypeEnum } from '../enum/controlType.enum';
+import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
  * @author mfrank
@@ -7,8 +7,8 @@ import { ControlTypeEnum } from '../enum/controlType.enum';
 export interface TerraFormFieldBaseOptions<T>
 {
     value?:T;
-    label?:string;
-    required?:boolean;
+    tooltip?:string;
+    tooltipPlacement?:string;
     minLength?:number;
     maxLength?:number;
     minValue?:number;
@@ -25,6 +25,10 @@ export class TerraFormFieldBase<T>
     public key:string;
     public label:string;
 
+    // Tooltip
+    public tooltip:string;
+    public tooltipPlacement:string;
+
     // Validator
     public required:boolean;
     public minLength:number;
@@ -33,27 +37,29 @@ export class TerraFormFieldBase<T>
     public maxValue:number;
     public pattern:string | RegExp;
 
-    public readonly controlType:ControlTypeEnum;
+    public readonly controlType:TerraControlTypeEnum;
 
-    constructor(key:string, controlType:ControlTypeEnum, options:TerraFormFieldBaseOptions<T> = {})
+    constructor(key:string, controlType:TerraControlTypeEnum, label:string, required:boolean, options:TerraFormFieldBaseOptions<T> = {})
     {
         if(isNull(key))
         {
-            throw new Error('key can no tbe null');
+            throw new Error('key can not be null');
         }
 
         if(isNull(controlType))
         {
-            throw new Error('controlType can no tbe null');
+            throw new Error('controlType can not be null');
         }
 
         this.key = key;
         this.controlType = controlType;
 
-        this.value = options.value;
-        this.label = options.label;
+        this.label = label;
+        this.required = required;
 
-        this.required = !!options.required;
+        this.value = options.value;
+        this.tooltip = options.tooltip || null;
+        this.tooltipPlacement = options.tooltipPlacement || 'top';
         this.minLength = options.minLength || -1;
         this.maxLength = options.maxLength || -1;
         this.minValue = options.minValue || null;

@@ -2,7 +2,7 @@ import {
     TerraFormFieldBase,
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
-import { ControlTypeEnum } from '../enum/controlType.enum';
+import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
  * @author mfrank
@@ -16,8 +16,8 @@ export class TerraFormFieldDatePicker extends TerraFormFieldBase<string>
 {
     public type:string;
 
-    constructor(key:string, options:TerraFormFieldDatePickerOptions = {})
+    constructor(key:string, label:string, required:boolean, options:TerraFormFieldDatePickerOptions = {})
     {
-        super(key, ControlTypeEnum.DATE_PICKER, options);
+        super(key, TerraControlTypeEnum.DATE_PICKER, label, required, options);
     }
 }
