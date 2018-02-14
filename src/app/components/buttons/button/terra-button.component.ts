@@ -2,6 +2,7 @@ import {
     Component,
     EventEmitter,
     Input,
+    OnInit,
     Output
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
@@ -11,36 +12,58 @@ import { isNullOrUndefined } from 'util';
     styles:   [require('./terra-button.component.scss')],
     template: require('./terra-button.component.html')
 })
-export class TerraButtonComponent
+export class TerraButtonComponent implements OnInit
 {
+    /** @description If true, the button gets the primary color blue. Default false.*/
     @Input() inputIsPrimary:boolean;
+
+    /** @description If true, the button gets the secondary color red. Default false.*/
     @Input() inputIsSecondary:boolean;
+
     /**
      * @description If true, the button gets the tertiary color green. Default false.
      * */
     @Input() inputIsTertiary:boolean;
+
+    /** @description If true, the button will be small. Default false.*/
     @Input() inputIsSmall:boolean;
+
+    /** @description If true, the button will be large. Default false.*/
     @Input() inputIsLarge:boolean;
+
+    /** @description If true, the button will be disabled. Default false.*/
     @Input() inputIsDisabled:boolean;
+
+    /** @description Set the caption.*/
     @Input() inputCaption:string;
+
+    /** @description Set an icon (e.g. icon-save).*/
     @Input() inputIcon:string;
     /**
      * @description Set the html native 'type' attribute, e.g., 'submit or 'reset'. Default 'button'.
      * */
     @Input() inputType:string;
+
+    /** @description  If true, the button will be aligned to the right side of another element. Default false.*/
     @Input() inputIsAlignRight:boolean;
     /**
      * @description If true, the button will be hidden. Default false.
      * */
     @Input() inputIsHidden:boolean;
+
+    /** @description Set the tooltip.*/
     @Input() inputTooltipText:string;
+
+    /** @description Set the tooltip placement (bottom, top, left, right). Default top.*/
     @Input() inputTooltipPlacement:string; //top, bottom, left, right
+
     /**
      * @description If true, the button color changes to blue and indicates its active state. Default false.
      * */
     @Input() inputIsActive:boolean;
     /**
-     * @description If true, a triangular yellow flag appears at the upper right corner of the button to indicate, e.g., a state in which the button should be clicked by the user. Default false.
+     * @description If true, a triangular yellow flag appears at the upper right corner of the button to indicate, e.g., a state in which
+     *     the button should be clicked by the user. Default false.
      * */
     @Input() inputIsFlagged:boolean;
     /**
@@ -53,6 +76,8 @@ export class TerraButtonComponent
     @Input() inputIsLink:boolean;
     @Input() inputIsHighlighted:boolean;
     @Output() outputClicked = new EventEmitter<Event>();
+
+    private _currentTooltipPlacement:string;
 
     constructor()
     {
@@ -67,11 +92,37 @@ export class TerraButtonComponent
         this.inputIsHighlighted = false;
     }
 
+    ngOnInit():void
+    {
+        this._currentTooltipPlacement = this.inputTooltipPlacement;
+    }
+
     private click(event:Event):void
     {
         if(isNullOrUndefined(this.inputIsDisabled) || this.inputIsDisabled === false)
         {
             this.outputClicked.emit(event);
+        }
+    }
+
+    private setTooltipPlacement(event:MouseEvent):void
+    {
+        if(isNullOrUndefined(this.inputTooltipText))
+        {
+            return;
+        }
+
+        let minimalDistanceToWindowEdge:number = 100;
+
+        this._currentTooltipPlacement = this.inputTooltipPlacement;
+
+        if(window.innerWidth - event.clientX < minimalDistanceToWindowEdge)
+        {
+            this._currentTooltipPlacement = 'left';
+        }
+        else if(event.clientX < minimalDistanceToWindowEdge)
+        {
+            this._currentTooltipPlacement = 'right';
         }
     }
 }
