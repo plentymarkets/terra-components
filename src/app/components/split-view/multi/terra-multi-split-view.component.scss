@@ -158,6 +158,24 @@
         {
             background-color: $white;
         }
+        
+        //divide 2 views with the same background color with a border
+        &:not(.isBackgroundColorGrey),
+        &.workaround
+        {
+            + .view:not(.isBackgroundColorGrey),
+            + .view.workaround
+            {
+                border-left: 1px solid $grey-4;
+            }
+        }
+        &.isBackgroundColorGrey:not(.workaround)
+        {
+            + .view.isBackgroundColorGrey:not(.workaround)
+            {
+                border-left: 2px solid $white;
+            }
+        }
     }
     
     .fadeIn

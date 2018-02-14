@@ -14,10 +14,10 @@ import {
 } from 'util';
 import {
     TerraAlertComponent,
+    TerraBaseParameterInterface,
     TerraLoadingSpinnerService,
     TerraPagerParameterInterface
 } from '../../';
-import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
 
 /**
  * @author mfrank
@@ -25,9 +25,10 @@ import { TerraBaseParameterInterface } from '../components/data/terra-base-param
 @Injectable()
 export class TerraBaseService
 {
-    private _headers:Headers;
-    private _url:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+
+    public headers:Headers;
+    public url:string;
 
     constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private _baseHttp:Http,
@@ -47,26 +48,6 @@ export class TerraBaseService
     get http():Http
     {
         return this._baseHttp;
-    }
-
-    get headers():Headers
-    {
-        return this._headers;
-    }
-
-    set headers(value:Headers)
-    {
-        this._headers = value;
-    }
-
-    get url():string
-    {
-        return this._url;
-    }
-
-    set url(value:string)
-    {
-        this._url = value;
     }
 
     protected setToHeader(key:string, value:string):void
@@ -122,7 +103,15 @@ export class TerraBaseService
 
             let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage();
 
-            if(error.status == 401 && errorMessage === "This action is unauthorized.")
+            if(error.status === 403 && this.getErrorClass(error) === 'UIHashExpiredException')
+            {
+                let routeToLoginEvent = new CustomEvent('CustomEvent');
+
+                routeToLoginEvent.initCustomEvent('routeToLogin', true, true, {});
+
+                this.dispatchEvent(routeToLoginEvent);
+            }
+            else if(error.status == 401 && errorMessage === "This action is unauthorized.")
             {
                 if(this._isPlugin)
                 {
@@ -144,24 +133,9 @@ export class TerraBaseService
             // END Very unclean workaround!
             else if(error.status == 401)
             {
-                let event:CustomEvent = new CustomEvent('login');
+                let loginEvent:CustomEvent = new CustomEvent('login');
                 //Workaround for plugins in Angular (loaded via iFrame)
-                if(window.parent !== null)
-                {
-                    //workaround for plugins in GWT (loaded via iFrame)
-                    if(window.parent.window.parent !== null)
-                    {
-                        window.parent.window.parent.window.dispatchEvent(event);
-                    }
-                    else
-                    {
-                        window.parent.window.dispatchEvent(event);
-                    }
-                }
-                else
-                {
-                    window.dispatchEvent(event);
-                }
+                this.dispatchEvent(loginEvent);
             }
 
             return Observable.throw(error);
@@ -180,12 +154,51 @@ export class TerraBaseService
         return req;
     }
 
+    private dispatchEvent(eventToDispatch:Event | CustomEvent):void
+    {
+        if(!isNullOrUndefined(window.parent))
+        {
+            //workaround for plugins in GWT (loaded via iFrame)
+            if(!isNullOrUndefined(window.parent.window.parent))
+            {
+                window.parent.window.parent.window.dispatchEvent(eventToDispatch);
+            }
+            else
+            {
+                window.parent.window.dispatchEvent(eventToDispatch);
+            }
+        }
+        else
+        {
+            window.dispatchEvent(eventToDispatch);
+        }
+    }
+
     private getErrorMessage(error:any):string
     {
         try
         {
-            let errorMessage:string = error.json().error.message;
+            let errorMessage:string;
+
+            if(!isNullOrUndefined(error.json().error))
+            {
+                errorMessage = error.json().error.message;
+            }
+
             return errorMessage;
+        }
+        catch(e)
+        {
+            return null;
+        }
+    }
+
+    private getErrorClass(error:any):string
+    {
+        try
+        {
+            let errorClass:string = error.json().class;
+            return errorClass;
         }
         catch(e)
         {
@@ -244,7 +257,7 @@ export class TerraBaseService
             }
         }
         // return if error code is null
-        else if(isNull(response.error.code))
+        else if(isNullOrUndefined(response.error) || isNull(response.error.code))
         {
             return;
         }
