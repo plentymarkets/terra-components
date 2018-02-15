@@ -81,6 +81,9 @@ import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
 import { TerraConverterHelper } from './helpers/terra-converter.helper';
+import { TerraCategoryPickerComponent } from '../index';
+import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
+import { TerraCategoryPickerBaseService } from './components/category-picker/service/terra-category-picker-base.service';
 
 @NgModule({
     declarations:    [
@@ -134,7 +137,8 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
         TerraNoteEditorComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
-        TerraNodeComponent
+        TerraNodeComponent,
+        TerraCategoryPickerComponent,
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -181,7 +185,8 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
         TerraNoteEditorComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
-        TerraNodeComponent
+        TerraNodeComponent,
+        TerraCategoryPickerComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -232,7 +237,8 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
         FixedHeaderDirective,
         TerraNoteEditorComponent,
         TerraNoteComponent,
-        TerraNodeTreeComponent
+        TerraNodeTreeComponent,
+        TerraCategoryPickerComponent
     ],
     imports:         [
         BrowserModule,
@@ -256,7 +262,7 @@ import { TerraConverterHelper } from './helpers/terra-converter.helper';
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
         TerraFileBrowserService,
-        TerraConverterHelper
+        TerraConverterHelper,
     ],
     bootstrap:       [
         TerraComponentsComponent
@@ -275,7 +281,7 @@ export class TerraComponentsModule
                 TerraNavigatorSplitViewConfig,
                 TerraUrlParamsDecorator,
                 TerraFrontendStorageService,
-                TerraAlertComponent
+                TerraAlertComponent,
             ]
         };
     }
@@ -291,7 +297,8 @@ export class TerraComponentsModule
                 TerraNavigatorSplitViewConfig,
                 TerraUrlParamsDecorator,
                 TerraFrontendStorageService,
-                TerraAlertComponent
+                TerraAlertComponent,
+                CategoryTreeConfig,
             ]
         };
     }

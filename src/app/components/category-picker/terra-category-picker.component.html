@@ -1,4 +1,27 @@
 <div>
-    <terra-node-tree>
-    </terra-node-tree>
+    <terra-text-input *ngIf="!_toggleTree"
+                      [inputIsReadonly]="true"
+                      [inputName]="_categoryInputName"
+                      [(ngModel)]="_categoryInputValue"
+                      (click)="showTree()">
+    </terra-text-input>
+    <div *ngIf="_toggleTree" onblur="showTree()">
+        <terra-node-tree [inputShowSearch]="true"
+                         [inputConfig]="categoryTreeConfig">
+        </terra-node-tree>
+        <terra-base-toolbar>
+            <terra-button inputTooltipText="{{'cancel' | translate:lang}}"
+                          inputTooltipPlacement="top"
+                          inputIcon="icon-cancel"
+                          [inputIsSmall]="true"
+                          (outputClicked)="showTree()">
+            </terra-button>
+            <terra-button inputTooltipText="{{'select' | translate:lang}}"
+                          inputTooltipPlacement="top"
+                          inputIcon="icon-success"
+                          [inputIsSmall]="true"
+                          (outputClicked)="onSelectNode()">
+            </terra-button>
+        </terra-base-toolbar>
+    </div>
 </div>
