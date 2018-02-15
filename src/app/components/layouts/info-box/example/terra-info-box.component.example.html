@@ -1,0 +1,13 @@
+<div class="info-box-container">
+    <terra-info-box>
+	<span body>
+		This is the content of an info-box!
+	</span>
+        <div buttons>
+            <terra-button [inputIcon]="'icon-settings'"
+                          [inputTooltipText]="'settings'"
+                          (outputClicked)="clickFunction('settings')">
+            </terra-button>
+        </div>
+    </terra-info-box>
+</div>

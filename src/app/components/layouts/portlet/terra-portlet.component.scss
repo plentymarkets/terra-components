@@ -7,6 +7,12 @@
     {
         padding: 8px 9px 4px 9px;
         background: transparent;
+    
+        display: -webkit-flex; /* Safari */
+        -webkit-justify-content: flex-start; /* Safari 6.1+ */
+        display: flex;
+        justify-content: space-between;
+        
         span
         {
             color: $grey-12;
@@ -117,9 +123,9 @@
 {
     [class^="icon-"]
     {
-        float: right;
         padding: 3px 3px;
         transition: all 100ms ease;
+        justify-content: flex-end;
         
         &.rotated
         {
@@ -164,4 +170,12 @@
     {
         border: 1px solid $blue-hover;
     }
+}
+
+.header-caption {
+    justify-content: flex-start;
+}
+
+.header-buttons {
+    justify-content: flex-end;
 }

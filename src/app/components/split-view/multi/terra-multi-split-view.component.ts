@@ -31,7 +31,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {
     @Input() inputConfig:TerraMultiSplitViewConfig;
     @Input() inputShowBreadcrumbs:boolean;
-    @Input() inputRouter:Router;     // to catch inputRouter events
     @Input() inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
 
     @HostListener('window:resize')
@@ -66,7 +65,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private splitViewId:number;
 
-    constructor(private zone:NgZone)
+    constructor(private zone:NgZone, private _router:Router)
     {
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
@@ -81,13 +80,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     ngOnInit()
     {
         // catch routing events, but only those that select the tab where the split view is instantiated
-        if(!isNullOrUndefined(this.inputRouter) && !isNullOrUndefined(this.inputComponentRoute))
+        if(!isNullOrUndefined(this._router) && !isNullOrUndefined(this.inputComponentRoute))
         {
             // check if the given route exists in the route config
             if(this.routeExists(this.inputComponentRoute))
             {
                 // register event listener
-                this.inputRouter.events
+                this._router.events
                     .filter((event:AngularRouter.Event) => event instanceof NavigationStart && event.url === this.inputComponentRoute)
                     .subscribe((path:NavigationStart) =>
                     {
@@ -495,7 +494,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         let routeLevel:number = 1;
 
         // get the routing config
-        let routes:Routes = this.inputRouter.config;
+        let routes:Routes = this._router.config;
 
         // scan the routing config
         while(routeLevel < path.length)
