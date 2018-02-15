@@ -16,7 +16,7 @@ import { TranslationService } from 'angular-l10n';
 })
 export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 {
-    protected _searchValue:string;
+    private _searchValue:string;
 
     /**
      * @description The config to handle actions on tree or node.
