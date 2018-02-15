@@ -3,7 +3,7 @@
     "name": "changelog",
     "version": "1.0",
     "terra-components-version": "2.1.33-zlk",
-    "change-date":"21-12-2017"
+    "change-date":"15-03-2018"
   },
   "new-release-changelog":
   [
@@ -18,12 +18,16 @@
     {
       "component-name":"terra-button-with-options",
       "date": "21-12-2017"
+    },
+    {
+      "component-name":"terra-portlet",
+      "date": "15-03-2018"
     }
   ],
   "changelog":
   [
     {
-      "component-name":"terra-system-tree",
+      "component-name":"terra-node-tree",
       "date": "21-12-2017"
     },
     {
