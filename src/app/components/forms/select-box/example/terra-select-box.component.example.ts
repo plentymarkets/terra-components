@@ -1,12 +1,7 @@
 import {
     Component,
     OnInit
-} from "@angular/core";
-import {
-    FormControl,
-    FormGroup,
-    Validators
-} from '@angular/forms';
+} from '@angular/core';
 
 @Component({
     selector: 'terra-select-box-example',
@@ -18,11 +13,7 @@ export class TerraSelectBoxComponentExample implements OnInit
     private _selectableOptionTypesList:any;
     private _pickedValue:string;
 
-    constructor()
-    {
-    }
-
-    ngOnInit()
+    public ngOnInit():void
     {
         this._selectableOptionTypesList = [];
         this._selectableOptionTypesList.push(

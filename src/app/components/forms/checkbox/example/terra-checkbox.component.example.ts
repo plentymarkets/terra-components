@@ -2,7 +2,7 @@ import {
     Component,
     OnInit,
     ViewChild
-} from "@angular/core";
+} from '@angular/core';
 import { TerraCheckboxComponent } from '../terra-checkbox.component';
 
 @Component({
@@ -12,29 +12,28 @@ import { TerraCheckboxComponent } from '../terra-checkbox.component';
 })
 export class TerraCheckboxComponentExample implements OnInit
 {
-    @ViewChild('viewChildIndeterminateCb') viewChildIndeterminateCb:TerraCheckboxComponent;
-    @ViewChild('viewChildTestCb') viewChildTestCb:TerraCheckboxComponent;
+    @ViewChild('viewChildIndeterminateCb')
+    public viewChildIndeterminateCb:TerraCheckboxComponent;
 
-    constructor()
-    {
-    }
+    @ViewChild('viewChildTestCb')
+    public viewChildTestCb:TerraCheckboxComponent;
 
-    ngOnInit()
+    public ngOnInit():void
     {
         this.viewChildIndeterminateCb.isIndeterminate = true;
     }
 
-    getCheckboxIndeterminateState()
+    public getCheckboxIndeterminateState():void
     {
         alert('Indeterminate state: ' + this.viewChildIndeterminateCb.isIndeterminate);
     }
 
-    setCheckboxIndeterminateState()
+    public setCheckboxIndeterminateState():void
     {
         this.viewChildIndeterminateCb.isIndeterminate = !this.viewChildIndeterminateCb.isIndeterminate;
     }
 
-    setCheckboxValue()
+    public setCheckboxValue():void
     {
         this.viewChildTestCb.value = !this.viewChildTestCb.value;
     }

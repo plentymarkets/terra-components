@@ -15,7 +15,7 @@ export class TerraCheckboxTreeComponentExample implements OnInit
 
     private _checkboxLeafList:Array<TerraLeafInterface> = [];
 
-    ngOnInit()
+    public ngOnInit():void
     {
         this._checkboxLeafList.push({
             caption:     'Leaf1',
@@ -49,5 +49,4 @@ export class TerraCheckboxTreeComponentExample implements OnInit
             value:   'leaf3Value',
         });
     }
-
 }

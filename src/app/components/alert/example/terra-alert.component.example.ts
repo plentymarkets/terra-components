@@ -19,7 +19,7 @@ export class TerraAlertComponentExample implements OnInit
     {
     }
 
-    ngOnInit()
+    public ngOnInit():void
     {
         this._exampleAlert.closeAlertByIdentifier('info');
     }
@@ -68,8 +68,8 @@ export class TerraAlertComponentExample implements OnInit
         this.emptyAlertArray();
     }
 
-    public emptyAlertArray()
-    { //No part of the Example (Ignore that Function)
+    public emptyAlertArray():void
+    { // No part of the Example (Ignore that Function)
         setTimeout(() => this._exampleAlert.closeAlertByIdentifier('info'), 5000);
     }
 }

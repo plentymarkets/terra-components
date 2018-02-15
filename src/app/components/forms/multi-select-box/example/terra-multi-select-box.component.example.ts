@@ -1,6 +1,7 @@
 import {
-    Component
-} from "@angular/core";
+    Component,
+    OnInit
+} from '@angular/core';
 import { TerraMultiSelectBoxValueInterface } from '../data/terra-multi-select-box-value.interface';
 
 @Component({
@@ -8,7 +9,7 @@ import { TerraMultiSelectBoxValueInterface } from '../data/terra-multi-select-bo
     styles:   [require('./terra-multi-select-box.component.example.scss')],
     template: require('./terra-multi-select-box.component.example.html'),
 })
-export class TerraMultiSelectBoxComponentExample
+export class TerraMultiSelectBoxComponentExample implements OnInit
 {
     private values:Array<TerraMultiSelectBoxValueInterface>;
     private disabled1:boolean = false;
@@ -18,11 +19,7 @@ export class TerraMultiSelectBoxComponentExample
     private disabled3:boolean = true;
     private error3:boolean = false;
 
-    constructor()
-    {
-    }
-
-    ngOnInit()
+    public ngOnInit():void
     {
         this.values = [
             {
