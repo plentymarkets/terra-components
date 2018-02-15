@@ -128,7 +128,10 @@ export class TerraPagerComponent implements OnInit
     public onToPage(event:any, pageNumber:number):void
     {
         event.preventDefault();
-        this.inputPagingData.page = Math.max(1, Math.min(this.inputPagingData.lastPageNumber, pageNumber)); // Limit page number to valid range [1, lastPageNumber]
+
+        // Limit page number to valid range [1, lastPageNumber]
+        this.inputPagingData.page = Math.max(1, Math.min(this.inputPagingData.lastPageNumber, pageNumber));
+
         this.outputDoPaging.emit(this.inputPagingData);
     }
 

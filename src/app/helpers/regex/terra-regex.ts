@@ -239,18 +239,21 @@ export class TerraRegex
     private static _ISBN:string = '^(97(8|9))?\\d{9}(\\d|X)$';
     private static _UPC:string = '\"^[0-9]{0,12}$\"';
     private static _HEX_COLOR_SHORT:string = '^#?([0-9a-f]{3}){1,2}$';
-    private static _EMAIL:string = '^[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$';
+    private static _EMAIL:string = '^[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+                                   '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$';
     private static _EMAIL_LOCAL_PART:string = '^[a-zA-Z0-9_\\-\\.]*$';
     private static _EMAIL_FORWARDING:string = '^[^üÜäÄöÖ!§$%&/{([)=}\\]?\\*+#^°:`µ¤<>|\"\']*$';
     private static _DATE:string = '^\\d{1,2}\\.\\d{1,2}\\.\\d{4}$';
-    private static _MYSQL_DATE_TIMESTAMP:string = '^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$';
+    private static _MYSQL_DATE_TIMESTAMP:string = '^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|' +
+                                                  '(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$';
     private static _MIXED:string = '^.*$';
     private static _SCORE_ALPHA_NUMERIC_POSITIVE_WITH_DOTS:string = '^[a-zA-Z0-9öäüÜÄÖ\\-\\._ ]+$';
     private static _PERCENTAGE:string = '^((100[\\.,][0]*)|100|[0-9]{0,2}|[0-9]{1,2}[\\.,][0-9]{0,3})$';
     private static _SIGNED_PERCENTAGE:string = '^[+-]?((100[\\.,][0]*)|100|[0-9]{0,2}|[0-9]{1,2}[\\.,][0-9]{0,3})$';
     private static _IP_V4:string = '^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$';
     private static _INT_PHONE:string = '^\\+?(?:[0-9 \\.-/] ?){5,14}[0-9]$';
-    private static _URL:string = '^(http|https|ftp)\\://[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\\-\\._\\?\\,\\]\\,\\[\\,\\\'/\\\\\\+&amp;%\\$#\\=~])*$';
+    private static _URL:string = '^(http|https|ftp)\\://[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,3}' +
+                                 '(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\\-\\._\\?\\,\\]\\,\\[\\,\\\'/\\\\\\+&amp;%\\$#\\=~])*$';
     private static _CANONICAL:string = '^(http:\\/\\/|https:\\/\\/)[a-zA-Z0-9]';
     private static _COMMA_DEVIDED:string = '^\\d+[\\, 0-9]*$';
     private static _UMLAUTS:string = '[öäüÖÄÜ]';
@@ -258,7 +261,8 @@ export class TerraRegex
     private static _USERNAME_COMBINED:string = '[^a-zA-Z0-9_\\-\\.]';
     private static _HAS_NUMBERS:string = '[0-9]';
     private static _PASSWORD_COMBINED:string = '[^a-zA-Z0-9äöüÄÖÜ@<\\(\\{\\[/=\\\\\\]\\}\\)>!\\?\\$%&#\\*\\-\\+\\.,;:_\\^\\|~]';
-    private static _IP_V4_OR_DOMAIN:string = '(^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$)|(^(?:[a-zA-Z0-9]+(?:\\-*[a-zA-Z0-9])*\\.)+[a-zA-Z]{2,6}$)';
+    private static _IP_V4_OR_DOMAIN:string = '(^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}' +
+                                             '(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$)|(^(?:[a-zA-Z0-9]+(?:\\-*[a-zA-Z0-9])*\\.)+[a-zA-Z]{2,6}$)';
     private static _IBAN_BIC:string = '^[a-zA-Z0-9]+$';
     private static _NUMBER_LETTERS:string = '^[a-zA-Z0-9_]+$';
     private static _WITHOUT_HTML:string = '^[^<]*[^>]*$';

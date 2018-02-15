@@ -157,7 +157,8 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
         if(!isNullOrUndefined(value))
         {
-            let selectedValue:TerraSuggestionBoxValueInterface = this.inputListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item.value === value);
+            let selectedValue:TerraSuggestionBoxValueInterface =
+                this.inputListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item.value === value);
 
             if(selectedValue)
             {

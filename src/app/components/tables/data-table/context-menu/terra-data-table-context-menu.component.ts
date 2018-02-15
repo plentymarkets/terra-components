@@ -77,6 +77,9 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
         let contextMenuWidth:number = anchor.width();
         let tableWidth:number;
 
+        let buttomTop:string = this._mouseLocation.top - offsetTop - contextMenuHeight + 'px';
+        let top:string = this._mouseLocation.top - offsetTop - 2 + 'px';
+
         if(this._mouseLocation.top + contextMenuHeight > innerHeight)
         {
             isMenuAtBottom = true;
@@ -96,7 +99,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
         return {
             visibility: this._isShown ? 'visible' : 'hidden',
             left:       this._mouseLocation.left - offsetLeft - 2 + 'px',
-            top:        isMenuAtBottom ? this._mouseLocation.top - offsetTop - contextMenuHeight + 'px' : this._mouseLocation.top - offsetTop - 2 + 'px'
+            top:        isMenuAtBottom ? buttomTop : top
         };
     }
 }
