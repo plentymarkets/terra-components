@@ -9,3 +9,25 @@ ul
     padding: 0px;
     margin: 0px;
 }
+
+.searchDisabled
+{
+    height: 4.5%;
+    width: 100%;
+    position: absolute;
+    z-index: 9999;
+    background-color: #FFFFFF;
+    opacity: 0.3;
+    margin-top: -4px;
+    margin-left: -4px;
+}
+
+.isDisabled
+{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 9999;
+    background-color: $white;
+    opacity: 0.3;
+}
