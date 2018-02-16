@@ -44,8 +44,8 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
     private _categoryInputName:string = '';
     private _categoryInputValue:string = '';
 
-    private _onChangeCallback:() => void;
-    private _onTouchedCallback:() => void;
+    private _onChangeCallback:(value:any) => void;
+    private _onTouchedCallback:(value:any) => void;
     private _list:Array<TerraNodeInterface<CategoryTreeData>> = [];
 
     constructor(private translation:TranslationService,
@@ -53,9 +53,9 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
     {
         this._categoryInputName = 'category';
         // initialize callbacks
-        this._onChangeCallback = () => {
+        this._onChangeCallback = (value:any) => {
         };
-        this._onTouchedCallback = () => {
+        this._onTouchedCallback = (value:any) => {
         };
     }
 
@@ -111,6 +111,20 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
                 }
             }
         });
+    }
+
+    public get value():any
+    {
+        return this._value;
+    };
+
+    public set value(v:any)
+    {
+        if(v !== this._value)
+        {
+            this._value = v;
+            this._onChangeCallback(this._value);
+        }
     }
 
     public writeValue(value:TerraNodeInterface<CategoryTreeData>):void

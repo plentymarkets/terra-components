@@ -56,6 +56,7 @@
             <terra-category-picker *ngSwitchCase="'categoryPicker'"
                                    [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                    [formControlName]="formField.key"
+                                   [inputCategoryService]="formField.categoryService"
                                    [(ngModel)]="formField.value">
             </terra-category-picker>
             
