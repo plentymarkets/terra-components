@@ -117,4 +117,5 @@ export * from './app/components/forms/dynamic-form/service/terra-json-to-form-fi
 export * from './app/helpers/terra-converter.helper';
 export * from './app/components/category-picker/terra-category-picker.component';
 export * from './app/components/category-picker/service/terra-category-picker-base.service';
+export * from './app/components/pager/data/terra-pager.data';
 export * from './app/helpers/url.helper';
