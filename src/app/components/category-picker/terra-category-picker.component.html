@@ -1,6 +1,5 @@
 <div>
-    <terra-text-input *ngIf="!_toggleTree"
-                      [inputIsReadonly]="true"
+    <terra-text-input [inputIsReadonly]="true"
                       [inputName]="_categoryInputName"
                       [(ngModel)]="_categoryInputValue"
                       (click)="showTree()">
