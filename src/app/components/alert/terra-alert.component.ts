@@ -55,7 +55,7 @@ export class TerraAlertComponent
 
         window.parent.window.dispatchEvent(event);
     }
-
+    /** @description is used to add an alert*/
     public addAlert(alert:TerraAlertInterface):void
     {
         if(isNullOrUndefined(alert.dismissOnTimeout))

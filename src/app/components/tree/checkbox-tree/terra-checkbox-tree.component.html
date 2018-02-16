@@ -4,7 +4,7 @@
             <li class="node leaf" [ngClass]="{'collapsed': !leaf.isOpen, 'active': leaf.isActive}">
                 <div class="leaf-titel flex-container" (click)="onLeafClick(leaf)">
                     <terra-checkbox
-                        (valueChange)="onCheckboxValueChange(leaf)"
+                        (ngModelChange)="onCheckboxValueChange($event, leaf)"
                         [(ngModel)]="leaf.checkboxChecked"
                         [isIndeterminate]="leaf.isIndeterminate">
                     </terra-checkbox>
@@ -15,6 +15,7 @@
                     *ngIf="leaf.subLeafList"
                     [inputLeafList]="leaf.subLeafList"
                     [inputParentLeafList]="leafList"
+                    (valueChange)="valueChange.emit($event)"
                     [inputCompleteLeafList]="inputCompleteLeafList">
                 </terra-checkbox-tree>
             </li>

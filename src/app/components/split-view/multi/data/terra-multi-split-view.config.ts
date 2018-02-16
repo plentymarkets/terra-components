@@ -6,7 +6,7 @@ export class TerraMultiSplitViewConfig
 {
     public currentSelectedView:TerraMultiSplitViewInterface;
     public resizeViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
-    
+
     private _views:Array<TerraMultiSplitViewInterface> = [];
 
     private _addViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();

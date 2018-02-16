@@ -1,0 +1,53 @@
+:host-context(div.horizontalGroup)
+{
+    form
+    {
+        display: flex;
+    }
+}
+
+.horizontalGroup
+{
+    padding: 4px 0;
+    
+    .horizontalGroupLabel
+    {
+        display: block;
+        font-weight: bold;
+    }
+    
+    .horizontalGroupEntry
+    {
+        width: 100%;
+    }
+    
+    & :not(:last-child)
+    {
+        margin-right: 5px;
+    }
+}
+
+.verticalGroup
+{
+    padding: 4px 0;
+    
+    .subSwitch
+    {
+        width: 100%;
+    }
+    
+    .verticalGroupLabel
+    {
+        font-weight: bold;
+    }
+    
+    .verticalGroupEntry
+    {
+        width: 100%;
+    }
+}
+
+.conditionalSwitch
+{
+    margin-top: 5px;
+}

@@ -335,7 +335,8 @@ button.btn:focus
 {
     background-color: $grey-9;
     
-    &.btn-link {
+    &.btn-link
+    {
         background-color: transparent;
     }
 }

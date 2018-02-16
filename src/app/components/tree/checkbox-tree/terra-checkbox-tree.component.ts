@@ -1,7 +1,9 @@
 import {
     Component,
+    EventEmitter,
     Input,
-    OnInit
+    OnInit,
+    Output,
 } from '@angular/core';
 import { TerraBaseTreeComponent } from '../base/terra-base-tree.component';
 import { TerraCheckboxLeafInterface } from '../leaf/terra-checkbox-leaf.interface';
@@ -13,34 +15,47 @@ import { TerraCheckboxLeafInterface } from '../leaf/terra-checkbox-leaf.interfac
 })
 export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implements OnInit
 {
-
     /**
-     * current level leaf list
+     * @description current level leaf list
      */
     @Input() inputLeafList:Array<TerraCheckboxLeafInterface>;
 
     /**
-     * leafs one level higher than current leaf
+     * @description leafs one level higher than current leaf
      */
     @Input() inputParentLeafList:Array<TerraCheckboxLeafInterface>;
 
     /**
-     * complete leaf list for better and faster searching
+     * @description complete leaf list for better and faster searching
      */
     @Input() inputCompleteLeafList:Array<TerraCheckboxLeafInterface>;
+
+    /**
+     * @description get the current selected leaf list
+     */
+
+    @Output() valueChange:EventEmitter<TerraCheckboxLeafInterface> = new EventEmitter<TerraCheckboxLeafInterface>();
+
+    public selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
 
     constructor()
     {
         super();
     }
 
-    selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
+    /**
+     * @description event which is triggered when any checkbox is clicked
+     * @param event
+     * @param leaf
+     */
 
-    private onCheckboxValueChange(leaf:TerraCheckboxLeafInterface):void
+    private onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
     {
+        leaf.checkboxChecked = event;
         this.resetIndeterminateLeafState(leaf);
         this.recursiveUpdateChildLeafs(leaf);
         this.recursiveUpdateParentLeafs(leaf);
+        this.valueChange.emit(leaf);
     }
 
     private resetIndeterminateLeafState(leaf:TerraCheckboxLeafInterface)
@@ -48,6 +63,11 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         // reset the isIndeterminate flag on every state change
         leaf.isIndeterminate = false;
     }
+
+    /**
+     * @description
+     * @param leaf
+     */
 
     private recursiveAddLeafToList(leaf:TerraCheckboxLeafInterface):void
     {
@@ -71,6 +91,10 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         }
     }
 
+    /**
+     * @description
+     * @param leaf
+     */
     private recursiveUpdateChildLeafs(leaf:TerraCheckboxLeafInterface):void
     {
         if(leaf.subLeafList)
@@ -139,6 +163,10 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
                 parentLeafState.isIndeterminate = true;
             }
         }
+        if((!parentLeafState.allChildrenAreChecked && !parentLeafState.noChildrenAreChecked))
+        {
+            parentLeafState.isIndeterminate = true;
+        }
 
         return parentLeafState;
     }
@@ -180,6 +208,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         }
     }
 }
+
 export class ParentLeafState
 {
     allChildrenAreChecked:boolean = true;

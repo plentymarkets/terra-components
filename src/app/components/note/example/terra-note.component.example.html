@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class ="row">
+        <terra-note
+            class="col-md-4"
+            inputHeaderText="Note with Text and Id"
+            inputNoteText="{{_noteTextAndID}}"
+            [inputId] ="1">
+        </terra-note>
+        
+        <terra-note
+            class="col-md-4"
+            inputHeaderText="selected note example"
+            inputNoteText="{{_noteTextAndSelected}}"
+            [inputIsSelected]="true">
+        </terra-note>
+        
+        <terra-note
+            class="col-md-4"
+            inputHeaderText="Dynamic note example"
+            inputNoteText="{{_noteTextDynamicExample}}"
+            [inputId]="8">
+            <div buttons>
+                <terra-button inputIcon="icon-edit"
+                              inputTooltipText="edit text"
+                              (click)="showOverlay()">
+                </terra-button>
+            </div>
+        </terra-note>
+    </div>
+</div>
+
+<terra-overlay #overlay  [inputIsStatic]="true">
+    
+    <terra-note-editor [(ngModel)]="_editorText">
+    </terra-note-editor>
+    
+    <terra-button inputIcon="icon-save"
+                  (click)="saveText(_editorText)">
+    </terra-button>
+</terra-overlay>
+
