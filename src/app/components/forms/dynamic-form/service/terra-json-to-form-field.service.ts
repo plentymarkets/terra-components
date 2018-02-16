@@ -8,6 +8,7 @@ import { TerraFormFieldTextArea } from '../data/terra-form-field-text-area';
 import { TerraFormFieldDatePicker } from '../data/terra-form-field-date-picker';
 import { TerraFormFieldSelectBox } from '../data/terra-form-field-select-box';
 import { TerraFormFieldCheckBox } from '../data/terra-form-field-check-box';
+import { TerraFormFieldCategoryPicker } from '../data/terra-form-field-category-picker';
 
 /**
  * @author mfrank
@@ -72,6 +73,9 @@ export class TerraJsonToFormFieldService
                 break;
             case TerraControlTypeEnum.CHECK_BOX:
                 formField = new TerraFormFieldCheckBox(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                break;
+            case TerraControlTypeEnum.CATEGORY_PICKER:
+                formField = new TerraFormFieldCategoryPicker(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             default:
                 formField = new TerraFormFieldBase(
