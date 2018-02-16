@@ -38,13 +38,11 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
 {
     @Input() public inputFormFunctions:DynamicFormFunctionsHandler<any>;
     @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
-    @Input() public inputPortletStyle:string;
     @Input() public inputRequestParams:TerraDynamicFormRequestParams;
 
     constructor(private _formFieldControlService:TerraFormFieldControlService,
                 private _dynamicService:TerraDynamicFormService)
     {
-        this.inputPortletStyle = 'col-xs-12 col-md-4';
         this.inputRequestParams = {
             route:      '',
             htmlMethod: null,
