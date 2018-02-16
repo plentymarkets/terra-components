@@ -36,6 +36,9 @@ export class TerraTextInputComponent extends TerraInputComponent
      * */
     @Input() inputIsPassword:boolean;
 
+    /**
+     * @description If true, the input will check if the input is a valid iban.
+     * */
     @Input() inputIsIban:boolean = false;
 
     /**
