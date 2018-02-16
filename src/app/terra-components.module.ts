@@ -124,6 +124,10 @@ import {
 import { TerraNoteEditorComponentExample } from './components/editors/note-editor/example/terra-note-editor.component.example';
 import { TerraNoteComponentExample } from './components/note/example/terra-note.component.example';
 import { TerraNodeTreeComponentExample } from './components/tree/node-tree/example/terra-node-tree.component.example';
+import { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra-dynamic-form.component';
+import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
+import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
+import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
 
 @NgModule({
     declarations:    [
@@ -178,6 +182,8 @@ import { TerraNodeTreeComponentExample } from './components/tree/node-tree/examp
         TerraNoteComponent,
         TerraNodeTreeComponent,
         TerraNodeComponent,
+        TerraDynamicFormComponent,
+        TerraDynamicSwitchComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -316,6 +322,8 @@ import { TerraNodeTreeComponentExample } from './components/tree/node-tree/examp
         TerraNoteEditorComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
+        TerraDynamicFormComponent,
+        TerraDynamicSwitchComponent,
 
 
         // ### declarations of terra-components examples
@@ -356,6 +364,8 @@ import { TerraNodeTreeComponentExample } from './components/tree/node-tree/examp
         TerraDataTableContextMenuComponentExample,
         TerraNoteEditorComponentExample,
         TerraNoteComponentExample,
+        TerraDynamicFormComponent,
+        TerraDynamicSwitchComponent,
         TerraNodeTreeComponentExample
     ],
     imports:         [
@@ -401,6 +411,8 @@ export class TerraComponentsModule
                 TerraUrlParamsDecorator,
                 TerraFrontendStorageService,
                 TerraAlertComponent,
+                TerraDynamicFormService,
+                TerraFormFieldControlService,
                 TerraJsonToFormFieldService
             ]
         };
