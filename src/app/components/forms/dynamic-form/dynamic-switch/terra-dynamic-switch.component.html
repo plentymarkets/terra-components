@@ -5,7 +5,10 @@
                               [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                               [formControlName]="formField.key"
                               [inputName]="formField.label  | translate:lang"
-                              [inputIsRequired]="formField?.required"
+                              [inputIsRequired]="formField.required"
+                              [inputIsPassword]="formField.isPassword"
+                              [inputIsIban]="formField.isPassword"
+                              [inputIsReadonly]="formField.isReadOnly"
                               [(ngModel)]="formField.value"
                               [inputTooltipText]="formField.tooltip"
                               [inputTooltipPlacement]="formField.tooltipPlacement">
@@ -15,7 +18,7 @@
                                    [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                                    [formControlName]="formField.key"
                                    [inputName]="formField.label  | translate:lang"
-                                   [inputIsRequired]="formField?.required"
+                                   [inputIsRequired]="formField.required"
                                    [(ngModel)]="formField.value"
                                    [inputTooltipText]="formField.tooltip"
                                    [inputTooltipPlacement]="formField.tooltipPlacement">
@@ -25,7 +28,7 @@
                                 [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                 [formControlName]="formField.key"
                                 [inputName]="formField.label  | translate:lang"
-                                [inputIsRequired]="formField?.required"
+                                [inputIsRequired]="formField.required"
                                 [(ngModel)]="formField.value"
                                 [inputTooltipText]="formField.tooltip"
                                 [inputTooltipPlacement]="formField.tooltipPlacement">
@@ -42,7 +45,9 @@
                                 [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                 [formControlName]="formField.key"
                                 [inputName]="formField.label  | translate:lang"
-                                [inputIsRequired]="formField?.required"
+                                [inputIsRequired]="formField.required"
+                                [inputIsPriceInput]="formField.isPrice"
+                                [inputDecimalCount]="formField.decimalCount"
                                 [(ngModel)]="formField.value"
                                 [inputTooltipText]="formField.tooltip"
                                 [inputTooltipPlacement]="formField.tooltipPlacement">
@@ -52,7 +57,7 @@
                               [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                               [formControlName]="formField.key"
                               [inputName]="formField.label | translate:lang"
-                              [inputIsRequired]="formField?.required"
+                              [inputIsRequired]="formField.required"
                               [inputListBoxValues]="formField.selectBoxValues"
                               [(ngModel)]="formField.value"
                               [inputTooltipText]="formField.tooltip"
@@ -63,19 +68,22 @@
                                [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                [formControlName]="formField.key"
                                [inputName]="formField.label | translate:lang"
-                               [inputIsRequired]="formField?.required"
+                               [inputIsRequired]="formField.required"
+                               [inputOpenCalendarTop]="formField.openCalenderTop"
                                [(ngModel)]="formField.value">
             </terra-date-picker>
             
             <ng-container *ngSwitchCase="'horizontalContainer'">
                 <div class="horizontalGroup">
                     <span class="horizontalGroupLabel">{{ formField.label }}: </span>
-                    <terra-dynamic-switch class="subSwitch"
-                                          [formGroupName]="formField.key"
-                                          [inputFormGroup]="inputFormGroup.controls[formField.key]"
-                                          [inputFormFields]="formField.containerEntries"
-                                          [inputSubSwitch]="true">
-                    </terra-dynamic-switch>
+                    <div>
+                        <terra-dynamic-switch class="subSwitch"
+                                              [formGroupName]="formField.key"
+                                              [inputFormGroup]="inputFormGroup.controls[formField.key]"
+                                              [inputFormFields]="formField.containerEntries"
+                                              [inputSubSwitch]="true">
+                        </terra-dynamic-switch>
+                    </div>
                 </div>
             </ng-container>
     

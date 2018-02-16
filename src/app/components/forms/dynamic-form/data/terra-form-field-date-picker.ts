@@ -9,15 +9,17 @@ import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
  */
 export interface TerraFormFieldDatePickerOptions extends TerraFormFieldBaseOptions<string>
 {
-    // actually no other options exists
+    openCalenderTop?:boolean;
 }
 
 export class TerraFormFieldDatePicker extends TerraFormFieldBase<string>
 {
-    public type:string;
+    public openCalenderTop:boolean;
 
     constructor(key:string, label:string, required:boolean, options:TerraFormFieldDatePickerOptions = {})
     {
         super(key, TerraControlTypeEnum.DATE_PICKER, label, required, options);
+
+        this.openCalenderTop = !!options.openCalenderTop;
     }
 }
