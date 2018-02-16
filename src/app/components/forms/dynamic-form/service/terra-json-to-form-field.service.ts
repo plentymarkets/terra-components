@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { TerraFormFieldBase } from '../data/terra-form-field-base';
-import { ControlTypeEnum } from '../enum/controlType.enum';
+import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 import { TerraFormFieldInputText } from '../data/terra-form-field-input-text';
+import { TerraFormFieldInputNumber } from '../data/terra-form-field-input-number';
+import { TerraFormFieldInputDouble } from '../data/terra-form-field-input-double';
+import { TerraFormFieldTextArea } from '../data/terra-form-field-text-area';
+import { TerraFormFieldDatePicker } from '../data/terra-form-field-date-picker';
+import { TerraFormFieldSelectBox } from '../data/terra-form-field-select-box';
+import { TerraFormFieldCheckBox } from '../data/terra-form-field-check-box';
 
 /**
  * @author mfrank
@@ -15,35 +21,66 @@ export class TerraJsonToFormFieldService
 
     /*
 
-    key
-    controlType as enum value
-    label
-    validators
-
-    selectBoxValues
+     private _formStructureJson:{ [key:string]:any } = {
+     input: {
+     type:     'inputText',
+     label:    'Input',
+     required: false,
+     options:  {
+     // common options
+     tooltip:      'Tooooooltip',
+     defaultValue: 'Hallo',
+     }
+     }
+     };
 
      */
 
-    public generateFormFields(formFieldsData:Array<{ [key:string]:any }>):Array<TerraFormFieldBase<any>>
+    public generateFormFields(formFieldsJSON:{ [key:string]:any }):Array<TerraFormFieldBase<any>>
     {
-        formFieldsData.forEach((formFieldData:{ [key:string]:any }) => {
-            this.formFields.push(this.createFormField(formFieldData));
+        Object.keys(formFieldsJSON).forEach((formFieldKey:string) =>
+        {
+            this.formFields.push(this.createFormField(formFieldKey, formFieldsJSON[formFieldKey]));
         });
 
         return this.formFields;
     }
 
-    private createFormField(formFieldData:{ [key:string]:any }):TerraFormFieldBase<any>
+    private createFormField(formFieldKey:string, formFieldData:{ [key:string]:any }):TerraFormFieldBase<any>
     {
         let formField:TerraFormFieldBase<any>;
 
-        switch(formFieldData.controlType)
+        switch(formFieldData.type)
         {
-            case ControlTypeEnum.INPUT_TEXT:
-                formField = new TerraFormFieldInputText(formFieldData.key, {label: formFieldData.label});
+            case TerraControlTypeEnum.INPUT_TEXT:
+                formField = new TerraFormFieldInputText(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                break;
+            case TerraControlTypeEnum.INPUT_NUMBER:
+                formField = new TerraFormFieldInputNumber(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                break;
+            case TerraControlTypeEnum.INPUT_DOUBLE:
+                formField = new TerraFormFieldInputDouble(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                break;
+            case TerraControlTypeEnum.INPUT_TEXT_AREA:
+                formField = new TerraFormFieldTextArea(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                break;
+            case TerraControlTypeEnum.DATE_PICKER:
+                formField = new TerraFormFieldDatePicker(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                break;
+            case TerraControlTypeEnum.SELECT_BOX:
+                formField = new TerraFormFieldSelectBox(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                break;
+            case TerraControlTypeEnum.CHECK_BOX:
+                formField = new TerraFormFieldCheckBox(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             default:
-                formField = new TerraFormFieldBase(formFieldData.key, formFieldData.controlType);
+                formField = new TerraFormFieldBase(
+                    formFieldKey,
+                    formFieldData.type,
+                    formFieldData.label,
+                    formFieldData.required,
+                    formFieldData.options
+                );
                 break;
         }
 

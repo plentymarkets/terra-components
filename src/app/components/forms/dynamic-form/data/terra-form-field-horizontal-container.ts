@@ -1,24 +1,20 @@
+import { TerraFormFieldBase } from './terra-form-field-base';
+import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 import {
-    TerraFormFieldBase,
-    TerraFormFieldBaseOptions
-} from './terra-form-field-base';
-import { ControlTypeEnum } from '../enum/controlType.enum';
+    TerraFormFieldBaseContainer,
+    TerraFormFieldBaseContainerOptions
+} from './terra-form-field-base-container';
 
 /**
  * @author mfrank
  */
-export interface TerraFormFieldHorizontalContainerOptions extends TerraFormFieldBaseOptions<string>
-{
-    containerEntries?:Array<TerraFormFieldBase<any>>;
-}
-
-export class TerraFormFieldHorizontalContainer extends TerraFormFieldBase<string>
+export class TerraFormFieldHorizontalContainer extends TerraFormFieldBaseContainer
 {
     public containerEntries:Array<TerraFormFieldBase<any>>;
 
-    constructor(key:string, options:TerraFormFieldHorizontalContainerOptions = {})
+    constructor(key:string, label:string, options:TerraFormFieldBaseContainerOptions = {})
     {
-        super(key, ControlTypeEnum.HORIZONTAL_CONTAINER, options);
+        super(key, TerraControlTypeEnum.HORIZONTAL_CONTAINER, label, options);
 
         this.containerEntries = options['containerEntries'] || [];
     }
