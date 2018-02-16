@@ -57,5 +57,9 @@
 	},
 	"terraNodeTree":{
 		"search": "Search"
+	},
+	"contentBuilder": {
+		"select": "Select",
+		"category": "Category"
 	}
 }

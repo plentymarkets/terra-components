@@ -51,7 +51,7 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
     constructor(private translation:TranslationService,
                 public categoryTreeConfig:CategoryTreeConfig)
     {
-        this._categoryInputName = 'category';
+        this._categoryInputName = this.translation.translate('contentBuilder.category');
         // initialize callbacks
         this._onChangeCallback = (value:any) => {
         };
