@@ -55,15 +55,6 @@ export class TerraInputComponent implements ControlValueAccessor
      * */
     @Input() public inputIsSmall:boolean;
 
-    /**
-     * @description If true, the input element will gain focus
-     */
-    @Input() public inputIsAutoFocus:boolean;
-    /**
-     * @description If true, the content of the input element will be selected
-     */
-    @Input() public inputIsAutoSelect:boolean;
-
     public isValid:boolean;
     public regex:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
