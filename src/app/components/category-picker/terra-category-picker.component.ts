@@ -39,25 +39,28 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
      */
     @Input() inputCategoryService:TerraCategoryPickerBaseService;
 
-    private _value:TerraNodeInterface<CategoryTreeData>;
+    private _value:TerraNodeInterface<CategoryTreeData> = {
+        name: '',
+        id:   ''
+    };
     private _toggleTree:boolean = false;
     private _categoryInputName:string = '';
-    private _categoryInputValue:string = '';
 
-    private _onChangeCallback:(value:any) => void;
-    private _onTouchedCallback:(value:any) => void;
     private _list:Array<TerraNodeInterface<CategoryTreeData>> = [];
 
     constructor(private translation:TranslationService,
                 public categoryTreeConfig:CategoryTreeConfig)
     {
         this._categoryInputName = this.translation.translate('contentBuilder.category');
-        // initialize callbacks
-        this._onChangeCallback = (value:any) => {
-        };
-        this._onTouchedCallback = (value:any) => {
-        };
     }
+
+    //Placeholders for the callbacks which are later provided
+    //by the Control Value Accessor
+    private onTouchedCallback:() => void = () => {
+    };
+
+    private onChangeCallback:(_:any) => void = (_) => {
+    };
 
     ngAfterContentChecked():void
     {
@@ -113,33 +116,42 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
         });
     }
 
-    public get value():any
+    public get value():TerraNodeInterface<CategoryTreeData>
     {
         return this._value;
     };
 
-    public set value(v:any)
+    public set value(v:TerraNodeInterface<CategoryTreeData>)
     {
         if(v !== this._value)
         {
             this._value = v;
-            this._onChangeCallback(this._value);
+            this.onChangeCallback(this._value);
         }
     }
 
+    //From ControlValueAccessor interface
     public writeValue(value:TerraNodeInterface<CategoryTreeData>):void
     {
-        this._value = value;
+        this.value = value;
     }
 
-    public registerOnChange(fn:any):void
+    //Set touched on blur
+    public onBlur():void
     {
-        this._onChangeCallback = fn;
+        this.onTouchedCallback();
     }
 
-    public registerOnTouched(fn:any):void
+    //From ControlValueAccessor interface
+    registerOnChange(fn:any)
     {
-        this._onTouchedCallback = fn;
+        this.onChangeCallback = fn;
+    }
+
+    //From ControlValueAccessor interface
+    registerOnTouched(fn:any)
+    {
+        this.onTouchedCallback = fn;
     }
 
     public showTree():void
@@ -151,7 +163,7 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
     {
         if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
         {
-            this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
+            //this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
             this.writeValue(this.categoryTreeConfig.currentSelectedNode);
         }
         this._toggleTree = !this._toggleTree;

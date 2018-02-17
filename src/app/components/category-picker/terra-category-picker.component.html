@@ -1,10 +1,11 @@
-<div>
-    <terra-text-input [inputIsReadonly]="true"
+<div  blur="showTree()" >
+    <terra-text-input *ngIf="_value"
+                      [inputIsReadonly]="true"
                       [inputName]="_categoryInputName"
-                      [(ngModel)]="_categoryInputValue"
+                      [(ngModel)]="_value.name"
                       (click)="showTree()">
     </terra-text-input>
-    <div *ngIf="_toggleTree" onblur="showTree()">
+    <div *ngIf="_toggleTree">
         <terra-node-tree [inputShowSearch]="true"
                          [inputConfig]="categoryTreeConfig">
         </terra-node-tree>
