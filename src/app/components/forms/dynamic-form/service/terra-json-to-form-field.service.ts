@@ -40,6 +40,8 @@ export class TerraJsonToFormFieldService
 
     public generateFormFields(formFieldsJSON:{ [key:string]:any }, params?:Array<any>):Array<TerraFormFieldBase<any>>
     {
+        this.formFields = [];
+
         Object.keys(formFieldsJSON).forEach((formFieldKey:string) =>
         {
             this.formFields.push(this.createFormField(formFieldKey, formFieldsJSON[formFieldKey], params));
