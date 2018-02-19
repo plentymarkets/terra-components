@@ -19,11 +19,11 @@ export class TerraFormFieldCategoryPicker extends TerraFormFieldBase<number>
     public type:string;
     public categoryService:TerraCategoryPickerBaseService;
 
-    constructor(key:string, label:string, required:boolean, categoryService:TerraCategoryPickerBaseService, options:TerraFormFieldCategoryPickerOptions = {})
+    constructor(key:string, label:string, required:boolean,  options:TerraFormFieldCategoryPickerOptions = {})
     {
         super(key, TerraControlTypeEnum.CATEGORY_PICKER, label, required, options);
 
         this.type = options['type'] || '';
-        this.categoryService = categoryService;
+        this.categoryService = options.categoryService;
     }
 }

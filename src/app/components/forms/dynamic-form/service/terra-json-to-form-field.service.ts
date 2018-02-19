@@ -76,8 +76,7 @@ export class TerraJsonToFormFieldService
                 formField = new TerraFormFieldCheckBox(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             case TerraControlTypeEnum.CATEGORY_PICKER:
-                //TODO search params for the corresponding key
-                formField = new TerraFormFieldCategoryPicker(formFieldKey, formFieldData.label, formFieldData.required, params[0], formFieldData.options);
+                formField = new TerraFormFieldCategoryPicker(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             default:
                 formField = new TerraFormFieldBase(
