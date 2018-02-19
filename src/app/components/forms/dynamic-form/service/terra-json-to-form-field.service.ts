@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { TerraFormFieldBase } from '../data/terra-form-field-base';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 import { TerraFormFieldInputText } from '../data/terra-form-field-input-text';
@@ -13,27 +12,9 @@ import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-conta
 /**
  * @author mfrank
  *
- *  EXPERIMENTAL - DO NOT USE THIS SERVICE
  */
 export class TerraJsonToFormFieldService
 {
-    /*
-
-     private _formStructureJson:{ [key:string]:any } = {
-     input: {
-     type:     'inputText',
-     label:    'Input',
-     required: false,
-     options:  {
-     // common options
-     tooltip:      'Tooooooltip',
-     defaultValue: 'Hallo',
-     }
-     }
-     };
-
-     */
-
     public static generateFormFields(formFieldsJSON:{ [key:string]:any }):Array<TerraFormFieldBase<any>>
     {
         let formFields:Array<TerraFormFieldBase<any>> = [];
@@ -94,8 +75,8 @@ export class TerraJsonToFormFieldService
     }
 
     private static createContainerFormField(formFieldKey:string,
-                                     formFieldData:{ [key:string]:any },
-                                     containerType:TerraControlTypeEnum):TerraFormFieldBaseContainer
+                                            formFieldData:{ [key:string]:any },
+                                            containerType:TerraControlTypeEnum):TerraFormFieldBaseContainer
     {
         let containerFormField:TerraFormFieldBaseContainer = new TerraFormFieldBaseContainer(formFieldKey, containerType, formFieldData.label);
 
