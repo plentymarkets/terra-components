@@ -11,6 +11,7 @@ import { TerraCategoryPickerBaseService } from '../../../category-picker/service
 export interface TerraFormFieldCategoryPickerOptions extends TerraFormFieldBaseOptions<number>
 {
     type?:string;
+    categoryService?:TerraCategoryPickerBaseService;
 }
 
 export class TerraFormFieldCategoryPicker extends TerraFormFieldBase<number>

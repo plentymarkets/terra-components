@@ -39,13 +39,10 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
      */
     @Input() inputCategoryService:TerraCategoryPickerBaseService;
 
-    private _value:TerraNodeInterface<CategoryTreeData> = {
-        name: '',
-        id:   ''
-    };
+    private _value:any;
     private _toggleTree:boolean = false;
     private _categoryInputName:string = '';
-
+    private _categoryInputValue:string = '';
     private _list:Array<TerraNodeInterface<CategoryTreeData>> = [];
 
     constructor(private translation:TranslationService,
@@ -116,22 +113,23 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
         });
     }
 
-    public get value():TerraNodeInterface<CategoryTreeData>
+    public get value():any
     {
         return this._value;
     };
 
-    public set value(v:TerraNodeInterface<CategoryTreeData>)
+    public set value(v:any)
     {
         if(v !== this._value)
         {
             this._value = v;
+            this.onTouchedCallback();
             this.onChangeCallback(this._value);
         }
     }
 
     //From ControlValueAccessor interface
-    public writeValue(value:TerraNodeInterface<CategoryTreeData>):void
+    public writeValue(value:any):void
     {
         this.value = value;
     }
@@ -163,7 +161,7 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
     {
         if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
         {
-            //this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
+            this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
             this.writeValue(this.categoryTreeConfig.currentSelectedNode);
         }
         this._toggleTree = !this._toggleTree;

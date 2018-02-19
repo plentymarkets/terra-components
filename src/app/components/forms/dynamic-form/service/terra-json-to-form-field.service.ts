@@ -9,6 +9,7 @@ import { TerraFormFieldDatePicker } from '../data/terra-form-field-date-picker';
 import { TerraFormFieldSelectBox } from '../data/terra-form-field-select-box';
 import { TerraFormFieldCheckBox } from '../data/terra-form-field-check-box';
 import { TerraFormFieldCategoryPicker } from '../data/terra-form-field-category-picker';
+import { TerraCategoryPickerBaseService } from '../../../category-picker/service/terra-category-picker-base.service';
 
 /**
  * @author mfrank
@@ -37,17 +38,17 @@ export class TerraJsonToFormFieldService
 
      */
 
-    public generateFormFields(formFieldsJSON:{ [key:string]:any }):Array<TerraFormFieldBase<any>>
+    public generateFormFields(formFieldsJSON:{ [key:string]:any }, params?:Array<any>):Array<TerraFormFieldBase<any>>
     {
         Object.keys(formFieldsJSON).forEach((formFieldKey:string) =>
         {
-            this.formFields.push(this.createFormField(formFieldKey, formFieldsJSON[formFieldKey]));
+            this.formFields.push(this.createFormField(formFieldKey, formFieldsJSON[formFieldKey], params));
         });
 
         return this.formFields;
     }
 
-    private createFormField(formFieldKey:string, formFieldData:{ [key:string]:any }):TerraFormFieldBase<any>
+    private createFormField(formFieldKey:string, formFieldData:{ [key:string]:any }, params?:Array<any>):TerraFormFieldBase<any>
     {
         let formField:TerraFormFieldBase<any>;
 
@@ -75,7 +76,8 @@ export class TerraJsonToFormFieldService
                 formField = new TerraFormFieldCheckBox(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             case TerraControlTypeEnum.CATEGORY_PICKER:
-                formField = new TerraFormFieldCategoryPicker(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                //TODO search params for the corresponding key
+                formField = new TerraFormFieldCategoryPicker(formFieldKey, formFieldData.label, formFieldData.required, params[0], formFieldData.options);
                 break;
             default:
                 formField = new TerraFormFieldBase(
