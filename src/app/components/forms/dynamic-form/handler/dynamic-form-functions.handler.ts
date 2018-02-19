@@ -1,9 +1,11 @@
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { TerraFormFieldControlService } from "../service/terra-form-field-control.service";
 
 /**
  * @author mfrank
  */
+//export class DynamicFormFunctionsHandler<D>
 export interface DynamicFormFunctionsHandler<D>
 {
     /**
@@ -27,4 +29,18 @@ export interface DynamicFormFunctionsHandler<D>
      * @param translationMapping
      */
     error:(formGroup:FormGroup, translationMapping:{ [key:string]:string }) => void;
+
+    update?:(formData:D) => void;
+
+    //private _formFieldControlService?:TerraFormFieldControlService;
+    //
+    //public update(formValues:D):void
+    //{
+    //    this._formFieldControlService.updateDefaultValues(formValues);
+    //}
+    //
+    //public set formFieldControlService(formFieldControlService:TerraFormFieldControlService)
+    //{
+    //    this._formFieldControlService = formFieldControlService;
+    //}
 }

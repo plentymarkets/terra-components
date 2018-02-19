@@ -61,6 +61,11 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         else
         {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
+            //this.inputFormFunctions.formFieldControlService = this._formFieldControlService;
+            this.inputFormFunctions.update = (formData:D):void =>
+            {
+                this._formFieldControlService.updateDefaultValues(formData);
+            };
         }
     }
 
