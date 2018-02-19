@@ -9,10 +9,6 @@ import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
  */
 export interface TerraFormFieldBaseOptions<T>
 {
-    /**
-     * @deprecated
-     */
-    value?:T;
     defaultValue?:T;
     tooltip?:string;
     tooltipPlacement?:string;
@@ -58,18 +54,13 @@ export class TerraFormFieldBase<T>
             throw new Error('controlType can not be null');
         }
 
-        if(!isNullOrUndefined(options.value))
-        {
-            console.warn('value ist deprecated. Please use defaultValue instead.');
-        }
-
         this.key = key;
         this.controlType = controlType;
 
         this.label = label;
         this.required = required;
 
-        this.defaultValue = options.defaultValue || options.value;
+        this.defaultValue = options.defaultValue || null;
         this.tooltip = options.tooltip || null;
         this.tooltipPlacement = options.tooltipPlacement || 'top';
         this.minLength = options.minLength || -1;
