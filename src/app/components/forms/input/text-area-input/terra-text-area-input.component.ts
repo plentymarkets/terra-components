@@ -26,12 +26,14 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
     /**
      * @description If true, a * indicates that the value is required. Default false.
      */
-    @Input() inputIsRequired:boolean;
+    @Input() public inputIsRequired:boolean;
+
     /**
      * @deprecated inputType is no longer used.  It will be removed in one of the upcoming releases.
      * @param v
      */
-    @Input() set inputType(v:string)
+    @Input()
+    public set inputType(v:string)
     {
         console.warn('inputType is no longer used.  It will be removed in one of the upcoming releases.');
     }
@@ -51,11 +53,11 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
     /**
      * @description Set the number of maximum rows.
      * */
-    @Input() inputMaxRows:number;
+    @Input() public inputMaxRows:number;
     /**
      * @deprecated Will be removed in an upcoming release.
      * */
-    @Input() inputMaxCols:number;
+    @Input() public inputMaxCols:number;
 
     /**
      * @description a unique string identifier for the specific input instance.
@@ -68,5 +70,29 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
 
         // generate the id of the input instance
         this._id = `text-area-input_#${nextId++}`;
+    }
+
+    /**
+     * Set the focus on the native input element.
+     */
+    public focusNativeInput():void
+    {
+        setTimeout(() =>
+        {
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            input.focus();
+        });
+    }
+
+    /**
+     * Select the content of the native input element.
+     */
+    public selectNativeInput():void
+    {
+        setTimeout(() =>
+        {
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            input.select();
+        });
     }
 }
