@@ -62,6 +62,11 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
             this.inputFormFunctions.formFieldControlService = this._formFieldControlService;
+
+            if(!isNullOrUndefined(this.inputFormFunctions.onValueChangedCallback))
+            {
+                this.registerValueChange();
+            }
         }
     }
 
@@ -71,6 +76,19 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
         }
+    }
+
+    private registerValueChange():void
+    {
+        console.log(this._formFieldControlService.dynamicFormGroup.updateOn);
+        this._formFieldControlService
+            .dynamicFormGroup
+            .valueChanges
+            .subscribe((value:any) =>
+            {
+                console.log(value);
+                this.inputFormFunctions.onValueChangedCallback(value);
+            });
     }
 
     private validate():void
