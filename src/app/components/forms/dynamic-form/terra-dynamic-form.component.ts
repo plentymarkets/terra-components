@@ -8,7 +8,7 @@ import {
 import { isNullOrUndefined } from 'util';
 import { TerraFormFieldControlService } from './service/terra-form-field-control.service';
 import { TerraFormFieldBase } from './data/terra-form-field-base';
-import { DynamicFormFunctionsHandler } from './handler/dynamic-form-functions.handler';
+import { TerraDynamicFormFunctionsHandler } from './handler/terra-dynamic-form-functions.handler';
 import { TerraDynamicFormService } from './service/terra-dynamic-form.service';
 
 export enum TerraHtmlMethods
@@ -36,7 +36,7 @@ export interface TerraDynamicFormRequestParams
 })
 export class TerraDynamicFormComponent implements OnInit, OnChanges
 {
-    @Input() public inputFormFunctions:DynamicFormFunctionsHandler<any>;
+    @Input() public inputFormFunctions:TerraDynamicFormFunctionsHandler<any>;
     @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
     @Input() public inputPortletStyle:string;
     @Input() public inputRequestParams:TerraDynamicFormRequestParams;
