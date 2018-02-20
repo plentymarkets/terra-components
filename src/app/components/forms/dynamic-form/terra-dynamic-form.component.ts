@@ -61,6 +61,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         else
         {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
+            this.inputFormFunctions.formFieldControlService = this._formFieldControlService;
         }
     }
 
@@ -76,11 +77,11 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     {
         if(this._formFieldControlService.dynamicFormGroup.valid)
         {
-            this.inputFormFunctions.save(this._formFieldControlService.dynamicFormGroup.value);
+            this.inputFormFunctions.saveCallback(this._formFieldControlService.dynamicFormGroup.value);
         }
         else
         {
-            this.inputFormFunctions.error(this._formFieldControlService.dynamicFormGroup, this._formFieldControlService.translationMapping);
+            this.inputFormFunctions.errorCallback(this._formFieldControlService.dynamicFormGroup, this._formFieldControlService.translationMapping);
         }
     }
 
