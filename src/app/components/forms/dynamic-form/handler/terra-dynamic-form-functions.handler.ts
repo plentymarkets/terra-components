@@ -5,7 +5,7 @@ import { TerraFormFieldControlService } from '../service/terra-form-field-contro
 /**
  * @author mfrank
  */
-export class DynamicFormFunctionsHandler<D>
+export class TerraDynamicFormFunctionsHandler<D>
 {
     /**
      * Called after valid form validation.
