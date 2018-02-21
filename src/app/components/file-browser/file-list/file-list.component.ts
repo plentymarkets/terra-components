@@ -379,14 +379,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         {
             this.addDownloadButton(storageObject, cellList);
         }
-        else
-        {
-            cellList.push(
-                {
-                    buttonList: []
-                }
-            );
-        }
 
         this.addDeleteButton(storageObject, cellList);
 
