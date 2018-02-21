@@ -80,7 +80,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
 
     private registerValueChange():void
     {
-        console.log(this._formFieldControlService.dynamicFormGroup.updateOn);
+        //console.log(this._formFieldControlService.dynamicFormGroup.updateOn);
         this._formFieldControlService
             .dynamicFormGroup
             .valueChanges
