@@ -96,4 +96,16 @@ export class TerraPortletComponent implements OnChanges
 
         this.inputCollapsedChange.emit(this.inputCollapsed);
     }
+    
+    public getBackground()
+    {
+        if(this.inputIsCollapsable)
+        {
+            return '#D7D8DB' //entspricht $grey-4
+        }
+        else
+        {
+            return 'transparent'
+        }
+    }
 }
