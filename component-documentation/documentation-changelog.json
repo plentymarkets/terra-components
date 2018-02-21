@@ -8,32 +8,15 @@
   "new-release-changelog":
   [
     {
-      "component-name":"terra-button",
-      "date": "21-12-2017"
+      "component-name":"terra-node-tree",
+      "date": "21-2-2018"
     },
     {
-      "component-name":"terra-card",
-      "date": "21-12-2017"
-    },
-    {
-      "component-name":"terra-button-with-options",
-      "date": "21-12-2017"
-    },
-    {
-      "component-name":"terra-portlet",
-      "date": "15-03-2018"
+      "component-name":"terra-dynamic-module-loader",
+      "date": "21-2-2018"
     }
   ],
   "changelog":
   [
-    {
-      "component-name":"terra-node-tree",
-      "date": "21-12-2017"
-    },
-    {
-      "component-name":"terra-dynamic-module-loader",
-      "date": "21-12-2017"
-    }
-
   ]
 }
