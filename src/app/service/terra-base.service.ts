@@ -296,18 +296,16 @@ export class TerraBaseService
     {
         let searchParams:URLSearchParams = new URLSearchParams();
 
-        if(isNullOrUndefined(params))
+        if(!isNullOrUndefined(params))
         {
-            return searchParams;
-        }
-
-        Object.keys(params).map((key:string) =>
-        {
-            if(!isNullOrUndefined(params[key]) && params[key] !== '')
+            Object.keys(params).map((key:string) =>
             {
-                searchParams.set(key, params[key]);
-            }
-        });
+                if(!isNullOrUndefined(params[key]) && params[key] !== '')
+                {
+                    searchParams.set(key, params[key]);
+                }
+            });
+        }
 
         return searchParams;
     }
