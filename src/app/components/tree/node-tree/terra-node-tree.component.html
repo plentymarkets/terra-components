@@ -1,6 +1,6 @@
-<div class="search-wrapper">
-    <terra-text-input *ngIf="inputShowSearch"
-                      [inputName]="'terraNodeTree.search' | translate:lang"
+<div *ngIf="inputShowSearch"
+     class="search-wrapper">
+    <terra-text-input [inputName]="'terraNodeTree.search' | translate:lang"
                       (outputOnInput)="onChange()"
                       [(ngModel)]="_searchValue"></terra-text-input>
 </div>
