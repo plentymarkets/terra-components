@@ -1,6 +1,6 @@
 .info-box
 {
-    background-color: $grey-2;
+    background-color: $color-structure-2;
     -moz-border-radius: $border-radius;
     -webkit-border-radius: $border-radius;
     border-radius: $border-radius;
@@ -11,26 +11,26 @@
     
     &.selected
     {
-        background-color: $blue;
+        background-color: $color-active;
         
         .info-box-inner
         {
             .info-box-text
             {
-                color: $white;
+                color: $color-structure-0;
             }
         }
         .info-box-footer
         {
             .info-box-id
             {
-                color: $white;
+                color: $color-structure-0;
             }
         }
     }
     &.empty
     {
-        background: $gray-light-3;
+        background: $color-structure-4;
         justify-content: center;
         line-height: 8rem;
     }
@@ -50,7 +50,7 @@
             padding-bottom: 0.4rem;
             max-width: 77%;
             white-space: nowrap;
-            color: $grey-11;
+            color: $color-structure-11;
             overflow: var(--info-box-text-overflow, hidden);
         }
     }
@@ -61,7 +61,7 @@
         .info-box-id
         {
             margin: 7px 4px 0px 0px;
-            color: $grey-8;
+            color: $color-structure-8;
         }
     }
 }
@@ -71,6 +71,6 @@
 //{
 //    .info-box:not(.selected)
 //    {
-//        background-color: $white;
+//        background-color: $color-structure-0;
 //    }
 //}

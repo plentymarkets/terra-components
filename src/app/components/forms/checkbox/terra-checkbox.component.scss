@@ -16,7 +16,7 @@ input[type="checkbox"]
 
 .input-control.checkbox .check.invalid
 {
-    border-color: $brand-secondary !important;
+    border-color: $color-alert !important;
 }
 
 .checkbox
@@ -61,8 +61,8 @@ input[type="checkbox"]
 {
     width: 1.625rem;
     height: 1.625rem;
-    background-color: #FFFFFF;
-    border: 1px #999999 solid;
+    background-color: $color-structure-0;
+    border: 1px $color-structure-7 solid;
     padding: 0;
     position: relative;
     display: inline-block;
@@ -83,7 +83,7 @@ input[type="checkbox"]
 
 .input-control.checkbox .check:focus
 {
-    border-color: #BCD9E2;
+    border-color: $color-structure-3;
 }
 
 .input-control.checkbox .check:before
@@ -111,23 +111,23 @@ input[type="checkbox"]
 
 .input-control.checkbox input[type="checkbox"]:checked ~ .check:before
 {
-    border-color: #555555;
+    border-color: $color-structure-11;
     transition: all 0.2s linear;
 }
 
 .input-control.checkbox input[type="checkbox"]:disabled ~ .caption
 {
-    color: #CACACA;
+    color: $color-structure-5;
 }
 
 .input-control.checkbox input[type="checkbox"]:disabled ~ .check
 {
-    border-color: #CACACA;
+    border-color: $color-structure-5;
 }
 
 .input-control.checkbox input[type="checkbox"]:disabled:checked ~ .check:before
 {
-    border-color: #CACACA;
+    border-color: $color-structure-5;
 }
 
 .input-control.checkbox input[data-show="indeterminate"] ~ .check:before,
@@ -146,7 +146,7 @@ input[type="checkbox"]
     position: absolute;
     display: block;
     content: "";
-    background-color: #1D1D1D;
+    background-color: $color-structure-12;
     height: .875rem;
     width: .875rem;
     left: 50%;
@@ -162,7 +162,7 @@ input[type="checkbox"]
 
 .input-control.checkbox input[data-show="indeterminate"]:disabled ~ .check:after
 {
-    background-color: #CACACA;
+    background-color: $color-structure-5;
 }
 
 .input-control.small-check .check

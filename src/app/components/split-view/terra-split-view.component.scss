@@ -22,39 +22,39 @@
             position: relative;
             display: block;
             float: left;
-            color: $grey-9;
+            color: $color-structure-9;
             white-space: nowrap;
             &:hover
             {
-                color: $blue;
+                color: $color-active;
                 .caret
                 {
                     &::before
                     {
-                        background-color: $blue;
+                        background-color: $color-active;
                     }
                 }
             }
             &.active
             {
-                color: $blue;
+                color: $color-active;
                 cursor: default;
                 .caret
                 {
                     &::before
                     {
-                        background-color: $blue;
+                        background-color: $color-active;
                     }
                 }
             }
             &:not(.active):hover
             {
-                color: $blue;
+                color: $color-active;
                 .caret
                 {
                     &::before
                     {
-                        background-color: $blue;
+                        background-color: $color-active;
                     }
                 }
             }
@@ -72,7 +72,7 @@
                     height: 0;
                     vertical-align: middle;
                     content: "";
-                    border: solid white;
+                    border: solid $color-structure-0;
                     border-width: 0 1px 1px 0;
                     padding: 2px;
                     transform: rotate(45deg);
@@ -82,7 +82,7 @@
                 {
                     content: "";
                     padding: 8px;
-                    background-color: #636671;
+                    background-color: $color-structure-9;
                     border-radius: 8px;
                     position: absolute;
                 }
@@ -128,7 +128,7 @@
                 line-height: 32px;
                 vertical-align: middle;
                 font-size: $font-size-6;
-                color: $grey-4;
+                color: $color-structure-4;
             }
         }
     }
@@ -170,11 +170,11 @@
     overflow-x: hidden;
     white-space: normal;
     position: relative;
-    background-color: $white;
+    background-color: $color-structure-0;
     
     &:first-child
     {
-        background-color: $grey-2;
+        background-color: $color-structure-2;
     }
     &.isBackgroundColorGrey
     {
@@ -201,6 +201,6 @@ terra-base-toolbar
 {
     --toolbar-margin: 0 0 0 -3px;
     --toolbar-border-radius: none;
-    --toolbar-background: $white;
-    --toolbar-border-bottom: 1px solid $grey-4;
+    --toolbar-background: $color-structure-0;
+    --toolbar-border-bottom: 1px solid $color-structure-4;
 }

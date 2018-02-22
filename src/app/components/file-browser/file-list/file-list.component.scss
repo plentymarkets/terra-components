@@ -18,7 +18,7 @@
         padding: 8px 0 9px 16px;
         margin: 0;
         display: inline-block;
-        color: $text-muted;
+        color: $color-structure-9;
     }
     
     .icon-loading
@@ -59,7 +59,7 @@
                         width: 4px;
                         height: 4px;
                         border-radius: 50%;
-                        background-color: $white;
+                        background-color: $color-structure-0;
                         display: inline-block;
                         position: absolute;
                         top: 50%;
@@ -85,7 +85,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: transparentize($brand-primary, 0.3);
+        background-color: transparentize($color-active, 0.3);
         z-index: 2;
         border-radius: $border-radius;
         display: none;
@@ -103,7 +103,7 @@
             flex-direction: column;
             width: 100%;
             align-items: center;
-            color: $white;
+            color: $color-structure-0;
             font-size: 2rem;
             
             .icon-upload
@@ -122,8 +122,8 @@
     left: 50%;
     width: 90%;
     margin-left: -45%;
-    background: $grey-2;
-    border: 1px solid $gray-light-3;
+    background: $color-structure-2;
+    border: 1px solid $color-structure-4;
     border-top: none;
     padding: 4px 8px;
     border-bottom-left-radius: $border-radius;
@@ -165,7 +165,7 @@
     {
         text-align: center;
         font-size: 2em;
-        color: $text-muted;
+        color: $color-structure-9;
     }
 }
 

@@ -22,8 +22,8 @@
     {
         width: 1.625rem;
         height: 1.625rem;
-        background-color: $white;
-        border: 1px $gray-light-2 solid;
+        background-color: $color-structure-0;
+        border: 1px $color-structure-7 solid;
         border-radius: 100%;
         padding: 0;
         position: relative;
@@ -32,7 +32,7 @@
         
         &:focus
         {
-            border-color: $brand-primary-light;
+            border-color: $color-active-light;
         }
         
         &:before
@@ -62,28 +62,28 @@
     
     .check.active:before
     {
-        border-color: $gray;
+        border-color: $color-structure-11;
         transition: all 0.2s linear;
     }
     
     .check.disabled
     {
-        border-color: $gray-light-3;
+        border-color: $color-structure-4;
         cursor: not-allowed;
     }
     .check.disabled:before
     {
-        border-color: $white;
+        border-color: $color-structure-0;
     }
     .check.disabled.active:before
     {
-        border-color: $gray-light-3;
+        border-color: $color-structure-4;
     }
 }
 
 .caption.disabled
 {
-    color: $gray-light-3;
+    color: $color-structure-4;
     cursor: not-allowed;
 }
 

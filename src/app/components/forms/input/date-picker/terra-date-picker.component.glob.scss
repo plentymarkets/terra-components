@@ -26,7 +26,7 @@
             
             input
             {
-                color: $grey-10;
+                color: $color-structure-10;
                 border: none;
                 border-radius: $border-radius;
                 box-shadow: none;
@@ -38,8 +38,8 @@
                 text-align: var(--input-text-align, left);
                 outline: none !important;
                 transition: all .2s;
-                height: $terra-btn-md-height - 2;
-                line-height: $terra-btn-md-height - 2;
+                height: $height-md - 2;
+                line-height: $height-md - 2;
                 overflow: visible;
                 position: inherit;
                 display: inline-block;
@@ -56,7 +56,7 @@
                 .btnclear
                 {
                     background-color: transparent;
-                    color: $brand-secondary;
+                    color: $color-alert;
                     width: 22px;
                     border: 0px;
                     //css for clear selected myDateModel button
@@ -91,19 +91,19 @@
         .selector
         {
             width: auto !important;
-            border: 1px solid $gray-light-2;
+            border: 1px solid $color-structure-7;
             
             &:before
             {
-                border-bottom-color: $gray-light-2;
+                border-bottom-color: $color-structure-7;
             }
             &:focus
             {
-                border-color: $gray-light-2;
+                border-color: $color-structure-7;
                 
                 &:before
                 {
-                    border-bottom-color: $gray-light-2;
+                    border-bottom-color: $color-structure-7;
                 }
             }
             .header
@@ -112,11 +112,11 @@
                 {
                     &:focus
                     {
-                        color: $black;
+                        color: $color-structure-13;
                     }
                     &:hover
                     {
-                        color: $brand-primary;
+                        color: $color-active;
                     }
                     &:before
                     {
@@ -127,11 +127,11 @@
                 {
                     &:focus
                     {
-                        color: $black;
+                        color: $color-structure-13;
                     }
                     &:hover
                     {
-                        color: $brand-primary;
+                        color: $color-active;
                     }
                     &:before
                     {
@@ -142,11 +142,11 @@
                 {
                     &:focus
                     {
-                        color: $black;
+                        color: $color-structure-13;
                     }
                     &:hover
                     {
-                        color: $brand-primary;
+                        color: $color-active;
                     }
                 }
             }
@@ -156,18 +156,18 @@
 
 div.disabled .selectiongroup
 {
-    background-color: $grey-2;
+    background-color: $color-structure-2;
     
     input.selection
     {
         opacity: unset !important;
-        background-color: $grey-2;
+        background-color: $color-structure-2;
     }
     
     .selbtngroup
     {
         opacity: unset !important;
-        background-color: $grey-2;
+        background-color: $color-structure-2;
     }
     
 }

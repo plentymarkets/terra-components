@@ -24,8 +24,8 @@
             margin-bottom: 1rem;
             thead
             {
-                background: $grey-9;
-                color: white;
+                background: $color-structure-9;
+                color: $color-structure-0;
                 border-radius: 0 0 $border-radius $border-radius;
                 tr
                 {
@@ -51,13 +51,13 @@
             {
                 tr
                 {
-                    color: $grey-11;
+                    color: $color-structure-11;
                     td
                     {
                         padding: var(--table-body-td-padding, 8px 9px);
                         transition: ease padding 0.6s;
                         vertical-align: middle;
-                        border-bottom: 1px solid $grey-1;
+                        border-bottom: 1px solid $color-structure-1;
                         white-space: nowrap;
                         span
                         {
@@ -68,7 +68,7 @@
                             text-decoration: underline;
                             &:hover
                             {
-                                color: $blue;
+                                color: $color-active;
                             }
                         }
                     }
@@ -84,24 +84,24 @@
             }
             > tbody tr:hover
             {
-                background: $grey-2;
+                background: $color-structure-2;
                 cursor: pointer;
             }
             tbody tr.selected
             {
-                background-color: $blue;
-                color: white;
+                background-color: $color-active;
+                color: $color-structure-0;
             }
             tbody tr.isActive
             {
-                background-color: $blue;
-                color: white;
+                background-color: $color-active;
+                color: $color-structure-0;
                 td a[href]
                 {
-                    color: $white;
+                    color: $color-structure-0;
                     &:hover
                     {
-                        color: $black;
+                        color: $color-structure-13;
                     }
                 }
             }
@@ -126,7 +126,7 @@
     text-align: center;
     display: block;
     padding: 8.3em .3em .3em .5em;
-    color: #555555;
+    color: $color-structure-11;
     text-decoration: none;
     font-size: 1.875rem;
     border: 0;
@@ -145,7 +145,7 @@
         span
         {
             padding: 5px;
-            color: $grey-12;
+            color: $color-structure-12;
             font-size: $font-size-4;
             font-weight: $font-weight-2;
         }
@@ -153,7 +153,7 @@
     
     .group_function_body
     {
-        background-color: $grey-2;
+        background-color: $color-structure-2;
         padding: var(--group_function_body-padding, 12px);
         border-radius: 5px;
         transition: ease padding 0.6s;

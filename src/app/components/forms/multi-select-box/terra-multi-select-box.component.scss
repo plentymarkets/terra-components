@@ -12,7 +12,7 @@
             .multiselect-header
             {
                 display: flex;
-                background-color: $grey-11;
+                background-color: $color-structure-11;
                 border-top-left-radius: $border-radius;
                 border-top-right-radius: $border-radius;
                 
@@ -22,13 +22,13 @@
                     margin: 0px;
                     font-variant: all-small-caps;
                     padding: 6px 9px;
-                    color: $white;
+                    color: $color-structure-0;
                 }
             }
             
             .option-list
             {
-                background: $white;
+                background: $color-structure-0;
                 overflow: auto;
                 max-height: 155px;
                 .input-group
@@ -40,7 +40,7 @@
                     {
                         padding: 6px 9px;
                         border: none;
-                        border-bottom: 1px solid $grey-1;
+                        border-bottom: 1px solid $color-structure-1;
                         border-radius: 0px;
                         font-size: 0.875rem;
                         font-weight: normal;
@@ -50,7 +50,7 @@
                     
                     &:hover
                     {
-                        background: $grey-1;
+                        background: $color-structure-1;
                     }
                 }
             }
@@ -61,7 +61,7 @@
             {
                 .multiselect-header
                 {
-                    background-color: $error;
+                    background-color: $color-alert;
                 }
             }
         }
@@ -71,7 +71,7 @@
             {
                 .multiselect-header
                 {
-                    background: $grey-5;
+                    background: $color-structure-5;
                     cursor: not-allowed;
                 }
                 .option-list
@@ -81,18 +81,18 @@
                         .form-control,
                         .input-group-addon
                         {
-                            color: $grey-5;
+                            color: $color-structure-5;
                             cursor: not-allowed;
                             &:hover
                             {
                                 cursor: not-allowed;
-                                background: $white;
+                                background: $color-structure-0;
                             }
                         }
                         &:hover
                         {
                             cursor: not-allowed;
-                            background: $white;
+                            background: $color-structure-0;
                         }
                     }
                 }

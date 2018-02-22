@@ -4,21 +4,21 @@ quill-editor
 {
     .ql-container
     {
-        background-color: $white;
+        background-color: $color-structure-0;
     }
     .ql-snow.ql-toolbar
     {
         button:hover, button:focus, button.ql-active
         {
-            color: $blue;
+            color: $color-active;
 
             .ql-stroke
             {
-                stroke: $blue;
+                stroke: $color-active;
             }
             .ql-fill
             {
-                fill: $blue;
+                fill: $color-active;
             }
         }
 
@@ -26,17 +26,17 @@ quill-editor
         {
             &.ql-selected, &:hover
             {
-                color: $blue;
+                color: $color-active;
             }
         }
         .ql-picker-label
         {
             &.ql-active, &:hover
             {
-                color: $blue;
+                color: $color-active;
                 .ql-stroke
                 {
-                    stroke: $blue;
+                    stroke: $color-active;
                 }
             }
         }

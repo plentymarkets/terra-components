@@ -23,32 +23,32 @@ button:focus
         cursor: not-allowed;
         .btn
         {
-            background-color: $grey-3;
-            color: $grey-7;
+            background-color: $color-structure-3;
+            color: $color-structure-7;
             cursor: not-allowed;
             &:hover,
             &:active,
             &.active
             {
-                background-color: $grey-3;
-                color: $grey-7;
+                background-color: $color-structure-3;
+                color: $color-structure-7;
                 cursor: not-allowed;
             }
             &.btn-link
             {
                 background-color: transparent;
-                color: $grey-4;
+                color: $color-structure-4;
                 font-weight: $font-weight-3;
                 
                 &:hover
                 {
                     background-color: transparent;
-                    color: $grey-4;
+                    color: $color-structure-4;
                     &:active,
                     &.active
                     {
                         background-color: transparent;
-                        color: $grey-4;
+                        color: $color-structure-4;
                     }
                 }
             }
@@ -74,7 +74,7 @@ button:focus
         {
             font-weight: 600;
             font-size: 1.1rem;
-            color: $white;
+            color: $color-structure-0;
             text-align: center;
             transform: rotate(45deg);
             -webkit-transform: rotate(45deg);
@@ -84,12 +84,12 @@ button:focus
             top: -2px;
             right: -7px;
             cursor: pointer;
-            background: $brand-yellow;
-            border-top: 10px solid $brand-yellow;
+            background: $color-accent;
+            border-top: 10px solid $color-accent;
             &.disabled
             {
-                background: $brand-yellow-light;
-                border-top: 10px solid $brand-yellow-light;
+                background: $color-accent-light;
+                border-top: 10px solid $color-accent-light;
                 cursor: not-allowed;
             }
         }
@@ -99,8 +99,8 @@ button:focus
 .btn
 {
     
-    height: var(--btn-height, $terra-btn-md-height);
-    line-height: var(--btn-line-height, $terra-btn-md-height);
+    height: var(--btn-height, $height-md);
+    line-height: var(--btn-line-height, $height-md);
     padding: var(--btn-padding, 0 8px);
     transition: ease height 0.6s, ease line-height 0.6s;
     display: inline-block;
@@ -122,17 +122,21 @@ button:focus
     
     border-radius: $border-radius;
     font-size: $font-size-3;
-    @include transition(all .2s ease-in-out);
-    @include button-variant($white, $grey-9, transparent);
+    transition: all .2s ease-in-out;
+    //@include button-variant($color-structure-0, $color-structure-9, transparent);
+    
+    color: $color-structure-0;
+    background-color: $color-structure-9;
+    border-color: transparent;
     
     &:hover
     {
-        background-color: $grey-11;
+        background-color: $color-structure-11;
         background-clip: padding-box;
         &:active,
         &.active
         {
-            background-color: $grey-9;
+            background-color: $color-structure-9;
             background-clip: padding-box;
         }
     }
@@ -141,14 +145,14 @@ button:focus
     {
         &:not(.highlighted)
         {
-            background-color: $blue;
+            background-color: $color-active;
             &:hover
             {
-                background-color: $blue-hover;
+                background-color: $color-active-dark;
                 &:active,
                 &.active
                 {
-                    background-color: $blue;
+                    background-color: $color-active;
                 }
             }
         }
@@ -158,7 +162,7 @@ button:focus
             {
                 100%
                 {
-                    background-color: $blue
+                    background-color: $color-active
                 }
             }
             animation: highlight-primary 1500ms ease-in-out 0ms infinite alternate;
@@ -168,14 +172,14 @@ button:focus
     {
         &:not(.highlighted)
         {
-            background-color: $alert-red;
+            background-color: $color-alert;
             &:hover
             {
-                background-color: darken($alert-red, 10%);
+                background-color: $color-alert-dark;
                 &:active,
                 &.active
                 {
-                    background-color: $alert-red;
+                    background-color: $color-alert;
                 }
             }
         }
@@ -185,7 +189,7 @@ button:focus
             {
                 100%
                 {
-                    background-color: $alert-red
+                    background-color: $color-alert
                 }
             }
             animation: highlight-secondary 1500ms ease-in-out 0ms infinite alternate;
@@ -195,15 +199,15 @@ button:focus
     {
         &:not(.highlighted)
         {
-            background: $alert-green;
-            color: white;
+            background: $color-add;
+            color: $color-structure-0;
             &:hover
             {
-                background-color: darken($alert-green, 10%);
+                background-color: $color-add-dark;
                 &:active,
                 &.active
                 {
-                    background-color: $alert-green;
+                    background-color: $color-add;
                 }
             }
         }
@@ -213,7 +217,7 @@ button:focus
             {
                 100%
                 {
-                    background-color: $alert-green
+                    background-color: $color-add
                 }
             }
             animation: highlight-tertiary 1500ms ease-in-out 0ms infinite alternate;
@@ -234,8 +238,8 @@ button:focus
     &.btn-lg
     {
         // line-height: ensure even-numbered height of button next to large input
-        height: $terra-btn-lg-height;
-        line-height: $terra-btn-lg-height;
+        height: $height-lg;
+        line-height: $height-lg;
         padding: var(--btn-lg-padding, 0 8px);
         font-size: $font-size-5;
         span
@@ -248,8 +252,8 @@ button:focus
     &.btn-sm
     {
         // line-height: ensure proper height of button next to small input
-        height: $terra-btn-sm-height;
-        line-height: $terra-btn-sm-height;
+        height: $height-sm;
+        line-height: $height-sm;
         padding: var(--btn-sm-padding, 0 8px);
         font-size: $font-size-1;
         span
@@ -261,72 +265,72 @@ button:focus
     
     &.activated
     {
-        background-color: $blue !important;
-        color: $white !important;
+        background-color: $color-active !important;
+        color: $color-structure-0 !important;
     }
     
     &.btn-link
     {
         background-color: transparent;
-        color: $grey-9;
+        color: $color-structure-9;
         font-weight: $font-weight-3;
         
         &:hover
         {
             background-color: transparent;
-            color: $blue;
+            color: $color-active;
             &:active,
             &.active
             {
                 background-color: transparent;
-                color: $grey-9;
+                color: $color-structure-9;
             }
         }
         &.btn-primary
         {
             background-color: transparent;
-            color: $blue;
+            color: $color-active;
             &:hover
             {
                 background-color: transparent;
-                color: $blue-hover;
+                color: $color-active-dark;
                 &:active,
                 &.active
                 {
                     background-color: transparent;
-                    color: $blue;
+                    color: $color-active;
                 }
             }
         }
         &.btn-secondary
         {
             background-color: transparent;
-            color: $alert-red;
+            color: $color-alert;
             &:hover
             {
                 background-color: transparent;
-                color: darken($alert-red, 10%);
+                color: $color-alert-dark;
                 &:active,
                 &.active
                 {
                     background-color: transparent;
-                    color: $alert-red;
+                    color: $color-alert;
                 }
             }
         }
         &.btn-tertiary
         {
             background-color: transparent;
-            color: $alert-green;
+            color: $color-add;
             &:hover
             {
                 background-color: transparent;
-                color: darken($alert-green, 10%);
+                color: $color-add-dark;
                 &:active,
                 &.active
                 {
                     background-color: transparent;
-                    color: $alert-green;
+                    color: $color-add;
                 }
             }
         }
@@ -335,7 +339,7 @@ button:focus
 
 button.btn:focus
 {
-    background-color: $grey-9;
+    background-color: $color-structure-9;
     
     &.btn-link
     {
@@ -369,7 +373,7 @@ fieldset[disabled] a.btn
     float: left;
     &:not(:first-child) .btn
     {
-        border-left: 1px solid $grey-2;
+        border-left: 1px solid $color-structure-2;
     }
     
     &:first-child
@@ -378,7 +382,7 @@ fieldset[disabled] a.btn
         &:not(:last-child) > .btn-handler > .btn,
         &:not(:last-child) > .btn-handler > .flag
         {
-            @include border-right-radius(0);
+            border-radius: $border-radius 0 0 $border-radius;
         }
     }
     
@@ -394,7 +398,7 @@ fieldset[disabled] a.btn
         &:not(:first-child) > .btn-handler > .btn,
         &:not(:first-child) > .btn-handler > .flag
         {
-            @include border-left-radius(0);
+            border-radius: 0 $border-radius $border-radius 0;
         }
     }
 }

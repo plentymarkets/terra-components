@@ -71,7 +71,7 @@
 
 ### Bug Fixes
 * **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
-* **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+* **input components** edit input scss for disabled components. Changed border-color from $color-structure-3 to $color-structure-5
 * **terra-checkbox** fix issue with missing unique IDs
 
 ### Feature

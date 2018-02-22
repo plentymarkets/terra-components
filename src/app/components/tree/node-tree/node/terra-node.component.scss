@@ -4,7 +4,7 @@ li
 {
     list-style: none;
     width: 100%;
-    border-top: 1px solid $grey-11;
+    border-top: 1px solid $color-structure-11;
     
     .btn-handler
     {
@@ -40,24 +40,24 @@ li
                     width: 40px;
                     line-height: var(--terra-node-icon-right-line-height, 36px);
                     text-align: center;
-                    background-color: $tree-icon-grey;
-                    border-left: 1px solid $grey-11;
+                    background-color: $color-structure-10;
+                    border-left: 1px solid $color-structure-11;
                     
                     &:hover
                     {
-                        background: $tree-icon-grey-hover;
+                        background: $color-structure-11;
                     }
                 }
             }
             
             &.isLoading
             {
-                background-color: $tree-icon-grey;
+                background-color: $color-structure-10;
             }
             
             &:hover
             {
-                background-color: $blue;
+                background-color: $color-active;
             }
         }
     }
@@ -65,7 +65,7 @@ li
     ul
     {
         padding-left: 16px;
-        background-color: $grey-12;
+        background-color: $color-structure-12;
         animation-name: layer-offset;
         animation-duration: .4s;
     }

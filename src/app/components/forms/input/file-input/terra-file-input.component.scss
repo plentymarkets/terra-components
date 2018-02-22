@@ -6,7 +6,7 @@
     {
         flex: 1;
         width: 100%;
-        background-color: $gray-light-3;
+        background-color: $color-structure-3;
         padding: 12px;
         display: flex;
         border-radius: $border-radius;
@@ -34,7 +34,7 @@
                 
                 > [class^="path"]:before
                 {
-                    color: $gray;
+                    color: $color-structure-9;
                 }
             }
         }

@@ -7,8 +7,8 @@ body
     font-size: $font-size-3 !important;
     font-weight: $font-weight-1 !important;
     line-height: 1.5 !important;
-    color: #333333 !important;
-    background-color: $grey-2 !important;
+    color: $color-structure-12 !important;
+    background-color: $color-structure-2 !important;
     position: absolute !important;
     top: 0 !important;
     bottom: 0 !important;
@@ -27,23 +27,23 @@ body
 
     &.top .tooltip-arrow
     {
-        border-top-color: $terra-tooltip-color;
+        border-top-color: var(--tooltip-color, $color-structure-12);
     }
     &.left .tooltip-arrow
     {
-        border-left-color: $terra-tooltip-color;
+        border-left-color: var(--tooltip-color, $color-structure-12);
     }
     &.bottom .tooltip-arrow
     {
-        border-bottom-color: $terra-tooltip-color;
+        border-bottom-color: var(--tooltip-color, $color-structure-12);
     }
     &.right .tooltip-arrow
     {
-        border-right-color: $terra-tooltip-color;
+        border-right-color: var(--tooltip-color, $color-structure-12);
     }
     .tooltip-inner
     {
-        background-color: $terra-tooltip-color;
+        background-color: var(--tooltip-color, $color-structure-12);
     }
 }
 
@@ -68,31 +68,31 @@ body
 h1
 {
     font-size: $font-size-7;
-    font-weight: $font-bold;
+    font-weight: $font-weight-3;
 }
 
 h2
 {
     font-size: $font-size-6;
-    font-weight: $font-bold;
+    font-weight: $font-weight-3;
 }
 
 h3
 {
     font-size: $font-size-5;
-    font-weight: $font-bold;
+    font-weight: $font-weight-3;
 }
 
 h4
 {
     font-size: $font-size-5;
-    font-weight: $font-weight-1;
+    font-weight: $font-weight-3;
 }
 
 h5
 {
     font-size: $font-size-4;
-    font-weight: $font-bold;
+    font-weight: $font-weight-3;
 }
 
 p, span, a
@@ -113,7 +113,7 @@ p, span, a
     transition: all 0.2s ease;
     transition-delay: 0.2s;
     padding: 5px 0px;
-    background-color: $grey-9;
+    background-color: $color-structure-9;
     border-radius: 5px;
     
     top: var(--context-menu-top, 29px);
@@ -122,7 +122,7 @@ p, span, a
     list-style-type: none;
     margin: 0;
     text-align: left;
-    z-index: $zindex-context-menu;
+    z-index: $zIndex-9;
     
     a
     {
@@ -137,12 +137,12 @@ p, span, a
         font-size: var(--context-menu-a-font-size, $font-size-1);
         line-height: $font-size-5;
         font-weight: $font-weight-1;
-        color: $white !important;
+        color: $color-structure-0 !important;
         -webkit-font-smoothing: initial;
         
         &:hover
         {
-            background-color: $grey-11;
+            background-color: $color-structure-11;
         }
         
         .left-icon
@@ -161,13 +161,13 @@ p, span, a
             
             &:hover
             {
-                color: $blue;
+                color: $color-active;
                 opacity: 1;
             }
         }
         &.disabled
         {
-            color: $grey-6 !important;
+            color: $color-structure-6 !important;
             &:hover
             {
                 background-color: inherit;
@@ -190,9 +190,9 @@ p, span, a
 }
 
 .rating-positive {
-    color: $yellow;
+    color: $color-accent;
 }
 
 .rating-negative {
-    color: $alert-red;
+    color: $color-alert;
 }

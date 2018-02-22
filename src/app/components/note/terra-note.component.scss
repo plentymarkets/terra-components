@@ -2,7 +2,7 @@ $padding-border: 16px;
 
 .note
 {
-    background-color: $yellow-light;
+    background-color: $color-accent-light;
     -moz-border-radius: $border-radius;
     -webkit-border-radius: $border-radius;
     border-radius: $border-radius;
@@ -13,20 +13,20 @@ $padding-border: 16px;
     overflow-x: auto;
     &.selected
     {
-        background-color: $blue;
+        background-color: $color-active;
         
         .note-inner
         {
             .note-text
             {
-                color: $white;
+                color: $color-structure-0;
             }
         }
         .note-footer
         {
             .note-id
             {
-                color: $white;
+                color: $color-structure-0;
             }
         }
     }
@@ -41,7 +41,7 @@ $padding-border: 16px;
             padding-right: 0.8rem;
             max-width: 77%;
             white-space: normal;
-            color: $grey-11;
+            color: $color-structure-11;
             .note-header
             {
                 font-weight: bold;
@@ -65,7 +65,7 @@ $padding-border: 16px;
             .note-id
             {
                 margin-top: auto;
-                color: $grey-8;
+                color: $color-structure-8;
                 width: 100%;
                 text-align: center;
                 padding-top: $padding-border;

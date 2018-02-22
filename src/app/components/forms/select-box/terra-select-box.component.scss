@@ -3,9 +3,9 @@
 .select-box-wrapper
 {
     position: relative;
-    background-color: $white;
+    background-color: $color-structure-0;
     border-radius: $border-radius;
-    border: 1px solid $white;
+    border: 1px solid $color-structure-0;
     margin: var(--select-box-wrapper-margin, 0px);
     margin-bottom: var(--select-box-wrapper-margin-bottom, 3px);
     
@@ -18,13 +18,13 @@
     
     &.error
     {
-        border-color: $error;
+        border-color: $color-alert;
     }
     
     .select-box
     {
-        height: var(--select-box-height, $terra-btn-md-height - 2);
-        line-height: var(--select-box-line-height, $terra-btn-md-height - 2);
+        height: var(--select-box-height, $height-md - 2);
+        line-height: var(--select-box-line-height, $height-md - 2);
         transition: ease height 0.6s, ease line-height 0.6s;
         display: inline-block;
         width: var(--select-box-width, 100%);
@@ -37,12 +37,12 @@
         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat right .75rem center;
         background-image: none \9;
         background-size: 8px 10px;
-        color: $grey-10;
+        color: $color-structure-10;
         
         &.isSmall
         {
-            height: $terra-btn-sm-height - 2;
-            line-height: $terra-btn-sm-height - 2;
+            height: $height-sm - 2;
+            line-height: $height-sm - 2;
             &.labeled
             {
                 padding: 0px 7px 0px 7px;
@@ -50,8 +50,8 @@
         }
         &.error
         {
-            border-color: $error;
-            color: $error;
+            border-color: $color-alert;
+            color: $color-alert;
             background-size: 8px 10px;
         }
         &.labeled
@@ -72,12 +72,12 @@
     }
     &:not(.error):hover
     {
-        border: 1px solid $blue;
+        border: 1px solid $color-active;
     }
     &.disabled
     {
-        background-color: $grey-2;
-        border: 1px solid $grey-5;
+        background-color: $color-structure-2;
+        border: 1px solid $color-structure-5;
         .select-box
         {
             filter: opacity(30%);
@@ -105,27 +105,27 @@
     {
         position: absolute;
         z-index: 99999;
-        top: var(--select-box-dropdown-top, $terra-btn-md-height);
+        top: var(--select-box-dropdown-top, $height-md);
         bottom: initial;
         left: 0;
         min-width: 100%;
         width: auto;
         max-height: 12rem;
         border-radius: $border-radius;
-        background: white;
+        background: $color-structure-0;
         display: none;
         overflow: auto;
-        border: 1px solid $grey-4;
+        border: 1px solid $color-structure-4;
         
         &.openOnTop
         {
             top: initial;
-            bottom: $terra-btn-md-height;
+            bottom: $height-md;
         }
         
         &.isSmall
         {
-            top: $terra-btn-sm-height;
+            top: $height-sm;
         }
         
         > span
@@ -139,22 +139,22 @@
             &:hover,
             &.selected
             {
-                background: $grey-3;
+                background: $color-structure-3;
             }
             &.active
             {
-                background: $blue;
-                color: white;
+                background: $color-active;
+                color: $color-structure-0;
             }
             &.highlight
             {
                 font-weight: bolder;
-                color: $alert-green;
+                color: $color-add;
             }
             &.deep
             {
                 font-style: italic;
-                color: $grey-8;
+                color: $color-structure-8;
                 font-weight: lighter;
             }
         }
