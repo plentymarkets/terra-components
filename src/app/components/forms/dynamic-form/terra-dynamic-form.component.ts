@@ -32,24 +32,28 @@ export interface TerraDynamicFormRequestParams
 @Component({
     selector:  'terra-dynamic-form',
     template:  require('./terra-dynamic-form.component.html'),
+    styles:   [require('./terra-dynamic-form.component.scss')],
     providers: [TerraDynamicFormService]
 })
 export class TerraDynamicFormComponent implements OnInit, OnChanges
 {
     @Input() public inputFormFunctions:TerraDynamicFormFunctionsHandler<any>;
     @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
-    @Input() public inputPortletStyle:string;
     @Input() public inputRequestParams:TerraDynamicFormRequestParams;
+    @Input() public inputHasNoSaveButton:boolean;
+    @Input() public inputHasNoResetButton:boolean;
 
     constructor(private _formFieldControlService:TerraFormFieldControlService,
                 private _dynamicService:TerraDynamicFormService)
     {
-        this.inputPortletStyle = 'col-xs-12 col-md-4';
         this.inputRequestParams = {
             route:      '',
             htmlMethod: null,
             params:     {}
         };
+
+        this.inputHasNoSaveButton = false;
+        this.inputHasNoResetButton = false;
     }
 
     public ngOnInit():void
@@ -72,10 +76,25 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         if(changes['inputFormFields'])
         {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
-
-
             this.registerValueChange();
         }
+    }
+
+    public validate():void
+    {
+        if(this._formFieldControlService.dynamicFormGroup.valid)
+        {
+            this.inputFormFunctions.saveCallback(this._formFieldControlService.dynamicFormGroup.value);
+        }
+        else
+        {
+            this.inputFormFunctions.errorCallback(this._formFieldControlService.dynamicFormGroup, this._formFieldControlService.translationMapping);
+        }
+    }
+
+    public onResetClick():void
+    {
+        this._formFieldControlService.resetForm();
     }
 
     private registerValueChange():void
@@ -92,22 +111,5 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
                     this.inputFormFunctions.onValueChangedCallback(value);
                 });
         }
-    }
-
-    private validate():void
-    {
-        if(this._formFieldControlService.dynamicFormGroup.valid)
-        {
-            this.inputFormFunctions.saveCallback(this._formFieldControlService.dynamicFormGroup.value);
-        }
-        else
-        {
-            this.inputFormFunctions.errorCallback(this._formFieldControlService.dynamicFormGroup, this._formFieldControlService.translationMapping);
-        }
-    }
-
-    private onResetClick():void
-    {
-        this._formFieldControlService.resetForm();
     }
 }
