@@ -32,6 +32,7 @@ export interface TerraDynamicFormRequestParams
 @Component({
     selector:  'terra-dynamic-form',
     template:  require('./terra-dynamic-form.component.html'),
+    styles:   [require('./terra-dynamic-form.component.scss')],
     providers: [TerraDynamicFormService]
 })
 export class TerraDynamicFormComponent implements OnInit, OnChanges
@@ -39,6 +40,8 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     @Input() public inputFormFunctions:TerraDynamicFormFunctionsHandler<any>;
     @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
     @Input() public inputRequestParams:TerraDynamicFormRequestParams;
+    @Input() public inputHasNoSaveButton:boolean;
+    @Input() public inputHasNoResetButton:boolean;
 
     constructor(private _formFieldControlService:TerraFormFieldControlService,
                 private _dynamicService:TerraDynamicFormService)
@@ -48,6 +51,9 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
             htmlMethod: null,
             params:     {}
         };
+
+        this.inputHasNoSaveButton = false;
+        this.inputHasNoResetButton = false;
     }
 
     public ngOnInit():void
@@ -60,6 +66,8 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
             this.inputFormFunctions.formFieldControlService = this._formFieldControlService;
+
+            this.registerValueChange();
         }
     }
 
@@ -68,10 +76,11 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         if(changes['inputFormFields'])
         {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
+            this.registerValueChange();
         }
     }
 
-    private validate():void
+    public validate():void
     {
         if(this._formFieldControlService.dynamicFormGroup.valid)
         {
@@ -83,8 +92,24 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         }
     }
 
-    private onResetClick():void
+    public onResetClick():void
     {
         this._formFieldControlService.resetForm();
+    }
+
+    private registerValueChange():void
+    {
+        if(!isNullOrUndefined(this.inputFormFunctions.onValueChangedCallback))
+        {
+            this._formFieldControlService
+                .dynamicFormGroup
+                .valueChanges
+                .debounceTime(1000)
+                .subscribe((value:any) =>
+                {
+                    console.log(value);
+                    this.inputFormFunctions.onValueChangedCallback(value);
+                });
+        }
     }
 }
