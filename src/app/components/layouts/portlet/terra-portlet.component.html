@@ -1,5 +1,5 @@
 <div class="portlet" [class.collapsable]="inputIsCollapsable" [ngClass]="{'highlight': inputHighlightPortlet}">
-    <div *ngIf="inputIsCollapsable" [ngStyle]="{ 'background': getBackground()}">
+    <div [ngStyle]=_portletHeadStyle>
         <div class="portlet_head" (click)="toggleCollapse()" *ngIf="inputPortletHeader.length">
             <span class="header-caption">{{inputPortletHeader}}</span>
             <div>
