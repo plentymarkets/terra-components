@@ -44,7 +44,7 @@ export class TerraPortletComponent implements OnChanges
     @Input() inputHighlightPortlet:boolean = false;
 
     /**
-     * @description Sets the value of the portlet header.
+     * @description Sets the label of the portlet header.
      */
     @Input() inputPortletHeader:string;
 
