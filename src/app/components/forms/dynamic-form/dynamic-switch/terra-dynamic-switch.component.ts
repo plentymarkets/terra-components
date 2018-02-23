@@ -21,6 +21,8 @@ export class TerraDynamicSwitchComponent
     @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
     @Input() public inputFormGroup:FormGroup;
     @Input() public inputSubSwitch:boolean;
+    @Input() public inputIsDisabled:boolean;
+
 
     // Necessary for using enum in html
     public controlTypeEnum:any = TerraControlTypeEnum;

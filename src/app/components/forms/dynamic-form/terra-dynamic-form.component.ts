@@ -42,6 +42,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     @Input() public inputRequestParams:TerraDynamicFormRequestParams;
     @Input() public inputHasNoSaveButton:boolean;
     @Input() public inputHasNoResetButton:boolean;
+    @Input() public inputIsDisabled:boolean;
 
     constructor(private _formFieldControlService:TerraFormFieldControlService,
                 private _dynamicService:TerraDynamicFormService)
@@ -54,6 +55,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
 
         this.inputHasNoSaveButton = false;
         this.inputHasNoResetButton = false;
+        this.inputIsDisabled = false;
     }
 
     public ngOnInit():void

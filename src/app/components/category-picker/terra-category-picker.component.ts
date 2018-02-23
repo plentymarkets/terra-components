@@ -37,7 +37,8 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
     /**
      * @description Service, that is used to request the category data from the server
      */
-    @Input() inputCategoryService:TerraCategoryPickerBaseService;
+    @Input() public inputCategoryService:TerraCategoryPickerBaseService;
+    @Input() public inputIsDisabled:boolean;
 
     private _value:any;
     private _toggleTree:boolean = false;

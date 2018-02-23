@@ -6,6 +6,7 @@
                               [formControlName]="formField.key"
                               [inputName]="formField.label  | translate:lang"
                               [inputIsRequired]="formField.required"
+                              [inputIsDisabled]="inputIsDisabled"
                               [inputIsPassword]="formField.isPassword"
                               [inputIsIban]="formField.isPassword"
                               [inputIsReadonly]="formField.isReadOnly"
@@ -19,6 +20,7 @@
                               [formControlName]="formField.key"
                               [inputName]="formField.label  | translate:lang"
                               [inputIsRequired]="formField.required"
+                              [inputIsDisabled]="inputIsDisabled"
                               [inputIsPassword]="formField.isPassword"
                               [inputIsIban]="formField.isPassword"
                               [inputIsReadonly]="formField.isReadOnly"
@@ -31,6 +33,7 @@
                                    [formControlName]="formField.key"
                                    [inputName]="formField.label  | translate:lang"
                                    [inputIsRequired]="formField.required"
+                                   [inputIsDisabled]="inputIsDisabled"
                                    [inputTooltipText]="formField.tooltip"
                                    [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-text-area-input>
@@ -40,6 +43,7 @@
                                 [formControlName]="formField.key"
                                 [inputName]="formField.label  | translate:lang"
                                 [inputIsRequired]="formField.required"
+                                [inputIsDisabled]="inputIsDisabled"
                                 [inputTooltipText]="formField.tooltip"
                                 [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-number-input>
@@ -49,12 +53,14 @@
                                 [formControlName]="formField.key"
                                 [inputName]="formField.label  | translate:lang"
                                 [inputIsRequired]="formField.required"
+                                [inputIsDisabled]="inputIsDisabled"
                                 [inputTooltipText]="formField.tooltip"
                                 [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-number-input>
 
             <terra-checkbox *ngSwitchCase="controlTypeEnum.CHECK_BOX"
                             [formControlName]="formField.key"
+                            [inputIsDisabled]="inputIsDisabled"
                             [inputCaption]="formField.label | translate:lang"
                             (ngModelChange)="onConditionChanged(formField)">
             </terra-checkbox>
@@ -64,6 +70,7 @@
                                 [formControlName]="formField.key"
                                 [inputName]="formField.label  | translate:lang"
                                 [inputIsRequired]="formField.required"
+                                [inputIsDisabled]="inputIsDisabled"
                                 [inputIsPriceInput]="formField.isPrice"
                                 [inputDecimalCount]="formField.decimalCount"
                                 [inputTooltipText]="formField.tooltip"
@@ -73,6 +80,7 @@
             <terra-category-picker *ngSwitchCase="'categoryPicker'"
                                    [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                    [formControlName]="formField.key"
+                                   [inputIsDisabled]="inputIsDisabled"
                                    [inputCategoryService]="formField.categoryService"
                                    [(ngModel)]="formField.value">
             </terra-category-picker>
@@ -81,6 +89,7 @@
                               [formControlName]="formField.key"
                               [inputName]="formField.label | translate:lang"
                               [inputIsRequired]="formField.required"
+                              [inputIsDisabled]="inputIsDisabled"
                               [inputListBoxValues]="formField.selectBoxValues"
                               [inputTooltipText]="formField.tooltip"
                               [inputTooltipPlacement]="formField.tooltipPlacement">
@@ -91,6 +100,7 @@
                                [formControlName]="formField.key"
                                [inputName]="formField.label | translate:lang"
                                [inputIsRequired]="formField.required"
+                               [inputIsDisabled]="inputIsDisabled"
                                [inputOpenCalendarTop]="formField.openCalenderTop">
             </terra-date-picker>
             
