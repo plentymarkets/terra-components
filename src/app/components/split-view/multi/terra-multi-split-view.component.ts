@@ -79,6 +79,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     ngOnInit()
     {
+        this.inputConfig.splitViewComponent = this;
+
         // catch routing events, but only those that select the tab where the split view is instantiated
         if(!isNullOrUndefined(this._router) && !isNullOrUndefined(this.inputComponentRoute))
         {
@@ -94,37 +96,9 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     });
             }
         }
-
-        this.inputConfig.addViewEventEmitter.subscribe((value:TerraMultiSplitViewInterface) =>
-        {
-            // synchronize modules array with input config
-            this.addToModulesIfNotExist(value);
-
-            // set the selected view
-            this.setSelectedView(value);
-        });
-
-        this.inputConfig.deleteViewEventEmitter.subscribe((value:TerraMultiSplitViewInterface) =>
-        {
-            // update modules array
-            let viewToSelect:TerraMultiSplitViewInterface = this.removeFromModules(value);
-
-            // select the parent view
-            this.setSelectedView(viewToSelect);
-        });
-
-        this.inputConfig.resizeViewEventEmitter.subscribe((value:TerraMultiSplitViewInterface) =>
-        {
-            this.resizeViewAndModule(value);
-        });
-
-        this.inputConfig.setSelectedViewEventEmitter.subscribe((value:TerraMultiSplitViewInterface) =>
-        {
-            this.setSelectedView(value);
-        });
     }
 
-    private addToModulesIfNotExist(view:TerraMultiSplitViewInterface):void
+    public addToModulesIfNotExist(view:TerraMultiSplitViewInterface):void
     {
         // check whether view is null or undefined
         if(isNullOrUndefined(view))
@@ -166,7 +140,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
     }
 
-    private setSelectedView(view:TerraMultiSplitViewInterface)
+    public setSelectedView(view:TerraMultiSplitViewInterface)
     {
         // check whether view is defined
         if(isNullOrUndefined(view))
@@ -368,7 +342,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
     }
 
-    private removeFromModules(view:TerraMultiSplitViewInterface):TerraMultiSplitViewInterface
+    public removeFromModules(view:TerraMultiSplitViewInterface):TerraMultiSplitViewInterface
     {
         // check whether view is null or undefined
         if(isNullOrUndefined(view))
@@ -469,7 +443,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         return hierarchyLevel;
     }
 
-    private resizeViewAndModule(view:TerraMultiSplitViewInterface):void
+    public resizeViewAndModule(view:TerraMultiSplitViewInterface):void
     {
         let module:TerraMultiSplitViewDetail = this.getModuleOfView(view);
 
