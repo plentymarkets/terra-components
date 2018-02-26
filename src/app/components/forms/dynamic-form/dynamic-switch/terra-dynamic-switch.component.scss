@@ -8,17 +8,12 @@
 
 .horizontalGroup
 {
-    display: flex;
-    padding: 2px 0;
-    
-    .subSwitch
-    {
-        width: 100%;
-    }
+    padding: 4px 0;
     
     .horizontalGroupLabel
     {
-        vertical-align: middle;
+        display: block;
+        font-weight: bold;
     }
     
     .horizontalGroupEntry
@@ -29,6 +24,26 @@
     & :not(:last-child)
     {
         margin-right: 5px;
+    }
+}
+
+.verticalGroup
+{
+    padding: 4px 0;
+    
+    .subSwitch
+    {
+        width: 100%;
+    }
+    
+    .verticalGroupLabel
+    {
+        font-weight: bold;
+    }
+    
+    .verticalGroupEntry
+    {
+        width: 100%;
     }
 }
 

@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <terra-node-tree [inputConfig]="_nodeTreeConfig">
+            </terra-node-tree>
+        </div>
+        <div class="col-md-9">
+            <terra-portlet>
+                <terra-text-input inputName="ID" #nodeIdInput></terra-text-input>
+                <br><br>
+                <terra-button [inputCaption]="'Find node by id'"
+                              (outputClicked)="findNodeById(nodeIdInput.value)">
+                </terra-button>
+                <terra-button [inputCaption]="'Delete node by id'"
+                              (outputClicked)="deleteNodeById(nodeIdInput.value)">
+                </terra-button>
+                <terra-button [inputCaption]="'Update node by id'"
+                              (outputClicked)="updateNodeById(nodeIdInput.value)">
+                </terra-button>
+                <terra-button [inputCaption]="'Add child to node by id'"
+                              (outputClicked)="addChildToNodeById(nodeIdInput.value)">
+                </terra-button>
+                <terra-button [inputCaption]="'Set selected node by id'"
+                              (outputClicked)="setSelectedNode(nodeIdInput.value)">
+                </terra-button>
+                <br><br>
+                <terra-button [inputCaption]="'Get selected node'"
+                              (outputClicked)="getSelectedNode()">
+                </terra-button>
+                <terra-button [inputCaption]="'Delete selected node'"
+                              (outputClicked)="deleteSelectedNode()">
+                </terra-button>
+                <terra-button [inputCaption]="'Update selected node'"
+                              (outputClicked)="updateSelectedNode()">
+                </terra-button>
+                <br><br>
+                <terra-button [inputCaption]="'Add node'"
+                              (outputClicked)="addNode()">
+                </terra-button>
+                <terra-button [inputCaption]="'Try to add existing node'"
+                              (outputClicked)="addExistingNode()"></terra-button>
+                <terra-button [inputCaption]="'Create complete tree'"
+                              (outputClicked)="createCompleteTree()">
+                </terra-button>
+                <terra-button [inputCaption]="'Create complete tree with icons'"
+                              (outputClicked)="createTreeWithIcons()">
+                </terra-button>
+                
+            </terra-portlet>
+        </div>
+    </div>
+</div>

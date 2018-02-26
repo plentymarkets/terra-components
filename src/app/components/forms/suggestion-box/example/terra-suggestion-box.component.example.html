@@ -1,0 +1,20 @@
+<terra-portlet>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <terra-suggestion-box
+                    inputName="icons"
+                    [inputListBoxValues]="_iconList"
+                    [(ngModel)]="_iconClass">
+                </terra-suggestion-box>
+            </div>
+            <div  class="col-md-4 text-md-left h2">
+               <span [ngClass]="_iconClass"></span>
+               <span>{{_iconClass}}</span>
+            </div>
+        </div>
+    </div>
+</terra-portlet>
+
+
+
