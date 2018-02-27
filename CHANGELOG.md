@@ -4,6 +4,9 @@
 * **url-helper** new component that offers methods to edit urls
 * **terra-multi-split-view** inject router instead of passing it via the input `inputRouter`.
 
+### Buf Fixes
+* **terra-data-table** hide no-results-notice when request is pending
+
 <a name="2.1.47-zlk"></a>
 # 2.1.47-zlk (06.02.2018)
 
