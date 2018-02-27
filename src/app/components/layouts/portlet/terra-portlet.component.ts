@@ -47,8 +47,6 @@ export class TerraPortletComponent implements OnChanges
     @Input() inputCollapsed:boolean = false;
 
     @Output() inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
-    
-    private _portletHeadStyle:any;
 
     /**
      * @description Sets the given buttons as a button group to the right side of the portlet header.
@@ -74,13 +72,6 @@ export class TerraPortletComponent implements OnChanges
     {
         this.inputPortletHeader = isNullOrUndefined(this.inputPortletHeader) ? '' : this.inputPortletHeader;
     }
-    
-    public ngOnInit():void
-    {
-        this._portletHeadStyle = {
-            "background": this.getBackground()
-        };
-    }
 
     public ngOnChanges(changes:SimpleChanges):void
     {
@@ -104,17 +95,5 @@ export class TerraPortletComponent implements OnChanges
         }
 
         this.inputCollapsedChange.emit(this.inputCollapsed);
-    }
-    
-    public getBackground()
-    {
-        if(this.inputIsCollapsable)
-        {
-            return '#D7D8DB' //entspricht $grey-4
-        }
-        else
-        {
-            return 'transparent'
-        }
     }
 }

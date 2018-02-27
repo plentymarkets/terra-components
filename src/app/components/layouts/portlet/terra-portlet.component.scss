@@ -90,6 +90,13 @@
         .portlet_head
         {
             cursor: pointer;
+            background-color: var(--portlet_body-background-color, $grey-2);
+            border-radius: 5px;
+            
+            &.collapsed
+            {
+                background-color: transparent;
+            }
         }
         .portlet_body
         {

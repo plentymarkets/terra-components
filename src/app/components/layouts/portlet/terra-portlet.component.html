@@ -1,28 +1,26 @@
 <div class="portlet" [class.collapsable]="inputIsCollapsable" [ngClass]="{'highlight': inputHighlightPortlet}">
-    <div [ngStyle]=_portletHeadStyle>
-        <div class="portlet_head" (click)="toggleCollapse()" *ngIf="inputPortletHeader.length">
-            <span class="header-caption">{{inputPortletHeader}}</span>
-            <div>
-                <div class="header-buttons btn-group" (click)="$event.stopPropagation()">
-                    <terra-button *ngFor="let button of inputButtonList"
-                                  [inputIcon]="button.icon"
-                                  [inputCaption]="button.caption"
-                                  [inputTooltipText]="button.tooltipText"
-                                  (outputClicked)="button.clickFunction()"
-                                  [inputTooltipPlacement]="button.tooltipPlacement"
-                                  [inputIsPrimary]="button.isPrimary"
-                                  [inputIsSecondary]="button.isSecondary"
-                                  [inputIsTertiary]="button.isTertiary"
-                                  [inputIsActive]="button.isActive"
-                                  [inputIsDisabled]="button.isDisabled"
-                                  [inputIsHidden]="button.isHidden"
-                                  [inputIsDivider]="button.isDivider"
-                                  [inputIsHighlighted]="button.isHighlighted"
-                                  [inputIsSmall]="true">
-                    </terra-button>
-                </div>
-                <span class="icon-collapse_down" [class.rotated]="inputCollapsed" *ngIf="inputIsCollapsable"></span>
+    <div class="portlet_head" [class.collapsed]="!inputCollapsed" (click)="toggleCollapse()" *ngIf="inputPortletHeader.length">
+        <span class="header-caption">{{inputPortletHeader}}</span>
+        <div>
+            <div class="header-buttons btn-group" (click)="$event.stopPropagation()">
+                <terra-button *ngFor="let button of inputButtonList"
+                              [inputIcon]="button.icon"
+                              [inputCaption]="button.caption"
+                              [inputTooltipText]="button.tooltipText"
+                              (outputClicked)="button.clickFunction()"
+                              [inputTooltipPlacement]="button.tooltipPlacement"
+                              [inputIsPrimary]="button.isPrimary"
+                              [inputIsSecondary]="button.isSecondary"
+                              [inputIsTertiary]="button.isTertiary"
+                              [inputIsActive]="button.isActive"
+                              [inputIsDisabled]="button.isDisabled"
+                              [inputIsHidden]="button.isHidden"
+                              [inputIsDivider]="button.isDivider"
+                              [inputIsHighlighted]="button.isHighlighted"
+                              [inputIsSmall]="true">
+                </terra-button>
             </div>
+            <span class="icon-collapse_down" [class.rotated]="inputCollapsed" *ngIf="inputIsCollapsable"></span>
         </div>
     </div>
     <div class="portlet_body" [@collapsedState]="collapsedState">
