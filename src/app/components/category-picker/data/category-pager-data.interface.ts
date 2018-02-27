@@ -1,4 +1,5 @@
 import { CategoryDataInterface } from './category-data.interface';
+
 /**
  * @author ziyad.hajj-hassan
  */

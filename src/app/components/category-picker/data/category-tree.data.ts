@@ -1,4 +1,3 @@
-
 export interface CategoryTreeData
 {
     id:string | number;

@@ -23,5 +23,5 @@ export abstract class TerraCategoryPickerBaseService extends TerraBaseService
      * @param {string | number} categoryId
      * @returns {Observable<CategoryPagerDataInterface>}
      */
-    public abstract requestCategoryData(categoryId: string | number):Observable<CategoryPagerDataInterface>
+    public abstract requestCategoryData(categoryId:string | number):Observable<CategoryPagerDataInterface>
 }

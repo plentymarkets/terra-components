@@ -12,7 +12,7 @@ import {
 } from '@angular/forms';
 import { TerraCategoryPickerBaseService } from './service/terra-category-picker-base.service';
 import { CategoryTreeConfig } from './config/category-tree.config';
-import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
+import { TerraNodeInterface } from '../../../';
 import { CategoryTreeData } from './data/category-tree.data';
 import { CategoryDataInterface } from './data/category-data.interface';
 import { CategoryDetailDataInterface } from './data/category-detail-data.interface';
@@ -22,9 +22,7 @@ import { CategoryPagerDataInterface } from './data/category-pager-data.interface
 @Component({
     selector:  'terra-category-picker',
     template:  require('./terra-category-picker.component.html'),
-    styles:    [
-        require('./terra-category-picker.component.scss').toString()
-    ],
+    styles:    [require('./terra-category-picker.component.scss')],
     providers: [{
         provide:     NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => TerraCategoryPickerComponent),
@@ -54,10 +52,12 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
 
     //Placeholders for the callbacks which are later provided
     //by the Control Value Accessor
-    private onTouchedCallback:() => void = () => {
+    private onTouchedCallback:() => void = () =>
+    {
     };
 
-    private onChangeCallback:(_:any) => void = (_) => {
+    private onChangeCallback:(_:any) => void = (_) =>
+    {
     };
 
     ngAfterContentChecked():void
@@ -80,7 +80,8 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
             id = parentNode.id;
         }
 
-        this.inputCategoryService.requestCategoryData(id).subscribe((data:CategoryPagerDataInterface) => {
+        this.inputCategoryService.requestCategoryData(id).subscribe((data:CategoryPagerDataInterface) =>
+        {
             let entries:Array<CategoryDataInterface> = data.entries;
 
             for(let index in entries)
