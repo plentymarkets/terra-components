@@ -93,7 +93,7 @@
             background-color: var(--portlet_body-background-color, $grey-2);
             border-radius: 5px;
             
-            &.collapsed
+            &.unfolded
             {
                 background-color: transparent;
             }
