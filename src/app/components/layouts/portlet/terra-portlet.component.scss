@@ -90,8 +90,9 @@
         .portlet_head
         {
             cursor: pointer;
-            background-color: var(--portlet_body-background-color, $grey-2);
+            background-color: var(--collapsable_portlet_head-background-color, $grey-2);
             border-radius: 5px;
+            transition: ease background-color 0.3s;
             
             &.unfolded
             {
