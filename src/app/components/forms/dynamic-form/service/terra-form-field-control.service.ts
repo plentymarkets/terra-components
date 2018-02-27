@@ -50,6 +50,15 @@ export class TerraFormFieldControlService
         this.dynamicFormGroup.reset(this.defaultValues);
     }
 
+    /**
+     * Resets the form to default values
+     */
+    public updateDefaultValues(values:any):void
+    {
+        this.defaultValues = values;
+        this.resetForm();
+    }
+
     private initFormGroupHelper(formFields:Array<TerraFormFieldBase<any>>,
                                 toGroup:{ [key:string]:any },
                                 isDisabled:boolean = false):{ [key:string]:any }
@@ -81,7 +90,7 @@ export class TerraFormFieldControlService
             }
             else
             {
-                toGroup[formField.key] = new FormControl(formField.value, this.generateValidators(formField));
+                toGroup[formField.key] = new FormControl(formField.defaultValue, this.generateValidators(formField));
                 if(isDisabled)
                 {
                     toGroup[formField.key].disable({
@@ -89,7 +98,7 @@ export class TerraFormFieldControlService
                         emitEvent: false
                     });
                 }
-                this.defaultValues[formField.key] = formField.value;
+                this.defaultValues[formField.key] = formField.defaultValue;
                 this.translationMapping[formField.key] = formField.label;
             }
         });

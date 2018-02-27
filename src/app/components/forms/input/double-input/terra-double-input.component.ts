@@ -40,6 +40,11 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     private _step:number;
 
     /**
+     * @description a unique string identifier for the specific input instance.
+     */
+    private _id:string;
+
+    /**
      * @deprecated
      * @param {number} v
      */
@@ -50,11 +55,6 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
 
         this.value = v;
     }
-
-    /**
-     * @description a unique string identifier for the specific input instance.
-     */
-    private _id:string;
 
     constructor()
     {
@@ -68,5 +68,29 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     {
         this.regex = TerraRegex.getDouble(this.inputDecimalCount);
         this._step = 1 / (Math.pow(10, this.inputDecimalCount));
+    }
+
+    /**
+     * Set the focus on the native input element.
+     */
+    public focusNativeInput():void
+    {
+        setTimeout(() =>
+        {
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            input.focus();
+        });
+    }
+
+    /**
+     * Select the content of the native input element.
+     */
+    public selectNativeInput():void
+    {
+        setTimeout(() =>
+        {
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            input.select();
+        });
     }
 }

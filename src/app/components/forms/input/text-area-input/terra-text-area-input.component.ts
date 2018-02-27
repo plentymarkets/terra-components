@@ -75,4 +75,28 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
         // generate the id of the input instance
         this._id = `text-area-input_#${nextId++}`;
     }
+
+    /**
+     * Set the focus on the native input element.
+     */
+    public focusNativeInput():void
+    {
+        setTimeout(():void =>
+        {
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            input.focus();
+        });
+    }
+
+    /**
+     * Select the content of the native input element.
+     */
+    public selectNativeInput():void
+    {
+        setTimeout(():void =>
+        {
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            input.select();
+        });
+    }
 }

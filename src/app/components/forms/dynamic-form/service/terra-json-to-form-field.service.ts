@@ -8,45 +8,27 @@ import { TerraFormFieldTextArea } from '../data/terra-form-field-text-area';
 import { TerraFormFieldDatePicker } from '../data/terra-form-field-date-picker';
 import { TerraFormFieldSelectBox } from '../data/terra-form-field-select-box';
 import { TerraFormFieldCheckBox } from '../data/terra-form-field-check-box';
+import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
 
 /**
  * @author mfrank
  *
- *  EXPERIMENTAL - DO NOT USE THIS SERVICE
  */
-@Injectable()
 export class TerraJsonToFormFieldService
 {
-    public formFields:Array<TerraFormFieldBase<any>> = [];
-
-    /*
-
-     private _formStructureJson:{ [key:string]:any } = {
-     input: {
-     type:     'inputText',
-     label:    'Input',
-     required: false,
-     options:  {
-     // common options
-     tooltip:      'Tooooooltip',
-     defaultValue: 'Hallo',
-     }
-     }
-     };
-
-     */
-
-    public generateFormFields(formFieldsJSON:{ [key:string]:any }):Array<TerraFormFieldBase<any>>
+    public static generateFormFields(formFieldsJSON:{ [key:string]:any }):Array<TerraFormFieldBase<any>>
     {
-        // for(let key in formFieldsJSON)
+        let formFields:Array<TerraFormFieldBase<any>> = [];
+
         Object.keys(formFieldsJSON).forEach((formFieldKey:string):void =>
-                                            {
-                                                this.formFields.push(this.createFormField(formFieldKey, formFieldsJSON[formFieldKey]));
-                                            });
-        return this.formFields;
+        {
+            formFields.push(this.createFormField(formFieldKey, formFieldsJSON[formFieldKey]));
+        });
+
+        return formFields;
     }
 
-    private createFormField(formFieldKey:string, formFieldData:{ [key:string]:any }):TerraFormFieldBase<any>
+    private static createFormField(formFieldKey:string, formFieldData:{ [key:string]:any }):TerraFormFieldBase<any>
     {
         let formField:TerraFormFieldBase<any>;
 
@@ -73,6 +55,12 @@ export class TerraJsonToFormFieldService
             case TerraControlTypeEnum.CHECK_BOX:
                 formField = new TerraFormFieldCheckBox(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
+            case TerraControlTypeEnum.VERTICAL_CONTAINER:
+                formField = this.createContainerFormField(formFieldKey, formFieldData, TerraControlTypeEnum.VERTICAL_CONTAINER);
+                break;
+            case TerraControlTypeEnum.HORIZONTAL_CONTAINER:
+                formField = this.createContainerFormField(formFieldKey, formFieldData, TerraControlTypeEnum.HORIZONTAL_CONTAINER);
+                break;
             default:
                 formField = new TerraFormFieldBase(
                     formFieldKey,
@@ -85,5 +73,16 @@ export class TerraJsonToFormFieldService
         }
 
         return formField;
+    }
+
+    private static createContainerFormField(formFieldKey:string,
+                                            formFieldData:{ [key:string]:any },
+                                            containerType:TerraControlTypeEnum):TerraFormFieldBaseContainer
+    {
+        let containerFormField:TerraFormFieldBaseContainer = new TerraFormFieldBaseContainer(formFieldKey, containerType, formFieldData.label);
+
+        containerFormField.containerEntries = this.generateFormFields(formFieldData.options.containerEntries);
+
+        return containerFormField;
     }
 }

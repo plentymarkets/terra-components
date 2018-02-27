@@ -95,6 +95,24 @@ export class TerraTextInputComponent extends TerraInputComponent
 
     }
 
+    public focusNativeInput():void
+    {
+        setTimeout(()=>
+        {
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            input.focus();
+        });
+    }
+
+    public selectNativeInput():void
+    {
+        setTimeout(()=>
+        {
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            input.select();
+        });
+    }
+
     private onCustomBlur(iban:string):void
     {
         if(this.inputIsIban)

@@ -28,14 +28,6 @@ export class TerraNumberInputComponent extends TerraInputComponent
      */
     private _id:string;
 
-    constructor()
-    {
-        super(TerraRegex.NUMERIC);
-
-        // generate the id of the input instance
-        this._id = `number-input_#${nextId++}`;
-    }
-
     /**
      * @deprecated inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.
      */
@@ -45,5 +37,37 @@ export class TerraNumberInputComponent extends TerraInputComponent
         console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
 
         this.value = v;
+    }
+
+    constructor()
+    {
+        super(TerraRegex.NUMERIC);
+
+        // generate the id of the input instance
+        this._id = `number-input_#${nextId++}`;
+    }
+
+    /**
+     * Set the focus on the native input element.
+     */
+    public focusNativeInput():void
+    {
+        setTimeout(() =>
+        {
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            input.focus();
+        });
+    }
+
+    /**
+     * Select the content of the native input element.
+     */
+    public selectNativeInput():void
+    {
+        setTimeout(() =>
+        {
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            input.select();
+        });
     }
 }

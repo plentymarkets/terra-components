@@ -15,8 +15,7 @@ import {
 import {
     TerraAlertComponent,
     TerraBaseParameterInterface,
-    TerraLoadingSpinnerService,
-    TerraPagerParameterInterface
+    TerraLoadingSpinnerService
 } from '../../';
 
 /**
@@ -297,10 +296,16 @@ export class TerraBaseService
     {
         let searchParams:URLSearchParams = new URLSearchParams();
 
-        Object.keys(params).map((key:string) =>
+        if(!isNullOrUndefined(params))
         {
-            searchParams.set(key, params[key]);
-        });
+            Object.keys(params).map((key:string) =>
+            {
+                if(!isNullOrUndefined(params[key]) && params[key] !== '')
+                {
+                    searchParams.set(key, params[key]);
+                }
+            });
+        }
 
         return searchParams;
     }
@@ -318,50 +323,5 @@ export class TerraBaseService
             return 'Missing permissions';
         }
         // END workaround
-    }
-
-    /**
-     * Appends the given parameters to the given url
-     *
-     * @param {string} url
-     * @param {TerraPagerParameterInterface} params
-     * @returns {string}
-     */
-    protected addParamsToUrl(url:string, params:TerraPagerParameterInterface):string
-    {
-        // check if params are given
-        if(isNullOrUndefined(params))
-        {
-            return url;
-        }
-
-        // initialize separator for parameters
-        let separator:string = '?';
-
-        // check if any parameter has already been appended
-        if(url.split('/').pop().includes('?'))
-        {
-            separator = '&';
-        }
-
-        // add parameters to the url
-        for(let obj in params)
-        {
-            // check if parameter is defined
-            if(!isNullOrUndefined(obj))
-            {
-                // check if parameter's value is set
-                if(!isNullOrUndefined(params[obj]))
-                {
-                    // append parameter to the url
-                    url += separator + obj + '=' + params[obj];
-
-                    // set separator for subsequent parameters
-                    separator = '&';
-                }
-            }
-        }
-
-        return url;
     }
 }

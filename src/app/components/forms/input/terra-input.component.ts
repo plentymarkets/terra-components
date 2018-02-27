@@ -89,8 +89,9 @@ export class TerraInputComponent implements ControlValueAccessor
 
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
-    private onTouchedCallback:() => void;
-    private onChangeCallback:(_:any) => void;
+    private onTouchedCallback:() => void = ():void => undefined;
+
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 
     constructor(private _inputRegex:string)
     {
@@ -98,16 +99,6 @@ export class TerraInputComponent implements ControlValueAccessor
         this.isValid = true;
         this.inputTooltipPlacement = 'top';
         this.inputIsSmall = false;
-
-        this.onTouchedCallback = ():void =>
-        {
-            return;
-        };
-
-        this.onChangeCallback = (_:any):void =>
-        {
-            return;
-        };
     }
 
     public get isDisabled():boolean
@@ -181,7 +172,7 @@ export class TerraInputComponent implements ControlValueAccessor
 
                     if(!this.inputEmptyMessage || this.inputEmptyMessage.length === 0)
                     {
-                        //// TODO i18n
+                        // TODO i18n
                         // emptyMessage = 'Mach eine Eingabe!';
 
                     }
@@ -202,7 +193,7 @@ export class TerraInputComponent implements ControlValueAccessor
 
                     if(!this.inputInvalidMessage || this.inputInvalidMessage.length === 0)
                     {
-                        //// TODO i18n
+                        // TODO i18n
                         // invalidMessage = 'Eingabe ungültig!';
                     }
                     else
