@@ -62,11 +62,12 @@
                     }
                     a[href]
                     {
-                        color: $gray-dark; 
-                        text-decoration: underline;
+                        text-decoration: none;
+                        color: $blue;
                         &:hover
                         {
-                            color: $blue;
+                            text-decoration: underline;
+                            color: $blue-hover;
                         }
                     }
                 }
