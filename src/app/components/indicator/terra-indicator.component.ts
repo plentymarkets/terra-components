@@ -3,7 +3,7 @@ import {
     Input
 } from '@angular/core';
 
-export enum TerraIndicatorLabelType
+export enum TerraIndicatorLabelTypeEnum
 {
     DEFAULT = 'default',
     PRIMARY = 'primary',
@@ -11,6 +11,12 @@ export enum TerraIndicatorLabelType
     INFO = 'info',
     WARNING = 'warning',
     DANGER = 'danger',
+}
+
+export interface TerraIndicatorInterface
+{
+    label:string;
+    type:TerraIndicatorLabelTypeEnum;
 }
 
 @Component({
@@ -25,6 +31,6 @@ export class TerraIndicatorComponent
 
     constructor()
     {
-        this.inputType = TerraIndicatorLabelType.DEFAULT;
+        this.inputType = TerraIndicatorLabelTypeEnum.DEFAULT;
     }
 }
