@@ -1,5 +1,5 @@
 <div class="search-wrapper">
-    <div *ngIf="inputDisableTree" class="searchDisabled"></div>
+    <div *ngIf="isTreeDisabled" class="searchDisabled"></div>
     <terra-text-input *ngIf="inputShowSearch"
                       [inputName]="'terraNodeTree.search' | translate:lang"
                       (outputOnInput)="onChange()"
@@ -7,7 +7,7 @@
     </terra-text-input>
 </div>
 <ul class="terra-node-tree">
-    <div *ngIf="inputDisableTree" class="isDisabled"></div>
+    <div *ngIf="isTreeDisabled" class="isDisabled"></div>
     <ng-container *ngFor="let node of inputConfig.list">
         <terra-node *ngIf="node.isVisible" [inputNode]="node" [inputConfig]="inputConfig">
         </terra-node>
