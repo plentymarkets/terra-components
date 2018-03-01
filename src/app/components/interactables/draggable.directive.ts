@@ -18,7 +18,7 @@ import { InertiaOptions } from './inertiaOptions.interface';
 })
 export class TerraDraggableDirective implements OnChanges
 {
-    @Input('terra-draggable')
+    @Input('terraDraggable')
     public options?:DraggableOptions = null;
 
     @Input('terra-draggable-disabled')
