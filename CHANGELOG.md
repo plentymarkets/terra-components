@@ -4,6 +4,7 @@
 * **url-helper** new component that offers methods to edit urls
 * **terra-multi-split-view** inject router instead of passing it via the input `inputRouter`.
 * **terra-portlet** if the portlet is collapsable and unfolded, its header is now grey.
+* **terra-data-table** replace underline text decoration of phone and email links with blue color highlighting.
 
 <a name="2.1.47-zlk"></a>
 # 2.1.47-zlk (06.02.2018)
