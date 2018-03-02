@@ -121,9 +121,10 @@
                                 <span> {{cell.data.caption}} </span>
                             </span>
                         </div>
-                        
+    
                         <div *ngSwitchCase="'TerraRefTypeInterface'">
-                            <a href="{{cell.data.type}}:{{cell.data.value}}" (click)="$event.stopPropagation()">{{cell.data.value}}</a>
+                            <a *ngIf="cell.data.type === _refTypeEnum.email || cell.data.type === _refTypeEnum.phone" href="{{cell.data.type}}:{{cell.data.value}}" (click)="$event.stopPropagation()">{{ cell.data.caption || cell.data.value}}</a>
+                            <a *ngIf="cell.data.type === _refTypeEnum.function" href="javascript:void(0);" (click)="cell.data.value(); $event.stopPropagation();">{{cell.data.caption}}</a>
                         </div>
                         
                         <div *ngSwitchCase="'buttons'" class="btn-group">
