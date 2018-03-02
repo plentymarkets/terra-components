@@ -127,8 +127,9 @@
                                href="{{cell.data.type}}:{{cell.data.value}}"
                                (click)="$event.stopPropagation()">{{ cell.data.caption || cell.data.value}}
                             </a>
-                            <a *ngIf="cell.data.type === _refTypeEnum.function" href="javascript:void(0);"
-                               (click)="cell.data.func(); $event.stopPropagation();">{{cell.data.caption}}
+                            <a *ngIf="cell.data.type === _refTypeEnum.function"
+                               href="javascript:void(0);"
+                               (click)="cell.data.func(); $event.stopPropagation();">{{cell.data.value}}
                             </a>
                         </div>
                         
