@@ -70,14 +70,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     private clickListener:(event:Event) => void;
 
     /**
-     *
-     * Two way data binding by ngModel
-     */
-    private onTouchedCallback:() => void;
-
-    private onChangeCallback:(_:any) => void;
-
-    /**
      * @deprecated
      * @param value
      */
@@ -120,17 +112,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this.inputTooltipPlacement = 'top';
         this.inputIsSmall = false;
         this.inputOpenOnTop = false;
-
-
-        this.onTouchedCallback = ():void =>
-        {
-            return;
-        };
-
-        this.onChangeCallback = (_:any):void =>
-        {
-            return;
-        };
     }
 
     public ngOnInit():void
@@ -156,15 +137,23 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         }
     }
 
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:(_:any) => void):void
     {
         this.onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this.onTouchedCallback = fn;
     }
+
+    /**
+     *
+     * Two way data binding by ngModel
+     */
+    private onTouchedCallback:() => void = ():void => undefined;
+
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 
     public writeValue(value:any):void
     {

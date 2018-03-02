@@ -40,24 +40,10 @@ export class TerraRadioButtonComponent implements ControlValueAccessor
 
     public value:any;
 
-    private onTouchedCallback:() => void;
-
-    private onChangeCallback:(_:any) => void;
-
     constructor()
     {
         this.inputIsUncheckable = false;
         this.inputIsDisabled = false;
-
-
-        this.onTouchedCallback = ():void =>
-        {
-            return;
-        };
-        this.onChangeCallback = (_:any):void =>
-        {
-            return;
-        };
     }
 
     @HostListener('click')
@@ -86,13 +72,17 @@ export class TerraRadioButtonComponent implements ControlValueAccessor
         this.value = value;
     }
 
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:(_:any) => void):void
     {
         this.onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this.onTouchedCallback = fn;
     }
+
+    private onTouchedCallback:() => void = ():void => undefined;
+
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 }

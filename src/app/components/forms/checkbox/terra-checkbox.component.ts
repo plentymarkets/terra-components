@@ -66,25 +66,10 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     private _innerValue:boolean = false;
     private _isIndeterminate:boolean = false;
 
-    // Placeholders for the callbacks which are later provided
-    // by the Control Value Accessor
-    private onTouchedCallback:() => void;
-    private onChangeCallback:(_:any) => void;
-
     constructor()
     {
         // generate the id of the input instance
         this._id = `checkbox_#${nextId++}`;
-
-        this.onTouchedCallback = ():void =>
-        {
-            return;
-        };
-
-        this.onChangeCallback = (_:any):void =>
-        {
-            return;
-        };
     }
 
     // get accessor
@@ -120,13 +105,13 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     }
 
     // From ControlValueAccessor interface
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:(_:any) => void):void
     {
         this.onChangeCallback = fn;
     }
 
     // From ControlValueAccessor interface
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this.onTouchedCallback = fn;
     }
@@ -145,4 +130,8 @@ export class TerraCheckboxComponent implements ControlValueAccessor
         }
         this._isIndeterminate = value;
     }
+
+    private onTouchedCallback:() => void = ():void => undefined;
+
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 }

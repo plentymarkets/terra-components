@@ -70,22 +70,8 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     private _value:number | string;
     private clickListener:(event:Event) => void;
 
-    private onTouchedCallback:() => void;
-
-    private onChangeCallback:(_:any) => void;
-
-
     constructor(private _elementRef:ElementRef)
     {
-        this.onTouchedCallback = ():void =>
-        {
-            return;
-        };
-
-        this.onChangeCallback = (_:any):void =>
-        {
-            return;
-        };
     }
 
     public ngOnInit():void
@@ -131,27 +117,31 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
     }
 
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:(_:any) => void):void
     {
         this.onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this.onTouchedCallback = fn;
     }
+
+    private onTouchedCallback:() => void = ():void => undefined;
+
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 
     public writeValue(value:any):void
     {
         this.value = value;
     }
 
-    public get value():any
+    public get value():number | string
     {
         return this._value;
     }
 
-    public set value(value:any)
+    public set value(value:number | string)
     {
         this._value = value;
 

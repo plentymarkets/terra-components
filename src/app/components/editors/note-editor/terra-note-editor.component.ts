@@ -36,8 +36,6 @@ export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
 
     private _placeholder:string;
     private _value:string;
-    private _onChangeCallback:() => void;
-    private _onTouchedCallback:() => void;
     private _modules:{ [index:string]:Object };
 
     constructor(private translation:TranslationService)
@@ -71,17 +69,6 @@ export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
                  'image']                         // link and image, video
             ]
         };
-
-        // initialize callbacks
-        this._onChangeCallback = ():void =>
-        {
-            return;
-        };
-
-        this._onTouchedCallback = ():void =>
-        {
-            return;
-        };
     }
 
     public ngOnInit():void
@@ -98,13 +85,16 @@ export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
         this._value = value;
     }
 
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:() => void):void
     {
         this._onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this._onTouchedCallback = fn;
     }
+
+    private _onChangeCallback:() => void = ():void => undefined;
+    private _onTouchedCallback:() => void = ():void => undefined;
 }

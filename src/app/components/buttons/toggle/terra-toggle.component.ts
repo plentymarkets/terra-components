@@ -58,22 +58,10 @@ export class TerraToggleComponent implements ControlValueAccessor
     public toggled:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     private _isActive:boolean = false;
-    private onTouchedCallback:() => void;
-    private onChangeCallback:(_:any) => void;
 
     constructor()
     {
         this.inputTooltipPlacement = 'top';
-
-        this.onTouchedCallback = ():void =>
-        {
-            return;
-        };
-
-        this.onChangeCallback = ():void =>
-        {
-            return;
-        };
     }
 
     private toggle():void
@@ -104,14 +92,18 @@ export class TerraToggleComponent implements ControlValueAccessor
     }
 
     // From ControlValueAccessor interface
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:(_:any) => void):void
     {
         this.onChangeCallback = fn;
     }
 
     // From ControlValueAccessor interface
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this.onTouchedCallback = fn;
     }
+
+    private onTouchedCallback:() => void = ():void => undefined;
+
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 }
