@@ -9,6 +9,5 @@ export interface TerraRefTypeInterface
 {
     type:TerraRefTypeEnum;
     value:string;
-    caption?:string | number;
     func?:() => void;
 }
