@@ -8,7 +8,7 @@ export enum TerraRefTypeEnum
 export interface TerraRefTypeInterface
 {
     type:TerraRefTypeEnum;
-    value:string | TerraRefTypeInterface['func'];
+    value:string;
     caption?:string | number;
     func?:() => void;
 }
