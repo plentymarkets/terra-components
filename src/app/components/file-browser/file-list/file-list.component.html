@@ -26,11 +26,13 @@
     <div class="btn-group" role="group">
         <terra-button inputIcon="icon-upload"
                       [inputTooltipText]="_translationPrefix + '.uploadFile' | translate:lang"
+                      inputTooltipPlacement="right"
                       (outputClicked)="fileChooser.click()">
         </terra-button>
         <terra-button inputIcon="icon-folder_add"
                       *ngIf="_parentFileBrowser.inputAllowFolders"
                       [inputTooltipText]="_translationPrefix + '.createFolder' | translate:lang"
+                      inputTooltipPlacement="right"
                       (outputClicked)="_showNewDirectoryPrompt = true">
         </terra-button>
     </div>
@@ -40,6 +42,7 @@
                       [inputIsSecondary]="true"
                       [inputIsDisabled]="_selectedStorageObjects.length <= 0"
                       [inputTooltipText]="_translationPrefix + '.deleteSelectedFiles' | translate:lang"
+                      inputTooltipPlacement="right"
                       (outputClicked)="_objectsToDelete = _selectedStorageObjects">
         </terra-button>
     </div>
