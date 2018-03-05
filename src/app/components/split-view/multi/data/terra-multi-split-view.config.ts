@@ -1,7 +1,11 @@
-import { EventEmitter } from '@angular/core';
+import {
+    EventEmitter,
+    Injectable
+} from '@angular/core';
 import { TerraMultiSplitViewInterface } from './terra-multi-split-view.interface';
 import { isNullOrUndefined } from 'util';
 
+@Injectable()
 export class TerraMultiSplitViewConfig
 {
     public currentSelectedView:TerraMultiSplitViewInterface;
