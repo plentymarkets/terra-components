@@ -6,6 +6,9 @@
 * **terra-portlet** if the portlet is collapsable and unfolded, its header is now grey.
 * **terra-data-table** replace underline text decoration of phone and email links with blue color highlighting.
 
+### Bug Fixes
+* **terra-data-table** hide no-results-notice when request is pending
+
 <a name="2.1.47-zlk"></a>
 # 2.1.47-zlk (06.02.2018)
 
