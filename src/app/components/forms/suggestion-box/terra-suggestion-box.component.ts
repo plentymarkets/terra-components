@@ -15,6 +15,7 @@ import {
     isNull,
     isNullOrUndefined
 } from 'util';
+import { TerraPlacementEnum } from '../../../../';
 
 const MAX_LASTLY_USED_ENTRIES:number = 5;
 
@@ -45,7 +46,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     public inputTooltipText:string;
 
     @Input()
-    public inputTooltipPlacement:string;
+    public inputTooltipPlacement:TerraPlacementEnum;
 
     @Input()
     public inputListBoxValues:Array<TerraSuggestionBoxValueInterface>;
@@ -84,7 +85,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this.clickedOutside(event);
         };
 
-        this.inputTooltipPlacement = 'top';
+        this.inputTooltipPlacement = TerraPlacementEnum.TOP;
         this.selectedValue =
             {
                 value:   '',

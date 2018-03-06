@@ -5,6 +5,7 @@ import {
 } from '@angular/forms';
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { isNullOrUndefined } from 'util';
+import { TerraPlacementEnum } from '../../../../';
 
 export class TerraInputComponent implements ControlValueAccessor
 {
@@ -42,7 +43,7 @@ export class TerraInputComponent implements ControlValueAccessor
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      */
     @Input()
-    public inputTooltipPlacement:string;
+    public inputTooltipPlacement:TerraPlacementEnum;
 
     /**
      * @description Set a maximum number of characters allowed.
@@ -87,17 +88,11 @@ export class TerraInputComponent implements ControlValueAccessor
     // The internal data model
     private _innerValue:any;
 
-    // Placeholders for the callbacks which are later provided
-    // by the Control Value Accessor
-    private onTouchedCallback:() => void = ():void => undefined;
-
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
-
     constructor(private _inputRegex:string)
     {
         this.regex = _inputRegex;
         this.isValid = true;
-        this.inputTooltipPlacement = 'top';
+        this.inputTooltipPlacement = TerraPlacementEnum.TOP;
         this.inputIsSmall = false;
     }
 
@@ -153,6 +148,12 @@ export class TerraInputComponent implements ControlValueAccessor
     {
         this.onTouchedCallback = fn;
     }
+
+    // Placeholders for the callbacks which are later provided
+    // by the Control Value Accessor
+    private onTouchedCallback:() => void = ():void => undefined;
+
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 
     public validate(formControl:FormControl):void
     {
