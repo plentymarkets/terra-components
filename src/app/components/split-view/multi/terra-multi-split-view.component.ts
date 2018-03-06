@@ -47,7 +47,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     {
                         if(this.inputConfig.currentSelectedView)
                         {
-                            this.updateViewport(this.inputConfig.currentSelectedView, true);
+                            this.updateViewport(this.inputConfig.currentSelectedView);
                         }
                     }
                 ).bind(this), 500);
@@ -58,8 +58,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     private _breadCrumbsPath:string;
 
     private modules:Array<TerraMultiSplitViewDetail> = [];
-
-    public static ANIMATION_SPEED = 1000; // ms
 
     private resizeTimeout:number;
 
@@ -90,7 +88,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     .filter((event:AngularRouter.Event) => event instanceof NavigationStart && event.url === this.inputComponentRoute)
                     .subscribe((path:NavigationStart) =>
                     {
-                        this.updateViewport(this.inputConfig.currentSelectedView, true);
+                        this.updateViewport(this.inputConfig.currentSelectedView);
                     });
             }
         }
@@ -174,6 +172,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             return;
         }
 
+        //this.updateViewport(view);
+
         if(!isNullOrUndefined(this.inputConfig.selectBreadcrumbEventEmitter))
         {
             this.inputConfig.selectBreadcrumbEventEmitter.next(view);
@@ -217,55 +217,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
         this.inputConfig.currentSelectedView = view;
         this.updateViewport(view);
-        this.updateBreadCrumbs();
     }
 
-    private updateBreadCrumbs()
+    public updateViewport(view:TerraMultiSplitViewInterface):void
     {
-        this.zone.runOutsideAngular(() =>
-        {
-            // init breadcrumb sliding
-            setTimeout(function()
-            {
-                $('.terra-breadcrumbs').each(function()
-                {
-                    $(this).find('li').each(function()
-                    {
-                        let viewContainer = $(this).closest('.terra-breadcrumbs');
-                        let viewContainerOffsetLeft = viewContainer.offset().left;
-                        let viewContainerWidth = viewContainer.width();
-
-                        $(this).off();
-                        $(this).mouseenter(function()
-                        {
-                            let elementWidth = $(this).width();
-                            let elementOffsetLeft = $(this).offset().left;
-                            let viewContainerScrollLeft = viewContainer.scrollLeft();
-                            let offset = 0;
-
-                            if(elementOffsetLeft < viewContainer.offset().left)
-                            {
-                                offset = viewContainerScrollLeft + elementOffsetLeft - 10;
-                            }
-                            else if(elementOffsetLeft + elementWidth + 30 > viewContainerOffsetLeft + viewContainerWidth)
-                            {
-                                offset = viewContainerScrollLeft + elementOffsetLeft + elementWidth + 30 - viewContainerWidth;
-                            }
-                            else
-                            {
-                                return;
-                            }
-                            viewContainer.stop();
-                            viewContainer.animate({scrollLeft: offset}, 1200);
-                        });
-                    });
-                });
-            });
-        });
-    }
-
-    public updateViewport(view:TerraMultiSplitViewInterface, skipAnimation?:boolean):void
-    {
+        console.log('updateViewport called with: ' + view.module);
         // check if view is defined
         if(isNullOrUndefined(view))
         {
@@ -277,8 +233,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             let splitViewId:number = this.splitViewId;
             setTimeout(function()
             {
-                let id:string = view.mainComponentName;
-
                 let parent:TerraMultiSplitViewInterface = view.parent;
                 let moduleIndex:number = 0;
 
@@ -289,41 +243,71 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 }
 
                 let anchor = $('#splitview' + splitViewId + '_module' + moduleIndex);
-                let currentBreadcrumb = $('.' + id); // TODO: vwiebe, fix scope
-                let breadCrumbContainer = currentBreadcrumb.closest('.terra-breadcrumbs');
-                let viewContainer = anchor.parent();
 
-                // focus breadcrumbs
-                if(currentBreadcrumb[0] != null)
+                let leftModule = null;
+                let currentModule = null;
+                let rightModule = null;
+
+                $('.side-scroller > .view').each(function()
                 {
-                    breadCrumbContainer.stop();
-                    breadCrumbContainer.animate(
-                        {scrollLeft: (currentBreadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft())},
-                        this.ANIMATION_SPEED);
+                    if($(this).attr('id') != anchor.attr('id'))
+                    {
+                        $(this).removeClass('show').addClass('hide');
+
+                        if (!currentModule)
+                        {
+                            leftModule = $(this);
+                        }
+                        else if (currentModule && !rightModule)
+                        {
+                            rightModule = $(this);
+                        }
+                    }
+                    else
+                    {
+                        $(this).removeClass('hide').addClass('show');
+
+                        currentModule = $(this);
+                    }
+                });
+
+                // TODO: vwiebe, refactoring
+                if (currentModule)
+                {
+                    if (rightModule)
+                    {
+                        if (leftModule)
+                        {
+                            if ($(rightModule).width() + $(currentModule).width() <= $(leftModule).width() + $(currentModule).width())
+                            {
+                                $(rightModule).removeClass('hide').addClass('show');
+                            }
+                            else {
+                                $(leftModule).removeClass('hide').addClass('show');
+                            }
+                        }
+                        else {
+                            $(rightModule).removeClass('hide').addClass('show');
+                        }
+                    }
+                    else if (leftModule)
+                    {
+                        if (rightModule)
+                        {
+                            if ($(leftModule).width() + $(currentModule).width() <= $(rightModule).width() + $(currentModule).width())
+                            {
+                                $(leftModule).removeClass('hide').addClass('show');
+                            }
+                            else {
+                                $(rightModule).removeClass('hide').addClass('show');
+                            }
+                        }
+                        else {
+                            $(leftModule).removeClass('hide').addClass('show');
+                        }
+                    }
                 }
 
-                // check if viewport needs to be adjusted
-                if(anchor[0] != null &&
-                   anchor[0].getBoundingClientRect().left > viewContainer.offset().left &&
-                   anchor[0].getBoundingClientRect().right <= viewContainer.offset().left + viewContainer.outerWidth())
-                {
-                    return;
-                }
-
-                // interrupt all ongoing animations to prevent queue
-                viewContainer.stop();
-
-                // focus view horizontally
-                if(skipAnimation)
-                {
-                    viewContainer.scrollLeft(Math.ceil(anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - viewContainer.offset().left));
-                }
-                else
-                {
-                    viewContainer.animate(
-                        {scrollLeft: (Math.ceil(anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - viewContainer.offset().left))},
-                        this.ANIMATION_SPEED);
-                }
             });
         });
     }

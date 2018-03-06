@@ -136,6 +136,20 @@
         position: relative;
         background-color: $white;
         
+        &.hide
+        {
+            width: 0px;
+            padding: 0px;
+            opacity: 0;
+        }
+        
+        &.show
+        {
+            width: 100%;
+            padding: 0px 4px;
+            opacity: 1;
+        }
+        
         &.isBackgroundColorGrey
         {
             background-color: transparent;
