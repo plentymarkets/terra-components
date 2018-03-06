@@ -10,24 +10,24 @@ import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.
 })
 export class TerraPortletComponentExample implements OnInit
 {
-    private _portletButtonList: Array<TerraButtonInterface> = [];
+    public portletButtonList: Array<TerraButtonInterface> = [];
 
-    private buttonClickFunction()
+    private static buttonClickFunction(): void
     {
         alert('button clicked');
     }
 
-    ngOnInit()
+    public ngOnInit():void
     {
-        this._portletButtonList.push(
+        this.portletButtonList.push(
             {
                 icon: 'icon-delete',
                 isSecondary: true,
-                clickFunction: ():void=> this.buttonClickFunction()
+                clickFunction: ():void=> TerraPortletComponentExample.buttonClickFunction()
             },
             {
                 icon: 'icon-edit',
-                clickFunction: ():void=> this.buttonClickFunction()
+                clickFunction: ():void=> TerraPortletComponentExample.buttonClickFunction()
             })
     }
 }
