@@ -15,6 +15,9 @@ import {
     MyDatePicker
 } from 'mydatepicker';
 import moment = require('moment');
+import {
+    isNullOrUndefined
+} from 'util';
 
 let nextId:number = 0;
 
@@ -115,7 +118,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 
     public writeValue(value:any):void
     {
-        if(value !== null && value !== undefined && typeof (value) === 'string' && isNaN(Date.parse(value)) === false)
+        if(!isNullOrUndefined(value) && typeof (value) === 'string' && isNaN(Date.parse(value)) === false)
         {
             let newDate:Date = new Date(value);
 
@@ -143,7 +146,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 
     public set value(value:IMyDateModel)
     {
-        if(value !== null && value !== undefined && typeof(value) === 'object')
+        if(!isNullOrUndefined(value) && typeof(value) === 'object')
         {
             this._value = value;
 

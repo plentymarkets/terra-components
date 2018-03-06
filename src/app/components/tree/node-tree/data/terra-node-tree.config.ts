@@ -1,5 +1,8 @@
 import { TerraNodeInterface } from './terra-node.interface';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 import { TranslationService } from 'angular-l10n';
 import { Injectable } from '@angular/core';
 
@@ -263,7 +266,7 @@ export class TerraNodeTreeConfig<D>
             {
                 foundNode = this.recursiveFindNode(node.children, nodeToFind);
 
-                if(foundNode !== null)
+                if(!isNull(foundNode))
                 {
                     break;
                 }
@@ -290,7 +293,7 @@ export class TerraNodeTreeConfig<D>
             {
                 foundNode = this.recursiveFindNodeById(node.children, id);
 
-                if(foundNode !== null)
+                if(!isNull(foundNode))
                 {
                     break;
                 }

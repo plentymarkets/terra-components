@@ -11,7 +11,10 @@ import {
 import { TerraMultiSelectBoxValueInterface } from './data/terra-multi-select-box-value.interface';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import { TranslationService } from 'angular-l10n';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 
 @Component({
     selector: 'terra-multi-select-box',
@@ -184,7 +187,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
         }
         else
         {
-            valueFound = this._selectedValueList[index] !== null;
+            valueFound = !isNull(this._selectedValueList[index]);
         }
 
         if(valueToChange.selected)

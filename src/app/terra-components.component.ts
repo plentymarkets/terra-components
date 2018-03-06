@@ -7,6 +7,7 @@ import {
     Translation,
     TranslationService
 } from 'angular-l10n';
+import { isNull } from 'util';
 
 @Component({
     selector: 'terra-app-root',
@@ -34,7 +35,7 @@ export class TerraComponentsComponent extends Translation
 
         let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
 
-        if(langInLocalStorage !== null)
+        if(!isNull(langInLocalStorage))
         {
             this.locale.setCurrentLanguage(langInLocalStorage);
         }

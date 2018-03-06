@@ -6,7 +6,10 @@ import {
     OnDestroy,
     OnInit
 } from '@angular/core';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 import { TerraMultiSplitViewConfig } from './data/terra-multi-split-view.config';
 import { TerraMultiSplitViewDetail } from './data/terra-multi-split-view-detail';
 import { TerraMultiSplitViewInterface } from './data/terra-multi-split-view.interface';
@@ -300,7 +303,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 let viewContainer:JQuery = anchor.parent();
 
                 // focus breadcrumbs
-                if(currentBreadcrumb[0] !== null)
+                if(!isNull(currentBreadcrumb[0]))
                 {
                     breadCrumbContainer.stop();
                     breadCrumbContainer.animate(
@@ -309,7 +312,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 }
 
                 // check if viewport needs to be adjusted
-                if(anchor[0] !== null &&
+                if(!isNull(anchor[0]) &&
                    anchor[0].getBoundingClientRect().left > viewContainer.offset().left &&
                    anchor[0].getBoundingClientRect().right <= viewContainer.offset().left + viewContainer.outerWidth())
                 {

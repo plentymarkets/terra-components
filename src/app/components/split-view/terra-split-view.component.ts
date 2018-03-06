@@ -6,6 +6,10 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
+import {
+    isNull,
+    isUndefined
+} from 'util';
 
 /** @deprecated - please use `TerraMultiSplitViewComponent` instead */
 @Component({
@@ -46,7 +50,7 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
     {
         if(this.inputUpdateViewport)
         {
-            if(changes['inputModules'].currentValue !== undefined && changes['inputModules'].currentValue.length > 0)
+            if(!isUndefined(changes['inputModules'].currentValue) && changes['inputModules'].currentValue.length > 0)
             {
                 let currentModule:TerraSplitViewInterface = this.inputModules[this.inputModules.length - 1];
                 this.updateViewport(currentModule.mainComponentName + '_' + currentModule.instanceKey);
@@ -113,7 +117,7 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
             breadcrumb.addClass('active');
 
             // focus breadcrumbs
-            if(breadcrumb[0] !== null)
+            if(!isNull(breadcrumb[0]))
             {
                 breadCrumbContainer.stop();
                 breadCrumbContainer.animate(
@@ -129,13 +133,13 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
             }
 
             // offset fix for navigator
-            if(prevSplitView[0] !== null)
+            if(!isNull(prevSplitView[0]))
             {
                 offset = offset + prevSplitView.width() + (3 * offset);
             }
 
             // offset fix for overlay
-            if($($(anchor[0].closest('.hasSplitView')).find(anchor))[0] !== null)
+            if(!isNull($($(anchor[0].closest('.hasSplitView')).find(anchor))[0]))
             {
                 offset = offset + ($(window).width() / 2 - viewContainer.width() / 2);
             }

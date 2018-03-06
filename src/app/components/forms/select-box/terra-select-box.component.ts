@@ -14,7 +14,10 @@ import {
     FormControl,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 
 @Component({
     selector:  'terra-select-box',
@@ -118,7 +121,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         this.isValid = true;
         this._toggleOpen = false;
-        this._hasLabel = this.inputName !== null;
+        this._hasLabel = !isNull(this.inputName);
         this._isInit = true;
     }
 

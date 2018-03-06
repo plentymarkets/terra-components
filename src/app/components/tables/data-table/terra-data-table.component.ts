@@ -14,6 +14,7 @@ import { TerraDataTableContextMenuService } from './context-menu/service/terra-d
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
 import {
     isArray,
+    isNull,
     isNullOrUndefined
 } from 'util';
 import { TerraRefTypeInterface } from './cell/terra-ref-type.interface';
@@ -249,7 +250,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         let selectedIndex:number = this.selectedRowList.indexOf(rowToDelete);
 
         // check if row exists in selectedRowList
-        if(selectedIndex !== null)
+        if(!isNull(selectedIndex))
         {
             this.selectedRowList.splice(selectedIndex, 1);
         }

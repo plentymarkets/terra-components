@@ -11,7 +11,11 @@ import { TerraNavigatorSplitViewConfig } from './config/terra-navigator-split-vi
 import { TerraNavigatorNodeInterface } from './data/terra-navigator-node.interface';
 import { TerraButtonGroupModule } from './button-group/terra-button-group.module';
 import { TerraNavigatorConfig } from './config/terra-navigator.config';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined,
+    isUndefined
+} from 'util';
 import { TerraSuggestionBoxValueInterface } from '../forms/suggestion-box/data/terra-suggestion-box.interface';
 import { Router } from '@angular/router';
 import { TranslationService } from 'angular-l10n';
@@ -78,7 +82,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             this.initRootPaths(this.inputNodes, null);
             this.refreshNodeVisibilities(this.inputNodes);
 
-            if(this.inputFirstBreadcrumbName === null || this.inputFirstBreadcrumbName === '')
+            if(isNull(this.inputFirstBreadcrumbName) || this.inputFirstBreadcrumbName === '')
             {
                 console.error('You have to define an initial breadcrumb!!!');
             }
@@ -254,7 +258,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             {
                 result.push(item.rootPath[item.rootPath.length - 1]);
 
-                if(item.children !== null)
+                if(!isNull(item.children))
                 {
                     this.findRootPath(routeArray, routeIndex, item.children, result);
                 }
@@ -328,7 +332,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         {
             rootNode.children.forEach((node:TerraNavigatorNodeInterface<D>):void =>
                 {
-                    if(node.isVisible || node.isVisible === undefined)
+                    if(node.isVisible || isUndefined(node.isVisible))
                     {
                         childrenCount++;
                     }

@@ -2,6 +2,8 @@
  * Defines RGB-formatted colors.
  * @package modules/helpers
  */
+import { isUndefined } from 'util';
+
 export type ColorRGB = { r:number, g:number, b:number };
 
 /**
@@ -81,7 +83,7 @@ export class Color
      */
     private isRGB(color:string | ColorRGB | ColorHSL):boolean
     {
-        return (<ColorRGB> color).r !== undefined;
+        return !isUndefined((<ColorRGB> color).r);
     }
 
     /**
@@ -91,7 +93,7 @@ export class Color
      */
     private isHSL(color:string | ColorRGB | ColorHSL):boolean
     {
-        return (<ColorHSL> color).h !== undefined;
+        return !isUndefined((<ColorHSL> color).h);
     }
 
     /**

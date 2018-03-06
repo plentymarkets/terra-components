@@ -11,7 +11,10 @@ import {
 } from '@angular/core';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 
 const MAX_LASTLY_USED_ENTRIES:number = 5;
 
@@ -91,7 +94,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
         this.isValid = true;
         this._toggleOpen = false;
-        this._hasLabel = this.inputName !== null;
+        this._hasLabel = !isNull(this.inputName);
         this._lastSelectedValues = [];
         this._listBoxHeadingKey = '';
         this._noEntriesTextKey = this.inputWithRecentlyUsed ? 'terraSuggestionBox.noRecentlyUsed' : 'terraSuggestionBox.noSuggestions';

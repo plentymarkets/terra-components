@@ -9,6 +9,7 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
+import { TerraPlacementEnum } from '../../../../';
 
 export const TOGGLE_CONTROL_VALUE_ACCESSOR:any = {
     provide:     NG_VALUE_ACCESSOR,
@@ -46,7 +47,7 @@ export class TerraToggleComponent implements ControlValueAccessor
     public inputTooltipText:string;
 
     @Input()
-    public inputTooltipPlacement:string; // top, bottom, left, right
+    public inputTooltipPlacement:TerraPlacementEnum;
 
     @Output()
     public deactivated:EventEmitter<any> = new EventEmitter<any>();
@@ -61,7 +62,7 @@ export class TerraToggleComponent implements ControlValueAccessor
 
     constructor()
     {
-        this.inputTooltipPlacement = 'top';
+        this.inputTooltipPlacement = TerraPlacementEnum.TOP;
     }
 
     private toggle():void

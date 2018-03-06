@@ -1,4 +1,5 @@
 import { TerraSplitViewInterface } from './terra-split-view.interface';
+import { isNull } from 'util';
 
 export class TerraSplitConfigBase
 {
@@ -8,10 +9,10 @@ export class TerraSplitConfigBase
     {
         for(let i:number = 0; i < this.modules.length; i++)
         {
-            let hasSameModuleName:boolean = this.modules[i].mainComponentName !== null &&
+            let hasSameModuleName:boolean = !isNull(this.modules[i].mainComponentName) &&
                                     this.modules[i].mainComponentName === module.mainComponentName;
 
-            let hasSameInstanceKey:boolean = this.modules[i].instanceKey !== null &&
+            let hasSameInstanceKey:boolean = !isNull(this.modules[i].instanceKey) &&
                                      this.modules[i].instanceKey === module.instanceKey;
 
             let hasSameParams:boolean = JSON.stringify(this.modules[i].parameter) === JSON.stringify(module.parameter);
