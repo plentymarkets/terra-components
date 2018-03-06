@@ -15,7 +15,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: $color-structure-0;
+        background-color: var(--color-structure-0);
         -webkit-transition: .4s;
         transition: .4s;
         &:before
@@ -27,7 +27,7 @@
             width: 12px;
             left: 3px;
             bottom: 2px;
-            background-color: $color-alert;
+            background-color: var(--color-alert);
             -webkit-transition: .4s;
             transition: .4s;
         }
@@ -39,7 +39,7 @@
         {
             &:before
             {
-                background-color: $color-add;
+                background-color: var(--color-add);
                 -webkit-transform: translateX(12px);
                 -ms-transform: translateX(12px);
                 transform: translateX(12px);
@@ -53,7 +53,7 @@
         {
             &:before
             {
-                background-color: $color-structure-3;
+                background-color: var(--color-structure-3);
             }
         }
     }

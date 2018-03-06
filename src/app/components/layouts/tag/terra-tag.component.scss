@@ -1,12 +1,12 @@
 .tag
 {
-    background-color: $color-structure-9;
+    background-color: var(--color-structure-9);
     border: none;
-    -moz-border-radius: $border-radius;
-    -webkit-border-radius: $border-radius;
-    border-radius: $border-radius;
+    -moz-border-radius: var(--border-radius);
+    -webkit-border-radius: var(--border-radius);
+    border-radius: var(--border-radius);
     display: block;
-    padding: 4px;
+    padding: var(--space-sm);
     margin-top: var(--tag-top-margin, 7px);
     overflow: hidden;
     white-space: nowrap;
@@ -14,9 +14,9 @@
     
     span
     {
-        font-size: $font-size-1;
-        font-weight: $font-weight-1;
-        color: $color-structure-0;
+        font-size: var(--font-size-1);
+        font-weight: var(--font-weight-1);
+        color: var(--color-structure-0);
         
         &.tag-icon
         {

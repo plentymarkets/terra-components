@@ -4,7 +4,7 @@
 {
     .view
     {
-        background-color: $color-structure-2;
+        background-color: var(--color-structure-2);
     }
 }
 
@@ -12,6 +12,6 @@ terra-split-view .modal-content terra-split-view
 {
     .view.last:not(.first)
     {
-        padding: 0 0 0 4px !important;
+        padding: 0 0 0 var(--space-sm) !important;
     }
 }

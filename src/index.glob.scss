@@ -3,12 +3,12 @@
 
 body
 {
-    font-family: $font-face, sans-serif !important;
-    font-size: $font-size-3 !important;
-    font-weight: $font-weight-1 !important;
+    font-family: var(--font-family) !important;
+    font-size: var(--font-size-3) !important;
+    font-weight: var(--font-weight-1) !important;
     line-height: 1.5 !important;
-    color: $color-structure-12 !important;
-    background-color: $color-structure-2 !important;
+    color: var(--color-structure-12) !important;
+    background-color: var(--color-structure-2) !important;
     position: absolute !important;
     top: 0 !important;
     bottom: 0 !important;
@@ -22,28 +22,28 @@ body
 
 .tooltip
 {
-    font-size: $font-size-2;
+    font-size: var(--font-size-2);
     opacity: 1 !important;
 
     &.top .tooltip-arrow
     {
-        border-top-color: var(--tooltip-color, $color-structure-12);
+        border-top-color: var(--tooltip-color, var(--tooltip-color-default));
     }
     &.left .tooltip-arrow
     {
-        border-left-color: var(--tooltip-color, $color-structure-12);
+        border-left-color: var(--tooltip-color, var(--tooltip-color-default));
     }
     &.bottom .tooltip-arrow
     {
-        border-bottom-color: var(--tooltip-color, $color-structure-12);
+        border-bottom-color: var(--tooltip-color, var(--tooltip-color-default));
     }
     &.right .tooltip-arrow
     {
-        border-right-color: var(--tooltip-color, $color-structure-12);
+        border-right-color: var(--tooltip-color, var(--tooltip-color-default));
     }
     .tooltip-inner
     {
-        background-color: var(--tooltip-color, $color-structure-12);
+        background-color: var(--tooltip-color, var(--tooltip-color-default));
     }
 }
 
@@ -67,54 +67,54 @@ body
 
 h1
 {
-    font-size: $font-size-7;
-    font-weight: $font-weight-3;
+    font-size: var(--font-size-7);
+    font-weight: var(--font-weight-3);
 }
 
 h2
 {
-    font-size: $font-size-6;
-    font-weight: $font-weight-3;
+    font-size: var(--font-size-6);
+    font-weight: var(--font-weight-3);
 }
 
 h3
 {
-    font-size: $font-size-5;
-    font-weight: $font-weight-3;
+    font-size: var(--font-size-5);
+    font-weight: var(--font-weight-3);
 }
 
 h4
 {
-    font-size: $font-size-5;
-    font-weight: $font-weight-3;
+    font-size: var(--font-size-5);
+    font-weight: var(--font-weight-3);
 }
 
 h5
 {
-    font-size: $font-size-4;
-    font-weight: $font-weight-3;
+    font-size: var(--font-size-4);
+    font-weight: var(--font-weight-3);
 }
 
 p, span, a
 {
-    font-size: $font-size-3;
-    font-weight: $font-weight-1;
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-1);
 }
 
 /// context-menu ////
 
 .context-menu
 {
-    font-family: $font-face, sans-serif;
-    font-weight: $font-weight-1;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-1);
     position: absolute;
     opacity: 0;
     visibility: hidden;
     transition: all 0.2s ease;
     transition-delay: 0.2s;
     padding: 5px 0px;
-    background-color: $color-structure-9;
-    border-radius: 5px;
+    background-color: var(--color-structure-9);
+    border-radius: var(--border-radius);
     
     top: var(--context-menu-top, 29px);
     right: 0px;
@@ -122,7 +122,7 @@ p, span, a
     list-style-type: none;
     margin: 0;
     text-align: left;
-    z-index: $zIndex-9;
+    z-index: var(--zIndex-9);
     
     a
     {
@@ -134,15 +134,15 @@ p, span, a
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
-        font-size: var(--context-menu-a-font-size, $font-size-1);
-        line-height: $font-size-5;
-        font-weight: $font-weight-1;
-        color: $color-structure-0 !important;
+        font-size: var(--context-menu-a-font-size, var(--font-size-1));
+        line-height: var(--font-size-5);
+        font-weight: var(--font-weight-1);
+        color: var(--color-structure-0) !important;
         -webkit-font-smoothing: initial;
         
         &:hover
         {
-            background-color: $color-structure-11;
+            background-color: var(--color-structure-11);
         }
         
         .left-icon
@@ -157,17 +157,17 @@ p, span, a
         {
             position: absolute;
             right: 4px;
-            line-height: $font-size-5;
+            line-height: var(--font-size-5);
             
             &:hover
             {
-                color: $color-active;
+                color: var(--color-active);
                 opacity: 1;
             }
         }
         &.disabled
         {
-            color: $color-structure-6 !important;
+            color: var(--color-structure-6) !important;
             &:hover
             {
                 background-color: inherit;
@@ -190,9 +190,9 @@ p, span, a
 }
 
 .rating-positive {
-    color: $color-accent;
+    color: var(--color-accent);
 }
 
 .rating-negative {
-    color: $color-alert;
+    color: var(--color-alert);
 }

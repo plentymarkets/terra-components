@@ -2,8 +2,8 @@
 {
     margin-bottom: 6px;
     border: 1px solid transparent;
-    border-radius: 5px;
-    .portlet_head
+    border-radius: var(--border-radius);
+    .portlet-head
     {
         padding: 8px 9px 4px 9px;
         background: transparent;
@@ -15,54 +15,54 @@
         
         span
         {
-            color: $color-structure-12;
-            font-size: $font-size-4;
-            font-weight: $font-weight-2;
+            color: var(--color-structure-12);
+            font-size: var(--font-size-4);
+            font-weight: var(--font-weight-2);
         }
         &.error-bottom
         {
-            border-bottom: 5px solid $color-alert;
+            border-bottom: 5px solid var(--color-alert);
             margin-bottom: 0;
         }
         &.success-bottom
         {
-            border-bottom: 5px solid $color-add;
+            border-bottom: 5px solid var(--color-add);
             margin-bottom: 0;
         }
         &.warning-bottom
         {
-            border-bottom: 5px solid $color-accent;
+            border-bottom: 5px solid var(--color-accent);
             margin-bottom: 0;
         }
     }
     
-    .portlet_body
+    .portlet-body
     {
-        background-color: var(--portlet_body-background-color, $color-structure-2);
-        padding: var(--portlet_body-padding, 12px);
+        background-color: var(--portlet-body-background-color, var(--color-structure-2));
+        padding: var(--portlet-body-padding, var(--portlet-body-padding-default));
         transition: ease padding .6s;
-        border-radius: 5px;
+        border-radius: var(--border-radius);
         
         table.table
         {
             thead
             {
-                background: $color-active-dark;
-                color: $color-structure-0;
+                background: var(--color-active-dark);
+                color: var(--color-structure-0);
                 tr
                 {
                     th
                     {
-                        border: 1px solid $color-structure-0;
-                        border-top: 1px solid $color-active-dark;
-                        border-bottom: 1px solid $color-active-dark;
+                        border: 1px solid var(--color-structure-0);
+                        border-top: 1px solid var(--color-active-dark);
+                        border-bottom: 1px solid var(--color-active-dark);
                         &:first-child
                         {
-                            border-left: 1px solid $color-active-dark;
+                            border-left: 1px solid var(--color-active-dark);
                         }
                         &:last-child
                         {
-                            border-right: 1px solid $color-active-dark;
+                            border-right: 1px solid var(--color-active-dark);
                         }
                     }
                 }
@@ -70,29 +70,29 @@
         }
         .btn-toolbar
         {
-            background: $color-structure-6;
+            background: var(--color-structure-6);
             .btn
             {
                 
                 &:hover
                 {
-                    border-right: 1px solid $color-structure-5;
+                    border-right: 1px solid var(--color-structure-5);
                 }
             }
             .c-select
             {
-                border: 1px solid $color-structure-0;
+                border: 1px solid var(--color-structure-0);
             }
         }
     }
     
     &.collapsable
     {
-        .portlet_head
+        .portlet-head
         {
             cursor: pointer;
         }
-        .portlet_body
+        .portlet-body
         {
             overflow: hidden;
         }
@@ -106,21 +106,21 @@
     {
         th
         {
-            color: $color-structure-13;
+            color: var(--color-structure-13);
             font-weight: normal;
         }
         td
         {
-            background-color: $color-structure-0;
+            background-color: var(--color-structure-0);
             &:first-child
             {
-                background-color: $color-structure-2;
+                background-color: var(--color-structure-2);
             }
         }
     }
 }
 
-.portlet_head
+.portlet-head
 {
     [class^="icon-"]
     {
@@ -158,7 +158,7 @@
 
 .adminOrderSearchRight
 {
-    border-left: 1px solid $color-structure-4;
+    border-left: 1px solid var(--color-structure-4);
     hr
     {
         margin: 1rem 0;
@@ -169,7 +169,7 @@
 {
     &:hover
     {
-        border: 1px solid $color-active-dark;
+        border: 1px solid var(--color-active-dark);
     }
 }
 

@@ -12,9 +12,9 @@
             .multiselect-header
             {
                 display: flex;
-                background-color: $color-structure-11;
-                border-top-left-radius: $border-radius;
-                border-top-right-radius: $border-radius;
+                background-color: var(--color-structure-11);
+                border-top-left-radius: var(--border-radius);
+                border-top-right-radius: var(--border-radius);
                 
                 .checkbox-container,
                 .header-label
@@ -22,13 +22,13 @@
                     margin: 0px;
                     font-variant: all-small-caps;
                     padding: 6px 9px;
-                    color: $color-structure-0;
+                    color: var(--color-structure-0);
                 }
             }
             
             .option-list
             {
-                background: $color-structure-0;
+                background: var(--color-structure-0);
                 overflow: auto;
                 max-height: 155px;
                 .input-group
@@ -40,7 +40,7 @@
                     {
                         padding: 6px 9px;
                         border: none;
-                        border-bottom: 1px solid $color-structure-1;
+                        border-bottom: 1px solid var(--color-structure-1);
                         border-radius: 0px;
                         font-size: 0.875rem;
                         font-weight: normal;
@@ -50,7 +50,7 @@
                     
                     &:hover
                     {
-                        background: $color-structure-1;
+                        background: var(--color-structure-1);
                     }
                 }
             }
@@ -61,7 +61,7 @@
             {
                 .multiselect-header
                 {
-                    background-color: $color-alert;
+                    background-color: var(--color-alert);
                 }
             }
         }
@@ -71,7 +71,7 @@
             {
                 .multiselect-header
                 {
-                    background: $color-structure-5;
+                    background: var(--color-structure-5);
                     cursor: not-allowed;
                 }
                 .option-list
@@ -81,18 +81,18 @@
                         .form-control,
                         .input-group-addon
                         {
-                            color: $color-structure-5;
+                            color: var(--color-structure-5);
                             cursor: not-allowed;
                             &:hover
                             {
                                 cursor: not-allowed;
-                                background: $color-structure-0;
+                                background: var(--color-structure-0);
                             }
                         }
                         &:hover
                         {
                             cursor: not-allowed;
-                            background: $color-structure-0;
+                            background: var(--color-structure-0);
                         }
                     }
                 }

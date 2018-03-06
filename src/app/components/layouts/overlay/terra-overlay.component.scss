@@ -1,7 +1,7 @@
 .modal-title
 {
     line-height: 2.3;
-    font-weight: $font-weight-3;
+    font-weight: var(--font-weight-3);
 }
 
 .modal-dialog
@@ -16,11 +16,11 @@
     {
         .modal-header
         {
-            padding: var(--modal-header-padding, 10px 14px);
+            padding: var(--modal-header-padding, var(--modal-header-padding-default));
             --btn-padding: 0;
             .modal-title
             {
-                line-height: var(--modal-title-line-height, 2.3);
+                line-height: var(--modal-title-line-height, var(--modal-title-line-height-default));
             }
         }
         .modal-body
@@ -28,11 +28,11 @@
             max-height: var(--modal-body-max-height, 525px);
             height: var(--modal-body-height, initial);
             overflow-y: auto;
-            padding: var(--modal-body-padding, 18px 14px);
+            padding: var(--modal-body-padding, var(--modal-body-padding-default));
         }
         .modal-footer
         {
-            padding: var(--modal-footer-padding, 10px 14px);
+            padding: var(--modal-footer-padding, var(--modal-footer-padding-default));
         }
     }
 }

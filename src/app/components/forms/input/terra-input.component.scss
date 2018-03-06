@@ -21,26 +21,26 @@ input[type=number]
 
 ::-webkit-input-placeholder
 {
-    font-size: $font-size-3;
-    color: $color-structure-7;
+    font-size: var(--font-size-3);
+    color: var(--color-structure-7);
 }
 
 :-moz-placeholder
 { /* Firefox 18- */
-    font-size: $font-size-3;
-    color: $color-structure-7;
+    font-size: var(--font-size-3);
+    color: var(--color-structure-7);
 }
 
 ::-moz-placeholder
 { /* Firefox 19+ */
-    font-size: $font-size-3;
-    color: $color-structure-7;
+    font-size: var(--font-size-3);
+    color: var(--color-structure-7);
 }
 
 :-ms-input-placeholder
 {
-    font-size: $font-size-3;
-    color: $color-structure-7;
+    font-size: var(--font-size-3);
+    color: var(--color-structure-7);
 }
 
 input[type="search"]
@@ -59,93 +59,92 @@ input[type="search"]::-webkit-search-decoration
     $FORMS
 \*------------------------------------*/
 
-.input-unit-v1
+.input-wrapper
 {
     position: relative;
     width: 100%;
-    margin-bottom: var(--input-unit-v1-margin-bottom, 3px);
-    height: var(--input-unit-v1-height, $height-md);
-    line-height: var(--input-unit-v1-line-height, $height-md);
+    margin-bottom: var(--input-wrapper-margin-bottom, 3px);
+    height: var(--input-wrapper-height, var(--input-wrapper-height-default));
+    line-height: var(--input-wrapper-line-height, 100%);
     transition: ease height 0.6s, ease line-height 0.6s;
-    background-color: $color-structure-0;
-    border-radius: $border-radius;
-    border: var(--input-unit-v1-border, 1px solid $color-structure-0);
+    background-color: var(--color-structure-0);
+    border-radius: var(--border-radius);
+    border: var(--input-wrapper-border, 1px solid var(--color-structure-0));
     
     &.isSmall
     {
-        height: $height-sm;
-        line-height: $height-sm - 2;
+        height: var(--height-sm);
     }
     
     &:hover
     {
-        border: var(--input-unit-v1-border-hover, 1px solid $color-active);
+        border: var(--input-wrapper-border-hover, 1px solid var(--color-active));
     }
     
     &.error
     {
-        z-index: $zIndex-3;
-        border: 1px solid $color-alert;
+        z-index: var(--zIndex-3);
+        border: 1px solid var(--color-alert);
         input
         {
-            color: $color-alert;
+            color: var(--color-alert);
         }
         label
         {
-            color: $color-alert;
+            color: var(--color-alert);
         }
         i
         {
-            background-color: $color-alert;
-            color: $color-structure-0;
+            background-color: var(--color-alert);
+            color: var(--color-structure-0);
         }
     }
     
     &.valid
     {
-        z-index: $zIndex-2;
-        border: 1px solid $color-active;
+        z-index: var(--zIndex-2);
+        border: 1px solid var(--color-active);
         input
         {
-            color: $color-active;
+            color: var(--color-active);
         }
         label
         {
-            color: $color-active;
+            color: var(--color-active);
         }
         i
         {
-            background-color: $color-active;
-            color: $color-structure-0;
+            background-color: var(--color-active);
+            color: var(--color-structure-0);
         }
     }
     
     &.success
     {
-        z-index: $zIndex-2;
-        border: 1px solid $color-add;
+        z-index: var(--zIndex-2);
+        border: 1px solid var(--color-add);
         input
         {
-            color: $color-add;
+            color: var(--color-add);
         }
         label
         {
-            color: $color-add;
+            color: var(--color-add);
         }
         i
         {
-            background-color: $color-add;
-            color: $color-structure-0;
+            background-color: var(--color-add);
+            color: var(--color-structure-0);
         }
     }
     
     &.disabled
     {
-        background-color: $color-structure-2;
-        border: var(--input-unit-v1-border-disabled, 1px solid $color-structure-5);
+        background-color: var(--color-structure-2);
+        border: var(--input-wrapper-border-disabled, 1px solid var(--color-structure-5));
         input
         {
-            color: $color-structure-5;
+            color: var(--color-structure-5);
         }
         
         label
@@ -160,39 +159,37 @@ input:not([type="checkbox"]),
 input:not([type="radio"]),
 textarea
 {
-    color: $color-structure-10;
+    color: var(--color-structure-10);
     border: none;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     box-shadow: none;
-    padding: var(--input-padding, 13px 7px 0px 7px);
+    padding: var(--input-padding, var(--input-padding-default));
     width: var(--input-width, 100%);
-    font-size: $font-size-3;
-    font-weight: $font-weight-2;
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-2);
     text-align: var(--input-text-align, left);
     outline: none !important;
-    height: var(--input-height, $height-md - 2);
-    line-height: var(--input-line-height, $height-md - 2);
+    height: var(--input-height, 100%);
+    line-height: var(--input-line-height, 100%);
     transition: ease padding .6s, ease height .6s, ease line-height .6s;
     
     &.isSmall
     {
-        height: $height-sm - 4;
-        line-height: $height-sm - 4;
-        padding: var(--input-padding, 0px 7px 0px 7px);
+        padding: var(--input-isSmall-padding, var(--input-isSmall-padding-default));
     }
     
     &:focus,
     &.filled
     {
-        color: $color-structure-12;
-        background-color: $color-structure-0;
-        border-color: $color-structure-8;
+        color: var(--color-structure-12);
+        background-color: var(--color-structure-0);
+        border-color: var(--color-structure-8);
     }
     
     &.disabled,
     &:disabled
     {
-        background-color: $color-structure-2;
+        background-color: var(--color-structure-2);
         cursor: not-allowed;
         
         & ~ label
@@ -203,10 +200,10 @@ textarea
     
     & + .symbol
     {
-        color: $color-structure-10;
+        color: var(--color-structure-10);
         position: absolute;
-        top: $border-width;
-        right: $border-width;
+        top: 1px;
+        right: 1px;
         transition: all .2s;
     }
     
@@ -215,12 +212,12 @@ textarea
     {
         & + .symbol
         {
-            color: $color-structure-10;
+            color: var(--color-structure-10);
         }
         
         & + label
         {
-            color: $color-structure-7 !important;
+            color: var(--color-structure-7) !important;
         }
     }
     
@@ -238,18 +235,18 @@ textarea
 
 label
 {
-    font-size: $font-size-1;
+    font-size: var(--font-size-1);
     line-height: 1em !important;
     font-variant: all-small-caps;
-    font-weight: $font-weight-2;
+    font-weight: var(--font-weight-2);
     
-    width: var(--label-width, 100%);
+    width: var(--label-width, var(--label-width-default));
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     padding: 5px 7px 0;
     margin-bottom: 0;
-    color: $color-structure-7;
+    color: var(--color-structure-7);
     
     position: absolute;
     top: 0;
@@ -262,7 +259,7 @@ label
     
     & span
     {
-        font-size: $font-size-1;
+        font-size: var(--font-size-1);
     }
 }
 

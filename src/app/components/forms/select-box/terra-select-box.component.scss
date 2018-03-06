@@ -3,13 +3,14 @@
 .select-box-wrapper
 {
     position: relative;
-    background-color: $color-structure-0;
-    border-radius: $border-radius;
-    border: 1px solid $color-structure-0;
+    background-color: var(--color-structure-0);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-structure-0);
     margin: var(--select-box-wrapper-margin, 0px);
     margin-bottom: var(--select-box-wrapper-margin-bottom, 3px);
-    
     cursor: pointer;
+    height: var(--select-box-height, var(--select-box-height-default));
+    line-height: var(--select-box-line-height, var(--select-box-line-height-default));
     
     label &.disabled
     {
@@ -18,13 +19,25 @@
     
     &.error
     {
-        border-color: $color-alert;
+        border-color: var(--color-alert);
+    }
+    
+    &.isSmall
+    {
+        height: var(--height-sm);
+        line-height: var(--height-sm);
+        .select-box
+        {
+            background-position: calc(100% - 11px) 7px;
+            &.labeled
+            {
+                padding: 0px 7px 0px 30%;
+            }
+        }
     }
     
     .select-box
     {
-        height: var(--select-box-height, $height-md - 2);
-        line-height: var(--select-box-line-height, $height-md - 2);
         transition: ease height 0.6s, ease line-height 0.6s;
         display: inline-block;
         width: var(--select-box-width, 100%);
@@ -32,32 +45,23 @@
         vertical-align: middle;
         -moz-appearance: none;
         -webkit-appearance: none;
-        padding: 0px 12px;
-        background-position: calc(100% - 1rem) 1.2rem;
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat right .75rem center;
-        background-image: none \9;
+        padding: 0 var(--space-lg);
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat;
+        background-position: var(--select-box-toggle-background-position, var(--select-box-toggle-background-position-default));
         background-size: 8px 10px;
-        color: $color-structure-10;
+        color: var(--color-structure-10);
         
-        &.isSmall
-        {
-            height: $height-sm - 2;
-            line-height: $height-sm - 2;
-            &.labeled
-            {
-                padding: 0px 7px 0px 7px;
-            }
-        }
+
         &.error
         {
-            border-color: $color-alert;
-            color: $color-alert;
+            border-color: var(--color-alert);
+            color: var(--color-alert);
             background-size: 8px 10px;
         }
         &.labeled
         {
             line-height: 24px;
-            padding: var(--select-box-labeled-padding, 13px 7px 0px 7px);
+            padding: var(--select-box-labeled-padding, var(--select-box-labeled-padding-default));
             transition: ease padding .6s;
         }
         span
@@ -67,17 +71,17 @@
             white-space: nowrap;
             overflow: hidden;
             display: inline-block;
-            font-weight: $font-weight-2;
+            font-weight: var(--font-weight-2);
         }
     }
     &:not(.error):hover
     {
-        border: 1px solid $color-active;
+        border: 1px solid var(--color-active);
     }
     &.disabled
     {
-        background-color: $color-structure-2;
-        border: 1px solid $color-structure-5;
+        background-color: var(--color-structure-2);
+        border: 1px solid var(--color-structure-5);
         .select-box
         {
             filter: opacity(30%);
@@ -105,27 +109,27 @@
     {
         position: absolute;
         z-index: 99999;
-        top: var(--select-box-dropdown-top, $height-md);
+        top: var(--select-box-dropdown-top, var(--select-box-dropdown-top-default));
         bottom: initial;
         left: 0;
         min-width: 100%;
         width: auto;
         max-height: 12rem;
-        border-radius: $border-radius;
-        background: $color-structure-0;
+        border-radius: var(--border-radius);
+        background: var(--color-structure-0);
         display: none;
         overflow: auto;
-        border: 1px solid $color-structure-4;
+        border: 1px solid var(--color-structure-4);
         
         &.openOnTop
         {
             top: initial;
-            bottom: $height-md;
+            bottom: var(--height-md);
         }
         
         &.isSmall
         {
-            top: $height-sm;
+            top: var(--height-sm);
         }
         
         > span
@@ -139,22 +143,22 @@
             &:hover,
             &.selected
             {
-                background: $color-structure-3;
+                background: var(--color-structure-3);
             }
             &.active
             {
-                background: $color-active;
-                color: $color-structure-0;
+                background: var(--color-active);
+                color: var(--color-structure-0);
             }
             &.highlight
             {
                 font-weight: bolder;
-                color: $color-add;
+                color: var(--color-add);
             }
             &.deep
             {
                 font-style: italic;
-                color: $color-structure-8;
+                color: var(--color-structure-8);
                 font-weight: lighter;
             }
         }

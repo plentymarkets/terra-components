@@ -1,9 +1,9 @@
 .btn-toolbar
 {
-    background: var(--toolbar-background, $color-structure-2);
-    padding: var(--toolbar-padding, 4px);
-    margin: var(--toolbar-margin, 0 0 3px 0);
-    border-radius: var(--toolbar-border-radius, 0 0 $border-radius $border-radius);
+    background: var(--toolbar-background, var(--color-structure-2));
+    padding: var(--toolbar-padding, var(--toolbar-padding-default));
+    margin: var(--toolbar-margin, var(--toolbar-margin-default));
+    border-radius: var(--toolbar-border-radius, 0 0 var(--border-radius) var(--border-radius));
     border-bottom: var(--toolbar-border-bottom, none)
 }
 
@@ -11,7 +11,7 @@
 {
     top: 0;
     position: sticky;
-    z-index: $zIndex-7;
+    z-index: var(--zIndex-7);
 }
 
 :host-context(.btn-toolbar .pager) //if pager placed in toolbar, style the toolbar contained in pager like this

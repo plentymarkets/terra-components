@@ -3,7 +3,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    height: var(--terra-breadcrumbs-height, $terra-breadcumb-height);
+    height: var(--terra-breadcrumbs-height, var(--terra-breadcrumbs-height-default));
     transition: ease height 0.6s;
     display: flex;
     li
@@ -17,25 +17,25 @@
                 font-weight: 500;
             }
             text-decoration: none;
-            padding: var(--terra-breadcrumbs-li-padding, 9px 10px 8px);
+            padding: var(--terra-breadcrumbs-li-padding, var(--terra-breadcrumbs-li-padding-default));
             transition: ease padding 0.6s;
             position: relative;
             display: block;
             float: left;
-            color: $color-structure-9;
+            color: var(--color-structure-9);
             white-space: nowrap;
             &:hover
             {
-                color: $color-active;
+                color: var(--color-active);
             }
             &.active
             {
-                color: $color-active;
+                color: var(--color-active);
                 cursor: default;
             }
             &:not(.active):hover
             {
-                color: $color-active;
+                color: var(--color-active);
             }
             .icon-caret
             {
@@ -57,7 +57,7 @@
                 }
                 .context-menu
                 {
-                    top: var(--terra-breadcrumbs-context-menu-top, 33px);
+                    top: var(--terra-breadcrumbs-context-menu-top, var(--terra-breadcrumbs-context-menu-top-default));
                     li
                     {
                         float: none;
@@ -81,14 +81,14 @@
         .icon-next
         {
             padding: 6px 0px;
-            line-height: var(--terra-breadcrumbs-icon-next-line-height, 34px);
+            line-height: var(--terra-breadcrumbs-icon-next-line-height, var(--terra-breadcrumbs-icon-next-line-height-default));
             &::before
             {
                 display: inline-block;
-                line-height: var(--terra-breadcrumbs-icon-next-line-height-before, 30px);
+                line-height: var(--terra-breadcrumbs-icon-next-line-height-before, var(--terra-breadcrumbs-icon-next-line-height-before-default));
                 vertical-align: middle;
-                font-size: $font-size-6;
-                color: $color-structure-4;
+                font-size: var(--font-size-6);
+                color: var(--color-structure-4);
             }
         }
     }
@@ -113,13 +113,13 @@
     
     .view
     {
-        font-size: $font-size-3;
+        font-size: var(--font-size-3);
         vertical-align: top;
         height: 100%;
         overflow: hidden;
         white-space: normal;
         position: relative;
-        background-color: $color-structure-0;
+        background-color: var(--color-structure-0);
         
         &.isBackgroundColorGrey
         {
@@ -129,7 +129,7 @@
             {
                 &.last
                 {
-                    background-color: $color-structure-0;
+                    background-color: var(--color-structure-0);
                 }
             }
         }
@@ -141,7 +141,7 @@
         }
         &.workaround
         {
-            background-color: $color-structure-0;
+            background-color: var(--color-structure-0);
         }
         
         //divide 2 views with the same background color with a border
@@ -151,14 +151,14 @@
             + .view:not(.isBackgroundColorGrey),
             + .view.workaround
             {
-                border-left: 1px solid $color-structure-4;
+                border-left: 1px solid var(--color-structure-4);
             }
         }
         &.isBackgroundColorGrey:not(.workaround)
         {
             + .view.isBackgroundColorGrey:not(.workaround)
             {
-                border-left: 2px solid $color-structure-0;
+                border-left: 2px solid var(--color-structure-0);
             }
         }
     }
@@ -196,6 +196,6 @@
 {
     --toolbar-margin: 0;
     --toolbar-border-radius: none;
-    --toolbar-background: $color-structure-0;
-    --toolbar-border-bottom: 1px solid $color-structure-4;
+    --toolbar-background: var(--color-structure-0);
+    --toolbar-border-bottom: 1px solid var(--color-structure-4);
 }

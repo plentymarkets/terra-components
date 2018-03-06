@@ -22,8 +22,8 @@
     {
         width: 1.625rem;
         height: 1.625rem;
-        background-color: $color-structure-0;
-        border: 1px $color-structure-7 solid;
+        background-color: var(--color-structure-0);
+        border: 1px var(--color-structure-7) solid;
         border-radius: 100%;
         padding: 0;
         position: relative;
@@ -32,7 +32,7 @@
         
         &:focus
         {
-            border-color: $color-active-light;
+            border-color: var(--color-active-light);
         }
         
         &:before
@@ -62,28 +62,28 @@
     
     .check.active:before
     {
-        border-color: $color-structure-11;
+        border-color: var(--color-structure-11);
         transition: all 0.2s linear;
     }
     
     .check.disabled
     {
-        border-color: $color-structure-4;
+        border-color: var(--color-structure-4);
         cursor: not-allowed;
     }
     .check.disabled:before
     {
-        border-color: $color-structure-0;
+        border-color: var(--color-structure-0);
     }
     .check.disabled.active:before
     {
-        border-color: $color-structure-4;
+        border-color: var(--color-structure-4);
     }
 }
 
 .caption.disabled
 {
-    color: $color-structure-4;
+    color: var(--color-structure-4);
     cursor: not-allowed;
 }
 

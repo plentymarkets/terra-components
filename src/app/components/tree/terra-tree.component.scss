@@ -21,7 +21,7 @@ terra-checkbox-tree
             cursor: pointer;
             padding-left: 10px;
             position: relative;
-            color: $color-structure-11;
+            color: var(--color-structure-11);
             vertical-align: middle;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -30,7 +30,7 @@ terra-checkbox-tree
             &.disabled
             {
                 cursor: default;
-                color: $color-structure-7;
+                color: var(--color-structure-7);
             }
             .input-control
             {
@@ -47,13 +47,13 @@ terra-checkbox-tree
             {
                 > .leaf-titel
                 {
-                    background: $color-active-dark;
-                    color: $color-structure-0;
+                    background: var(--color-active-dark);
+                    color: var(--color-structure-0);
                 }
             }
             .leaf-titel
             {
-                border-bottom: 1px solid $color-structure-2;
+                border-bottom: 1px solid var(--color-structure-2);
                 color: inherit;
                 margin: 0;
                 padding: 4px 8px 4px 8px;
@@ -65,15 +65,15 @@ terra-checkbox-tree
                 }
                 &:hover
                 {
-                    color: $color-structure-12;
-                    background: $color-active;
+                    color: var(--color-structure-12);
+                    background: var(--color-active);
                 }
             }
             &:hover
             {
                 > .node-toggle:before
                 {
-                    border-bottom-color: $color-active-dark;
+                    border-bottom-color: var(--color-active-dark);
                 }
             }
         }
@@ -96,7 +96,7 @@ terra-checkbox-tree
             width: 0;
             border-left: 7px solid transparent;
             border-top: 7px solid transparent;
-            border-bottom: 7px $color-active-dark solid;
+            border-bottom: 7px var(--color-active-dark) solid;
             left: -4px;
             -webkit-transform: rotate(45deg);
             transform: rotate(45deg);
@@ -108,14 +108,14 @@ terra-checkbox-tree
         {
             -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
-            border-bottom-color: $color-structure-7;
+            border-bottom-color: var(--color-structure-7);
             left: -10px;
         }
         &:hover
         {
             > .node-toggle:before
             {
-                border-bottom-color: $color-active-dark;
+                border-bottom-color: var(--color-active-dark);
             }
         }
         

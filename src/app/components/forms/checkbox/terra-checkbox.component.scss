@@ -16,7 +16,7 @@ input[type="checkbox"]
 
 .input-control.checkbox .check.invalid
 {
-    border-color: $color-alert !important;
+    border-color: var(--color-alert) !important;
 }
 
 .checkbox
@@ -61,14 +61,14 @@ input[type="checkbox"]
 {
     width: 1.625rem;
     height: 1.625rem;
-    background-color: $color-structure-0;
-    border: 1px $color-structure-7 solid;
+    background-color: var(--color-structure-0);
+    border: 1px var(--color-structure-7) solid;
     padding: 0;
     position: relative;
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
 }
 
 .input-control.checkbox .check:hover
@@ -83,7 +83,7 @@ input[type="checkbox"]
 
 .input-control.checkbox .check:focus
 {
-    border-color: $color-structure-3;
+    border-color: var(--color-structure-3);
 }
 
 .input-control.checkbox .check:before
@@ -111,23 +111,23 @@ input[type="checkbox"]
 
 .input-control.checkbox input[type="checkbox"]:checked ~ .check:before
 {
-    border-color: $color-structure-11;
+    border-color: var(--color-structure-11);
     transition: all 0.2s linear;
 }
 
 .input-control.checkbox input[type="checkbox"]:disabled ~ .caption
 {
-    color: $color-structure-5;
+    color: var(--color-structure-5);
 }
 
 .input-control.checkbox input[type="checkbox"]:disabled ~ .check
 {
-    border-color: $color-structure-5;
+    border-color: var(--color-structure-5);
 }
 
 .input-control.checkbox input[type="checkbox"]:disabled:checked ~ .check:before
 {
-    border-color: $color-structure-5;
+    border-color: var(--color-structure-5);
 }
 
 .input-control.checkbox input[data-show="indeterminate"] ~ .check:before,
@@ -146,7 +146,7 @@ input[type="checkbox"]
     position: absolute;
     display: block;
     content: "";
-    background-color: $color-structure-12;
+    background-color: var(--color-structure-12);
     height: .875rem;
     width: .875rem;
     left: 50%;
@@ -162,7 +162,7 @@ input[type="checkbox"]
 
 .input-control.checkbox input[data-show="indeterminate"]:disabled ~ .check:after
 {
-    background-color: $color-structure-5;
+    background-color: var(--color-structure-5);
 }
 
 .input-control.small-check .check
@@ -170,7 +170,7 @@ input[type="checkbox"]
     width: 1rem;
     height: 1rem;
     margin-bottom: .125rem;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
 }
 
 .input-control.small-check .check:before

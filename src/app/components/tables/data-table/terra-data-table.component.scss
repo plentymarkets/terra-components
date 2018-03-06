@@ -24,24 +24,24 @@
             margin-bottom: 1rem;
             thead
             {
-                background: $color-structure-9;
-                color: $color-structure-0;
-                border-radius: 0 0 $border-radius $border-radius;
+                background: var(--color-structure-9);
+                color: var(--color-structure-0);
+                border-radius: 0 0 var(--border-radius) var(--border-radius);
                 tr
                 {
                     th
                     {
                         font-variant: all-small-caps;
-                        padding: var(--table-head-th-padding, 6px 9px);
+                        padding: var(--table-head-th-padding, var(--table-head-th-padding-default));
                         transition: ease padding 0.6s;
                         border: none;
                         &:first-child
                         {
-                            border-radius: 0 0 0 $border-radius;
+                            border-radius: 0 0 0 var(--border-radius);
                         }
                         &:last-child
                         {
-                            border-radius: 0 0 $border-radius 0;
+                            border-radius: 0 0 var(--border-radius) 0;
                         }
                     }
                     
@@ -51,24 +51,24 @@
             {
                 tr
                 {
-                    color: $color-structure-11;
+                    color: var(--color-structure-11);
                     td
                     {
-                        padding: var(--table-body-td-padding, 8px 9px);
+                        padding: var(--table-body-td-padding, var(--table-body-td-padding-default));
                         transition: ease padding 0.6s;
                         vertical-align: middle;
-                        border-bottom: 1px solid $color-structure-1;
+                        border-bottom: 1px solid var(--color-structure-1);
                         white-space: nowrap;
                         span
                         {
-                            font-size: $font-size-2;
+                            font-size: var(--font-size-2);
                         }
                         a[href]
                         {
                             text-decoration: underline;
                             &:hover
                             {
-                                color: $color-active;
+                                color: var(--color-active);
                             }
                         }
                     }
@@ -84,24 +84,24 @@
             }
             > tbody tr:hover
             {
-                background: $color-structure-2;
+                background: var(--color-structure-2);
                 cursor: pointer;
             }
             tbody tr.selected
             {
-                background-color: $color-active;
-                color: $color-structure-0;
+                background-color: var(--color-active);
+                color: var(--color-structure-0);
             }
             tbody tr.isActive
             {
-                background-color: $color-active;
-                color: $color-structure-0;
+                background-color: var(--color-active);
+                color: var(--color-structure-0);
                 td a[href]
                 {
-                    color: $color-structure-0;
+                    color: var(--color-structure-0);
                     &:hover
                     {
-                        color: $color-structure-13;
+                        color: var(--color-structure-13);
                     }
                 }
             }
@@ -126,18 +126,18 @@
     text-align: center;
     display: block;
     padding: 8.3em .3em .3em .5em;
-    color: $color-structure-11;
+    color: var(--color-structure-11);
     text-decoration: none;
     font-size: 1.875rem;
     border: 0;
     border-radius: 0;
 }
 
-.group_function
+.group-function
 {
     margin-bottom: 6px;
     
-    .group_function_head
+    .group-function-head
     {
         padding: 1px 9px 4px 4px;
         background: transparent;
@@ -145,17 +145,17 @@
         span
         {
             padding: 5px;
-            color: $color-structure-12;
-            font-size: $font-size-4;
-            font-weight: $font-weight-2;
+            color: var(--color-structure-12);
+            font-size: var(--font-size-4);
+            font-weight: var(--font-weight-2);
         }
     }
     
-    .group_function_body
+    .group-function-body
     {
-        background-color: $color-structure-2;
-        padding: var(--group_function_body-padding, 12px);
-        border-radius: 5px;
+        background-color: var(--color-structure-2);
+        padding: var(--group-function-body-padding, var(--group-function-body-padding-default));
+        border-radius: var(--border-radius);
         transition: ease padding 0.6s;
     }
 }

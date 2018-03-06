@@ -3,12 +3,12 @@
 
 .select-box-wrapper
 {
-    --input-unit-v1-border: none;
-    --input-unit-v1-border-hover: none;
-    --input-unit-v1-height: 31px;
-    --input-unit-v1-line-height: 31px;
+    --input-wrapper-border: none;
+    --input-wrapper-border-hover: none;
+    --input-wrapper-height: 100%;
+    --input-wrapper-line-height: 100%;
     &.disabled
     {
-        --input-unit-v1-border-disabled: none;
+        --input-wrapper-border-disabled: none;
     }
 }

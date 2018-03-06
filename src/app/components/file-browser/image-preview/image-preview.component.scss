@@ -18,8 +18,8 @@
 
 .image-preview
 {
-    background-color: $color-structure-2;
-    padding: 4px;
+    background-color: var(--color-structure-2);
+    padding: var(--space-sm);
     flex: 1;
     
     .preview-container
@@ -46,7 +46,7 @@
     {
         display: block;
         font-size: .7rem;
-        color: $color-structure-9;
+        color: var(--color-structure-9);
     }
 }
 
@@ -66,6 +66,6 @@
         top: 50%;
         transform: translate(-50%, -50%);
         font-size: 5rem;
-        --icon-color: $color-structure-0;
+        --icon-color: var(--color-structure-0);
     }
 }

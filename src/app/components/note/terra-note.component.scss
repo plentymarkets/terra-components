@@ -2,10 +2,10 @@ $padding-border: 16px;
 
 .note
 {
-    background-color: $color-accent-light;
-    -moz-border-radius: $border-radius;
-    -webkit-border-radius: $border-radius;
-    border-radius: $border-radius;
+    background-color: var(--color-accent-light);
+    -moz-border-radius: var(--border-radius);
+    -webkit-border-radius: var(--border-radius);
+    border-radius: var(--border-radius);
     padding: $padding-border;
     min-width: 200px;
     margin: 4px 0px;
@@ -13,20 +13,20 @@ $padding-border: 16px;
     overflow-x: auto;
     &.selected
     {
-        background-color: $color-active;
+        background-color: var(--color-active);
         
         .note-inner
         {
             .note-text
             {
-                color: $color-structure-0;
+                color: var(--color-structure-0);
             }
         }
         .note-footer
         {
             .note-id
             {
-                color: $color-structure-0;
+                color: var(--color-structure-0);
             }
         }
     }
@@ -41,7 +41,7 @@ $padding-border: 16px;
             padding-right: 0.8rem;
             max-width: 77%;
             white-space: normal;
-            color: $color-structure-11;
+            color: var(--color-structure-11);
             .note-header
             {
                 font-weight: bold;
@@ -65,7 +65,7 @@ $padding-border: 16px;
             .note-id
             {
                 margin-top: auto;
-                color: $color-structure-8;
+                color: var(--color-structure-8);
                 width: 100%;
                 text-align: center;
                 padding-top: $padding-border;
