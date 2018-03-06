@@ -156,7 +156,8 @@
     <div *ngIf="!rowList || rowList && rowList.length < 1 && (
             (inputNoResultButtons && inputNoResultButtons.length > 0)
          || (inputNoResultTextPrimary && inputNoResultTextPrimary.length > 0) 
-         || (inputNoResultTextSecondary && inputNoResultTextSecondary.length > 0) )">
+         || (inputNoResultTextSecondary && inputNoResultTextSecondary.length > 0) )
+         && !_requestPending">
         <terra-no-result-notice
             [inputButtons]="inputNoResultButtons"
             [inputTextPrimary]="inputNoResultTextPrimary"

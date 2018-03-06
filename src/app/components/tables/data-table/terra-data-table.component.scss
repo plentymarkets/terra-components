@@ -65,10 +65,12 @@
                         }
                         a[href]
                         {
-                            text-decoration: underline;
+                            color: var(--color-active);
+                            text-decoration: none;
                             &:hover
                             {
-                                color: var(--color-active);
+                                color: var(--color-active-dark);
+                                text-decoration: underline;
                             }
                         }
                     }
