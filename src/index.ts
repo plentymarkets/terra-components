@@ -98,7 +98,7 @@ export * from './app/components/dynamic-module-loader/data/terra-dynamic-loaded-
 export * from './app/components/dynamic-module-loader/data/terra-dynamic-loaded-component.interface';
 export * from './app/components/tables/data-table/cell/terra-text-align.enum';
 export * from './app/components/data/terra-base-parameter.interface';
-export * from './app/components/buttons/button/enum/button-color.enum';
+export * from './app/helpers/enums/button-color.enum';
 export * from './app/components/forms/dynamic-form/terra-dynamic-form.component';
 export * from './app/components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
 export * from './app/components/forms/dynamic-form/data/terra-form-field-base';
@@ -119,3 +119,4 @@ export * from './app/components/file-browser/terra-base-private-storage.interfac
 export * from './app/components/file-browser/terra-file-browser.service';
 export * from './app/helpers/terra-converter.helper';
 export * from './app/helpers/url.helper';
+export * from './app/helpers/enums/terra-placement.enum'

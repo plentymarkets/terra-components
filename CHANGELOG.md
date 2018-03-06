@@ -1,8 +1,15 @@
-# Unreleased
+<a name="2.1.55-zlk"></a>
+# 2.1.55-zlk (06.03.2018)
 
 ### Feature
 * **url-helper** new component that offers methods to edit urls
 * **terra-multi-split-view** inject router instead of passing it via the input `inputRouter`.
+* **terra-placement-enum** new enum with dedicated strings for placement of e.g. tooltips
+* **terra-portlet** if the portlet is collapsable and unfolded, its header is now grey.
+* **terra-data-table** replace underline text decoration of phone and email links with blue color highlighting.
+
+### Bug Fixes
+* **terra-data-table** hide no-results-notice when request is pending
 
 <a name="2.1.47-zlk"></a>
 # 2.1.47-zlk (06.02.2018)

@@ -2,7 +2,7 @@ module.exports = function () {
 
     var config = {
 
-        allTs: './src/**/*.ts',
+        allTs: './src/**/!(*.d).ts',
         allCSS: './src/**/*.css',
         allFonts: './src/app/assets/fonts/**/*',
         allImages: './src/app/assets/images/**/*',

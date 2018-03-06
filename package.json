@@ -1,6 +1,6 @@
 {
 	"name": "@plentymarkets/terra-components",
-	"version": "2.1.53-zlk",
+	"version": "2.1.55-zlk",
 	"homepage": "https://github.com/plentymarkets/terra-components#readme",
 	"author": "plentymarkets",
 	"description": "plentymarkets terra components",
@@ -45,7 +45,7 @@
 		"iban": "0.0.8",
 		"interactjs": "^1.2.9",
 		"jquery": "^3.2.1",
-		"moment": "2.19.1",
+		"moment": "2.21.0",
 		"mydatepicker": "^2.0.31",
 		"ng2-ace-editor": "^0.3.1",
 		"ngx-bootstrap": "1.9.3",
