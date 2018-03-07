@@ -172,8 +172,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             return;
         }
 
-        //this.updateViewport(view);
-
         if(!isNullOrUndefined(this.inputConfig.selectBreadcrumbEventEmitter))
         {
             this.inputConfig.selectBreadcrumbEventEmitter.next(view);
@@ -221,7 +219,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     public updateViewport(view:TerraMultiSplitViewInterface):void
     {
-        console.log('updateViewport called with: ' + view.module);
         // check if view is defined
         if(isNullOrUndefined(view))
         {
@@ -231,6 +228,16 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.zone.runOutsideAngular(() =>
         {
             let splitViewId:number = this.splitViewId;
+
+            let getViewSizeById:(id:string) => number = (id:string):number =>
+            {
+                // TODO: @vwiebe, refactoring
+                if ($(window).outerWidth() < 768) return 12;
+                let className = $('#' + id).attr('class');
+                let size:number = Number(className.substring(className.lastIndexOf('col-lg-') + 7, className.lastIndexOf('col-lg-') + 9).replace(' ', ''));
+                return size;
+            };
+
             setTimeout(function()
             {
                 let parent:TerraMultiSplitViewInterface = view.parent;
@@ -242,72 +249,44 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     moduleIndex++;
                 }
 
-                let anchor = $('#splitview' + splitViewId + '_module' + moduleIndex);
+                let currentViewId:string = $('#splitview' + splitViewId + '_module' + moduleIndex).attr('id');
+                let currentViewIdIndex:number = null;
+                let viewIds:string[] = [];
+                let sortedViewIds:string[] = [];
+                let currentViewSetSize:number = 0;
 
-                let leftModule = null;
-                let currentModule = null;
-                let rightModule = null;
-
-                $('.side-scroller > .view').each(function()
+                $('.side-scroller > .view').each(function(i:number)
                 {
-                    if($(this).attr('id') != anchor.attr('id'))
+                    if($(this).attr('id') == currentViewId)
                     {
-                        $(this).removeClass('show').addClass('hide');
-
-                        if (!currentModule)
-                        {
-                            leftModule = $(this);
-                        }
-                        else if (currentModule && !rightModule)
-                        {
-                            rightModule = $(this);
-                        }
+                        currentViewIdIndex = i;
                     }
-                    else
-                    {
-                        $(this).removeClass('hide').addClass('show');
-
-                        currentModule = $(this);
-                    }
+                    viewIds.push($(this).attr('id'));
+                    $(this).removeClass('show').addClass('hide');
                 });
 
-                // TODO: vwiebe, refactoring
-                if (currentModule)
+                if (!isNullOrUndefined(currentViewIdIndex))
                 {
-                    if (rightModule)
+                    sortedViewIds.push(currentViewId);
+
+                    // TODO: @vwiebe, refactoring
+                    for (let i = 1; i < viewIds.length; i++)
                     {
-                        if (leftModule)
-                        {
-                            if ($(rightModule).width() + $(currentModule).width() <= $(leftModule).width() + $(currentModule).width())
-                            {
-                                $(rightModule).removeClass('hide').addClass('show');
-                            }
-                            else {
-                                $(leftModule).removeClass('hide').addClass('show');
-                            }
-                        }
-                        else {
-                            $(rightModule).removeClass('hide').addClass('show');
-                        }
-                    }
-                    else if (leftModule)
-                    {
-                        if (rightModule)
-                        {
-                            if ($(leftModule).width() + $(currentModule).width() <= $(rightModule).width() + $(currentModule).width())
-                            {
-                                $(leftModule).removeClass('hide').addClass('show');
-                            }
-                            else {
-                                $(rightModule).removeClass('hide').addClass('show');
-                            }
-                        }
-                        else {
-                            $(leftModule).removeClass('hide').addClass('show');
-                        }
+                        if (viewIds[currentViewIdIndex + i]) { sortedViewIds.push(viewIds[currentViewIdIndex + i]); }
+                        if (viewIds[currentViewIdIndex - i]) { sortedViewIds.push(viewIds[currentViewIdIndex - i]); }
                     }
                 }
 
+                // TODO: @vwiebe, refactoring
+                for (let i = 0; i < sortedViewIds.length; i++)
+                {
+                    let currentViewSize:number = getViewSizeById(sortedViewIds[i]);
+                    if (currentViewSetSize + currentViewSize <= 12)
+                    {
+                        currentViewSetSize = currentViewSetSize + currentViewSize;
+                        $('#' + sortedViewIds[i]).removeClass('hide').addClass('show');
+                    }
+                }
             });
         });
     }
