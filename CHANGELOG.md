@@ -7,6 +7,7 @@
 * **terra-placement-enum** new enum with dedicated strings for placement of e.g. tooltips
 * **terra-portlet** if the portlet is collapsable and unfolded, its header is now grey.
 * **terra-data-table** replace underline text decoration of phone and email links with blue color highlighting.
+* **terra-data-table** added new ref-type 'function'.
 
 ### Bug Fixes
 * **terra-data-table** hide no-results-notice when request is pending
