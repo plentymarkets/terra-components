@@ -62,7 +62,10 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
 
     ngAfterContentChecked():void
     {
-        this.categoryTreeConfig.list = this._list;
+        if(this.categoryTreeConfig.list.length == 0)
+        {
+            this.categoryTreeConfig.list = this._list;
+        }
     }
 
     public ngOnInit():void
@@ -122,7 +125,7 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
 
     public set value(v:any)
     {
-        if(v !== this._value)
+        if(v !== this._value && !isNullOrUndefined(v))
         {
             this._value = v;
             this.onTouchedCallback();
