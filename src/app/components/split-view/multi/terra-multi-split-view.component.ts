@@ -249,42 +249,65 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     moduleIndex++;
                 }
 
-                let currentViewId:string = $('#splitview' + splitViewId + '_module' + moduleIndex).attr('id');
-                let currentViewIdIndex:number = null;
+                let selectedViewId:string = $('#splitview' + splitViewId + '_module' + moduleIndex).attr('id');
+                let selectedViewIdIndex:number = null;
                 let viewIds:string[] = [];
                 let sortedViewIds:string[] = [];
                 let currentViewSetSize:number = 0;
+                let lastLeftViewId:string = null;
+                let lastRightViewId:string = null;
 
                 $('.side-scroller > .view').each(function(i:number)
                 {
-                    if($(this).attr('id') == currentViewId)
+                    if($(this).attr('id') == selectedViewId)
                     {
-                        currentViewIdIndex = i;
+                        selectedViewIdIndex = i;
                     }
                     viewIds.push($(this).attr('id'));
                     $(this).removeClass('show').addClass('hide');
                 });
 
-                if (!isNullOrUndefined(currentViewIdIndex))
+                if (!isNullOrUndefined(selectedViewIdIndex))
                 {
-                    sortedViewIds.push(currentViewId);
+                    sortedViewIds.push(selectedViewId);
 
                     // TODO: @vwiebe, refactoring
                     for (let i = 1; i < viewIds.length; i++)
                     {
-                        if (viewIds[currentViewIdIndex + i]) { sortedViewIds.push(viewIds[currentViewIdIndex + i]); }
-                        if (viewIds[currentViewIdIndex - i]) { sortedViewIds.push(viewIds[currentViewIdIndex - i]); }
+                        if (viewIds[selectedViewIdIndex + i]) { sortedViewIds.push(viewIds[selectedViewIdIndex + i]); }
+                        if (viewIds[selectedViewIdIndex - i]) { sortedViewIds.push(viewIds[selectedViewIdIndex - i]); }
                     }
                 }
 
                 // TODO: @vwiebe, refactoring
-                for (let i = 0; i < sortedViewIds.length; i++)
+                for (let id of sortedViewIds)
                 {
-                    let currentViewSize:number = getViewSizeById(sortedViewIds[i]);
+                    let currentViewSize:number = getViewSizeById(id);
+
                     if (currentViewSetSize + currentViewSize <= 12)
                     {
                         currentViewSetSize = currentViewSetSize + currentViewSize;
-                        $('#' + sortedViewIds[i]).removeClass('hide').addClass('show');
+
+                        // left of current view
+                        if (viewIds.indexOf(id) <= selectedViewIdIndex)
+                        {
+                            lastLeftViewId = id;
+                        }
+                        // right of current view
+                        if (viewIds.indexOf(id) >= selectedViewIdIndex)
+                        {
+                            lastRightViewId = id;
+                        }
+
+                        if (!isNullOrUndefined(lastLeftViewId) && viewIds.indexOf(id) >= viewIds.indexOf(lastLeftViewId))
+                        {
+                            $('#' + id).removeClass('hide').addClass('show');
+                        }
+
+                        if (!isNullOrUndefined(lastRightViewId) && viewIds.indexOf(id) <= viewIds.indexOf(lastRightViewId))
+                        {
+                            $('#' + id).removeClass('hide').addClass('show');
+                        }
                     }
                 }
             });
