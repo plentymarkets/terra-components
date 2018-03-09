@@ -11,7 +11,7 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 })
 export class TerraNoResultNoticeComponentExample implements OnInit
 {
-    private _inputNoResultButtons:Array<TerraButtonInterface>;
+    private _inputNoResultButtons:Array<TerraButtonInterface> = [];
     private _result:boolean;
 
     public checkResult(value):void
@@ -22,8 +22,6 @@ export class TerraNoResultNoticeComponentExample implements OnInit
 
     ngOnInit()
     {
-        this._inputNoResultButtons = [];
-
         this._inputNoResultButtons.push
         ({
             caption:       'Search',
