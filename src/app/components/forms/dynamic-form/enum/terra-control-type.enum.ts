@@ -7,7 +7,7 @@ export enum TerraControlTypeEnum
     CONDITIONAL_CONTAINER = 'conditionalContainer',
     DATE_PICKER = 'datePicker',
     HORIZONTAL_CONTAINER = 'horizontalContainer',
-    INPUT_FILE = 'fileInput',
+    INPUT_FILE = 'inputFile',
     INPUT_TEXT = 'inputText',
     INPUT_TEXT_AREA = 'inputTextArea',
     INPUT_NUMBER = 'inputNumber',

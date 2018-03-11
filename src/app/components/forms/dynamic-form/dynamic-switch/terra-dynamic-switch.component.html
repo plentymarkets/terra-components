@@ -15,18 +15,15 @@
             </terra-text-input>
     
             <!-- TODO change to file input component-->
-            <terra-text-input *ngSwitchCase="controlTypeEnum.INPUT_FILE"
+            <terra-file-input *ngSwitchCase="controlTypeEnum.INPUT_FILE"
                               [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                               [formControlName]="formField.key"
                               [inputName]="formField.label  | translate:lang"
                               [inputIsRequired]="formField.required"
                               [inputIsDisabled]="inputIsDisabled"
-                              [inputIsPassword]="formField.isPassword"
-                              [inputIsIban]="formField.isPassword"
-                              [inputIsReadonly]="formField.isReadOnly"
                               [inputTooltipText]="formField.tooltip"
                               [inputTooltipPlacement]="formField.tooltipPlacement">
-            </terra-text-input>
+            </terra-file-input>
             
             <terra-text-area-input *ngSwitchCase="controlTypeEnum.INPUT_TEXT_AREA"
                                    [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"

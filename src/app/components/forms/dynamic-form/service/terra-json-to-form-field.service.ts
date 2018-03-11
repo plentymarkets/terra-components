@@ -9,6 +9,7 @@ import { TerraFormFieldSelectBox } from '../data/terra-form-field-select-box';
 import { TerraFormFieldCheckBox } from '../data/terra-form-field-check-box';
 import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
 import { TerraFormFieldCategoryPicker } from '../../../../../';
+import {TerraFormFieldInputFile} from "../data/terra-form-field-input-file";
 
 /**
  * @author mfrank
@@ -35,8 +36,10 @@ export class TerraJsonToFormFieldService
         switch(formFieldData.type)
         {
             case TerraControlTypeEnum.INPUT_TEXT:
-            case TerraControlTypeEnum.INPUT_FILE:
                 formField = new TerraFormFieldInputText(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                break;
+            case TerraControlTypeEnum.INPUT_FILE:
+                formField = new TerraFormFieldInputFile(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             case TerraControlTypeEnum.INPUT_NUMBER:
             case TerraControlTypeEnum.ITEM_VARIATION_PICKER:
