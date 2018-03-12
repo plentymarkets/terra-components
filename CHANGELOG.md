@@ -11,6 +11,7 @@
 
 ### Bug Fixes
 * **terra-data-table** hide no-results-notice when request is pending
+* **terra-base-service** prevent requests with empty params
 
 <a name="2.1.47-zlk"></a>
 # 2.1.47-zlk (06.02.2018)
