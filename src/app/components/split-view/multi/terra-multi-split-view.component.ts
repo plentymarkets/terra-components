@@ -279,34 +279,48 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     }
                 }
 
+                let rightDisabled:boolean = false;
+                let leftDisabled:boolean = false;
                 // TODO: @vwiebe, refactoring
                 for (let id of sortedViewIds)
                 {
                     let currentViewSize:number = getViewSizeById(id);
+                    let viewIndex:number = viewIds.indexOf(id);
 
-                    if (currentViewSetSize + currentViewSize <= 12)
+                    // current view
+                    if(viewIndex === selectedViewIdIndex)
                     {
+                        $('#' + id).removeClass('hide').addClass('show');
                         currentViewSetSize = currentViewSetSize + currentViewSize;
+                    }
 
-                        // left of current view
-                        if (viewIds.indexOf(id) <= selectedViewIdIndex)
-                        {
-                            lastLeftViewId = id;
-                        }
-                        // right of current view
-                        if (viewIds.indexOf(id) >= selectedViewIdIndex)
-                        {
-                            lastRightViewId = id;
-                        }
-
-                        if (!isNullOrUndefined(lastLeftViewId) && viewIds.indexOf(id) >= viewIds.indexOf(lastLeftViewId))
+                    // left of current view
+                    if(viewIndex < selectedViewIdIndex)
+                    {
+                        if (currentViewSetSize + currentViewSize <= 12 && !leftDisabled)
                         {
                             $('#' + id).removeClass('hide').addClass('show');
-                        }
 
-                        if (!isNullOrUndefined(lastRightViewId) && viewIds.indexOf(id) <= viewIds.indexOf(lastRightViewId))
+                            currentViewSetSize = currentViewSetSize + currentViewSize;
+                        }
+                        else
+                        {
+                            leftDisabled = true;
+                        }
+                    }
+
+                    // right of current view
+                    if(viewIndex > selectedViewIdIndex)
+                    {
+                        if (currentViewSetSize + currentViewSize <= 12 && !rightDisabled)
                         {
                             $('#' + id).removeClass('hide').addClass('show');
+
+                            currentViewSetSize = currentViewSetSize + currentViewSize;
+                        }
+                        else
+                        {
+                            rightDisabled = true;
                         }
                     }
                 }
