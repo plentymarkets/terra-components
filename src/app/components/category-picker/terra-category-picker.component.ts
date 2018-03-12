@@ -19,6 +19,7 @@ import { CategoryDetailDataInterface } from './data/category-detail-data.interfa
 import { isNullOrUndefined } from 'util';
 import { CategoryPagerDataInterface } from './data/category-pager-data.interface';
 import { CategoryValueInterface } from './data/category-value.interface';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector:  'terra-category-picker',
@@ -83,6 +84,24 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
         this.getCategoriesByParent(null);
     }
 
+    private getCategoriesByParentId(parentId:number | string):() => Observable<any>
+    {
+        return () => this.getCategories(parentId);
+    }
+
+    private getCategories(parentId:number | string):Observable<CategoryPagerDataInterface>
+    {
+        let obs:Observable<CategoryPagerDataInterface> = this.inputCategoryService.requestCategoryData(parentId);
+
+        obs.subscribe((data:CategoryPagerDataInterface) =>
+        {
+            this.addNodes(data, parentId);
+        });
+
+
+        return obs;
+    }
+
     private getCategoriesByParent(parentNode:TerraNodeInterface<CategoryTreeData>)
     {
         let id:number | string = null;
@@ -94,37 +113,65 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
 
         this.inputCategoryService.requestCategoryData(id).subscribe((data:CategoryPagerDataInterface) =>
         {
-            let entries:Array<CategoryDataInterface> = data.entries;
-
-            for(let index in entries)
+            if(isNullOrUndefined(parentNode))
             {
-                let categoryData:CategoryDataInterface = entries[index];
-                let categoryDetail:CategoryDetailDataInterface = null;
-
-                if(categoryData.type == 'container')
-                {
-                    continue;
-                }
-                else
-                {
-                    categoryDetail = categoryData.details[0];
-                }
-
-                let childNode = {
-                    id:               categoryData.id,
-                    name:             categoryDetail.name,
-                    isVisible:        true,
-                    tooltip:          'ID: ' + categoryData.id,
-                    tooltipPlacement: 'top'
-                };
-
-                this.categoryTreeConfig.addNode(childNode, parentNode);
-                if(categoryData.hasChildren)
-                {
-                    this.getCategoriesByParent(childNode);
-                }
+                this.addNodes(data, id);
+            }
+            else
+            {
+                this.addNodes(data, parentNode.id);
             }
         });
+    }
+
+
+    private addNodes(data:CategoryPagerDataInterface, parentNodeId:number | string):void
+    {
+        let entries:Array<CategoryDataInterface> = data.entries;
+
+        for(let index in entries)
+        {
+            let categoryData:CategoryDataInterface = entries[index];
+            let categoryDetail:CategoryDetailDataInterface = null;
+
+            if(categoryData.type == 'container')
+            {
+                continue;
+            }
+            else
+            {
+                categoryDetail = categoryData.details[0];
+            }
+
+            let childNode:TerraNodeInterface<CategoryTreeData> = {
+                id:               categoryData.id,
+                name:             categoryDetail.name,
+                isVisible:        true,
+                tooltip:          'ID: ' + categoryData.id,
+                tooltipPlacement: 'top',
+            };
+
+            let parentNode:TerraNodeInterface<CategoryTreeData>;
+
+            if(isNullOrUndefined(parentNodeId))
+            {
+                parentNode = null;
+            }
+            else
+            {
+                parentNode = this.categoryTreeConfig.findNodeById(parentNodeId);
+            }
+
+
+            if(categoryData.hasChildren)
+            {
+                childNode.onLazyLoad = this.getCategoriesByParentId(childNode.id);
+            }
+
+            this.categoryTreeConfig.addNode(childNode, parentNode);
+        }
+
+        console.log(this.categoryTreeConfig.list);
     }
 
     public get value():any
