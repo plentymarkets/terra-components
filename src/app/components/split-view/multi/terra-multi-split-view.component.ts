@@ -281,6 +281,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
                 let rightDisabled:boolean = false;
                 let leftDisabled:boolean = false;
+
                 // TODO: @vwiebe, refactoring
                 for (let id of sortedViewIds)
                 {
