@@ -63,7 +63,7 @@ import {
         ])
     ]
 })
-export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> implements OnChanges
+export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface<I>> implements OnChanges
 {
     @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
 
@@ -78,13 +78,13 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     @Input() inputShowGroupFunctions:boolean = false;
     @Input() inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
 
-    @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
+    @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface<I>>();
     @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
     @Output() outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<D>>> = new EventEmitter();
 
     public headerList:Array<TerraDataTableHeaderCellInterface>;
     public rowList:Array<TerraDataTableRowInterface<D>>;
-    public pagingData:TerraPagerInterface;
+    public pagingData:TerraPagerInterface<I>;
     public pagingSize:Array<TerraSelectBoxValueInterface>;
     public onSuccessFunction:(res) => void;
     public defaultPagingSize:number;
@@ -239,7 +239,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         return this._selectedRowList;
     }
 
-    public doPaging(pagerData:TerraPagerInterface):void
+    public doPaging(pagerData:TerraPagerInterface<I>):void
     {
         this.outputDoPagingEvent.emit(pagerData);
 

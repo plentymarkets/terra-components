@@ -3,6 +3,11 @@ import {
 } from "@angular/core";
 import { TerraPagerInterface } from '../data/terra-pager.interface';
 
+export interface TerraPagerComponentExampleInterface
+{
+
+}
+
 @Component({
     selector: 'terra-pager-example',
     styles:   [require('./terra-pager.component.example.scss')],
@@ -10,7 +15,9 @@ import { TerraPagerInterface } from '../data/terra-pager.interface';
 })
 export class TerraPagerComponentExample
 {
-    private _pagingData:TerraPagerInterface;
+
+
+    private _pagingData:TerraPagerInterface<TerraPagerComponentExampleInterface>;
 
     constructor()
     {
@@ -30,12 +37,12 @@ export class TerraPagerComponentExample
         };
     }
 
-    public get pagingData():TerraPagerInterface
+    public get pagingData():TerraPagerInterface<TerraPagerComponentExampleInterface>
     {
         return this._pagingData;
     }
 
-    public set pagingData(value:TerraPagerInterface)
+    public set pagingData(value:TerraPagerInterface<TerraPagerComponentExampleInterface>)
     {
         this._pagingData = value;
     }

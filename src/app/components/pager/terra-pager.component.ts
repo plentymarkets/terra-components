@@ -15,14 +15,14 @@ import { Subject } from 'rxjs/Subject';
     styles:   [require('./terra-pager.component.scss')],
     template: require('./terra-pager.component.html')
 })
-export class TerraPagerComponent implements OnInit
+export class TerraPagerComponent<I extends TerraPagerInterface<I>> implements OnInit
 {
-    @Input() inputPagingData:TerraPagerInterface;
+    @Input() inputPagingData:TerraPagerInterface<I>;
     @Input() inputDefaultPagingSize:number;
     @Input() inputPagingSize:Array<TerraSelectBoxValueInterface>;
     @Input() inputRequestPending:boolean;
 
-    @Output() outputDoPaging = new EventEmitter<TerraPagerInterface>();
+    @Output() outputDoPaging = new EventEmitter<TerraPagerInterface<I>>();
 
     private _pagingClicks = new Subject();
 
@@ -32,7 +32,7 @@ export class TerraPagerComponent implements OnInit
 
     ngOnInit()
     {
-        this._pagingClicks.debounceTime(500).subscribe((e:TerraPagerInterface) => this.outputDoPaging.emit(e));
+        this._pagingClicks.debounceTime(500).subscribe((e:TerraPagerInterface<I>) => this.outputDoPaging.emit(e));
 
         if(!this.inputDefaultPagingSize)
         {
@@ -120,7 +120,8 @@ export class TerraPagerComponent implements OnInit
     public onToPage(event:any, pageNumber:number):void
     {
         event.preventDefault();
-        this.inputPagingData.page = Math.max(1, Math.min(this.inputPagingData.lastPageNumber, pageNumber)); // Limit page number to valid range [1, lastPageNumber]
+        this.inputPagingData.page = Math.max(1, Math.min(this.inputPagingData.lastPageNumber, pageNumber)); // Limit page number to valid
+                                                                                                            // range [1, lastPageNumber]
         this.outputDoPaging.emit(this.inputPagingData);
     }
 
