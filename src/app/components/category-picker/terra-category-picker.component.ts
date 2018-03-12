@@ -18,6 +18,7 @@ import { CategoryDataInterface } from './data/category-data.interface';
 import { CategoryDetailDataInterface } from './data/category-detail-data.interface';
 import { isNullOrUndefined } from 'util';
 import { CategoryPagerDataInterface } from './data/category-pager-data.interface';
+import { CategoryValueInterface } from './data/category-value.interface';
 
 @Component({
     selector:  'terra-category-picker',
@@ -38,7 +39,15 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
     @Input() public inputCategoryService:TerraCategoryPickerBaseService;
     @Input() public inputIsDisabled:boolean;
 
-    private _value:any;
+    private _value:CategoryValueInterface = {
+        id:               null,
+        isActive:         null,
+        isOpen:           null,
+        isVisible:        null,
+        name:             "",
+        tooltip:          "",
+        tooltipPlacement: ""
+    };
     private _toggleTree:boolean = false;
     private _categoryInputName:string = '';
     private _categoryInputValue:string = '';
@@ -127,7 +136,13 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
     {
         if(v !== this._value && !isNullOrUndefined(v))
         {
-            this._value = v;
+            this._value.id = v.id;
+            this._value.isActive = v.isActive;
+            this._value.isOpen = v.isOpen;
+            this._value.isVisible = v.isVisible;
+            this._value.name = v.name;
+            this._value.tooltip = v.tooltip;
+            this._value.tooltipPlacement = v.tooltipPlacement;
             this.onTouchedCallback();
             this.onChangeCallback(this._value);
         }
