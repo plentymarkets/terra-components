@@ -41,18 +41,17 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
     @Input() public inputCategoryService:TerraCategoryPickerBaseService;
     @Input() public inputIsDisabled:boolean;
 
-    //private _value:CategoryValueInterface = {
-    //    id:               null,
-    //    isActive:         null,
-    //    isOpen:           null,
-    //    isVisible:        null,
-    //    name:             "",
-    //    tooltip:          "",
-    //    tooltipPlacement: ""
-    //};
+    private _value:number = 0;
+    private _completeCategory:CategoryValueInterface = {
+        id:               null,
+        isActive:         null,
+        isOpen:           null,
+        isVisible:        null,
+        name:             "",
+        tooltip:          "",
+        tooltipPlacement: "",
+    };
 
-    private _value:number;
-    private _completeCategory:CategoryValueInterface;
     private _toggleTree:boolean = false;
     private _categoryInputName:string = '';
     private _categoryInputValue:string = '';
@@ -138,44 +137,44 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
             let categoryData:CategoryDataInterface = entries[index];
             let categoryDetail:CategoryDetailDataInterface = null;
 
-            if(categoryData.type == 'container')
+            if(isNullOrUndefined(this.categoryTreeConfig.findNodeById(categoryData.id)))
             {
-                continue;
+                if(categoryData.type == 'container')
+                {
+                    continue;
+                }
+                else
+                {
+                    categoryDetail = categoryData.details[0];
+                }
+
+                let childNode:TerraNodeInterface<CategoryTreeData> = {
+                    id:               categoryData.id,
+                    name:             categoryDetail.name,
+                    isVisible:        true,
+                    tooltip:          'ID: ' + categoryData.id,
+                    tooltipPlacement: 'top',
+                };
+
+                let parentNode:TerraNodeInterface<CategoryTreeData>;
+
+                if(isNullOrUndefined(parentNodeId))
+                {
+                    parentNode = null;
+                }
+                else
+                {
+                    parentNode = this.categoryTreeConfig.findNodeById(parentNodeId);
+                }
+
+
+                if(categoryData.hasChildren)
+                {
+                    childNode.onLazyLoad = this.getCategoriesByParentId(childNode.id);
+                }
+                this.categoryTreeConfig.addNode(childNode, parentNode);
             }
-            else
-            {
-                categoryDetail = categoryData.details[0];
-            }
-
-            let childNode:TerraNodeInterface<CategoryTreeData> = {
-                id:               categoryData.id,
-                name:             categoryDetail.name,
-                isVisible:        true,
-                tooltip:          'ID: ' + categoryData.id,
-                tooltipPlacement: 'top',
-            };
-
-            let parentNode:TerraNodeInterface<CategoryTreeData>;
-
-            if(isNullOrUndefined(parentNodeId))
-            {
-                parentNode = null;
-            }
-            else
-            {
-                parentNode = this.categoryTreeConfig.findNodeById(parentNodeId);
-            }
-
-
-            if(categoryData.hasChildren)
-            {
-                childNode.onLazyLoad = this.getCategoriesByParentId(childNode.id);
-            }
-
-            this.categoryTreeConfig.addNode(childNode, parentNode);
         }
-
-        console.log(this.categoryTreeConfig.list);
     }
 
     public getCompleteCategoryObject():CategoryValueInterface
@@ -194,7 +193,7 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
         {
             this._value = v.id;
 
-            this._completeCategory = v.id;
+            this._completeCategory.id = v.id;
             this._completeCategory.isActive = v.isActive;
             this._completeCategory.isOpen = v.isOpen;
             this._completeCategory.isVisible = v.isVisible;
