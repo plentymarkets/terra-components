@@ -254,8 +254,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 let viewIds:string[] = [];
                 let sortedViewIds:string[] = [];
                 let currentViewSetSize:number = 0;
-                let lastLeftViewId:string = null;
-                let lastRightViewId:string = null;
 
                 $('.side-scroller > .view').each(function(i:number)
                 {
