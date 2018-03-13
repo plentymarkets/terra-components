@@ -296,7 +296,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     {
                         if (currentViewSetSize + currentViewSize <= 12 && !leftDisabled)
                         {
-                            showViewAndUpdateViewSetSize(id, currentViewSize);;
+                            showViewAndUpdateViewSetSize(id, currentViewSize);
                         }
                         else
                         {
