@@ -228,6 +228,10 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.zone.runOutsideAngular(() =>
         {
             let splitViewId:number = this.splitViewId;
+            let getHierarchyLevelOfView:(view:TerraMultiSplitViewInterface) => number = (v:TerraMultiSplitViewInterface):number =>
+            {
+                return this.getHierarchyLevelOfView(v);
+            };
 
             let getViewSizeById:(id:string) => number = (id:string):number =>
             {
@@ -242,14 +246,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
             setTimeout(function()
             {
-                let parent:TerraMultiSplitViewInterface = view.parent;
-                let moduleIndex:number = 0;
-
-                while(!isNullOrUndefined(parent))
-                {
-                    parent = parent.parent;
-                    moduleIndex++;
-                }
+                let moduleIndex:number = getHierarchyLevelOfView(view);
 
                 let selectedViewId:string = $('#splitview' + splitViewId + '_module' + moduleIndex).attr('id');
                 let selectedViewIdIndex:number = null;
