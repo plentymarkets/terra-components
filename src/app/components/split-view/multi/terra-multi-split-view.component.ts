@@ -172,11 +172,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             return;
         }
 
-        if(!isNullOrUndefined(this.inputConfig.selectBreadcrumbEventEmitter))
-        {
-            this.inputConfig.selectBreadcrumbEventEmitter.next(view);
-        }
-
         // check whether the view's module is defined
         let module:TerraMultiSplitViewDetail = this.getModuleOfView(view);
         if(isNullOrUndefined(module))
@@ -189,6 +184,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             // stop execution, since the view is already selected
             return;
+        }
+
+        if(!isNullOrUndefined(this.inputConfig.selectBreadcrumbEventEmitter))
+        {
+            this.inputConfig.selectBreadcrumbEventEmitter.next(view);
         }
 
         module.isBackgroundColorGrey = view.isBackgroundColorGrey;
