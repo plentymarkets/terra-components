@@ -232,10 +232,12 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             let getViewSizeById:(id:string) => number = (id:string):number =>
             {
                 // TODO: @vwiebe, refactoring
-                if ($(window).outerWidth() < 768) return 12;
-                let className = $('#' + id).attr('class');
-                let size:number = Number(className.substring(className.lastIndexOf('col-lg-') + 7, className.lastIndexOf('col-lg-') + 9).replace(' ', ''));
-                return size;
+                if(window.outerWidth < 768)
+                {
+                    return 12;
+                }
+                let className:string = $('#' + id).attr('class');
+                return Number(className.substring(className.lastIndexOf('col-lg-') + 7, className.lastIndexOf('col-lg-') + 9).replace(' ', ''));
             };
 
             setTimeout(function()
