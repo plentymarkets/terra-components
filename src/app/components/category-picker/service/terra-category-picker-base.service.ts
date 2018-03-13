@@ -1,7 +1,4 @@
-import { TerraBaseService } from '../../../service/terra-base.service';
 import { Observable } from 'rxjs/Observable';
-import { Http } from '@angular/http';
-import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
 import { CategoryPagerDataInterface } from '../data/category-pager-data.interface';
 import { Injectable } from '@angular/core';
 
@@ -10,14 +7,8 @@ import { Injectable } from '@angular/core';
  */
 
 @Injectable()
-export abstract class TerraCategoryPickerBaseService extends TerraBaseService
+export abstract class TerraCategoryPickerBaseService
 {
-    constructor(private _loadingSpinnerService:TerraLoadingSpinnerService,
-                private _httpService:Http)
-    {
-        super(_loadingSpinnerService, _httpService, '');
-    }
-
     /**
      * @description Placeholder for the specific data-retrieval method. In General the specific rest call is given here.
      * @param {string | number} categoryId
