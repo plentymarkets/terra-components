@@ -148,7 +148,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
         if(!isNullOrUndefined(this._imagePreviewObject))
         {
-            parents.push(this._imagePreviewObject)
+            parents.push(this._imagePreviewObject);
         }
 
         while(!isNullOrUndefined(current))
