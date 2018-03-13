@@ -3,6 +3,7 @@ import {
     Component,
     forwardRef,
     Input,
+    OnChanges,
     OnInit
 } from '@angular/core';
 import { TranslationService } from 'angular-l10n';
@@ -40,15 +41,18 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
     @Input() public inputCategoryService:TerraCategoryPickerBaseService;
     @Input() public inputIsDisabled:boolean;
 
-    private _value:CategoryValueInterface = {
-        id:               null,
-        isActive:         null,
-        isOpen:           null,
-        isVisible:        null,
-        name:             "",
-        tooltip:          "",
-        tooltipPlacement: ""
-    };
+    //private _value:CategoryValueInterface = {
+    //    id:               null,
+    //    isActive:         null,
+    //    isOpen:           null,
+    //    isVisible:        null,
+    //    name:             "",
+    //    tooltip:          "",
+    //    tooltipPlacement: ""
+    //};
+
+    private _value:number;
+    private _completeCategory:CategoryValueInterface;
     private _toggleTree:boolean = false;
     private _categoryInputName:string = '';
     private _categoryInputValue:string = '';
@@ -70,7 +74,7 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
     {
     };
 
-    ngAfterContentChecked():void
+    public ngAfterContentChecked():void
     {
         if(this.categoryTreeConfig.list.length == 0)
         {
@@ -174,6 +178,11 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
         console.log(this.categoryTreeConfig.list);
     }
 
+    public getCompleteCategoryObject():CategoryValueInterface
+    {
+        return this._completeCategory;
+    }
+
     public get value():any
     {
         return this._value;
@@ -183,13 +192,15 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
     {
         if(v !== this._value && !isNullOrUndefined(v))
         {
-            this._value.id = v.id;
-            this._value.isActive = v.isActive;
-            this._value.isOpen = v.isOpen;
-            this._value.isVisible = v.isVisible;
-            this._value.name = v.name;
-            this._value.tooltip = v.tooltip;
-            this._value.tooltipPlacement = v.tooltipPlacement;
+            this._value = v.id;
+
+            this._completeCategory = v.id;
+            this._completeCategory.isActive = v.isActive;
+            this._completeCategory.isOpen = v.isOpen;
+            this._completeCategory.isVisible = v.isVisible;
+            this._completeCategory.name = v.name;
+            this._completeCategory.tooltip = v.tooltip;
+            this._completeCategory.tooltipPlacement = v.tooltipPlacement;
             this.onTouchedCallback();
             this.onChangeCallback(this._value);
         }
