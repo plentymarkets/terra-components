@@ -2,8 +2,9 @@ import {
     Component,
     EventEmitter,
     Input,
+    OnChanges,
     OnInit,
-    Output,
+    Output, SimpleChanges,
 } from '@angular/core';
 import { TerraBaseTreeComponent } from '../base/terra-base-tree.component';
 import { TerraCheckboxLeafInterface } from '../leaf/terra-checkbox-leaf.interface';
@@ -13,7 +14,7 @@ import { TerraCheckboxLeafInterface } from '../leaf/terra-checkbox-leaf.interfac
     styles:   [require('./terra-checkbox-tree.component.scss')],
     template: require('./terra-checkbox-tree.component.html')
 })
-export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implements OnInit
+export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implements OnInit, OnChanges
 {
     /**
      * @description current level leaf list
@@ -195,6 +196,14 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
     {
         super.ngOnInit();
         this.appendParentsToLeafList(this.inputLeafList);
+    }
+
+    ngOnChanges(changes:SimpleChanges):void
+    {
+        if (changes['inputLeafList'])
+        {
+            this.appendParentsToLeafList(this.inputLeafList);
+        }
     }
 
     private recursiveSetIndeterminateToParent(leaf:TerraCheckboxLeafInterface):void
