@@ -243,7 +243,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             setTimeout(() =>
             {
                 let moduleIndex:number = this.getHierarchyLevelOfView(view);
-
                 let selectedViewId:string = $('#splitview' + splitViewId + '_module' + moduleIndex).attr('id');
                 let selectedViewIdIndex:number = null;
                 let viewIds:string[] = [];
@@ -272,9 +271,14 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     }
                 }
 
+                let showViewAndUpdateViewSetSize:(id:string, currentViewSize:number) => void = (id:string, currentViewSize:number):void =>
+                {
+                    $('#' + id).removeClass('hide').addClass('show');
+                    currentViewSetSize = currentViewSetSize + currentViewSize;
+                };
+
                 let rightDisabled:boolean = false;
                 let leftDisabled:boolean = false;
-
                 // TODO: @vwiebe, refactoring
                 for (let id of sortedViewIds)
                 {
@@ -284,8 +288,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     // current view
                     if(viewIndex === selectedViewIdIndex)
                     {
-                        $('#' + id).removeClass('hide').addClass('show');
-                        currentViewSetSize = currentViewSetSize + currentViewSize;
+                        showViewAndUpdateViewSetSize(id, currentViewSize);
                     }
 
                     // left of current view
@@ -293,9 +296,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     {
                         if (currentViewSetSize + currentViewSize <= 12 && !leftDisabled)
                         {
-                            $('#' + id).removeClass('hide').addClass('show');
-
-                            currentViewSetSize = currentViewSetSize + currentViewSize;
+                            showViewAndUpdateViewSetSize(id, currentViewSize);;
                         }
                         else
                         {
@@ -308,9 +309,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     {
                         if (currentViewSetSize + currentViewSize <= 12 && !rightDisabled)
                         {
-                            $('#' + id).removeClass('hide').addClass('show');
-
-                            currentViewSetSize = currentViewSetSize + currentViewSize;
+                            showViewAndUpdateViewSetSize(id, currentViewSize);
                         }
                         else
                         {
