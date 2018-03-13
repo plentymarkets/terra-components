@@ -229,15 +229,77 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             let splitViewId:number = this.splitViewId;
 
+            let getViewSizeForBreakpoint:(id:string, currentBreakpoint:string) => number = (id:string, currentBreakpoint:string):number =>
+            {
+                if(!(currentBreakpoint === 'xl' || currentBreakpoint === 'lg' || currentBreakpoint === 'md' || currentBreakpoint === 'sm' || currentBreakpoint === 'xs'))
+                {
+                    console.error('No valid breakpoint given');
+                    return 100; // return something that the view is ignored
+                }
+
+                let classList:Array<string> = document.getElementById(id).className.split(' ');
+                let breakpoints:[{size:string, value?:number}] = [
+                    { size: 'xl' },
+                    { size: 'lg' },
+                    { size: 'md' },
+                    { size: 'sm' },
+                    { size: 'xs' }
+                ];
+
+                // fill up breakpoint value list
+                let filteredClassList:Array<string> = classList.filter((className:string) =>
+                {
+                    return className.includes('col-');
+                });
+
+                if(filteredClassList.length === 0)
+                {
+                    console.error('No width for view #' + id + ' defined');
+                    return 12; // full width on default
+                }
+
+                filteredClassList.forEach((className:string) =>
+                {
+                    let breakpointName:string = className.slice(4, 6);
+                    let breakpoint:{size:string, value?:number} = breakpoints.find((b:{size:string, value?:number}) => b.size === breakpointName);
+                    breakpoint.value = +className.replace('col-' + breakpointName + '-', '');
+                });
+
+                let currentBreakpointIndex:number = breakpoints.findIndex((c:{size:string, value?:number}) => c.size === currentBreakpoint);
+                let maxBreakpoint:{size:string, value?:number} = breakpoints.find((b:{size:string, value?:number}, index:number) =>
+                    !isNullOrUndefined(b.value) && index >= currentBreakpointIndex
+                );
+                return maxBreakpoint ? maxBreakpoint.value : 12;
+            };
+
             let getViewSizeById:(id:string) => number = (id:string):number =>
             {
-                // TODO: @vwiebe, refactoring
-                if(window.outerWidth < 768)
+                let windowWidth:number = window.outerWidth;
+                if(windowWidth >= 1200)
                 {
-                    return 12;
+                    // Extra large screen / wide desktop
+                    return getViewSizeForBreakpoint(id, 'xl');
                 }
-                let className:string = $('#' + id).attr('class');
-                return Number(className.substring(className.lastIndexOf('col-lg-') + 7, className.lastIndexOf('col-lg-') + 9).replace(' ', ''));
+                else if(windowWidth >= 992 && windowWidth < 1200)
+                {
+                    // Large screen / desktop
+                    return getViewSizeForBreakpoint(id, 'lg');
+                }
+                else if(windowWidth >= 768 && windowWidth < 992)
+                {
+                    // Medium screen / tablet
+                    return getViewSizeForBreakpoint(id, 'md');
+                }
+                else if(windowWidth >= 544 && windowWidth < 768)
+                {
+                    // Small screen / phone
+                    return getViewSizeForBreakpoint(id, 'sm');
+                }
+                else if(windowWidth < 544)
+                {
+                    // Extra small screen / phone
+                    return getViewSizeForBreakpoint(id, 'xs');
+                }
             };
 
             setTimeout(() =>
@@ -259,15 +321,21 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     $(this).removeClass('show').addClass('hide');
                 });
 
-                if (!isNullOrUndefined(selectedViewIdIndex))
+                if(!isNullOrUndefined(selectedViewIdIndex))
                 {
                     sortedViewIds.push(selectedViewId);
 
                     // TODO: @vwiebe, refactoring
-                    for (let i:number = 1; i < viewIds.length; i++)
+                    for(let i:number = 1; i < viewIds.length; i++)
                     {
-                        if (viewIds[selectedViewIdIndex + i]) { sortedViewIds.push(viewIds[selectedViewIdIndex + i]); }
-                        if (viewIds[selectedViewIdIndex - i]) { sortedViewIds.push(viewIds[selectedViewIdIndex - i]); }
+                        if(viewIds[selectedViewIdIndex + i])
+                        {
+                            sortedViewIds.push(viewIds[selectedViewIdIndex + i]);
+                        }
+                        if(viewIds[selectedViewIdIndex - i])
+                        {
+                            sortedViewIds.push(viewIds[selectedViewIdIndex - i]);
+                        }
                     }
                 }
 
@@ -280,8 +348,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 let rightDisabled:boolean = false;
                 let leftDisabled:boolean = false;
                 // TODO: @vwiebe, refactoring
-                for (let id of sortedViewIds)
+                for(let id of sortedViewIds)
                 {
+                    if(leftDisabled && rightDisabled)
+                    {
+                        return;
+                    }
+
                     let currentViewSize:number = getViewSizeById(id);
                     let viewIndex:number = viewIds.indexOf(id);
 
@@ -294,7 +367,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     // left of current view
                     if(viewIndex < selectedViewIdIndex)
                     {
-                        if (currentViewSetSize + currentViewSize <= 12 && !leftDisabled)
+                        if(currentViewSetSize + currentViewSize <= 12 && !leftDisabled)
                         {
                             showViewAndUpdateViewSetSize(id, currentViewSize);
                         }
@@ -307,7 +380,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     // right of current view
                     if(viewIndex > selectedViewIdIndex)
                     {
-                        if (currentViewSetSize + currentViewSize <= 12 && !rightDisabled)
+                        if(currentViewSetSize + currentViewSize <= 12 && !rightDisabled)
                         {
                             showViewAndUpdateViewSetSize(id, currentViewSize);
                         }
