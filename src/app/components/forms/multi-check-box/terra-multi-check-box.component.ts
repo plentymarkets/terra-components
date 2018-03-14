@@ -28,14 +28,20 @@ import { TerraMultiCheckBoxValueInterface } from './data/terra-multi-check-box-v
 })
 export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
 {
-    @ViewChild('viewChildHeaderCheckbox') public viewChildHeaderCheckbox:TerraCheckboxComponent;
+    /**
+     * @description If true, the multi check box will be disabled. Default false.
+     * */
     @Input() public inputIsDisabled:boolean;
-    @Input() public inputIsError:boolean;
-    @Input() public inputName:string;
-    @Input() public inputIsRequired:boolean;
 
-    public headerCheckboxValue:boolean;
-    public valueList:Array<TerraMultiCheckBoxValueInterface> = [];
+    /**
+     * @description If true, the multi check box will be disabled. Default false.
+     * */
+    @Input() public inputName:string;
+
+    protected valueList:Array<TerraMultiCheckBoxValueInterface> = [];
+
+    @ViewChild('viewChildHeaderCheckbox') protected viewChildHeaderCheckbox:TerraCheckboxComponent;
+    protected headerCheckboxValue:boolean;
 
     private _isInit:boolean;
 
@@ -46,9 +52,9 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
         this.headerCheckboxValue = false;
     }
 
-    public writeValue(obj:any):void
+    public writeValue(valueList:Array<TerraMultiCheckBoxValueInterface>):void
     {
-        this.valueList = obj;
+        this.valueList = valueList;
 
         this.checkHeaderCheckboxState();
 
@@ -82,7 +88,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
         this._isInit = true;
     }
 
-    public onHeaderCheckboxChange(isChecked:boolean):void
+    protected onHeaderCheckboxChange(isChecked:boolean):void
     {
         this.valueList.forEach((value:TerraMultiCheckBoxValueInterface) =>
         {
@@ -90,7 +96,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
         });
     }
 
-    public checkHeaderCheckboxState():void
+    protected checkHeaderCheckboxState():void
     {
         if(!isNullOrUndefined(this.valueList))
         {
