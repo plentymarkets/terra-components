@@ -15,14 +15,14 @@ import { Subject } from 'rxjs/Subject';
     styles:   [require('./terra-pager.component.scss')],
     template: require('./terra-pager.component.html')
 })
-export class TerraPagerComponent<I extends TerraPagerInterface<I>> implements OnInit
+export class TerraPagerComponent implements OnInit
 {
-    @Input() inputPagingData:TerraPagerInterface<I>;
+    @Input() inputPagingData:TerraPagerInterface<any>;
     @Input() inputDefaultPagingSize:number;
     @Input() inputPagingSize:Array<TerraSelectBoxValueInterface>;
     @Input() inputRequestPending:boolean;
 
-    @Output() outputDoPaging = new EventEmitter<TerraPagerInterface<I>>();
+    @Output() outputDoPaging = new EventEmitter<TerraPagerInterface<any>>();
 
     private _pagingClicks = new Subject();
 
@@ -30,9 +30,9 @@ export class TerraPagerComponent<I extends TerraPagerInterface<I>> implements On
     {
     }
 
-    ngOnInit()
+    public ngOnInit():void
     {
-        this._pagingClicks.debounceTime(500).subscribe((e:TerraPagerInterface<I>) => this.outputDoPaging.emit(e));
+        this._pagingClicks.debounceTime(500).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
 
         if(!this.inputDefaultPagingSize)
         {
