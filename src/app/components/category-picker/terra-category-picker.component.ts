@@ -65,7 +65,8 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     public ngAfterContentChecked():void
     {
-        if(this.categoryTreeConfig.list.length === 0)
+        if(this.categoryTreeConfig.list.length === 0 ||
+           (this.categoryTreeConfig.list.length === 1 && this.categoryTreeConfig.list[0] === this.categoryTreeConfig.currentSelectedNode))
         {
             this.categoryTreeConfig.list = this._list;
         }
@@ -234,6 +235,8 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                 this.categoryTreeConfig.addNode(childNode, parentNode);
             }
         });
+
+        this._list = this.categoryTreeConfig.list;
     }
 
     private getCategoriesByParent(parentNode:TerraNodeInterface<CategoryTreeData>):void
