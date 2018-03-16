@@ -32,7 +32,7 @@ import { Observable } from 'rxjs/Observable';
         multi:       true
     }]
 })
-export class TerraCategoryPickerComponent implements OnInit, ControlValueAccessor, AfterContentChecked
+export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 {
 
     /**
@@ -47,9 +47,9 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
         isActive:         null,
         isOpen:           null,
         isVisible:        null,
-        name:             "",
-        tooltip:          "",
-        tooltipPlacement: "",
+        name:             '',
+        tooltip:          '',
+        tooltipPlacement: '',
     };
 
     private _toggleTree:boolean = false;
@@ -63,19 +63,9 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
         this._categoryInputName = this.translation.translate('contentBuilder.category');
     }
 
-    //Placeholders for the callbacks which are later provided
-    //by the Control Value Accessor
-    private onTouchedCallback:() => void = () =>
-    {
-    };
-
-    private onChangeCallback:(_:any) => void = (_) =>
-    {
-    };
-
     public ngAfterContentChecked():void
     {
-        if(this.categoryTreeConfig.list.length == 0)
+        if(this.categoryTreeConfig.list.length === 0)
         {
             this.categoryTreeConfig.list = this._list;
         }
@@ -87,9 +77,88 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
         this.getCategoriesByParent(null);
     }
 
+    public getCompleteCategoryObject():CategoryValueInterface
+    {
+        return this._completeCategory;
+    }
+
+    // From ControlValueAccessor interface
+    public writeValue(value:any):void
+    {
+        if(!isNullOrUndefined(value))
+        {
+            this.inputCategoryService.requestCategoryDataById(value).subscribe((data:any) =>
+            {
+                if(isNullOrUndefined(this.categoryTreeConfig.findNodeById(value)))
+                {
+                    this.addNodes(data, null);
+                }
+
+                let nodeToSelect:TerraNodeInterface<CategoryTreeData> = this.categoryTreeConfig.findNodeById(value);
+
+                if(!isNullOrUndefined(nodeToSelect))
+                {
+                    this.categoryTreeConfig.currentSelectedNode = nodeToSelect;
+                }
+                this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
+
+                this._value = value;
+
+                this.updateCompleteCategory(value);
+
+                this.onTouchedCallback();
+                this.onChangeCallback(this._value);
+            });
+        }
+    }
+
+    // Set touched on blur
+    public onBlur():void
+    {
+        this.onTouchedCallback();
+    }
+
+    // From ControlValueAccessor interface
+    public registerOnChange(fn:any):void
+    {
+        this.onChangeCallback = fn;
+    }
+
+    // From ControlValueAccessor interface
+    public registerOnTouched(fn:any):void
+    {
+        this.onTouchedCallback = fn;
+    }
+
+    public showTree():void
+    {
+        this._toggleTree = !this._toggleTree;
+    }
+
+    public onSelectNode():void
+    {
+        if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
+        {
+            this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
+            this.writeValue(this.categoryTreeConfig.currentSelectedNode);
+        }
+        this._toggleTree = !this._toggleTree;
+    }
+
+    private updateCompleteCategory(category:CategoryValueInterface):void
+    {
+        this._completeCategory.id = category.id;
+        this._completeCategory.isActive = category.isActive;
+        this._completeCategory.isOpen = category.isOpen;
+        this._completeCategory.isVisible = category.isVisible;
+        this._completeCategory.name = category.name;
+        this._completeCategory.tooltip = category.tooltip;
+        this._completeCategory.tooltipPlacement = category.tooltipPlacement;
+    }
+
     private getCategoriesByParentId(parentId:number | string):() => Observable<any>
     {
-        return () => this.getCategories(parentId);
+        return ():Observable<CategoryPagerDataInterface> => this.getCategories(parentId);
     }
 
     private getCategories(parentId:number | string):Observable<CategoryPagerDataInterface>
@@ -101,11 +170,73 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
             this.addNodes(data, parentId);
         });
 
-
         return obs;
     }
 
-    private getCategoriesByParent(parentNode:TerraNodeInterface<CategoryTreeData>)
+    private addNodes(data:any, parentNodeId:number | string):void
+    {
+        let entries:Array<CategoryDataInterface> = data.entries;
+
+        if(this.categoryTreeConfig.list.length === 1 && this.categoryTreeConfig.list[0] === this.categoryTreeConfig.currentSelectedNode)
+        {
+            this.categoryTreeConfig.removeNodeById(this.categoryTreeConfig.currentSelectedNode.id);
+            this.categoryTreeConfig.list = [];
+        }
+
+        entries.forEach((entry:any) =>
+        {
+            let categoryData:CategoryDataInterface = entry;
+            let categoryDetail:CategoryDetailDataInterface = null;
+
+            if(isNullOrUndefined(this.categoryTreeConfig.findNodeById(categoryData.id)))
+            {
+                if(categoryData.type === 'container')
+                {
+                    return;
+                }
+                else
+                {
+                    categoryDetail = categoryData.details[0];
+                }
+
+                let childNode:TerraNodeInterface<CategoryTreeData> = {
+                    id:               categoryData.id,
+                    name:             categoryDetail.name,
+                    isVisible:        true,
+                    tooltip:          'ID: ' + categoryData.id,
+                    tooltipPlacement: 'top',
+                };
+
+                let parentNode:TerraNodeInterface<CategoryTreeData>;
+
+                if(!isNullOrUndefined(categoryData.parentCategoryId))
+                {
+                    parentNode = this.categoryTreeConfig.findNodeById(categoryData.parentCategoryId);
+                }
+
+                if(isNullOrUndefined(parentNode))
+                {
+                    if(isNullOrUndefined(parentNodeId))
+                    {
+                        parentNode = null;
+                    }
+                    else
+                    {
+                        parentNode = this.categoryTreeConfig.findNodeById(parentNodeId);
+                    }
+                }
+
+
+                if(categoryData.hasChildren)
+                {
+                    childNode.onLazyLoad = this.getCategoriesByParentId(childNode.id);
+                }
+                this.categoryTreeConfig.addNode(childNode, parentNode);
+            }
+        });
+    }
+
+    private getCategoriesByParent(parentNode:TerraNodeInterface<CategoryTreeData>):void
     {
         let id:number | string = null;
 
@@ -127,120 +258,9 @@ export class TerraCategoryPickerComponent implements OnInit, ControlValueAccesso
         });
     }
 
+    // Placeholders for the callbacks which are later provided
+    // by the Control Value Accessor
+    private onTouchedCallback:() => void = () => undefined;
 
-    private addNodes(data:CategoryPagerDataInterface, parentNodeId:number | string):void
-    {
-        let entries:Array<CategoryDataInterface> = data.entries;
-
-        for(let index in entries)
-        {
-            let categoryData:CategoryDataInterface = entries[index];
-            let categoryDetail:CategoryDetailDataInterface = null;
-
-            if(isNullOrUndefined(this.categoryTreeConfig.findNodeById(categoryData.id)))
-            {
-                if(categoryData.type == 'container')
-                {
-                    continue;
-                }
-                else
-                {
-                    categoryDetail = categoryData.details[0];
-                }
-
-                let childNode:TerraNodeInterface<CategoryTreeData> = {
-                    id:               categoryData.id,
-                    name:             categoryDetail.name,
-                    isVisible:        true,
-                    tooltip:          'ID: ' + categoryData.id,
-                    tooltipPlacement: 'top',
-                };
-
-                let parentNode:TerraNodeInterface<CategoryTreeData>;
-
-                if(isNullOrUndefined(parentNodeId))
-                {
-                    parentNode = null;
-                }
-                else
-                {
-                    parentNode = this.categoryTreeConfig.findNodeById(parentNodeId);
-                }
-
-
-                if(categoryData.hasChildren)
-                {
-                    childNode.onLazyLoad = this.getCategoriesByParentId(childNode.id);
-                }
-                this.categoryTreeConfig.addNode(childNode, parentNode);
-            }
-        }
-    }
-
-    public getCompleteCategoryObject():CategoryValueInterface
-    {
-        return this._completeCategory;
-    }
-
-    public get value():any
-    {
-        return this._value;
-    };
-
-    public set value(v:any)
-    {
-        if(v !== this._value && !isNullOrUndefined(v))
-        {
-            this._value = v.id;
-
-            this._completeCategory.id = v.id;
-            this._completeCategory.isActive = v.isActive;
-            this._completeCategory.isOpen = v.isOpen;
-            this._completeCategory.isVisible = v.isVisible;
-            this._completeCategory.name = v.name;
-            this._completeCategory.tooltip = v.tooltip;
-            this._completeCategory.tooltipPlacement = v.tooltipPlacement;
-            this.onTouchedCallback();
-            this.onChangeCallback(this._value);
-        }
-    }
-
-    //From ControlValueAccessor interface
-    public writeValue(value:any):void
-    {
-        this.value = value;
-    }
-
-    //Set touched on blur
-    public onBlur():void
-    {
-        this.onTouchedCallback();
-    }
-
-    //From ControlValueAccessor interface
-    registerOnChange(fn:any)
-    {
-        this.onChangeCallback = fn;
-    }
-
-    //From ControlValueAccessor interface
-    registerOnTouched(fn:any)
-    {
-        this.onTouchedCallback = fn;
-    }
-
-    public showTree():void
-    {
-        this._toggleTree = !this._toggleTree;
-    }
-
-    public onSelectNode():void
-    {
-        if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
-        {
-            this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
-            this.writeValue(this.categoryTreeConfig.currentSelectedNode);
-        }
-        this._toggleTree = !this._toggleTree;
-    }
+    private onChangeCallback:(_:any) => void = () => undefined;
 }
