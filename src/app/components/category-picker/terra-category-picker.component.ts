@@ -141,7 +141,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
         {
             this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
-            this.writeValue(this.categoryTreeConfig.currentSelectedNode);
+            this.writeValue(this.categoryTreeConfig.currentSelectedNode.id);
         }
         this._toggleTree = !this._toggleTree;
     }
@@ -184,57 +184,60 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             this.categoryTreeConfig.list = [];
         }
 
-        entries.forEach((entry:any) =>
+        if(!isNullOrUndefined(entries))
         {
-            let categoryData:CategoryDataInterface = entry;
-            let categoryDetail:CategoryDetailDataInterface = null;
-
-            if(isNullOrUndefined(this.categoryTreeConfig.findNodeById(categoryData.id)))
+            entries.forEach((entry:any) =>
             {
-                if(categoryData.type === 'container')
-                {
-                    return;
-                }
-                else
-                {
-                    categoryDetail = categoryData.details[0];
-                }
+                let categoryData:CategoryDataInterface = entry;
+                let categoryDetail:CategoryDetailDataInterface = null;
 
-                let childNode:TerraNodeInterface<CategoryTreeData> = {
-                    id:               categoryData.id,
-                    name:             categoryDetail.name,
-                    isVisible:        true,
-                    tooltip:          'ID: ' + categoryData.id,
-                    tooltipPlacement: 'top',
-                };
-
-                let parentNode:TerraNodeInterface<CategoryTreeData>;
-
-                if(!isNullOrUndefined(categoryData.parentCategoryId))
+                if(isNullOrUndefined(this.categoryTreeConfig.findNodeById(categoryData.id)))
                 {
-                    parentNode = this.categoryTreeConfig.findNodeById(categoryData.parentCategoryId);
-                }
-
-                if(isNullOrUndefined(parentNode))
-                {
-                    if(isNullOrUndefined(parentNodeId))
+                    if(categoryData.type === 'container')
                     {
-                        parentNode = null;
+                        return;
                     }
                     else
                     {
-                        parentNode = this.categoryTreeConfig.findNodeById(parentNodeId);
+                        categoryDetail = categoryData.details[0];
                     }
-                }
+
+                    let childNode:TerraNodeInterface<CategoryTreeData> = {
+                        id:               categoryData.id,
+                        name:             categoryDetail.name,
+                        isVisible:        true,
+                        tooltip:          'ID: ' + categoryData.id,
+                        tooltipPlacement: 'top',
+                    };
+
+                    let parentNode:TerraNodeInterface<CategoryTreeData>;
+
+                    if(!isNullOrUndefined(categoryData.parentCategoryId))
+                    {
+                        parentNode = this.categoryTreeConfig.findNodeById(categoryData.parentCategoryId);
+                    }
+
+                    if(isNullOrUndefined(parentNode))
+                    {
+                        if(isNullOrUndefined(parentNodeId))
+                        {
+                            parentNode = null;
+                        }
+                        else
+                        {
+                            parentNode = this.categoryTreeConfig.findNodeById(parentNodeId);
+                        }
+                    }
 
 
-                if(categoryData.hasChildren)
-                {
-                    childNode.onLazyLoad = this.getCategoriesByParentId(childNode.id);
+                    if(categoryData.hasChildren)
+                    {
+                        childNode.onLazyLoad = this.getCategoriesByParentId(childNode.id);
+                    }
+                    this.categoryTreeConfig.addNode(childNode, parentNode);
                 }
-                this.categoryTreeConfig.addNode(childNode, parentNode);
-            }
-        });
+            });
+        }
 
         this._list = this.categoryTreeConfig.list;
     }
