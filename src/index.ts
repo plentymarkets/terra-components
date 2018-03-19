@@ -116,3 +116,4 @@ export * from './app/components/forms/dynamic-form/service/terra-json-to-form-fi
 export * from './app/helpers/terra-converter.helper';
 export * from './app/helpers/url.helper';
 export * from './app/helpers/enums/terra-placement.enum'
+export * from './app/components/forms/input/file-input/terra-file-input.component';
