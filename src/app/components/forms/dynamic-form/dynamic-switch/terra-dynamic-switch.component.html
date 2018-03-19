@@ -74,7 +74,7 @@
                                 [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-double-input>
             
-            <terra-category-picker *ngSwitchCase="'categoryPicker'"
+            <terra-category-picker *ngSwitchCase="controlTypeEnum.CATEGORY_PICKER"
                                    [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                    [formControlName]="formField.key"
                                    [inputIsDisabled]="inputIsDisabled"
