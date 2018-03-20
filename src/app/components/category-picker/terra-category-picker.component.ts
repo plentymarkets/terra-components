@@ -41,7 +41,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
      */
     @Input() public inputCategoryService:TerraCategoryPickerBaseService;
     @Input() public inputIsDisabled:boolean;
-    @Input() public inputCategoryInputName:string;
+    @Input() public inputName:string;
 
     private _value:number = 0;
     private _completeCategory:CategoryValueInterface = {
@@ -74,9 +74,9 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     public ngOnInit():void
     {
-        if (isNullOrUndefined(this.inputCategoryInputName))
+        if (isNullOrUndefined(this.inputName))
         {
-            this.inputCategoryInputName = this.translation.translate('contentBuilder.category');
+            this.inputName = this.translation.translate('contentBuilder.category');
         }
         this.categoryTreeConfig.list = this._list;
         this.getCategoriesByParent(null);

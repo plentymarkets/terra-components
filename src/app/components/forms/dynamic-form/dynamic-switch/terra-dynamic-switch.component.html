@@ -76,6 +76,7 @@
             <terra-category-picker *ngSwitchCase="controlTypeEnum.CATEGORY_PICKER"
                                    [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                    [formControlName]="formField.key"
+                                   [inputName]="formField.label"
                                    [inputIsDisabled]="inputIsDisabled"
                                    [inputCategoryService]="formField.categoryService">
             </terra-category-picker>
