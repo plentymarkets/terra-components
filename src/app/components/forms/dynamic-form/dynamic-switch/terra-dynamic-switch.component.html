@@ -14,7 +14,6 @@
                               [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-text-input>
     
-            <!-- TODO change to file input component-->
             <terra-file-input *ngSwitchCase="controlTypeEnum.INPUT_FILE"
                               [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                               [formControlName]="formField.key"

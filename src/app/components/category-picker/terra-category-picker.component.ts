@@ -41,6 +41,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
      */
     @Input() public inputCategoryService:TerraCategoryPickerBaseService;
     @Input() public inputIsDisabled:boolean;
+    @Input() public inputCategoryInputName:string;
 
     private _value:number = 0;
     private _completeCategory:CategoryValueInterface = {
@@ -54,14 +55,12 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
     };
 
     private _toggleTree:boolean = false;
-    private _categoryInputName:string = '';
     private _categoryInputValue:string = '';
     private _list:Array<TerraNodeInterface<CategoryTreeData>> = [];
 
     constructor(private translation:TranslationService,
                 public categoryTreeConfig:CategoryTreeConfig)
     {
-        this._categoryInputName = this.translation.translate('contentBuilder.category');
     }
 
     public ngAfterContentChecked():void
@@ -75,6 +74,10 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     public ngOnInit():void
     {
+        if (isNullOrUndefined(this.inputCategoryInputName))
+        {
+            this.inputCategoryInputName = this.translation.translate('contentBuilder.category');
+        }
         this.categoryTreeConfig.list = this._list;
         this.getCategoriesByParent(null);
     }
