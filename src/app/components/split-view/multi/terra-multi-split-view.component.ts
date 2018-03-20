@@ -47,7 +47,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     {
                         if(this.inputConfig.currentSelectedView)
                         {
-                            this.updateViewport(this.inputConfig.currentSelectedView, true);
+                            this.updateViewport(this.inputConfig.currentSelectedView);
                         }
                     }
                 ).bind(this), 500);
@@ -58,8 +58,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     private _breadCrumbsPath:string;
 
     private modules:Array<TerraMultiSplitViewDetail> = [];
-
-    public static ANIMATION_SPEED = 1000; // ms
 
     private resizeTimeout:number;
 
@@ -90,7 +88,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     .filter((event:AngularRouter.Event) => event instanceof NavigationStart && event.url === this.inputComponentRoute)
                     .subscribe((path:NavigationStart) =>
                     {
-                        this.updateViewport(this.inputConfig.currentSelectedView, true);
+                        this.updateViewport(this.inputConfig.currentSelectedView);
                     });
             }
         }
@@ -217,54 +215,9 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
         this.inputConfig.currentSelectedView = view;
         this.updateViewport(view);
-        this.updateBreadCrumbs();
     }
 
-    private updateBreadCrumbs()
-    {
-        this.zone.runOutsideAngular(() =>
-        {
-            // init breadcrumb sliding
-            setTimeout(function()
-            {
-                $('.terra-breadcrumbs').each(function()
-                {
-                    $(this).find('li').each(function()
-                    {
-                        let viewContainer = $(this).closest('.terra-breadcrumbs');
-                        let viewContainerOffsetLeft = viewContainer.offset().left;
-                        let viewContainerWidth = viewContainer.width();
-
-                        $(this).off();
-                        $(this).mouseenter(function()
-                        {
-                            let elementWidth = $(this).width();
-                            let elementOffsetLeft = $(this).offset().left;
-                            let viewContainerScrollLeft = viewContainer.scrollLeft();
-                            let offset = 0;
-
-                            if(elementOffsetLeft < viewContainer.offset().left)
-                            {
-                                offset = viewContainerScrollLeft + elementOffsetLeft - 10;
-                            }
-                            else if(elementOffsetLeft + elementWidth + 30 > viewContainerOffsetLeft + viewContainerWidth)
-                            {
-                                offset = viewContainerScrollLeft + elementOffsetLeft + elementWidth + 30 - viewContainerWidth;
-                            }
-                            else
-                            {
-                                return;
-                            }
-                            viewContainer.stop();
-                            viewContainer.animate({scrollLeft: offset}, 1200);
-                        });
-                    });
-                });
-            });
-        });
-    }
-
-    public updateViewport(view:TerraMultiSplitViewInterface, skipAnimation?:boolean):void
+    public updateViewport(view:TerraMultiSplitViewInterface):void
     {
         // check if view is defined
         if(isNullOrUndefined(view))
@@ -275,54 +228,167 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.zone.runOutsideAngular(() =>
         {
             let splitViewId:number = this.splitViewId;
-            setTimeout(function()
+
+            let getViewSizeForBreakpoint:(id:string, currentBreakpoint:string) => number = (id:string, currentBreakpoint:string):number =>
             {
-                let id:string = view.mainComponentName;
-
-                let parent:TerraMultiSplitViewInterface = view.parent;
-                let moduleIndex:number = 0;
-
-                while(!isNullOrUndefined(parent))
+                if(!(currentBreakpoint === 'xl' || currentBreakpoint === 'lg' || currentBreakpoint === 'md' || currentBreakpoint === 'sm' || currentBreakpoint === 'xs'))
                 {
-                    parent = parent.parent;
-                    moduleIndex++;
+                    console.error('No valid breakpoint given');
+                    return 100; // return something that the view is ignored
                 }
 
-                let anchor = $('#splitview' + splitViewId + '_module' + moduleIndex);
-                let currentBreadcrumb = $('.' + id); // TODO: vwiebe, fix scope
-                let breadCrumbContainer = currentBreadcrumb.closest('.terra-breadcrumbs');
-                let viewContainer = anchor.parent();
+                let classList:Array<string> = document.getElementById(id).className.split(' ');
+                let breakpoints:[{size:string, value?:number}] = [
+                    { size: 'xl' },
+                    { size: 'lg' },
+                    { size: 'md' },
+                    { size: 'sm' },
+                    { size: 'xs' }
+                ];
 
-                // focus breadcrumbs
-                if(currentBreadcrumb[0] != null)
+                // fill up breakpoint value list
+                let filteredClassList:Array<string> = classList.filter((className:string) =>
                 {
-                    breadCrumbContainer.stop();
-                    breadCrumbContainer.animate(
-                        {scrollLeft: (currentBreadcrumb[0].getBoundingClientRect().left + breadCrumbContainer.scrollLeft())},
-                        this.ANIMATION_SPEED);
+                    return className.includes('col-');
+                });
+
+                if(filteredClassList.length === 0)
+                {
+                    console.error('No width for view #' + id + ' defined');
+                    return 12; // full width on default
                 }
 
-                // check if viewport needs to be adjusted
-                if(anchor[0] != null &&
-                   anchor[0].getBoundingClientRect().left > viewContainer.offset().left &&
-                   anchor[0].getBoundingClientRect().right <= viewContainer.offset().left + viewContainer.outerWidth())
+                filteredClassList.forEach((className:string) =>
                 {
-                    return;
+                    let breakpointName:string = className.slice(4, 6);
+                    let breakpoint:{size:string, value?:number} = breakpoints.find((b:{size:string, value?:number}) => b.size === breakpointName);
+                    breakpoint.value = +className.replace('col-' + breakpointName + '-', '');
+                });
+
+                let currentBreakpointIndex:number = breakpoints.findIndex((c:{size:string, value?:number}) => c.size === currentBreakpoint);
+                let maxBreakpoint:{size:string, value?:number} = breakpoints.find((b:{size:string, value?:number}, index:number) =>
+                    !isNullOrUndefined(b.value) && index >= currentBreakpointIndex
+                );
+                return maxBreakpoint ? maxBreakpoint.value : 12;
+            };
+
+            let getViewSizeById:(id:string) => number = (id:string):number =>
+            {
+                let windowWidth:number = window.outerWidth;
+                if(windowWidth >= 1200)
+                {
+                    // Extra large screen / wide desktop
+                    return getViewSizeForBreakpoint(id, 'xl');
+                }
+                else if(windowWidth >= 992 && windowWidth < 1200)
+                {
+                    // Large screen / desktop
+                    return getViewSizeForBreakpoint(id, 'lg');
+                }
+                else if(windowWidth >= 768 && windowWidth < 992)
+                {
+                    // Medium screen / tablet
+                    return getViewSizeForBreakpoint(id, 'md');
+                }
+                else if(windowWidth >= 544 && windowWidth < 768)
+                {
+                    // Small screen / phone
+                    return getViewSizeForBreakpoint(id, 'sm');
+                }
+                else if(windowWidth < 544)
+                {
+                    // Extra small screen / phone
+                    return getViewSizeForBreakpoint(id, 'xs');
+                }
+            };
+
+            setTimeout(() =>
+            {
+                let moduleIndex:number = this.getHierarchyLevelOfView(view);
+                let selectedViewId:string = $('#splitview' + splitViewId + '_module' + moduleIndex).attr('id');
+                let selectedViewIdIndex:number = null;
+                let viewIds:string[] = [];
+                let sortedViewIds:string[] = [];
+                let currentViewSetSize:number = 0;
+
+                $('.side-scroller > .view').each(function(i:number)
+                {
+                    if($(this).attr('id') == selectedViewId)
+                    {
+                        selectedViewIdIndex = i;
+                    }
+                    viewIds.push($(this).attr('id'));
+                    $(this).removeClass('show').addClass('hide');
+                });
+
+                if(!isNullOrUndefined(selectedViewIdIndex))
+                {
+                    sortedViewIds.push(selectedViewId);
+
+                    // TODO: @vwiebe, refactoring
+                    for(let i:number = 1; i < viewIds.length; i++)
+                    {
+                        if(viewIds[selectedViewIdIndex + i])
+                        {
+                            sortedViewIds.push(viewIds[selectedViewIdIndex + i]);
+                        }
+                        if(viewIds[selectedViewIdIndex - i])
+                        {
+                            sortedViewIds.push(viewIds[selectedViewIdIndex - i]);
+                        }
+                    }
                 }
 
-                // interrupt all ongoing animations to prevent queue
-                viewContainer.stop();
+                let showViewAndUpdateViewSetSize:(id:string, currentViewSize:number) => void = (id:string, currentViewSize:number):void =>
+                {
+                    $('#' + id).removeClass('hide').addClass('show');
+                    currentViewSetSize = currentViewSetSize + currentViewSize;
+                };
 
-                // focus view horizontally
-                if(skipAnimation)
+                let rightDisabled:boolean = false;
+                let leftDisabled:boolean = false;
+                // TODO: @vwiebe, refactoring
+                for(let id of sortedViewIds)
                 {
-                    viewContainer.scrollLeft(Math.ceil(anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - viewContainer.offset().left));
-                }
-                else
-                {
-                    viewContainer.animate(
-                        {scrollLeft: (Math.ceil(anchor[0].getBoundingClientRect().left + viewContainer.scrollLeft() - viewContainer.offset().left))},
-                        this.ANIMATION_SPEED);
+                    if(leftDisabled && rightDisabled)
+                    {
+                        return;
+                    }
+
+                    let currentViewSize:number = getViewSizeById(id);
+                    let viewIndex:number = viewIds.indexOf(id);
+
+                    // current view
+                    if(viewIndex === selectedViewIdIndex)
+                    {
+                        showViewAndUpdateViewSetSize(id, currentViewSize);
+                    }
+
+                    // left of current view
+                    if(viewIndex < selectedViewIdIndex)
+                    {
+                        if(currentViewSetSize + currentViewSize <= 12 && !leftDisabled)
+                        {
+                            showViewAndUpdateViewSetSize(id, currentViewSize);
+                        }
+                        else
+                        {
+                            leftDisabled = true;
+                        }
+                    }
+
+                    // right of current view
+                    if(viewIndex > selectedViewIdIndex)
+                    {
+                        if(currentViewSetSize + currentViewSize <= 12 && !rightDisabled)
+                        {
+                            showViewAndUpdateViewSetSize(id, currentViewSize);
+                        }
+                        else
+                        {
+                            rightDisabled = true;
+                        }
+                    }
                 }
             });
         });
