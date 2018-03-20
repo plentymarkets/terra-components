@@ -1,3 +1,10 @@
+<a name="2.1.58-zlk"></a>
+# 2.1.58-zlk (20.03.2018)
+
+### Bug Fixes
+* **terra-multi-split-view** fixed multi split view breadcrumb event emitter
+* **terra-file-list** added multiple selection to file input
+
 <a name="2.1.57-zlk"></a>
 # 2.1.57-zlk (12.03.2018)
 

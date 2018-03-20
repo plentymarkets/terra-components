@@ -44,8 +44,7 @@
                 <terra-checkbox *ngSwitchCase="'checkBox'"
                                 [formControlName]="formField.key"
                                 [inputCaption]="formField.label | translate:lang"
-                                [(ngModel)]="formField.defaultValue"
-                                (ngModelChange)="onConditionChanged(formField)">
+                                [(ngModel)]="formField.defaultValue">
                 </terra-checkbox>
                 
                 <terra-double-input *ngSwitchCase="'inputDouble'"
