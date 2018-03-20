@@ -30,7 +30,8 @@ import { Observable } from 'rxjs/Observable';
         provide:     NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => TerraCategoryPickerComponent),
         multi:       true
-    }]
+    },
+        CategoryTreeConfig]
 })
 export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 {
@@ -95,20 +96,22 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                     this.addNodes(data, null);
                 }
 
-                let nodeToSelect:TerraNodeInterface<CategoryTreeData> = this.categoryTreeConfig.findNodeById(value);
+                    let nodeToSelect:TerraNodeInterface<CategoryTreeData> = this.categoryTreeConfig.findNodeById(value);
 
-                if(!isNullOrUndefined(nodeToSelect))
-                {
-                    this.categoryTreeConfig.currentSelectedNode = nodeToSelect;
-                }
-                this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
+                    if(!isNullOrUndefined(nodeToSelect))
+                    {
+                        this.categoryTreeConfig.currentSelectedNode = nodeToSelect;
+                    }
+                    if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
+                    {
+                        this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
+                    }
+                    this._value = value;
 
-                this._value = value;
+                    //this.updateCompleteCategory(value);
 
-                this.updateCompleteCategory(value);
-
-                this.onTouchedCallback();
-                this.onChangeCallback(this._value);
+                    this.onTouchedCallback();
+                    this.onChangeCallback(this._value);
             });
         }
     }
@@ -146,16 +149,16 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         this._toggleTree = !this._toggleTree;
     }
 
-    private updateCompleteCategory(category:CategoryValueInterface):void
-    {
-        this._completeCategory.id = category.id;
-        this._completeCategory.isActive = category.isActive;
-        this._completeCategory.isOpen = category.isOpen;
-        this._completeCategory.isVisible = category.isVisible;
-        this._completeCategory.name = category.name;
-        this._completeCategory.tooltip = category.tooltip;
-        this._completeCategory.tooltipPlacement = category.tooltipPlacement;
-    }
+    //private updateCompleteCategory(category:number):void
+    //{
+    //    this._completeCategory.id = category.id;
+    //    this._completeCategory.isActive = category.isActive;
+    //    this._completeCategory.isOpen = category.isOpen;
+    //    this._completeCategory.isVisible = category.isVisible;
+    //    this._completeCategory.name = category.name;
+    //    this._completeCategory.tooltip = category.tooltip;
+    //    this._completeCategory.tooltipPlacement = category.tooltipPlacement;
+    //}
 
     private getCategoriesByParentId(parentId:number | string):() => Observable<any>
     {
