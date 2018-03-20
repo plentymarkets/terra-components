@@ -1,3 +1,12 @@
+<a name="2.1.59-zlk"></a>
+# 2.1.59-zlk (xx.xx.2018)
+
+### Feature
+* **terra-dynamic-form** added input for portlet usage in <code>TerraDynamicSwitch</code>, default is <code>true</code>
+* **terra-dynamic-switch** 
+	- added input for portlet usage, default is <code>true</code>
+	- using portlet when type is <code>TerraFormFieldVerticalContainer</code>
+
 <a name="2.1.58-zlk"></a>
 # 2.1.58-zlk (20.03.2018)
 
