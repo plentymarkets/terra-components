@@ -17,7 +17,10 @@ import {
     isNull,
     isNullOrUndefined
 } from 'util';
-import { TerraRefTypeInterface } from './cell/terra-ref-type.interface';
+import {
+    TerraRefTypeEnum,
+    TerraRefTypeInterface
+} from './cell/terra-ref-type.interface';
 import { TerraDataTableTextInterface } from './cell/terra-data-table-text.interface';
 import {
     animate,
@@ -117,6 +120,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     private _langPrefix:string = 'terraDataTable';
     private _requestPending:boolean;
+    private _refTypeEnum = TerraRefTypeEnum;
 
     /**
      * @deprecated

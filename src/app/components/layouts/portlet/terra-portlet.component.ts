@@ -38,26 +38,38 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 })
 export class TerraPortletComponent implements OnChanges
 {
+    /**
+     * @description If true, portlet gets highlighted on mouse hover.
+     */
     @Input()
     public inputHighlightPortlet:boolean = false;
 
+    /**
+     * @description Sets the label of the portlet header.
+     */
     @Input()
     public inputPortletHeader:string;
 
+    /**
+     * @description If true, the portlet gets collapsable.
+     */
     @Input()
     public inputIsCollapsable:boolean = false;
 
+    /**
+     * @description If true, the portlet is collapsed (requires inputIsCollapsable = true).
+     */
     @Input()
     public inputCollapsed:boolean = false;
-
-    @Output()
-    public inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /**
      * @description Sets the given buttons as a button group to the right side of the portlet header.
      */
     @Input()
     public inputButtonList:Array<TerraButtonInterface> = [];
+
+    @Output()
+    public inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     private get collapsedState():string
     {
@@ -91,6 +103,9 @@ export class TerraPortletComponent implements OnChanges
         }
     }
 
+    /**
+     * @description Changes the collapse state.
+     */
     public toggleCollapse():void
     {
         this.inputCollapsed = !this.inputCollapsed;

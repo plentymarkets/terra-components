@@ -1,6 +1,4 @@
-import {
-    Component
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'terra-text-input-example',
@@ -9,10 +7,10 @@ import {
 })
 export class TerraTextInputComponentExample
 {
-    private _username:any;
+    private _username:string;
 
-    public loggingIn():void
+    public showUsername():void
     {
-        window.alert(this._username + ' Logged in!');
+        alert('Username: ' + this._username);
     }
 }
