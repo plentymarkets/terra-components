@@ -13,5 +13,5 @@ export enum TerraControlTypeEnum
     INPUT_DOUBLE = 'inputDouble',
     SELECT_BOX = 'selectBox',
     VERTICAL_CONTAINER = 'verticalContainer',
-    MULTI_CHECK_BOX = 'multi_select'
+    MULTI_CHECK_BOX = 'multiCheckBox'
 }

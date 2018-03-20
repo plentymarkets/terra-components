@@ -8,6 +8,7 @@ import { TerraFormFieldDatePicker } from '../data/terra-form-field-date-picker';
 import { TerraFormFieldSelectBox } from '../data/terra-form-field-select-box';
 import { TerraFormFieldCheckBox } from '../data/terra-form-field-check-box';
 import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
+import { TerraFormFieldMultiCheckBox } from '../data/terra-form-field-multi-check-box';
 
 /**
  * @author mfrank
@@ -53,6 +54,9 @@ export class TerraJsonToFormFieldService
                 break;
             case TerraControlTypeEnum.CHECK_BOX:
                 formField = new TerraFormFieldCheckBox(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                break;
+            case TerraControlTypeEnum.MULTI_CHECK_BOX:
+                formField = new TerraFormFieldMultiCheckBox(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             case TerraControlTypeEnum.VERTICAL_CONTAINER:
                 formField = this.createContainerFormField(formFieldKey, formFieldData, TerraControlTypeEnum.VERTICAL_CONTAINER);
