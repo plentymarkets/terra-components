@@ -164,7 +164,10 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             tooltipPlacement: '',
         };
         this._categoryInputValue = '';
-        this._value = null;
+        this._value = 0;
+
+        this.onTouchedCallback();
+        this.onChangeCallback(this._value);
     }
 
     //private updateCompleteCategory(category:number):void
