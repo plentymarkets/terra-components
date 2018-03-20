@@ -19,7 +19,6 @@ export class TerraFormFieldMultiCheckBox extends TerraFormFieldBase<any>
     {
         super(key, TerraControlTypeEnum.MULTI_CHECK_BOX, label, required, options);
 
-        this.defaultValue = options['defaultValue'] || [];
-        this.checkBoxValues = options['checkBoxValues'] || [];
+        this.defaultValue = options['checkBoxValues'] || [];
     }
 }
