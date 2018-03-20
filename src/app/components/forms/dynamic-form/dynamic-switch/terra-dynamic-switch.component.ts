@@ -22,6 +22,8 @@ export class TerraDynamicSwitchComponent
     @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
     @Input() public inputFormGroup:FormGroup;
     @Input() public inputSubSwitch:boolean;
+    @Input() public inputPortletHeader:string;
+    @Input() public inputUsePortlet:boolean;
 
     constructor()
     {
