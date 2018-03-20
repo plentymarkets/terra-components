@@ -22,6 +22,12 @@
                           [inputIsSmall]="true"
                           (outputClicked)="onSelectNode()">
             </terra-button>
+            <terra-button inputTooltipText="{{'contentBuilder.reset' | translate:lang}}"
+                          inputTooltipPlacement="top"
+                          inputIcon="icon-reset"
+                          [inputIsSmall]="true"
+                          (outputClicked)="reset()">
+            </terra-button>
         </terra-base-toolbar>
     </div>
 </div>

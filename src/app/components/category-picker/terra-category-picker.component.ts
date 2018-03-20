@@ -152,6 +152,20 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         this._toggleTree = !this._toggleTree;
     }
 
+    public reset():void
+    {
+        this.categoryTreeConfig.currentSelectedNode = {
+            id:               null,
+            isActive:         null,
+            isOpen:           null,
+            isVisible:        null,
+            name:             '',
+            tooltip:          '',
+            tooltipPlacement: '',
+        };
+        this._categoryInputValue = '';
+    }
+
     //private updateCompleteCategory(category:number):void
     //{
     //    this._completeCategory.id = category.id;

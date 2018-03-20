@@ -63,6 +63,7 @@
 	},
 	"contentBuilder": {
 		"select": "Select",
-		"category": "Category"
+		"category": "Category",
+		"reset": "Reset"
 	}
 }
