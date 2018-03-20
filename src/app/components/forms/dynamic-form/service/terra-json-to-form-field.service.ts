@@ -9,7 +9,8 @@ import { TerraFormFieldSelectBox } from '../data/terra-form-field-select-box';
 import { TerraFormFieldCheckBox } from '../data/terra-form-field-check-box';
 import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
 import { TerraFormFieldCategoryPicker } from '../../../../../';
-import {TerraFormFieldInputFile} from "../data/terra-form-field-input-file";
+import { TerraFormFieldInputFile } from "../data/terra-form-field-input-file";
+import { TerraFormFieldColorPicker } from '../data/terra-form-field-color-picker';
 
 /**
  * @author mfrank
@@ -62,6 +63,9 @@ export class TerraJsonToFormFieldService
                 break;
             case TerraControlTypeEnum.CATEGORY_PICKER:
                 formField = new TerraFormFieldCategoryPicker(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                break;
+            case TerraControlTypeEnum.COLOR_PICKER:
+                formField = new TerraFormFieldColorPicker(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             case TerraControlTypeEnum.VERTICAL_CONTAINER:
                 formField = this.createContainerFormField(formFieldKey, formFieldData, TerraControlTypeEnum.VERTICAL_CONTAINER);

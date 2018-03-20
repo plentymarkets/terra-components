@@ -107,7 +107,15 @@
                                [inputIsDisabled]="inputIsDisabled"
                                [inputOpenCalendarTop]="formField.openCalenderTop">
             </terra-date-picker>
-            
+
+            <terra-color-picker *ngSwitchCase="controlTypeEnum.COLOR_PICKER"
+                               [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                               [formControlName]="formField.key"
+                               [inputName]="formField.label | translate:lang"
+                               [inputIsRequired]="formField.required"
+                               [inputIsDisabled]="inputIsDisabled">
+            </terra-color-picker>
+
             <ng-container *ngSwitchCase="controlTypeEnum.HORIZONTAL_CONTAINER">
                 <div class="horizontalGroup">
                     <span class="horizontalGroupLabel">{{ formField.label }}: </span>
