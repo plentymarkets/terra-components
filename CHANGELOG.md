@@ -4,6 +4,22 @@
 * **terra-multi-check-box** new component equal to *terra-multi-select-box* but with correct ngModel two way data binding
 * **terra-multi-select-box** this component is now deprecated and will be removed in the next major release
 
+<a name="2.1.57-zlk"></a>
+# 2.1.57-zlk (12.03.2018)
+
+### Feature
+* **models** added new interfaces for key value (TerraKeyValueInterface & TerraKeyValuePairInterface)
+
+### Bug Fixes
+* **terra-base-service** prevent requests with empty params
+* **terra-checkbox-tree** appends parents to leaf list on every change
+
+<a name="2.1.56-zlk"></a>
+# 2.1.56-zlk (08.03.2018)
+
+### Feature
+* **terra-data-table** added new ref-type 'function'.
+
 <a name="2.1.55-zlk"></a>
 # 2.1.55-zlk (06.03.2018)
 
@@ -13,11 +29,9 @@
 * **terra-placement-enum** new enum with dedicated strings for placement of e.g. tooltips
 * **terra-portlet** if the portlet is collapsable and unfolded, its header is now grey.
 * **terra-data-table** replace underline text decoration of phone and email links with blue color highlighting.
-* **terra-data-table** added new ref-type 'function'.
 
 ### Bug Fixes
 * **terra-data-table** hide no-results-notice when request is pending
-* **terra-base-service** prevent requests with empty params
 
 <a name="2.1.47-zlk"></a>
 # 2.1.47-zlk (06.02.2018)
