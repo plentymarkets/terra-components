@@ -81,6 +81,7 @@ import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
 import { TerraConverterHelper } from './helpers/terra-converter.helper';
+import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
 import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
 //### import of terra-component examples
 import { TerraButtonComponentExample } from './components/buttons/button/example/terra-button.component.example';
@@ -431,6 +432,7 @@ export class TerraComponentsModule
                 TerraUrlParamsDecorator,
                 TerraFrontendStorageService,
                 TerraAlertComponent,
+                CategoryTreeConfig,
                 TerraJsonToFormFieldService
             ]
         };
