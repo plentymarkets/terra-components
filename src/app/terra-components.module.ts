@@ -125,6 +125,7 @@ import { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra
 import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
 import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
 import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
+import { TerraCategoryPickerComponent } from './components/category-picker/terra-category-picker.component';
 
 @NgModule({
     declarations:    [
@@ -181,6 +182,7 @@ import { TerraFormFieldControlService } from './components/forms/dynamic-form/se
         TerraNodeComponent,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
+        TerraCategoryPickerComponent,
 
         //### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -267,7 +269,8 @@ import { TerraFormFieldControlService } from './components/forms/dynamic-form/se
         TerraNoteEditorComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
-        TerraNodeComponent
+        TerraNodeComponent,
+        TerraCategoryPickerComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -321,6 +324,7 @@ import { TerraFormFieldControlService } from './components/forms/dynamic-form/se
         TerraNodeTreeComponent,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
+        TerraCategoryPickerComponent,
 
 
         //### declarations of terra-components examples
