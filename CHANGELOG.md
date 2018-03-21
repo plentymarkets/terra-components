@@ -1,3 +1,26 @@
+<a name="2.1.58-zlk"></a>
+# 2.1.58-zlk (20.03.2018)
+
+### Bug Fixes
+* **terra-multi-split-view** fixed multi split view breadcrumb event emitter
+* **terra-file-list** added multiple selection to file input
+
+<a name="2.1.57-zlk"></a>
+# 2.1.57-zlk (12.03.2018)
+
+### Feature
+* **models** added new interfaces for key value (TerraKeyValueInterface & TerraKeyValuePairInterface)
+
+### Bug Fixes
+* **terra-base-service** prevent requests with empty params
+* **terra-checkbox-tree** appends parents to leaf list on every change
+
+<a name="2.1.56-zlk"></a>
+# 2.1.56-zlk (08.03.2018)
+
+### Feature
+* **terra-data-table** added new ref-type 'function'.
+
 <a name="2.1.55-zlk"></a>
 # 2.1.55-zlk (06.03.2018)
 
