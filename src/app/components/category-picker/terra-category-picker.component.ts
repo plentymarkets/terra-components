@@ -161,7 +161,6 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             isVisible:        null,
             name:             '',
             tooltip:          '',
-            tooltipPlacement: '',
         };
         this._categoryInputValue = '';
         this._value = 0;
@@ -231,7 +230,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                         name:             categoryDetail.name,
                         isVisible:        true,
                         tooltip:          'ID: ' + categoryData.id,
-                        tooltipPlacement: 'top',
+                        //tooltipPlacement: 'top',
                     };
 
                     let parentNode:TerraNodeInterface<CategoryTreeData>;
