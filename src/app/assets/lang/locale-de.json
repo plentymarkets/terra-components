@@ -57,5 +57,10 @@
 	},
 	"terraNodeTree":{
 		"search": "Suche"
+	},
+	"terraCategoryPicker": {
+		"select": "Auswählen",
+		"category": "Kategorie",
+		"reset": "Reset"
 	}
 }
