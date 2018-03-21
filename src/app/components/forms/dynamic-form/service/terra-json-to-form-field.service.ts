@@ -8,7 +8,7 @@ import { TerraFormFieldDatePicker } from '../data/terra-form-field-date-picker';
 import { TerraFormFieldSelectBox } from '../data/terra-form-field-select-box';
 import { TerraFormFieldCheckBox } from '../data/terra-form-field-check-box';
 import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
-import { TerraFormFieldCategoryPicker } from '../../../../../../dist/app/components/forms/dynamic-form/data/terra-form-field-category-picker';
+import { TerraFormFieldCategoryPicker } from '../data/terra-form-field-category-picker';
 
 /**
  * @author mfrank
