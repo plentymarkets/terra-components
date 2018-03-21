@@ -1,10 +1,10 @@
-<terra-portlet *ngIf="inputUsePortlet;else form" [inputPortletHeader]="inputPortletHeader">
+<terra-portlet *ngIf="inputUsePortlet;else formWithoutPortlet" [inputPortletHeader]="inputPortletHeader">
     <terra-dynamic-switch [inputFormFields]="inputFormFields"
                           [inputFormGroup]="inputFormGroup"
                           [inputUsePortlet]="false"></terra-dynamic-switch>
 </terra-portlet>
 
-<ng-template #form>
+<ng-template #formWithoutPortlet>
     <form [formGroup]="inputFormGroup">
         <ng-container *ngFor="let formField of inputFormFields">
             <ng-container [ngSwitch]="formField?.controlType">
@@ -95,7 +95,6 @@
                 
                 <ng-container *ngSwitchCase="'verticalContainer'">
                     <div class="verticalGroup">
-                        <!--<span class="verticalGroupLabel">{{ formField.label }}: </span>-->
                         <terra-dynamic-switch class="subSwitch"
                                               [formGroupName]="formField.key"
                                               [inputFormGroup]="inputFormGroup.controls[formField.key]"
@@ -106,46 +105,6 @@
                         </terra-dynamic-switch>
                     </div>
                 </ng-container>
-                
-                <!-- TODO extract into own component or condition refactoring -->
-                <!--<ng-container *ngSwitchCase="'conditionalContainer'">-->
-                <!--<div class="conditionalContainer" >-->
-                <!--<ng-container [ngSwitch]="formField?.conditionalType">-->
-                <!--<terra-select-box *ngSwitchCase="'selectBox'"-->
-                <!--[ngClass]="{horizontalGroupEntry: inputSubSwitch}"-->
-                <!--[formControlName]="formField.key"-->
-                <!--[inputName]="formField.label | translate:lang"-->
-                <!--[inputListBoxValues]="formField.conditionalValues"-->
-                <!--(ngModelChange)="onConditionChanged(formField)">-->
-                <!--</terra-select-box>-->
-                <!---->
-                <!--<div *ngSwitchCase="'radioGroup'">-->
-                <!--<terra-radio-button [formControlName]="formField.key"-->
-                <!--*ngFor="let conditionalValue of formField.conditionalValues"-->
-                <!--[inputValue]="conditionalValue.defaultValue"-->
-                <!--[inputCaption]="conditionalValue.caption"-->
-                <!--[(ngModel)]="inputFormGroup.controls[formField.key].defaultValue[formField.key]"-->
-                <!--(ngModelChange)="onConditionChanged(formField)">-->
-                <!--</terra-radio-button>-->
-                <!--</div>-->
-                <!---->
-                <!--<terra-checkbox *ngSwitchCase="'checkBox'"-->
-                <!--[formControlName]="formField.key"-->
-                <!--[inputCaption]="formField.label"-->
-                <!--[(ngModel)]="inputFormGroup.controls[formField.key].defaultValue[formField.key]"-->
-                <!--(ngModelChange)="onConditionChanged(formField)">-->
-                <!--</terra-checkbox>-->
-                <!---->
-                <!--<div class="conditionalSwitch">-->
-                <!--<terra-dynamic-switch [inputFormGroup]="inputFormGroup.controls[formField.key].controls[inputFormGroup.controls[formField.key].defaultValue[formField.key]]"-->
-                <!--[inputFormFields]="formField.conditionalEntries[inputFormGroup.controls[formField.key].defaultValue[formField.key]]"-->
-                <!--[inputSubSwitch]="true">-->
-                <!--</terra-dynamic-switch>-->
-                <!--</div>-->
-                <!--</ng-container>-->
-                <!--</div>-->
-                <!--</ng-container>-->
-            
             </ng-container>
         </ng-container>
     </form>
