@@ -58,7 +58,7 @@
                             [formControlName]="formField.key"
                             [inputIsDisabled]="inputIsDisabled"
                             [inputCaption]="formField.label | translate:lang"
-                            (ngModelChange)="onConditionChanged(formField)">
+                            [(ngModel)]="formField.defaultValue">
             </terra-checkbox>
             
             <terra-double-input *ngSwitchCase="controlTypeEnum.INPUT_DOUBLE"
