@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { TerraFormFieldBase } from '../data/terra-form-field-base';
 import { TerraFormFieldConditionalContainer } from '../data/terra-form-field-conditional-container';
 import { Observable } from 'rxjs/Observable';
+import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
  * @author mfrank
@@ -22,6 +23,9 @@ export class TerraDynamicSwitchComponent
     @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
     @Input() public inputFormGroup:FormGroup;
     @Input() public inputSubSwitch:boolean;
+
+    // Necessary for using enum in html
+    protected controlTypeEnum:any = TerraControlTypeEnum;
 
     constructor()
     {
