@@ -6,7 +6,7 @@
     background-color: var(--color-structure-0);
     border-radius: var(--border-radius);
     border: 1px solid var(--color-structure-0);
-    margin: var(--select-box-wrapper-margin, 0px);
+    margin: var(--select-box-wrapper-margin, 0);
     margin-bottom: var(--select-box-wrapper-margin-bottom, 3px);
     cursor: pointer;
     height: var(--select-box-height, var(--select-box-height-default));
@@ -31,14 +31,14 @@
             background-position: calc(100% - 11px) 7px;
             &.labeled
             {
-                padding: 0px 7px 0px 30%;
+                padding: 0 7px 0 30%;
             }
         }
     }
     
     .select-box
     {
-        transition: ease height 0.6s, ease line-height 0.6s;
+        transition: height var(--transition-lg), line-height var(--transition-lg);
         display: inline-block;
         width: var(--select-box-width, 100%);
         max-width: 100%;
@@ -60,9 +60,9 @@
         }
         &.labeled
         {
-            line-height: 24px;
+            line-height: var(--space-lg);
             padding: var(--select-box-labeled-padding, var(--select-box-labeled-padding-default));
-            transition: ease padding .6s;
+            transition: padding var(--transition-lg);
         }
         span
         {

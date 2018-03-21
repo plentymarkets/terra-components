@@ -101,7 +101,6 @@ button:focus
     height: var(--btn-height, var(--btn-height-default));
     line-height: var(--btn-line-height, var(--btn-line-height-default));
     padding: var(--btn-padding, var(--btn-padding-default));
-    transition: ease height 0.6s, ease line-height 0.6s;
     display: inline-block;
     text-align: center;
     white-space: nowrap;
@@ -121,12 +120,10 @@ button:focus
     
     border-radius: var(--border-radius);
     font-size: var(--font-size-3);
-    transition: all .2s ease-in-out;
-    //@include button-variant(var(--color-structure-0), var(--color-structure-9), transparent);
-    
     color: var(--color-structure-0);
     background-color: var(--color-structure-9);
     border-color: transparent;
+    transition: height var(--transition-lg), line-height var(--transition-lg), padding var(--transition-lg), background-color var(--transition-sm);
     
     &:hover
     {
@@ -230,7 +227,7 @@ button:focus
         top: 4.0px;
         &.icon_dist_top
         {
-            line-height: 0px;
+            line-height: 0;
         }
     }
     
@@ -418,7 +415,7 @@ fieldset[disabled] a.btn
     &:first-child:not(:last-child) .btn
     {
         border-radius: var(--border-radius) var(--border-radius) 0 0;
-        margin: 0px 0px 1px 0px;
+        margin: 0 0 1px 0;
     }
     
     &:not(:first-child):not(:last-child) .btn
@@ -430,7 +427,7 @@ fieldset[disabled] a.btn
     &:last-child:not(:first-child) .btn
     {
         border-radius: 0 0 var(--border-radius) var(--border-radius);
-        margin: 1px 0px 0px 0px;
+        margin: 1px 0 0 0;
     }
     
     &:last-child:not(:first-child) .flag
@@ -453,9 +450,9 @@ fieldset[disabled] a.btn
 {
     .btn
     {
-        padding: 0px 18px 0px 9px !important;
+        padding: 0 18px 0 9px !important;
         border-radius: var(--border-radius) !important;
-        margin: 1px 0px;
+        margin: 1px 0;
         
         .icon-right
         {

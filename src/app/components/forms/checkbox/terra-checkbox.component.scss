@@ -106,13 +106,13 @@ input[type="checkbox"]
     display: block;
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
-    transition: all 0.2s linear;
+    transition: all var(--transition-sm);
 }
 
 .input-control.checkbox input[type="checkbox"]:checked ~ .check:before
 {
     border-color: var(--color-structure-11);
-    transition: all 0.2s linear;
+    transition: all var(--transition-sm);
 }
 
 .input-control.checkbox input[type="checkbox"]:disabled ~ .caption

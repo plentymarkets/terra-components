@@ -94,8 +94,8 @@
                         display: block;
                         visibility: visible;
                         opacity: 1;
-                        transition: all 0.2s ease;
-                        transition-delay: 0.2s;
+                        transition: all var(--transition-sm);
+                        transition-delay: var(--transition-delay-sm);
                     }
                 }
             }
@@ -121,7 +121,7 @@
         }
         .icon-next
         {
-            padding: 6px 0px;
+            padding: 6px 0;
             &::before
             {
                 display: inline-block;
@@ -149,7 +149,7 @@
     overflow-x: hidden;
     height: 100%;
     white-space: nowrap;
-    font-size: 0px;
+    font-size: 0;
     &.offset
     {
         height: var(--side-scroller-offset, calc(100% - 42px));

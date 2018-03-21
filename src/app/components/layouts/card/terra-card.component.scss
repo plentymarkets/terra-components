@@ -2,7 +2,7 @@
 {
     &.terra-card
     {
-        margin: 10px 5px;
+        margin: var(--space-sm);
         display: inline-block;
         width: 200px;
     }
@@ -10,7 +10,7 @@
     {
         width: 100%;
         height: 150px;
-        margin: 36px 0px 8px 0px;
+        margin: 36px 0 var(--space-md) 0;
         
         &.terra-card-image
         {
@@ -29,10 +29,10 @@
 
 .card-footer
 {
-    padding: 2px 8px;
+    padding: var(--space-xs) var(--space-md);
 }
 
 .card-block
 {
-    padding: 0px 8px 8px 8px;
+    padding: 0 var(--space-md) var(--space-md) var(--space-md);
 }

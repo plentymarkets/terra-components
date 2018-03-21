@@ -66,7 +66,7 @@ input[type="search"]::-webkit-search-decoration
     margin-bottom: var(--input-wrapper-margin-bottom, 3px);
     height: var(--input-wrapper-height, var(--input-wrapper-height-default));
     line-height: var(--input-wrapper-line-height, 100%);
-    transition: ease height 0.6s, ease line-height 0.6s;
+    transition: height var(--transition-lg), line-height var(--transition-lg);
     background-color: var(--color-structure-0);
     border-radius: var(--border-radius);
     border: var(--input-wrapper-border, 1px solid var(--color-structure-0));
@@ -171,7 +171,7 @@ textarea
     outline: none !important;
     height: var(--input-height, 100%);
     line-height: var(--input-line-height, 100%);
-    transition: ease padding .6s, ease height .6s, ease line-height .6s;
+    transition: padding var(--transition-lg), height var(--transition-lg), line-height var(--transition-lg);
     
     &.isSmall
     {
@@ -204,7 +204,7 @@ textarea
         position: absolute;
         top: 1px;
         right: 1px;
-        transition: all .2s;
+        transition: all var(--transition-sm);
     }
     
     &.disabled,
@@ -224,7 +224,7 @@ textarea
     &.isEmpty
     {
         font-weight: normal;
-        padding: 2px 7px 0px 7px;
+        padding: 2px 7px 0 7px;
     }
     
     .price-input
@@ -244,14 +244,14 @@ label
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding: 5px 7px 0;
+    padding: var(--label-padding, var(--label-padding-default));
     margin-bottom: 0;
     color: var(--color-structure-7);
     
     position: absolute;
     top: 0;
     left: 0;
-    transition: color .15s;
+    transition: color var(--transition-sm);
     cursor: pointer;
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;

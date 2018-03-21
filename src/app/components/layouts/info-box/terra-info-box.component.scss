@@ -6,7 +6,7 @@
     border-radius: var(--border-radius);
     padding: 8px;
     min-width: 200px;
-    margin: 4px 0px;
+    margin: 4px 0;
     height: var(--input-info-box-height, 150px);
     
     &.selected
@@ -60,7 +60,7 @@
         justify-content: space-between;
         .info-box-id
         {
-            margin: 7px 4px 0px 0px;
+            margin: 7px 4px 0 0;
             color: var(--color-structure-8);
         }
     }

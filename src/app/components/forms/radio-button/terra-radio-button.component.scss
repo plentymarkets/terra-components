@@ -63,7 +63,7 @@
     .check.active:before
     {
         border-color: var(--color-structure-11);
-        transition: all 0.2s linear;
+        transition: all var(--transition-sm);
     }
     
     .check.disabled

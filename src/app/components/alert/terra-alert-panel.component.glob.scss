@@ -5,11 +5,12 @@ terra-alert-panel
 {
     position: fixed;
     right: 14px;
-    top: 71px;
+    top: var(--terra-alert-panel-top, var(--terra-alert-panel-top-default));
+    transition: top var(--transition-lg);
     max-height: 500px;
     max-width: 350px;
     overflow-y: auto;
-    z-index: var(--zIndex-8);
+    z-index: 1030;
     .alert
     {
         position: relative;
@@ -61,7 +62,7 @@ terra-alert-panel
     }
     div.alert button.close
     {
-        padding: 0px;
+        padding: 0;
         top: -5px;
         right: -20px;
         span

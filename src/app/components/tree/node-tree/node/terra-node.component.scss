@@ -13,12 +13,13 @@ li
         .btn
         {
             text-align: left;
-            padding: 0px;
-            border-radius: 0px;
+            padding: 0;
+            border-radius: 0;
             
             .buttonText
             {
-                display: inline-block;
+                display: table-cell;
+                vertical-align: middle;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
@@ -27,18 +28,19 @@ li
             {
                 &.icon_dist_top
                 {
-                    padding: 8px;
-                    top: var(--terra-node-icon-dist-top-top, var(--terra-node-icon-dist-top-top-default));
+                    padding: 0 8px;
+                    display: table-cell;
+                    vertical-align: middle;
+                    top: initial;
                 }
                 
                 &.icon-right
                 {
                     position: absolute;
-                    right: 0px;
-                    top: 0px;
-                    height: var(--terra-node-icon-right-height, var(--terra-node-icon-right-height-default));
-                    width: 40px;
-                    line-height: var(--terra-node-icon-right-line-height, var(--terra-node-icon-right-line-height-default));
+                    right: 0;
+                    top: 0;
+                    width: var(--height-md);
+                    line-height: var(--height-md);
                     text-align: center;
                     background-color: var(--color-structure-10);
                     border-left: 1px solid var(--color-structure-11);
@@ -74,7 +76,7 @@ li
     {
         from
         {
-            padding-left: 0px;
+            padding-left: 0;
         }
         
         to

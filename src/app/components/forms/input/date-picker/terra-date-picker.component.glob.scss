@@ -30,16 +30,16 @@
                 border: none;
                 border-radius: var(--border-radius);
                 box-shadow: none;
-                padding: var(--input-padding, 13px 7px 0px 7px);
-                width: var(--input-width, calc(100% - 68px));
+                padding: var(--input-padding, var(--input-padding-default));
+                width: calc(100% - 68px);
                 font-family: var(--font-family);
                 font-size: var(--font-size-3) !important;
                 font-weight: var(--font-weight-2);
                 text-align: var(--input-text-align, left);
                 outline: none !important;
-                transition: all .2s;
-                height: calc(var(--height-md) - 2);
-                line-height: calc(var(--height-md) - 2);
+                transition: all var(--transition-sm);
+                height: 100% !important;
+                line-height: 100%;
                 overflow: visible;
                 position: inherit;
                 display: inline-block;
@@ -58,7 +58,7 @@
                     background-color: transparent;
                     color: var(--color-alert);
                     width: 22px;
-                    border: 0px;
+                    border: 0;
                     //css for clear selected myDateModel button
                     .icon-cross
                     {
@@ -74,7 +74,7 @@
                 {
                     background-color: transparent;
                     width: 24px;
-                    border: 0px;
+                    border: 0;
                     //css for myDateModel select button
                     .icon-calendar
                     {

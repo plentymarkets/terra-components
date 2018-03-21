@@ -16,8 +16,7 @@
         right: 0;
         bottom: 0;
         background-color: var(--color-structure-0);
-        -webkit-transition: .4s;
-        transition: .4s;
+        transition: all var(--transition-md);
         &:before
         {
             border-radius: 50%;
@@ -28,8 +27,7 @@
             left: 3px;
             bottom: 2px;
             background-color: var(--color-alert);
-            -webkit-transition: .4s;
-            transition: .4s;
+            transition: all var(--transition-md);
         }
     }
     

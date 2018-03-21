@@ -19,7 +19,7 @@
                 .checkbox-container,
                 .header-label
                 {
-                    margin: 0px;
+                    margin: 0;
                     font-variant: all-small-caps;
                     padding: 6px 9px;
                     color: var(--color-structure-0);
@@ -33,7 +33,7 @@
                 max-height: 155px;
                 .input-group
                 {
-                    margin-bottom: 0px;
+                    margin-bottom: 0;
                     
                     .form-control,
                     .input-group-addon
@@ -41,7 +41,7 @@
                         padding: 6px 9px;
                         border: none;
                         border-bottom: 1px solid var(--color-structure-1);
-                        border-radius: 0px;
+                        border-radius: 0;
                         font-size: 0.875rem;
                         font-weight: normal;
                         background: transparent;

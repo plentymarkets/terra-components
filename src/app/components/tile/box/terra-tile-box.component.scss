@@ -15,7 +15,7 @@
 
 .tile-box-item
 {
-    transition: all .3s;
+    transition: all var(--transition-sm);
     position: relative;
     padding: 0;
     width: 250px;
@@ -200,7 +200,7 @@ $lines-to-show: 8;
     }
     .tile-box-item
     {
-        transition: all .3s;
+        transition: all var(--transition-sm);
         position: relative;
         padding: 0;
         width: 100%;
