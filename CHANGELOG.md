@@ -1,3 +1,8 @@
+# Unreleased
+
+### Feature
+* **terra-category-picker** new component to comfortable select a category using the **terra-node-tree**
+
 <a name="2.1.58-zlk"></a>
 # 2.1.58-zlk (20.03.2018)
 
