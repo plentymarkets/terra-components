@@ -140,4 +140,11 @@
         </div>
     
     </div>
+
+    <div class="upload-progress-container" *ngIf="_progress">
+        <div class="upload-progress">
+            <div [style.width.%]="_progress.progress"></div>
+        </div>
+        <span>{{ _translationPrefix + '.uploadProgress' | translate:lang:_progress }}</span>
+    </div>
 </div>

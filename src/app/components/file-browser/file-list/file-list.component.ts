@@ -33,6 +33,7 @@ import { ClipboardHelper } from '../helper/clipboard.helper';
 import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-simple-table-cell.interface';
 import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
+import {TerraUploadProgress} from "../model/terra-upload-progress";
 
 @Component({
     selector: 'terra-file-list',
@@ -70,6 +71,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             if(!isNullOrUndefined(this._storageSubscription))
             {
                 this._storageSubscription.unsubscribe();
+                this._storageSubscription = null;
+            }
+            if(!isNullOrUndefined(this._progressSubscription))
+            {
+                this._progressSubscription.unsubscribe();
+                this._progressSubscription = null;
             }
 
             this._storageList = null;
@@ -86,6 +93,16 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this._storageList = storageList;
                 this.renderFileList();
             });
+            this._progressSubscription = this.activeStorageService.queue.status.subscribe((progress) => {
+                this._progress = progress;
+
+                if (!isNullOrUndefined(this._progress))
+                {
+                    this._progress.sizeUploaded = PathHelper.sizeString( this._progress.sizeUploaded );
+                    this._progress.sizeTotal = PathHelper.sizeString( this._progress.sizeTotal );
+                }
+                this._changeDetector.detectChanges();
+            });
         }
 
     }
@@ -101,6 +118,10 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private _storageSubscription:Subscription;
 
+    private _progressSubscription:Subscription;
+
+    private _progress:TerraUploadProgress = null;
+
     private _storageList:TerraStorageObjectList;
 
     private _currentStorageRoot:TerraStorageObject;
@@ -108,8 +129,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     private _imagePreviewTimeout:number;
 
     private _imagePreviewObject:TerraStorageObject;
-
-    private _uploadStatus:{ [key:string]:boolean } = {};
 
     public get currentStorageRoot():TerraStorageObject
     {
@@ -353,7 +372,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         cellList.push(
             {
                 caption: storageObject.name,
-                icon:    this._uploadStatus[storageObject.key] ? 'icon-loading' : storageObject.icon
+                icon:    storageObject.icon
             }
         );
 
@@ -560,13 +579,16 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public onFileSelect(event:Event):void
     {
-        if(!isNullOrUndefined(event.srcElement))
+        if(!isNullOrUndefined(event.srcElement) && !isNullOrUndefined((<any>event.srcElement).files))
         {
+            /*
             this.activeStorageService
                 .uploadFiles(
                     (<any>event.srcElement).files || [],
                     this.currentStorageRoot ? this.currentStorageRoot.key : '/'
                 );
+                */
+            this.uploadFiles((<any>event.srcElement).files);
 
             // unset value of file input to allow selecting same file again
             (<HTMLInputElement>event.target).value = '';
@@ -577,10 +599,13 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     {
         if(!isNullOrUndefined(event.dataTransfer.files))
         {
+            this.uploadFiles(event.dataTransfer.files);
+            /*
             this.activeStorageService.uploadFiles(
                 event.dataTransfer.files,
                 this.currentStorageRoot ? this.currentStorageRoot.key : '/'
             );
+            */
         }
     }
 
@@ -589,18 +614,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         let uploadPrefix:string = this.currentStorageRoot ? this.currentStorageRoot.key : '/';
         this.activeStorageService
             .uploadFiles(
-                (<any>event.srcElement).files || [],
+                fileList,
                 uploadPrefix
-            )
-            .forEach((uploadItem:TerraUploadItem) =>
-            {
-                this._uploadStatus[uploadPrefix + uploadItem.filename] = true;
-                uploadItem.onSuccess(() =>
-                {
-                    this._uploadStatus[uploadPrefix + uploadItem.filename] = false;
-                    this.renderFileList();
-                });
-            });
+            );
     }
 
 }

@@ -182,3 +182,31 @@
         margin-left: -200px;
     }
 }
+
+.upload-progress-container
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $gray-light-3;
+    text-align: center;
+    padding-bottom: 2px;
+
+    > span
+    {
+        font-size: .8em;
+    }
+
+    .upload-progress
+    {
+        width: 100%;
+
+        > div
+        {
+            height: 2px;
+            background-color: $brand-primary;
+            transition: ease all .5s;
+        }
+    }
+}
