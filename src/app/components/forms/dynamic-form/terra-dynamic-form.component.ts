@@ -41,10 +41,9 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     @Input() public inputPortletStyle:string;
     @Input() public inputRequestParams:TerraDynamicFormRequestParams;
 
-    constructor(private _formFieldControlService:TerraFormFieldControlService,
-                private _dynamicService:TerraDynamicFormService)
+    constructor(private _formFieldControlService:TerraFormFieldControlService)
     {
-        this.inputPortletStyle = 'col-xs-12 col-md-4';
+        this.inputPortletStyle = 'col-xs-12 col-md-8 col-lg-5';
         this.inputRequestParams = {
             route:      '',
             htmlMethod: null,
@@ -81,7 +80,8 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         }
         else
         {
-            this.inputFormFunctions.errorCallback(this._formFieldControlService.dynamicFormGroup, this._formFieldControlService.translationMapping);
+            this.inputFormFunctions.errorCallback(this._formFieldControlService.dynamicFormGroup,
+                this._formFieldControlService.translationMapping);
         }
     }
 
