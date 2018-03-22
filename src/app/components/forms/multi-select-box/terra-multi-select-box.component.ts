@@ -12,6 +12,7 @@ import { TerraMultiSelectBoxValueInterface } from './data/terra-multi-select-box
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import { TranslationService } from 'angular-l10n';
 
+/** @deprecated - please use `TerraMultiCheckBoxComponent` instead */
 @Component({
     selector: 'terra-multi-select-box',
     styles:   [require('./terra-multi-select-box.component.scss')],
@@ -79,6 +80,8 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
 
     constructor(public translation:TranslationService)
     {
+        console.warn('TerraMultiSelectBoxComponent is deprecated. It will be removed in one of the upcoming releases' +
+                     'Please use TerraMultiCheckBoxComponent instead.');
     }
 
     ngOnInit()

@@ -80,6 +80,12 @@
                                [(ngModel)]="formField.defaultValue">
             </terra-date-picker>
             
+            <terra-multi-check-box *ngSwitchCase="controlTypeEnum.MULTI_CHECK_BOX"
+                                   [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                                   [formControlName]="formField.key"
+                                   [inputName]="formField.label | translate:lang">
+            </terra-multi-check-box>
+    
             <ng-container *ngSwitchCase="controlTypeEnum.HORIZONTAL_CONTAINER">
                 <div class="horizontalGroup">
                     <span class="horizontalGroupLabel">{{ formField.label }}: </span>
