@@ -61,7 +61,7 @@
 	"terraNodeTree":{
 		"search": "Search"
 	},
-	"contentBuilder": {
+	"terraCategoryPicker": {
 		"select": "Select",
 		"category": "Category",
 		"reset": "Reset"

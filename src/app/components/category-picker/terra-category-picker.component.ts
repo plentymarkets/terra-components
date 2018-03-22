@@ -75,7 +75,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
     {
         if (isNullOrUndefined(this.inputName))
         {
-            this.inputName = this.translation.translate('contentBuilder.category');
+            this.inputName = this.translation.translate('terraCategoryPicker.category');
         }
         this.categoryTreeConfig.list = this._list;
         this.getCategoriesByParent(null);
