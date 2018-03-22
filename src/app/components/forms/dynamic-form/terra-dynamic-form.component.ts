@@ -32,21 +32,22 @@ export interface TerraDynamicFormRequestParams
 @Component({
     selector:  'terra-dynamic-form',
     template:  require('./terra-dynamic-form.component.html'),
-    styles:   [require('./terra-dynamic-form.component.scss')],
+    styles:    [require('./terra-dynamic-form.component.scss')],
     providers: [TerraDynamicFormService]
 })
 export class TerraDynamicFormComponent implements OnInit, OnChanges
 {
     @Input() public inputFormFunctions:TerraDynamicFormFunctionsHandler<any>;
     @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
+    @Input() public inputPortletStyle:string;
     @Input() public inputRequestParams:TerraDynamicFormRequestParams;
     @Input() public inputHasNoSaveButton:boolean;
     @Input() public inputHasNoResetButton:boolean;
     @Input() public inputIsDisabled:boolean;
 
-    constructor(private _formFieldControlService:TerraFormFieldControlService,
-                private _dynamicService:TerraDynamicFormService)
+    constructor(private _formFieldControlService:TerraFormFieldControlService)
     {
+        this.inputPortletStyle = 'col-xs-12 col-md-8 col-lg-5';
         this.inputRequestParams = {
             route:      '',
             htmlMethod: null,
@@ -90,7 +91,8 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         }
         else
         {
-            this.inputFormFunctions.errorCallback(this._formFieldControlService.dynamicFormGroup, this._formFieldControlService.translationMapping);
+            this.inputFormFunctions.errorCallback(this._formFieldControlService.dynamicFormGroup,
+                this._formFieldControlService.translationMapping);
         }
     }
 
