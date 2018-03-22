@@ -1,20 +1,20 @@
 <form [formGroup]="inputFormGroup">
     <ng-container *ngFor="let formField of inputFormFields">
         <ng-container [ngSwitch]="formField?.controlType">
-            <terra-text-input *ngSwitchCase="'inputText'"
+            <terra-text-input *ngSwitchCase="controlTypeEnum.INPUT_TEXT"
                               [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                               [formControlName]="formField.key"
                               [inputName]="formField.label  | translate:lang"
                               [inputIsRequired]="formField.required"
                               [inputIsPassword]="formField.isPassword"
-                              [inputIsIban]="formField.isPassword"
+                              [inputIsIban]="formField.isIBAN"
                               [inputIsReadonly]="formField.isReadOnly"
                               [(ngModel)]="formField.defaultValue"
                               [inputTooltipText]="formField.tooltip"
                               [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-text-input>
             
-            <terra-text-area-input *ngSwitchCase="'inputTextArea'"
+            <terra-text-area-input *ngSwitchCase="controlTypeEnum.INPUT_TEXT_AREA"
                                    [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                                    [formControlName]="formField.key"
                                    [inputName]="formField.label  | translate:lang"
@@ -24,7 +24,7 @@
                                    [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-text-area-input>
             
-            <terra-number-input *ngSwitchCase="'inputNumber'"
+            <terra-number-input *ngSwitchCase="controlTypeEnum.INPUT_NUMBER"
                                 [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                 [formControlName]="formField.key"
                                 [inputName]="formField.label  | translate:lang"
@@ -34,13 +34,13 @@
                                 [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-number-input>
     
-            <terra-checkbox *ngSwitchCase="'checkBox'"
+            <terra-checkbox *ngSwitchCase="controlTypeEnum.CHECK_BOX"
                             [formControlName]="formField.key"
                             [inputCaption]="formField.label | translate:lang"
                             [(ngModel)]="formField.defaultValue">
             </terra-checkbox>
             
-            <terra-double-input *ngSwitchCase="'inputDouble'"
+            <terra-double-input *ngSwitchCase="controlTypeEnum.INPUT_DOUBLE"
                                 [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                 [formControlName]="formField.key"
                                 [inputName]="formField.label  | translate:lang"
@@ -52,7 +52,15 @@
                                 [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-double-input>
             
-            <terra-select-box *ngSwitchCase="'selectBox'"
+            <terra-category-picker *ngSwitchCase="controlTypeEnum.CATEGORY_PICKER"
+                                   [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                                   [formControlName]="formField.key"
+                                   [inputName]="formField.label"
+                                   [inputIsDisabled]="inputIsDisabled"
+                                   [inputCategoryService]="formField.categoryService">
+            </terra-category-picker>
+            
+            <terra-select-box *ngSwitchCase="controlTypeEnum.SELECT_BOX"
                               [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                               [formControlName]="formField.key"
                               [inputName]="formField.label | translate:lang"
@@ -63,7 +71,7 @@
                               [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-select-box>
             
-            <terra-date-picker *ngSwitchCase="'datePicker'"
+            <terra-date-picker *ngSwitchCase="controlTypeEnum.DATE_PICKER"
                                [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                [formControlName]="formField.key"
                                [inputName]="formField.label | translate:lang"
@@ -72,7 +80,13 @@
                                [(ngModel)]="formField.defaultValue">
             </terra-date-picker>
             
-            <ng-container *ngSwitchCase="'horizontalContainer'">
+            <terra-multi-check-box *ngSwitchCase="controlTypeEnum.MULTI_CHECK_BOX"
+                                   [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                                   [formControlName]="formField.key"
+                                   [inputName]="formField.label | translate:lang">
+            </terra-multi-check-box>
+    
+            <ng-container *ngSwitchCase="controlTypeEnum.HORIZONTAL_CONTAINER">
                 <div class="horizontalGroup">
                     <span class="horizontalGroupLabel">{{ formField.label }}: </span>
                     <div>
@@ -86,7 +100,7 @@
                 </div>
             </ng-container>
     
-            <ng-container *ngSwitchCase="'verticalContainer'">
+            <ng-container *ngSwitchCase="controlTypeEnum.VERTICAL_CONTAINER">
                 <div class="verticalGroup">
                     <span class="verticalGroupLabel">{{ formField.label }}: </span>
                     <terra-dynamic-switch class="subSwitch"
