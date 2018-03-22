@@ -18,6 +18,8 @@ export * from './app/components/forms/select-box/terra-select-box.component';
 export * from './app/components/forms/suggestion-box/terra-suggestion-box.component';
 export * from './app/components/forms/multi-select-box/data/terra-multi-select-box-value.interface';
 export * from './app/components/forms/multi-select-box/terra-multi-select-box.component';
+export * from './app/components/forms/multi-check-box/data/terra-multi-check-box-value.interface';
+export * from './app/components/forms/multi-check-box/terra-multi-check-box.component';
 export * from './app/components/forms/input/text-area-input/terra-text-area-input.component';
 export * from './app/components/indicator/terra-indicator.component';
 export * from './app/components/layouts/info-box/terra-info-box.component';
@@ -115,5 +117,6 @@ export * from './app/components/forms/dynamic-form/enum/terra-control-type.enum'
 export * from './app/components/forms/dynamic-form/service/terra-json-to-form-field.service';
 export * from './app/helpers/terra-converter.helper';
 export * from './app/helpers/url.helper';
-export * from './app/helpers/enums/terra-placement.enum'
+export * from './app/helpers/enums/terra-placement.enum';
+export * from './app/models/terra-key-value.interface';
 export * from './app/components/forms/input/file-input/terra-file-input.component';

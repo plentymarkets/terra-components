@@ -63,7 +63,7 @@
                               [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-select-box>
             
-            <terra-date-picker *ngSwitchCase="'datePicker'"
+            <terra-date-picker *ngSwitchCase="controlTypeEnum.DATE_PICKER"
                                [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                [formControlName]="formField.key"
                                [inputName]="formField.label | translate:lang"
@@ -72,6 +72,12 @@
                                [(ngModel)]="formField.defaultValue">
             </terra-date-picker>
             
+            <terra-multi-check-box *ngSwitchCase="controlTypeEnum.MULTI_CHECK_BOX"
+                                   [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                                   [formControlName]="formField.key"
+                                   [inputName]="formField.label | translate:lang">
+            </terra-multi-check-box>
+    
             <ng-container *ngSwitchCase="'horizontalContainer'">
                 <div class="horizontalGroup">
                     <span class="horizontalGroupLabel">{{ formField.label }}: </span>

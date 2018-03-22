@@ -1,3 +1,9 @@
+# Unreleased
+
+### Feature
+* **terra-multi-check-box** new component equal to *terra-multi-select-box* but with correct ngModel two way data binding
+* **terra-multi-select-box** this component is now deprecated and will be removed in the next major release
+
 <a name="2.1.58-zlk"></a>
 # 2.1.58-zlk (20.03.2018)
 

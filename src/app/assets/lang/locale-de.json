@@ -5,6 +5,9 @@
 	"terraMultiSelectBox": {
 		"selectAll": "Alle"
 	},
+	"terraMultiCheckBox": {
+		"selectAll": "Alle"
+	},
 	"terraFileBrowser": {
 		"cancel": "Abbrechen",
 		"create": "Erstellen",
