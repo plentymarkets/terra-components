@@ -55,7 +55,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
     };
 
     private _toggleTree:boolean = false;
-    private _categoryInputValue:string = '';
+    private _categoryName:string = '';
     private _list:Array<TerraNodeInterface<CategoryTreeData>> = [];
 
     constructor(private translation:TranslationService,
@@ -65,8 +65,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     public ngAfterContentChecked():void
     {
-        if(this.categoryTreeConfig.list.length === 0 ||
-           (this.categoryTreeConfig.list.length === 1 && this.categoryTreeConfig.list[0] === this.categoryTreeConfig.currentSelectedNode))
+        if(this.categoryTreeConfig.list.length === 0)
         {
             this.categoryTreeConfig.list = this._list;
         }
@@ -104,15 +103,11 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                     if(!isNullOrUndefined(nodeToSelect))
                     {
                         this.categoryTreeConfig.currentSelectedNode = nodeToSelect;
+                        this._categoryName = this.categoryTreeConfig.currentSelectedNode.name;
                     }
-                    if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
-                    {
-                        this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
-                    }
+
                     this._value = value;
-
-                    //this.updateCompleteCategory(value);
-
+                    this.updateCompleteCategory(nodeToSelect);
                     this.onTouchedCallback();
                     this.onChangeCallback(this._value);
             });
@@ -146,7 +141,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
     {
         if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
         {
-            this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
+            this._categoryName = this.categoryTreeConfig.currentSelectedNode.name;
             this.writeValue(this.categoryTreeConfig.currentSelectedNode.id);
         }
         this._toggleTree = !this._toggleTree;
@@ -163,23 +158,23 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             tooltip:          '',
             tooltipPlacement: '',
         };
-        this._categoryInputValue = '';
+        this._categoryName = '';
         this._value = 0;
 
         this.onTouchedCallback();
         this.onChangeCallback(this._value);
     }
 
-    //private updateCompleteCategory(category:number):void
-    //{
-    //    this._completeCategory.id = category.id;
-    //    this._completeCategory.isActive = category.isActive;
-    //    this._completeCategory.isOpen = category.isOpen;
-    //    this._completeCategory.isVisible = category.isVisible;
-    //    this._completeCategory.name = category.name;
-    //    this._completeCategory.tooltip = category.tooltip;
-    //    this._completeCategory.tooltipPlacement = category.tooltipPlacement;
-    //}
+     private updateCompleteCategory(category:TerraNodeInterface<CategoryTreeData>):void
+     {
+        this._completeCategory.id = +category.id;
+        this._completeCategory.isActive = category.isActive;
+        this._completeCategory.isOpen = category.isOpen;
+        this._completeCategory.isVisible = category.isVisible;
+        this._completeCategory.name = category.name;
+        this._completeCategory.tooltip = category.tooltip;
+        this._completeCategory.tooltipPlacement = category.tooltipPlacement;
+     }
 
     private getCategoriesByParentId(parentId:number | string):() => Observable<any>
     {
@@ -200,8 +195,11 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     private addNodes(data:any, parentNodeId:number | string):void
     {
+
+        // List of Categories wich will be turned into Nodes to add to the node tree
         let entries:Array<CategoryDataInterface> = data.entries;
 
+        // Necessary for re-initialzing of the Node Tree after data was loaded
         if(this.categoryTreeConfig.list.length === 1 && this.categoryTreeConfig.list[0] === this.categoryTreeConfig.currentSelectedNode)
         {
             this.categoryTreeConfig.removeNodeById(this.categoryTreeConfig.currentSelectedNode.id);
