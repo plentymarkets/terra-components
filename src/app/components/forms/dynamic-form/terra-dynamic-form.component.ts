@@ -73,7 +73,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         }
     }
 
-    private validate():void
+    protected validate():void
     {
         if(this._formFieldControlService.dynamicFormGroup.valid)
         {
@@ -85,7 +85,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         }
     }
 
-    private onResetClick():void
+    protected onResetClick():void
     {
         this._formFieldControlService.resetForm();
     }

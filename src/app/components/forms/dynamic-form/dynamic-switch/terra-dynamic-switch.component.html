@@ -75,8 +75,7 @@
             <terra-multi-check-box *ngSwitchCase="controlTypeEnum.MULTI_CHECK_BOX"
                                    [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                    [formControlName]="formField.key"
-                                   [inputName]="formField.label | translate:lang"
-                                   [inputIsDisabled]="inputIsDisabled">
+                                   [inputName]="formField.label | translate:lang">
             </terra-multi-check-box>
     
             <ng-container *ngSwitchCase="'horizontalContainer'">
