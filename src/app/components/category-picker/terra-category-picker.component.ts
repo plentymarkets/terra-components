@@ -31,7 +31,7 @@ import { Observable } from 'rxjs/Observable';
         useExisting: forwardRef(() => TerraCategoryPickerComponent),
         multi:       true
     },
-        CategoryTreeConfig]
+                CategoryTreeConfig]
 })
 export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 {
@@ -73,7 +73,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     public ngOnInit():void
     {
-        if (isNullOrUndefined(this.inputName))
+        if(isNullOrUndefined(this.inputName))
         {
             this.inputName = this.translation.translate('terraCategoryPicker.category');
         }
@@ -98,18 +98,18 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                     this.addNodes(data, null);
                 }
 
-                    let nodeToSelect:TerraNodeInterface<CategoryTreeData> = this.categoryTreeConfig.findNodeById(value);
+                let nodeToSelect:TerraNodeInterface<CategoryTreeData> = this.categoryTreeConfig.findNodeById(value);
 
-                    if(!isNullOrUndefined(nodeToSelect))
-                    {
-                        this.categoryTreeConfig.currentSelectedNode = nodeToSelect;
-                        this._categoryName = this.categoryTreeConfig.currentSelectedNode.name;
-                    }
+                if(!isNullOrUndefined(nodeToSelect))
+                {
+                    this.categoryTreeConfig.currentSelectedNode = nodeToSelect;
+                    this._categoryName = this.categoryTreeConfig.currentSelectedNode.name;
+                }
 
-                    this._value = value;
-                    this.updateCompleteCategory(nodeToSelect);
-                    this.onTouchedCallback();
-                    this.onChangeCallback(this._value);
+                this._value = value;
+                this.updateCompleteCategory(nodeToSelect);
+                this.onTouchedCallback();
+                this.onChangeCallback(this._value);
             });
         }
     }
@@ -165,8 +165,8 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         this.onChangeCallback(this._value);
     }
 
-     private updateCompleteCategory(category:TerraNodeInterface<CategoryTreeData>):void
-     {
+    private updateCompleteCategory(category:TerraNodeInterface<CategoryTreeData>):void
+    {
         this._completeCategory.id = +category.id;
         this._completeCategory.isActive = category.isActive;
         this._completeCategory.isOpen = category.isOpen;
@@ -174,7 +174,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         this._completeCategory.name = category.name;
         this._completeCategory.tooltip = category.tooltip;
         this._completeCategory.tooltipPlacement = category.tooltipPlacement;
-     }
+    }
 
     private getCategoriesByParentId(parentId:number | string):() => Observable<any>
     {
@@ -196,10 +196,10 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
     private addNodes(data:any, parentNodeId:number | string):void
     {
 
-        // List of Categories wich will be turned into Nodes to add to the node tree
+        // List of Categories which will be turned into Nodes to add to the node tree
         let entries:Array<CategoryDataInterface> = data.entries;
 
-        // Necessary for re-initialzing of the Node Tree after data was loaded
+        // Necessary for re-initializing of the Node Tree after data was loaded
         if(this.categoryTreeConfig.list.length === 1 && this.categoryTreeConfig.list[0] === this.categoryTreeConfig.currentSelectedNode)
         {
             this.categoryTreeConfig.removeNodeById(this.categoryTreeConfig.currentSelectedNode.id);
@@ -213,6 +213,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                 let categoryData:CategoryDataInterface = entry;
                 let categoryDetail:CategoryDetailDataInterface = null;
 
+                // If the node hasn't already been added the routine will be started
                 if(isNullOrUndefined(this.categoryTreeConfig.findNodeById(categoryData.id)))
                 {
                     if(categoryData.type === 'container')
@@ -224,6 +225,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                         categoryDetail = categoryData.details[0];
                     }
 
+                    // Create Node to add to tree later
                     let childNode:TerraNodeInterface<CategoryTreeData> = {
                         id:               categoryData.id,
                         name:             categoryDetail.name,
@@ -234,11 +236,13 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
                     let parentNode:TerraNodeInterface<CategoryTreeData>;
 
+                    // If the category has a parent, the parent node is created from the parentId in the category data
                     if(!isNullOrUndefined(categoryData.parentCategoryId))
                     {
                         parentNode = this.categoryTreeConfig.findNodeById(categoryData.parentCategoryId);
                     }
 
+                    // If the parentNode is still null it is tried to create the parent node out of the given id
                     if(isNullOrUndefined(parentNode))
                     {
                         if(isNullOrUndefined(parentNodeId))
@@ -251,16 +255,18 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                         }
                     }
 
-
+                    // If the category has children the lazy-loading method will be added to the parent node
                     if(categoryData.hasChildren)
                     {
                         childNode.onLazyLoad = this.getCategoriesByParentId(childNode.id);
                     }
+
+                    // The finished node is added to the node tree
                     this.categoryTreeConfig.addNode(childNode, parentNode);
                 }
             });
         }
-
+        // Current List is updated
         this._list = this.categoryTreeConfig.list;
     }
 
