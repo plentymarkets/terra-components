@@ -102,4 +102,10 @@ export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
     {
         this._onTouchedCallback = fn;
     }
+
+    public focus():void
+    {
+        document.getElementsByClassName('ql-editor')[0].id = 'editor-focused';
+        document.getElementById('editor-focused').focus();
+    }
 }
