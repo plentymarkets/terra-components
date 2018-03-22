@@ -112,6 +112,7 @@ export * from './app/components/forms/dynamic-form/data/terra-form-field-vertica
 export * from './app/components/forms/dynamic-form/data/terra-form-field-conditional-container';
 export * from './app/components/forms/dynamic-form/data/terra-form-field-check-box';
 export * from './app/components/forms/dynamic-form/data/terra-form-field-date-picker';
+export * from './app/components/forms/dynamic-form/data/terra-form-field-category-picker';
 export * from './app/components/forms/dynamic-form/handler/terra-dynamic-form-functions.handler';
 export * from './app/components/forms/dynamic-form/enum/terra-control-type.enum';
 export * from './app/components/forms/dynamic-form/service/terra-json-to-form-field.service';
@@ -120,3 +121,6 @@ export * from './app/helpers/url.helper';
 export * from './app/helpers/enums/terra-placement.enum';
 export * from './app/models/terra-key-value.interface';
 export * from './app/components/forms/input/file-input/terra-file-input.component';
+export * from './app/components/category-picker/terra-category-picker.component';
+export * from './app/components/category-picker/service/terra-category-picker-base.service';
+
