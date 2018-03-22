@@ -1,4 +1,5 @@
-# Unreleased
+<a name="2.1.60-zlk"></a>
+# 2.1.60-zlk (22.03.2018)
 
 ### Feature
 * **terra-multi-check-box** new component equal to *terra-multi-select-box* but with correct ngModel two way data binding
