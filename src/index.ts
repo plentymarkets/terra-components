@@ -124,3 +124,6 @@ export * from './app/helpers/url.helper';
 export * from './app/helpers/enums/terra-placement.enum';
 export * from './app/models/terra-key-value.interface';
 export * from './app/components/forms/input/file-input/terra-file-input.component';
+export * from './app/components/category-picker/terra-category-picker.component';
+export * from './app/components/category-picker/service/terra-category-picker-base.service';
+

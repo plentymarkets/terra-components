@@ -5,7 +5,6 @@ import {
 import { FormGroup } from '@angular/forms';
 import { TerraFormFieldBase } from '../data/terra-form-field-base';
 import { TerraFormFieldConditionalContainer } from '../data/terra-form-field-conditional-container';
-import { Observable } from 'rxjs/Observable';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
@@ -18,6 +17,9 @@ import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 })
 export class TerraDynamicSwitchComponent
 {
+    // Auf TerraFormFieldConditionalBean umbauen
+    // private readonly DELAY_FOR_CHANGE_DETECTION:number = 1;
+
     @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
     @Input() public inputFormGroup:FormGroup;
     @Input() public inputSubSwitch:boolean;
@@ -37,34 +39,34 @@ export class TerraDynamicSwitchComponent
     // Auf TerraFormFieldConditionalBean umbauen
     private onConditionChanged(formField:TerraFormFieldConditionalContainer):void
     {
-        Observable.of(null).delay(this.DELAY_FOR_CHANGE_DETECTION).subscribe(() =>
-        {
-            for(let conditionalEntry in formField.conditionalEntries)
-            {
-                if(formField.conditionalEntries.hasOwnProperty(conditionalEntry))
-                {
-                    if(this.inputFormGroup.get(formField.key).value === conditionalEntry)
-                    {
-                        formField.conditionalEntries[conditionalEntry].forEach((entry:TerraFormFieldBase<any>) =>
-                        {
-                            this.inputFormGroup.get(entry.key).enable({
-                                onlySelf:  true,
-                                emitEvent: true
-                            });
-                        });
-                    }
-                    else
-                    {
-                        formField.conditionalEntries[conditionalEntry].forEach((entry:TerraFormFieldBase<any>) =>
-                        {
-                            this.inputFormGroup.get(entry.key).disable({
-                                onlySelf:  true,
-                                emitEvent: true
-                            });
-                        });
-                    }
-                }
-            }
-        });
+        // Observable.of(null).delay(this.DELAY_FOR_CHANGE_DETECTION).subscribe(() =>
+        // {
+        //     for(let conditionalEntry in formField.conditionalEntries)
+        //     {
+        //         if(formField.conditionalEntries.hasOwnProperty(conditionalEntry))
+        //         {
+        //             if(this.inputFormGroup.get(formField.key).value === conditionalEntry)
+        //             {
+        //                 formField.conditionalEntries[conditionalEntry].forEach((entry:TerraFormFieldBase<any>) =>
+        //                 {
+        //                     this.inputFormGroup.get(entry.key).enable({
+        //                         onlySelf:  true,
+        //                         emitEvent: true
+        //                     });
+        //                 });
+        //             }
+        //             else
+        //             {
+        //                 formField.conditionalEntries[conditionalEntry].forEach((entry:TerraFormFieldBase<any>) =>
+        //                 {
+        //                     this.inputFormGroup.get(entry.key).disable({
+        //                         onlySelf:  true,
+        //                         emitEvent: true
+        //                     });
+        //                 });
+        //             }
+        //         }
+        //     }
+        // });
     }
 }

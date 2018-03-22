@@ -8,17 +8,17 @@ import { TerraMultiCheckBoxValueInterface } from '../../multi-check-box/data/ter
 
 export interface TerraFormFieldMultiCheckBoxOptions extends TerraFormFieldBaseOptions<any>
 {
-    selectBoxValues?:Array<TerraMultiCheckBoxValueInterface>;
+    checkBoxValues?:Array<TerraMultiCheckBoxValueInterface>;
 }
 
 export class TerraFormFieldMultiCheckBox extends TerraFormFieldBase<any>
 {
-    public selectBoxValues:Array<TerraMultiSelectBoxValueInterface>;
+    public checkBoxValues:Array<TerraMultiSelectBoxValueInterface>;
 
     constructor(key:string, label:string, required:boolean, options:TerraFormFieldMultiCheckBoxOptions = {})
     {
         super(key, TerraControlTypeEnum.MULTI_CHECK_BOX, label, required, options);
 
-        this.defaultValue = options['selectBoxValues'] || [];
+        this.defaultValue = options['checkBoxValues'] || [];
     }
 }
