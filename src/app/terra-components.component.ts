@@ -24,6 +24,9 @@ export class TerraComponentsComponent extends Translation implements OnInit
     {
         super(translation);
 
+
+        let test = 123;
+
         // You need this small hack in order to catch application root view container ref
         this._viewContainerRef = viewContainerRef;
 
