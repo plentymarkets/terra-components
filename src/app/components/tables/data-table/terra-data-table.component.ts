@@ -261,9 +261,14 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             return;
         }
 
-        this._selectedRowList = [];
         this._requestPending = true;
-        restCall.subscribe(this.onSuccessFunction, error =>
+        restCall.subscribe(
+            (res:I) =>
+            {
+                this._selectedRowList = [];
+                this.onSuccessFunction(res);
+            },
+            (error:any) =>
             {
                 if(error.status == 401 || error.status == 500)
                 {
