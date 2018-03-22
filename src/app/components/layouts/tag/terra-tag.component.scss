@@ -49,3 +49,11 @@
 {
     --tag-top-margin: 0;
 }
+
+.menu-entry-tag
+{
+    margin-left: 10px;
+    margin-top: 0;
+    background-color: $alert-red;
+    padding: 3px;
+}
