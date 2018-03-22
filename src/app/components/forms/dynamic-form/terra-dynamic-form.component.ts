@@ -111,7 +111,6 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
                 .debounceTime(1000)
                 .subscribe((value:any) =>
                 {
-                    console.log(value);
                     this.inputFormFunctions.onValueChangedCallback(value);
                 });
         }

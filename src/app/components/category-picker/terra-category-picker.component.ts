@@ -3,14 +3,10 @@ import {
     Component,
     forwardRef,
     Input,
-    OnChanges,
     OnInit
 } from '@angular/core';
 import { TranslationService } from 'angular-l10n';
-import {
-    ControlValueAccessor,
-    NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraCategoryPickerBaseService } from './service/terra-category-picker-base.service';
 import { CategoryTreeConfig } from './config/category-tree.config';
 import { TerraNodeInterface } from '../../../';
@@ -39,9 +35,16 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
     /**
      * @description Service, that is used to request the category data from the server
      */
-    @Input() public inputCategoryService:TerraCategoryPickerBaseService;
-    @Input() public inputIsDisabled:boolean;
-    @Input() public inputName:string;
+    @Input()
+    public inputCategoryService:TerraCategoryPickerBaseService;
+
+    @Input()
+    public inputIsDisabled:boolean;
+
+    @Input()
+    public inputName:string;
+
+    public toggleTree:boolean = false;
 
     private _value:number = 0;
     private _completeCategory:CategoryValueInterface = {
@@ -54,7 +57,6 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         tooltipPlacement: '',
     };
 
-    private _toggleTree:boolean = false;
     private _categoryName:string = '';
     private _list:Array<TerraNodeInterface<CategoryTreeData>> = [];
 
@@ -134,7 +136,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     public showTree():void
     {
-        this._toggleTree = !this._toggleTree;
+        this.toggleTree = !this.toggleTree;
     }
 
     public onSelectNode():void
@@ -144,7 +146,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             this._categoryName = this.categoryTreeConfig.currentSelectedNode.name;
             this.writeValue(this.categoryTreeConfig.currentSelectedNode.id);
         }
-        this._toggleTree = !this._toggleTree;
+        this.toggleTree = !this.toggleTree;
     }
 
     public reset():void

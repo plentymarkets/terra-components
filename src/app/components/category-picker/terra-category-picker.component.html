@@ -5,7 +5,7 @@
                       [(ngModel)]="_categoryName"
                       (click)="showTree()">
     </terra-text-input>
-    <div *ngIf="_toggleTree">
+    <div *ngIf="toggleTree">
         <terra-node-tree [inputShowSearch]="false"
                          [inputConfig]="categoryTreeConfig">
         </terra-node-tree>
