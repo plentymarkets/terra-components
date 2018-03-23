@@ -1,3 +1,8 @@
+#Unreleased
+
+### Bug Fixes
+* **terra-multi-split-view**  fix issue when view inputs contain circular references
+
 <a name="2.1.60-zlk"></a>
 # 2.1.60-zlk (22.03.2018)
 
