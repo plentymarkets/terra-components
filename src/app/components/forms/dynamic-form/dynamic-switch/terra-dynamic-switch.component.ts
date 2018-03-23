@@ -27,7 +27,7 @@ export class TerraDynamicSwitchComponent
     public inputFormGroup:FormGroup;
 
     @Input()
-    public inputSubSwitch:boolean
+    public inputSubSwitch:boolean;
 
     @Input()
     public inputIsDisabled:boolean;
