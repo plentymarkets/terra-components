@@ -25,6 +25,7 @@ export class TerraNodeComponent<D> implements OnInit
     @Input() inputConfig:TerraNodeTreeConfig<D>;
 
     private _tooltip:string;
+    private _tooltipPlacement:string = 'right';
 
     constructor()
     {
@@ -40,6 +41,11 @@ export class TerraNodeComponent<D> implements OnInit
         {
             this._tooltip = this.inputNode.tooltip;
         }
+        if(this.inputNode.tooltipPlacement)
+        {
+            this._tooltipPlacement = this.inputNode.tooltipPlacement;
+        }
+
     }
 
     //handle the node click

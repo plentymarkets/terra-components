@@ -39,7 +39,7 @@ export class TerraTextInputComponent extends TerraInputComponent
     /**
      * @description If true, the input will check if the input is a valid iban.
      * */
-    @Input() public inputIsIban:boolean = false;
+    @Input() public inputIsIban:boolean;
 
     /**
      * @description If true, the value cannot be changed. Default false.
@@ -86,6 +86,8 @@ export class TerraTextInputComponent extends TerraInputComponent
 
         // generate the id of the input instance
         this._id = `text-input_#${nextId++}`;
+        
+        this.inputIsIban = false;
     }
 
     public onInput():void

@@ -81,6 +81,7 @@ import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
 import { TerraConverterHelper } from './helpers/terra-converter.helper';
+import { TerraCategoryPickerBaseService } from './components/category-picker/service/terra-category-picker-base.service';
 import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
 import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
 //### import of terra-component examples
@@ -184,6 +185,7 @@ import { TerraCategoryPickerComponent } from './components/category-picker/terra
         TerraNoteComponent,
         TerraNodeTreeComponent,
         TerraNodeComponent,
+        TerraCategoryPickerComponent,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
         TerraCategoryPickerComponent,
@@ -329,10 +331,10 @@ import { TerraCategoryPickerComponent } from './components/category-picker/terra
         TerraNoteEditorComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
+        TerraCategoryPickerComponent,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
         TerraCategoryPickerComponent,
-
 
         //### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -399,7 +401,7 @@ import { TerraCategoryPickerComponent } from './components/category-picker/terra
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
         TerraFileBrowserService,
-        TerraConverterHelper
+        TerraConverterHelper,
     ],
     bootstrap:       [
         TerraComponentsComponent

@@ -1,4 +1,5 @@
-<div class="search-wrapper">
+<div *ngIf="inputShowSearch"
+     class="search-wrapper">
     <div *ngIf="isTreeDisabled" class="searchDisabled"></div>
     <terra-text-input *ngIf="inputShowSearch"
                       [inputName]="'terraNodeTree.search' | translate:lang"
