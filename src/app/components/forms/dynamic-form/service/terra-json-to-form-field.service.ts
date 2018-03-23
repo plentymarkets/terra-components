@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { TerraFormFieldBase } from '../data/terra-form-field-base';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 import { TerraFormFieldInputText } from '../data/terra-form-field-input-text';

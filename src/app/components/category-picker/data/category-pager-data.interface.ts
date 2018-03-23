@@ -5,8 +5,8 @@ import { CategoryDataInterface } from './category-data.interface';
  */
 export interface CategoryPagerDataInterface
 {
-    page:number,
-    totalsCount:number,
-    isLastPage:boolean,
-    entries:Array<CategoryDataInterface>
+    page:number;
+    totalsCount:number;
+    isLastPage:boolean;
+    entries:Array<CategoryDataInterface>;
 }

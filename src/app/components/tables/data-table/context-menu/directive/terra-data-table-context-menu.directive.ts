@@ -17,7 +17,7 @@ import { TerraBaseData } from '../../../../data/terra-base.data';
 export class TerraDataTableContextMenuDirective<D extends TerraBaseData> implements OnInit
 {
     @Input('contextMenu')
-     inputLinks:Array<TerraDataTableContextMenuEntryInterface<D>>;
+    public inputLinks:Array<TerraDataTableContextMenuEntryInterface<D>>;
 
     constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
     {

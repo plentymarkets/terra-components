@@ -31,7 +31,7 @@ import { Observable } from 'rxjs/Observable';
         useExisting: forwardRef(() => TerraCategoryPickerComponent),
         multi:       true
     },
-        CategoryTreeConfig]
+                CategoryTreeConfig]
 })
 export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 {
@@ -74,7 +74,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     public ngOnInit():void
     {
-        if (isNullOrUndefined(this.inputName))
+        if(isNullOrUndefined(this.inputName))
         {
             this.inputName = this.translation.translate('terraCategoryPicker.category');
         }
@@ -99,22 +99,22 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                     this.addNodes(data, null);
                 }
 
-                    let nodeToSelect:TerraNodeInterface<CategoryTreeData> = this.categoryTreeConfig.findNodeById(value);
+                let nodeToSelect:TerraNodeInterface<CategoryTreeData> = this.categoryTreeConfig.findNodeById(value);
 
-                    if(!isNullOrUndefined(nodeToSelect))
-                    {
-                        this.categoryTreeConfig.currentSelectedNode = nodeToSelect;
-                    }
-                    if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
-                    {
-                        this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
-                    }
-                    this._value = value;
+                if(!isNullOrUndefined(nodeToSelect))
+                {
+                    this.categoryTreeConfig.currentSelectedNode = nodeToSelect;
+                }
+                if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
+                {
+                    this._categoryInputValue = this.categoryTreeConfig.currentSelectedNode.name;
+                }
+                this._value = value;
 
-                    //this.updateCompleteCategory(value);
+                // this.updateCompleteCategory(value);
 
-                    this.onTouchedCallback();
-                    this.onChangeCallback(this._value);
+                this.onTouchedCallback();
+                this.onChangeCallback(this._value);
             });
         }
     }
@@ -155,12 +155,12 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
     public reset():void
     {
         this.categoryTreeConfig.currentSelectedNode = {
-            id:               null,
-            isActive:         null,
-            isOpen:           null,
-            isVisible:        null,
-            name:             '',
-            tooltip:          '',
+            id:        null,
+            isActive:  null,
+            isOpen:    null,
+            isVisible: null,
+            name:      '',
+            tooltip:   '',
         };
         this._categoryInputValue = '';
         this._value = 0;
@@ -169,8 +169,8 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         this.onChangeCallback(this._value);
     }
 
-    //private updateCompleteCategory(category:number):void
-    //{
+    // private updateCompleteCategory(category:number):void
+    // {
     //    this._completeCategory.id = category.id;
     //    this._completeCategory.isActive = category.isActive;
     //    this._completeCategory.isOpen = category.isOpen;
@@ -178,7 +178,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
     //    this._completeCategory.name = category.name;
     //    this._completeCategory.tooltip = category.tooltip;
     //    this._completeCategory.tooltipPlacement = category.tooltipPlacement;
-    //}
+    // }
 
     private getCategoriesByParentId(parentId:number | string):() => Observable<any>
     {
@@ -226,11 +226,11 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                     }
 
                     let childNode:TerraNodeInterface<CategoryTreeData> = {
-                        id:               categoryData.id,
-                        name:             categoryDetail.name,
-                        isVisible:        true,
-                        tooltip:          'ID: ' + categoryData.id,
-                        //tooltipPlacement: 'top',
+                        id:        categoryData.id,
+                        name:      categoryDetail.name,
+                        isVisible: true,
+                        tooltip:   'ID: ' + categoryData.id,
+                        // tooltipPlacement: 'top',
                     };
 
                     let parentNode:TerraNodeInterface<CategoryTreeData>;
