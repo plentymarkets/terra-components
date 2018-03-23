@@ -63,9 +63,12 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
                 {
                     $(this).find('li').each(function():void
                     {
+                        /* tslint:disable:no-var-keyword */
+                        /* var is requires here (scope) */
                         var viewContainer:JQuery = $(this).closest('.terra-breadcrumbs');
                         var viewContainerOffsetLeft:number = viewContainer.offset().left;
                         var viewContainerWidth:number = viewContainer.width();
+                        /* tslint:enable:no-var-keyword */
 
                         $(this).off();
                         $(this).mouseenter(function():void

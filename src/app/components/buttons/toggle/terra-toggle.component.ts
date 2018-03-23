@@ -11,17 +11,17 @@ import {
 } from '@angular/forms';
 import { TerraPlacementEnum } from '../../../../';
 
-export const TOGGLE_CONTROL_VALUE_ACCESSOR:any = {
-    provide:     NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TerraToggleComponent),
-    multi:       true
-};
-
 @Component({
     selector:  'terra-toggle',
     styles:    [require('./terra-toggle.component.scss')],
     template:  require('./terra-toggle.component.html'),
-    providers: [TOGGLE_CONTROL_VALUE_ACCESSOR]
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraToggleComponent),
+            multi:       true
+        }
+    ]
 })
 export class TerraToggleComponent implements ControlValueAccessor
 {

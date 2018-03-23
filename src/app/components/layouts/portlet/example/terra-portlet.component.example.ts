@@ -28,6 +28,6 @@ export class TerraPortletComponentExample implements OnInit
             {
                 icon:          'icon-edit',
                 clickFunction: ():void => TerraPortletComponentExample.buttonClickFunction()
-            })
+            });
     }
 }

@@ -118,7 +118,9 @@ import { TerraNoResultNoticeComponentExample } from './components/no-result/exam
 import { TerraButtonWithOptionsComponentExample } from './components/buttons/button-with-options/example/terra-button-with-options.component.example';
 import { TerraInputComponentExample } from './components/forms/input/example/terra-input.component.example';
 import { TerraFilterComponentExample } from './components/filter/example/terra-filter.component.example';
-import { TerraDataTableContextMenuComponentExample } from './components/tables/data-table/context-menu/example/terra-data-table-context-menu.component.example';
+import {
+    TerraDataTableContextMenuComponentExample
+} from './components/tables/data-table/context-menu/example/terra-data-table-context-menu.component.example';
 import { TerraNoteEditorComponentExample } from './components/editors/note-editor/example/terra-note-editor.component.example';
 import { TerraNoteComponentExample } from './components/note/example/terra-note.component.example';
 import { TerraNodeTreeComponentExample } from './components/tree/node-tree/example/terra-node-tree.component.example';

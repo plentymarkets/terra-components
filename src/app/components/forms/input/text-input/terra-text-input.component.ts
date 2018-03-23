@@ -100,7 +100,7 @@ export class TerraTextInputComponent extends TerraInputComponent
 
     public focusNativeInput():void
     {
-        setTimeout(()=>
+        setTimeout(() =>
         {
             let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
             input.focus();
@@ -109,7 +109,7 @@ export class TerraTextInputComponent extends TerraInputComponent
 
     public selectNativeInput():void
     {
-        setTimeout(()=>
+        setTimeout(() =>
         {
             let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
             input.select();

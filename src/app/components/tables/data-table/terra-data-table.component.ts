@@ -114,13 +114,13 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     public pagingSize:Array<TerraSelectBoxValueInterface>;
     public onSuccessFunction:(res:I) => void;
     public defaultPagingSize:number;
+    public TerraRefTypeEnum:object = TerraRefTypeEnum;
     private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
     private _isHeaderCheckboxChecked:boolean = false;
     private _initialLoadingMessage:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     private _langPrefix:string = 'terraDataTable';
     private _requestPending:boolean;
-    private _refTypeEnum = TerraRefTypeEnum;
 
     /**
      * @deprecated

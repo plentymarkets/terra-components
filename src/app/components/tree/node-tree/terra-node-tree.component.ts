@@ -28,12 +28,13 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
     @Input()
     public inputShowSearch:boolean;
 
-    protected _searchValue:string;
-
     /**
      * @description Disables or enables the System Tree
      */
-    @Input() isTreeDisabled:boolean;
+    @Input()
+    public isTreeDisabled:boolean;
+
+    protected _searchValue:string;
 
     constructor(private _translation:TranslationService)
     {

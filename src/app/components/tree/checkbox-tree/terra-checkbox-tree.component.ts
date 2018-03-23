@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { TerraBaseTreeComponent } from '../base/terra-base-tree.component';
 import { TerraCheckboxLeafInterface } from '../leaf/terra-checkbox-leaf.interface';
+import { TerraCheckboxTreeLeafState } from './data/terra-checkbox-tree-leaf-state';
 
 @Component({
     selector: 'terra-checkbox-tree',
@@ -113,7 +114,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         if(leaf.leafParent)
         {
             let parentLeaf:TerraCheckboxLeafInterface = leaf.leafParent;
-            let parentLeafState:ParentLeafState = this.getParentLeafState(parentLeaf);
+            let parentLeafState:TerraCheckboxTreeLeafState = this.getParentLeafState(parentLeaf);
 
             // All checkboxes on this leaf level are checked
             if(parentLeafState.allChildrenAreChecked)
@@ -147,9 +148,9 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         leaf.checkboxChecked = checkboxChecked;
     }
 
-    private getParentLeafState(leaf:TerraCheckboxLeafInterface):ParentLeafState
+    private getParentLeafState(leaf:TerraCheckboxLeafInterface):TerraCheckboxTreeLeafState
     {
-        let parentLeafState:ParentLeafState = new ParentLeafState();
+        let parentLeafState:TerraCheckboxTreeLeafState = new TerraCheckboxTreeLeafState();
 
         for(let subLeaf of leaf.subLeafList)
         {
@@ -194,7 +195,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         this.appendParentsToLeafList(this.inputLeafList);
     }
 
-    ngOnChanges(changes:SimpleChanges):void
+    public ngOnChanges(changes:SimpleChanges):void
     {
         if (changes['inputLeafList'])
         {
@@ -214,9 +215,4 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
     }
 }
 
-export class ParentLeafState
-{
-    public allChildrenAreChecked:boolean = true;
-    public noChildrenAreChecked:boolean = true;
-    public isIndeterminate:boolean = false;
-}
+

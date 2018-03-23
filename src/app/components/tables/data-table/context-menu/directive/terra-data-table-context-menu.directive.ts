@@ -1,5 +1,6 @@
 import {
     Directive,
+    HostListener,
     Input,
     OnInit
 } from '@angular/core';
@@ -12,22 +13,17 @@ import { TerraBaseData } from '../../../../data/terra-base.data';
  */
 @Directive({
     selector: '[contextMenu]',
-    host:     {'(contextmenu)': 'rightClicked($event)'}
 })
 export class TerraDataTableContextMenuDirective<D extends TerraBaseData> implements OnInit
 {
     @Input('contextMenu')
-    public inputLinks:Array<TerraDataTableContextMenuEntryInterface<D>>;
+     inputLinks:Array<TerraDataTableContextMenuEntryInterface<D>>;
 
     constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
     {
     }
 
-    public ngOnInit():void
-    {
-        this._contextMenuService.init.next(this.inputLinks);
-    }
-
+    @HostListener('contextmenu')
     public rightClicked(event:MouseEvent):void
     {
         this._contextMenuService.show.next({
@@ -35,5 +31,10 @@ export class TerraDataTableContextMenuDirective<D extends TerraBaseData> impleme
             obj:   this.inputLinks
         });
         event.preventDefault();
+    }
+
+    public ngOnInit():void
+    {
+        this._contextMenuService.init.next(this.inputLinks);
     }
 }
