@@ -32,7 +32,7 @@
                 </terra-text-area-input>
                 
                 <terra-number-input *ngSwitchCase="controlTypeEnum.INPUT_NUMBER"
-                                    [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                                    [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                                     [formControlName]="formField.key"
                                     [inputName]="formField.label  | translate:lang"
                                     [inputIsRequired]="formField.required"
@@ -48,7 +48,7 @@
                 </terra-checkbox>
                 
                 <terra-double-input *ngSwitchCase="controlTypeEnum.INPUT_DOUBLE"
-                                    [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                                    [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                                     [formControlName]="formField.key"
                                     [inputName]="formField.label  | translate:lang"
                                     [inputIsRequired]="formField.required"
@@ -60,7 +60,7 @@
                 </terra-double-input>
                 
                 <terra-category-picker *ngSwitchCase="controlTypeEnum.CATEGORY_PICKER"
-                                       [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                                       [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                                        [formControlName]="formField.key"
                                        [inputName]="formField.label | translate:lang"
                                        [inputIsDisabled]="inputIsDisabled"
@@ -68,7 +68,7 @@
                 </terra-category-picker>
                 
                 <terra-select-box *ngSwitchCase="controlTypeEnum.SELECT_BOX"
-                                  [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                                  [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                                   [formControlName]="formField.key"
                                   [inputName]="formField.label | translate:lang"
                                   [inputIsRequired]="formField.required"
@@ -79,7 +79,7 @@
                 </terra-select-box>
                 
                 <terra-date-picker *ngSwitchCase="controlTypeEnum.DATE_PICKER"
-                                   [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                                   [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                                    [formControlName]="formField.key"
                                    [inputName]="formField.label | translate:lang"
                                    [inputIsRequired]="formField.required"
@@ -88,7 +88,7 @@
                 </terra-date-picker>
                 
                 <terra-multi-check-box *ngSwitchCase="controlTypeEnum.MULTI_CHECK_BOX"
-                                       [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
+                                       [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                                        [formControlName]="formField.key"
                                        [inputName]="formField.label | translate:lang">
                 </terra-multi-check-box>
