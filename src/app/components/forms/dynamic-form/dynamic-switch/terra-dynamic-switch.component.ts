@@ -27,9 +27,7 @@ export class TerraDynamicSwitchComponent
 
 
     // Necessary for using enum in html
-    public controlTypeEnum:any = TerraControlTypeEnum;
-
-    private readonly DELAY_FOR_CHANGE_DETECTION:number = 1;
+    protected controlTypeEnum:any = TerraControlTypeEnum;
 
     constructor()
     {
