@@ -6,6 +6,10 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
+import {
+    isNull,
+    isUndefined
+} from 'util';
 
 /** @deprecated - please use `TerraMultiSplitViewComponent` instead */
 @Component({
@@ -17,12 +21,18 @@ import { TerraSplitViewInterface } from './data/terra-split-view.interface';
 })
 export class TerraSplitViewComponent implements OnChanges, OnDestroy
 {
-    @Input() inputModules:Array<TerraSplitViewInterface>;
-    @Input() inputShowBreadcrumbs:boolean;
-    @Input() inputUpdateViewport:boolean;
-    private _breadCrumbsPath:string;
+    public static ANIMATION_SPEED:number = 1000; // ms
 
-    public static ANIMATION_SPEED = 1000; // ms
+    @Input()
+    public inputModules:Array<TerraSplitViewInterface>;
+
+    @Input()
+    public inputShowBreadcrumbs:boolean;
+
+    @Input()
+    public inputUpdateViewport:boolean;
+
+    private _breadCrumbsPath:string;
 
     constructor()
     {
@@ -31,39 +41,42 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
         this.inputUpdateViewport = true;
     }
 
-    ngOnDestroy()
+    public ngOnDestroy():void
     {
         this.inputModules.splice(0, this.inputModules.length);
     }
 
-    ngOnChanges(changes:SimpleChanges)
+    public ngOnChanges(changes:SimpleChanges):void
     {
         if(this.inputUpdateViewport)
         {
-            if(changes["inputModules"].currentValue !== undefined && changes["inputModules"].currentValue.length > 0)
+            if(!isUndefined(changes['inputModules'].currentValue) && changes['inputModules'].currentValue.length > 0)
             {
-                let currentModule = this.inputModules[this.inputModules.length - 1];
-                this.updateViewport(currentModule.mainComponentName + "_" + currentModule.instanceKey);
+                let currentModule:TerraSplitViewInterface = this.inputModules[this.inputModules.length - 1];
+                this.updateViewport(currentModule.mainComponentName + '_' + currentModule.instanceKey);
             }
 
             // init breadcrumb sliding
-            setTimeout(function()
+            setTimeout(function():void
             {
-                $('.terra-breadcrumbs').each(function()
+                $('.terra-breadcrumbs').each(function():void
                 {
-                    $(this).find('li').each(function()
+                    $(this).find('li').each(function():void
                     {
-                        var viewContainer = $(this).closest('.terra-breadcrumbs');
-                        var viewContainerOffsetLeft = viewContainer.offset().left;
-                        var viewContainerWidth = viewContainer.width();
+                        /* tslint:disable:no-var-keyword */
+                        /* var is requires here (scope) */
+                        var viewContainer:JQuery = $(this).closest('.terra-breadcrumbs');
+                        var viewContainerOffsetLeft:number = viewContainer.offset().left;
+                        var viewContainerWidth:number = viewContainer.width();
+                        /* tslint:enable:no-var-keyword */
 
                         $(this).off();
-                        $(this).mouseenter(function()
+                        $(this).mouseenter(function():void
                         {
-                            var elementWidth = $(this).width();
-                            var elementOffsetLeft = $(this).offset().left;
-                            var viewContainerScrollLeft = viewContainer.scrollLeft();
-                            var offset = 0;
+                            let elementWidth:number = $(this).width();
+                            let elementOffsetLeft:number = $(this).offset().left;
+                            let viewContainerScrollLeft:number = viewContainer.scrollLeft();
+                            let offset:number = 0;
 
                             if(elementOffsetLeft < viewContainer.offset().left)
                             {
@@ -77,6 +90,7 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
                             {
                                 return;
                             }
+
                             viewContainer.stop();
                             viewContainer.animate({scrollLeft: offset}, 1200);
                         });
@@ -88,17 +102,17 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
 
     private updateViewport(id:string):void
     {
-        setTimeout(function()
+        setTimeout(function():void
         {
-            let anchor = $('#' + id);
-            let breadcrumb = $('.' + id);
-            let breadCrumbContainer = breadcrumb.closest('.terra-breadcrumbs');
-            let viewContainer = anchor.parent();
-            let offset = 3;
-            let prevSplitView = breadcrumb.closest('.view').prev();
+            let anchor:JQuery = $('#' + id);
+            let breadcrumb:JQuery = $('.' + id);
+            let breadCrumbContainer:JQuery = breadcrumb.closest('.terra-breadcrumbs');
+            let viewContainer:JQuery = anchor.parent();
+            let offset:number = 3;
+            let prevSplitView:JQuery = breadcrumb.closest('.view').prev();
 
             // update breadcrumbs
-            breadcrumb.closest('.terra-breadcrumbs').find('div').each(function()
+            breadcrumb.closest('.terra-breadcrumbs').find('div').each(function():void
             {
                 $(this).removeClass('active');
             });
@@ -106,7 +120,7 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
             breadcrumb.addClass('active');
 
             // focus breadcrumbs
-            if(breadcrumb[0] != null)
+            if(!isNull(breadcrumb[0]))
             {
                 breadCrumbContainer.stop();
                 breadCrumbContainer.animate(
@@ -122,13 +136,13 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
             }
 
             // offset fix for navigator
-            if(prevSplitView[0] != null)
+            if(!isNull(prevSplitView[0]))
             {
                 offset = offset + prevSplitView.width() + (3 * offset);
             }
 
             // offset fix for overlay
-            if($($(anchor[0].closest('.hasSplitView')).find(anchor))[0] != null)
+            if(!isNull($($(anchor[0].closest('.hasSplitView')).find(anchor))[0]))
             {
                 offset = offset + ($(window).width() / 2 - viewContainer.width() / 2);
             }

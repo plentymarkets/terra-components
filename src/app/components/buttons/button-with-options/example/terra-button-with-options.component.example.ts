@@ -1,7 +1,7 @@
 import {
     Component,
     OnInit
-} from "@angular/core";
+} from '@angular/core';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { TerraSimpleTableCellInterface } from '../../../tables/simple/cell/terra-simple-table-cell.interface';
 import { TerraSimpleTableRowInterface } from '../../../tables/simple/row/terra-simple-table-row.interface';
@@ -19,11 +19,7 @@ export class TerraButtonWithOptionsComponentExample implements OnInit
     private _simpleTableRowList:Array<TerraSimpleTableRowInterface<any>> = [];
     private _listEntryCounter:number = 0;
 
-    public constructor()
-    {
-    }
-
-    ngOnInit()
+    public ngOnInit():void
     {
         this._buttonOptionList.push({
                                         caption:       'Add new account',
@@ -53,7 +49,7 @@ export class TerraButtonWithOptionsComponentExample implements OnInit
 
     public addAccount():void
     {
-        let userName = 'user' + Date.now();
+        let userName:string = 'user' + Date.now();
         this._simpleTableRowList.push(
             {
                 cellList:
@@ -71,7 +67,7 @@ export class TerraButtonWithOptionsComponentExample implements OnInit
                         },
 
                     ]
-            })
+            });
     }
 
     public deleteAllAccounts():void

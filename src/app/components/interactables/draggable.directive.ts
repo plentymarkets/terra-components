@@ -14,13 +14,11 @@ import { RestrictOptions } from './restrictOptions.interface';
 import { InertiaOptions } from './inertiaOptions.interface';
 
 @Directive({
-    selector: '[terra-draggable]'
+    selector: '[terraDraggable]'
 })
 export class TerraDraggableDirective implements OnChanges
 {
-    private interactable:Interact.Interactable;
-
-    @Input('terra-draggable')
+    @Input('terraDraggable')
     public options?:DraggableOptions = null;
 
     @Input('terra-draggable-disabled')
@@ -47,6 +45,8 @@ export class TerraDraggableDirective implements OnChanges
     @Output('terra-draggable-onEnd')
     public onEnd:EventEmitter<Interact.InteractEvent> = new EventEmitter<Interact.InteractEvent>();
 
+    private interactable:Interact.Interactable;
+
     constructor(private el:ElementRef)
     {
         this.init();
@@ -56,7 +56,7 @@ export class TerraDraggableDirective implements OnChanges
     {
         Object.keys(changes).forEach((changedProperty:string) =>
         {
-            if(typeof changes[changedProperty].currentValue === "object")
+            if(typeof changes[changedProperty].currentValue === 'object')
             {
                 this.prepareImmutableInput(changedProperty);
             }
@@ -65,9 +65,9 @@ export class TerraDraggableDirective implements OnChanges
         this.init();
     }
 
-    private prepareImmutableInput(input:string)
+    private prepareImmutableInput(input:string):void
     {
-        if(this[input] && typeof this[input] === "object")
+        if(this[input] && typeof this[input] === 'object')
         {
             Object.keys(this[input])
                   .filter((property:string) =>
@@ -79,7 +79,7 @@ export class TerraDraggableDirective implements OnChanges
                       // this[input]["_" + property] = this[input][property];
                       Object.defineProperty(
                           this[input],
-                          "_" + property,
+                          '_' + property,
                           {
                               configurable: false,
                               enumerable:   false,
@@ -92,13 +92,13 @@ export class TerraDraggableDirective implements OnChanges
                           {
                               configurable: true,
                               enumerable:   true,
-                              get:          () =>
+                              get:          ():any =>
                                             {
-                                                return this[input]["_" + property]
+                                                return this[input]['_' + property];
                                             },
-                              set:          (value) =>
+                              set:          (value:any):void =>
                                             {
-                                                this[input]["_" + property] = value;
+                                                this[input]['_' + property] = value;
                                                 this.init();
                                             }
                           }
@@ -114,21 +114,21 @@ export class TerraDraggableDirective implements OnChanges
             max:          (this.options || {}).max || 1,
             maxPerElemet: (this.options || {}).maxPerElement || Infinity,
             autoScroll:   (this.options || {}).autoScroll || false,
-            axis:         (this.options || {}).axis || "xy",
+            axis:         (this.options || {}).axis || 'xy',
             manualStart:  (this.options || {}).manualStart || false,
             inertia:      this.inertia,
             enabled:      !this.disabled,
-            onstart:      (event:Interact.InteractEvent) =>
+            onstart:      (event:Interact.InteractEvent):void =>
                           {
                               this.onStart.emit(event);
                               event.target.IA_DRAG_DATA = this.dragData;
                           },
-            onmove:       (event:Interact.InteractEvent) =>
+            onmove:       (event:Interact.InteractEvent):void =>
                           {
                               this.onMove.emit(event);
                               event.target.IA_DRAG_DATA = this.dragData;
                           },
-            onend:        (event:Interact.InteractEvent) =>
+            onend:        (event:Interact.InteractEvent):void =>
                           {
                               this.onEnd.emit(event);
                               event.target.IA_DRAG_DATA = null;
@@ -139,7 +139,7 @@ export class TerraDraggableDirective implements OnChanges
         {
             draggableConfig.snap = {
                 targets:        [
-                    (x:number, y:number) =>
+                    (x:number, y:number):{ x:number, y:number, range:number } =>
                     {
                         return this.handleSnap(x, y);
                     }
@@ -186,7 +186,7 @@ export class TerraDraggableDirective implements OnChanges
                 x:     Math.round((x - offset.x) / this.grid.x) * this.grid.x,
                 y:     Math.round((y - offset.y) / this.grid.y) * this.grid.y,
                 range: (this.grid.range || Infinity)
-            }
+            };
         }
         else
         {

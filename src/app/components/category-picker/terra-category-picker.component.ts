@@ -197,7 +197,6 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     private addNodes(data:any, parentNodeId:number | string):void
     {
-
         // List of Categories which will be turned into Nodes to add to the node tree
         let entries:Array<CategoryDataInterface> = data.entries;
 

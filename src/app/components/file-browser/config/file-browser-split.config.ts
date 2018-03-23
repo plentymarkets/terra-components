@@ -6,9 +6,9 @@ import { TerraMultiSplitViewInterface } from '../../split-view/multi/data/terra-
 import { TerraStorageObject } from '../model/terra-storage-object';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 
-const SPLIT_WIDTH_FULL = 'col-xs-12 col-md-12 col-lg-12';
-const SPLIT_WIDTH_CONTENT = 'col-xs-12 col-md-9 col-lg-10';
-const SPLIT_WIDTH_SIDEBAR = 'col-xs-12 col-md-3 col-lg-2';
+const SPLIT_WIDTH_FULL:string = 'col-xs-12 col-md-12 col-lg-12';
+const SPLIT_WIDTH_CONTENT:string = 'col-xs-12 col-md-9 col-lg-10';
+const SPLIT_WIDTH_SIDEBAR:string = 'col-xs-12 col-md-3 col-lg-2';
 
 @Injectable()
 export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
@@ -55,7 +55,7 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
         };
         this.addView(this._imagePreviewView, this._fileListView);
 
-        setTimeout((() =>
+        setTimeout((():void =>
         {
             this.setSelectedView(this._fileListView);
         }).bind(this));

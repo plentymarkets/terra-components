@@ -6,5 +6,5 @@ import { TerraPagerInterface } from '../../../../';
  */
 export interface CategoryPagerDataInterface extends TerraPagerInterface
 {
-    entries:Array<CategoryDataInterface>
+    entries:Array<CategoryDataInterface>;
 }

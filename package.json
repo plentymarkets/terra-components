@@ -21,7 +21,8 @@
 		"build-docu": "gulp generateDocu",
 		"start": "npm run server:dev",
 		"server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch",
-		"gulp": "gulp"
+		"gulp": "gulp",
+		"lint": "tslint -p tsconfig.json -c tslint.json -e 'src/**/*.d.ts' 'src/**/*.ts'"
 	},
 	"dependencies": {
 		"@angular/animations": "~4.1.0",
@@ -93,6 +94,7 @@
 		"style-loader": "^0.19.0",
 		"to-string-loader": "^1.1.5",
 		"tslint": "^5.7.0",
+		"tslint-eslint-rules": "^4.1.1",
 		"typescript": "~2.5.3",
 		"url-loader": "^0.6.2",
 		"webpack": "3.7.1",

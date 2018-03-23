@@ -7,5 +7,5 @@ export class TerraPagerData
     public firstOnPage:number;
     public lastOnPage:number;
     public itemsPerPage:number;
-    public pagingUnit:string; //Label for pager items
+    public pagingUnit:string; // Label for pager items
 }

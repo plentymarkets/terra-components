@@ -17,19 +17,17 @@ export class TerraNodeComponent<D> implements OnInit
     /**
      * @description The node interface.
      */
-    @Input() inputNode:TerraNodeInterface<D>;
+    @Input()
+    public inputNode:TerraNodeInterface<D>;
 
     /**
      * @description The config to handle actions on tree or node.
      */
-    @Input() inputConfig:TerraNodeTreeConfig<D>;
+    @Input()
+    public inputConfig:TerraNodeTreeConfig<D>;
 
     private _tooltip:string;
     private _tooltipPlacement:string = 'right';
-
-    constructor()
-    {
-    }
 
     public ngOnInit():void
     {
@@ -48,12 +46,12 @@ export class TerraNodeComponent<D> implements OnInit
 
     }
 
-    //handle the node click
+    // handle the node click
     protected onNodeClick(event:Event):void
     {
         event.stopPropagation();
 
-        //check if click function is set
+        // check if click function is set
         if(!isNullOrUndefined(this.inputNode.onClick))
         {
             this.inputNode.onClick();

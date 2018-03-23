@@ -116,6 +116,10 @@ export * from './app/components/forms/dynamic-form/data/terra-form-field-categor
 export * from './app/components/forms/dynamic-form/handler/terra-dynamic-form-functions.handler';
 export * from './app/components/forms/dynamic-form/enum/terra-control-type.enum';
 export * from './app/components/forms/dynamic-form/service/terra-json-to-form-field.service';
+export * from './app/components/forms/dynamic-form/service/terra-dynamic-form.service';
+export * from './app/components/forms/dynamic-form/service/terra-form-field-control.service';
+export * from './app/components/file-browser/terra-base-private-storage.interface';
+export * from './app/components/file-browser/terra-file-browser.service';
 export * from './app/helpers/terra-converter.helper';
 export * from './app/components/category-picker/terra-category-picker.component';
 export * from './app/components/category-picker/service/terra-category-picker-base.service';

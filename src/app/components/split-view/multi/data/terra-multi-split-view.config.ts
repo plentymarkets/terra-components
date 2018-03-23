@@ -23,7 +23,7 @@ export class TerraMultiSplitViewConfig
         if(view.parameter)
         {
             console.warn(
-                'Property \'parameter\' is deprecated. It will be removed in one of the upcoming releases. Please use \'inputs\' instead.')
+                'Property \'parameter\' is deprecated. It will be removed in one of the upcoming releases. Please use \'inputs\' instead.');
         }
 
         // TODO: setTimeout can be removed, if it is guaranteed that change detection is fired when adding a new view
@@ -67,7 +67,7 @@ export class TerraMultiSplitViewConfig
                                 (child.inputs && view.inputs && JSON.stringify(child.inputs) === JSON.stringify(view.inputs)) ||
                                 (child.name === view.name);
 
-                            if(hasSameParameter && child.module.ngModule == view.module.ngModule)
+                            if(hasSameParameter && child.module.ngModule === view.module.ngModule)
                             {
                                 view = child;
                                 viewExist = true;
@@ -96,7 +96,7 @@ export class TerraMultiSplitViewConfig
 
         let parent:TerraMultiSplitViewInterface = view.parent;
 
-        let viewIndex:number = parent.children.findIndex((elem) => elem === view);
+        let viewIndex:number = parent.children.findIndex((elem:TerraMultiSplitViewInterface) => elem === view);
 
         if(viewIndex >= 0)
         {

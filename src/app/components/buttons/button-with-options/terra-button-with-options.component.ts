@@ -2,64 +2,83 @@ import {
     Component,
     ElementRef,
     Input,
+    OnInit,
     ViewChild
 } from '@angular/core';
 import { TerraButtonInterface } from '../button/data/terra-button.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraButtonComponent } from '../button/terra-button.component';
 import { TerraTextAlignEnum } from '../../tables/data-table/cell/terra-text-align.enum';
+import { TerraPlacementEnum } from '../../../../';
 
 @Component({
     selector: 'terra-button-with-options',
     template: require('./terra-button-with-options.component.html'),
     styles:   [require('./terra-button-with-options.component.scss')]
 })
-export class TerraButtonWithOptionsComponent
+export class TerraButtonWithOptionsComponent implements OnInit
 {
     // terra button inputs
     /**
      * @description Set the caption.
-     * */
-    @Input() inputCaption:string;
+     */
+    @Input()
+    public inputCaption:string;
+
     /**
      * @description Set an icon (e.g. icon-save).
-     * */
-    @Input() inputIcon:string;
+     */
+    @Input()
+    public inputIcon:string;
+
     /**
      * @description If true, the button gets the primary color blue. Default false.
-     * */
-    @Input() inputIsPrimary:boolean;
+     */
+    @Input()
+    public inputIsPrimary:boolean;
+
     /**
      * @description If true, the button gets the secondary color red. Default false.
-     * */
-    @Input() inputIsSecondary:boolean;
+     */
+    @Input()
+    public inputIsSecondary:boolean;
+
     /**
      * @description If true, the button gets the tertiary color green. Default false.
-     * */
-    @Input() inputIsTertiary:boolean;
+     */
+    @Input()
+    public inputIsTertiary:boolean;
+
     /**
      * @description If true, the button will be disabled. Default false.
-     * */
-    @Input() inputIsDisabled:boolean;
+     */
+    @Input()
+    public inputIsDisabled:boolean;
+
     /**
      * @description Set the tooltip.
-     * */
-    @Input() inputTooltipText:string;
+     */
+    @Input()
+    public inputTooltipText:string;
     /**
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
-     * */
-    @Input() inputTooltipPlacement:string; //top, bottom, left, right
+     */
+    @Input()
+    public inputTooltipPlacement:TerraPlacementEnum; // top, bottom, left, right
 
     // new inputs
     /**
-     * @description Set an array of buttons which will be shown as a menu with options. Use the TerraButtonInterface to set the buttons of the menu.
-     * */
-    @Input() inputOptions:Array<TerraButtonInterface>;
+     * @description Set an array of buttons which will be shown as a menu with options. Use the TerraButtonInterface to set the buttons of
+     *     the menu.
+     */
+    @Input()
+    public inputOptions:Array<TerraButtonInterface>;
 
     /**
      * @description Set the alignment of the context menu. Default right.
-     * */
-    @Input() inputOptionsAlignment:TerraTextAlignEnum;
+     */
+    @Input()
+    public inputOptionsAlignment:TerraTextAlignEnum;
 
     // view children
     @ViewChild(TerraButtonComponent) private toggleButton:TerraButtonComponent;
@@ -71,7 +90,7 @@ export class TerraButtonWithOptionsComponent
     constructor(private elementRef:ElementRef)
     {
         // define click listener
-        this.clickListener = (event) =>
+        this.clickListener = (event:Event):void =>
         {
             // check if it has been clicked elsewhere
             if(!this.elementRef.nativeElement.contains(event.target))

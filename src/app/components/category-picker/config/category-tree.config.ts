@@ -3,7 +3,7 @@ import {
     TerraNodeTreeConfig
 } from '../../../../';
 import { TranslationService } from 'angular-l10n';
-import { Injectable } from '@angular/core'
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class CategoryTreeConfig extends TerraNodeTreeConfig<CategoryTreeData>
