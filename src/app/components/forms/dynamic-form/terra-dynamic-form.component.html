@@ -1,5 +1,5 @@
 <form [formGroup]="_formFieldControlService.dynamicFormGroup"
-      (ngSubmit)="validate($event)"
+      (ngSubmit)="validate()"
       role="form">
     <terra-base-toolbar>
         <div class="btn-group" role="group">
@@ -14,12 +14,16 @@
         </div>
     </terra-base-toolbar>
     
-    <div [class]="inputPortletStyle">
-        <terra-portlet>
-    
-        <terra-dynamic-switch [inputFormFields]="inputFormFields"
-                              [inputFormGroup]="_formFieldControlService.dynamicFormGroup"></terra-dynamic-switch>
-
-    </terra-portlet>
+    <div class="container-fluid">
+        <div class="row">
+            <div [class]="inputPortletStyle">
+                <terra-portlet>
+                    <terra-dynamic-switch [inputFormFields]="inputFormFields"
+                                          [inputFormGroup]="_formFieldControlService.dynamicFormGroup">
+                    </terra-dynamic-switch>
+                
+                </terra-portlet>
+            </div>
+        </div>
     </div>
 </form>
