@@ -18,7 +18,8 @@ import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.
 })
 export class TerraSimpleTableComponentExample implements OnInit
 {
-    @ViewChild('table') table:TerraSimpleTableComponent<any>;
+    @ViewChild('table')
+    public table:TerraSimpleTableComponent<any>;
 
     private _viewContainerRef:ViewContainerRef;
     private _headerList:Array<TerraSimpleTableHeaderCellInterface> = [];
@@ -30,32 +31,32 @@ export class TerraSimpleTableComponentExample implements OnInit
         this._viewContainerRef = viewContainerRef;
     }
 
-    ngOnInit()
+    public ngOnInit():void
     {
-        for(let x = 0; x < 5; x++)
+        for(let x:number = 0; x < 5; x++)
         {
             let cell:TerraSimpleTableHeaderCellInterface = {
-                caption: "header " + x,
-                width:   "100",
+                caption: 'header ' + x,
+                width:   '100',
             };
 
             this.headerList.push(cell);
         }
 
         this.headerList.push({
-            caption: "buttons",
-            width:   "100"
+            caption: 'buttons',
+            width:   '100'
         });
 
-        for(let i = 1; i < 10; i++)
+        for(let i:number = 1; i < 10; i++)
         {
             let cellList:Array<TerraSimpleTableCellInterface> = [];
 
-            for(let j = 0; j < 5; j++)
+            for(let j:number = 0; j < 5; j++)
             {
                 let cell:TerraSimpleTableCellInterface = {
-                    caption: "row" + i + "testcell " + j,
-                    icon:    "icon-referrer_backend"
+                    caption: 'row' + i + 'testcell ' + j,
+                    icon:    'icon-referrer_backend'
                 };
 
                 cellList.push(cell);
@@ -64,10 +65,10 @@ export class TerraSimpleTableComponentExample implements OnInit
             let buttonList:Array<TerraButtonInterface> = [];
 
             buttonList.push({
-                caption:       "hallo",
-                clickFunction: () =>
+                caption:       'hallo',
+                clickFunction: ():void =>
                                {
-                                   alert("test")
+                                   alert('test');
                                }
             });
 

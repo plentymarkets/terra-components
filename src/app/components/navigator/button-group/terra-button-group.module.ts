@@ -16,7 +16,7 @@ import { TranslationModule } from 'angular-l10n';
 })
 export class TerraButtonGroupModule
 {
-    static forRoot()
+    public static forRoot():Object
     {
         return {
             ngModule:  TerraButtonGroupModule,

@@ -29,14 +29,14 @@ import {
 })
 export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
 {
-    @Input() inputPlaceholder:string;
+    @Input()
+    public inputPlaceholder:string;
 
-    @Output() ngModelChange:EventEmitter<string> = new EventEmitter();
+    @Output()
+    public ngModelChange:EventEmitter<string> = new EventEmitter();
 
     private _placeholder:string;
     private _value:string;
-    private _onChangeCallback:() => void;
-    private _onTouchedCallback:() => void;
     private _modules:{ [index:string]:Object };
 
     constructor(private translation:TranslationService,
@@ -71,14 +71,6 @@ export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
                  'image']                         // link and image, video
             ]
         };
-
-        // initialize callbacks
-        this._onChangeCallback = () =>
-        {
-        };
-        this._onTouchedCallback = () =>
-        {
-        };
     }
 
     public ngOnInit():void
@@ -95,12 +87,12 @@ export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
         this._value = value;
     }
 
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:() => void):void
     {
         this._onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this._onTouchedCallback = fn;
     }
@@ -109,4 +101,7 @@ export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
     {
         this._myElement.nativeElement.querySelector('.ql-editor').focus();
     }
+
+    private _onChangeCallback:() => void = ():void => undefined;
+    private _onTouchedCallback:() => void = ():void => undefined;
 }

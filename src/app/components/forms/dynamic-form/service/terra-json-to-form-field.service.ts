@@ -8,7 +8,9 @@ import { TerraFormFieldDatePicker } from '../data/terra-form-field-date-picker';
 import { TerraFormFieldSelectBox } from '../data/terra-form-field-select-box';
 import { TerraFormFieldCheckBox } from '../data/terra-form-field-check-box';
 import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
-import { TerraFormFieldCategoryPicker } from '../data/terra-form-field-category-picker';
+import { TerraFormFieldCategoryPicker } from '../../../../../';
+import { TerraFormFieldInputFile } from '../data/terra-form-field-input-file';
+import { TerraFormFieldColorPicker } from '../data/terra-form-field-color-picker';
 import { TerraFormFieldMultiCheckBox } from '../data/terra-form-field-multi-check-box';
 
 /**
@@ -21,7 +23,7 @@ export class TerraJsonToFormFieldService
     {
         let formFields:Array<TerraFormFieldBase<any>> = [];
 
-        Object.keys(formFieldsJSON).forEach((formFieldKey:string) =>
+        Object.keys(formFieldsJSON).forEach((formFieldKey:string):void =>
         {
             formFields.push(this.createFormField(formFieldKey, formFieldsJSON[formFieldKey]));
         });
@@ -37,6 +39,9 @@ export class TerraJsonToFormFieldService
         {
             case TerraControlTypeEnum.INPUT_TEXT:
                 formField = new TerraFormFieldInputText(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                break;
+            case TerraControlTypeEnum.INPUT_FILE:
+                formField = new TerraFormFieldInputFile(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             case TerraControlTypeEnum.INPUT_NUMBER:
                 formField = new TerraFormFieldInputNumber(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
@@ -57,10 +62,19 @@ export class TerraJsonToFormFieldService
                 formField = new TerraFormFieldCheckBox(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             case TerraControlTypeEnum.CATEGORY_PICKER:
-                formField = new TerraFormFieldCategoryPicker(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                formField = new TerraFormFieldCategoryPicker(formFieldKey,
+                    formFieldData.label,
+                    formFieldData.required,
+                    formFieldData.options);
+                break;
+            case TerraControlTypeEnum.COLOR_PICKER:
+                formField = new TerraFormFieldColorPicker(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             case TerraControlTypeEnum.MULTI_CHECK_BOX:
-                formField = new TerraFormFieldMultiCheckBox(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                formField = new TerraFormFieldMultiCheckBox(formFieldKey,
+                    formFieldData.label,
+                    formFieldData.required,
+                    formFieldData.options);
                 break;
             case TerraControlTypeEnum.VERTICAL_CONTAINER:
                 formField = this.createContainerFormField(formFieldKey, formFieldData, TerraControlTypeEnum.VERTICAL_CONTAINER);
@@ -86,7 +100,9 @@ export class TerraJsonToFormFieldService
                                             formFieldData:{ [key:string]:any },
                                             containerType:TerraControlTypeEnum):TerraFormFieldBaseContainer
     {
-        let containerFormField:TerraFormFieldBaseContainer = new TerraFormFieldBaseContainer(formFieldKey, containerType, formFieldData.label);
+        let containerFormField:TerraFormFieldBaseContainer = new TerraFormFieldBaseContainer(formFieldKey,
+            containerType,
+            formFieldData.label);
 
         containerFormField.containerEntries = this.generateFormFields(formFieldData.options.containerEntries);
 

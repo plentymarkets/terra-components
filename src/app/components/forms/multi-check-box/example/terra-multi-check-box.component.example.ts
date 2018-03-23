@@ -1,5 +1,6 @@
 import {
-    Component
+    Component,
+    OnInit
 } from '@angular/core';
 import { TerraMultiCheckBoxValueInterface } from '../data/terra-multi-check-box-value.interface';
 
@@ -8,7 +9,7 @@ import { TerraMultiCheckBoxValueInterface } from '../data/terra-multi-check-box-
     styles:   [require('./terra-multi-check-box.component.example.scss')],
     template: require('./terra-multi-check-box.component.example.html'),
 })
-export class TerraMultiCheckBoxComponentExample
+export class TerraMultiCheckBoxComponentExample implements OnInit
 {
     private values:Array<TerraMultiCheckBoxValueInterface>;
     private disabled1:boolean = false;
@@ -18,11 +19,7 @@ export class TerraMultiCheckBoxComponentExample
     private disabled3:boolean = true;
     private error3:boolean = false;
 
-    constructor()
-    {
-    }
-
-    ngOnInit()
+    public ngOnInit():void
     {
         this.values = [
             {

@@ -15,7 +15,7 @@ export class TerraTreeComponentExample implements OnInit
 
     private _leafList:Array<TerraLeafInterface> = [];
 
-    ngOnInit()
+    public ngOnInit():void
     {
         this._leafList.push({
             caption:     'Basic-Settings',
@@ -61,5 +61,4 @@ export class TerraTreeComponentExample implements OnInit
             ]
         });
     }
-
 }
