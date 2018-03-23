@@ -81,6 +81,7 @@ import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
 import { TerraConverterHelper } from './helpers/terra-converter.helper';
+import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
 import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
 //### import of terra-component examples
 import { TerraButtonComponentExample } from './components/buttons/button/example/terra-button.component.example';
@@ -125,6 +126,9 @@ import { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra
 import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
 import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
 import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
+import { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
+import { TerraMultiCheckBoxComponentExample } from './components/forms/multi-check-box/example/terra-multi-check-box.component.example';
+import { TerraCategoryPickerComponent } from './components/category-picker/terra-category-picker.component';
 
 @NgModule({
     declarations:    [
@@ -157,6 +161,7 @@ import { TerraFormFieldControlService } from './components/forms/dynamic-form/se
         TerraSplitViewComponent,
         TerraFilterComponent,
         TerraMultiSelectBoxComponent,
+        TerraMultiCheckBoxComponent,
         TerraDynamicComponentLoaderComponent,
         TerraDynamicModuleLoaderComponent,
         TerraTileBoxComponent,
@@ -181,6 +186,7 @@ import { TerraFormFieldControlService } from './components/forms/dynamic-form/se
         TerraNodeComponent,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
+        TerraCategoryPickerComponent,
 
         //### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -198,6 +204,7 @@ import { TerraFormFieldControlService } from './components/forms/dynamic-form/se
         TerraTextInputComponentExample,
         TerraCheckboxComponentExample,
         TerraMultiSelectBoxComponentExample,
+        TerraMultiCheckBoxComponentExample,
         TerraRadioButtonComponentExample,
         TerraSelectBoxComponentExample,
         TerraSliderComponentExample,
@@ -250,6 +257,7 @@ import { TerraFormFieldControlService } from './components/forms/dynamic-form/se
         TerraSplitViewComponent,
         TerraFilterComponent,
         TerraMultiSelectBoxComponent,
+        TerraMultiCheckBoxComponent,
         TerraTileBoxComponent,
         TerraTileBoxPanelComponent,
         TerraSuggestionBoxComponent,
@@ -267,7 +275,8 @@ import { TerraFormFieldControlService } from './components/forms/dynamic-form/se
         TerraNoteEditorComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
-        TerraNodeComponent
+        TerraNodeComponent,
+        TerraCategoryPickerComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -298,6 +307,7 @@ import { TerraFormFieldControlService } from './components/forms/dynamic-form/se
         TerraSplitViewComponent,
         TerraFilterComponent,
         TerraMultiSelectBoxComponent,
+        TerraMultiCheckBoxComponent,
         TerraDynamicComponentLoaderComponent,
         TerraDynamicModuleLoaderComponent,
         TerraTileBoxComponent,
@@ -321,6 +331,7 @@ import { TerraFormFieldControlService } from './components/forms/dynamic-form/se
         TerraNodeTreeComponent,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
+        TerraCategoryPickerComponent,
 
 
         //### declarations of terra-components examples
@@ -339,6 +350,7 @@ import { TerraFormFieldControlService } from './components/forms/dynamic-form/se
         TerraTextInputComponentExample,
         TerraCheckboxComponentExample,
         TerraMultiSelectBoxComponentExample,
+        TerraMultiCheckBoxComponentExample,
         TerraRadioButtonComponentExample,
         TerraSelectBoxComponentExample,
         TerraSliderComponentExample,
@@ -427,6 +439,7 @@ export class TerraComponentsModule
                 TerraUrlParamsDecorator,
                 TerraFrontendStorageService,
                 TerraAlertComponent,
+                CategoryTreeConfig,
                 TerraJsonToFormFieldService
             ]
         };
