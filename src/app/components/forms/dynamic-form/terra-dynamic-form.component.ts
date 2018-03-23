@@ -48,6 +48,9 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     @Input()
     public inputRequestParams:TerraDynamicFormRequestParams;
 
+    @Input()
+    public inputUsePortlet:boolean = true;
+
     constructor(private _formFieldControlService:TerraFormFieldControlService)
     {
         this.inputPortletStyle = 'col-xs-12 col-md-8 col-lg-5';
