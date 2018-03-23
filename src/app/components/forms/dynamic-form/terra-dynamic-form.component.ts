@@ -40,6 +40,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
     @Input() public inputPortletStyle:string;
     @Input() public inputRequestParams:TerraDynamicFormRequestParams;
+    @Input() public inputUsePortlet:boolean = true;
 
     constructor(private _formFieldControlService:TerraFormFieldControlService)
     {
