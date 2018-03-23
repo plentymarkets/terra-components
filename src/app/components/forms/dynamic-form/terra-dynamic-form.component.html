@@ -1,24 +1,40 @@
 <form [formGroup]="_formFieldControlService.dynamicFormGroup"
       (ngSubmit)="validate()"
       role="form">
-    <terra-base-toolbar>
+    <terra-base-toolbar [ngClass]="{'toolbarHidden': inputHasNoSaveButton && inputHasNoResetButton}">
         <div class="btn-group" role="group">
             <terra-button [inputIcon]="'icon-save'"
                           [inputTooltipText]="'save' | translate:lang"
-                          [inputType]="'submit'">
+                          [inputType]="'submit'"
+                          [inputIsHidden]="inputHasNoSaveButton">
             </terra-button>
             <terra-button [inputIcon]="'icon-reset'"
                           [inputTooltipText]="'reset' | translate:lang"
-                          (outputClicked)="onResetClick()">
+                          (outputClicked)="onResetClick()"
+                          [inputIsHidden]="inputHasNoResetButton">
             </terra-button>
         </div>
     </terra-base-toolbar>
     
     <div class="container-fluid">
         <div class="row">
-            <terra-dynamic-switch [inputUsePortlet]="inputUsePortlet"
-                                  [inputFormFields]="inputFormFields"
-                                  [inputFormGroup]="_formFieldControlService.dynamicFormGroup"></terra-dynamic-switch>
+            <div [class]="inputPortletStyle">
+                <div *ngIf="inputHasNoSaveButton && inputHasNoResetButton">
+                    <terra-dynamic-switch [inputFormFields]="inputFormFields"
+                                          [inputUsePortlet]="inputUsePortlet"
+                                          [inputIsDisabled]="inputIsDisabled"
+                                          [inputFormGroup]="_formFieldControlService.dynamicFormGroup">
+                    </terra-dynamic-switch>
+                </div>
+                
+                <terra-portlet *ngIf="!(inputHasNoSaveButton && inputHasNoResetButton)">
+                    <terra-dynamic-switch [inputFormFields]="inputFormFields"
+                                          [inputUsePortlet]="inputUsePortlet"
+                                          [inputIsDisabled]="inputIsDisabled"
+                                          [inputFormGroup]="_formFieldControlService.dynamicFormGroup">
+                    </terra-dynamic-switch>
+                </terra-portlet>
+            </div>
         </div>
     </div>
 </form>

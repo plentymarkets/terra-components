@@ -56,7 +56,7 @@ export class TerraFormFieldControlService
     public updateDefaultValues(values:any):void
     {
         this.defaultValues = values;
-        this.resetForm();
+        this.dynamicFormGroup.patchValue(this.defaultValues, {emitEvent: true});
     }
 
     private initFormGroupHelper(formFields:Array<TerraFormFieldBase<any>>,

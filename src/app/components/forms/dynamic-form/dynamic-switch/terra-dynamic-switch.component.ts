@@ -30,6 +30,9 @@ export class TerraDynamicSwitchComponent
     public inputSubSwitch:boolean
 
     @Input()
+    public inputIsDisabled:boolean;
+
+    @Input()
     public inputPortletHeader:string;
 
     @Input()

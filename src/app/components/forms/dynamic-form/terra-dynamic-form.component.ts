@@ -32,6 +32,7 @@ export interface TerraDynamicFormRequestParams
 @Component({
     selector:  'terra-dynamic-form',
     template:  require('./terra-dynamic-form.component.html'),
+    styles:    [require('./terra-dynamic-form.component.scss')],
     providers: [TerraDynamicFormService]
 })
 export class TerraDynamicFormComponent implements OnInit, OnChanges
@@ -49,6 +50,15 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     public inputRequestParams:TerraDynamicFormRequestParams;
 
     @Input()
+    public inputHasNoSaveButton:boolean;
+
+    @Input()
+    public inputHasNoResetButton:boolean;
+
+    @Input()
+    public inputIsDisabled:boolean;
+
+    @Input()
     public inputUsePortlet:boolean = true;
 
     constructor(private _formFieldControlService:TerraFormFieldControlService)
@@ -59,6 +69,10 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
             htmlMethod: null,
             params:     {}
         };
+
+        this.inputHasNoSaveButton = false;
+        this.inputHasNoResetButton = false;
+        this.inputIsDisabled = false;
     }
 
     public ngOnInit():void
@@ -71,6 +85,8 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
             this.inputFormFunctions.formFieldControlService = this._formFieldControlService;
+
+            this.registerValueChange();
         }
     }
 
@@ -79,6 +95,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         if(changes['inputFormFields'])
         {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
+            this.registerValueChange();
         }
     }
 
@@ -98,5 +115,20 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     protected onResetClick():void
     {
         this._formFieldControlService.resetForm();
+    }
+
+    private registerValueChange():void
+    {
+        if(!isNullOrUndefined(this.inputFormFunctions.onValueChangedCallback))
+        {
+            this._formFieldControlService
+                .dynamicFormGroup
+                .valueChanges
+                .debounceTime(1000)
+                .subscribe((value:any) =>
+                {
+                    this.inputFormFunctions.onValueChangedCallback(value);
+                });
+        }
     }
 }

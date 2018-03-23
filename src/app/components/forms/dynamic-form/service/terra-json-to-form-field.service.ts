@@ -8,7 +8,9 @@ import { TerraFormFieldDatePicker } from '../data/terra-form-field-date-picker';
 import { TerraFormFieldSelectBox } from '../data/terra-form-field-select-box';
 import { TerraFormFieldCheckBox } from '../data/terra-form-field-check-box';
 import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
-import { TerraFormFieldCategoryPicker } from '../data/terra-form-field-category-picker';
+import { TerraFormFieldCategoryPicker } from '../../../../../';
+import { TerraFormFieldInputFile } from '../data/terra-form-field-input-file';
+import { TerraFormFieldColorPicker } from '../data/terra-form-field-color-picker';
 import { TerraFormFieldMultiCheckBox } from '../data/terra-form-field-multi-check-box';
 
 /**
@@ -38,6 +40,9 @@ export class TerraJsonToFormFieldService
             case TerraControlTypeEnum.INPUT_TEXT:
                 formField = new TerraFormFieldInputText(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
+            case TerraControlTypeEnum.INPUT_FILE:
+                formField = new TerraFormFieldInputFile(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                break;
             case TerraControlTypeEnum.INPUT_NUMBER:
                 formField = new TerraFormFieldInputNumber(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
@@ -59,6 +64,8 @@ export class TerraJsonToFormFieldService
             case TerraControlTypeEnum.CATEGORY_PICKER:
                 formField = new TerraFormFieldCategoryPicker(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
+            case TerraControlTypeEnum.COLOR_PICKER:
+                formField = new TerraFormFieldColorPicker(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
             case TerraControlTypeEnum.MULTI_CHECK_BOX:
                 formField = new TerraFormFieldMultiCheckBox(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;

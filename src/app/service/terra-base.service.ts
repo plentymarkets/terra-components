@@ -67,7 +67,7 @@ export class TerraBaseService
         }
     }
 
-    protected mapRequest(request:Observable<Response>, err?:(error:any) => void, isRaw?:boolean):Observable<any>
+    protected mapRequest(request:Observable<any>, err?:(error:any) => void, isRaw?:boolean):Observable<any>
     {
         this._terraLoadingSpinnerService.start();
 

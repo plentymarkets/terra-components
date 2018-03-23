@@ -5,7 +5,7 @@
              (click)="onNodeClick($event)"
              container="body"
              [tooltip]="_tooltip | translate:lang"
-             [placement]="'right'">
+             [placement]="_tooltipPlacement">
             <span *ngIf="!inputNode.icon" class="icon_dist_top icon-placeholder"></span>
             <span *ngIf="inputNode.icon" class="icon_dist_top" [ngClass]="inputNode.icon"></span>
             <div class="buttonText">{{inputNode.name | translate:lang }}</div>
