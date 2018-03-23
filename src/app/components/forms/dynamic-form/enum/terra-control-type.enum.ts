@@ -12,7 +12,6 @@ export enum TerraControlTypeEnum
     INPUT_TEXT_AREA = 'inputTextArea',
     INPUT_NUMBER = 'inputNumber',
     INPUT_DOUBLE = 'inputDouble',
-    ITEM_VARIATION_PICKER = 'itemVariationPicker',
     SELECT_BOX = 'selectBox',
     VERTICAL_CONTAINER = 'verticalContainer',
     CATEGORY_PICKER = 'categoryPicker',

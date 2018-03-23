@@ -44,7 +44,6 @@ export class TerraJsonToFormFieldService
                 formField = new TerraFormFieldInputFile(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             case TerraControlTypeEnum.INPUT_NUMBER:
-            case TerraControlTypeEnum.ITEM_VARIATION_PICKER:
                 formField = new TerraFormFieldInputNumber(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             case TerraControlTypeEnum.INPUT_DOUBLE:

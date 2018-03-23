@@ -43,17 +43,7 @@
                                 [inputTooltipText]="formField.tooltip"
                                 [inputTooltipPlacement]="formField.tooltipPlacement">
             </terra-number-input>
-    
-            <terra-number-input *ngSwitchCase="controlTypeEnum.ITEM_VARIATION_PICKER"
-                                [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
-                                [formControlName]="formField.key"
-                                [inputName]="formField.label  | translate:lang"
-                                [inputIsRequired]="formField.required"
-                                [inputIsDisabled]="inputIsDisabled"
-                                [inputTooltipText]="formField.tooltip"
-                                [inputTooltipPlacement]="formField.tooltipPlacement">
-            </terra-number-input>
-
+            
             <terra-checkbox *ngSwitchCase="controlTypeEnum.CHECK_BOX"
                             [formControlName]="formField.key"
                             [inputIsDisabled]="inputIsDisabled"
