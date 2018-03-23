@@ -21,6 +21,7 @@
             <div [class]="inputPortletStyle">
                 <div *ngIf="inputHasNoSaveButton && inputHasNoResetButton">
                     <terra-dynamic-switch [inputFormFields]="inputFormFields"
+                                          [inputUsePortlet]="inputUsePortlet"
                                           [inputIsDisabled]="inputIsDisabled"
                                           [inputFormGroup]="_formFieldControlService.dynamicFormGroup">
                     </terra-dynamic-switch>
@@ -28,6 +29,7 @@
                 
                 <terra-portlet *ngIf="!(inputHasNoSaveButton && inputHasNoResetButton)">
                     <terra-dynamic-switch [inputFormFields]="inputFormFields"
+                                          [inputUsePortlet]="inputUsePortlet"
                                           [inputIsDisabled]="inputIsDisabled"
                                           [inputFormGroup]="_formFieldControlService.dynamicFormGroup">
                     </terra-dynamic-switch>

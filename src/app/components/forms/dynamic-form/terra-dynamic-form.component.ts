@@ -44,6 +44,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     @Input() public inputHasNoSaveButton:boolean;
     @Input() public inputHasNoResetButton:boolean;
     @Input() public inputIsDisabled:boolean;
+    @Input() public inputUsePortlet:boolean = true;
 
     constructor(private _formFieldControlService:TerraFormFieldControlService)
     {
