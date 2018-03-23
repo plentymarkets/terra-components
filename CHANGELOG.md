@@ -1,5 +1,5 @@
 <a name="2.1.61-zlk"></a>
-# 2.1.61-zlk (XX.03.2018)
+# 2.1.61-zlk (23.03.2018)
 
 ### Feature
 * **terra-tag** add Styling for menu entry tag in terra-tag component
