@@ -1,3 +1,8 @@
+# (23.03.2018)
+
+### Feature
+* **terra-tag** add Styling for menu entry tag in terra-tag component*
+
 <a name="2.1.60-zlk"></a>
 # 2.1.60-zlk (22.03.2018)
 
