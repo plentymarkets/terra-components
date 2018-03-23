@@ -1,5 +1,6 @@
 import {
     Component,
+    ElementRef,
     EventEmitter,
     Input,
     OnInit,
@@ -38,7 +39,8 @@ export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
     private _onTouchedCallback:() => void;
     private _modules:{ [index:string]:Object };
 
-    constructor(private translation:TranslationService)
+    constructor(private translation:TranslationService,
+                private _myElement:ElementRef)
     {
         // initialize placeholder
         this._placeholder = this.translation.translate('terraNoteEditor.insertText');
@@ -105,7 +107,6 @@ export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
 
     public focus():void
     {
-        document.getElementsByClassName('ql-editor')[0].id = 'editor-focused';
-        document.getElementById('editor-focused').focus();
+        this._myElement.nativeElement.querySelector('.ql-editor').focus();
     }
 }
