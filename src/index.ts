@@ -126,4 +126,8 @@ export * from './app/models/terra-key-value.interface';
 export * from './app/components/forms/input/file-input/terra-file-input.component';
 export * from './app/components/category-picker/terra-category-picker.component';
 export * from './app/components/category-picker/service/terra-category-picker-base.service';
-
+export * from './app/components/category-picker/data/category-data.interface';
+export * from './app/components/category-picker/data/category-detail-data.interface';
+export * from './app/components/category-picker/data/category-pager-data.interface';
+export * from './app/components/category-picker/data/category-tree.data';
+export * from './app/components/category-picker/data/category-value.interface';
