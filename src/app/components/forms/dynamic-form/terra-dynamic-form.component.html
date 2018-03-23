@@ -14,9 +14,11 @@
         </div>
     </terra-base-toolbar>
     
-    <div [class]="inputPortletStyle">
-        <terra-dynamic-switch [inputUsePortlet]="inputUsePortlet"
-                              [inputFormFields]="inputFormFields"
-                              [inputFormGroup]="_formFieldControlService.dynamicFormGroup"></terra-dynamic-switch>
+    <div class="container-fluid">
+        <div class="row">
+            <terra-dynamic-switch [inputUsePortlet]="inputUsePortlet"
+                                  [inputFormFields]="inputFormFields"
+                                  [inputFormGroup]="_formFieldControlService.dynamicFormGroup"></terra-dynamic-switch>
+        </div>
     </div>
 </form>
