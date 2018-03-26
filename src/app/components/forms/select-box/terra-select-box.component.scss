@@ -42,7 +42,6 @@
         display: inline-block;
         width: var(--select-box-width, 100%);
         max-width: 100%;
-        vertical-align: middle;
         -moz-appearance: none;
         -webkit-appearance: none;
         padding: 0 var(--space-lg);
@@ -50,7 +49,8 @@
         background-position: var(--select-box-toggle-background-position, var(--select-box-toggle-background-position-default));
         background-size: 8px 10px;
         color: var(--color-structure-10);
-        
+        height: 100%;
+        line-height: 100%;
 
         &.error
         {
@@ -58,12 +58,7 @@
             color: var(--color-alert);
             background-size: 8px 10px;
         }
-        &.labeled
-        {
-            line-height: var(--space-lg);
-            padding: var(--select-box-labeled-padding, var(--select-box-labeled-padding-default));
-            transition: padding var(--transition-lg);
-        }
+
         span
         {
             width: calc(100% - 20px);
@@ -72,6 +67,18 @@
             overflow: hidden;
             display: inline-block;
             font-weight: var(--font-weight-2);
+            height: 100%;
+            line-height: 100%;
+        }
+        &.labeled
+        {
+            //line-height: var(--space-lg);
+            padding: var(--select-box-labeled-padding, var(--select-box-labeled-padding-default));
+            transition: padding var(--transition-lg);
+            span
+            {
+                line-height: calc(var(--height-md) - var(--space-lg));
+            }
         }
     }
     &:not(.error):hover
