@@ -1,7 +1,9 @@
+import { TerraBaseData } from '../../data/terra-base.data';
+
 /**
  * @author mscharf
  */
-export interface TerraNavigatorNodeInterface<D>
+export interface TerraNavigatorNodeInterface<D> extends TerraBaseData
 {
     nodeName:string;
     nodeIcon?:string;

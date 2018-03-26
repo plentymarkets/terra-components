@@ -1,8 +1,10 @@
+import { TerraBaseData } from '../../../data/terra-base.data';
+
 export interface TerraSuggestionBoxValueInterface
 {
-    value:any;
+    value:number | string | TerraBaseData;
     // i18n from locale_de and locale_en
-    caption:any;
+    caption:string;
     icon?:string;
     active?:boolean;
 }
