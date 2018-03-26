@@ -16,6 +16,7 @@ import {
     isNullOrUndefined
 } from 'util';
 import { TerraPlacementEnum } from '../../../../';
+import { TerraBaseData } from '../../data/terra-base.data';
 
 const MAX_LASTLY_USED_ENTRIES:number = 5;
 
@@ -71,7 +72,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     private _tmpSelectedValue:TerraSuggestionBoxValueInterface;
     private _toggleOpen:boolean;
     private _hasLabel:boolean;
-    private _value:number | string;
+    private _value:number | string | TerraBaseData;
     private clickListener:(event:Event) => void;
 
     constructor(private _elementRef:ElementRef)
@@ -140,12 +141,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this.value = value;
     }
 
-    public get value():number | string
+    public get value():number | string | TerraBaseData
     {
         return this._value;
     }
 
-    public set value(value:number | string)
+    public set value(value:number | string | TerraBaseData)
     {
         this._value = value;
 
@@ -301,7 +302,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this._displayListBoxValues = this.inputListBoxValues;
         }
 
-        this.value = this.selectedValue;
+        this.value = this.selectedValue.value;
     }
 
     public resetComponentValue():void
