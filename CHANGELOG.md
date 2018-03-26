@@ -1,7 +1,9 @@
-#Unreleased
+<a name="2.1.62-zlk"></a>
+# 2.1.62-zlk (26.03.2018)
 
 ### Bug Fixes
 * **terra-multi-split-view**  fix issue when view inputs contain circular references
+* **terra-suggestion-box**  fix issue with value handling and add TerraBaseData as possible value (in addition to number and string)
 
 <a name="2.1.61-zlk"></a>
 # 2.1.61-zlk (23.03.2018)
