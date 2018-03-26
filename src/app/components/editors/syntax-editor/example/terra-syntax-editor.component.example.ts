@@ -1,7 +1,7 @@
 import {
     Component,
     OnInit
-} from "@angular/core";
+} from '@angular/core';
 
 @Component({
     selector: 'terra-syntax-editor-example',
@@ -12,11 +12,7 @@ export class TerraSyntaxEditorComponentExample implements OnInit
 {
     private _inputOptions:object;
 
-    constructor()
-    {
-    }
-
-    ngOnInit()
+    public ngOnInit():void
     {
         this._inputOptions = {
             maxLines: 10

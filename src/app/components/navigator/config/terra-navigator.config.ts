@@ -18,19 +18,19 @@ export class TerraNavigatorConfig<D>
     constructor()
     {
         this.observableNewNodeByRootPath = new Observable<TerraNavigatorNodeInterface<D>>(
-            (subscriber:Subscriber<TerraNavigatorNodeInterface<D>>) =>
+            (subscriber:Subscriber<TerraNavigatorNodeInterface<D>>):void =>
             {
                 this._subscriberNewNodeByRootPath = subscriber;
             });
 
         this.observableNewNodesByRoute = new Observable<Array<TerraNavigatorNodeInterface<D>>>(
-            (subscriber:Subscriber<Array<TerraNavigatorNodeInterface<D>>>) =>
+            (subscriber:Subscriber<Array<TerraNavigatorNodeInterface<D>>>):void =>
             {
                 this._subscriberNewNodesByRoute = subscriber;
             });
     }
 
-    public addNodeByRootPath(newNode:TerraNavigatorNodeInterface<D>)
+    public addNodeByRootPath(newNode:TerraNavigatorNodeInterface<D>):void
     {
         if(this._subscriberNewNodeByRootPath)
         {
@@ -38,7 +38,7 @@ export class TerraNavigatorConfig<D>
         }
     }
 
-    public addNodesByRoute(newNodes:Array<TerraNavigatorNodeInterface<D>>)
+    public addNodesByRoute(newNodes:Array<TerraNavigatorNodeInterface<D>>):void
     {
         if(this._subscriberNewNodesByRoute)
         {

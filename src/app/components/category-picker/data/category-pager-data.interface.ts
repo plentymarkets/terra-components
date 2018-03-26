@@ -1,12 +1,10 @@
 import { CategoryDataInterface } from './category-data.interface';
+import { TerraPagerInterface } from '../../../../';
 
 /**
  * @author ziyad.hajj-hassan
  */
-export interface CategoryPagerDataInterface
+export interface CategoryPagerDataInterface extends TerraPagerInterface
 {
-    page:number,
-    totalsCount:number,
-    isLastPage:boolean,
-    entries:Array<CategoryDataInterface>
+    entries:Array<CategoryDataInterface>;
 }
