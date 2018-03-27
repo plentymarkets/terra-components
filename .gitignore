@@ -13,6 +13,10 @@
 /src/**/*.js.map
 /src/**/*.d.ts
 
+/lintRules/**/*.js
+/lintRules/**/*.js.map
+/lintRules/**/*.d.ts
+
 # IDEs and editors
 /.idea/
 *.iml

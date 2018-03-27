@@ -3,6 +3,7 @@
   "rulesDirectory":
   [
     "node_modules/codelyzer",
-    "node_modules/tslint-eslint-rules/dist/rules"
+    "node_modules/tslint-eslint-rules/dist/rules",
+    "lintRules/"
   ]
 }
