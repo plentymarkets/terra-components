@@ -130,7 +130,6 @@
                 
                 <ng-container *ngSwitchCase="controlTypeEnum.VERTICAL_CONTAINER">
                     <div class="verticalGroup">
-                        <span class="verticalGroupLabel">{{ formField.label | translate:lang }}: </span>
                         <terra-dynamic-switch class="subSwitch"
                                               [formGroupName]="formField.key"
                                               [inputFormGroup]="inputFormGroup.controls[formField.key]"
