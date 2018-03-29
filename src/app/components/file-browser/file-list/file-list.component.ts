@@ -25,11 +25,10 @@ import { TerraFileBrowserComponent } from '../terra-file-browser.component';
 import { FileType } from '../helper/fileType.helper';
 import { TerraSimpleTableComponent } from '../../tables/simple/terra-simple-table.component';
 import { TerraFileBrowserService } from '../terra-file-browser.service';
-import { TerraUploadItem } from '../model/terra-upload-item';
 import { ClipboardHelper } from '../helper/clipboard.helper';
 import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-simple-table-cell.interface';
 import { TranslationService } from 'angular-l10n';
-import {TerraUploadProgress} from "../model/terra-upload-progress";
+import { TerraUploadProgress } from '../model/terra-upload-progress';
 import {
     isNull,
     isNullOrUndefined
@@ -94,7 +93,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this._storageList = storageList;
                 this.renderFileList();
             });
-            this._progressSubscription = this.activeStorageService.queue.status.subscribe((progress) => {
+            this._progressSubscription = this.activeStorageService.queue.status.subscribe((progress:TerraUploadProgress) =>
+            {
                 this._progress = progress;
 
                 if (!isNullOrUndefined(this._progress))
@@ -581,7 +581,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public onFileSelect(event:Event):void
     {
-        if(!isNullOrUndefined(event.srcElement) && !isNullOrUndefined((<any>event.srcElement).files))
+        if(!isNullOrUndefined(event.srcElement) && !isNullOrUndefined((<any> event.srcElement).files))
         {
             /*
             this.activeStorageService
@@ -590,7 +590,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                     this.currentStorageRoot ? this.currentStorageRoot.key : '/'
                 );
                 */
-            this.uploadFiles((<any>event.srcElement).files);
+            this.uploadFiles((<any> event.srcElement).files);
 
             // unset value of file input to allow selecting same file again
             (<HTMLInputElement> event.target).value = '';

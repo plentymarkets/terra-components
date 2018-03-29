@@ -2,8 +2,8 @@ import { TerraUploadItem } from './terra-upload-item';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { isNullOrUndefined } from 'util';
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {TerraUploadProgress} from "./terra-upload-progress";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { TerraUploadProgress } from './terra-upload-progress';
 
 export type UploadQueueUrlFactory = (storageKey:string) => string;
 
@@ -11,15 +11,13 @@ export class TerraUploadQueue
 {
     public progress:Observable<number>;
     public inProgress:Promise<void>;
+    public status:BehaviorSubject<TerraUploadProgress> = new BehaviorSubject<TerraUploadProgress>(null);
 
     private items:Array<TerraUploadItem> = [];
     private size:number = 0;
 
     private _progressListeners:Array<Observer<number>> = [];
     private _progressValue:number = -1;
-
-    public status:BehaviorSubject<TerraUploadProgress> = new BehaviorSubject<TerraUploadProgress>(null);
-
 
     constructor(private _uploadUrl:string | UploadQueueUrlFactory, private _uploadMethod:'GET' | 'POST' | 'DELETE' | 'PUT' = 'POST')
     {
@@ -88,7 +86,7 @@ export class TerraUploadQueue
         return new Promise((resolve:(resp:void) => void, reject:(err:any) => void):void =>
         {
             // let nextItem:TerraUploadItem = this.items.shift();
-            let nextItem:TerraUploadItem = this.items.find((item:TerraUploadItem) => !item.uploaded)
+            let nextItem:TerraUploadItem = this.items.find((item:TerraUploadItem) => !item.uploaded);
 
             if(isNullOrUndefined(nextItem))
             {
@@ -169,12 +167,12 @@ export class TerraUploadQueue
 
     private onProgress():void
     {
-        let filesUploaded = this.items.filter( (item: TerraUploadItem) => item.uploaded);
-        let sizeUploaded = filesUploaded
-            .map( (item: TerraUploadItem) => item.file.size)
-            .reduce((prev: number, current: number) => prev + current, 0);
+        let filesUploaded:Array<TerraUploadItem> = this.items.filter( (item:TerraUploadItem) => item.uploaded);
+        let sizeUploaded:number = filesUploaded
+            .map( (item:TerraUploadItem) => item.file.size)
+            .reduce((prev:number, current:number) => prev + current, 0);
 
-        let progress = 100 - Math.round(((this.size - sizeUploaded) / this.size) * 100);
+        let progress:number = 100 - Math.round(((this.size - sizeUploaded) / this.size) * 100);
 
         this._progressListeners.forEach((listener:Observer<number>) =>
         {
