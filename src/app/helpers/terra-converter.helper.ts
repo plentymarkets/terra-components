@@ -1,6 +1,6 @@
-import { DecimalPipe } from "@angular/common";
+import { DecimalPipe } from '@angular/common';
 import { LocaleService } from 'angular-l10n';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class TerraConverterHelper
@@ -36,12 +36,12 @@ export class TerraConverterHelper
     }
 
     /**
-     * @param {number} number
+     * @param {number} value
      * @returns {string}
      */
-    public getLocaleDecimalValue(number:number, locale:LocaleService):string
+    public getLocaleDecimalValue(value:number, locale:LocaleService):string
     {
-        let pipe = new DecimalPipe(locale.getDefaultLocale());
-        return pipe.transform(number, '1.0-2');// max 2 digits after the comma
+        let pipe:DecimalPipe = new DecimalPipe(locale.getDefaultLocale());
+        return pipe.transform(value, '1.0-2'); // max 2 digits after the comma
     }
 }

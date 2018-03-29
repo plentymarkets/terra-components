@@ -29,43 +29,42 @@ export class TerraCheckboxComponent implements ControlValueAccessor
 {
     /**
      * @description If true, the check box will be disabled. Default false.
-     * */
-    @Input() inputIsDisabled:boolean;
+     */
+    @Input()
+    public inputIsDisabled:boolean;
+
     /**
      * @description Set the caption.
-     * */
-    @Input() inputCaption:string;
+     */
+    @Input()
+    public inputCaption:string;
+
     /**
      * @description Set an icon (e.g. icon-save).
-     * */
-    @Input() inputIcon:string;
+     */
+    @Input()
+    public inputIcon:string;
+
     /**
      * @description Set the id.
      * @deprecated inputId will be removed in next major release.
-     * */
-    @Input() inputId:string;
+     */
+    @Input()
+    public inputId:string;
 
-    @Output() valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output()
+    public valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    public isValid:boolean = true;
 
     /**
      * @description a unique string identifier for the specific input instance.
      */
     private _id:string;
 
-    //The internal data model
+    // The internal data model
     private _innerValue:boolean = false;
     private _isIndeterminate:boolean = false;
-    public isValid:boolean = true;
-
-    //Placeholders for the callbacks which are later provided
-    //by the Control Value Accessor
-    private onTouchedCallback:() => void = () =>
-    {
-    };
-
-    private onChangeCallback:(_:any) => void = (_) =>
-    {
-    };
 
     constructor()
     {
@@ -73,13 +72,13 @@ export class TerraCheckboxComponent implements ControlValueAccessor
         this._id = `checkbox_#${nextId++}`;
     }
 
-    //get accessor
+    // get accessor
     public get value():boolean
     {
         return this._innerValue;
-    };
+    }
 
-    //set accessor including call the onchange callback
+    // set accessor including call the onchange callback
     @Input()
     public set value(v:boolean)
     {
@@ -91,13 +90,13 @@ export class TerraCheckboxComponent implements ControlValueAccessor
         }
     }
 
-    onChange(event:boolean)
+    public onChange(event:boolean):void
     {
         this.valueChange.emit(event);
     }
 
-    //From ControlValueAccessor interface
-    writeValue(value:boolean)
+    // From ControlValueAccessor interface
+    public writeValue(value:boolean):void
     {
         if(value !== this._innerValue)
         {
@@ -105,14 +104,14 @@ export class TerraCheckboxComponent implements ControlValueAccessor
         }
     }
 
-    //From ControlValueAccessor interface
-    registerOnChange(fn:any)
+    // From ControlValueAccessor interface
+    public registerOnChange(fn:(_:any) => void):void
     {
         this.onChangeCallback = fn;
     }
 
-    //From ControlValueAccessor interface
-    registerOnTouched(fn:any)
+    // From ControlValueAccessor interface
+    public registerOnTouched(fn:() => void):void
     {
         this.onTouchedCallback = fn;
     }
@@ -131,4 +130,8 @@ export class TerraCheckboxComponent implements ControlValueAccessor
         }
         this._isIndeterminate = value;
     }
+
+    private onTouchedCallback:() => void = ():void => undefined;
+
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 }

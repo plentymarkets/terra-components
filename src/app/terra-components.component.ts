@@ -1,6 +1,5 @@
 import {
     Component,
-    OnInit,
     ViewContainerRef
 } from '@angular/core';
 import {
@@ -8,13 +7,14 @@ import {
     Translation,
     TranslationService
 } from 'angular-l10n';
+import { isNull } from 'util';
 
 @Component({
-    selector: 'app-root',
+    selector: 'terra-app-root',
     template: require('./terra-components.component.html'),
     styles:   [require('./terra-components.component.scss')]
 })
-export class TerraComponentsComponent extends Translation implements OnInit
+export class TerraComponentsComponent extends Translation
 {
     private _viewContainerRef:ViewContainerRef;
 
@@ -35,13 +35,13 @@ export class TerraComponentsComponent extends Translation implements OnInit
 
         let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
 
-        if(langInLocalStorage != null)
+        if(!isNull(langInLocalStorage))
         {
             this.locale.setCurrentLanguage(langInLocalStorage);
         }
         else
         {
-            let lang = navigator.language.slice(0, 2).toLocaleLowerCase();
+            let lang:string = navigator.language.slice(0, 2).toLocaleLowerCase();
 
             if(lang !== 'de' && lang !== 'en')
             {
@@ -54,7 +54,7 @@ export class TerraComponentsComponent extends Translation implements OnInit
 
         this.locale.init();
 
-        //Definitions for i18n
+        // Definitions for i18n
         if(process.env.ENV === 'production')
         {
             this.translation.addConfiguration().addProvider('app/assets/lang/locale-').disableI18nPlural();
@@ -65,9 +65,5 @@ export class TerraComponentsComponent extends Translation implements OnInit
         }
 
         this.translation.init();
-    }
-
-    ngOnInit()
-    {
     }
 }

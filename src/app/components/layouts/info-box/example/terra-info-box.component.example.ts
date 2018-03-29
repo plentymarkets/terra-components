@@ -8,13 +8,13 @@ import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 })
 export class TerraInfoboxComponentExample
 {
-    tagList:Array<TerraTagInterface> = [
+    public tagList:Array<TerraTagInterface> = [
         {
             badge: 'tag1'
         }
     ];
 
-    clickFunction(clickedButton:string):void
+    public clickFunction(clickedButton:string):void
     {
         alert(clickedButton + ' clicked');
     }

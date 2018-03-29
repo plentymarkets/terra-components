@@ -10,9 +10,9 @@ import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.
 })
 export class TerraPortletComponentExample implements OnInit
 {
-    public portletButtonList: Array<TerraButtonInterface> = [];
+    public portletButtonList:Array<TerraButtonInterface> = [];
 
-    private static buttonClickFunction(): void
+    private static buttonClickFunction():void
     {
         alert('button clicked');
     }
@@ -21,13 +21,13 @@ export class TerraPortletComponentExample implements OnInit
     {
         this.portletButtonList.push(
             {
-                icon: 'icon-delete',
-                isSecondary: true,
-                clickFunction: ():void=> TerraPortletComponentExample.buttonClickFunction()
+                icon:          'icon-delete',
+                isSecondary:   true,
+                clickFunction: ():void => TerraPortletComponentExample.buttonClickFunction()
             },
             {
-                icon: 'icon-edit',
-                clickFunction: ():void=> TerraPortletComponentExample.buttonClickFunction()
-            })
+                icon:          'icon-edit',
+                clickFunction: ():void => TerraPortletComponentExample.buttonClickFunction()
+            });
     }
 }

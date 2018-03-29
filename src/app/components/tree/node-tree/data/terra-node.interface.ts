@@ -78,7 +78,12 @@ export interface TerraNodeInterface<D>
     defaultVisibility?:boolean;
 
     /**
-     * @description  set a tooltip for the node. default will ne name.
+     * @description  set a tooltip for the node. default will be name.
      */
     tooltip?:string;
+
+    /**
+     * @description  set a tooltip placement for the node. default will be 'right'. Other values: 'left', 'top', 'bottom'
+     */
+    tooltipPlacement?:string;
 }

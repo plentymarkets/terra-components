@@ -1,3 +1,41 @@
+<a name="2.1.64-zlk"></a>
+# 2.1.64-zlk (28.03.2018)
+
+### Bug Fixes
+* **terra-dynamic-form** remove inner portlet
+
+<a name="2.1.63-zlk"></a>
+# 2.1.63-zlk (27.03.2018)
+
+### Bug Fixes
+* **terra-suggestion-box**  fix issue with value handling and add TerraBaseData as possible value (in addition to number and string)
+
+<a name="2.1.62-zlk"></a>
+# 2.1.62-zlk (26.03.2018)
+
+### Bug Fixes
+* **terra-multi-split-view**  fix issue when view inputs contain circular references
+
+<a name="2.1.61-zlk"></a>
+# 2.1.61-zlk (23.03.2018)
+
+### Feature
+* **terra-tag** add Styling for menu entry tag in terra-tag component
+* **terra-dynamic-form** new component to pick a color 
+* **terra-dynamic-form** callback function for value changed
+* **terra-dynamic-form** added input for portlet usage in <code>TerraDynamicSwitch</code>, default is <code>true</code>
+* **terra-dynamic-switch** 
+	- added input for portlet usage, default is <code>true</code>
+	- using portlet when type is <code>TerraFormFieldVerticalContainer</code>
+
+<a name="2.1.60-zlk"></a>
+# 2.1.60-zlk (22.03.2018)
+
+### Feature
+* **terra-multi-check-box** new component equal to *terra-multi-select-box* but with correct ngModel two way data binding
+* **terra-multi-select-box** this component is now deprecated and will be removed in the next major release
+* **terra-category-picker** new component to comfortable select a category using the **terra-node-tree**
+
 <a name="2.1.58-zlk"></a>
 # 2.1.58-zlk (20.03.2018)
 
