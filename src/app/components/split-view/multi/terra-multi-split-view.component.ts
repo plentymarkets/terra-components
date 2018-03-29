@@ -322,6 +322,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 // interrupt all ongoing animations to prevent queue
                 viewContainer.stop();
 
+                if(isNullOrUndefined(anchor[0]))
+                {
+                   return;
+                }
+
                 // focus view horizontally
                 if(skipAnimation)
                 {
