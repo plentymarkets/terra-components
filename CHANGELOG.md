@@ -1,3 +1,8 @@
+# Unreleased
+
+### Feature
+* **terra-multi-check-box.interface** property `selected` is now optional
+
 <a name="2.1.64-zlk"></a>
 # 2.1.64-zlk (28.03.2018)
 
