@@ -394,7 +394,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
     private openSelectedNode(suggest:TerraSuggestionBoxValueInterface):void
     {
-        this.inputRouter.navigateByUrl(this.inputBaseRoute + this.getNodeRoute(suggest.value));
+        this.inputRouter.navigateByUrl(this.inputBaseRoute + this.getNodeRoute(suggest.value as TerraNavigatorNodeInterface<D>));
     }
 
     private getNodeRoute(node:TerraNavigatorNodeInterface<D>):string

@@ -1,6 +1,6 @@
 {
 	"name": "@plentymarkets/terra-components",
-	"version": "2.1.61-zlk",
+	"version": "2.1.64-zlk",
 	"homepage": "https://github.com/plentymarkets/terra-components#readme",
 	"author": "plentymarkets",
 	"description": "plentymarkets terra components",
@@ -38,6 +38,7 @@
 		"bootstrap": "4.0.0-alpha.4",
 		"bootstrap-loader": "2.1.0",
 		"canonical-path": "0.0.2",
+		"circular-json": "^0.5.1",
 		"core-js": "^2.5.1",
 		"dgeni": "^0.4.9",
 		"dgeni-packages": "^0.21.4",
