@@ -1,3 +1,11 @@
+# Unreleased
+
+### Feature
+* **terra-multi-check-box.interface** property `selected` is now optional
+
+### Bug Fixes
+* **terra-multi-split-view** fix reoccurring "Cannot read property 'getBoundingClientRect' of undefined" error
+
 <a name="2.1.64-zlk"></a>
 # 2.1.64-zlk (28.03.2018)
 
