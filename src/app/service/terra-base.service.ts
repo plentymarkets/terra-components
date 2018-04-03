@@ -15,8 +15,7 @@ import {
 import {
     TerraAlertComponent,
     TerraBaseParameterInterface,
-    TerraLoadingSpinnerService,
-    TerraPagerParameterInterface
+    TerraLoadingSpinnerService
 } from '../../';
 
 /**
@@ -25,10 +24,10 @@ import {
 @Injectable()
 export class TerraBaseService
 {
-    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
-
     public headers:Headers;
     public url:string;
+
+    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private _baseHttp:Http,
@@ -45,7 +44,7 @@ export class TerraBaseService
         }
     }
 
-    get http():Http
+    public get http():Http
     {
         return this._baseHttp;
     }
@@ -68,13 +67,13 @@ export class TerraBaseService
         }
     }
 
-    protected mapRequest(request:Observable<Response>, err?:(error:any) => void, isRaw?:boolean):Observable<any>
+    protected mapRequest(request:Observable<any>, err?:(error:any) => void, isRaw?:boolean):Observable<any>
     {
         this._terraLoadingSpinnerService.start();
 
-        let req = request.map((response:Response) =>
+        let req:Observable<any> = request.map((response:Response) =>
         {
-            if(response.status == 204)
+            if(response.status === 204)
             {
                 return response.text();
             }
@@ -105,13 +104,13 @@ export class TerraBaseService
 
             if(error.status === 403 && this.getErrorClass(error) === 'UIHashExpiredException')
             {
-                let routeToLoginEvent = new CustomEvent('CustomEvent');
+                let routeToLoginEvent:CustomEvent = new CustomEvent('CustomEvent');
 
                 routeToLoginEvent.initCustomEvent('routeToLogin', true, true, {});
 
                 this.dispatchEvent(routeToLoginEvent);
             }
-            else if(error.status == 401 && errorMessage === "This action is unauthorized.")
+            else if(error.status === 401 && errorMessage === 'This action is unauthorized.')
             {
                 if(this._isPlugin)
                 {
@@ -131,10 +130,10 @@ export class TerraBaseService
                 }
             }
             // END Very unclean workaround!
-            else if(error.status == 401)
+            else if(error.status === 401)
             {
                 let loginEvent:CustomEvent = new CustomEvent('login');
-                //Workaround for plugins in Angular (loaded via iFrame)
+                // Workaround for plugins in Angular (loaded via iFrame)
                 this.dispatchEvent(loginEvent);
             }
 
@@ -145,7 +144,7 @@ export class TerraBaseService
             {
                 this._terraLoadingSpinnerService.stop();
             },
-            error =>
+            (error:any) =>
             {
                 this._terraLoadingSpinnerService.stop();
             }
@@ -158,7 +157,7 @@ export class TerraBaseService
     {
         if(!isNullOrUndefined(window.parent))
         {
-            //workaround for plugins in GWT (loaded via iFrame)
+            // workaround for plugins in GWT (loaded via iFrame)
             if(!isNullOrUndefined(window.parent.window.parent))
             {
                 window.parent.window.parent.window.dispatchEvent(eventToDispatch);
@@ -297,71 +296,32 @@ export class TerraBaseService
     {
         let searchParams:URLSearchParams = new URLSearchParams();
 
-        Object.keys(params).map((key) =>
+        if(!isNullOrUndefined(params))
         {
-            searchParams.set(key, params[key]);
-        });
+            Object.keys(params).map((key:string) =>
+            {
+                if(!isNullOrUndefined(params[key]) && params[key] !== '')
+                {
+                    searchParams.set(key, params[key]);
+                }
+            });
+        }
 
         return searchParams;
     }
 
-    private getMissingUserPermissionAlertMessage()
+    private getMissingUserPermissionAlertMessage():string
     {
-        //START workaround because we do not have a real translation solution in terra components
+        // START workaround because we do not have a real translation solution in terra components
         let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
-        if(langInLocalStorage === "de")
+        if(langInLocalStorage === 'de')
         {
-            return "Fehlende Berechtigungen";
+            return 'Fehlende Berechtigungen';
         }
         else
         {
-            return "Missing permissions";
+            return 'Missing permissions';
         }
-        //END workaround
-    }
-
-    /**
-     * Appends the given parameters to the given url
-     *
-     * @param {string} url
-     * @param {TerraPagerParameterInterface} params
-     * @returns {string}
-     */
-    protected addParamsToUrl(url:string, params:TerraPagerParameterInterface):string
-    {
-        // check if params are given
-        if(isNullOrUndefined(params))
-        {
-            return url;
-        }
-
-        // initialize separator for parameters
-        let separator:string = '?';
-
-        // check if any parameter has already been appended
-        if(url.split('/').pop().includes('?'))
-        {
-            separator = '&';
-        }
-
-        // add parameters to the url
-        for(let obj in params)
-        {
-            // check if parameter is defined
-            if(!isNullOrUndefined(obj))
-            {
-                // check if parameter's value is set
-                if(!isNullOrUndefined(params[obj]))
-                {
-                    // append parameter to the url
-                    url += separator + obj + '=' + params[obj];
-
-                    // set separator for subsequent parameters
-                    separator = '&';
-                }
-            }
-        }
-
-        return url;
+        // END workaround
     }
 }

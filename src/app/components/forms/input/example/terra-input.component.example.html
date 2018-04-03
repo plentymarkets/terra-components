@@ -1,0 +1,56 @@
+<terra-portlet
+    inputPortletHeader="create your account">
+    <terra-text-input
+        inputName="name"
+        [(ngModel)]="_name">
+    </terra-text-input>
+    <terra-text-input
+        inputName="lastname"
+        [(ngModel)]="_lastname">
+    </terra-text-input>
+    <terra-text-input
+        inputName="e-mail"
+        [(ngModel)]="_email">
+    </terra-text-input>
+    <terra-text-input
+        inputName="password"
+        [(ngModel)]="_password"
+        [inputIsPassword]="true">
+    </terra-text-input>
+    <terra-text-input
+        inputName="repeat password"
+        [(ngModel)]="_passwordrepeat"
+        [inputIsPassword]="true">
+    </terra-text-input>
+    <terra-date-picker
+        inputName="birthday"
+        [(ngModel)]="_birthday">
+    </terra-date-picker>
+    <terra-select-box
+        inputName="state"
+        [inputListBoxValues]="_stateSelection"
+        [(ngModel)]="_state">
+    </terra-select-box>
+    <terra-text-input
+        inputName="address"
+        [(ngModel)]="_address">
+    </terra-text-input>
+    <terra-text-input
+        inputName="zip"
+        [(ngModel)]="_zip">
+    </terra-text-input>
+    <terra-text-input
+        inputName="city"
+        [(ngModel)]="_city">
+    </terra-text-input>
+    <terra-checkbox inputCaption="Newsletter?"
+                    [(ngModel)]="_newsletter">
+    </terra-checkbox>
+    <terra-checkbox inputCaption="AGBs"
+                    [(ngModel)]="_agbs">
+    </terra-checkbox>
+    <terra-button
+        inputCaption="Submit"
+        (outputClicked)="showValues()">
+    </terra-button>
+</terra-portlet>

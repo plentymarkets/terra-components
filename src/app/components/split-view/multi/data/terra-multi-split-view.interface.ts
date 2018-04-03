@@ -6,19 +6,20 @@ import { TerraDynamicLoadedComponentInputInterface } from '../../../dynamic-modu
  */
 export interface TerraMultiSplitViewInterface
 {
-    parent?:TerraMultiSplitViewInterface;
-    children?:Array<TerraMultiSplitViewInterface>;
-    module:ModuleWithProviders;
-    defaultWidth:string;
-    focusedWidth?:string;
-    name:string;
-    mainComponentName:string;
+    public parent?:TerraMultiSplitViewInterface;
+    public children?:Array<TerraMultiSplitViewInterface>;
+    public module:ModuleWithProviders;
+    public defaultWidth:string;
+    public focusedWidth?:string;
+    public name:string;
+    public mainComponentName:string;
+
     /**
      * @deprecated Will be removed in an upcoming release.
      */
-    parameter?:any;
-    inputs?:Array<TerraDynamicLoadedComponentInputInterface>;
-    isBackgroundColorGrey?:boolean;
-    id?:string;
-    url?:string;
+    public parameter?:any;
+    public inputs?:Array<TerraDynamicLoadedComponentInputInterface>;
+    public isBackgroundColorGrey?:boolean;
+    public id?:string;
+    public url?:string;
 }

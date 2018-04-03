@@ -14,7 +14,10 @@ import {
     FormControl,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 
 @Component({
     selector:  'terra-select-box',
@@ -30,17 +33,43 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
-    @Input() inputName:string;
-    @Input() inputIsRequired:boolean;
-    @Input() inputIsDisabled:boolean;
-    @Input() inputIsSmall:boolean;
-    @Input() inputOpenOnTop:boolean;
-    @Input() inputTooltipText:string;
-    @Input() inputTooltipPlacement:string;
-    @Input() inputListBoxValues:Array<TerraSelectBoxValueInterface>;
-    @Output() outputValueChanged = new EventEmitter<TerraSelectBoxValueInterface>();
-    @Output() inputSelectedValueChange = new EventEmitter<TerraSelectBoxValueInterface>();
+    @Input()
+    public inputName:string;
 
+    @Input()
+    public inputIsRequired:boolean;
+
+    @Input()
+    public inputIsDisabled:boolean;
+
+    @Input()
+    public inputIsSmall:boolean;
+
+    @Input()
+    public inputOpenOnTop:boolean;
+
+    @Input()
+    public inputTooltipText:string;
+
+    @Input()
+    public inputTooltipPlacement:string;
+
+    @Input()
+    public inputListBoxValues:Array<TerraSelectBoxValueInterface>;
+
+    @Output()
+    public outputValueChanged:EventEmitter<TerraSelectBoxValueInterface> = new EventEmitter<TerraSelectBoxValueInterface>();
+
+    @Output()
+    public inputSelectedValueChange:EventEmitter<TerraSelectBoxValueInterface> = new EventEmitter<TerraSelectBoxValueInterface>();
+
+    public isValid:boolean;
+
+    private _value:number | string;
+    private _selectedValue:TerraSelectBoxValueInterface;
+    private _toggleOpen:boolean;
+    private _hasLabel:boolean;
+    private _isInit:boolean;
     private clickListener:(event:Event) => void;
 
     /**
@@ -48,15 +77,15 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      * @param value
      */
     @Input()
-    set inputSelectedValue(value:number | string)
+    public set inputSelectedValue(value:number | string)
     {
         console.warn('inputSelectedValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-        if(value !== undefined && value != null)
+        if(!isNullOrUndefined(value))
         {
             this.inputListBoxValues
                 .forEach((item:TerraSelectBoxValueInterface) =>
                 {
-                    if(item.value == value)
+                    if(item.value === value)
                     {
                         this._selectedValue = item;
                     }
@@ -66,17 +95,10 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         }
     }
 
-    get inputSelectedValue():number | string
+    public get inputSelectedValue():number | string
     {
         return this._selectedValue.value;
     }
-
-    public isValid:boolean;
-    private _value:number | string;
-    private _selectedValue:TerraSelectBoxValueInterface;
-    private _toggleOpen:boolean;
-    private _hasLabel:boolean;
-    private _isInit:boolean;
 
     /**
      *
@@ -84,7 +106,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     constructor(private elementRef:ElementRef)
     {
-        this.clickListener = (event) =>
+        this.clickListener = (event:Event):void =>
         {
             this.clickedOutside(event);
         };
@@ -95,11 +117,11 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this.inputOpenOnTop = false;
     }
 
-    ngOnInit()
+    public ngOnInit():void
     {
         this.isValid = true;
         this._toggleOpen = false;
-        this._hasLabel = this.inputName != null;
+        this._hasLabel = !isNull(this.inputName);
         this._isInit = true;
     }
 
@@ -107,38 +129,34 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      *
      * @param changes
      */
-    ngOnChanges(changes:SimpleChanges)
+    public ngOnChanges(changes:SimpleChanges):void
     {
-        if(this._isInit == true
-           && changes["inputListBoxValues"]
-           && changes["inputListBoxValues"].currentValue.length > 0
-           && !this.inputListBoxValues.find((x) => this._selectedValue === x))
+        if(this._isInit === true
+           && changes['inputListBoxValues']
+           && changes['inputListBoxValues'].currentValue.length > 0
+           && !this.inputListBoxValues.find((x:TerraSelectBoxValueInterface):boolean => this._selectedValue === x))
         {
             this.select(this.inputListBoxValues[0]);
         }
+    }
+
+    public registerOnChange(fn:(_:any) => void):void
+    {
+        this.onChangeCallback = fn;
+    }
+
+    public registerOnTouched(fn:() => void):void
+    {
+        this.onTouchedCallback = fn;
     }
 
     /**
      *
      * Two way data binding by ngModel
      */
-    private onTouchedCallback:() => void = () =>
-    {
-    };
+    private onTouchedCallback:() => void = ():void => undefined;
 
-    private onChangeCallback:(_:any) => void = (_) =>
-    {
-    };
-
-    public registerOnChange(fn:any):void
-    {
-        this.onChangeCallback = fn;
-    }
-
-    public registerOnTouched(fn:any):void
-    {
-        this.onTouchedCallback = fn;
-    }
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 
     public writeValue(value:any):void
     {
@@ -159,7 +177,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             this.inputListBoxValues
                 .forEach((item:TerraSelectBoxValueInterface) =>
                 {
-                    if(item.value == value)
+                    if(item.value === value)
                     {
                         this._selectedValue = item;
                     }
@@ -173,13 +191,13 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         }
     }
 
-    private set toggleOpen(value)
+    private set toggleOpen(value:boolean)
     {
-        if(this._toggleOpen !== value && value == true)
+        if(this._toggleOpen !== value && value === true)
         {
             document.addEventListener('click', this.clickListener, true);
         }
-        else if(this._toggleOpen !== value && value == false)
+        else if(this._toggleOpen !== value && value === false)
         {
             document.removeEventListener('click', this.clickListener);
         }
@@ -234,14 +252,14 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             {
                 this.isValid = false;
 
-                //if(this.inputIsRequired && (isNullOrUndefined(this.value) || this.value.length == 0))
-                //{
+                // if(this.inputIsRequired && (isNullOrUndefined(this.value) || this.value.length == 0))
+                // {
                 //    let emptyMessage:string;
                 //
                 //    if(!this.inputEmptyMessage || this.inputEmptyMessage.length == 0)
                 //    {
-                //        ////TODO i18n
-                //        //emptyMessage = 'Mach eine Eingabe!';
+                //        //// TODO i18n
+                //        // emptyMessage = 'Mach eine Eingabe!';
                 //
                 //    }
                 //    else
@@ -255,15 +273,15 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                 //                                 dismissOnTimeout: 0
                 //                             });
                 //    }
-                //}
-                //else if(!isNullOrUndefined(this.value) && this.value.length > 0)
-                //{
+                // }
+                // else if(!isNullOrUndefined(this.value) && this.value.length > 0)
+                // {
                 //    let invalidMessage:string;
                 //
                 //    if(!this.inputInvalidMessage || this.inputInvalidMessage.length == 0)
                 //    {
-                //        ////TODO i18n
-                //        //invalidMessage = 'Eingabe ungültig!';
+                //        //// TODO i18n
+                //        // invalidMessage = 'Eingabe ungültig!';
                 //    }
                 //    else
                 //    {
@@ -276,7 +294,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                 //                                 dismissOnTimeout: 0
                 //                             });
                 //    }
-                //}
+                // }
             }
         }
     }

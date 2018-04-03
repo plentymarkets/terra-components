@@ -1,10 +1,10 @@
 import {
     Component,
     forwardRef
-} from "@angular/core";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { TerraInputComponent } from "../terra-input.component";
-import { Color } from "./color.helper";
+} from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TerraInputComponent } from '../terra-input.component';
+import { Color } from './color.helper';
 import { TerraRegex } from '../../../../../';
 
 @Component({
@@ -28,7 +28,7 @@ export class TerraColorPickerComponent extends TerraInputComponent
 
     public get color():string
     {
-        return this.value || "#ffffff";
+        return this.value || '#ffffff';
     }
 
     public set color(c:string)

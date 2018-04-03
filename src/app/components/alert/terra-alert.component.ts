@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { TerraAlertInterface } from './data/terra-alert.interface';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 
 /**
  * @author mkunze
@@ -8,21 +11,22 @@ import { isNullOrUndefined } from 'util';
 @Injectable()
 export class TerraAlertComponent
 {
-    public alerts:Array<TerraAlertInterface> = [];
     private static _instance:TerraAlertComponent = null;
     private static _isCreating:boolean = false;
+
+    public alerts:Array<TerraAlertInterface> = [];
 
     constructor()
     {
         if(!TerraAlertComponent._isCreating)
         {
-            throw new Error("You can't call new in Singleton instances! Call TerraAlertComponent.getInstance() instead.");
+            throw new Error('You can\'t call new in Singleton instances! Call TerraAlertComponent.getInstance() instead.');
         }
     }
 
     public static getInstance():TerraAlertComponent
     {
-        if(TerraAlertComponent._instance == null)
+        if(isNull(TerraAlertComponent._instance))
         {
             TerraAlertComponent._isCreating = true;
             TerraAlertComponent._instance = new TerraAlertComponent();
@@ -55,7 +59,7 @@ export class TerraAlertComponent
 
         window.parent.window.dispatchEvent(event);
     }
-
+    /** @description is used to add an alert*/
     public addAlert(alert:TerraAlertInterface):void
     {
         if(isNullOrUndefined(alert.dismissOnTimeout))
@@ -71,13 +75,13 @@ export class TerraAlertComponent
         });
     }
 
-    public closeAlertByIdentifier(identifier:string)
+    public closeAlertByIdentifier(identifier:string):void
     {
         for(let alert of this.alerts)
         {
-            if(alert.identifier == identifier)
+            if(alert.identifier === identifier)
             {
-                let index = this.alerts.indexOf(alert);
+                let index:number = this.alerts.indexOf(alert);
 
                 this.closeAlert(index);
             }

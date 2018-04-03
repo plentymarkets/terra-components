@@ -1,5 +1,9 @@
-<div class="portlet" [class.collapsable]="inputIsCollapsable" [ngClass]="{'highlight': inputHighlightPortlet}">
-    <div class="portlet_head" (click)="toggleCollapse()" *ngIf="inputPortletHeader.length">
+<div class="portlet" [ngClass]="{ 'collapsable': inputIsCollapsable,'highlight': inputHighlightPortlet }">
+    
+    <div *ngIf="inputPortletHeader?.length"
+         class="portlet_head"
+         [class.unfolded]="!inputCollapsed"
+         (click)="toggleCollapse()">
         <span class="header-caption">{{inputPortletHeader}}</span>
         <div>
             <div class="header-buttons btn-group" (click)="$event.stopPropagation()">
@@ -23,6 +27,7 @@
             <span class="icon-collapse_down" [class.rotated]="inputCollapsed" *ngIf="inputIsCollapsable"></span>
         </div>
     </div>
+    
     <div class="portlet_body" [@collapsedState]="collapsedState">
         <ng-content></ng-content>
     </div>

@@ -12,7 +12,7 @@ import {
     style,
     transition,
     trigger
-} from "@angular/animations";
+} from '@angular/animations';
 import { isNullOrUndefined } from 'util';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 
@@ -38,20 +38,38 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 })
 export class TerraPortletComponent implements OnChanges
 {
-    @Input() inputHighlightPortlet:boolean = false;
+    /**
+     * @description If true, portlet gets highlighted on mouse hover.
+     */
+    @Input()
+    public inputHighlightPortlet:boolean = false;
 
-    @Input() inputPortletHeader:string;
+    /**
+     * @description Sets the label of the portlet header.
+     */
+    @Input()
+    public inputPortletHeader:string;
 
-    @Input() inputIsCollapsable:boolean = false;
+    /**
+     * @description If true, the portlet gets collapsable.
+     */
+    @Input()
+    public inputIsCollapsable:boolean = false;
 
-    @Input() inputCollapsed:boolean = false;
-
-    @Output() inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+    /**
+     * @description If true, the portlet is collapsed (requires inputIsCollapsable = true).
+     */
+    @Input()
+    public inputCollapsed:boolean = false;
 
     /**
      * @description Sets the given buttons as a button group to the right side of the portlet header.
      */
-    @Input() inputButtonList:Array<TerraButtonInterface> = [];
+    @Input()
+    public inputButtonList:Array<TerraButtonInterface> = [];
+
+    @Output()
+    public inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     private get collapsedState():string
     {
@@ -75,7 +93,7 @@ export class TerraPortletComponent implements OnChanges
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes.hasOwnProperty("inputIsCollapsable") && !this.inputIsCollapsable)
+        if(changes.hasOwnProperty('inputIsCollapsable') && !this.inputIsCollapsable)
         {
             this.inputCollapsed = false;
             setTimeout(() =>
@@ -85,6 +103,9 @@ export class TerraPortletComponent implements OnChanges
         }
     }
 
+    /**
+     * @description Changes the collapse state.
+     */
     public toggleCollapse():void
     {
         this.inputCollapsed = !this.inputCollapsed;

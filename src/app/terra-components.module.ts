@@ -80,12 +80,59 @@ import { TerraDataTableContextMenuService } from './components/tables/data-table
 import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
+import { TerraConverterHelper } from './helpers/terra-converter.helper';
+import { TerraCategoryPickerBaseService } from './components/category-picker/service/terra-category-picker-base.service';
+import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
+import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
+
+// ### import of terra-component examples
+import { TerraButtonComponentExample } from './components/buttons/button/example/terra-button.component.example';
+import { TerraAlertComponentExample } from './components/alert/example/terra-alert.component.example';
+import { TerraCardComponentExample } from './components/layouts/card/example/terra-card.component.example';
+import { TerraBaseToolbarComponentExample } from './components/toolbar/base-toolbar/example/terra-base-toolbar.component.example';
+import { TerraOverlayComponentExample } from './components/layouts/overlay/example/terra-overlay.component.example';
+import { TerraInfoboxComponentExample } from './components/layouts/info-box/example/terra-info-box.component.example';
+import { TerraPortletComponentExample } from './components/layouts/portlet/example/terra-portlet.component.example';
+import { TerraColorPickerComponentExample } from './components/forms/input/color-picker/example/terra-color-picker.component.example';
+import { TerraDatePickerComponentExample } from './components/forms/input/date-picker/example/terra-date-picker.component.example';
+import { TerraDoubleInputComponentExample } from './components/forms/input/double-input/example/terra-double-input.component.example';
+import { TerraNumberInputComponentExample } from './components/forms/input/number-input/example/terra-number-input.component.example';
+import { TerraTextAreaInputComponentExample } from './components/forms/input/text-area-input/example/terra-text-area-input.component.example';
+import { TerraTextInputComponentExample } from './components/forms/input/text-input/example/terra-text-input.component.example';
+import { TerraCheckboxComponentExample } from './components/forms/checkbox/example/terra-checkbox.component.example';
+import { TerraMultiSelectBoxComponentExample } from './components/forms/multi-select-box/example/terra-multi-select-box.component.example';
+import { TerraRadioButtonComponentExample } from './components/forms/radio-button/example/terra-radio-button.component.example';
+import { TerraSelectBoxComponentExample } from './components/forms/select-box/example/terra-select-box.component.example';
+import { TerraSliderComponentExample } from './components/forms/slider/example/terra-slider.component.example';
+import { TerraSuggestionBoxComponentExample } from './components/forms/suggestion-box/example/terra-suggestion-box.component.example';
+import { TerraDataTableComponentExample } from './components/tables/data-table/example/terra-data-table.component.example';
+import { TerraTagComponentExample } from './components/layouts/tag/example/terra-tag.component.example';
+import { TerraFileInputComponentExample } from './components/forms/input/file-input/example/terra-file-input.component.example';
+import { TerraTreeComponentExample } from './components/tree/example/terra-tree.component.example';
+import { TerraCheckboxTreeComponentExample } from './components/tree/checkbox-tree/example/terra-checkbox-tree.component.example';
+import { TerraToggleComponentExample } from './components/buttons/toggle/example/terra-toggle.component.example';
+import { TerraSyntaxEditorComponentExample } from './components/editors/syntax-editor/example/terra-syntax-editor.component.example';
+import { TerraSimpleTableComponentExample } from './components/tables/simple/example/terra-table-simple.component.example';
+import { TerraPagerComponentExample } from './components/pager/example/terra-pager.component.example';
+import { TerraTaglistComponentExample } from './components/layouts/taglist/example/terra-taglist.component.example';
+import { TerraNavigatorComponentExample } from './components/navigator/example/terra-navigator.component.example';
+import { TerraNoResultNoticeComponentExample } from './components/no-result/example/terra-no-result-notice.component.example';
+import { TerraButtonWithOptionsComponentExample } from './components/buttons/button-with-options/example/terra-button-with-options.component.example';
+import { TerraInputComponentExample } from './components/forms/input/example/terra-input.component.example';
+import { TerraFilterComponentExample } from './components/filter/example/terra-filter.component.example';
+import {
+    TerraDataTableContextMenuComponentExample
+} from './components/tables/data-table/context-menu/example/terra-data-table-context-menu.component.example';
+import { TerraNoteEditorComponentExample } from './components/editors/note-editor/example/terra-note-editor.component.example';
+import { TerraNoteComponentExample } from './components/note/example/terra-note.component.example';
+import { TerraNodeTreeComponentExample } from './components/tree/node-tree/example/terra-node-tree.component.example';
 import { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra-dynamic-form.component';
 import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
-import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
 import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
-import { TerraConverterHelper } from './helpers/terra-converter.helper';
-import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
+import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
+import { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
+import { TerraMultiCheckBoxComponentExample } from './components/forms/multi-check-box/example/terra-multi-check-box.component.example';
+import { TerraCategoryPickerComponent } from './components/category-picker/terra-category-picker.component';
 
 @NgModule({
     declarations:    [
@@ -118,6 +165,7 @@ import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/ser
         TerraSplitViewComponent,
         TerraFilterComponent,
         TerraMultiSelectBoxComponent,
+        TerraMultiCheckBoxComponent,
         TerraDynamicComponentLoaderComponent,
         TerraDynamicModuleLoaderComponent,
         TerraTileBoxComponent,
@@ -138,10 +186,53 @@ import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/ser
         FixedHeaderDirective,
         TerraNoteEditorComponent,
         TerraNoteComponent,
+        TerraNodeTreeComponent,
+        TerraNodeComponent,
+        TerraCategoryPickerComponent,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
-        TerraNodeTreeComponent,
-        TerraNodeComponent
+        TerraCategoryPickerComponent,
+
+        // ### declarations of terra-components examples
+        TerraButtonComponentExample,
+        TerraAlertComponentExample,
+        TerraCardComponentExample,
+        TerraBaseToolbarComponentExample,
+        TerraOverlayComponentExample,
+        TerraInfoboxComponentExample,
+        TerraPortletComponentExample,
+        TerraColorPickerComponentExample,
+        TerraDatePickerComponentExample,
+        TerraDoubleInputComponentExample,
+        TerraNumberInputComponentExample,
+        TerraTextAreaInputComponentExample,
+        TerraTextInputComponentExample,
+        TerraCheckboxComponentExample,
+        TerraMultiSelectBoxComponentExample,
+        TerraMultiCheckBoxComponentExample,
+        TerraRadioButtonComponentExample,
+        TerraSelectBoxComponentExample,
+        TerraSliderComponentExample,
+        TerraSuggestionBoxComponentExample,
+        TerraDataTableComponentExample,
+        TerraTagComponentExample,
+        TerraFileInputComponentExample,
+        TerraTreeComponentExample,
+        TerraCheckboxTreeComponentExample,
+        TerraToggleComponentExample,
+        TerraSyntaxEditorComponentExample,
+        TerraSimpleTableComponentExample,
+        TerraPagerComponentExample,
+        TerraTaglistComponentExample,
+        TerraNavigatorComponentExample,
+        TerraNoResultNoticeComponentExample,
+        TerraButtonWithOptionsComponentExample,
+        TerraInputComponentExample,
+        TerraFilterComponentExample,
+        TerraDataTableContextMenuComponentExample,
+        TerraNoteEditorComponentExample,
+        TerraNoteComponentExample,
+        TerraNodeTreeComponentExample
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -171,6 +262,7 @@ import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/ser
         TerraSplitViewComponent,
         TerraFilterComponent,
         TerraMultiSelectBoxComponent,
+        TerraMultiCheckBoxComponent,
         TerraTileBoxComponent,
         TerraTileBoxPanelComponent,
         TerraSuggestionBoxComponent,
@@ -187,10 +279,9 @@ import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/ser
         TerraButtonWithOptionsComponent,
         TerraNoteEditorComponent,
         TerraNoteComponent,
-        TerraDynamicFormComponent,
-        TerraDynamicSwitchComponent,
         TerraNodeTreeComponent,
-        TerraNodeComponent
+        TerraNodeComponent,
+        TerraCategoryPickerComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -221,6 +312,7 @@ import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/ser
         TerraSplitViewComponent,
         TerraFilterComponent,
         TerraMultiSelectBoxComponent,
+        TerraMultiCheckBoxComponent,
         TerraDynamicComponentLoaderComponent,
         TerraDynamicModuleLoaderComponent,
         TerraTileBoxComponent,
@@ -242,8 +334,53 @@ import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/ser
         TerraNoteEditorComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
+        TerraCategoryPickerComponent,
         TerraDynamicFormComponent,
-        TerraDynamicSwitchComponent
+        TerraDynamicSwitchComponent,
+        TerraCategoryPickerComponent,
+
+        // ### declarations of terra-components examples
+        TerraButtonComponentExample,
+        TerraAlertComponentExample,
+        TerraCardComponentExample,
+        TerraBaseToolbarComponentExample,
+        TerraOverlayComponentExample,
+        TerraInfoboxComponentExample,
+        TerraPortletComponentExample,
+        TerraColorPickerComponentExample,
+        TerraDatePickerComponentExample,
+        TerraDoubleInputComponentExample,
+        TerraNumberInputComponentExample,
+        TerraTextAreaInputComponentExample,
+        TerraTextInputComponentExample,
+        TerraCheckboxComponentExample,
+        TerraMultiSelectBoxComponentExample,
+        TerraMultiCheckBoxComponentExample,
+        TerraRadioButtonComponentExample,
+        TerraSelectBoxComponentExample,
+        TerraSliderComponentExample,
+        TerraSuggestionBoxComponentExample,
+        TerraDataTableComponentExample,
+        TerraTagComponentExample,
+        TerraFileInputComponentExample,
+        TerraTreeComponentExample,
+        TerraCheckboxTreeComponentExample,
+        TerraToggleComponentExample,
+        TerraSyntaxEditorComponentExample,
+        TerraSimpleTableComponentExample,
+        TerraPagerComponentExample,
+        TerraTaglistComponentExample,
+        TerraNavigatorComponentExample,
+        TerraNoResultNoticeComponentExample,
+        TerraButtonWithOptionsComponentExample,
+        TerraInputComponentExample,
+        TerraFilterComponentExample,
+        TerraDataTableContextMenuComponentExample,
+        TerraNoteEditorComponentExample,
+        TerraNoteComponentExample,
+        TerraDynamicFormComponent,
+        TerraDynamicSwitchComponent,
+        TerraNodeTreeComponentExample
     ],
     imports:         [
         BrowserModule,
@@ -267,14 +404,13 @@ import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/ser
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
         TerraFileBrowserService,
-        TerraFormFieldControlService,
-        TerraDynamicFormService,
-        TerraConverterHelper
+        TerraConverterHelper,
     ],
     bootstrap:       [
         TerraComponentsComponent
     ]
 })
+
 export class TerraComponentsModule
 {
     public static forRoot():ModuleWithProviders
@@ -289,6 +425,8 @@ export class TerraComponentsModule
                 TerraUrlParamsDecorator,
                 TerraFrontendStorageService,
                 TerraAlertComponent,
+                TerraDynamicFormService,
+                TerraFormFieldControlService,
                 TerraJsonToFormFieldService
             ]
         };
@@ -306,6 +444,7 @@ export class TerraComponentsModule
                 TerraUrlParamsDecorator,
                 TerraFrontendStorageService,
                 TerraAlertComponent,
+                CategoryTreeConfig,
                 TerraJsonToFormFieldService
             ]
         };

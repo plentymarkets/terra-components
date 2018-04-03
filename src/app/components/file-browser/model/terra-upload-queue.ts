@@ -7,23 +7,24 @@ export type UploadQueueUrlFactory = (storageKey:string) => string;
 
 export class TerraUploadQueue
 {
+    public progress:Observable<number>;
+    public inProgress:Promise<void>;
+
     private items:Array<TerraUploadItem> = [];
     private size:number = 0;
 
-    public progress:Observable<number>;
-    public inProgress:Promise<void>;
     private _progressListeners:Array<Observer<number>> = [];
     private _progressValue:number = -1;
 
 
     constructor(private _uploadUrl:string | UploadQueueUrlFactory, private _uploadMethod:'GET' | 'POST' | 'DELETE' | 'PUT' = 'POST')
     {
-        this.progress = new Observable((observer:Observer<number>) =>
+        this.progress = new Observable((observer:Observer<number>):Function =>
         {
             this._progressListeners.push(observer);
             observer.next(this._progressValue);
 
-            return () =>
+            return ():void =>
             {
                 let idx:number = this._progressListeners.indexOf(observer);
                 if(idx >= 0)
@@ -80,7 +81,7 @@ export class TerraUploadQueue
 
     private uploadAllItems():Promise<void>
     {
-        return new Promise((resolve:(resp:void) => void, reject:(err:any) => void) =>
+        return new Promise((resolve:(resp:void) => void, reject:(err:any) => void):void =>
         {
             let nextItem:TerraUploadItem = this.items.shift();
 
@@ -100,20 +101,20 @@ export class TerraUploadQueue
 
     private uploadItem(item:TerraUploadItem):Promise<void>
     {
-        return new Promise((resolve:(resp:void) => void, reject:(err:any) => void) =>
+        return new Promise((resolve:(resp:void) => void, reject:(err:any) => void):void =>
         {
             let xhr:XMLHttpRequest = item._xhr = new XMLHttpRequest();
 
             item.emit('beforeUpload', item.file);
 
-            xhr.upload.onprogress = (event:ProgressEvent) =>
+            xhr.upload.onprogress = (event:ProgressEvent):void =>
             {
-                let progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+                let progress:number = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
                 item.emit('onProgress', progress);
                 this.onProgress();
             };
 
-            xhr.onload = () =>
+            xhr.onload = ():void =>
             {
                 item.emit('onSuccess', xhr.response, xhr.status, this.parseHeaders(xhr.getAllResponseHeaders()));
                 item.uploaded = true;
@@ -121,7 +122,7 @@ export class TerraUploadQueue
                 resolve(null);
             };
 
-            xhr.onerror = () =>
+            xhr.onerror = ():void =>
             {
                 item.emit('onError', xhr.response, xhr.status, this.parseHeaders(xhr.getAllResponseHeaders()));
                 item.uploaded = true;
@@ -129,7 +130,7 @@ export class TerraUploadQueue
                 reject(xhr.response);
             };
 
-            xhr.onabort = () =>
+            xhr.onabort = ():void =>
             {
                 item.emit(
                     'onCancel',
@@ -170,7 +171,7 @@ export class TerraUploadQueue
                                        return prev + current;
                                    }, 0);
 
-        let progress = 100 - Math.round((notLoaded / this.size) * 100);
+        let progress:number = 100 - Math.round((notLoaded / this.size) * 100);
         this._progressListeners.forEach((listener:Observer<number>) =>
         {
             listener.next(progress || 0);
@@ -182,7 +183,7 @@ export class TerraUploadQueue
         let parsed:{ [key:string]:string } = {};
         headers.split('\n').forEach((header:string) =>
         {
-            let pivot = header.indexOf(':');
+            let pivot:number = header.indexOf(':');
             let key:string = header.substr(0, pivot).trim().toLowerCase();
             let value:string = header.substr(pivot + 1).trim();
             if(!isNullOrUndefined(key))

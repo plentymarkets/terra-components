@@ -19,15 +19,15 @@ export type AcceptFn = (args:{
     draggable:Interact.Interactable,
     draggableElement:HTMLElement,
     dragData:any
-}) => boolean
+}) => boolean;
 
 @Directive({
-    selector: '[terra-dropzone]'
+    selector: '[terraDropzone]'
 })
 export class TerraDropzoneDirective implements OnChanges
 {
     @Input('terra-dropzone-accept')
-    public accept:AcceptFn | string = "";
+    public accept:AcceptFn | string = '';
 
     @Input('terra-dropzone-overlap')
     public overlap:'pointer' | 'center' | number = 'pointer';
@@ -67,45 +67,45 @@ export class TerraDropzoneDirective implements OnChanges
 
     private init():void
     {
-        let createDropEvent = (event:DropEvent) =>
+        let createDropEvent:any = (event:DropEvent):DropEvent =>
         {
-            event.dropData = (<any>event.relatedTarget).IA_DRAG_DATA;
+            event.dropData = (<any> event.relatedTarget).IA_DRAG_DATA;
             return event;
         };
 
         let config:any = {
             enabled:          !this.disabled,
-            ondropactivate:   (event:DropEvent) =>
+            ondropactivate:   (event:DropEvent):void =>
                               {
                                   this.onDropActivate.emit(
                                       createDropEvent(event)
                                   );
                               },
-            ondropdeactivate: (event:DropEvent) =>
+            ondropdeactivate: (event:DropEvent):void =>
                               {
                                   this.onDropDeactivate.emit(
                                       createDropEvent(event)
                                   );
                               },
-            ondragenter:      (event:DropEvent) =>
+            ondragenter:      (event:DropEvent):void =>
                               {
                                   this.onDragEnter.emit(
                                       createDropEvent(event)
                                   );
                               },
-            ondragleave:      (event:DropEvent) =>
+            ondragleave:      (event:DropEvent):void =>
                               {
                                   this.onDragLeave.emit(
                                       createDropEvent(event)
                                   );
                               },
-            ondropmove:       (event:DropEvent) =>
+            ondropmove:       (event:DropEvent):void =>
                               {
                                   this.onDropMove.emit(
                                       createDropEvent(event)
                                   );
                               },
-            ondrop:           (event:DropEvent) =>
+            ondrop:           (event:DropEvent):void =>
                               {
                                   this.onDrop.emit(
                                       createDropEvent(event)
@@ -114,7 +114,7 @@ export class TerraDropzoneDirective implements OnChanges
 
         };
 
-        if(typeof this.overlap === "string"
+        if(typeof this.overlap === 'string'
            && parseFloat(this.overlap) >= 0
            && parseFloat(this.overlap) <= 1)
         {
@@ -125,7 +125,7 @@ export class TerraDropzoneDirective implements OnChanges
             config.overlap = this.overlap;
         }
 
-        if(typeof this.accept === "string" && this.accept.length > 0)
+        if(typeof this.accept === 'string' && this.accept.length > 0)
         {
             config.accept = this.accept;
         }
@@ -137,7 +137,7 @@ export class TerraDropzoneDirective implements OnChanges
                               dropzone:Interact.Interactable,
                               dropElement:HTMLElement,
                               draggable:Interact.Interactable,
-                              dragElement:HTMLElement) =>
+                              dragElement:HTMLElement):boolean|AcceptFn =>
             {
                 if(isDropable)
                 {

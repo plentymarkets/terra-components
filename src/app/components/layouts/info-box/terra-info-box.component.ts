@@ -1,7 +1,6 @@
 import {
     Component,
-    Input,
-    OnInit
+    Input
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { TerraTagInterface } from '../../../../';
@@ -11,21 +10,22 @@ import { TerraTagInterface } from '../../../../';
     styles:   [require('./terra-info-box.component.scss')],
     template: require('./terra-info-box.component.html')
 })
-export class TerraInfoBoxComponent implements OnInit
+export class TerraInfoBoxComponent
 {
-    @Input() inputTagList:Array<TerraTagInterface>;
-    @Input() inputAddBox:boolean;
-    @Input() inputIsEmpty:boolean;
-    @Input() inputIsSelected:boolean;
-    @Input() inputId:number;
+    @Input()
+    public inputTagList:Array<TerraTagInterface>;
 
-    constructor()
-    {
-    }
+    @Input()
+    public inputAddBox:boolean;
 
-    ngOnInit()
-    {
-    }
+    @Input()
+    public inputIsEmpty:boolean;
+
+    @Input()
+    public inputIsSelected:boolean;
+
+    @Input()
+    public inputId:number;
 
     public get hasFooter():boolean
     {

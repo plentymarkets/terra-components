@@ -2,22 +2,24 @@ import {
     TerraFormFieldBase,
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
-import { ControlTypeEnum } from '../enum/controlType.enum';
+import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
  * @author mfrank
  */
 export interface TerraFormFieldDatePickerOptions extends TerraFormFieldBaseOptions<string>
 {
-    // actually no other options exists
+    openCalenderTop?:boolean;
 }
 
 export class TerraFormFieldDatePicker extends TerraFormFieldBase<string>
 {
-    public type:string;
+    public openCalenderTop:boolean;
 
-    constructor(key:string, options:TerraFormFieldDatePickerOptions = {})
+    constructor(key:string, label:string, required:boolean, options:TerraFormFieldDatePickerOptions = {})
     {
-        super(key, ControlTypeEnum.DATE_PICKER, options);
+        super(key, TerraControlTypeEnum.DATE_PICKER, label, required, options);
+
+        this.openCalenderTop = !!options.openCalenderTop;
     }
 }

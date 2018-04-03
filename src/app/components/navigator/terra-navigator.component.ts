@@ -11,7 +11,11 @@ import { TerraNavigatorSplitViewConfig } from './config/terra-navigator-split-vi
 import { TerraNavigatorNodeInterface } from './data/terra-navigator-node.interface';
 import { TerraButtonGroupModule } from './button-group/terra-button-group.module';
 import { TerraNavigatorConfig } from './config/terra-navigator.config';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined,
+    isUndefined
+} from 'util';
 import { TerraSuggestionBoxValueInterface } from '../forms/suggestion-box/data/terra-suggestion-box.interface';
 import { Router } from '@angular/router';
 import { TranslationService } from 'angular-l10n';
@@ -29,15 +33,29 @@ import { TranslationService } from 'angular-l10n';
 })
 export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 {
-    @Input() inputNodes:Array<TerraNavigatorNodeInterface<D>>;
-    @Input() inputNavigatorService:TerraNavigatorConfig<D>;
-    @Input() inputModuleWidth:string;
-    @Input() inputFirstBreadcrumbName:string;
-    @Input() inputRouter:Router;
-    @Input() inputBaseRoute:string;
+    @Input()
+    public inputNodes:Array<TerraNavigatorNodeInterface<D>>;
 
-    @Output() outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
-    @Output() outputNodeClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
+    @Input()
+    public inputNavigatorService:TerraNavigatorConfig<D>;
+
+    @Input()
+    public inputModuleWidth:string;
+
+    @Input()
+    public inputFirstBreadcrumbName:string;
+
+    @Input()
+    public inputRouter:Router;
+
+    @Input()
+    public inputBaseRoute:string;
+
+    @Output()
+    public outputEndpointClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
+
+    @Output()
+    public outputNodeClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
 
     private _isInit:boolean;
     private _updateViewport:boolean;
@@ -52,7 +70,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         this._searchNodeList = [];
     }
 
-    ngOnInit()
+    public ngOnInit():void
     {
         if(isNullOrUndefined(this.inputModuleWidth))
         {
@@ -64,7 +82,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             this.initRootPaths(this.inputNodes, null);
             this.refreshNodeVisibilities(this.inputNodes);
 
-            if(this.inputFirstBreadcrumbName === null || this.inputFirstBreadcrumbName === '')
+            if(isNull(this.inputFirstBreadcrumbName) || this.inputFirstBreadcrumbName === '')
             {
                 console.error('You have to define an initial breadcrumb!!!');
             }
@@ -136,10 +154,10 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             this.addNodesRecursive(items);
             this.refreshNodeVisibilities(this.inputNodes);
 
-            items.forEach((item) =>
+            items.forEach((item:TerraNavigatorNodeInterface<D>):void =>
             {
                 this.addSearchNode(item);
-            })
+            });
         });
 
         this.updateSearchNodes();
@@ -147,7 +165,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         this._isInit = true;
     }
 
-    ngOnChanges(changes:SimpleChanges)
+    public ngOnChanges(changes:SimpleChanges):void
     {
         if(this._isInit === true && changes['inputNodes'])
         {
@@ -175,13 +193,13 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
     private initRootPaths(data:Array<TerraNavigatorNodeInterface<D>>, rootIndex:Array<number>):Array<TerraNavigatorNodeInterface<D>>
     {
-        for(let i = 0; i < data.length; i++)
+        for(let i:number = 0; i < data.length; i++)
         {
             data[i].rootPath = [];
 
             if(!isNullOrUndefined(rootIndex))
             {
-                rootIndex.forEach((item) =>
+                rootIndex.forEach((item:number):void =>
                 {
                     data[i].rootPath.push(item);
                 });
@@ -198,13 +216,13 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         return data;
     }
 
-    private addNodesRecursive(nodes:Array<TerraNavigatorNodeInterface<D>>)
+    private addNodesRecursive(nodes:Array<TerraNavigatorNodeInterface<D>>):void
     {
         nodes.forEach((item:TerraNavigatorNodeInterface<D>) =>
         {
             let routeArray:Array<string> = item.route.split('/');
             let routeIndex:number = -1;
-            let result = [];
+            let result:Array<number> = [];
 
             this.findRootPath(routeArray, routeIndex, this.inputNodes, result);
 
@@ -230,17 +248,17 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         });
     }
 
-    private findRootPath(routeArray:Array<string>, routeIndex:number, data:Array<TerraNavigatorNodeInterface<D>>, result:Array<number>)
+    private findRootPath(routeArray:Array<string>, routeIndex:number, data:Array<TerraNavigatorNodeInterface<D>>, result:Array<number>):void
     {
         routeIndex++;
 
-        data.forEach((item) =>
+        data.forEach((item:TerraNavigatorNodeInterface<D>):void =>
         {
             if(item.route === routeArray[routeIndex])
             {
                 result.push(item.rootPath[item.rootPath.length - 1]);
 
-                if(item.children != null)
+                if(!isNull(item.children))
                 {
                     this.findRootPath(routeArray, routeIndex, item.children, result);
                 }
@@ -255,7 +273,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
         if(position === rootIndex.length)
         {
-            let newRootPath = newNode.rootPath;
+            let newRootPath:Array<number> = newNode.rootPath;
 
             newRootPath.push(data.length);
 
@@ -281,10 +299,10 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         }
     }
 
-    private refreshNodeVisibilities(nodes:Array<TerraNavigatorNodeInterface<D>>)
+    private refreshNodeVisibilities(nodes:Array<TerraNavigatorNodeInterface<D>>):void
     {
         // go through the node list
-        nodes.forEach((node) =>
+        nodes.forEach((node:TerraNavigatorNodeInterface<D>):void =>
             {
                 // check if there are children or if node is a leaf
                 if(!isNullOrUndefined(node.children) && node.children.length > 0)
@@ -307,14 +325,14 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
     private getTotalVisibleChildren(rootNode:TerraNavigatorNodeInterface<D>):number
     {
         // initialize counter
-        let childrenCount = 0;
+        let childrenCount:number = 0;
 
         // go deep into the children
         if(!isNullOrUndefined(rootNode.children))
         {
-            rootNode.children.forEach((node) =>
+            rootNode.children.forEach((node:TerraNavigatorNodeInterface<D>):void =>
                 {
-                    if(node.isVisible || node.isVisible === undefined)
+                    if(node.isVisible || isUndefined(node.isVisible))
                     {
                         childrenCount++;
                     }
@@ -361,7 +379,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
         else
         {
             // check if node is visible
-            if(isNullOrUndefined(node.isVisible) || node.isVisible) //TODO: rename in hidden!
+            if(isNullOrUndefined(node.isVisible) || node.isVisible) // TODO: rename in hidden!
             {
                 // add node to the flat list
                 this._searchNodeList.push(
@@ -376,7 +394,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
     private openSelectedNode(suggest:TerraSuggestionBoxValueInterface):void
     {
-        this.inputRouter.navigateByUrl(this.inputBaseRoute + this.getNodeRoute(suggest.value));
+        this.inputRouter.navigateByUrl(this.inputBaseRoute + this.getNodeRoute(suggest.value as TerraNavigatorNodeInterface<D>));
     }
 
     private getNodeRoute(node:TerraNavigatorNodeInterface<D>):string
@@ -386,7 +404,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
         if(!isNullOrUndefined(node.rootPath))
         {
-            node.rootPath.forEach((root) =>
+            node.rootPath.forEach((root:number):void =>
             {
                 route = route + '/' + nodes[root].route;
                 nodes = nodes[root].children;
@@ -403,7 +421,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
         if(!isNullOrUndefined(node.rootPath))
         {
-            node.rootPath.forEach((root) =>
+            node.rootPath.forEach((root:number):void =>
             {
                 let translatedNodeName:string = this.translation.translate(nodes[root].nodeName);
                 if(route === '')
