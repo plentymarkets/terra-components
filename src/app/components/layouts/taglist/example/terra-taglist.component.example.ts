@@ -1,6 +1,6 @@
 import {
     Component
-} from "@angular/core";
+} from '@angular/core';
 import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 
 @Component({

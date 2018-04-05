@@ -32,24 +32,47 @@ export interface TerraDynamicFormRequestParams
 @Component({
     selector:  'terra-dynamic-form',
     template:  require('./terra-dynamic-form.component.html'),
+    styles:    [require('./terra-dynamic-form.component.scss')],
     providers: [TerraDynamicFormService]
 })
 export class TerraDynamicFormComponent implements OnInit, OnChanges
 {
-    @Input() public inputFormFunctions:TerraDynamicFormFunctionsHandler<any>;
-    @Input() public inputFormFields:Array<TerraFormFieldBase<any>>;
-    @Input() public inputPortletStyle:string;
-    @Input() public inputRequestParams:TerraDynamicFormRequestParams;
+    @Input()
+    public inputFormFunctions:TerraDynamicFormFunctionsHandler<any>;
 
-    constructor(private _formFieldControlService:TerraFormFieldControlService,
-                private _dynamicService:TerraDynamicFormService)
+    @Input()
+    public inputFormFields:Array<TerraFormFieldBase<any>>;
+
+    @Input()
+    public inputPortletStyle:string;
+
+    @Input()
+    public inputRequestParams:TerraDynamicFormRequestParams;
+
+    @Input()
+    public inputHasNoSaveButton:boolean;
+
+    @Input()
+    public inputHasNoResetButton:boolean;
+
+    @Input()
+    public inputIsDisabled:boolean;
+
+    @Input()
+    public inputUsePortlet:boolean = true;
+
+    constructor(private _formFieldControlService:TerraFormFieldControlService)
     {
-        this.inputPortletStyle = 'col-xs-12 col-md-4';
+        this.inputPortletStyle = 'col-xs-12 col-md-8 col-lg-5';
         this.inputRequestParams = {
             route:      '',
             htmlMethod: null,
             params:     {}
         };
+
+        this.inputHasNoSaveButton = false;
+        this.inputHasNoResetButton = false;
+        this.inputIsDisabled = false;
     }
 
     public ngOnInit():void
@@ -62,6 +85,8 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
             this.inputFormFunctions.formFieldControlService = this._formFieldControlService;
+
+            this.registerValueChange();
         }
     }
 
@@ -70,6 +95,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         if(changes['inputFormFields'])
         {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
+            this.registerValueChange();
         }
     }
 
@@ -81,12 +107,28 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         }
         else
         {
-            this.inputFormFunctions.errorCallback(this._formFieldControlService.dynamicFormGroup, this._formFieldControlService.translationMapping);
+            this.inputFormFunctions.errorCallback(this._formFieldControlService.dynamicFormGroup,
+                this._formFieldControlService.translationMapping);
         }
     }
 
     protected onResetClick():void
     {
         this._formFieldControlService.resetForm();
+    }
+
+    private registerValueChange():void
+    {
+        if(!isNullOrUndefined(this.inputFormFunctions.onValueChangedCallback))
+        {
+            this._formFieldControlService
+                .dynamicFormGroup
+                .valueChanges
+                .debounceTime(1000)
+                .subscribe((value:any) =>
+                {
+                    this.inputFormFunctions.onValueChangedCallback(value);
+                });
+        }
     }
 }

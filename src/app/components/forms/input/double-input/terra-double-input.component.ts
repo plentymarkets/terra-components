@@ -26,14 +26,16 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
 {
     /**
      * @description If true, the value will be right-aligned.
-     * */
-    @Input() public inputIsPriceInput:boolean;
+     */
+    @Input()
+    public inputIsPriceInput:boolean;
 
     /**
      *
      * @description Set the decimal count. Default is 2. (0.01)
      */
-    @Input() public inputDecimalCount:number = 2;
+    @Input()
+    public inputDecimalCount:number = 2;
 
     private _step:number;
 

@@ -30,18 +30,17 @@ export class TerraStorageObjectList
 
     public get flatList():TerraStorageObject[]
     {
-        let result = [];
-        let appendChildren = (object:TerraStorageObject) =>
-        {
-            result.push(object);
-            object.children
-                  .forEach((child:TerraStorageObject) =>
-                  {
-                      appendChildren(child);
-                  });
-        };
+        return this.appendChildren(this.root);
+    }
 
-        appendChildren(this.root);
+    private appendChildren(object:TerraStorageObject):TerraStorageObject[]
+    {
+        let result:TerraStorageObject[] = [object];
+
+        object.children.forEach((child:TerraStorageObject) =>
+        {
+            result.concat(this.appendChildren(child));
+        });
 
         return result;
     }

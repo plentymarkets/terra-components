@@ -1,5 +1,5 @@
 <div class="portlet" [ngClass]="{ 'collapsable': inputIsCollapsable,'highlight': inputHighlightPortlet }">
-    <div *ngIf="inputPortletHeader.length"
+    <div *ngIf="inputPortletHeader?.length"
          class="portlet-head"
          [class.unfolded]="!inputCollapsed"
          (click)="toggleCollapse()">

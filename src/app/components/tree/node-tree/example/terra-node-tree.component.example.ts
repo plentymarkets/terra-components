@@ -11,11 +11,11 @@ export interface ExampleTreeData
 }
 
 @Component({
-               selector:  'terra-node-tree-example',
-               template:  require('./terra-node-tree.component.example.html'),
-               styles:    [require('./terra-node-tree.component.example.scss')],
-               providers: [TerraNodeTreeConfig]
-           })
+    selector:  'terra-node-tree-example',
+    template:  require('./terra-node-tree.component.example.html'),
+    styles:    [require('./terra-node-tree.component.example.scss')],
+    providers: [TerraNodeTreeConfig]
+})
 export class TerraNodeTreeComponentExample implements OnInit
 {
     private nodeCounter:number = 0;
@@ -33,10 +33,10 @@ export class TerraNodeTreeComponentExample implements OnInit
     protected addNode():void
     {
         this._nodeTreeConfig.addNode({
-                                         name:      'Test' + this.nodeCounter,
-                                         id:        this.nodeCounter,
-                                         isVisible: true
-                                     });
+            name:      'Test' + this.nodeCounter,
+            id:        this.nodeCounter,
+            isVisible: true
+        });
 
         this.nodeCounter++;
     }
@@ -44,9 +44,9 @@ export class TerraNodeTreeComponentExample implements OnInit
     protected addExistingNode():void
     {
         this._nodeTreeConfig.addNode({
-                                         name: 'Test' + this.nodeCounter,
-                                         id:   0
-                                     });
+            name: 'Test' + this.nodeCounter,
+            id:   0
+        });
     }
 
     protected findNodeById(id:string | number):void
@@ -79,17 +79,17 @@ export class TerraNodeTreeComponentExample implements OnInit
     protected updateNodeById(id:string | number):void
     {
         this._nodeTreeConfig.updateNodeById(id,
-                                            {
-                                                id:   id,
-                                                name: 'Terra'
-                                            });
+            {
+                id:   id,
+                name: 'Terra'
+            });
     }
 
     protected addChildToNodeById(id:string | number):void
     {
         this._nodeTreeConfig.addChildToNodeById(id, {
-            id:   133,
-            name: 'myNewNode',
+            id:        133,
+            name:      'myNewNode',
             isVisible: true
         });
     }
@@ -101,45 +101,49 @@ export class TerraNodeTreeComponentExample implements OnInit
 
     protected createCompleteTree():void
     {
-        this._nodeTreeConfig.list = [{
-            id:        11,
-            name:      'Test1',
-            isVisible: true,
-            children:  [
-                {
-                    id:        12,
-                    name:      'Child1',
-                    isVisible: true,
-                    children:  [{
-                        id:        13,
-                        name:      'Subchild1',
-                        isVisible: true,
-                        onClick:   () => {
-                            alert('Hello i am a click function');
-                        }
-                    }]
-                }
-            ]
-        },
+        this._nodeTreeConfig.list = [
             {
-                id: 14,
-                name: 'Test2',
+                id:        11,
+                name:      'Test1',
+                isVisible: true,
+                children:  [
+                    {
+                        id:        12,
+                        name:      'Child1',
+                        isVisible: true,
+                        children:  [{
+                            id:        13,
+                            name:      'Subchild1',
+                            isVisible: true,
+                            onClick:   ():void =>
+                                       {
+                                           alert('Hello i am a click function');
+                                       }
+                        }]
+                    }
+                ]
+            },
+            {
+                id:        14,
+                name:      'Test2',
                 isVisible: true,
             },
             {
-                id: 15,
-                name: 'Test3',
+                id:        15,
+                name:      'Test3',
                 isVisible: true,
-            }]
+            }];
     }
+
     protected createTreeWithIcons():void
     {
-        this._nodeTreeConfig.list = [{
-            id:        1,
-            name:      'Ebay',
-            icon: 'icon-ebay',
-            isVisible: true,
-            children:[{
+        this._nodeTreeConfig.list = [
+            {
+                id:        1,
+                name:      'Ebay',
+                icon:      'icon-ebay',
+                isVisible: true,
+                children:  [{
                     id:        2,
                     name:      'Child1',
                     isVisible: true,
@@ -147,25 +151,25 @@ export class TerraNodeTreeComponentExample implements OnInit
                         id:        3,
                         name:      'Subchild1',
                         isVisible: true,
-                        onClick:   () => {
-                            alert('Hello i am a click function');
-                        }
+                        onClick:   ():void =>
+                                   {
+                                       alert('Hello i am a click function');
+                                   }
                     }]
-                }
-            ]
-        },
-            {
-                id: 4,
-                name: 'Ceres',
-                isVisible: true,
-                icon: 'icon-backend_ceres'
+                }]
             },
             {
-                id: 5,
-                name: 'Amazon Prime',
+                id:        4,
+                name:      'Ceres',
                 isVisible: true,
-                icon: 'icon-ship_amaz_prime'
+                icon:      'icon-backend_ceres'
+            },
+            {
+                id:        5,
+                name:      'Amazon Prime',
+                isVisible: true,
+                icon:      'icon-ship_amaz_prime'
 
-            }]
+            }];
     }
 }

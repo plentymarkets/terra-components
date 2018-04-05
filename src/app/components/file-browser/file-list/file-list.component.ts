@@ -18,10 +18,7 @@ import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/te
 import { TerraSimpleTableRowInterface } from '../../tables/simple/row/terra-simple-table-row.interface';
 import { TerraStorageObject } from '../model/terra-storage-object';
 import * as moment from 'moment';
-import {
-    TerraBasePrivateStorageService,
-    TerraBaseStorageService
-} from '../terra-base-storage.interface';
+import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { PathHelper } from '../helper/path.helper';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
@@ -32,7 +29,11 @@ import { TerraUploadItem } from '../model/terra-upload-item';
 import { ClipboardHelper } from '../helper/clipboard.helper';
 import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-simple-table-cell.interface';
 import { TranslationService } from 'angular-l10n';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
+import { TerraBasePrivateStorageService } from '../terra-base-private-storage.interface';
 
 @Component({
     selector: 'terra-file-list',
@@ -41,10 +42,10 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
 {
-    private _translationPrefix:string = 'terraFileBrowser';
-
     @Input()
     public inputStorageServices:Array<TerraBaseStorageService> = null;
+
+    private _translationPrefix:string = 'terraFileBrowser';
 
     private _activeStorageService:TerraBaseStorageService;
 
@@ -81,7 +82,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this._parentFileBrowser.splitConfig.hideImagePreview();
             }
             this.renderFileList();
-            this._storageSubscription = this.activeStorageService.getStorageList().subscribe((storageList) =>
+            this._storageSubscription = this.activeStorageService.getStorageList().subscribe((storageList:TerraStorageObjectList):void =>
             {
                 this._storageList = storageList;
                 this.renderFileList();
@@ -148,7 +149,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
         if(!isNullOrUndefined(this._imagePreviewObject))
         {
-            parents.push(this._imagePreviewObject)
+            parents.push(this._imagePreviewObject);
         }
 
         while(!isNullOrUndefined(current))
@@ -228,7 +229,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         {
             if(selectedUrl && this._storageList)
             {
-                let object:TerraStorageObject = this._storageList.flatList.find(object => object.publicUrl === selectedUrl);
+                let object:TerraStorageObject = this._storageList.flatList.find(
+                    (storage:TerraStorageObject):boolean => storage.publicUrl === selectedUrl);
 
                 if(!isNullOrUndefined(object))
                 {
@@ -238,8 +240,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                         this._imagePreviewObject = object;
                         this._parentFileBrowser.splitConfig.showImagePreview(object, this.activeStorageService);
                     }
-                    let row:TerraSimpleTableRowInterface<TerraStorageObject> = this._fileTableRowList.find(r => r.value === object);
-                    this._fileTableComponent.inputHighlightedRow = row;
+                    this._fileTableComponent.inputHighlightedRow = this._fileTableRowList.find(
+                        (r:TerraSimpleTableRowInterface<TerraStorageObject>):boolean => r.value === object);
                 }
             }
         });
@@ -252,7 +254,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes.hasOwnProperty('inputStorageServices') && changes['inputStorageServices'].previousValue === null)
+        if(changes.hasOwnProperty('inputStorageServices') && isNull(changes['inputStorageServices'].previousValue))
         {
             this.activeStorageService = this.inputStorageServices[0];
         }
@@ -287,8 +289,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private deleteObjects():void
     {
-        let keyList = [];
-        let extractKeys = (objects:Array<TerraStorageObject>) =>
+        let keyList:Array<string> = [];
+        let extractKeys:Function = (objects:Array<TerraStorageObject>):void =>
         {
             objects.forEach((object:TerraStorageObject) =>
             {
@@ -393,7 +395,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     {
         let clipboardButton:TerraButtonInterface = {
             icon:             'icon-copy_clipboard',
-            clickFunction:    (event:Event) =>
+            clickFunction:    (event:Event):void =>
                               {
                                   ClipboardHelper.copyText(storageObject.publicUrl);
                                   event.stopPropagation();
@@ -414,7 +416,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         cellList.push({
             buttonList: [{
                 icon:             'icon-download',
-                clickFunction:    (event:Event) =>
+                clickFunction:    (event:Event):void =>
                                   {
                                       (<TerraBasePrivateStorageService> this.activeStorageService).downloadFile(storageObject.key);
                                       event.stopPropagation();
@@ -430,7 +432,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         cellList.push({
             buttonList: [{
                 icon:             'icon-delete',
-                clickFunction:    (event:Event) =>
+                clickFunction:    (event:Event):void =>
                                   {
                                       this._objectsToDelete = [storageObject];
                                       event.stopPropagation();
@@ -521,7 +523,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
         return this._parentFileBrowser.inputAllowedExtensions.length <= 0
                || this._parentFileBrowser.inputAllowedExtensions.indexOf(PathHelper.extName(filename)) >= 0
-               || PathHelper.isDirectory(filename)
+               || PathHelper.isDirectory(filename);
     }
 
     private onActiveRowChange(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
@@ -530,7 +532,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         {
             clearTimeout(this._imagePreviewTimeout);
         }
-        let debounceFn = () =>
+        let debounceFn:Function = ():void =>
         {
             let storageObject:TerraStorageObject = row.value;
 
@@ -564,12 +566,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         {
             this.activeStorageService
                 .uploadFiles(
-                    (<any>event.srcElement).files || [],
+                    (<any> event.srcElement).files || [],
                     this.currentStorageRoot ? this.currentStorageRoot.key : '/'
                 );
 
             // unset value of file input to allow selecting same file again
-            (<HTMLInputElement>event.target).value = '';
+            (<HTMLInputElement> event.target).value = '';
         }
     }
 
@@ -589,7 +591,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         let uploadPrefix:string = this.currentStorageRoot ? this.currentStorageRoot.key : '/';
         this.activeStorageService
             .uploadFiles(
-                (<any>event.srcElement).files || [],
+                (<any> event.srcElement).files || [],
                 uploadPrefix
             )
             .forEach((uploadItem:TerraUploadItem) =>
