@@ -8,6 +8,8 @@
     min-width: 300px;
     .modal-content
     {
+        border-radius: var(--border-radius);
+        
         .modal-header
         {
             padding: var(--space-md) var(--space-lg);

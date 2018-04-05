@@ -125,7 +125,8 @@ button:focus
     border-color: transparent;
     transition: height var(--transition-lg), line-height var(--transition-lg), padding var(--transition-lg), background-color var(--transition-sm);
     
-    &:hover
+    &:hover,
+    &:focus
     {
         background-color: var(--color-structure-11);
         background-clip: padding-box;
@@ -133,6 +134,7 @@ button:focus
         &.active
         {
             background-color: var(--color-structure-9);
+            color: var(--color-structure-0);
             background-clip: padding-box;
         }
     }
@@ -142,13 +144,15 @@ button:focus
         &:not(.highlighted)
         {
             background-color: var(--color-active);
-            &:hover
+            &:hover,
+            &:focus
             {
                 background-color: var(--color-active-dark);
                 &:active,
                 &.active
                 {
                     background-color: var(--color-active);
+                    color: var(--color-structure-0);
                 }
             }
         }
@@ -169,13 +173,15 @@ button:focus
         &:not(.highlighted)
         {
             background-color: var(--color-alert);
-            &:hover
+            &:hover,
+            &:focus
             {
                 background-color: var(--color-alert-dark);
                 &:active,
                 &.active
                 {
                     background-color: var(--color-alert);
+                    color: var(--color-structure-0);
                 }
             }
         }
@@ -197,13 +203,15 @@ button:focus
         {
             background: var(--color-add);
             color: var(--color-structure-0);
-            &:hover
+            &:hover,
+            &:focus
             {
                 background-color: var(--color-add-dark);
                 &:active,
                 &.active
                 {
                     background-color: var(--color-add);
+                    color: var(--color-structure-0);
                 }
             }
         }
@@ -270,8 +278,9 @@ button:focus
         background-color: transparent;
         color: var(--color-structure-9);
         font-weight: var(--font-weight-3);
-        
-        &:hover
+    
+        &:hover,
+        &:focus
         {
             background-color: transparent;
             color: var(--color-active);
@@ -286,7 +295,8 @@ button:focus
         {
             background-color: transparent;
             color: var(--color-active);
-            &:hover
+            &:hover,
+            &:focus
             {
                 background-color: transparent;
                 color: var(--color-active-dark);
@@ -302,7 +312,8 @@ button:focus
         {
             background-color: transparent;
             color: var(--color-alert);
-            &:hover
+            &:hover,
+            &:focus
             {
                 background-color: transparent;
                 color: var(--color-alert-dark);
@@ -318,7 +329,8 @@ button:focus
         {
             background-color: transparent;
             color: var(--color-add);
-            &:hover
+            &:hover,
+            &:focus
             {
                 background-color: transparent;
                 color: var(--color-add-dark);
@@ -330,16 +342,6 @@ button:focus
                 }
             }
         }
-    }
-}
-
-button.btn:focus
-{
-    background-color: var(--color-structure-9);
-    
-    &.btn-link
-    {
-        background-color: transparent;
     }
 }
 

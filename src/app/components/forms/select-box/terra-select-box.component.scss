@@ -115,12 +115,19 @@
         .select-box
         {
             filter: opacity(30%);
+            cursor: not-allowed;
+            
+            span
+            {
+                padding-left: var(--space-md);
+            }
         }
         
-        .select-box
+        label
         {
-            cursor: not-allowed;
+            padding-left: var(--space-md);
         }
+
         .select-box-dropdown
         {
             display: none !important;

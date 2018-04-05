@@ -141,11 +141,13 @@ input[type="search"]::-webkit-search-decoration
         {
             color: var(--color-structure-5);
             background-color: var(--color-structure-2);
+            padding-left: var(--space-md);
         }
         
         label
         {
             cursor: not-allowed;
+            padding-left: var(--space-md);
         }
     }
     

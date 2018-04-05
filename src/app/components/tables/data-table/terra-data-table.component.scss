@@ -150,27 +150,29 @@
 
 .group-function
 {
-    margin-bottom: 6px;
+    background-color: var(--color-structure-0);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--space-md);
+    margin: 0 var(--space-xs) var(--space-md) var(--space-xs);
     
     .group-function-head
     {
-        padding: 1px 9px 4px 4px;
-        background: transparent;
+        padding: var(--space-sm);
         
         span
         {
-            padding: 5px;
+            padding: var(--space-sm);
             color: var(--color-structure-12);
             font-size: var(--font-size-4);
             font-weight: var(--font-weight-2);
+            vertical-align: middle;
         }
     }
     
     .group-function-body
     {
-        background-color: var(--color-structure-2);
-        padding: var(--group-function-body-padding, var(--group-function-body-padding-default));
-        border-radius: var(--border-radius);
+        padding: var(--space-lg);
         transition: padding var(--transition-lg);
     }
 }
