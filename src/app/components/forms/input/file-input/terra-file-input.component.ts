@@ -9,8 +9,6 @@ import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
 import {
-    FileType,
-    PathHelper,
     TerraBaseStorageService,
     TerraFrontendStorageService,
     TerraOverlayButtonInterface,
@@ -18,6 +16,8 @@ import {
     TerraRegex,
     TerraStorageObject
 } from '../../../../../';
+import { PathHelper } from '../../../../helpers/path.helper';
+import { FileType } from '../../../../helpers/fileType.helper';
 
 let nextId:number = 0;
 
