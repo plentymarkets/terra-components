@@ -5,6 +5,7 @@
 
 ### Bug Fixes
 * **terra-multi-split-view** fix reoccurring "Cannot read property 'getBoundingClientRect' of undefined" error
+* **terra-data-table** fix issue where TerraRefTypeEnum is undefined in the template
 
 <a name="2.1.64-zlk"></a>
 # 2.1.64-zlk (28.03.2018)
