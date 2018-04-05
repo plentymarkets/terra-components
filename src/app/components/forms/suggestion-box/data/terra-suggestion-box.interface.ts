@@ -2,7 +2,7 @@ import { TerraBaseData } from '../../../data/terra-base.data';
 
 export interface TerraSuggestionBoxValueInterface
 {
-    /** @description The value of the suggestion value */
+    /** The value of the suggestion value */
     value:number | string | TerraBaseData;
     // i18n from locale_de and locale_en
     caption:string;
