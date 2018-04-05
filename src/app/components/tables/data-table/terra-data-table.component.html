@@ -123,7 +123,7 @@
                         </div>
                         
                         <div *ngSwitchCase="'TerraRefTypeInterface'">
-                            <a *ngIf="cell.data.type === TerraRefTypeEnum.email || cell.data.type === _refTypeEnum.phone"
+                            <a *ngIf="cell.data.type === TerraRefTypeEnum.email || cell.data.type === TerraRefTypeEnum.phone"
                                href="{{cell.data.type}}:{{cell.data.value}}"
                                (click)="$event.stopPropagation()">{{ cell.data.caption || cell.data.value}}
                             </a>
