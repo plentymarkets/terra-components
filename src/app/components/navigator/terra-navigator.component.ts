@@ -76,7 +76,6 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                 hidden:                false,
                 name:                  this.inputFirstBreadcrumbName,
                 mainComponentName:     'TerraButtonGroupComponent',
-                isBackgroundColorGrey: true,
                 parameter:             {
                     nodes: this.inputNodes
                 }
@@ -104,7 +103,6 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                         hidden:                false,
                         name:                  item.nodeName,
                         mainComponentName:     'TerraButtonGroupComponent',
-                        isBackgroundColorGrey: true,
                         parameter:             {
                             nodes: item.children
                         }
@@ -165,7 +163,6 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                 hidden:                false,
                 name:                  this.inputFirstBreadcrumbName,
                 mainComponentName:     'TerraButtonGroupComponent',
-                isBackgroundColorGrey: true,
                 parameter:             {
                     nodes: changes['inputNodes'].currentValue
                 }

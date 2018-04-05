@@ -170,16 +170,7 @@
     overflow-x: hidden;
     white-space: normal;
     position: relative;
-    background-color: var(--color-structure-0);
-    
-    &:first-child
-    {
-        background-color: var(--color-structure-2);
-    }
-    &.isBackgroundColorGrey
-    {
-        background-color: transparent !important;
-    }
+    background-color: var(--color-structure-2);
 }
 
 ///// Fixed Columns for Terra-Navigator ///////

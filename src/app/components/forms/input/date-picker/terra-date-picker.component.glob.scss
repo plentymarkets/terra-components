@@ -27,11 +27,11 @@
             input
             {
                 color: var(--color-structure-10);
-                border: none;
-                border-radius: var(--border-radius);
+                border-bottom: 1px solid var(--border-color);
+                border-radius: var(--border-radius) var(--border-radius) 0 0;
                 box-shadow: none;
                 padding: var(--input-padding, var(--input-padding-default));
-                width: calc(100% - 68px);
+                width: calc(100% - 54px);
                 font-family: var(--font-family);
                 font-size: var(--font-size-3) !important;
                 font-weight: var(--font-weight-2);
@@ -43,10 +43,17 @@
                 overflow: visible;
                 position: inherit;
                 display: inline-block;
+                
+                &:hover,
+                &:active,
+                &:focus
+                {
+                    border-bottom: var(--input-wrapper-border-hover, 2px solid var(--color-active));
+                }
             }
             .selbtngroup
             {
-                width: 68px;
+                width: 54px;
                 display: inline-block;
                 text-align: right;
                 vertical-align: bottom;

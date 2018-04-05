@@ -4,8 +4,7 @@
 {
     position: relative;
     background-color: var(--color-structure-0);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--color-structure-0);
+    border-bottom: 1px solid var(--border-color);
     margin: var(--select-box-wrapper-margin, 0);
     margin-bottom: var(--select-box-wrapper-margin-bottom, 3px);
     cursor: pointer;
@@ -19,7 +18,7 @@
     
     &.error
     {
-        border-color: var(--color-alert);
+        border-bottom: 2px solid var(--color-alert);
     }
     
     &.isSmall
@@ -29,9 +28,10 @@
         .select-box
         {
             background-position: calc(100% - 11px) 7px;
+            padding: var(--space-sm) var(--space-sm) var(--space-sm) 30%;
             &.labeled
             {
-                padding: 0 7px 0 30%;
+                padding: 0 var(--space-md) 0 30%;
             }
         }
     }
@@ -48,17 +48,17 @@
         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat;
         background-position: var(--select-box-toggle-background-position, var(--select-box-toggle-background-position-default));
         background-size: 8px 10px;
-        color: var(--color-structure-10);
+        color: var(--color-structure-12);
         height: 100%;
         line-height: 100%;
-
+        
         &.error
         {
-            border-color: var(--color-alert);
+            border-bottom: 2px solid var(--color-alert);
             color: var(--color-alert);
             background-size: 8px 10px;
         }
-
+        
         span
         {
             width: calc(100% - 20px);
@@ -72,7 +72,6 @@
         }
         &.labeled
         {
-            //line-height: var(--space-lg);
             padding: var(--select-box-labeled-padding, var(--select-box-labeled-padding-default));
             transition: padding var(--transition-lg);
             span
@@ -81,14 +80,38 @@
             }
         }
     }
-    &:not(.error):hover
+    
+    &:not(.error):not(.disabled)
     {
-        border: 1px solid var(--color-active);
+        &::after
+        {
+            content: "";
+            display: block;
+            width: 0%;
+            position: absolute;
+            height: 2px;
+            background-color: var(--color-active);
+            transition: ease all var(--transition-delay-md);
+            bottom: -1px;
+        }
+        &:hover
+        {
+            label
+            {
+                color: var(--color-active);
+                transition: color var(--transition-sm);
+            }
+            &::after
+            {
+                width: 100%;
+            }
+        }
     }
+    
     &.disabled
     {
         background-color: var(--color-structure-2);
-        border: 1px solid var(--color-structure-5);
+        
         .select-box
         {
             filter: opacity(30%);
@@ -122,11 +145,11 @@
         min-width: 100%;
         width: auto;
         max-height: 12rem;
-        border-radius: var(--border-radius);
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
         background: var(--color-structure-0);
         display: none;
         overflow: auto;
-        border: 1px solid var(--color-structure-4);
+        box-shadow: var(--box-shadow);
         
         &.openOnTop
         {

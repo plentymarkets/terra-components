@@ -4,6 +4,15 @@
      [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
      container="body">
+    
+    <input type="text"
+           [(ngModel)]="color"
+           pattern="{{regex}}"
+           (blur)="onBlur()"
+           autocomplete="off"
+           [disabled]="isDisabled"
+           [required]="inputIsRequired"
+           placeholder="{{inputPlaceholder}}">
     <label>{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
         <input type="color"
@@ -17,14 +26,4 @@
             <i class="icon-collapse_down"></i>
         </div>
     </label>
-    
-    <input type="text"
-           [(ngModel)]="color"
-           pattern="{{regex}}"
-           (blur)="onBlur()"
-           autocomplete="off"
-           [disabled]="isDisabled"
-           [required]="inputIsRequired"
-           placeholder="{{inputPlaceholder}}">
-
 </div>

@@ -1,13 +1,14 @@
 .info-box
 {
-    background-color: var(--color-structure-2);
+    background-color: var(--color-structure-0);
     -moz-border-radius: var(--border-radius);
     -webkit-border-radius: var(--border-radius);
     border-radius: var(--border-radius);
-    padding: 8px;
+    padding: var(--space-md);
     min-width: 200px;
-    margin: 4px 0;
+    margin: var(--space-xs);
     height: var(--input-info-box-height, 150px);
+    box-shadow: var(--box-shadow);
     
     &.selected
     {
@@ -65,12 +66,3 @@
         }
     }
 }
-
-//adaptable background-color //add only after view-background-color-fix
-//:host-context(.view.isBackgroundColorGrey)
-//{
-//    .info-box:not(.selected)
-//    {
-//        background-color: var(--color-structure-0);
-//    }
-//}

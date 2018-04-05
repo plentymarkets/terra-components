@@ -60,8 +60,8 @@ body
 .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12,
 .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12
 {
-    padding-right: 4px;
-    padding-left: 4px;
+    padding-right: var(--space-xs);
+    padding-left: var(--space-xs);
     transition: all var(--transition-md);
 }
 
@@ -112,7 +112,7 @@ p, span, a
     visibility: hidden;
     transition: all var(--transition-sm);
     transition-delay: var(--transition-delay-sm);
-    padding: 5px 0;
+    padding: var(--space-sm) 0;
     background-color: var(--color-structure-9);
     border-radius: var(--border-radius);
     
@@ -123,6 +123,7 @@ p, span, a
     margin: 0;
     text-align: left;
     z-index: var(--zIndex-9);
+    box-shadow: var(--box-shadow);
     
     a
     {

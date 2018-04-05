@@ -3,19 +3,21 @@
     text-align: center;
     font-family: var(--font-family);
     display: block;
-    padding: 10em .3em .3em .5em;
+    padding: 15vh var(--space-lg);
     text-decoration: none;
     border: 0;
-    border-radius: 0;
+    border-radius: var(--border-radius);
+    background-color: var(--color-structure-0);
+    
     .text-prime
     {
         color: var(--color-structure-11);
-        font-size: 2.7rem;
+        font-size: var(--font-size-8);
     }
     .text-second
     {
-        font-size: 1.3rem;
+        font-size: var(--font-size-6);
         color: var(--color-structure-6);
-        margin-bottom: 10px;
+        margin-bottom: var(--space-lg);
     }
 }

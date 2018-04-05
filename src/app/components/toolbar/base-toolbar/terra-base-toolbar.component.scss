@@ -1,10 +1,13 @@
 .btn-toolbar
 {
-    background: var(--toolbar-background, var(--color-structure-2));
+    background: var(--toolbar-background, var(--color-structure-0));
     padding: var(--toolbar-padding, var(--toolbar-padding-default));
     margin: var(--toolbar-margin, var(--toolbar-margin-default));
     border-radius: var(--toolbar-border-radius, 0 0 var(--border-radius) var(--border-radius));
-    border-bottom: var(--toolbar-border-bottom, none)
+    border-bottom: var(--toolbar-border-bottom, none);
+    box-shadow: var(--box-shadow);
+    position: relative;
+    z-index: var(--toolbar-z-index, var(--zIndex-7));
 }
 
 .sticky

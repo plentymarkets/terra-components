@@ -10,5 +10,4 @@ export interface TerraSplitViewInterface
     name:string;
     mainComponentName:string;
     parameter:any;
-    isBackgroundColorGrey?:boolean;
 }

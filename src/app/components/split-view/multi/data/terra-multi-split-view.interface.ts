@@ -18,5 +18,4 @@ export class TerraMultiSplitViewInterface
      */
     parameter?:any;
     inputs?:Array<TerraDynamicLoadedComponentInputInterface>;
-    isBackgroundColorGrey?:boolean;
 }

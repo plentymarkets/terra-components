@@ -7,7 +7,7 @@
 {
     --input-text-align: center;
     --toolbar-border-radius: var(--border-radius) var(--border-radius) 0 0;
-    --toolbar-margin: 0;
+    --toolbar-margin: 0 var(--space-xs) 0 var(--space-xs);
     --select-box-width: 65px;
     --select-box-wrapper-margin-bottom: 0;
     --input-wrapper-margin-bottom: 0;

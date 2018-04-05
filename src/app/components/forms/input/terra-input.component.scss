@@ -68,26 +68,21 @@ input[type="search"]::-webkit-search-decoration
     line-height: var(--input-wrapper-line-height, 100%);
     transition: height var(--transition-lg), line-height var(--transition-lg);
     background-color: var(--color-structure-0);
-    border-radius: var(--border-radius);
-    border: var(--input-wrapper-border, 1px solid var(--color-structure-0));
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     
     &.isSmall
     {
         height: var(--height-sm);
     }
     
-    &:hover
-    {
-        border: var(--input-wrapper-border-hover, 1px solid var(--color-active));
-    }
-    
     &.error
     {
         z-index: var(--zIndex-3);
-        border: 1px solid var(--color-alert);
+        
         input
         {
             color: var(--color-alert);
+            border-bottom: 2px solid var(--color-alert);
         }
         label
         {
@@ -103,10 +98,11 @@ input[type="search"]::-webkit-search-decoration
     &.valid
     {
         z-index: var(--zIndex-2);
-        border: 1px solid var(--color-active);
+        
         input
         {
             color: var(--color-active);
+            border-bottom: 2px solid var(--color-active);
         }
         label
         {
@@ -122,10 +118,11 @@ input[type="search"]::-webkit-search-decoration
     &.success
     {
         z-index: var(--zIndex-2);
-        border: 1px solid var(--color-add);
+        
         input
         {
             color: var(--color-add);
+            border-bottom: 2px solid var(--color-add);
         }
         label
         {
@@ -140,17 +137,31 @@ input[type="search"]::-webkit-search-decoration
     
     &.disabled
     {
-        background-color: var(--color-structure-2);
-        border: var(--input-wrapper-border-disabled, 1px solid var(--color-structure-5));
         input
         {
             color: var(--color-structure-5);
+            background-color: var(--color-structure-2);
         }
         
         label
         {
             cursor: not-allowed;
         }
+    }
+    
+    
+    &:not(.error):not(.valid):not(.success):not(.disabled)::after {
+        content: "";
+        display: block;
+        width: 0%;
+        position: absolute;
+        height: 2px;
+        background-color: var(--color-active);
+        transition: ease all var(--transition-delay-md);
+        bottom: 0px;
+    }
+    &:not(.error):not(.valid):not(.success):not(.disabled):hover::after {
+        width: 100%;
     }
 }
 
@@ -159,9 +170,8 @@ input:not([type="checkbox"]),
 input:not([type="radio"]),
 textarea
 {
-    color: var(--color-structure-10);
+    color: var(--color-structure-12);
     border: none;
-    border-radius: var(--border-radius);
     box-shadow: none;
     padding: var(--input-padding, var(--input-padding-default));
     width: var(--input-width, 100%);
@@ -172,25 +182,46 @@ textarea
     height: 100%;
     line-height: 100%;
     transition: padding var(--transition-lg), height var(--transition-lg), line-height var(--transition-lg);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
+    
+    &:active,
+    &:focus
+    {
+        border-bottom: var(--input-wrapper-border-hover, 2px solid var(--color-active));
+        + label
+        {
+            color: var(--color-active);
+        }
+    }
+    &:hover
+    {
+        + label
+        {
+            color: var(--color-active);
+        }
+    }
+    
     
     &.isSmall
     {
         padding: var(--input-isSmall-padding, var(--input-isSmall-padding-default));
     }
     
-    &:focus,
-    &.filled
-    {
-        color: var(--color-structure-12);
-        background-color: var(--color-structure-0);
-        border-color: var(--color-structure-8);
-    }
+    //&:focus,
+    //&.filled
+    //{
+    //    color: var(--color-structure-12);
+    //    background-color: var(--color-structure-0);
+    //    border-color: var(--color-structure-8);
+    //}
     
     &.disabled,
     &:disabled
     {
         background-color: var(--color-structure-2);
         cursor: not-allowed;
+        border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
         
         & ~ label
         {
@@ -224,21 +255,27 @@ textarea
     &.isEmpty
     {
         font-weight: normal;
-        padding: 2px 7px 0 7px;
+        padding: var(--input-isEmpty-padding, var(--input-isEmpty-padding-default));
     }
     
     .price-input
     {
         text-align: right;
     }
+    
+    &::placeholder
+    {
+        color: var(--color-structure-8);
+    }
 }
 
 label
 {
-    font-size: var(--font-size-1);
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-1);
     line-height: 1em !important;
     font-variant: all-small-caps;
-    font-weight: var(--font-weight-2);
+    
     
     width: var(--label-width, var(--label-width-default));
     overflow: hidden;
@@ -246,7 +283,7 @@ label
     white-space: nowrap;
     padding: var(--label-padding, var(--label-padding-default));
     margin-bottom: 0;
-    color: var(--color-structure-7);
+    color: var(--color-structure-8);
     
     position: absolute;
     top: 0;

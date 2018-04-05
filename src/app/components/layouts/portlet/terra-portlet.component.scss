@@ -1,13 +1,13 @@
 .portlet
 {
-    margin-bottom: 6px;
-    border: 1px solid transparent;
     border-radius: var(--border-radius);
+    margin: var(--space-xs) var(--space-xs) var(--space-md) var(--space-xs);
+    
     .portlet-head
     {
-        padding: 8px 9px 4px 9px;
+        padding: var(--space-sm) var(--space-md);
         background: transparent;
-    
+        
         display: -webkit-flex; /* Safari */
         -webkit-justify-content: flex-start; /* Safari 6.1+ */
         display: flex;
@@ -19,71 +19,37 @@
             font-size: var(--font-size-4);
             font-weight: var(--font-weight-2);
         }
-        &.error-bottom
+        
+        [class^="icon-"]
         {
-            border-bottom: 5px solid var(--color-alert);
-            margin-bottom: 0;
+            padding: 3px 3px;
+            transition: all var(--transition-xs);
+            justify-content: flex-end;
+            
+            &.rotated
+            {
+                transform: rotate(180deg);
+            }
         }
-        &.success-bottom
+        
+        .header-caption
         {
-            border-bottom: 5px solid var(--color-add);
-            margin-bottom: 0;
-        }
-        &.warning-bottom
-        {
-            border-bottom: 5px solid var(--color-accent);
-            margin-bottom: 0;
+            justify-content: flex-start;
+            
+            .header-buttons
+            {
+                justify-content: flex-end;
+            }
         }
     }
     
     .portlet-body
     {
-        background-color: var(--portlet-body-background-color, var(--color-structure-2));
-        padding: var(--portlet-body-padding, var(--space-md));
+        background-color: var(--portlet-body-background-color, var(--color-structure-0));
+        padding: var(--portlet-body-padding, var(--space-lg));
         transition: padding var(--transition-lg);
         border-radius: var(--border-radius);
-        
-        table.table
-        {
-            thead
-            {
-                background: var(--color-active-dark);
-                color: var(--color-structure-0);
-                tr
-                {
-                    th
-                    {
-                        border: 1px solid var(--color-structure-0);
-                        border-top: 1px solid var(--color-active-dark);
-                        border-bottom: 1px solid var(--color-active-dark);
-                        &:first-child
-                        {
-                            border-left: 1px solid var(--color-active-dark);
-                        }
-                        &:last-child
-                        {
-                            border-right: 1px solid var(--color-active-dark);
-                        }
-                    }
-                }
-            }
-        }
-        .btn-toolbar
-        {
-            background: var(--color-structure-6);
-            .btn
-            {
-                
-                &:hover
-                {
-                    border-right: 1px solid var(--color-structure-5);
-                }
-            }
-            .c-select
-            {
-                border: 1px solid var(--color-structure-0);
-            }
-        }
+        box-shadow: var(--box-shadow);
     }
     
     &.collapsable
@@ -91,9 +57,10 @@
         .portlet-head
         {
             cursor: pointer;
-            background-color: var(--collapsable-portlet-head-background-color, var(--color-structure-2));
-            border-radius: 5px;
+            background-color: var(--collapsable-portlet-head-background-color, var(--color-structure-0));
+            border-radius: var(--border-radius);
             transition: background-color var(--transition-sm);
+            box-shadow: var(--box-shadow);
             
             &.unfolded
             {
@@ -106,85 +73,12 @@
         }
     }
     
-}
-
-.config-table
-{
-    tr
+    &.highlight
     {
-        th
+        &:hover
         {
-            color: var(--color-structure-13);
-            font-weight: normal;
-        }
-        td
-        {
-            background-color: var(--color-structure-0);
-            &:first-child
-            {
-                background-color: var(--color-structure-2);
-            }
+            border: 1px solid var(--color-active-dark);
         }
     }
 }
 
-.portlet-head
-{
-    [class^="icon-"]
-    {
-        padding: 3px 3px;
-        transition: all var(--transition-xs);
-        justify-content: flex-end;
-        
-        &.rotated
-        {
-            transform: rotate(180deg);
-        }
-    }
-}
-
-.flex-container
-{
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    
-    -webkit-flex-flow: row wrap;
-    justify-content: space-between;
-}
-
-.adminOrderSearch
-{
-    padding-top: 1rem;
-}
-
-.adminOrderSearchRight
-{
-    border-left: 1px solid var(--color-structure-4);
-    hr
-    {
-        margin: 1rem 0;
-    }
-}
-
-.highlight
-{
-    &:hover
-    {
-        border: 1px solid var(--color-active-dark);
-    }
-}
-
-.header-caption {
-    justify-content: flex-start;
-}
-
-.header-buttons {
-    justify-content: flex-end;
-}

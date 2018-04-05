@@ -6,7 +6,7 @@
     height: var(--terra-breadcrumbs-height, var(--terra-breadcrumbs-height-default));
     transition: height var(--transition-lg);
     display: flex;
-    border-bottom: 1px solid var(--color-structure-4);
+    
     li
     {
         float: left;
@@ -15,7 +15,8 @@
         {
             span
             {
-                font-weight: var(--font-weight-2);
+                font-weight: var(--font-weight-1);
+                font-size: var(--font-size-1);
             }
             text-decoration: none;
             padding: var(--terra-breadcrumbs-li-padding, var(--terra-breadcrumbs-li-padding-default));
@@ -24,25 +25,29 @@
             position: relative;
             display: block;
             float: left;
-            color: var(--color-structure-9);
+            color: var(--color-structure-0);
             white-space: nowrap;
+            
             &:hover
             {
                 color: var(--color-active);
+                //text-shadow: 0 1px 4px var(--color-structure-11);
             }
             &.active
             {
                 color: var(--color-active);
+                //text-shadow: 0 1px 4px var(--color-structure-11);
                 cursor: default;
             }
             &:not(.active):hover
             {
                 color: var(--color-active);
+                //text-shadow: 0 1px 4px var(--color-structure-11);
             }
             .icon-caret
             {
                 overflow: hidden;
-                font-size: 22px;
+                font-size: var(--font-size-6);
                 line-height: var(--terra-breadcrumbs-icon-caret-line-height, var(--terra-breadcrumbs-icon-caret-line-height-default));
 
                 &:hover
@@ -117,47 +122,13 @@
         overflow: hidden;
         white-space: normal;
         position: relative;
-        background-color: var(--color-structure-0);
-        
-        &.isBackgroundColorGrey
-        {
-            background-color: transparent;
-            
-            &.first
-            {
-                &.last
-                {
-                    background-color: var(--color-structure-0);
-                }
-            }
-        }
+        background-color: var(--color-structure-2);
+
         > div
         {
             height: 100%;
             min-height: 100%;
             overflow-y: auto;
-        }
-        &.workaround
-        {
-            background-color: var(--color-structure-0);
-        }
-        
-        //divide 2 views with the same background color with a border
-        &:not(.isBackgroundColorGrey),
-        &.workaround
-        {
-            + .view:not(.isBackgroundColorGrey),
-            + .view.workaround
-            {
-                border-left: 1px solid var(--color-structure-4);
-            }
-        }
-        &.isBackgroundColorGrey:not(.workaround)
-        {
-            + .view.isBackgroundColorGrey:not(.workaround)
-            {
-                border-left: 2px solid var(--color-structure-0);
-            }
         }
     }
     
@@ -194,6 +165,7 @@
 {
     --toolbar-margin: 0;
     --toolbar-border-radius: none;
-    --toolbar-background: var(--color-structure-0);
+    --toolbar-background: var(--color-structure-9);
     --toolbar-padding: 0;
+    --toolbar-z-index: var(--zIndex-8);
 }
