@@ -3,7 +3,7 @@ import {
     S3StorageObjectInterface
 } from './s3-storage-object.interface';
 import { PathHelper } from '../../../helpers/path.helper';
-import { FileType } from '../../../helpers/fileType.helper';
+import { FileTypeHelper } from '../../../helpers/fileType.helper';
 import { isNullOrUndefined } from 'util';
 
 export class TerraStorageObject
@@ -63,7 +63,7 @@ export class TerraStorageObject
             return 'icon-folder';
         }
 
-        return FileType.mapIconClass(this.name);
+        return FileTypeHelper.mapIconClass(this.name);
     }
 
     public get isDirectory():boolean

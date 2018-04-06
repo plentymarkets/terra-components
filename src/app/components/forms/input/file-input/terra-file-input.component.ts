@@ -17,7 +17,7 @@ import {
     TerraStorageObject
 } from '../../../../../';
 import { PathHelper } from '../../../../helpers/path.helper';
-import { FileType } from '../../../../helpers/fileType.helper';
+import { FileTypeHelper } from '../../../../helpers/fileType.helper';
 
 let nextId:number = 0;
 
@@ -136,12 +136,12 @@ export class TerraFileInputComponent extends TerraInputComponent
         {
             return 'icon-folder';
         }
-        return FileType.mapIconClass(filename);
+        return FileTypeHelper.mapIconClass(filename);
     }
 
     public isWebImage(filename:string):boolean
     {
-        return !isNullOrUndefined(filename) && FileType.isWebImage(filename);
+        return !isNullOrUndefined(filename) && FileTypeHelper.isWebImage(filename);
     }
 
     public getFilename(path:string):string

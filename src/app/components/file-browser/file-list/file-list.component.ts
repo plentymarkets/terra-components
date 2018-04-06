@@ -33,7 +33,7 @@ import {
     TerraStorageObjectList,
     TerraUploadItem
 } from '../../../../';
-import { FileType } from '../../../helpers/fileType.helper';
+import { FileTypeHelper } from '../../../helpers/fileType.helper';
 import { PathHelper } from '../../../helpers/path.helper';
 import { ClipboardHelper } from '../../../helpers/clipboard.helper';
 
@@ -237,7 +237,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 if(!isNullOrUndefined(object))
                 {
                     this.currentStorageRoot = object.parent;
-                    if(FileType.isWebImage(object.key))
+                    if(FileTypeHelper.isWebImage(object.key))
                     {
                         this._imagePreviewObject = object;
                         this._parentFileBrowser.splitConfig.showImagePreview(object, this.activeStorageService);
@@ -538,7 +538,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         {
             let storageObject:TerraStorageObject = row.value;
 
-            if(!isNullOrUndefined(storageObject) && FileType.isWebImage(storageObject.key))
+            if(!isNullOrUndefined(storageObject) && FileTypeHelper.isWebImage(storageObject.key))
             {
                 this._imagePreviewObject = storageObject;
                 this._parentFileBrowser.splitConfig.showImagePreview(storageObject, this.activeStorageService);
