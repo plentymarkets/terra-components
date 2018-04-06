@@ -22,7 +22,7 @@ import { TerraComponentsModule } from '../../../terra-components.module';
 })
 export class TerraImagePreviewModule
 {
-    static forRoot():ModuleWithProviders
+    public static forRoot():ModuleWithProviders
     {
         return {
             ngModule:  TerraImagePreviewModule,
@@ -30,7 +30,7 @@ export class TerraImagePreviewModule
         };
     }
 
-    static getMainComponent():string
+    public static getMainComponent():string
     {
         return 'TerraImagePreviewComponent';
     }

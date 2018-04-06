@@ -1,11 +1,13 @@
 export enum TerraRefTypeEnum
 {
     email = 'mailto',
-    phone = 'tel'
+    phone = 'tel',
+    function = 'function'
 }
 
 export interface TerraRefTypeInterface
 {
-    type:TerraRefTypeEnum,
-    value:string
+    type:TerraRefTypeEnum;
+    value:string;
+    func?:() => void;
 }

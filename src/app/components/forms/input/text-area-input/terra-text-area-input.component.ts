@@ -26,7 +26,8 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
     /**
      * @description If true, a * indicates that the value is required. Default false.
      */
-    @Input() public inputIsRequired:boolean;
+    @Input()
+    public inputIsRequired:boolean;
 
     /**
      * @deprecated inputType is no longer used.  It will be removed in one of the upcoming releases.
@@ -52,12 +53,15 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
 
     /**
      * @description Set the number of maximum rows.
-     * */
-    @Input() public inputMaxRows:number;
+     */
+    @Input()
+    public inputMaxRows:number;
+
     /**
      * @deprecated Will be removed in an upcoming release.
-     * */
-    @Input() public inputMaxCols:number;
+     */
+    @Input()
+    public inputMaxCols:number;
 
     /**
      * @description a unique string identifier for the specific input instance.
@@ -77,7 +81,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
      */
     public focusNativeInput():void
     {
-        setTimeout(() =>
+        setTimeout(():void =>
         {
             let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
             input.focus();
@@ -89,7 +93,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
      */
     public selectNativeInput():void
     {
-        setTimeout(() =>
+        setTimeout(():void =>
         {
             let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
             input.select();

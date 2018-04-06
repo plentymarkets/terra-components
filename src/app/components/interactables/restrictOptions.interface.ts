@@ -8,7 +8,7 @@ export type Rect = {
     y:number,
     width:number,
     height:number
-}
+};
 
 export type ResctrictFunction = (x:number, y:number, element:HTMLElement) => Rect | HTMLElement;
 

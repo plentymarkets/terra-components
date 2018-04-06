@@ -1,7 +1,6 @@
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { Observable } from 'rxjs/Observable';
 import { TerraUploadItem } from './model/terra-upload-item';
-import { TerraImageMetadata } from './model/terra-image-metadata.interface';
 import { TerraUploadQueue } from './model/terra-upload-queue';
 import { TerraBaseService } from '../../../';
 
@@ -47,16 +46,4 @@ export abstract class TerraBaseStorageService extends TerraBaseService
 
         return value;
     }
-}
-
-export abstract class TerraBaseMetadataStorageService extends TerraBaseStorageService
-{
-    public abstract getMetadata(key:string):Observable<TerraImageMetadata>;
-
-    public abstract updateMetadata(key:string, metadata:TerraImageMetadata):Observable<any>;
-}
-
-export abstract class TerraBasePrivateStorageService extends TerraBaseStorageService
-{
-    public abstract downloadFile(key:string):void;
 }

@@ -26,8 +26,11 @@ export interface TerraIndicatorInterface
 })
 export class TerraIndicatorComponent
 {
-    @Input() inputLabel:string;
-    @Input() inputType:string;
+    @Input()
+    public inputLabel:string;
+
+    @Input()
+    public inputType:string;
 
     constructor()
     {

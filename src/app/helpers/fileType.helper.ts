@@ -1,6 +1,6 @@
 import { PathHelper } from './path.helper';
 
-export class FileType
+export class FileTypeHelper
 {
     public static isWebImage(file:string):boolean
     {
@@ -59,6 +59,6 @@ export class FileType
             '7z': 'icon-file_extension_zip',
         };
 
-        return iconMap[extension] || 'icon-file_extension_blank'
+        return iconMap[extension] || 'icon-file_extension_blank';
     }
 }

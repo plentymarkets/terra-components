@@ -5,7 +5,7 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraNodeTreeConfig } from './data/terra-node-tree.config';
-import { isNullOrUndefined } from "util";
+import { isNullOrUndefined } from 'util';
 import { TerraNodeInterface } from './data/terra-node.interface';
 import { TranslationService } from 'angular-l10n';
 
@@ -16,17 +16,25 @@ import { TranslationService } from 'angular-l10n';
 })
 export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 {
-    private _searchValue:string;
-
     /**
      * @description The config to handle actions on tree or node.
      */
-    @Input() inputConfig:TerraNodeTreeConfig<D>;
+    @Input()
+    public inputConfig:TerraNodeTreeConfig<D>;
 
     /**
      * @description Shows the search box above the tree.
      */
-    @Input() inputShowSearch:boolean;
+    @Input()
+    public inputShowSearch:boolean;
+
+    /**
+     * @description Disables or enables the System Tree
+     */
+    @Input()
+    public isTreeDisabled:boolean;
+
+    protected _searchValue:string;
 
     constructor(private _translation:TranslationService)
     {
@@ -158,7 +166,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
     {
         if(!node.defaultVisibility)
         {
-            return
+            return;
         }
 
         node.isVisible = true;

@@ -11,11 +11,12 @@ import { TerraButtonInterface } from '../../../';
 })
 export class TerraNoResultNoticeComponent
 {
-    @Input() inputButtons:Array<TerraButtonInterface>;
-    @Input() inputTextPrimary:string;
-    @Input() inputTextSecondary:string;
+    @Input()
+    public inputButtons:Array<TerraButtonInterface>;
 
-    constructor()
-    {
-    }
+    @Input()
+    public inputTextPrimary:string;
+
+    @Input()
+    public inputTextSecondary:string;
 }

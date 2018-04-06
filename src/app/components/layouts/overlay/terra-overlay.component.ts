@@ -19,18 +19,38 @@ import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interfa
 })
 export class TerraOverlayComponent implements AfterViewInit
 {
-    @ViewChild('viewChildOverlay') viewChildOverlay:ModalDirective;
+    @ViewChild('viewChildOverlay')
+    public viewChildOverlay:ModalDirective;
 
-    @Input() inputOverlayTitle:string;
-    @Input() inputPrimaryButtonInterface:TerraOverlayButtonInterface;
-    @Input() inputSecondaryButtonInterface:TerraOverlayButtonInterface;
-    @Input() inputIsStatic:boolean;
-    @Input() inputIsCloseable:boolean;
-    @Input() inputIsLarge:boolean;
-    @Input() inputIsSmall:boolean;
-    @Input() inputIsExtraLarge:boolean;
-    @Output() outputOnHide:EventEmitter<ModalDirective>;
-    @Output() outputOnShow:EventEmitter<ModalDirective>;
+    @Input()
+    public inputOverlayTitle:string;
+
+    @Input()
+    public inputPrimaryButtonInterface:TerraOverlayButtonInterface;
+
+    @Input()
+    public inputSecondaryButtonInterface:TerraOverlayButtonInterface;
+
+    @Input()
+    public inputIsStatic:boolean;
+
+    @Input()
+    public inputIsCloseable:boolean;
+
+    @Input()
+    public inputIsLarge:boolean;
+
+    @Input()
+    public inputIsSmall:boolean;
+
+    @Input()
+    public inputIsExtraLarge:boolean;
+
+    @Output()
+    public outputOnHide:EventEmitter<ModalDirective>;
+
+    @Output()
+    public outputOnShow:EventEmitter<ModalDirective>;
 
     constructor()
     {
@@ -45,7 +65,7 @@ export class TerraOverlayComponent implements AfterViewInit
         this.outputOnShow = new EventEmitter<ModalDirective>();
     }
 
-    ngAfterViewInit()
+    public ngAfterViewInit():void
     {
         if(!this.inputIsCloseable)
         {

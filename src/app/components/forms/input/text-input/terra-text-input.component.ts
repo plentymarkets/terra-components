@@ -33,17 +33,24 @@ export class TerraTextInputComponent extends TerraInputComponent
 {
     /**
      * @description If true, the type of input will be 'password'.
-     * */
-    @Input() public inputIsPassword:boolean;
+     */
+    @Input()
+    public inputIsPassword:boolean;
 
-    @Input() public inputIsIban:boolean = false;
+    /**
+     * @description If true, the input will check if the input is a valid iban.
+     */
+    @Input()
+    public inputIsIban:boolean;
 
     /**
      * @description If true, the value cannot be changed. Default false.
-     * */
-    @Input() public inputIsReadonly:boolean;
+     */
+    @Input()
+    public inputIsReadonly:boolean;
 
-    @Output() public outputOnInput:EventEmitter<any> = new EventEmitter<any>();
+    @Output()
+    public outputOnInput:EventEmitter<any> = new EventEmitter<any>();
 
     /**
      * @deprecated inputType is no longer used.  It will be removed in one of the upcoming releases.
@@ -83,6 +90,8 @@ export class TerraTextInputComponent extends TerraInputComponent
 
         // generate the id of the input instance
         this._id = `text-input_#${nextId++}`;
+
+        this.inputIsIban = false;
     }
 
     public onInput():void
@@ -93,7 +102,7 @@ export class TerraTextInputComponent extends TerraInputComponent
 
     public focusNativeInput():void
     {
-        setTimeout(()=>
+        setTimeout(() =>
         {
             let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
             input.focus();
@@ -102,7 +111,7 @@ export class TerraTextInputComponent extends TerraInputComponent
 
     public selectNativeInput():void
     {
-        setTimeout(()=>
+        setTimeout(() =>
         {
             let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
             input.select();

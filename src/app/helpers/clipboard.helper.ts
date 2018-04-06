@@ -40,7 +40,7 @@ export class ClipboardHelper
         textarea.focus();
         textarea.select();
 
-        let success = ClipboardHelper.copySelection();
+        let success:boolean = ClipboardHelper.copySelection();
 
         document.body.removeChild(container);
 
@@ -49,8 +49,8 @@ export class ClipboardHelper
 
     private static createElement<T extends HTMLElement>(tagName:string, styles:{ [key:string]:string } = {}):T
     {
-        let element:T = <T>document.createElement(tagName);
-        Object.keys(styles).forEach(style =>
+        let element:T = <T> document.createElement(tagName);
+        Object.keys(styles).forEach((style:string):void =>
         {
             element.style[style] = styles[style];
         });

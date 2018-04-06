@@ -56,7 +56,7 @@ export class TerraFormFieldControlService
     public updateDefaultValues(values:any):void
     {
         this.defaultValues = values;
-        this.resetForm();
+        this.dynamicFormGroup.patchValue(this.defaultValues, {emitEvent: true});
     }
 
     private initFormGroupHelper(formFields:Array<TerraFormFieldBase<any>>,
@@ -72,21 +72,21 @@ export class TerraFormFieldControlService
             else if(formField instanceof TerraFormFieldConditionalContainer && !isNullOrUndefined(formField.conditionalEntries))
             {
                 // TODO extract into own component  or condition refactoring
-                //let subGroup:{ [key:string]:any } = {};
+                // let subGroup:{ [key:string]:any } = {};
                 //
-                //subGroup[formField.key] = new FormControl(formField.value, this.generateValidators(formField));
+                // subGroup[formField.key] = new FormControl(formField.value, this.generateValidators(formField));
                 //
-                //this.defaultValues[formField.key] = formField.value;
+                // this.defaultValues[formField.key] = formField.value;
                 //
-                //for(let key in formField.conditionalEntries)
-                //{
+                // for(let key in formField.conditionalEntries)
+                // {
                 //    if(formField.conditionalEntries.hasOwnProperty(key))
                 //    {
                 //        subGroup[key] = this._formBuilder.group(this.initFormGroupHelper(formField.conditionalEntries[key], {}, true));
                 //    }
-                //}
+                // }
                 //
-                //toGroup[formField.key] = this._formBuilder.group(subGroup);
+                // toGroup[formField.key] = this._formBuilder.group(subGroup);
             }
             else
             {

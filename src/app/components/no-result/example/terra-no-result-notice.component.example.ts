@@ -1,7 +1,7 @@
 import {
     Component,
     OnInit
-} from "@angular/core";
+} from '@angular/core';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 
 @Component({
@@ -11,19 +11,16 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 })
 export class TerraNoResultNoticeComponentExample implements OnInit
 {
-    private _inputNoResultButtons:Array<TerraButtonInterface>;
+    private _inputNoResultButtons:Array<TerraButtonInterface> = [];
     private _result:boolean;
 
-    public checkResult(value):void
+    public checkResult(value:boolean):void
     {
         this._result = value;
     }
 
-
-    ngOnInit()
+    public ngOnInit():void
     {
-        this._inputNoResultButtons = [];
-
         this._inputNoResultButtons.push
         ({
             caption:       'Search',
