@@ -13,27 +13,29 @@ import {
     ViewChild
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { TerraStorageObjectList } from '../model/terra-storage-object-list';
-import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
-import { TerraSimpleTableRowInterface } from '../../tables/simple/row/terra-simple-table-row.interface';
-import { TerraStorageObject } from '../model/terra-storage-object';
 import * as moment from 'moment';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
-import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
-import { PathHelper } from '../helper/path.helper';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
-import { FileType } from '../helper/fileType.helper';
-import { TerraSimpleTableComponent } from '../../tables/simple/terra-simple-table.component';
 import { TerraFileBrowserService } from '../terra-file-browser.service';
-import { TerraUploadItem } from '../model/terra-upload-item';
-import { ClipboardHelper } from '../helper/clipboard.helper';
-import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-simple-table-cell.interface';
 import { TranslationService } from 'angular-l10n';
 import {
     isNull,
     isNullOrUndefined
 } from 'util';
 import { TerraBasePrivateStorageService } from '../terra-base-private-storage.interface';
+import {
+    TerraButtonInterface,
+    TerraSimpleTableCellInterface,
+    TerraSimpleTableComponent,
+    TerraSimpleTableHeaderCellInterface,
+    TerraSimpleTableRowInterface,
+    TerraStorageObject,
+    TerraStorageObjectList,
+    TerraUploadItem
+} from '../../../../';
+import { FileTypeHelper } from '../../../helpers/fileType.helper';
+import { PathHelper } from '../../../helpers/path.helper';
+import { ClipboardHelper } from '../../../helpers/clipboard.helper';
 
 @Component({
     selector: 'terra-file-list',
@@ -235,7 +237,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 if(!isNullOrUndefined(object))
                 {
                     this.currentStorageRoot = object.parent;
-                    if(FileType.isWebImage(object.key))
+                    if(FileTypeHelper.isWebImage(object.key))
                     {
                         this._imagePreviewObject = object;
                         this._parentFileBrowser.splitConfig.showImagePreview(object, this.activeStorageService);
@@ -536,7 +538,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         {
             let storageObject:TerraStorageObject = row.value;
 
-            if(!isNullOrUndefined(storageObject) && FileType.isWebImage(storageObject.key))
+            if(!isNullOrUndefined(storageObject) && FileTypeHelper.isWebImage(storageObject.key))
             {
                 this._imagePreviewObject = storageObject;
                 this._parentFileBrowser.splitConfig.showImagePreview(storageObject, this.activeStorageService);
