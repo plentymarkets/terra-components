@@ -15,8 +15,8 @@ import {
     isNull,
     isNullOrUndefined
 } from 'util';
-import { TerraPlacementEnum } from '../../../../';
 import { TerraBaseData } from '../../data/terra-base.data';
+import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 const MAX_LASTLY_USED_ENTRIES:number = 5;
 
