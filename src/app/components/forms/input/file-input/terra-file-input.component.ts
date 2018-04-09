@@ -9,8 +9,6 @@ import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
 import {
-    FileType,
-    PathHelper,
     TerraBaseStorageService,
     TerraFrontendStorageService,
     TerraOverlayButtonInterface,
@@ -18,6 +16,8 @@ import {
     TerraRegex,
     TerraStorageObject
 } from '../../../../../';
+import { PathHelper } from '../../../../helpers/path.helper';
+import { FileTypeHelper } from '../../../../helpers/fileType.helper';
 
 let nextId:number = 0;
 
@@ -136,12 +136,12 @@ export class TerraFileInputComponent extends TerraInputComponent
         {
             return 'icon-folder';
         }
-        return FileType.mapIconClass(filename);
+        return FileTypeHelper.mapIconClass(filename);
     }
 
     public isWebImage(filename:string):boolean
     {
-        return !isNullOrUndefined(filename) && FileType.isWebImage(filename);
+        return !isNullOrUndefined(filename) && FileTypeHelper.isWebImage(filename);
     }
 
     public getFilename(path:string):string
