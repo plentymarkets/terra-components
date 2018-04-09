@@ -60,11 +60,12 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
     private _valueHours:Array<TerraSelectBoxValueInterface> = [];
     private _valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
     private _is24HourFormat:boolean = true;
-    private _timeFormatEnum = TimeFormat;
-    private _dayFormat = DayFormat;
+    private _timeFormatEnum:any = TimeFormat;
+    private _dayFormat:any = DayFormat;
 
     constructor()
     {
+        // Nothing to do here
     }
 
     public ngOnInit():void
