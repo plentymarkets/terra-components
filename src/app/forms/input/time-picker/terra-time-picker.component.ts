@@ -12,6 +12,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { TerraSelectBoxValueInterface } from '../../../components/forms/select-box/data/terra-select-box.interface';
+import moment = require('moment');
 
 export enum TimeFormat
 {
@@ -45,13 +46,13 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
     /**
      * @description If true, the input will be disabled. Default false.
      * */
-    @Input() inputIsDisabled:boolean;
+    @Input() private inputIsDisabled:boolean;
 
 
 
     private _selectedMinute:TerraSelectBoxValueInterface;
     private _selectedHour:TerraSelectBoxValueInterface;
-    private _value:string;
+    private _value:any;
     private _valueFormat:TimeFormat;
     private _valuePMAM:DayFormat;
     private _values24:Array<TerraSelectBoxValueInterface> = [];
@@ -131,16 +132,24 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
         this._value = value;
     }
 
-    public get value()
+    public get value():any
     {
+        let time:any;
+
         if(this._valueFormat === TimeFormat.AMERICAN)
         {
-            this._value = this._valuePMAM + ' ' + this._selectedHour.value + ':' + this._selectedMinute.value;
+            time = moment(this._valuePMAM + '-' + this._selectedHour.value + '-' + this._selectedMinute.value, 'a-hh-mm');
+
+            // this._value = this._valuePMAM + ' ' + this._selectedHour.value + ':' + this._selectedMinute.value;
         }
         else
         {
-            this._value = this._selectedHour.value + ':' + this._selectedMinute.value;
+            time = moment(this._selectedHour.value + '-' + this._selectedMinute.value, 'HH-mm');
+
+            // this._value = this._selectedHour.value + ':' + this._selectedMinute.value;
         }
+
+        this._value = time;
 
         return this._value;
     }
