@@ -1,31 +1,31 @@
 <div class="input-unit-v1"
-     [ngClass]="{'disabled': inputIsDisabled}">
+     [class.disabled]="inputIsDisabled">
     <div class="timeFormatGroup">
         <terra-radio-button [inputValue]="_timeFormatEnum.AMERICAN"
                             [inputCaption]="'timepicker.hourFormat12' |  translate:lang"
                             [(ngModel)]="_valueFormat"
-                            (ngModelChange)="changeValues()"
+                            (ngModelChange)="changeHourSelectionValues()"
                             >
         </terra-radio-button>
         
         <terra-radio-button [inputValue]="_timeFormatEnum.EUROPEAN"
                             [inputCaption]="'timepicker.hourFormat24' |  translate:lang"
                             [(ngModel)]="_valueFormat"
-                            (ngModelChange)="changeValues()">
+                            (ngModelChange)="changeHourSelectionValues()">
         </terra-radio-button>
     </div>
     <div *ngIf="!_is24HourFormat">
-        <terra-radio-button [inputValue]="_dayFormat.AM"
-                            [inputCaption]="_dayFormat.AM"
+        <terra-radio-button [inputValue]="_dayFormatEnum.AM"
+                            [inputCaption]="_dayFormatEnum.AM"
                             [(ngModel)]="_valuePMAM"
-                            (ngModelChange)="changeValues()"
+                            (ngModelChange)="changeHourSelectionValues()"
         >
         </terra-radio-button>
     
-        <terra-radio-button [inputValue]="_dayFormat.PM"
-                            [inputCaption]="_dayFormat.PM"
+        <terra-radio-button [inputValue]="_dayFormatEnum.PM"
+                            [inputCaption]="_dayFormatEnum.PM"
                             [(ngModel)]="_valuePMAM"
-                            (ngModelChange)="changeValues()">
+                            (ngModelChange)="changeHourSelectionValues()">
         </terra-radio-button>
     </div>
     <terra-select-box
@@ -40,3 +40,7 @@
                       [inputName]="'timepicker.minutes' |  translate:lang">
     </terra-select-box>
 </div>
+
+<terra-button [inputIsSecondary]="true"
+                (outputClicked)="printValueInConsole()"
+                inputCaption="TestTime"></terra-button>

@@ -131,4 +131,3 @@ export * from './app/components/category-picker/data/category-pager-data.interfa
 export * from './app/components/category-picker/data/category-tree.data';
 export * from './app/components/category-picker/data/category-value.interface';
 export * from './app/helpers/index';
-export * from './app/forms/input/time-picker/terra-time-picker.component';

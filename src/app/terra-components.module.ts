@@ -134,6 +134,7 @@ import { TerraFormFieldControlService } from './components/forms/dynamic-form/se
 import { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
 import { TerraMultiCheckBoxComponentExample } from './components/forms/multi-check-box/example/terra-multi-check-box.component.example';
 import { TerraCategoryPickerComponent } from './components/category-picker/terra-category-picker.component';
+import { TerraTimePickerComponentExample } from './forms/input/time-picker/example/terra-time-picker.component.example';
 
 @NgModule({
     declarations:    [
@@ -234,7 +235,8 @@ import { TerraCategoryPickerComponent } from './components/category-picker/terra
         TerraDataTableContextMenuComponentExample,
         TerraNoteEditorComponentExample,
         TerraNoteComponentExample,
-        TerraNodeTreeComponentExample
+        TerraNodeTreeComponentExample,
+        TerraTimePickerComponentExample
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -384,7 +386,8 @@ import { TerraCategoryPickerComponent } from './components/category-picker/terra
         TerraNoteComponentExample,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
-        TerraNodeTreeComponentExample
+        TerraNodeTreeComponentExample,
+        TerraTimePickerComponentExample
     ],
     imports:         [
         BrowserModule,
