@@ -8,6 +8,7 @@
     box-shadow: var(--box-shadow);
     position: relative;
     z-index: var(--toolbar-z-index, var(--zIndex-7));
+    --select-box-wrapper-margin-bottom: 0;
 }
 
 .sticky

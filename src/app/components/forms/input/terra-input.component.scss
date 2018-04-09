@@ -159,7 +159,7 @@ input[type="search"]::-webkit-search-decoration
         position: absolute;
         height: 2px;
         background-color: var(--color-active);
-        transition: ease all var(--transition-delay-md);
+        transition: width var(--transition-md);
         bottom: 0px;
     }
     &:not(.error):not(.valid):not(.success):not(.disabled):hover::after {
