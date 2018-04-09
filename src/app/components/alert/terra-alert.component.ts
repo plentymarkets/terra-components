@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { TerraAlertInterface } from './data/terra-alert.interface';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 
 /**
  * @author mkunze
@@ -8,21 +11,22 @@ import { isNullOrUndefined } from 'util';
 @Injectable()
 export class TerraAlertComponent
 {
-    private _alerts:Array<TerraAlertInterface> = [];
     private static _instance:TerraAlertComponent = null;
     private static _isCreating:boolean = false;
+
+    public alerts:Array<TerraAlertInterface> = [];
 
     constructor()
     {
         if(!TerraAlertComponent._isCreating)
         {
-            throw new Error("You can't call new in Singleton instances! Call TerraAlertComponent.getInstance() instead.");
+            throw new Error('You can\'t call new in Singleton instances! Call TerraAlertComponent.getInstance() instead.');
         }
     }
 
     public static getInstance():TerraAlertComponent
     {
-        if(TerraAlertComponent._instance == null)
+        if(isNull(TerraAlertComponent._instance))
         {
             TerraAlertComponent._isCreating = true;
             TerraAlertComponent._instance = new TerraAlertComponent();
@@ -34,7 +38,7 @@ export class TerraAlertComponent
 
     public closeAlert(i:number):void
     {
-        this._alerts.splice(i, 1);
+        this.alerts.splice(i, 1);
     }
 
     public addAlertForPlugin(alert:TerraAlertInterface):void
@@ -55,7 +59,7 @@ export class TerraAlertComponent
 
         window.parent.window.dispatchEvent(event);
     }
-
+    /** @description is used to add an alert*/
     public addAlert(alert:TerraAlertInterface):void
     {
         if(isNullOrUndefined(alert.dismissOnTimeout))
@@ -63,7 +67,7 @@ export class TerraAlertComponent
             alert.dismissOnTimeout = 5000;
         }
 
-        this._alerts.push({
+        this.alerts.push({
             msg:              alert.msg,
             type:             alert.type,
             dismissOnTimeout: alert.dismissOnTimeout,
@@ -71,26 +75,16 @@ export class TerraAlertComponent
         });
     }
 
-    public closeAlertByIdentifier(identifier:string)
+    public closeAlertByIdentifier(identifier:string):void
     {
-        for(let alert of this._alerts)
+        for(let alert of this.alerts)
         {
-            if(alert.identifier == identifier)
+            if(alert.identifier === identifier)
             {
-                let index = this._alerts.indexOf(alert);
+                let index:number = this.alerts.indexOf(alert);
 
                 this.closeAlert(index);
             }
         }
-    }
-
-    public get alerts():Array<TerraAlertInterface>
-    {
-        return this._alerts;
-    }
-
-    public set alerts(value:Array<TerraAlertInterface>)
-    {
-        this._alerts = value;
     }
 }

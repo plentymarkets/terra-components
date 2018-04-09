@@ -9,8 +9,6 @@ import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
 import {
-    FileType,
-    PathHelper,
     TerraBaseStorageService,
     TerraFrontendStorageService,
     TerraOverlayButtonInterface,
@@ -18,6 +16,8 @@ import {
     TerraRegex,
     TerraStorageObject
 } from '../../../../../';
+import { PathHelper } from '../../../../helpers/path.helper';
+import { FileTypeHelper } from '../../../../helpers/fileType.helper';
 
 let nextId:number = 0;
 
@@ -35,8 +35,6 @@ let nextId:number = 0;
 })
 export class TerraFileInputComponent extends TerraInputComponent
 {
-    private _translationPrefix:string = 'terraFileInput';
-
     @Input()
     public inputShowPreview:boolean = false;
 
@@ -45,8 +43,6 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     @Input()
     public inputAllowFolders:boolean = true;
-
-    private _storageServices:Array<TerraBaseStorageService>;
 
     @Input()
     public set inputStorageServices(services:Array<TerraBaseStorageService>)
@@ -65,30 +61,13 @@ export class TerraFileInputComponent extends TerraInputComponent
     @ViewChild('previewOverlay')
     public previewOverlay:TerraOverlayComponent;
 
+    public primaryOverlayButton:TerraOverlayButtonInterface;
+    public secondaryOverlayButton:TerraOverlayButtonInterface;
+
+    private _translationPrefix:string = 'terraFileInput';
+    private _storageServices:Array<TerraBaseStorageService>;
     private _selectedObjectUrl:string;
     private _id:string;
-
-    public primaryOverlayButton:TerraOverlayButtonInterface = {
-        icon:          'icon-success',
-        caption:       this.translation.translate(this._translationPrefix + '.choose'),
-        isDisabled:    true,
-        clickFunction: () =>
-                       {
-                           this.value = this._selectedObjectUrl;
-                           this.overlay.hideOverlay();
-                       }
-    };
-
-    public secondaryOverlayButton:TerraOverlayButtonInterface = {
-        icon:          'icon-close',
-        caption:       this.translation.translate(this._translationPrefix + '.cancel'),
-        isDisabled:    false,
-        clickFunction: () =>
-                       {
-                           this._selectedObjectUrl = this.value;
-                           this.overlay.hideOverlay();
-                       }
-    };
 
     constructor(private translation:TranslationService, private _frontendStorageService:TerraFrontendStorageService)
     {
@@ -96,10 +75,28 @@ export class TerraFileInputComponent extends TerraInputComponent
 
         // generate the id of the input instance
         this._id = `file-input_#${nextId++}`;
-    }
 
-    public ngOnInit():void
-    {
+        this.primaryOverlayButton = {
+            icon:          'icon-success',
+            caption:       this.translation.translate(this._translationPrefix + '.choose'),
+            isDisabled:    true,
+            clickFunction: ():void =>
+                           {
+                               this.value = this._selectedObjectUrl;
+                               this.overlay.hideOverlay();
+                           }
+        };
+
+        this.secondaryOverlayButton = {
+            icon:          'icon-close',
+            caption:       this.translation.translate(this._translationPrefix + '.cancel'),
+            isDisabled:    false,
+            clickFunction: ():void =>
+                           {
+                               this._selectedObjectUrl = this.value;
+                               this.overlay.hideOverlay();
+                           }
+        };
     }
 
     public onSelectedObjectChange(selectedObject:TerraStorageObject):void
@@ -139,12 +136,12 @@ export class TerraFileInputComponent extends TerraInputComponent
         {
             return 'icon-folder';
         }
-        return FileType.mapIconClass(filename);
+        return FileTypeHelper.mapIconClass(filename);
     }
 
     public isWebImage(filename:string):boolean
     {
-        return !isNullOrUndefined(filename) && FileType.isWebImage(filename);
+        return !isNullOrUndefined(filename) && FileTypeHelper.isWebImage(filename);
     }
 
     public getFilename(path:string):string

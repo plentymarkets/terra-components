@@ -26,10 +26,25 @@ import {
 })
 export class TerraRadioButtonComponent implements ControlValueAccessor
 {
-    @Input() inputCaption:string;
-    @Input() inputValue:string | number | boolean;
-    @Input() inputIsDisabled:boolean;
-    @Input() inputIsUncheckable:boolean;
+    @Input()
+    public inputCaption:string;
+
+    @Input()
+    public inputValue:string | number | boolean;
+
+    @Input()
+    public inputIsDisabled:boolean;
+
+    @Input()
+    public inputIsUncheckable:boolean;
+
+    public value:any;
+
+    constructor()
+    {
+        this.inputIsUncheckable = false;
+        this.inputIsDisabled = false;
+    }
 
     @HostListener('click')
     public onClick():void
@@ -52,44 +67,22 @@ export class TerraRadioButtonComponent implements ControlValueAccessor
         this.onChangeCallback(this.value);
     }
 
-    private _value:any;
-
-    private onTouchedCallback:() => void = () =>
-    {
-    };
-
-    private onChangeCallback:(_:any) => void = (_) =>
-    {
-    };
-
-    constructor()
-    {
-        this.inputIsUncheckable = false;
-        this.inputIsDisabled = false;
-    }
-
     public writeValue(value:any):void
     {
         this.value = value;
     }
 
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:(_:any) => void):void
     {
         this.onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this.onTouchedCallback = fn;
     }
 
-    public get value():any
-    {
-        return this._value;
-    }
+    private onTouchedCallback:() => void = ():void => undefined;
 
-    public set value(value:any)
-    {
-        this._value = value;
-    }
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 }

@@ -1,0 +1,30 @@
+<form [formGroup]="_formFieldControlService.dynamicFormGroup"
+      (ngSubmit)="validate()"
+      role="form">
+    <terra-base-toolbar [ngClass]="{'toolbarHidden': inputHasNoSaveButton && inputHasNoResetButton}">
+        <div class="btn-group" role="group">
+            <terra-button [inputIcon]="'icon-save'"
+                          [inputTooltipText]="'save' | translate:lang"
+                          [inputType]="'submit'"
+                          [inputIsHidden]="inputHasNoSaveButton">
+            </terra-button>
+            <terra-button [inputIcon]="'icon-reset'"
+                          [inputTooltipText]="'reset' | translate:lang"
+                          (outputClicked)="onResetClick()"
+                          [inputIsHidden]="inputHasNoResetButton">
+            </terra-button>
+        </div>
+    </terra-base-toolbar>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div [class]="inputPortletStyle">
+                <terra-dynamic-switch [inputFormFields]="inputFormFields"
+                                      [inputUsePortlet]="inputUsePortlet"
+                                      [inputIsDisabled]="inputIsDisabled"
+                                      [inputFormGroup]="_formFieldControlService.dynamicFormGroup">
+                </terra-dynamic-switch>
+            </div>
+        </div>
+    </div>
+</form>

@@ -14,52 +14,56 @@ import { TerraTileBoxInterface } from '../box/data/terra-tile-box.interface';
 })
 export class TerraTileBoxPanelComponent
 {
-    @Input() inputTileBoxList:Array<TerraTileBoxInterface>;
-    @Input() inputIsViewToggleable:boolean;
-    private _selectedTileBoxList:Array<TerraTileBoxInterface> = [];
+    @Input()
+    public inputTileBoxList:Array<TerraTileBoxInterface>;
+
+    @Input()
+    public inputIsViewToggleable:boolean;
+
+    public selectedTileBoxList:Array<TerraTileBoxInterface> = [];
+    public viewStyle:boolean = false;
 
     private _draggedIndex:number;
-    private _viewStyle:boolean = false;
 
     constructor()
     {
         this.inputIsViewToggleable = false;
     }
 
-    private onBoxClick(event, tile:TerraTileBoxInterface):void
+    private onBoxClick(event:Event, tile:TerraTileBoxInterface):void
     {
         tile.isSelected = !tile.isSelected;
 
-        let index = this._selectedTileBoxList.indexOf(tile);
+        let index:number = this.selectedTileBoxList.indexOf(tile);
 
-        if(tile.isSelected && index == -1)
+        if(tile.isSelected && index === -1)
         {
-            this._selectedTileBoxList.push(tile);
+            this.selectedTileBoxList.push(tile);
         }
-        else if(!tile.isSelected && index != -1)
+        else if(!tile.isSelected && index !== -1)
         {
-            this._selectedTileBoxList.splice(index, 1)
+            this.selectedTileBoxList.splice(index, 1);
         }
     }
 
-    private onDragStart(event, draggingTile:TerraTileBoxInterface):void
+    private onDragStart(event:DragEvent, draggingTile:TerraTileBoxInterface):void
     {
         this._draggedIndex = this.inputTileBoxList.indexOf(draggingTile);
         draggingTile.isDragging = true;
 
         for(let tile of this.inputTileBoxList)
         {
-            if(tile != draggingTile)
+            if(tile !== draggingTile)
             {
                 tile.isDropTarget = true;
             }
         }
 
-        //awesome hack for firefox! it rocks!!!
+        // awesome hack for firefox! it rocks!!!
         event.dataTransfer.setData('text', 'anything');
     }
 
-    private onDragEnd(event, draggingTile:TerraTileBoxInterface):void
+    private onDragEnd(event:DragEvent, draggingTile:TerraTileBoxInterface):void
     {
         event.preventDefault();
 
@@ -72,7 +76,7 @@ export class TerraTileBoxPanelComponent
         }
     }
 
-    private onDragLeave(event, hoverTile:TerraTileBoxInterface):void
+    private onDragLeave(event:DragEvent, hoverTile:TerraTileBoxInterface):void
     {
         event.preventDefault();
 
@@ -82,7 +86,7 @@ export class TerraTileBoxPanelComponent
         }
     }
 
-    private onDrop(event, droppedTile:TerraTileBoxInterface):void
+    private onDrop(event:Event, droppedTile:TerraTileBoxInterface):void
     {
         event.preventDefault();
 
@@ -95,13 +99,13 @@ export class TerraTileBoxPanelComponent
             tile.isHover = false;
         }
 
-        let droppedIndex = this.inputTileBoxList.indexOf(droppedTile);
+        let droppedIndex:number = this.inputTileBoxList.indexOf(droppedTile);
 
         this.inputTileBoxList.splice(this._draggedIndex, 1);
         this.inputTileBoxList.splice(droppedIndex, 0, draggedTile);
     }
 
-    private onDragOver(event, hoverTile:TerraTileBoxInterface):void
+    private onDragOver(event:Event, hoverTile:TerraTileBoxInterface):void
     {
         event.preventDefault();
 
@@ -111,34 +115,12 @@ export class TerraTileBoxPanelComponent
 
             for(let tile of this.inputTileBoxList)
             {
-                if(tile != hoverTile)
+                if(tile !== hoverTile)
                 {
                     tile.isHover = false;
                 }
             }
         }
-    }
-
-
-    public get selectedTileBoxList():Array<TerraTileBoxInterface>
-    {
-        return this._selectedTileBoxList;
-    }
-
-    public set selectedTileBoxList(value:Array<TerraTileBoxInterface>)
-    {
-        this._selectedTileBoxList = value;
-    }
-
-
-    public get viewStyle():boolean
-    {
-        return this._viewStyle;
-    }
-
-    public set viewStyle(value:boolean)
-    {
-        this._viewStyle = value;
     }
 
     private toggleView():void

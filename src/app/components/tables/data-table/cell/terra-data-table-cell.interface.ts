@@ -16,22 +16,27 @@ export interface TerraDataTableCellInterface
     isHidden?:boolean;
     tooltipText?:string;
     tooltipPlacement?:string;
+
     /**
      * @deprecated
      */
     caption?:string | number;
+
     /**
      * @deprecated
      */
     icon?:string;
+
     /**
      * @deprecated
      */
     buttonList?:Array<TerraButtonInterface>;
+
     /**
      * @deprecated
      */
     color?:string;
+
     /**
      * @deprecated
      */

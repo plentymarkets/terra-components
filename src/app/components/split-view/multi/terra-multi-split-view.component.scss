@@ -119,7 +119,7 @@
     font-size: 0;
     &.offset
     {
-        height: calc(100% - 42px) !important;
+        height: calc(100% - 45px) !important;
     }
     > *
     {
@@ -157,6 +157,24 @@
         &.workaround
         {
             background-color: $white;
+        }
+        
+        //divide 2 views with the same background color with a border
+        &:not(.isBackgroundColorGrey),
+        &.workaround
+        {
+            + .view:not(.isBackgroundColorGrey),
+            + .view.workaround
+            {
+                border-left: 1px solid $grey-4;
+            }
+        }
+        &.isBackgroundColorGrey:not(.workaround)
+        {
+            + .view.isBackgroundColorGrey:not(.workaround)
+            {
+                border-left: 2px solid $white;
+            }
         }
     }
     

@@ -5,6 +5,7 @@ import {
     Output
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
+import { TerraPlacementEnum } from '../../../../';
 
 @Component({
     selector: 'terra-button',
@@ -13,50 +14,94 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraButtonComponent
 {
-    @Input() inputIsPrimary:boolean;
-    @Input() inputIsSecondary:boolean;
-    /**
-     * @description If true, the button gets the tertiary color green. Default false.
-     * */
-    @Input() inputIsTertiary:boolean;
-    @Input() inputIsSmall:boolean;
-    @Input() inputIsLarge:boolean;
-    @Input() inputIsDisabled:boolean;
-    @Input() inputCaption:string;
-    @Input() inputIcon:string;
-    /**
-     * @description Set the html native 'type' attribute, e.g., 'submit or 'reset'. Default 'button'.
-     * */
-    @Input() inputType:string;
-    @Input() inputIsAlignRight:boolean;
-    /**
-     * @description If true, the button will be hidden. Default false.
-     * */
-    @Input() inputIsHidden:boolean;
-    @Input() inputTooltipText:string;
-    @Input() inputTooltipPlacement:string; //top, bottom, left, right
+    /** @description If true, the button gets the primary color blue. Default false. */
+    @Input()
+    public inputIsPrimary:boolean;
+
+    /** @description If true, the button gets the secondary color red. Default false. */
+    @Input()
+    public inputIsSecondary:boolean;
+
+    /** @description If true, the button gets the tertiary color green. Default false.*/
+    @Input()
+    public inputIsTertiary:boolean;
+
+    /** @description If true, the button will be small. Default false.*/
+    @Input()
+    public inputIsSmall:boolean;
+
+    /** @description If true, the button will be large. Default false.*/
+    @Input()
+    public inputIsLarge:boolean;
+
+    /** @description If true, the button will be disabled. Default false.*/
+    @Input()
+    public inputIsDisabled:boolean;
+
+    /** @description Set the caption.*/
+    @Input()
+    public inputCaption:string;
+
+    /** @description Set an icon (e.g. icon-save).*/
+    @Input()
+    public inputIcon:string;
+
+    /** @description Set the html native 'type' attribute, e.g., 'submit or 'reset'. Default 'button'.*/
+    @Input()
+    public inputType:string;
+
+    /** @description  If true, the button will be aligned to the right side of another element. Default false.*/
+    @Input()
+    public inputIsAlignRight:boolean;
+
+    /** @description If true, the button will be hidden. Default false.*/
+    @Input()
+    public inputIsHidden:boolean;
+
+    /** @description Set the tooltip.*/
+    @Input()
+    public inputTooltipText:string;
+
+    /** @description Set the tooltip placement (bottom, top, left, right). Default top.*/
+    @Input()
+    public inputTooltipPlacement:TerraPlacementEnum;
+
     /**
      * @description If true, the button color changes to blue and indicates its active state. Default false.
-     * */
-    @Input() inputIsActive:boolean;
+     */
+    @Input()
+    public inputIsActive:boolean;
+
     /**
-     * @description If true, a triangular yellow flag appears at the upper right corner of the button to indicate, e.g., a state in which the button should be clicked by the user. Default false.
-     * */
-    @Input() inputIsFlagged:boolean;
+     * @description If true, a triangular yellow flag appears at the upper right corner of the button to indicate, e.g.,
+     * a state in which the button should be clicked by the user. Default false.
+     */
+    @Input()
+    public inputIsFlagged:boolean;
+
     /**
      * @description If true, a none-clickable element is set to optically divide a vertical button group. Default false.
-     * */
-    @Input() inputIsDivider:boolean;
+     */
+    @Input()
+    public inputIsDivider:boolean;
+
     /**
      * @description If true, the button will appear as a link which changes to blue on hover. Default false.
-     * */
-    @Input() inputIsLink:boolean;
-    @Input() inputIsHighlighted:boolean;
-    @Output() outputClicked = new EventEmitter<Event>();
+     */
+    @Input()
+    public inputIsLink:boolean;
+
+    @Input()
+    public inputIsHighlighted:boolean;
+
+    @Output()
+    public outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
+
+    private _currentTooltipPlacement:string;
 
     constructor()
     {
-        this.inputTooltipPlacement = 'top';
+        this.inputTooltipPlacement = TerraPlacementEnum.TOP;
         this.inputType = 'button';
         this.inputIsActive = false;
         this.inputIsFlagged = false;
@@ -65,6 +110,8 @@ export class TerraButtonComponent
         this.inputIsLink = false;
         this.inputIsDisabled = false;
         this.inputIsHighlighted = false;
+        this._currentTooltipPlacement = this.inputTooltipPlacement;
+
     }
 
     private click(event:Event):void
@@ -72,6 +119,27 @@ export class TerraButtonComponent
         if(isNullOrUndefined(this.inputIsDisabled) || this.inputIsDisabled === false)
         {
             this.outputClicked.emit(event);
+        }
+    }
+
+    private setTooltipPlacement(event:MouseEvent):void
+    {
+        if(isNullOrUndefined(this.inputTooltipText))
+        {
+            return;
+        }
+
+        let minimalDistanceToWindowEdge:number = 100;
+
+        this._currentTooltipPlacement = this.inputTooltipPlacement;
+
+        if(window.innerWidth - event.clientX < minimalDistanceToWindowEdge)
+        {
+            this._currentTooltipPlacement = 'left';
+        }
+        else if(event.clientX < minimalDistanceToWindowEdge)
+        {
+            this._currentTooltipPlacement = 'right';
         }
     }
 }

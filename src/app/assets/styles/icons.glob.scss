@@ -60,6 +60,22 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-colorpicker
+{
+    &:before
+    {
+        content: $icon-colorpicker;
+    }
+}
+
+.icon-servicecenter
+{
+    &:before
+    {
+        content: $icon-servicecenter;
+    }
+}
+
 .icon-open_external_link
 {
     &:before
@@ -2177,6 +2193,7 @@
     &:before
     {
         content: $icon-flag_blue;
+        color: #008EBD;
     }
 }
 
@@ -2193,6 +2210,7 @@
     &:before
     {
         content: $icon-flag_bomb_green;
+        color: #4CAD33;
     }
 }
 
@@ -2201,6 +2219,7 @@
     &:before
     {
         content: $icon-flag_bomb_red;
+        color: #D4021D;
     }
 }
 
@@ -2209,6 +2228,7 @@
     &:before
     {
         content: $icon-flag_green;
+        color: #4CAD33;
     }
 }
 
@@ -2233,6 +2253,7 @@
     &:before
     {
         content: $icon-flag_ledblue_16;
+        color: #008EBD;
     }
 }
 
@@ -2241,6 +2262,7 @@
     &:before
     {
         content: $icon-flag_leddarkblue_16;
+        color: #354763;
     }
 }
 
@@ -2249,6 +2271,7 @@
     &:before
     {
         content: $icon-flag_leddarkgreen_16;
+        color: #066011;
     }
 }
 
@@ -2257,6 +2280,7 @@
     &:before
     {
         content: $icon-flag_leddarkred_16;
+        color: #910000;
     }
 }
 
@@ -2265,6 +2289,7 @@
     &:before
     {
         content: $icon-flag_ledgreen_16;
+        color: #4CAD33;
     }
 }
 
@@ -2273,6 +2298,7 @@
     &:before
     {
         content: $icon-flag_ledgrey_16;
+        color: #707173;
     }
 }
 
@@ -2281,6 +2307,7 @@
     &:before
     {
         content: $icon-flag_ledorange_16;
+        color: #FFA100;
     }
 }
 
@@ -2289,6 +2316,7 @@
     &:before
     {
         content: $icon-flag_ledpink_16;
+        color: #DD0BA9;
     }
 }
 
@@ -2297,6 +2325,7 @@
     &:before
     {
         content: $icon-flag_ledpurple_16;
+        color: #870E6D;
     }
 }
 
@@ -2305,6 +2334,7 @@
     &:before
     {
         content: $icon-flag_ledred_16;
+        color: #D4021D;
     }
 }
 
@@ -2313,6 +2343,7 @@
     &:before
     {
         content: $icon-flag_ledyellow_16;
+        color: #FFCE36;
     }
 }
 
@@ -2329,6 +2360,7 @@
     &:before
     {
         content: $icon-flag_red;
+        color: #D4021D;
     }
 }
 
@@ -2345,6 +2377,7 @@
     &:before
     {
         content: $icon-flag_user_blue;
+        color: #008EBD;
     }
 }
 
@@ -2353,6 +2386,7 @@
     &:before
     {
         content: $icon-flag_user_dark_blue;
+        color: #354763;
     }
 }
 
@@ -2369,6 +2403,7 @@
     &:before
     {
         content: $icon-flag_user_gray;
+        color: #707173;
     }
 }
 
@@ -2377,6 +2412,7 @@
     &:before
     {
         content: $icon-flag_user_green;
+        color: #4CAD33;
     }
 }
 
@@ -2385,6 +2421,7 @@
     &:before
     {
         content: $icon-flag_user_light_gray;
+        color: #C7C7C7;
     }
 }
 
@@ -2393,6 +2430,7 @@
     &:before
     {
         content: $icon-flag_user_orange;
+        color: #FFA100;
     }
 }
 
@@ -2401,6 +2439,7 @@
     &:before
     {
         content: $icon-flag_user_purple;
+        color: #870E6D;
     }
 }
 
@@ -2409,6 +2448,7 @@
     &:before
     {
         content: $icon-flag_user_red;
+        color: #D4021D;
     }
 }
 
@@ -2425,6 +2465,7 @@
     &:before
     {
         content: $icon-flag_user_yellow;
+        color: #FFCE36;
     }
 }
 
@@ -2481,6 +2522,7 @@
     &:before
     {
         content: $icon-flag_yellow;
+        color: #FFCE36;
     }
 }
 
@@ -3513,6 +3555,7 @@
     &:before
     {
         content: $icon-process_error_grey;
+        color: #707173;
     }
 }
 
@@ -3521,6 +3564,7 @@
     &:before
     {
         content: $icon-process_error_red;
+        color: #D4021D;
     }
 }
 

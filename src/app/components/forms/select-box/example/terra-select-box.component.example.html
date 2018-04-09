@@ -1,0 +1,13 @@
+<terra-portlet inputPortletHeader="select language">
+    <terra-select-box
+        inputName="language"
+        [inputListBoxValues]="_selectableOptionTypesList"
+        [(ngModel)]="_pickedValue">
+    </terra-select-box>
+    <terra-select-box
+        inputName="language"
+        inputOpenOnTop="true"
+        [inputListBoxValues]="_selectableOptionTypesList"
+        [(ngModel)]="_pickedValue">
+    </terra-select-box>
+</terra-portlet>

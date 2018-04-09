@@ -5,6 +5,9 @@
 	"terraMultiSelectBox": {
 		"selectAll": "Alle"
 	},
+	"terraMultiCheckBox": {
+		"selectAll": "Alle"
+	},
 	"terraFileBrowser": {
 		"cancel": "Abbrechen",
 		"create": "Erstellen",
@@ -58,11 +61,15 @@
 	"terraNodeTree":{
 		"search": "Suche"
 	},
-	"timepicker":
-	{
+	"timepicker": {
 		"hourFormat12": "12-Stunden",
 		"hourFormat24": "24-Stunden",
 		"minutes": "Minuten",
 		"hours": "Stunden"
+	},
+	"terraCategoryPicker": {
+		"select": "Auswählen",
+		"category": "Kategorie",
+		"reset": "Reset"
 	}
 }
