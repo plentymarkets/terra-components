@@ -16,7 +16,7 @@
     {
         img
         {
-            max-height: 31px;
+            max-height: var(--input-unit-v1-line-height, inherit);
         }
     }
 }
