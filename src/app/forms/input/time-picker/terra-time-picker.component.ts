@@ -111,11 +111,13 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 
     private onTouchedCallback:() => void = () =>
     {
-    };
+        // Nothing to do here
+    }
 
     private onChangeCallback:(_:any) => void = (_) =>
     {
-    };
+        // Nothing to do here
+    }
 
     public registerOnChange(fn:any):void
     {
@@ -172,5 +174,4 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
             this._is24HourFormat = false;
         }
     }
-
 }
