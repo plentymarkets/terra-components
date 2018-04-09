@@ -16,7 +16,7 @@
     {
         img
         {
-            max-height: var(--input-unit-v1-line-height, inherit);
+            max-height: var(--select-box-dropdown-img-max-height, var(--input-unit-v1-line-height))
         }
     }
 }
