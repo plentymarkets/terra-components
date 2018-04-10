@@ -1,6 +1,6 @@
 import { PathHelper } from './path.helper';
 
-export class FileType
+export class FileTypeHelper
 {
     public static isWebImage(file:string):boolean
     {

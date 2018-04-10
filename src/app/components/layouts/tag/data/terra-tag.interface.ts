@@ -17,4 +17,9 @@ export interface TerraTagInterface
      */
     badge?:string;
     customClass?:string;
+
+    /**
+     * The color of the tag
+     */
+    color?:string;
 }
