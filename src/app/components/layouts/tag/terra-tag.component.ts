@@ -1,8 +1,6 @@
 import {
     Component,
-    ElementRef,
-    Input,
-    AfterViewInit
+    Input
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { Color } from '../../forms/input/color-picker/color.helper';
@@ -12,7 +10,7 @@ import { Color } from '../../forms/input/color-picker/color.helper';
     styles:   [require('./terra-tag.component.scss')],
     template: require('./terra-tag.component.html')
 })
-export class TerraTagComponent implements AfterViewInit
+export class TerraTagComponent
 {
     @Input()
     public inputBadge:string;
@@ -27,36 +25,42 @@ export class TerraTagComponent implements AfterViewInit
     public inputCustomClass:string;
 
     @Input()
-    public inputOwnColor:string;
+    /**
+     * The background color for the tag.
+     */
+    public inputColor:string;
 
-    constructor(private _element:ElementRef)
+    constructor()
     {
         this.inputIsTagged = false;
         this.inputIsTaggable = false;
-        this.inputOwnColor = null;
+        this.inputColor = null;
         this.inputCustomClass = null;
     }
 
-    public ngAfterViewInit():void
+    /**
+     * Get the background color.
+     * @returns {string}
+     * @see inputColor
+     */
+    private getBgColor():string
     {
-        if(!isNullOrUndefined(this.inputOwnColor))
-        {
-            /** The native element in terra-tag */
-            let div:HTMLElement = this._element.nativeElement.firstChild;
-            /** The two span elements ('tag-icon' and 'tag-text') under the native element. */
-            let spans:NodeListOf<HTMLSpanElement> = div.getElementsByTagName('span');
+         if(!isNullOrUndefined(this.inputColor))
+         {
+             return this.inputColor;
+         }
+         return null;
+    }
 
-            //  Set the background color for the native element
-            div.style.backgroundColor = this.inputOwnColor;
-
-            // Set the foreground color in the span elements
-            let color:Color = new Color(this.inputOwnColor);
-            let fgColor:string = color.isDark() ? '#ffffff' : '#000000';
-            let length:number = 0;
-            while(length < spans.length)
-            {
-                spans.item(length++).style.color = fgColor;
-            }
-        }
+    /**
+     * Get the foreground color.
+     */
+    private getColor():string
+    {
+         if(!isNullOrUndefined(this.inputColor))
+         {
+             return (new Color(this.inputColor)).isDark() ? '#ffffff' : '#000000';
+         }
+        return null;
     }
 }
