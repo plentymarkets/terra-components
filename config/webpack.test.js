@@ -84,7 +84,8 @@ module.exports = function (options) {
                     exclude: [
                         // these packages have problems with their sourcemaps
                         helpers.root('node_modules/rxjs'),
-                        helpers.root('node_modules/@angular')
+                        helpers.root('node_modules/@angular'),
+                        helpers.root('node_modules/mydatepicker')
                     ]
                 },
 
@@ -177,7 +178,7 @@ module.exports = function (options) {
                     include: helpers.root('src'),
                     exclude: [
                         /\.(e2e|spec)\.ts$/,
-                        /node_modules/
+                        helpers.root('node_modules')
                     ]
                 }
             ]
@@ -209,17 +210,11 @@ module.exports = function (options) {
                 }
             }),
 
-            /**
-             * Plugin: ContextReplacementPlugin
-             * Description: Provides context to Angular's use of System.import
-             *
-             * See: https://webpack.github.io/docs/list-of-plugins.html#contextreplacementplugin
-             * See: https://github.com/angular/angular/issues/11580
-             */
+            // Workaround for angular/angular#11580
             new ContextReplacementPlugin(
-                // The (\\|\/) piece accounts for path separators in *nix and Windows
-                /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-                helpers.root('src') // location of your src
+                /angular(\\|\/)core(\\|\/)@angular/,
+                helpers.root('./src'), // location of your src
+                {} // a map of your routes
             ),
 
             /**
