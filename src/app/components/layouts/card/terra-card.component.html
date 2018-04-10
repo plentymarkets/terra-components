@@ -4,7 +4,6 @@
     </div>
     <div class="card-img-top terra-card-image"
          [style.background-image]="'url(' + inputImagePath + ')'"
-         [style.background-size]="'contain'"
          *ngIf="inputImagePath && inputImagePath != ''"></div>
     <div class="card-img-top terra-card-placeholder"
          *ngIf="!inputImagePath || inputImagePath == ''"

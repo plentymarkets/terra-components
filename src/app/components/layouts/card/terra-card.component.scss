@@ -14,16 +14,21 @@
             border: 2px solid var(--color-active);
         }
     }
+    .card-header
+    {
+        background-color: var(--color-structure-0);
+        padding: var(--space-md);
+    }
     .card-img-top
     {
-        width: 100%;
         height: 150px;
-        margin: 36px 0 var(--space-md) 0;
+        margin: 2px;
+        border-radius: 0;
         
         &.terra-card-image
         {
-            background-size: contain;
             background: no-repeat center;
+            background-size: var(--terra-card-image-background-size, contain);
         }
         
         &.terra-card-placeholder
@@ -33,23 +38,27 @@
             color: var(--color-structure-7);
         }
     }
-}
-
-.card-footer
-{
-    padding: var(--space-xs) var(--space-md);
-    background-color: var(--color-structure-0);
     
-    &.selected
+    .card-block
     {
-        border-top: 1px solid var(--color-active);
-        color: var(--color-structure-0);
-        background-color: var(--color-active);
-        border-radius: 0;
+        padding: 0 var(--space-md) 0 var(--space-md);
+    }
+    
+    .card-footer
+    {
+        padding: var(--space-md);
+        background-color: var(--color-structure-0);
+        
+        &.selected
+        {
+            border-top: 1px solid var(--color-active);
+            color: var(--color-structure-0);
+            background-color: var(--color-active);
+            border-radius: 0;
+        }
     }
 }
 
-.card-block
-{
-    padding: 0 var(--space-md) var(--space-md) var(--space-md);
-}
+
+
+
