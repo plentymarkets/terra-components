@@ -99,10 +99,10 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             {
                 this._progress = progress;
 
-                if (!isNullOrUndefined(this._progress))
+                if(!isNullOrUndefined(this._progress))
                 {
-                    this._progress.sizeUploaded = PathHelper.sizeString( this._progress.sizeUploaded );
-                    this._progress.sizeTotal = PathHelper.sizeString( this._progress.sizeTotal );
+                    this._progress.sizeUploaded = PathHelper.sizeString(this._progress.sizeUploaded);
+                    this._progress.sizeTotal = PathHelper.sizeString(this._progress.sizeTotal);
                 }
                 this._changeDetector.detectChanges();
             });
