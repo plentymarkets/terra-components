@@ -85,7 +85,6 @@ export class TerraUploadQueue
     {
         return new Promise((resolve:(resp:void) => void, reject:(err:any) => void):void =>
         {
-            // let nextItem:TerraUploadItem = this.items.shift();
             let nextItem:TerraUploadItem = this.items.find((item:TerraUploadItem) => !item.uploaded);
 
             if(isNullOrUndefined(nextItem))
