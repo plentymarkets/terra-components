@@ -190,3 +190,9 @@
         padding: 4px 9px !important;
     }
 }
+
+terra-pager
+{
+    --toolbar-border-radius: var(--border-radius) var(--border-radius) 0 0;
+    --toolbar-margin: 0 var(--space-xs) 0 var(--space-xs);
+}
