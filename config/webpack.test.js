@@ -25,7 +25,6 @@ const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
  */
 module.exports = function (options) {
   return {
-
     /**
      * Source map for Karma from the help of karma-sourcemap-loader &  karma-webpack
      *
@@ -46,13 +45,12 @@ module.exports = function (options) {
        *
        * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
        */
-      extensions: ['.ts', '.js'],
+      extensions: ['.ts', '.js', '.css', '.scss', 'json', '.html'],
 
       /**
        * Make sure root is src
        */
       modules: [ path.resolve(__dirname, 'src'), 'node_modules' ]
-
     },
 
     /**
@@ -100,19 +98,7 @@ module.exports = function (options) {
          */
         {
           test: /\.ts$/,
-          loader: 'awesome-typescript-loader',
-          query: {
-            // use inline sourcemaps for "karma-remap-coverage" reporter
-            sourceMap: false,
-            inlineSourceMap: true,
-            compilerOptions: {
-
-              // Remove TypeScript helpers to be injected
-              // below by DefinePlugin
-              removeComments: true
-
-            }
-          },
+          loaders: ['awesome-typescript-loader','angular2-template-loader'],
           exclude: [/\.e2e\.ts$/]
         },
 
@@ -138,6 +124,34 @@ module.exports = function (options) {
           loaders: ['to-string-loader', 'css-loader'],
           exclude: [helpers.root('src/index.html')]
         },
+          {
+              test: /\.scss$/,
+              exclude: [/\.glob\.scss$/],
+              loaders: [
+                  'raw-loader',
+                  {
+                      loader: 'sass-loader',
+                      query: {
+                          sourceMap: true
+                      }
+                  },
+                  {
+                      loader: 'sass-resources-loader',
+                      options: {
+                          resources: helpers.root('src/app/assets/styles/_variables.scss')
+                      }
+                  }
+              ]
+          },
+          {
+              test: /\.glob\.scss$/,
+              loaders: [
+                  'style-loader',
+                  'css-loader',
+                  'postcss-loader',
+                  'sass-loader'
+              ]
+          },
 
         /**
          * Raw loader support for *.html
