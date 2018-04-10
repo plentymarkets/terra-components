@@ -163,7 +163,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 };
             }
         }
-        else
+        else if(!isNullOrUndefined(this.inputListBoxValues) &&  this.inputListBoxValues.length)
         {
             this.selectedValue = {
                 caption: this.inputListBoxValues[0].caption,
