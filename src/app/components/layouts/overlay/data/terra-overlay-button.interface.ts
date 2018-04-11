@@ -8,4 +8,7 @@ export interface TerraOverlayButtonInterface
     tooltipText?:string;
     isDisabled?:boolean;
     clickFunction:() => void;
+    isPrimary?:boolean;
+    isSecondary?:boolean;
+    isTertiary?:boolean;
 }
