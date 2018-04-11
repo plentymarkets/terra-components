@@ -5,11 +5,11 @@ import {
 } from '@angular/core';
 import { TerraStorageObject } from '../model/terra-storage-object';
 import {
-    TerraBaseMetadataStorageService,
     TerraBaseStorageService
 } from '../terra-base-storage.interface';
 import { TerraImageMetadata } from '../model/terra-image-metadata.interface';
 import { isNullOrUndefined } from 'util';
+import { TerraBaseMetadataStorageService } from '../terra-base-metadata-storage.interface';
 
 @Component({
     selector: 'terra-image-preview',
@@ -18,9 +18,16 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraImagePreviewComponent
 {
+    @Input()
+    public inputStorageService:TerraBaseStorageService;
+
     private _translationPrefix:string = 'terraFileBrowser';
 
     private _inputStorageObject:TerraStorageObject;
+
+    private _metadata:TerraImageMetadata = {};
+
+    private _isLoading:boolean = true;
 
     @Input()
     public set inputStorageObject(object:TerraStorageObject)
@@ -48,17 +55,10 @@ export class TerraImagePreviewComponent
         return this._inputStorageObject;
     }
 
-    @Input()
-    public inputStorageService:TerraBaseStorageService;
-
     private get _canHandleMetadata():boolean
     {
         return this.inputStorageService instanceof TerraBaseMetadataStorageService;
     }
-
-    private _metadata:TerraImageMetadata = {};
-
-    private _isLoading:boolean = true;
 
     constructor(private _changeDetector:ChangeDetectorRef)
     {

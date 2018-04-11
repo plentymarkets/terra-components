@@ -7,11 +7,11 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class TerraFileBrowserService
 {
+    public isDragActive:BehaviorSubject<boolean> = new BehaviorSubject(false);
+
     private _dropzones:Array<HTMLElement> = [];
     private _globalListenersDefined:boolean = false;
     private _dragenterTarget:EventTarget = null;
-
-    public isDragActive:BehaviorSubject<boolean> = new BehaviorSubject(false);
 
     constructor(private zone:NgZone)
     {
@@ -42,24 +42,24 @@ export class TerraFileBrowserService
             {
                 return dropzone.contains(element);
             }
-        )
+        );
     }
 
     private setupGlobalListeners():void
     {
         this.zone.runOutsideAngular(() =>
         {
-            let setEffect = (event:DragEvent) =>
+            let setEffect:(event:Event) => void = (event:DragEvent):void =>
             {
-                if(this.isDropzone(<HTMLElement>event.target))
+                if(this.isDropzone(<HTMLElement> event.target))
                 {
                     event.dataTransfer.effectAllowed = 'copy';
-                    event.dataTransfer.dropEffect = 'copy'
+                    event.dataTransfer.dropEffect = 'copy';
                 }
                 else
                 {
                     event.dataTransfer.effectAllowed = 'none';
-                    event.dataTransfer.dropEffect = 'none'
+                    event.dataTransfer.dropEffect = 'none';
                 }
             };
 

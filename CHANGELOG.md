@@ -1,3 +1,79 @@
+# UNRELEASED
+
+### Bug Fixes
+* **terra-pager** adjusted width of current page input
+
+<a name="2.1.65-zlk"></a>
+# 2.1.65-zlk (05.04.2018)
+
+### Feature
+* **terra-multi-check-box.interface** property `selected` is now optional
+
+### Bug Fixes
+* **terra-multi-split-view** fix reoccurring "Cannot read property 'getBoundingClientRect' of undefined" error
+* **terra-data-table** fix issue where TerraRefTypeEnum is undefined in the template
+
+<a name="2.1.64-zlk"></a>
+# 2.1.64-zlk (28.03.2018)
+
+### Bug Fixes
+* **terra-dynamic-form** remove inner portlet
+
+<a name="2.1.63-zlk"></a>
+# 2.1.63-zlk (27.03.2018)
+
+### Bug Fixes
+* **terra-suggestion-box**  fix issue with value handling and add TerraBaseData as possible value (in addition to number and string)
+
+<a name="2.1.62-zlk"></a>
+# 2.1.62-zlk (26.03.2018)
+
+### Bug Fixes
+* **terra-multi-split-view**  fix issue when view inputs contain circular references
+
+<a name="2.1.61-zlk"></a>
+# 2.1.61-zlk (23.03.2018)
+
+### Feature
+* **terra-tag** add Styling for menu entry tag in terra-tag component
+* **terra-dynamic-form** new component to pick a color 
+* **terra-dynamic-form** callback function for value changed
+* **terra-dynamic-form** added input for portlet usage in <code>TerraDynamicSwitch</code>, default is <code>true</code>
+* **terra-dynamic-switch** 
+	- added input for portlet usage, default is <code>true</code>
+	- using portlet when type is <code>TerraFormFieldVerticalContainer</code>
+
+<a name="2.1.60-zlk"></a>
+# 2.1.60-zlk (22.03.2018)
+
+### Feature
+* **terra-multi-check-box** new component equal to *terra-multi-select-box* but with correct ngModel two way data binding
+* **terra-multi-select-box** this component is now deprecated and will be removed in the next major release
+* **terra-category-picker** new component to comfortable select a category using the **terra-node-tree**
+
+<a name="2.1.58-zlk"></a>
+# 2.1.58-zlk (20.03.2018)
+
+### Bug Fixes
+* **terra-multi-split-view** fixed multi split view breadcrumb event emitter
+* **terra-file-list** added multiple selection to file input
+
+<a name="2.1.57-zlk"></a>
+# 2.1.57-zlk (12.03.2018)
+
+### Feature
+* **models** added new interfaces for key value (TerraKeyValueInterface & TerraKeyValuePairInterface)
+
+### Bug Fixes
+* **terra-base-service** prevent requests with empty params
+* **terra-checkbox-tree** appends parents to leaf list on every change
+
+<a name="2.1.56-zlk"></a>
+# 2.1.56-zlk (08.03.2018)
+
+### Feature
+* **terra-data-table** added new ref-type 'function'.
+
 <a name="2.1.55-zlk"></a>
 # 2.1.55-zlk (06.03.2018)
 
@@ -7,11 +83,9 @@
 * **terra-placement-enum** new enum with dedicated strings for placement of e.g. tooltips
 * **terra-portlet** if the portlet is collapsable and unfolded, its header is now grey.
 * **terra-data-table** replace underline text decoration of phone and email links with blue color highlighting.
-* **terra-data-table** added new ref-type 'function'.
 
 ### Bug Fixes
 * **terra-data-table** hide no-results-notice when request is pending
-* **terra-base-service** prevent requests with empty params
 
 <a name="2.1.47-zlk"></a>
 # 2.1.47-zlk (06.02.2018)

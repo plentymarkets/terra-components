@@ -24,10 +24,10 @@ import {
 @Injectable()
 export class TerraBaseService
 {
-    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
-
     public headers:Headers;
     public url:string;
+
+    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private _baseHttp:Http,
@@ -44,7 +44,7 @@ export class TerraBaseService
         }
     }
 
-    get http():Http
+    public get http():Http
     {
         return this._baseHttp;
     }
@@ -67,13 +67,13 @@ export class TerraBaseService
         }
     }
 
-    protected mapRequest(request:Observable<Response>, err?:(error:any) => void, isRaw?:boolean):Observable<any>
+    protected mapRequest(request:Observable<any>, err?:(error:any) => void, isRaw?:boolean):Observable<any>
     {
         this._terraLoadingSpinnerService.start();
 
-        let req = request.map((response:Response) =>
+        let req:Observable<any> = request.map((response:Response) =>
         {
-            if(response.status == 204)
+            if(response.status === 204)
             {
                 return response.text();
             }
@@ -104,13 +104,13 @@ export class TerraBaseService
 
             if(error.status === 403 && this.getErrorClass(error) === 'UIHashExpiredException')
             {
-                let routeToLoginEvent = new CustomEvent('CustomEvent');
+                let routeToLoginEvent:CustomEvent = new CustomEvent('CustomEvent');
 
                 routeToLoginEvent.initCustomEvent('routeToLogin', true, true, {});
 
                 this.dispatchEvent(routeToLoginEvent);
             }
-            else if(error.status == 401 && errorMessage === "This action is unauthorized.")
+            else if(error.status === 401 && errorMessage === 'This action is unauthorized.')
             {
                 if(this._isPlugin)
                 {
@@ -130,10 +130,10 @@ export class TerraBaseService
                 }
             }
             // END Very unclean workaround!
-            else if(error.status == 401)
+            else if(error.status === 401)
             {
                 let loginEvent:CustomEvent = new CustomEvent('login');
-                //Workaround for plugins in Angular (loaded via iFrame)
+                // Workaround for plugins in Angular (loaded via iFrame)
                 this.dispatchEvent(loginEvent);
             }
 
@@ -144,7 +144,7 @@ export class TerraBaseService
             {
                 this._terraLoadingSpinnerService.stop();
             },
-            error =>
+            (error:any) =>
             {
                 this._terraLoadingSpinnerService.stop();
             }
@@ -157,7 +157,7 @@ export class TerraBaseService
     {
         if(!isNullOrUndefined(window.parent))
         {
-            //workaround for plugins in GWT (loaded via iFrame)
+            // workaround for plugins in GWT (loaded via iFrame)
             if(!isNullOrUndefined(window.parent.window.parent))
             {
                 window.parent.window.parent.window.dispatchEvent(eventToDispatch);
@@ -310,18 +310,18 @@ export class TerraBaseService
         return searchParams;
     }
 
-    private getMissingUserPermissionAlertMessage()
+    private getMissingUserPermissionAlertMessage():string
     {
-        //START workaround because we do not have a real translation solution in terra components
+        // START workaround because we do not have a real translation solution in terra components
         let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
-        if(langInLocalStorage === "de")
+        if(langInLocalStorage === 'de')
         {
-            return "Fehlende Berechtigungen";
+            return 'Fehlende Berechtigungen';
         }
         else
         {
-            return "Missing permissions";
+            return 'Missing permissions';
         }
-        //END workaround
+        // END workaround
     }
 }

@@ -1,6 +1,7 @@
 import {
-    Component
-} from "@angular/core";
+    Component,
+    OnInit
+} from '@angular/core';
 import { TerraPagerInterface } from '../data/terra-pager.interface';
 
 export interface TerraPagerComponentExampleInterface
@@ -13,17 +14,13 @@ export interface TerraPagerComponentExampleInterface
     styles:   [require('./terra-pager.component.example.scss')],
     template: require('./terra-pager.component.example.html'),
 })
-export class TerraPagerComponentExample
+export class TerraPagerComponentExample implements OnInit
 {
 
 
     private _pagingData:TerraPagerInterface<TerraPagerComponentExampleInterface>;
 
-    constructor()
-    {
-    }
-
-    ngOnInit()
+    public ngOnInit():void
     {
         this.pagingData = {
             pagingUnit:     'pagingEntries',

@@ -5,6 +5,9 @@
 	"terraMultiSelectBox": {
 		"selectAll": "All"
 	},
+	"terraMultiCheckBox": {
+		"selectAll": "All"
+	},
 	"terraFileBrowser": {
 		"cancel": "Cancel",
 		"create": "Create",
@@ -57,5 +60,10 @@
 	},
 	"terraNodeTree":{
 		"search": "Search"
+	},
+	"terraCategoryPicker": {
+		"select": "Select",
+		"category": "Category",
+		"reset": "Reset"
 	}
 }

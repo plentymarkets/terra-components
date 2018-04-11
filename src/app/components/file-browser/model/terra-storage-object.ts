@@ -2,8 +2,8 @@ import {
     createS3StorageObject,
     S3StorageObjectInterface
 } from './s3-storage-object.interface';
-import { PathHelper } from '../helper/path.helper';
-import { FileType } from '../helper/fileType.helper';
+import { PathHelper } from '../../../helpers/path.helper';
+import { FileTypeHelper } from '../../../helpers/fileType.helper';
 import { isNullOrUndefined } from 'util';
 
 export class TerraStorageObject
@@ -63,7 +63,7 @@ export class TerraStorageObject
             return 'icon-folder';
         }
 
-        return FileType.mapIconClass(this.name);
+        return FileTypeHelper.mapIconClass(this.name);
     }
 
     public get isDirectory():boolean
@@ -93,7 +93,7 @@ export class TerraStorageObject
             return [];
         }
 
-        return this._children.sort((childA, childB) =>
+        return this._children.sort((childA:TerraStorageObject, childB:TerraStorageObject) =>
         {
             if(childA.name > childB.name)
             {
@@ -159,7 +159,7 @@ export class TerraStorageObject
             let object:TerraStorageObject = new TerraStorageObject(s3object, this);
             if(this.hasChild(object.name))
             {
-                let idx = this._children.findIndex((child:TerraStorageObject) =>
+                let idx:number = this._children.findIndex((child:TerraStorageObject) =>
                 {
                     return child.name === object.name;
                 });
@@ -176,7 +176,7 @@ export class TerraStorageObject
             let child:TerraStorageObject = this.getChild(nextPath);
             if(!child)
             {
-                let s3Object = createS3StorageObject(
+                let s3Object:S3StorageObjectInterface = createS3StorageObject(
                     PathHelper.join(this.key, nextPath) + '/'
                 );
                 child = new TerraStorageObject(s3Object, this);
@@ -189,9 +189,9 @@ export class TerraStorageObject
 
     public removeChild(key:string):void
     {
-        let paths:string[] = key.split('/').filter(path => path.length > 0);
-        let nextPath = paths.shift();
-        let child = this.getChild(nextPath);
+        let paths:string[] = this.splitKeyIntoPaths(key);
+        let nextPath:string = paths.shift();
+        let child:TerraStorageObject = this.getChild(nextPath);
         if(child)
         {
             if(paths.length > 0)
@@ -200,7 +200,7 @@ export class TerraStorageObject
             }
             else
             {
-                let idx = this._children.indexOf(child);
+                let idx:number = this._children.indexOf(child);
                 this._children.splice(idx, 1);
             }
         }
@@ -229,9 +229,9 @@ export class TerraStorageObject
             return null;
         }
 
-        let paths:string[] = key.split('/').filter(key => key.length > 0);
-        let nextPath = paths.shift();
-        let child = this.getChild(nextPath);
+        let paths:string[] = this.splitKeyIntoPaths(key);
+        let nextPath:string = paths.shift();
+        let child:TerraStorageObject = this.getChild(nextPath);
         if(!isNullOrUndefined(child))
         {
             if(paths.length > 0)
@@ -243,5 +243,10 @@ export class TerraStorageObject
         }
 
         return null;
+    }
+
+    private splitKeyIntoPaths(key:string):string[]
+    {
+        return key.split('/').filter((part:string):boolean => part.length > 0);
     }
 }

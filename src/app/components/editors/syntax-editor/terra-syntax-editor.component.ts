@@ -27,9 +27,14 @@ import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
 })
 export class TerraSyntaxEditorComponent implements AfterViewInit
 {
-    @ViewChild('aceEditor') editor:AceEditorComponent;
-    @Input() inputReadOnly:boolean;
-    @Input() inputOptions:Object;
+    @ViewChild('aceEditor')
+    public editor:AceEditorComponent;
+
+    @Input()
+    public inputReadOnly:boolean;
+
+    @Input()
+    public inputOptions:Object;
     private _inputEditorMode:string;
     private _inputText:string;
 
@@ -40,7 +45,7 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
         };
     }
 
-    ngAfterViewInit()
+    public ngAfterViewInit():void
     {
         this.editor.getEditor().clearSelection();
         this.editor.getEditor().$blockScrolling = Infinity;

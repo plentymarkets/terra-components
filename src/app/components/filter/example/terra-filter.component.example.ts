@@ -1,7 +1,7 @@
 import {
     Component,
     OnInit
-} from "@angular/core";
+} from '@angular/core';
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 
 @Component({
@@ -16,13 +16,9 @@ export class TerraFilterComponentExample implements OnInit
     private _listBoxValues:Array<TerraSelectBoxValueInterface> = [];
     private _selectedListBoxValue:number = 1;
 
-    constructor()
+    public ngOnInit():void
     {
-    }
-
-    ngOnInit()
-    {
-        for(let i = 1; i < 4; i++)
+        for(let i:number = 1; i < 4; i++)
         {
             this._listBoxValues.push(
                 {
@@ -40,11 +36,11 @@ export class TerraFilterComponentExample implements OnInit
 
     private onResetBtnClicked():void
     {
+        return;
     }
 
     private onSubmit():void
     {
         this.onSearchBtnClicked();
     }
-
 }

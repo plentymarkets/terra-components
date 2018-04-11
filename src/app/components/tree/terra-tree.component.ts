@@ -15,17 +15,20 @@ export class TerraTreeComponent extends TerraBaseTreeComponent
     /**
      * current level leaf list
      */
-    @Input() inputLeafList:Array<TerraLeafInterface>;
+    @Input()
+    public inputLeafList:Array<TerraLeafInterface>;
 
     /**
      * leafs one level higher than current leaf
      */
-    @Input() inputParentLeafList:Array<TerraLeafInterface>;
+    @Input()
+    public inputParentLeafList:Array<TerraLeafInterface>;
 
     /**
      * complete leaf list for better and faster searching
      */
-    @Input() inputCompleteLeafList:Array<TerraLeafInterface>;
+    @Input()
+    public inputCompleteLeafList:Array<TerraLeafInterface>;
 
     constructor()
     {

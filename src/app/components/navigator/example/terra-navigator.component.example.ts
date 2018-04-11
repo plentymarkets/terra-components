@@ -1,6 +1,6 @@
 import {
     Component
-} from "@angular/core";
+} from '@angular/core';
 
 @Component({
     selector: 'terra-navigator-example',

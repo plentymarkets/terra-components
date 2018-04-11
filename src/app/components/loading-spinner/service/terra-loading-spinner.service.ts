@@ -13,14 +13,14 @@ import {
 @Injectable()
 export class TerraLoadingSpinnerService
 {
-    private isLoading:boolean = false;
     public observable:Observable<boolean>;
 
+    private isLoading:boolean = false;
     private _subscriber:Subscriber<boolean>;
 
     constructor(private zone:NgZone)
     {
-        this.observable = new Observable<boolean>((subscriber:Subscriber<boolean>) =>
+        this.observable = new Observable<boolean>((subscriber:Subscriber<boolean>):void =>
         {
             this._subscriber = subscriber;
         });
@@ -59,7 +59,7 @@ export class TerraLoadingSpinnerService
                         }
                     }, 100);
                 }
-            )
+            );
         }
     }
 }

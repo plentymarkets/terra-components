@@ -8,9 +8,8 @@ import { Component } from '@angular/core';
 })
 export class TerraButtonComponentExample
 {
-    private sendMailPopup()
+    private sendMailPopup():void
     {
         alert('email has been send to test@plentymarkets.com');
     }
-
 }

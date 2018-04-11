@@ -50,6 +50,7 @@ gulp.task('npm-publish', function (callback) {
         'copy-fonts',
         'copy-images',
         'copy-lang',
+        'copy-tslint-rules',
         'publish',
         callback
     );
@@ -63,6 +64,7 @@ gulp.task('build-local', function (callback) {
         'copy-fonts',
         'copy-images',
         'copy-lang',
+        'copy-tslint-rules',
         'copy-to-terra',
         callback
     );
@@ -183,6 +185,13 @@ gulp.task('copy-images', function () {
 gulp.task('copy-lang', function () {
     return gulp.src(config.allLang)
         .pipe(gulp.dest(config.langOutputPath));
+});
+
+//copy lang to dist
+gulp.task('copy-tslint-rules', function ()
+{
+    return gulp.src(config.tslint)
+        .pipe(gulp.dest(config.tsOutputPath));
 });
 
 //copy files from dist to terra

@@ -1,24 +1,26 @@
-import { PathHelper } from '../helper/path.helper';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { isNullOrUndefined } from 'util';
+import { PathHelper } from '../../../helpers/path.helper';
 
 export type UploadCallback = (response:string, status:number, headers:{ [key:string]:string }) => void;
 
 export class TerraUploadItem
 {
+    public static DONE:TerraUploadItem = new TerraUploadItem(null, null, null);
+
     public _xhr:XMLHttpRequest;
     public uploaded:boolean = false;
 
     public get filename():string
     {
-        let filenames = this.file.name.split('.');
-        let extname = filenames.pop();
+        let filenames:string[] = this.file.name.split('.');
+        let extname:string = filenames.pop();
         return this._uploadService.prepareKey(this.file.name, true);
     }
 
     public get pathname():string
     {
-        let pathname = this._uploadService.prepareKey(PathHelper.join(this._path, this.filename));
+        let pathname:string = this._uploadService.prepareKey(PathHelper.join(this._path, this.filename));
 
         if(pathname.charAt(0) === '/')
         {
@@ -107,6 +109,4 @@ export class TerraUploadItem
             }
         }
     }
-
-    public static DONE:TerraUploadItem = new TerraUploadItem(null, null, null);
 }

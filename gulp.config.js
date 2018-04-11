@@ -9,6 +9,7 @@ module.exports = function () {
         allSCSS: './src/**/*.scss',
         allHTML: './src/**/*.html',
         allLang: './src/app/assets/lang/**/*',
+        tslint: './tslint-rules.json',
         tsOutputPath: './dist/',
         fontsOutputPath: './dist/app/assets/fonts/',
         imagesOutputPath: './dist/app/assets/images/',
