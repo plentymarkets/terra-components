@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 * **terra-dynamic-form** fix issue with nested containers
+* **terra-pager** adjusted width of current page input
 
 <a name="2.1.65-zlk"></a>
 # 2.1.65-zlk (05.04.2018)
