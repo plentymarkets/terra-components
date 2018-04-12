@@ -31,7 +31,7 @@
                 border-radius: var(--border-radius) var(--border-radius) 0 0;
                 box-shadow: none;
                 padding: var(--input-padding, var(--input-padding-default));
-                width: calc(100% - 54px);
+                width: 100%;
                 font-family: var(--font-family);
                 font-size: var(--font-size-3) !important;
                 font-weight: var(--font-weight-2);
@@ -44,7 +44,6 @@
                 position: inherit;
                 display: inline-block;
                 
-                &:hover,
                 &:active,
                 &:focus
                 {
@@ -59,6 +58,9 @@
                 vertical-align: bottom;
                 padding-right: 4px;
                 border-radius: var(--border-radius);
+                position: absolute;
+                right: 0;
+                top: 0;
                 
                 .btnclear
                 {

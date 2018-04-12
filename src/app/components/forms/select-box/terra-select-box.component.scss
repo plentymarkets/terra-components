@@ -4,7 +4,6 @@
 {
     position: relative;
     background-color: var(--color-structure-0);
-    border-bottom: 1px solid var(--border-color);
     margin: var(--select-box-wrapper-margin, 0);
     margin-bottom: var(--select-box-wrapper-margin-bottom, 3px);
     cursor: pointer;
@@ -51,6 +50,7 @@
         color: var(--color-structure-12);
         height: 100%;
         line-height: 100%;
+        border-bottom: 1px solid var(--border-color);
         
         &.error
         {
@@ -92,7 +92,7 @@
             height: 2px;
             background-color: var(--color-active);
             transition: width var(--transition-md);
-            bottom: -1px;
+            bottom: 0;
         }
         &:hover
         {

@@ -3,15 +3,6 @@
 
 .select-box-wrapper
 {
-    --input-wrapper-border: none;
-    --input-wrapper-border-hover: none;
-    --input-wrapper-height: 100%;
-    --input-wrapper-line-height: 100%;
-    &.disabled
-    {
-        --input-wrapper-border-disabled: none;
-    }
-    
     .select-box-dropdown
     {
         img

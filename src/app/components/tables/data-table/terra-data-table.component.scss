@@ -1,9 +1,10 @@
 .table-responsive
 {
-    margin: var(--table-margin, var(--table-margin-default));
+    margin: var(--space-container);
     box-shadow: var(--box-shadow);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
     width: auto;
+    --no-result-margin: 0; //in case of a no-result page placed in a table to avoid doubled margins
     
     table
     {
@@ -39,7 +40,7 @@
                     th
                     {
                         font-variant: all-small-caps;
-                        padding: var(--table-head-th-padding, var(--table-head-th-padding-default));
+                        padding: var(--table-head-th-padding, var(--space-md));
                         transition: padding var(--transition-lg);
                         border: none;
                     }
@@ -53,7 +54,7 @@
                     color: var(--color-structure-11);
                     td
                     {
-                        padding: var(--table-body-td-padding, var(--table-body-td-padding-default));
+                        padding: var(--table-body-td-padding, var(--space-md));
                         transition: padding var(--transition-lg);
                         vertical-align: middle;
                         border-bottom: 1px solid var(--border-color);
@@ -194,5 +195,5 @@
 terra-pager
 {
     --toolbar-border-radius: var(--border-radius) var(--border-radius) 0 0;
-    --toolbar-margin: 0 var(--space-xs) 0 var(--space-xs);
+    --toolbar-margin: 0 var(--space-xs);
 }
