@@ -1,5 +1,11 @@
-<div bsModal #viewChildOverlay="bs-modal" class="modal fade" tabindex="-1" role="dialog" (onHidden)="emitOutputOnHide()"
+<div bsModal
+     #viewChildOverlay="bs-modal"
+     class="modal fade"
+     tabindex="-1"
+     role="dialog"
+     (onHidden)="emitOutputOnHide()"
      (onShown)="emitOutputOnShow()">
+    
     <div class="modal-dialog modal-lg" [ngClass]="{'modal-xl': inputIsExtraLarge, 'modal-lg': inputIsLarge, 'modal-sm': inputIsSmall}">
         <div class="modal-content">
             <div class="modal-header" *ngIf="inputIsCloseable && inputOverlayTitle">
@@ -7,14 +13,16 @@
                               [inputIsAlignRight]="true"
                               inputIcon="icon-close"
                               [inputIsLink]="true"
-                              (outputClicked)="hideOverlay()"></terra-button>
+                              (outputClicked)="hideOverlay()">
+                </terra-button>
+                
                 <h4 class="modal-title">{{inputOverlayTitle}}</h4>
             </div>
             <div class="modal-body">
                 <ng-content></ng-content>
             </div>
             <div class="modal-footer" *ngIf="inputPrimaryButtonInterface || inputSecondaryButtonInterface">
-
+                
                 <terra-button *ngIf="inputSecondaryButtonInterface"
                               [inputIsAlignRight]="false"
                               [inputCaption]="inputSecondaryButtonInterface.caption"
@@ -22,7 +30,8 @@
                               inputTooltipPlacement="bottom"
                               [inputIsDisabled]="inputSecondaryButtonInterface.isDisabled"
                               [inputIsLink]="true"
-                              (outputClicked)="inputSecondaryButtonInterface.clickFunction()"></terra-button>
+                              (outputClicked)="inputSecondaryButtonInterface.clickFunction()">
+                </terra-button>
                 
                 <terra-button *ngIf="inputPrimaryButtonInterface"
                               [inputIsAlignRight]="false"
@@ -31,8 +40,9 @@
                               [inputTooltipText]="inputPrimaryButtonInterface.tooltipText"
                               inputTooltipPlacement="bottom"
                               [inputIsDisabled]="inputPrimaryButtonInterface.isDisabled"
-                              (outputClicked)="inputPrimaryButtonInterface.clickFunction()"></terra-button>
-
+                              (outputClicked)="inputPrimaryButtonInterface.clickFunction()">
+                </terra-button>
+            
             </div>
         </div>
     </div>
