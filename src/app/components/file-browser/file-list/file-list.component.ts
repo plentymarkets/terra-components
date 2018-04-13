@@ -600,7 +600,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         }
     }
 
-    private uploadFiles(fileList:FileList | File[]):void
+    private uploadFiles(fileList:FileList | Array<File>):void
     {
         let uploadPrefix:string = this.currentStorageRoot ? this.currentStorageRoot.key : '/';
         this.activeStorageService

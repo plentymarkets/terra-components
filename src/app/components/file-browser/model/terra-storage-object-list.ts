@@ -13,7 +13,7 @@ export class TerraStorageObjectList
         this.root = new TerraStorageObject(createS3StorageObject('/'));
     }
 
-    public insertObjects(objects:S3StorageObjectInterface[]):TerraStorageObjectList
+    public insertObjects(objects:Array<S3StorageObjectInterface>):TerraStorageObjectList
     {
         objects.forEach((object:S3StorageObjectInterface) =>
         {
@@ -28,14 +28,14 @@ export class TerraStorageObjectList
         return this;
     }
 
-    public get flatList():TerraStorageObject[]
+    public get flatList():Array<TerraStorageObject>
     {
         return this.appendChildren(this.root);
     }
 
-    private appendChildren(object:TerraStorageObject):TerraStorageObject[]
+    private appendChildren(object:TerraStorageObject):Array<TerraStorageObject>
     {
-        let result:TerraStorageObject[] = [object];
+        let result:Array<TerraStorageObject> = [object];
 
         object.children.forEach((child:TerraStorageObject) =>
         {

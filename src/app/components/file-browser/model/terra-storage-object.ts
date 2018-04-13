@@ -9,7 +9,7 @@ import { isNullOrUndefined } from 'util';
 export class TerraStorageObject
 {
     private _s3Object:S3StorageObjectInterface;
-    private _children:TerraStorageObject[] = [];
+    private _children:Array<TerraStorageObject> = [];
     private _parent:TerraStorageObject;
 
     public get eTag():string
@@ -86,7 +86,7 @@ export class TerraStorageObject
         return this.isFile ? false : this._children.length > 0;
     }
 
-    public get children():TerraStorageObject[]
+    public get children():Array<TerraStorageObject>
     {
         if(this.isFile)
         {
@@ -133,7 +133,7 @@ export class TerraStorageObject
         this._parent = parent;
     }
 
-    public addChild(s3object:S3StorageObjectInterface, paths?:string[]):void
+    public addChild(s3object:S3StorageObjectInterface, paths?:Array<string>):void
     {
         if(this.isFile)
         {
@@ -189,7 +189,7 @@ export class TerraStorageObject
 
     public removeChild(key:string):void
     {
-        let paths:string[] = this.splitKeyIntoPaths(key);
+        let paths:Array<string> = this.splitKeyIntoPaths(key);
         let nextPath:string = paths.shift();
         let child:TerraStorageObject = this.getChild(nextPath);
         if(child)
@@ -229,7 +229,7 @@ export class TerraStorageObject
             return null;
         }
 
-        let paths:string[] = this.splitKeyIntoPaths(key);
+        let paths:Array<string> = this.splitKeyIntoPaths(key);
         let nextPath:string = paths.shift();
         let child:TerraStorageObject = this.getChild(nextPath);
         if(!isNullOrUndefined(child))
@@ -245,7 +245,7 @@ export class TerraStorageObject
         return null;
     }
 
-    private splitKeyIntoPaths(key:string):string[]
+    private splitKeyIntoPaths(key:string):Array<string>
     {
         return key.split('/').filter((part:string):boolean => part.length > 0);
     }

@@ -52,7 +52,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
         document.removeEventListener('click', this.clickListener);
     }
 
-    public showMenu(event:MouseEvent, contextMenuLinkList:TerraDataTableContextMenuEntryInterface<D>[]):void
+    public showMenu(event:MouseEvent, contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>>):void
     {
         this._isShown = true;
         this._contextMenuLinkList = contextMenuLinkList;

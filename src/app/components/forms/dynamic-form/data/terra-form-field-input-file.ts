@@ -10,7 +10,7 @@ import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 export interface TerraFormFieldInputFileOptions extends TerraFormFieldBaseOptions<number>
 {
     type?:string;
-    inputAllowedExtensions?:string[];
+    inputAllowedExtensions?:Array<string>;
     inputAllowFolders?:boolean;
 }
 
