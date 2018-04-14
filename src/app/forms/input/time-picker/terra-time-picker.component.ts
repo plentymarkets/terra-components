@@ -2,6 +2,7 @@
  * @author twieder
  */
 import {
+    AfterViewInit,
     Component,
     forwardRef,
     Input,
@@ -40,7 +41,7 @@ export enum DayFormat
     ]
 })
 
-export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
+export class TerraTimePickerComponent implements AfterViewInit, ControlValueAccessor
 {
     /**
      * @description If true, the input will be disabled. Default false.
@@ -48,8 +49,8 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
     @Input() public inputIsDisabled:boolean;
 
 
-    public _selectedMinute:TerraSelectBoxValueInterface;
-    public _selectedHour:TerraSelectBoxValueInterface;
+    public _selectedMinute:number;
+    public _selectedHour:number;
     public _valueFormat:TimeFormat;
     public _valuePMAM:DayFormat;
     public _values24:Array<TerraSelectBoxValueInterface> = [];
@@ -59,16 +60,19 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
     public _is24HourFormat:boolean = true;
     public _timeFormatEnum:any = TimeFormat;
     public _dayFormatEnum:any = DayFormat;
-    private _value:Date;
+    private _value:Date = new Date();
+
+    private initDone:boolean = false;
 
     constructor()
     {
         this.inputIsDisabled = false;
+        this._valueFormat = TimeFormat.EUROPEAN;
+        this.changeHourSelectionValues();
     }
 
-    public ngOnInit():void
+    public ngAfterViewInit():void
     {
-
         this.createTimeValues();
     }
 
@@ -86,15 +90,15 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
                 }
             );
 
-            if((hours <= 12 && hours > 0))
-            {
-                this._values12.push(
-                    {
-                        value:   hours,
-                        caption: hours
-                    }
-                );
-            }
+            //if((hours <= 12 && hours > 0))
+            //{
+            //    this._values12.push(
+            //        {
+            //            value:   hours,
+            //            caption: hours
+            //        }
+            //    );
+            //}
         }
 
         for(minutes = 0; minutes <= 59; minutes++)
@@ -106,6 +110,8 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
                 }
             );
         }
+
+        this.initDone = true;
     }
 
     private onTouchedCallback:() => void = () =>
@@ -115,7 +121,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 
     private onChangeCallback:(_:any) => void = (_) =>
     {
-        // Nothing to do here
+
     }
 
     public registerOnChange(fn:any):void
@@ -131,45 +137,61 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
     public writeValue(value:any):void
     {
         this._value = value;
+
+        if(this.initDone)
+        {
+            this._selectedHour = this.value.getHours();
+            this._selectedMinute = this.value.getMinutes();
+        }
     }
 
     public get value():Date
     {
-        if(this._valueFormat === TimeFormat.AMERICAN)
-        {
-            this._value = new Date(this._selectedHour.value [this._selectedMinute.value]);
-        }
-        else
-        {
-            this._value = new Date(this._selectedHour.value [this._selectedMinute.value]);
-        }
-
-        console.log(this._value);
-
-        return this._value;
+            return this._value;
     }
 
     public set value(value:Date)
     {
         this._value = value;
+
+        this.writeValue(value);
     }
 
     public changeHourSelectionValues():void
     {
-        if(this._valueFormat === TimeFormat.EUROPEAN)
-        {
+        //if(this._valueFormat === TimeFormat.EUROPEAN)
+        //{
             this._valueHours = this._values24;
             this._is24HourFormat = true;
-        }
-        else
-        {
-            this._valueHours = this._values12;
-            this._is24HourFormat = false;
-        }
+        //}
+        //else
+        //{
+        //    this._valueHours = this._values12;
+        //    this._is24HourFormat = false;
+        //}
     }
 
     public printValueInConsole():void
     {
-        console.log(this._value);
+        console.log(this._value.getHours());
+        console.log(this._value.getMinutes());
+    }
+
+    protected hoursChanged(hours:number):void
+    {
+        if(this.initDone)
+        {
+            console.log(hours);
+            this.value.setHours(hours);
+        }
+    }
+
+    protected minutesChange(minutes:number):void
+    {
+        if(this.initDone)
+        {
+            console.log(minutes);
+            this.value.setMinutes(minutes);
+        }
     }
 }

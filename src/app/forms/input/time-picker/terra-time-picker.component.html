@@ -1,41 +1,43 @@
 <div class="input-unit-v1"
      [class.disabled]="inputIsDisabled">
     <div class="timeFormatGroup">
-        <terra-radio-button [inputValue]="_timeFormatEnum.AMERICAN"
-                            [inputCaption]="'timepicker.hourFormat12' |  translate:lang"
-                            [(ngModel)]="_valueFormat"
-                            (ngModelChange)="changeHourSelectionValues()"
-                            >
-        </terra-radio-button>
-        
-        <terra-radio-button [inputValue]="_timeFormatEnum.EUROPEAN"
-                            [inputCaption]="'timepicker.hourFormat24' |  translate:lang"
-                            [(ngModel)]="_valueFormat"
-                            (ngModelChange)="changeHourSelectionValues()">
-        </terra-radio-button>
-    </div>
-    <div *ngIf="!_is24HourFormat">
-        <terra-radio-button [inputValue]="_dayFormatEnum.AM"
-                            [inputCaption]="_dayFormatEnum.AM"
-                            [(ngModel)]="_valuePMAM"
-                            (ngModelChange)="changeHourSelectionValues()"
-        >
-        </terra-radio-button>
-    
-        <terra-radio-button [inputValue]="_dayFormatEnum.PM"
-                            [inputCaption]="_dayFormatEnum.PM"
-                            [(ngModel)]="_valuePMAM"
-                            (ngModelChange)="changeHourSelectionValues()">
-        </terra-radio-button>
-    </div>
+        <!--<terra-radio-button [inputValue]="_timeFormatEnum.AMERICAN"-->
+                            <!--[inputCaption]="'timepicker.hourFormat12' |  translate:lang"-->
+                            <!--[(ngModel)]="_valueFormat"-->
+                            <!--(ngModelChange)="changeHourSelectionValues()"-->
+                            <!--&gt;-->
+        <!--</terra-radio-button>-->
+        <!---->
+        <!--<terra-radio-button [inputValue]="_timeFormatEnum.EUROPEAN"-->
+                            <!--[inputCaption]="'timepicker.hourFormat24' |  translate:lang"-->
+                            <!--[(ngModel)]="_valueFormat"-->
+                            <!--(ngModelChange)="changeHourSelectionValues()">-->
+        <!--</terra-radio-button>-->
+    <!--</div>-->
+    <!--<div *ngIf="!_is24HourFormat">-->
+        <!--<terra-radio-button [inputValue]="_dayFormatEnum.AM"-->
+                            <!--[inputCaption]="_dayFormatEnum.AM"-->
+                            <!--[(ngModel)]="_valuePMAM"-->
+                            <!--(ngModelChange)="changeHourSelectionValues()"-->
+        <!--&gt;-->
+        <!--</terra-radio-button>-->
+    <!---->
+        <!--<terra-radio-button [inputValue]="_dayFormatEnum.PM"-->
+                            <!--[inputCaption]="_dayFormatEnum.PM"-->
+                            <!--[(ngModel)]="_valuePMAM"-->
+                            <!--(ngModelChange)="changeHourSelectionValues()">-->
+        <!--</terra-radio-button>-->
+    <!--</div>-->
     <terra-select-box
                       class="time"
-                      [(ngModel)]="_selectedMinute"
+                      [ngModel]="_selectedHour"
+                      (ngModelChange)="hoursChanged($event)"
                       [inputListBoxValues]="_valueHours"
                       [inputName]="'timepicker.hours' |  translate:lang">
     </terra-select-box>
     <terra-select-box class="time"
-                      [(ngModel)]="_selectedHour"
+                      [ngModel]="_selectedMinute"
+                      (ngModelChange)="minutesChange($event)"
                       [inputListBoxValues]="_valuesMinutes"
                       [inputName]="'timepicker.minutes' |  translate:lang">
     </terra-select-box>
