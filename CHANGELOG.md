@@ -1,5 +1,5 @@
-<a name="unreleased"></a>
-# Unreleased
+<a name="2.1.66-zlk"></a>
+# 2.1.66-zlk (16.04.2018)
 
 ### Feature
 * **terra-note-editor** added public method <code>focus</code>, to be able to set the focus to the text-area of the editor.
