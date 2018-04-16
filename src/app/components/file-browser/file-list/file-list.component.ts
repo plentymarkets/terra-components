@@ -21,7 +21,8 @@ import { TranslationService } from 'angular-l10n';
 import { TerraUploadProgress } from '../model/terra-upload-progress';
 import {
     isNull,
-    isNullOrUndefined
+    isNullOrUndefined,
+    isNumber
 } from 'util';
 import { TerraBasePrivateStorageService } from '../terra-base-private-storage.interface';
 import {
@@ -33,9 +34,11 @@ import {
     TerraStorageObject,
     TerraStorageObjectList,
 } from '../../../../';
-import { FileTypeHelper } from '../../../helpers/fileType.helper';
-import { PathHelper } from '../../../helpers/path.helper';
-import { ClipboardHelper } from '../../../helpers/clipboard.helper';
+import {
+    ClipboardHelper,
+    FileTypeHelper,
+    PathHelper
+} from '../../../helpers';
 
 @Component({
     selector: 'terra-file-list',
@@ -101,8 +104,14 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
                 if(!isNullOrUndefined(this._progress))
                 {
-                    this._progress.sizeUploaded = PathHelper.sizeString(this._progress.sizeUploaded);
-                    this._progress.sizeTotal = PathHelper.sizeString(this._progress.sizeTotal);
+                    if(isNumber(this._progress.sizeUploaded))
+                    {
+                        this._progress.sizeUploaded = PathHelper.sizeString(this._progress.sizeUploaded);
+                    }
+                    if(isNumber(this._progress.sizeTotal))
+                    {
+                        this._progress.sizeTotal = PathHelper.sizeString(this._progress.sizeTotal);
+                    }
                 }
                 this._changeDetector.detectChanges();
             });
