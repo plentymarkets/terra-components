@@ -9,7 +9,7 @@
         <terra-node-tree [inputShowSearch]="false"
                          [inputConfig]="categoryTreeConfig">
         </terra-node-tree>
-        <terra-base-toolbar>
+        <terra-base-toolbar *ngIf="!_isContainerCategory">
             <terra-button inputTooltipText="{{'terraCategoryPicker.select' | translate:lang}}"
                           inputTooltipPlacement="top"
                           inputIcon="icon-success"

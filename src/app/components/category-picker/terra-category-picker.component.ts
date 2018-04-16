@@ -59,6 +59,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     private _categoryName:string = '';
     private _list:Array<TerraNodeInterface<CategoryTreeData>> = [];
+    private _isContainerCategory:boolean = false;
 
     constructor(private translation:TranslationService,
                 public categoryTreeConfig:CategoryTreeConfig)
@@ -71,6 +72,8 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         {
             this.categoryTreeConfig.list = this._list;
         }
+
+        this._isContainerCategory = (this.categoryTreeConfig.currentSelectedNode.value.category === 'container');
     }
 
     public ngOnInit():void
@@ -217,14 +220,12 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                 // If the node hasn't already been added the routine will be started
                 if(isNullOrUndefined(this.categoryTreeConfig.findNodeById(categoryData.id)))
                 {
-                    if(categoryData.type === 'container')
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        categoryDetail = categoryData.details[0];
-                    }
+                    categoryDetail = categoryData.details[0];
+
+                    let categoryValue:CategoryTreeData = {
+                        id:       categoryData.id,
+                        category: categoryData.type
+                    };
 
                     // Create Node to add to tree later
                     let childNode:TerraNodeInterface<CategoryTreeData> = {
@@ -232,7 +233,8 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                         name:             categoryDetail.name,
                         isVisible:        true,
                         tooltip:          'ID: ' + categoryData.id,
-                        tooltipPlacement: 'top'
+                        tooltipPlacement: 'top',
+                        value:            categoryValue
                     };
 
                     let parentNode:TerraNodeInterface<CategoryTreeData>;
