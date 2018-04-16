@@ -126,7 +126,6 @@ export * from './app/components/category-picker/terra-category-picker.component'
 export * from './app/components/category-picker/service/terra-category-picker-base.service';
 export * from './app/components/category-picker/data/category-data.interface';
 export * from './app/components/category-picker/data/category-detail-data.interface';
-export * from './app/components/category-picker/data/category-pager-data.interface';
 export * from './app/components/category-picker/data/category-value.interface';
 
 export * from './app/helpers/index';

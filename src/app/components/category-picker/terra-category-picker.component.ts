@@ -9,11 +9,13 @@ import { TranslationService } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraCategoryPickerBaseService } from './service/terra-category-picker-base.service';
 import { CategoryTreeConfig } from './config/category-tree.config';
-import { TerraNodeInterface } from '../../../';
+import {
+    TerraNodeInterface,
+    TerraPagerInterface
+} from '../../../';
 import { CategoryDataInterface } from './data/category-data.interface';
 import { CategoryDetailDataInterface } from './data/category-detail-data.interface';
 import { isNullOrUndefined } from 'util';
-import { CategoryPagerDataInterface } from './data/category-pager-data.interface';
 import { CategoryValueInterface } from './data/category-value.interface';
 import { Observable } from 'rxjs/Observable';
 
@@ -185,14 +187,14 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     private getCategoriesByParentId(parentId:number | string):() => Observable<any>
     {
-        return ():Observable<CategoryPagerDataInterface> => this.getCategories(parentId);
+        return ():Observable<TerraPagerInterface<CategoryDataInterface>> => this.getCategories(parentId);
     }
 
-    private getCategories(parentId:number | string):Observable<CategoryPagerDataInterface>
+    private getCategories(parentId:number | string):Observable<TerraPagerInterface<CategoryDataInterface>>
     {
-        let obs:Observable<CategoryPagerDataInterface> = this.inputCategoryService.requestCategoryData(parentId);
+        let obs:Observable<TerraPagerInterface<CategoryDataInterface>> = this.inputCategoryService.requestCategoryData(parentId);
 
-        obs.subscribe((data:CategoryPagerDataInterface) =>
+        obs.subscribe((data:TerraPagerInterface<CategoryDataInterface>) =>
         {
             this.addNodes(data, parentId);
         });
@@ -279,7 +281,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             id = parentNode.id;
         }
 
-        this.inputCategoryService.requestCategoryData(id).subscribe((data:CategoryPagerDataInterface) =>
+        this.inputCategoryService.requestCategoryData(id).subscribe((data:TerraPagerInterface<CategoryDataInterface>) =>
         {
             if(isNullOrUndefined(parentNode))
             {
