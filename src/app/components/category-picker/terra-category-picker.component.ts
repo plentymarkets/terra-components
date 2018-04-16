@@ -59,7 +59,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     private _categoryName:string = '';
     private _list:Array<TerraNodeInterface<CategoryTreeData>> = [];
-    private _isContainerCategory:boolean = false;
+    private _isContainerCategorySelected:boolean = false;
 
     constructor(private translation:TranslationService,
                 public categoryTreeConfig:CategoryTreeConfig)
@@ -75,7 +75,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
         if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
         {
-            this._isContainerCategory = (this.categoryTreeConfig.currentSelectedNode.value.category === 'container');
+            this._isContainerCategorySelected = (this.categoryTreeConfig.currentSelectedNode.value.category === 'container');
         }
     }
 
