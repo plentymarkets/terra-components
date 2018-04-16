@@ -1,6 +1,8 @@
-# UNRELEASED
+<a name="unreleased"></a>
+# Unreleased
 
 ### Bug Fixes
+* **terra-dynamic-form** fix issue with nested containers
 * **terra-pager** adjusted width of current page input
 * **terra-category-picker** enabled the display of container categories
 
