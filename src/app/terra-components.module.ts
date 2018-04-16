@@ -1,4 +1,7 @@
 import {
+    Compiler,
+    COMPILER_OPTIONS,
+    CompilerFactory,
     ModuleWithProviders,
     NgModule
 } from '@angular/core';
@@ -7,12 +10,20 @@ import {
     ReactiveFormsModule
 } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
 import {
     AlertModule,
     ButtonsModule,
     ModalModule,
     TooltipModule
 } from 'ngx-bootstrap';
+import {
+    L10nConfig,
+    L10nLoader,
+    ProviderType,
+    StorageStrategy,
+    TranslationModule
+} from 'angular-l10n';
 import { QuillModule } from 'ngx-quill';
 import { TerraComponentsComponent } from './terra-components.component';
 import { TerraAlertPanelComponent } from './components/alert/terra-alert-panel.component';
@@ -68,10 +79,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { MyDatePickerModule } from 'mydatepicker';
-import { TranslationModule } from 'angular-l10n';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { TerraInteractModule } from './components/interactables/interact.module';
-import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { TerraNavigatorSplitViewConfig } from './components/navigator/config/terra-navigator-split-view.config';
 import { TerraFrontendStorageService } from './components/file-browser/terra-frontend-storage.service';
 import { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
@@ -83,6 +92,11 @@ import { TerraAlertComponent } from './components/alert/terra-alert.component';
 import { TerraConverterHelper } from './helpers/terra-converter.helper';
 import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
 import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
+import { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra-dynamic-form.component';
+import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
+import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
+import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
+import { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
 // ### import of terra-component examples
 import { TerraButtonComponentExample } from './components/buttons/button/example/terra-button.component.example';
 import { TerraAlertComponentExample } from './components/alert/example/terra-alert.component.example';
@@ -123,13 +137,77 @@ from './components/tables/data-table/context-menu/example/terra-data-table-conte
 import { TerraNoteEditorComponentExample } from './components/editors/note-editor/example/terra-note-editor.component.example';
 import { TerraNoteComponentExample } from './components/note/example/terra-note.component.example';
 import { TerraNodeTreeComponentExample } from './components/tree/node-tree/example/terra-node-tree.component.example';
-import { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra-dynamic-form.component';
-import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
-import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
-import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
-import { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
 import { TerraMultiCheckBoxComponentExample } from './components/forms/multi-check-box/example/terra-multi-check-box.component.example';
 import { TerraCategoryPickerComponent } from './components/category-picker/terra-category-picker.component';
+
+export const l10nConfig:L10nConfig = getL10nConfig();
+
+function getL10nConfig():L10nConfig
+{
+    let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
+    let lang:string = null;
+
+    if(langInLocalStorage !== null)
+    {
+        lang = langInLocalStorage;
+    }
+    else
+    {
+        lang = navigator.language.slice(0, 2).toLocaleLowerCase();
+
+        if(lang !== 'de' && lang !== 'en')
+        {
+            lang = 'en';
+        }
+
+        localStorage.setItem('plentymarkets_lang_', lang);
+    }
+
+    let prefix:string = null;
+
+    // Definitions for i18n
+    if(process.env.ENV === 'production')
+    {
+        prefix = 'app/assets/lang/locale-';
+    }
+    else
+    {
+        prefix = 'src/app/assets/lang/locale-';
+    }
+
+    return {
+        locale:      {
+            languages: [
+                {
+                    code: 'en',
+                    dir:  'ltr'
+                },
+                {
+                    code: 'de',
+                    dir:  'ltr'
+                }
+            ],
+            language:  lang,
+            storage:   StorageStrategy.Cookie
+        },
+        translation: {
+            providers:            [
+                {
+                    type:   ProviderType.Static,
+                    prefix: prefix
+                }
+            ],
+            caching:              true,
+            composedKeySeparator: '.',
+            i18nPlural:           false
+        }
+    };
+}
+
+function createCompiler(compilerFactory:CompilerFactory):Compiler
+{
+    return compilerFactory.createCompiler();
+}
 
 @NgModule({
     declarations:    [
@@ -390,18 +468,32 @@ import { TerraCategoryPickerComponent } from './components/category-picker/terra
         TooltipModule.forRoot(),
         AlertModule.forRoot(),
         ButtonsModule.forRoot(),
-        TranslationModule.forRoot(),
+        TranslationModule.forRoot(l10nConfig),
         MyDatePickerModule,
         AceEditorModule,
         TerraInteractModule,
         QuillModule
     ],
     providers:       [
-        COMPILER_PROVIDERS,
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
         TerraFileBrowserService,
         TerraConverterHelper,
+        {
+            provide:  COMPILER_OPTIONS,
+            useValue: {},
+            multi:    true
+        },
+        {
+            provide:  CompilerFactory,
+            useClass: JitCompilerFactory,
+            deps:     [COMPILER_OPTIONS]
+        },
+        {
+            provide:    Compiler,
+            useFactory: createCompiler,
+            deps:       [CompilerFactory]
+        }
     ],
     bootstrap:       [
         TerraComponentsComponent
@@ -410,6 +502,11 @@ import { TerraCategoryPickerComponent } from './components/category-picker/terra
 
 export class TerraComponentsModule
 {
+    constructor(public l10nLoader:L10nLoader)
+    {
+        this.l10nLoader.load();
+    }
+
     public static forRoot():ModuleWithProviders
     {
         return {
