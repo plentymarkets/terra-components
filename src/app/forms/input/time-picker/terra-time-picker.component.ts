@@ -14,17 +14,17 @@ import {
 } from '@angular/forms';
 import { TerraSelectBoxValueInterface } from '../../../components/forms/select-box/data/terra-select-box.interface';
 
-export enum TimeFormat
-{
-    EUROPEAN = '24',
-    AMERICAN = '12'
-}
-
-export enum DayFormat
-{
-    AM = 'AM',
-    PM = 'PM'
-}
+// export enum TimeFormat
+// {
+//    EUROPEAN = '24',
+//    AMERICAN = '12'
+// }
+//
+// export enum DayFormat
+// {
+//    AM = 'AM',
+//    PM = 'PM'
+// }
 
 @Component({
     selector:  'terra-time-picker',
@@ -51,15 +51,15 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
 
     public _selectedMinute:number;
     public _selectedHour:number;
-    public _valueFormat:TimeFormat;
-    public _valuePMAM:DayFormat;
+    // public _valueFormat:TimeFormat;
+    // public _valuePMAM:DayFormat;
     public _values24:Array<TerraSelectBoxValueInterface> = [];
     public _values12:Array<TerraSelectBoxValueInterface> = [];
     public _valueHours:Array<TerraSelectBoxValueInterface> = [];
     public _valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
     public _is24HourFormat:boolean = true;
-    public _timeFormatEnum:any = TimeFormat;
-    public _dayFormatEnum:any = DayFormat;
+    // public _timeFormatEnum:any = TimeFormat;
+    // public _dayFormatEnum:any = DayFormat;
     private _value:Date = new Date();
 
     private initDone:boolean = false;
@@ -67,7 +67,7 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
     constructor()
     {
         this.inputIsDisabled = false;
-        this._valueFormat = TimeFormat.EUROPEAN;
+        // this._valueFormat = TimeFormat.EUROPEAN;
         this.changeHourSelectionValues();
     }
 
@@ -89,16 +89,6 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
                     caption: hours
                 }
             );
-
-            //if((hours <= 12 && hours > 0))
-            //{
-            //    this._values12.push(
-            //        {
-            //            value:   hours,
-            //            caption: hours
-            //        }
-            //    );
-            //}
         }
 
         for(minutes = 0; minutes <= 59; minutes++)
@@ -159,29 +149,14 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
 
     public changeHourSelectionValues():void
     {
-        //if(this._valueFormat === TimeFormat.EUROPEAN)
-        //{
             this._valueHours = this._values24;
             this._is24HourFormat = true;
-        //}
-        //else
-        //{
-        //    this._valueHours = this._values12;
-        //    this._is24HourFormat = false;
-        //}
-    }
-
-    public printValueInConsole():void
-    {
-        console.log(this._value.getHours());
-        console.log(this._value.getMinutes());
     }
 
     protected hoursChanged(hours:number):void
     {
         if(this.initDone)
         {
-            console.log(hours);
             this.value.setHours(hours);
         }
     }
@@ -190,7 +165,6 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
     {
         if(this.initDone)
         {
-            console.log(minutes);
             this.value.setMinutes(minutes);
         }
     }

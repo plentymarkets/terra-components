@@ -1,6 +1,7 @@
 <div class="input-unit-v1"
      [class.disabled]="inputIsDisabled">
-    <div class="timeFormatGroup">
+    <!--TODO: AM/PM Needs to be implemented correctly-->
+    <!--<div class="timeFormatGroup">-->
         <!--<terra-radio-button [inputValue]="_timeFormatEnum.AMERICAN"-->
                             <!--[inputCaption]="'timepicker.hourFormat12' |  translate:lang"-->
                             <!--[(ngModel)]="_valueFormat"-->
@@ -42,7 +43,3 @@
                       [inputName]="'timepicker.minutes' |  translate:lang">
     </terra-select-box>
 </div>
-
-<terra-button [inputIsSecondary]="true"
-                (outputClicked)="printValueInConsole()"
-                inputCaption="TestTime"></terra-button>
