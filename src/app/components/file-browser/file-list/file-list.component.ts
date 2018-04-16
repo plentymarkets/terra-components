@@ -21,7 +21,8 @@ import { TranslationService } from 'angular-l10n';
 import { TerraUploadProgress } from '../model/terra-upload-progress';
 import {
     isNull,
-    isNullOrUndefined, isNumber, isString
+    isNullOrUndefined,
+    isNumber
 } from 'util';
 import { TerraBasePrivateStorageService } from '../terra-base-private-storage.interface';
 import {
@@ -33,9 +34,11 @@ import {
     TerraStorageObject,
     TerraStorageObjectList,
 } from '../../../../';
-import { FileTypeHelper } from '../../../helpers/fileType.helper';
-import { PathHelper } from '../../../helpers/path.helper';
-import { ClipboardHelper } from '../../../helpers/clipboard.helper';
+import {
+    ClipboardHelper,
+    FileTypeHelper,
+    PathHelper
+} from '../../../helpers';
 
 @Component({
     selector: 'terra-file-list',
