@@ -14,6 +14,7 @@
                           inputTooltipPlacement="top"
                           inputIcon="icon-success"
                           [inputIsSmall]="true"
+                          [inputIsDisabled]="_isContainerCategorySelected"
                           [inputIsTertiary]="true"
                           (outputClicked)="onSelectNode()">
             </terra-button>
