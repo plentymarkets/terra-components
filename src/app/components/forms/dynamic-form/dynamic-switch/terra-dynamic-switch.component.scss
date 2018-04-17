@@ -1,6 +1,6 @@
 :host-context(div.horizontalGroup)
 {
-    form
+    form.horizontalGroupForm
     {
         display: flex;
     }
@@ -21,7 +21,7 @@
         width: 100%;
     }
     
-    & :not(:last-child)
+    &:not(:last-child)
     {
         margin-right: 5px;
     }
@@ -30,6 +30,7 @@
 .verticalGroup
 {
     padding: var(--space-sm) 0;
+    width: 100%;
     
     .subSwitch
     {
@@ -44,6 +45,11 @@
     .verticalGroupEntry
     {
         width: 100%;
+    }
+    
+    &:not(:last-child)
+    {
+        margin-right: 0;
     }
 }
 

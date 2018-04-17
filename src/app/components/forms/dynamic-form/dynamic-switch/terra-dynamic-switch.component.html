@@ -6,7 +6,7 @@
 </terra-portlet>
 
 <ng-template #formWithoutPortlet>
-    <form [formGroup]="inputFormGroup">
+    <form [formGroup]="inputFormGroup" [ngClass]="{'horizontalGroupForm': inputSubSwitch}">
         <ng-container *ngFor="let formField of inputFormFields">
             <ng-container [ngSwitch]="formField?.controlType">
                 <terra-text-input *ngSwitchCase="controlTypeEnum.INPUT_TEXT"
