@@ -7,17 +7,17 @@ import {
 import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TerraInputComponent } from '../terra-input.component';
 import {
+    TerraInputComponent,
     TerraBaseStorageService,
     TerraFrontendStorageService,
     TerraOverlayButtonInterface,
     TerraOverlayComponent,
     TerraRegex,
-    TerraStorageObject
+    TerraStorageObject,
+    PathHelper,
+    FileTypeHelper
 } from '../../../../../';
-import { PathHelper } from '../../../../helpers/path.helper';
-import { FileTypeHelper } from '../../../../helpers/fileType.helper';
 
 let nextId:number = 0;
 
@@ -66,7 +66,6 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     private _translationPrefix:string = 'terraFileInput';
     private _storageServices:Array<TerraBaseStorageService>;
-    private _selectedObjectUrl:string;
     private _id:string;
 
     constructor(private translation:TranslationService, private _frontendStorageService:TerraFrontendStorageService)
@@ -75,41 +74,11 @@ export class TerraFileInputComponent extends TerraInputComponent
 
         // generate the id of the input instance
         this._id = `file-input_#${nextId++}`;
-
-        this.primaryOverlayButton = {
-            icon:          'icon-success',
-            caption:       this.translation.translate(this._translationPrefix + '.choose'),
-            isDisabled:    true,
-            clickFunction: ():void =>
-                           {
-                               this.value = this._selectedObjectUrl;
-                               this.overlay.hideOverlay();
-                           }
-        };
-
-        this.secondaryOverlayButton = {
-            icon:          'icon-close',
-            caption:       this.translation.translate(this._translationPrefix + '.cancel'),
-            isDisabled:    false,
-            clickFunction: ():void =>
-                           {
-                               this._selectedObjectUrl = this.value;
-                               this.overlay.hideOverlay();
-                           }
-        };
     }
 
-    public onSelectedObjectChange(selectedObject:TerraStorageObject):void
+    public onObjectSelected(selectedObject:TerraStorageObject):void
     {
-        if(isNullOrUndefined(selectedObject) || selectedObject.isDirectory)
-        {
-            this.primaryOverlayButton.isDisabled = true;
-        }
-        else
-        {
-            this.primaryOverlayButton.isDisabled = false;
-            this._selectedObjectUrl = selectedObject.publicUrl;
-        }
+        this.value = selectedObject.publicUrl;
     }
 
     public onPreviewClicked():void

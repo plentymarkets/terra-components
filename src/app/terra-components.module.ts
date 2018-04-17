@@ -130,6 +130,7 @@ import { TerraFormFieldControlService } from './components/forms/dynamic-form/se
 import { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
 import { TerraMultiCheckBoxComponentExample } from './components/forms/multi-check-box/example/terra-multi-check-box.component.example';
 import { TerraCategoryPickerComponent } from './components/category-picker/terra-category-picker.component';
+import { TerraFileChooserComponent } from './components/buttons/file-chooser/terra-file-chooser.component';
 
 @NgModule({
     declarations:    [
@@ -178,6 +179,7 @@ import { TerraCategoryPickerComponent } from './components/category-picker/terra
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
+        TerraFileChooserComponent,
         TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
@@ -273,6 +275,7 @@ import { TerraCategoryPickerComponent } from './components/category-picker/terra
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
+        TerraFileChooserComponent,
         TerraButtonWithOptionsComponent,
         TerraNoteEditorComponent,
         TerraNoteComponent,
@@ -325,6 +328,7 @@ import { TerraCategoryPickerComponent } from './components/category-picker/terra
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
+        TerraFileChooserComponent,
         TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,

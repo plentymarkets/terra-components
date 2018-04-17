@@ -7,3 +7,4 @@ export * from './fileType.helper';
 export * from './path.helper';
 export * from './terra-converter.helper';
 export * from './terra-pdf.helper';
+export * from './url.helper';

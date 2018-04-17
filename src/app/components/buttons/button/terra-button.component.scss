@@ -397,6 +397,26 @@ fieldset[disabled] a.btn
     }
 }
 
+:host-context(.btn-group :not(&):not(:first-child) )
+{
+    & > .btn-handler > .btn,
+    & > .btn-handler > .flag
+    {
+        border-left: 1px solid $grey-2;
+        @include border-left-radius(0);
+    }
+}
+
+:host-context(.btn-group :not(&):last-child)
+{
+    & > .btn-handler > .btn,
+    & > .btn-handler > .flag
+    {
+        border-top-right-radius: $border-radius !important;
+        border-bottom-right-radius: $border-radius  !important;
+    }
+}
+
 ////////////// Button Group Vertical & Menu //////////////
 
 :host-context(.btn-group-vertical, .btn-group-menu), .btn-group-menu
