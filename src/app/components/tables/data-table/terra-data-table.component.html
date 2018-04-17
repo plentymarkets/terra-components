@@ -58,9 +58,9 @@
                     </terra-checkbox>
                 </td>
                 <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
-                    <template #tdTooltip>
+                    <ng-template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>
-                    </template>
+                    </ng-template>
                     
                     <!-- LEGACY INTERFACE!!!! -->
                     <td *ngIf="!cell.isHidden && !cell.data"
