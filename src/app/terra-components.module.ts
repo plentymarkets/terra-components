@@ -82,10 +82,8 @@ import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorat
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
 import { TerraTimePickerComponent } from './forms/input/time-picker/terra-time-picker.component';
 import { TerraConverterHelper } from './helpers/terra-converter.helper';
-import { TerraCategoryPickerBaseService } from './components/category-picker/service/terra-category-picker-base.service';
 import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
 import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
-
 // ### import of terra-component examples
 import { TerraButtonComponentExample } from './components/buttons/button/example/terra-button.component.example';
 import { TerraAlertComponentExample } from './components/alert/example/terra-alert.component.example';
@@ -121,9 +119,8 @@ import { TerraNoResultNoticeComponentExample } from './components/no-result/exam
 import { TerraButtonWithOptionsComponentExample } from './components/buttons/button-with-options/example/terra-button-with-options.component.example';
 import { TerraInputComponentExample } from './components/forms/input/example/terra-input.component.example';
 import { TerraFilterComponentExample } from './components/filter/example/terra-filter.component.example';
-import {
-    TerraDataTableContextMenuComponentExample
-} from './components/tables/data-table/context-menu/example/terra-data-table-context-menu.component.example';
+import { TerraDataTableContextMenuComponentExample }
+from './components/tables/data-table/context-menu/example/terra-data-table-context-menu.component.example';
 import { TerraNoteEditorComponentExample } from './components/editors/note-editor/example/terra-note-editor.component.example';
 import { TerraNoteComponentExample } from './components/note/example/terra-note.component.example';
 import { TerraNodeTreeComponentExample } from './components/tree/node-tree/example/terra-node-tree.component.example';

@@ -32,7 +32,9 @@
 		"lastChange": "Last change",
 		"loadingFiles": "Loading files",
 		"noFiles": "No files",
-		"downloadFile": "Download file"
+		"downloadFile": "Download file",
+		"uploadProgress": "Uploading files: {{ filesUploaded }}/{{ filesTotal }} ({{ sizeUploaded }}/{{ sizeTotal }})"
+
 	},
 	"terraFileInput": {
 		"choose": "Select",
