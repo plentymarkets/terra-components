@@ -9,6 +9,7 @@
     cursor: pointer;
     height: var(--select-box-height, var(--select-box-height-default));
     line-height: var(--select-box-line-height, var(--select-box-line-height-default));
+    border-radius: var(--border-radius);
     
     label &.disabled
     {
@@ -26,7 +27,7 @@
         line-height: var(--height-sm);
         .select-box
         {
-            background-position: calc(100% - 11px) 7px;
+            background-position: calc(100% - var(--space-md)) var(--space-md);
             padding: var(--space-sm) var(--space-sm) var(--space-sm) 30%;
             &.labeled
             {
@@ -51,12 +52,12 @@
         height: 100%;
         line-height: 100%;
         border-bottom: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
         
         &.error
         {
             border-bottom: 2px solid var(--color-alert);
             color: var(--color-alert);
-            background-size: 8px 10px;
         }
         
         span

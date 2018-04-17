@@ -8,6 +8,7 @@
         margin: var(--space-xs) var(--space-xs) var(--space-md) var(--space-xs);
         display: inline-block;
         width: 200px;
+        transition: margin var(--transition-md);
         
         &.selected
         {
@@ -42,12 +43,14 @@
     .card-block
     {
         padding: 0 var(--space-md) 0 var(--space-md);
+        transition: padding var(--transition-md);
     }
     
     .card-footer
     {
         padding: var(--space-md);
         background-color: var(--color-structure-0);
+        transition: padding var(--transition-md);
         
         &.selected
         {
@@ -55,6 +58,7 @@
             color: var(--color-structure-0);
             background-color: var(--color-active);
             border-radius: 0;
+            transition: all var(--transition-md);
         }
     }
 }

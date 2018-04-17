@@ -98,9 +98,12 @@ button:focus
 
 .btn
 {
-    height: var(--btn-height, var(--btn-height-default));
-    line-height: var(--btn-line-height, var(--btn-line-height-default));
-    padding: var(--btn-padding, var(--btn-padding-default));
+    height: var(--btn-height, var(--height-md));
+    line-height: var(--btn-line-height, var(--height-md));
+    padding: var(--btn-padding, 0 var(--space-md));
+    background-color: var(--color-structure-9);
+    color: var(--color-structure-0);
+    font-size: var(--font-size-3);
     display: inline-block;
     text-align: center;
     white-space: nowrap;
@@ -117,11 +120,7 @@ button:focus
     width: 100%;
     overflow: hidden;
     text-decoration: none;
-    
     border-radius: var(--border-radius);
-    font-size: var(--font-size-3);
-    color: var(--color-structure-0);
-    background-color: var(--color-structure-9);
     border-color: transparent;
     transition: height var(--transition-lg), line-height var(--transition-lg), padding var(--transition-lg), background-color var(--transition-sm);
     
