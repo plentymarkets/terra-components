@@ -190,7 +190,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: $gray-light-3;
+    background-color: var(--color-structure-4);
     text-align: center;
     padding-bottom: 2px;
     
@@ -206,7 +206,7 @@
         > div
         {
             height: 2px;
-            background-color: $brand-primary;
+            background-color: var(--color-active);
             transition: ease all .5s;
         }
     }
