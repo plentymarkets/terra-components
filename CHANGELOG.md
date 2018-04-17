@@ -1,3 +1,8 @@
+# Unreleased 
+### Bug Fixes
+ **terra-category-picker** fixed a bug with empty category details
+
+
 <a name="2.1.66-zlk"></a>
 # 2.1.66-zlk (16.04.2018)
 
