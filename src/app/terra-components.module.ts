@@ -137,6 +137,7 @@ import { TerraNodeTreeComponentExample } from './components/tree/node-tree/examp
 import { TerraMultiCheckBoxComponentExample } from './components/forms/multi-check-box/example/terra-multi-check-box.component.example';
 import { TerraCategoryPickerComponent } from './components/category-picker/terra-category-picker.component';
 import { l10nConfig } from './translation/l10n.config';
+import { HttpClientModule } from '@angular/common/http';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -399,6 +400,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         ReactiveFormsModule,
         ModalModule.forRoot(),
         HttpModule,
+        HttpClientModule,
         TooltipModule.forRoot(),
         AlertModule.forRoot(),
         ButtonsModule.forRoot(),
