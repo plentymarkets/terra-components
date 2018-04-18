@@ -3,6 +3,10 @@ import {
     createS3StorageObject,
     S3StorageObjectInterface
 } from './s3-storage-object.interface';
+import {
+    isArray,
+    isObject
+} from 'util';
 
 export class TerraStorageObjectList
 {
@@ -13,12 +17,24 @@ export class TerraStorageObjectList
         this.root = new TerraStorageObject(createS3StorageObject('/'));
     }
 
-    public insertObjects(objects:S3StorageObjectInterface[]):TerraStorageObjectList
+    public insertObjects(objects:Array<S3StorageObjectInterface> | Object):TerraStorageObjectList
     {
-        objects.forEach((object:S3StorageObjectInterface) =>
+        if(isObject(objects))
         {
-            this.insertObject(object);
-        });
+            /* tslint:disable:forin */
+            for(let object in objects)
+            {
+                this.insertObject(objects[object]);
+            }
+            /* tslint:enable:forin */
+        }
+        else if(isArray(objects))
+        {
+            objects.forEach((object:S3StorageObjectInterface) =>
+            {
+                this.insertObject(object);
+            });
+        }
         return this;
     }
 

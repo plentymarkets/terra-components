@@ -1,7 +1,7 @@
 # Unreleased 
 ### Bug Fixes
- **terra-category-picker** fixed a bug with empty category details
-
+* **terra-category-picker** fixed a bug with empty category details
+* **terra-file-browser** fixed response expectations
 
 <a name="2.1.66-zlk"></a>
 # 2.1.66-zlk (16.04.2018)
