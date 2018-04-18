@@ -51,7 +51,7 @@ gulp.task('npm-publish', function (callback) {
         'copy-images',
         'copy-lang',
         'copy-tslint-rules',
-        // 'publish',
+        'publish',
         callback
     );
 });
