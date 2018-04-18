@@ -1,5 +1,8 @@
 # UNRELEASED
 
+### Feature
+* **terra-dynamic-form** add input `inputAllowedExtensions` to the file input form field
+
 ### Bug Fixes
 * **terra-pager** adjusted width of current page input
 
