@@ -21,12 +21,12 @@ export class TerraStorageObjectList
     {
         if(isObject(objects))
         {
-            /* tslint:disable:prefer-for-of */
+            /* tslint:disable:forin */
             for(let object in objects)
             {
                 this.insertObject(objects[object]);
             }
-            /* tslint:enable:prefer-for-of */
+            /* tslint:enable:forin */
         }
         else if(isArray(objects))
         {
