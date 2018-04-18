@@ -24,12 +24,15 @@ var version, increment, sequence, preid;
  *
  * @param publish    - If set publish to npm, otherwise publish locally
  * @param increment  - Possible values are
- *                      major (1.x.x to 2.x.x), premajor (1.x.x to 2.x.x-0 or 2.x.x-subversion.0),
- *                      minor (x.1.x to x.2.x), preminor (x.1.x to x.2.x-0 or x.2.x-subversion.0)
- *                      patch (x.x.1 to x.x.2), prepatch (x.x.1 to x.x.2-0 or x.x.1 to x.x.2-subversion.0)
- *                      or prerelease (x.x.x-0 or x.x.x-subversion.0 to x.x.x-1 or x.x.x-subversion.1)
+ *                      major           (1.x.x to 2.x.x),
+ *                      premajor        (1.x.x to 2.x.x-0 or 2.x.x-subversion.0),
+ *                      minor           (x.1.x to x.2.x),
+ *                      preminor        (x.1.x to x.2.x-0 or x.2.x-subversion.0)
+ *                      patch           (x.x.1 to x.x.2),
+ *                      prepatch        (x.x.1 to x.x.2-0 or x.x.1 to x.x.2-subversion.0)
+ *                      or prerelease   (x.x.x-0 or x.x.x-subversion.0 to x.x.x-1 or x.x.x-subversion.1)
  *                     If not set patch is default. See VERSIONING.md for further information.
- * @param preid      - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json) for a premajor, -minor or -patch release. Use only, if really necessary!!
+ * @param preid      - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json) for a premajor, preminor or prepatch release. Use only, if really necessary!!
  * @param target     - Actually not implemented!! Sets the target directory to copy build files to. Will copy files to 'node_modules/@plentymarkets/terra-components' in target directory
  *
  **/
@@ -103,7 +106,7 @@ gulp.task('changeVersion', function () {
     console.log('-------------------------------------------------');
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
 
-    json.version = semver.inc(json.version, level, subversion);
+    json.version = semver.inc(json.version, increment, preid);
 
     version = json.version;
 
