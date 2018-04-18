@@ -8,16 +8,14 @@ import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
-import {
-    TerraBaseStorageService,
-    TerraFrontendStorageService,
-    TerraOverlayButtonInterface,
-    TerraOverlayComponent,
-    TerraRegex,
-    TerraStorageObject
-} from '../../../../../';
 import { PathHelper } from '../../../../helpers/path.helper';
 import { FileTypeHelper } from '../../../../helpers/fileType.helper';
+import { TerraBaseStorageService } from '../../../file-browser/terra-base-storage.interface';
+import { TerraFrontendStorageService } from '../../../file-browser/terra-frontend-storage.service';
+import { TerraRegex } from '../../../../helpers/regex/terra-regex';
+import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
+import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.component';
+import { TerraOverlayButtonInterface } from '../../../layouts/overlay/data/terra-overlay-button.interface';
 
 let nextId:number = 0;
 
