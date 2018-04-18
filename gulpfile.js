@@ -14,7 +14,7 @@ var Dgeni = require('dgeni');
 var gulpTasks = require('./component-documentation/tasks/docuTasks.js');
 var paths = require('./component-documentation/tasks/paths');
 
-var version, level, sequence, subversion;
+var version, increment, sequence, preid;
 
 /**
  *
@@ -23,22 +23,31 @@ var version, level, sequence, subversion;
  *        'npm run build -- --param1 --param2 param2_value' for publishing
  *
  * @param publish    - If set publish to npm, otherwise publish locally
- * @param level      - Possible values are
+ * @param increment  - Possible values are
  *                      major (1.x.x to 2.x.x), premajor (1.x.x to 2.x.x-0 or 2.x.x-subversion.0),
  *                      minor (x.1.x to x.2.x), preminor (x.1.x to x.2.x-0 or x.2.x-subversion.0)
  *                      patch (x.x.1 to x.x.2), prepatch (x.x.1 to x.x.2-0 or x.x.1 to x.x.2-subversion.0)
  *                      or prerelease (x.x.x-0 or x.x.x-subversion.0 to x.x.x-1 or x.x.x-subversion.1)
  *                     If not set patch is default. See VERSIONING.md for further information.
- * @param subversion - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json) for a premajor, -minor or -patch release. Use only, if really necessary!!
+ * @param preid      - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json) for a premajor, -minor or -patch release. Use only, if really necessary!!
  * @param target     - Actually not implemented!! Sets the target directory to copy build files to. Will copy files to 'node_modules/@plentymarkets/terra-components' in target directory
  *
  **/
 gulp.task('build', function (callback) {
-    level = argv.level ? argv.level : 'patch';
+    increment = argv.increment ? argv.increment : 'patch';
     sequence = argv.publish ? 'npm-publish' : 'build-local';
-    subversion = argv.subversion ? argv.subversion : '';
+    preid = argv.preid ? argv.preid : '';
 
-    runSequence(sequence, callback);
+    if(argv.level || argv.subversion)
+    {
+        console.log('-------------------------------------------------------------------');
+        console.log('----  Build not started. See gulpfile for further information. ----');
+        console.log('-------------------------------------------------------------------');
+    }
+    else
+    {
+        runSequence(sequence, callback);
+    }
 });
 
 gulp.task('npm-publish', function (callback) {
