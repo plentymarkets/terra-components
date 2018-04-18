@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { URLSearchParams } from '@angular/http';
-import { TerraPagerParameterInterface } from '../../pager/data/terra-pager.parameter.interface';
+import { TerraPagerParameterInterface } from '../../components/pager/data/terra-pager.parameter.interface';
 
 /**
  * @author ptopczewski
@@ -13,7 +13,7 @@ export class TerraUrlParamsDecorator
      * @param {URLSearchParams} urlSearchParams
      * @param {TerraPagerParameterInterface} terraPagerParameter
      */
-    public setTerraPagerParameter(urlSearchParams:URLSearchParams, terraPagerParameter:TerraPagerParameterInterface)
+    public setTerraPagerParameter(urlSearchParams:URLSearchParams, terraPagerParameter:TerraPagerParameterInterface):void
     {
         if(terraPagerParameter.page)
         {

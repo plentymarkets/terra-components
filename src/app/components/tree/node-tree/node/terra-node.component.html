@@ -1,0 +1,24 @@
+<li>
+    <div class="btn-handler">
+        <div class="node btn"
+             [ngClass]="{'activated' : inputNode.isActive, 'isLoading' : inputNode.isLoading && inputNode.onLazyLoad}"
+             (click)="onNodeClick($event)"
+             container="body"
+             [tooltip]="_tooltip | translate:lang"
+             [placement]="_tooltipPlacement">
+            <span *ngIf="!inputNode.icon" class="icon_dist_top icon-placeholder"></span>
+            <span *ngIf="inputNode.icon" class="icon_dist_top" [ngClass]="inputNode.icon"></span>
+            <div class="buttonText">{{inputNode.name | translate:lang }}</div>
+            <span *ngIf="(inputNode.children && inputNode.children.length > 0) || inputNode.onLazyLoad"
+                  class="icon-right icon-collapse_up"
+                  [ngClass]="{'icon-collapse_up' : inputNode.isOpen, 'icon-collapse_down': !inputNode.isOpen}"
+                  (click)="handleIconClick($event)"></span>
+        </div>
+    </div>
+    
+    <ul *ngIf="inputNode.children && inputNode.children.length > 0 && inputNode.isOpen">
+        <ng-container *ngFor="let node of inputNode.children">
+            <terra-node *ngIf="node.isVisible" [inputNode]="node" [inputConfig]="inputConfig"></terra-node>
+        </ng-container>
+    </ul>
+</li>

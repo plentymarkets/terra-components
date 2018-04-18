@@ -1,0 +1,85 @@
+@import "../../../buttons/button/terra-button.component.scss";
+
+li
+{
+    list-style: none;
+    width: 100%;
+    border-top: 1px solid $grey-11;
+    
+    .btn-handler
+    {
+        width: 100%;
+        
+        .btn
+        {
+            text-align: left;
+            padding: 0px;
+            border-radius: 0px;
+
+            .buttonText
+            {
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            span
+            {
+                &.icon_dist_top
+                {
+                    padding: 8px;
+                    top: -9px;
+                }
+
+                &.icon-right
+                {
+                    position: absolute;
+                    right: 0px;
+                    top: 0px;
+                    height: 36px;
+                    width: 40px;
+                    line-height: 36px;
+                    text-align: center;
+                    background-color: $tree-icon-grey;
+                    border-left: 1px solid $grey-11;
+
+                    &:hover
+                    {
+                        background: $tree-icon-grey-hover;
+                    }
+                }
+            }
+
+            &.isLoading
+            {
+                background-color: $tree-icon-grey;
+            }
+
+            &:hover
+            {
+                background-color: $blue;
+            }
+        }
+    }
+    
+    ul
+    {
+        padding-left: 16px;
+        background-color: $grey-12;
+        animation-name: layer-offset;
+        animation-duration: .4s;
+    }
+    
+    @keyframes layer-offset
+    {
+        from
+        {
+            padding-left: 0px;
+        }
+        
+        to
+        {
+            padding-left: 16px;
+        }
+    }
+}

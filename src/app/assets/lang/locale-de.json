@@ -1,8 +1,11 @@
 {
 	"terraDataTable": {
-		"initialLoading": "Suche ausführen, um {{ dataType }} anzuzeigen"
+		"groupFunction": "Gruppenfunktion"
 	},
 	"terraMultiSelectBox": {
+		"selectAll": "Alle"
+	},
+	"terraMultiCheckBox": {
 		"selectAll": "Alle"
 	},
 	"terraFileBrowser": {
@@ -28,7 +31,9 @@
 		"fileName": "Dateiname",
 		"lastChange": "Letzte Änderung",
 		"loadingFiles": "Dateien werden geladen",
-		"noFiles": "Keine Dateien"
+		"noFiles": "Keine Dateien",
+		"downloadFile": "Datei herunterladen",
+		"uploadProgress": "Dateien werden hochgeladen: {{ filesUploaded }}/{{ filesTotal }} ({{ sizeUploaded }}/{{ sizeTotal }})"
 	},
 	"terraFileInput": {
 		"choose": "Wählen",
@@ -56,5 +61,10 @@
 	},
 	"terraNodeTree":{
 		"search": "Suche"
+	},
+	"terraCategoryPicker": {
+		"select": "Auswählen",
+		"category": "Kategorie",
+		"reset": "Reset"
 	}
 }

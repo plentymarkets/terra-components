@@ -1,0 +1,206 @@
+.terra-breadcrumbs
+{
+    list-style: none;
+    //overflow: hidden;
+    padding: 0;
+    margin: 0;
+    height: 33px;
+    display: flex;
+    
+    li
+    {
+        float: left;
+        cursor: pointer;
+        div
+        {
+            span
+            {
+                font-weight: 500;
+            }
+            text-decoration: none;
+            padding: 7px 10px;
+            position: relative;
+            display: block;
+            float: left;
+            color: $grey-9;
+            white-space: nowrap;
+            &:hover
+            {
+                color: $blue;
+                .caret
+                {
+                    &::before
+                    {
+                        background-color: $blue;
+                    }
+                }
+            }
+            &.active
+            {
+                color: $blue;
+                cursor: default;
+                .caret
+                {
+                    &::before
+                    {
+                        background-color: $blue;
+                    }
+                }
+            }
+            &:not(.active):hover
+            {
+                color: $blue;
+                .caret
+                {
+                    &::before
+                    {
+                        background-color: $blue;
+                    }
+                }
+            }
+            .caret
+            {
+                padding: 6px 12px 6px 6px;
+                overflow: hidden;
+                &::after
+                {
+                    position: absolute;
+                    top: 11.5px;
+                    right: 7.5px;
+                    display: inline-block;
+                    width: 0;
+                    height: 0;
+                    vertical-align: middle;
+                    content: "";
+                    border: solid white;
+                    border-width: 0 1px 1px 0;
+                    padding: 2px;
+                    transform: rotate(45deg);
+                    overflow: hidden;
+                }
+                &::before
+                {
+                    content: "";
+                    padding: 8px;
+                    background-color: #636671;
+                    border-radius: 8px;
+                    position: absolute;
+                }
+                
+                &:hover
+                {
+                    .context-menu
+                    {
+                        display: block;
+                        visibility: visible;
+                        opacity: 1;
+                        transition: all 0.2s ease;
+                        transition-delay: 0.2s;
+                    }
+                }
+            }
+            .context-menu
+            {
+                top: 33px;
+                li
+                {
+                    float: none;
+                }
+            }
+        }
+        &:last-child
+        {
+            .icon-next
+            {
+                display: none;
+            }
+        }
+        &:first-child div
+        {
+            padding-left: 16px;
+        }
+        .icon-next
+        {
+            padding: 6px 0px;
+            &::before
+            {
+                display: inline-block;
+                line-height: 32px;
+                vertical-align: middle;
+                font-size: $font-size-6;
+                color: $grey-4;
+            }
+        }
+    }
+}
+
+:host-context(.terra-navigator.has-search)
+{
+    .side-scroller.offset
+    {
+        height: calc(100% - 86px);
+    }
+}
+
+.side-scroller
+{
+    position: relative;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+    white-space: nowrap;
+    font-size: 0px;
+    &.offset
+    {
+        height: var(--side-scroller-offset, calc(100% - 42px));
+    }
+}
+
+.side-scroller > *
+{
+    display: inline-block;
+}
+
+.view
+{
+    font-size: $font-size-3;
+    vertical-align: top;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    white-space: normal;
+    position: relative;
+    background-color: $white;
+    
+    &:first-child
+    {
+        background-color: $grey-2;
+    }
+    &.isBackgroundColorGrey
+    {
+        background-color: transparent !important;
+    }
+}
+
+///// Fixed Columns for Terra-Navigator ///////
+@media (min-width: 768px)
+{
+    .col-md-300px
+    {
+        float: left;
+        width: 300px;
+    }
+    .col-md-300px-anti
+    {
+        float: left;
+        width: calc(100% - 300px);
+    }
+}
+
+terra-base-toolbar
+{
+    --toolbar-margin: 0 0 0 -3px;
+    --toolbar-border-radius: none;
+    --toolbar-background: $white;
+    --toolbar-border-bottom: 1px solid $grey-4;
+}

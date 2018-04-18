@@ -1,0 +1,189 @@
+.portlet
+{
+    margin-bottom: 6px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    .portlet_head
+    {
+        padding: 8px 9px 4px 9px;
+        background: transparent;
+    
+        display: -webkit-flex; /* Safari */
+        -webkit-justify-content: flex-start; /* Safari 6.1+ */
+        display: flex;
+        justify-content: space-between;
+        
+        span
+        {
+            color: $grey-12;
+            font-size: $font-size-4;
+            font-weight: $font-weight-2;
+        }
+        &.error-bottom
+        {
+            border-bottom: 5px solid $error;
+            margin-bottom: 0;
+        }
+        &.success-bottom
+        {
+            border-bottom: 5px solid $success;
+            margin-bottom: 0;
+        }
+        &.warning-bottom
+        {
+            border-bottom: 5px solid $warning;
+            margin-bottom: 0;
+        }
+    }
+    
+    .portlet_body
+    {
+        background-color: var(--portlet_body-background-color, $grey-2);
+        padding: 12px;
+        border-radius: 5px;
+        
+        table.table
+        {
+            thead
+            {
+                background: $brand-primary-dark;
+                color: white;
+                tr
+                {
+                    th
+                    {
+                        border: 1px solid white;
+                        border-top: 1px solid $brand-primary-dark;
+                        border-bottom: 1px solid $brand-primary-dark;
+                        &:first-child
+                        {
+                            border-left: 1px solid $brand-primary-dark;
+                        }
+                        &:last-child
+                        {
+                            border-right: 1px solid $brand-primary-dark;
+                        }
+                    }
+                }
+            }
+        }
+        .btn-toolbar
+        {
+            background: darken($gray-light-3, 20%);
+            .btn
+            {
+                
+                &:hover
+                {
+                    border-right: 1px solid darken($gray-light-3, 10%);
+                }
+            }
+            .c-select
+            {
+                border: 1px solid white;
+            }
+        }
+    }
+    
+    &.collapsable
+    {
+        .portlet_head
+        {
+            cursor: pointer;
+            background-color: var(--collapsable_portlet_head-background-color, $grey-2);
+            border-radius: 5px;
+            transition: ease background-color 0.3s;
+            
+            &.unfolded
+            {
+                background-color: transparent;
+            }
+        }
+        .portlet_body
+        {
+            overflow: hidden;
+        }
+    }
+    
+}
+
+.config-table
+{
+    tr
+    {
+        th
+        {
+            color: #000000;
+            font-weight: normal;
+        }
+        td
+        {
+            background-color: #FFFFFF;
+            &:first-child
+            {
+                background-color: #F2F2F2;
+            }
+        }
+    }
+}
+
+.portlet_head
+{
+    [class^="icon-"]
+    {
+        padding: 3px 3px;
+        transition: all 100ms ease;
+        justify-content: flex-end;
+        
+        &.rotated
+        {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.flex-container
+{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    -webkit-flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.adminOrderSearch
+{
+    padding-top: 1rem;
+}
+
+.adminOrderSearchRight
+{
+    border-left: 1px solid #E0E0E0;
+    hr
+    {
+        margin: 1rem 0;
+    }
+}
+
+.highlight
+{
+    &:hover
+    {
+        border: 1px solid $blue-hover;
+    }
+}
+
+.header-caption {
+    justify-content: flex-start;
+}
+
+.header-buttons {
+    justify-content: flex-end;
+}

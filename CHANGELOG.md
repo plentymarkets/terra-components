@@ -1,3 +1,137 @@
+# Unreleased 
+### Bug Fixes
+ **terra-category-picker** fixed a bug with empty category details
+
+
+<a name="2.1.66-zlk"></a>
+# 2.1.66-zlk (16.04.2018)
+
+### Feature
+* **terra-note-editor** added public method <code>focus</code>, to be able to set the focus to the text-area of the editor.
+
+### Bug Fixes
+* **terra-dynamic-form** fix issue with nested containers
+* **terra-pager** adjusted width of current page input
+* **terra-category-picker** enabled the display of container categories
+
+<a name="2.1.65-zlk"></a>
+# 2.1.65-zlk (05.04.2018)
+
+### Feature
+* **terra-multi-check-box.interface** property `selected` is now optional
+
+### Bug Fixes
+* **terra-multi-split-view** fix reoccurring "Cannot read property 'getBoundingClientRect' of undefined" error
+* **terra-data-table** fix issue where TerraRefTypeEnum is undefined in the template
+
+<a name="2.1.64-zlk"></a>
+# 2.1.64-zlk (28.03.2018)
+
+### Bug Fixes
+* **terra-dynamic-form** remove inner portlet
+
+<a name="2.1.63-zlk"></a>
+# 2.1.63-zlk (27.03.2018)
+
+### Bug Fixes
+* **terra-suggestion-box**  fix issue with value handling and add TerraBaseData as possible value (in addition to number and string)
+
+<a name="2.1.62-zlk"></a>
+# 2.1.62-zlk (26.03.2018)
+
+### Bug Fixes
+* **terra-multi-split-view**  fix issue when view inputs contain circular references
+
+<a name="2.1.61-zlk"></a>
+# 2.1.61-zlk (23.03.2018)
+
+### Feature
+* **terra-tag** add Styling for menu entry tag in terra-tag component
+* **terra-dynamic-form** new component to pick a color 
+* **terra-dynamic-form** callback function for value changed
+* **terra-dynamic-form** added input for portlet usage in <code>TerraDynamicSwitch</code>, default is <code>true</code>
+* **terra-dynamic-switch** 
+	- added input for portlet usage, default is <code>true</code>
+	- using portlet when type is <code>TerraFormFieldVerticalContainer</code>
+
+<a name="2.1.60-zlk"></a>
+# 2.1.60-zlk (22.03.2018)
+
+### Feature
+* **terra-multi-check-box** new component equal to *terra-multi-select-box* but with correct ngModel two way data binding
+* **terra-multi-select-box** this component is now deprecated and will be removed in the next major release
+* **terra-category-picker** new component to comfortable select a category using the **terra-node-tree**
+
+<a name="2.1.58-zlk"></a>
+# 2.1.58-zlk (20.03.2018)
+
+### Bug Fixes
+* **terra-multi-split-view** fixed multi split view breadcrumb event emitter
+* **terra-file-list** added multiple selection to file input
+
+<a name="2.1.57-zlk"></a>
+# 2.1.57-zlk (12.03.2018)
+
+### Feature
+* **models** added new interfaces for key value (TerraKeyValueInterface & TerraKeyValuePairInterface)
+
+### Bug Fixes
+* **terra-base-service** prevent requests with empty params
+* **terra-checkbox-tree** appends parents to leaf list on every change
+
+<a name="2.1.56-zlk"></a>
+# 2.1.56-zlk (08.03.2018)
+
+### Feature
+* **terra-data-table** added new ref-type 'function'.
+
+<a name="2.1.55-zlk"></a>
+# 2.1.55-zlk (06.03.2018)
+
+### Feature
+* **url-helper** new component that offers methods to edit urls
+* **terra-multi-split-view** inject router instead of passing it via the input `inputRouter`.
+* **terra-placement-enum** new enum with dedicated strings for placement of e.g. tooltips
+* **terra-portlet** if the portlet is collapsable and unfolded, its header is now grey.
+* **terra-data-table** replace underline text decoration of phone and email links with blue color highlighting.
+
+### Bug Fixes
+* **terra-data-table** hide no-results-notice when request is pending
+
+<a name="2.1.47-zlk"></a>
+# 2.1.47-zlk (06.02.2018)
+
+### Feature
+* **terra-checkbox-tree** added value change output to the checkbox tree
+
+<a name="2.1.46-zlk"></a>
+# 2.1.46-zlk (02.02.2018)
+
+### Feature
+* **terra-base-service** now handles UiHashExpiredException 
+
+<a name="2.1.45-zlk"></a>
+# 2.1.45-zlk (01.02.2018)
+
+### Feature
+* **terra-info-box** added css variables
+* **terra-portlet** added css variables
+
+<a name="2.1.44-zlk"></a>
+# 2.1.44-zlk (29.01.2018)
+
+### Bug Fixes
+
+### Feature
+* **terra-portlet** add new input `inputButtonList` to add a button group into the portlet header
+* **terra-button** 
+- add properties `isSmall` and `isLarge` to button interface
+- fix styling when inputIsLink is used
+
+### Feature
+* **terra-multi-split-view** divider styling 
+* **terra-overlay** changed footer & header height
+
 <a name="2.1.39-zlk"></a>
 # 2.1.39-zlk (05.01.2017)
 
@@ -11,6 +145,7 @@
 ### Feature
 * **context-menu-holder** added background color for entries and TerraButtonColorEnum for dedicated color values
 * **terra-portlet** add new input `inputHighlightPortlet` for component to highlight portlets. Edit css for highlighting portlets. 
+* **terra-data-table** add a group function to handle multiple items at once in the data table 
 * **terra-multi-selectbox** adjusted styling
 
 <a name="2.1.35-zlk"></a>
@@ -36,6 +171,7 @@
 ### Feature
 * **terra-input** Add input for IBAN validation. Add function to validate input (OnBlur). Add Tooltip for invalid Iban.
 * **terra-checkbox-tree** component accomplished. Basic comportment implemented
+* **terra-file-browser** you are now able to download files
 * **terra-simple-table** new interface property `textAlign` that uses `TerraTextAlignEnum` to align captions in table header cells
 * **terra-data-table** constraint interface property `textAlign` with `TerraTextAlignEnum`. Property type string is deprecated
 

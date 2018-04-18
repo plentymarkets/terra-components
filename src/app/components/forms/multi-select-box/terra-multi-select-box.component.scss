@@ -1,0 +1,102 @@
+.multiselect-container
+{
+    .multiselect-element
+    {
+        margin-bottom: 8px;
+        .multiselect
+        {
+            display: flex;
+            flex-flow: column nowrap;
+            height: 100%;
+            
+            .multiselect-header
+            {
+                display: flex;
+                background-color: $grey-11;
+                border-top-left-radius: $border-radius;
+                border-top-right-radius: $border-radius;
+                
+                .checkbox-container,
+                .header-label
+                {
+                    margin: 0px;
+                    font-variant: all-small-caps;
+                    padding: 6px 9px;
+                    color: $white;
+                }
+            }
+            
+            .option-list
+            {
+                background: $white;
+                overflow: auto;
+                max-height: 155px;
+                .input-group
+                {
+                    margin-bottom: 0px;
+                    
+                    .form-control,
+                    .input-group-addon
+                    {
+                        padding: 6px 9px;
+                        border: none;
+                        border-bottom: 1px solid $grey-1;
+                        border-radius: 0px;
+                        font-size: 0.875rem;
+                        font-weight: normal;
+                        background: transparent;
+                        cursor: pointer;
+                    }
+                    
+                    &:hover
+                    {
+                        background: $grey-1;
+                    }
+                }
+            }
+        }
+        &.error
+        {
+            .multiselect
+            {
+                .multiselect-header
+                {
+                    background-color: $error;
+                }
+            }
+        }
+        &.disabled
+        {
+            .multiselect
+            {
+                .multiselect-header
+                {
+                    background: $grey-5;
+                    cursor: not-allowed;
+                }
+                .option-list
+                {
+                    .input-group
+                    {
+                        .form-control,
+                        .input-group-addon
+                        {
+                            color: $grey-5;
+                            cursor: not-allowed;
+                            &:hover
+                            {
+                                cursor: not-allowed;
+                                background: $white;
+                            }
+                        }
+                        &:hover
+                        {
+                            cursor: not-allowed;
+                            background: $white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

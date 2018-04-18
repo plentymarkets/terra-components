@@ -1,0 +1,22 @@
+@import "../input/terra-input.component.scss";
+@import "../select-box/terra-select-box.component.scss";
+
+.select-box-wrapper
+{
+    --input-unit-v1-border: none;
+    --input-unit-v1-border-hover: none;
+    --input-unit-v1-height: 31px;
+    --input-unit-v1-line-height: 31px;
+    &.disabled
+    {
+        --input-unit-v1-border-disabled: none;
+    }
+    
+    .select-box-dropdown
+    {
+        img
+        {
+            max-height: var(--select-box-dropdown-img-max-height, var(--input-unit-v1-line-height))
+        }
+    }
+}
