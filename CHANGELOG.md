@@ -9,6 +9,9 @@
 ### Feature
 * **terra-note-editor** added public method <code>focus</code>, to be able to set the focus to the text-area of the editor.
 
+### Feature
+* **terra-dynamic-form** add input `inputAllowedExtensions` to the file input form field
+
 ### Bug Fixes
 * **terra-dynamic-form** fix issue with nested containers
 * **terra-pager** adjusted width of current page input
