@@ -39,15 +39,15 @@
             </div>
         </div>
         <terra-file-chooser class="input-group-btn"
-            [inputIcon]="'icon-more'"
-            [inputTooltipText]=" _translationPrefix + '.chooseFile' | translate:lang"
-            [inputTooltipPlacement]="'left'"
-            [inputAllowedExtensions]="inputAllowedExtensions"
-            [inputAllowFolders]="inputAllowFolders"
-            [inputStorageServices]="inputStorageServices"
-            (outputSelected)="onObjectSelected($event)"
-            (outputFileBrowserShow)="$event.selectUrl(value)"
-            (outputFileBrowserHide)="_selectedObjectUrl = value">
+                            [inputIcon]="'icon-more'"
+                            [inputTooltipText]=" _translationPrefix + '.chooseFile' | translate:lang"
+                            [inputTooltipPlacement]="'left'"
+                            [inputAllowedExtensions]="inputAllowedExtensions"
+                            [inputAllowFolders]="inputAllowFolders"
+                            [inputStorageServices]="inputStorageServices"
+                            (outputSelected)="onObjectSelected($event)"
+                            (outputFileBrowserShow)="$event.selectUrl(value)"
+                            (outputFileBrowserHide)="_selectedObjectUrl = value">
         </terra-file-chooser>
     </div>
 

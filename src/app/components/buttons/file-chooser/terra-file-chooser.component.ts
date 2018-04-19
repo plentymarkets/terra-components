@@ -15,32 +15,32 @@ import { TerraFileBrowserComponent } from '../../file-browser/terra-file-browser
 export class TerraFileChooserComponent extends TerraButtonComponent
 {
     @Input()
-    public set inputPrimaryBrowserCaption(value:string)
+    public set inputPrimaryBrowserButtonCaption(value:string)
     {
-        this._primaryBrowserCaption = value;
+        this._primaryBrowserButtonCaption = value;
     }
 
-    public get inputPrimaryBrowserCaption():string
+    public get inputPrimaryBrowserButtonCaption():string
     {
-        if ( !isNullOrUndefined(this._primaryBrowserCaption) && this._primaryBrowserCaption.length > 0)
+        if ( !isNullOrUndefined(this._primaryBrowserButtonCaption) && this._primaryBrowserButtonCaption.length > 0)
         {
-            return this._primaryBrowserCaption;
+            return this._primaryBrowserButtonCaption;
         }
 
         return this.translation.translate(this._translationPrefix + '.choose');
     }
 
     @Input()
-    public set inputSecondaryBrowserCaption(value:string)
+    public set inputSecondaryBrowserButtonCaption(value:string)
     {
-        this._primaryBrowserCaption = value;
+        this._primaryBrowserButtonCaption = value;
     }
 
-    public get inputSecondaryBrowserCaption():string
+    public get inputSecondaryBrowserButtonCaption():string
     {
-        if ( !isNullOrUndefined(this._secondaryBrowserCaption) && this._secondaryBrowserCaption.length > 0)
+        if ( !isNullOrUndefined(this._secondaryBrowserButtonCaption) && this._secondaryBrowserButtonCaption.length > 0)
         {
-            return this._secondaryBrowserCaption;
+            return this._secondaryBrowserButtonCaption;
         }
 
         return this.translation.translate(this._translationPrefix + '.cancel');
@@ -87,9 +87,9 @@ export class TerraFileChooserComponent extends TerraButtonComponent
 
     private _translationPrefix:string = 'terraFileInput';
 
-    private _primaryBrowserCaption:string = '';
+    private _primaryBrowserButtonCaption:string = '';
 
-    private _secondaryBrowserCaption:string = '';
+    private _secondaryBrowserButtonCaption:string = '';
 
     private _selectedObject:TerraStorageObject;
 
@@ -101,7 +101,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent
 
         this.primaryOverlayButton = {
             icon:          'icon-success',
-            caption:       this.inputPrimaryBrowserCaption,
+            caption:       this.inputPrimaryBrowserButtonCaption,
             isDisabled:    true,
             clickFunction: ():void =>
             {
@@ -112,7 +112,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent
 
         this.secondaryOverlayButton = {
             icon: 'icon-close',
-            caption: this.inputSecondaryBrowserCaption,
+            caption: this.inputSecondaryBrowserButtonCaption,
             isDisabled: false,
             clickFunction: ():void =>
             {
