@@ -1,7 +1,9 @@
 # Unreleased 
 ### Bug Fixes
  **terra-category-picker** fixed a bug with empty category details
-
+ 
+## Feature
+ **themes** added theme functionality, removed all scss variables, replaced with css variables
 
 <a name="2.1.66-zlk"></a>
 # 2.1.66-zlk (16.04.2018)
