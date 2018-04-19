@@ -68,7 +68,7 @@ input[type="search"]::-webkit-search-decoration
     line-height: var(--input-wrapper-line-height, 100%);
     transition: height var(--transition-lg), line-height var(--transition-lg);
     background-color: var(--color-structure-0);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     
     &.isSmall
     {
@@ -172,7 +172,6 @@ input:not([type="checkbox"]),
 input:not([type="radio"]),
 textarea
 {
-    color: var(--color-structure-12);
     border: none;
     box-shadow: none;
     padding: var(--input-padding, var(--input-padding-default));
@@ -184,8 +183,10 @@ textarea
     height: 100%;
     line-height: 100%;
     transition: padding var(--transition-lg), height var(--transition-lg), line-height var(--transition-lg);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
+    background-color: var(--input-background-color, var(--color-structure-0));
+    color: var(--input-color, var(--color-structure-12));
     
     &:active,
     &:focus
@@ -266,7 +267,7 @@ textarea
     
     &::placeholder
     {
-        color: var(--color-structure-8);
+        color: var(--input-placeholder-color, var(--color-structure-8));
         font-size: var(--font-size-3);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -289,13 +290,18 @@ label
     white-space: nowrap;
     padding: var(--label-padding, var(--label-padding-default));
     margin-bottom: 0;
-    color: var(--color-structure-8);
+    color: var(--label-color, var(--color-structure-8));
     
     position: absolute;
     top: 0;
     left: 0;
     transition: color var(--transition-sm);
-    cursor: pointer;
+    
+    user-select: none; /* Standard syntax */
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
