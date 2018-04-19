@@ -8,7 +8,7 @@
     
     table
     {
-        margin: 0 !important;
+        margin: 0;
         
         &.data-table
         {
@@ -29,7 +29,6 @@
                 outline: none;
             }
             
-            margin-bottom: 1rem;
             thead
             {
                 background: var(--color-structure-9);
