@@ -1,7 +1,9 @@
 # Unreleased 
 ### Bug Fixes
  **terra-category-picker** fixed a bug with empty category details
-
+ 
+## Feature
+ **themes** added theme functionality, removed all scss variables, replaced with css variables
 
 <a name="2.1.66-zlk"></a>
 # 2.1.66-zlk (16.04.2018)
@@ -168,7 +170,7 @@
 
 ### Bug Fixes
 * **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
-* **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+* **input components** edit input scss for disabled components. Changed border-color from var(--color-structure-3) to var(--color-structure-5)
 * **terra-checkbox** fix issue with missing unique IDs
 
 ### Feature

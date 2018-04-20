@@ -1,6 +1,6 @@
 @import "../terra-input.component";
 
-.input-unit-v1
+.input-wrapper
 {
     label
     {
@@ -22,7 +22,7 @@
             top: 0;
             width: 34px;
             height: 34px;
-            border-left: 1px solid $gray-light-2;
+            border-left: 1px solid var(--color-structure-7);
             
             [class^="icon-"]
             {
@@ -33,7 +33,7 @@
             
             &.text-invert
             {
-                color: #FFFFFF;
+                color: var(--color-structure-0);
             }
         }
         

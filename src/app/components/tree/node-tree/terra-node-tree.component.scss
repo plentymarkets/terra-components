@@ -1,14 +1,19 @@
 .search-wrapper
 {
-    background-color: $grey-11;
+    background-color: var(--color-structure-11);
     padding: 4px 4px 1px 4px;
+    
+    --input-background-color: var(--color-structure-11);
+    --label-color: var(--color-structure-0);
+    --input-color: var(--color-structure-0);
+    --input-placeholder-color: var(--color-structure-0);
 }
 
 ul
 {
-    background-color: $grey-11;
-    padding: 0px;
-    margin: 0px;
+    background-color: var(--color-structure-11);
+    padding: 0;
+    margin: 0;
 }
 
 .searchDisabled
@@ -17,7 +22,7 @@ ul
     width: 100%;
     position: absolute;
     z-index: 9999;
-    background-color: $white;
+    background-color: var(--color-structure-0);
     opacity: 0.3;
     margin-top: -4px;
     margin-left: -4px;
@@ -29,6 +34,6 @@ ul
     width: 100%;
     position: absolute;
     z-index: 9999;
-    background-color: $white;
+    background-color: var(--color-structure-0);
     opacity: 0.3;
 }

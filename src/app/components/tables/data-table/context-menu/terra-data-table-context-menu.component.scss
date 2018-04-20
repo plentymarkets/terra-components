@@ -3,7 +3,7 @@
     display: block;
     visibility: visible;
     opacity: 1;
-    transition: none;
+    transition: var(--transition-0);
     min-width: max-content;
     max-width: max-content;
     
@@ -15,7 +15,7 @@
 
 .context-menu-divider
 {
-    background: $grey-3;
+    background: var(--color-structure-3);
     cursor: default;
     height: 1px;
     overflow: hidden;

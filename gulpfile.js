@@ -96,7 +96,7 @@ gulp.task('changeVersion', function () {
     console.log('-------------------------------------------------');
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
 
-    json.version = json.version.replace('-\w', '');
+    json.version = json.version.replace('-' + subversion, '');
     
     //possible values are: patch, minor, major
     if (prerelease)

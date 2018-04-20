@@ -24,6 +24,10 @@ export class TerraCardComponent implements AfterContentChecked
 
     @Input()
     public inputPlaceholderIcon:string;
+
+    @Input()
+    public inputIsSelected:boolean = false;
+
     private showHeader:boolean;
     private showFooter:boolean;
 

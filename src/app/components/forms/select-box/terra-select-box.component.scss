@@ -3,13 +3,13 @@
 .select-box-wrapper
 {
     position: relative;
-    background-color: $white;
-    border-radius: $border-radius;
-    border: 1px solid $white;
-    margin: var(--select-box-wrapper-margin, 0px);
+    background-color: var(--color-structure-0);
+    margin: var(--select-box-wrapper-margin, 0);
     margin-bottom: var(--select-box-wrapper-margin-bottom, 3px);
-    
     cursor: pointer;
+    height: var(--select-box-height, var(--select-box-height-default));
+    line-height: var(--select-box-line-height, var(--select-box-line-height-default));
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     
     label &.disabled
     {
@@ -18,46 +18,48 @@
     
     &.error
     {
-        border-color: $error;
+        border-bottom: 2px solid var(--color-alert);
+    }
+    
+    &.isSmall
+    {
+        height: var(--height-sm);
+        line-height: var(--height-sm);
+        .select-box
+        {
+            background-position: calc(100% - var(--space-md)) var(--space-md);
+            padding: var(--space-sm) var(--space-sm) var(--space-sm) 30%;
+            &.labeled
+            {
+                padding: 0 var(--space-md) 0 30%;
+            }
+        }
     }
     
     .select-box
     {
-        height: $terra-btn-md-height - 2;
-        line-height: $terra-btn-md-height - 2;
+        transition: height var(--transition-lg), line-height var(--transition-lg);
         display: inline-block;
         width: var(--select-box-width, 100%);
         max-width: 100%;
-        vertical-align: middle;
         -moz-appearance: none;
         -webkit-appearance: none;
-        padding: 0px 12px;
-        background-position: calc(100% - 1rem) 1.2rem;
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat right .75rem center;
-        background-image: none \9;
+        padding: 0 var(--space-lg);
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat;
+        background-position: var(--select-box-toggle-background-position, var(--select-box-toggle-background-position-default));
         background-size: 8px 10px;
-        color: $grey-10;
+        color: var(--color-structure-12);
+        height: 100%;
+        line-height: 100%;
+        border-bottom: 1px solid var(--border-color);
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
         
-        &.isSmall
-        {
-            height: $terra-btn-sm-height - 2;
-            line-height: $terra-btn-sm-height - 2;
-            &.labeled
-            {
-                padding: 0px 7px 0px 120px;
-            }
-        }
         &.error
         {
-            border-color: $error;
-            color: $error;
-            background-size: 8px 10px;
+            border-bottom: 2px solid var(--color-alert);
+            color: var(--color-alert);
         }
-        &.labeled
-        {
-            line-height: 24px;
-            padding: 13px 7px 0px 7px;
-        }
+        
         span
         {
             width: calc(100% - 20px);
@@ -65,26 +67,68 @@
             white-space: nowrap;
             overflow: hidden;
             display: inline-block;
-            font-weight: $font-weight-2;
+            font-weight: var(--font-weight-2);
+            height: 100%;
+            line-height: 100%;
+        }
+        &.labeled
+        {
+            padding: var(--select-box-labeled-padding, var(--select-box-labeled-padding-default));
+            transition: padding var(--transition-lg);
+            span
+            {
+                line-height: calc(var(--height-md) - var(--space-lg));
+            }
         }
     }
-    &:not(.error):hover
+    
+    &:not(.error):not(.disabled)
     {
-        border: 1px solid $blue;
+        &::after
+        {
+            content: "";
+            display: block;
+            width: 0%;
+            position: absolute;
+            height: 2px;
+            background-color: var(--color-active);
+            transition: width var(--transition-md);
+            bottom: 0;
+        }
+        &:hover
+        {
+            label
+            {
+                color: var(--color-active);
+                transition: color var(--transition-sm);
+            }
+            &::after
+            {
+                width: 100%;
+            }
+        }
     }
+    
     &.disabled
     {
-        background-color: $grey-2;
-        border: 1px solid $grey-5;
-        .select-box
-        {
-            filter: opacity(30%);
-        }
+        background-color: var(--color-structure-2);
         
         .select-box
         {
+            filter: opacity(30%);
             cursor: not-allowed;
+            
+            span
+            {
+                padding-left: var(--space-md);
+            }
         }
+        
+        label
+        {
+            padding-left: var(--space-md);
+        }
+
         .select-box-dropdown
         {
             display: none !important;
@@ -103,26 +147,27 @@
     {
         position: absolute;
         z-index: 99999;
-        top: $terra-btn-md-height;
+        top: var(--select-box-dropdown-top, var(--select-box-dropdown-top-default));
         bottom: initial;
         left: 0;
         min-width: 100%;
         width: auto;
         max-height: 12rem;
-        border-radius: $border-radius;
-        background: white;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+        background: var(--color-structure-0);
         display: none;
         overflow: auto;
+        box-shadow: var(--box-shadow);
         
         &.openOnTop
         {
             top: initial;
-            bottom: $terra-btn-md-height;
+            bottom: var(--height-md);
         }
         
         &.isSmall
         {
-            top: $terra-btn-sm-height;
+            top: var(--height-sm);
         }
         
         > span
@@ -136,22 +181,22 @@
             &:hover,
             &.selected
             {
-                background: $grey-3;
+                background: var(--color-structure-3);
             }
             &.active
             {
-                background: $blue;
-                color: white;
+                background: var(--color-active);
+                color: var(--color-structure-0);
             }
             &.highlight
             {
                 font-weight: bolder;
-                color: $alert-green;
+                color: var(--color-add);
             }
             &.deep
             {
                 font-style: italic;
-                color: $grey-8;
+                color: var(--color-structure-8);
                 font-weight: lighter;
             }
         }
