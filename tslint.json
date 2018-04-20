@@ -1,9 +1,8 @@
 {
-  "extends": "./tslint-rules.json",
-  "rulesDirectory":
-  [
-    "node_modules/codelyzer",
-    "node_modules/tslint-eslint-rules/dist/rules",
-    "lintRules/"
-  ]
+	"extends": "./tslint-rules.json",
+	"rulesDirectory": [
+		"node_modules/codelyzer",
+		"node_modules/tslint-eslint-rules/dist/rules",
+		"lintRules/"
+	]
 }

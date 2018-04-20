@@ -16,7 +16,7 @@ var Dgeni = require('dgeni');
 var gulpTasks = require('./component-documentation/tasks/docuTasks.js');
 var paths = require('./component-documentation/tasks/paths');
 
-var version, level, sequence, subversion;
+var version, level, sequence, subversion, prerelease;
 
 /**
  *
@@ -27,16 +27,16 @@ var version, level, sequence, subversion;
  * @param publish    - If set publish to npm, otherwise publish locally
  * @param level      - Possible values are major (1.x.x to 2.x.x), minor (x.1.x to x.2.x) or patch (x.x.1 to x.x.2).
  *                     If not set patch is default. See VERSIONING.md for further information.
- * @param subversion - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json). Use only, if really
- *     necessary!!
- * @param target     - Sets the target directory to copy build files to. Will copy files to 'node_modules/@plentymarkets/terra-components'
- *     in target directory
+ * @param subversion - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json). Use only, if really necessary!!
+ * @param target     - Sets the target directory to copy build files to. Will copy files to 'node_modules/@plentymarkets/terra-components' in target directory
+ * @param prerelease - If set, a prerelease version is published using the 'rc' label. You can use prerelease OR subversion parameter. Both at the same time are not supported
  *
  **/
 gulp.task('build', function (callback) {
     level = argv.level ? argv.level : 'patch';
     sequence = argv.publish ? 'npm-publish' : 'build-local';
     subversion = argv.subversion ? argv.subversion : '';
+    prerelease = !!argv.prerelease;
 
     runSequence(sequence, callback);
 });
@@ -97,12 +97,19 @@ gulp.task('changeVersion', function () {
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
 
     json.version = json.version.replace('-' + subversion, '');
-
+    
     //possible values are: patch, minor, major
-    json.version = semver.inc(json.version, level);
-
-    if (subversion !== '') {
-        json.version += '-' + subversion;
+    if (prerelease)
+    {
+        json.version = semver.inc(json.version, 'prerelease', 'rc');
+    }
+    else
+    {
+        json.version = semver.inc(json.version, level);
+        if(subversion !== '')
+        {
+            json.version += '-' + subversion;
+        }
     }
 
     version = json.version;

@@ -1,9 +1,51 @@
+# Unreleased 
+### Bug Fixes
+ **terra-category-picker** fixed a bug with empty category details
+ 
+## Feature
+ **themes** added theme functionality, removed all scss variables, replaced with css variables
+
+<a name="2.1.66-zlk"></a>
+# 2.1.66-zlk (16.04.2018)
+
+### Feature
+* **terra-note-editor** added public method <code>focus</code>, to be able to set the focus to the text-area of the editor.
+
+### Feature
+* **terra-dynamic-form** add input `inputAllowedExtensions` to the file input form field
+
+### Bug Fixes
+* **terra-dynamic-form** fix issue with nested containers
+* **terra-pager** adjusted width of current page input
+* **terra-category-picker** enabled the display of container categories
+
+<a name="2.1.65-zlk"></a>
+# 2.1.65-zlk (05.04.2018)
+
+### Feature
+* **terra-multi-check-box.interface** property `selected` is now optional
+
+### Bug Fixes
+* **terra-multi-split-view** fix reoccurring "Cannot read property 'getBoundingClientRect' of undefined" error
+* **terra-data-table** fix issue where TerraRefTypeEnum is undefined in the template
+
+<a name="2.1.64-zlk"></a>
+# 2.1.64-zlk (28.03.2018)
+
+### Bug Fixes
+* **terra-dynamic-form** remove inner portlet
+
+<a name="2.1.63-zlk"></a>
+# 2.1.63-zlk (27.03.2018)
+
+### Bug Fixes
+* **terra-suggestion-box**  fix issue with value handling and add TerraBaseData as possible value (in addition to number and string)
+
 <a name="2.1.62-zlk"></a>
 # 2.1.62-zlk (26.03.2018)
 
 ### Bug Fixes
 * **terra-multi-split-view**  fix issue when view inputs contain circular references
-* **terra-suggestion-box**  fix issue with value handling and add TerraBaseData as possible value (in addition to number and string)
 
 <a name="2.1.61-zlk"></a>
 # 2.1.61-zlk (23.03.2018)
@@ -128,7 +170,7 @@
 
 ### Bug Fixes
 * **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
-* **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+* **input components** edit input scss for disabled components. Changed border-color from var(--color-structure-3) to var(--color-structure-5)
 * **terra-checkbox** fix issue with missing unique IDs
 
 ### Feature

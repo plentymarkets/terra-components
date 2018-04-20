@@ -152,8 +152,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     views:                 [],
                     identifier:            view.mainComponentName,
                     width:                 view.focusedWidth ? view.focusedWidth : view.defaultWidth,
-                    currentSelectedView:   view,
-                    isBackgroundColorGrey: view.isBackgroundColorGrey
+                    currentSelectedView:   view
                 }
             );
         }
@@ -201,8 +200,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             this.inputConfig.selectBreadcrumbEventEmitter.next(view);
         }
-
-        module.isBackgroundColorGrey = view.isBackgroundColorGrey;
 
         // check whether the view is already opened
         if(module.currentSelectedView === view)
@@ -303,7 +300,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 let viewContainer:JQuery = anchor.parent();
 
                 // focus breadcrumbs
-                if(!isNull(currentBreadcrumb[0]))
+                if(!isNullOrUndefined(currentBreadcrumb[0]))
                 {
                     breadCrumbContainer.stop();
                     breadCrumbContainer.animate(
@@ -312,7 +309,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 }
 
                 // check if viewport needs to be adjusted
-                if(!isNull(anchor[0]) &&
+                if(!isNullOrUndefined(anchor[0]) &&
                    anchor[0].getBoundingClientRect().left > viewContainer.offset().left &&
                    anchor[0].getBoundingClientRect().right <= viewContainer.offset().left + viewContainer.outerWidth())
                 {
@@ -321,6 +318,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
                 // interrupt all ongoing animations to prevent queue
                 viewContainer.stop();
+
+                if(isNullOrUndefined(anchor[0]))
+                {
+                   return;
+                }
 
                 // focus view horizontally
                 if(skipAnimation)

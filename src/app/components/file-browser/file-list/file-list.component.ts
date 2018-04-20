@@ -13,27 +13,29 @@ import {
     ViewChild
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { TerraStorageObjectList } from '../model/terra-storage-object-list';
-import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
-import { TerraSimpleTableRowInterface } from '../../tables/simple/row/terra-simple-table-row.interface';
-import { TerraStorageObject } from '../model/terra-storage-object';
 import * as moment from 'moment';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
-import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
-import { PathHelper } from '../helper/path.helper';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
-import { FileType } from '../helper/fileType.helper';
-import { TerraSimpleTableComponent } from '../../tables/simple/terra-simple-table.component';
 import { TerraFileBrowserService } from '../terra-file-browser.service';
-import { TerraUploadItem } from '../model/terra-upload-item';
-import { ClipboardHelper } from '../helper/clipboard.helper';
-import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-simple-table-cell.interface';
 import { TranslationService } from 'angular-l10n';
+import { TerraUploadProgress } from '../model/terra-upload-progress';
 import {
     isNull,
-    isNullOrUndefined
+    isNullOrUndefined,
+    isNumber
 } from 'util';
 import { TerraBasePrivateStorageService } from '../terra-base-private-storage.interface';
+import { TerraStorageObjectList } from '../model/terra-storage-object-list';
+import { PathHelper } from '../../../helpers/path.helper';
+import { TerraSimpleTableComponent } from '../../tables/simple/terra-simple-table.component';
+import { TerraStorageObject } from '../model/terra-storage-object';
+import { FileTypeHelper } from '../../../helpers/fileType.helper';
+import { TerraSimpleTableRowInterface } from '../../tables/simple/row/terra-simple-table-row.interface';
+import { ClipboardHelper } from '../../../helpers/clipboard.helper';
+import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-simple-table-cell.interface';
+import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
+import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
+
 
 @Component({
     selector: 'terra-file-list',
@@ -71,6 +73,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             if(!isNullOrUndefined(this._storageSubscription))
             {
                 this._storageSubscription.unsubscribe();
+                this._storageSubscription = null;
+            }
+            if(!isNullOrUndefined(this._progressSubscription))
+            {
+                this._progressSubscription.unsubscribe();
+                this._progressSubscription = null;
             }
 
             this._storageList = null;
@@ -87,6 +95,23 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this._storageList = storageList;
                 this.renderFileList();
             });
+            this._progressSubscription = this.activeStorageService.queue.status.subscribe((progress:TerraUploadProgress) =>
+            {
+                this._progress = progress;
+
+                if(!isNullOrUndefined(this._progress))
+                {
+                    if(isNumber(this._progress.sizeUploaded))
+                    {
+                        this._progress.sizeUploaded = PathHelper.sizeString(this._progress.sizeUploaded);
+                    }
+                    if(isNumber(this._progress.sizeTotal))
+                    {
+                        this._progress.sizeTotal = PathHelper.sizeString(this._progress.sizeTotal);
+                    }
+                }
+                this._changeDetector.detectChanges();
+            });
         }
 
     }
@@ -102,6 +127,10 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private _storageSubscription:Subscription;
 
+    private _progressSubscription:Subscription;
+
+    private _progress:TerraUploadProgress = null;
+
     private _storageList:TerraStorageObjectList;
 
     private _currentStorageRoot:TerraStorageObject;
@@ -109,8 +138,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     private _imagePreviewTimeout:number;
 
     private _imagePreviewObject:TerraStorageObject;
-
-    private _uploadStatus:{ [key:string]:boolean } = {};
 
     public get currentStorageRoot():TerraStorageObject
     {
@@ -235,7 +262,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 if(!isNullOrUndefined(object))
                 {
                     this.currentStorageRoot = object.parent;
-                    if(FileType.isWebImage(object.key))
+                    if(FileTypeHelper.isWebImage(object.key))
                     {
                         this._imagePreviewObject = object;
                         this._parentFileBrowser.splitConfig.showImagePreview(object, this.activeStorageService);
@@ -355,7 +382,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         cellList.push(
             {
                 caption: storageObject.name,
-                icon:    this._uploadStatus[storageObject.key] ? 'icon-loading' : storageObject.icon
+                icon:    storageObject.icon
             }
         );
 
@@ -536,7 +563,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         {
             let storageObject:TerraStorageObject = row.value;
 
-            if(!isNullOrUndefined(storageObject) && FileType.isWebImage(storageObject.key))
+            if(!isNullOrUndefined(storageObject) && FileTypeHelper.isWebImage(storageObject.key))
             {
                 this._imagePreviewObject = storageObject;
                 this._parentFileBrowser.splitConfig.showImagePreview(storageObject, this.activeStorageService);
@@ -562,13 +589,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public onFileSelect(event:Event):void
     {
-        if(!isNullOrUndefined(event.srcElement))
+        if(!isNullOrUndefined(event.srcElement) && !isNullOrUndefined((<any> event.srcElement).files))
         {
-            this.activeStorageService
-                .uploadFiles(
-                    (<any> event.srcElement).files || [],
-                    this.currentStorageRoot ? this.currentStorageRoot.key : '/'
-                );
+            this.uploadFiles((<any> event.srcElement).files);
 
             // unset value of file input to allow selecting same file again
             (<HTMLInputElement> event.target).value = '';
@@ -579,10 +602,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     {
         if(!isNullOrUndefined(event.dataTransfer.files))
         {
-            this.activeStorageService.uploadFiles(
-                event.dataTransfer.files,
-                this.currentStorageRoot ? this.currentStorageRoot.key : '/'
-            );
+            this.uploadFiles(event.dataTransfer.files);
         }
     }
 
@@ -591,18 +611,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         let uploadPrefix:string = this.currentStorageRoot ? this.currentStorageRoot.key : '/';
         this.activeStorageService
             .uploadFiles(
-                (<any> event.srcElement).files || [],
+                fileList,
                 uploadPrefix
-            )
-            .forEach((uploadItem:TerraUploadItem) =>
-            {
-                this._uploadStatus[uploadPrefix + uploadItem.filename] = true;
-                uploadItem.onSuccess(() =>
-                {
-                    this._uploadStatus[uploadPrefix + uploadItem.filename] = false;
-                    this.renderFileList();
-                });
-            });
+            );
     }
 
 }
