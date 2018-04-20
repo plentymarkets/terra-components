@@ -3,7 +3,7 @@
 .file-browser-content
 {
     position: relative;
-    border-top: 1px solid #CCCCCC;
+    border-top: 1px solid var(--color-structure-5);
     overflow: hidden;
     flex: 1;
     display: flex;
@@ -27,23 +27,23 @@
             
             &:nth-child(even)
             {
-                background-color: $gray-light-4;
+                background-color: var(--color-structure-2);
             }
             
             &:hover
             {
-                background-color: $gray-light-3;
+                background-color: var(--color-structure-4);
             }
             
             &.selected
             {
-                background-color: $brand-primary;
-                color: $white;
+                background-color: var(--color-active);
+                color: var(--color-structure-0);
                 
                 [class^="icon-"]:before,
                 [class^="icon-"] *:before
                 {
-                    color: $white;
+                    color: var(--color-structure-0);
                 }
             }
             
@@ -61,7 +61,7 @@
                 
                 &.waiting
                 {
-                    color: $gray-light-2;
+                    color: var(--color-structure-7);
                 }
             }
             
@@ -71,8 +71,8 @@
                 top: 0;
                 left: 0;
                 bottom: 0;
-                color: $white;
-                background-color: $brand-primary;
+                color: var(--color-structure-0);
+                background-color: var(--color-active);
                 overflow: hidden;
                 white-space: nowrap;
             }
@@ -103,7 +103,7 @@
             
             span
             {
-                color: $gray-light;
+                color: var(--color-structure-9);
                 font-size: 2em;
                 margin-bottom: 12px;
                 
@@ -119,12 +119,12 @@
         left: 50%;
         width: 90%;
         margin-left: -45%;
-        background: $white;
-        border: 1px solid #CCCCCC;
+        background: var(--color-structure-0);
+        border: 1px solid var(--color-structure-5);
         border-top: none;
-        padding: 4px 8px;
-        border-bottom-left-radius: $border-radius;
-        border-bottom-right-radius: $border-radius;
+        padding: var(--space-sm) var(--space-md);
+        border-bottom-left-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
         transform: translateY(-100%);
         transition: transform 150ms ease;
         z-index: 1;
@@ -159,11 +159,12 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: transparentize($brand-primary, 0.5);
-        border: 3px dashed $brand-primary;
-        border-radius: $border-radius;
+        background-color: var(--color-active);
+        opacity: 0.3;
+        border: 3px dashed var(--color-active);
+        border-radius: var(--border-radius);
         display: none;
-        color: $white;
+        color: var(--color-structure-0);
         flex-direction: row;
         align-items: center;
         
@@ -190,11 +191,11 @@
         
         transform: translateY(100%);
         transition: transform 150ms ease;
-        border-top: 1px solid #CCCCCC;
-        background-color: $white;
+        border-top: 1px solid var(--color-structure-5);
+        background-color: var(--color-structure-0);
         display: flex;
         flex-direction: column;
-        padding: 4px 8px;
+        padding: var(--space-sm) var(--space-md);
         overflow-y: auto;
         
         &.in
@@ -217,7 +218,7 @@
             {
                 float: left;
                 font-size: .8em;
-                color: $gray-light;
+                color: var(--color-structure-9);
             }
             
             .preview-title-date
@@ -231,12 +232,12 @@
         {
             flex: 1;
             width: 100%;
-            background-color: $gray-light-4;
-            padding: 12px;
+            background-color: var(--color-structure-2);
+            padding: var(--space-lg);
             display: flex;
-            border: 1px solid $gray-light-2;
+            border: 1px solid var(--color-structure-7);
             margin-bottom: 12px;
-            border-radius: $border-radius;
+            border-radius: var(--border-radius);
             min-height: 150px;
             position: relative;
             flex-direction: column;
@@ -260,7 +261,7 @@
                     
                     > [class^="path"]:before
                     {
-                        color: $gray;
+                        color: var(--color-structure-11);
                     }
                 }
             }
@@ -285,7 +286,7 @@
             width: 25%;
             min-width: 300px;
             transform: translateX(100%);
-            border-left: 1px solid #CCCCCC;
+            border-left: 1px solid var(--color-structure-5);
             border-top: none;
             
             &.in
