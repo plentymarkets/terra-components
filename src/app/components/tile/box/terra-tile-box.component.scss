@@ -15,14 +15,14 @@
 
 .tile-box-item
 {
-    transition: all .3s;
+    transition: all var(--transition-sm);
     position: relative;
     padding: 0;
     width: 250px;
     height: 250px;
     margin: 15px;
     overflow: hidden;
-    border-radius: 3px;
+    border-radius: var(--border-radius);
     box-sizing: border-box;
     
     &:active
@@ -32,32 +32,32 @@
     
     &.is_selected
     {
-        border: $brand-yellow solid 2px;
+        border: var(--color-accent) solid 2px;
         border-radius: 0;
     }
     
     &.is_drop_target
     {
-        border: $gray-light-3 dashed 2px;
-        background-color: $gray-light-5;
+        border: var(--color-structure-4) dashed 2px;
+        background-color: var(--color-structure-1);
         text-align: center;
         
         &.black_border
         {
-            border: $gray-dark dashed 2px;
-            background-color: $gray-light-3;
+            border: var(--color-structure-12) dashed 2px;
+            background-color: var(--color-structure-4);
             
             > .drop_target_title
             {
-                color: $gray-dark;
+                color: var(--color-structure-12);
             }
         }
     }
     .drop_target_title
     {
-        color: $gray-light-2;
+        color: var(--color-structure-7);
         font-style: italic;
-        font-size: $font-size-lg-1;
+        font-size: var(--font-size-5);
         display: block;
         height: 100%;
         text-overflow: ellipsis;
@@ -68,27 +68,27 @@
 
 .light_blue
 {
-    border: $brand-primary-lighter solid 2px;
+    border: var(--color-active-light) solid 2px;
     border-radius: 0;
-    background: $brand-primary-lighter;
+    background: var(--color-active-light);
 }
 
 .blue
 {
-    border: $brand-primary-dark solid 2px;
+    border: var(--color-active-dark) solid 2px;
     border-radius: 0;
-    background: $brand-primary-dark;
+    background: var(--color-active-dark);
 }
 
 .dark_blue
 {
-    border: $brand-primary-darker solid 2px;
+    border: var(--color-active-dark) solid 2px;
     border-radius: 0;
-    background: $brand-primary-darker;
+    background: var(--color-active-dark);
     
     &.is_dragging
     {
-        border: $brand-secondary-light dashed 2px;
+        border: var(--color-active-dark) dashed 2px;
     }
 }
 
@@ -96,7 +96,7 @@
 .dark_blue .tile-box-sub_title,
 .dark_blue .tile-box-text
 {
-    color: $white;
+    color: var(--color-structure-0);
 }
 
 .tile-box-image
@@ -104,7 +104,7 @@
     margin: 7px .3em .3em 7px;
     width: 25%;
     height: 25%;
-    border-radius: 2px;
+    border-radius: var(--border-radius);
     border: none;
     float: left;
     pointer-events: none;
@@ -148,7 +148,7 @@
     height: 1.6em;
     font-weight: normal;
     text-align: center;
-    color: $black;
+    color: var(--color-structure-13);
     display: block;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -163,7 +163,7 @@
     font-weight: normal;
     text-align: center;
     font-size: .8em;
-    color: $black;
+    color: var(--color-structure-13);
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -180,8 +180,8 @@ $lines-to-show: 8;
     font-weight: normal;
     text-align: left;
     line-height: $line-height;
-    font-size: $font-size;
-    color: $black;
+    font-size: var(--font-size-3);
+    color: var(--color-structure-13);
     display: -webkit-box;
     -webkit-line-clamp: $lines-to-show;
     -webkit-box-orient: vertical;
@@ -200,7 +200,7 @@ $lines-to-show: 8;
     }
     .tile-box-item
     {
-        transition: all .3s;
+        transition: all var(--transition-sm);
         position: relative;
         padding: 0;
         width: 100%;
@@ -252,7 +252,7 @@ $lines-to-show: 8;
         float: left;
         position: relative;
         line-height: 48px;
-        border-right: $white 1px solid;
+        border-right: var(--color-structure-0) 1px solid;
     }
     
     .tile-box-text
@@ -273,12 +273,12 @@ $lines-to-show: 8;
         .tile-box-version,
         .tile-box-text
         {
-            border-right: $black 1px solid;
+            border-right: var(--color-structure-13) 1px solid;
         }
     }
 }
 
 .is_dragging
 {
-    border: $brand-secondary dashed 2px;
+    border: var(--color-alert) dashed 2px;
 }

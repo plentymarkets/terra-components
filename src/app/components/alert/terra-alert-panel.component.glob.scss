@@ -5,11 +5,12 @@ terra-alert-panel
 {
     position: fixed;
     right: 14px;
-    top: 71px;
+    top: var(--terra-alert-panel-top, var(--terra-alert-panel-top-default));
+    transition: top var(--transition-lg);
     max-height: 500px;
     max-width: 350px;
     overflow-y: auto;
-    z-index: $zindex-alert-panel;
+    z-index: 1030;
     .alert
     {
         position: relative;
@@ -18,7 +19,7 @@ terra-alert-panel
         word-wrap: break-word;
         &:before
         {
-            font-family: 'plentyicons' !important;
+            font-family: var(--font-family-icons) !important;
             speak: none;
             font-style: normal;
             font-weight: normal;
@@ -61,12 +62,12 @@ terra-alert-panel
     }
     div.alert button.close
     {
-        padding: 0px;
+        padding: 0;
         top: -5px;
         right: -20px;
         span
         {
-            font-size: $font-size-5;
+            font-size: var(--font-size-5);
         }
     }
 }

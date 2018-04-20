@@ -17,11 +17,13 @@ export interface TerraFormFieldInputFileOptions extends TerraFormFieldBaseOption
 export class TerraFormFieldInputFile extends TerraFormFieldBase<number>
 {
     public type:string;
+    public inputAllowedExtensions:Array<string> = [];
 
     constructor(key:string, label:string, required:boolean, options:TerraFormFieldInputFileOptions = {})
     {
         super(key, TerraControlTypeEnum.INPUT_FILE, label, required, options);
 
         this.type = options.type || '';
+        this.inputAllowedExtensions = options.inputAllowedExtensions || [];
     }
 }

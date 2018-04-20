@@ -220,7 +220,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                 let categoryDetail:CategoryDetailDataInterface = null;
 
                 // If the node hasn't already been added the routine will be started
-                if(isNullOrUndefined(this.categoryTreeConfig.findNodeById(categoryData.id)))
+                if(isNullOrUndefined(this.categoryTreeConfig.findNodeById(categoryData.id)) && categoryData.details.length > 0)
                 {
                     categoryDetail = categoryData.details[0];
 
