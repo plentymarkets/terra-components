@@ -2,7 +2,7 @@
 	"rules": {
 		"max-depth": [
 			true,
-			3
+			7
 		],
 		"class-name": true,
 		"comment-format": [
