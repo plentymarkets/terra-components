@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import {
-    TerraButtonComponent, TerraOverlayButtonInterface, TerraOverlayComponent,
-    TerraStorageObject, TerraBaseStorageService, TerraFrontendStorageService
-} from '../../../../';
 import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { TerraFileBrowserComponent } from '../../file-browser/terra-file-browser.component';
+import { TerraButtonComponent } from '../button/terra-button.component';
+import { TerraBaseStorageService } from '../../file-browser/terra-base-storage.interface';
+import { TerraStorageObject } from '../../file-browser/model/terra-storage-object';
+import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
+import { TerraOverlayButtonInterface } from '../../layouts/overlay/data/terra-overlay-button.interface';
+import { TerraFrontendStorageService } from '../../file-browser/terra-frontend-storage.service';
 
 @Component({
     selector: 'terra-file-chooser',
