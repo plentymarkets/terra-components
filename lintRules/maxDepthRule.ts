@@ -1,12 +1,9 @@
+/* tslint:disabble:max-classes-per-file */
 import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
-
-
 export class Rule extends Lint.Rules.AbstractRule
 {
-    public static FAILURE_STRING:string = 'Blocks are nested too deeply (';
-
     public apply(sourceFile:ts.SourceFile):Lint.RuleFailure[]
     {
         return this.applyWithWalker(new MaxDepthWalker(sourceFile, this.getOptions()));
@@ -53,3 +50,4 @@ class MaxDepthWalker extends Lint.RuleWalker
         this.currentDepth--;
     }
 }
+/* tslint:enable:max-classes-per-file */

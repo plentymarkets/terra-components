@@ -1,5 +1,6 @@
 {
 	"rules": {
+		"get-set" : true,
 		"max-depth": [
 			true,
 			7
