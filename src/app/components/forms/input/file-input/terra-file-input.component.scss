@@ -6,10 +6,10 @@
     {
         flex: 1;
         width: 100%;
-        background-color: $gray-light-3;
-        padding: 12px;
+        background-color: var(--color-structure-3);
+        padding: var(--space-lg);
         display: flex;
-        border-radius: $border-radius;
+        border-radius: var(--border-radius);
         margin-bottom: 2px;
         min-height: 150px;
         position: relative;
@@ -34,7 +34,7 @@
                 
                 > [class^="path"]:before
                 {
-                    color: $gray;
+                    color: var(--color-structure-9);
                 }
             }
         }
