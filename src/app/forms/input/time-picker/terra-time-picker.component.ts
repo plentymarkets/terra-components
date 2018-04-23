@@ -14,18 +14,6 @@ import {
 } from '@angular/forms';
 import { TerraSelectBoxValueInterface } from '../../../components/forms/select-box/data/terra-select-box.interface';
 
-// export enum TimeFormat
-// {
-//    EUROPEAN = '24',
-//    AMERICAN = '12'
-// }
-//
-// export enum DayFormat
-// {
-//    AM = 'AM',
-//    PM = 'PM'
-// }
-
 @Component({
     selector:  'terra-time-picker',
     styles:    [
@@ -51,23 +39,20 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
 
     public _selectedMinute:number;
     public _selectedHour:number;
-    // public _valueFormat:TimeFormat;
-    // public _valuePMAM:DayFormat;
-    public _values24:Array<TerraSelectBoxValueInterface> = [];
-    public _values12:Array<TerraSelectBoxValueInterface> = [];
-    public _valueHours:Array<TerraSelectBoxValueInterface> = [];
-    public _valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
-    public _is24HourFormat:boolean = true;
-    // public _timeFormatEnum:any = TimeFormat;
-    // public _dayFormatEnum:any = DayFormat;
-    private _value:Date = new Date();
+    public _values24:Array<TerraSelectBoxValueInterface>;
+    public _valueHours:Array<TerraSelectBoxValueInterface>;
+    public _valuesMinutes:Array<TerraSelectBoxValueInterface>;
+    private _value:Date;
 
     private initDone:boolean = false;
 
     constructor()
     {
+        this._values24 = [];
+        this._valueHours = [];
+        this._valuesMinutes = [];
+        this._value = new Date();
         this.inputIsDisabled = false;
-        // this._valueFormat = TimeFormat.EUROPEAN;
         this.changeHourSelectionValues();
     }
 
@@ -107,12 +92,12 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
     private onTouchedCallback:() => void = () =>
     {
         // Nothing to do here
-    }
+    };
 
     private onChangeCallback:(_:any) => void = (_) =>
     {
 
-    }
+    };
 
     public registerOnChange(fn:any):void
     {
@@ -124,7 +109,7 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
         this.onTouchedCallback = fn;
     }
 
-    public writeValue(value:any):void
+    public writeValue(value:Date):void
     {
         this._value = value;
 
@@ -137,20 +122,12 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
 
     public get value():Date
     {
-            return this._value;
+        return this._value;
     }
 
     public set value(value:Date)
     {
-        this._value = value;
-
         this.writeValue(value);
-    }
-
-    public changeHourSelectionValues():void
-    {
-            this._valueHours = this._values24;
-            this._is24HourFormat = true;
     }
 
     protected hoursChanged(hours:number):void
