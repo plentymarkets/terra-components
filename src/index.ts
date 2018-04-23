@@ -91,7 +91,6 @@ export * from './app/components/tree/node-tree/terra-node-tree.component';
 export * from './app/components/tree/node-tree/data/terra-node-tree.config';
 export * from './app/components/tree/node-tree/data/terra-node.interface';
 export * from './app/components/tree/node-tree/node/terra-node.component';
-export * from './app/helpers/terra-pdf.helper';
 export * from './app/forms/input/time-picker/terra-time-picker.component';
 export * from './app/components/dynamic-module-loader/data/terra-dynamic-loaded-component-input.interface';
 export * from './app/components/dynamic-module-loader/data/terra-dynamic-loaded-component.interface';
@@ -116,11 +115,9 @@ export * from './app/components/forms/dynamic-form/service/terra-dynamic-form.se
 export * from './app/components/forms/dynamic-form/service/terra-form-field-control.service';
 export * from './app/components/file-browser/terra-base-private-storage.interface';
 export * from './app/components/file-browser/terra-file-browser.service';
-export * from './app/helpers/terra-converter.helper';
 export * from './app/components/category-picker/terra-category-picker.component';
 export * from './app/components/category-picker/service/terra-category-picker-base.service';
 export * from './app/components/pager/data/terra-pager.data';
-export * from './app/helpers/url.helper';
 export * from './app/models/terra-key-value.interface';
 export * from './app/components/forms/input/file-input/terra-file-input.component';
 export * from './app/components/category-picker/terra-category-picker.component';
@@ -130,3 +127,13 @@ export * from './app/components/category-picker/data/category-detail-data.interf
 export * from './app/components/category-picker/data/category-pager-data.interface';
 export * from './app/components/category-picker/data/category-value.interface';
 export * from './app/helpers/index';
+export * from './app/helpers/enums/button-color.enum';
+export * from './app/helpers/enums/terra-placement.enum';
+export * from './app/helpers/regex/terra-regex';
+
+export * from './app/helpers/fileType.helper';
+export * from './app/helpers/clipboard.helper';
+export * from './app/helpers/fileType.helper';
+export * from './app/helpers/path.helper';
+export * from './app/helpers/terra-converter.helper';
+export * from './app/helpers/terra-pdf.helper';

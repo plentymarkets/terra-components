@@ -2,9 +2,9 @@ import {
     createS3StorageObject,
     S3StorageObjectInterface
 } from './s3-storage-object.interface';
+import { isNullOrUndefined } from 'util';
 import { PathHelper } from '../../../helpers/path.helper';
 import { FileTypeHelper } from '../../../helpers/fileType.helper';
-import { isNullOrUndefined } from 'util';
 
 export class TerraStorageObject
 {

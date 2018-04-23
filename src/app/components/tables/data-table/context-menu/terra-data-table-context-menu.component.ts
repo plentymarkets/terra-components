@@ -70,7 +70,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
     private calcMenuPosition():{ visibility:string, left:string, top:string }
     {
         // 70 (navbar) + 46 (tabbar) + 36 (breadcrumbs)
-        let offsetTop:number = 161;
+        let offsetTop:number = 108; // 161
         let offsetLeft:number;
         let anchor:JQuery = $('.context-menu#menu');
         let isMenuAtBottom:boolean;

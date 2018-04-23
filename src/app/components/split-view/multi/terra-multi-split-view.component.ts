@@ -152,8 +152,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     views:                 [],
                     identifier:            view.mainComponentName,
                     width:                 view.focusedWidth ? view.focusedWidth : view.defaultWidth,
-                    currentSelectedView:   view,
-                    isBackgroundColorGrey: view.isBackgroundColorGrey
+                    currentSelectedView:   view
                 }
             );
         }
@@ -201,8 +200,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             this.inputConfig.selectBreadcrumbEventEmitter.next(view);
         }
-
-        module.isBackgroundColorGrey = view.isBackgroundColorGrey;
 
         // check whether the view is already opened
         if(module.currentSelectedView === view)

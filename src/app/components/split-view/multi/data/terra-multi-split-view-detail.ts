@@ -10,5 +10,4 @@ export interface TerraMultiSplitViewDetail
     identifier:any;
     width:string;
     currentSelectedView:TerraMultiSplitViewInterface;
-    isBackgroundColorGrey?:boolean;
 }

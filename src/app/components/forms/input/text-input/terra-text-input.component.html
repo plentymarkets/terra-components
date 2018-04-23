@@ -1,13 +1,10 @@
-<div class="input-unit-v1"
+<div class="input-wrapper"
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
      [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled, 'isSmall': inputIsSmall}"
      container="body">
-
-    <label *ngIf="(_innerValue || _innerValue === 0) && inputName" htmlFor="{{_id}}">{{inputName}}
-        <span *ngIf="inputIsRequired">*</span>
-    </label>
+    
     <input id="{{_id}}"
            [type]="inputIsPassword?'password':'text'"
            [(ngModel)]="value"
@@ -23,4 +20,7 @@
            [readonly]="inputIsReadonly"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
            required>
+    <label *ngIf="(_innerValue || _innerValue === 0) && inputName" htmlFor="{{_id}}">{{inputName}}
+        <span *ngIf="inputIsRequired">*</span>
+    </label>
 </div>
