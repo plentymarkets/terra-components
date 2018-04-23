@@ -53,7 +53,6 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
         this._valuesMinutes = [];
         this._value = new Date();
         this.inputIsDisabled = false;
-        this.changeHourSelectionValues();
         this.initDone = false;
     }
 
@@ -90,15 +89,9 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
         this.initDone = true;
     }
 
-    private onTouchedCallback:() => void = () =>
-    {
-        // Nothing to do here
-    }
+    private onTouchedCallback:() => void = ():void => undefined;
 
-    private onChangeCallback:(_:any) => void = (_) =>
-    {
-        // Nothing to do here
-    }
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 
     public registerOnChange(fn:any):void
     {
