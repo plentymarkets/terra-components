@@ -44,7 +44,7 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
     public _valuesMinutes:Array<TerraSelectBoxValueInterface>;
     private _value:Date;
 
-    private initDone:boolean = false;
+    private initDone:boolean;
 
     constructor()
     {
@@ -54,6 +54,7 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
         this._value = new Date();
         this.inputIsDisabled = false;
         this.changeHourSelectionValues();
+        this.initDone = false;
     }
 
     public ngAfterViewInit():void
