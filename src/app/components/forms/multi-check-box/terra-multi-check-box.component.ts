@@ -79,7 +79,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
             this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
 
             // this is necessary for language switch
-            this.translation.translationChanged.subscribe(() =>
+            this.translation.translationChanged().subscribe(() =>
             {
                 this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
             });

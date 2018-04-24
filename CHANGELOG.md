@@ -1,3 +1,8 @@
+# Unreleased 
+ 
+### Minor changes
+* **Update Angular** to Version 5.2.10 and all other packages, except bootstrap, to newest version
+
 <a name="2.1.69-zlk"></a>
 # 2.1.69-zlk (24.04.2018)
 ### Bug Fixes
