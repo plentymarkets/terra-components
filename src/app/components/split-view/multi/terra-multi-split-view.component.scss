@@ -3,7 +3,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    height: var(--terra-breadcrumbs-height, var(--terra-breadcrumbs-height-default));
+    height: var(--terra-breadcrumbs-height, var(--breadcrumbs-height));
     transition: height var(--transition-lg);
     display: flex;
     
@@ -19,8 +19,8 @@
                 font-size: var(--font-size-1);
             }
             text-decoration: none;
-            padding: var(--terra-breadcrumbs-li-padding, var(--terra-breadcrumbs-li-padding-default));
-            line-height: var(--terra-breadcrumbs-line-height, var(--terra-breadcrumbs-line-height-default));
+            padding: var(--terra-breadcrumbs-li-padding, (0 var(--space-md)));
+            line-height: var(--terra-breadcrumbs-line-height, var(--breadcrumbs-height));
             transition: padding var(--transition-lg);
             position: relative;
             display: block;
@@ -48,7 +48,7 @@
             {
                 overflow: hidden;
                 font-size: var(--font-size-6);
-                line-height: var(--terra-breadcrumbs-icon-caret-line-height, var(--terra-breadcrumbs-icon-caret-line-height-default));
+                line-height: var(--terra-breadcrumbs-icon-caret-line-height, var(--breadcrumbs-height));
 
                 &:hover
                 {
@@ -63,7 +63,7 @@
                 }
                 .context-menu
                 {
-                    top: var(--terra-breadcrumbs-context-menu-top, var(--terra-breadcrumbs-context-menu-top-default));
+                    top: var(--terra-breadcrumbs-context-menu-top, (calc(var(--breadcrumbs-height) / 2 + var(--space-lg))));
                     li
                     {
                         float: none;
@@ -89,7 +89,7 @@
             &::before
             {
                 display: inline-block;
-                line-height: var(--terra-breadcrumbs-icon-next-line-height, var(--terra-breadcrumbs-icon-next-line-height-default));
+                line-height: var(--terra-breadcrumbs-icon-next-line-height, var(--breadcrumbs-height));
                 font-size: var(--font-size-6);
                 color: var(--color-structure-4);
             }
@@ -107,7 +107,7 @@
     font-size: 0;
     &.offset
     {
-        height: var(--split-view-side-scroller-offset-height, var(--split-view-side-scroller-offset-height-default));
+        height: var(--split-view-side-scroller-offset-height, (calc(100% - var(--breadcrumbs-height))));
     }
     > *
     {
