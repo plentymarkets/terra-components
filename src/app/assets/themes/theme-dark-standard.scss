@@ -2,8 +2,6 @@ body
 {
     &.standard
     {
-        /////////////////////////////-------- Global-General Variables --------/////////////////////////////////
-    
         //////////// Colors //////////
         // based on function groups (add, active, alert, accent, background)
         // Recommendation: To get 3 different hues for a color in a new theme, use https://material.io/color/#!/
@@ -44,6 +42,9 @@ body
         --color-structure-12: #2F323A; //197                 //navbar
         --color-structure-13: #000000; //255 black
     
+        //specific colors
+        --tooltip-color-default: var(--color-structure-12);
+    
         //////////// Fonts //////////////
     
         --font-family: 'Roboto', sans-serif;
@@ -77,8 +78,10 @@ body
     
         --navbar-height: 60px;
         --tabbar-height: 36px;
+        --tabs-border-bottom-width: 2px;
         --header-height: calc(var(--navbar-height) + var(--tabbar-height));
         --breadcrumbs-height: 36px;
+        --tab-content-fullscreen-top: 5px; //space between tab-content and fullscreen-top
     
         //////////// Others //////////
         
@@ -97,6 +100,7 @@ body
         --zIndex-9: 900;
     
         //////////// Animations //////////
+        
         --transition-0: ease 0s;
         --transition-xs: ease 0.2s;
         --transition-sm: ease 0.3s; //for colors and background-colors
@@ -110,114 +114,23 @@ body
         --transition-delay-lg: 0.6s;
         --transition-delay-xl: 1.2s;
         
+        --transition-menu: all var(--transition-xs);
+        --transition-menu-delay: var(--transition-delay-xs);
         
-        
-        /////////////////////////////-------- Local-Specific Variables --------/////////////////////////////////
-        
-        //////////// Colors //////////
-        
-        //Tooltips//
-        --tooltip-color-default: var(--color-structure-12);
-        
-        //////////// Paddings, Margins & Other spaces ////////////
-        
-        //Navbar//
-        --navbar-nav-link-height-default: var(--navbar-height);
-        --navbar-nav-link-line-height-default: var(--navbar-height);
-        
-        --navbar-user-image-width-default: calc(var(--navbar-height) - var(--space-lg));
-        --navbar-user-image-height-default: calc(var(--navbar-height) - var(--space-lg));
-        --navbar-user-image-padding-default: var(--space-xs);
-        
-        --navbar-toggler-height-default: var(--navbar-height);
+        ///////////////// Terra-Components /////////////////
     
-        --navbar-brand-font-size-default: calc(var(--navbar-height) - var(--space-xl));
-        --navbar-brand-height-default: var(--navbar-height);
-        --navbar-brand-line-height-default: var(--navbar-height);
-        --navbar-brand-padding-default: var(--space-lg);
-        
-        --navbar-mobile-nav-item-last-child-line-height-default: var(--navbar-height);
-    
-        --dropdown-menu-margin-top-default: calc(var(--space-md) * -1);
-
-        //Tabs//
-        --tabs-border-bottom-width-default: 2px;
-        --tabs-top-default: var(--navbar-height);
-        --tabs-nav-item-height-default: calc(var(--tabbar-height) - var(--space-sm) - var(--tabs-border-bottom-width-default));
-        --tabs-nav-item-margin-default: var(--space-sm) var(--space-xs) 0 var(--space-xs);
-        --tabs-nav-link-line-height-default: calc(var(--tabbar-height) - var(--space-sm) - var(--tabs-border-bottom-width-default));
-        --tab-content-top-default: var(--header-height);
-        --tab-content-height-default: calc(100% - var(--header-height));
-        --tab-context-menu-top-default: calc(var(--tabbar-height) / 2 + var(--space-md));
-        
-        //Breadcrumbs//
-        --terra-breadcrumbs-height-default: var(--breadcrumbs-height);
-        --terra-breadcrumbs-line-height-default: var(--breadcrumbs-height);
-        --terra-breadcrumbs-context-menu-top-default: calc(var(--breadcrumbs-height) / 2 + var(--space-lg));
-        --terra-breadcrumbs-li-padding-default: 0 var(--space-md);
-        --terra-breadcrumbs-icon-next-line-height-default: var(--breadcrumbs-height);
-        --terra-breadcrumbs-icon-caret-line-height-default: var(--breadcrumbs-height);
-
-        //Split-View//
-        --split-view-side-scroller-offset-height-default: calc(100% - var(--breadcrumbs-height));
-        
-        //iFrames//
-        --iframeView-top-default: var(--header-height);
-        --iframeView-height-default: calc(100% - var(--header-height));
-        
-        --iframeSettingsView-top-default: var(--header-height);
-        --iframeSettingsView-height-default: calc(100% - var(--header-height));
-        
-        --pluginIframeSettingsView-top-default: var(--header-height);
-        --pluginIframeSettingsView-height-default: calc(100% - var(--header-height));
-    
-        --iframeCustomerAccountView-top-default: calc(var(--header-height) + var(--breadcrumbs-height));
-        --iframeCustomerAccountView-height-default: calc(100% - var(--header-height) - var(--breadcrumbs-height));
-    
-        --iframeBreadcrumbsView-top-default: calc(var(--header-height) + var(--breadcrumbs-height));
-        --iframeBreadcrumbsView-height-default: calc(100% - var(--header-height) - var(--breadcrumbs-height));
-        
-        --iframePluginDetailsView-top-default: calc(var(--header-height) + var(--breadcrumbs-height));
-        --iframePluginDetailsView-height-default: calc(100% - var(--header-height) - var(--breadcrumbs-height));
-        
-        //Fullscreen//
-
-        --tab-content-fullscreen-top-default: 5px;
-        --tab-content-fullscreen-height-default: calc(100% - 5px);
-        
-        --navbar-fullscreen-container-hide-top-default: calc(var(--navbar-height) * -1);
-        --navbar-fullscreen-container-hide-top-hover-default: 0;
-        
-        --tabbar-fullscreen-container-hide-top-default: calc(var(--tabbar-height) * -1 + var(--tabs-border-bottom-width-default));
-        --tabbar-fullscreen-container-hide-top-hover-default: var(--navbar-height);
-        
-        --iframeSettingsView-fullscreen-top-default: calc(var(--tab-content-fullscreen-top-default) + var(--breadcrumbs-height));
-        --iframeSettingsView-fullscreen-height-default: calc(100% - var(--tab-content-fullscreen-top-default) - var(--breadcrumbs-height));
-    
-        --iframeBreadcrumbsView-fullscreen-top-default: calc(var(--tab-content-fullscreen-top-default));
-        --iframeBreadcrumbsView-fullscreen-height-default: calc(100% - var(--tab-content-fullscreen-top-default));
-
-        //Inputs & Select-Boxes//
+        //Inputs & Select-Boxes
         --input-wrapper-height-default: var(--height-md);
         --input-padding-default: var(--space-lg) 0 0 0;
         --input-isEmpty-padding-default: var(--input-padding-default);
         --input-isSmall-padding-default: 0 var(--space-md) 0 30%;
         --label-padding-default: var(--space-xs) 0 0 0;
         --label-width-default: 100%;
-        
+    
         --select-box-height-default: var(--height-md);
         --select-box-line-height-default: var(--height-md);
         --select-box-dropdown-top-default: var(--height-md);
         --select-box-labeled-padding-default: var(--space-lg) 0 0 0;
         --select-box-toggle-background-position-default: calc(100% - var(--space-lg)) var(--space-lg);
-
-        //Alert-Panel//
-        --terra-alert-panel-top-default: calc(var(--navbar-height) + var(--space-lg));
-        
-        //Navbar-dropdown-menu//
-        --dropdown-menu-transition-default: all var(--transition-xs);
-        --dropdown-menu-transition-delay-default: var(--transition-delay-xs);
-        --dropdown-menu-transition-hide-default: all var(--transition-xs);
-        --dropdown-menu-transition-delay-hide-default: var(--transition-delay-xs);
     }
 }
