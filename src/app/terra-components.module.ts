@@ -136,6 +136,7 @@ import { TerraNoteComponentExample } from './components/note/example/terra-note.
 import { TerraNodeTreeComponentExample } from './components/tree/node-tree/example/terra-node-tree.component.example';
 import { TerraMultiCheckBoxComponentExample } from './components/forms/multi-check-box/example/terra-multi-check-box.component.example';
 import { TerraCategoryPickerComponent } from './components/category-picker/terra-category-picker.component';
+import { TerraFileChooserComponent } from './components/buttons/file-chooser/terra-file-chooser.component';
 import { l10nConfig } from './translation/l10n.config';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -191,6 +192,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
+        TerraFileChooserComponent,
         TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
@@ -286,6 +288,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
+        TerraFileChooserComponent,
         TerraButtonWithOptionsComponent,
         TerraNoteEditorComponent,
         TerraNoteComponent,
@@ -338,6 +341,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraSliderComponent,
         TerraFileBrowserComponent,
         TerraFileInputComponent,
+        TerraFileChooserComponent,
         TerraNoResultNoticeComponent,
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
