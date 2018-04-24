@@ -1,8 +1,15 @@
+# Unreleased
+
+## Feature
+* **terra-file-chooser** Added new component to open file-browser directly via a button without input element.
+
+
 <a name="2.2.0"></a>
 # 2.2.0 (24.04.2018)
  
 ### Minor changes
 * **Update Angular** to Version 5.2.10 and all other packages, except bootstrap, to newest version
+
 
 <a name="2.1.69-zlk"></a>
 # 2.1.69-zlk (24.04.2018)
