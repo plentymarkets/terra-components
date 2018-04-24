@@ -1,4 +1,5 @@
-# Unreleased 
+<a name="2.2.0"></a>
+# 2.2.0 (24.04.2018)
  
 ### Minor changes
 * **Update Angular** to Version 5.2.10 and all other packages, except bootstrap, to newest version
