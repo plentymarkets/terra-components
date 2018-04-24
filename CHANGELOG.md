@@ -3,6 +3,13 @@
 ### Minor changes
 * **Update Angular** to Version 5.2.10 and all other packages, except bootstrap, to newest version
 
+<a name="2.1.69-zlk"></a>
+# 2.1.69-zlk (24.04.2018)
+### Bug Fixes
+* **themes** fixed bug with variable definitions
+
+<a name="2.1.67-zlk"></a>
+# 2.1.67-zlk (20.04.2018)
 ### Bug Fixes
  **terra-category-picker** fixed a bug with empty category details
  
