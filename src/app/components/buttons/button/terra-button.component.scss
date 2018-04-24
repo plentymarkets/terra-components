@@ -401,8 +401,8 @@ fieldset[disabled] a.btn
     & > .btn-handler > .btn,
     & > .btn-handler > .flag
     {
-        border-left: 1px solid $grey-2;
-        @include border-left-radius(0);
+        border-left: 1px solid var(--color-structure-0);
+        border-radius: var(--border-radius) 0 0 var(--border-radius);
     }
 }
 
@@ -411,8 +411,8 @@ fieldset[disabled] a.btn
     & > .btn-handler > .btn,
     & > .btn-handler > .flag
     {
-        border-top-right-radius: $border-radius !important;
-        border-bottom-right-radius: $border-radius  !important;
+        border-top-right-radius: var(--border-radius) !important;
+        border-bottom-right-radius: var(--border-radius) !important;
     }
 }
 
