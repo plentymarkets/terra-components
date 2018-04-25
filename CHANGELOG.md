@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 * **tehmes** theming restructuring
+* **category-picker** fixed error with the reset button
 
 ## Feature
 * **terra-file-chooser** Added new component to open file-browser directly via a button without input element.
