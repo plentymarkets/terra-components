@@ -151,8 +151,16 @@ input[type="search"]::-webkit-search-decoration
         }
     }
     
+    &.isReadOnly
+    {
+        input
+        {
+            color: var(--color-structure-6);
+        }
+    }
     
-    &:not(.error):not(.valid):not(.success):not(.disabled)::after {
+    &:not(.error):not(.valid):not(.success):not(.disabled)::after
+    {
         content: "";
         display: block;
         width: 0%;
@@ -162,7 +170,8 @@ input[type="search"]::-webkit-search-decoration
         transition: width var(--transition-md);
         bottom: 0px;
     }
-    &:not(.error):not(.valid):not(.success):not(.disabled):hover::after {
+    &:not(.error):not(.valid):not(.success):not(.disabled):hover::after
+    {
         width: 100%;
     }
 }
@@ -204,7 +213,6 @@ textarea
             color: var(--color-active);
         }
     }
-    
     
     &.isSmall
     {
@@ -282,7 +290,6 @@ label
     font-weight: var(--font-weight-1);
     line-height: 1em !important;
     font-variant: all-small-caps;
-    
     
     width: var(--label-width, var(--label-width-default));
     overflow: hidden;
