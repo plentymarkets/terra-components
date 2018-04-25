@@ -151,12 +151,9 @@ input[type="search"]::-webkit-search-decoration
         }
     }
     
-    &.isReadOnly
+    input[readonly]
     {
-        input
-        {
-            color: var(--color-structure-6);
-        }
+        color: var(--color-structure-6);
     }
     
     &:not(.error):not(.valid):not(.success):not(.disabled)::after
