@@ -26,6 +26,9 @@ body
         --transition-delay-md: 0.3s;
         --transition-delay-lg: 0.6s;
         --transition-delay-xl: 1.2s;
+    
+        --transition-menu: all var(--transition-0);
+        --transition-menu-delay: var(--transition-delay-0);
         
         //Inputs & Select-Boxes//
         --input-padding-default: 0 var(--space-md) 0 30%;
