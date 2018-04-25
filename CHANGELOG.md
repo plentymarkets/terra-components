@@ -2,7 +2,8 @@
 # 2.2.1 (24.04.2018)
 
 ### Bug Fixes
-* **tehmes** theming restructuring
+* **themes** theming restructuring
+* **styling** fixed z-Index in toolbars that caused overlapping issues
 
 ## Feature
 * **terra-file-chooser** Added new component to open file-browser directly via a button without input element.
