@@ -1,7 +1,7 @@
 #Unreleased 
 
 ### Bug Fixes
-* **styling** fixed z-Index in toolbars that caused overlapping issues
+* **terra-base-toolbar** fixed z-Index in toolbars that caused overlapping issues
 
 <a name="2.2.1"></a>
 # 2.2.1 (24.04.2018)
