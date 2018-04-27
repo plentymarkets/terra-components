@@ -1,3 +1,9 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-dynamic-form** added tooltip for category picker
+* **terra-category-picker** added input for tooltip
+
 <a name="2.2.2"></a>
 # 2.2.2 (25.04.2018)
 
