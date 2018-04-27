@@ -1,6 +1,8 @@
+<a name="unreleased"></a>
 # Unreleased
 
 ### Bug Fixes
+* **terra-text-input** changed color of text input with readonly attribute
 * **terra-dynamic-form** added tooltip for category picker
 * **terra-category-picker** added input for tooltip
 
