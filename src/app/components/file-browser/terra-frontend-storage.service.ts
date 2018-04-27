@@ -249,7 +249,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         let url:string = '/rest/storage/frontend/files';
         if(!isNullOrUndefined(continuationToken))
         {
-            url += '?continuationToken=' + continuationToken;
+            url += '?continuationToken=' + encodeURIComponent(continuationToken);
         }
 
         this.setAuthorization();
