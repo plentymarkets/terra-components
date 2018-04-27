@@ -1,6 +1,7 @@
 <div blur="showTree()">
     <terra-text-input [inputIsReadonly]="true"
                       [inputIsDisabled]="inputIsDisabled"
+                      inputTooltipText="{{inputTooltipText}}"
                       [inputName]="inputName"
                       [(ngModel)]="_categoryName"
                       (click)="showTree()">

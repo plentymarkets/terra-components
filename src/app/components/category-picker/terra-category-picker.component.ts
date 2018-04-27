@@ -40,6 +40,12 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
     @Input()
     public inputIsDisabled:boolean;
 
+    /**
+     * @description Tooltip that is shown on the TextInput
+     */
+    @Input()
+    public inputTooltipText:string;
+
     @Input()
     public inputName:string;
 
