@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
 import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
-import { TerraLoadingSpinnerService } from '../../../';
+import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseMetadataStorageService } from './terra-base-metadata-storage.interface';
 
 @Injectable()

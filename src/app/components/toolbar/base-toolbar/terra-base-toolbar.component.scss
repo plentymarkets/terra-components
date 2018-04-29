@@ -7,7 +7,7 @@
     border-bottom: var(--toolbar-border-bottom, none);
     box-shadow: var(--box-shadow);
     position: relative;
-    z-index: var(--toolbar-z-index, var(--zIndex-7));
+    z-index: var(--toolbar-z-index);
     --select-box-wrapper-margin-bottom: 0;
 }
 

@@ -110,8 +110,8 @@ p, span, a
     position: absolute;
     opacity: 0;
     visibility: hidden;
-    transition: all var(--transition-sm);
-    transition-delay: var(--transition-delay-sm);
+    transition: var(--transition-menu);
+    transition-delay: var(--transition-menu-delay);
     padding: var(--space-sm) 0;
     background-color: var(--color-structure-11);
     border-radius: var(--border-radius);

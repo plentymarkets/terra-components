@@ -3,6 +3,7 @@ export * from './app/components/alert/terra-alert.component';
 export * from './app/components/buttons/button/data/terra-button.interface';
 export * from './app/components/buttons/button/terra-button.component';
 export * from './app/components/buttons/button-with-options/terra-button-with-options.component';
+export * from './app/components/buttons/file-chooser/terra-file-chooser.component';
 export * from './app/components/data/terra-base.data';
 export * from './app/components/filter/terra-filter.component';
 export * from './app/components/forms/checkbox/terra-checkbox.component';
@@ -21,6 +22,7 @@ export * from './app/components/forms/multi-select-box/terra-multi-select-box.co
 export * from './app/components/forms/multi-check-box/data/terra-multi-check-box-value.interface';
 export * from './app/components/forms/multi-check-box/terra-multi-check-box.component';
 export * from './app/components/forms/input/text-area-input/terra-text-area-input.component';
+export * from './app/components/forms/input/file-input/terra-file-input.component';
 export * from './app/components/indicator/terra-indicator.component';
 export * from './app/components/layouts/info-box/terra-info-box.component';
 export * from './app/components/loading-spinner/service/terra-loading-spinner.service';
@@ -114,11 +116,11 @@ export * from './app/components/forms/dynamic-form/service/terra-dynamic-form.se
 export * from './app/components/forms/dynamic-form/service/terra-form-field-control.service';
 export * from './app/components/file-browser/terra-base-private-storage.interface';
 export * from './app/components/file-browser/terra-file-browser.service';
+export * from './app/components/file-browser/terra-file-browser.component';
 export * from './app/components/category-picker/terra-category-picker.component';
 export * from './app/components/category-picker/service/terra-category-picker-base.service';
 export * from './app/components/pager/data/terra-pager.data';
 export * from './app/models/terra-key-value.interface';
-export * from './app/components/forms/input/file-input/terra-file-input.component';
 export * from './app/components/category-picker/terra-category-picker.component';
 export * from './app/components/category-picker/service/terra-category-picker-base.service';
 export * from './app/components/category-picker/data/category-data.interface';
@@ -128,7 +130,6 @@ export * from './app/components/category-picker/data/category-value.interface';
 export * from './app/helpers/enums/button-color.enum';
 export * from './app/helpers/enums/terra-placement.enum';
 export * from './app/helpers/regex/terra-regex';
-
 export * from './app/helpers/fileType.helper';
 export * from './app/helpers/clipboard.helper';
 export * from './app/helpers/fileType.helper';

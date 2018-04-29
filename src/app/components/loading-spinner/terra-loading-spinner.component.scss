@@ -1,10 +1,11 @@
 .spinner
 {
-    width: var(--navbar-user-image-width, var(--navbar-user-image-width-default));
-    height: var(--navbar-user-image-height, var(--navbar-user-image-height-default));
-    padding: var(--navbar-user-image-padding, var(--navbar-user-image-padding-default));
+    width: var(--navbar-user-image-width, (calc(var(--navbar-height) - var(--space-lg))));
+    height: var(--navbar-user-image-height, (calc(var(--navbar-height) - var(--space-lg))));
+    padding: var(--navbar-user-image-padding, var(--space-xs));
     position: relative;
     margin: var(--space-sm) .8vw;
+    transition: all var(--transition-lg);
 }
 
 .double-bounce1, .double-bounce2

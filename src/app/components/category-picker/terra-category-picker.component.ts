@@ -9,7 +9,7 @@ import { TranslationService } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraCategoryPickerBaseService } from './service/terra-category-picker-base.service';
 import { CategoryTreeConfig } from './config/category-tree.config';
-import { TerraNodeInterface } from '../../../';
+import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
 import { CategoryDataInterface } from './data/category-data.interface';
 import { CategoryDetailDataInterface } from './data/category-detail-data.interface';
 import { isNullOrUndefined } from 'util';
@@ -39,6 +39,12 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     @Input()
     public inputIsDisabled:boolean;
+
+    /**
+     * @description Tooltip that is shown on the TextInput
+     */
+    @Input()
+    public inputTooltipText:string;
 
     @Input()
     public inputName:string;
