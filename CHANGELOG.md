@@ -1,4 +1,40 @@
-# Unreleased 
+<a name="unreleased"></a>
+# Unreleased
+
+### Bug Fixes
+* **terra-text-input** changed color of text input with readonly attribute
+* **terra-dynamic-form** added tooltip for category picker
+* **terra-category-picker** added input for tooltip
+
+<a name="2.2.2"></a>
+# 2.2.2 (25.04.2018)
+
+### Bug Fixes
+* **terra-base-toolbar** fixed z-Index in toolbars that caused overlapping issues
+
+<a name="2.2.1"></a>
+# 2.2.1 (24.04.2018)
+
+### Bug Fixes
+* **themes** theming restructuring
+
+## Feature
+* **terra-file-chooser** Added new component to open file-browser directly via a button without input element.
+
+<a name="2.2.0"></a>
+# 2.2.0 (24.04.2018)
+ 
+### Minor changes
+* **Update Angular** to Version 5.2.10 and all other packages, except bootstrap, to newest version
+
+
+<a name="2.1.69-zlk"></a>
+# 2.1.69-zlk (24.04.2018)
+### Bug Fixes
+* **themes** fixed bug with variable definitions
+
+<a name="2.1.67-zlk"></a>
+# 2.1.67-zlk (20.04.2018)
 ### Bug Fixes
  **terra-category-picker** fixed a bug with empty category details
  

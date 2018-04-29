@@ -4,4 +4,9 @@
 {
     margin: 0 !important;
     padding-right: 12px;
+
+    &:last-child
+    {
+        padding-right: 0;
+    }
 }

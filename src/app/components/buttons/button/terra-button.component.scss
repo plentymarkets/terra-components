@@ -1,5 +1,3 @@
-@import "~bootstrap/scss/mixins";
-
 button, html [type="button"], [type="reset"], [type="submit"]
 {
     -webkit-appearance: none !important;
@@ -96,7 +94,7 @@ button:focus
 {
     height: var(--btn-height, var(--height-md));
     line-height: var(--btn-line-height, var(--height-md));
-    padding: var(--btn-padding, 0 var(--space-md));
+    padding: var(--btn-padding, (0 var(--space-md)));
     background-color: var(--color-structure-9);
     color: var(--color-structure-0);
     font-size: var(--font-size-3);
@@ -239,7 +237,7 @@ button:focus
         // line-height: ensure even-numbered height of button next to large input
         height: var(--height-lg);
         line-height: var(--height-lg);
-        padding: var(--btn-lg-padding, 0 var(--space-md));
+        padding: var(--btn-lg-padding, (0 var(--space-md)));
         font-size: var(--font-size-5);
         span
         {
@@ -253,7 +251,7 @@ button:focus
         // line-height: ensure proper height of button next to small input
         height: var(--height-sm);
         line-height: var(--height-sm);
-        padding: var(--btn-sm-padding, 0 var(--space-md));
+        padding: var(--btn-sm-padding, (0 var(--space-md)));
         font-size: var(--font-size-1);
         span
         {
@@ -273,7 +271,7 @@ button:focus
         background-color: transparent;
         color: var(--color-structure-9);
         font-weight: var(--font-weight-3);
-    
+        
         &:hover,
         &:focus
         {
@@ -393,6 +391,27 @@ fieldset[disabled] a.btn
         {
             border-radius: 0 var(--border-radius) var(--border-radius) 0;
         }
+    }
+}
+
+:host-context(.btn-group :not(&):not(:first-child) )
+{
+    & > .btn-handler > .btn,
+    & > .btn-handler > .flag
+    {
+        border-left: 1px solid var(--color-structure-2);
+        border-bottom-left-radius: var(--border-radius);
+        border-top-left-radius: var(--border-radius);
+    }
+}
+
+:host-context(.btn-group :not(&):last-child)
+{
+    & > .btn-handler > .btn,
+    & > .btn-handler > .flag
+    {
+        border-top-right-radius: var(--border-radius) !important;
+        border-bottom-right-radius: var(--border-radius) !important;
     }
 }
 

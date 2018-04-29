@@ -2,7 +2,7 @@ import {
     Component,
     Input
 } from '@angular/core';
-import { TerraButtonInterface } from '../../../';
+import { TerraButtonInterface } from '../buttons/button/data/terra-button.interface';
 
 @Component({
     selector: 'terra-no-result-notice',

@@ -29,16 +29,14 @@ import {
     transition,
     trigger
 } from '@angular/animations';
-import {
-    TerraAlertComponent,
-    TerraBaseData,
-    TerraBaseService,
-    TerraButtonInterface,
-    TerraCheckboxComponent,
-    TerraPagerInterface,
-    TerraSelectBoxValueInterface,
-    TerraTagInterface
-} from '../../../../';
+import { TerraBaseService } from '../../../service/terra-base.service';
+import { TerraBaseData } from '../../data/terra-base.data';
+import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
+import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
+import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
+import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
+import { TerraAlertComponent } from '../../alert/terra-alert.component';
+import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 
 @Component({
     selector:   'terra-data-table',
