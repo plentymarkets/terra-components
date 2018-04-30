@@ -16,9 +16,9 @@ export abstract class TerraBaseStorageService extends TerraBaseService
 
     public abstract createDirectory(path:string):Observable<any>;
 
-    public abstract uploadFiles(files:FileList | File[], path:string):TerraUploadItem[];
+    public abstract uploadFiles(files:FileList | Array<File>, path:string):Array<TerraUploadItem>;
 
-    public abstract deleteFiles(keys:string[]):Observable<any>;
+    public abstract deleteFiles(keys:Array<string>):Observable<any>;
 
     public prepareKey(value:string, isName:boolean = false, isDirectory:boolean = false):string
     {

@@ -5,6 +5,10 @@
 			true,
 			7
 		],
+		"array-type": [
+			true,
+			"generic"
+		],
 		"class-name": true,
 		"comment-format": [
 			true,
