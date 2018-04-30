@@ -1,7 +1,6 @@
 module.exports = function () {
 
     var config = {
-
         allTs: './src/**/!(*.d).ts',
         allCSS: './src/**/*.css',
         allFonts: './src/app/assets/fonts/**/*',
@@ -9,6 +8,7 @@ module.exports = function () {
         allSCSS: './src/**/*.scss',
         allHTML: './src/**/*.html',
         allLang: './src/app/assets/lang/**/*',
+        customLintRules : './lintRules/**/*Rule.ts',
         tslint: './tslint-rules.json',
         tsOutputPath: './dist/',
         fontsOutputPath: './dist/app/assets/fonts/',
