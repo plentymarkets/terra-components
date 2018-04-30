@@ -62,5 +62,4 @@ class GetSetRule extends Lint.RuleWalker
         }
     }
 }
-
 /* tslint:enable:max-classes-per-file */

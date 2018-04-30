@@ -1,5 +1,6 @@
 {
 	"rules": {
+		"restrict-leading-underscore" : true,
 		"get-set" : true,
 		"max-depth": [
 			true,
