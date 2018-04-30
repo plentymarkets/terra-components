@@ -2,9 +2,9 @@ export class PathHelper
 {
     public static readonly DELIMITER:string = '/';
 
-    private static getPaths(path:string):string[]
+    private static getPaths(path:string):Array<string>
     {
-        let paths:string[] = path.split(this.DELIMITER);
+        let paths:Array<string> = path.split(this.DELIMITER);
         while(paths.length > 0 && paths[0].length <= 0)
         {
             paths.shift();
@@ -37,7 +37,7 @@ export class PathHelper
 
     public static basename(path:string):string
     {
-        let paths:string[] = this.getPaths(path);
+        let paths:Array<string> = this.getPaths(path);
         let i:number = paths.length - 1;
         return paths[i];
     }
@@ -45,7 +45,7 @@ export class PathHelper
     public static dirname(path:string):string
     {
         let prefix:string = this.isAbsolute(path) ? '/' : '';
-        let paths:string[] = this.getPaths(path);
+        let paths:Array<string> = this.getPaths(path);
         paths.pop();
 
         return prefix + paths.join(this.DELIMITER);
@@ -59,11 +59,11 @@ export class PathHelper
         }
 
         let filename:string = this.basename(path);
-        let splittedFilename:string[] = filename.split('.');
+        let splittedFilename:Array<string> = filename.split('.');
         return splittedFilename.pop();
     }
 
-    public static join(...paths:string[]):string
+    public static join(...paths:Array<string>):string
     {
         return paths.map((path:string) =>
         {
@@ -82,7 +82,7 @@ export class PathHelper
 
     public static sizeString(size:number):string
     {
-        let units:string[] = ['B',
+        let units:Array<string> = ['B',
                               'kB',
                               'MB',
                               'GB',

@@ -37,7 +37,7 @@ export class TerraFileInputComponent extends TerraInputComponent
     public inputShowPreview:boolean = false;
 
     @Input()
-    public inputAllowedExtensions:string[] = [];
+    public inputAllowedExtensions:Array<string> = [];
 
     @Input()
     public inputAllowFolders:boolean = true;
