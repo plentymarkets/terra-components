@@ -10,7 +10,12 @@ export class TerraInfoboxComponentExample
 {
     public tagList:Array<TerraTagInterface> = [
         {
-            badge: 'tag1'
+            badge: 'Terra',
+            color: 'green'
+        },
+        {
+            badge: 'Plenty',
+            color: 'red'
         }
     ];
 

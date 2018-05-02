@@ -1,5 +1,6 @@
 import {
-    Component
+    Component,
+    OnInit
 } from '@angular/core';
 import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 
@@ -8,18 +9,33 @@ import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
     styles:   [require('./terra-taglist.component.example.scss')],
     template: require('./terra-taglist.component.example.html'),
 })
-export class TerraTaglistComponentExample
+export class TerraTaglistComponentExample implements OnInit
 {
-    private tagList:Array<TerraTagInterface> = [
-        {
-            badge: 'tag1'
-        },
-        {
-            badge: 'tag2'
-        },
-        {
-            badge: 'tag3'
-        }
-    ];
+    public infoBoxTagList:Array<TerraTagInterface> = [];
+    public ngOnInit():void
+    {
+        this.infoBoxTagList.push(
+            {
+                badge: 'Terra'
+            },
+            {
+                badge: 'Terra',
+                color: 'red'
+            },
+            {
+                badge: 'Terra',
+                color:'#f3f3f3'
+            },
+            {
+                badge: 'Terra',
+                isTaggable: true
+            },
+            {
+                badge: 'Terra',
+                isTaggable: true,
+                isTagged: true
+            }
+        );
+    }
 }
 
