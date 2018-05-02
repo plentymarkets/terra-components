@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 # Unreleased
 
+### Feature
+* **string-helper** new helper for strings
+
 ### Bug Fixes
 * **terra-text-input** changed color of text input with readonly attribute
 * **terra-dynamic-form** added tooltip for category picker
