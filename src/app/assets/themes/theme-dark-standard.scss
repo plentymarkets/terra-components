@@ -1,6 +1,6 @@
 body
 {
-    &.standard
+    &.dark-standard
     {
         //////////// Colors //////////
         // based on function groups (add, active, alert, accent, background)
@@ -74,7 +74,7 @@ body
         --space-md: 8px;
         --space-lg: 12px;
         --space-xl: 24px;
-        --space-container: 0 var(--space-xs) var(--space-md) var(--space-xs) ; //for margins of container-elements like portlets or infoboxes
+        --space-container: 0 var(--space-xs) var(--space-md) var(--space-xs); //for margins of container-elements like portlets or infoboxes
     
         --navbar-height: 60px;
         --tabbar-height: 36px;
@@ -132,5 +132,7 @@ body
         --select-box-dropdown-top-default: var(--height-md);
         --select-box-labeled-padding-default: var(--space-lg) 0 0 0;
         --select-box-toggle-background-position-default: calc(100% - var(--space-lg)) var(--space-lg);
+        --select-box-labeled-isSmall-padding-default: 0 var(--space-md) 0 30%;
+        --select-box-isSmall-background-position-default: calc(100% - var(--space-lg)) calc(var(--space-lg) / 2);
     }
 }
