@@ -1,3 +1,8 @@
+#Unreleased
+
+### Feature
+* **terra-select-box** fixed null pointer when <code>selectedValue</code> was undefined
+
 <a name="2.2.3"></a>
 # 2.2.3 (02.05.2018)
 
