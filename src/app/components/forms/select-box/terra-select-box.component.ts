@@ -18,6 +18,7 @@ import {
     isNull,
     isNullOrUndefined
 } from 'util';
+import { StringHelper } from '../../../helpers/string.helper';
 
 @Component({
     selector:  'terra-select-box',
@@ -161,6 +162,13 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     public writeValue(value:any):void
     {
         this.value = value;
+    }
+
+    public get emptyValueSelected():boolean
+    {
+        return isNullOrUndefined(this._selectedValue) ||
+               (StringHelper.isNullUndefinedOrEmpty(this._selectedValue.caption.toString()) &&
+               StringHelper.isNullUndefinedOrEmpty(this._selectedValue.icon));
     }
 
     public get value():any
