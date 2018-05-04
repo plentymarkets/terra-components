@@ -1,3 +1,9 @@
+<a name="2.2.6"></a>
+# 2.2.6 (04.05.2018)
+
+### Bug Fixes
+* **terra-multi-splitview** fixed color for non selected breadcrumbs
+
 <a name="2.2.5"></a>
 # 2.2.5 (04.05.2018)
 
