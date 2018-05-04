@@ -137,7 +137,7 @@ export class TerraSliderComponent implements OnInit
             if(this.inputInterval > 0)
             {
                 let stepSize:number = this.inputInterval;
-                let steps:number[] = [];
+                let steps:Array<number> = [];
                 let current:number = this.inputMin;
 
                 while(current <= this.inputMax)
@@ -149,7 +149,7 @@ export class TerraSliderComponent implements OnInit
                 this.inputPrecision = Math.max(
                     ...steps.map((step:number):number =>
                     {
-                        let parts:string[] = ('' + step).split('.');
+                        let parts:Array<string> = ('' + step).split('.');
 
                         if(!parts[1])
                         {
@@ -203,7 +203,7 @@ export class TerraSliderComponent implements OnInit
         }
     }
 
-    public getTicks():TerraSliderTick[]
+    public getTicks():Array<TerraSliderTick>
     {
         let ticks:Array<TerraSliderTick> = [];
         let numberOfTicks:number = 10;

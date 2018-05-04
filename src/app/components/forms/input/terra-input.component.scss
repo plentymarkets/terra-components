@@ -154,20 +154,40 @@ input[type="search"]::-webkit-search-decoration
         color: var(--color-structure-6);
     }
     
-    &:not(.error):not(.valid):not(.success):not(.disabled)::after
+    &:not(.error):not(.valid):not(.success):not(.disabled)
     {
-        content: "";
-        display: block;
-        width: 0%;
-        position: absolute;
-        height: 2px;
-        background-color: var(--color-active);
-        transition: width var(--transition-md);
-        bottom: 0px;
+        &::after
+        {
+            content: "";
+            display: block;
+            width: 0%;
+            left: 50%;
+            position: absolute;
+            height: 2px;
+            background-color: var(--color-active);
+            transition: width var(--transition-md);
+            bottom: 0;
+        }
+        &::before
+        {
+            content: "";
+            display: block;
+            width: 0%;
+            right: 50%;
+            position: absolute;
+            height: 2px;
+            background-color: var(--color-active);
+            transition: width var(--transition-md);
+            bottom: 0;
+        }
     }
-    &:not(.error):not(.valid):not(.success):not(.disabled):hover::after
+    &:not(.error):not(.valid):not(.success):not(.disabled):hover
     {
-        width: 100%;
+        &::after,
+        &::before
+        {
+            width: 50%;
+        }
     }
 }
 

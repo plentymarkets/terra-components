@@ -49,7 +49,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent
     }
 
     @Input()
-    public inputAllowedExtensions:string[] = [];
+    public inputAllowedExtensions:Array<string> = [];
 
     @Input()
     public inputAllowFolders:boolean = true;
