@@ -55,7 +55,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private splitViewId:number;
 
-    private componentRoute:string
+    private componentRoute:string;
 
     constructor(private zone:NgZone, private _router:Router)
     {
