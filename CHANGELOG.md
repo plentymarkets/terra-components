@@ -1,4 +1,6 @@
-# Unreleased
+#Unreleased
+### Feature
+* **terra-multi-split-view** set input inputComponentRoute deprecated. It is no longer needed.
 
 ### Bug Fixes
 * **terra-converter-helper** updated a used pipe after the angular update
