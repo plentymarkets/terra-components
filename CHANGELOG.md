@@ -1,3 +1,8 @@
+#Unreleased
+### Feature
+* **terra-multi-split-view** set input inputComponentRoute deprecated. It is no longer needed.
+
+
 <a name="2.2.4"></a>
 # 2.2.4 (02.05.2018)
 
