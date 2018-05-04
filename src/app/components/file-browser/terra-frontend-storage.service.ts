@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
 import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
-import { TerraLoadingSpinnerService } from '../../../';
+import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseMetadataStorageService } from './terra-base-metadata-storage.interface';
 
 @Injectable()
@@ -88,7 +88,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         return request;
     }
 
-    public uploadFiles(files:FileList | File[], path:string = '/'):TerraUploadItem[]
+    public uploadFiles(files:FileList | Array<File>, path:string = '/'):Array<TerraUploadItem>
     {
         if(isNullOrUndefined(files) || files.length <= 0)
         {
@@ -215,7 +215,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         return request;
     }
 
-    public deleteFiles(keyList:string[]):Observable<void>
+    public deleteFiles(keyList:Array<string>):Observable<void>
     {
         this.setAuthorization();
         let request:Observable<any> = this.mapRequest(

@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
 @import './app/assets/styles/_variables.scss';
+@import './app/assets/themes/theme-dark-standard.scss';
+@import './app/assets/themes/theme-dark-compact.scss';
 
 body
 {
-    font-family: $font-face, sans-serif !important;
-    font-size: $font-size-3 !important;
-    font-weight: $font-weight-1 !important;
+    font-family: var(--font-family) !important;
+    font-size: var(--font-size-3) !important;
+    font-weight: var(--font-weight-1) !important;
     line-height: 1.5 !important;
-    color: #333333 !important;
-    background-color: $grey-2 !important;
+    color: var(--color-structure-12) !important;
+    background-color: var(--color-structure-2) !important;
     position: absolute !important;
     top: 0 !important;
     bottom: 0 !important;
@@ -22,28 +24,28 @@ body
 
 .tooltip
 {
-    font-size: $font-size-2;
+    font-size: var(--font-size-2);
     opacity: 1 !important;
 
     &.top .tooltip-arrow
     {
-        border-top-color: $terra-tooltip-color;
+        border-top-color: var(--tooltip-color, var(--tooltip-color-default));
     }
     &.left .tooltip-arrow
     {
-        border-left-color: $terra-tooltip-color;
+        border-left-color: var(--tooltip-color, var(--tooltip-color-default));
     }
     &.bottom .tooltip-arrow
     {
-        border-bottom-color: $terra-tooltip-color;
+        border-bottom-color: var(--tooltip-color, var(--tooltip-color-default));
     }
     &.right .tooltip-arrow
     {
-        border-right-color: $terra-tooltip-color;
+        border-right-color: var(--tooltip-color, var(--tooltip-color-default));
     }
     .tooltip-inner
     {
-        background-color: $terra-tooltip-color;
+        background-color: var(--tooltip-color, var(--tooltip-color-default));
     }
 }
 
@@ -60,69 +62,70 @@ body
 .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12,
 .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12
 {
-    padding-right: 4px;
-    padding-left: 4px;
-    transition: all 0.3s ease;
+    padding-right: var(--space-xs);
+    padding-left: var(--space-xs);
+    transition: all var(--transition-md);
 }
 
 h1
 {
-    font-size: $font-size-7;
-    font-weight: $font-bold;
+    font-size: var(--font-size-7);
+    font-weight: var(--font-weight-3);
 }
 
 h2
 {
-    font-size: $font-size-6;
-    font-weight: $font-bold;
+    font-size: var(--font-size-6);
+    font-weight: var(--font-weight-3);
 }
 
 h3
 {
-    font-size: $font-size-5;
-    font-weight: $font-bold;
+    font-size: var(--font-size-5);
+    font-weight: var(--font-weight-3);
 }
 
 h4
 {
-    font-size: $font-size-5;
-    font-weight: $font-weight-1;
+    font-size: var(--font-size-5);
+    font-weight: var(--font-weight-3);
 }
 
 h5
 {
-    font-size: $font-size-4;
-    font-weight: $font-bold;
+    font-size: var(--font-size-4);
+    font-weight: var(--font-weight-3);
 }
 
 p, span, a
 {
-    font-size: $font-size-3;
-    font-weight: $font-weight-1;
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-1);
 }
 
 /// context-menu ////
 
 .context-menu
 {
-    font-family: $font-face, sans-serif;
-    font-weight: $font-weight-1;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-1);
     position: absolute;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.2s ease;
-    transition-delay: 0.2s;
-    padding: 5px 0px;
-    background-color: $grey-9;
-    border-radius: 5px;
+    transition: var(--transition-menu);
+    transition-delay: var(--transition-menu-delay);
+    padding: var(--space-sm) 0;
+    background-color: var(--color-structure-11);
+    border-radius: var(--border-radius);
     
-    top: 29px;
-    right: 0px;
+    top: var(--context-menu-top, 29px);
+    right: 0;
     display: block;
     list-style-type: none;
     margin: 0;
     text-align: left;
-    z-index: $zindex-context-menu;
+    z-index: var(--zIndex-9);
+    box-shadow: var(--box-shadow);
     
     a
     {
@@ -134,15 +137,15 @@ p, span, a
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
-        font-size: var(--context-menu-a-font-size, $font-size-1);
-        line-height: $font-size-5;
-        font-weight: $font-weight-1;
-        color: $white !important;
+        font-size: var(--context-menu-a-font-size, var(--font-size-1));
+        line-height: var(--font-size-5);
+        font-weight: var(--font-weight-1);
+        color: var(--color-structure-0) !important;
         -webkit-font-smoothing: initial;
         
         &:hover
         {
-            background-color: $grey-11;
+            background-color: var(--color-structure-9);
         }
         
         .left-icon
@@ -157,17 +160,17 @@ p, span, a
         {
             position: absolute;
             right: 4px;
-            line-height: $font-size-5;
+            line-height: var(--font-size-5);
             
             &:hover
             {
-                color: $blue;
+                color: var(--color-active);
                 opacity: 1;
             }
         }
         &.disabled
         {
-            color: $grey-6 !important;
+            color: var(--color-structure-6) !important;
             &:hover
             {
                 background-color: inherit;
@@ -183,16 +186,16 @@ p, span, a
     {
         .context-menu
         {
-            left: 0px;
+            left: 0;
             right: initial;
         }
     }
 }
 
 .rating-positive {
-    color: $yellow;
+    color: var(--color-accent);
 }
 
 .rating-negative {
-    color: $alert-red;
+    color: var(--color-alert);
 }

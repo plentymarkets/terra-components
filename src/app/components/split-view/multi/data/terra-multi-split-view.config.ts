@@ -30,11 +30,6 @@ export class TerraMultiSplitViewConfig
         // TODO: setTimeout can be removed, if it is guaranteed that change detection is fired when adding a new view
         setTimeout(() =>
             {
-                if(isNullOrUndefined(view.isBackgroundColorGrey))
-                {
-                    view.isBackgroundColorGrey = false;
-                }
-
                 if(isNullOrUndefined(parent))
                 {
                     if(isNullOrUndefined(this.currentSelectedView))

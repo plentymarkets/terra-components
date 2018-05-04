@@ -15,7 +15,7 @@ import {
     isNull,
     isNullOrUndefined
 } from 'util';
-import { TerraPlacementEnum } from '../../../../';
+import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraBaseData } from '../../data/terra-base.data';
 
 const MAX_LASTLY_USED_ENTRIES:number = 5;
@@ -163,7 +163,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
                 };
             }
         }
-        else
+        else if(!isNullOrUndefined(this.inputListBoxValues) &&  this.inputListBoxValues.length)
         {
             this.selectedValue = {
                 caption: this.inputListBoxValues[0].caption,

@@ -1,6 +1,7 @@
 <div blur="showTree()">
     <terra-text-input [inputIsReadonly]="true"
                       [inputIsDisabled]="inputIsDisabled"
+                      inputTooltipText="{{inputTooltipText}}"
                       [inputName]="inputName"
                       [(ngModel)]="_categoryName"
                       (click)="showTree()">
@@ -10,17 +11,20 @@
                          [inputConfig]="categoryTreeConfig">
         </terra-node-tree>
         <terra-base-toolbar>
-            <terra-button inputTooltipText="{{'cancel' | translate:lang}}"
-                          inputTooltipPlacement="top"
-                          inputIcon="icon-cancel"
-                          [inputIsSmall]="true"
-                          (outputClicked)="showTree()">
-            </terra-button>
             <terra-button inputTooltipText="{{'terraCategoryPicker.select' | translate:lang}}"
                           inputTooltipPlacement="top"
                           inputIcon="icon-success"
                           [inputIsSmall]="true"
+                          [inputIsDisabled]="_isContainerCategorySelected"
+                          [inputIsTertiary]="true"
                           (outputClicked)="onSelectNode()">
+            </terra-button>
+            <terra-button inputTooltipText="{{'cancel' | translate:lang}}"
+                          inputTooltipPlacement="top"
+                          inputIcon="icon-cancel"
+                          [inputIsSmall]="true"
+                          [inputIsSecondary]="true"
+                          (outputClicked)="showTree()">
             </terra-button>
             <terra-button inputTooltipText="{{'terraCategoryPicker.reset' | translate:lang}}"
                           inputTooltipPlacement="top"
