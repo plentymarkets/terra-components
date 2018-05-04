@@ -151,19 +151,45 @@ input[type="search"]::-webkit-search-decoration
         }
     }
     
-    
-    &:not(.error):not(.valid):not(.success):not(.disabled)::after {
-        content: "";
-        display: block;
-        width: 0%;
-        position: absolute;
-        height: 2px;
-        background-color: var(--color-active);
-        transition: width var(--transition-md);
-        bottom: 0px;
+    input[readonly]
+    {
+        color: var(--color-structure-6);
     }
-    &:not(.error):not(.valid):not(.success):not(.disabled):hover::after {
-        width: 100%;
+    
+    &:not(.error):not(.valid):not(.success):not(.disabled)
+    {
+        &::after
+        {
+            content: "";
+            display: block;
+            width: 0%;
+            left: 50%;
+            position: absolute;
+            height: 2px;
+            background-color: var(--color-active);
+            transition: width var(--transition-md);
+            bottom: 0;
+        }
+        &::before
+        {
+            content: "";
+            display: block;
+            width: 0%;
+            right: 50%;
+            position: absolute;
+            height: 2px;
+            background-color: var(--color-active);
+            transition: width var(--transition-md);
+            bottom: 0;
+        }
+    }
+    &:not(.error):not(.valid):not(.success):not(.disabled):hover
+    {
+        &::after,
+        &::before
+        {
+            width: 50%;
+        }
     }
 }
 
@@ -204,7 +230,6 @@ textarea
             color: var(--color-active);
         }
     }
-    
     
     &.isSmall
     {
@@ -282,7 +307,6 @@ label
     font-weight: var(--font-weight-1);
     line-height: 1em !important;
     font-variant: all-small-caps;
-    
     
     width: var(--label-width, var(--label-width-default));
     overflow: hidden;
