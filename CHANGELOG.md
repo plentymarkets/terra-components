@@ -1,3 +1,23 @@
+# Unreleased
+
+### Bug Fixes
+* **category-picker** fixed error with the reset button
+
+<a name="2.2.5"></a>
+# 2.2.5 (04.05.2018)
+
+### Feature
+* **terra-multi-split-view** set input inputComponentRoute deprecated. It is no longer needed.
+
+### Bug Fixes
+* **terra-converter-helper** updated a used pipe after the angular update
+
+<a name="2.2.4"></a>
+# 2.2.4 (03.05.2018)
+
+### Feature
+* **terra-select-box** fixed null pointer when <code>selectedValue</code> was undefined
+
 <a name="2.2.3"></a>
 # 2.2.3 (02.05.2018)
 
@@ -19,7 +39,7 @@
 # 2.2.1 (24.04.2018)
 
 ### Bug Fixes
-* **themes** theming restructuring
+* **tehmes** theming restructuring
 
 ## Feature
 * **terra-file-chooser** Added new component to open file-browser directly via a button without input element.

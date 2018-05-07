@@ -78,7 +78,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             this.categoryTreeConfig.list = this._list;
         }
 
-        if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
+        if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode) && !isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode.value))
         {
             this._isContainerCategorySelected = (this.categoryTreeConfig.currentSelectedNode.value.type === 'container');
         }
