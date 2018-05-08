@@ -80,5 +80,20 @@
             border: 1px solid var(--color-active-dark);
         }
     }
+    
+    //portlet in portlet
+    .portlet
+    {
+        .portlet-head
+        {
+            padding: var(--space-sm) 0;
+        }
+        .portlet-body
+        {
+            padding: 0;
+            border-radius: var(--border-radius);
+            box-shadow: none;
+        }
+    }
 }
 

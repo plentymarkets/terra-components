@@ -122,7 +122,6 @@
         overflow: hidden;
         white-space: normal;
         position: relative;
-        background-color: var(--color-structure-2);
 
         > div
         {
@@ -161,11 +160,9 @@
     display: inline-block;
 }
 
-.terra-breadcrumbs-wrapper
+#main-breadcrumbs
 {
-    --toolbar-margin: 0;
-    --toolbar-border-radius: none;
-    --toolbar-background: var(--color-structure-11);
-    --toolbar-padding: 0;
-    --toolbar-z-index: var(--zIndex-1);
+    --terra-breadcrumbs-wrapper-z-index: var(--zIndex-2);
+    --terra-breadcrumbs-wrapper-background-color: var(--color-structure-11);
+    --terra-breadcrumbs-wrapper-border-radius: none;
 }
