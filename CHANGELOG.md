@@ -3,6 +3,9 @@
 ### Bug Fixes
 * **category-picker** fixed error with the reset button
 
+### Feature
+* **download-helper** added download helper for downloads from the backend
+
 <a name="2.2.5"></a>
 # 2.2.5 (04.05.2018)
 

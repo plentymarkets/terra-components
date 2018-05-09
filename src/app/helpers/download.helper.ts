@@ -9,5 +9,7 @@ export class TerraDownloadHelper
         link.download = filename;
         document.body.appendChild(link);
         link.click();
+
+        // TODO: Implement method to remove unused Download a-tags
     }
 }
