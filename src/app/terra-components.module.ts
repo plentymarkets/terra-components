@@ -86,7 +86,6 @@ import { TerraDataTableContextMenuService } from './components/tables/data-table
 import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
-import { TerraConverterHelper } from './helpers/terra-converter.helper';
 import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
 import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
 import { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra-dynamic-form.component';
@@ -418,7 +417,6 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
         TerraFileBrowserService,
-        TerraConverterHelper,
         {
             provide:  COMPILER_OPTIONS,
             useValue: {},
