@@ -128,6 +128,7 @@
             height: 100%;
             min-height: 100%;
             overflow-y: auto;
+            position: relative;
         }
     }
     
@@ -160,7 +161,7 @@
     display: inline-block;
 }
 
-#main-breadcrumbs
+.main-breadcrumbs
 {
     --terra-breadcrumbs-wrapper-z-index: var(--zIndex-2);
     --terra-breadcrumbs-wrapper-background-color: var(--color-structure-11);
