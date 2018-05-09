@@ -22,7 +22,7 @@
         
         [class^="icon-"]
         {
-            padding: 3px 3px;
+            padding: var(--space-sm);
             transition: all var(--transition-xs);
             justify-content: flex-end;
             
@@ -35,11 +35,11 @@
         .header-caption
         {
             justify-content: flex-start;
-            
-            .header-buttons
-            {
-                justify-content: flex-end;
-            }
+        }
+        .header-buttons
+        {
+            justify-content: flex-end;
+            margin: -2px;
         }
     }
     
