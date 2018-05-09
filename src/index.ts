@@ -136,3 +136,4 @@ export * from './app/helpers/fileType.helper';
 export * from './app/helpers/path.helper';
 export * from './app/helpers/terra-converter.helper';
 export * from './app/helpers/terra-pdf.helper';
+export * from './app/helpers/download.helper';
