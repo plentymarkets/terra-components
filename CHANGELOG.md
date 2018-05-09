@@ -1,3 +1,8 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-multi-split-view** fixed error with side scroller
+
 <a name="2.2.6"></a>
 # 2.2.6 (09.05.2018)
 
