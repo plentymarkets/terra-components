@@ -1,4 +1,5 @@
-# Unreleased
+<a name="2.2.6"></a>
+# 2.2.6 (09.05.2018)
 
 ### Bug Fixes
 * **category-picker** fixed error with the reset button
