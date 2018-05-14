@@ -31,7 +31,7 @@ export class TerraFilterComponent
      * @deprecated Will be removed in an upcoming release.
      */
     @Input()
-    public inputInputList:any[];
+    public inputInputList:Array<any>;
 
     /**
      * @description Set the function which will be executed on click of the search button.

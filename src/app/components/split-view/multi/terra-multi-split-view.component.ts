@@ -42,6 +42,9 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     @Input()
     public inputShowBreadcrumbs:boolean;
 
+    /**
+     * @deprecated
+     */
     @Input()
     public inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
 
@@ -60,6 +63,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     private splitViewId:number;
 
     private tabDeselected:boolean;
+    private componentRoute:string;
 
     constructor(private zone:NgZone, private _router:Router)
     {
@@ -67,6 +71,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this._breadCrumbsPath = '';
         this.splitViewId = nextSplitViewId++;
         this.tabDeselected = false;
+        this.componentRoute = this._router.url;
     }
 
     @HostListener('window:resize')
@@ -101,15 +106,15 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.inputConfig.splitViewComponent = this;
 
         // catch routing events, but only those that select the tab where the split view is instantiated
-        if(!isNullOrUndefined(this.inputComponentRoute))
+        if(!isNullOrUndefined(this._router) && !isNullOrUndefined(this.componentRoute))
         {
             // check if the given route exists in the route config
-            if(this.routeExists(this.inputComponentRoute))
+            if(this.routeExists(this.componentRoute))
             {
                 if(this.inputHasRouting)
                 {
                     this._router.events.filter((event:AngularRouter.Event) =>
-                        event instanceof NavigationEnd && event.url.startsWith(this.inputComponentRoute) && !this.tabDeselected
+                        event instanceof NavigationEnd && event.url.startsWith(this.componentRoute) && !this.tabDeselected
                     ).subscribe((event:NavigationEnd) =>
                     {
                         this.inputConfig.navigateToViewByUrl(event.url);
@@ -117,7 +122,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
                     // TODO: Workaround since the tabbar cannot handle any routes besides those from the menu..
                     this._router.events.filter((event:AngularRouter.Event) =>
-                        event instanceof NavigationEnd && event.url.startsWith(this.inputComponentRoute) && this.tabDeselected
+                        event instanceof NavigationEnd && event.url.startsWith(this.componentRoute) && this.tabDeselected
                     ).subscribe(() =>
                     {
                         if(this.inputConfig.currentSelectedView)
@@ -129,7 +134,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     });
 
                     this._router.events.filter((event:AngularRouter.Event) =>
-                        event instanceof NavigationEnd && !event.url.startsWith(this.inputComponentRoute)
+                        event instanceof NavigationEnd && !event.url.startsWith(this.componentRoute)
                     ).subscribe(() =>
                     {
                         this.tabDeselected = true;
@@ -138,7 +143,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 else
                 {
                     this._router.events.filter((event:AngularRouter.Event) =>
-                        event instanceof NavigationStart && event.url === this.inputComponentRoute
+                        event instanceof NavigationStart && event.url === this.componentRoute
                     ).subscribe((path:NavigationStart) =>
                     {
                         this.updateViewport(this.inputConfig.currentSelectedView, true);
@@ -167,8 +172,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     views:                 [],
                     identifier:            view.mainComponentName,
                     width:                 view.focusedWidth ? view.focusedWidth : view.defaultWidth,
-                    currentSelectedView:   view,
-                    isBackgroundColorGrey: view.isBackgroundColorGrey
+                    currentSelectedView:   view
                 }
             );
         }
@@ -216,8 +220,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             this.inputConfig.selectBreadcrumbEventEmitter.next(view);
         }
-
-        module.isBackgroundColorGrey = view.isBackgroundColorGrey;
 
         // check whether the view is already opened
         if(module.currentSelectedView === view)
@@ -586,7 +588,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         return module.views[0];
     }
 
-    public handleBreadCrumbClick(view:TerraMultiSplitViewInterface, event?:MouseEvent)
+    public handleBreadCrumbClick(view:TerraMultiSplitViewInterface, event?:MouseEvent):void
     {
         // prevent event bubbling
         if(event)

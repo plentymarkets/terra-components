@@ -8,14 +8,14 @@
     {
         width: 100%;
         
-        .input-unit-v1,
+        .input-wrapper,
         .select-box-wrapper,
         .btn
         {
             margin-bottom: 0;
             border-radius: 0;
-            border-top-left-radius: $border-radius;
-            border-bottom-left-radius: $border-radius;
+            border-top-left-radius: var(--border-radius);
+            border-bottom-left-radius: var(--border-radius);
         }
         
     }
@@ -24,14 +24,14 @@
     {
         width: auto;
         
-        .input-unit-v1,
+        .input-wrapper,
         .select-box-wrapper,
         .btn
         {
             margin-bottom: 0;
             border-radius: 0;
-            border-top-right-radius: $border-radius;
-            border-bottom-right-radius: $border-radius;
+            border-top-right-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
         }
     }
 }

@@ -2,7 +2,7 @@ import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { Observable } from 'rxjs/Observable';
 import { TerraUploadItem } from './model/terra-upload-item';
 import { TerraUploadQueue } from './model/terra-upload-queue';
-import { TerraBaseService } from '../../../';
+import { TerraBaseService } from '../../service/terra-base.service';
 
 export abstract class TerraBaseStorageService extends TerraBaseService
 {
@@ -16,9 +16,9 @@ export abstract class TerraBaseStorageService extends TerraBaseService
 
     public abstract createDirectory(path:string):Observable<any>;
 
-    public abstract uploadFiles(files:FileList | File[], path:string):TerraUploadItem[];
+    public abstract uploadFiles(files:FileList | Array<File>, path:string):Array<TerraUploadItem>;
 
-    public abstract deleteFiles(keys:string[]):Observable<any>;
+    public abstract deleteFiles(keys:Array<string>):Observable<any>;
 
     public prepareKey(value:string, isName:boolean = false, isDirectory:boolean = false):string
     {

@@ -108,7 +108,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
             this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
 
             // this is necessary for language switch
-            this.translation.translationChanged.subscribe(() =>
+            this.translation.translationChanged().subscribe(() =>
             {
                 this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
             });

@@ -1,4 +1,89 @@
-# Unreleased
+<a name="2.2.6"></a>
+# 2.2.6 (09.05.2018)
+
+### Bug Fixes
+* **category-picker** fixed error with the reset button
+
+### Feature
+* **download-helper** added download helper for downloads from the backend
+
+<a name="2.2.5"></a>
+# 2.2.5 (04.05.2018)
+
+### Feature
+* **terra-multi-split-view** set input inputComponentRoute deprecated. It is no longer needed.
+
+### Bug Fixes
+* **terra-converter-helper** updated a used pipe after the angular update
+
+<a name="2.2.4"></a>
+# 2.2.4 (03.05.2018)
+
+### Feature
+* **terra-select-box** fixed null pointer when <code>selectedValue</code> was undefined
+
+<a name="2.2.3"></a>
+# 2.2.3 (02.05.2018)
+
+### Feature
+* **string-helper** new helper for strings
+
+### Bug Fixes
+* **terra-text-input** changed color of text input with readonly attribute
+* **terra-dynamic-form** added tooltip for category picker
+* **terra-category-picker** added input for tooltip
+
+<a name="2.2.2"></a>
+# 2.2.2 (25.04.2018)
+
+### Bug Fixes
+* **terra-base-toolbar** fixed z-Index in toolbars that caused overlapping issues
+
+<a name="2.2.1"></a>
+# 2.2.1 (24.04.2018)
+
+### Bug Fixes
+* **tehmes** theming restructuring
+
+## Feature
+* **terra-file-chooser** Added new component to open file-browser directly via a button without input element.
+
+<a name="2.2.0"></a>
+# 2.2.0 (24.04.2018)
+ 
+### Minor changes
+* **Update Angular** to Version 5.2.10 and all other packages, except bootstrap, to newest version
+
+
+<a name="2.1.69-zlk"></a>
+# 2.1.69-zlk (24.04.2018)
+### Bug Fixes
+* **themes** fixed bug with variable definitions
+
+<a name="2.1.67-zlk"></a>
+# 2.1.67-zlk (20.04.2018)
+### Bug Fixes
+ **terra-category-picker** fixed a bug with empty category details
+ 
+## Feature
+ **themes** added theme functionality, removed all scss variables, replaced with css variables
+
+<a name="2.1.66-zlk"></a>
+# 2.1.66-zlk (16.04.2018)
+
+### Feature
+* **terra-note-editor** added public method <code>focus</code>, to be able to set the focus to the text-area of the editor.
+
+### Feature
+* **terra-dynamic-form** add input `inputAllowedExtensions` to the file input form field
+
+### Bug Fixes
+* **terra-dynamic-form** fix issue with nested containers
+* **terra-pager** adjusted width of current page input
+* **terra-category-picker** enabled the display of container categories
+
+<a name="2.1.65-zlk"></a>
+# 2.1.65-zlk (05.04.2018)
 
 ### Feature
 * **terra-multi-split-view** added routing functionality. You can now handle view addition/selection via routes. This feature is activated by setting the component's input `inputHasRouting`. Use the config's property `routingConfig` to pass in your routing configuration. 
@@ -6,6 +91,7 @@
 
 ### Bug Fixes
 * **terra-multi-split-view** fix reoccurring "Cannot read property 'getBoundingClientRect' of undefined" error
+* **terra-data-table** fix issue where TerraRefTypeEnum is undefined in the template
 
 <a name="2.1.64-zlk"></a>
 # 2.1.64-zlk (28.03.2018)
@@ -148,7 +234,7 @@
 
 ### Bug Fixes
 * **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
-* **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+* **input components** edit input scss for disabled components. Changed border-color from var(--color-structure-3) to var(--color-structure-5)
 * **terra-checkbox** fix issue with missing unique IDs
 
 ### Feature

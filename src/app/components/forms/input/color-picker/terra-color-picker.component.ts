@@ -5,7 +5,7 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
 import { Color } from './color.helper';
-import { TerraRegex } from '../../../../../';
+import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 
 @Component({
     selector:  'terra-color-picker',

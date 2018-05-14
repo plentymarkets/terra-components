@@ -1,5 +1,6 @@
 import {
     AfterViewInit,
+    Compiler,
     Component,
     ComponentFactory,
     ComponentRef,
@@ -12,7 +13,6 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { JitCompiler } from '@angular/compiler';
 import { TerraMultiSplitViewInterface } from '../split-view/multi/data/terra-multi-split-view.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraDynamicLoadedComponentInputInterface } from './data/terra-dynamic-loaded-component-input.interface';
@@ -45,7 +45,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
 
     private _cmpRef:ComponentRef<any>;
 
-    constructor(private _jitCompiler:JitCompiler)
+    constructor(private _jitCompiler:Compiler)
     {
     }
 

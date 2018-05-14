@@ -10,7 +10,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import * as IBAN from 'iban';
 import { TranslationService } from 'angular-l10n';
-import { TerraRegex } from '../../../../../';
+import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 
 let nextId:number = 0;
 

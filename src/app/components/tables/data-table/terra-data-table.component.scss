@@ -1,106 +1,123 @@
 .table-responsive
 {
-    table.data-table
+    margin: var(--space-container);
+    box-shadow: var(--box-shadow);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    width: auto;
+    --no-result-margin: 0; //in case of a no-result page placed in a table to avoid doubled margins
+    
+    table
     {
-        tr.disabled
+        margin: 0;
+        
+        &.data-table
         {
-            opacity: 0.5;
-            
-            td
+            tr.disabled
             {
-                cursor: not-allowed;
+                opacity: 0.5;
+                
+                td
+                {
+                    cursor: not-allowed;
+                }
             }
         }
-    }
-    
-    table.table
-    {
-        &[tabindex]
+        &.table
         {
-            outline: none;
-        }
-        
-        margin-bottom: 1rem;
-        thead
-        {
-            background: $grey-9;
-            color: white;
-            border-radius: 0 0 $border-radius $border-radius;
-            tr
+            &[tabindex]
             {
-                th
+                outline: none;
+            }
+            
+            thead
+            {
+                background: var(--color-structure-9);
+                color: var(--color-structure-0);
+                border-radius: 0 0 var(--border-radius) var(--border-radius);
+                tr
                 {
-                    font-variant: all-small-caps;
-                    padding: 6px 9px;
-                    border: none;
-                    &:first-child
+                    th
                     {
-                        border-radius: 0 0 0 $border-radius;
+                        font-variant: all-small-caps;
+                        padding: var(--table-head-th-padding, var(--space-md));
+                        transition: padding var(--transition-lg);
+                        border: none;
+                    }
+                }
+            }
+            tbody
+            {
+                background-color: var(--color-structure-0);
+                tr
+                {
+                    color: var(--color-structure-11);
+                    td
+                    {
+                        padding: var(--table-body-td-padding, var(--space-md));
+                        transition: padding var(--transition-lg);
+                        vertical-align: middle;
+                        border-bottom: 1px solid var(--border-color);
+                        white-space: nowrap;
+                        span
+                        {
+                            font-size: var(--font-size-2);
+                        }
+                        a[href]
+                        {
+                            color: var(--color-active);
+                            text-decoration: none;
+                            &:hover
+                            {
+                                color: var(--color-active-dark);
+                                text-decoration: underline;
+                            }
+                        }
                     }
                     &:last-child
                     {
-                        border-radius: 0 0 $border-radius 0;
-                    }
-                }
-                
-            }
-        }
-        tbody
-        {
-            tr
-            {
-                color: $grey-11;
-                td
-                {
-                    padding: 8px 9px;
-                    vertical-align: middle;
-                    border-bottom: 1px solid $grey-1;
-                    white-space: nowrap;
-                    span
-                    {
-                        font-size: $font-size-2;
-                    }
-                    a[href]
-                    {
-                        text-decoration: none;
-                        color: $blue;
-                        &:hover
+                        td
                         {
-                            text-decoration: underline;
-                            color: $blue-hover;
+                            &:first-child
+                            {
+                                border-radius: 0 0 0 var(--border-radius);
+                            }
+                            &:last-child
+                            {
+                                border-radius: 0 0 var(--border-radius) 0;
+                            }
                         }
                     }
                 }
             }
-        }
-        span
-        {
-            display: inline-block;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            vertical-align: middle;
-        }
-        > tbody tr:hover
-        {
-            background: $grey-2;
-            cursor: pointer;
-        }
-        tbody tr.selected
-        {
-            background-color: $blue;
-            color: white;
-        }
-        tbody tr.isActive
-        {
-            background-color: $blue;
-            color: white;
-            td a[href]
+            span
             {
-                color: $white;
-                &:hover
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                vertical-align: middle;
+            }
+            > tbody tr:hover
+            {
+                background: var(--color-structure-2);
+                cursor: pointer;
+            }
+            tbody tr.selected
+            {
+                background-color: var(--color-active);
+                color: var(--color-structure-0);
+            }
+            tbody tr.isActive
+            {
+                background-color: var(--color-active);
+                color: var(--color-structure-0);
+                td a[href]
                 {
-                    color: $black;
+                    color: var(--color-structure-0);
+                    &:hover
+                    {
+                        color: var(--color-structure-13);
+                    }
                 }
             }
         }
@@ -124,36 +141,39 @@
     text-align: center;
     display: block;
     padding: 8.3em .3em .3em .5em;
-    color: #555555;
+    color: var(--color-structure-11);
     text-decoration: none;
     font-size: 1.875rem;
     border: 0;
     border-radius: 0;
 }
 
-.group_function
+.group-function
 {
-    margin-bottom: 6px;
+    background-color: var(--color-structure-0);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--space-md);
+    margin: 0 var(--space-xs) var(--space-md) var(--space-xs);
     
-    .group_function_head
+    .group-function-head
     {
-        padding: 1px 9px 4px 4px;
-        background: transparent;
+        padding: var(--space-sm);
         
         span
         {
-            padding: 5px;
-            color: $grey-12;
-            font-size: $font-size-4;
-            font-weight: $font-weight-2;
+            padding: var(--space-sm);
+            color: var(--color-structure-12);
+            font-size: var(--font-size-4);
+            font-weight: var(--font-weight-2);
+            vertical-align: middle;
         }
     }
     
-    .group_function_body
+    .group-function-body
     {
-        background-color: $grey-2;
-        padding: 12px;
-        border-radius: 5px;
+        padding: var(--space-lg);
+        transition: padding var(--transition-lg);
     }
 }
 
@@ -165,8 +185,14 @@
     }
     th, td
     {
-        border: 0px !important;
+        border: 0 !important;
         width: 100% !important;
         padding: 4px 9px !important;
     }
+}
+
+terra-pager
+{
+    --toolbar-border-radius: var(--border-radius) var(--border-radius) 0 0;
+    --toolbar-margin: 0 var(--space-xs);
 }

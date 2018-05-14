@@ -28,7 +28,7 @@
 <div *ngIf="modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
     <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first" let-index="index">
         <div class="view {{ module.width }}" id="splitview{{splitViewId}}_module{{index}}"
-             [ngClass]="{'first': first, 'last': last, isBackgroundColorGrey: module.isBackgroundColorGrey, 'workaround': false}">
+             [ngClass]="{'first': first, 'last': last}">
             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                 <div *ngIf="module.currentSelectedView === view" class="{{ view.mainComponentName + '_' + i}} fadeIn">
                     <terra-dynamic-module-loader
