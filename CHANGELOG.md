@@ -1,3 +1,8 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-categroy-picker** fixed error with initial loading of category picker in dynamic form
+
 <a name="2.2.7"></a>
 # 2.2.7 (14.05.2018)
 
