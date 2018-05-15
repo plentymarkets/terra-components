@@ -7,12 +7,13 @@ terra-alert-panel
     transition: top var(--transition-lg);
     max-height: 500px;
     max-width: 350px;
+    min-width: 250px;
     overflow-y: auto;
     z-index: 1030;
     .alert
     {
         position: relative;
-        padding: 3px 30px 3px 40px;
+        padding: 4px 36px;
         margin-bottom: .2rem;
         word-wrap: break-word;
         box-shadow: var(--box-shadow);
@@ -83,6 +84,8 @@ terra-alert-panel
             top: -5px;
             right: -20px;
             opacity: 1;
+            outline: none;
+            
             span
             {
                 font-size: var(--font-size-5);
