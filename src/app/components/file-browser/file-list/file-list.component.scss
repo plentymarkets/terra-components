@@ -135,6 +135,7 @@
     &.in
     {
         transform: translateY(0);
+        z-index: var(--zIndex-1);
     }
     
     .prompt-title
