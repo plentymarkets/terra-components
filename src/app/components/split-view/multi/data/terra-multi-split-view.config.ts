@@ -327,7 +327,6 @@ export class TerraMultiSplitViewConfig
                 defaultWidth:          route.data.defaultWidth,
                 focusedWidth:          route.data.focusedWidth ? route.data.focusedWidth : undefined,
                 mainComponentName:     route.data.mainComponentName,
-                isBackgroundColorGrey: route.data.isBackgroundColorGrey ? route.data.isBackgroundColorGrey : undefined,
                 id:                    route.path.startsWith(':') ? urlPart : undefined,
                 url:                   partialUrl
             };
