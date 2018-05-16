@@ -111,6 +111,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             // check if the given route exists in the route config
             if(this.routeExists(this.componentRoute))
             {
+                this.inputConfig.navigateToViewByUrl(this.componentRoute);
                 if(this.inputHasRouting)
                 {
                     this._router.events.filter((event:AngularRouter.Event) =>
