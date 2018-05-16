@@ -13,5 +13,11 @@ import {
 })
 export class TerraBaseToolbarComponent
 {
+    @Input()
+    public inputIsBreadcrumbs:boolean;
 
+    constructor()
+    {
+        this.inputIsBreadcrumbs = false;
+    }
 }
