@@ -12,7 +12,7 @@
 * **breadcrumbs** fixed issues with background-color of breadcrumbs
 * **text-area** fixed broken text-area
 * **terra-simple-table** fixed issues with [fixedHeader]-class 
-
+* **terra-categroy-picker** fixed error with initial loading of category picker in dynamic form
 
 <a name="2.2.7"></a>
 # 2.2.7 (14.05.2018)
