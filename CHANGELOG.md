@@ -1,4 +1,4 @@
-#Unrealeased
+#Unreleased
 
 ### Features
 * **alerts** restyled alerts & changed min/max-width for alert-panel
@@ -12,8 +12,8 @@
 * **text-area** fixed broken text-area
 * **terra-simple-table** fixed issues with [fixedHeader]-class 
 
-<a name="2.2.8"></a>
-# 2.2.8 (16.05.2018)
+<a name="2.2.10"></a>
+# 2.2.10 (16.05.2018)
 
 ### Bug Fixes
 * **terra-categroy-picker** fixed error with initial loading of category picker in dynamic form
