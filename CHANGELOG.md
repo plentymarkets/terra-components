@@ -1,4 +1,5 @@
-#Unreleased
+<a name="2.2.11"></a>
+# 2.2.11 (16.05.2018)
 
 ### Features
 * **alerts** restyled alerts & changed min/max-width for alert-panel
