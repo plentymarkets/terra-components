@@ -1,3 +1,19 @@
+#Unrealeased
+
+### Feature
+* **alerts** restyled alerts & changed min/max-width for alert-panel
+* **file-browser** restyled file-browser
+* **terra-color-picker** restyled terra-color-picker
+* **terra-overlay** changed the background-color of overlays to grey like all the other content-areas
+* **terra-portlet** added the possibility to stack portlets in portlets
+
+
+### Bug Fixes
+* **breadcrumbs** fixed issues with background-color of breadcrumbs
+* **text-area** fixed broken text-area
+* **terra-simple-table** fixed issues with [fixedHeader]-class 
+
+
 <a name="2.2.7"></a>
 # 2.2.7 (14.05.2018)
 
