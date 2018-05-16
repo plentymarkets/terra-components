@@ -51,16 +51,8 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     public toggleTree:boolean = false;
 
-    private _value:number = 0;
-    private _completeCategory:CategoryValueInterface = {
-        id:               null,
-        isActive:         null,
-        isOpen:           null,
-        isVisible:        null,
-        name:             '',
-        tooltip:          '',
-        tooltipPlacement: '',
-    };
+    private value:number;
+    private completeCategory:CategoryValueInterface;
 
     private categoryName:string;
     private list:Array<TerraNodeInterface<CategoryDataInterface>>;
@@ -70,6 +62,16 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
     constructor(private translation:TranslationService,
                 public categoryTreeConfig:CategoryTreeConfig)
     {
+        this.value = 0;
+        this.completeCategory = {
+            id:               null,
+            isActive:         null,
+            isOpen:           null,
+            isVisible:        null,
+            name:             '',
+            tooltip:          '',
+            tooltipPlacement: '',
+        };
         this.categoryName = '';
         this.list = [];
         this.isContainerCategorySelected = false;
@@ -101,7 +103,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     public getCompleteCategoryObject():CategoryValueInterface
     {
-        return this._completeCategory;
+        return this.completeCategory;
     }
 
     // From ControlValueAccessor interface
@@ -124,13 +126,13 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                     this.categoryName = this.categoryTreeConfig.currentSelectedNode.name;
                 }
 
-                this._value = value;
+                this.value = value;
 
                 if(this.isNotInitialCall)
                 {
                     this.updateCompleteCategory(nodeToSelect);
                     this.onTouchedCallback();
-                    this.onChangeCallback(this._value);
+                    this.onChangeCallback(this.value);
                 }
             });
         }
@@ -183,21 +185,21 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             tooltipPlacement: '',
         };
         this.categoryName = '';
-        this._value = 0;
+        this.value = 0;
 
         this.onTouchedCallback();
-        this.onChangeCallback(this._value);
+        this.onChangeCallback(this.value);
     }
 
     private updateCompleteCategory(category:TerraNodeInterface<CategoryDataInterface>):void
     {
-        this._completeCategory.id = +category.id;
-        this._completeCategory.isActive = category.isActive;
-        this._completeCategory.isOpen = category.isOpen;
-        this._completeCategory.isVisible = category.isVisible;
-        this._completeCategory.name = category.name;
-        this._completeCategory.tooltip = category.tooltip;
-        this._completeCategory.tooltipPlacement = category.tooltipPlacement;
+        this.completeCategory.id = +category.id;
+        this.completeCategory.isActive = category.isActive;
+        this.completeCategory.isOpen = category.isOpen;
+        this.completeCategory.isVisible = category.isVisible;
+        this.completeCategory.name = category.name;
+        this.completeCategory.tooltip = category.tooltip;
+        this.completeCategory.tooltipPlacement = category.tooltipPlacement;
     }
 
     private getCategoriesByParentId(parentId:number | string):() => Observable<any>
