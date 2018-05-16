@@ -62,26 +62,30 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         tooltipPlacement: '',
     };
 
-    private _categoryName:string = '';
-    private _list:Array<TerraNodeInterface<CategoryDataInterface>> = [];
-    private _isContainerCategorySelected:boolean = false;
-    private _isNotInitalCall:boolean = false;
+    private categoryName:string;
+    private list:Array<TerraNodeInterface<CategoryDataInterface>>;
+    private isContainerCategorySelected:boolean;
+    private isNotInitialCall:boolean;
 
     constructor(private translation:TranslationService,
                 public categoryTreeConfig:CategoryTreeConfig)
     {
+        this.categoryName = '';
+        this.list = [];
+        this.isContainerCategorySelected = false;
+        this.isNotInitialCall = false;
     }
 
     public ngAfterContentChecked():void
     {
         if(this.categoryTreeConfig.list.length === 0)
         {
-            this.categoryTreeConfig.list = this._list;
+            this.categoryTreeConfig.list = this.list;
         }
 
         if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode) && !isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode.value))
         {
-            this._isContainerCategorySelected = (this.categoryTreeConfig.currentSelectedNode.value.type === 'container');
+            this.isContainerCategorySelected = (this.categoryTreeConfig.currentSelectedNode.value.type === 'container');
         }
     }
 
@@ -91,7 +95,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         {
             this.inputName = this.translation.translate('terraCategoryPicker.category');
         }
-        this.categoryTreeConfig.list = this._list;
+        this.categoryTreeConfig.list = this.list;
         this.getCategoriesByParent(null);
     }
 
@@ -117,12 +121,12 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                 if(!isNullOrUndefined(nodeToSelect))
                 {
                     this.categoryTreeConfig.currentSelectedNode = nodeToSelect;
-                    this._categoryName = this.categoryTreeConfig.currentSelectedNode.name;
+                    this.categoryName = this.categoryTreeConfig.currentSelectedNode.name;
                 }
 
                 this._value = value;
 
-                if(this._isNotInitalCall)
+                if(this.isNotInitialCall)
                 {
                     this.updateCompleteCategory(nodeToSelect);
                     this.onTouchedCallback();
@@ -157,11 +161,11 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     public onSelectNode():void
     {
-        this._isNotInitalCall = true;
+        this.isNotInitialCall = true;
 
         if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
         {
-            this._categoryName = this.categoryTreeConfig.currentSelectedNode.name;
+            this.categoryName = this.categoryTreeConfig.currentSelectedNode.name;
             this.writeValue(this.categoryTreeConfig.currentSelectedNode.id);
         }
         this.toggleTree = !this.toggleTree;
@@ -178,7 +182,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             tooltip:          '',
             tooltipPlacement: '',
         };
-        this._categoryName = '';
+        this.categoryName = '';
         this._value = 0;
 
         this.onTouchedCallback();
@@ -280,7 +284,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             });
         }
         // Current List is updated
-        this._list = this.categoryTreeConfig.list;
+        this.list = this.categoryTreeConfig.list;
     }
 
     private getCategoriesByParent(parentNode:TerraNodeInterface<CategoryDataInterface>):void
