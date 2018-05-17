@@ -21,6 +21,7 @@ import {
     Routes
 } from '@angular/router';
 import { Route } from '@angular/router/src/config';
+import { UrlHelper } from '../../../helpers/url.helper';
 
 let nextSplitViewId:number = 0;
 
@@ -62,7 +63,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private splitViewId:number;
 
-    private tabDeselected:boolean;
     private componentRoute:string;
 
     constructor(private zone:NgZone, private _router:Router)
@@ -70,7 +70,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
         this.splitViewId = nextSplitViewId++;
-        this.tabDeselected = false;
         this.componentRoute = this._router.url;
     }
 
@@ -106,45 +105,30 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.inputConfig.splitViewComponent = this;
 
         // catch routing events, but only those that select the tab where the split view is instantiated
-        if(!isNullOrUndefined(this._router) && !isNullOrUndefined(this.componentRoute))
+        if(!isNullOrUndefined(this._router) && !isNullOrUndefined(this.inputComponentRoute))
         {
             // check if the given route exists in the route config
-            if(this.routeExists(this.componentRoute))
+            if(this.routeExists(this.inputComponentRoute))
             {
-                this.inputConfig.navigateToViewByUrl(this.componentRoute);
                 if(this.inputHasRouting)
                 {
-                    this._router.events.filter((event:AngularRouter.Event) =>
-                        event instanceof NavigationEnd && event.url.startsWith(this.componentRoute) && !this.tabDeselected
+                    this._router.events.filter((event:AngularRouter.Event) =>{
+
+                           return event instanceof NavigationEnd && event.url.startsWith(this.inputComponentRoute)
+                    }
                     ).subscribe((event:NavigationEnd) =>
                     {
                         this.inputConfig.navigateToViewByUrl(event.url);
                     });
 
-                    // TODO: Workaround since the tabbar cannot handle any routes besides those from the menu..
-                    this._router.events.filter((event:AngularRouter.Event) =>
-                        event instanceof NavigationEnd && event.url.startsWith(this.componentRoute) && this.tabDeselected
-                    ).subscribe(() =>
-                    {
-                        if(this.inputConfig.currentSelectedView)
-                        {
-                            this._router.navigateByUrl(this.inputConfig.currentSelectedView.url);
-                            this.updateViewport(this.inputConfig.currentSelectedView, true);
-                        }
-                        this.tabDeselected = false;
-                    });
-
-                    this._router.events.filter((event:AngularRouter.Event) =>
-                        event instanceof NavigationEnd && !event.url.startsWith(this.componentRoute)
-                    ).subscribe(() =>
-                    {
-                        this.tabDeselected = true;
-                    });
+                    this.inputConfig.navigateToViewByUrl(this._router.url);
                 }
                 else
                 {
                     this._router.events.filter((event:AngularRouter.Event) =>
-                        event instanceof NavigationStart && event.url === this.componentRoute
+                    {
+                        return event instanceof NavigationStart && event.url === this.inputComponentRoute
+                    }
                     ).subscribe((path:NavigationStart) =>
                     {
                         this.updateViewport(this.inputConfig.currentSelectedView, true);
@@ -543,10 +527,10 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private routeExists(route:string):boolean
     {
-        let routeParts:Array<string> = route.split('/');
+        let noLeadingSlash:string = UrlHelper.removeLeadingSlash(route);
+        let routeParts:Array<string> = noLeadingSlash.split('/');
 
-        // start at element 1 not 0, since the route starts with a separator
-        let routeLevel:number = 1;
+        let routeLevel:number = 0;
 
         // get the routing config
         let registeredRoutes:Routes = this._router.config;
