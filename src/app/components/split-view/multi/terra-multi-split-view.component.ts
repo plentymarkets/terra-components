@@ -6,10 +6,7 @@ import {
     OnDestroy,
     OnInit
 } from '@angular/core';
-import {
-    isNull,
-    isNullOrUndefined
-} from 'util';
+import { isNullOrUndefined } from 'util';
 import { TerraMultiSplitViewConfig } from './data/terra-multi-split-view.config';
 import { TerraMultiSplitViewDetail } from './data/terra-multi-split-view-detail';
 import { TerraMultiSplitViewInterface } from './data/terra-multi-split-view.interface';
@@ -17,8 +14,7 @@ import * as AngularRouter from '@angular/router'; // Required to use both Angula
 import {
     NavigationEnd,
     NavigationStart,
-    Router,
-    Routes
+    Router
 } from '@angular/router';
 import { Route } from '@angular/router/src/config';
 import { UrlHelper } from '../../../helpers/url.helper';
@@ -50,7 +46,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     @Input()
     public inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
 
-     /**
+    /**
      * @description adds/activates routing functionality to the split-view. Several dependencies need to be injected to the config as well.
      */
     @Input()
@@ -113,10 +109,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             {
                 if(this.inputHasRouting)
                 {
-                    this._router.events.filter((event:AngularRouter.Event) =>{
-
-                           return event instanceof NavigationEnd && event.url.startsWith(this.inputComponentRoute)
-                    }
+                    this._router.events.filter((event:AngularRouter.Event) =>
+                        event instanceof NavigationEnd && event.url.startsWith(this.inputComponentRoute)
                     ).subscribe((event:NavigationEnd) =>
                     {
                         if(this.inputConfig.currentSelectedView && this.inputConfig.currentSelectedView.url === event.url)
@@ -134,9 +128,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 else
                 {
                     this._router.events.filter((event:AngularRouter.Event) =>
-                    {
-                        return event instanceof NavigationStart && event.url === this.inputComponentRoute
-                    }
+                        event instanceof NavigationStart && event.url === this.inputComponentRoute
                     ).subscribe((path:NavigationStart) =>
                     {
                         this.updateViewport(this.inputConfig.currentSelectedView, true);
@@ -162,10 +154,10 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             this.modules.push(
                 {
-                    views:                 [],
-                    identifier:            view.mainComponentName,
-                    width:                 view.focusedWidth ? view.focusedWidth : view.defaultWidth,
-                    currentSelectedView:   view
+                    views:               [],
+                    identifier:          view.mainComponentName,
+                    width:               view.focusedWidth ? view.focusedWidth : view.defaultWidth,
+                    currentSelectedView: view
                 }
             );
         }
@@ -354,7 +346,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
                 if(isNullOrUndefined(anchor[0]))
                 {
-                   return;
+                    return;
                 }
 
                 // focus view horizontally
