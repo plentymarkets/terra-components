@@ -1,3 +1,11 @@
+<a name="unreleased"></a>
+# Unreleased
+
+### Bug Fixes
+* **terra-text-input**
+	- changed color of text input with readonly attribute
+	- rearranged style selectors to match native html attributes
+
 <a name="2.2.12"></a>
 # 2.2.12 (17.05.2018)
 
