@@ -1,4 +1,5 @@
-#Unreleased
+<a name="2.2.12"></a>
+# 2.2.12 (17.05.2018)
 
 ### Features
 * **url.helper** add new functions `removeFragment`, `removeQueryParams` and `getCleanUrl`
