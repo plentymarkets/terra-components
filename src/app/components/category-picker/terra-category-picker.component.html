@@ -3,7 +3,7 @@
                       [inputIsDisabled]="inputIsDisabled"
                       inputTooltipText="{{inputTooltipText}}"
                       [inputName]="inputName"
-                      [(ngModel)]="_categoryName"
+                      [(ngModel)]="categoryName"
                       (click)="showTree()">
     </terra-text-input>
     <div *ngIf="toggleTree">
@@ -15,7 +15,7 @@
                           inputTooltipPlacement="top"
                           inputIcon="icon-success"
                           [inputIsSmall]="true"
-                          [inputIsDisabled]="_isContainerCategorySelected"
+                          [inputIsDisabled]="isContainerCategorySelected"
                           [inputIsTertiary]="true"
                           (outputClicked)="onSelectNode()">
             </terra-button>
