@@ -5,9 +5,34 @@ export class UrlHelper
         if(url.startsWith('/'))
         {
             // remove leading slash in url
-            url = url.slice(1, url.length);
+            return url.slice(1, url.length);
         }
 
         return url;
+    }
+
+    public static removeFragment(url:string):string
+    {
+        if(url.includes('#'))
+        {
+            return url.slice(0, url.indexOf('#'));
+        }
+
+        return url;
+    }
+
+    public static removeQueryParams(url:string):string
+    {
+        if(url.includes('?'))
+        {
+            return url.indexOf('#') >= 0 ? url.replace(url.slice(url.indexOf('?'), url.indexOf('#')), '') : url.slice(0, url.indexOf('?'));
+        }
+
+        return url;
+    }
+
+    public static getCleanUrl(url:string):string
+    {
+        return this.removeFragment(this.removeQueryParams(this.removeLeadingSlash(url)));
     }
 }
