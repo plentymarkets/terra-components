@@ -14,7 +14,8 @@ import * as AngularRouter from '@angular/router'; // Required to use both Angula
 import {
     NavigationEnd,
     NavigationStart,
-    Router
+    Router,
+    Routes
 } from '@angular/router';
 import { Route } from '@angular/router/src/config';
 import { UrlHelper } from '../../../helpers/url.helper';
@@ -60,14 +61,15 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private splitViewId:number;
 
-    private componentRoute:string;
+    public componentRoute:string;
 
     constructor(private zone:NgZone, private _router:Router)
     {
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
         this.splitViewId = nextSplitViewId++;
-        this.componentRoute = this._router.url;
+        this.componentRoute = this.searchAngularRoutes(this._router.url);
+        console.log('component route: ' + this.componentRoute);
     }
 
     @HostListener('window:resize')
@@ -102,15 +104,15 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.inputConfig.splitViewComponent = this;
 
         // catch routing events, but only those that select the tab where the split view is instantiated
-        if(!isNullOrUndefined(this._router) && !isNullOrUndefined(this.inputComponentRoute))
+        if(!isNullOrUndefined(this._router) && !isNullOrUndefined(this.componentRoute))
         {
             // check if the given route exists in the route config
-            if(this.routeExists(this.inputComponentRoute))
+            if(this.routeExists(this.componentRoute))
             {
                 if(this.inputHasRouting)
                 {
                     this._router.events.filter((event:AngularRouter.Event) =>
-                        event instanceof NavigationEnd && event.url.startsWith(this.inputComponentRoute)
+                        event instanceof NavigationEnd && event.url.startsWith(this.componentRoute)
                     ).subscribe((event:NavigationEnd) =>
                     {
                         if(this.inputConfig.currentSelectedView && this.inputConfig.currentSelectedView.url === event.url)
@@ -128,7 +130,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 else
                 {
                     this._router.events.filter((event:AngularRouter.Event) =>
-                        event instanceof NavigationStart && event.url === this.inputComponentRoute
+                        event instanceof NavigationStart && event.url === this.componentRoute
                     ).subscribe((path:NavigationStart) =>
                     {
                         this.updateViewport(this.inputConfig.currentSelectedView, true);
@@ -583,11 +585,54 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
         if(view.url && this.inputHasRouting)
         {
-            this._router.navigateByUrl(view.url);
+            this._router.navigateByUrl(this.componentRoute + view.url);
         }
         else
         {
             this.setSelectedView(view);
         }
+    }
+
+    // TODO: Almost the same functionality as TabBarHelper.getTabBaseUrl()
+    private searchAngularRoutes(url:string):string
+    {
+        let urlWithoutLeadingSlash:string = UrlHelper.removeLeadingSlash(url);
+        let urlParts:Array<string> = urlWithoutLeadingSlash.split('/');
+        let urlPart:string = urlParts.shift();
+        let routes:Routes = this._router.config;
+        let route:Route = this.findRouteByPath(urlPart, routes);
+        let baseUrl:string = '';
+
+        while(!isNullOrUndefined(route) && urlParts.length > 0)
+        {
+            baseUrl += '/' + route.path;
+            routes = route.children;
+            urlPart = urlParts.shift();
+            route = this.findRouteByPath(urlPart, routes);
+        }
+
+        if(isNullOrUndefined(route) && routes[0].path === '**')
+        {
+            return baseUrl;
+        }
+
+        if(urlParts.length === 0 && route.children[0].path === '**')
+        {
+            return baseUrl + '/' + route.path;
+        }
+
+        return undefined;
+    }
+
+    private findRouteByPath(routePath:string, routeConfig:Routes):Route
+    {
+        if(isNullOrUndefined(routeConfig))
+        {
+            return undefined;
+        }
+        return routeConfig.find((route:Route) =>
+        {
+            return route.path === routePath;
+        });
     }
 }

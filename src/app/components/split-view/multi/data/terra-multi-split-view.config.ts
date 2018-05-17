@@ -215,8 +215,8 @@ export class TerraMultiSplitViewConfig
 
         this._routerStateSnapshot = this._router.routerState.snapshot;
         this._activatedRouteSnapshot = this._routerStateSnapshot.root;
-
-        let redirectUrl:string = this.urlIsRedirected(url);
+        let remainingUrl:string = url.replace(this._splitViewComponent.componentRoute, '');
+        let redirectUrl:string = this.urlIsRedirected(remainingUrl);
 
         if(redirectUrl)
         {
@@ -235,7 +235,7 @@ export class TerraMultiSplitViewConfig
             return;
         }
 
-        this.getResolveDataForUrl(url, this.routingConfig);
+        this.getResolveDataForUrl(remainingUrl, this.routingConfig);
     }
 
     private addOrSelectViewsByUrl(url:string, resolveData:ResolvedData[]):void
@@ -243,7 +243,6 @@ export class TerraMultiSplitViewConfig
         let views:TerraMultiSplitViewInterface[] = this._views;
         let routeConfig:Routes = this.routingConfig;
 
-        url = UrlHelper.removeLeadingSlash(url);
         let urlParts:string[] = url.split('/');
 
         let viewToSelect:TerraMultiSplitViewInterface;
@@ -251,8 +250,11 @@ export class TerraMultiSplitViewConfig
 
         urlParts.forEach((urlPart:string) =>
         {
-            partialRoute += '/' + urlPart;
-            let route:Route = routeConfig.find((r:Route) => r.path === urlPart || r.path.startsWith(':'));
+            if(urlPart.length > 0)
+            {
+                partialRoute += '/' + urlPart;
+            }
+            let route:Route = routeConfig.find((r:Route) => this.isValidRoute(r, urlPart));
             if(route)
             {
                 if(route.data && route.data.mainComponentName)
@@ -327,7 +329,7 @@ export class TerraMultiSplitViewConfig
                 defaultWidth:          route.data.defaultWidth,
                 focusedWidth:          route.data.focusedWidth ? route.data.focusedWidth : undefined,
                 mainComponentName:     route.data.mainComponentName,
-                id:                    route.path.startsWith(':') ? urlPart : undefined,
+                id:                    route.path && route.path.startsWith(':') ? urlPart : undefined,
                 url:                   partialUrl
             };
         if(route.resolve)
@@ -345,14 +347,13 @@ export class TerraMultiSplitViewConfig
     {
         let routeConfig:Routes = this.routingConfig;
         let views:TerraMultiSplitViewInterface[] = this._views;
-        url = UrlHelper.removeLeadingSlash(url);
         let urlParts:string[] = url.split('/');
         let route:Route;
         let isInvalidRoute:boolean = false;
         let view:TerraMultiSplitViewInterface;
         urlParts.forEach((urlPart:string) =>
         {
-            route = routeConfig.find((r:Route) => r.path === urlPart || r.path.startsWith(':'));
+            route = routeConfig.find((r:Route) => this.isValidRoute(r, urlPart));
             if(route)
             {
                 if(route.data && route.data.mainComponentName)
@@ -410,13 +411,12 @@ export class TerraMultiSplitViewConfig
 
     private getResolversForUrl(url:string, routeConfig:Routes):ResolverListItem[]
     {
-        url = UrlHelper.removeLeadingSlash(url);
         let urlParts:string[] = url.split('/');
 
         let resolverList:ResolverListItem[] = [];
         urlParts.forEach((urlPart:string) =>
         {
-            let route:Route = routeConfig.find((r:Route) => r.path === urlPart || r.path.startsWith(':'));
+            let route:Route = routeConfig.find((r:Route) => this.isValidRoute(r, urlPart));
             if(route)
             {
                 if(route.resolve)
@@ -515,4 +515,10 @@ export class TerraMultiSplitViewConfig
         this._splitViewComponent = value;
     }
 
+    private isValidRoute(route:Route, routePath:string):boolean
+    {
+        return !isNullOrUndefined(route) &&
+               (!isNullOrUndefined(route.path) && (route.path === routePath || route.path.startsWith(':')) ||
+                (route === this.routingConfig[0] && isNullOrUndefined(route.path)));
+    }
 }
