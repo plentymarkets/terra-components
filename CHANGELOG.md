@@ -1,3 +1,9 @@
+#Unreleased
+
+### Features
+* **url.helper** add new functions `removeFragment`, `removeQueryParams` and `getCleanUrl`
+* **query-param.helper** added with `appendQueryParamsToUrl` and `getQueryParamString` functions
+
 <a name="2.2.11"></a>
 # 2.2.11 (16.05.2018)
 
