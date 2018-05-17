@@ -13,6 +13,7 @@
         .modal-header
         {
             padding: var(--space-md) var(--space-lg);
+            border-bottom: 1px solid var(--border-color);
             --btn-padding: 0;
             .modal-title
             {
@@ -26,10 +27,12 @@
             height: var(--modal-body-height, initial);
             overflow-y: auto;
             padding: var(--space-lg) var(--space-lg);
+            background-color: var(--modal-body-background-color, var(--color-structure-2))
         }
         .modal-footer
         {
             padding: var(--space-md) var(--space-lg);
+            border-top: 1px solid var(--border-color);
         }
     }
 }
