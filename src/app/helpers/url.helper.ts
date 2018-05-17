@@ -25,7 +25,7 @@ export class UrlHelper
     {
         if(url.includes('?'))
         {
-            return url.indexOf('#') >= 0 ? url.replace(url.slice(url.indexOf('?'), url.indexOf('#')), '') : url.slice(0, url.indexOf('?'));
+            return url.includes('#') ? url.replace(url.slice(url.indexOf('?'), url.indexOf('#')), '') : url.slice(0, url.indexOf('?'));
         }
 
         return url;
