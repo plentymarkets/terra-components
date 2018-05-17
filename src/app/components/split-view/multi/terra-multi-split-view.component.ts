@@ -22,6 +22,7 @@ import {
 } from '@angular/router';
 import { Route } from '@angular/router/src/config';
 import { UrlHelper } from '../../../helpers/url.helper';
+import { TerraMultiSplitViewRoutes } from './data/terra-multi-split-view-routes';
 
 let nextSplitViewId:number = 0;
 
@@ -118,7 +119,14 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                     }
                     ).subscribe((event:NavigationEnd) =>
                     {
-                        this.inputConfig.navigateToViewByUrl(event.url);
+                        if(this.inputConfig.currentSelectedView && this.inputConfig.currentSelectedView.url === event.url)
+                        {
+                            this.updateViewport(this.inputConfig.currentSelectedView, true);
+                        }
+                        else
+                        {
+                            this.inputConfig.navigateToViewByUrl(event.url);
+                        }
                     });
 
                     this.inputConfig.navigateToViewByUrl(this._router.url);
@@ -533,7 +541,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         let routeLevel:number = 0;
 
         // get the routing config
-        let registeredRoutes:Routes = this._router.config;
+        let registeredRoutes:TerraMultiSplitViewRoutes = this._router.config as TerraMultiSplitViewRoutes;
 
         // scan the routing config
         while(routeLevel < routeParts.length)
@@ -550,7 +558,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             {
                 // into deep
                 routeLevel++;
-                registeredRoutes = foundRoute.children;
+                registeredRoutes = foundRoute.children as TerraMultiSplitViewRoutes;
             }
             else
             {
