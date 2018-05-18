@@ -597,13 +597,17 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
         if(this.inputHasRouting)
         {
-            if(view.url)
+            if(!view.url && view === this.modules[0].currentSelectedView)
+            {
+                this._router.navigateByUrl(this.componentRoute);
+            }
+            else if(view.url)
             {
                 this._router.navigateByUrl(this.componentRoute + view.url);
             }
             else
             {
-                this._router.navigateByUrl(this.componentRoute);
+                this.setSelectedView(view);
             }
         }
         else
