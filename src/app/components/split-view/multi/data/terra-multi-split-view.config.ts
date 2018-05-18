@@ -50,10 +50,9 @@ export class TerraMultiSplitViewConfig
     private _routerStateSnapshot:RouterStateSnapshot;
     private _activatedRouteSnapshot:ActivatedRouteSnapshot;
 
-    constructor(
-        private _router?:Router,
-        private _injector?:Injector,
-        private _translation?:TranslationService)
+    constructor(private _router?:Router,
+                private _injector?:Injector,
+                private _translation?:TranslationService)
     {
 
     }
@@ -152,7 +151,8 @@ export class TerraMultiSplitViewConfig
     {
         if(view.children && view.children.length > 0)
         {
-            view.children.forEach((child:TerraMultiSplitViewInterface) => {
+            view.children.forEach((child:TerraMultiSplitViewInterface) =>
+            {
                 this.removeViewAndChildren(child);
             });
         }
@@ -199,17 +199,20 @@ export class TerraMultiSplitViewConfig
         // check if the needed dependencies are injected
         if(isNullOrUndefined(this._router))
         {
-            console.error('_router is not defined.. Please inject the Router in your config-instance to make routing functionality available');
+            console.error(
+                '_router is not defined.. Please inject the Router in your config-instance to make routing functionality available');
             return;
         }
         if(isNullOrUndefined(this._injector))
         {
-            console.error('_injector is not defined. Please inject the Injector in your config-instance to make routing functionality available');
+            console.error(
+                '_injector is not defined. Please inject the Injector in your config-instance to make routing functionality available');
             return;
         }
         if(isNullOrUndefined(this._translation))
         {
-            console.error('_translation is not defined. Please inject the TranslationService in your config-instance to make routing functionality available');
+            console.error(
+                '_translation is not defined. Please inject the TranslationService in your config-instance to make routing functionality available');
             return;
         }
 
@@ -312,7 +315,8 @@ export class TerraMultiSplitViewConfig
             if(res)
             {
                 let obj:ResolveData = {};
-                res.resolves.forEach((resolve:TerraDynamicLoadedComponentInputInterface) => {
+                res.resolves.forEach((resolve:TerraDynamicLoadedComponentInputInterface) =>
+                {
                     obj[resolve.name] = resolve.value;
                 });
                 viewName = this._translation.translate(route.data.name(obj), {id: urlPart});
@@ -324,13 +328,13 @@ export class TerraMultiSplitViewConfig
         }
         let newView:TerraMultiSplitViewInterface =
             {
-                module:                route.data.module,
-                name:                  viewName,
-                defaultWidth:          route.data.defaultWidth,
-                focusedWidth:          route.data.focusedWidth ? route.data.focusedWidth : undefined,
-                mainComponentName:     route.data.mainComponentName,
-                id:                    route.path && route.path.startsWith(':') ? urlPart : undefined,
-                url:                   partialUrl
+                module:            route.data.module,
+                name:              viewName,
+                defaultWidth:      route.data.defaultWidth,
+                focusedWidth:      route.data.focusedWidth ? route.data.focusedWidth : undefined,
+                mainComponentName: route.data.mainComponentName,
+                id:                route.path && route.path.startsWith(':') ? urlPart : undefined,
+                url:               partialUrl
             };
         if(route.resolve)
         {
@@ -424,9 +428,9 @@ export class TerraMultiSplitViewConfig
                     for(let elem in route.resolve)
                     {
                         let resolver:ResolverListItem = {
-                            urlPart: urlPart,
+                            urlPart:   urlPart,
                             routePath: route.path,
-                            resolver: {
+                            resolver:  {
                                 key:     elem,
                                 service: this._injector.get(route.resolve[elem])
                             }
@@ -453,8 +457,13 @@ export class TerraMultiSplitViewConfig
         return resolverList;
     }
 
-    private resolveInSequence(url:string, resolverList:ResolverListItem[], data:ResolvedData[]):void
+    private resolveInSequence(url:string, resolverList:ResolverListItem[], data:ResolvedData[], resolvedResolvers?:ResolverListItem[]):void
     {
+        if(isNullOrUndefined(resolvedResolvers))
+        {
+            resolvedResolvers = [];
+        }
+
         if(isNullOrUndefined(resolverList) || resolverList.length === 0)
         {
             // all data resolved go to view addition/selection
@@ -467,48 +476,73 @@ export class TerraMultiSplitViewConfig
         if(!isNullOrUndefined(resolverListItem.routePath) && resolverListItem.routePath.startsWith(':'))
         {
             this._activatedRouteSnapshot.params = {};
-            this._activatedRouteSnapshot.params[resolverListItem.routePath.substring(1)] = resolverListItem.urlPart; // pass route params to the resolver
+            this._activatedRouteSnapshot.params[resolverListItem.routePath.substring(1)] = resolverListItem.urlPart; // pass route params
+                                                                                                                     // to the resolver
         }
-        resolverListItem.resolver.service.resolve(this._activatedRouteSnapshot, this._routerStateSnapshot).subscribe((res:any) =>
-        {
-            let resolveData:TerraDynamicLoadedComponentInputInterface = {
-                name:  resolverListItem.resolver.key,
-                value: res
-            };
 
-            if(isNullOrUndefined(data))
+        let resolvedResolver:ResolverListItem = resolvedResolvers.find((res:ResolverListItem) =>
+            Object.getPrototypeOf(res.resolver.service) === Object.getPrototypeOf(resolverListItem.resolver.service)
+        );
+        if(!isNullOrUndefined(resolvedResolver)) // resolve resolvers only once for a route
+        {
+            let resData:ResolvedData = data.find((d:ResolvedData) => d.urlPart === resolvedResolver.urlPart);
+            let inputData:TerraDynamicLoadedComponentInputInterface = resData.resolves.find((x:TerraDynamicLoadedComponentInputInterface) =>
+                x.name === resolvedResolver.resolver.key
+            );
+            this.addResolvedData(resolverListItem, inputData.value, data, url, resolverList, resolvedResolvers);
+        }
+        else
+        {
+            resolverListItem.resolver.service.resolve(this._activatedRouteSnapshot, this._routerStateSnapshot).subscribe((res:any) =>
             {
-                data = [{
-                    urlPart:  resolverListItem.urlPart,
-                    resolves: [resolveData]
-                }];
-            }
-            else
+                resolvedResolvers.push(resolverListItem);
+
+                this.addResolvedData(resolverListItem, res, data, url, resolverList, resolvedResolvers);
+            });
+        }
+
+    }
+
+    private addResolvedData(resolverListItem:ResolverListItem, res:any, data:ResolvedData[], url:string,
+                            resolverList:ResolverListItem[], resolvedResolvers:ResolverListItem[]):void
+    {
+        let resolveData:TerraDynamicLoadedComponentInputInterface = {
+            name:  resolverListItem.resolver.key,
+            value: res
+        };
+
+        if(isNullOrUndefined(data))
+        {
+            data = [{
+                urlPart:  resolverListItem.urlPart,
+                resolves: [resolveData]
+            }];
+        }
+        else
+        {
+            let obj = data.find((dat) => dat.urlPart === resolverListItem.urlPart);
+            if(obj)
             {
-                let obj = data.find((dat) => dat.urlPart === resolverListItem.urlPart);
-                if(obj)
+                if(isNullOrUndefined(obj.resolves))
                 {
-                    if(isNullOrUndefined(obj.resolves))
-                    {
-                        obj.resolves = [resolveData];
-                    }
-                    else
-                    {
-                        obj.resolves.push(resolveData);
-                    }
+                    obj.resolves = [resolveData];
                 }
                 else
                 {
-                    data.push({
-                        urlPart:  resolverListItem.urlPart,
-                        resolves: [resolveData]
-                    });
+                    obj.resolves.push(resolveData);
                 }
             }
+            else
+            {
+                data.push({
+                    urlPart:  resolverListItem.urlPart,
+                    resolves: [resolveData]
+                });
+            }
+        }
 
-            // go to the next resolver
-            this.resolveInSequence(url, resolverList, data);
-        });
+        // go to the next resolver
+        this.resolveInSequence(url, resolverList, data, resolvedResolvers);
     }
 
     public get selectBreadcrumbEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
