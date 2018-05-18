@@ -16,7 +16,6 @@ import {
     Routes
 } from '@angular/router';
 import { TerraDynamicLoadedComponentInputInterface } from '../../../dynamic-module-loader/data/terra-dynamic-loaded-component-input.interface';
-import { UrlHelper } from '../../../../helpers/url.helper';
 import { TranslationService } from 'angular-l10n';
 import { TerraMultiSplitViewComponent } from '../terra-multi-split-view.component';
 
