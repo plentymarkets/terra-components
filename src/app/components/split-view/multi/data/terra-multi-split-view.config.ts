@@ -29,6 +29,7 @@ export interface ResolvedData
 export interface ResolverListItem
 {
     urlPart:string;
+    routePath:string;
     resolver:{
         key:string;
         service:Resolve<any>;
@@ -425,6 +426,7 @@ export class TerraMultiSplitViewConfig
                     {
                         let resolver:ResolverListItem = {
                             urlPart: urlPart,
+                            routePath: route.path,
                             resolver: {
                                 key:     elem,
                                 service: this._injector.get(route.resolve[elem])
@@ -463,6 +465,11 @@ export class TerraMultiSplitViewConfig
         }
 
         let resolverListItem:ResolverListItem = resolverList.shift();
+        if(!isNullOrUndefined(resolverListItem.routePath) && resolverListItem.routePath.startsWith(':'))
+        {
+            this._activatedRouteSnapshot.params = {};
+            this._activatedRouteSnapshot.params[resolverListItem.routePath.substring(1)] = resolverListItem.urlPart; // pass route params to the resolver
+        }
         resolverListItem.resolver.service.resolve(this._activatedRouteSnapshot, this._routerStateSnapshot).subscribe((res:any) =>
         {
             let resolveData:TerraDynamicLoadedComponentInputInterface = {
