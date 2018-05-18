@@ -595,9 +595,16 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             event.stopPropagation();
         }
 
-        if(view.url && this.inputHasRouting)
+        if(this.inputHasRouting)
         {
-            this._router.navigateByUrl(this.componentRoute + view.url);
+            if(view.url)
+            {
+                this._router.navigateByUrl(this.componentRoute + view.url);
+            }
+            else
+            {
+                this._router.navigateByUrl(this.componentRoute);
+            }
         }
         else
         {
@@ -623,12 +630,12 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             route = this.findRouteByPath(urlPart, routes);
         }
 
-        if(isNullOrUndefined(route) && routes[0].path === '**')
+        if(isNullOrUndefined(route) && routes && routes[0] && routes[0].path === '**')
         {
             return baseUrl;
         }
 
-        if(urlParts.length === 0 && route.children[0].path === '**')
+        if(urlParts.length === 0 && route && route.children && route.children[0] && route.children[0].path === '**')
         {
             return baseUrl + '/' + route.path;
         }
