@@ -137,3 +137,4 @@ export * from './app/helpers/path.helper';
 export * from './app/helpers/terra-converter.helper';
 export * from './app/helpers/terra-pdf.helper';
 export * from './app/helpers/download.helper';
+export * from './app/components/split-view/multi/data/terra-multi-split-view-breadcrumbs.service';

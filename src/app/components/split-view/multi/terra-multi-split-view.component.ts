@@ -20,6 +20,7 @@ import {
 import { Route } from '@angular/router/src/config';
 import { UrlHelper } from '../../../helpers/url.helper';
 import { TerraMultiSplitViewRoutes } from './data/terra-multi-split-view-routes';
+import { TerraMultiSplitViewBreadcrumbsService } from './data/terra-multi-split-view-breadcrumbs.service';
 
 let nextSplitViewId:number = 0;
 
@@ -63,7 +64,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     public componentRoute:string;
 
-    constructor(private zone:NgZone, private _router:Router)
+    constructor(private zone:NgZone, private _router:Router, private breadcrumbsService:TerraMultiSplitViewBreadcrumbsService)
     {
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
@@ -115,7 +116,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                         event instanceof NavigationEnd && event.url.startsWith(this.componentRoute)
                     ).subscribe((event:NavigationEnd) =>
                     {
-                        if(this.inputConfig.currentSelectedView && this.inputConfig.currentSelectedView.url === event.url)
+                        if(this.inputConfig.currentSelectedView && (this.componentRoute + this.inputConfig.currentSelectedView.url === event.url))
                         {
                             this.updateViewport(this.inputConfig.currentSelectedView, true);
                         }
@@ -251,6 +252,17 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.inputConfig.currentSelectedView = view;
         this.updateViewport(view);
         this.updateBreadCrumbs();
+        this.updateBreadcrumbsList();
+    }
+
+    private updateBreadcrumbsList():void
+    {
+        this.breadcrumbsService.breadcrumbList[this.componentRoute] =
+            this.modules.map((module:TerraMultiSplitViewDetail) =>
+            {
+                return module.currentSelectedView.name;
+            });
+
     }
 
     private updateBreadCrumbs():void
