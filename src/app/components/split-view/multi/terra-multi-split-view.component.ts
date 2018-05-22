@@ -594,8 +594,26 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             event.stopPropagation();
         }
-        
-        this.setSelectedView(view);
+
+        if(this.inputHasRouting)
+        {
+            if(!view.url && view === this.modules[0].currentSelectedView)
+            {
+                this._router.navigateByUrl(this.componentRoute);
+            }
+            else if(view.url)
+            {
+                this._router.navigateByUrl(this.componentRoute + view.url);
+            }
+            else
+            {
+                this.setSelectedView(view);
+            }
+        }
+        else
+        {
+            this.setSelectedView(view);
+        }
     }
 
     // TODO: Almost the same functionality as TabBarHelper.getTabBaseUrl()

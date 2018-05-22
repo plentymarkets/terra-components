@@ -140,7 +140,6 @@ import { TerraFileChooserComponent } from './components/buttons/file-chooser/ter
 import { l10nConfig } from './translation/l10n.config';
 import { HttpClientModule } from '@angular/common/http';
 import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/multi/data/terra-multi-split-view-breadcrumbs.service';
-import { RouterModule } from '@angular/router';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -414,8 +413,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         MyDatePickerModule,
         AceEditorModule,
         TerraInteractModule,
-        QuillModule,
-        RouterModule
+        QuillModule
     ],
     providers:       [
         TerraNavigatorSplitViewConfig,
