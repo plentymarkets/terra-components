@@ -561,4 +561,9 @@ export class TerraMultiSplitViewConfig
                (!isNullOrUndefined(route.path) && (route.path === routePath || route.path.startsWith(':')) ||
                 (route === this.routingConfig[0] && isNullOrUndefined(route.path)));
     }
+
+    public get baseRoute():string
+    {
+        return this._splitViewComponent.componentRoute;
+    }
 }
