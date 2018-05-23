@@ -1,19 +1,19 @@
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs" [inputIsBreadcrumbs]="true" class="main-breadcrumbs">
     <ul class="terra-breadcrumbs">
         <ng-template ngFor let-module [ngForOf]="modules" let-index="index">
-            <li class="module{{index}}" *ngIf="module.currentSelectedView.url && this.inputHasRouting; else falsyTemplate"
-                [routerLink]="searchAngularRoutes(_router.url) + module.currentSelectedView.url">
+            <li class="module{{index}}" *ngIf="!isNullOrUndefined(module.currentSelectedView.url) && this.inputHasRouting; else falsyTemplate"
+                [routerLink]="componentRoute + module.currentSelectedView.url">
                 <div class="{{ module.identifier }}"
                      [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
                     <span class="ellipsis">{{module.currentSelectedView.name}}</span>
                     <a class="icon-caret" *ngIf="module.views.length > 1">
                         <ul class="context-menu">
                             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
-                                <li [routerLink]="searchAngularRoutes(_router.url) + view.url">
-                                    <div class="{{ view.mainComponentName + '_' + i }} ">
+                                <li [routerLink]="componentRoute + view.url">
+                                    <a class="{{ view.mainComponentName + '_' + i }} ">
                                         {{ view.name }}
                                         <span class="right-icon icon-cancel" (click)="removeView(view,$event)"></span>
-                                    </div>
+                                    </a>
                                 </li>
                             </ng-template>
                         </ul>

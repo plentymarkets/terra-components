@@ -640,4 +640,9 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             return route.path === routePath;
         });
     }
+    
+    protected isNullOrUndefined(object:any):boolean
+    {
+        return isNullOrUndefined(object);
+    }
 }
