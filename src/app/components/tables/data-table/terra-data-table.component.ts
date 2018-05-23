@@ -137,6 +137,19 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this._rowList = [];
     }
 
+    public get rowList():Array<TerraDataTableRowInterface<D>>
+    {
+        return this._rowList;
+    }
+
+    public set rowList(value:Array<TerraDataTableRowInterface<D>>)
+    {
+        // reset selected RowList
+        this._selectedRowList = [];
+
+        this._rowList = value;
+    }
+
     private get getCollapsedState():string
     {
         if(this.inputShowGroupFunctions)
@@ -159,7 +172,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
     }
 
-    private onHeaderCheckboxChange(isChecked:boolean):void
+    public onHeaderCheckboxChange(isChecked:boolean):void
     {
         this._isHeaderCheckboxChecked = isChecked;
 
@@ -172,7 +185,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         });
     }
 
-    private onRowCheckboxChange(isChecked:boolean, row:TerraDataTableRowInterface<D>):void
+    public onRowCheckboxChange(isChecked:boolean, row:TerraDataTableRowInterface<D>):void
     {
         this.changeRowState(isChecked, row);
         this.outputRowCheckBoxChanged.emit(row);
@@ -191,7 +204,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
     }
 
-    private checkTooltipPlacement(placement:string):string
+    public checkTooltipPlacement(placement:string):string
     {
         if(!isNullOrUndefined(placement) && placement !== '')
         {
@@ -199,6 +212,97 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
 
         return 'top';
+    }
+
+    public rowClicked(cell:TerraDataTableCellInterface, clickedRow:TerraDataTableRowInterface<D>):void
+    {
+        if(!cell.buttonList && !clickedRow.disabled)
+        {
+            this._rowList.forEach((row:TerraDataTableRowInterface<D>):void =>
+            {
+                row.isActive = false;
+            });
+
+            clickedRow.isActive = true;
+            clickedRow.clickFunction();
+        }
+    }
+
+    public getCellDataType(data:any):string
+    {
+        function isRefType(arg:any):arg is TerraRefTypeInterface
+        {
+            return arg
+                   && arg.type && typeof arg.type === 'string'
+                   && arg.value && typeof arg.value === 'string';
+        }
+
+        function isTextType(arg:any):arg is TerraDataTableTextInterface
+        {
+            return arg && arg.caption && typeof arg.caption === 'string';
+        }
+
+        function isTagArray(arg:any):arg is Array<TerraTagInterface>
+        {
+            // check if it is an array
+            if(!isArray(arg))
+            {
+                return false;
+            }
+
+            // check if every element of the array implements the tag interface
+            let implementsInterface:boolean = true;
+            arg.forEach((elem:any) =>
+            {
+                implementsInterface = implementsInterface && elem.badge && typeof elem.badge === 'string';
+            });
+
+            return arg && implementsInterface;
+        }
+
+        function isButtonArray(arg:any):arg is Array<TerraButtonInterface>
+        {
+            // check if it is an array
+            if(!isArray(arg))
+            {
+                return false;
+            }
+
+            // check if every element of the array implements the button interface
+            let implementsInterface:boolean = true;
+            arg.forEach((elem:any) =>
+            {
+                implementsInterface = implementsInterface && elem.clickFunction && typeof elem.clickFunction === 'function';
+            });
+
+            return arg && implementsInterface;
+        }
+
+        if(typeof data === 'object')
+        {
+            if(isRefType(data))
+            {
+                return 'TerraRefTypeInterface';
+            }
+            else if(isTextType(data))
+            {
+                return 'TerraDataTableTextInterface';
+            }
+            else if(isTagArray(data))
+            {
+                return 'tags';
+            }
+            else if(isButtonArray(data))
+            {
+                return 'buttons';
+            }
+        }
+        return typeof data;
+    }
+
+    public onGroupFunctionExecuteButtonClicked(event:Event):void
+    {
+        this.outputGroupFunctionExecuteButtonClicked.emit(this._selectedRowList);
     }
 
     private changeRowState(isChecked:boolean, rowToChange:TerraDataTableRowInterface<D>):void
@@ -227,20 +331,6 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             let index:number = this.selectedRowList.indexOf(rowToChange);
 
             this.selectedRowList.splice(index, 1);
-        }
-    }
-
-    private rowClicked(cell:TerraDataTableCellInterface, clickedRow:TerraDataTableRowInterface<D>):void
-    {
-        if(!cell.buttonList && !clickedRow.disabled)
-        {
-            this._rowList.forEach((row:TerraDataTableRowInterface<D>):void =>
-            {
-                row.isActive = false;
-            });
-
-            clickedRow.isActive = true;
-            clickedRow.clickFunction();
         }
     }
 
@@ -319,95 +409,4 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             return 'left';
         }
     }
-
-    private getCellDataType(data:any):string
-    {
-        function isRefType(arg:any):arg is TerraRefTypeInterface
-        {
-            return arg
-                   && arg.type && typeof arg.type === 'string'
-                   && arg.value && typeof arg.value === 'string';
-        }
-
-        function isTextType(arg:any):arg is TerraDataTableTextInterface
-        {
-            return arg && arg.caption && typeof arg.caption === 'string';
-        }
-
-        function isTagArray(arg:any):arg is Array<TerraTagInterface>
-        {
-            // check if it is an array
-            if(!isArray(arg))
-            {
-                return false;
-            }
-
-            // check if every element of the array implements the tag interface
-            let implementsInterface:boolean = true;
-            arg.forEach((elem:any) =>
-            {
-                implementsInterface = implementsInterface && elem.badge && typeof elem.badge === 'string';
-            });
-
-            return arg && implementsInterface;
-        }
-
-        function isButtonArray(arg:any):arg is Array<TerraButtonInterface>
-        {
-            // check if it is an array
-            if(!isArray(arg))
-            {
-                return false;
-            }
-
-            // check if every element of the array implements the button interface
-            let implementsInterface:boolean = true;
-            arg.forEach((elem:any) =>
-            {
-                implementsInterface = implementsInterface && elem.clickFunction && typeof elem.clickFunction === 'function';
-            });
-
-            return arg && implementsInterface;
-        }
-
-        if(typeof data === 'object')
-        {
-            if(isRefType(data))
-            {
-                return 'TerraRefTypeInterface';
-            }
-            else if(isTextType(data))
-            {
-                return 'TerraDataTableTextInterface';
-            }
-            else if(isTagArray(data))
-            {
-                return 'tags';
-            }
-            else if(isButtonArray(data))
-            {
-                return 'buttons';
-            }
-        }
-        return typeof data;
-    }
-
-    private onGroupFunctionExecuteButtonClicked(event:Event):void
-    {
-        this.outputGroupFunctionExecuteButtonClicked.emit(this._selectedRowList);
-    }
-
-    public get rowList():Array<TerraDataTableRowInterface<D>>
-    {
-        return this._rowList;
-    }
-
-    public set rowList(value:Array<TerraDataTableRowInterface<D>>)
-    {
-        // reset selected RowList
-        this._selectedRowList = [];
-
-        this._rowList = value;
-    }
-
 }
