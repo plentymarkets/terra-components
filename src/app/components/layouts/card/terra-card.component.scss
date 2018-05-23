@@ -2,37 +2,67 @@
 {
     &.terra-card
     {
-        margin: 10px 5px;
+        border-radius: var(--border-radius);
+        border: none;
+        box-shadow: var(--box-shadow);
+        margin: var(--space-xs) var(--space-xs) var(--space-md) var(--space-xs);
         display: inline-block;
         width: 200px;
+        transition: margin var(--transition-md);
+        
+        &.selected
+        {
+            border: 2px solid var(--color-active);
+        }
+    }
+    .card-header
+    {
+        background-color: var(--color-structure-0);
+        padding: var(--space-md);
     }
     .card-img-top
     {
-        width: 100%;
         height: 150px;
-        margin: 36px 0px 8px 0px;
+        margin: 2px;
+        border-radius: 0;
         
         &.terra-card-image
         {
-            background-size: contain;
             background: no-repeat center;
+            background-size: var(--terra-card-image-background-size, contain);
         }
         
         &.terra-card-placeholder
         {
             font-size: 150px;
             text-align: center;
-            color: $gray-light-2;
+            color: var(--color-structure-7);
+        }
+    }
+    
+    .card-block
+    {
+        padding: 0 var(--space-md) 0 var(--space-md);
+        transition: padding var(--transition-md);
+    }
+    
+    .card-footer
+    {
+        padding: var(--space-md);
+        background-color: var(--color-structure-0);
+        transition: padding var(--transition-md);
+        
+        &.selected
+        {
+            border-top: 1px solid var(--color-active);
+            color: var(--color-structure-0);
+            background-color: var(--color-active);
+            border-radius: 0;
+            transition: all var(--transition-md);
         }
     }
 }
 
-.card-footer
-{
-    padding: 2px 8px;
-}
 
-.card-block
-{
-    padding: 0px 8px 8px 8px;
-}
+
+

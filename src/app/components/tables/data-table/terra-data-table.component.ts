@@ -14,9 +14,13 @@ import { TerraDataTableContextMenuService } from './context-menu/service/terra-d
 import { TerraDataTableCellInterface } from './cell/terra-data-table-cell.interface';
 import {
     isArray,
+    isNull,
     isNullOrUndefined
 } from 'util';
-import { TerraRefTypeInterface } from './cell/terra-ref-type.interface';
+import {
+    TerraRefTypeEnum,
+    TerraRefTypeInterface
+} from './cell/terra-ref-type.interface';
 import { TerraDataTableTextInterface } from './cell/terra-data-table-text.interface';
 import {
     animate,
@@ -25,16 +29,14 @@ import {
     transition,
     trigger
 } from '@angular/animations';
-import {
-    TerraAlertComponent,
-    TerraBaseData,
-    TerraBaseService,
-    TerraButtonInterface,
-    TerraCheckboxComponent,
-    TerraPagerInterface,
-    TerraSelectBoxValueInterface,
-    TerraTagInterface
-} from '../../../../';
+import { TerraBaseService } from '../../../service/terra-base.service';
+import { TerraBaseData } from '../../data/terra-base.data';
+import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
+import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
+import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
+import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
+import { TerraAlertComponent } from '../../alert/terra-alert.component';
+import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 
 @Component({
     selector:   'terra-data-table',
@@ -62,29 +64,55 @@ import {
 })
 export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> implements OnChanges
 {
-    @ViewChild('viewChildHeaderCheckbox') viewChildHeaderCheckbox:TerraCheckboxComponent;
+    @ViewChild('viewChildHeaderCheckbox')
+    public viewChildHeaderCheckbox:TerraCheckboxComponent;
 
-    @Input() inputService:S;
-    @Input() inputDataType:string;
-    @Input() inputHasCheckboxes:boolean;
-    @Input() inputHasPager:boolean;
-    @Input() inputHasInitialLoading:boolean;
-    @Input() inputNoResultTextPrimary:string;
-    @Input() inputNoResultTextSecondary:string;
-    @Input() inputNoResultButtons:Array<TerraButtonInterface>;
-    @Input() inputShowGroupFunctions:boolean = false;
-    @Input() inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
+    @Input()
+    public inputService:S;
 
-    @Output() outputDoPagingEvent = new EventEmitter<TerraPagerInterface>();
-    @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
-    @Output() outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<D>>> = new EventEmitter();
+    @Input()
+    public inputDataType:string;
+
+    @Input()
+    public inputHasCheckboxes:boolean;
+
+    @Input()
+    public inputHasPager:boolean;
+
+    @Input()
+    public inputHasInitialLoading:boolean;
+
+    @Input()
+    public inputNoResultTextPrimary:string;
+
+    @Input()
+    public inputNoResultTextSecondary:string;
+
+    @Input()
+    public inputNoResultButtons:Array<TerraButtonInterface>;
+
+    @Input()
+    public inputShowGroupFunctions:boolean = false;
+
+    @Input()
+    public inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
+
+    @Output()
+    public outputDoPagingEvent:EventEmitter<TerraPagerInterface> = new EventEmitter<TerraPagerInterface>();
+
+    @Output()
+    public outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
+
+    @Output()
+    public outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<D>>> = new EventEmitter();
 
     public headerList:Array<TerraDataTableHeaderCellInterface>;
     private _rowList:Array<TerraDataTableRowInterface<D>>;
     public pagingData:TerraPagerInterface;
     public pagingSize:Array<TerraSelectBoxValueInterface>;
-    public onSuccessFunction:(res) => void;
+    public onSuccessFunction:(res:I) => void;
     public defaultPagingSize:number;
+    public TerraRefTypeEnum:object = TerraRefTypeEnum;
     private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
     private _isHeaderCheckboxChecked:boolean = false;
     private _initialLoadingMessage:string;
@@ -120,7 +148,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
     }
 
-    ngOnChanges(changes:SimpleChanges):void
+    public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes['_hasCheckboxes'])
         {
@@ -134,7 +162,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         this._isHeaderCheckboxChecked = isChecked;
 
-        this._rowList.forEach((row) =>
+        this._rowList.forEach((row:TerraDataTableRowInterface<D>) =>
         {
             if(!row.disabled)
             {
@@ -148,7 +176,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this.changeRowState(isChecked, row);
         this.outputRowCheckBoxChanged.emit(row);
 
-        if(this.selectedRowList.length == 0)
+        if(this.selectedRowList.length === 0)
         {
             this._isHeaderCheckboxChecked = false;
         }
@@ -178,9 +206,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
         let rowFound:boolean = false;
 
-        this.selectedRowList.forEach((row) =>
+        this.selectedRowList.forEach((row:TerraDataTableRowInterface<D>):void =>
         {
-            if(row == rowToChange)
+            if(row === rowToChange)
             {
                 rowFound = true;
             }
@@ -195,23 +223,23 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
         else
         {
-            let index = this.selectedRowList.indexOf(rowToChange);
+            let index:number = this.selectedRowList.indexOf(rowToChange);
 
             this.selectedRowList.splice(index, 1);
         }
     }
 
-    private rowClicked(cell:TerraDataTableCellInterface, row:TerraDataTableRowInterface<D>):void
+    private rowClicked(cell:TerraDataTableCellInterface, clickedRow:TerraDataTableRowInterface<D>):void
     {
-        if(!cell.buttonList && !row.disabled)
+        if(!cell.buttonList && !clickedRow.disabled)
         {
-            this._rowList.forEach((row) =>
+            this._rowList.forEach((row:TerraDataTableRowInterface<D>):void =>
             {
                 row.isActive = false;
             });
 
-            row.isActive = true;
-            row.clickFunction();
+            clickedRow.isActive = true;
+            clickedRow.clickFunction();
         }
     }
 
@@ -221,10 +249,10 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
         this._rowList.splice(index, 1);
 
-        let selectedIndex = this.selectedRowList.indexOf(rowToDelete);
+        let selectedIndex:number = this.selectedRowList.indexOf(rowToDelete);
 
         // check if row exists in selectedRowList
-        if(selectedIndex != null)
+        if(!isNull(selectedIndex))
         {
             this.selectedRowList.splice(selectedIndex, 1);
         }
@@ -258,12 +286,18 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
 
         this._requestPending = true;
-        restCall.subscribe(this.onSuccessFunction, error =>
+        restCall.subscribe(
+            (res:I) =>
             {
-                if(error.status == 401 || error.status == 500)
+                this._selectedRowList = [];
+                this.onSuccessFunction(res);
+            },
+            (error:any) =>
+            {
+                if(error.status === 401 || error.status === 500)
                 {
-                    //TODO
-                    alert(error.status);
+                    // TODO
+                    // alert(error.status);
                 }
             },
             () =>
@@ -290,13 +324,13 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         function isRefType(arg:any):arg is TerraRefTypeInterface
         {
             return arg
-                   && arg.type && typeof arg.type == 'string'
-                   && arg.value && typeof arg.value == 'string';
+                   && arg.type && typeof arg.type === 'string'
+                   && arg.value && typeof arg.value === 'string';
         }
 
         function isTextType(arg:any):arg is TerraDataTableTextInterface
         {
-            return arg && arg.caption && typeof arg.caption == 'string';
+            return arg && arg.caption && typeof arg.caption === 'string';
         }
 
         function isTagArray(arg:any):arg is Array<TerraTagInterface>
@@ -311,7 +345,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             let implementsInterface:boolean = true;
             arg.forEach((elem:any) =>
             {
-                implementsInterface = implementsInterface && elem.badge && typeof elem.badge == 'string';
+                implementsInterface = implementsInterface && elem.badge && typeof elem.badge === 'string';
             });
 
             return arg && implementsInterface;
@@ -329,7 +363,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             let implementsInterface:boolean = true;
             arg.forEach((elem:any) =>
             {
-                implementsInterface = implementsInterface && elem.clickFunction && typeof elem.clickFunction == 'function';
+                implementsInterface = implementsInterface && elem.clickFunction && typeof elem.clickFunction === 'function';
             });
 
             return arg && implementsInterface;

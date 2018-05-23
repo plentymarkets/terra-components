@@ -1,0 +1,24 @@
+<terra-portlet inputPortletHeader="input uses ngModel">
+    <terra-text-input inputName="username"
+                      [(ngModel)]="username">
+    </terra-text-input>
+    <terra-button inputCaption="show username"
+                  (outputClicked)="showUsername()">
+    </terra-button>
+</terra-portlet>
+<terra-portlet inputPortletHeader="input is password">
+    <terra-text-input inputName="password"
+                      [inputIsPassword]="true">
+    </terra-text-input>
+</terra-portlet>
+<terra-portlet inputPortletHeader="input is readonly">
+    <terra-text-input inputName="readonly"
+                      [inputIsReadonly]="true"
+                      [(ngModel)]="readOnlyFieldText">
+    </terra-text-input>
+</terra-portlet>
+<terra-portlet inputPortletHeader="input is iban">
+    <terra-text-input inputName="iban"
+                      [inputIsIban]="true">
+    </terra-text-input>
+</terra-portlet>

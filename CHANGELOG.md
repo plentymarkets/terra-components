@@ -1,15 +1,242 @@
-<a name=""></a>
+<a name="unreleased"></a>
 # Unreleased
 
 ### Bug Fixes
-* **terra-data-table** reset selectedRowList if RowList is updated
+* **terra-text-input**
+	- changed color of text input with readonly attribute
+	- rearranged style selectors to match native html attributes
 
+<a name="2.2.12"></a>
+# 2.2.12 (17.05.2018)
+
+### Features
+* **url.helper** add new functions `removeFragment`, `removeQueryParams` and `getCleanUrl`
+* **query-param.helper** added with `appendQueryParamsToUrl` and `getQueryParamString` functions
+
+<a name="2.2.11"></a>
+# 2.2.11 (16.05.2018)
+
+### Features
+* **alerts** restyled alerts & changed min/max-width for alert-panel
+* **file-browser** restyled file-browser
+* **terra-color-picker** restyled terra-color-picker
+* **terra-overlay** changed the background-color of overlays to grey like all the other content-areas
+* **terra-portlet** added the possibility to stack portlets in portlets
+
+### Bug Fixes
+* **breadcrumbs** fixed issues with background-color of breadcrumbs
+* **text-area** fixed broken text-area
+* **terra-simple-table** fixed issues with [fixedHeader]-class 
+
+<a name="2.2.10"></a>
+# 2.2.10 (16.05.2018)
+
+### Bug Fixes
+* **terra-categroy-picker** fixed error with initial loading of category picker in dynamic form
+
+<a name="2.2.7"></a>
+# 2.2.7 (14.05.2018)
+
+### Bug Fixes
+* **terra-multi-split-view** fixed error with side scroller
+
+<a name="2.2.6"></a>
+# 2.2.6 (09.05.2018)
+
+### Bug Fixes
+* **category-picker** fixed error with the reset button
+
+### Feature
+* **download-helper** added download helper for downloads from the backend
+
+<a name="2.2.5"></a>
+# 2.2.5 (04.05.2018)
+
+### Feature
+* **terra-multi-split-view** set input inputComponentRoute deprecated. It is no longer needed.
+
+### Bug Fixes
+* **terra-converter-helper** updated a used pipe after the angular update
+
+<a name="2.2.4"></a>
+# 2.2.4 (03.05.2018)
+
+### Feature
+* **terra-select-box** fixed null pointer when <code>selectedValue</code> was undefined
+
+<a name="2.2.3"></a>
+# 2.2.3 (02.05.2018)
+
+### Feature
+* **string-helper** new helper for strings
+
+### Bug Fixes
+* **terra-text-input** changed color of text input with readonly attribute
+* **terra-dynamic-form** added tooltip for category picker
+* **terra-category-picker** added input for tooltip
+
+<a name="2.2.2"></a>
+# 2.2.2 (25.04.2018)
+
+### Bug Fixes
+* **terra-base-toolbar** fixed z-Index in toolbars that caused overlapping issues
+
+<a name="2.2.1"></a>
+# 2.2.1 (24.04.2018)
+
+### Bug Fixes
+* **themes** theming restructuring
+
+## Feature
+* **terra-file-chooser** Added new component to open file-browser directly via a button without input element.
+
+<a name="2.2.0"></a>
+# 2.2.0 (24.04.2018)
+ 
+### Minor changes
+* **Update Angular** to Version 5.2.10 and all other packages, except bootstrap, to newest version
+
+
+<a name="2.1.69-zlk"></a>
+# 2.1.69-zlk (24.04.2018)
+### Bug Fixes
+* **themes** fixed bug with variable definitions
+
+<a name="2.1.67-zlk"></a>
+# 2.1.67-zlk (20.04.2018)
+### Bug Fixes
+ **terra-category-picker** fixed a bug with empty category details
+ 
+## Feature
+ **themes** added theme functionality, removed all scss variables, replaced with css variables
+
+<a name="2.1.66-zlk"></a>
+# 2.1.66-zlk (16.04.2018)
+
+### Feature
+* **terra-note-editor** added public method <code>focus</code>, to be able to set the focus to the text-area of the editor.
+
+### Feature
+* **terra-dynamic-form** add input `inputAllowedExtensions` to the file input form field
+
+### Bug Fixes
+* **terra-dynamic-form** fix issue with nested containers
+* **terra-pager** adjusted width of current page input
+* **terra-category-picker** enabled the display of container categories
+
+<a name="2.1.65-zlk"></a>
+# 2.1.65-zlk (05.04.2018)
+
+### Feature
+* **terra-multi-check-box.interface** property `selected` is now optional
+
+### Bug Fixes
+* **terra-multi-split-view** fix reoccurring "Cannot read property 'getBoundingClientRect' of undefined" error
+* **terra-data-table** fix issue where TerraRefTypeEnum is undefined in the template
+
+<a name="2.1.64-zlk"></a>
+# 2.1.64-zlk (28.03.2018)
+
+### Bug Fixes
+* **terra-dynamic-form** remove inner portlet
+
+<a name="2.1.63-zlk"></a>
+# 2.1.63-zlk (27.03.2018)
+
+### Bug Fixes
+* **terra-suggestion-box**  fix issue with value handling and add TerraBaseData as possible value (in addition to number and string)
+
+<a name="2.1.62-zlk"></a>
+# 2.1.62-zlk (26.03.2018)
+
+### Bug Fixes
+* **terra-multi-split-view**  fix issue when view inputs contain circular references
+
+<a name="2.1.61-zlk"></a>
+# 2.1.61-zlk (23.03.2018)
+
+### Feature
+* **terra-tag** add Styling for menu entry tag in terra-tag component
+* **terra-dynamic-form** new component to pick a color 
+* **terra-dynamic-form** callback function for value changed
+* **terra-dynamic-form** added input for portlet usage in <code>TerraDynamicSwitch</code>, default is <code>true</code>
+* **terra-dynamic-switch** 
+	- added input for portlet usage, default is <code>true</code>
+	- using portlet when type is <code>TerraFormFieldVerticalContainer</code>
+
+<a name="2.1.60-zlk"></a>
+# 2.1.60-zlk (22.03.2018)
+
+### Feature
+* **terra-multi-check-box** new component equal to *terra-multi-select-box* but with correct ngModel two way data binding
+* **terra-multi-select-box** this component is now deprecated and will be removed in the next major release
+* **terra-category-picker** new component to comfortable select a category using the **terra-node-tree**
+
+<a name="2.1.58-zlk"></a>
+# 2.1.58-zlk (20.03.2018)
+
+### Bug Fixes
+* **terra-multi-split-view** fixed multi split view breadcrumb event emitter
+* **terra-file-list** added multiple selection to file input
+
+<a name="2.1.57-zlk"></a>
+# 2.1.57-zlk (12.03.2018)
+
+### Feature
+* **models** added new interfaces for key value (TerraKeyValueInterface & TerraKeyValuePairInterface)
+
+### Bug Fixes
+* **terra-base-service** prevent requests with empty params
+* **terra-checkbox-tree** appends parents to leaf list on every change
+
+<a name="2.1.56-zlk"></a>
+# 2.1.56-zlk (08.03.2018)
+
+### Feature
+* **terra-data-table** added new ref-type 'function'.
+
+<a name="2.1.55-zlk"></a>
+# 2.1.55-zlk (06.03.2018)
+
+### Feature
+* **url-helper** new component that offers methods to edit urls
+* **terra-multi-split-view** inject router instead of passing it via the input `inputRouter`.
+* **terra-placement-enum** new enum with dedicated strings for placement of e.g. tooltips
+* **terra-portlet** if the portlet is collapsable and unfolded, its header is now grey.
+* **terra-data-table** replace underline text decoration of phone and email links with blue color highlighting.
+
+### Bug Fixes
+* **terra-data-table** hide no-results-notice when request is pending
+
+<a name="2.1.47-zlk"></a>
+# 2.1.47-zlk (06.02.2018)
+
+### Feature
+* **terra-checkbox-tree** added value change output to the checkbox tree
+
+<a name="2.1.46-zlk"></a>
+# 2.1.46-zlk (02.02.2018)
+
+### Feature
+* **terra-base-service** now handles UiHashExpiredException 
+
+<a name="2.1.45-zlk"></a>
+# 2.1.45-zlk (01.02.2018)
+
+### Feature
+* **terra-info-box** added css variables
+* **terra-portlet** added css variables
 
 <a name="2.1.44-zlk"></a>
 # 2.1.44-zlk (29.01.2018)
 
 ### Bug Fixes
-* **terra-button** fix styling when inputIsLink is used
+
+### Feature
+* **terra-portlet** add new input `inputButtonList` to add a button group into the portlet header
+* **terra-button** 
+- add properties `isSmall` and `isLarge` to button interface
+- fix styling when inputIsLink is used
 
 ### Feature
 * **terra-multi-split-view** divider styling 
@@ -48,7 +275,7 @@
 
 ### Bug Fixes
 * **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
-* **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+* **input components** edit input scss for disabled components. Changed border-color from var(--color-structure-3) to var(--color-structure-5)
 * **terra-checkbox** fix issue with missing unique IDs
 
 ### Feature

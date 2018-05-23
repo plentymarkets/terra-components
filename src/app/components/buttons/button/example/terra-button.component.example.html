@@ -1,0 +1,147 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <h5>Is large</h5>
+            <terra-button [inputIsLarge]='true'
+                          inputIcon='icon-save'>
+            </terra-button>
+            <terra-button [inputIsLarge]='true'
+                          inputIcon='icon-save'
+                          [inputIsDisabled]="true">
+            </terra-button>
+        
+        </div>
+        <div class="col-md-4">
+            <h5>Is primary</h5>
+            <terra-button [inputIsPrimary]='true'
+                          inputIcon='icon-navigate_back'>
+            </terra-button>
+            <terra-button [inputIsPrimary]='true'
+                          inputIcon='icon-navigate_back'
+                          [inputIsDisabled]="true">
+            </terra-button>
+        </div>
+        <div class="col-md-4">
+            <h5>Is highlighted</h5>
+            <terra-button [inputIsHighlighted]="true"
+                          inputIcon='icon-search'>
+            </terra-button>
+            <terra-button [inputIsPrimary]='true'
+                          inputIcon='icon-search'
+                          [inputIsDisabled]="true">
+            </terra-button>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <h5>Is small</h5>
+            <terra-button [inputIsSmall]="true"
+                          inputIcon='icon-device_mobile'>
+            </terra-button>
+            <terra-button [inputIsSmall]="true"
+                          inputIcon='icon-device_mobile'
+                          [inputIsDisabled]="true">
+            </terra-button>
+        </div>
+        <div class="col-md-4">
+            <h5>Is secondary</h5>
+            <terra-button [inputIsSecondary]="true"
+                          inputIcon='icon-delete'>
+            </terra-button>
+            <terra-button [inputIsSecondary]="true"
+                          inputIcon='icon-delete'
+                          [inputIsDisabled]="true">
+            </terra-button>
+        </div>
+        <div class="col-md-4">
+            <h5>Is link</h5>
+            <terra-button [inputIsLink]="true"
+                          inputCaption="link">
+            </terra-button>
+            <terra-button [inputIsLink]="true"
+                          inputCaption="link"
+                          [inputIsDisabled]="true">
+            </terra-button>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <h5>Is active</h5>
+            <terra-button [inputIsActive]="true"
+                          inputIcon="icon-active">
+            </terra-button>
+            <terra-button inputIcon="icon-active"
+                          [inputIsDisabled]="true">
+            
+            </terra-button>
+        </div>
+        <div class="col-md-4">
+            <h5>Is tertiary</h5>
+            <terra-button [inputIsTertiary]="true"
+                          inputIcon="icon-add">
+            </terra-button>
+            <terra-button [inputIsTertiary]="true"
+                          inputIcon="icon-add"
+                          [inputIsDisabled]="true">
+            </terra-button>
+        </div>
+        <div class="col-md-4">
+            <h5>Has caption and icon</h5>
+            <terra-button inputCaption="settings"
+                          inputIcon="icon-settings">
+            </terra-button>
+            <terra-button inputCaption="settings"
+                          inputIcon="icon-settings"
+                          [inputIsDisabled]="true">
+            </terra-button>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <h5>Is flagged</h5>
+            <terra-button [inputIsFlagged]="true"
+                          inputIcon='icon-plugin_productive_deploy'>
+            </terra-button>
+            <terra-button [inputIsFlagged]="true"
+                          inputIcon='icon-plugin_productive_deploy'
+                          [inputIsDisabled]="true">
+            </terra-button>
+        </div>
+        <div class="col-md-4">
+            <h5>Has caption</h5>
+            <terra-button inputCaption="caption">
+            </terra-button>
+            <terra-button inputCaption="caption"
+                          [inputIsDisabled]="true">
+            </terra-button>
+        </div>
+        <div class="col-md-4">
+            <h5>Has tooltip</h5>
+            <terra-button inputTooltipText="edit"
+                          inputTooltipPlacement="top"
+                          inputIcon="icon-edit">
+            </terra-button>
+            <terra-button inputTooltipText="edit"
+                          inputTooltipPlacement="top"
+                          [inputIsDisabled]="true"
+                          inputIcon="icon-edit">
+            </terra-button>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <h5>Has outputClicked</h5>
+            <terra-button inputIcon="icon-email_send"
+                          (outputClicked)="sendMailPopup()">
+            </terra-button>
+            <terra-button inputIcon="icon-email_send"
+                          (outputClicked)="sendMailPopup()"
+                          [inputIsDisabled]="true">
+            </terra-button>
+        </div>
+    </div>
+</div>

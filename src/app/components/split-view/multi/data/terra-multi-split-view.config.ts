@@ -1,12 +1,17 @@
-import { EventEmitter } from '@angular/core';
+import {
+    EventEmitter,
+    Injectable
+} from '@angular/core';
 import { TerraMultiSplitViewInterface } from './terra-multi-split-view.interface';
 import { isNullOrUndefined } from 'util';
+import * as CircularJSON from 'circular-json';
 
+@Injectable()
 export class TerraMultiSplitViewConfig
 {
     public currentSelectedView:TerraMultiSplitViewInterface;
     public resizeViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
-    
+
     private _views:Array<TerraMultiSplitViewInterface> = [];
 
     private _addViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
@@ -19,17 +24,12 @@ export class TerraMultiSplitViewConfig
         if(view.parameter)
         {
             console.warn(
-                'Property \'parameter\' is deprecated. It will be removed in one of the upcoming releases. Please use \'inputs\' instead.')
+                'Property \'parameter\' is deprecated. It will be removed in one of the upcoming releases. Please use \'inputs\' instead.');
         }
 
         // TODO: setTimeout can be removed, if it is guaranteed that change detection is fired when adding a new view
         setTimeout(() =>
             {
-                if(isNullOrUndefined(view.isBackgroundColorGrey))
-                {
-                    view.isBackgroundColorGrey = false;
-                }
-
                 if(isNullOrUndefined(parent))
                 {
                     if(isNullOrUndefined(this.currentSelectedView))
@@ -58,12 +58,14 @@ export class TerraMultiSplitViewConfig
                         for(let child of parent.children)
                         {
                             // TODO very ugly way, maybe add an option to use an id?
-                            let hasSameParameter:boolean =
-                                (child.parameter && view.parameter && JSON.stringify(child.parameter) === JSON.stringify(view.parameter)) ||
-                                (child.inputs && view.inputs && JSON.stringify(child.inputs) === JSON.stringify(view.inputs)) ||
-                                (child.name === view.name);
+                            let hasSameParameter:boolean = child.parameter && view.parameter &&
+                                                           CircularJSON.stringify(child.parameter) === CircularJSON.stringify(view.parameter);
+                            let hasSameInputs:boolean = child.inputs && view.inputs &&
+                                                        CircularJSON.stringify(child.inputs) === CircularJSON.stringify(view.inputs);
+                            let hasSameName:boolean = child.name === view.name;
+                            let hasSameModule:boolean = child.module.ngModule === view.module.ngModule;
 
-                            if(hasSameParameter && child.module.ngModule == view.module.ngModule)
+                            if(hasSameModule && (hasSameParameter || hasSameInputs || hasSameName))
                             {
                                 view = child;
                                 viewExist = true;
@@ -92,7 +94,7 @@ export class TerraMultiSplitViewConfig
 
         let parent:TerraMultiSplitViewInterface = view.parent;
 
-        let viewIndex:number = parent.children.findIndex((elem) => elem === view);
+        let viewIndex:number = parent.children.findIndex((elem:TerraMultiSplitViewInterface) => elem === view);
 
         if(viewIndex >= 0)
         {

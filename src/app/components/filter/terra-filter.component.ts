@@ -2,9 +2,7 @@ import {
     Component,
     EventEmitter,
     Input,
-    OnInit,
-    Output,
-    ViewChild
+    Output
 } from '@angular/core';
 
 /**
@@ -15,42 +13,43 @@ import {
     styles:   [require('./terra-filter.component.scss')],
     template: require('./terra-filter.component.html')
 })
-export class TerraFilterComponent implements OnInit
+export class TerraFilterComponent
 {
-    @ViewChild('viewChildInputList') viewChildInputList;
-
     /**
      * @description Set the tooltip of the search button.
-     * */
-    @Input() inputSearchLabel:string;
+     */
+    @Input()
+    public inputSearchLabel:string;
+
     /**
      * @description Set the tooltip of the reset button.
-     * */
-    @Input() inputResetLabel:string;
+     */
+    @Input()
+    public inputResetLabel:string;
+
     /**
      * @deprecated Will be removed in an upcoming release.
-     * */
-    @Input() inputInputList:any[];
+     */
+    @Input()
+    public inputInputList:Array<any>;
+
     /**
      * @description Set the function which will be executed on click of the search button.
-     * */
-    @Output() outputOnSearchBtnClicked = new EventEmitter<any>();
+     */
+    @Output()
+    public outputOnSearchBtnClicked:EventEmitter<any> = new EventEmitter<any>();
+
     /**
      * @description Set the function which will be executed on click of the reset button.
-     * */
-    @Output() outputOnResetBtnClicked = new EventEmitter<any>();
+     */
+    @Output()
+    public outputOnResetBtnClicked:EventEmitter<any> = new EventEmitter<any>();
+
     /**
      * @description Set the function which will be executed on hitting enter.
-     * */
-    @Output() outputOnEnterSubmit = new EventEmitter<any>();
-
-    constructor()
-    {
-    }
-
-    ngOnInit()
-    {
-    }
+     */
+    @Output()
+    public outputOnEnterSubmit:EventEmitter<any> = new EventEmitter<any>();
 
     private searchBtnClicked():void
     {

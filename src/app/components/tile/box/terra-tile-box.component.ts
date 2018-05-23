@@ -15,23 +15,40 @@ import { TerraTileBoxColor } from './data/terra-tile-box-color';
 })
 export class TerraTileBoxComponent
 {
-    @Input() inputTitle:string;
-    @Input() inputSubTitle:string;
-    @Input() inputText:string;
-    @Input() inputImagePath:string;
-    @Input() inputIsSelected:boolean;
-    @Input() inputIsDragging:boolean;
-    @Input() inputIsDropTarget:boolean;
-    @Input() inputIsHover:boolean;
-    @Input() inputColor:TerraTileBoxColor; //default LIGHT_BLUE
-    @Input() inputIsLineView:boolean;
-    @Input() inputButtonList:Array<TerraButtonInterface>;
+    @Input()
+    public inputTitle:string;
 
-    constructor()
-    {
-    }
+    @Input()
+    public inputSubTitle:string;
 
-    private stopPropagation(event):void
+    @Input()
+    public inputText:string;
+
+    @Input()
+    public inputImagePath:string;
+
+    @Input()
+    public inputIsSelected:boolean;
+
+    @Input()
+    public inputIsDragging:boolean;
+
+    @Input()
+    public inputIsDropTarget:boolean;
+
+    @Input()
+    public inputIsHover:boolean;
+
+    @Input()
+    public inputColor:TerraTileBoxColor; // default LIGHT_BLUE
+
+    @Input()
+    public inputIsLineView:boolean;
+
+    @Input()
+    public inputButtonList:Array<TerraButtonInterface>;
+
+    private stopPropagation(event:Event):void
     {
         event.stopPropagation();
     }
@@ -69,6 +86,6 @@ export class TerraTileBoxComponent
             dark_blue:   isDarkBlue,
             is_selected: this.inputIsSelected,
             is_dragging: this.inputIsDragging
-        }
+        };
     }
 }

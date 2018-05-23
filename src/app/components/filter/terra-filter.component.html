@@ -15,13 +15,14 @@
             </terra-button>
         </div>
     </terra-base-toolbar>
-    
-    <div class="input-group-v">
-        <form (ngSubmit)="onSubmit()">
-            <ng-content></ng-content>
-            <button hidden="true" type="submit">
-                Submit
-            </button>
-        </form>
-    </div>
+    <terra-portlet>
+        <div class="input-group-v">
+            <form (ngSubmit)="onSubmit()">
+                <ng-content></ng-content>
+                <button hidden="true" type="submit">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </terra-portlet>
 </div>

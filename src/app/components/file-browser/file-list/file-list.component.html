@@ -1,4 +1,4 @@
-<terra-base-toolbar>
+<terra-base-toolbar [inputIsBreadcrumbs]="true">
     <ul class="terra-breadcrumbs" *ngIf="_storageList">
         <li *ngFor="let parent of parentStorageObjects; let first = first; let last = last" (click)="currentStorageRoot = parent">
             <div [class.active]="last">
@@ -26,11 +26,13 @@
     <div class="btn-group" role="group">
         <terra-button inputIcon="icon-upload"
                       [inputTooltipText]="_translationPrefix + '.uploadFile' | translate:lang"
+                      inputTooltipPlacement="right"
                       (outputClicked)="fileChooser.click()">
         </terra-button>
         <terra-button inputIcon="icon-folder_add"
                       *ngIf="_parentFileBrowser.inputAllowFolders"
                       [inputTooltipText]="_translationPrefix + '.createFolder' | translate:lang"
+                      inputTooltipPlacement="right"
                       (outputClicked)="_showNewDirectoryPrompt = true">
         </terra-button>
     </div>
@@ -40,12 +42,13 @@
                       [inputIsSecondary]="true"
                       [inputIsDisabled]="_selectedStorageObjects.length <= 0"
                       [inputTooltipText]="_translationPrefix + '.deleteSelectedFiles' | translate:lang"
+                      inputTooltipPlacement="right"
                       (outputClicked)="_objectsToDelete = _selectedStorageObjects">
         </terra-button>
     </div>
     
     <label style="width:0; height: 0; visibility: hidden;" #fileChooser>
-        <input type="file" (change)="onFileSelect($event)">
+        <input type="file" (change)="onFileSelect($event)" multiple="multiple">
     </label>
 
 </terra-base-toolbar>
@@ -97,7 +100,7 @@
     </div>
     
     <terra-simple-table *ngIf="_fileTableRowList.length > 0"
-                        fixed-header
+                        fixedHeader
                         [inputHeaderList]="_fileTableHeaderList"
                         [inputRowList]="_fileTableRowList"
                         [inputIsStriped]="true"
@@ -136,5 +139,12 @@
             {{ _translationPrefix + '.uploadFile' | translate:lang }}
         </div>
     
+    </div>
+    
+    <div class="upload-progress-container" *ngIf="_progress">
+        <div class="upload-progress">
+            <div [style.width.%]="_progress.progress"></div>
+        </div>
+        <span>{{ _translationPrefix + '.uploadProgress' | translate:lang:_progress }}</span>
     </div>
 </div>

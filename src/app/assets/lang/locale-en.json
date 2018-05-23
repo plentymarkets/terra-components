@@ -5,6 +5,9 @@
 	"terraMultiSelectBox": {
 		"selectAll": "All"
 	},
+	"terraMultiCheckBox": {
+		"selectAll": "All"
+	},
 	"terraFileBrowser": {
 		"cancel": "Cancel",
 		"create": "Create",
@@ -29,7 +32,9 @@
 		"lastChange": "Last change",
 		"loadingFiles": "Loading files",
 		"noFiles": "No files",
-		"downloadFile": "Download file"
+		"downloadFile": "Download file",
+		"uploadProgress": "Uploading files: {{ filesUploaded }}/{{ filesTotal }} ({{ sizeUploaded }}/{{ sizeTotal }})"
+
 	},
 	"terraFileInput": {
 		"choose": "Select",
@@ -57,5 +62,10 @@
 	},
 	"terraNodeTree":{
 		"search": "Search"
+	},
+	"terraCategoryPicker": {
+		"select": "Select",
+		"category": "Category",
+		"reset": "Reset"
 	}
 }

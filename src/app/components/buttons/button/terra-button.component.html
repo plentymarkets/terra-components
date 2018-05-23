@@ -1,11 +1,12 @@
-<template #tooltipTemplate>
+<ng-template #tooltipTemplate>
     <div [innerHtml]="inputTooltipText"></div>
-</template>
+</ng-template>
 <div [isDisabled]="!inputTooltipText"
      class="btn-handler"
      [tooltip]="tooltipTemplate"
-     [placement]="inputTooltipPlacement"
+     [placement]="_currentTooltipPlacement"
      [container]="'body'"
+     (mouseenter)="setTooltipPlacement($event)"
      [ngClass]="{'pull-xs-right': inputIsAlignRight,
                  'disabled': inputIsDisabled}">
     <button class="btn"
