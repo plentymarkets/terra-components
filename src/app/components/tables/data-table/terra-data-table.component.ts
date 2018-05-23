@@ -195,7 +195,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         {
             this._isHeaderCheckboxChecked = false;
         }
-        else if(this.selectedRowList.length > 0 && this._rowList.length == this.selectedRowList.length)
+        else if(this.selectedRowList.length > 0 && this._rowList.length === this.selectedRowList.length)
         {
             this._isHeaderCheckboxChecked = true;
         }
