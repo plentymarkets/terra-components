@@ -107,12 +107,13 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     public outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<D>>> = new EventEmitter();
 
     public headerList:Array<TerraDataTableHeaderCellInterface>;
-    private _rowList:Array<TerraDataTableRowInterface<D>>;
     public pagingData:TerraPagerInterface;
     public pagingSize:Array<TerraSelectBoxValueInterface>;
     public onSuccessFunction:(res:I) => void;
     public defaultPagingSize:number;
     public TerraRefTypeEnum:object = TerraRefTypeEnum;
+
+    private _rowList:Array<TerraDataTableRowInterface<D>>;
     private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
     private _isHeaderCheckboxChecked:boolean = false;
     private _initialLoadingMessage:string;
