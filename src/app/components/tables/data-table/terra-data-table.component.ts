@@ -246,7 +246,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     public deleteRow(rowToDelete:TerraDataTableRowInterface<D>):void
     {
-        let index = this._rowList.indexOf(rowToDelete);
+        let index:number = this._rowList.indexOf(rowToDelete);
 
         this._rowList.splice(index, 1);
 
