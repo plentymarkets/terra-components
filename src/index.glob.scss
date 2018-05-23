@@ -5,28 +5,28 @@
 
 body
 {
-    font-family: var(--font-family) !important;
-    font-size: var(--font-size-3) !important;
-    font-weight: var(--font-weight-1) !important;
+    font-family: var(--font-family);
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-1);
     line-height: 1.5 !important;
-    color: var(--color-structure-12) !important;
-    background-color: var(--color-structure-2) !important;
-    position: absolute !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    margin: 0 !important;
-    border: 0 !important;
-    padding: 0 !important;
-    direction: ltr !important;
+    color: var(--color-structure-12);
+    background-color: var(--color-structure-2);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    direction: ltr;
 }
 
 .tooltip
 {
     font-size: var(--font-size-2);
     opacity: 1 !important;
-    
+
     &.top .tooltip-arrow
     {
         border-top-color: var(--tooltip-color, var(--tooltip-color-default));
@@ -117,7 +117,7 @@ p, span, a
     padding: var(--space-sm) 0;
     background-color: var(--color-structure-11);
     border-radius: var(--border-radius);
-    
+
     top: var(--context-menu-top, 29px);
     right: 0;
     display: block;
@@ -126,7 +126,7 @@ p, span, a
     text-align: left;
     z-index: var(--zIndex-9);
     box-shadow: var(--box-shadow);
-    
+
     a
     {
         cursor: pointer;
@@ -142,12 +142,12 @@ p, span, a
         font-weight: var(--font-weight-1);
         color: var(--color-structure-0) !important;
         -webkit-font-smoothing: initial;
-        
+
         &:hover
         {
             background-color: var(--color-structure-9);
         }
-        
+
         .left-icon
         {
             padding-right: 2px;
@@ -161,7 +161,7 @@ p, span, a
             position: absolute;
             right: 4px;
             line-height: var(--font-size-5);
-            
+
             &:hover
             {
                 color: var(--color-active);
@@ -208,7 +208,7 @@ terra-alert-panel, *
     {
         border-radius: var(--border-radius);
         box-shadow: var(--box-shadow);
-        
+
         &.alert-danger
         {
             background-color: var(--color-alert);
@@ -262,7 +262,7 @@ terra-alert-panel, *
             &.close
             {
                 text-shadow: none;
-                
+
                 &:hover,
                 &:focus
                 {
