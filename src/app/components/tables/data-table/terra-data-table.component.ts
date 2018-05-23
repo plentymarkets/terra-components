@@ -114,7 +114,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     public TerraRefTypeEnum:object = TerraRefTypeEnum;
 
     private _rowList:Array<TerraDataTableRowInterface<D>>;
-    private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
+    private _selectedRowList:Array<TerraDataTableRowInterface<D>>;
     private _isHeaderCheckboxChecked:boolean = false;
     private _initialLoadingMessage:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
@@ -134,6 +134,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this.inputHasInitialLoading = false;
         this.inputHasPager = true;
 
+        this._selectedRowList = [];
         this._rowList = [];
     }
 
