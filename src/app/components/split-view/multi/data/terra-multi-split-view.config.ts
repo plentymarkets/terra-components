@@ -7,6 +7,7 @@ import { TerraMultiSplitViewInterface } from './terra-multi-split-view.interface
 import { isNullOrUndefined } from 'util';
 import * as CircularJSON from 'circular-json';
 import {
+    ActivatedRoute,
     ActivatedRouteSnapshot,
     Resolve,
     ResolveData,
@@ -52,7 +53,8 @@ export class TerraMultiSplitViewConfig
 
     constructor(private _router?:Router,
                 private _injector?:Injector,
-                private _translation?:TranslationService)
+                private _translation?:TranslationService,
+                private activatedRoute?:ActivatedRoute)
     {
 
     }
@@ -217,7 +219,7 @@ export class TerraMultiSplitViewConfig
         }
 
         this._routerStateSnapshot = this._router.routerState.snapshot;
-        this._activatedRouteSnapshot = this._routerStateSnapshot.root;
+        this._activatedRouteSnapshot = this.activatedRoute.snapshot;
         let remainingUrl:string = url.replace(this._splitViewComponent.componentRoute, '');
         let redirectUrl:string = this.urlIsRedirected(remainingUrl);
 
@@ -409,7 +411,7 @@ export class TerraMultiSplitViewConfig
     {
         let resolverList:ResolverListItem[] = this.getResolversForUrl(url, routeConfig);
         let data:ResolvedData[];
-
+        this._activatedRouteSnapshot.params = {};
         this.resolveInSequence(url, resolverList, data);
     }
 
@@ -475,9 +477,7 @@ export class TerraMultiSplitViewConfig
         let resolverListItem:ResolverListItem = resolverList.shift();
         if(!isNullOrUndefined(resolverListItem.routePath) && resolverListItem.routePath.startsWith(':'))
         {
-            this._activatedRouteSnapshot.params = {};
             this._activatedRouteSnapshot.params[resolverListItem.routePath.substring(1)] = resolverListItem.urlPart; // pass route params
-                                                                                                                     // to the resolver
         }
 
         let resolvedResolver:ResolverListItem = resolvedResolvers.find((res:ResolverListItem) =>
