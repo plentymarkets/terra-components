@@ -16,11 +16,6 @@
         cursor: pointer;
     }
     
-    &.error
-    {
-        border-bottom: 2px solid var(--color-alert);
-    }
-    
     &.isSmall
     {
         height: var(--height-sm);
