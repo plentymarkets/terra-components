@@ -1,3 +1,39 @@
+<a name="unreleased"></a>
+# Unreleased
+
+### Bug Fixes
+* **terra-text-input**
+	- changed color of text input with readonly attribute
+	- rearranged style selectors to match native html attributes
+
+<a name="2.2.12"></a>
+# 2.2.12 (17.05.2018)
+
+### Features
+* **url.helper** add new functions `removeFragment`, `removeQueryParams` and `getCleanUrl`
+* **query-param.helper** added with `appendQueryParamsToUrl` and `getQueryParamString` functions
+
+<a name="2.2.11"></a>
+# 2.2.11 (16.05.2018)
+
+### Features
+* **alerts** restyled alerts & changed min/max-width for alert-panel
+* **file-browser** restyled file-browser
+* **terra-color-picker** restyled terra-color-picker
+* **terra-overlay** changed the background-color of overlays to grey like all the other content-areas
+* **terra-portlet** added the possibility to stack portlets in portlets
+
+### Bug Fixes
+* **breadcrumbs** fixed issues with background-color of breadcrumbs
+* **text-area** fixed broken text-area
+* **terra-simple-table** fixed issues with [fixedHeader]-class 
+
+<a name="2.2.10"></a>
+# 2.2.10 (16.05.2018)
+
+### Bug Fixes
+* **terra-categroy-picker** fixed error with initial loading of category picker in dynamic form
+
 <a name="2.2.7"></a>
 # 2.2.7 (14.05.2018)
 
@@ -49,7 +85,7 @@
 # 2.2.1 (24.04.2018)
 
 ### Bug Fixes
-* **tehmes** theming restructuring
+* **themes** theming restructuring
 
 ## Feature
 * **terra-file-chooser** Added new component to open file-browser directly via a button without input element.

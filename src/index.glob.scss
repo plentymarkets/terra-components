@@ -26,7 +26,7 @@ body
 {
     font-size: var(--font-size-2);
     opacity: 1 !important;
-
+    
     &.top .tooltip-arrow
     {
         border-top-color: var(--tooltip-color, var(--tooltip-color-default));
@@ -192,10 +192,83 @@ p, span, a
     }
 }
 
-.rating-positive {
+.rating-positive
+{
     color: var(--color-accent);
 }
 
-.rating-negative {
+.rating-negative
+{
     color: var(--color-alert);
+}
+
+terra-alert-panel, *
+{
+    .alert
+    {
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        
+        &.alert-danger
+        {
+            background-color: var(--color-alert);
+            border: 2px solid var(--color-alert);
+            color: var(--color-structure-0);
+            &::before
+            {
+                color: var(--color-structure-0);
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        &.alert-success
+        {
+            background-color: var(--color-add);
+            border: 2px solid var(--color-add);
+            color: var(--color-structure-0);
+            &::before
+            {
+                color: var(--color-structure-0);
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        &.alert-warning
+        {
+            background-color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            color: var(--color-structure-11);
+            &::before
+            {
+                color: var(--color-structure-11);
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        &.alert-info
+        {
+            background-color: var(--color-active);
+            border: 2px solid var(--color-active);
+            color: var(--color-structure-0);
+            &::before
+            {
+                color: var(--color-structure-0);
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        button
+        {
+            &.close
+            {
+                text-shadow: none;
+                
+                &:hover,
+                &:focus
+                {
+                    color: var(--color-structur-0);
+                }
+            }
+        }
+    }
 }
