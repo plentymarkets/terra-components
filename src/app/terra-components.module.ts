@@ -94,6 +94,7 @@ import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dyn
 import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
 import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
 import { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
+import { TerraNestedDataPickerComponent } from './components/nested-data-picker/terra-nested-data-picker.component';
 // ### import of terra-component examples
 import { TerraButtonComponentExample } from './components/buttons/button/example/terra-button.component.example';
 import { TerraAlertComponentExample } from './components/alert/example/terra-alert.component.example';
@@ -204,6 +205,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
         TerraCategoryPickerComponent,
+        TerraNestedDataPickerComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -294,7 +296,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNoteComponent,
         TerraNodeTreeComponent,
         TerraNodeComponent,
-        TerraCategoryPickerComponent
+        TerraCategoryPickerComponent,
+        TerraNestedDataPickerComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -352,6 +355,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
         TerraCategoryPickerComponent,
+        TerraNestedDataPickerComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,

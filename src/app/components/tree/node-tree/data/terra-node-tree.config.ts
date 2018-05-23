@@ -26,10 +26,12 @@ export class TerraNodeTreeConfig<D>
     public addNode(nodeToAdd:TerraNodeInterface<D>, parent?:TerraNodeInterface<D>, openParents?:boolean):void
     {
         // check if the node to add is already added
+
         let alreadyAddedNode:TerraNodeInterface<D> = this.findNodeById(nodeToAdd.id);
 
         if(isNullOrUndefined(alreadyAddedNode))
         {
+
             // check children to set the parent correctly
             if(!isNullOrUndefined(nodeToAdd.children))
             {
@@ -39,10 +41,12 @@ export class TerraNodeTreeConfig<D>
             // add to first level if no parent nor current selected node is given
             if(isNullOrUndefined(this.currentSelectedNode) && isNullOrUndefined(parent))
             {
+
                 this._list.push(nodeToAdd);
             }
             else
             {
+
                 // set parent
                 nodeToAdd.parent = !isNullOrUndefined(parent) ? parent : this.currentSelectedNode;
 

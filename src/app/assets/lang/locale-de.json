@@ -66,5 +66,10 @@
 		"select": "Auswählen",
 		"category": "Kategorie",
 		"reset": "Reset"
+	},
+	"terraNestedDataPicker": {
+		"select": "Auswählen",
+		"category": "Kategorie",
+		"reset": "Reset"
 	}
 }
