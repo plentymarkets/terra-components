@@ -66,7 +66,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     public onRowListChange:EventEmitter<void> = new EventEmitter();
 
     private _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
-    private _selectedRowList:Array<TerraSimpleTableRowInterface<D>> = [];
+    private _selectedRowList:Array<TerraSimpleTableRowInterface<D>>;
 
     constructor(private _elementRef:ElementRef)
     {
@@ -74,6 +74,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
             checked:         false,
             isIndeterminate: false
         };
+
         this._selectedRowList = [];
     }
 
@@ -121,7 +122,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this.inputRowList = value;
     }
 
-    private checkTooltipPlacement(placement:string):string
+    public checkTooltipPlacement(placement:string):string
     {
         if(isNull(placement) || placement === '')
         {
@@ -131,7 +132,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         return placement;
     }
 
-    private onHeaderCheckboxChange():void
+    public onHeaderCheckboxChange():void
     {
         this.outputHeaderCheckBoxChanged.emit(!this._headerCheckbox.checked);
 
@@ -145,7 +146,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         }
     }
 
-    private onRowCheckboxChange(row:TerraSimpleTableRowInterface<D>):void
+    public onRowCheckboxChange(row:TerraSimpleTableRowInterface<D>):void
     {
         // notify component user
         this.outputRowCheckBoxChanged.emit(row);
@@ -165,6 +166,58 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
         // notify user
         this.outputSelectedRowsChange.emit(this._selectedRowList);
+    }
+
+    public isSelectedRow(row:TerraSimpleTableRowInterface<D>):boolean
+    {
+        return this._selectedRowList.indexOf(row) >= 0;
+    }
+
+    public onCheckboxClick(event:Event):void
+    {
+        // do not emit 'outputRowClicked' when toggling checkbox
+        event.stopPropagation();
+    }
+
+    public onRowClick(row:TerraSimpleTableRowInterface<D>):void
+    {
+        if(this.inputUseHighlighting && !row.disabled)
+        {
+            this.inputHighlightedRow = row;
+            this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
+        }
+        this.outputRowClicked.emit(row);
+    }
+
+    public onKeydown(event:KeyboardEvent):void
+    {
+        if(this.inputEnableHotkeys && this.inputUseHighlighting && this.inputHighlightedRow)
+        {
+            if(event.which === Key.DownArrow || event.which === Key.UpArrow)
+            {
+                this.highlightSiblingRow(event.which === Key.DownArrow);
+            }
+
+            if(event.which === Key.Space && this.inputHasCheckboxes)
+            {
+                if(event.ctrlKey || event.metaKey)
+                {
+                    this._headerCheckbox.checked = !this._headerCheckbox.checked;
+                    this.onHeaderCheckboxChange();
+                }
+                else
+                {
+                    this.onRowCheckboxChange(this.inputHighlightedRow);
+                }
+            }
+
+            if(event.which === Key.Enter)
+            {
+                this.outputRowClicked.emit(this.inputHighlightedRow);
+            }
+
+            event.preventDefault();
+        }
     }
 
     private checkHeaderCheckbox():void
@@ -255,58 +308,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
         // notify user that selection has been reset
         this.outputSelectedRowsChange.emit(this._selectedRowList);
-    }
-
-    private isSelectedRow(row:TerraSimpleTableRowInterface<D>):boolean
-    {
-        return this._selectedRowList.indexOf(row) >= 0;
-    }
-
-    private onCheckboxClick(event:Event):void
-    {
-        // do not emit 'outputRowClicked' when toggling checkbox
-        event.stopPropagation();
-    }
-
-    private onRowClick(row:TerraSimpleTableRowInterface<D>):void
-    {
-        if(this.inputUseHighlighting && !row.disabled)
-        {
-            this.inputHighlightedRow = row;
-            this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
-        }
-        this.outputRowClicked.emit(row);
-    }
-
-    private onKeydown(event:KeyboardEvent):void
-    {
-        if(this.inputEnableHotkeys && this.inputUseHighlighting && this.inputHighlightedRow)
-        {
-            if(event.which === Key.DownArrow || event.which === Key.UpArrow)
-            {
-                this.highlightSiblingRow(event.which === Key.DownArrow);
-            }
-
-            if(event.which === Key.Space && this.inputHasCheckboxes)
-            {
-                if(event.ctrlKey || event.metaKey)
-                {
-                    this._headerCheckbox.checked = !this._headerCheckbox.checked;
-                    this.onHeaderCheckboxChange();
-                }
-                else
-                {
-                    this.onRowCheckboxChange(this.inputHighlightedRow);
-                }
-            }
-
-            if(event.which === Key.Enter)
-            {
-                this.outputRowClicked.emit(this.inputHighlightedRow);
-            }
-
-            event.preventDefault();
-        }
     }
 
     private highlightSiblingRow(nextSibling:boolean):void
