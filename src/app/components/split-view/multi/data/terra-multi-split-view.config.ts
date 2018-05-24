@@ -259,7 +259,7 @@ export class TerraMultiSplitViewConfig
             {
                 partialRoute += '/' + urlPart;
             }
-            let route:Route = routeConfig.find((r:Route) => this.isValidRoute(r, urlPart));
+            let route:Route = routeConfig.find((r:Route) => this.isMatchingRoute(r, urlPart));
             if(route)
             {
                 if(route.data && route.data.mainComponentName)
@@ -282,12 +282,20 @@ export class TerraMultiSplitViewConfig
                         {
                             views = view.children;
                         }
+                        else
+                        {
+                            views = [];
+                        }
                         // TODO: reset inputs with new resolve data??
                     }
                 }
                 if(route.children && route.children.length > 0)
                 {
                     routeConfig = route.children;
+                }
+                else
+                {
+                    routeConfig = [];
                 }
             }
             else
@@ -359,7 +367,7 @@ export class TerraMultiSplitViewConfig
         let view:TerraMultiSplitViewInterface;
         urlParts.forEach((urlPart:string) =>
         {
-            route = routeConfig.find((r:Route) => this.isValidRoute(r, urlPart));
+            route = routeConfig.find((r:Route) => this.isMatchingRoute(r, urlPart));
             if(route)
             {
                 if(route.data && route.data.mainComponentName)
@@ -373,6 +381,10 @@ export class TerraMultiSplitViewConfig
                         if(view.children && view.children.length > 0)
                         {
                             views = view.children;
+                        }
+                        else
+                        {
+                            views = [];
                         }
                     }
                 }
@@ -422,7 +434,7 @@ export class TerraMultiSplitViewConfig
         let resolverList:ResolverListItem[] = [];
         urlParts.forEach((urlPart:string) =>
         {
-            let route:Route = routeConfig.find((r:Route) => this.isValidRoute(r, urlPart));
+            let route:Route = routeConfig.find((r:Route) => this.isMatchingRoute(r, urlPart));
             if(route)
             {
                 if(route.resolve)
@@ -555,7 +567,7 @@ export class TerraMultiSplitViewConfig
         this._splitViewComponent = value;
     }
 
-    private isValidRoute(route:Route, routePath:string):boolean
+    private isMatchingRoute(route:Route, routePath:string):boolean
     {
         return !isNullOrUndefined(route) &&
                (!isNullOrUndefined(route.path) && (route.path === routePath || route.path.startsWith(':')) ||
