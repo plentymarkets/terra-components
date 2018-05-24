@@ -23,14 +23,14 @@
         </tr>
         </thead>
         <tbody [class.highlighting]="inputUseHighlighting">
-        <ng-template ngFor let-row [ngForOf]="inputRowList">
+        <ng-template ngFor let-row [ngForOf]="_rowList">
             <tr [ngClass]="row.textColorCss"
                 [ngStyle]="{'background-color': row.backgroundColor}"
                 [class.isActive]="row === inputHighlightedRow"
                 [class.disabled]="row.disabled"
                 (click)="onRowClick(row)">
                 <td *ngIf="inputHasCheckboxes" width="40px" (click)="onCheckboxClick($event)">
-                    <terra-checkbox [value]="isSelectedRow(row)"
+                    <terra-checkbox [value]="row.selected"
                                     [inputIsDisabled]="row.disabled"
                                     (change)="onRowCheckboxChange(row)">
                     </terra-checkbox>

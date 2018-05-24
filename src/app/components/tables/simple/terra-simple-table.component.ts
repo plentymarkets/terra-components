@@ -25,7 +25,17 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     public inputHeaderList:Array<TerraSimpleTableHeaderCellInterface>;
 
     @Input()
-    public inputRowList:Array<TerraSimpleTableRowInterface<D>>;
+    public set inputRowList(value:Array<TerraSimpleTableRowInterface<D>>)
+    {
+        this._rowList = value;
+
+        this.updateHeaderCheckboxState();
+    };
+
+    public get inputRowList():Array<TerraSimpleTableRowInterface<D>>
+    {
+        return this._rowList;
+    };
 
     @Input()
     public inputUseHighlighting:boolean = false;
@@ -65,8 +75,8 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     public onRowListChange:EventEmitter<void> = new EventEmitter();
 
-    private _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
-    private _selectedRowList:Array<TerraSimpleTableRowInterface<D>>;
+    public _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
+    public _rowList:Array<TerraSimpleTableRowInterface<D>>;
 
     constructor(private _elementRef:ElementRef)
     {
@@ -75,14 +85,13 @@ export class TerraSimpleTableComponent<D> implements OnChanges
             isIndeterminate: false
         };
 
-        this._selectedRowList = [];
+        this._rowList = [];
     }
 
     public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes.hasOwnProperty('inputRowList'))
         {
-            this.resetSelectedRows();
             this.onRowListChange.emit();
         }
     }
@@ -148,29 +157,16 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     public onRowCheckboxChange(row:TerraSimpleTableRowInterface<D>):void
     {
+        row.selected = !row.selected;
+
         // notify component user
         this.outputRowCheckBoxChanged.emit(row);
-
-        // update row selection
-        if(this.isSelectedRow(row))
-        {
-            this.deselectRow(row);
-        }
-        else
-        {
-            this.selectRow(row);
-        }
 
         // update header checkbox state
         this.updateHeaderCheckboxState();
 
         // notify user
-        this.outputSelectedRowsChange.emit(this._selectedRowList);
-    }
-
-    public isSelectedRow(row:TerraSimpleTableRowInterface<D>):boolean
-    {
-        return this._selectedRowList.indexOf(row) >= 0;
+        this.triggerOutputSelectedRowsChange();
     }
 
     public onCheckboxClick(event:Event):void
@@ -203,7 +199,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
                 if(event.ctrlKey || event.metaKey)
                 {
                     this._headerCheckbox.checked = !this._headerCheckbox.checked;
-                    this.onHeaderCheckboxChange();
+                    //this.onHeaderCheckboxChange();
                 }
                 else
                 {
@@ -218,6 +214,14 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
             event.preventDefault();
         }
+    }
+
+    private triggerOutputSelectedRowsChange():void
+    {
+        let selectedRows:Array<TerraSimpleTableRowInterface<D>> =
+            this.inputRowList.filter((row:TerraSimpleTableRowInterface<D>) => row.selected === true);
+
+        this.outputSelectedRowsChange.emit(selectedRows);
     }
 
     private checkHeaderCheckbox():void
@@ -240,12 +244,14 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     private updateHeaderCheckboxState():void
     {
-        if(this._selectedRowList.length === 0) // anything selected?
+        let selectedRows:Array<TerraSimpleTableRowInterface<D>> = this.inputRowList.filter((row:TerraSimpleTableRowInterface<D>) => row.selected === true);
+
+        if(selectedRows.length === 0) // anything selected?
         {
             this.uncheckHeaderCheckbox();
         }
-        else if(this._selectedRowList.length > 0 && this.inputRowList.filter(
-                (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === this._selectedRowList.length) // all selected?
+        else if(selectedRows.length > 0 && this.inputRowList.filter(
+                (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === selectedRows.length) // all selected?
         {
             this.checkHeaderCheckbox();
         }
@@ -257,33 +263,16 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     private selectRow(row:TerraSimpleTableRowInterface<D>):void
     {
+        row.selected = true;
+
         // check if row is already selected
-        if(this._selectedRowList.find((r:TerraSimpleTableRowInterface<D>) => r === row))
+        if(this.inputRowList.find((r:TerraSimpleTableRowInterface<D>) => r === row))
         {
             return;
         }
 
-        // add row to selected row list
-        this._selectedRowList.push(row);
-
         // notify user that selection has changed
-        this.outputSelectedRowsChange.emit(this._selectedRowList);
-    }
-
-    private deselectRow(row:TerraSimpleTableRowInterface<D>):void
-    {
-        // get index of the row in the selected row list
-        let rowIndex:number = this._selectedRowList.indexOf(row);
-
-        // check if selected row list contains the given row
-        if(rowIndex >= 0)
-        {
-            // remove row from selected row list
-            this._selectedRowList.splice(rowIndex, 1);
-        }
-
-        // notify user that selection has changed
-        this.outputSelectedRowsChange.emit(this._selectedRowList);
+        this.triggerOutputSelectedRowsChange();
     }
 
     private selectAllRows():void
@@ -303,11 +292,13 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     {
         this.uncheckHeaderCheckbox();
 
-        // reset selected row list
-        this._selectedRowList = [];
+        this.inputRowList.forEach((row:TerraSimpleTableRowInterface<D>) =>
+        {
+            row.selected = false;
+        });
 
         // notify user that selection has been reset
-        this.outputSelectedRowsChange.emit(this._selectedRowList);
+        this.triggerOutputSelectedRowsChange();
     }
 
     private highlightSiblingRow(nextSibling:boolean):void
