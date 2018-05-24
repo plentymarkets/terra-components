@@ -54,6 +54,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     @Input()
     public inputHasRouting:boolean;
 
+    public componentRoute:string;
+
     private _breadCrumbsPath:string;
 
     private modules:Array<TerraMultiSplitViewDetail> = [];
@@ -61,8 +63,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     private resizeTimeout:number;
 
     private splitViewId:number;
-
-    public componentRoute:string;
 
     constructor(private zone:NgZone, private _router:Router, private breadcrumbsService:TerraMultiSplitViewBreadcrumbsService)
     {
@@ -640,7 +640,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             return route.path === routePath;
         });
     }
-    
+
     protected isNullOrUndefined(object:any):boolean
     {
         return isNullOrUndefined(object);

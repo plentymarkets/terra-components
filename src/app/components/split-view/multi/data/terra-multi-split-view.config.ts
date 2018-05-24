@@ -23,7 +23,7 @@ import { TerraMultiSplitViewComponent } from '../terra-multi-split-view.componen
 export interface ResolvedData
 {
     urlPart:string;
-    resolves:TerraDynamicLoadedComponentInputInterface[];
+    resolves:Array<TerraDynamicLoadedComponentInputInterface>;
 }
 
 export interface ResolverListItem
@@ -40,14 +40,13 @@ export interface ResolverListItem
 export class TerraMultiSplitViewConfig
 {
     public currentSelectedView:TerraMultiSplitViewInterface;
-    private _views:Array<TerraMultiSplitViewInterface> = [];
-
-    private _selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+    public routingConfig:Routes = [];
     public deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+
+    private _views:Array<TerraMultiSplitViewInterface> = [];
+    private _selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     private _splitViewComponent:TerraMultiSplitViewComponent;
 
-
-    public routingConfig:Routes = [];
     private _routerStateSnapshot:RouterStateSnapshot;
     private _activatedRouteSnapshot:ActivatedRouteSnapshot;
 
@@ -243,12 +242,12 @@ export class TerraMultiSplitViewConfig
         this.getResolveDataForUrl(remainingUrl, this.routingConfig);
     }
 
-    private addOrSelectViewsByUrl(url:string, resolveData:ResolvedData[]):void
+    private addOrSelectViewsByUrl(url:string, resolveData:Array<ResolvedData>):void
     {
-        let views:TerraMultiSplitViewInterface[] = this._views;
+        let views:Array<TerraMultiSplitViewInterface> = this._views;
         let routeConfig:Routes = this.routingConfig;
 
-        let urlParts:string[] = url.split('/');
+        let urlParts:Array<string> = url.split('/');
 
         let viewToSelect:TerraMultiSplitViewInterface;
         let partialRoute:string = '';
@@ -316,7 +315,7 @@ export class TerraMultiSplitViewConfig
                || view.mainComponentName === route.data.mainComponentName && route.path.startsWith(':') && view.id && view.id === viewId;
     }
 
-    private createNewViewByUrlPart(route:Route, urlPart:string, partialUrl:string, resolveData:ResolvedData[]):TerraMultiSplitViewInterface
+    private createNewViewByUrlPart(route:Route, urlPart:string, partialUrl:string, resolveData:Array<ResolvedData>):TerraMultiSplitViewInterface
     {
         let viewName:string;
         if(typeof route.data.name === 'function')
@@ -360,8 +359,8 @@ export class TerraMultiSplitViewConfig
     private urlIsRedirected(url:string):string
     {
         let routeConfig:Routes = this.routingConfig;
-        let views:TerraMultiSplitViewInterface[] = this._views;
-        let urlParts:string[] = url.split('/');
+        let views:Array<TerraMultiSplitViewInterface> = this._views;
+        let urlParts:Array<string> = url.split('/');
         let route:Route;
         let isInvalidRoute:boolean = false;
         let view:TerraMultiSplitViewInterface;
@@ -421,17 +420,17 @@ export class TerraMultiSplitViewConfig
 
     private getResolveDataForUrl(url:string, routeConfig:Routes):void
     {
-        let resolverList:ResolverListItem[] = this.getResolversForUrl(url, routeConfig);
-        let data:ResolvedData[];
+        let resolverList:Array<ResolverListItem> = this.getResolversForUrl(url, routeConfig);
+        let data:Array<ResolvedData>;
         this._activatedRouteSnapshot.params = {};
         this.resolveInSequence(url, resolverList, data);
     }
 
-    private getResolversForUrl(url:string, routeConfig:Routes):ResolverListItem[]
+    private getResolversForUrl(url:string, routeConfig:Routes):Array<ResolverListItem>
     {
-        let urlParts:string[] = url.split('/');
+        let urlParts:Array<string> = url.split('/');
 
-        let resolverList:ResolverListItem[] = [];
+        let resolverList:Array<ResolverListItem> = [];
         urlParts.forEach((urlPart:string) =>
         {
             let route:Route = routeConfig.find((r:Route) => this.isMatchingRoute(r, urlPart));
@@ -439,7 +438,7 @@ export class TerraMultiSplitViewConfig
             {
                 if(route.resolve)
                 {
-                    for(let elem in route.resolve)
+                    Object.keys(route.resolve).forEach((elem:string) =>
                     {
                         let resolver:ResolverListItem = {
                             urlPart:   urlPart,
@@ -458,7 +457,7 @@ export class TerraMultiSplitViewConfig
                         {
                             resolverList.push(resolver);
                         }
-                    }
+                    });
                 }
 
                 if(route.children && route.children.length > 0)
@@ -471,7 +470,10 @@ export class TerraMultiSplitViewConfig
         return resolverList;
     }
 
-    private resolveInSequence(url:string, resolverList:ResolverListItem[], data:ResolvedData[], resolvedResolvers?:ResolverListItem[]):void
+    private resolveInSequence(url:string,
+                              resolverList:Array<ResolverListItem>,
+                              data:Array<ResolvedData>,
+                              resolvedResolvers?:Array<ResolverListItem>):void
     {
         if(isNullOrUndefined(resolvedResolvers))
         {
@@ -515,8 +517,12 @@ export class TerraMultiSplitViewConfig
 
     }
 
-    private addResolvedData(resolverListItem:ResolverListItem, res:any, data:ResolvedData[], url:string,
-                            resolverList:ResolverListItem[], resolvedResolvers:ResolverListItem[]):void
+    private addResolvedData(resolverListItem:ResolverListItem,
+                            res:any,
+                            data:Array<ResolvedData>,
+                            url:string,
+                            resolverList:Array<ResolverListItem>,
+                            resolvedResolvers:Array<ResolverListItem>):void
     {
         let resolveData:TerraDynamicLoadedComponentInputInterface = {
             name:  resolverListItem.resolver.key,
@@ -532,16 +538,16 @@ export class TerraMultiSplitViewConfig
         }
         else
         {
-            let obj = data.find((dat) => dat.urlPart === resolverListItem.urlPart);
-            if(obj)
+            let resolvedData:ResolvedData = data.find((dat:ResolvedData) => dat.urlPart === resolverListItem.urlPart);
+            if(resolvedData)
             {
-                if(isNullOrUndefined(obj.resolves))
+                if(isNullOrUndefined(resolvedData.resolves))
                 {
-                    obj.resolves = [resolveData];
+                    resolvedData.resolves = [resolveData];
                 }
                 else
                 {
-                    obj.resolves.push(resolveData);
+                    resolvedData.resolves.push(resolveData);
                 }
             }
             else
