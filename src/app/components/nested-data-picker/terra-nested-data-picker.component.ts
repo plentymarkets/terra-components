@@ -10,8 +10,10 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NestedDataTreeConfig } from './config/nested-data-tree.config';
 import { NestedDataInterface } from './data/nested-data.interface';
 import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
-import { isNullOrUndefined } from 'util';
+import { isNullOrUndefined, isNull } from 'util';
 import { NestedValueInterface } from './data/nested-value.interface';
+import { TerraNestedDataPickerBaseService } from './service/terra-nested-data-picker-base.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
    selector:  'terra-nested-data-picker',
@@ -26,6 +28,19 @@ import { NestedValueInterface } from './data/nested-value.interface';
 })
 export class TerraNestedDataPickerComponent implements OnInit, AfterContentChecked
 {
+    /**
+     * @description Service, that is used to request the category data from the server
+     */
+    @Input()
+    public set inputNestedService(service:TerraNestedDataPickerBaseService)
+    {
+        this.nestedService = service;
+        if (!isNullOrUndefined(service))
+        {
+            this.getNestedData();
+        }
+    }
+    public nestedService:TerraNestedDataPickerBaseService;
 
     @Input()
     public inputIsDisabled:boolean;
@@ -39,15 +54,12 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     @Input()
     public inputName:string;
 
-    @Input()
-    public inputListValues:Array<NestedDataInterface>;
-
     public toggleTree:boolean = false;
 
     private value:number | string;
     private completeNestedData:NestedValueInterface;
     private nestedDataName:string;
-    private list:Array<TerraNodeInterface<NestedDataInterface>>;
+    private list:Array<TerraNodeInterface<NestedDataInterface<{}>>>;
     private isNotInitialCall:boolean;
 
     constructor(private translation:TranslationService,
@@ -84,7 +96,6 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
             this.inputName = this.translation.translate('terraNestedDataPicker.category');
         }
         this.nestedTreeConfig.list = this.list;
-        this.addNodes(this.inputListValues, null);
     }
 
     // From ControlValueAccessor interface
@@ -93,7 +104,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
         if(!isNullOrUndefined(value))
         {
-               let nodeToSelect:TerraNodeInterface<NestedDataInterface> = this.nestedTreeConfig.findNodeById(value);
+               let nodeToSelect:TerraNodeInterface<NestedDataInterface<{}>> = this.nestedTreeConfig.findNodeById(value);
 
                if(!isNullOrUndefined(nodeToSelect))
                {
@@ -165,7 +176,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
         this.onChangeCallback(this.value);
     }
 
-    private updateCompleteNestedData(nested:TerraNodeInterface<NestedDataInterface>):void
+    private updateCompleteNestedData(nested:TerraNodeInterface<NestedDataInterface<{}>>):void
     {
         this.completeNestedData.id = +nested.id;
         this.completeNestedData.isActive = nested.isActive;
@@ -176,7 +187,19 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
         this.completeNestedData.tooltipPlacement = nested.tooltipPlacement;
     }
 
-    private addNodes(nestedData:Array<NestedDataInterface>, parentId:string):void
+
+    private getNestedData():void
+    {
+        let obs:Observable<Array<NestedDataInterface<{}>>> = this.nestedService.requestNestedData();
+
+        obs.subscribe((data:Array<NestedDataInterface<{}>>) =>
+                      {
+                          console.log(data);
+                          this.addNodes(data, null);
+                      });
+    }
+
+    private addNodes(nestedData:Array<NestedDataInterface<{}>>, parentId:number | string):void
     {
         for (let nested of nestedData)
         {
@@ -187,17 +210,18 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
                 this.nestedTreeConfig.addChildToNodeById(parentId, {
                     id: newParentId,
                     name: nested.label,
-                    tooltip: 'ID: ' + nested.id,
+                    tooltip: 'ID: ' + nested.key,
                     tooltipPlacement: 'top',
                     isVisible:true,
                 });
-            }else
+            }
+            else
             {
                 newParentId = nested.key;
                 this.nestedTreeConfig.addNode( {
                     id: newParentId,
                     name: nested.label,
-                    tooltip: 'ID: ' + nested.id,
+                    tooltip: 'ID: ' + nested.key,
                     tooltipPlacement: 'top',
                     isVisible:true,
                 });

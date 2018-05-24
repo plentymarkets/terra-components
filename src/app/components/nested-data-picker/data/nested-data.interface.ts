@@ -1,14 +1,11 @@
 /**
  * @author chirila-ioan-danie;l
  */
-export interface NestedDataInterface
+export interface NestedDataInterface<T>
 {
-    id:string;
-    key:string;
     label:string;
+    key:string;
     isSelected:boolean;
-    parentData:string;
-    dataType:string;
-    dataValueMapKey:string;
-    children?:Array<NestedDataInterface>;
+    children?:Array<NestedDataInterface<T>>;
+    data?:T;
 }
