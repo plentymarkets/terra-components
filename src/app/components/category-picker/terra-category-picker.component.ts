@@ -16,6 +16,8 @@ import { isNullOrUndefined } from 'util';
 import { CategoryPagerDataInterface } from './data/category-pager-data.interface';
 import { CategoryValueInterface } from './data/category-value.interface';
 import { Observable } from 'rxjs/Observable';
+import { TerraNestedDataPickerComponent } from '../nested-data-picker/terra-nested-data-picker.component';
+import { NestedDataTreeConfig } from '../nested-data-picker/config/nested-data-tree.config';
 
 @Component({
     selector:  'terra-category-picker',
@@ -28,7 +30,7 @@ import { Observable } from 'rxjs/Observable';
     },
                 CategoryTreeConfig]
 })
-export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
+export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent implements OnInit, AfterContentChecked
 {
 
     /**
@@ -37,31 +39,17 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
     @Input()
     public inputCategoryService:TerraCategoryPickerBaseService;
 
-    @Input()
-    public inputIsDisabled:boolean;
-
-    /**
-     * @description Tooltip that is shown on the TextInput
-     */
-    @Input()
-    public inputTooltipText:string;
-
-    @Input()
-    public inputName:string;
-
-    public toggleTree:boolean = false;
-
-    private value:number;
     private completeCategory:CategoryValueInterface;
 
     private categoryName:string;
     private list:Array<TerraNodeInterface<CategoryDataInterface>>;
     private isContainerCategorySelected:boolean;
-    private isNotInitialCall:boolean;
 
-    constructor(private translation:TranslationService,
-                public categoryTreeConfig:CategoryTreeConfig)
+    constructor(public translation:TranslationService,
+                public categoryTreeConfig:CategoryTreeConfig,
+                public nestedTreeConfig:NestedDataTreeConfig)
     {
+        super(translation, nestedTreeConfig);
         this.value = 0;
         this.completeCategory = {
             id:               null,
@@ -137,30 +125,6 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             });
         }
     }
-
-    // Set touched on blur
-    public onBlur():void
-    {
-        this.onTouchedCallback();
-    }
-
-    // From ControlValueAccessor interface
-    public registerOnChange(fn:any):void
-    {
-        this.onChangeCallback = fn;
-    }
-
-    // From ControlValueAccessor interface
-    public registerOnTouched(fn:any):void
-    {
-        this.onTouchedCallback = fn;
-    }
-
-    public showTree():void
-    {
-        this.toggleTree = !this.toggleTree;
-    }
-
     public onSelectNode():void
     {
         this.isNotInitialCall = true;
@@ -219,7 +183,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         return obs;
     }
 
-    private addNodes(data:any, parentNodeId:number | string):void
+    public addNodes(data:any, parentNodeId:number | string):void
     {
         // List of Categories which will be turned into Nodes to add to the node tree
         let entries:Array<CategoryDataInterface> = data.entries;
@@ -310,10 +274,4 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             }
         });
     }
-
-    // Placeholders for the callbacks which are later provided
-    // by the Control Value Accessor
-    private onTouchedCallback:() => void = () => undefined;
-
-    private onChangeCallback:(_:any) => void = () => undefined;
 }

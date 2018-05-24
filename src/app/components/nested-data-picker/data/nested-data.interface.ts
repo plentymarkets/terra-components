@@ -7,5 +7,4 @@ export interface NestedDataInterface<T>
     key:string;
     isSelected:boolean;
     children?:Array<NestedDataInterface<T>>;
-    data?:T;
 }

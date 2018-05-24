@@ -55,14 +55,13 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     public inputName:string;
 
     public toggleTree:boolean = false;
-
-    private value:number | string;
+    public isNotInitialCall:boolean;
+    public value:number | string;
     private completeNestedData:NestedValueInterface;
     private nestedDataName:string;
-    private list:Array<TerraNodeInterface<NestedDataInterface<{}>>>;
-    private isNotInitialCall:boolean;
+    private nestedList:Array<TerraNodeInterface<NestedDataInterface<{}>>>;
 
-    constructor(private translation:TranslationService,
+    constructor(public translation:TranslationService,
                 public nestedTreeConfig:NestedDataTreeConfig)
     {
         this.value = 0;
@@ -75,7 +74,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
             tooltip:          '',
             tooltipPlacement: '',
         };
-        this.list = [];
+        this.nestedList = [];
         this.nestedDataName = '';
         this.isNotInitialCall = false;
     }
@@ -84,7 +83,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     {
         if(this.nestedTreeConfig.list.length === 0)
         {
-            this.nestedTreeConfig.list = this.list;
+            this.nestedTreeConfig.list = this.nestedList;
         }
 
     }
@@ -95,7 +94,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
         {
             this.inputName = this.translation.translate('terraNestedDataPicker.category');
         }
-        this.nestedTreeConfig.list = this.list;
+        this.nestedTreeConfig.list = this.nestedList;
     }
 
     // From ControlValueAccessor interface
@@ -199,7 +198,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
                       });
     }
 
-    private addNodes(nestedData:Array<NestedDataInterface<{}>>, parentId:number | string):void
+    public addNodes(nestedData:Array<NestedDataInterface<{}>>, parentId:number | string):void
     {
         for (let nested of nestedData)
         {
@@ -234,7 +233,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     }
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
-    private onTouchedCallback:() => void = () => undefined;
+    public onTouchedCallback:() => void = () => undefined;
 
-    private onChangeCallback:(_:any) => void = () => undefined;
+    public onChangeCallback:(_:any) => void = () => undefined;
 }
