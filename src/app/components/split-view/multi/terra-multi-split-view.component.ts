@@ -9,7 +9,7 @@ import {
 import { isNullOrUndefined } from 'util';
 import { TerraMultiSplitViewConfig } from './data/terra-multi-split-view.config';
 import { TerraMultiSplitViewDetail } from './data/terra-multi-split-view-detail';
-import { TerraMultiSplitViewInterface } from './data/terra-multi-split-view.interface';
+import { TerraMultiSplitViewInterface } from './interfaces/terra-multi-split-view.interface';
 import * as AngularRouter from '@angular/router'; // Required to use both Angular Router Events and ES6 Events
 import {
     NavigationEnd,
@@ -640,7 +640,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             return route.path === routePath;
         });
     }
-    
+
     protected isNullOrUndefined(object:any):boolean
     {
         return isNullOrUndefined(object);

@@ -1,4 +1,4 @@
-import { TerraMultiSplitViewInterface } from './terra-multi-split-view.interface';
+import { TerraMultiSplitViewInterface } from '../interfaces/terra-multi-split-view.interface';
 
 /**
  * @author pweyrich

@@ -74,7 +74,7 @@ export * from './app/components/editors/syntax-editor/data/terra-syntax-editor.d
 export * from './app/components/navigator/config/terra-navigator.config';
 export * from './app/components/split-view/multi/terra-multi-split-view.component';
 export * from './app/components/split-view/multi/data/terra-multi-split-view.config';
-export * from './app/components/split-view/multi/data/terra-multi-split-view.interface';
+export * from './app/components/split-view/multi/interfaces/terra-multi-split-view.interface';
 export * from './app/components/dynamic-module-loader/data/terra-split-view-component.interface';
 export * from './app/components/dynamic-component-loader/terra-dynamic-component-loader.component';
 export * from './app/components/file-browser/model/s3-storage-object.interface';
