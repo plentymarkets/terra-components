@@ -256,11 +256,9 @@ export class TerraMultiSplitViewConfig
                     {
                         this.addView(this.createNewViewByUrlPart(route, urlPart, partialRoute, resolveData), viewToSelect);
                         viewToSelect = null;
-                        console.log('View not found'); // TODO: remove when done
                     }
                     else
                     {
-                        console.log(view); // TODO: remove when done
                         viewToSelect = view;
                         if(view.children && view.children.length > 0)
                         {
@@ -469,7 +467,6 @@ export class TerraMultiSplitViewConfig
         if(isNullOrUndefined(resolverList) || resolverList.length === 0)
         {
             // all data resolved go to view addition/selection
-            console.log('done'); // TODO remove when development is finished
             this.addOrSelectViewsByUrl(url, data);
             return;
         }
