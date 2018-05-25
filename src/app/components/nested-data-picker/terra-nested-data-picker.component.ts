@@ -193,7 +193,6 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
         obs.subscribe((data:Array<NestedDataInterface>) =>
                       {
-                          console.log(data);
                           this.addNodes(data, null);
                       });
     }
