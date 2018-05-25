@@ -59,7 +59,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     public value:number | string;
     private completeNestedData:NestedValueInterface;
     private nestedDataName:string;
-    private nestedList:Array<TerraNodeInterface<NestedDataInterface<{}>>>;
+    private nestedList:Array<TerraNodeInterface<NestedDataInterface>>;
 
     constructor(public translation:TranslationService,
                 public nestedTreeConfig:NestedDataTreeConfig)
@@ -103,7 +103,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
         if(!isNullOrUndefined(value))
         {
-               let nodeToSelect:TerraNodeInterface<NestedDataInterface<{}>> = this.nestedTreeConfig.findNodeById(value);
+               let nodeToSelect:TerraNodeInterface<NestedDataInterface> = this.nestedTreeConfig.findNodeById(value);
 
                if(!isNullOrUndefined(nodeToSelect))
                {
@@ -175,7 +175,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
         this.onChangeCallback(this.value);
     }
 
-    private updateCompleteNestedData(nested:TerraNodeInterface<NestedDataInterface<{}>>):void
+    private updateCompleteNestedData(nested:TerraNodeInterface<NestedDataInterface>):void
     {
         this.completeNestedData.id = +nested.id;
         this.completeNestedData.isActive = nested.isActive;
@@ -189,16 +189,16 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
     private getNestedData():void
     {
-        let obs:Observable<Array<NestedDataInterface<{}>>> = this.nestedService.requestNestedData();
+        let obs:Observable<Array<NestedDataInterface>> = this.nestedService.requestNestedData();
 
-        obs.subscribe((data:Array<NestedDataInterface<{}>>) =>
+        obs.subscribe((data:Array<NestedDataInterface>) =>
                       {
                           console.log(data);
                           this.addNodes(data, null);
                       });
     }
 
-    public addNodes(nestedData:Array<NestedDataInterface<{}>>, parentId:number | string):void
+    public addNodes(nestedData:Array<NestedDataInterface>, parentId:number | string):void
     {
         for (let nested of nestedData)
         {

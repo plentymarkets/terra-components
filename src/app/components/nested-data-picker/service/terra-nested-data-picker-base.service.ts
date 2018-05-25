@@ -12,7 +12,7 @@ export abstract class TerraNestedDataPickerBaseService
     /**
      * @description Placeholder for the specific data-retrieval method. In General the specific rest call is given here.
      * @param {string | number} dataId
-     * @returns {Observable<Array<NestedDataInterface<{}>>>}
+     * @returns {Observable<Array<NestedDataInterface>>}
      */
-    public abstract requestNestedData():Observable<Array<NestedDataInterface<{}>>>;
+    public abstract requestNestedData():Observable<Array<NestedDataInterface>>;
 }
