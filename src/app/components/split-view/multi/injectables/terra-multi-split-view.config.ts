@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 import { TerraMultiSplitViewInterface } from '../interfaces/terra-multi-split-view.interface';
 import { isNullOrUndefined } from 'util';
-import * as CircularJSON from 'circular-json';
 import {
     ActivatedRoute,
     ActivatedRouteSnapshot,
@@ -20,6 +19,8 @@ import { TranslationService } from 'angular-l10n';
 import { TerraMultiSplitViewComponent } from '../terra-multi-split-view.component';
 import { ResolvedDataInterface } from '../interfaces/resolved-data.interface';
 import { ResolverListItemInterface } from '../interfaces/resolve-list-item.interface';
+import { TerraResolvedDataHelper } from '../helpers/terra-resolved-data.helper';
+import { TerraMultiSplitViewHelper } from '../helpers/terra-multi-split-view.helper';
 
 @Injectable()
 export class TerraMultiSplitViewConfig
@@ -82,14 +83,7 @@ export class TerraMultiSplitViewConfig
                         for(let child of parent.children)
                         {
                             // TODO very ugly way, maybe add an option to use an id?
-                            let hasSameParameter:boolean = child.parameter && view.parameter &&
-                                                           CircularJSON.stringify(child.parameter) === CircularJSON.stringify(view.parameter);
-                            let hasSameInputs:boolean = child.inputs && view.inputs &&
-                                                        CircularJSON.stringify(child.inputs) === CircularJSON.stringify(view.inputs);
-                            let hasSameName:boolean = child.name === view.name;
-                            let hasSameModule:boolean = child.module.ngModule === view.module.ngModule;
-
-                            if(hasSameModule && (hasSameParameter || hasSameInputs || hasSameName))
+                            if(TerraMultiSplitViewHelper.isSameView(view, child))
                             {
                                 view = child;
                                 viewExist = true;
@@ -405,7 +399,7 @@ export class TerraMultiSplitViewConfig
     private getResolveDataForUrl(url:string, routeConfig:Routes):void
     {
         let resolverList:Array<ResolverListItemInterface> = this.getResolversForUrl(url, routeConfig);
-        let data:Array<ResolvedDataInterface>;
+        let data:Array<ResolvedDataInterface> = [];
         this._activatedRouteSnapshot.params = {};
         this.resolveInSequence(url, resolverList, data);
     }
@@ -482,11 +476,12 @@ export class TerraMultiSplitViewConfig
         );
         if(!isNullOrUndefined(resolvedResolver)) // resolve resolvers only once for a route
         {
-            let resData:ResolvedDataInterface = data.find((d:ResolvedDataInterface) => d.urlPart === resolvedResolver.urlPart);
-            let inputData:TerraDynamicLoadedComponentInputInterface = resData.resolves.find((x:TerraDynamicLoadedComponentInputInterface) =>
-                x.name === resolvedResolver.resolver.key
-            );
-            this.addResolvedData(resolverListItem, inputData.value, data, url, resolverList, resolvedResolvers);
+            let inputData:TerraDynamicLoadedComponentInputInterface =
+                TerraResolvedDataHelper.findInputDataByResolveKey(resolvedResolver.urlPart, resolvedResolver.resolver.key, data);
+            data = TerraResolvedDataHelper.addResolvedData(resolverListItem, inputData.value, data);
+
+            // go to the next resolver
+            this.resolveInSequence(url, resolverList, data, resolvedResolvers);
         }
         else
         {
@@ -494,57 +489,15 @@ export class TerraMultiSplitViewConfig
             {
                 resolvedResolvers.push(resolverListItem);
 
-                this.addResolvedData(resolverListItem, res, data, url, resolverList, resolvedResolvers);
+                data = TerraResolvedDataHelper.addResolvedData(resolverListItem, res, data);
+
+                // go to the next resolver
+                this.resolveInSequence(url, resolverList, data, resolvedResolvers);
             });
         }
 
     }
 
-    private addResolvedData(resolverListItem:ResolverListItemInterface,
-                            res:any,
-                            data:Array<ResolvedDataInterface>,
-                            url:string,
-                            resolverList:Array<ResolverListItemInterface>,
-                            resolvedResolvers:Array<ResolverListItemInterface>):void
-    {
-        let resolveData:TerraDynamicLoadedComponentInputInterface = {
-            name:  resolverListItem.resolver.key,
-            value: res
-        };
-
-        if(isNullOrUndefined(data))
-        {
-            data = [{
-                urlPart:  resolverListItem.urlPart,
-                resolves: [resolveData]
-            }];
-        }
-        else
-        {
-            let resolvedData:ResolvedData = data.find((dat:ResolvedData) => dat.urlPart === resolverListItem.urlPart);
-            if(resolvedData)
-            {
-                if(isNullOrUndefined(resolvedData.resolves))
-                {
-                    resolvedData.resolves = [resolveData];
-                }
-                else
-                {
-                    resolvedData.resolves.push(resolveData);
-                }
-            }
-            else
-            {
-                data.push({
-                    urlPart:  resolverListItem.urlPart,
-                    resolves: [resolveData]
-                });
-            }
-        }
-
-        // go to the next resolver
-        this.resolveInSequence(url, resolverList, data, resolvedResolvers);
-    }
 
     public get selectBreadcrumbEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
     {
