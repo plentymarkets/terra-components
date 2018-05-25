@@ -7,8 +7,8 @@ import {
     OnInit
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
-import { TerraMultiSplitViewConfig } from './data/terra-multi-split-view.config';
-import { TerraMultiSplitViewDetail } from './data/terra-multi-split-view-detail';
+import { TerraMultiSplitViewConfig } from './injectables/terra-multi-split-view.config';
+import { TerraMultiSplitViewModuleInterface } from './interfaces/terra-multi-split-view-module.interface';
 import { TerraMultiSplitViewInterface } from './interfaces/terra-multi-split-view.interface';
 import * as AngularRouter from '@angular/router'; // Required to use both Angular Router Events and ES6 Events
 import {
@@ -19,8 +19,8 @@ import {
 } from '@angular/router';
 import { Route } from '@angular/router/src/config';
 import { UrlHelper } from '../../../helpers/url.helper';
-import { TerraMultiSplitViewRoutes } from './data/terra-multi-split-view-routes';
-import { TerraMultiSplitViewBreadcrumbsService } from './data/terra-multi-split-view-breadcrumbs.service';
+import { TerraMultiSplitViewRoutes } from './interfaces/terra-multi-split-view-routes';
+import { TerraMultiSplitViewBreadcrumbsService } from './injectables/terra-multi-split-view-breadcrumbs.service';
 
 let nextSplitViewId:number = 0;
 
@@ -56,7 +56,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private _breadCrumbsPath:string;
 
-    private modules:Array<TerraMultiSplitViewDetail> = [];
+    private modules:Array<TerraMultiSplitViewModuleInterface> = [];
 
     private resizeTimeout:number;
 
@@ -166,7 +166,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
 
         // get the module of the hierarchy
-        let module:TerraMultiSplitViewDetail = this.modules[hierarchyLevel];
+        let module:TerraMultiSplitViewModuleInterface = this.modules[hierarchyLevel];
 
         // initialize views array if null or undefined
         if(isNullOrUndefined(module.views))
@@ -191,7 +191,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
 
         // check whether the view's module is defined
-        let module:TerraMultiSplitViewDetail = this.getModuleOfView(view);
+        let module:TerraMultiSplitViewModuleInterface = this.getModuleOfView(view);
         if(isNullOrUndefined(module))
         {
             return;
@@ -222,7 +222,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             let parent:TerraMultiSplitViewInterface = view;
             while(!isNullOrUndefined(parent))
             {
-                let parentModule:TerraMultiSplitViewDetail = this.getModuleOfView(parent);
+                let parentModule:TerraMultiSplitViewModuleInterface = this.getModuleOfView(parent);
                 if(parentModule)
                 {
                     if(!(parentModule.currentSelectedView === parent))
@@ -242,7 +242,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
 
         // if module has changed horizontally
-        let inputModule:TerraMultiSplitViewDetail = this.getModuleOfView(this.inputConfig.currentSelectedView);
+        let inputModule:TerraMultiSplitViewModuleInterface = this.getModuleOfView(this.inputConfig.currentSelectedView);
         if(inputModule !== this.getModuleOfView(view)
            && !isNullOrUndefined(inputModule)) // this has to be checked, since a module can be removed and hence isn't existing anymore
         {
@@ -258,7 +258,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     private updateBreadcrumbsList():void
     {
         this.breadcrumbsService.breadcrumbList[this.componentRoute] =
-            this.modules.map((module:TerraMultiSplitViewDetail) =>
+            this.modules.map((module:TerraMultiSplitViewModuleInterface) =>
             {
                 return module.currentSelectedView.name;
             });
@@ -379,7 +379,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         });
     }
 
-    private rebuildModules(view:TerraMultiSplitViewInterface, module:TerraMultiSplitViewDetail):void
+    private rebuildModules(view:TerraMultiSplitViewInterface, module:TerraMultiSplitViewModuleInterface):void
     {
         if(isNullOrUndefined(view))
         {
@@ -432,7 +432,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
 
         // get the corresponding module
-        let module:TerraMultiSplitViewDetail = this.getModuleOfView(view);
+        let module:TerraMultiSplitViewModuleInterface = this.getModuleOfView(view);
 
         // check whether module is defined
         if(isNullOrUndefined(module))
@@ -458,7 +458,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         if(module.views.length <= 1)
         {
             // get the index of the module in the modules array
-            let moduleIndex:number = this.modules.findIndex((mod:TerraMultiSplitViewDetail) => mod === module);
+            let moduleIndex:number = this.modules.findIndex((mod:TerraMultiSplitViewModuleInterface) => mod === module);
 
             // check if the module has been found
             if(moduleIndex >= 0 && moduleIndex < this.modules.length)
@@ -502,7 +502,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         }
     }
 
-    protected getModuleOfView(view:TerraMultiSplitViewInterface):TerraMultiSplitViewDetail
+    protected getModuleOfView(view:TerraMultiSplitViewInterface):TerraMultiSplitViewModuleInterface
     {
         // get hierarchy level of deleted view
         let hierarchyLevel:number = this.getHierarchyLevelOfView(view);
@@ -525,7 +525,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     public resizeViewAndModule(view:TerraMultiSplitViewInterface):void
     {
-        let module:TerraMultiSplitViewDetail = this.getModuleOfView(view);
+        let module:TerraMultiSplitViewModuleInterface = this.getModuleOfView(view);
 
         module.width = view.defaultWidth;
     }
@@ -576,7 +576,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         return true;
     }
 
-    private getLastSelectedOfModule(module:TerraMultiSplitViewDetail):TerraMultiSplitViewInterface
+    private getLastSelectedOfModule(module:TerraMultiSplitViewModuleInterface):TerraMultiSplitViewInterface
     {
         if(module.lastSelectedView && module.views.find((v:TerraMultiSplitViewInterface) => v === module.lastSelectedView))
         {

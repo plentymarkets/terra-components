@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TerraMultiSplitViewConfig } from '../../split-view/multi/data/terra-multi-split-view.config';
+import { TerraMultiSplitViewConfig } from '../../split-view/multi/injectables/terra-multi-split-view.config';
 import { TerraMultiSplitViewInterface } from '../../split-view/multi/interfaces/terra-multi-split-view.interface';
 import { TerraStorageObject } from '../model/terra-storage-object';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
