@@ -299,7 +299,7 @@ export class TerraMultiSplitViewConfig
         if(typeof route.data.name === 'function')
         {
             let res:ResolvedDataInterface = resolveData.find((data:ResolvedDataInterface) => data.urlPart === urlPart);
-            if(res)
+            if(!isNullOrUndefined(res))
             {
                 let obj:ResolveData = {};
                 res.resolves.forEach((resolve:TerraDynamicLoadedComponentInputInterface) =>
@@ -497,7 +497,6 @@ export class TerraMultiSplitViewConfig
         }
 
     }
-
 
     public get selectBreadcrumbEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
     {
