@@ -70,7 +70,7 @@
 	},
 	"terraNestedDataPicker": {
 		"select": "Select",
-		"category": "Category",
+		"nested": "Nested",
 		"reset": "Reset"
 	}
 }

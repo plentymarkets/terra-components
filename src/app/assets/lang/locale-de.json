@@ -69,7 +69,7 @@
 	},
 	"terraNestedDataPicker": {
 		"select": "Auswählen",
-		"category": "Kategorie",
+		"nested": "Verschachtelt",
 		"reset": "Reset"
 	}
 }

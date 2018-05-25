@@ -14,6 +14,7 @@ import { isNullOrUndefined, isNull } from 'util';
 import { NestedValueInterface } from './data/nested-value.interface';
 import { TerraNestedDataPickerBaseService } from './service/terra-nested-data-picker-base.service';
 import { Observable } from 'rxjs/Observable';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
    selector:  'terra-nested-data-picker',
@@ -29,18 +30,17 @@ import { Observable } from 'rxjs/Observable';
 export class TerraNestedDataPickerComponent implements OnInit, AfterContentChecked
 {
     /**
-     * @description Service, that is used to request the category data from the server
+     * @description Service, that is used to request the nested data from the server
      */
     @Input()
     public set inputNestedService(service:TerraNestedDataPickerBaseService)
     {
-        this.nestedService = service;
+        this.inputDataService = service;
         if (!isNullOrUndefined(service))
         {
             this.getNestedData();
         }
     }
-    public nestedService:TerraNestedDataPickerBaseService;
 
     @Input()
     public inputIsDisabled:boolean;
@@ -57,6 +57,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     public toggleTree:boolean = false;
     public isNotInitialCall:boolean;
     public value:number | string;
+    private inputDataService:TerraNestedDataPickerBaseService;
     private completeNestedData:NestedValueInterface;
     private nestedDataName:string;
     private nestedList:Array<TerraNodeInterface<NestedDataInterface>>;
@@ -64,7 +65,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     constructor(public translation:TranslationService,
                 public nestedTreeConfig:NestedDataTreeConfig)
     {
-        this.value = 0;
+        this.value = null;
         this.completeNestedData = {
             id:               null,
             isActive:         null,
@@ -92,9 +93,8 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     {
         if(isNullOrUndefined(this.inputName))
         {
-            this.inputName = this.translation.translate('terraNestedDataPicker.category');
+            this.inputName = this.translation.translate('terraNestedDataPicker.nested');
         }
-        this.nestedTreeConfig.list = this.nestedList;
     }
 
     // From ControlValueAccessor interface
@@ -189,9 +189,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
     private getNestedData():void
     {
-        let obs:Observable<Array<NestedDataInterface>> = this.nestedService.requestNestedData();
-
-        obs.subscribe((data:Array<NestedDataInterface>) =>
+        this.inputDataService.requestNestedData().subscribe((data:Array<NestedDataInterface>) =>
                       {
                           this.addNodes(data, null);
                       });
@@ -199,7 +197,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
     public addNodes(nestedData:Array<NestedDataInterface>, parentId:number | string):void
     {
-        for (let nested of nestedData)
+        nestedData.forEach((nested:NestedDataInterface) =>
         {
             let newParentId:string;
             if(parentId)
@@ -228,7 +226,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
             {
                 this.addNodes(nested.children, newParentId);
             }
-        }
+        });
     }
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
