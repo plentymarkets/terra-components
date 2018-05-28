@@ -54,7 +54,10 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     @Input()
     public inputHasRouting:boolean;
 
-    public componentRoute:string;
+    /**
+     * @description local copy of the isNullOrUndefined function from "util" to be used in the template only!
+     */
+    protected isNullOrUndefined:(object:any) => object is null | undefined;
 
     private _breadCrumbsPath:string;
 
@@ -64,13 +67,15 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private splitViewId:number;
 
+    private _componentRoute:string;
+
     constructor(private zone:NgZone, private _router:Router, private breadcrumbsService:TerraMultiSplitViewBreadcrumbsService)
     {
+        this.isNullOrUndefined = isNullOrUndefined;
         this.inputShowBreadcrumbs = true; // default
         this._breadCrumbsPath = '';
         this.splitViewId = nextSplitViewId++;
-        this.componentRoute = this.searchAngularRoutes(this._router.url);
-        console.log('component route: ' + this.componentRoute);
+        this._componentRoute = this.searchAngularRoutes(this._router.url);
     }
 
     @HostListener('window:resize')
@@ -105,18 +110,18 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.inputConfig.splitViewComponent = this;
 
         // catch routing events, but only those that select the tab where the split view is instantiated
-        if(!isNullOrUndefined(this._router) && !isNullOrUndefined(this.componentRoute))
+        if(!isNullOrUndefined(this._router) && !isNullOrUndefined(this._componentRoute))
         {
             // check if the given route exists in the route config
-            if(this.routeExists(this.componentRoute))
+            if(this.routeExists(this._componentRoute))
             {
                 if(this.inputHasRouting)
                 {
                     this._router.events.filter((event:AngularRouter.Event) =>
-                        event instanceof NavigationEnd && event.url.startsWith(this.componentRoute)
+                        event instanceof NavigationEnd && event.url.startsWith(this._componentRoute)
                     ).subscribe((event:NavigationEnd) =>
                     {
-                        if(this.inputConfig.currentSelectedView && (this.componentRoute + this.inputConfig.currentSelectedView.url === event.url))
+                        if(this.inputConfig.currentSelectedView && (this._componentRoute + this.inputConfig.currentSelectedView.url === event.url))
                         {
                             this.updateViewport(this.inputConfig.currentSelectedView, true);
                         }
@@ -131,7 +136,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 else
                 {
                     this._router.events.filter((event:AngularRouter.Event) =>
-                        event instanceof NavigationStart && event.url === this.componentRoute
+                        event instanceof NavigationStart && event.url === this._componentRoute
                     ).subscribe((path:NavigationStart) =>
                     {
                         this.updateViewport(this.inputConfig.currentSelectedView, true);
@@ -139,6 +144,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 }
             }
         }
+    }
+
+    public get componentRoute():string
+    {
+        return this._componentRoute;
     }
 
     public addToModulesIfNotExist(view:TerraMultiSplitViewInterface):void
@@ -257,7 +267,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private updateBreadcrumbsList():void
     {
-        this.breadcrumbsService.breadcrumbList[this.componentRoute] =
+        this.breadcrumbsService.breadcrumbList[this._componentRoute] =
             this.modules.map((module:TerraMultiSplitViewModuleInterface) =>
             {
                 return module.currentSelectedView.name;
@@ -598,7 +608,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.setSelectedView(view);
     }
 
-    // TODO: Almost the same functionality as TabBarHelper.getTabBaseUrl()
+    // TODO: The same functionality as TerraRouterHelper.getRouteBaseUrl()
     private searchAngularRoutes(url:string):string
     {
         let urlWithoutLeadingSlash:string = UrlHelper.removeLeadingSlash(url);
@@ -616,12 +626,12 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             route = this.findRouteByPath(urlPart, routes);
         }
 
-        if(isNullOrUndefined(route) && routes && routes[0] && routes[0].path === '**')
+        if(isNullOrUndefined(route) && !isNullOrUndefined(routes) && !isNullOrUndefined(routes[0]) && routes[0].path === '**')
         {
             return baseUrl;
         }
 
-        if(urlParts.length === 0 && route && route.children && route.children[0] && route.children[0].path === '**')
+        if(urlParts.length === 0 && !isNullOrUndefined(route))
         {
             return baseUrl + '/' + route.path;
         }
@@ -639,10 +649,5 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             return route.path === routePath;
         });
-    }
-
-    protected isNullOrUndefined(object:any):boolean
-    {
-        return isNullOrUndefined(object);
     }
 }
