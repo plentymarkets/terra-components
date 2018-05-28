@@ -1,5 +1,5 @@
-<a name="unreleased"></a>
-# Unreleased
+<a name="2.2.13"></a>
+# 2.2.13 (28.05.2018)
 
 ### Features
 * **terra-multi-split-view** added routing functionality. You are now able to navigate to a view by a specific url. This feature can be enabled by setting the component's input <code>inputHasRouting</code> to true and passing a routing config to the split view using its config's property <code>routingConfig</code>.
