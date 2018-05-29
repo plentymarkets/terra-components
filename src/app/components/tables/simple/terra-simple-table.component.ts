@@ -218,9 +218,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     private triggerOutputSelectedRowsChange():void
     {
-        let selectedRows:Array<TerraSimpleTableRowInterface<D>> = this.getSelectedRows();
-
-        this.outputSelectedRowsChange.emit(selectedRows);
+        this.outputSelectedRowsChange.emit(this.getSelectedRows());
     }
 
     private checkHeaderCheckbox():void
