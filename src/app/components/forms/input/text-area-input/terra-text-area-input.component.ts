@@ -6,7 +6,7 @@ import {
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
-import { isNullOrUndefined } from "util";
+import { isNullOrUndefined } from 'util';
 
 let nextId:number = 0;
 
