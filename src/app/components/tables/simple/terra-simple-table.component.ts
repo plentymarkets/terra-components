@@ -131,7 +131,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this.inputRowList = value;
     }
 
-    public checkTooltipPlacement(placement:string):string
+    protected checkTooltipPlacement(placement:string):string
     {
         if(isNull(placement) || placement === '')
         {
@@ -141,7 +141,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         return placement;
     }
 
-    public onHeaderCheckboxChange():void
+    protected onHeaderCheckboxChange():void
     {
         this.outputHeaderCheckBoxChanged.emit(!this._headerCheckbox.checked);
 
@@ -155,7 +155,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         }
     }
 
-    public onRowCheckboxChange(row:TerraSimpleTableRowInterface<D>):void
+    protected onRowCheckboxChange(row:TerraSimpleTableRowInterface<D>):void
     {
         row.selected = !row.selected;
 
@@ -169,13 +169,13 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this.triggerOutputSelectedRowsChange();
     }
 
-    public onCheckboxClick(event:Event):void
+    protected onCheckboxClick(event:Event):void
     {
         // do not emit 'outputRowClicked' when toggling checkbox
         event.stopPropagation();
     }
 
-    public onRowClick(row:TerraSimpleTableRowInterface<D>):void
+    protected onRowClick(row:TerraSimpleTableRowInterface<D>):void
     {
         if(this.inputUseHighlighting && !row.disabled)
         {
@@ -185,7 +185,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this.outputRowClicked.emit(row);
     }
 
-    public onKeydown(event:KeyboardEvent):void
+    protected onKeydown(event:KeyboardEvent):void
     {
         if(this.inputEnableHotkeys && this.inputUseHighlighting && this.inputHighlightedRow)
         {
