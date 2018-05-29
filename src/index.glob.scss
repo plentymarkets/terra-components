@@ -3,6 +3,14 @@
 @import './app/assets/themes/theme-dark-standard.scss';
 @import './app/assets/themes/theme-dark-compact.scss';
 
+*
+{
+    &:focus
+    {
+        outline: none;
+    }
+}
+
 body
 {
     font-family: var(--font-family);
