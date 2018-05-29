@@ -75,12 +75,12 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     public onRowListChange:EventEmitter<void> = new EventEmitter();
 
-    public _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
-    public _rowList:Array<TerraSimpleTableRowInterface<D>>;
+    protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
+    protected _rowList:Array<TerraSimpleTableRowInterface<D>>;
 
     constructor(private _elementRef:ElementRef)
     {
-        this._headerCheckbox = {
+        this.headerCheckbox = {
             checked:         false,
             isIndeterminate: false
         };
@@ -143,9 +143,9 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     protected onHeaderCheckboxChange():void
     {
-        this.outputHeaderCheckBoxChanged.emit(!this._headerCheckbox.checked);
+        this.outputHeaderCheckBoxChanged.emit(!this.headerCheckbox.checked);
 
-        if(this._headerCheckbox.checked)
+        if(this.headerCheckbox.checked)
         {
             this.resetSelectedRows();
         }
@@ -198,7 +198,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
             {
                 if(event.ctrlKey || event.metaKey)
                 {
-                    this._headerCheckbox.checked = !this._headerCheckbox.checked;
+                    this.headerCheckbox.checked = !this.headerCheckbox.checked;
                     //this.onHeaderCheckboxChange();
                 }
                 else
@@ -226,20 +226,20 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     private checkHeaderCheckbox():void
     {
-        this._headerCheckbox.checked = true;
-        this._headerCheckbox.isIndeterminate = false;
+        this.headerCheckbox.checked = true;
+        this.headerCheckbox.isIndeterminate = false;
     }
 
     private uncheckHeaderCheckbox():void
     {
-        this._headerCheckbox.checked = false;
-        this._headerCheckbox.isIndeterminate = false;
+        this.headerCheckbox.checked = false;
+        this.headerCheckbox.isIndeterminate = false;
     }
 
     private setHeaderCheckboxIndeterminate():void
     {
-        this._headerCheckbox.checked = false;
-        this._headerCheckbox.isIndeterminate = true;
+        this.headerCheckbox.checked = false;
+        this.headerCheckbox.isIndeterminate = true;
     }
 
     private updateHeaderCheckboxState():void

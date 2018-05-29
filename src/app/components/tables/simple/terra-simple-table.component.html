@@ -6,8 +6,8 @@
                 width="40px">
                 <terra-checkbox #viewChildHeaderCheckbox
                                 (change)="onHeaderCheckboxChange()"
-                                [value]="_headerCheckbox.checked"
-                                [isIndeterminate]="_headerCheckbox.isIndeterminate">
+                                [value]="headerCheckbox.checked"
+                                [isIndeterminate]="headerCheckbox.isIndeterminate">
                 </terra-checkbox>
             </th>
             <ng-template ngFor let-header [ngForOf]="inputHeaderList">
