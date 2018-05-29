@@ -6,6 +6,7 @@ import {
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
+import { isNullOrUndefined } from "util";
 
 let nextId:number = 0;
 
@@ -28,6 +29,12 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
      */
     @Input()
     public inputIsRequired:boolean;
+
+    /**
+     * @description If true, the textarea is resizeable. Default true.
+     */
+    @Input()
+    public inputIsResizable:boolean;
 
     /**
      * @deprecated inputType is no longer used.  It will be removed in one of the upcoming releases.
@@ -74,6 +81,8 @@ export class TerraTextAreaInputComponent extends TerraInputComponent
 
         // generate the id of the input instance
         this._id = `text-area-input_#${nextId++}`;
+        this.inputMaxRows = isNullOrUndefined(this.inputMaxRows) ? 4 : this.inputMaxRows;
+        this.inputIsResizable = isNullOrUndefined(this.inputIsResizable) ? true : this.inputIsResizable;
     }
 
     /**

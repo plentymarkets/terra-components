@@ -346,4 +346,11 @@ label
     {
         padding: var(--textarea-label-padding, var(--textarea-label-padding-default));
     }
+    
+    .resizeable
+    {
+        resize: vertical;
+        min-height: calc((1.2em * 4) + 2px);
+    }
 }
+
