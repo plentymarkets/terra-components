@@ -7,12 +7,12 @@ import { NestedDataInterface } from '../data/nested-data.interface';
  */
 
 @Injectable()
-export abstract class TerraNestedDataPickerBaseService
+export abstract class TerraNestedDataPickerBaseService<T>
 {
     /**
      * @description Placeholder for the specific data-retrieval method. In General the specific rest call is given here.
      * @param {string | number} dataId
      * @returns {Observable<Array<NestedDataInterface>>}
      */
-    public abstract requestNestedData():Observable<Array<NestedDataInterface>>;
+    public abstract requestNestedData():Observable<Array<NestedDataInterface<T>>>;
 }

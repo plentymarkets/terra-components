@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { NestedDataInterface } from '../data/nested-data.interface';
 
 @Injectable()
-export class NestedDataTreeConfig extends TerraNodeTreeConfig<NestedDataInterface>
+export class NestedDataTreeConfig<T> extends TerraNodeTreeConfig<NestedDataInterface<T>>
 {
     constructor(public _translation:TranslationService)
     {
