@@ -218,8 +218,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     private triggerOutputSelectedRowsChange():void
     {
-        let selectedRows:Array<TerraSimpleTableRowInterface<D>> =
-            this.inputRowList.filter((row:TerraSimpleTableRowInterface<D>) => row.selected === true);
+        let selectedRows:Array<TerraSimpleTableRowInterface<D>> = this.getSelectedRows();
 
         this.outputSelectedRowsChange.emit(selectedRows);
     }
@@ -244,7 +243,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     private updateHeaderCheckboxState():void
     {
-        let selectedRows:Array<TerraSimpleTableRowInterface<D>> = this.inputRowList.filter((row:TerraSimpleTableRowInterface<D>) => row.selected === true);
+        let selectedRows:Array<TerraSimpleTableRowInterface<D>> = this.getSelectedRows();
 
         if(selectedRows.length === 0) // anything selected?
         {
@@ -259,6 +258,11 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         {
             this.setHeaderCheckboxIndeterminate();
         }
+    }
+
+    private getSelectedRows():Array<TerraSimpleTableRowInterface<D>>
+    {
+        return this.inputRowList.filter((row:TerraSimpleTableRowInterface<D>) => row.selected === true)
     }
 
     private selectRow(row:TerraSimpleTableRowInterface<D>):void
