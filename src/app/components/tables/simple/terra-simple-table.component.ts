@@ -265,12 +265,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     {
         row.selected = true;
 
-        // check if row is already selected
-        if(this.inputRowList.find((r:TerraSimpleTableRowInterface<D>) => r === row))
-        {
-            return;
-        }
-
         // notify user that selection has changed
         this.triggerOutputSelectedRowsChange();
     }
