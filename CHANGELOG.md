@@ -1,5 +1,77 @@
-<a name="unreleased"></a>
-# Unreleased
+<a name="2.2.13"></a>
+# 2.2.13 (28.05.2018)
+
+### Features
+* **terra-multi-split-view** added routing functionality. You are now able to navigate to a view by a specific url. This feature can be enabled by setting the component's input <code>inputHasRouting</code> to true and passing a routing config to the split view using its config's property <code>routingConfig</code>.
+
+### Bug Fixes
+* **terra-text-input**
+	- changed color of text input with readonly attribute
+	- rearranged style selectors to match native html attributes
+
+<a name="2.2.12"></a>
+# 2.2.12 (17.05.2018)
+
+### Features
+* **url.helper** add new functions `removeFragment`, `removeQueryParams` and `getCleanUrl`
+* **query-param.helper** added with `appendQueryParamsToUrl` and `getQueryParamString` functions
+
+<a name="2.2.11"></a>
+# 2.2.11 (16.05.2018)
+
+### Features
+* **alerts** restyled alerts & changed min/max-width for alert-panel
+* **file-browser** restyled file-browser
+* **terra-color-picker** restyled terra-color-picker
+* **terra-overlay** changed the background-color of overlays to grey like all the other content-areas
+* **terra-portlet** added the possibility to stack portlets in portlets
+
+### Bug Fixes
+* **breadcrumbs** fixed issues with background-color of breadcrumbs
+* **text-area** fixed broken text-area
+* **terra-simple-table** fixed issues with [fixedHeader]-class 
+
+<a name="2.2.10"></a>
+# 2.2.10 (16.05.2018)
+
+### Bug Fixes
+* **terra-categroy-picker** fixed error with initial loading of category picker in dynamic form
+
+<a name="2.2.7"></a>
+# 2.2.7 (14.05.2018)
+
+### Bug Fixes
+* **terra-multi-split-view** fixed error with side scroller
+
+<a name="2.2.6"></a>
+# 2.2.6 (09.05.2018)
+
+### Bug Fixes
+* **category-picker** fixed error with the reset button
+
+### Feature
+* **download-helper** added download helper for downloads from the backend
+
+<a name="2.2.5"></a>
+# 2.2.5 (04.05.2018)
+
+### Feature
+* **terra-multi-split-view** set input inputComponentRoute deprecated. It is no longer needed.
+
+### Bug Fixes
+* **terra-converter-helper** updated a used pipe after the angular update
+
+<a name="2.2.4"></a>
+# 2.2.4 (03.05.2018)
+
+### Feature
+* **terra-select-box** fixed null pointer when <code>selectedValue</code> was undefined
+
+<a name="2.2.3"></a>
+# 2.2.3 (02.05.2018)
+
+### Feature
+* **string-helper** new helper for strings
 
 ### Bug Fixes
 * **terra-text-input** changed color of text input with readonly attribute
@@ -59,6 +131,7 @@
 # 2.1.65-zlk (05.04.2018)
 
 ### Feature
+* **terra-multi-split-view** added routing functionality. You can now handle view addition/selection via routes. This feature is activated by setting the component's input `inputHasRouting`. Use the config's property `routingConfig` to pass in your routing configuration. 
 * **terra-multi-check-box.interface** property `selected` is now optional
 
 ### Bug Fixes

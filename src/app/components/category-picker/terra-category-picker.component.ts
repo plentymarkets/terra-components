@@ -51,36 +51,43 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     public toggleTree:boolean = false;
 
-    private _value:number = 0;
-    private _completeCategory:CategoryValueInterface = {
-        id:               null,
-        isActive:         null,
-        isOpen:           null,
-        isVisible:        null,
-        name:             '',
-        tooltip:          '',
-        tooltipPlacement: '',
-    };
+    private value:number;
+    private completeCategory:CategoryValueInterface;
 
-    private _categoryName:string = '';
-    private _list:Array<TerraNodeInterface<CategoryDataInterface>> = [];
-    private _isContainerCategorySelected:boolean = false;
+    private categoryName:string;
+    private list:Array<TerraNodeInterface<CategoryDataInterface>>;
+    private isContainerCategorySelected:boolean;
+    private isNotInitialCall:boolean;
 
     constructor(private translation:TranslationService,
                 public categoryTreeConfig:CategoryTreeConfig)
     {
+        this.value = 0;
+        this.completeCategory = {
+            id:               null,
+            isActive:         null,
+            isOpen:           null,
+            isVisible:        null,
+            name:             '',
+            tooltip:          '',
+            tooltipPlacement: '',
+        };
+        this.categoryName = '';
+        this.list = [];
+        this.isContainerCategorySelected = false;
+        this.isNotInitialCall = false;
     }
 
     public ngAfterContentChecked():void
     {
         if(this.categoryTreeConfig.list.length === 0)
         {
-            this.categoryTreeConfig.list = this._list;
+            this.categoryTreeConfig.list = this.list;
         }
 
-        if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
+        if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode) && !isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode.value))
         {
-            this._isContainerCategorySelected = (this.categoryTreeConfig.currentSelectedNode.value.type === 'container');
+            this.isContainerCategorySelected = (this.categoryTreeConfig.currentSelectedNode.value.type === 'container');
         }
     }
 
@@ -90,13 +97,13 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         {
             this.inputName = this.translation.translate('terraCategoryPicker.category');
         }
-        this.categoryTreeConfig.list = this._list;
+        this.categoryTreeConfig.list = this.list;
         this.getCategoriesByParent(null);
     }
 
     public getCompleteCategoryObject():CategoryValueInterface
     {
-        return this._completeCategory;
+        return this.completeCategory;
     }
 
     // From ControlValueAccessor interface
@@ -116,13 +123,17 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                 if(!isNullOrUndefined(nodeToSelect))
                 {
                     this.categoryTreeConfig.currentSelectedNode = nodeToSelect;
-                    this._categoryName = this.categoryTreeConfig.currentSelectedNode.name;
+                    this.categoryName = this.categoryTreeConfig.currentSelectedNode.name;
                 }
 
-                this._value = value;
-                this.updateCompleteCategory(nodeToSelect);
-                this.onTouchedCallback();
-                this.onChangeCallback(this._value);
+                this.value = value;
+
+                if(this.isNotInitialCall)
+                {
+                    this.updateCompleteCategory(nodeToSelect);
+                    this.onTouchedCallback();
+                    this.onChangeCallback(this.value);
+                }
             });
         }
     }
@@ -152,9 +163,11 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     public onSelectNode():void
     {
+        this.isNotInitialCall = true;
+
         if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
         {
-            this._categoryName = this.categoryTreeConfig.currentSelectedNode.name;
+            this.categoryName = this.categoryTreeConfig.currentSelectedNode.name;
             this.writeValue(this.categoryTreeConfig.currentSelectedNode.id);
         }
         this.toggleTree = !this.toggleTree;
@@ -171,22 +184,22 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             tooltip:          '',
             tooltipPlacement: '',
         };
-        this._categoryName = '';
-        this._value = 0;
+        this.categoryName = '';
+        this.value = 0;
 
         this.onTouchedCallback();
-        this.onChangeCallback(this._value);
+        this.onChangeCallback(this.value);
     }
 
     private updateCompleteCategory(category:TerraNodeInterface<CategoryDataInterface>):void
     {
-        this._completeCategory.id = +category.id;
-        this._completeCategory.isActive = category.isActive;
-        this._completeCategory.isOpen = category.isOpen;
-        this._completeCategory.isVisible = category.isVisible;
-        this._completeCategory.name = category.name;
-        this._completeCategory.tooltip = category.tooltip;
-        this._completeCategory.tooltipPlacement = category.tooltipPlacement;
+        this.completeCategory.id = +category.id;
+        this.completeCategory.isActive = category.isActive;
+        this.completeCategory.isOpen = category.isOpen;
+        this.completeCategory.isVisible = category.isVisible;
+        this.completeCategory.name = category.name;
+        this.completeCategory.tooltip = category.tooltip;
+        this.completeCategory.tooltipPlacement = category.tooltipPlacement;
     }
 
     private getCategoriesByParentId(parentId:number | string):() => Observable<any>
@@ -273,7 +286,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             });
         }
         // Current List is updated
-        this._list = this.categoryTreeConfig.list;
+        this.list = this.categoryTreeConfig.list;
     }
 
     private getCategoriesByParent(parentNode:TerraNodeInterface<CategoryDataInterface>):void

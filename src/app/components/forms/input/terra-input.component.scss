@@ -135,41 +135,59 @@ input[type="search"]::-webkit-search-decoration
         }
     }
     
-    &.disabled
+    input[disabled]
     {
-        input
-        {
-            color: var(--color-structure-5);
-            background-color: var(--color-structure-2);
-            padding-left: var(--space-md);
-        }
+        color: var(--color-structure-5);
+        background-color: var(--color-structure-2);
+        padding-left: var(--space-md);
         
-        label
+        + label
         {
             cursor: not-allowed;
             padding-left: var(--space-md);
         }
     }
     
+    
     input[readonly]
     {
         color: var(--color-structure-6);
     }
     
-    &:not(.error):not(.valid):not(.success):not(.disabled)::after
+    &:not(.error):not(.valid):not(.success):not(.disabled)
     {
-        content: "";
-        display: block;
-        width: 0%;
-        position: absolute;
-        height: 2px;
-        background-color: var(--color-active);
-        transition: width var(--transition-md);
-        bottom: 0px;
+        &::after
+        {
+            content: "";
+            display: block;
+            width: 0%;
+            left: 50%;
+            position: absolute;
+            height: 2px;
+            background-color: var(--color-active);
+            transition: width var(--transition-md);
+            bottom: 0;
+        }
+        &::before
+        {
+            content: "";
+            display: block;
+            width: 0%;
+            right: 50%;
+            position: absolute;
+            height: 2px;
+            background-color: var(--color-active);
+            transition: width var(--transition-md);
+            bottom: 0;
+        }
     }
-    &:not(.error):not(.valid):not(.success):not(.disabled):hover::after
+    &:not(.error):not(.valid):not(.success):not(.disabled):hover
     {
-        width: 100%;
+        &::after,
+        &::before
+        {
+            width: 50%;
+        }
     }
 }
 
@@ -190,14 +208,14 @@ textarea
     line-height: 100%;
     transition: padding var(--transition-lg), height var(--transition-lg), line-height var(--transition-lg);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
-    border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
+    border-bottom: var(--input-wrapper-border, (1px solid var(--border-color)));
     background-color: var(--input-background-color, var(--color-structure-0));
     color: var(--input-color, var(--color-structure-12));
     
     &:active,
     &:focus
     {
-        border-bottom: var(--input-wrapper-border-hover, 2px solid var(--color-active));
+        border-bottom: var(--input-wrapper-border-hover, (2px solid var(--color-active)));
         + label
         {
             color: var(--color-active);
@@ -216,20 +234,12 @@ textarea
         padding: var(--input-isSmall-padding, var(--input-isSmall-padding-default));
     }
     
-    //&:focus,
-    //&.filled
-    //{
-    //    color: var(--color-structure-12);
-    //    background-color: var(--color-structure-0);
-    //    border-color: var(--color-structure-8);
-    //}
-    
     &.disabled,
     &:disabled
     {
         background-color: var(--color-structure-2);
         cursor: not-allowed;
-        border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
+        border-bottom: var(--input-wrapper-border, (1px solid var(--border-color)));
         
         & ~ label
         {
@@ -319,16 +329,21 @@ label
 .textarea-wrapper
 {
     height: initial;
-    label
-    {
-        position: static;
-    }
+    line-height: 0;
+
     textarea
     {
         -webkit-appearance: textarea;
         resize: none;
-        padding-top: 3px;
+        margin-top: 18px;
+        //padding-top: 0;
         height: initial;
         line-height: 1.2em;
+        padding: var(--textarea-padding, var(--textarea-padding-default));
+    }
+    
+    label
+    {
+        padding: var(--textarea-label-padding, var(--textarea-label-padding-default));
     }
 }

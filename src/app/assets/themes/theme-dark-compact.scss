@@ -1,6 +1,6 @@
 body
 {
-    &.compact
+    &.dark-compact
     {
         --navbar-height: 32px;
         --tabbar-height: 32px;
@@ -36,6 +36,9 @@ body
         --label-width-default: 30%;
         --label-padding-default: var(--space-lg) 0;
         --select-box-labeled-padding-default: var(--space-md) var(--space-md) var(--space-md) 30%;
+        --select-box-labeled-isSmall-padding-default: var(--space-md) var(--space-md) var(--space-md) 30%;
+        --select-box-isSmall-background-position-default: calc(100% - var(--space-lg)) var(--space-lg);
+        --textarea-label-padding-default: var(--space-sm) 0 0 0;
         
         //Navbar-dropdown-menu//
         --dropdown-menu-transition-default: all var(--transition-0);
