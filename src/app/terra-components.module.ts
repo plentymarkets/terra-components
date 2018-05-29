@@ -139,6 +139,8 @@ import { TerraCategoryPickerComponent } from './components/category-picker/terra
 import { TerraFileChooserComponent } from './components/buttons/file-chooser/terra-file-chooser.component';
 import { l10nConfig } from './translation/l10n.config';
 import { HttpClientModule } from '@angular/common/http';
+import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
+import { RouterModule } from '@angular/router';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -412,7 +414,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         MyDatePickerModule,
         AceEditorModule,
         TerraInteractModule,
-        QuillModule
+        QuillModule,
+        RouterModule
     ],
     providers:       [
         TerraNavigatorSplitViewConfig,
@@ -461,7 +464,8 @@ export class TerraComponentsModule
                 TerraAlertComponent,
                 TerraDynamicFormService,
                 TerraFormFieldControlService,
-                TerraJsonToFormFieldService
+                TerraJsonToFormFieldService,
+                TerraMultiSplitViewBreadcrumbsService
             ]
         };
     }
@@ -479,7 +483,8 @@ export class TerraComponentsModule
                 TerraFrontendStorageService,
                 TerraAlertComponent,
                 CategoryTreeConfig,
-                TerraJsonToFormFieldService
+                TerraJsonToFormFieldService,
+                TerraMultiSplitViewBreadcrumbsService
             ]
         };
     }
