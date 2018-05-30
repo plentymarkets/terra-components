@@ -14,7 +14,7 @@
               autocomplete="off"
               [disabled]="isDisabled"
               placeholder="{{inputPlaceholder}}"
-              [ngClass]="{'resizable': inputIsResizable}">
+              [class.resizable]="!inputHasFixedHeight">
     </textarea>
     <label class="textarea-label" htmlFor="{{_id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
