@@ -1,3 +1,14 @@
+<a name="2.2.13"></a>
+# 2.2.13 (28.05.2018)
+
+### Features
+* **terra-multi-split-view** added routing functionality. You are now able to navigate to a view by a specific url. This feature can be enabled by setting the component's input <code>inputHasRouting</code> to true and passing a routing config to the split view using its config's property <code>routingConfig</code>.
+
+### Bug Fixes
+* **terra-text-input**
+	- changed color of text input with readonly attribute
+	- rearranged style selectors to match native html attributes
+
 <a name="2.2.12"></a>
 # 2.2.12 (17.05.2018)
 
@@ -120,6 +131,7 @@
 # 2.1.65-zlk (05.04.2018)
 
 ### Feature
+* **terra-multi-split-view** added routing functionality. You can now handle view addition/selection via routes. This feature is activated by setting the component's input `inputHasRouting`. Use the config's property `routingConfig` to pass in your routing configuration. 
 * **terra-multi-check-box.interface** property `selected` is now optional
 
 ### Bug Fixes
