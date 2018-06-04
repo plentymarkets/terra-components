@@ -1,3 +1,9 @@
+<a name="unreleased"></a>
+#Unreleased
+
+### Bug Fixes
+* **terra-suggestion-box** dropdown closes if user clicked on other suggestion box
+
 <a name="2.2.13"></a>
 # 2.2.13 (28.05.2018)
 
