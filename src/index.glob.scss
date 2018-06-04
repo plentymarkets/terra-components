@@ -34,7 +34,7 @@ body
 {
     font-size: var(--font-size-2);
     opacity: 1 !important;
-
+    
     &.top .tooltip-arrow
     {
         border-top-color: var(--tooltip-color, var(--tooltip-color-default));
@@ -125,7 +125,7 @@ p, span, a
     padding: var(--space-sm) 0;
     background-color: var(--color-structure-11);
     border-radius: var(--border-radius);
-
+    
     top: var(--context-menu-top, 29px);
     right: 0;
     display: block;
@@ -134,7 +134,7 @@ p, span, a
     text-align: left;
     z-index: var(--zIndex-9);
     box-shadow: var(--box-shadow);
-
+    
     a
     {
         cursor: pointer;
@@ -150,12 +150,12 @@ p, span, a
         font-weight: var(--font-weight-1);
         color: var(--color-structure-0) !important;
         -webkit-font-smoothing: initial;
-
+        
         &:hover
         {
             background-color: var(--color-structure-9);
         }
-
+        
         .left-icon
         {
             padding-right: 2px;
@@ -169,7 +169,7 @@ p, span, a
             position: absolute;
             right: 4px;
             line-height: var(--font-size-5);
-
+            
             &:hover
             {
                 color: var(--color-active);
@@ -216,7 +216,7 @@ terra-alert-panel, *
     {
         border-radius: var(--border-radius);
         box-shadow: var(--box-shadow);
-
+        
         &.alert-danger
         {
             background-color: var(--color-alert);
@@ -270,7 +270,7 @@ terra-alert-panel, *
             &.close
             {
                 text-shadow: none;
-
+                
                 &:hover,
                 &:focus
                 {
