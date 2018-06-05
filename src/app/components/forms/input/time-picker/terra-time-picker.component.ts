@@ -36,14 +36,14 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
      * */
     @Input() public inputIsDisabled:boolean;
 
-    public valueHours:Array<TerraSelectBoxValueInterface>;
+    public valuesHours:Array<TerraSelectBoxValueInterface>;
     public valuesMinutes:Array<TerraSelectBoxValueInterface>;
     private value:Date;
 
 
     constructor()
     {
-        this.valueHours = [];
+        this.valuesHours = [];
         this.valuesMinutes = [];
         this.value = new Date();
         this.inputIsDisabled = false;
@@ -61,7 +61,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 
         for(hours = 0; hours <= 23; hours++)
         {
-            this.valueHours.push(
+            this.valuesHours.push(
                 {
                     value:   hours,
                     caption: hours
@@ -117,6 +117,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
         }
 
         this.onChangeCallback(this.value);
+        this.onTouchedCallback();
     }
 
     protected get hours():number
@@ -136,5 +137,6 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
         }
 
         this.onChangeCallback(this.value);
+        this.onTouchedCallback();
     }
 }
