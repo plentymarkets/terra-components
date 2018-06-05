@@ -11,8 +11,4 @@ export class TerraTimePickerComponentExample
 {
     public date:Date = new Date();
 
-    protected onModelChange(event):void
-    {
-        console.log(event);
-    }
 }
