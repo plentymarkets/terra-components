@@ -2,7 +2,7 @@
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
      [isDisabled]="!inputTooltipText"
-     [ngClass]="{'error': !isValid, 'disabled': isDisabled, 'isSmall': inputIsSmall}"
+     [ngClass]="{'error': !isValid, 'isSmall': inputIsSmall}"
      container="body">
     
     <input id="{{_id}}"
@@ -13,7 +13,7 @@
            (input)="onInput()"
            autocomplete="off"
            [disabled]="isDisabled"
-           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0 }"
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0}"
            pattern="{{regex}}"
            maxlength="{{inputMaxLength}}"
            minlength="{{inputMinLength}}"

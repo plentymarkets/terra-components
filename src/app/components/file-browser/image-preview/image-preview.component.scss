@@ -18,16 +18,13 @@
 
 .image-preview
 {
-    background-color: var(--color-structure-2);
-    padding: var(--space-sm);
-    flex: 1;
-    
     .preview-container
     {
         width: 100%;
         padding-top: 100%;
         position: relative;
         margin-bottom: .5rem;
+        box-shadow: var(--box-shadow);
         
         > div
         {
