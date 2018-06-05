@@ -13,21 +13,21 @@
 
 body
 {
-    font-family: var(--font-family) !important;
-    font-size: var(--font-size-3) !important;
-    font-weight: var(--font-weight-1) !important;
+    font-family: var(--font-family);
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-1);
     line-height: 1.5 !important;
-    color: var(--color-structure-12) !important;
-    background-color: var(--color-structure-2) !important;
-    position: absolute !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    margin: 0 !important;
-    border: 0 !important;
-    padding: 0 !important;
-    direction: ltr !important;
+    color: var(--color-structure-12);
+    background-color: var(--color-structure-2);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    direction: ltr;
 }
 
 .tooltip
