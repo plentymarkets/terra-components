@@ -63,8 +63,6 @@
 		"search": "Suche"
 	},
 	"timepicker": {
-		"hourFormat12": "12-Stunden",
-		"hourFormat24": "24-Stunden",
 		"minutes": "Minuten",
 		"hours": "Stunden"
 	},

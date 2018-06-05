@@ -2,7 +2,6 @@
  * @author twieder
  */
 import {
-    AfterViewInit,
     Component,
     forwardRef,
     Input,
@@ -12,7 +11,8 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { TerraSelectBoxValueInterface } from '../../../components/forms/select-box/data/terra-select-box.interface';
+import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector:  'terra-time-picker',
@@ -29,34 +29,27 @@ import { TerraSelectBoxValueInterface } from '../../../components/forms/select-b
     ]
 })
 
-export class TerraTimePickerComponent implements AfterViewInit, ControlValueAccessor
+export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 {
     /**
      * @description If true, the input will be disabled. Default false.
      * */
     @Input() public inputIsDisabled:boolean;
 
+    public valueHours:Array<TerraSelectBoxValueInterface>;
+    public valuesMinutes:Array<TerraSelectBoxValueInterface>;
+    private value:Date;
 
-    public _selectedMinute:number;
-    public _selectedHour:number;
-    public _values24:Array<TerraSelectBoxValueInterface>;
-    public _valueHours:Array<TerraSelectBoxValueInterface>;
-    public _valuesMinutes:Array<TerraSelectBoxValueInterface>;
-    private _value:Date;
-
-    private initDone:boolean;
 
     constructor()
     {
-        this._values24 = [];
-        this._valueHours = [];
-        this._valuesMinutes = [];
-        this._value = new Date();
+        this.valueHours = [];
+        this.valuesMinutes = [];
+        this.value = new Date();
         this.inputIsDisabled = false;
-        this.initDone = false;
     }
 
-    public ngAfterViewInit():void
+    public ngOnInit():void
     {
         this.createTimeValues();
     }
@@ -68,7 +61,7 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
 
         for(hours = 0; hours <= 23; hours++)
         {
-            this._values24.push(
+            this.valueHours.push(
                 {
                     value:   hours,
                     caption: hours
@@ -78,7 +71,7 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
 
         for(minutes = 0; minutes <= 59; minutes++)
         {
-            this._valuesMinutes.push(
+            this.valuesMinutes.push(
                 {
                     value:   minutes,
                     caption: minutes
@@ -86,7 +79,6 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
             );
         }
 
-        this.initDone = true;
     }
 
     private onTouchedCallback:() => void = ():void => undefined;
@@ -105,38 +97,44 @@ export class TerraTimePickerComponent implements AfterViewInit, ControlValueAcce
 
     public writeValue(value:Date):void
     {
-        this._value = value;
+        this.value = value;
+    }
 
-        if(this.initDone)
+    protected get minutes():number
+    {
+        if(!isNullOrUndefined(this.value))
         {
-            this._selectedHour = this.value.getHours();
-            this._selectedMinute = this.value.getMinutes();
+            return this.value.getMinutes();
         }
+        return 0;
     }
 
-    public get value():Date
+    protected set minutes(minutes:number)
     {
-        return this._value;
-    }
-
-    public set value(value:Date)
-    {
-        this.writeValue(value);
-    }
-
-    protected hoursChanged(hours:number):void
-    {
-        if(this.initDone)
-        {
-            this.value.setHours(hours);
-        }
-    }
-
-    protected minutesChange(minutes:number):void
-    {
-        if(this.initDone)
+        if(!isNullOrUndefined(this.value))
         {
             this.value.setMinutes(minutes);
         }
+
+        this.onChangeCallback(this.value);
+    }
+
+    protected get hours():number
+    {
+        if(!isNullOrUndefined(this.value))
+        {
+            return this.value.getHours();
+        }
+        return 0;
+    }
+
+    protected set hours(minutes:number)
+    {
+        if(!isNullOrUndefined(this.value))
+        {
+            this.value.setHours(minutes);
+        }
+
+        this.onChangeCallback(this.value);
     }
 }

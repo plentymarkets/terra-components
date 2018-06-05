@@ -86,7 +86,7 @@ import { TerraDataTableContextMenuService } from './components/tables/data-table
 import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
-import { TerraTimePickerComponent } from './forms/input/time-picker/terra-time-picker.component';
+import { TerraTimePickerComponent } from './components/forms/input/time-picker/terra-time-picker.component';
 import { TerraConverterHelper } from './helpers/terra-converter.helper';
 import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
 import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
@@ -138,11 +138,11 @@ import { TerraNoteComponentExample } from './components/note/example/terra-note.
 import { TerraNodeTreeComponentExample } from './components/tree/node-tree/example/terra-node-tree.component.example';
 import { TerraMultiCheckBoxComponentExample } from './components/forms/multi-check-box/example/terra-multi-check-box.component.example';
 import { TerraCategoryPickerComponent } from './components/category-picker/terra-category-picker.component';
-import { TerraTimePickerComponentExample } from './forms/input/time-picker/example/terra-time-picker.component.example';
 import { l10nConfig } from './translation/l10n.config';
 import { HttpClientModule } from '@angular/common/http';
 import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
 import { RouterModule } from '@angular/router';
+import { TerraTimePickerComponentExample } from './components/forms/input/time-picker/example/terra-time-picker.component.example';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
