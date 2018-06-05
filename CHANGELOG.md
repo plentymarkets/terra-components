@@ -1,3 +1,8 @@
+# Unreleased
+
+###Feature
+* **terra-time-picker** created new terra-time-picker component 
+
 <a name="2.2.13"></a>
 # 2.2.13 (28.05.2018)
 
