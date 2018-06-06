@@ -93,6 +93,7 @@ export * from './app/components/tree/node-tree/terra-node-tree.component';
 export * from './app/components/tree/node-tree/data/terra-node-tree.config';
 export * from './app/components/tree/node-tree/data/terra-node.interface';
 export * from './app/components/tree/node-tree/node/terra-node.component';
+export * from './app/components/forms/input/time-picker/terra-time-picker.component';
 export * from './app/components/dynamic-module-loader/data/terra-dynamic-loaded-component-input.interface';
 export * from './app/components/dynamic-module-loader/data/terra-dynamic-loaded-component.interface';
 export * from './app/components/tables/data-table/cell/terra-text-align.enum';
