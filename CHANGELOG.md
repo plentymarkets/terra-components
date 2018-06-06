@@ -1,5 +1,5 @@
-<a name="unreleased"></a>
-# Unreleased
+<a name="2.2.15"></a>
+# 2.2.15 (06.06.2018)
 
 ### Features
 * **terra-text-area-input** component has now an initial height of 4 rows and is vertical resizeable.
