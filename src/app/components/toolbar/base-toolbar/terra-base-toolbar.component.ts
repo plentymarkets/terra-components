@@ -14,10 +14,10 @@ import {
 export class TerraBaseToolbarComponent
 {
     @Input()
-    public inputIsSticky:boolean;
+    public inputIsBreadcrumbs:boolean;
 
     constructor()
     {
-        this.inputIsSticky = false;
+        this.inputIsBreadcrumbs = false;
     }
 }

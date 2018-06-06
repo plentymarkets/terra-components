@@ -8,22 +8,24 @@
         </div>
     </terra-base-toolbar>
     
-    <div class="image-preview">
-        <div class="preview-container">
-            <div [style.background-image]="'url(' + inputStorageObject.previewUrl + ')'"></div>
+    <terra-portlet>
+        <div class="image-preview">
+            <div class="preview-container">
+                <div [style.background-image]="'url(' + inputStorageObject.previewUrl + ')'"></div>
+            </div>
+            
+            <div *ngIf="_canHandleMetadata">
+                <terra-text-input [inputName]="_translationPrefix + '.imageSize' | translate:lang"
+                                  [inputIsReadonly]="true"
+                                  [ngModel]="_metadata.width ? (_metadata.width + ' x ' + _metadata.height + ' px') : '-'"></terra-text-input>
+                
+                <terra-text-input [inputName]="_translationPrefix + '.altText' | translate:lang"
+                                  [(ngModel)]="_metadata.altText"></terra-text-input>
+            </div>
         </div>
         
-        <div *ngIf="_canHandleMetadata">
-            <terra-text-input [inputName]="_translationPrefix + '.imageSize' | translate:lang"
-                              [inputIsReadonly]="true"
-                              [ngModel]="_metadata.width ? (_metadata.width + ' x ' + _metadata.height + ' px') : '-'"></terra-text-input>
-            
-            <terra-text-input [inputName]="_translationPrefix + '.altText' | translate:lang"
-                              [(ngModel)]="_metadata.altText"></terra-text-input>
+        <div class="loader" *ngIf="_isLoading">
+            <div class="icon-loading"></div>
         </div>
-    </div>
-    
-    <div class="loader" *ngIf="_isLoading">
-        <div class="icon-loading"></div>
-    </div>
+    </terra-portlet>
 </div>

@@ -6,7 +6,7 @@ import {
     forwardRef,
     Inject
 } from '@angular/core';
-import { TerraSimpleTableComponent } from '../../../../';
+import { TerraSimpleTableComponent } from '../../tables/simple/terra-simple-table.component';
 
 const FIXED_CLASS:string = 'fixedHeader';
 

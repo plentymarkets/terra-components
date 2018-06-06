@@ -5,7 +5,9 @@
      [ngClass]="{
                   'error': !isValid,
                   'disabled': inputIsDisabled,
-                  'open': _toggleOpen
+                  'open': _toggleOpen,
+                  'isSmall': inputIsSmall,
+                  'isEmpty': emptyValueSelected
                 }"
      (click)="onClick($event)"
      container="body">
@@ -14,7 +16,7 @@
         <span *ngIf="inputIsRequired">*</span>
     </label>
     
-    <div class="select-box" [ngClass]="{'error': !isValid, 'labeled': _hasLabel, 'isSmall': inputIsSmall}">
+    <div class="select-box" [ngClass]="{'error': !isValid, 'labeled': _hasLabel}">
         <span *ngIf="_selectedValue; then selectedValue else firstInList"></span>
         <ng-template #selectedValue>
             <span class="{{_selectedValue?.icon}}" *ngIf="_selectedValue?.icon"></span>

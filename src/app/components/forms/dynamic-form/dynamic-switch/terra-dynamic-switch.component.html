@@ -27,6 +27,7 @@
                                   [formControlName]="formField.key"
                                   [inputName]="formField.label  | translate:lang"
                                   [inputIsRequired]="formField.required"
+                                  [inputAllowedExtensions]="formField.inputAllowedExtensions"
                                   [inputIsDisabled]="inputIsDisabled"
                                   [inputTooltipText]="formField.tooltip"
                                   [inputTooltipPlacement]="formField.tooltipPlacement">
@@ -74,6 +75,7 @@
                 <terra-category-picker *ngSwitchCase="controlTypeEnum.CATEGORY_PICKER"
                                        [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                        [formControlName]="formField.key"
+                                       [inputTooltipText]="formField.tooltip"
                                        [inputName]="formField.label"
                                        [inputIsDisabled]="inputIsDisabled"
                                        [inputCategoryService]="formField.categoryService">

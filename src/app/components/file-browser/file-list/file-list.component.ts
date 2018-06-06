@@ -25,20 +25,17 @@ import {
     isNumber
 } from 'util';
 import { TerraBasePrivateStorageService } from '../terra-base-private-storage.interface';
-import {
-    TerraButtonInterface,
-    TerraSimpleTableCellInterface,
-    TerraSimpleTableComponent,
-    TerraSimpleTableHeaderCellInterface,
-    TerraSimpleTableRowInterface,
-    TerraStorageObject,
-    TerraStorageObjectList,
-} from '../../../../';
-import {
-    ClipboardHelper,
-    FileTypeHelper,
-    PathHelper
-} from '../../../helpers';
+import { TerraStorageObjectList } from '../model/terra-storage-object-list';
+import { PathHelper } from '../../../helpers/path.helper';
+import { TerraSimpleTableComponent } from '../../tables/simple/terra-simple-table.component';
+import { TerraStorageObject } from '../model/terra-storage-object';
+import { FileTypeHelper } from '../../../helpers/fileType.helper';
+import { TerraSimpleTableRowInterface } from '../../tables/simple/row/terra-simple-table-row.interface';
+import { ClipboardHelper } from '../../../helpers/clipboard.helper';
+import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-simple-table-cell.interface';
+import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
+import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
+
 
 @Component({
     selector: 'terra-file-list',
@@ -609,7 +606,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         }
     }
 
-    private uploadFiles(fileList:FileList | File[]):void
+    private uploadFiles(fileList:FileList | Array<File>):void
     {
         let uploadPrefix:string = this.currentStorageRoot ? this.currentStorageRoot.key : '/';
         this.activeStorageService

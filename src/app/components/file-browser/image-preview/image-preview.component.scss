@@ -18,16 +18,13 @@
 
 .image-preview
 {
-    background-color: $grey-2;
-    padding: 4px;
-    flex: 1;
-    
     .preview-container
     {
         width: 100%;
         padding-top: 100%;
         position: relative;
         margin-bottom: .5rem;
+        box-shadow: var(--box-shadow);
         
         > div
         {
@@ -46,7 +43,7 @@
     {
         display: block;
         font-size: .7rem;
-        color: $text-muted;
+        color: var(--color-structure-9);
     }
 }
 
@@ -66,6 +63,6 @@
         top: 50%;
         transform: translate(-50%, -50%);
         font-size: 5rem;
-        --icon-color: $white;
+        --icon-color: var(--color-structure-0);
     }
 }

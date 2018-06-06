@@ -12,11 +12,10 @@ import {
     isNull,
     isNullOrUndefined
 } from 'util';
-import {
-    TerraAlertComponent,
-    TerraBaseParameterInterface,
-    TerraLoadingSpinnerService
-} from '../../';
+import { TerraAlertComponent } from '../components/alert/terra-alert.component';
+import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
+import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
+
 
 /**
  * @author mfrank

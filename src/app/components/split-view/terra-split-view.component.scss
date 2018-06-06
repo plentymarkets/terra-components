@@ -22,39 +22,39 @@
             position: relative;
             display: block;
             float: left;
-            color: $grey-9;
+            color: var(--color-structure-9);
             white-space: nowrap;
             &:hover
             {
-                color: $blue;
+                color: var(--color-active);
                 .caret
                 {
                     &::before
                     {
-                        background-color: $blue;
+                        background-color: var(--color-active);
                     }
                 }
             }
             &.active
             {
-                color: $blue;
+                color: var(--color-active);
                 cursor: default;
                 .caret
                 {
                     &::before
                     {
-                        background-color: $blue;
+                        background-color: var(--color-active);
                     }
                 }
             }
             &:not(.active):hover
             {
-                color: $blue;
+                color: var(--color-active);
                 .caret
                 {
                     &::before
                     {
-                        background-color: $blue;
+                        background-color: var(--color-active);
                     }
                 }
             }
@@ -72,7 +72,7 @@
                     height: 0;
                     vertical-align: middle;
                     content: "";
-                    border: solid white;
+                    border: solid var(--color-structure-0);
                     border-width: 0 1px 1px 0;
                     padding: 2px;
                     transform: rotate(45deg);
@@ -82,7 +82,7 @@
                 {
                     content: "";
                     padding: 8px;
-                    background-color: #636671;
+                    background-color: var(--color-structure-9);
                     border-radius: 8px;
                     position: absolute;
                 }
@@ -94,8 +94,8 @@
                         display: block;
                         visibility: visible;
                         opacity: 1;
-                        transition: all 0.2s ease;
-                        transition-delay: 0.2s;
+                        transition: all var(--transition-sm);
+                        transition-delay: var(--transition-delay-sm);
                     }
                 }
             }
@@ -121,14 +121,14 @@
         }
         .icon-next
         {
-            padding: 6px 0px;
+            padding: 6px 0;
             &::before
             {
                 display: inline-block;
                 line-height: 32px;
                 vertical-align: middle;
-                font-size: $font-size-6;
-                color: $grey-4;
+                font-size: var(--font-size-6);
+                color: var(--color-structure-4);
             }
         }
     }
@@ -149,7 +149,7 @@
     overflow-x: hidden;
     height: 100%;
     white-space: nowrap;
-    font-size: 0px;
+    font-size: 0;
     &.offset
     {
         height: var(--side-scroller-offset, calc(100% - 42px));
@@ -163,23 +163,13 @@
 
 .view
 {
-    font-size: $font-size-3;
+    font-size: var(--font-size-3);
     vertical-align: top;
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
     white-space: normal;
     position: relative;
-    background-color: $white;
-    
-    &:first-child
-    {
-        background-color: $grey-2;
-    }
-    &.isBackgroundColorGrey
-    {
-        background-color: transparent !important;
-    }
 }
 
 ///// Fixed Columns for Terra-Navigator ///////
@@ -201,6 +191,6 @@ terra-base-toolbar
 {
     --toolbar-margin: 0 0 0 -3px;
     --toolbar-border-radius: none;
-    --toolbar-background: $white;
-    --toolbar-border-bottom: 1px solid $grey-4;
+    --toolbar-background: var(--color-structure-0);
+    --toolbar-border-bottom: 1px solid var(--color-structure-4);
 }
