@@ -184,7 +184,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
         if(this._toggleOpen !== value && value === true)
         {
-            document.addEventListener('click', this.clickListener);
+            document.addEventListener('click', this.clickListener, true);
             this.focusSelectedElement();
         }
         else if(this._toggleOpen !== value && value === false)
