@@ -1,7 +1,9 @@
 <a name="unreleased"></a>
 # Unreleased
 
-###Feature
+### Features
+* **terra-text-area-input** component has now an initial height of 4 rows and is vertical resizeable.
+This feature can be disabled by setting the input `inputHasFixedHeight` to true.
 * **terra-time-picker** created new terra-time-picker component
 
 ### Bug Fixes
