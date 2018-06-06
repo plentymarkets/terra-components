@@ -28,7 +28,6 @@ import { isNullOrUndefined } from 'util';
         }
     ]
 })
-
 export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
 {
     /**

@@ -10,5 +10,4 @@ import {
 export class TerraTimePickerComponentExample
 {
     public date:Date = new Date();
-
 }
