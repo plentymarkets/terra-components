@@ -1,3 +1,10 @@
+<a name="2.2.14"></a>
+# 2.2.14 (06.06.2018)
+
+### Features
+* **terra-text-area-input** component has now an initial height of 4 rows and is vertical resizeable.
+This feature can be disabled by setting the input `inputHasFixedHeight` to false.
+
 <a name="2.2.13"></a>
 # 2.2.13 (28.05.2018)
 
