@@ -3,7 +3,7 @@
 
 ### Features
 * **terra-text-area-input** component has now an initial height of 4 rows and is vertical resizeable.
-This feature can be disabled by setting the input `inputHasFixedHeight` to false.
+This feature can be disabled by setting the input `inputHasFixedHeight` to true.
 
 ### Bug Fixes
 * **terra-suggestion-box** dropdown closes if user clicked on other suggestion box
