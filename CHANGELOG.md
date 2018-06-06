@@ -1,8 +1,11 @@
 <a name="unreleased"></a>
-#Unreleased
+# Unreleased
+
+###Feature
+* **terra-time-picker** created new terra-time-picker component
 
 ### Bug Fixes
-* **terra-suggestion-box** dropdown closes if user clicked on other suggestion box
+* **terra-suggestion-box** dropdown closes if user clicked on other suggestion box 
 
 <a name="2.2.13"></a>
 # 2.2.13 (28.05.2018)
