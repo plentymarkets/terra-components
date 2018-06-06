@@ -1,12 +1,13 @@
-<a name="2.2.14"></a>
-# 2.2.14 (06.06.2018)
+<a name="unreleased"></a>
+# Unreleased
 
 ### Features
 * **terra-text-area-input** component has now an initial height of 4 rows and is vertical resizeable.
 This feature can be disabled by setting the input `inputHasFixedHeight` to true.
+* **terra-time-picker** created new terra-time-picker component
 
 ### Bug Fixes
-* **terra-suggestion-box** dropdown closes if user clicked on other suggestion box
+* **terra-suggestion-box** dropdown closes if user clicked on other suggestion box 
 
 <a name="2.2.13"></a>
 # 2.2.13 (28.05.2018)

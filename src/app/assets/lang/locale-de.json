@@ -62,6 +62,10 @@
 	"terraNodeTree":{
 		"search": "Suche"
 	},
+	"timepicker": {
+		"minutes": "Minuten",
+		"hours": "Stunden"
+	},
 	"terraCategoryPicker": {
 		"select": "Auswählen",
 		"category": "Kategorie",
