@@ -3,7 +3,7 @@
 ### Features
 * updated the component examples of 
 	* **terra-button-with-options**  	
-	* **terra-node-editor**
+	* **terra-note-editor**
 	* **terra-syntax-editor** 
 	* **terra-filter** 
 	* **terra-color-picker**
