@@ -10,7 +10,6 @@ import {
  */
 @Component({
     selector: 'terra-filter',
-    styles:   [require('./terra-filter.component.scss')],
     template: require('./terra-filter.component.html')
 })
 export class TerraFilterComponent
@@ -51,17 +50,17 @@ export class TerraFilterComponent
     @Output()
     public outputOnEnterSubmit:EventEmitter<any> = new EventEmitter<any>();
 
-    private searchBtnClicked():void
+    protected searchBtnClicked():void
     {
         this.outputOnSearchBtnClicked.emit(null);
     }
 
-    private resetBtnClicked():void
+    protected resetBtnClicked():void
     {
         this.outputOnResetBtnClicked.emit(null);
     }
 
-    private onSubmit():void
+    protected onSubmit():void
     {
         this.outputOnEnterSubmit.emit(null);
     }
