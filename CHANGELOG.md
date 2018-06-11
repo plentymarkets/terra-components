@@ -1,3 +1,8 @@
+# Unreleased
+
+### Features
+* **terra-download-helper** added method `downloadFileFromUrl`, which downloads a file from a given url.
+
 <a name="2.2.15"></a>
 # 2.2.15 (06.06.2018)
 
