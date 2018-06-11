@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnInit
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 
 @Component({
@@ -9,10 +6,11 @@ import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
     styles:   [require('./terra-taglist.component.example.scss')],
     template: require('./terra-taglist.component.example.html'),
 })
-export class TerraTaglistComponentExample implements OnInit
+export class TerraTaglistComponentExample
 {
     public infoBoxTagList:Array<TerraTagInterface> = [];
-    public ngOnInit():void
+
+    constructor()
     {
         this.infoBoxTagList.push(
             {
@@ -38,4 +36,3 @@ export class TerraTaglistComponentExample implements OnInit
         );
     }
 }
-
