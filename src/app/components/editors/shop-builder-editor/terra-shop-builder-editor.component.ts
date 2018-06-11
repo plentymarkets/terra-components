@@ -1,37 +1,25 @@
-import {
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output
-} from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { TranslationService } from 'angular-l10n';
-import {
-    ControlValueAccessor,
-    NG_VALUE_ACCESSOR
-} from '@angular/forms';
-import {TerraBaseEditorComponent} from "../base-editor/terra-base-editor.component";
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
 
 @Component({
-    selector:  'terra-note-editor',
-    template:  require('./terra-note-editor.component.html'),
+    selector:  'terra-shop-builder-editor',
+    template:  require('./terra-shop-builder-editor.component.html'),
     styles:    [
-        require('./terra-note-editor.component.scss'),
+        require('./terra-shop-builder-editor.component.scss'),
         require('quill/dist/quill.bubble.css'),
         require('quill/dist/quill.snow.css'),
-        require('./terra-note-editor.component.glob.scss').toString()
+        require('./terra-shop-builder-editor.component.glob.scss').toString()
     ],
     providers: [{
         provide:     NG_VALUE_ACCESSOR,
-        useExisting: TerraNoteEditorComponent,
+        useExisting: TerraShopBuilderEditorComponent,
         multi:       true
     }]
 })
-export class TerraNoteEditorComponent extends TerraBaseEditorComponent
+export class TerraShopBuilderEditorComponent extends TerraBaseEditorComponent
 {
-    // private _modules:{ [index:string]:Object };
-
     constructor(protected translation:TranslationService, protected _myElement:ElementRef)
     {
         super(translation, _myElement);

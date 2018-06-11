@@ -1,0 +1,44 @@
+@import '../../../assets/styles/variables';
+
+quill-editor
+{
+    .ql-container
+    {
+        background-color: var(--color-structure-0);
+    }
+    .ql-snow.ql-toolbar
+    {
+        button:hover, button:focus, button.ql-active
+        {
+            color: var(--color-active);
+
+            .ql-stroke
+            {
+                stroke: var(--color-active);
+            }
+            .ql-fill
+            {
+                fill: var(--color-active);
+            }
+        }
+
+        .ql-picker-item
+        {
+            &.ql-selected, &:hover
+            {
+                color: var(--color-active);
+            }
+        }
+        .ql-picker-label
+        {
+            &.ql-active, &:hover
+            {
+                color: var(--color-active);
+                .ql-stroke
+                {
+                    stroke: var(--color-active);
+                }
+            }
+        }
+    }
+}
