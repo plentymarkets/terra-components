@@ -1,3 +1,16 @@
+# unreleased
+
+### Features
+* updated the component examples of 
+	* **terra-button-with-options**  	
+	* **terra-note-editor**
+	* **terra-syntax-editor** 
+	* **terra-filter** 
+	* **terra-color-picker**
+	* **terra-info-box** 
+	* **terra-tag** 
+	* **terra-tag-list**
+
 <a name="2.2.15"></a>
 # 2.2.15 (06.06.2018)
 
