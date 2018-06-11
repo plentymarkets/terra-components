@@ -1,3 +1,27 @@
+# unreleased
+
+### Features
+* updated the component examples of 
+	* **terra-button-with-options**  	
+	* **terra-note-editor**
+	* **terra-syntax-editor** 
+	* **terra-filter** 
+	* **terra-color-picker**
+	* **terra-info-box** 
+	* **terra-tag** 
+	* **terra-tag-list**
+
+<a name="2.2.15"></a>
+# 2.2.15 (06.06.2018)
+
+### Features
+* **terra-text-area-input** component has now an initial height of 4 rows and is vertical resizeable.
+This feature can be disabled by setting the input `inputHasFixedHeight` to true.
+* **terra-time-picker** created new terra-time-picker component
+
+### Bug Fixes
+* **terra-suggestion-box** dropdown closes if user clicked on other suggestion box 
+
 <a name="2.2.13"></a>
 # 2.2.13 (28.05.2018)
 

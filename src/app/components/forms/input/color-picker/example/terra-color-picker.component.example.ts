@@ -9,4 +9,5 @@ import {
 })
 export class TerraColorPickerComponentExample
 {
+    public color:string;
 }
