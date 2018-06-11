@@ -3,6 +3,7 @@
         <div class="node btn"
              [ngClass]="{'activated' : inputNode.isActive, 'isLoading' : inputNode.isLoading && inputNode.onLazyLoad}"
              (click)="onNodeClick($event)"
+             (dblclick)="onNodeDblClick($event)"
              container="body"
              [tooltip]="_tooltip | translate:lang"
              [placement]="_tooltipPlacement">

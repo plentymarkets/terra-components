@@ -208,6 +208,11 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
                     tooltip: 'ID: ' + nested.key,
                     tooltipPlacement: 'top',
                     isVisible:true,
+                    onDblClick: ():void =>
+                    {
+                        this.toggleTree = false;
+                        this.nestedDataName = nested.label;
+                    }
                 });
             }
             else
