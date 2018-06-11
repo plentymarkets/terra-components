@@ -58,6 +58,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input()
     public inputListBoxValues:Array<TerraSelectBoxValueInterface>;
 
+    /**
+     * @deprecated
+     */
     @Output()
     public outputValueChanged:EventEmitter<TerraSelectBoxValueInterface> = new EventEmitter<TerraSelectBoxValueInterface>();
 
