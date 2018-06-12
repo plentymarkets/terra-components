@@ -1,6 +1,7 @@
-# unreleased
+# Unreleased
 
 ### Features
+* **terra-download-helper** added method `downloadFileFromUrl`, which downloads a file from a given url.
 * **converter-helper** remove injectable decorator and replace localeService parameter with the default locale
 * updated the component examples of 
 	* **terra-button-with-options**  	
