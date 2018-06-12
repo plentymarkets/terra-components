@@ -2,6 +2,15 @@
 
 ### Features
 * **terra-download-helper** added method `downloadFileFromUrl`, which downloads a file from a given url.
+* updated the component examples of 
+	* **terra-button-with-options**  	
+	* **terra-note-editor**
+	* **terra-syntax-editor** 
+	* **terra-filter** 
+	* **terra-color-picker**
+	* **terra-info-box** 
+	* **terra-tag** 
+	* **terra-tag-list**
 
 <a name="2.2.15"></a>
 # 2.2.15 (06.06.2018)
@@ -64,6 +73,7 @@ This feature can be disabled by setting the input `inputHasFixedHeight` to true.
 
 ### Bug Fixes
 * **category-picker** fixed error with the reset button
+* **converter-helper** remove injectable decorator and replace localeService parameter with the default locale
 
 ### Feature
 * **download-helper** added download helper for downloads from the backend
