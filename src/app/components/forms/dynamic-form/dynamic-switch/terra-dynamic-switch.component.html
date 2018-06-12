@@ -116,6 +116,11 @@
                                     [inputIsDisabled]="inputIsDisabled">
                 </terra-color-picker>
                 
+                <terra-note-editor [inputPlaceholder]="formField.label"
+                                   [(ngModel)]="formField.defaultValue">
+                    
+                </terra-note-editor>
+                
                 <ng-container *ngSwitchCase="controlTypeEnum.HORIZONTAL_CONTAINER">
                     <div class="horizontalGroup">
                         <span class="horizontalGroupLabel">{{ formField.label | translate:lang }}: </span>
