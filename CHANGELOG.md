@@ -1,3 +1,10 @@
+<a name="Unreleased"></a>
+# Unreleased
+
+### Features
+* **terra-note-editor** added code view
+* **terra-dynamic-switch** added terra-note-editor
+
 <a name="2.2.16"></a>
 # 2.2.16 (12.06.2018)
 
