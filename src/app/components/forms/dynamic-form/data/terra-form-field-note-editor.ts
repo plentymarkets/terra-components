@@ -3,10 +3,9 @@ import {
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
-import { TerraCategoryPickerBaseService } from '../../../category-picker/service/terra-category-picker-base.service';
 
 /**
- *@author Tim Wieder && Maxi Roell
+ *@author Tim Wieder & Maxi Roell
  */
 export interface TerraFormFieldNoteEditorOptions extends TerraFormFieldBaseOptions<number>
 {
@@ -16,7 +15,6 @@ export interface TerraFormFieldNoteEditorOptions extends TerraFormFieldBaseOptio
 export class TerraFormFieldNoteEditor extends TerraFormFieldBase<number>
 {
     public type:string;
-    public categoryService:TerraCategoryPickerBaseService;
 
     constructor(key:string, label:string, required:boolean,  options:TerraFormFieldNoteEditorOptions = {})
     {
