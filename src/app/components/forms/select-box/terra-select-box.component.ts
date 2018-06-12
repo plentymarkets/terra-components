@@ -58,6 +58,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input()
     public inputListBoxValues:Array<TerraSelectBoxValueInterface>;
 
+    /**
+     * @deprecated
+     */
     @Output()
     public outputValueChanged:EventEmitter<TerraSelectBoxValueInterface> = new EventEmitter<TerraSelectBoxValueInterface>();
 
@@ -168,7 +171,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         return isNullOrUndefined(this._selectedValue) ||
                (StringHelper.isNullUndefinedOrEmpty(this._selectedValue.caption.toString()) &&
-               StringHelper.isNullUndefinedOrEmpty(this._selectedValue.icon));
+                StringHelper.isNullUndefinedOrEmpty(this._selectedValue.icon));
     }
 
     public get value():any
@@ -242,10 +245,14 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     private select(value:TerraSelectBoxValueInterface):void
     {
+        if(this._selectedValue.value !== value.value)
+        {
+            this.onChangeCallback(value.value);
+            this.outputValueChanged.emit(value);
+        }
+
         this._selectedValue = value;
         this.onTouchedCallback();
-        this.onChangeCallback(value.value);
-        this.outputValueChanged.emit(value);
     }
 
     public validate(formControl:FormControl):void
