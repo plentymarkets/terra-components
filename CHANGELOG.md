@@ -1,6 +1,7 @@
 # unreleased
 
 ### Features
+* **converter-helper** remove injectable decorator and replace localeService parameter with the default locale
 * updated the component examples of 
 	* **terra-button-with-options**  	
 	* **terra-note-editor**
@@ -72,7 +73,6 @@ This feature can be disabled by setting the input `inputHasFixedHeight` to true.
 
 ### Bug Fixes
 * **category-picker** fixed error with the reset button
-* **converter-helper** remove injectable decorator and replace localeService parameter with the default locale
 
 ### Feature
 * **download-helper** added download helper for downloads from the backend
