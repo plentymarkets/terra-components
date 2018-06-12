@@ -75,9 +75,8 @@
 .file-list-container
 {
     flex: 1;
-    overflow: hidden;
-    position: relative;
-    
+    overflow-y: hidden;
+
     .file-drop
     {
         position: absolute;
@@ -136,6 +135,7 @@
     &.in
     {
         transform: translateY(0);
+        z-index: var(--zIndex-1);
     }
     
     .prompt-title

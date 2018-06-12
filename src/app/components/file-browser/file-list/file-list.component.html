@@ -1,4 +1,4 @@
-<terra-base-toolbar class="terra-breadcrumbs-wrapper">
+<terra-base-toolbar [inputIsBreadcrumbs]="true">
     <ul class="terra-breadcrumbs" *ngIf="_storageList">
         <li *ngFor="let parent of parentStorageObjects; let first = first; let last = last" (click)="currentStorageRoot = parent">
             <div [class.active]="last">
