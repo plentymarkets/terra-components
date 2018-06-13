@@ -38,7 +38,6 @@ export class TerraDynamicFormComponentExample extends TerraAlertBaseService impl
     {
         this.initFormFunctions();
         this.initFormFields();
-        this.loadDynamicFormData();
     }
 
     private initFormFields():void
@@ -86,7 +85,7 @@ export class TerraDynamicFormComponentExample extends TerraAlertBaseService impl
 
     private saveDataCleanupConfig(formData:DynamicFormExampleInterface):void
     {
-        if(formData)
+        if(!isNullOrUndefined(formData))
         {
             this.handleMessage('Successfully saved');
         }
@@ -95,28 +94,6 @@ export class TerraDynamicFormComponentExample extends TerraAlertBaseService impl
             this.handleError('Saving failed');
         }
 
-    }
-
-    private loadDynamicFormData():void
-    {
-        let response:DynamicFormExampleInterface = this.getDynamicFormServerData();
-        console.log(response);
-        if(!isNullOrUndefined(response))
-        {
-            this.formFunctions.update(response);
-        }
-        else
-        {
-            this.handleError('Loading Data from Server failed');
-        }
-    }
-
-    private getDynamicFormServerData():DynamicFormExampleInterface
-    {
-        return {
-            firstName: 'Max',
-            lastName:  'Mustermann'
-        };
     }
 
 }
