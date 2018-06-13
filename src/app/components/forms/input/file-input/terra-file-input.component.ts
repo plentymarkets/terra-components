@@ -108,7 +108,7 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     public isWebImage(filename:string):boolean
     {
-        return !isNullOrUndefined(filename) && FileTypeHelper.isWebImage(filename);
+        return !isNullOrUndefined(filename) && filename.length > 0 && FileTypeHelper.isWebImage(filename);
     }
 
     public getFilename(path:string):string
