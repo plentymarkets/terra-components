@@ -8,10 +8,11 @@ import { TerraFormFieldDatePicker } from '../data/terra-form-field-date-picker';
 import { TerraFormFieldSelectBox } from '../data/terra-form-field-select-box';
 import { TerraFormFieldCheckBox } from '../data/terra-form-field-check-box';
 import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
-import { TerraFormFieldCategoryPicker } from '../../../../../';
+import { TerraFormFieldCategoryPicker } from '../data/terra-form-field-category-picker';
 import { TerraFormFieldInputFile } from '../data/terra-form-field-input-file';
 import { TerraFormFieldColorPicker } from '../data/terra-form-field-color-picker';
 import { TerraFormFieldMultiCheckBox } from '../data/terra-form-field-multi-check-box';
+import { TerraFormFieldNoteEditor } from '../data/terra-form-field-note-editor';
 
 /**
  * @author mfrank
@@ -60,6 +61,9 @@ export class TerraJsonToFormFieldService
                 break;
             case TerraControlTypeEnum.CHECK_BOX:
                 formField = new TerraFormFieldCheckBox(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
+                break;
+            case TerraControlTypeEnum.NOTE_EDITOR:
+                formField = new TerraFormFieldNoteEditor(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
             case TerraControlTypeEnum.CATEGORY_PICKER:
                 formField = new TerraFormFieldCategoryPicker(formFieldKey,

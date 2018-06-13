@@ -5,7 +5,7 @@
     font-size: 75%;
     font-weight: bold;
     line-height: 1;
-    color: #FFFFFF;
+    color: var(--color-structure-0);
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
@@ -25,7 +25,7 @@
 
 a.label:focus, a.label:hover
 {
-    color: #FFFFFF;
+    color: var(--color-structure-0);
     text-decoration: none;
     cursor: pointer;
 }
@@ -39,60 +39,60 @@ a.label:focus, a.label:hover
 
 .label-default
 {
-    background-color: #777777;
+    background-color: var(--color-structure-9);
 }
 
 .label-default[href]:focus, .label-default[href]:hover
 {
-    background-color: #5E5E5E;
+    background-color: var(--color-structure-11);
 }
 
 .label-primary
 {
-    background-color: #008EBD;
+    background-color: var(--color-active);
 }
 
 .label-primary[href]:focus, .label-primary[href]:hover
 {
-    background-color: #00688A;
+    background-color: var(--color-active-dark);
 }
 
 .label-success
 {
-    background-color: #008EBD;
+    background-color: var(--color-active);
 }
 
 .label-success[href]:focus, .label-success[href]:hover
 {
-    background-color: #00688A;
+    background-color: var(--color-active-dark);
 }
 
 .label-info
 {
-    background-color: #B0DAF2;
+    background-color: var(--color-active-light);
 }
 
 .label-info[href]:focus, .label-info[href]:hover
 {
-    background-color: #84C5EB;
+    background-color: var(--color-active-light);
 }
 
 .label-warning
 {
-    background-color: #FFCE36;
+    background-color: var(--color-accent);
 }
 
 .label-warning[href]:focus, .label-warning[href]:hover
 {
-    background-color: #FFC203;
+    background-color: var(--color-accent-dark);
 }
 
 .label-danger
 {
-    background-color: #D4021D;
+    background-color: var(--color-alert);
 }
 
 .label-danger[href]:focus, .label-danger[href]:hover
 {
-    background-color: #A10216;
+    background-color: var(--color-alert-dark);
 }

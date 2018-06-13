@@ -8,7 +8,7 @@ import { TranslationModule } from 'angular-l10n';
     imports:      [
         CommonModule,
         TooltipModule.forRoot(),
-        TranslationModule.forChild()
+        TranslationModule
     ],
     declarations: [
         TerraButtonGroupComponent

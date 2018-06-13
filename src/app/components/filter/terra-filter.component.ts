@@ -10,7 +10,6 @@ import {
  */
 @Component({
     selector: 'terra-filter',
-    styles:   [require('./terra-filter.component.scss')],
     template: require('./terra-filter.component.html')
 })
 export class TerraFilterComponent
@@ -31,7 +30,7 @@ export class TerraFilterComponent
      * @deprecated Will be removed in an upcoming release.
      */
     @Input()
-    public inputInputList:any[];
+    public inputInputList:Array<any>;
 
     /**
      * @description Set the function which will be executed on click of the search button.
@@ -51,17 +50,17 @@ export class TerraFilterComponent
     @Output()
     public outputOnEnterSubmit:EventEmitter<any> = new EventEmitter<any>();
 
-    private searchBtnClicked():void
+    protected searchBtnClicked():void
     {
         this.outputOnSearchBtnClicked.emit(null);
     }
 
-    private resetBtnClicked():void
+    protected resetBtnClicked():void
     {
         this.outputOnResetBtnClicked.emit(null);
     }
 
-    private onSubmit():void
+    protected onSubmit():void
     {
         this.outputOnEnterSubmit.emit(null);
     }

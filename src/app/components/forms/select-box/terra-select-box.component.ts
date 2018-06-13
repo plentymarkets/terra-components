@@ -18,6 +18,7 @@ import {
     isNull,
     isNullOrUndefined
 } from 'util';
+import { StringHelper } from '../../../helpers/string.helper';
 
 @Component({
     selector:  'terra-select-box',
@@ -57,6 +58,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input()
     public inputListBoxValues:Array<TerraSelectBoxValueInterface>;
 
+    /**
+     * @deprecated
+     */
     @Output()
     public outputValueChanged:EventEmitter<TerraSelectBoxValueInterface> = new EventEmitter<TerraSelectBoxValueInterface>();
 
@@ -163,6 +167,13 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this.value = value;
     }
 
+    public get emptyValueSelected():boolean
+    {
+        return isNullOrUndefined(this._selectedValue) ||
+               (StringHelper.isNullUndefinedOrEmpty(this._selectedValue.caption.toString()) &&
+                StringHelper.isNullUndefinedOrEmpty(this._selectedValue.icon));
+    }
+
     public get value():any
     {
         return this._value;
@@ -234,10 +245,14 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     private select(value:TerraSelectBoxValueInterface):void
     {
+        if(isNullOrUndefined(this._selectedValue) || this._selectedValue.value !== value.value)
+        {
+            this.onChangeCallback(value.value);
+            this.outputValueChanged.emit(value);
+        }
+
         this._selectedValue = value;
         this.onTouchedCallback();
-        this.onChangeCallback(value.value);
-        this.outputValueChanged.emit(value);
     }
 
     public validate(formControl:FormControl):void

@@ -1,22 +1,23 @@
 .tag
 {
-    background-color: $grey-9;
+    background-color: var(--tag-background-color, var(--color-structure-9));
+    padding: var(--tag-padding, var(--space-sm));
+    margin-top: var(--tag-margin-top, 7px);
+    margin-left: var(--tag-margin-left);
     border: none;
-    -moz-border-radius: $border-radius;
-    -webkit-border-radius: $border-radius;
-    border-radius: $border-radius;
+    -moz-border-radius: var(--border-radius);
+    -webkit-border-radius: var(--border-radius);
+    border-radius: var(--border-radius);
     display: block;
-    padding: 4px;
-    margin-top: var(--tag-top-margin, 7px);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     
     span
     {
-        font-size: $font-size-1;
-        font-weight: $font-weight-1;
-        color: $white;
+        font-size: var(--font-size-1);
+        font-weight: var(--font-weight-1);
+        color: var(--tag-span-color, var(--color-structure-0));
         
         &.tag-icon
         {
@@ -48,15 +49,4 @@
 :host-context(terra-data-table)
 {
     --tag-top-margin: 0;
-}
-
-:host-context(nav .nav.navbar-nav .dropdown .dropdown-menu .dropdown-item-container .dropdown-item)
-{
-    .tag
-    {
-        margin-left: 10px;
-        margin-top: 0;
-        background-color: $alert-red;
-        padding: 3px;
-    }
 }

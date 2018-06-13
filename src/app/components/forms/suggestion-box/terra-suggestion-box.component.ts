@@ -15,7 +15,7 @@ import {
     isNull,
     isNullOrUndefined
 } from 'util';
-import { TerraPlacementEnum } from '../../../../';
+import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraBaseData } from '../../data/terra-base.data';
 
 const MAX_LASTLY_USED_ENTRIES:number = 5;
@@ -184,7 +184,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     {
         if(this._toggleOpen !== value && value === true)
         {
-            document.addEventListener('click', this.clickListener);
+            document.addEventListener('click', this.clickListener, true);
             this.focusSelectedElement();
         }
         else if(this._toggleOpen !== value && value === false)

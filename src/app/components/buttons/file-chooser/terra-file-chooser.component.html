@@ -1,0 +1,33 @@
+<terra-button [inputIsPrimary]="inputIsPrimary"
+              [inputIsSecondary]="inputIsSecondary"
+              [inputIsTertiary]="inputIsTertiary"
+              [inputIsSmall]="inputIsSmall"
+              [inputIsLarge]="inputIsLarge"
+              [inputIsDisabled]="inputIsDisabled"
+              [inputCaption]="inputCaption"
+              [inputIcon]="inputIcon"
+              [inputType]="'button'"
+              [inputIsAlignRight]="inputIsAlignRight"
+              [inputTooltipText]="inputTooltipText"
+              [inputTooltipPlacement]="inputTooltipPlacement"
+              [inputIsActive]="inputIsActive"
+              [inputIsFlagged]="inputIsFlagged"
+              [inputIsDivider]="inputIsDivider"
+              [inputIsLink]="inputIsLink"
+              (outputClicked)="onClick($event)">
+</terra-button>
+
+<terra-overlay #overlay
+               [inputPrimaryButtonInterface]="primaryOverlayButton"
+               [inputSecondaryButtonInterface]="secondaryOverlayButton"
+               [inputIsExtraLarge]="true"
+               (outputOnShow)="onBrowserShow()"
+               (outputOnHide)="onBrowserHide()"
+               class="hasSplitView">
+    <terra-file-browser #fileBrowser
+                        [inputAllowedExtensions]="inputAllowedExtensions"
+                        [inputAllowFolders]="inputAllowFolders"
+                        [inputStorageServices]="inputStorageServices"
+                        (outputSelectedChange)="onSelectedObjectChange($event)">
+    </terra-file-browser>
+</terra-overlay>

@@ -1,10 +1,10 @@
 body
 {
-    font-family: "plenty", Helvetica, Arial, sans-serif !important;
+    font-family: var(--font-family);
     font-size: 0.875rem !important;
     line-height: 1.5 !important;
-    color: #333333 !important;
-    background-color: #FFFFFF !important;
+    color: var(--color-structure-12) !important;
+    background-color: var(--color-structure-0) !important;
     position: absolute !important;
     top: 0 !important;
     bottom: 0 !important;
