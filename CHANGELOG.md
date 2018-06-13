@@ -1,4 +1,12 @@
+<a name="Unreleased"></a>
 # Unreleased
+
+### Features
+* **terra-note-editor** added code view
+* **terra-dynamic-switch** added terra-note-editor
+
+<a name="2.2.16"></a>
+# 2.2.16 (12.06.2018)
 
 ### Features
 * **terra-download-helper** added method `downloadFileFromUrl`, which downloads a file from a given url.
@@ -12,6 +20,9 @@
 	* **terra-info-box** 
 	* **terra-tag** 
 	* **terra-tag-list**
+
+### Bug Fixes
+* **terra-select-box** avoid multipe trigger of value change event if value is the same
 
 <a name="2.2.15"></a>
 # 2.2.15 (06.06.2018)

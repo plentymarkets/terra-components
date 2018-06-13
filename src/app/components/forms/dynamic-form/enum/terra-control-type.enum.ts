@@ -16,5 +16,6 @@ export enum TerraControlTypeEnum
     VERTICAL_CONTAINER = 'verticalContainer',
     CATEGORY_PICKER = 'categoryPicker',
     COLOR_PICKER = 'colorPicker',
-    MULTI_CHECK_BOX = 'multiCheckBox'
+    MULTI_CHECK_BOX = 'multiCheckBox',
+    NOTE_EDITOR = 'noteEditor'
 }
