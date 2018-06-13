@@ -1,12 +1,40 @@
-<div class="tag_container">
-    <div>
-        <terra-tag
-            inputBadge="Terra">
-        </terra-tag>
-    </div>
-    <div>
-        <terra-tag
-            inputBadge="Ceresss">
-        </terra-tag>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Input badge</h2>
+            <div class="tag-container">
+                <terra-tag inputBadge="Terra"></terra-tag>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h2>Input color</h2>
+            <div class="tag-container">
+                <terra-tag inputColor="red"
+                           inputBadge="Terra">
+                </terra-tag>
+            </div>
+            <div class="tag-container">
+                <terra-tag inputColor="#2b2b2b"
+                           inputBadge="Terra">
+                </terra-tag>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h2>Input taggable</h2>
+            <div class="tag-container">
+                <terra-tag [inputIsTaggable]="true"
+                           inputBadge="Terra">
+                </terra-tag>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h2>Input tagged</h2>
+            <div class="tag-container">
+                <terra-tag [inputIsTagged]="true"
+                           [inputIsTaggable]="true"
+                           inputBadge="Terra">
+                </terra-tag>
+            </div>
+        </div>
     </div>
 </div>
