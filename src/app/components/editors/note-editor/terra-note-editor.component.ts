@@ -51,7 +51,7 @@ export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
                  'italic',
                  'underline',
                  'strike'],        // toggled buttons
-
+                ['code-block'],
                 [{'list': 'ordered'},
                  {'list': 'bullet'}],
                 [{'script': 'sub'},
