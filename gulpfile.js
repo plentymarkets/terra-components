@@ -83,9 +83,9 @@ gulp.task('build-local', function (callback) {
 });
 
 /**
- * run "gulp generateDocu" to let Dgeni generate api files and to create json data.
+ * run "gulp build-doc" to let Dgeni generate api files and to create json data.
  */
-gulp.task('generateDocu', function (done) {
+gulp.task('build-doc', function (done) {
     runSequence(
         'build-local',
         'dgeni',
