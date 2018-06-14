@@ -245,7 +245,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     private select(value:TerraSelectBoxValueInterface):void
     {
-        if(this._selectedValue.value !== value.value)
+        if(isNullOrUndefined(this._selectedValue) || this._selectedValue.value !== value.value)
         {
             this.onChangeCallback(value.value);
             this.outputValueChanged.emit(value);
