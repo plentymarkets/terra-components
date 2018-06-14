@@ -1,6 +1,9 @@
 <a name="Unreleased"></a>
 # Unreleased
 
+### Bug Fixes
+* **terra-file-picker** fixed bug with empty initialising on ngModel
+
 ### Features
 * **terra-note-editor** added code view
 * **terra-dynamic-switch** added terra-note-editor
