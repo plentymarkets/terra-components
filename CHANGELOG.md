@@ -4,6 +4,12 @@
 ### Features
 * **terra-note-editor** added code view
 * **terra-dynamic-switch** added terra-note-editor
+* **terra-info-box** 
+	* added the `inputButtonList` input to display buttons using the `TerraButtonInterface`
+	* added the `inputNoWordBreak` input to disable the auto word break if set to true
+	
+### Bug Fixes
+* **terra-info-box** fixed width when there are no buttons set
 
 <a name="2.2.16"></a>
 # 2.2.16 (12.06.2018)
