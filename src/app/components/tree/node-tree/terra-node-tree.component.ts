@@ -85,11 +85,11 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 
         if(!isNullOrUndefined(node.children))
         {
-            node.children.forEach((node:TerraNodeInterface<D>) =>
+            node.children.forEach((childNode:TerraNodeInterface<D>) =>
             {
                 hasChildren = true;
-                hasVisibleChild = this.search(node, isVisible) || hasVisibleChild;
-            })
+                hasVisibleChild = this.search(childNode, isVisible) || hasVisibleChild;
+            });
         }
 
         if(hasChildren)
@@ -101,7 +101,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
             }
             else if(isEmptySearchString)
             {
-                node.isOpen = false
+                node.isOpen = false;
             }
         }
 
