@@ -30,14 +30,7 @@ export class TerraNodeTreeConfig<D>
 
         if(isNullOrUndefined(alreadyAddedNode))
         {
-            if(nodeToAdd.isVisible)
-            {
-                nodeToAdd.defaultVisibility = true;
-            }
-            else
-            {
-                nodeToAdd.defaultVisibility = false;
-            }
+            this.setDefaultVisibility(nodeToAdd);
 
             // check children to set the parent correctly
             if(!isNullOrUndefined(nodeToAdd.children))
@@ -74,6 +67,18 @@ export class TerraNodeTreeConfig<D>
         else
         {
             console.error('Node ' + nodeToAdd.name + ' with id ' + nodeToAdd.id + ' already added!');
+        }
+    }
+
+    private setDefaultVisibility(node:TerraNodeInterface<D>):void
+    {
+        if(node.isVisible)
+        {
+            node.defaultVisibility = true;
+        }
+        else
+        {
+            node.defaultVisibility = false;
         }
     }
 
@@ -425,14 +430,7 @@ export class TerraNodeTreeConfig<D>
         {
             nodeList.forEach((node:TerraNodeInterface<D>) =>
             {
-                if(node.isVisible)
-                {
-                    node.defaultVisibility = true;
-                }
-                else
-                {
-                    node.defaultVisibility = false;
-                }
+                this.setDefaultVisibility(node);
 
                 if(!isNullOrUndefined(node.children))
                 {
@@ -541,14 +539,7 @@ export class TerraNodeTreeConfig<D>
         nodeList.forEach((node:TerraNodeInterface<D>) =>
         {
 
-            if(node.isVisible)
-            {
-                node.defaultVisibility = true;
-            }
-            else
-            {
-                node.defaultVisibility = false;
-            }
+            this.setDefaultVisibility(node);
 
             if(!isNullOrUndefined(node.children))
             {
