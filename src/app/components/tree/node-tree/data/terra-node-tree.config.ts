@@ -30,6 +30,15 @@ export class TerraNodeTreeConfig<D>
 
         if(isNullOrUndefined(alreadyAddedNode))
         {
+            if(nodeToAdd.isVisible)
+            {
+                nodeToAdd.defaultVisibility = true;
+            }
+            else
+            {
+                nodeToAdd.defaultVisibility = false;
+            }
+
             // check children to set the parent correctly
             if(!isNullOrUndefined(nodeToAdd.children))
             {
@@ -362,7 +371,7 @@ export class TerraNodeTreeConfig<D>
     }
 
     /**
-     * @description Open all parents of given node.
+     * @description Open all children of given node.
      * @param nodeList The node list to open its children.
      * @param isOpen Toggle open or not.
      */
@@ -525,5 +534,47 @@ export class TerraNodeTreeConfig<D>
         {
             this.toggleVisibilityForAllParents(parentNode.parent, isVisible);
         }
+    }
+
+    public checkVisibilityAndAssignDefault(nodeList:Array<TerraNodeInterface<D>>):void
+    {
+        nodeList.forEach((node:TerraNodeInterface<D>) =>
+        {
+
+            if(node.isVisible)
+            {
+                node.defaultVisibility = true;
+            }
+            else
+            {
+                node.defaultVisibility = false;
+            }
+
+            if(!isNullOrUndefined(node.children))
+            {
+                this.checkVisibilityAndAssignDefault(node.children);
+            }
+        });
+    }
+
+    public checkDefaultAndAssignVisibility(nodeList:Array<TerraNodeInterface<D>>):void
+    {
+        nodeList.forEach((node:TerraNodeInterface<D>) =>
+        {
+
+            if(node.defaultVisibility)
+            {
+                node.isVisible = true;
+            }
+            else
+            {
+                node.isVisible = false;
+            }
+
+            if(!isNullOrUndefined(node.children))
+            {
+                this.checkDefaultAndAssignVisibility(node.children);
+            }
+        });
     }
 }

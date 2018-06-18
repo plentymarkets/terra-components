@@ -42,49 +42,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 
     public ngOnInit():void
     {
-        this.handleVisibility(this.inputConfig.list);
-    }
-
-    private handleVisibility(nodeList:Array<TerraNodeInterface<D>>):void
-    {
-        nodeList.forEach((node:TerraNodeInterface<D>) =>
-        {
-
-            if(node.isVisible)
-            {
-                node.defaultVisibility = true;
-            }
-            else
-            {
-                node.defaultVisibility = false;
-            }
-
-            if(!isNullOrUndefined(node.children))
-            {
-                this.handleVisibility(node.children);
-            }
-        });
-    }
-
-    private handleDefaultVisibility(nodeList:Array<TerraNodeInterface<D>>):void
-    {
-        nodeList.forEach((node:TerraNodeInterface<D>) =>
-        {
-
-            if(node.defaultVisibility)
-            {
-                node.isVisible = true;
-            }
-            else
-            {
-                node.isVisible = false;
-            }
-
-            if(!isNullOrUndefined(node.children))
-            {
-                this.handleDefaultVisibility(node.children);
-            }
-        });
+        this.inputConfig.checkVisibilityAndAssignDefault(this.inputConfig.list);
     }
 
     public ngOnDestroy():void
@@ -94,101 +52,97 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 
     protected onChange():void
     {
-        if(this._searchValue.length >= 3)
-        {
-            this.inputConfig.toggleVisiblityForAllChildren(this.inputConfig.list, false);
+        this.doSearch();
 
-            this.recursiveCheckList(this.inputConfig.list);
-        }
-        else
+        if(this._searchValue.length === 0)
         {
-            this.handleDefaultVisibility(this.inputConfig.list);
-            this.inputConfig.closeAllNodes();
+            this.inputConfig.checkDefaultAndAssignVisibility(this.inputConfig.list);
+            this.inputConfig.toggleOpenChildren(this.inputConfig.list, false);
         }
     }
 
-    private recursiveCheckList(list:Array<TerraNodeInterface<D>>):void
+    private doSearch():void
     {
-        list.forEach((node:TerraNodeInterface<D>) =>
+        this.inputConfig.list.forEach((node:TerraNodeInterface<D>) =>
         {
-            if(this._searchValue.includes(' '))
-            {
-                this._searchValue.split(' ').forEach((word:string) =>
-                {
-                    this.handleSearch(node, word);
-                });
-            }
-            else
-            {
-                this.handleSearch(node, this._searchValue);
-            }
-
-            if(!isNullOrUndefined(node.children))
-            {
-                this.recursiveCheckList(node.children);
-            }
+            this.search(node, false);
         });
     }
 
-    private handleSearch(node:TerraNodeInterface<D>, value:string):void
+    private search(node:TerraNodeInterface<D>, isParentVisible:boolean):boolean
     {
-        let tags:Array<string> = node.tags;
-        if(!isNullOrUndefined(tags))
-        {
-            let tagMatchFound:boolean = false;
-            tags.forEach((tag:string) =>
-            {
-                if(tag.toUpperCase().includes(value.toUpperCase()))
-                {
-                    tagMatchFound = true;
-                    return;
-                }
-            });
-
-            if(tagMatchFound)
-            {
-                this.handleNodeVisibility(node);
-            }
-        }
-
-        let name:string = this._translation.translate(node.name);
-
-        let suggestion:string = name.toUpperCase();
-
-        // check if search string is included in the given suggestion
-        if(suggestion.includes(value.toUpperCase()))
-        {
-            this.handleNodeVisibility(node);
-        }
-    }
-
-    private handleNodeVisibility(node:TerraNodeInterface<D>):void
-    {
-        if(!node.defaultVisibility)
+        // ignore non visible nodes
+        if(!node.isVisible)
         {
             return;
         }
 
-        node.isVisible = true;
-        this.inputConfig.toggleOpenParent(node, true);
+        let isVisible:boolean = isParentVisible || this.checkVisibility(node);
+        let isEmptySearchString:boolean = isNullOrUndefined(this._searchValue) || this._searchValue.length === 0;
 
-        if(!node.hasLoaded && !isNullOrUndefined(node.onLazyLoad))
-        {
-            this.inputConfig.handleLazyLoading(node);
-        }
+        let hasVisibleChild:boolean = false;
+        let hasChildren:boolean = false;
 
         if(!isNullOrUndefined(node.children))
         {
-            this.inputConfig.toggleVisiblityForAllChildren(node.children, true);
+            node.children.forEach((node:TerraNodeInterface<D>) =>
+            {
+                hasChildren = true;
+                hasVisibleChild = this.search(node, isVisible) || hasVisibleChild;
+            })
         }
 
-        if(!isNullOrUndefined(node.parent))
+        if(hasChildren)
         {
-            if(!node.parent.hasLoaded && !isNullOrUndefined(node.parent.onLazyLoad))
+            if(!node.isOpen && !isEmptySearchString)
             {
-                this.inputConfig.handleLazyLoading(node.parent);
+                node.isOpen = true;
+                this.inputConfig.toggleOpenChildren(node.children, true);
             }
-            this.inputConfig.toggleVisibilityForAllParents(node.parent, true);
+            else if(isEmptySearchString)
+            {
+                node.isOpen = false
+            }
         }
+
+        node.isVisible = isVisible || hasVisibleChild;
+
+        return isVisible || hasVisibleChild;
+    }
+
+    private checkVisibility(node:TerraNodeInterface<D>):boolean
+    {
+        let hasValidCaptionOrTag:boolean = false;
+
+        let tags:Array<string> = node.tags;
+
+        // search for tags first
+        if(!isNullOrUndefined(tags))
+        {
+            tags.forEach((tag:string) =>
+            {
+                if(tag.toUpperCase().includes(this._searchValue.toUpperCase()))
+                {
+                    hasValidCaptionOrTag = true;
+                    return;
+                }
+            });
+        }
+
+        // search node names if no tags found
+        if(!hasValidCaptionOrTag)
+        {
+            let name:string = this._translation.translate(node.name);
+
+            let suggestion:string = name.toUpperCase();
+
+            // check if search string is included in the given suggestion
+            if(suggestion.includes(this._searchValue.toUpperCase()))
+            {
+                hasValidCaptionOrTag = true;
+            }
+        }
+
+        return hasValidCaptionOrTag;
     }
 }
