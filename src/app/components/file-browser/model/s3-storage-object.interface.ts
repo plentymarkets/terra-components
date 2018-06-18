@@ -3,7 +3,7 @@ export interface S3StorageObjectInterface
     eTag:string;
     key:string;
     lastModified:string;
-    size:number;
+    size:string|number;
     publicUrl:string;
     previewUrl?:string;
     storageClass:'STANDARD' | 'STANDARD_IA' | 'GLACIER' | 'RRS';
