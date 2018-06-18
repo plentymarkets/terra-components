@@ -7,6 +7,7 @@
 ### Features
 * **terra-note-editor** added code view
 * **terra-dynamic-switch** added terra-note-editor
+* **custom tslint rules** added rules to prevent leading underscores, set maximum block depth and restrict getter and setter
 
 <a name="2.2.16"></a>
 # 2.2.16 (12.06.2018)
