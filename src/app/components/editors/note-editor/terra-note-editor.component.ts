@@ -44,7 +44,7 @@ export class TerraNoteEditorComponent extends TerraBaseEditorComponent
                  'italic',
                  'underline',
                  'strike'],        // toggled buttons
-
+                ['code-block'],
                 [{'list': 'ordered'},
                  {'list': 'bullet'}],
                 [{'script': 'sub'},
