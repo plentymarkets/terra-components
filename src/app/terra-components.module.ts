@@ -95,6 +95,7 @@ import { TerraDynamicFormService } from './components/forms/dynamic-form/service
 import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
 import { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
 import { TerraFileChooserComponent } from './components/buttons/file-chooser/terra-file-chooser.component';
+import { TerraCodeEditorComponent } from './components/editors/code-editor/terra-code-editor.component';
 // ### import of terra-component examples
 import { TerraButtonComponentExample } from './components/buttons/button/example/terra-button.component.example';
 import { TerraAlertComponentExample } from './components/alert/example/terra-alert.component.example';
@@ -142,7 +143,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
 import { RouterModule } from '@angular/router';
 import { TerraTimePickerComponentExample } from './components/forms/input/time-picker/example/terra-time-picker.component.example';
-import { TerraShopBuilderEditorComponent } from './components/editors/shop-builder-editor/terra-shop-builder-editor.component';
+
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -201,7 +202,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
-        TerraShopBuilderEditorComponent,
+        TerraCodeEditorComponent,
         TerraTimePickerComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
@@ -298,7 +299,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraFileChooserComponent,
         TerraButtonWithOptionsComponent,
         TerraNoteEditorComponent,
-        TerraShopBuilderEditorComponent,
+        TerraCodeEditorComponent,
         TerraTimePickerComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
@@ -355,7 +356,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
-        TerraShopBuilderEditorComponent,
+        TerraCodeEditorComponent,
         TerraTimePickerComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,

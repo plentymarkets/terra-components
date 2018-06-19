@@ -116,11 +116,16 @@
                                     [inputIsDisabled]="inputIsDisabled">
                 </terra-color-picker>
                 
-                <terra-shop-builder-editor *ngSwitchCase="controlTypeEnum.NOTE_EDITOR"
+                <terra-note-editor *ngSwitchCase="controlTypeEnum.NOTE_EDITOR"
                                    [formControlName]="formField.key"
                                    [inputPlaceholder]="formField.label"
                                    [(ngModel)]="formField.defaultValue">
-                </terra-shop-builder-editor>
+                </terra-note-editor>
+                <terra-code-editor *ngSwitchCase="controlTypeEnum.CODE_EDITOR"
+                                   [formControlName]="formField.key"
+                                   [inputPlaceholder]="formField.label"
+                                   [(ngModel)]="formField.defaultValue">
+                </terra-code-editor>
                 
                 <ng-container *ngSwitchCase="controlTypeEnum.HORIZONTAL_CONTAINER">
                     <div class="horizontalGroup">

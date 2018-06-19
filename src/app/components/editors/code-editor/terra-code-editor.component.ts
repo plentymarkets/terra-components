@@ -4,21 +4,21 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
 
 @Component({
-    selector:  'terra-shop-builder-editor',
-    template:  require('./terra-shop-builder-editor.component.html'),
+    selector:  'terra-code-editor',
+    template:  require('./terra-code-editor.component.html'),
     styles:    [
-        require('./terra-shop-builder-editor.component.scss'),
+        require('./terra-code-editor.component.scss'),
         require('quill/dist/quill.bubble.css'),
         require('quill/dist/quill.snow.css'),
-        require('./terra-shop-builder-editor.component.glob.scss').toString()
+        require('./terra-code-editor.component.glob.scss').toString()
     ],
     providers: [{
         provide:     NG_VALUE_ACCESSOR,
-        useExisting: TerraShopBuilderEditorComponent,
+        useExisting: TerraCodeEditorComponent,
         multi:       true
     }]
 })
-export class TerraShopBuilderEditorComponent extends TerraBaseEditorComponent
+export class TerraCodeEditorComponent extends TerraBaseEditorComponent
 {
     public showCodeView:boolean = false;
     public rawContent:string = '';
@@ -29,7 +29,7 @@ export class TerraShopBuilderEditorComponent extends TerraBaseEditorComponent
         // initialize placeholder
         this._placeholder = this.translation.translate('terraNoteEditor.insertText');
 
-        const self:TerraShopBuilderEditorComponent = this;
+        const self:TerraCodeEditorComponent = this;
 
         this._modules = {
             toolbar: {
@@ -50,15 +50,14 @@ export class TerraShopBuilderEditorComponent extends TerraBaseEditorComponent
                             self.rawContent = self._value;
                             self.showCodeView = true;
                         }
-                        else
-                        {
-                            self._value = self.rawContent;
-                            self.ngModelChange.emit(self.rawContent);
-                            self.showCodeView = false;
-                        }
                     }
                 }
             }
         };
+    }
+    protected closeCodeView():void
+    {
+        this.showCodeView = false;
+        this._value = this.rawContent;
     }
 }

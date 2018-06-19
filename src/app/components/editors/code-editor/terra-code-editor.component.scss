@@ -1,0 +1,33 @@
+.editor-container
+{
+    position: relative;
+    .close-button
+    {
+        display: none;
+        position: absolute;
+        right: var(--space-sm);
+        top: var(--space-sm);
+        &.visible
+        {
+            display: block;
+        }
+    }
+    .raw-input
+    {
+        font-family: 'monospace';
+        display: none;
+        position: absolute;
+        border: 1px solid;
+        resize: none;
+        width: 100%;
+        left: 0;
+        right: 0;
+        top:0;
+        bottom: 0;
+        &.visible
+        {
+            display: block;
+        }
+    }
+}
+

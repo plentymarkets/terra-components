@@ -7,5 +7,11 @@
     </quill-editor>
     <textarea class="raw-input"
               [class.visible]="showCodeView"
-              [(ngModel)]="rawContent"></textarea>
+              [(ngModel)]="rawContent">
+    </textarea>
+    <terra-button [class.visible]="showCodeView"
+                  class="close-button"
+                  inputIcon="icon-close"
+                  (outputClicked)="closeCodeView()">
+    </terra-button>
 </div>
