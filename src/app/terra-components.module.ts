@@ -142,6 +142,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
 import { RouterModule } from '@angular/router';
 import { TerraTimePickerComponentExample } from './components/forms/input/time-picker/example/terra-time-picker.component.example';
+import { TerraShopBuilderEditorComponent } from './components/editors/shop-builder-editor/terra-shop-builder-editor.component';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -200,6 +201,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
+        TerraShopBuilderEditorComponent,
         TerraTimePickerComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
@@ -296,6 +298,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraFileChooserComponent,
         TerraButtonWithOptionsComponent,
         TerraNoteEditorComponent,
+        TerraShopBuilderEditorComponent,
         TerraTimePickerComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,
@@ -352,6 +355,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraButtonWithOptionsComponent,
         FixedHeaderDirective,
         TerraNoteEditorComponent,
+        TerraShopBuilderEditorComponent,
         TerraTimePickerComponent,
         TerraNoteComponent,
         TerraNodeTreeComponent,

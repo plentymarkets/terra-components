@@ -1,0 +1,14 @@
+.editor-container
+{
+    position: relative;
+}
+
+.raw-input
+{
+    display: none;
+
+    &.visible
+    {
+        display: block;
+    }
+}

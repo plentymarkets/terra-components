@@ -20,38 +20,45 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 })
 export class TerraShopBuilderEditorComponent extends TerraBaseEditorComponent
 {
+    public showCodeView:boolean = false;
+    public rawContent:string = '';
+
     constructor(protected translation:TranslationService, protected _myElement:ElementRef)
     {
         super(translation, _myElement);
         // initialize placeholder
         this._placeholder = this.translation.translate('terraNoteEditor.insertText');
 
+        const self:TerraShopBuilderEditorComponent = this;
+
         this._modules = {
-            toolbar: [
-                ['bold',
-                 'italic',
-                 'underline',
-                 'strike'],        // toggled buttons
-
-                [{'list': 'ordered'},
-                 {'list': 'bullet'}],
-                [{'script': 'sub'},
-                 {'script': 'super'}],      // superscript/subscript
-
-                [{
-                    'header': [1,
-                               2,
-                               3,
-                               4,
-                               5,
-                               6,
-                               false]
-                }],
-
-                ['link',
-                 'image']                         // link and image, video
-            ]
+            toolbar: {
+                container: [
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{'list': 'ordered'}, {'list': 'bullet'}],
+                    [{'script': 'sub'}, {'script': 'super'}],
+                    [{'header': [1, 2, 3, 4, 5, 6, false]}],
+                    ['link', 'image'],
+                    ['code-block']
+                ],
+                handlers: {
+                    'code-block': function():void
+                    {
+                        // 'this' points to the toolbar instance of the quill editor.
+                        if (!self.showCodeView)
+                        {
+                            self.rawContent = self._value;
+                            self.showCodeView = true;
+                        }
+                        else
+                        {
+                            self._value = self.rawContent;
+                            self.ngModelChange.emit(self.rawContent);
+                            self.showCodeView = false;
+                        }
+                    }
+                }
+            }
         };
     }
-
 }
