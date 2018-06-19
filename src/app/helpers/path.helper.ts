@@ -1,3 +1,5 @@
+import {isNullOrUndefined} from "util";
+
 export class PathHelper
 {
     public static readonly DELIMITER:string = '/';
@@ -58,10 +60,10 @@ export class PathHelper
             return '';
         }
 
-        let filename:string = '';
-        if (this.basename(path))
+        let filename:string = this.basename(path);
+        if (isNullOrUndefined(filename))
         {
-            filename = this.basename(path);
+            filename = '';
         }
         let splittedFilename:Array<string> = filename.split('.');
         return splittedFilename.pop();
