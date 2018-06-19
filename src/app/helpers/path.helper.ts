@@ -58,7 +58,11 @@ export class PathHelper
             return '';
         }
 
-        let filename:string = this.basename(path);
+        let filename:string = '';
+        if (this.basename(path))
+        {
+            filename = this.basename(path);
+        }
         let splittedFilename:Array<string> = filename.split('.');
         return splittedFilename.pop();
     }
