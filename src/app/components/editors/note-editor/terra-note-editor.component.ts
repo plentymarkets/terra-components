@@ -1,17 +1,10 @@
 import {
     Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output
+    ElementRef
 } from '@angular/core';
 import { TranslationService } from 'angular-l10n';
-import {
-    ControlValueAccessor,
-    NG_VALUE_ACCESSOR
-} from '@angular/forms';
-import {TerraBaseEditorComponent} from "../base-editor/terra-base-editor.component";
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
 
 @Component({
     selector:  'terra-note-editor',
