@@ -1,4 +1,4 @@
-import {isNullOrUndefined} from "util";
+import { isNullOrUndefined } from 'util';
 
 export class PathHelper
 {
@@ -61,7 +61,7 @@ export class PathHelper
         }
 
         let filename:string = this.basename(path);
-        if (isNullOrUndefined(filename))
+        if(isNullOrUndefined(filename))
         {
             filename = '';
         }
