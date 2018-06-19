@@ -35,7 +35,7 @@ export class TerraNodeTreeConfig<D>
             // check children to set the parent correctly
             if(!isNullOrUndefined(nodeToAdd.children))
             {
-                this.recursiveSetParent(nodeToAdd.children, nodeToAdd);
+                this.recursiveSetParentAndDefaultVisibility(nodeToAdd.children, nodeToAdd);
             }
 
             // add to first level if no parent nor current selected node is given
@@ -331,15 +331,16 @@ export class TerraNodeTreeConfig<D>
      */
     public set list(value:Array<TerraNodeInterface<D>>)
     {
-        this.recursiveSetParent(value);
+        this.recursiveSetParentAndDefaultVisibility(value);
         this._list = value;
     }
 
     // set parents to all nodes
-    private recursiveSetParent(list:Array<TerraNodeInterface<D>>, parent?:TerraNodeInterface<D>):void
+    private recursiveSetParentAndDefaultVisibility(list:Array<TerraNodeInterface<D>>, parent?:TerraNodeInterface<D>):void
     {
         for(let node of list)
         {
+            this.setDefaultVisibility(node);
             if(!isNullOrUndefined(parent))
             {
                 node.parent = parent;
@@ -347,7 +348,7 @@ export class TerraNodeTreeConfig<D>
 
             if(!isNullOrUndefined(node.children))
             {
-                this.recursiveSetParent(node.children, node);
+                this.recursiveSetParentAndDefaultVisibility(node.children, node);
             }
         }
     }
