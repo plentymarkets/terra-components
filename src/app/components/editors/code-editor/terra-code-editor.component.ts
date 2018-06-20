@@ -36,9 +36,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent
                 container: [
                     ['bold', 'italic', 'underline', 'strike'],
                     [{'list': 'ordered'}, {'list': 'bullet'}],
-                    [{'script': 'sub'}, {'script': 'super'}],
                     [{'header': [1, 2, 3, 4, 5, 6, false]}],
-                    ['link', 'image'],
                     ['code-block']
                 ],
                 handlers: {
