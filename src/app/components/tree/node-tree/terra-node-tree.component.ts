@@ -58,6 +58,11 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         {
             this.inputConfig.checkDefaultAndAssignVisibility(this.inputConfig.list);
             this.inputConfig.toggleOpenChildren(this.inputConfig.list, false);
+
+            if(!isNullOrUndefined(this.inputConfig.currentSelectedNode))
+            {
+                this.inputConfig.toggleOpenParent(this.inputConfig.currentSelectedNode, true);
+            }
         }
     }
 
