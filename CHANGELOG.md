@@ -1,8 +1,9 @@
-<a name="Unreleased"></a>
-# Unreleased
+<a name="2.2.18"></a>
+# 2.2.18 (21.06.2018)
 
 ### Bug Fixes
 * **terra-file-picker** fixed bug with empty initialising on ngModel
+* **terra-node-tree** fixed issues with visibility of nodes in search
 
 ### Features
 * **terra-note-editor** added code view
