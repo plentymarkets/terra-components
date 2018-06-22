@@ -1,3 +1,9 @@
+<a name="unreleased"></a>
+# Unreleased
+
+### Bug Fixes
+* **context-menu** context menu cannot be open
+
 <a name="2.2.18"></a>
 # 2.2.18 (21.06.2018)
 
