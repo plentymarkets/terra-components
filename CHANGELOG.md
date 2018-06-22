@@ -1,15 +1,22 @@
-<a name="Unreleased"></a>
-# Unreleased
+<a name="unreleased"
+# unreleased
 
 ### Features
-* **terra-code-editor** added new editor for `html` code editing
-* **terra-dynamic-form** 
-	* added **terra-note-editor**
-	* added **terra-code-editor**
-* **custom tslint rules** added rules to prevent leading underscores, set maximum block depth and restrict getter and setter
+* **terra-code-editor** added new component for `html` code editing
+* **terra-dynamic-form** added terra-code-editor
+
+<a name="2.2.18"></a>
+# 2.2.18 (21.06.2018)
 
 ### Bug Fixes
 * **terra-file-picker** fixed bug with empty initialising on ngModel
+* **terra-node-tree** fixed issues with visibility of nodes in search
+
+### Features
+* **terra-note-editor** added code view
+* **terra-dynamic-form** added terra-note-editor
+* **custom tslint rules** added rules to prevent leading underscores, set maximum block depth and restrict getter and setter
+* **terra-file-chooser** added reset button to file chooser
 
 <a name="2.2.16"></a>
 # 2.2.16 (12.06.2018)
