@@ -8,9 +8,7 @@ import {
     TerraFormFieldInputText,
     TerraFormFieldVerticalContainer
 } from '../../../../../';
-import { TerraAlertBaseService } from '../../../../service/terra-alert-base.service';
 import { TranslationService } from 'angular-l10n';
-import { FormGroup } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 
 export interface DynamicFormExampleInterface
@@ -24,14 +22,13 @@ export interface DynamicFormExampleInterface
     styles:   [require('./terra-dynamic-form.component.example.scss')],
     template: require('./terra-dynamic-form.component.example.html'),
 })
-export class TerraDynamicFormComponentExample extends TerraAlertBaseService implements OnInit
+export class TerraDynamicFormComponentExample implements OnInit
 {
     protected formStructure:Array<TerraFormFieldBase<any>> = [];
     protected formFunctions:TerraDynamicFormFunctionsHandler<DynamicFormExampleInterface>;
 
     constructor(public translation:TranslationService)
     {
-        super(translation);
     }
 
     public ngOnInit():void
@@ -44,27 +41,26 @@ export class TerraDynamicFormComponentExample extends TerraAlertBaseService impl
     {
         let formFields:Array<TerraFormFieldBase<any>> = [];
         formFields.push(new TerraFormFieldVerticalContainer(
-            'firstName',
-            'Firstname',
+            'customerData',
+            'Contact',
             {
                 containerEntries: [
                     new TerraFormFieldInputText(
                         'firstName',
                         'Enter firstname',
                         false,
+                        {
+                            defaultValue: 'Max'
+                        }
                     ),
-                ]
-            }));
-        formFields.push(new TerraFormFieldVerticalContainer(
-            'lastName',
-            'Lastname',
-            {
-                containerEntries: [
                     new TerraFormFieldInputText(
                         'lastName',
                         'Enter lastname',
                         false,
-                    ),
+                        {
+                            defaultValue: 'Mustermann'
+                        }
+                    )
                 ]
             }));
         this.formStructure = formFields;
@@ -75,9 +71,9 @@ export class TerraDynamicFormComponentExample extends TerraAlertBaseService impl
         this.formFunctions = new TerraDynamicFormFunctionsHandler((formData:DynamicFormExampleInterface):void =>
                 this.saveDataCleanupConfig(formData),
             null,
-            (formGroup:FormGroup, translationMapping:{ [key:string]:string }):void =>
+            ():void =>
             {
-                this.formGroupErrorHandling(formGroup, translationMapping);
+                alert('Error');
             },
             null
         );
@@ -85,15 +81,16 @@ export class TerraDynamicFormComponentExample extends TerraAlertBaseService impl
 
     private saveDataCleanupConfig(formData:DynamicFormExampleInterface):void
     {
-        if(!isNullOrUndefined(formData))
+        if(!isNullOrUndefined(formData['customerData'].firstName) &&
+           !isNullOrUndefined(formData['customerData'].lastName))
         {
-            this.handleMessage('Successfully saved');
+            alert('Successfully saved.');
         }
         else
         {
-            this.handleError('Saving failed');
+            alert('');
         }
-
     }
-
 }
+
+
