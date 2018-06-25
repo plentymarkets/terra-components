@@ -1,5 +1,11 @@
 {
 	"rules": {
+		"restrict-leading-underscore" : true,
+		"get-set" : true,
+		"max-depth": [
+			true,
+			7
+		],
 		"array-type": [
 			true,
 			"generic"

@@ -1,6 +1,6 @@
 {
 	"name": "@plentymarkets/terra-components",
-	"version": "2.2.16",
+	"version": "2.2.18",
 	"homepage": "https://github.com/plentymarkets/terra-components#readme",
 	"author": "plentymarkets",
 	"description": "plentymarkets terra components",
@@ -22,7 +22,7 @@
 		"start": "npm run server:dev",
 		"server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch",
 		"gulp": "gulp",
-		"lint": "tslint -p tsconfig.json -c tslint.json -e 'src/**/*.d.ts' 'src/**/*.ts'",
+		"lint": "NODE_OPTIONS='-r ts-node/register' tslint -p tsconfig.json -c tslint.json -e 'src/**/*.d.ts' 'src/**/*.ts'",
 		"reinstall": "rm -rf node_modules/ && npm i"
 	},
 	"dependencies": {
@@ -94,6 +94,7 @@
 		"sass-resources-loader": "1.3.3",
 		"style-loader": "^0.20.3",
 		"to-string-loader": "^1.1.5",
+		"ts-node": "^6.0.2",
 		"tslint": "^5.9.1",
 		"tslint-eslint-rules": "^5.1.0",
 		"typescript": "~2.8.1",

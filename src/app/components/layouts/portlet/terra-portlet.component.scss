@@ -67,7 +67,11 @@
                 background-color: transparent;
             }
         }
-        .portlet-body
+    }
+    
+    &.collapsable
+    {
+        .collapsed
         {
             overflow: hidden;
         }
