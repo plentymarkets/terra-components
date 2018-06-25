@@ -4,6 +4,7 @@
 ### Bug Fixes
 * **terra-file-picker** fixed bug with empty initialising on ngModel
 * **terra-node-tree** fixed issues with visibility of nodes in search
+* **terra-portlet** fixed issues with dropdowns being cut off in collapsable portlets.
 
 ### Features
 * **terra-note-editor** added code view
