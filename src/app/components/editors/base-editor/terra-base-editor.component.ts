@@ -11,6 +11,7 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector:  'terra-base-editor',
@@ -32,6 +33,12 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     @Input()
     public inputPlaceholder:string;
 
+    @Input()
+    public inputFixedHeight:string;
+
+    @Input()
+    public inputMinHeight:string;
+
     @Output()
     public ngModelChange:EventEmitter<string> = new EventEmitter();
 
@@ -44,7 +51,6 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     {
         // initialize placeholder
         this._placeholder = this.translation.translate('terraNoteEditor.insertText');
-
         this._modules = {
             toolbar: [
                 ['bold',
@@ -57,6 +63,7 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
 
     public ngOnInit():void
     {
+        this.inputMinHeight = isNullOrUndefined(this.inputMinHeight) ? '100px' : this.inputMinHeight;
         // overwrite default placeholder if input is defined
         if(this.inputPlaceholder)
         {

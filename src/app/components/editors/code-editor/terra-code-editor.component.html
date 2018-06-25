@@ -2,7 +2,7 @@
     <quill-editor [placeholder]="_placeholder"
                   [(ngModel)]="_value"
                   (onContentChanged)="ngModelChange.emit(_value)"
-                  [style]="{minHeight:'100px'}"
+                  [style]="{minHeight:inputMinHeight ,height:inputFixedHeight}"
                   [modules]="_modules">
     </quill-editor>
     <textarea class="raw-input"
