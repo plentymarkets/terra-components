@@ -1,3 +1,9 @@
+<a name="x.x.xx"></a>
+# x.x.xx (DATE)
+
+### Features
+* **terra-card** render div for image only if imagePath or placeholder icon is set
+
 <a name="2.2.18"></a>
 # 2.2.18 (21.06.2018)
 
