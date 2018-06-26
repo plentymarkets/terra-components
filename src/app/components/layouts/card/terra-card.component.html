@@ -2,12 +2,14 @@
     <div #header class="card-header" [hidden]="!showHeader">
         <ng-content select="[terra-card-header]"></ng-content>
     </div>
-    <div class="card-img-top terra-card-image"
-         [style.background-image]="'url(' + inputImagePath + ')'"
-         *ngIf="inputImagePath && inputImagePath != ''"></div>
-    <div class="card-img-top terra-card-placeholder"
-         *ngIf="!inputImagePath || inputImagePath == ''"
-         [ngClass]="inputPlaceholderIcon"></div>
+    <div *ngIf="(inputImagePath && inputImagePath.length > 0) || inputPlaceholderIcon">
+        <div class="card-img-top terra-card-image"
+             [style.background-image]="'url(' + inputImagePath + ')'"
+             *ngIf="inputImagePath && inputImagePath.length > 0"></div>
+        <div class="card-img-top terra-card-placeholder"
+             *ngIf="!inputImagePath || inputImagePath.length == 0"
+             [ngClass]="inputPlaceholderIcon"></div>
+    </div>
     <div class="card-block">
         <ng-content select="[terra-card-content]"></ng-content>
     </div>

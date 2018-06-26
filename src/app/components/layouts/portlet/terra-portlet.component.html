@@ -26,7 +26,8 @@
             <span class="icon-collapse_down" [class.rotated]="inputCollapsed" *ngIf="inputIsCollapsable"></span>
         </div>
     </div>
-    <div class="portlet-body" [@collapsedState]="collapsedState">
+    <div class="portlet-body" [@collapsedState]="collapsedState"
+         [ngClass]="{'collapsed': collapsedState === 'inputCollapsed'}">
         <ng-content></ng-content>
     </div>
 </div>
