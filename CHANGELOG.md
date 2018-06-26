@@ -5,12 +5,19 @@
 * **terra-code-editor** added new component for `html` code editing
 * **terra-dynamic-form** added terra-code-editor
 
+<a name="2.2.20"></a>
+# 2.2.20 (26.06.2018)
+
+### Features
+* **terra-card** render div for image only if imagePath or placeholder icon is set
+
 <a name="2.2.18"></a>
 # 2.2.18 (21.06.2018)
 
 ### Bug Fixes
 * **terra-file-picker** fixed bug with empty initialising on ngModel
 * **terra-node-tree** fixed issues with visibility of nodes in search
+* **terra-portlet** fixed issues with dropdowns being cut off in collapsable portlets.
 
 ### Features
 * **terra-note-editor** added code view
