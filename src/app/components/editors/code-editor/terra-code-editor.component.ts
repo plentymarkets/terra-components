@@ -1,7 +1,14 @@
-import { Component, ElementRef } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    OnInit,
+    ViewChild
+} from '@angular/core';
 import { TranslationService } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
+import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
+import { TerraButtonInterface } from '../../../../';
 
 @Component({
     selector:  'terra-code-editor',
@@ -18,10 +25,18 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
         multi:       true
     }]
 })
-export class TerraCodeEditorComponent extends TerraBaseEditorComponent
+export class TerraCodeEditorComponent extends TerraBaseEditorComponent implements OnInit
 {
     public showCodeView:boolean = false;
+    public editorContent:string = '';
     public rawContent:string = '';
+
+    @ViewChild('viewConfirmationOverlay')
+    public overlay:TerraOverlayComponent;
+
+    protected viewConfirmation:{primaryButton:TerraButtonInterface, secondaryButton:TerraButtonInterface};
+
+    private isInitialized:boolean = false;
 
     constructor(protected translation:TranslationService, protected _myElement:ElementRef)
     {
@@ -53,9 +68,126 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent
             }
         };
     }
-    protected closeCodeView():void
+
+    public writeValue(value:string):void
     {
-        this.showCodeView = false;
-        this._value = this.rawContent;
+        this._value         = value;
+
+        // check if value is assigned first (initially)
+        if (!this.isInitialized)
+        {
+            // check if editor will change the markup
+            this.checkCodeFormat()
+                .then((hasChanges:boolean) =>
+                {
+                    // show raw content if editor will change the markup
+                    this.showCodeView   = hasChanges;
+                    this.rawContent     = value;
+                    this.editorContent  = value;
+
+                    // wait until next tick to avoid emitting changes when initially assigning values
+                    setTimeout(() =>
+                    {
+                        this.isInitialized  = true;
+                    });
+                });
+        }
+    }
+
+    public ngOnInit():void
+    {
+        this.viewConfirmation = {
+            primaryButton: {
+                icon: 'icon-check',
+                caption: 'Zu Editor-Ansicht wechseln',
+                clickFunction: ():void =>
+                {
+                    this.closeCodeView(true);
+                    this.overlay.hideOverlay();
+                }
+            },
+            secondaryButton: {
+                icon: 'icon-cancel',
+                caption: 'abbrechen',
+                clickFunction: ():void =>
+                {
+                    this.overlay.hideOverlay();
+                }
+            }
+        };
+    }
+
+    protected emitChanges(isEditorContent:boolean = true):void
+    {
+        if ( !this.isInitialized )
+        {
+            return;
+        }
+
+        if ( isEditorContent && !this.showCodeView )
+        {
+            this._value = this.editorContent;
+            this.ngModelChange.emit(this._value);
+        }
+        else if ( !isEditorContent && this.showCodeView )
+        {
+            this._value = this.rawContent;
+            this.ngModelChange.emit(this._value);
+        }
+
+    }
+
+    protected closeCodeView(forceClose:boolean = false):void
+    {
+        this.checkCodeFormat()
+            .then((hasChanges:boolean) =>
+            {
+                if ( hasChanges && !forceClose )
+                {
+                    // editor has changed the content
+                    this.overlay.showOverlay();
+                }
+                else
+                {
+                    // no changes to content => show editor
+                    this.showCodeView = false;
+
+                    // force switching to editor even if this will lead to changes of the markup
+                    if ( forceClose )
+                    {
+                        this.emitChanges(true);
+                    }
+                }
+            });
+    }
+
+    private checkCodeFormat():Promise<boolean>
+    {
+        return new Promise((resolve:Function, reject:Function):void =>
+        {
+            // store current editor value temporarily
+            const tmpValue:string = this.editorContent;
+
+            // assign raw content to editor
+            this.editorContent = this.rawContent;
+
+            // wait until change detection has been applied
+            setTimeout(() =>
+            {
+                // check if editor has changed the value by removing any tags or attributes
+                // remove whitespaces before comparison to ignore code formattings
+                if ( this.editorContent.replace(/\s/g, '') !== this.rawContent.replace(/\s/g, ''))
+                {
+                    resolve(true);
+
+                    // re-assign the original value
+                    this.editorContent = tmpValue;
+                }
+                else
+                {
+                    resolve(false);
+                }
+            });
+        });
     }
 }

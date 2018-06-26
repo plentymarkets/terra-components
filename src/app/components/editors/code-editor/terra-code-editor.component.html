@@ -1,17 +1,25 @@
 <div class="editor-container">
     <quill-editor [placeholder]="_placeholder"
-                  [(ngModel)]="_value"
-                  (onContentChanged)="ngModelChange.emit(_value)"
+                  [(ngModel)]="editorContent"
+                  (ngModelChange)="emitChanges(true)"
                   [style]="{minHeight:inputMinHeight ,height:inputFixedHeight}"
                   [modules]="_modules">
     </quill-editor>
     <textarea class="raw-input"
               [class.visible]="showCodeView"
-              [(ngModel)]="rawContent">
+              [(ngModel)]="rawContent"
+              (ngModelChange)="emitChanges(false)">
     </textarea>
     <terra-button [class.visible]="showCodeView"
                   class="close-button"
                   inputIcon="icon-close"
                   (outputClicked)="closeCodeView()">
     </terra-button>
+    <terra-overlay #viewConfirmationOverlay
+                   [inputOverlayTitle]="'Unbekannte Formatierung'"
+                   [inputPrimaryButtonInterface]="viewConfirmation.primaryButton"
+                   [inputSecondaryButtonInterface]="viewConfirmation.secondaryButton"
+                   class="preview-overlay">
+        <p>Durch den Wechsel in die Editor-Ansicht gehen unbekannte Formatierungen im Markup verloren. Sind Sie sicher, dass sie die Ansicht wechseln möchten?</p>
+    </terra-overlay>
 </div>
