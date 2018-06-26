@@ -31,6 +31,9 @@ import { isNullOrUndefined } from 'util';
 export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
 {
     @Input()
+    public inputHeaderLabel:string;
+
+    @Input()
     public inputPlaceholder:string;
 
     @Input()

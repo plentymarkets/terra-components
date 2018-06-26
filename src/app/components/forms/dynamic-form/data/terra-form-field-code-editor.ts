@@ -11,12 +11,14 @@ export interface TerraFormFieldCodeEditorOptions extends TerraFormFieldBaseOptio
 {
     type?:string;
     fixedHeight?:string;
+    headerLabel?:string;
 }
 
 export class TerraFormFieldCodeEditor extends TerraFormFieldBase<number>
 {
     public type:string;
     public fixedHeight:string;
+    public headerLabel:string;
 
     constructor(key:string, label:string, required:boolean,  options:TerraFormFieldCodeEditorOptions = {})
     {
@@ -24,5 +26,6 @@ export class TerraFormFieldCodeEditor extends TerraFormFieldBase<number>
 
         this.type = options.type || '';
         this.fixedHeight = options.fixedHeight || '';
+        this.headerLabel = options.headerLabel || '';
     }
 }
