@@ -16,10 +16,10 @@
                   (outputClicked)="closeCodeView()">
     </terra-button>
     <terra-overlay #viewConfirmationOverlay
-                   [inputOverlayTitle]="'Unbekannte Formatierung'"
+                   [inputOverlayTitle]="'terraCodeEditor.changeViewOverlay.title' | translate:lang"
                    [inputPrimaryButtonInterface]="viewConfirmation.primaryButton"
                    [inputSecondaryButtonInterface]="viewConfirmation.secondaryButton"
                    class="preview-overlay">
-        <p>Durch den Wechsel in die Editor-Ansicht gehen unbekannte Formatierungen im Markup verloren. Sind Sie sicher, dass sie die Ansicht wechseln möchten?</p>
+                   <p>{{'terraCodeEditor.changeViewOverlay.text' | translate:lang}}</p>
     </terra-overlay>
 </div>

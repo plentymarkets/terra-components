@@ -99,7 +99,8 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         this.viewConfirmation = {
             primaryButton: {
                 icon: 'icon-check',
-                caption: 'Zu Editor-Ansicht wechseln',
+                caption: this.translation.translate('terraCodeEditor.changeViewOverlay.primaryButton',
+                         localStorage.getItem('lang')),
                 clickFunction: ():void =>
                 {
                     this.closeCodeView(true);
@@ -108,7 +109,8 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
             },
             secondaryButton: {
                 icon: 'icon-cancel',
-                caption: 'abbrechen',
+                caption: this.translation.translate('terraCodeEditor.changeViewOverlay.secondaryButton',
+                         localStorage.getItem('lang')),
                 clickFunction: ():void =>
                 {
                     this.overlay.hideOverlay();

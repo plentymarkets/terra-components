@@ -56,6 +56,17 @@
 	"terraNoteEditor": {
 		"insertText": "Text eingeben."
 	},
+	"terraCodeEditor":
+	{
+		"editorLabel":"",
+		"changeViewOverlay":
+		{
+			"title":"Unbekannte Formatierung",
+			"text":"Durch den Wechsel in die Editor-Ansicht gehen unbekannte Formatierungen im Markup verloren. Sind Sie sicher, dass sie die Ansicht wechseln möchten?",
+			"primaryButton":"Zu Editor-Ansicht wechseln",
+			"secondaryButton": "Abbrechen"
+		}
+	},
 	"terraTextInput": {
 		"invalidIban": "IBAN ist ungültig."
 	},
