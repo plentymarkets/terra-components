@@ -1,5 +1,5 @@
-<a name="x.x.xx"></a>
-# x.x.xx (DATE)
+<a name="2.2.20"></a>
+# 2.2.20 (26.06.2018)
 
 ### Features
 * **terra-card** render div for image only if imagePath or placeholder icon is set
