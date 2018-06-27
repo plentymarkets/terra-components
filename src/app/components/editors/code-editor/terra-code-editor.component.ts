@@ -9,6 +9,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
 import { TerraButtonInterface } from '../../../../';
+import { isNullOrUndefined } from "util";
 
 @Component({
     selector:  'terra-code-editor',
@@ -96,6 +97,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     public ngOnInit():void
     {
+        this.inputMinHeight = isNullOrUndefined(this.inputMinHeight) ? '100px' : this.inputMinHeight;
         this.viewConfirmation = {
             primaryButton: {
                 icon: 'icon-check',
