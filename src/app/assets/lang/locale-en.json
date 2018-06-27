@@ -59,7 +59,6 @@
 	},
 	"terraCodeEditor":
 	{
-		"editorLabel":"",
 		"changeViewOverlay":
 		{
 			"title":"Unknown code formatting",
