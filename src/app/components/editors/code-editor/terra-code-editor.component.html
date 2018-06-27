@@ -1,28 +1,27 @@
-<terra-portlet inputPortletHeader="{{inputHeaderLabel}}">
-    <div class="editor-container">
-        <quill-editor [placeholder]="_placeholder"
-                      [(ngModel)]="editorContent"
-                      (ngModelChange)="emitChanges(true)"
-                      [style]="{minHeight:inputMinHeight ,height:inputFixedHeight}"
-                      [modules]="_modules">
-        </quill-editor>
-        <textarea class="raw-input"
-                  [class.visible]="showCodeView"
-                  [(ngModel)]="rawContent"
-                  (ngModelChange)="emitChanges(false)">
-    </textarea>
-        <terra-button [class.visible]="showCodeView"
-                      class="close-button"
-                      inputIcon="icon-close"
-                      (outputClicked)="closeCodeView()">
-        </terra-button>
-        <terra-overlay #viewConfirmationOverlay
-                       [inputOverlayTitle]="'terraCodeEditor.changeViewOverlay.title' | translate:lang"
-                       [inputPrimaryButtonInterface]="viewConfirmation.primaryButton"
-                       [inputSecondaryButtonInterface]="viewConfirmation.secondaryButton"
-                       class="preview-overlay">
-                       <p>{{'terraCodeEditor.changeViewOverlay.text' | translate:lang}}</p>
-        </terra-overlay>
-    </div>
-</terra-portlet>
+<label>{{inputHeaderLabel}}</label>
+<div class="editor-container">
+    <quill-editor [placeholder]="_placeholder"
+                  [(ngModel)]="editorContent"
+                  (ngModelChange)="emitChanges(true)"
+                  [style]="{minHeight:inputMinHeight ,height:inputFixedHeight}"
+                  [modules]="_modules">
+    </quill-editor>
+    <textarea class="raw-input"
+              [class.visible]="showCodeView"
+              [(ngModel)]="rawContent"
+              (ngModelChange)="emitChanges(false)">
+</textarea>
+    <terra-button [class.visible]="showCodeView"
+                  class="close-button"
+                  inputIcon="icon-close"
+                  (outputClicked)="closeCodeView()">
+    </terra-button>
+    <terra-overlay #viewConfirmationOverlay
+                   [inputOverlayTitle]="'terraCodeEditor.changeViewOverlay.title' | translate:lang"
+                   [inputPrimaryButtonInterface]="viewConfirmation.primaryButton"
+                   [inputSecondaryButtonInterface]="viewConfirmation.secondaryButton"
+                   class="preview-overlay">
+                   <p>{{'terraCodeEditor.changeViewOverlay.text' | translate:lang}}</p>
+    </terra-overlay>
+</div>
 
