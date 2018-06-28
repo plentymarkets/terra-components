@@ -180,12 +180,19 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
             {
                 // check if editor has changed the value by removing any tags or attributes
                 // remove whitespaces before comparison to ignore code formattings
-                if ( this.editorContent.replace(/\s/g, '') !== this.rawContent.replace(/\s/g, ''))
+                if(!isNullOrUndefined(this.editorContent) || !isNullOrUndefined(this.rawContent))
                 {
-                    resolve(true);
+                    if(this.editorContent.replace(/\s/g, '') !== this.rawContent.replace(/\s/g, ''))
+                    {
+                        resolve(true);
 
-                    // re-assign the original value
-                    this.editorContent = tmpValue;
+                        // re-assign the original value
+                        this.editorContent = tmpValue;
+                    }
+                    else
+                    {
+                        resolve(false);
+                    }
                 }
                 else
                 {
