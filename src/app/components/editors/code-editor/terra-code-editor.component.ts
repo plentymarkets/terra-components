@@ -39,15 +39,15 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     private isInitialized:boolean = false;
 
-    constructor(protected translation:TranslationService, protected _myElement:ElementRef)
+    constructor(protected translation:TranslationService, protected myElement:ElementRef)
     {
-        super(translation, _myElement);
+        super(translation, myElement);
         // initialize placeholder
-        this._placeholder = this.translation.translate('terraNoteEditor.insertText');
+        this.placeholder = this.translation.translate('terraNoteEditor.insertText');
 
         const self:TerraCodeEditorComponent = this;
 
-        this._modules = {
+        this.modules = {
             toolbar: {
                 container: [
                     ['bold', 'italic', 'underline', 'strike'],
@@ -61,7 +61,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
                         // 'this' points to the toolbar instance of the quill editor.
                         if (!self.showCodeView)
                         {
-                            self.rawContent = self._value;
+                            self.rawContent = self.value;
                             self.showCodeView = true;
                         }
                     }
@@ -72,7 +72,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     public writeValue(value:string):void
     {
-        this._value         = value;
+        this.value = value;
 
         // check if value is assigned first (initially)
         if (!this.isInitialized)
@@ -130,13 +130,13 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
         if ( isEditorContent && !this.showCodeView )
         {
-            this._value = this.editorContent;
-            this.ngModelChange.emit(this._value);
+            this.value = this.editorContent;
+            this.ngModelChange.emit(this.value);
         }
         else if ( !isEditorContent && this.showCodeView )
         {
-            this._value = this.rawContent;
-            this.ngModelChange.emit(this._value);
+            this.value = this.rawContent;
+            this.ngModelChange.emit(this.value);
         }
 
     }

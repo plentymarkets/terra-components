@@ -23,15 +23,15 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 })
 export class TerraNoteEditorComponent extends TerraBaseEditorComponent
 {
-    // private _modules:{ [index:string]:Object };
+    // private modules:{ [index:string]:Object };
 
-    constructor(protected translation:TranslationService, protected _myElement:ElementRef)
+    constructor(protected translation:TranslationService, protected myElement:ElementRef)
     {
-        super(translation, _myElement);
+        super(translation, myElement);
         // initialize placeholder
-        this._placeholder = this.translation.translate('terraNoteEditor.insertText');
+        this.placeholder = this.translation.translate('terraNoteEditor.insertText');
 
-        this._modules = {
+        this.modules = {
             toolbar: [
                 ['bold',
                  'italic',

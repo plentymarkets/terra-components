@@ -45,16 +45,16 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     @Output()
     public ngModelChange:EventEmitter<string> = new EventEmitter();
 
-    protected _placeholder:string;
-    protected _value:string;
-    protected _modules:{ [index:string]:Object };
+    protected placeholder:string;
+    protected value:string;
+    protected modules:{ [index:string]:Object };
 
     constructor(protected translation:TranslationService,
-                protected _myElement:ElementRef)
+                protected myElement:ElementRef)
     {
         // initialize placeholder
-        this._placeholder = this.translation.translate('terraNoteEditor.insertText');
-        this._modules = {
+        this.placeholder = this.translation.translate('terraNoteEditor.insertText');
+        this.modules = {
             toolbar: [
                 ['bold',
                  'italic',
@@ -70,13 +70,13 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
         // overwrite default placeholder if input is defined
         if(this.inputPlaceholder)
         {
-            this._placeholder = this.inputPlaceholder;
+            this.placeholder = this.inputPlaceholder;
         }
     }
 
     public writeValue(value:string):void
     {
-        this._value = value;
+        this.value = value;
     }
 
     public registerOnChange(fn:() => void):void
@@ -91,7 +91,7 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
 
     public focus():void
     {
-        this._myElement.nativeElement.querySelector('.ql-editor').focus();
+        this.myElement.nativeElement.querySelector('.ql-editor').focus();
     }
 
     private _onChangeCallback:() => void = ():void => undefined;
