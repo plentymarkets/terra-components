@@ -123,9 +123,8 @@
                 </terra-note-editor>
                 <terra-code-editor *ngSwitchCase="controlTypeEnum.CODE_EDITOR"
                                    [formControlName]="formField.key"
-                                   [inputPlaceholder]="formField.label"
                                    [inputFixedHeight]="formField.fixedHeight"
-                                   [inputHeaderLabel]="formField.headerLabel"
+                                   [inputHeaderLabel]="formField.label"
                                    [(ngModel)]="formField.defaultValue">
                 </terra-code-editor>
                 
