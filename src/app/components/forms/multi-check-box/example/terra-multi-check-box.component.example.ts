@@ -11,13 +11,9 @@ import { TerraMultiCheckBoxValueInterface } from '../data/terra-multi-check-box-
 })
 export class TerraMultiCheckBoxComponentExample implements OnInit
 {
-    private values:Array<TerraMultiCheckBoxValueInterface>;
-    private disabled1:boolean = false;
-    private error1:boolean = false;
-    private disabled2:boolean = false;
-    private error2:boolean = true;
-    private disabled3:boolean = true;
-    private error3:boolean = false;
+    protected disabled1:boolean = false;
+    protected values:Array<TerraMultiCheckBoxValueInterface>;
+    protected disabled3:boolean = true;
 
     public ngOnInit():void
     {
@@ -30,12 +26,12 @@ export class TerraMultiCheckBoxComponentExample implements OnInit
             {
                 value:    '1',
                 caption:  'Value 2',
-                selected: false
+                selected: true
             },
             {
                 value:    '2',
                 caption:  'Value 3',
-                selected: false
+                selected: true
             },
             {
                 value:    '3',
