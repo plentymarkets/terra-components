@@ -2,6 +2,7 @@
 # Unreleased
 
 ### Bug Fixes
+* **context-menu** context menu cannot be open
 * **terra-multi-check-box** states of checkbox had not been set initial
 
 <a name="2.2.20"></a>
@@ -9,6 +10,7 @@
 
 ### Features
 * **terra-card** render div for image only if imagePath or placeholder icon is set
+
 
 <a name="2.2.18"></a>
 # 2.2.18 (21.06.2018)
