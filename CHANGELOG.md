@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 * **context-menu** context menu cannot be open
+* **terra-multi-check-box** states of checkbox had not been set initial
 
 <a name="2.2.20"></a>
 # 2.2.20 (26.06.2018)
