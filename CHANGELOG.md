@@ -1,5 +1,9 @@
 <a name="unreleased"></a>
-# Unreleased
+# unreleased
+
+### Features
+* **terra-code-editor** added new component for `html` code editing
+* **terra-dynamic-form** added terra-code-editor
 
 ### Bug Fixes
 * **context-menu** context menu cannot be open
@@ -22,7 +26,7 @@
 
 ### Features
 * **terra-note-editor** added code view
-* **terra-dynamic-switch** added terra-note-editor
+* **terra-dynamic-form** added terra-note-editor
 * **custom tslint rules** added rules to prevent leading underscores, set maximum block depth and restrict getter and setter
 * **terra-file-chooser** added reset button to file chooser
 
