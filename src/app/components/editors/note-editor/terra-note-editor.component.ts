@@ -23,7 +23,6 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 })
 export class TerraNoteEditorComponent extends TerraBaseEditorComponent
 {
-    // private modules:{ [index:string]:Object };
 
     constructor(protected translation:TranslationService, protected myElement:ElementRef)
     {
@@ -36,12 +35,13 @@ export class TerraNoteEditorComponent extends TerraBaseEditorComponent
                 ['bold',
                  'italic',
                  'underline',
-                 'strike'],        // toggled buttons
+                 'strike'],
+                // toggled buttons
                 [{'list': 'ordered'},
                  {'list': 'bullet'}],
                 [{'script': 'sub'},
-                 {'script': 'super'}],      // superscript/subscript
-
+                 {'script': 'super'}],
+                // superscript/subscript
                 [{
                     'header': [1,
                                2,
@@ -51,9 +51,9 @@ export class TerraNoteEditorComponent extends TerraBaseEditorComponent
                                6,
                                false]
                 }],
-
+                // link and image, video
                 ['link',
-                 'image']                         // link and image, video
+                 'image']
             ]
         };
     }

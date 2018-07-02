@@ -131,10 +131,10 @@ import { TerraNoResultNoticeComponentExample } from './components/no-result/exam
 import { TerraButtonWithOptionsComponentExample } from './components/buttons/button-with-options/example/terra-button-with-options.component.example';
 import { TerraInputComponentExample } from './components/forms/input/example/terra-input.component.example';
 import { TerraFilterComponentExample } from './components/filter/example/terra-filter.component.example';
-import { TerraDataTableContextMenuComponentExample }
-from './components/tables/data-table/context-menu/example/terra-data-table-context-menu.component.example';
+import { TerraDataTableContextMenuComponentExample } from './components/tables/data-table/context-menu/example/terra-data-table-context-menu.component.example';
 import { TerraNoteEditorComponentExample } from './components/editors/note-editor/example/terra-note-editor.component.example';
 import { TerraNoteComponentExample } from './components/note/example/terra-note.component.example';
+import { TerraCodeEditorComponentExample } from './components/editors/code-editor/example/terra-code-editor.component.example';
 import { TerraNodeTreeComponentExample } from './components/tree/node-tree/example/terra-node-tree.component.example';
 import { TerraMultiCheckBoxComponentExample } from './components/forms/multi-check-box/example/terra-multi-check-box.component.example';
 import { TerraCategoryPickerComponent } from './components/category-picker/terra-category-picker.component';
@@ -250,6 +250,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraFilterComponentExample,
         TerraDataTableContextMenuComponentExample,
         TerraNoteEditorComponentExample,
+        TerraCodeEditorComponentExample,
         TerraNoteComponentExample,
         TerraNodeTreeComponentExample,
         TerraTimePickerComponentExample
@@ -304,7 +305,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNoteComponent,
         TerraNodeTreeComponent,
         TerraNodeComponent,
-        TerraCategoryPickerComponent
+        TerraCategoryPickerComponent,
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -403,6 +404,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraFilterComponentExample,
         TerraDataTableContextMenuComponentExample,
         TerraNoteEditorComponentExample,
+        TerraCodeEditorComponentExample,
         TerraNoteComponentExample,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,

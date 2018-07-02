@@ -97,7 +97,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     public ngOnInit():void
     {
-        this.inputMinHeight = isNullOrUndefined(this.inputMinHeight) ? '100px' : this.inputMinHeight;
+        super.ngOnInit();
         this.viewConfirmation = {
             primaryButton: {
                 icon: 'icon-check',
