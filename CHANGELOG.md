@@ -1,3 +1,10 @@
+<a name="UNRELEASED"></a>
+# UNRELEASED
+
+### Bug Fixes
+* **terra-button** stop event propagation on click
+* **terra-data-table** add missing "isFlagged" attribute for buttons in buttoncells
+
 <a name="2.2.23"></a>
 # 2.2.23 (04.07.2018)
 
