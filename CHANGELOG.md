@@ -1,11 +1,12 @@
-<a name="unreleased"></a>
-# unreleased
+<a name="2.2.23"></a>
+# 2.2.23 (04.07.2018)
 
 ### Features
 * **terra-code-editor** added new component for `html` code editing
 * **terra-dynamic-form** added terra-code-editor
 
 ### Bug Fixes
+* **terra-node-tree** optimized search with observable
 * **context-menu** context menu cannot be open
 * **terra-multi-check-box** states of checkbox had not been set initial
 
