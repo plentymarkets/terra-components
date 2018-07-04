@@ -3,8 +3,7 @@
     <div *ngIf="isTreeDisabled" class="searchDisabled"></div>
     <terra-text-input *ngIf="inputShowSearch"
                       [inputName]="'terraNodeTree.search' | translate:lang"
-                      (outputOnInput)="onChange()"
-                      [(ngModel)]="_searchValue">
+                      [(ngModel)]="_searchValue" [formControl]="formControl">
     </terra-text-input>
 </div>
 <ul class="terra-node-tree">
