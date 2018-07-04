@@ -116,7 +116,6 @@ export class TerraButtonComponent
 
     private click(event:Event):void
     {
-        event.stopPropagation();
         if(isNullOrUndefined(this.inputIsDisabled) || this.inputIsDisabled === false)
         {
             this.outputClicked.emit(event);
