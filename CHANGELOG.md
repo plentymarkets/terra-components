@@ -1,7 +1,9 @@
-<a name="unreleased"></a>
-# Unreleased
+<a name="2.2.24"></a>
+# 2.2.24 (04.07.2018)
 
 ### Bug Fixes
+* **terra-button** stop event propagation on click
+* **terra-data-table** add missing "isFlagged" attribute for buttons in buttoncells
 * **terra-simple-table** added missing alignment of cell text
 
 <a name="2.2.23"></a>
