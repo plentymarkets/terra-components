@@ -1,5 +1,5 @@
-<a name="2.2.21"></a>
-# 2.2.21 (04.07.2018)
+<a name="2.2.23"></a>
+# 2.2.23 (04.07.2018)
 
 ### Features
 * **terra-code-editor** added new component for `html` code editing
