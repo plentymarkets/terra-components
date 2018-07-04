@@ -1,3 +1,9 @@
+<a name="unreleased"></a>
+# Unreleased
+
+### Bug Fixes
+* **terra-simple-table** added missing alignment of cell text
+
 <a name="2.2.23"></a>
 # 2.2.23 (04.07.2018)
 
