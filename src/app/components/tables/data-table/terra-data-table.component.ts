@@ -399,7 +399,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         );
     }
 
-    public getTextAlign(item:TerraDataTableHeaderCellInterface):string
+    protected getTextAlign(item:TerraDataTableHeaderCellInterface):string
     {
         if(!isNullOrUndefined(item.textAlign))
         {
