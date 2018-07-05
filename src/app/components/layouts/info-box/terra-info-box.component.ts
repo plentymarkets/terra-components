@@ -3,7 +3,7 @@ import {
     Input
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
-import { TerraTagInterface } from '../../../../';
+import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 
 @Component({
     selector: 'terra-info-box',

@@ -40,16 +40,17 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
 
     protected valueList:Array<TerraMultiCheckBoxValueInterface> = [];
 
-    @ViewChild('viewChildHeaderCheckbox') protected viewChildHeaderCheckbox:TerraCheckboxComponent;
+    @ViewChild('viewChildHeaderCheckbox')
+    protected viewChildHeaderCheckbox:TerraCheckboxComponent;
+
     protected headerCheckboxValue:boolean;
 
-    private _isInit:boolean;
+    private isInit:boolean;
 
-    private _langPrefix:string = 'terraMultiCheckBox';
+    private langPrefix:string = 'terraMultiCheckBox';
 
     constructor(public translation:TranslationService)
     {
-        this.headerCheckboxValue = false;
     }
 
     public writeValue(valueList:Array<TerraMultiCheckBoxValueInterface>):void
@@ -76,16 +77,16 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
     {
         if(!this.inputName)
         {
-            this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
+            this.inputName = this.translation.translate(this.langPrefix + '.selectAll');
 
             // this is necessary for language switch
-            this.translation.translationChanged.subscribe(() =>
+            this.translation.translationChanged().subscribe(() =>
             {
-                this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
+                this.inputName = this.translation.translate(this.langPrefix + '.selectAll');
             });
         }
 
-        this._isInit = true;
+        this.isInit = true;
     }
 
     protected onHeaderCheckboxChange(isChecked:boolean):void

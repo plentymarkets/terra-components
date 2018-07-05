@@ -1,0 +1,143 @@
+body
+{
+    &.dark-standard
+    {
+        //////////// Colors //////////
+        // based on function groups (add, active, alert, accent, background)
+        // Recommendation: To get 3 different hues for a color in a new theme, use https://material.io/color/#!/
+    
+        //add, success
+        --color-add-light: #9eff9a;
+        --color-add: #6AD26A;
+        --color-add-dark: #33a03c;
+    
+        //active, focus
+        --color-active-light: #6de5ff;
+        --color-active: #24B3E0;
+        --color-active-dark: #0083ae;
+    
+        //alert, warning, danger, caution
+        --color-alert-light: #ff5d63;
+        --color-alert: #F11539;
+        --color-alert-dark: #b60013;
+    
+        //accent, highlight, feature, other
+        --color-accent-light: #ffff91;
+        --color-accent: #FDEA5F;
+        --color-accent-dark: #c7b82b;
+    
+        //backgrounds and structural elements
+        --color-structure-0: #FFFFFF; //0 white
+        --color-structure-1: #F5F5F5; //10
+        --color-structure-2: #E9EAEC; //19 (#F3F3F3 = 12)
+        --color-structure-3: #E5E5E5; //26
+        --color-structure-4: #D7D8DB; //36
+        --color-structure-5: #C6C7CA; //53
+        --color-structure-6: #ACADB2; //77
+        --color-structure-7: #95989D; //98
+        --color-structure-8: #7B7E85; //122
+        --color-structure-9: #636671; //142
+        --color-structure-10: #5B5D66; //153
+        --color-structure-11: #494C56; //169                 //tabbar
+        --color-structure-12: #2F323A; //197                 //navbar
+        --color-structure-13: #000000; //255 black
+    
+        //specific colors
+        --tooltip-color-default: var(--color-structure-12);
+    
+        //////////// Fonts //////////////
+    
+        --font-family: 'Roboto', sans-serif;
+        --font-family-icons: 'plentyicons';
+    
+        --font-size-1: 11px;
+        --font-size-2: 12px;
+        --font-size-3: 13px;
+        --font-size-4: 14px;
+        --font-size-5: 16px;
+        --font-size-6: 20px;
+        --font-size-7: 28px;
+        --font-size-8: 48px;
+    
+        --font-weight-1: 400;
+        --font-weight-2: 500;
+        --font-weight-3: 700;
+    
+        //////////// Spaces (Margins, Paddings, Heights) //////////
+        
+        --height-sm: 24px;
+        --height-md: 36px;
+        --height-lg: 48px;
+    
+        --space-xs: 2px;
+        --space-sm: 4px;
+        --space-md: 8px;
+        --space-lg: 12px;
+        --space-xl: 24px;
+        --space-container: 0 var(--space-xs) var(--space-md) var(--space-xs); //for margins of container-elements like portlets or infoboxes
+    
+        --navbar-height: 60px;
+        --tabbar-height: 36px;
+        --tabs-border-bottom-width: 2px;
+        --header-height: calc(var(--navbar-height) + var(--tabbar-height));
+        --breadcrumbs-height: 36px;
+        --tab-content-fullscreen-top: 5px; //space between tab-content and fullscreen-top
+    
+        //////////// Others //////////
+        
+        --border-radius: 2px;
+        --border-color: var(--color-structure-5);
+        --box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+        
+        --zIndex-1: 100;
+        --zIndex-2: 200;
+        --zIndex-3: 300;
+        --zIndex-4: 400;
+        --zIndex-5: 500;
+        --zIndex-6: 600;
+        --zIndex-7: 700;
+        --zIndex-8: 800;
+        --zIndex-9: 900;
+    
+        //////////// Animations //////////
+        
+        --transition-0: ease 0s;
+        --transition-xs: ease 0.2s;
+        --transition-sm: ease 0.3s; //for colors and background-colors
+        --transition-md: ease 0.4s;
+        --transition-lg: ease 0.6s; //for transformations of heights, widths, spaces, margins, paddings
+        --transition-xl: ease 1.2s;
+        --transition-delay-0: 0s;
+        --transition-delay-xs: 0.2s;
+        --transition-delay-sm: 0.3s;
+        --transition-delay-md: 0.4s;
+        --transition-delay-lg: 0.6s;
+        --transition-delay-xl: 1.2s;
+        
+        --transition-menu: all var(--transition-xs);
+        --transition-menu-delay: var(--transition-delay-xs);
+        
+        ///////////////// Terra-Components /////////////////
+    
+        //Inputs & Select-Boxes
+        --input-wrapper-height-default: var(--height-md);
+        --input-padding-default: var(--space-lg) 0 0 0;
+        --input-isEmpty-padding-default: var(--input-padding-default);
+        --input-isSmall-padding-default: 0 var(--space-md) 0 30%;
+        --label-padding-default: var(--space-xs) 0 0 0;
+        --label-width-default: 100%;
+        --textarea-label-padding-default: var(--space-xs) 0 0 0;
+        --textarea-padding-default: 0;
+    
+        --select-box-height-default: var(--height-md);
+        --select-box-line-height-default: var(--height-md);
+        --select-box-dropdown-top-default: var(--height-md);
+        --select-box-labeled-padding-default: var(--space-lg) 0 0 0;
+        --select-box-toggle-background-position-default: calc(100% - var(--space-lg)) var(--space-lg);
+        --select-box-labeled-isSmall-padding-default: 0 var(--space-md) 0 30%;
+        --select-box-isSmall-background-position-default: calc(100% - var(--space-lg)) calc(var(--space-lg) / 2);
+    
+        //GWT
+        --gwt-has-toolbar-before-top: 50px;
+    }
+}

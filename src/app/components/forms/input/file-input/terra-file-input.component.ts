@@ -16,6 +16,7 @@ import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
 import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.component';
 import { TerraOverlayButtonInterface } from '../../../layouts/overlay/data/terra-overlay-button.interface';
+import { StringHelper } from '../../../../helpers/string.helper';
 
 let nextId:number = 0;
 
@@ -37,7 +38,7 @@ export class TerraFileInputComponent extends TerraInputComponent
     public inputShowPreview:boolean = false;
 
     @Input()
-    public inputAllowedExtensions:string[] = [];
+    public inputAllowedExtensions:Array<string> = [];
 
     @Input()
     public inputAllowFolders:boolean = true;
@@ -64,7 +65,6 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     private _translationPrefix:string = 'terraFileInput';
     private _storageServices:Array<TerraBaseStorageService>;
-    private _selectedObjectUrl:string;
     private _id:string;
 
     constructor(private translation:TranslationService, private _frontendStorageService:TerraFrontendStorageService)
@@ -73,41 +73,11 @@ export class TerraFileInputComponent extends TerraInputComponent
 
         // generate the id of the input instance
         this._id = `file-input_#${nextId++}`;
-
-        this.primaryOverlayButton = {
-            icon:          'icon-success',
-            caption:       this.translation.translate(this._translationPrefix + '.choose'),
-            isDisabled:    true,
-            clickFunction: ():void =>
-                           {
-                               this.value = this._selectedObjectUrl;
-                               this.overlay.hideOverlay();
-                           }
-        };
-
-        this.secondaryOverlayButton = {
-            icon:          'icon-close',
-            caption:       this.translation.translate(this._translationPrefix + '.cancel'),
-            isDisabled:    false,
-            clickFunction: ():void =>
-                           {
-                               this._selectedObjectUrl = this.value;
-                               this.overlay.hideOverlay();
-                           }
-        };
     }
 
-    public onSelectedObjectChange(selectedObject:TerraStorageObject):void
+    public onObjectSelected(selectedObject:TerraStorageObject):void
     {
-        if(isNullOrUndefined(selectedObject) || selectedObject.isDirectory)
-        {
-            this.primaryOverlayButton.isDisabled = true;
-        }
-        else
-        {
-            this.primaryOverlayButton.isDisabled = false;
-            this._selectedObjectUrl = selectedObject.publicUrl;
-        }
+        this.value = selectedObject.publicUrl;
     }
 
     public onPreviewClicked():void
@@ -139,7 +109,7 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     public isWebImage(filename:string):boolean
     {
-        return !isNullOrUndefined(filename) && FileTypeHelper.isWebImage(filename);
+        return !StringHelper.isNullUndefinedOrEmpty(filename) && FileTypeHelper.isWebImage(filename);
     }
 
     public getFilename(path:string):string
@@ -149,5 +119,10 @@ export class TerraFileInputComponent extends TerraInputComponent
             return '';
         }
         return PathHelper.basename(path);
+    }
+
+    public resetValue():void
+    {
+        this.value = '';
     }
 }

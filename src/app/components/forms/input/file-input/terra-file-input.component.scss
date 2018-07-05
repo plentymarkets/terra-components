@@ -6,7 +6,8 @@
     {
         flex: 1;
         width: 100%;
-        background-color: var(--color-structure-3);
+        background-color: var(--color-structure-0);
+        box-shadow: var(--box-shadow);
         padding: var(--space-lg);
         display: flex;
         border-radius: var(--border-radius);
@@ -39,12 +40,6 @@
             }
         }
     }
-    
-    terra-overlay
-    {
-        --modal-body-max-height: 70vh;
-        --modal-body-height: 70vh;
-    }
 }
 
 .preview-overlay
@@ -58,4 +53,9 @@
         background-position: center center;
         background-repeat: no-repeat;
     }
+}
+
+.margin-left
+{
+    margin-left: 1px;
 }

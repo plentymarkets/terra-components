@@ -39,29 +39,26 @@
                 <span *ngIf="inputIsRequired">*</span>
             </label>
         </div>
-        <terra-button class="input-group-btn"
-                      [inputIcon]="'icon-more'"
-                      [inputTooltipText]=" _translationPrefix + '.chooseFile' | translate:lang"
-                      [inputTooltipPlacement]="'left'"
-                      (outputClicked)="showFileBrowser()">
-        </terra-button>
+            <terra-file-chooser class="input-group-btn"
+                                [inputIcon]="'icon-more'"
+                                [inputTooltipText]=" _translationPrefix + '.chooseFile' | translate:lang"
+                                [inputTooltipPlacement]="'left'"
+                                [inputAllowedExtensions]="inputAllowedExtensions"
+                                [inputAllowFolders]="inputAllowFolders"
+                                [inputStorageServices]="inputStorageServices"
+                                (outputSelected)="onObjectSelected($event)"
+                                (outputFileBrowserShow)="$event.selectUrl(value)"
+                                (outputFileBrowserHide)="_selectedObjectUrl = value">
+            </terra-file-chooser>
+            <terra-button class="input-group-btn margin-left"
+                          [inputIcon]="'icon-reset'"
+                          [inputTooltipText]="'reset' | translate:lang"
+                          [inputTooltipPlacement]="'left'"
+                          (outputClicked)="resetValue()">
+            </terra-button>
+
     </div>
-    
-    <terra-overlay #overlay
-                   [inputPrimaryButtonInterface]="primaryOverlayButton"
-                   [inputSecondaryButtonInterface]="secondaryOverlayButton"
-                   [inputIsExtraLarge]="true"
-                   (outputOnShow)="fileBrowser.selectUrl(value)"
-                   (outputOnHide)="_selectedObjectUrl = value"
-                   class="hasSplitView">
-        <terra-file-browser #fileBrowser
-                            [inputAllowedExtensions]="inputAllowedExtensions"
-                            [inputAllowFolders]="inputAllowFolders"
-                            [inputStorageServices]="inputStorageServices"
-                            (outputSelectedChange)="onSelectedObjectChange($event)">
-        </terra-file-browser>
-    </terra-overlay>
-    
+
     <terra-overlay #previewOverlay [inputOverlayTitle]="getFilename(value)" class="preview-overlay">
         <span *ngIf="isWebImage(value)" [style.background-image]="'url(' + value + ')'"></span>
     </terra-overlay>

@@ -49,7 +49,7 @@
         <ng-template ngFor let-row [ngForOf]="rowList">
             <tr [ngClass]="{'selected': row.selected, 'isActive': row.isActive}"
                 [class.disabled]="row.disabled"
-                [contextMenu] ="row.contextMenuLinkList">
+                [contextMenu]="row.contextMenuLinkList">
                 <td *ngIf="inputHasCheckboxes">
                     <terra-checkbox #rowCheckbox type="checkbox"
                                     [value]="row.selected"
@@ -58,9 +58,9 @@
                     </terra-checkbox>
                 </td>
                 <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
-                    <template #tdTooltip>
+                    <ng-template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>
-                    </template>
+                    </ng-template>
                     
                     <!-- LEGACY INTERFACE!!!! -->
                     <td *ngIf="!cell.isHidden && !cell.data"
@@ -91,7 +91,8 @@
                                               [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
                                               [inputCaption]="button.caption"
                                               [inputIsSmall]="true"
-                                              [inputTooltipText]="button.tooltipText">
+                                              [inputTooltipText]="button.tooltipText"
+                                              [inputIsFlagged]="button.isFlagged">
                                 </terra-button>
                             </ng-template>
                         </div>
@@ -145,7 +146,8 @@
                                               [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
                                               [inputCaption]="button.caption"
                                               [inputIsSmall]="true"
-                                              [inputTooltipText]="button.tooltipText">
+                                              [inputTooltipText]="button.tooltipText"
+                                              [inputIsFlagged]="button.isFlagged">
                                 </terra-button>
                             </ng-template>
                         </div>

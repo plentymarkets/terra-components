@@ -1,4 +1,3 @@
-@import "~bootstrap/scss/mixins";
 @import "../buttons/button/terra-button.component";
 @import "../forms/select-box/terra-select-box.component";
 @import "../forms/input/terra-input.component";
@@ -6,11 +5,10 @@
 .pager
 {
     --input-text-align: center;
-    --select-box-width: 65px;
+    --select-box-width: 72px;
     --select-box-wrapper-margin-bottom: 0;
     --input-wrapper-margin-bottom: 0;
     --input-width: 43px;
-    --input-padding: .5rem .15rem;
     --btn-sm-padding: 0 7px;
     --toolbar-border-radius: var(--border-radius);
     

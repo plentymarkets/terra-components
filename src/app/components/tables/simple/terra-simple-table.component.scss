@@ -2,14 +2,15 @@
 
 :host[fixedHeader]
 {
-    height: 100%;
     display: block;
     margin-top: 32px;
     padding-bottom: 32px;
-    
+    height: 100%;
+
     .table-responsive
     {
-        height: 100%;
+        overflow-y: auto;
+        max-height: 100%;
     }
     
     thead
@@ -23,6 +24,7 @@
         {
             width: 100%;
             display: table;
+            white-space: nowrap;
         }
     }
 }
