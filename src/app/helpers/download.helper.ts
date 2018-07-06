@@ -6,11 +6,12 @@ export class TerraDownloadHelper
         this.downloadFileFromUrl(fileURL, filename);
     }
 
-    public static downloadFileFromUrl(url:string, filename:string):void
+    public static downloadFileFromUrl(url:string, filename:string, newTab:boolean = false):void
     {
         let link:HTMLAnchorElement = document.createElement('a');
         link.href = url;
         link.download = filename;
+        link.target = newTab ? '_blank' : '_self';
         document.body.appendChild(link);
         link.click();
 
