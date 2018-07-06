@@ -2,8 +2,7 @@
 # unreleased
 
 ### Feature
-* **terra-download-helper** added new optional parameter (boolean) for downloadFileFromUrl 
-							and set target='_blank' to link if parameter is true  
+* **terra-download-helper** added new optional parameter (boolean) for downloadFileFromUrl and set target='_blank' to link if parameter is true  
 
 <a name="2.2.24"></a>
 # 2.2.24 (04.07.2018)
