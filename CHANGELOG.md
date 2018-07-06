@@ -1,3 +1,9 @@
+<a name="unreleased"></a>
+# Unreleased
+
+### Bug Fixes
+* **terra-code-editor** code view bug in firefox
+
 <a name="2.2.24"></a>
 # 2.2.24 (04.07.2018)
 
