@@ -1,3 +1,8 @@
+# Unreleased
+
+### Features
+* **terra-2-col** added. A lightweight 2 column container.
+
 <a name="2.2.24"></a>
 # 2.2.24 (04.07.2018)
 

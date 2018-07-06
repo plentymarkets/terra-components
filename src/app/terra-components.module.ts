@@ -144,6 +144,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
 import { RouterModule } from '@angular/router';
 import { TerraTimePickerComponentExample } from './components/forms/input/time-picker/example/terra-time-picker.component.example';
+import { TerraTwoColumnsContainerComponent } from './components/layouts/column-container/terra-two-columns-container.component';
 
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
@@ -212,6 +213,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
         TerraCategoryPickerComponent,
+        TerraTwoColumnsContainerComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -307,6 +309,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNodeTreeComponent,
         TerraNodeComponent,
         TerraCategoryPickerComponent,
+        TerraTwoColumnsContainerComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -366,6 +369,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
         TerraCategoryPickerComponent,
+        TerraTwoColumnsContainerComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,
