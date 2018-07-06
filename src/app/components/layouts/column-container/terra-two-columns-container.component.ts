@@ -5,7 +5,8 @@ import { Component } from '@angular/core';
  */
 @Component({
     selector: 'terra-2-col',
-    templateUrl: require('./terra-two-columns-container.component.html')
+    template: require('./terra-two-columns-container.component.html')
 })
 export class TerraTwoColumnsContainerComponent
-{}
+{
+}
