@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="editor-output-container"
+                 [innerHTML]="changedText">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <terra-code-editor [inputPlaceholder]="'Platzhalter'"
+                               [inputHeaderLabel]="'Code Editor'"
+                               [(ngModel)]="changedText">
+            </terra-code-editor>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,21 @@
-<a name="unreleased"></a>
-# Unreleased
+<a name="2.2.24"></a>
+# 2.2.24 (04.07.2018)
 
 ### Bug Fixes
+* **terra-button** stop event propagation on click
+* **terra-data-table** add missing "isFlagged" attribute for buttons in buttoncells
+* **terra-simple-table** added missing alignment of cell text
+
+<a name="2.2.23"></a>
+# 2.2.23 (04.07.2018)
+
+### Features
+* **terra-code-editor** added new component for `html` code editing
+* **terra-dynamic-form** added terra-code-editor
+
+### Bug Fixes
+* **terra-node-tree** optimized search with observable
+* **context-menu** context menu cannot be open
 * **terra-multi-check-box** states of checkbox had not been set initial
 
 <a name="2.2.20"></a>
@@ -9,6 +23,7 @@
 
 ### Features
 * **terra-card** render div for image only if imagePath or placeholder icon is set
+
 
 <a name="2.2.18"></a>
 # 2.2.18 (21.06.2018)
@@ -20,7 +35,7 @@
 
 ### Features
 * **terra-note-editor** added code view
-* **terra-dynamic-switch** added terra-note-editor
+* **terra-dynamic-form** added terra-note-editor
 * **custom tslint rules** added rules to prevent leading underscores, set maximum block depth and restrict getter and setter
 * **terra-file-chooser** added reset button to file chooser
 

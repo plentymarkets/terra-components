@@ -12,7 +12,11 @@ import { TerraSimpleTableHeaderCellInterface } from './cell/terra-simple-table-h
 import { TerraSimpleTableRowInterface } from './row/terra-simple-table-row.interface';
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
 import { Key } from 'ts-keycode-enum';
-import { isNull } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
+import { TerraDataTableHeaderCellInterface } from '../data-table/cell/terra-data-table-header-cell.interface';
 
 @Component({
     selector: 'terra-simple-table',
@@ -342,6 +346,18 @@ export class TerraSimpleTableComponent<D> implements OnChanges
                     this.scrollContainer.nativeElement.scrollTop -= (viewport.top - activeRowPosition.top);
                 }
             }
+        }
+    }
+
+    protected getTextAlign(item:TerraSimpleTableHeaderCellInterface):string
+    {
+        if(!isNullOrUndefined(item.textAlign))
+        {
+            return item.textAlign;
+        }
+        else
+        {
+            return 'left';
         }
     }
 }
