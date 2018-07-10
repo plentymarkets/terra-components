@@ -1,3 +1,9 @@
+<a name="X.X.X"></a>
+# X.X.X (XX.XX.2018)
+
+### Bug Fixes
+* **security vulnerability** update package version of node-sass & css-loader & gulp
+
 <a name="2.3.0"></a>
 # 2.3.0 (10.07.2018)
 
