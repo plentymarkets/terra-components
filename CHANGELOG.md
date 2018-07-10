@@ -5,7 +5,7 @@
 
 ### Bug Fixes
 * **terra-file-list** date 'last modified' will be formatted according to the default language 
-* **terra-file-list** mot allowed files will not be shown in the file list 
+* **terra-file-list** not allowed files will not be shown in the file list 
 
 <a name="2.3.0"></a>
 # 2.3.0 (10.07.2018)
