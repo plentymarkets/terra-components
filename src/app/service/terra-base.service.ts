@@ -137,17 +137,7 @@ export class TerraBaseService
             }
 
             return Observable.throw(error);
-        }).share();
-
-        req.subscribe(() =>
-            {
-                this._terraLoadingSpinnerService.stop();
-            },
-            (error:any) =>
-            {
-                this._terraLoadingSpinnerService.stop();
-            }
-        );
+        }).finally(() => this._terraLoadingSpinnerService.stop());
 
         return req;
     }
