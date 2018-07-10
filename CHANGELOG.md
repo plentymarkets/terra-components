@@ -1,4 +1,5 @@
-#Unreleased
+<a name="2.3.0"></a>
+# 2.3.0 (10.07.2018)
 
 ### Bug Fixes
 * **terra-base-service** remove subscription in `mapRequest()` to make request observables lazy again 
