@@ -4,7 +4,6 @@
 ### Bug Fixes
 * **update node-sass** because of a security vulnerability in the previous version
 * **update css-loader** because of a security vulnerability in the previous version
-* **update gulp** because of a security vulnerability in the previous version
 
 <a name="2.3.0"></a>
 # 2.3.0 (10.07.2018)
