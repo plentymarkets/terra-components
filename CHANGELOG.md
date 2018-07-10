@@ -3,6 +3,12 @@
 ### Features
 * **terra-2-col** added. A lightweight 2 column container.
 
+<a name="2.3.0"></a>
+# 2.3.0 (10.07.2018)
+
+### Bug Fixes
+* **terra-base-service** remove subscription in `mapRequest()` to make request observables lazy again 
+
 <a name="2.2.24"></a>
 # 2.2.24 (04.07.2018)
 
