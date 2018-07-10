@@ -76,7 +76,7 @@
 		"del": "^3.0.0",
 		"extract-text-webpack-plugin": "^3.0.2",
 		"file-loader": "^1.1.11",
-		"gulp": "^4.0.0",
+		"gulp": "^3.9.1",
 		"gulp-shell": "^0.6.5",
 		"gulp-sourcemaps": "^2.6.4",
 		"gulp-typescript": "^4.0.2",
