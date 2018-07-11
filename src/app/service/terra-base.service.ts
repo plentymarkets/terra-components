@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
     Headers,
     Http,
+    QueryEncoder,
     Response,
     URLSearchParams
 } from '@angular/http';
@@ -15,7 +16,21 @@ import {
 import { TerraAlertComponent } from '../components/alert/terra-alert.component';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
+import { HttpParams } from '@angular/common/http';
 
+
+class MyQueryEncoder extends QueryEncoder
+{
+    encodeKey(k:string):string
+    {
+        return encodeURIComponent(k);
+    }
+
+    encodeValue(v:string):string
+    {
+        return encodeURIComponent(v);
+    }
+}
 
 /**
  * @author mfrank
@@ -283,11 +298,11 @@ export class TerraBaseService
      */
     protected createUrlSearchParams(params:TerraBaseParameterInterface):URLSearchParams
     {
-        let searchParams:URLSearchParams = new URLSearchParams();
+        let searchParams:URLSearchParams = new URLSearchParams('', new MyQueryEncoder());
 
         if(!isNullOrUndefined(params))
         {
-            Object.keys(params).map((key:string) =>
+            Object.keys(params).forEach((key:string) =>
             {
                 if(!isNullOrUndefined(params[key]) && params[key] !== '')
                 {
