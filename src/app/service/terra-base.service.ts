@@ -30,7 +30,7 @@ export class TerraBaseService
     public url:string;
 
     // TODO use D instead of any
-    protected dataModel:{ [dataId:number]:Array<any>} = {};
+    protected dataModel:{ [dataId:number]:any} = {};
 
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
@@ -325,7 +325,7 @@ export class TerraBaseService
     }
 
     // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelGet<D>(url:string, dataId:number):Observable<D>
+    protected handleLocalDataModelGet(url:string, dataId:number):Observable<any>
     {
         if(!isNullOrUndefined(this.dataModel[dataId]))
         {
@@ -340,11 +340,11 @@ export class TerraBaseService
                     headers: this.headers
                 }
             )
-        ).pipe(tap((data:D) => this.dataModel[dataId] = data));
+        ).pipe(tap((data:any) => this.dataModel[dataId] = data));
     }
 
     // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelPost<D>(url:string, dataId:number, body:any):Observable<D>
+    protected handleLocalDataModelPost(url:string, dataId:number, body:any):Observable<any>
     {
         this.setAuthorization();
 
@@ -355,7 +355,7 @@ export class TerraBaseService
                     headers: this.headers,
                     body:    body
                 })
-        ).pipe(tap((data:D) =>
+        ).pipe(tap((data:any) =>
         {
             if(isNullOrUndefined(this.dataModel[dataId]))
             {
@@ -366,7 +366,7 @@ export class TerraBaseService
     }
 
     // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelPut<D>(url:string, dataId:number, body:any):Observable<D>
+    protected handleLocalDataModelPut(url:string, dataId:number, body:any):Observable<any>
     {
         this.setAuthorization();
 
@@ -377,9 +377,9 @@ export class TerraBaseService
                     headers: this.headers,
                     body:    body
                 })
-        ).pipe(tap((data:D) =>
+        ).pipe(tap((data:any) =>
         {
-            let dataToUpdate:D;
+            let dataToUpdate:any;
 
             if(!isNullOrUndefined(this.dataModel[dataId]))
             {
@@ -402,7 +402,7 @@ export class TerraBaseService
     }
 
     // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelDelete<D>(url:string, dataId:number):Observable<void>
+    protected handleLocalDataModelDelete(url:string, dataId:number):Observable<void>
     {
         this.setAuthorization();
 
@@ -415,7 +415,7 @@ export class TerraBaseService
         {
             Object.keys(this.dataModel).forEach((comparisonId:string) =>
             {
-                let bankIndex:number = this.dataModel[comparisonId].findIndex((data:D) => data.id === dataId);
+                let bankIndex:number = this.dataModel[comparisonId].findIndex((data:any) => data.id === dataId);
                 if(bankIndex >= 0)
                 {
                     this.dataModel[comparisonId].splice(bankIndex, 1);
