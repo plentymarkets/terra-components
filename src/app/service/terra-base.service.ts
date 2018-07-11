@@ -15,6 +15,7 @@ import {
 import { TerraAlertComponent } from '../components/alert/terra-alert.component';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
+import { tap } from 'rxjs/operators';
 
 
 /**
@@ -25,6 +26,8 @@ export class TerraBaseService
 {
     public headers:Headers;
     public url:string;
+
+    protected dataModel:{ [contactId:number]:Array<any>} = {};
 
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
@@ -312,5 +315,96 @@ export class TerraBaseService
             return 'Missing permissions';
         }
         // END workaround
+    }
+
+    protected handleLocalDataModelGet(url:string, contactId:number):Observable<any>
+    {
+        this.setAuthorization();
+
+        return this.mapRequest(
+            this.http.get(url,
+                {
+                    headers: this.headers
+                }
+            )
+        ).pipe(tap(data => this.dataModel[contactId] = data));
+    }
+
+    protected handleLocalDataModelPost(url:string, contactId:number, body:any):Observable<any>
+    {
+        this.setAuthorization();
+
+        return this.mapRequest(
+            this.http.post(url,
+                {},
+                {
+                    headers: this.headers,
+                    body:    body
+                })
+        ).pipe(tap(data =>
+        {
+            if(isNullOrUndefined(this.dataModel[contactId]))
+            {
+                this.dataModel[contactId] = [];
+            }
+            this.dataModel[contactId].push(data);
+        }));
+    }
+
+    protected handleLocalDataModelPut(url:string, contactId:number, body:any):Observable<any>
+    {
+        this.setAuthorization();
+
+        return this.mapRequest(
+            this.http.put(url,
+                '',
+                {
+                    headers: this.headers,
+                    body:    body
+                })
+        ).pipe(tap(data =>
+        {
+            let dataToUpdate:any;
+
+            if(!isNullOrUndefined(this.dataModel[contactId]))
+            {
+                dataToUpdate = this.dataModel[contactId].find((dataItem:any) => dataItem.id === data.id);
+            }
+
+            if(!isNullOrUndefined(dataToUpdate))
+            {
+                dataToUpdate = data;
+            }
+            else
+            {
+                if(isNullOrUndefined(this.dataModel[contactId]))
+                {
+                    this.dataModel[contactId] = [];
+                }
+                this.dataModel[contactId].push(data);
+            }
+        }));
+    }
+
+    protected handleLocalDataModelDelete(url:string, dataId:number):Observable<any>
+    {
+        this.setAuthorization();
+
+        return this.mapRequest(
+            this.http.delete(url,
+                {
+                    headers: this.headers
+                })
+        ).pipe(tap(() =>
+        {
+            Object.keys(this.dataModel).forEach(comparisonId =>
+            {
+                let bankIndex:number = this.dataModel[comparisonId].findIndex(data => data.id === dataId);
+                if(bankIndex >= 0)
+                {
+                    this.dataModel[comparisonId].splice(bankIndex, 1);
+                }
+            });
+        }));
     }
 }
