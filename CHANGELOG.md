@@ -1,6 +1,9 @@
-# Unreleased
+<a name="X.X.X"></a>
+# X.X.X (XX.XX.2018)
 
 ### Bug Fixes
+* **update node-sass** because of a security vulnerability in the previous version
+* **update css-loader** because of a security vulnerability in the previous version
 * **terra-query-encoder** new class which implements a custom encoding strategy for query parameters based on angular's [`QueryEncoder`](https://angular.io/api/http/QueryEncoder) using es2015's native [`encodeURIComponent`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)-Method
 * **terra-base-service** using new `terra-query-encoder` to encode query params in `createUrlSearchParams()`
 * **terra-url-params-decorator-service** added deprecation warning to the class since its functionality is fully implemented in the `createUrlSearchParams`-Method of the `terra-base-service`
