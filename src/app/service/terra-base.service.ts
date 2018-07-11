@@ -16,6 +16,7 @@ import { TerraAlertComponent } from '../components/alert/terra-alert.component';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
 import { tap } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
 
 
 /**
@@ -325,7 +326,22 @@ export class TerraBaseService
     }
 
     // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelGet(url:string, dataId:number):Observable<any>
+    protected handleLocalDataModelGetList(getRequest$:Observable<Response>):Observable<Array<any>>
+    {
+        if(!isNullOrUndefined(this.dataModel))
+        {
+            return of(Object.values(this.dataModel));
+        }
+
+        this.setAuthorization();
+
+        return this.mapRequest(getRequest$).pipe(
+            tap((dataList:Array<any>) => dataList.forEach((data:any) => this.dataModel[data.id] = data))
+        );
+    }
+
+    // TODO remove generic if the BaseService get a generic itself
+    protected handleLocalDataModelGet(getRequest$:Observable<Response>, dataId:number):Observable<any>
     {
         if(!isNullOrUndefined(this.dataModel[dataId]))
         {
@@ -334,93 +350,76 @@ export class TerraBaseService
 
         this.setAuthorization();
 
-        return this.mapRequest(
-            this.http.get(url,
-                {
-                    headers: this.headers
-                }
-            )
-        ).pipe(tap((data:any) => this.dataModel[dataId] = data));
+        return this.mapRequest(getRequest$).pipe(
+            tap((data:any) => this.dataModel[dataId] = data)
+        );
     }
 
     // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelPost(url:string, dataId:number, body:any):Observable<any>
+    protected handleLocalDataModelPost(postRequest$:Observable<Response>, dataId:number):Observable<any>
     {
         this.setAuthorization();
 
-        return this.mapRequest(
-            this.http.post(url,
-                {},
-                {
-                    headers: this.headers,
-                    body:    body
-                })
-        ).pipe(tap((data:any) =>
-        {
-            if(isNullOrUndefined(this.dataModel[dataId]))
-            {
-                this.dataModel[dataId] = [];
-            }
-            this.dataModel[dataId].push(data);
-        }));
-    }
-
-    // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelPut(url:string, dataId:number, body:any):Observable<any>
-    {
-        this.setAuthorization();
-
-        return this.mapRequest(
-            this.http.put(url,
-                '',
-                {
-                    headers: this.headers,
-                    body:    body
-                })
-        ).pipe(tap((data:any) =>
-        {
-            let dataToUpdate:any;
-
-            if(!isNullOrUndefined(this.dataModel[dataId]))
-            {
-                dataToUpdate = this.dataModel[dataId].find((dataItem:any) => dataItem.id === data.id);
-            }
-
-            if(!isNullOrUndefined(dataToUpdate))
-            {
-                dataToUpdate = data;
-            }
-            else
+        return this.mapRequest(postRequest$).pipe(
+            tap((data:any) =>
             {
                 if(isNullOrUndefined(this.dataModel[dataId]))
                 {
                     this.dataModel[dataId] = [];
                 }
                 this.dataModel[dataId].push(data);
-            }
-        }));
+            })
+        );
     }
 
     // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelDelete(url:string, dataId:number):Observable<void>
+    protected handleLocalDataModelPut(putRequest$:Observable<Response>, dataId:number):Observable<any>
     {
         this.setAuthorization();
 
-        return this.mapRequest(
-            this.http.delete(url,
-                {
-                    headers: this.headers
-                })
-        ).pipe(tap(() =>
-        {
-            Object.keys(this.dataModel).forEach((comparisonId:string) =>
+        return this.mapRequest(putRequest$).pipe(
+            tap((data:any) =>
             {
-                let bankIndex:number = this.dataModel[comparisonId].findIndex((data:any) => data.id === dataId);
-                if(bankIndex >= 0)
+                let dataToUpdate:any;
+
+                if(!isNullOrUndefined(this.dataModel[dataId]))
                 {
-                    this.dataModel[comparisonId].splice(bankIndex, 1);
+                    dataToUpdate = this.dataModel[dataId].find((dataItem:any) => dataItem.id === data.id);
                 }
-            });
-        }));
+
+                if(!isNullOrUndefined(dataToUpdate))
+                {
+                    dataToUpdate = data;
+                }
+                else
+                {
+                    if(isNullOrUndefined(this.dataModel[dataId]))
+                    {
+                        this.dataModel[dataId] = [];
+                    }
+                    this.dataModel[dataId].push(data);
+                }
+            })
+        );
+    }
+
+    // TODO remove generic if the BaseService get a generic itself
+    protected handleLocalDataModelDelete(deleteRequest$:Observable<Response>, dataId:number):Observable<void>
+    {
+        this.setAuthorization();
+
+        return this.mapRequest(deleteRequest$).pipe(
+            tap(() =>
+            {
+                Object.keys(this.dataModel).forEach((comparisonId:string) =>
+                {
+                    let bankIndex:number = this.dataModel[comparisonId].findIndex((data:any) => data.id === dataId);
+                    if(bankIndex >= 0)
+                    {
+                        this.dataModel[comparisonId].splice(bankIndex, 1);
+                    }
+                });
+            })
+        );
     }
 }
