@@ -22,12 +22,15 @@ import { tap } from 'rxjs/operators';
  * @author mfrank
  */
 @Injectable()
+// Please keep the todo comments until TerraBaseService refactoring
+// TODO TerraBaseService<D> or maybe TerraBaseService<D extends BaseData>
 export class TerraBaseService
 {
     public headers:Headers;
     public url:string;
 
-    protected dataModel:{ [contactId:number]:Array<any>} = {};
+    // TODO use D instead of any
+    protected dataModel:{ [id:number]:Array<any>} = {};
 
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
@@ -69,6 +72,7 @@ export class TerraBaseService
         }
     }
 
+    // TODO use D instead of any, use a meaningful error type
     protected mapRequest(request:Observable<any>, err?:(error:any) => void, isRaw?:boolean):Observable<any>
     {
         this._terraLoadingSpinnerService.start();
@@ -165,6 +169,7 @@ export class TerraBaseService
         }
     }
 
+    // TODO use a meaningful error type
     private getErrorMessage(error:any):string
     {
         try
@@ -184,6 +189,7 @@ export class TerraBaseService
         }
     }
 
+    // TODO use a meaningful error type
     private getErrorClass(error:any):string
     {
         try
@@ -222,6 +228,7 @@ export class TerraBaseService
      * Handles exceptions that are returned from the server on a failed rest call
      * @param exception
      */
+    // TODO rename exception to error and use a meaningful type
     private handleException(exception:any):void
     {
         // parse response object
@@ -317,6 +324,7 @@ export class TerraBaseService
         // END workaround
     }
 
+    // TODO use D instead of any or if the service itself has no generic use handleLocalDataModelGet<D>
     protected handleLocalDataModelGet(url:string, contactId:number):Observable<any>
     {
         this.setAuthorization();
@@ -327,9 +335,10 @@ export class TerraBaseService
                     headers: this.headers
                 }
             )
-        ).pipe(tap(data => this.dataModel[contactId] = data));
+        ).pipe(tap((data:any) => this.dataModel[contactId] = data));
     }
 
+    // TODO use D instead of any or if the service itself has no generic use handleLocalDataModelPost<D>
     protected handleLocalDataModelPost(url:string, contactId:number, body:any):Observable<any>
     {
         this.setAuthorization();
@@ -341,7 +350,7 @@ export class TerraBaseService
                     headers: this.headers,
                     body:    body
                 })
-        ).pipe(tap(data =>
+        ).pipe(tap((data:any) =>
         {
             if(isNullOrUndefined(this.dataModel[contactId]))
             {
@@ -351,6 +360,7 @@ export class TerraBaseService
         }));
     }
 
+    // TODO use D instead of any or if the service itself has no generic use handleLocalDataModelPut<D>
     protected handleLocalDataModelPut(url:string, contactId:number, body:any):Observable<any>
     {
         this.setAuthorization();
@@ -362,7 +372,7 @@ export class TerraBaseService
                     headers: this.headers,
                     body:    body
                 })
-        ).pipe(tap(data =>
+        ).pipe(tap((data:any) =>
         {
             let dataToUpdate:any;
 
@@ -386,6 +396,7 @@ export class TerraBaseService
         }));
     }
 
+    // TODO use D instead of any or if the service itself has no generic use handleLocalDataModelDelete<D>
     protected handleLocalDataModelDelete(url:string, dataId:number):Observable<any>
     {
         this.setAuthorization();
@@ -397,9 +408,9 @@ export class TerraBaseService
                 })
         ).pipe(tap(() =>
         {
-            Object.keys(this.dataModel).forEach(comparisonId =>
+            Object.keys(this.dataModel).forEach((comparisonId:string) =>
             {
-                let bankIndex:number = this.dataModel[comparisonId].findIndex(data => data.id === dataId);
+                let bankIndex:number = this.dataModel[comparisonId].findIndex((data:any) => data.id === dataId);
                 if(bankIndex >= 0)
                 {
                     this.dataModel[comparisonId].splice(bankIndex, 1);
