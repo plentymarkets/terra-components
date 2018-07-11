@@ -1,9 +1,9 @@
-
-
-<a name=""></a>
-# unreleased
+<a name="X.X.X"></a>
+# X.X.X (XX.XX.2018)
 
 ### Bug Fixes
+* **update node-sass** because of a security vulnerability in the previous version
+* **update css-loader** because of a security vulnerability in the previous version
 * **terra-file-list** date 'last modified' will be formatted according to the default language 
 * **terra-file-list** not allowed files will not be shown in the file list 
 
