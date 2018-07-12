@@ -48,6 +48,11 @@ export class TerraBaseService
         return this._baseHttp;
     }
 
+    public get isLoading():boolean
+    {
+        return this._terraLoadingSpinnerService.isLoading;
+    }
+
     protected setToHeader(key:string, value:string):void
     {
         this.headers.set(key, value);
