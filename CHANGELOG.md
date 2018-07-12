@@ -4,6 +4,7 @@
 ### Bug Fixes
 * **update node-sass** because of a security vulnerability in the previous version
 * **update css-loader** because of a security vulnerability in the previous version
+* **terra-code-editor** code view bug in firefox
 
 <a name="2.3.0"></a>
 # 2.3.0 (10.07.2018)
