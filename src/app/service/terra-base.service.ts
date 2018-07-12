@@ -103,12 +103,6 @@ export class TerraBaseService
                 this.handleException(error);
             }
 
-            // START Very unclean workaround! Normally we should get a 403 status code as response
-            // when user has no permission
-            let errorMessage:string = this.getErrorMessage(error);
-
-            let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage();
-
             if(error.status === 403 && this.getErrorClass(error) === 'UIHashExpiredException')
             {
                 let routeToLoginEvent:CustomEvent = new CustomEvent('CustomEvent');
@@ -117,8 +111,10 @@ export class TerraBaseService
 
                 this.dispatchEvent(routeToLoginEvent);
             }
-            else if(error.status === 401 && errorMessage === 'This action is unauthorized.')
+            else if(error.status === 403) // unauthorized
             {
+                let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage(error);
+
                 if(this._isPlugin)
                 {
                     this._alert.addAlertForPlugin({
@@ -137,7 +133,7 @@ export class TerraBaseService
                 }
             }
             // END Very unclean workaround!
-            else if(error.status === 401)
+            else if(error.status === 401) // unauthenticated
             {
                 let loginEvent:CustomEvent = new CustomEvent('login');
                 // Workaround for plugins in Angular (loaded via iFrame)
@@ -310,19 +306,78 @@ export class TerraBaseService
         return searchParams;
     }
 
-    private getMissingUserPermissionAlertMessage():string
+    private getMissingUserPermissionAlertMessage(error:any):string
     {
-        // START workaround because we do not have a real translation solution in terra components
+        let missingRights:string = '';
         let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
-        if(langInLocalStorage === 'de')
+        let isGerman:boolean = langInLocalStorage === 'de';
+
+
+        if(isGerman)
         {
-            return 'Fehlende Berechtigungen';
+            missingRights = 'Fehlende Berechtigungen für: <br/> • ';
         }
         else
         {
-            return 'Missing permissions';
+            missingRights = 'Missing permissions for: <br/> • ';
         }
-        // END workaround
+
+        let body:{} = JSON.parse(error['_body']);
+
+        if(!isNullOrUndefined(body))
+        {
+            let errorFromBody:{} = body['error'];
+
+            if(!isNullOrUndefined(errorFromBody))
+            {
+                let missingPermissions:{ [key:string]:{ [key:string]:string } } = errorFromBody['missing_permissions'];
+
+                let permissionTranslations:Array<{ [key:string]:string }> = [];
+
+                Object.keys(missingPermissions).forEach((key:string) =>
+                {
+                    if(missingPermissions.hasOwnProperty(key))
+                    {
+                        permissionTranslations.push(missingPermissions[key]);
+                    }
+                });
+
+                let english:Array<string> = [];
+                let german:Array<string> = [];
+
+                permissionTranslations.forEach((translations:{ [key:string]:string }) =>
+                {
+                    Object.keys(translations).forEach((key:string) =>
+                    {
+                        switch(key)
+                        {
+                            case 'de':
+                                german.push(translations[key]);
+                                break;
+                            case 'en':
+                                english.push(translations[key]);
+                                break;
+                        }
+                    });
+                });
+
+                let concatedPermissions:string;
+
+                if(isGerman)
+                {
+                    concatedPermissions = german.reverse().join('<br/> • ');
+                }
+                else
+                {
+                    concatedPermissions = english.reverse().join('<br/> • ');
+                }
+
+                missingRights += concatedPermissions;
+            }
+        }
+
+
+        return missingRights;
     }
 
     // TODO remove generic if the BaseService get a generic itself
