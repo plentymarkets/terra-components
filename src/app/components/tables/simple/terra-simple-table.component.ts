@@ -16,7 +16,6 @@ import {
     isNull,
     isNullOrUndefined
 } from 'util';
-import { TerraDataTableHeaderCellInterface } from '../data-table/cell/terra-data-table-header-cell.interface';
 
 @Component({
     selector: 'terra-simple-table',
@@ -34,12 +33,12 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this._rowList = value;
 
         this.updateHeaderCheckboxState();
-    };
+    }
 
     public get inputRowList():Array<TerraSimpleTableRowInterface<D>>
     {
         return this._rowList;
-    };
+    }
 
     @Input()
     public inputUseHighlighting:boolean = false;
@@ -203,7 +202,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
                 if(event.ctrlKey || event.metaKey)
                 {
                     this.headerCheckbox.checked = !this.headerCheckbox.checked;
-                    //this.onHeaderCheckboxChange();
+                    // this.onHeaderCheckboxChange();
                 }
                 else
                 {
@@ -264,7 +263,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     private getSelectedRows():Array<TerraSimpleTableRowInterface<D>>
     {
-        return this.inputRowList.filter((row:TerraSimpleTableRowInterface<D>) => row.selected === true)
+        return this.inputRowList.filter((row:TerraSimpleTableRowInterface<D>) => row.selected === true);
     }
 
     private selectRow(row:TerraSimpleTableRowInterface<D>):void
