@@ -1,12 +1,66 @@
-<a name="Unreleased"></a>
-# Unreleased
+<a name="2.3.1"></a>
+# 2.3.1 (12.07.2018)
+
+### Features
+* **terra-base-service** correct handling of error status 403
+
+### Bug Fixes
+* **update node-sass** because of a security vulnerability in the previous version
+* **update css-loader** because of a security vulnerability in the previous version
+* **terra-code-editor** code view bug in firefox
+
+<a name="2.3.0"></a>
+# 2.3.0 (10.07.2018)
+
+### Bug Fixes
+* **terra-base-service** remove subscription in `mapRequest()` to make request observables lazy again 
+
+<a name="2.2.25"></a>
+# 2.2.25 (04.07.2018)
+
+### Bug Fixes
+* **terra-button** enable button click again
+
+<a name="2.2.24"></a>
+# 2.2.24 (04.07.2018)
+
+### Bug Fixes
+* **terra-button** stop event propagation on click
+* **terra-data-table** add missing "isFlagged" attribute for buttons in buttoncells
+* **terra-simple-table** added missing alignment of cell text
+
+<a name="2.2.23"></a>
+# 2.2.23 (04.07.2018)
+
+### Features
+* **terra-code-editor** added new component for `html` code editing
+* **terra-dynamic-form** added terra-code-editor
+
+### Bug Fixes
+* **terra-node-tree** optimized search with observable
+* **context-menu** context menu cannot be open
+* **terra-multi-check-box** states of checkbox had not been set initial
+
+<a name="2.2.20"></a>
+# 2.2.20 (26.06.2018)
+
+### Features
+* **terra-card** render div for image only if imagePath or placeholder icon is set
+
+
+<a name="2.2.18"></a>
+# 2.2.18 (21.06.2018)
 
 ### Bug Fixes
 * **terra-file-picker** fixed bug with empty initialising on ngModel
+* **terra-node-tree** fixed issues with visibility of nodes in search
+* **terra-portlet** fixed issues with dropdowns being cut off in collapsable portlets.
 
 ### Features
 * **terra-note-editor** added code view
-* **terra-dynamic-switch** added terra-note-editor
+* **terra-dynamic-form** added terra-note-editor
+* **custom tslint rules** added rules to prevent leading underscores, set maximum block depth and restrict getter and setter
+* **terra-file-chooser** added reset button to file chooser
 
 <a name="2.2.16"></a>
 # 2.2.16 (12.06.2018)

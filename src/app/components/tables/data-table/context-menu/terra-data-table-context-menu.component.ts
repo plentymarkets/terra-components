@@ -14,28 +14,29 @@ import { TerraBaseData } from '../../../data/terra-base.data';
 })
 export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 {
-    private _contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
-    private _isShown:boolean = false;
-    private clickListener:(event:Event) => void;
-    private _locationCss:any = {
+    protected contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
+    protected locationCss:any = {
         visibility: 'hidden',
         left:       0,
         top:        0,
         right:      0
     };
 
-    private _mouseLocation:{ left:number, top:number } = {
+    private isShown:boolean = false;
+    private clickListener:(event:Event) => void;
+
+    private mouseLocation:{ left:number, top:number } = {
         left: 0,
         top:  0
     };
 
-    constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
+    constructor(private contextMenuService:TerraDataTableContextMenuService<D>)
     {
-        _contextMenuService.show.subscribe(
+        contextMenuService.show.subscribe(
             (e:any):void => this.showMenu(e.event, e.obj));
 
-        _contextMenuService.init.subscribe(
-            (e:any):void => this._contextMenuLinkList = e
+        contextMenuService.init.subscribe(
+            (e:any):void => this.contextMenuLinkList = e
         );
 
         this.clickListener = (event:Event):void =>
@@ -47,21 +48,21 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 
     public clickedOutside():void
     {
-        this._isShown = false;
-        this._locationCss = this.calcMenuPosition();
+        this.isShown = false;
+        this.locationCss = this.calcMenuPosition();
         document.removeEventListener('click', this.clickListener);
     }
 
     public showMenu(event:MouseEvent, contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>>):void
     {
-        this._isShown = true;
-        this._contextMenuLinkList = contextMenuLinkList;
-        this._mouseLocation = {
+        this.isShown = true;
+        this.contextMenuLinkList = contextMenuLinkList;
+        this.mouseLocation = {
             left: event.clientX,
             top:  event.clientY
         };
 
-        this._locationCss = this.calcMenuPosition();
+        this.locationCss = this.calcMenuPosition();
 
         event.stopPropagation();
         document.addEventListener('click', this.clickListener);
@@ -78,10 +79,10 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
         let contextMenuWidth:number = anchor.width();
         let tableWidth:number;
 
-        let buttomTop:string = this._mouseLocation.top - offsetTop - contextMenuHeight + 'px';
-        let top:string = this._mouseLocation.top - offsetTop - 2 + 'px';
+        let buttomTop:string = this.mouseLocation.top - offsetTop - contextMenuHeight + 'px';
+        let top:string = this.mouseLocation.top - offsetTop - 2 + 'px';
 
-        if(this._mouseLocation.top + contextMenuHeight > innerHeight)
+        if(this.mouseLocation.top + contextMenuHeight > innerHeight)
         {
             isMenuAtBottom = true;
         }
@@ -92,14 +93,14 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 
         tableWidth = dataTableElement.find('tbody').width();
 
-        if(Math.abs(this._mouseLocation.left - offsetLeft - 2) + contextMenuWidth > tableWidth)
+        if(Math.abs(this.mouseLocation.left - offsetLeft - 2) + contextMenuWidth > tableWidth)
         {
             offsetLeft = offsetLeft + contextMenuWidth - 6;
         }
 
         return {
-            visibility: this._isShown ? 'visible' : 'hidden',
-            left:       this._mouseLocation.left - offsetLeft - 2 + 'px',
+            visibility: this.isShown ? 'visible' : 'hidden',
+            left:       this.mouseLocation.left - offsetLeft - 2 + 'px',
             top:        isMenuAtBottom ? buttomTop : top
         };
     }

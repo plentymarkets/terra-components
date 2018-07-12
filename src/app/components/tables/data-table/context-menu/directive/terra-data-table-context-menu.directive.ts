@@ -19,22 +19,23 @@ export class TerraDataTableContextMenuDirective<D extends TerraBaseData> impleme
     @Input('contextMenu')
     public inputLinks:Array<TerraDataTableContextMenuEntryInterface<D>>;
 
-    constructor(private _contextMenuService:TerraDataTableContextMenuService<D>)
+    constructor(private contextMenuService:TerraDataTableContextMenuService<D>)
     {
     }
 
-    @HostListener('contextmenu')
+    @HostListener('contextmenu', ['$event'])
     public rightClicked(event:MouseEvent):void
     {
-        this._contextMenuService.show.next({
+        this.contextMenuService.show.next({
             event: event,
             obj:   this.inputLinks
         });
         event.preventDefault();
+        event.stopPropagation();
     }
 
     public ngOnInit():void
     {
-        this._contextMenuService.init.next(this.inputLinks);
+        this.contextMenuService.init.next(this.inputLinks);
     }
 }

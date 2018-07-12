@@ -87,6 +87,7 @@ export * from './app/components/file-browser/terra-base-storage.interface';
 export * from './app/components/file-browser/terra-frontend-storage.service';
 export * from './app/components/no-result/terra-no-result-notice.component';
 export * from './app/components/editors/note-editor/terra-note-editor.component';
+export * from './app/components/editors/code-editor/terra-code-editor.component';
 export * from './app/components/note/terra-note.component';
 export * from './app/components/forms/slider/terra-slider.component';
 export * from './app/components/tree/node-tree/terra-node-tree.component';
