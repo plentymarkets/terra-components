@@ -331,8 +331,6 @@ export class TerraBaseService
             {
                 let missingPermissions:{ [key:string]:{ [key:string]:string } } = errorFromBody['missing_permissions'];
 
-                console.log(missingPermissions);
-
                 let permissionTranslations:Array<{ [key:string]:string }> = [];
 
                 Object.keys(missingPermissions).forEach((key:string) =>
