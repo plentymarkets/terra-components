@@ -1,3 +1,23 @@
+<a name="X.X.X"></a>
+# X.X.X (XX.XX.2018)
+
+### Bug Fixes
+* **update node-sass** because of a security vulnerability in the previous version
+* **update css-loader** because of a security vulnerability in the previous version
+* **terra-code-editor** code view bug in firefox
+
+<a name="2.3.0"></a>
+# 2.3.0 (10.07.2018)
+
+### Bug Fixes
+* **terra-base-service** remove subscription in `mapRequest()` to make request observables lazy again 
+
+<a name="2.2.25"></a>
+# 2.2.25 (04.07.2018)
+
+### Bug Fixes
+* **terra-button** enable button click again
+
 <a name="2.2.24"></a>
 # 2.2.24 (04.07.2018)
 
