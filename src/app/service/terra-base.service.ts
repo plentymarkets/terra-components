@@ -328,7 +328,7 @@ export class TerraBaseService
     // TODO remove generic if the BaseService get a generic itself
     protected handleLocalDataModelGetList(getRequest$:Observable<Response>):Observable<Array<any>>
     {
-        if(!isNullOrUndefined(this.dataModel))
+        if(Object.keys(this.dataModel).length > 0)
         {
             return of(Object.values(this.dataModel));
         }
