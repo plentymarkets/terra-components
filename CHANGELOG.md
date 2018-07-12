@@ -1,5 +1,8 @@
-<a name="X.X.X"></a>
-# X.X.X (XX.XX.2018)
+<a name="2.3.1"></a>
+# 2.3.1 (12.07.2018)
+
+### Features
+* **terra-base-service** correct handling of error status 403
 
 ### Bug Fixes
 * **update node-sass** because of a security vulnerability in the previous version
