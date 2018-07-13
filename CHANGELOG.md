@@ -1,5 +1,102 @@
-<a name="unreleased"></a>
-# Unreleased
+<a name="2.3.1"></a>
+# 2.3.1 (12.07.2018)
+
+### Features
+* **terra-base-service** correct handling of error status 403
+
+### Bug Fixes
+* **update node-sass** because of a security vulnerability in the previous version
+* **update css-loader** because of a security vulnerability in the previous version
+* **terra-code-editor** code view bug in firefox
+
+<a name="2.3.0"></a>
+# 2.3.0 (10.07.2018)
+
+### Bug Fixes
+* **terra-base-service** remove subscription in `mapRequest()` to make request observables lazy again 
+
+<a name="2.2.25"></a>
+# 2.2.25 (04.07.2018)
+
+### Bug Fixes
+* **terra-button** enable button click again
+
+<a name="2.2.24"></a>
+# 2.2.24 (04.07.2018)
+
+### Bug Fixes
+* **terra-button** stop event propagation on click
+* **terra-data-table** add missing "isFlagged" attribute for buttons in buttoncells
+* **terra-simple-table** added missing alignment of cell text
+
+<a name="2.2.23"></a>
+# 2.2.23 (04.07.2018)
+
+### Features
+* **terra-code-editor** added new component for `html` code editing
+* **terra-dynamic-form** added terra-code-editor
+
+### Bug Fixes
+* **terra-node-tree** optimized search with observable
+* **context-menu** context menu cannot be open
+* **terra-multi-check-box** states of checkbox had not been set initial
+
+<a name="2.2.20"></a>
+# 2.2.20 (26.06.2018)
+
+### Features
+* **terra-card** render div for image only if imagePath or placeholder icon is set
+
+
+<a name="2.2.18"></a>
+# 2.2.18 (21.06.2018)
+
+### Bug Fixes
+* **terra-file-picker** fixed bug with empty initialising on ngModel
+* **terra-node-tree** fixed issues with visibility of nodes in search
+* **terra-portlet** fixed issues with dropdowns being cut off in collapsable portlets.
+
+### Features
+* **terra-note-editor** added code view
+* **terra-dynamic-form** added terra-note-editor
+* **custom tslint rules** added rules to prevent leading underscores, set maximum block depth and restrict getter and setter
+* **terra-file-chooser** added reset button to file chooser
+
+<a name="2.2.16"></a>
+# 2.2.16 (12.06.2018)
+
+### Features
+* **terra-download-helper** added method `downloadFileFromUrl`, which downloads a file from a given url.
+* **converter-helper** remove injectable decorator and replace localeService parameter with the default locale
+* updated the component examples of 
+	* **terra-button-with-options**  	
+	* **terra-note-editor**
+	* **terra-syntax-editor** 
+	* **terra-filter** 
+	* **terra-color-picker**
+	* **terra-info-box** 
+	* **terra-tag** 
+	* **terra-tag-list**
+
+### Bug Fixes
+* **terra-select-box** avoid multipe trigger of value change event if value is the same
+
+<a name="2.2.15"></a>
+# 2.2.15 (06.06.2018)
+
+### Features
+* **terra-text-area-input** component has now an initial height of 4 rows and is vertical resizeable.
+This feature can be disabled by setting the input `inputHasFixedHeight` to true.
+* **terra-time-picker** created new terra-time-picker component
+
+### Bug Fixes
+* **terra-suggestion-box** dropdown closes if user clicked on other suggestion box 
+
+<a name="2.2.13"></a>
+# 2.2.13 (28.05.2018)
+
+### Features
+* **terra-multi-split-view** added routing functionality. You are now able to navigate to a view by a specific url. This feature can be enabled by setting the component's input <code>inputHasRouting</code> to true and passing a routing config to the split view using its config's property <code>routingConfig</code>.
 
 ### Bug Fixes
 * **terra-text-input**
@@ -128,6 +225,7 @@
 # 2.1.65-zlk (05.04.2018)
 
 ### Feature
+* **terra-multi-split-view** added routing functionality. You can now handle view addition/selection via routes. This feature is activated by setting the component's input `inputHasRouting`. Use the config's property `routingConfig` to pass in your routing configuration. 
 * **terra-multi-check-box.interface** property `selected` is now optional
 
 ### Bug Fixes

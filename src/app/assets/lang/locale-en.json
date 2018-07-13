@@ -57,11 +57,25 @@
 	"terraNoteEditor": {
 		"insertText": "Insert text."
 	},
+	"terraCodeEditor":
+	{
+		"changeViewOverlay":
+		{
+			"title":"Unknown code formatting",
+			"text":"Switching to editor view will cause unknown markup formatting to be lost. Are you sure you want to change the view?",
+			"primaryButton":"Switch to editor view",
+			"secondaryButton": "cancel"
+		}
+	},
 	"terraTextInput": {
 		"invalidIban": "IBAN is not valid."
 	},
 	"terraNodeTree":{
 		"search": "Search"
+	},
+	"timepicker": {
+		"minutes": "Minutes",
+		"hours": "Hours"
 	},
 	"terraCategoryPicker": {
 		"select": "Select",
