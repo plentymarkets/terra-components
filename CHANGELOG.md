@@ -1,11 +1,21 @@
-<a name="X.X.X"></a>
-# X.X.X (XX.XX.2018)
+<a name="UNRELEASED"></a>
+# UNRELEASED (??.??.????)
+
+### Bug Fixes
+* **terra-button** "flagged" buttons are now also clickable in the yellow corner
+* **terra-file-list** date 'last modified' will be formatted according to the default language 
+* **terra-file-list** not allowed files will not be shown in the file list 
+
+<a name="2.3.1"></a>
+# 2.3.1 (12.07.2018)
+
+### Features
+* **terra-base-service** correct handling of error status 403
 
 ### Bug Fixes
 * **update node-sass** because of a security vulnerability in the previous version
 * **update css-loader** because of a security vulnerability in the previous version
-* **terra-file-list** date 'last modified' will be formatted according to the default language 
-* **terra-file-list** not allowed files will not be shown in the file list 
+* **terra-code-editor** code view bug in firefox
 
 <a name="2.3.0"></a>
 # 2.3.0 (10.07.2018)
