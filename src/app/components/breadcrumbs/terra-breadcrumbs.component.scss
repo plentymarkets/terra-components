@@ -19,6 +19,19 @@
                 font-weight: var(--font-weight-1);
                 font-size: var(--font-size-1);
                 color: var(--color-structure-0);
+    
+                &.active
+                {
+                    color: var(--color-active);
+                    //text-shadow: 0 1px 4px var(--color-structure-11);
+                    cursor: default;
+                }
+    
+                &:not(.active):hover
+                {
+                    color: var(--color-active);
+                    //text-shadow: 0 1px 4px var(--color-structure-11);
+                }
             }
             
             text-decoration: none;
@@ -32,17 +45,6 @@
             white-space: nowrap;
             
             &:hover
-            {
-                color: var(--color-active);
-                //text-shadow: 0 1px 4px var(--color-structure-11);
-            }
-            &.active
-            {
-                color: var(--color-active);
-                //text-shadow: 0 1px 4px var(--color-structure-11);
-                cursor: default;
-            }
-            &:not(.active):hover
             {
                 color: var(--color-active);
                 //text-shadow: 0 1px 4px var(--color-structure-11);

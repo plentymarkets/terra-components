@@ -5,7 +5,9 @@
                 <div>
                     <a class="ellipsis"
                        [routerLink]="container.currentSelectedBreadcrumb.routerLink"
-                       [routerLinkActive]="'active'">{{container.currentSelectedBreadcrumb.name}}</a>
+                       [ngClass]="{'active' : breadcrumbsService.checkActiveRoute(container.currentSelectedBreadcrumb)}">
+                        {{container.currentSelectedBreadcrumb.name}}
+                    </a>
                     <a class="icon-caret" *ngIf="container.breadcrumbList.length > 1">
                         <ul class="context-menu">
                             <ng-template ngFor let-breadcrumb [ngForOf]="container.breadcrumbList" let-i="index">
