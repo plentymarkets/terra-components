@@ -1,3 +1,9 @@
+<a name="UNRELEASED"></a>
+# UNRELEASED (??.??.????)
+
+### Bug Fixes
+* **terra-button** "flagged" buttons are now also clickable in the yellow corner
+
 <a name="2.3.1"></a>
 # 2.3.1 (12.07.2018)
 
