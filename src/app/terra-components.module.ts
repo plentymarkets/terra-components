@@ -211,7 +211,6 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraCategoryPickerComponent,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
-        TerraCategoryPickerComponent,
         TerraNestedDataPickerComponent,
 
         // ### declarations of terra-components examples
@@ -367,7 +366,6 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraCategoryPickerComponent,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
-        TerraCategoryPickerComponent,
         TerraNestedDataPickerComponent,
 
         // ### declarations of terra-components examples

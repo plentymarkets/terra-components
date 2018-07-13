@@ -15,7 +15,7 @@ import { NestedValueInterface } from './data/nested-value.interface';
 import { TerraNestedDataPickerBaseService } from './service/terra-nested-data-picker-base.service';
 import { Observable } from 'rxjs/Observable';
 import { forEach } from '@angular/router/src/utils/collection';
-import { TerraNodeTreeConfig } from '../../..';
+import { TerraNodeTreeConfig } from '../../components/tree/node-tree/data/terra-node-tree.config';
 
 @Component({
    selector:  'terra-nested-data-picker',
