@@ -37,81 +37,92 @@ export class TerraBreadcrumbsService
                     let shortUrl:string = event.urlAfterRedirects.replace('/' + this.initialPath + '/', '');
                     let route:Route = this.findRouteByFlatPath(shortUrl, initialRoute.children);
 
-                    let label:string = this.translation.translate(route.data.label);
-
-                    // TODO maybe save all id's for breadcrumb handling
-                    let id:number = route.data['idForBreadcrumb'];
-
-                    if(!isNullOrUndefined(id))
-                    {
-                        label = label + ' ' + id;
-                    }
-
-                    this.emit(new TerraBreadcrumb(label, route.path, event.urlAfterRedirects, id));
+                    this.emit(route, event.urlAfterRedirects);
                 }
             }
         });
     }
 
-    private emit(breadcrumb:TerraBreadcrumb):void
+    private emit(route:Route, url:string):void
     {
+        let label:string = this.translation.translate(route.data.label);
+
+        let idList:Array<number> = route.data['idList'];
+
+        if(!isNullOrUndefined(idList) && !isNullOrUndefined(idList[idList.length - 1]))
+        {
+            label = label + ' ' + idList[idList.length - 1];
+        }
+
         let foundBreadcrumbContainer:TerraBreadcrumbContainer =
             this.breadcrumbContainer.find((bcc:TerraBreadcrumbContainer) =>
             {
-                return bcc.parameterisedRoute === breadcrumb.parameterisedRoute;
+                return bcc.parameterisedRoute === route.path;
             });
 
         if(isNullOrUndefined(foundBreadcrumbContainer))
         {
-            let newContainer:TerraBreadcrumbContainer = new TerraBreadcrumbContainer(breadcrumb.parameterisedRoute);
+            let newContainer:TerraBreadcrumbContainer = new TerraBreadcrumbContainer(route.path);
             this.breadcrumbContainer.push(newContainer);
 
-            this.createBreadcrumbIdentifier(newContainer, breadcrumb);
+            let breadcrumb:TerraBreadcrumb = new TerraBreadcrumb(label, route.path, url, idList[0]);
 
-            //newContainer.currentSelectedBreadcrumb = breadcrumb;
             newContainer.breadcrumbList.push(breadcrumb);
+
+            newContainer.currentSelectedBreadcrumb = breadcrumb;
         }
         else
         {
             let foundBreadcrumb:TerraBreadcrumb = foundBreadcrumbContainer.breadcrumbList.find((bc:TerraBreadcrumb) =>
             {
-                return bc.routerLink === breadcrumb.routerLink;
+                return bc.routerLink === url;
             });
 
             if(isNullOrUndefined(foundBreadcrumb))
             {
+                let breadcrumb:TerraBreadcrumb = new TerraBreadcrumb(label, route.path, url, idList[0]);
+
                 foundBreadcrumbContainer.breadcrumbList.push(breadcrumb);
-                this.createBreadcrumbIdentifier(foundBreadcrumbContainer, breadcrumb);
+
+                foundBreadcrumbContainer.currentSelectedBreadcrumb = breadcrumb;
+
+                this.handleVisibleBreadcrumbContainer(breadcrumb, foundBreadcrumbContainer);
             }
             else
             {
-                this.createBreadcrumbIdentifier(foundBreadcrumbContainer, foundBreadcrumb);
-            }
+                foundBreadcrumbContainer.currentSelectedBreadcrumb = foundBreadcrumb;
 
-            let index:number = this.breadcrumbContainer.indexOf(foundBreadcrumbContainer);
-
-            if(index > -1)
-            {
-                for(let i:number = index; i < this.breadcrumbContainer.length; i++)
-                {
-                    let container:TerraBreadcrumbContainer = this.breadcrumbContainer[i];
-
-                    //TODO not working properly
-                    container.isHidden = container.parameterisedRoute !== breadcrumb.parameterisedRoute &&
-                                         !isNullOrUndefined(container.currentSelectedBreadcrumb.id) &&
-                                         !isNullOrUndefined(breadcrumb.id) &&
-                                         container.currentSelectedBreadcrumb.id !== breadcrumb.id;
-                }
+                this.handleVisibleBreadcrumbContainer(foundBreadcrumb, foundBreadcrumbContainer);
             }
         }
 
-        this.selectedBreadcrumbForAllContainer(breadcrumb.id);
+        this.selectedBreadcrumbForAllContainer(idList[0]);
+    }
+
+    private handleVisibleBreadcrumbContainer(breadcrumb:TerraBreadcrumb, breadcrumbContainer:TerraBreadcrumbContainer):void
+    {
+        let index:number = this.breadcrumbContainer.indexOf(breadcrumbContainer);
+
+        if(index > -1)
+        {
+            for(let i:number = index; i < this.breadcrumbContainer.length; i++)
+            {
+                let container:TerraBreadcrumbContainer = this.breadcrumbContainer[i];
+
+                container.isHidden = container.parameterisedRoute !== breadcrumb.parameterisedRoute &&
+                                     !isNullOrUndefined(container.currentSelectedBreadcrumb.id) &&
+                                     !isNullOrUndefined(breadcrumb.id) &&
+                                     container.currentSelectedBreadcrumb.id !== breadcrumb.id;
+            }
+        }
     }
 
     private selectedBreadcrumbForAllContainer(id:number):void
     {
-        this.breadcrumbContainer.forEach((bcc:TerraBreadcrumbContainer)=>{
-            bcc.breadcrumbList.forEach((bc:TerraBreadcrumb)=>{
+        this.breadcrumbContainer.forEach((bcc:TerraBreadcrumbContainer) =>
+        {
+            bcc.breadcrumbList.forEach((bc:TerraBreadcrumb) =>
+            {
                 if(bc.id === id)
                 {
                     bcc.currentSelectedBreadcrumb = bc;
@@ -119,30 +130,6 @@ export class TerraBreadcrumbsService
                 }
             });
         });
-    }
-
-    private createBreadcrumbIdentifier(breadcrumbContainer:TerraBreadcrumbContainer, breadcrumb:TerraBreadcrumb):void
-    {
-        if(isNullOrUndefined(breadcrumbContainer))
-        {
-            return;
-        }
-
-        let index:number = this.breadcrumbContainer.indexOf(breadcrumbContainer);
-
-        let parentBreadcrumbContainer:TerraBreadcrumbContainer;
-        // -1 is not in list, 0 is first -> ignore it
-        if(index > 0)
-        {
-            parentBreadcrumbContainer = this.breadcrumbContainer[index - 1];
-        }
-
-        if(!isNullOrUndefined(parentBreadcrumbContainer) &&
-           !isNullOrUndefined(parentBreadcrumbContainer.currentSelectedBreadcrumb) &&
-           !isNullOrUndefined(parentBreadcrumbContainer.currentSelectedBreadcrumb.id))
-        {
-            breadcrumb.id = parentBreadcrumbContainer.currentSelectedBreadcrumb.id;
-        }
     }
 
     public findRouteByFlatPath(flatPath:string, routeConfig:Routes):Route
@@ -159,7 +146,7 @@ export class TerraBreadcrumbsService
 
             let splittedFlatPath:Array<string> = flatPath.split('/');
 
-            let indexForId:number;
+            let idList:Array<number> = [];
 
             if(splittedFlatPath.length === splittedRoutePath.length)
             {
@@ -168,18 +155,16 @@ export class TerraBreadcrumbsService
                     if(path.startsWith(':'))
                     {
                         // could be overwritten to get the last id of parameterised route
-                        indexForId = splittedRoutePath.indexOf(path);
+                        let index:number = splittedRoutePath.indexOf(path);
 
-                        parameterisedRoutes[path] = indexForId;
+                        idList.push(+splittedFlatPath[index]);
+
+                        parameterisedRoutes[path] = index;
                     }
                 }
             }
 
-            // TODO maybe save all id's for breadcrumb handling
-            if(!isNullOrUndefined(indexForId) && route.data['idForBreadcrumb'] !== splittedFlatPath[indexForId])
-            {
-                route.data['idForBreadcrumb'] = splittedFlatPath[indexForId];
-            }
+            route.data['idList'] = idList;
 
             Object.keys(parameterisedRoutes).forEach((key:string) =>
             {
