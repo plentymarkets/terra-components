@@ -87,7 +87,6 @@ import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
 import { TerraTimePickerComponent } from './components/forms/input/time-picker/terra-time-picker.component';
-import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
 import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
 import { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra-dynamic-form.component';
 import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
@@ -145,7 +144,6 @@ import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/m
 import { RouterModule } from '@angular/router';
 import { TerraTimePickerComponentExample } from './components/forms/input/time-picker/example/terra-time-picker.component.example';
 import { TerraTwoColumnsContainerComponent } from './components/layouts/column-container/terra-two-columns-container.component';
-import { Type } from '@angular/core/src/type';
 
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
@@ -488,8 +486,23 @@ export class TerraComponentsModule
         };
     }
 
-    public static forChild():Type<any>
+    public static forChild():ModuleWithProviders
     {
-        return TerraComponentsModule;
+        return {
+            ngModule:  TerraComponentsModule,
+            providers: [
+                TerraLoadingSpinnerService,
+                TerraDataTableContextMenuService,
+                TerraBaseService,
+                TerraNavigatorSplitViewConfig,
+                TerraUrlParamsDecorator,
+                TerraFrontendStorageService,
+                TerraAlertComponent,
+                TerraDynamicFormService,
+                TerraFormFieldControlService,
+                TerraJsonToFormFieldService,
+                TerraMultiSplitViewBreadcrumbsService
+            ]
+        };
     }
 }
