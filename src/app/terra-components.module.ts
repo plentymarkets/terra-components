@@ -144,6 +144,7 @@ import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/m
 import { RouterModule } from '@angular/router';
 import { TerraTimePickerComponentExample } from './components/forms/input/time-picker/example/terra-time-picker.component.example';
 import { TerraTwoColumnsContainerComponent } from './components/layouts/column-container/terra-two-columns-container.component';
+import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
 
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
@@ -499,6 +500,7 @@ export class TerraComponentsModule
                 TerraFrontendStorageService,
                 TerraAlertComponent,
                 TerraDynamicFormService,
+                CategoryTreeConfig,
                 TerraFormFieldControlService,
                 TerraJsonToFormFieldService,
                 TerraMultiSplitViewBreadcrumbsService
