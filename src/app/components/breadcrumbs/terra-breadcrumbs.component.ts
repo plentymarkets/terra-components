@@ -8,6 +8,7 @@ import {
 } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 import { TerraBreadcrumb } from './terra-breadcrumb';
+import { TerraBreadcrumbContainer } from './terra-breadcrumb-container';
 
 @Component(
     {
@@ -19,11 +20,11 @@ import { TerraBreadcrumb } from './terra-breadcrumb';
 )
 export class TerraBreadcrumbsComponent
 {
-    constructor(protected breadcrumbsService:TerraBreadcrumbsService, private activatedRoute:ActivatedRoute, private router:Router)
+    constructor(private breadcrumbsService:TerraBreadcrumbsService, private activatedRoute:ActivatedRoute, private router:Router)
     {
-        console.log(this.getCompletePathByRoute(this.activatedRoute.snapshot.routeConfig, this.router.config, ''));
-        this.breadcrumbsService.initialPath =
-            this.getCompletePathByRoute(this.activatedRoute.snapshot.routeConfig, this.router.config, '');
+        let completePath:string = this.getCompletePathByRoute(this.activatedRoute.snapshot.routeConfig, this.router.config, '');
+        console.log(completePath);
+        this.breadcrumbsService.initialPath = completePath;
     }
 
     // identical code exists in TerraRouterHelper in terra
@@ -62,6 +63,11 @@ export class TerraBreadcrumbsComponent
         return path;
     }
 
+    protected get breadcrumbContainer():Array<TerraBreadcrumbContainer>
+    {
+        return this.breadcrumbsService.breadcrumbContainer;
+    }
+
     protected removeBreadcrumb(child:TerraBreadcrumb):void
     {
 
@@ -71,4 +77,11 @@ export class TerraBreadcrumbsComponent
     {
         this.breadcrumbsService.updateBreadcrumb(child);
     }
+
+    protected checkActiveRoute(bcc:TerraBreadcrumb):boolean
+    {
+        return this.breadcrumbsService.checkActiveRoute(bcc);
+    }
+
+
 }

@@ -7,7 +7,10 @@ import {
     RouterEvent,
     Routes
 } from '@angular/router';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
 import { TranslationService } from 'angular-l10n';
 import { TerraBreadcrumbContainer } from '../terra-breadcrumb-container';
@@ -15,32 +18,36 @@ import { TerraBreadcrumbContainer } from '../terra-breadcrumb-container';
 @Injectable()
 export class TerraBreadcrumbsService
 {
-    public initialPath:string;
-
     public breadcrumbs:Array<TerraBreadcrumb> = [];
     public breadcrumbContainer:Array<TerraBreadcrumbContainer> = [];
+
+    private _initialPath:string;
+    private initialRoute:Route;
 
     constructor(private router:Router,
                 private translation:TranslationService)
     {
         this.router.events.filter((event:RouterEvent) =>
         {
-            return event instanceof NavigationEnd;
+            return event instanceof NavigationEnd // navigation is done
+                   && !isNullOrUndefined(this._initialPath) // initialPath is set
+                   && event.urlAfterRedirects.startsWith('/' + this._initialPath); // url starts with the intial path
         }).subscribe((event:NavigationEnd) =>
         {
-            if(!isNullOrUndefined(this.initialPath) && event.urlAfterRedirects.startsWith('/' + this.initialPath))
+            if(!isNullOrUndefined(this.initialRoute.children))
             {
-                let initialRoute:Route = this.getRouteForUrlParts(this.initialPath.split('/'), this.router.config);
+                let shortUrl:string = event.urlAfterRedirects.replace('/' + this._initialPath + '/', '');
+                let route:Route = this.findRouteByFlatPath(shortUrl, this.initialRoute.children);
 
-                if(!isNullOrUndefined(initialRoute.children))
-                {
-                    let shortUrl:string = event.urlAfterRedirects.replace('/' + this.initialPath + '/', '');
-                    let route:Route = this.findRouteByFlatPath(shortUrl, initialRoute.children);
-
-                    this.emit(route, event.urlAfterRedirects);
-                }
+                this.emit(route, event.urlAfterRedirects);
             }
         });
+    }
+
+    public set initialPath(value:string)
+    {
+        this._initialPath = value;
+        this.initialRoute = this.getRouteForUrlParts(this._initialPath.split('/'), this.router.config);
     }
 
     private emit(route:Route, url:string):void
