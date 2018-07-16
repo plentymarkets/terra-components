@@ -3,6 +3,7 @@
 ### Feature
 * **terra-download-helper** open document / download in new tab (download-helper)
 * **terra-2-col** added. A lightweight 2 column container.
+* **terra-indicator** added TerraIndicatorLabelTypeEnum and TerraIndicatorInterface for clearer usage
 
 ### Bug Fixes
 * **terra-button** "flagged" buttons are now also clickable in the yellow corner
