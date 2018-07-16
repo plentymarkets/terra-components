@@ -1,5 +1,8 @@
-<a name="UNRELEASED"></a>
 # UNRELEASED (??.??.????)
+
+### Feature
+* **terra-download-helper** open document / download in new tab (download-helper)
+* **terra-2-col** added. A lightweight 2 column container.
 
 ### Bug Fixes
 * **terra-button** "flagged" buttons are now also clickable in the yellow corner

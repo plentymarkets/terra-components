@@ -143,3 +143,4 @@ export * from './app/components/split-view/multi/injectables/terra-multi-split-v
 export * from './app/helpers/query-param.helper';
 export * from './app/helpers/number.helper';
 export * from './app/validators/decimal/terra-decimal-validator';
+export * from './app/components/layouts/column-container/terra-two-columns-container.component';
