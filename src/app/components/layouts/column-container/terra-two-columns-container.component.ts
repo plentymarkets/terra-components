@@ -20,7 +20,7 @@ export class TerraTwoColumnsContainerComponent
     private readonly colLG:string = 'col-lg-';
     private readonly spacer:string = ' ';
     private readonly maxColumnWidth:number = 12;
-    private _leftColumnWidth:number = 12;
+    private _leftColumnWidth:number = 2;
 
     @Input()
     public set leftColumnWidth(leftColumnWidth:number)
