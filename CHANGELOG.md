@@ -1,5 +1,7 @@
-<a name="UNRELEASED"></a>
 # UNRELEASED (??.??.????)
+
+### Feature
+* **terra-download-helper** open document / download in new tab (download-helper)
 
 ### Bug Fixes
 * **terra-button** "flagged" buttons are now also clickable in the yellow corner
