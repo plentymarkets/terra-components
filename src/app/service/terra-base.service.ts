@@ -15,8 +15,6 @@ import {
 import { TerraAlertComponent } from '../components/alert/terra-alert.component';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
-import { tap } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
 
 
 /**
@@ -27,8 +25,6 @@ export class TerraBaseService
 {
     public headers:Headers;
     public url:string;
-
-    protected dataModel:{ [dataId:number]:any} = {};
 
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
