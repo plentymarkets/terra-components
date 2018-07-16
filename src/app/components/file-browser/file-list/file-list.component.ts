@@ -13,11 +13,10 @@ import {
     ViewChild
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import * as moment from 'moment';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
 import { TerraFileBrowserService } from '../terra-file-browser.service';
-import { TranslationService } from 'angular-l10n';
+import { DefaultLocale, L10nDatePipe, TranslationService } from 'angular-l10n';
 import { TerraUploadProgress } from '../model/terra-upload-progress';
 import {
     isNull,
@@ -228,6 +227,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private _fileTableRowList:Array<TerraSimpleTableRowInterface<TerraStorageObject>> = [];
 
+    private datePipe:L10nDatePipe = new L10nDatePipe();
+
+    @DefaultLocale()
+    private defaultLocale:string;
+
     constructor(private _changeDetector:ChangeDetectorRef,
                 private _fileBrowserService:TerraFileBrowserService,
                 private _translationService:TranslationService,
@@ -369,7 +373,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             {
                 return objectA.name.localeCompare(objectB.name);
             }
-        ).map((storageObject:TerraStorageObject) =>
+        ).filter((storageObject:TerraStorageObject) => this.isAllowed(storageObject.key))
+        .map((storageObject:TerraStorageObject) =>
         {
             return this.createTableRow(storageObject);
         });
@@ -400,7 +405,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 caption: storageObject.isFile ? storageObject.sizeString : ''
             },
             {
-                caption: storageObject.isFile ? moment(storageObject.lastModified).format('YYYY-MM-DD HH:mm') : ''
+                caption: storageObject.isFile ? this.datePipe.transform(storageObject.lastModified, this.defaultLocale, 'medium') : ''
             }
         );
 

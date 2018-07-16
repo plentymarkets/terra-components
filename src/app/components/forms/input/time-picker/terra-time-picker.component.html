@@ -1,0 +1,14 @@
+<div class="input-unit-v1 timeFormatGroup"
+     [class.disabled]="inputIsDisabled">
+    <terra-select-box
+                      class="time"
+                      [(ngModel)]="hours"
+                      [inputListBoxValues]="valuesHours"
+                      [inputName]="'timepicker.hours' |  translate:lang">
+    </terra-select-box>
+    <terra-select-box class="time"
+                      [(ngModel)]="minutes"
+                      [inputListBoxValues]="valuesMinutes"
+                      [inputName]="'timepicker.minutes' |  translate:lang">
+    </terra-select-box>
+</div>

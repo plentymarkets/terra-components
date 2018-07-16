@@ -124,7 +124,8 @@ gulp.task('clean-dist', function () {
 gulp.task('compile-ts', function () {
     var sourceTsFiles = [
         config.excluded,
-        config.allTs
+        config.allTs,
+        config.customLintRules
     ];
 
     var tsResult = gulp.src(sourceTsFiles)

@@ -16,6 +16,7 @@ import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
 import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.component';
 import { TerraOverlayButtonInterface } from '../../../layouts/overlay/data/terra-overlay-button.interface';
+import { StringHelper } from '../../../../helpers/string.helper';
 
 let nextId:number = 0;
 
@@ -108,7 +109,7 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     public isWebImage(filename:string):boolean
     {
-        return !isNullOrUndefined(filename) && FileTypeHelper.isWebImage(filename);
+        return !StringHelper.isNullUndefinedOrEmpty(filename) && FileTypeHelper.isWebImage(filename);
     }
 
     public getFilename(path:string):string
@@ -118,5 +119,10 @@ export class TerraFileInputComponent extends TerraInputComponent
             return '';
         }
         return PathHelper.basename(path);
+    }
+
+    public resetValue():void
+    {
+        this.value = '';
     }
 }

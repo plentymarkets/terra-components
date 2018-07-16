@@ -16,7 +16,7 @@
                     [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                     [tooltip]="header.tooltipText"
                     [isDisabled]="!header.tooltipText || header.tooltipText.length == 0"
-                    [ngStyle]="{ 'text-align': header.textAlign } ">
+                    [ngStyle]="{ 'text-align': getTextAlign(header) }">
                     <span>{{header.caption}}</span>
                 </th>
             </ng-template>
@@ -43,6 +43,7 @@
                         width="{{ inputHeaderList[i].width }}"
                         [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
                         [tooltip]="tdTooltip"
+                        [ngStyle]="{ 'text-align': getTextAlign(headerList[i]) }"
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0">
                         <span [ngClass]="cell.icon"></span>
                         <span [innerHTML]="cell.caption"></span>
