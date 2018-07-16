@@ -2,7 +2,6 @@
 
 ### Features
 * **terra-2-col** added. A lightweight 2 column container.
-* **terra-breadcrumbs** added. Breadcrumbs using router and routerLink.
 
 <a name="2.3.1"></a>
 # 2.3.1 (12.07.2018)

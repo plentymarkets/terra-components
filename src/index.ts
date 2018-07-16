@@ -142,6 +142,3 @@ export * from './app/helpers/download.helper';
 export * from './app/components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
 export * from './app/helpers/query-param.helper';
 export * from './app/components/layouts/column-container/terra-two-columns-container.component';
-export * from './app/components/breadcrumbs/terra-breadcrumbs.component';
-export * from './app/components/breadcrumbs/terra-breadcrumb';
-export * from './app/components/breadcrumbs/service/terra-breadcrumbs.service';
