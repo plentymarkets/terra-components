@@ -27,8 +27,8 @@ export class TerraTwoColumnsContainerComponent
     {
         if(leftColumnWidth > 12 || leftColumnWidth < 1)
         {
-            console.error('Input leftColumnWidth is greater then 12 or lower than 1. It is set so 12 or 1 to prevent invalid rendering. ' +
-                          'Please check your input value to avoid these error.');
+            console.error('Given value for Input leftColumnWidth is lower than 1 or greater than 12. ' +
+                          'It has been limited to this range to prevent invalid rendering. Please check your input value to avoid this error.');
         }
 
         this._leftColumnWidth = Math.min(this.maxColumnWidth, Math.max(1, leftColumnWidth));
