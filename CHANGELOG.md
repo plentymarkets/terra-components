@@ -1,7 +1,13 @@
-# Unreleased
+# UNRELEASED (??.??.????)
 
-### Features
+### Feature
+* **terra-download-helper** open document / download in new tab (download-helper)
 * **terra-2-col** added. A lightweight 2 column container.
+
+### Bug Fixes
+* **terra-button** "flagged" buttons are now also clickable in the yellow corner
+* **terra-file-list** date 'last modified' will be formatted according to the default language 
+* **terra-file-list** not allowed files will not be shown in the file list 
 
 <a name="2.3.1"></a>
 # 2.3.1 (12.07.2018)
