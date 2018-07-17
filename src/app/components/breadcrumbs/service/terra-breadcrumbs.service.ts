@@ -31,7 +31,7 @@ export class TerraBreadcrumbsService
         {
             return event instanceof NavigationEnd // navigation is done
                    && !isNullOrUndefined(this._initialPath) // initialPath is set
-                   && event.urlAfterRedirects.startsWith('/' + this._initialPath); // url starts with the intial path
+                   && event.urlAfterRedirects.startsWith('/' + this._initialPath); // url starts with the initial path
         }).subscribe((event:NavigationEnd) =>
         {
             if(!isNullOrUndefined(this.initialRoute.children))
