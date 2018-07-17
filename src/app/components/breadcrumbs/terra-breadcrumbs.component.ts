@@ -65,7 +65,7 @@ export class TerraBreadcrumbsComponent
 
     protected get breadcrumbContainer():Array<TerraBreadcrumbContainer>
     {
-        return this.breadcrumbsService.breadcrumbContainerList;
+        return this.breadcrumbsService.breadcrumbContainer;
     }
 
     protected closeBreadcrumb(container:TerraBreadcrumbContainer, child:TerraBreadcrumb, event:Event):void
