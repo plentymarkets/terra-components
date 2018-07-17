@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { isNullOrUndefined } from 'util';
 import { NestedDataInterface } from '../../../nested-data-picker/data/nested-data.interface';
 import { TerraNestedDataPickerBaseService } from '../../../nested-data-picker/service/terra-nested-data-picker-base.service';
+import { Observer } from 'rxjs';
 @Injectable()
 export class NestedPickerExampleService extends TerraNestedDataPickerBaseService<{}>
 {
@@ -43,7 +44,6 @@ export class NestedPickerExampleService extends TerraNestedDataPickerBaseService
     public requestNestedData():Observable<Array<NestedDataInterface<{}>>>
     {
         let nestedData:Array<NestedDataInterface<{}>> = [];
-        let observable:Observable<Array<NestedDataInterface<{}>>> ;
         Object.getOwnPropertyNames(this.results).map((key:string) =>
         {
             let nestedDataEntry:NestedDataInterface < {} > = {
@@ -65,11 +65,10 @@ export class NestedPickerExampleService extends TerraNestedDataPickerBaseService
             }
             nestedData.push(nestedDataEntry);
         });
-        observable = new Observable((observer) =>
+        return Observable.create((observer:Observer<Array<NestedDataInterface<{}>>>) =>
         {
             observer.next(nestedData);
             observer.complete();
         });
-        return observable;
     }
 }
