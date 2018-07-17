@@ -162,7 +162,6 @@ export class TerraBreadcrumbsService
                 {
                     if(path.startsWith(':'))
                     {
-                        // could be overwritten to get the last id of parameterised route
                         let index:number = splittedRoutePath.indexOf(path);
 
                         idList.push(+splittedFlatPath[index]);
@@ -172,6 +171,7 @@ export class TerraBreadcrumbsService
                 }
             }
 
+            // save all ID's from current route into array
             route.data['idList'] = idList;
 
             Object.keys(parameterisedRoutes).forEach((key:string) =>
