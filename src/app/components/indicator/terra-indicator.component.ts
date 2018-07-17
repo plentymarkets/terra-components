@@ -5,12 +5,12 @@ import {
 
 export enum TerraIndicatorLabelTypeEnum
 {
-    DEFAULT = 'default',
-    PRIMARY = 'primary',
-    SUCCESS = 'success',
-    INFO = 'info',
-    WARNING = 'warning',
-    DANGER = 'danger',
+    default = 'default',
+    primary = 'primary',
+    success = 'success',
+    info = 'info',
+    warning = 'warning',
+    danger = 'danger',
 }
 
 export interface TerraIndicatorInterface
@@ -34,6 +34,6 @@ export class TerraIndicatorComponent
 
     constructor()
     {
-        this.inputType = TerraIndicatorLabelTypeEnum.DEFAULT;
+        this.inputType = TerraIndicatorLabelTypeEnum.default;
     }
 }
