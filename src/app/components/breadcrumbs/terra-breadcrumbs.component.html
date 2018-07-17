@@ -12,10 +12,10 @@
                         <ul class="context-menu">
                             <ng-template ngFor let-breadcrumb [ngForOf]="container.breadcrumbList" let-i="index">
                                 <li>
-                                    <a [routerLink]="breadcrumb.routerLink" (click)="updateBreadcrumb(breadcrumb)">
+                                    <a [routerLink]="breadcrumb.routerLink">
                                         {{ breadcrumb.name }}
-                                        <span class="right-icon icon-cancel" (click)="removeBreadcrumb(breadcrumb)"></span>
                                     </a>
+                                    <span class="right-icon icon-cancel" (click)="closeBreadcrumb(container, breadcrumb, $event)"></span>
                                 </li>
                             </ng-template>
                         </ul>
