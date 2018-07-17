@@ -89,12 +89,14 @@ export class TerraBreadcrumbsService
             label = label + ' ' + idList[idList.length - 1];
         }
 
+        // search for existing container
         let foundBreadcrumbContainer:TerraBreadcrumbContainer =
             this._breadcrumbContainer.find((bcc:TerraBreadcrumbContainer) =>
             {
                 return bcc.parameterisedRoute === route.path;
             });
 
+        // if not found  create new container with new breadcrumb
         if(isNullOrUndefined(foundBreadcrumbContainer))
         {
             let newContainer:TerraBreadcrumbContainer = new TerraBreadcrumbContainer(route.path);
@@ -108,11 +110,13 @@ export class TerraBreadcrumbsService
         }
         else
         {
+            // search for existing breadcrumb
             let foundBreadcrumb:TerraBreadcrumb = foundBreadcrumbContainer.breadcrumbList.find((bc:TerraBreadcrumb) =>
             {
                 return bc.routerLink === url;
             });
 
+            // breadcrumb not found
             if(isNullOrUndefined(foundBreadcrumb))
             {
                 let breadcrumb:TerraBreadcrumb = new TerraBreadcrumb(label, route.path, url, idList[0]);
@@ -189,7 +193,6 @@ export class TerraBreadcrumbsService
                 {
                     if(path.startsWith(':'))
                     {
-                        // could be overwritten to get the last id of parameterised route
                         let index:number = splittedRoutePath.indexOf(path);
 
                         idList.push(+splittedFlatPath[index]);
@@ -199,6 +202,7 @@ export class TerraBreadcrumbsService
                 }
             }
 
+            // save all ID's from current route into array
             route.data['idList'] = idList;
 
             Object.keys(parameterisedRoutes).forEach((key:string) =>
@@ -257,7 +261,34 @@ export class TerraBreadcrumbsService
         });
     }
 
-    public updateBreadcrumb(breadcrumb:TerraBreadcrumb):void
+    public closeBreadcrumb(breadcrumbContainer:TerraBreadcrumbContainer, breadcrumb:TerraBreadcrumb):void
     {
+        let breadcrumbList:Array<TerraBreadcrumb> = breadcrumbContainer.breadcrumbList;
+
+        // search breadcrumb
+        let index:number = breadcrumbList.indexOf(breadcrumb);
+
+        breadcrumbList.splice(index, 1);
+
+        // search for previous breadcrumb
+        let previousBreadcrumb:TerraBreadcrumb = breadcrumbList[breadcrumbList.length - 1];
+
+        if(isNullOrUndefined(previousBreadcrumb))
+        {
+            let bccIndex:number = this._breadcrumbContainer.indexOf(breadcrumbContainer);
+
+            let previousBreadcrumbContainer:TerraBreadcrumbContainer = this._breadcrumbContainer[bccIndex - 1];
+
+            if(!isNullOrUndefined(previousBreadcrumbContainer))
+            {
+                this.router.navigateByUrl(previousBreadcrumbContainer.currentSelectedBreadcrumb.routerLink);
+            }
+
+            this._breadcrumbContainer.splice(bccIndex, 1);
+        }
+        else if(previousBreadcrumb !== breadcrumb)
+        {
+            this.router.navigateByUrl(previousBreadcrumb.routerLink);
+        }
     }
 }

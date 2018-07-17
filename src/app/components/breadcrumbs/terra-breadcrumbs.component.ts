@@ -68,14 +68,11 @@ export class TerraBreadcrumbsComponent
         return this.breadcrumbsService.breadcrumbContainer;
     }
 
-    protected removeBreadcrumb(child:TerraBreadcrumb):void
+    protected closeBreadcrumb(container:TerraBreadcrumbContainer, child:TerraBreadcrumb, event:Event):void
     {
+        event.stopPropagation();
 
-    }
-
-    protected updateBreadcrumb(child:TerraBreadcrumb):void
-    {
-        this.breadcrumbsService.updateBreadcrumb(child);
+        this.breadcrumbsService.closeBreadcrumb(container, child);
     }
 
     protected checkActiveRoute(bcc:TerraBreadcrumb):boolean
