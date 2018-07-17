@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { TerraBreadcrumb } from '../terra-breadcrumb';
 import {
+    ActivatedRoute,
+    ActivatedRouteSnapshot,
     NavigationEnd,
     Route,
     Router,
@@ -22,7 +24,8 @@ export class TerraBreadcrumbsService
     private initialRoute:Route;
 
     constructor(private router:Router,
-                private translation:TranslationService)
+                private translation:TranslationService,
+                private activatedRoute:ActivatedRoute)
     {
         this.router.events.filter((event:RouterEvent) =>
         {
@@ -49,7 +52,18 @@ export class TerraBreadcrumbsService
 
     private emit(route:Route, url:string):void
     {
-        let label:string = this.translation.translate(route.data.label);
+        let label:string;
+
+        if(typeof route.data.label === 'function')
+        {
+            let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
+
+            label = this.translation.translate(route.data.label(activatedSnapshot.data));
+        }
+        else
+        {
+            label = this.translation.translate(route.data.label);
+        }
 
         let idList:Array<number> = route.data['idList'];
 
@@ -123,6 +137,17 @@ export class TerraBreadcrumbsService
                                      container.currentSelectedBreadcrumb.id !== breadcrumb.id;
             }
         }
+    }
+
+    // same exists in TerraRouterHelper
+    public findActivatedRouteSnapshot(activatedRouteSnapshot:ActivatedRouteSnapshot):ActivatedRouteSnapshot
+    {
+        if(!isNullOrUndefined(activatedRouteSnapshot.firstChild))
+        {
+            return this.findActivatedRouteSnapshot(activatedRouteSnapshot.firstChild);
+        }
+
+        return activatedRouteSnapshot;
     }
 
     private selectedBreadcrumbForAllContainer(id:number):void
