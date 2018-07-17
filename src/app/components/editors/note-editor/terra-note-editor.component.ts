@@ -1,16 +1,10 @@
 import {
     Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output
+    ElementRef
 } from '@angular/core';
 import { TranslationService } from 'angular-l10n';
-import {
-    ControlValueAccessor,
-    NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
 
 @Component({
     selector:  'terra-note-editor',
@@ -27,36 +21,27 @@ import {
         multi:       true
     }]
 })
-export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
+export class TerraNoteEditorComponent extends TerraBaseEditorComponent
 {
-    @Input()
-    public inputPlaceholder:string;
 
-    @Output()
-    public ngModelChange:EventEmitter<string> = new EventEmitter();
-
-    private _placeholder:string;
-    private _value:string;
-    private _modules:{ [index:string]:Object };
-
-    constructor(private translation:TranslationService,
-                private _myElement:ElementRef)
+    constructor(protected translation:TranslationService, protected myElement:ElementRef)
     {
+        super(translation, myElement);
         // initialize placeholder
-        this._placeholder = this.translation.translate('terraNoteEditor.insertText');
+        this.placeholder = this.translation.translate('terraNoteEditor.insertText');
 
-        this._modules = {
+        this.modules = {
             toolbar: [
                 ['bold',
                  'italic',
                  'underline',
-                 'strike'],        // toggled buttons
-                ['code-block'],
+                 'strike'],
+                // toggled buttons
                 [{'list': 'ordered'},
                  {'list': 'bullet'}],
                 [{'script': 'sub'},
-                 {'script': 'super'}],      // superscript/subscript
-
+                 {'script': 'super'}],
+                // superscript/subscript
                 [{
                     'header': [1,
                                2,
@@ -66,42 +51,11 @@ export class TerraNoteEditorComponent implements OnInit, ControlValueAccessor
                                6,
                                false]
                 }],
-
+                // link and image, video
                 ['link',
-                 'image']                         // link and image, video
+                 'image']
             ]
         };
     }
 
-    public ngOnInit():void
-    {
-        // overwrite default placeholder if input is defined
-        if(this.inputPlaceholder)
-        {
-            this._placeholder = this.inputPlaceholder;
-        }
-    }
-
-    public writeValue(value:string):void
-    {
-        this._value = value;
-    }
-
-    public registerOnChange(fn:() => void):void
-    {
-        this._onChangeCallback = fn;
-    }
-
-    public registerOnTouched(fn:() => void):void
-    {
-        this._onTouchedCallback = fn;
-    }
-
-    public focus():void
-    {
-        this._myElement.nativeElement.querySelector('.ql-editor').focus();
-    }
-
-    private _onChangeCallback:() => void = ():void => undefined;
-    private _onTouchedCallback:() => void = ():void => undefined;
 }

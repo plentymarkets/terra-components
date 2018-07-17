@@ -120,4 +120,9 @@ export class TerraFileInputComponent extends TerraInputComponent
         }
         return PathHelper.basename(path);
     }
+
+    public resetValue():void
+    {
+        this.value = '';
+    }
 }

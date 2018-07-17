@@ -121,6 +121,12 @@
                                    [inputPlaceholder]="formField.label"
                                    [(ngModel)]="formField.defaultValue">
                 </terra-note-editor>
+                <terra-code-editor *ngSwitchCase="controlTypeEnum.CODE_EDITOR"
+                                   [formControlName]="formField.key"
+                                   [inputFixedHeight]="formField.fixedHeight"
+                                   [inputHeaderLabel]="formField.label"
+                                   [(ngModel)]="formField.defaultValue">
+                </terra-code-editor>
                 
                 <ng-container *ngSwitchCase="controlTypeEnum.HORIZONTAL_CONTAINER">
                     <div class="horizontalGroup">
