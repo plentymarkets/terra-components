@@ -45,7 +45,7 @@ export class TerraBreadcrumbsService
                     this.handleBreadcrumbForUrl(url, '/' + this._initialPath + url);
                 });
 
-                // hide all containers that can not be visible since the url is to short
+                // update breadcrumb visibility for containers that have not been checked since the url is to short
                 if(urlParts.length < this._breadcrumbContainer.length)
                 {
                     for(let j:number = urlParts.length; j < this._breadcrumbContainer.length; j++)
@@ -115,7 +115,7 @@ export class TerraBreadcrumbsService
             newContainer.breadcrumbList.push(breadcrumb);
             newContainer.currentSelectedBreadcrumb = breadcrumb;
         }
-        else
+        else // TODO: this does not need to be nested.. create container if not existing, then create breadcrumb
         {
             // search for existing breadcrumb
             let foundBreadcrumb:TerraBreadcrumb = container.breadcrumbList.find((bc:TerraBreadcrumb) =>
@@ -247,27 +247,57 @@ export class TerraBreadcrumbsService
         // search breadcrumb
         let index:number = breadcrumbList.indexOf(breadcrumb);
 
-        breadcrumbList.splice(index, 1);
-
-        // search for previous breadcrumb
-        let previousBreadcrumb:TerraBreadcrumb = breadcrumbList[breadcrumbList.length - 1];
-
-        if(isNullOrUndefined(previousBreadcrumb))
+        if(breadcrumbContainer.currentSelectedBreadcrumb === breadcrumb)
         {
-            let bccIndex:number = this._breadcrumbContainer.indexOf(breadcrumbContainer);
-
-            let previousBreadcrumbContainer:TerraBreadcrumbContainer = this._breadcrumbContainer[bccIndex - 1];
-
-            if(!isNullOrUndefined(previousBreadcrumbContainer))
+            // search for previous breadcrumb
+            let firstBreadcrumb:TerraBreadcrumb = breadcrumbList[0];
+            if(isNullOrUndefined(firstBreadcrumb)) // there are no breadcrumbs left
             {
-                this.router.navigateByUrl(previousBreadcrumbContainer.currentSelectedBreadcrumb.routerLink);
+                // this is not possible since there is no (X)-icon in the horizontal breadcrumb list -> error
+                console.error('No breadcrumb left in the container');
             }
 
-            this._breadcrumbContainer.splice(bccIndex, 1);
+            breadcrumbContainer.currentSelectedBreadcrumb = firstBreadcrumb;
+            this.router.navigateByUrl(breadcrumbContainer.currentSelectedBreadcrumb.routerLink);
         }
-        else if(previousBreadcrumb !== breadcrumb)
+
+        // delete all subsequent views
+        let currentContainerIndex:number = this._breadcrumbContainer.indexOf(breadcrumbContainer);
+        let nextContainer:TerraBreadcrumbContainer = this._breadcrumbContainer[currentContainerIndex + 1];
+        this.removeBreadcrumbsByParent(nextContainer, breadcrumb);
+
+        // finally delete breadcrumb
+        breadcrumbList.splice(index, 1);
+    }
+
+    private removeBreadcrumbsByParent(container:TerraBreadcrumbContainer, parent:TerraBreadcrumb):void
+    {
+        if(isNullOrUndefined(container))
         {
-            this.router.navigateByUrl(previousBreadcrumb.routerLink);
+            return;
+        }
+
+        let currentContainerIndex:number = this._breadcrumbContainer.indexOf(container);
+        let nextContainer:TerraBreadcrumbContainer = this._breadcrumbContainer[currentContainerIndex + 1];
+        let filteredBreadcrumbList:Array<TerraBreadcrumb> = container.breadcrumbList.filter((bc:TerraBreadcrumb) =>
+        {
+            if(bc.parent === parent && !isNullOrUndefined(nextContainer))
+            {
+                this.removeBreadcrumbsByParent(nextContainer, bc);
+            }
+
+            return bc.parent !== parent;
+        });
+
+        if(filteredBreadcrumbList.length === 0)
+        {
+            // remove container
+            this._breadcrumbContainer.splice(currentContainerIndex, 1);
+        }
+        else
+        {
+            // update breadcrumb list
+            container.breadcrumbList = filteredBreadcrumbList;
         }
     }
 }
