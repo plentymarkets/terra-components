@@ -145,6 +145,17 @@ export class TerraBreadcrumbsService
         {
             bc.isHidden = bc.parent !== parentBreadcrumb;
         });
+
+        // is the current selected breadcrumb now hidden?
+        if(breadcrumbContainer.currentSelectedBreadcrumb.isHidden)
+        {
+            // search for another breadcrumb to be selected
+            let foundBreadcrumb:TerraBreadcrumb = breadcrumbContainer.breadcrumbList.find(bc => !bc.isHidden);
+            if(!isNullOrUndefined(foundBreadcrumb))
+            {
+                breadcrumbContainer.currentSelectedBreadcrumb = foundBreadcrumb;
+            }
+        }
     }
 
     // same exists in TerraRouterHelper
