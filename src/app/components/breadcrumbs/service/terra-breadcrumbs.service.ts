@@ -76,7 +76,7 @@ export class TerraBreadcrumbsService
         this.emit(route, fullUrl, shortUrl.split('/').length - 1);
     }
 
-    private emit(route:Route, url:string, urlPartsCount:number):void
+    private emit(route:Route, url:string, urlPartsCount:number):void // TODO: rename
     {
         if(isNullOrUndefined(route))
         {
@@ -100,43 +100,33 @@ export class TerraBreadcrumbsService
             }
         }
 
-        // search for existing container
+        // search for existing container - create new container if not existing
         let container:TerraBreadcrumbContainer = this._breadcrumbContainer[urlPartsCount];
-        let previousContainer:TerraBreadcrumbContainer = this._breadcrumbContainer[urlPartsCount - 1];
-
-        // if not found create new container with new breadcrumb
         if(isNullOrUndefined(container))
         {
-            let newContainer:TerraBreadcrumbContainer = new TerraBreadcrumbContainer();
-            this._breadcrumbContainer.push(newContainer);
-
-            let parentBreadcrumb:TerraBreadcrumb = isNullOrUndefined(previousContainer) ? undefined : previousContainer.currentSelectedBreadcrumb;
-            let breadcrumb:TerraBreadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url);
-            newContainer.breadcrumbList.push(breadcrumb);
-            newContainer.currentSelectedBreadcrumb = breadcrumb;
+            container = new TerraBreadcrumbContainer();
+            this._breadcrumbContainer.push(container);
         }
-        else // TODO: this does not need to be nested.. create container if not existing, then create breadcrumb
+
+        // search for existing breadcrumb
+        let breadcrumb:TerraBreadcrumb = container.breadcrumbList.find((bc:TerraBreadcrumb) =>
         {
-            // search for existing breadcrumb
-            let foundBreadcrumb:TerraBreadcrumb = container.breadcrumbList.find((bc:TerraBreadcrumb) =>
-            {
-                return bc.routerLink === url;
-            });
+            return bc.routerLink === url;
+        });
 
-            // breadcrumb not found
-            if(isNullOrUndefined(foundBreadcrumb))
-            {
-                let breadcrumb:TerraBreadcrumb = new TerraBreadcrumb(label, previousContainer.currentSelectedBreadcrumb, url);
-                container.breadcrumbList.push(breadcrumb);
-                container.currentSelectedBreadcrumb = breadcrumb;
-                this.updateBreadcrumbVisibilities(container, breadcrumb.parent);
-            }
-            else
-            {
-                container.currentSelectedBreadcrumb = foundBreadcrumb;
-                this.updateBreadcrumbVisibilities(container, foundBreadcrumb.parent);
-            }
+        // breadcrumb not found
+        if(isNullOrUndefined(breadcrumb))
+        {
+            let currentContainerIndex:number = this._breadcrumbContainer.indexOf(container);
+            let previousContainer:TerraBreadcrumbContainer = this._breadcrumbContainer[currentContainerIndex - 1];
+            let parentBreadcrumb:TerraBreadcrumb = isNullOrUndefined(previousContainer) ? undefined : previousContainer.currentSelectedBreadcrumb;
+            breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url);
+            container.breadcrumbList.push(breadcrumb);
         }
+
+        // select breadcrumb and update visibilities
+        container.currentSelectedBreadcrumb = breadcrumb;
+        this.updateBreadcrumbVisibilities(container, breadcrumb.parent);
     }
 
     private updateBreadcrumbVisibilities(breadcrumbContainer:TerraBreadcrumbContainer, parentBreadcrumb:TerraBreadcrumb):void
@@ -149,7 +139,7 @@ export class TerraBreadcrumbsService
         // is the current selected breadcrumb now hidden?
         if(breadcrumbContainer.currentSelectedBreadcrumb.isHidden)
         {
-            // search for another breadcrumb to be selected
+            // search for another breadcrumb to be selected that is not hidden
             let foundBreadcrumb:TerraBreadcrumb = breadcrumbContainer.breadcrumbList.find(bc => !bc.isHidden);
             if(!isNullOrUndefined(foundBreadcrumb))
             {
