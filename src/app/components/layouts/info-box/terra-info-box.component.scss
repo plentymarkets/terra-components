@@ -47,12 +47,21 @@
         
         .info-box-text
         {
-            padding-right: 0.8rem;
             padding-bottom: 0.4rem;
-            max-width: 77%;
+            max-width: 100%;
             white-space: nowrap;
             color: var(--color-structure-11);
             overflow: var(--info-box-text-overflow, hidden);
+            text-overflow: ellipsis;
+        }
+        .has-buttons
+        {
+            max-width: 85%;
+            padding-right: 0.8rem;
+        }
+        .no-word-break
+        {
+            white-space: normal;
         }
     }
     .info-box-footer
