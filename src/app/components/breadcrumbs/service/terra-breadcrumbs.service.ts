@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TerraBreadcrumb } from '../terra-breadcrumb';
 import {
-    ActivatedRoute,
     ActivatedRouteSnapshot,
     NavigationEnd,
     Route,
@@ -10,7 +9,6 @@ import {
     Routes
 } from '@angular/router';
 import { isNullOrUndefined } from 'util';
-import { StringHelper } from '../../../helpers/string.helper';
 import { TranslationService } from 'angular-l10n';
 import { TerraBreadcrumbContainer } from '../terra-breadcrumb-container';
 import { UrlHelper } from '../../../helpers/url.helper';
@@ -24,8 +22,7 @@ export class TerraBreadcrumbsService
     private initialRoute:Route;
 
     constructor(private router:Router,
-                private translation:TranslationService,
-                private activatedRoute:ActivatedRoute)
+                private translation:TranslationService)
     {
         this.router.events.filter((event:RouterEvent) =>
         {
