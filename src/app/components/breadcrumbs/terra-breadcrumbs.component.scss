@@ -6,6 +6,8 @@
     height: var(--terra-breadcrumbs-height, var(--breadcrumbs-height));
     transition: height var(--transition-lg);
     display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
     
     li
     {
