@@ -46,6 +46,15 @@ export class TerraBreadcrumbsService
                 {
                     this.handleBreadcrumbForUrl(url, '/' + this._initialPath + url);
                 });
+
+                // hide all containers that can not be visible since the url is to short
+                if(urlParts.length < this._breadcrumbContainer.length)
+                {
+                    for(let j:number = urlParts.length; j < this._breadcrumbContainer.length; j++)
+                    {
+                        this.handleVisibleBreadcrumbContainer(this._breadcrumbContainer[j]);
+                    }
+                }
             }
         });
     }
@@ -129,21 +138,21 @@ export class TerraBreadcrumbsService
                 let breadcrumb:TerraBreadcrumb = new TerraBreadcrumb(label, url, idList[0]);
                 container.breadcrumbList.push(breadcrumb);
                 container.currentSelectedBreadcrumb = breadcrumb;
-                this.handleVisibleBreadcrumbContainer(breadcrumb, container);
+                this.handleVisibleBreadcrumbContainer(container, breadcrumb);
             }
             else
             {
                 container.currentSelectedBreadcrumb = foundBreadcrumb;
-                this.handleVisibleBreadcrumbContainer(foundBreadcrumb, container);
+                this.handleVisibleBreadcrumbContainer(container, foundBreadcrumb,);
             }
         }
     }
 
-    private handleVisibleBreadcrumbContainer(breadcrumb:TerraBreadcrumb, breadcrumbContainer:TerraBreadcrumbContainer):void
+    private handleVisibleBreadcrumbContainer(breadcrumbContainer:TerraBreadcrumbContainer, breadcrumb?:TerraBreadcrumb):void
     {
         breadcrumbContainer.breadcrumbList.forEach((bc:TerraBreadcrumb) =>
         {
-            bc.isHidden = bc.id !== breadcrumb.id;
+            bc.isHidden = isNullOrUndefined(breadcrumb) || bc.id !== breadcrumb.id;
         });
     }
 
