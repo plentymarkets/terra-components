@@ -80,5 +80,10 @@ export class TerraBreadcrumbsComponent
         return this.breadcrumbsService.checkActiveRoute(bcc);
     }
 
+    protected getAmountOfVisibleBreadcrumbsForContainer(container:TerraBreadcrumbContainer):number
+    {
+        return container.breadcrumbList.filter(bc => !bc.isHidden).length;
+    }
+
 
 }
