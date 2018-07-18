@@ -11,6 +11,7 @@ export class TerraDownloadHelper
         let link:HTMLAnchorElement = document.createElement('a');
         link.href = url;
         link.download = filename;
+        link.target = '_blank';
         document.body.appendChild(link);
         link.click();
 
