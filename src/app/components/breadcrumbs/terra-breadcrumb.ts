@@ -2,16 +2,16 @@ export class TerraBreadcrumb
 {
     public name:string;
     public routerLink:string;
-    public id:number;
     public isHidden:boolean;
+    public parent:TerraBreadcrumb;
 
-    constructor(name:string, routerLink?:string, id?:number)
+    constructor(name:string, parent:TerraBreadcrumb, routerLink:string)
     {
         this.name = name;
 
-        this.routerLink = routerLink;
+        this.parent = parent;
 
-        this.id = id;
+        this.routerLink = routerLink;
 
         this.isHidden = false;
     }
