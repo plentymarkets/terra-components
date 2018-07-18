@@ -243,25 +243,18 @@ export class TerraBreadcrumbsService
     public closeBreadcrumb(breadcrumbContainer:TerraBreadcrumbContainer, breadcrumb:TerraBreadcrumb):void
     {
         let breadcrumbList:Array<TerraBreadcrumb> = breadcrumbContainer.breadcrumbList;
-
-        // search breadcrumb
         let breadcrumbIndex:number = breadcrumbList.indexOf(breadcrumb);
 
+        // current selected breadcrumb should be closed?
         if(breadcrumbContainer.currentSelectedBreadcrumb === breadcrumb)
         {
-            // search for previous breadcrumb
-            let firstBreadcrumb:TerraBreadcrumb = breadcrumbIndex === 0 ? breadcrumbList[1] : breadcrumbList[0];
-            if(isNullOrUndefined(firstBreadcrumb)) // there are no breadcrumbs left
-            {
-                // this is not possible since there is no (X)-icon in the horizontal breadcrumb list -> error
-                console.error('No breadcrumb left in the container');
-            }
-
-            breadcrumbContainer.currentSelectedBreadcrumb = firstBreadcrumb;
+            // get the first remaining breadcrumb
+            let breadcrumbToSelect:TerraBreadcrumb = breadcrumbIndex === 0 ? breadcrumbList[1] : breadcrumbList[0];
+            breadcrumbContainer.currentSelectedBreadcrumb = breadcrumbToSelect;
             this.router.navigateByUrl(breadcrumbContainer.currentSelectedBreadcrumb.routerLink);
         }
 
-        // delete all subsequent views
+        // delete all related breadcrumbs
         let currentContainerIndex:number = this._breadcrumbContainer.indexOf(breadcrumbContainer);
         let nextContainer:TerraBreadcrumbContainer = this._breadcrumbContainer[currentContainerIndex + 1];
         this.removeBreadcrumbsByParent(nextContainer, breadcrumb);
