@@ -245,12 +245,12 @@ export class TerraBreadcrumbsService
         let breadcrumbList:Array<TerraBreadcrumb> = breadcrumbContainer.breadcrumbList;
 
         // search breadcrumb
-        let index:number = breadcrumbList.indexOf(breadcrumb);
+        let breadcrumbIndex:number = breadcrumbList.indexOf(breadcrumb);
 
         if(breadcrumbContainer.currentSelectedBreadcrumb === breadcrumb)
         {
             // search for previous breadcrumb
-            let firstBreadcrumb:TerraBreadcrumb = breadcrumbList[0];
+            let firstBreadcrumb:TerraBreadcrumb = breadcrumbIndex === 0 ? breadcrumbList[1] : breadcrumbList[0];
             if(isNullOrUndefined(firstBreadcrumb)) // there are no breadcrumbs left
             {
                 // this is not possible since there is no (X)-icon in the horizontal breadcrumb list -> error
@@ -267,7 +267,7 @@ export class TerraBreadcrumbsService
         this.removeBreadcrumbsByParent(nextContainer, breadcrumb);
 
         // finally delete breadcrumb
-        breadcrumbList.splice(index, 1);
+        breadcrumbList.splice(breadcrumbIndex, 1);
     }
 
     private removeBreadcrumbsByParent(container:TerraBreadcrumbContainer, parent:TerraBreadcrumb):void
