@@ -23,8 +23,6 @@ export class TerraBreadcrumbsService
     private _initialPath:string;
     private initialRoute:Route;
 
-    private flag:boolean = false; // TODO: rename
-
     constructor(private router:Router,
                 private translation:TranslationService,
                 private activatedRoute:ActivatedRoute)
@@ -61,7 +59,6 @@ export class TerraBreadcrumbsService
 
     public set initialPath(value:string)
     {
-        this.flag = true;
         this._breadcrumbContainer = [];
         this._initialPath = value;
         this.initialRoute = this.getRouteForUrlParts(this._initialPath.split('/'), this.router.config);
