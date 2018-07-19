@@ -276,10 +276,10 @@ export class TerraBaseService
 
     /**
      * @param {TerraBaseParameterInterface} params
-     * @param {boolean} withAsArray - defines if the 'with' search param should interpret and parsed as an array or not. Default is false.
+     * @param {boolean} arrayAsArray - Defines if an array search param should interpret and parsed as an array or not. Default is true.
      * @returns {URLSearchParams}
      */
-    protected createUrlSearchParams(params:TerraBaseParameterInterface, withAsArray:boolean = false):URLSearchParams
+    protected createUrlSearchParams(params:TerraBaseParameterInterface, arrayAsArray:boolean = true):URLSearchParams
     {
         let searchParams:URLSearchParams = new URLSearchParams();
 
@@ -289,12 +289,9 @@ export class TerraBaseService
             {
                 if(!isNullOrUndefined(params[key]) && params[key] !== '')
                 {
-                    if(withAsArray && isArray(params[key]))
+                    if(arrayAsArray && isArray(params[key]))
                     {
-                        params[key].forEach((param:string) =>
-                        {
-                            searchParams.set(key + '[]', param);
-                        });
+                        searchParams.appendAll(this.createArraySearchParams(key, params[key]));
                     }
                     else
                     {
@@ -306,6 +303,18 @@ export class TerraBaseService
         }
 
         return searchParams;
+    }
+
+    private createArraySearchParams(key:string, params:Array<string>):URLSearchParams
+    {
+        let arraySearchParams:URLSearchParams = new URLSearchParams();
+
+        params.forEach((param:string) =>
+        {
+            arraySearchParams.append(key + '[]', param);
+        });
+
+        return arraySearchParams;
     }
 
     private getMissingUserPermissionAlertMessage(error:any):string
