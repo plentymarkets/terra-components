@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 import { Exception } from './data/exception.interface';
 import {
+    isArray,
     isNull,
     isNullOrUndefined
 } from 'util';
@@ -275,9 +276,10 @@ export class TerraBaseService
 
     /**
      * @param {TerraBaseParameterInterface} params
+     * @param {boolean} withAsArray - defines if the 'with' search param should interpret and parsed as an array or not. Default is false.
      * @returns {URLSearchParams}
      */
-    protected createUrlSearchParams(params:TerraBaseParameterInterface):URLSearchParams
+    protected createUrlSearchParams(params:TerraBaseParameterInterface, withAsArray:boolean = false):URLSearchParams
     {
         let searchParams:URLSearchParams = new URLSearchParams();
 
@@ -287,8 +289,19 @@ export class TerraBaseService
             {
                 if(!isNullOrUndefined(params[key]) && params[key] !== '')
                 {
-                    searchParams.set(key, params[key]);
+                    if(withAsArray && isArray(params[key]))
+                    {
+                        params[key].forEach((param:string) =>
+                        {
+                            searchParams.set(key + '[]', param);
+                        });
+                    }
+                    else
+                    {
+                        searchParams.set(key, params[key]);
+                    }
                 }
+
             });
         }
 
