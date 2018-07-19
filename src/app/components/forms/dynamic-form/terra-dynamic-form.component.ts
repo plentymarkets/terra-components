@@ -123,7 +123,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         if(!isNullOrUndefined(this.inputFormFunctions.onValueChangedCallback))
         {
             let debounce:number = 1000;
-            if ( !isNullOrUndefined(this.inputFormFunctions.valueChangeDebounce) )
+            if(!isNullOrUndefined(this.inputFormFunctions.valueChangeDebounce))
             {
                 debounce = this.inputFormFunctions.valueChangeDebounce;
             }
@@ -131,7 +131,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
                 .dynamicFormGroup
                 .valueChanges;
 
-            if ( debounce > 0 )
+            if(debounce > 0)
             {
                 stream = stream.debounceTime(debounce);
             }
