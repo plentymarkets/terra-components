@@ -10,6 +10,7 @@ import { TerraFormFieldControlService } from './service/terra-form-field-control
 import { TerraFormFieldBase } from './data/terra-form-field-base';
 import { TerraDynamicFormFunctionsHandler } from './handler/terra-dynamic-form-functions.handler';
 import { TerraDynamicFormService } from './service/terra-dynamic-form.service';
+import { Observable } from 'rxjs/Observable';
 
 export enum TerraHtmlMethods
 {
@@ -121,14 +122,24 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     {
         if(!isNullOrUndefined(this.inputFormFunctions.onValueChangedCallback))
         {
-            this._formFieldControlService
+            let debounce:number = 1000;
+            if ( !isNullOrUndefined(this.inputFormFunctions.valueChangeDebounce) )
+            {
+                debounce = this.inputFormFunctions.valueChangeDebounce;
+            }
+            let stream:Observable<any> = this._formFieldControlService
                 .dynamicFormGroup
-                .valueChanges
-                .debounceTime(1000)
-                .subscribe((value:any) =>
-                {
-                    this.inputFormFunctions.onValueChangedCallback(value);
-                });
+                .valueChanges;
+
+            if ( debounce > 0 )
+            {
+                stream = stream.debounceTime(debounce);
+            }
+
+            stream.subscribe((value:any) =>
+            {
+                this.inputFormFunctions.onValueChangedCallback(value);
+            });
         }
     }
 }
