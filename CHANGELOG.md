@@ -6,6 +6,7 @@
 * **terra-info-box** 
 	* added the `inputButtonList` input to display buttons using the `TerraButtonInterface`
 	* added the `inputNoWordBreak` input to disable the auto word break if set to true
+* **unit testing** added packages for testing with jasmine framework and karma command line tool
 
 ### Bug Fixes
 * **terra-button** "flagged" buttons are now also clickable in the yellow corner
