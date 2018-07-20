@@ -2,17 +2,17 @@ export class TerraBreadcrumb
 {
     public name:string;
     public routerLink:string;
-    public parameterisedRoute:string;
-    public id:number;
+    public isHidden:boolean;
+    public parent:TerraBreadcrumb;
 
-    constructor(name:string, parameterisedRoute:string, routerLink?:string, id?:number)
+    constructor(name:string, parent:TerraBreadcrumb, routerLink:string)
     {
         this.name = name;
 
+        this.parent = parent;
+
         this.routerLink = routerLink;
 
-        this.parameterisedRoute = parameterisedRoute;
-
-        this.id = id;
+        this.isHidden = false;
     }
 }

@@ -68,16 +68,21 @@ export class TerraBreadcrumbsComponent
         return this.breadcrumbsService.breadcrumbContainer;
     }
 
-    protected closeBreadcrumb(container:TerraBreadcrumbContainer, child:TerraBreadcrumb, event:Event):void
+    protected closeBreadcrumb(container:TerraBreadcrumbContainer, breadcrumb:TerraBreadcrumb, event:Event):void
     {
         event.stopPropagation();
 
-        this.breadcrumbsService.closeBreadcrumb(container, child);
+        this.breadcrumbsService.closeBreadcrumb(container, breadcrumb);
     }
 
     protected checkActiveRoute(bcc:TerraBreadcrumb):boolean
     {
         return this.breadcrumbsService.checkActiveRoute(bcc);
+    }
+
+    protected getAmountOfVisibleBreadcrumbsForContainer(container:TerraBreadcrumbContainer):number
+    {
+        return container.breadcrumbList.filter(bc => !bc.isHidden).length;
     }
 
 
