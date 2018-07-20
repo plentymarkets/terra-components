@@ -12,6 +12,7 @@ module.exports = function () {
 
     var sources = {
         tslintRules: './tslint-rules.json',
+        customLintRules : './lintRules/**/*Rule.ts',
         dist: 'dist/**/*.*'
     };
 

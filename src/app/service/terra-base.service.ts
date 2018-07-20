@@ -9,13 +9,14 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 import { Exception } from './data/exception.interface';
 import {
+    isArray,
     isNull,
     isNullOrUndefined
 } from 'util';
 import { TerraAlertComponent } from '../components/alert/terra-alert.component';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
-
+import { TerraQueryEncoder } from './data/terra-query-encoder';
 
 /**
  * @author mfrank
@@ -70,7 +71,7 @@ export class TerraBaseService
     {
         this._terraLoadingSpinnerService.start();
 
-        let req:Observable<any> = request.map((response:Response) =>
+        return request.map((response:Response) =>
         {
             if(response.status === 204)
             {
@@ -95,12 +96,6 @@ export class TerraBaseService
                 this.handleException(error);
             }
 
-            // START Very unclean workaround! Normally we should get a 403 status code as response
-            // when user has no permission
-            let errorMessage:string = this.getErrorMessage(error);
-
-            let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage();
-
             if(error.status === 403 && this.getErrorClass(error) === 'UIHashExpiredException')
             {
                 let routeToLoginEvent:CustomEvent = new CustomEvent('CustomEvent');
@@ -109,8 +104,10 @@ export class TerraBaseService
 
                 this.dispatchEvent(routeToLoginEvent);
             }
-            else if(error.status === 401 && errorMessage === 'This action is unauthorized.')
+            else if(error.status === 403) // unauthorized
             {
+                let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage(error);
+
                 if(this._isPlugin)
                 {
                     this._alert.addAlertForPlugin({
@@ -129,7 +126,7 @@ export class TerraBaseService
                 }
             }
             // END Very unclean workaround!
-            else if(error.status === 401)
+            else if(error.status === 401) // unauthenticated
             {
                 let loginEvent:CustomEvent = new CustomEvent('login');
                 // Workaround for plugins in Angular (loaded via iFrame)
@@ -137,19 +134,7 @@ export class TerraBaseService
             }
 
             return Observable.throw(error);
-        }).share();
-
-        req.subscribe(() =>
-            {
-                this._terraLoadingSpinnerService.stop();
-            },
-            (error:any) =>
-            {
-                this._terraLoadingSpinnerService.stop();
-            }
-        );
-
-        return req;
+        }).finally(() => this._terraLoadingSpinnerService.stop());
     }
 
     private dispatchEvent(eventToDispatch:Event | CustomEvent):void
@@ -289,38 +274,118 @@ export class TerraBaseService
 
     /**
      * @param {TerraBaseParameterInterface} params
+     * @param {boolean} arrayAsArray - Defines if an array search param should interpret and parsed as an array or not. Default is false.
      * @returns {URLSearchParams}
      */
-    protected createUrlSearchParams(params:TerraBaseParameterInterface):URLSearchParams
+    protected createUrlSearchParams(params:TerraBaseParameterInterface, arrayAsArray:boolean = false):URLSearchParams
     {
-        let searchParams:URLSearchParams = new URLSearchParams();
+        let searchParams:URLSearchParams = new URLSearchParams('', new TerraQueryEncoder());
 
         if(!isNullOrUndefined(params))
         {
-            Object.keys(params).map((key:string) =>
+            Object.keys(params).forEach((key:string) =>
             {
                 if(!isNullOrUndefined(params[key]) && params[key] !== '')
                 {
-                    searchParams.set(key, params[key]);
+                    if(arrayAsArray && isArray(params[key]))
+                    {
+                        searchParams.appendAll(this.createArraySearchParams(key, params[key]));
+                    }
+                    else
+                    {
+                        searchParams.set(key, params[key]);
+                    }
                 }
+
             });
         }
 
         return searchParams;
     }
 
-    private getMissingUserPermissionAlertMessage():string
+    private createArraySearchParams(key:string, params:Array<string>):URLSearchParams
     {
-        // START workaround because we do not have a real translation solution in terra components
-        let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
-        if(langInLocalStorage === 'de')
+        let arraySearchParams:URLSearchParams = new URLSearchParams();
+
+        params.forEach((param:string) =>
         {
-            return 'Fehlende Berechtigungen';
+            arraySearchParams.append(key + '[]', param);
+        });
+
+        return arraySearchParams;
+    }
+
+    private getMissingUserPermissionAlertMessage(error:any):string
+    {
+        let missingRights:string = '';
+        let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
+        let isGerman:boolean = langInLocalStorage === 'de';
+
+
+        if(isGerman)
+        {
+            missingRights = 'Fehlende Berechtigungen für: <br/> • ';
         }
         else
         {
-            return 'Missing permissions';
+            missingRights = 'Missing permissions for: <br/> • ';
         }
-        // END workaround
+
+        let body:{} = JSON.parse(error['_body']);
+
+        if(!isNullOrUndefined(body))
+        {
+            let errorFromBody:{} = body['error'];
+
+            if(!isNullOrUndefined(errorFromBody))
+            {
+                let missingPermissions:{ [key:string]:{ [key:string]:string } } = errorFromBody['missing_permissions'];
+
+                let permissionTranslations:Array<{ [key:string]:string }> = [];
+
+                Object.keys(missingPermissions).forEach((key:string) =>
+                {
+                    if(missingPermissions.hasOwnProperty(key))
+                    {
+                        permissionTranslations.push(missingPermissions[key]);
+                    }
+                });
+
+                let english:Array<string> = [];
+                let german:Array<string> = [];
+
+                permissionTranslations.forEach((translations:{ [key:string]:string }) =>
+                {
+                    Object.keys(translations).forEach((key:string) =>
+                    {
+                        switch(key)
+                        {
+                            case 'de':
+                                german.push(translations[key]);
+                                break;
+                            case 'en':
+                                english.push(translations[key]);
+                                break;
+                        }
+                    });
+                });
+
+                let concatedPermissions:string;
+
+                if(isGerman)
+                {
+                    concatedPermissions = german.reverse().join('<br/> • ');
+                }
+                else
+                {
+                    concatedPermissions = english.reverse().join('<br/> • ');
+                }
+
+                missingRights += concatedPermissions;
+            }
+        }
+
+
+        return missingRights;
     }
 }

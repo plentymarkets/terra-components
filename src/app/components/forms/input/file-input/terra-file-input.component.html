@@ -39,17 +39,24 @@
                 <span *ngIf="inputIsRequired">*</span>
             </label>
         </div>
-        <terra-file-chooser class="input-group-btn"
-                            [inputIcon]="'icon-more'"
-                            [inputTooltipText]=" _translationPrefix + '.chooseFile' | translate:lang"
-                            [inputTooltipPlacement]="'left'"
-                            [inputAllowedExtensions]="inputAllowedExtensions"
-                            [inputAllowFolders]="inputAllowFolders"
-                            [inputStorageServices]="inputStorageServices"
-                            (outputSelected)="onObjectSelected($event)"
-                            (outputFileBrowserShow)="$event.selectUrl(value)"
-                            (outputFileBrowserHide)="_selectedObjectUrl = value">
-        </terra-file-chooser>
+            <terra-file-chooser class="input-group-btn"
+                                [inputIcon]="'icon-more'"
+                                [inputTooltipText]=" _translationPrefix + '.chooseFile' | translate:lang"
+                                [inputTooltipPlacement]="'left'"
+                                [inputAllowedExtensions]="inputAllowedExtensions"
+                                [inputAllowFolders]="inputAllowFolders"
+                                [inputStorageServices]="inputStorageServices"
+                                (outputSelected)="onObjectSelected($event)"
+                                (outputFileBrowserShow)="$event.selectUrl(value)"
+                                (outputFileBrowserHide)="_selectedObjectUrl = value">
+            </terra-file-chooser>
+            <terra-button class="input-group-btn margin-left"
+                          [inputIcon]="'icon-reset'"
+                          [inputTooltipText]="'reset' | translate:lang"
+                          [inputTooltipPlacement]="'left'"
+                          (outputClicked)="resetValue()">
+            </terra-button>
+
     </div>
 
     <terra-overlay #previewOverlay [inputOverlayTitle]="getFilename(value)" class="preview-overlay">

@@ -136,5 +136,8 @@ body
         --select-box-toggle-background-position-default: calc(100% - var(--space-lg)) var(--space-lg);
         --select-box-labeled-isSmall-padding-default: 0 var(--space-md) 0 30%;
         --select-box-isSmall-background-position-default: calc(100% - var(--space-lg)) calc(var(--space-lg) / 2);
+    
+        //GWT
+        --gwt-has-toolbar-before-top: 50px;
     }
 }

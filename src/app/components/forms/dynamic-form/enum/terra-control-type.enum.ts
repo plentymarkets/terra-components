@@ -17,5 +17,6 @@ export enum TerraControlTypeEnum
     CATEGORY_PICKER = 'categoryPicker',
     COLOR_PICKER = 'colorPicker',
     MULTI_CHECK_BOX = 'multiCheckBox',
-    NOTE_EDITOR = 'noteEditor'
+    NOTE_EDITOR = 'noteEditor',
+    CODE_EDITOR = 'codeEditor'
 }
