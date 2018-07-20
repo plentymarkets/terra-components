@@ -123,18 +123,18 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     {
         if(!isNullOrUndefined(this.inputFormFunctions.onValueChangedCallback))
         {
-            let stream:Observable<any> = this._formFieldControlService
+            let stream$:Observable<any> = this._formFieldControlService
                 .dynamicFormGroup
                 .valueChanges;
 
             if(this.inputFormFunctions.valueChangeDebounce > 0)
             {
-                stream = stream.pipe(
+                stream$ = stream$.pipe(
                     debounceTime(this.inputFormFunctions.valueChangeDebounce)
                 );
             }
 
-            stream.subscribe((value:any) =>
+            stream$.subscribe((value:any) =>
             {
                 this.inputFormFunctions.onValueChangedCallback(value);
             });
