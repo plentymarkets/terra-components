@@ -83,9 +83,9 @@ gulp.task('build-local', function (callback) {
 });
 
 /**
- * run "gulp generateDocu" to let Dgeni generate api files and to create json data.
+ * run "gulp build-doc" to let Dgeni generate api files and to create json data.
  */
-gulp.task('generateDocu', function (done) {
+gulp.task('build-doc', function (done) {
     runSequence(
         'build-local',
         'dgeni',
@@ -117,15 +117,15 @@ gulp.task('changeVersion', function () {
 });
 
 gulp.task('clean-dist', function () {
-    return del(config.tsOutputPath);
+    return del(config.destinations.tsOutputPath);
 });
 
 //compile typescript files
 gulp.task('compile-ts', function () {
     var sourceTsFiles = [
         config.excluded,
-        config.allTs,
-        config.customLintRules
+        config.fileSelectors.allTs,
+        config.sources.customLintRules
     ];
 
     var tsResult = gulp.src(sourceTsFiles)
@@ -133,8 +133,8 @@ gulp.task('compile-ts', function () {
         .pipe(tsProject());
 
     return merge([
-        tsResult.dts.pipe(gulp.dest(config.tsOutputPath)),
-        tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.tsOutputPath))
+        tsResult.dts.pipe(gulp.dest(config.destinations.tsOutputPath)),
+        tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.destinations.tsOutputPath))
     ]);
 });
 
@@ -142,70 +142,70 @@ gulp.task('compile-ts', function () {
 gulp.task('copy-files', function () {
     return gulp.src(['package.json',
         'README.md',
-        config.allCSS,
-        config.allSCSS,
-        config.allHTML])
-        .pipe(gulp.dest(config.tsOutputPath));
+        config.fileSelectors.allCSS,
+        config.fileSelectors.allSCSS,
+        config.fileSelectors.allHTML])
+        .pipe(gulp.dest(config.destinations.tsOutputPath));
 });
 
 //copy fonts to dist
 gulp.task('copy-fonts', function () {
-    return gulp.src(config.allFonts)
-        .pipe(gulp.dest(config.fontsOutputPath));
+    return gulp.src(config.fileSelectors.allFonts)
+        .pipe(gulp.dest(config.destinations.fontsOutputPath));
 });
 
 //copy images to dist
 gulp.task('copy-images', function () {
-    return gulp.src(config.allImages)
-        .pipe(gulp.dest(config.imagesOutputPath));
+    return gulp.src(config.fileSelectors.allImages)
+        .pipe(gulp.dest(config.destinations.imagesOutputPath));
 });
 
 //copy lang to dist
 gulp.task('copy-lang', function () {
-    return gulp.src(config.allLang)
-        .pipe(gulp.dest(config.langOutputPath));
+    return gulp.src(config.fileSelectors.allLang)
+        .pipe(gulp.dest(config.destinations.langOutputPath));
 });
 
 //copy lang to dist
 gulp.task('copy-tslint-rules', function ()
 {
-    return gulp.src(config.tslint)
-        .pipe(gulp.dest(config.tsOutputPath));
+    return gulp.src(config.sources.tslintRules)
+        .pipe(gulp.dest(config.destinations.tsOutputPath));
 });
 
 //copy files from dist to terra
 gulp.task('copy-to-terra', function () {
-    return gulp.src('dist/**/*.*')
-        .pipe(gulp.dest('../terra/node_modules/@plentymarkets/terra-components/'));
+    return gulp.src(config.sources.dist)
+        .pipe(gulp.dest(config.destinations.terra));
 });
 
 gulp.task('copy-to-terra-doc', function () {
-    return gulp.src('dist/**/*.*')
-        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/'));
+    return gulp.src(config.sources.dist)
+        .pipe(gulp.dest(config.destinations.terraComponentsDoc));
 });
 gulp.task('copy-api-to-terra-doc', function () {
     return gulp.src('component-documentation/build/**/*.*')
-        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/component-documentation/build'));
+        .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
 });
 
 //copy components from dist to terra-component-doc
 gulp.task('copy-components-to-doc', function () {
     return gulp.src('src/app/components/**/**/example/*.ts')
-        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/app/components'));
+        .pipe(gulp.dest(config.destinations.terraComponentsDocComponents));
 });
 
 gulp.task('copy-markdown-to-doc', function () {
     return gulp.src('src/app/components/**/example/*.md')
-        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/app/components'));
+        .pipe(gulp.dest(config.destinations.terraComponentsDocComponents));
 });
 
 gulp.task('copy-icon-description-json', function () {
     return gulp.src('src/app/assets/styles/iconDescription.json')
-        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/component-documentation/build'));
+        .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
 });
 gulp.task('copy-documentation-changelog', function () {
     return gulp.src('component-documentation/documentation-changelog.json')
-        .pipe(gulp.dest('../terra-components-doc/node_modules/@plentymarkets/terra-components/component-documentation/build'));
+        .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
 });
 
 //publish to npm
