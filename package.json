@@ -1,6 +1,6 @@
 {
 	"name": "@plentymarkets/terra-components",
-	"version": "2.3.2",
+	"version": "2.3.3",
 	"homepage": "https://github.com/plentymarkets/terra-components#readme",
 	"author": "plentymarkets",
 	"description": "plentymarkets terra components",
@@ -18,7 +18,7 @@
 	"scripts": {
 		"webpack": "webpack",
 		"build": "gulp build",
-		"build-docu": "gulp generateDocu",
+		"build-doc": "gulp build-doc",
 		"start": "npm run server:dev",
 		"server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch",
 		"gulp": "gulp",

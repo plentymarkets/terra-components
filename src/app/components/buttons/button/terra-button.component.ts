@@ -97,7 +97,7 @@ export class TerraButtonComponent
     @Output()
     public outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
 
-    private _currentTooltipPlacement:string;
+    protected currentTooltipPlacement:string;
 
     constructor()
     {
@@ -110,7 +110,7 @@ export class TerraButtonComponent
         this.inputIsLink = false;
         this.inputIsDisabled = false;
         this.inputIsHighlighted = false;
-        this._currentTooltipPlacement = this.inputTooltipPlacement;
+        this.currentTooltipPlacement = this.inputTooltipPlacement;
 
     }
 
@@ -131,15 +131,15 @@ export class TerraButtonComponent
 
         let minimalDistanceToWindowEdge:number = 100;
 
-        this._currentTooltipPlacement = this.inputTooltipPlacement;
+        this.currentTooltipPlacement = this.inputTooltipPlacement;
 
         if(window.innerWidth - event.clientX < minimalDistanceToWindowEdge)
         {
-            this._currentTooltipPlacement = 'left';
+            this.currentTooltipPlacement = TerraPlacementEnum.LEFT;
         }
         else if(event.clientX < minimalDistanceToWindowEdge)
         {
-            this._currentTooltipPlacement = 'right';
+            this.currentTooltipPlacement = TerraPlacementEnum.RIGHT;
         }
     }
 }
