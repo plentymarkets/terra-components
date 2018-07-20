@@ -7,11 +7,15 @@
 	* added the `inputButtonList` input to display buttons using the `TerraButtonInterface`
 	* added the `inputNoWordBreak` input to disable the auto word break if set to true
 * **unit testing** added packages for testing with jasmine framework and karma command line tool
+* **terra-base-service** add `arrayAsArray` (default `false`) parameter to `createUrlSearchParams` function. If set to `true` an array is parsed to an array parameter and not a concatenated string.
 
 ### Bug Fixes
 * **terra-button** "flagged" buttons are now also clickable in the yellow corner
 * **terra-file-list** date 'last modified' will be formatted according to the default language 
-* **terra-file-list** not allowed files will not be shown in the file list 
+* **terra-file-list** not allowed files will not be shown in the file list
+* **terra-query-encoder** new class which implements a custom encoding strategy for query parameters based on angular's [`QueryEncoder`](https://angular.io/api/http/QueryEncoder) using es2015's native [`encodeURIComponent`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)-Method
+* **terra-base-service** using new `terra-query-encoder` to encode query params in `createUrlSearchParams()`
+* **terra-url-params-decorator-service** added deprecation warning to the class since its functionality is fully implemented in the `createUrlSearchParams`-Method of the `terra-base-service`
 
 <a name="2.3.1"></a>
 # 2.3.1 (12.07.2018)

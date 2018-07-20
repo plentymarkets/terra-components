@@ -9,13 +9,14 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 import { Exception } from './data/exception.interface';
 import {
+    isArray,
     isNull,
     isNullOrUndefined
 } from 'util';
 import { TerraAlertComponent } from '../components/alert/terra-alert.component';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
-
+import { TerraQueryEncoder } from './data/terra-query-encoder';
 
 /**
  * @author mfrank
@@ -70,7 +71,7 @@ export class TerraBaseService
     {
         this._terraLoadingSpinnerService.start();
 
-        let req:Observable<any> = request.map((response:Response) =>
+        return request.map((response:Response) =>
         {
             if(response.status === 204)
             {
@@ -134,8 +135,6 @@ export class TerraBaseService
 
             return Observable.throw(error);
         }).finally(() => this._terraLoadingSpinnerService.stop());
-
-        return req;
     }
 
     private dispatchEvent(eventToDispatch:Event | CustomEvent):void
@@ -275,24 +274,45 @@ export class TerraBaseService
 
     /**
      * @param {TerraBaseParameterInterface} params
+     * @param {boolean} arrayAsArray - Defines if an array search param should interpret and parsed as an array or not. Default is false.
      * @returns {URLSearchParams}
      */
-    protected createUrlSearchParams(params:TerraBaseParameterInterface):URLSearchParams
+    protected createUrlSearchParams(params:TerraBaseParameterInterface, arrayAsArray:boolean = false):URLSearchParams
     {
-        let searchParams:URLSearchParams = new URLSearchParams();
+        let searchParams:URLSearchParams = new URLSearchParams('', new TerraQueryEncoder());
 
         if(!isNullOrUndefined(params))
         {
-            Object.keys(params).map((key:string) =>
+            Object.keys(params).forEach((key:string) =>
             {
                 if(!isNullOrUndefined(params[key]) && params[key] !== '')
                 {
-                    searchParams.set(key, params[key]);
+                    if(arrayAsArray && isArray(params[key]))
+                    {
+                        searchParams.appendAll(this.createArraySearchParams(key, params[key]));
+                    }
+                    else
+                    {
+                        searchParams.set(key, params[key]);
+                    }
                 }
+
             });
         }
 
         return searchParams;
+    }
+
+    private createArraySearchParams(key:string, params:Array<string>):URLSearchParams
+    {
+        let arraySearchParams:URLSearchParams = new URLSearchParams();
+
+        params.forEach((param:string) =>
+        {
+            arraySearchParams.append(key + '[]', param);
+        });
+
+        return arraySearchParams;
     }
 
     private getMissingUserPermissionAlertMessage(error:any):string
