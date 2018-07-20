@@ -73,6 +73,17 @@
                             }
                         }
                     }
+                    
+                    &:nth-child(even)
+                    {
+                        background-color: var(--color-structure-1);
+                    }
+    
+                    &:nth-child(odd)
+                    {
+                        background-color: var(--color-structure-0);
+                    }
+                    
                     &:last-child
                     {
                         td
