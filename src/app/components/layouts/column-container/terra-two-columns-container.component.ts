@@ -37,6 +37,11 @@ export class TerraTwoColumnsContainerComponent
         this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
     }
 
+    constructor()
+    {
+        this.leftColumnWidth = this._leftColumnWidth; // trigger calculation for default values
+    }
+
     private leftRightColXS():string
     {
         return this.colXS + this.spacer;
