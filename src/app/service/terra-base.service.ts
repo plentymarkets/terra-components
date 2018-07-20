@@ -15,7 +15,7 @@ import {
 import { TerraAlertComponent } from '../components/alert/terra-alert.component';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
-
+import { TerraQueryEncoder } from './data/terra-query-encoder';
 
 /**
  * @author mfrank
@@ -70,7 +70,7 @@ export class TerraBaseService
     {
         this._terraLoadingSpinnerService.start();
 
-        let req:Observable<any> = request.map((response:Response) =>
+        return request.map((response:Response) =>
         {
             if(response.status === 204)
             {
@@ -134,8 +134,6 @@ export class TerraBaseService
 
             return Observable.throw(error);
         }).finally(() => this._terraLoadingSpinnerService.stop());
-
-        return req;
     }
 
     private dispatchEvent(eventToDispatch:Event | CustomEvent):void
@@ -279,11 +277,11 @@ export class TerraBaseService
      */
     protected createUrlSearchParams(params:TerraBaseParameterInterface):URLSearchParams
     {
-        let searchParams:URLSearchParams = new URLSearchParams();
+        let searchParams:URLSearchParams = new URLSearchParams('', new TerraQueryEncoder());
 
         if(!isNullOrUndefined(params))
         {
-            Object.keys(params).map((key:string) =>
+            Object.keys(params).forEach((key:string) =>
             {
                 if(!isNullOrUndefined(params[key]) && params[key] !== '')
                 {
