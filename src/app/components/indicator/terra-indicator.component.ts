@@ -30,7 +30,7 @@ export class TerraIndicatorComponent
     public inputLabel:string;
 
     @Input()
-    public inputType:string;
+    public inputType:TerraIndicatorLabelTypeEnum;
 
     constructor()
     {
