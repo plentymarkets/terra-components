@@ -1,3 +1,9 @@
+# Unreleased
+
+### Features
+* **terra-loading-spinner** added public getter for `isLoading` property, since this information is a global one and can be used in any component to disable elements while a request is pending.
+* **terra-base-service** added public getter for `isLoading` property to be available in every specific service extension.
+
 <a name="2.3.2"></a>
 # 2.3.2 (20.07.2018)
 
