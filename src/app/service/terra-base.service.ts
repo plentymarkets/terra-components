@@ -276,10 +276,10 @@ export class TerraBaseService
 
     /**
      * @param {TerraBaseParameterInterface} params
-     * @param {boolean} arrayAsArray - Defines if an array search param should interpret and parsed as an array or not. Default is true.
+     * @param {boolean} arrayAsArray - Defines if an array search param should interpret and parsed as an array or not. Default is false.
      * @returns {URLSearchParams}
      */
-    protected createUrlSearchParams(params:TerraBaseParameterInterface, arrayAsArray:boolean = true):URLSearchParams
+    protected createUrlSearchParams(params:TerraBaseParameterInterface, arrayAsArray:boolean = false):URLSearchParams
     {
         let searchParams:URLSearchParams = new URLSearchParams();
 
