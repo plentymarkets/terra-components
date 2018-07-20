@@ -1,3 +1,9 @@
+<a name="Unreleased"></a>
+# Unreleased
+
+### Bug Fixes
+* **terra-dynamic-form** added possibility to change the debounce time
+
 <a name="2.3.2"></a>
 # 2.3.2 (20.07.2018)
 
