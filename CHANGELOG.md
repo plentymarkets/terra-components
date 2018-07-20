@@ -1,4 +1,8 @@
+<a name="Unreleased"></a>
 # Unreleased
+
+### Bug Fixes
+* **terra-dynamic-form** added possibility to change the debounce time
 
 ### Features
 * **terra-loading-spinner** added public getter for `isLoading` property, since this information is a global one and can be used in any component to disable elements while a request is pending.
