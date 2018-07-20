@@ -74,7 +74,6 @@
 ### Features
 * **terra-card** render div for image only if imagePath or placeholder icon is set
 
-
 <a name="2.2.18"></a>
 # 2.2.18 (21.06.2018)
 
@@ -82,9 +81,11 @@
 * **terra-file-picker** fixed bug with empty initialising on ngModel
 * **terra-node-tree** fixed issues with visibility of nodes in search
 * **terra-portlet** fixed issues with dropdowns being cut off in collapsable portlets.
+* **terra-info-box** fixed width when there are no buttons set
 
 ### Features
 * **terra-note-editor** added code view
+* **terra-dynamic-switch** added terra-note-editor
 * **terra-dynamic-form** added terra-note-editor
 * **custom tslint rules** added rules to prevent leading underscores, set maximum block depth and restrict getter and setter
 * **terra-file-chooser** added reset button to file chooser
