@@ -1,3 +1,9 @@
+<a name="unreleased"></a>
+# unreleased
+
+### Features
+* **terra-data-table** added even/odd coloring for row elements
+
 <a name="2.3.3"></a>
 # 2.3.3 (20.07.2018)
 
