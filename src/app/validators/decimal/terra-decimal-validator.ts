@@ -24,7 +24,7 @@ export function terraDecimalValidator(maxLength:number, decimals:number):Validat
             const invalidMaxLengthBeforeSeparator:boolean = splittedValue[beforeSeparator].length > maxLength - decimals;
             const invalidMaxLengthAfterSeparator:boolean = isNullOrUndefined(splittedValue[afterSeparator]) ?
                 false :
-                splittedValue.length > decimals;
+                splittedValue[afterSeparator].length > decimals;
 
             if(invalidSeparatorCount)
             {
