@@ -280,12 +280,22 @@ export class TerraBreadcrumbsService
             let breadcrumbToSelect:TerraBreadcrumb = breadcrumbIndex === 0 ? breadcrumbList[1] : breadcrumbList[0];
             breadcrumbContainer.currentSelectedBreadcrumb = breadcrumbToSelect;
 
+            let currentUrl:string = this.router.url;
+
+            let currentSelectedContainer:TerraBreadcrumbContainer = this._breadcrumbContainer.find((bcc:TerraBreadcrumbContainer)=>{
+                return bcc.currentSelectedBreadcrumb.routerLink === currentUrl;
+            });
+
+            let currentSelectedIndex:number = this._breadcrumbContainer.indexOf(currentSelectedContainer);
+            let breadcrumbContainerIndex:number = this._breadcrumbContainer.indexOf(breadcrumbContainer);
+
             // container has no more breadcrumbs
             if(isNullOrUndefined(breadcrumbContainer.currentSelectedBreadcrumb))
             {
                 this.removeBreadcrumbContainer(breadcrumbContainer);
             }
-            else
+            // check indexes to start routing
+            else if(currentSelectedIndex >= breadcrumbContainerIndex)
             {
                 this.router.navigateByUrl(breadcrumbContainer.currentSelectedBreadcrumb.routerLink);
             }
