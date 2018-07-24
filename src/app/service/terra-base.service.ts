@@ -406,9 +406,9 @@ export class TerraBaseService
     }
 
     // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelGetList(getRequest$:Observable<Response>):Observable<Array<any>>
+    protected handleLocalDataModelGetList(getRequest$:Observable<Response>, params?:TerraBaseParameterInterface):Observable<Array<any>>
     {
-        if(Object.keys(this.dataModel).length > 0)
+        if(Object.keys(this.dataModel).length > 0 && this.hasAllParamsLoaded(params))
         {
             return of(Object.values(this.dataModel));
         }
@@ -416,8 +416,27 @@ export class TerraBaseService
         this.setAuthorization();
 
         return this.mapRequest(getRequest$).pipe(
-            tap((dataList:Array<any>) => dataList.forEach((data:any) => this.dataModel[data.id] = data))
+            tap((dataList:Array<any>) =>
+                dataList.forEach((data:any) => {
+                    this.dataModel[data.id] = Object.assign(data, this.dataModel[data.id]);
+                })
+            )
         );
+    }
+
+    private hasAllParamsLoaded(params:TerraBaseParameterInterface):boolean
+    {
+        if(!isNullOrUndefined(params) && !isNullOrUndefined(params['with']))
+        {
+            return Object.values(this.dataModel).every((value:any) =>
+            {
+                return params['with'].every((param:string) => value.hasOwnProperty(param));
+            });
+        }
+        else
+        {
+            return true;
+        }
     }
 
     // TODO remove generic if the BaseService get a generic itself
