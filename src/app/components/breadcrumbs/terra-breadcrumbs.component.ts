@@ -20,11 +20,10 @@ import { TerraBreadcrumbContainer } from './terra-breadcrumb-container';
 )
 export class TerraBreadcrumbsComponent
 {
-    constructor(private breadcrumbsService:TerraBreadcrumbsService, private activatedRoute:ActivatedRoute, private router:Router)
+    constructor(private _breadcrumbsService:TerraBreadcrumbsService, private activatedRoute:ActivatedRoute, private router:Router)
     {
-        let completePath:string = this.getCompletePathByRoute(this.activatedRoute.snapshot.routeConfig, this.router.config, '');
-        console.log(completePath);
-        this.breadcrumbsService.initialPath = completePath;
+        this._breadcrumbsService.initialPath =
+            this.getCompletePathByRoute(this.activatedRoute.snapshot.routeConfig, this.router.config, '');
     }
 
     // identical code exists in TerraRouterHelper in terra
@@ -65,25 +64,28 @@ export class TerraBreadcrumbsComponent
 
     protected get breadcrumbContainer():Array<TerraBreadcrumbContainer>
     {
-        return this.breadcrumbsService.breadcrumbContainer;
+        return this._breadcrumbsService.breadcrumbContainer;
     }
 
     protected closeBreadcrumb(container:TerraBreadcrumbContainer, breadcrumb:TerraBreadcrumb, event:Event):void
     {
         event.stopPropagation();
 
-        this.breadcrumbsService.closeBreadcrumb(container, breadcrumb);
+        this._breadcrumbsService.closeBreadcrumb(container, breadcrumb);
     }
 
     protected checkActiveRoute(bcc:TerraBreadcrumb):boolean
     {
-        return this.breadcrumbsService.checkActiveRoute(bcc);
+        return this._breadcrumbsService.checkActiveRoute(bcc);
     }
 
     protected getAmountOfVisibleBreadcrumbsForContainer(container:TerraBreadcrumbContainer):number
     {
-        return container.breadcrumbList.filter(bc => !bc.isHidden).length;
+        return container.breadcrumbList.filter((bc:TerraBreadcrumb) => !bc.isHidden).length;
     }
 
-
+    public get breadcrumbsService():TerraBreadcrumbsService
+    {
+        return this._breadcrumbsService;
+    }
 }
