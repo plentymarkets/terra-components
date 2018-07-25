@@ -333,16 +333,15 @@ export class TerraBreadcrumbsService
         // current selected breadcrumb should be closed?
         if(breadcrumbContainer.currentSelectedBreadcrumb === breadcrumb)
         {
-            // get the first remaining breadcrumb
-            let breadcrumbToSelect:TerraBreadcrumb = breadcrumbIndex === 0 ? breadcrumbList[1] : breadcrumbList[0];
-            breadcrumbContainer.currentSelectedBreadcrumb = breadcrumbToSelect;
-
             let currentUrl:string = this.router.url;
 
             let currentSelectedContainer:TerraBreadcrumbContainer = this._breadcrumbContainer.find((bcc:TerraBreadcrumbContainer) =>
             {
                 return bcc.currentSelectedBreadcrumb.routerLink === currentUrl;
             });
+
+            // get the first remaining breadcrumb
+            breadcrumbContainer.currentSelectedBreadcrumb = breadcrumbIndex === 0 ? breadcrumbList[1] : breadcrumbList[0];
 
             let currentSelectedIndex:number = this._breadcrumbContainer.indexOf(currentSelectedContainer);
             let breadcrumbContainerIndex:number = this._breadcrumbContainer.indexOf(breadcrumbContainer);
