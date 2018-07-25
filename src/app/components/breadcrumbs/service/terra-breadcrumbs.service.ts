@@ -83,7 +83,7 @@ export class TerraBreadcrumbsService
 
         let label:string = '';
 
-        if(route.data)
+        if(!isNullOrUndefined(route.data))
         {
             if(typeof route.data.label === 'function')
             {
@@ -176,8 +176,7 @@ export class TerraBreadcrumbsService
                 {
                     if(path.startsWith(':'))
                     {
-                        let index:number = splittedRoutePath.indexOf(path);
-                        parameterisedRoutes[path] = index;
+                        parameterisedRoutes[path] = splittedRoutePath.indexOf(path);
                     }
                 }
             }
@@ -238,11 +237,72 @@ export class TerraBreadcrumbsService
         });
     }
 
+    /**
+     * Close the breadcrumb by given url
+     * @param {string} url Url to close the breadcrumb.
+     */
     public closeBreadcrumbByUrl(url:string):void
+    {
+        let breadcrumb:TerraBreadcrumb = this.findBreadcrumbByUrl(url);
+        let container:TerraBreadcrumbContainer = this.findBreadcrumbContainerByUrl(url);
+
+        if(!isNullOrUndefined(breadcrumb))
+        {
+            this.closeBreadcrumb(container, breadcrumb);
+        }
+    }
+
+    /**
+     * Update the breadcrumb name by given url
+     * @param {string} url Url to update the breadcrumb.
+     * @param {string} name If not given, it will be automatically update the name by the label of the route data.
+     */
+    public updateBreadcrumbNameByUrl(url:string, name?:string):void
+    {
+        let breadcrumb:TerraBreadcrumb = this.findBreadcrumbByUrl(url);
+
+        let shortUrlWithoutLeadingSlash:string = UrlHelper.removeLeadingSlash(url);
+        let route:Route = this.findRouteByFlatPath(shortUrlWithoutLeadingSlash, this.initialRoute.children);
+
+        if(!isNullOrUndefined(route) && !isNullOrUndefined(route.data) && !isNullOrUndefined(breadcrumb))
+        {
+            // you can set a name to update the breadcrumb name
+            if(!isNullOrUndefined(name))
+            {
+                breadcrumb.name = this.translation.translate(name);
+            }
+            // or it will be updated automatically if label from route data is a function
+            else if(typeof route.data.label === 'function')
+            {
+                let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
+
+                breadcrumb.name = this.translation.translate(route.data.label(activatedSnapshot.data, this.translation));
+            }
+            // otherwise it tries to update the name by the label from route data, which should be changed previously
+            else
+            {
+                breadcrumb.name = this.translation.translate(route.data.label);
+            }
+        }
+    }
+
+    private findBreadcrumbContainerByUrl(url:string):TerraBreadcrumbContainer
     {
         let urlPartsCount:number = url.split('/').length - 1;
 
         let container:TerraBreadcrumbContainer = this._breadcrumbContainer[urlPartsCount];
+
+        if(isNullOrUndefined(container))
+        {
+            console.error('No existing breadcrumb container found.');
+        }
+
+        return container;
+    }
+
+    private findBreadcrumbByUrl(url:string):TerraBreadcrumb
+    {
+        let container:TerraBreadcrumbContainer = this.findBreadcrumbContainerByUrl(url);
 
         let routerLink:string = '/' + this._initialPath + url;
 
@@ -262,10 +322,7 @@ export class TerraBreadcrumbsService
             });
         }
 
-        if(!isNullOrUndefined(breadcrumb))
-        {
-            this.closeBreadcrumb(container, breadcrumb);
-        }
+        return breadcrumb;
     }
 
     public closeBreadcrumb(breadcrumbContainer:TerraBreadcrumbContainer, breadcrumb:TerraBreadcrumb):void
@@ -276,15 +333,15 @@ export class TerraBreadcrumbsService
         // current selected breadcrumb should be closed?
         if(breadcrumbContainer.currentSelectedBreadcrumb === breadcrumb)
         {
-            // get the first remaining breadcrumb
-            let breadcrumbToSelect:TerraBreadcrumb = breadcrumbIndex === 0 ? breadcrumbList[1] : breadcrumbList[0];
-            breadcrumbContainer.currentSelectedBreadcrumb = breadcrumbToSelect;
-
             let currentUrl:string = this.router.url;
 
-            let currentSelectedContainer:TerraBreadcrumbContainer = this._breadcrumbContainer.find((bcc:TerraBreadcrumbContainer)=>{
+            let currentSelectedContainer:TerraBreadcrumbContainer = this._breadcrumbContainer.find((bcc:TerraBreadcrumbContainer) =>
+            {
                 return bcc.currentSelectedBreadcrumb.routerLink === currentUrl;
             });
+
+            // get the first remaining breadcrumb
+            breadcrumbContainer.currentSelectedBreadcrumb = breadcrumbIndex === 0 ? breadcrumbList[1] : breadcrumbList[0];
 
             let currentSelectedIndex:number = this._breadcrumbContainer.indexOf(currentSelectedContainer);
             let breadcrumbContainerIndex:number = this._breadcrumbContainer.indexOf(breadcrumbContainer);
