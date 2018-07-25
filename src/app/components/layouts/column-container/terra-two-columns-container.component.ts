@@ -33,6 +33,7 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
     private readonly colMD:string = 'col-md-';
     private readonly colLG:string = 'col-lg-';
     private readonly spacer:string = ' ';
+    private readonly hiddenXS:string = 'hidden-xs';
     private readonly maxColumnWidth:number = 12;
     private _leftColumnWidth:number = 2;
     private subscription:any;
@@ -57,8 +58,7 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
     constructor(private route:ActivatedRoute,
                 private router:Router)
     {
-        this.leftColumn = 'hidden-xs ' + this.leftColMD() + this.leftColLG();
-        this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
+        this.setColumnHidden('left');
 
         let subscribable:Observable<Event> = this.router.events.filter((event:RouterEvent) =>
         {
@@ -77,13 +77,11 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
 
                     if(event.url !== event.urlAfterRedirects)
                     {
-                        this.leftColumn = this.leftRightColXS() + this.leftColMD() + this.leftColLG();
-                        this.rightColumn = 'hidden-xs ' + this.rightColMD() + this.rightColLG();
+                        this.setColumnHidden('right');
                     }
                     else
                     {
-                        this.leftColumn = 'hidden-xs ' + this.leftColMD() + this.leftColLG();
-                        this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
+                        this.setColumnHidden('left');
                     }
                 }
             }
@@ -94,8 +92,21 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
 
     public ngOnInit():void
     {
-        this.leftColumn = 'hidden-xs ' + this.leftColMD() + this.leftColLG();
-        this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
+        this.setColumnHidden('left');
+    }
+
+    private setColumnHidden(column:string):void
+    {
+        if(column === 'right')
+        {
+            this.leftColumn = this.leftRightColXS() + this.leftColMD() + this.leftColLG();
+            this.rightColumn = this.leftRightHiddenXS() + this.rightColMD() + this.rightColLG();
+        }
+        else if(column === 'left')
+        {
+            this.leftColumn = this.leftRightHiddenXS() + this.leftColMD() + this.leftColLG();
+            this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
+        }
     }
 
     public ngOnDestroy():void
@@ -126,6 +137,11 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
     private rightColLG():string
     {
         return this.colLG + this.calculatedRightColumnLGWidth();
+    }
+
+    private leftRightHiddenXS():string
+    {
+        return this.hiddenXS + this.spacer;
     }
 
     private calculatedLeftColumnMDWidth():number
