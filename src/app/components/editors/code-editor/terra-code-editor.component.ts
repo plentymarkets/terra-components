@@ -38,6 +38,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
     protected viewConfirmation:{primaryButton:TerraButtonInterface, secondaryButton:TerraButtonInterface};
 
     private isInitialized:boolean = false;
+    private changeTimeout:any;
 
     constructor(protected translation:TranslationService, protected myElement:ElementRef)
     {
@@ -73,7 +74,6 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
     public writeValue(value:string):void
     {
         this.value = value;
-
         // check if value is assigned first (initially)
         if (!this.isInitialized)
         {
@@ -135,8 +135,16 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         }
         else if ( !isEditorContent && this.showCodeView )
         {
-            this.value = this.rawContent;
-            this.ngModelChange.emit(this.value);
+            if ( !isNullOrUndefined(this.changeTimeout) )
+            {
+                clearTimeout(this.changeTimeout);
+            }
+            this.changeTimeout = setTimeout(() =>
+            {
+                this.rawContent = this.sanitizeHTML(this.rawContent);
+                this.value = this.rawContent;
+                this.ngModelChange.emit(this.value);
+            }, 500);
         }
 
     }
@@ -201,4 +209,65 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
             });
         });
     }
+
+    /**
+     * Validates the input html and adds missing closing tag or attribute tag.
+     * @param {string} input
+     * @returns {string}
+     */
+
+    private sanitizeHTML(input:string):string
+    {
+        //
+        // CHECK FOR UNCLOSED QUOTES
+        //
+        const tagContentExp:RegExp = /<(\w[^>]*?)(\/?>)/g;
+        let output:string = input.replace(tagContentExp, (match:string, tagContent:string, closingTag:string) =>
+        {
+            const attributeExp:RegExp = /([a-zA-Z0-9_-]+)=(?:"|')?(.*?)(?:"|')?(?=(?:\w+=)|\s*$)/g;
+            tagContent = tagContent.replace(attributeExp, (attrMatch:string, attrName:string, attrValue:string) =>
+            {
+                if ( !!attrValue.trim() )
+                {
+                    return attrName + '="' + attrValue.trim() + '"';
+                }
+                return attrName;
+            });
+            return '<' + tagContent + closingTag;
+        });
+
+        //
+        // DISABLE SRC ATTRIBUTES
+        //
+        output = output.replace(/src=/g, '###tmp-src=');
+
+        //
+        // SANITIZE UNCLOSED TAGS BY BROWSER
+        //
+        let tmp:any = document.createElement('div');
+        tmp.innerHTML = output;
+        output = tmp.innerHTML;
+
+        const entities:any = {
+            'lt': '<',
+            'gt': '>',
+            'amp': '&'
+        };
+        output = output.replace(/&(\w+);/g, (match:string, entity:string) =>
+        {
+            if ( entities.hasOwnProperty(entity) )
+            {
+                return entities[entity];
+            }
+            return match;
+        });
+
+        //
+        // ENABLE SRC ATTRIBUTES AGAIN
+        //
+        output = output.replace(/###tmp-src=/g, 'src=');
+
+        return output;
+    }
+
 }
