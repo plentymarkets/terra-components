@@ -8,11 +8,8 @@ export class TerraBreadcrumb
     constructor(name:string, parent:TerraBreadcrumb, routerLink:string)
     {
         this.name = name;
-
         this.parent = parent;
-
         this.routerLink = routerLink;
-
         this.isHidden = false;
     }
 }

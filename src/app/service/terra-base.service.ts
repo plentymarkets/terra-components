@@ -32,7 +32,7 @@ export class TerraBaseService
     public url:string;
 
     // TODO use D instead of any
-    protected dataModel:{ [dataId:number]:any} = {};
+    protected dataModel:{ [dataId:number]:any } = {};
 
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
@@ -417,7 +417,8 @@ export class TerraBaseService
 
         return this.mapRequest(getRequest$).pipe(
             tap((dataList:Array<any>) =>
-                dataList.forEach((data:any) => {
+                dataList.forEach((data:any) =>
+                {
                     this.dataModel[data.id] = Object.assign(data, this.dataModel[data.id]);
                 })
             )
