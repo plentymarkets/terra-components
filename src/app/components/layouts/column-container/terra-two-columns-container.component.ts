@@ -15,7 +15,6 @@ import {
 import { isNullOrUndefined } from 'util';
 import { Event } from '@angular/router/src/events';
 import { Observable } from 'rxjs/Observable';
-import { TerraBaseTwoColumnConfig } from './terra-base-two-column.config';
 
 /**
  * @author mfrank
@@ -39,8 +38,6 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
     private _leftColumnWidth:number = 2;
     private subscription:any;
 
-    @Input() private config:TerraBaseTwoColumnConfig;
-
     @Input()
     public set leftColumnWidth(leftColumnWidth:number)
     {
@@ -56,35 +53,31 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
         this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
     }
 
+    private readonly basePath:string;
+
     constructor(private route:ActivatedRoute,
                 private router:Router)
     {
+        this.basePath = router.routerState.snapshot.url;
         this.setColumnHidden('left');
 
         let subscribable:Observable<Event> = this.router.events.filter((event:RouterEvent) =>
         {
-            return event instanceof NavigationEnd;
+            return event instanceof NavigationEnd && event.urlAfterRedirects.startsWith(this.basePath);
         });
 
         this.subscription = subscribable.subscribe((event:NavigationEnd) =>
         {
-            if(!isNullOrUndefined(this.config))
-            {
-                if(!isNullOrUndefined(this.config.initialPath)
-                   && event.urlAfterRedirects.startsWith(this.config.initialPath))
-                {
-                    this.leftColumn = this.leftRightColXS() + this.leftColMD() + this.leftColLG();
-                    this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
+            this.leftColumn = this.leftRightColXS() + this.leftColMD() + this.leftColLG();
+            this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
 
-                    if(event.url !== event.urlAfterRedirects)
-                    {
-                        this.setColumnHidden('right');
-                    }
-                    else
-                    {
-                        this.setColumnHidden('left');
-                    }
-                }
+            if(event.url !== event.urlAfterRedirects)
+            {
+                this.setColumnHidden('right');
+            }
+            else
+            {
+                this.setColumnHidden('left');
             }
         });
 
