@@ -15,6 +15,7 @@ import {
 import { isNullOrUndefined } from 'util';
 import { Event } from '@angular/router/src/events';
 import { Observable } from 'rxjs/Observable';
+import { TerraBaseTwoColumnConfig } from './terra-base-two-column.config';
 
 /**
  * @author mfrank
@@ -38,7 +39,7 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
     private _leftColumnWidth:number = 2;
     private subscription:any;
 
-    @Input() private config:any;
+    @Input() private config:TerraBaseTwoColumnConfig;
 
     @Input()
     public set leftColumnWidth(leftColumnWidth:number)
