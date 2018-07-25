@@ -1,16 +1,30 @@
 import {
     Component,
-    Input
+    Input,
+    OnDestroy,
+    OnInit
 } from '@angular/core';
+import {
+    ActivatedRoute,
+    NavigationEnd,
+    Route,
+    Router,
+    RouterEvent,
+    Routes
+} from '@angular/router';
+import { isNullOrUndefined } from 'util';
+import { Event } from '@angular/router/src/events';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * @author mfrank
  */
 @Component({
     selector: 'terra-2-col',
+    styles:   [require('./terra-two-columns-container.component.scss')],
     template: require('./terra-two-columns-container.component.html')
 })
-export class TerraTwoColumnsContainerComponent
+export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
 {
     protected leftColumn:string;
     protected rightColumn:string;
@@ -21,6 +35,9 @@ export class TerraTwoColumnsContainerComponent
     private readonly spacer:string = ' ';
     private readonly maxColumnWidth:number = 12;
     private _leftColumnWidth:number = 2;
+    private subscription:any;
+
+    @Input() private config:any;
 
     @Input()
     public set leftColumnWidth(leftColumnWidth:number)
@@ -37,9 +54,53 @@ export class TerraTwoColumnsContainerComponent
         this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
     }
 
-    constructor()
+    constructor(private route:ActivatedRoute,
+                private router:Router)
     {
+        this.leftColumn = 'hidden-xs ' + this.leftColMD() + this.leftColLG();
+        this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
+
+        let subscribable:Observable<Event> = this.router.events.filter((event:RouterEvent) =>
+        {
+            return event instanceof NavigationEnd;
+        });
+
+        this.subscription = subscribable.subscribe((event:NavigationEnd) =>
+        {
+            if(!isNullOrUndefined(this.config))
+            {
+                if(!isNullOrUndefined(this.config.initialPath)
+                   && event.urlAfterRedirects.startsWith(this.config.initialPath))
+                {
+                    this.leftColumn = this.leftRightColXS() + this.leftColMD() + this.leftColLG();
+                    this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
+
+                    if(event.url !== event.urlAfterRedirects)
+                    {
+                        this.leftColumn = this.leftRightColXS() + this.leftColMD() + this.leftColLG();
+                        this.rightColumn = 'hidden-xs ' + this.rightColMD() + this.rightColLG();
+                    }
+                    else
+                    {
+                        this.leftColumn = 'hidden-xs ' + this.leftColMD() + this.leftColLG();
+                        this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
+                    }
+                }
+            }
+        });
+
         this.leftColumnWidth = this._leftColumnWidth; // trigger calculation for default values
+    }
+
+    public ngOnInit():void
+    {
+        this.leftColumn = 'hidden-xs ' + this.leftColMD() + this.leftColLG();
+        this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
+    }
+
+    public ngOnDestroy():void
+    {
+        this.subscription.unsubscribe();
     }
 
     private leftRightColXS():string
