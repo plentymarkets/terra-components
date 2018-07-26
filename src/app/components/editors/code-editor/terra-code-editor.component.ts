@@ -206,7 +206,6 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
      * @param {string} input
      * @returns {string}
      */
-
     private sanitizeHTML(input:string):string
     {
         //
@@ -260,5 +259,4 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
         return output;
     }
-
 }
