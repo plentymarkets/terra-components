@@ -6,6 +6,9 @@
 * **number.helper** added a helper for number operations. First there is only a function for correctly rounding.
 * **terra-2-col** **_EXPERIMENTAL_** Improved mobile handling for 2 column container.
 
+#### Bug Fixes
+* **terra-code-editor** added html code validation to check if all tags are closed.
+
 <a name="2.3.3"></a>
 # 2.3.3 (20.07.2018)
 
