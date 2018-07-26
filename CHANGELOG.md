@@ -4,6 +4,7 @@
 * **terra-decimal-validator** added a custom validator to validate decimals
 * **object.helper** added a helper for object operations. First there is only a function to remove keys with an `undefined` or `null` value
 * **number.helper** added a helper for number operations. First there is only a function for correctly rounding.
+* **terra-2-col** **_EXPERIMENTAL_** Improved mobile handling for 2 column container.
 
 <a name="2.3.3"></a>
 # 2.3.3 (20.07.2018)
