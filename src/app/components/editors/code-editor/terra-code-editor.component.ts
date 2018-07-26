@@ -38,7 +38,6 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
     protected viewConfirmation:{primaryButton:TerraButtonInterface, secondaryButton:TerraButtonInterface};
 
     private isInitialized:boolean = false;
-    private changeTimeout:any;
 
     constructor(protected translation:TranslationService, protected myElement:ElementRef)
     {
@@ -135,16 +134,8 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         }
         else if ( !isEditorContent && this.showCodeView )
         {
-            if ( !isNullOrUndefined(this.changeTimeout) )
-            {
-                clearTimeout(this.changeTimeout);
-            }
-            this.changeTimeout = setTimeout(() =>
-            {
-                this.rawContent = this.sanitizeHTML(this.rawContent);
-                this.value = this.rawContent;
+                this.value = this.sanitizeHTML(this.rawContent);
                 this.ngModelChange.emit(this.value);
-            }, 500);
         }
 
     }
