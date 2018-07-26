@@ -134,8 +134,8 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         }
         else if ( !isEditorContent && this.showCodeView )
         {
-                this.value = this.sanitizeHTML(this.rawContent);
-                this.ngModelChange.emit(this.value);
+            this.value = this.sanitizeHTML(this.rawContent);
+            this.ngModelChange.emit(this.value);
         }
 
     }
