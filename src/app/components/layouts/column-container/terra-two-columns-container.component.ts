@@ -59,7 +59,6 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
                 private router:Router)
     {
         this.basePath = router.routerState.snapshot.url;
-        this.setColumnHidden('left');
 
         let subscribable:Observable<Event> = this.router.events.filter((event:RouterEvent) =>
         {
@@ -68,9 +67,6 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
 
         this.subscription = subscribable.subscribe((event:NavigationEnd) =>
         {
-            this.leftColumn = this.leftRightColXS() + this.leftColMD() + this.leftColLG();
-            this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
-
             if(event.url !== event.urlAfterRedirects)
             {
                 this.setColumnHidden('right');
