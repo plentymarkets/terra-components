@@ -81,22 +81,6 @@ export class TerraBreadcrumbsService
             return;
         }
 
-        let label:string = '';
-
-        if(!isNullOrUndefined(route.data))
-        {
-            if(typeof route.data.label === 'function')
-            {
-                let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
-
-                label = this.translation.translate(route.data.label(activatedSnapshot.data, this.translation));
-            }
-            else
-            {
-                label = this.translation.translate(route.data.label);
-            }
-        }
-
         // search for existing container - create new container if not existing
         let container:TerraBreadcrumbContainer = this._breadcrumbContainer[urlPartsCount];
         if(isNullOrUndefined(container))
@@ -114,6 +98,22 @@ export class TerraBreadcrumbsService
         // breadcrumb not found
         if(isNullOrUndefined(breadcrumb))
         {
+            let label:string = '';
+
+            if(!isNullOrUndefined(route.data))
+            {
+                if(typeof route.data.label === 'function')
+                {
+                    let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
+
+                    label = this.translation.translate(route.data.label(activatedSnapshot.data, this.translation));
+                }
+                else
+                {
+                    label = this.translation.translate(route.data.label);
+                }
+            }
+
             let currentContainerIndex:number = this._breadcrumbContainer.indexOf(container);
             let previousContainer:TerraBreadcrumbContainer = this._breadcrumbContainer[currentContainerIndex - 1];
             let parentBreadcrumb:TerraBreadcrumb = isNullOrUndefined(previousContainer) ? undefined : previousContainer.currentSelectedBreadcrumb;
