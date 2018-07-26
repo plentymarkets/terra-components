@@ -60,6 +60,11 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
     {
         this.basePath = router.routerState.snapshot.url;
 
+        this.leftColumnWidth = this._leftColumnWidth; // trigger calculation for default values
+    }
+
+    public ngOnInit():void
+    {
         let subscribable:Observable<Event> = this.router.events.filter((event:RouterEvent) =>
         {
             return event instanceof NavigationEnd && event.urlAfterRedirects.startsWith(this.basePath);
@@ -77,11 +82,6 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
             }
         });
 
-        this.leftColumnWidth = this._leftColumnWidth; // trigger calculation for default values
-    }
-
-    public ngOnInit():void
-    {
         this.setColumnHidden('left');
     }
 
