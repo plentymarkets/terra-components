@@ -141,4 +141,7 @@ export * from './app/helpers/terra-pdf.helper';
 export * from './app/helpers/download.helper';
 export * from './app/components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
 export * from './app/helpers/query-param.helper';
+export * from './app/helpers/number.helper';
+export * from './app/helpers/object.helper';
+export * from './app/validators/decimal/terra-decimal-validator';
 export * from './app/components/layouts/column-container/terra-two-columns-container.component';
