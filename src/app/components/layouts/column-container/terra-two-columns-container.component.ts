@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import {
     ActivatedRoute,
+    Data,
     NavigationEnd,
     Route,
     Router,
@@ -56,12 +57,12 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
         this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
     }
 
-    private readonly basePath:string;
+    private basePath:string;
 
     constructor(private route:ActivatedRoute,
                 private router:Router)
     {
-        this.basePath = router.routerState.snapshot.url;
+        this.basePath = router.url;
 
         this.leftColumnWidth = this._leftColumnWidth; // trigger calculation for default values
     }
@@ -70,7 +71,7 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
     {
         let subscribable:Observable<Event> = this.router.events.filter((event:RouterEvent) =>
         {
-            return event instanceof NavigationEnd && event.urlAfterRedirects.startsWith(this.basePath);
+            return event instanceof NavigationEnd && event.urlAfterRedirects === this.basePath;
         });
 
         this.subscription = subscribable.subscribe((event:NavigationEnd) =>
@@ -86,6 +87,11 @@ export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
         });
 
         this.setColumnHidden('left');
+
+        this.route.data.subscribe((data:Data) =>
+        {
+            this.basePath = this.router.url;
+        });
     }
 
     private setColumnHidden(column:string):void
