@@ -7,12 +7,9 @@ import {
 import {
     ActivatedRoute,
     NavigationEnd,
-    Route,
     Router,
-    RouterEvent,
-    Routes
+    RouterEvent
 } from '@angular/router';
-import { isNullOrUndefined } from 'util';
 import { Event } from '@angular/router/src/events';
 import { Observable } from 'rxjs/Observable';
 

@@ -1,0 +1,28 @@
+<terra-base-toolbar [inputIsBreadcrumbs]="true" class="main-breadcrumbs">
+    <ul class="terra-breadcrumbs">
+        <ng-container *ngFor="let container of breadcrumbContainer">
+            <li *ngIf="getAmountOfVisibleBreadcrumbsForContainer(container) > 0">
+                <div>
+                    <a class="ellipsis"
+                       [routerLink]="container.currentSelectedBreadcrumb.routerLink"
+                       [ngClass]="{'active' : checkActiveRoute(container.currentSelectedBreadcrumb)}">
+                        {{container.currentSelectedBreadcrumb.name}}
+                    </a>
+                    <a class="icon-caret" *ngIf="getAmountOfVisibleBreadcrumbsForContainer(container) > 1">
+                        <ul class="context-menu">
+                            <ng-template ngFor let-breadcrumb [ngForOf]="container.breadcrumbList" let-i="index">
+                                <li *ngIf="!breadcrumb.isHidden">
+                                    <a [routerLink]="breadcrumb.routerLink">
+                                        {{ breadcrumb.name }}
+                                    </a>
+                                    <span class="right-icon icon-cancel" (click)="closeBreadcrumb(container, breadcrumb, $event)"></span>
+                                </li>
+                            </ng-template>
+                        </ul>
+                    </a>
+                    <a class="icon-next"></a>
+                </div>
+            </li>
+        </ng-container>
+    </ul>
+</terra-base-toolbar>

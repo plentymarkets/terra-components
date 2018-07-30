@@ -87,6 +87,7 @@ import { TerraBaseService } from './service/terra-base.service';
 import { TerraUrlParamsDecorator } from './service/data/terra-url-params-decorator.service';
 import { TerraAlertComponent } from './components/alert/terra-alert.component';
 import { TerraTimePickerComponent } from './components/forms/input/time-picker/terra-time-picker.component';
+import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
 import { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
 import { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra-dynamic-form.component';
 import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
@@ -144,7 +145,9 @@ import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/m
 import { RouterModule } from '@angular/router';
 import { TerraTimePickerComponentExample } from './components/forms/input/time-picker/example/terra-time-picker.component.example';
 import { TerraTwoColumnsContainerComponent } from './components/layouts/column-container/terra-two-columns-container.component';
-import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
+import { TerraBreadcrumbsComponent } from './components/breadcrumbs/terra-breadcrumbs.component';
+import { TerraBreadcrumbsService } from './components/breadcrumbs/service/terra-breadcrumbs.service';
+import { Type } from '@angular/core/src/type';
 
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
@@ -214,6 +217,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicSwitchComponent,
         TerraCategoryPickerComponent,
         TerraTwoColumnsContainerComponent,
+        TerraBreadcrumbsComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -309,7 +313,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNodeTreeComponent,
         TerraNodeComponent,
         TerraCategoryPickerComponent,
-        TerraTwoColumnsContainerComponent
+        TerraTwoColumnsContainerComponent,
+        TerraBreadcrumbsComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -370,6 +375,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicSwitchComponent,
         TerraCategoryPickerComponent,
         TerraTwoColumnsContainerComponent,
+        TerraBreadcrumbsComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -482,29 +488,14 @@ export class TerraComponentsModule
                 TerraDynamicFormService,
                 TerraFormFieldControlService,
                 TerraJsonToFormFieldService,
-                TerraMultiSplitViewBreadcrumbsService
+                TerraMultiSplitViewBreadcrumbsService,
+                TerraBreadcrumbsService
             ]
         };
     }
 
-    public static forChild():ModuleWithProviders
+    public static forChild():Type<any>
     {
-        return {
-            ngModule:  TerraComponentsModule,
-            providers: [
-                TerraLoadingSpinnerService,
-                TerraDataTableContextMenuService,
-                TerraBaseService,
-                TerraNavigatorSplitViewConfig,
-                TerraUrlParamsDecorator,
-                TerraFrontendStorageService,
-                TerraAlertComponent,
-                TerraDynamicFormService,
-                CategoryTreeConfig,
-                TerraFormFieldControlService,
-                TerraJsonToFormFieldService,
-                TerraMultiSplitViewBreadcrumbsService
-            ]
-        };
+        return TerraComponentsModule;
     }
 }

@@ -1,0 +1,172 @@
+.terra-breadcrumbs
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: var(--terra-breadcrumbs-height, var(--breadcrumbs-height));
+    transition: height var(--transition-lg);
+    display: flex;
+    
+    li
+    {
+        float: left;
+        cursor: pointer;
+        outline: none;
+        div
+        {
+            a
+            {
+                display: inline;
+                font-weight: var(--font-weight-1);
+                font-size: var(--font-size-1);
+                color: var(--color-structure-0);
+    
+                &.active
+                {
+                    color: var(--color-active);
+                    cursor: default;
+                }
+    
+                &:not(.active):hover
+                {
+                    color: var(--color-active);
+                }
+            }
+            
+            text-decoration: none;
+            padding: var(--terra-breadcrumbs-li-padding, (0 var(--space-md)));
+            line-height: var(--terra-breadcrumbs-line-height, var(--breadcrumbs-height));
+            transition: padding var(--transition-lg);
+            position: relative;
+            display: block;
+            float: left;
+            color: var(--color-structure-0);
+            white-space: nowrap;
+            
+            &:hover
+            {
+                color: var(--color-active);
+            }
+            .icon-caret
+            {
+                overflow: hidden;
+                font-size: var(--font-size-6);
+                line-height: var(--terra-breadcrumbs-icon-caret-line-height, var(--breadcrumbs-height));
+                
+                &:hover
+                {
+                    .context-menu
+                    {
+                        display: block;
+                        visibility: visible;
+                        opacity: 1;
+                        transition: all var(--transition-sm);
+                        transition-delay: var(--transition-delay-sm);
+                    }
+                }
+                .context-menu
+                {
+                    top: var(--terra-breadcrumbs-context-menu-top, (calc(var(--breadcrumbs-height) / 2 + var(--space-lg))));
+                    li
+                    {
+                        float: none;
+                        min-width: 150px;
+                        max-width: 200px;
+                    }
+                }
+            }
+        }
+        &:last-child
+        {
+            .icon-next
+            {
+                display: none;
+            }
+        }
+        &:first-child div
+        {
+            padding-left: 10px;
+        }
+        .icon-next
+        {
+            &::before
+            {
+                display: inline-block;
+                line-height: var(--terra-breadcrumbs-icon-next-line-height, var(--breadcrumbs-height));
+                font-size: var(--font-size-6);
+                color: var(--color-structure-4);
+            }
+        }
+    }
+}
+
+.side-scroller
+{
+    position: relative;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+    white-space: nowrap;
+    font-size: 0;
+    &.offset
+    {
+        height: var(--split-view-side-scroller-offset-height, (calc(100% - var(--breadcrumbs-height))));
+    }
+    > *
+    {
+        display: inline-block;
+    }
+    
+    .view
+    {
+        font-size: var(--font-size-3);
+        vertical-align: top;
+        height: 100%;
+        overflow: hidden;
+        white-space: normal;
+        position: relative;
+        
+        > div
+        {
+            height: 100%;
+            min-height: 100%;
+            overflow-y: auto;
+            position: relative;
+        }
+    }
+    
+    .fadeIn
+    {
+        animation-name: fadeInAnimation;
+        animation-duration: 0.25s;
+    }
+    
+    @keyframes fadeInAnimation
+    {
+        from
+        {
+            opacity: 0;
+        }
+        to
+        {
+            opacity: 1;
+        }
+    }
+}
+
+.ellipsis
+{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    max-width: 150px;
+    display: inline-block;
+}
+
+.main-breadcrumbs
+{
+    --terra-breadcrumbs-wrapper-z-index: var(--zIndex-2);
+    --terra-breadcrumbs-wrapper-background-color: var(--color-structure-11);
+    --terra-breadcrumbs-wrapper-border-radius: none;
+}

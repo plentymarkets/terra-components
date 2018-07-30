@@ -25,6 +25,7 @@
 ### Feature
 * **terra-download-helper** open document / download in new tab (download-helper)
 * **terra-2-col** added. A lightweight 2 column container.
+* **terra-breadcrumbs** added. Breadcrumbs using router and routerLink.
 * **terra-info-box** 
 	* added the `inputButtonList` input to display buttons using the `TerraButtonInterface`
 	* added the `inputNoWordBreak` input to disable the auto word break if set to true
