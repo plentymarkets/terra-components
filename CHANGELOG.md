@@ -1,6 +1,7 @@
 # Unreleased
 
 ### Features
+* **terra-icons** added new icons
 * **terra-decimal-validator** added a custom validator to validate decimals
 * **object.helper** added a helper for object operations. First there is only a function to remove keys with an `undefined` or `null` value
 * **number.helper** added a helper for number operations. First there is only a function for correctly rounding.
