@@ -5,3 +5,30 @@
         display: none
     }
 }
+
+:host-context(#tab-content terra-breadcrumbs + .outlet-container)
+{
+    .container-fluid
+    {
+        height: calc(100% - var(--breadcrumbs-height));
+    }
+}
+
+:host-context(#tab-content .outlet-container)
+{
+    .container-fluid
+    {
+        height: 100%;
+        
+        .row
+        {
+            height: 100%;
+            
+            .overflow-auto
+            {
+                overflow: auto;
+            }
+        }
+    }
+}
+
