@@ -20,6 +20,8 @@ import { TerraBreadcrumbContainer } from './terra-breadcrumb-container';
 )
 export class TerraBreadcrumbsComponent
 {
+    protected mouseLeft:string = '0px';
+
     constructor(private _breadcrumbsService:TerraBreadcrumbsService, private activatedRoute:ActivatedRoute, private router:Router)
     {
         this._breadcrumbsService.initialPath =
@@ -87,5 +89,15 @@ export class TerraBreadcrumbsComponent
     public get breadcrumbsService():TerraBreadcrumbsService
     {
         return this._breadcrumbsService;
+    }
+
+    protected calculatePosition(event:Event):void
+    {
+        event.preventDefault();
+
+        if(event.srcElement instanceof HTMLElement)
+        {
+            this.mouseLeft = event.srcElement.offsetLeft + 'px';
+        }
     }
 }

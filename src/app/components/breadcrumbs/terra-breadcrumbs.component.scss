@@ -42,6 +42,7 @@
             float: left;
             color: var(--color-structure-0);
             white-space: nowrap;
+            height: var(--breadcrumbs-height);
             
             &:hover
             {
@@ -49,6 +50,7 @@
             }
             .icon-caret
             {
+                padding-bottom: 5px;
                 overflow: hidden;
                 font-size: var(--font-size-6);
                 line-height: var(--terra-breadcrumbs-icon-caret-line-height, var(--breadcrumbs-height));
@@ -66,7 +68,9 @@
                 }
                 .context-menu
                 {
-                    top: var(--terra-breadcrumbs-context-menu-top, (calc(var(--breadcrumbs-height) / 2 + var(--space-lg))));
+                    position: fixed;
+                    width: 150px;
+                    top: calc(var(--breadcrumbs-height) + var(--navbar-height) + var(--tabbar-height) - var(--space-sm));
                     li
                     {
                         float: none;
