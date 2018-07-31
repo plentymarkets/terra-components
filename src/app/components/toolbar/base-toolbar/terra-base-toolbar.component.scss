@@ -12,7 +12,8 @@
     
     &.terra-breadcrumbs-wrapper
     {
-        overflow: auto;
+        overflow-x: auto;
+        overflow-y: hidden;
         background-color: var(--terra-breadcrumbs-wrapper-background-color, var(--color-structure-9));
         margin: var(--terra-breadcrumbs-wrapper-margin, 0);
         border-radius: var(--terra-breadcrumbs-wrapper-border-radius, 0 0 var(--border-radius) var(--border-radius));
