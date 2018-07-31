@@ -1,0 +1,17 @@
+:host-context(.form-entry-horizontal)
+{
+    > .dynamic-form
+    {
+        display: flex;
+        
+        > .dynamic-form-entry
+        {
+            flex: 1;
+            
+            + .dynamic-form-entry
+            {
+                margin-left: var(--space-sm)
+            }
+        }
+    }
+}

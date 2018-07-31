@@ -145,6 +145,10 @@ import { RouterModule } from '@angular/router';
 import { TerraTimePickerComponentExample } from './components/forms/input/time-picker/example/terra-time-picker.component.example';
 import { TerraTwoColumnsContainerComponent } from './components/layouts/column-container/terra-two-columns-container.component';
 import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
+import { TerraDynamicForm2Component } from './components/forms/dynamic-form2/terra-dynamic-form2.component';
+import { TerraDynamicForm2EntryComponent } from './components/forms/dynamic-form2/dynamic-form2-entry/terra-dynamic-form2-entry.component';
+import { TerraDynamicForm2EntryListComponent } from './components/forms/dynamic-form2/dynamic-form2-entry-list/terra-dynamic-form2-entry-list.component';
+import { TerraDynamicForm2ContainerComponent } from './components/forms/dynamic-form2/dynamic-form2-container/terra-dynamic-form2-container.component';
 
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
@@ -214,6 +218,11 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicSwitchComponent,
         TerraCategoryPickerComponent,
         TerraTwoColumnsContainerComponent,
+        TerraDynamicForm2Component,
+        TerraDynamicForm2ContainerComponent,
+        TerraDynamicForm2EntryComponent,
+        TerraDynamicForm2EntryListComponent,
+
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -309,7 +318,11 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNodeTreeComponent,
         TerraNodeComponent,
         TerraCategoryPickerComponent,
-        TerraTwoColumnsContainerComponent
+        TerraTwoColumnsContainerComponent,
+        TerraDynamicForm2Component,
+        TerraDynamicForm2ContainerComponent,
+        TerraDynamicForm2EntryComponent,
+        TerraDynamicForm2EntryListComponent,
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -370,6 +383,10 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicSwitchComponent,
         TerraCategoryPickerComponent,
         TerraTwoColumnsContainerComponent,
+        TerraDynamicForm2Component,
+        TerraDynamicForm2ContainerComponent,
+        TerraDynamicForm2EntryComponent,
+        TerraDynamicForm2EntryListComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,

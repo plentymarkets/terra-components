@@ -1,0 +1,16 @@
+<div [class]="containerClass">
+    <div #formEntryContainer *ngIf="!hasChildren"></div>
+    
+    <div class="form-entry-inner" *ngIf="hasChildren">
+        <span class="form-entry-label" *ngIf="inputFormField.options?.name">{{ inputFormField.options?.name }}</span>
+        <div class="form-entry-container">
+            <terra-dynamic-form2-container
+                [inputFormFields]="inputFormField.children"
+                [inputScope]="inputScope"
+                [inputValue]="inputFormValue"
+                [inputControlTypeMap]="inputControlTypeMap"
+                (outputFormValueChanged)="onChildValueChanged($event.key, $event.value)"
+            ></terra-dynamic-form2-container>
+        </div>
+    </div>
+</div>

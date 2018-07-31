@@ -1,0 +1,24 @@
+<div class="dynamic-form">
+    <ng-template ngFor let-field [ngForOf]="formFields">
+        <div class="dynamic-form-entry" *ngIf="formFieldVisibility[field.key]">
+            <terra-dynamic-form2-entry
+                *ngIf="!field.value.isList"
+                [inputFormField]="field.value"
+                [inputFormValue]="inputValue[field.key]"
+                [inputScope]="inputScope"
+                [inputControlTypeMap]="inputControlTypeMap"
+                (outputFormValueChanged)="onFormValueChanged(field.key, $event)"
+            ></terra-dynamic-form2-entry>
+            
+            <terra-dynamic-form2-entry-list
+                *ngIf="field.value.isList"
+                [inputFormField]="field.value"
+                [inputFormValue]="inputValue[field.key]"
+                [inputListRange]="field.value.isList"
+                [inputScope]="inputScope"
+                [inputControlTypeMap]="inputControlTypeMap"
+                (outputFormValueChanged)="onFormValueChanged(field.key, $event)"
+            ></terra-dynamic-form2-entry-list>
+        </div>
+    </ng-template>
+</div>
