@@ -97,7 +97,7 @@ export class TerraBreadcrumbsComponent
 
         if(event.currentTarget instanceof HTMLElement)
         {
-            this.mouseLeft = event.currentTarget.offsetLeft + 'px';
+            this.mouseLeft = event.currentTarget.offsetLeft - event.currentTarget.offsetWidth + 'px';
         }
     }
 }
