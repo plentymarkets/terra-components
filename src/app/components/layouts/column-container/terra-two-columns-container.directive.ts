@@ -28,7 +28,6 @@ export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
 
     constructor(private route:ActivatedRoute,
                 private router:Router,
-                private twoColumnsConfig:TerraTwoColumnsConfig,
                 @Host() @Optional() private twoColComponent:TerraTwoColumnsContainerComponent)
     {
         this.basePath = router.url;
@@ -71,20 +70,20 @@ export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
         if(column === 'right')
         {
             this.twoColComponent.leftColumn = TwoColumnHelper.leftRightColXS()
-                                                         + TwoColumnHelper.leftColMD(this.twoColumnsConfig.component.leftColumnWidth)
-                                                         + TwoColumnHelper.leftColLG(this.twoColumnsConfig.component.leftColumnWidth);
+                                                         + TwoColumnHelper.leftColMD(this.twoColComponent.leftColumnWidth)
+                                                         + TwoColumnHelper.leftColLG(this.twoColComponent.leftColumnWidth);
             this.twoColComponent.rightColumn = TwoColumnHelper.leftRightHiddenXS()
-                                                          + TwoColumnHelper.rightColMD(this.twoColumnsConfig.component.leftColumnWidth)
-                                                          + TwoColumnHelper.rightColLG(this.twoColumnsConfig.component.leftColumnWidth);
+                                                          + TwoColumnHelper.rightColMD(this.twoColComponent.leftColumnWidth)
+                                                          + TwoColumnHelper.rightColLG(this.twoColComponent.leftColumnWidth);
         }
         else if(column === 'left')
         {
             this.twoColComponent.leftColumn = TwoColumnHelper.leftRightHiddenXS()
-                                                         + TwoColumnHelper.leftColMD(this.twoColumnsConfig.component.leftColumnWidth)
-                                                         + TwoColumnHelper.leftColLG(this.twoColumnsConfig.component.leftColumnWidth);
+                                                         + TwoColumnHelper.leftColMD(this.twoColComponent.leftColumnWidth)
+                                                         + TwoColumnHelper.leftColLG(this.twoColComponent.leftColumnWidth);
             this.twoColComponent.rightColumn = TwoColumnHelper.leftRightColXS()
-                                                          + TwoColumnHelper.rightColMD(this.twoColumnsConfig.component.leftColumnWidth)
-                                                          + TwoColumnHelper.rightColLG(this.twoColumnsConfig.component.leftColumnWidth);
+                                                          + TwoColumnHelper.rightColMD(this.twoColComponent.leftColumnWidth)
+                                                          + TwoColumnHelper.rightColLG(this.twoColComponent.leftColumnWidth);
         }
     }
 }
