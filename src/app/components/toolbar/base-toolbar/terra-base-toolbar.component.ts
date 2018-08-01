@@ -26,6 +26,8 @@ export class TerraBaseToolbarComponent
     {
         return this.inputIsBreadcrumbs &&
                (this.deviceDetectorService.isMobile() ||
-                this.deviceDetectorService.isTablet());
+                this.deviceDetectorService.isTablet() ||
+                // overflow:auto does not work for safari
+                this.deviceDetectorService.browser !== 'safari');
     }
 }
