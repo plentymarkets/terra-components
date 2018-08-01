@@ -23,7 +23,15 @@ import { isNullOrUndefined } from 'util';
 export class TerraFileBrowserComponent implements OnInit
 {
     @Input()
-    public inputAllowedExtensions:Array<string> = [];
+    public set inputAllowedExtensions(extensions:Array<string>)
+    {
+        this.allowedExtensions = extensions.map((extension:string) => extension.toUpperCase() );
+    }
+
+    public get inputAllowedExtensions():Array<string>
+    {
+        return this.allowedExtensions;
+    }
 
     @Input()
     public inputAllowFolders:boolean = true;
@@ -34,6 +42,8 @@ export class TerraFileBrowserComponent implements OnInit
     public onSelectedUrlChange:EventEmitter<string> = new EventEmitter();
 
     private _storageServices:Array<TerraBaseStorageService>;
+
+    private allowedExtensions:Array<string> = [];
 
     @Input()
     public set inputStorageServices(services:Array<TerraBaseStorageService>)

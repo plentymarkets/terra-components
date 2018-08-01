@@ -3,11 +3,12 @@ import {
     Component,
     ComponentFactoryResolver,
     ComponentRef,
-    ElementRef,
     EventEmitter,
     Input,
+    OnChanges,
     OnInit,
     Output,
+    SimpleChanges,
     Type,
     ViewChild,
     ViewContainerRef
@@ -19,14 +20,14 @@ import {
 } from 'util';
 import { TerraDynamicFormScope } from '../model/terra-dynamic-form-scope.data';
 import { TerraTextInputComponent } from '../../../../../';
-import { ControlValueAccessor } from '@angular/forms';
+import { TerraDynamicFormTypeInterface } from '../model/terra-dynamic-form-type.interface';
 
 @Component({
     selector: 'terra-dynamic-form2-entry',
     template: require('./terra-dynamic-form2-entry.component.html'),
     styles:   [require('./terra-dynamic-form2-entry.component.scss')]
 })
-export class TerraDynamicForm2EntryComponent implements OnInit, AfterViewInit
+export class TerraDynamicForm2EntryComponent implements OnInit, AfterViewInit, OnChanges
 {
     @Input()
     public inputFormField:TerraDynamicFormElementInterface;
@@ -38,7 +39,10 @@ export class TerraDynamicForm2EntryComponent implements OnInit, AfterViewInit
     public inputScope:TerraDynamicFormScope;
 
     @Input()
-    public inputControlTypeMap:{ [key:string]:Type<any> } = {};
+    public inputControlTypeMap:{ [key:string]:Type<any> | TerraDynamicFormTypeInterface } = {};
+
+    @Input()
+    public inputIsDisabled:boolean = false;
 
     @Output()
     public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
@@ -47,6 +51,8 @@ export class TerraDynamicForm2EntryComponent implements OnInit, AfterViewInit
 
     @ViewChild('formEntryContainer', {read: ViewContainerRef})
     private container:ViewContainerRef;
+
+    private componentInstance:any;
 
     public constructor(private componentFactory:ComponentFactoryResolver)
     {
@@ -70,31 +76,31 @@ export class TerraDynamicForm2EntryComponent implements OnInit, AfterViewInit
                 let controlType:Type<any> = TerraTextInputComponent;
                 if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
                 {
-                    controlType = this.inputControlTypeMap[this.inputFormField.type];
+                    if ( this.inputControlTypeMap[this.inputFormField.type] instanceof Type )
+                    {
+                        controlType = <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
+                    }
+                    else
+                    {
+                        controlType = (<TerraDynamicFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
+                    }
                 }
 
                 let component:ComponentRef<any> = this.container.createComponent(
                     this.componentFactory.resolveComponentFactory(controlType)
                 );
 
-                let componentInstance:any = component.instance;
+                this.componentInstance = component.instance;
 
-                if(!isNullOrUndefined(this.inputFormField.options))
+                this.bindInputProperties();
+
+                if(isFunction(this.componentInstance.onChangeCallback) && isFunction(this.componentInstance.writeValue))
                 {
-                    Object.keys(this.inputFormField.options).forEach((optionKey:string) =>
-                    {
-                        componentInstance[this.transformInputPropertyName(optionKey)] = this.inputFormField.options[optionKey];
-                    });
-
-                }
-
-                if(isFunction(componentInstance.onChangeCallback) && isFunction(componentInstance.writeValue))
-                {
-                    componentInstance.onChangeCallback = (value:any):void =>
+                    this.componentInstance.onChangeCallback = (value:any):void =>
                     {
                         this.onValueChanged(value);
                     };
-                    componentInstance.writeValue(this.inputFormValue);
+                    this.componentInstance.writeValue(this.inputFormValue);
                 }
                 else
                 {
@@ -105,6 +111,47 @@ export class TerraDynamicForm2EntryComponent implements OnInit, AfterViewInit
                 }
             }
         });
+    }
+
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        this.bindInputProperties();
+    }
+
+    protected bindInputProperties():void
+    {
+        if ( !isNullOrUndefined(this.componentInstance) )
+        {
+            let inputMap:{[key:string]:string} = {};
+            if ( !(this.inputControlTypeMap[this.inputFormField.type] instanceof Type) )
+            {
+                inputMap = (<TerraDynamicFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).inputMap;
+            }
+
+            if(!isNullOrUndefined(this.inputFormField.options))
+            {
+                Object.keys(this.inputFormField.options).forEach((optionKey:string) =>
+                {
+                    if ( inputMap.hasOwnProperty(optionKey) )
+                    {
+                        this.componentInstance[inputMap[optionKey]] = this.inputFormField.options[optionKey];
+                    }
+                    else
+                    {
+                        this.componentInstance[this.transformInputPropertyName(optionKey)] = this.inputFormField.options[optionKey];
+                    }
+                });
+            }
+
+            if ( inputMap.hasOwnProperty('isDisabled') )
+            {
+                this.componentInstance[inputMap['isDisabled']] = this.inputIsDisabled;
+            }
+            else
+            {
+                this.componentInstance['inputIsDisabled'] = this.inputIsDisabled;
+            }
+        }
     }
 
     protected onValueChanged(value:any):void

@@ -51,6 +51,9 @@ export class TerraDynamicForm2EntryListComponent implements OnInit
     @Input()
     public inputControlTypeMap:{ [key:string]:Type<any> } = {};
 
+    @Input()
+    public inputIsDisabled:boolean = false;
+
     @Output()
     public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
 

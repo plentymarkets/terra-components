@@ -31,7 +31,7 @@ export class TerraDynamicForm2Component implements ControlValueAccessor
     @Input()
     public set inputFormFields(fields:{ [key:string]:TerraDynamicFormElementInterface })
     {
-        this._formFields = fields;
+        this._formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
     }
 
     public get inputFormFields():{ [key:string]:TerraDynamicFormElementInterface }
@@ -53,10 +53,13 @@ export class TerraDynamicForm2Component implements ControlValueAccessor
     {
         if(isNullOrUndefined(this.controlTypeMap))
         {
-            return TerraDynamicFormTypeMap;
+            return new TerraDynamicFormTypeMap();
         }
         return this.controlTypeMap;
     }
+
+    @Input()
+    public inputIsDisabled:boolean = false;
 
     protected scope:TerraDynamicFormScope = new TerraDynamicFormScope();
 

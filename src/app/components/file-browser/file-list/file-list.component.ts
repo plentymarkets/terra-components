@@ -554,7 +554,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         }
 
         return this._parentFileBrowser.inputAllowedExtensions.length <= 0
-               || this._parentFileBrowser.inputAllowedExtensions.indexOf(PathHelper.extName(filename)) >= 0
+               || this._parentFileBrowser.inputAllowedExtensions.indexOf(PathHelper.extName(filename).toUpperCase()) >= 0
                || PathHelper.isDirectory(filename);
     }
 

@@ -60,6 +60,9 @@ export class TerraDynamicForm2ContainerComponent implements OnInit
         this.updateFieldVisibility();
     }
 
+    @Input()
+    public inputIsDisabled:boolean = false;
+
     @Output()
     public outputFormValueChanged:EventEmitter<TerraKeyValuePairInterface<any>> = new EventEmitter<TerraKeyValuePairInterface<any>>();
 
@@ -91,13 +94,13 @@ export class TerraDynamicForm2ContainerComponent implements OnInit
         this.formFields
             .forEach((field:TerraKeyValuePairInterface<TerraDynamicFormElementInterface>) =>
             {
-                if(isString(field.value.visible))
+                if(isString(field.value.isVisible))
                 {
-                    this.formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.visible);
+                    this.formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible);
                 }
                 else
                 {
-                    this.formFieldVisibility[field.key] = isNullOrUndefined(field.value.visible) || field.value.visible;
+                    this.formFieldVisibility[field.key] = isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
                 }
             });
     }
