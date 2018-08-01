@@ -12,13 +12,17 @@
     
     &.terra-breadcrumbs-wrapper
     {
-        overflow-x: auto;
-        overflow-y: hidden;
         background-color: var(--terra-breadcrumbs-wrapper-background-color, var(--color-structure-9));
         margin: var(--terra-breadcrumbs-wrapper-margin, 0);
         border-radius: var(--terra-breadcrumbs-wrapper-border-radius, 0 0 var(--border-radius) var(--border-radius));
         padding: var(--terra-breadcrumbs-wrapper-padding, 0);
         z-index: var(--terra-breadcrumbs-wrapper-z-index, var(--zIndex-1));
+        
+        &.breadcrumbs-overflow-auto
+        {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
     }
 }
 

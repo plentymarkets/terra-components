@@ -2,6 +2,7 @@ import {
     Component,
     Input
 } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
     selector: 'terra-base-toolbar',
@@ -16,8 +17,15 @@ export class TerraBaseToolbarComponent
     @Input()
     public inputIsBreadcrumbs:boolean;
 
-    constructor()
+    constructor(private deviceDetectorService:DeviceDetectorService)
     {
         this.inputIsBreadcrumbs = false;
+    }
+
+    protected checkBrowser():boolean
+    {
+        return this.inputIsBreadcrumbs &&
+               (this.deviceDetectorService.isMobile() ||
+                this.deviceDetectorService.isTablet());
     }
 }
