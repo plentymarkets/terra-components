@@ -16,6 +16,7 @@ import { Event } from '@angular/router/src/events';
 import { Observable } from 'rxjs/Observable';
 import { TwoColumnHelper } from '../../../helpers/two-column.helper';
 import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';
+import { isNullOrUndefined } from 'util';
 
 @Directive({
     selector: 'terra-2-col[mobileRouting]'
@@ -67,23 +68,26 @@ export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
 
     private setColumnHidden(column:string):void
     {
-        if(column === 'right')
+        if(!isNullOrUndefined(this.twoColComponent))
         {
-            this.twoColComponent.leftColumn = TwoColumnHelper.leftRightColXS()
-                                                         + TwoColumnHelper.leftColMD(this.twoColComponent.leftColumnWidth)
-                                                         + TwoColumnHelper.leftColLG(this.twoColComponent.leftColumnWidth);
-            this.twoColComponent.rightColumn = TwoColumnHelper.leftRightHiddenXS()
-                                                          + TwoColumnHelper.rightColMD(this.twoColComponent.leftColumnWidth)
-                                                          + TwoColumnHelper.rightColLG(this.twoColComponent.leftColumnWidth);
-        }
-        else if(column === 'left')
-        {
-            this.twoColComponent.leftColumn = TwoColumnHelper.leftRightHiddenXS()
-                                                         + TwoColumnHelper.leftColMD(this.twoColComponent.leftColumnWidth)
-                                                         + TwoColumnHelper.leftColLG(this.twoColComponent.leftColumnWidth);
-            this.twoColComponent.rightColumn = TwoColumnHelper.leftRightColXS()
-                                                          + TwoColumnHelper.rightColMD(this.twoColComponent.leftColumnWidth)
-                                                          + TwoColumnHelper.rightColLG(this.twoColComponent.leftColumnWidth);
+            if(column === 'right')
+            {
+                this.twoColComponent.leftColumn = TwoColumnHelper.leftRightColXS()
+                                                  + TwoColumnHelper.leftColMD(this.twoColComponent.leftColumnWidth)
+                                                  + TwoColumnHelper.leftColLG(this.twoColComponent.leftColumnWidth);
+                this.twoColComponent.rightColumn = TwoColumnHelper.leftRightHiddenXS()
+                                                   + TwoColumnHelper.rightColMD(this.twoColComponent.leftColumnWidth)
+                                                   + TwoColumnHelper.rightColLG(this.twoColComponent.leftColumnWidth);
+            }
+            else if(column === 'left')
+            {
+                this.twoColComponent.leftColumn = TwoColumnHelper.leftRightHiddenXS()
+                                                  + TwoColumnHelper.leftColMD(this.twoColComponent.leftColumnWidth)
+                                                  + TwoColumnHelper.leftColLG(this.twoColComponent.leftColumnWidth);
+                this.twoColComponent.rightColumn = TwoColumnHelper.leftRightColXS()
+                                                   + TwoColumnHelper.rightColMD(this.twoColComponent.leftColumnWidth)
+                                                   + TwoColumnHelper.rightColLG(this.twoColComponent.leftColumnWidth);
+            }
         }
     }
 }

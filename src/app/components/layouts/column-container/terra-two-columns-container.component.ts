@@ -3,7 +3,6 @@ import {
     Input
 } from '@angular/core';
 import { TwoColumnHelper } from '../../../helpers/two-column.helper';
-import { TerraTwoColumnsConfig } from './config/terra-two-columns.config';
 
 /**
  * @author mfrank
@@ -11,8 +10,7 @@ import { TerraTwoColumnsConfig } from './config/terra-two-columns.config';
 @Component({
     selector: 'terra-2-col',
     styles:   [require('./terra-two-columns-container.component.scss')],
-    template: require('./terra-two-columns-container.component.html'),
-    providers: [TerraTwoColumnsConfig]
+    template: require('./terra-two-columns-container.component.html')
 })
 /**
  * @experimental TerraTwoColumnsContainerComponent is experimental and might be subject to drastic changes in the near future.
