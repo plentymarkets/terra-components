@@ -15,7 +15,6 @@ import {
 import { Event } from '@angular/router/src/events';
 import { Observable } from 'rxjs/Observable';
 import { TwoColumnHelper } from '../../../helpers/two-column.helper';
-import { TerraTwoColumnsConfig } from './config/terra-two-columns.config';
 import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';
 
 @Directive({
