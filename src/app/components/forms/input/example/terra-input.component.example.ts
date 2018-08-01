@@ -1,7 +1,7 @@
 import {
     Component,
     OnInit
-} from "@angular/core";
+} from '@angular/core';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 
 @Component({
@@ -27,7 +27,7 @@ export class TerraInputComponentExample implements OnInit
 
     private _stateSelection:Array<TerraSelectBoxValueInterface>;
 
-    ngOnInit()
+    public ngOnInit():void
     {
         this._stateSelection = [];
         this._stateSelection.push(
@@ -102,7 +102,7 @@ export class TerraInputComponentExample implements OnInit
         );
     }
 
-    public showValues()
+    public showValues():void
     {
         alert(this._name + ' ' + this._lastname + ' ' +
               this._email + ' ' + this._password + ' ' +

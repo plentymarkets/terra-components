@@ -1,14 +1,15 @@
-<template #tooltipTemplate>
+<ng-template #tooltipTemplate>
     <div [innerHtml]="inputTooltipText"></div>
-</template>
+</ng-template>
 <div [isDisabled]="!inputTooltipText"
      class="btn-handler"
      [tooltip]="tooltipTemplate"
-     [placement]="_currentTooltipPlacement"
+     [placement]="currentTooltipPlacement"
      [container]="'body'"
      (mouseenter)="setTooltipPlacement($event)"
      [ngClass]="{'pull-xs-right': inputIsAlignRight,
-                 'disabled': inputIsDisabled}">
+                 'disabled': inputIsDisabled}"
+     (click)="click($event)">
     <button class="btn"
             [ngClass]="{'btn-primary' : inputIsPrimary,
                       'btn-secondary' : inputIsSecondary,
@@ -20,8 +21,7 @@
                       'btn-divider' : inputIsDivider,
                       'btn-link' : inputIsLink }"
             [hidden]="inputIsHidden"
-            [type]="inputType"
-            (click)="click($event)">
+            [type]="inputType">
         <span *ngIf="inputIcon" class="icon_dist_top" [ngClass]="inputIcon"></span>
         {{inputCaption}}
         <ng-content select="[btn-inner]"></ng-content>

@@ -8,7 +8,7 @@ import { TranslationModule } from 'angular-l10n';
     imports:      [
         CommonModule,
         TooltipModule.forRoot(),
-        TranslationModule.forChild()
+        TranslationModule
     ],
     declarations: [
         TerraButtonGroupComponent
@@ -16,7 +16,7 @@ import { TranslationModule } from 'angular-l10n';
 })
 export class TerraButtonGroupModule
 {
-    static forRoot()
+    public static forRoot():Object
     {
         return {
             ngModule:  TerraButtonGroupModule,

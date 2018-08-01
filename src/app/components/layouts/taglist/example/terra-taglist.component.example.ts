@@ -1,6 +1,4 @@
-import {
-    Component
-} from "@angular/core";
+import { Component } from '@angular/core';
 import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 
 @Component({
@@ -10,16 +8,31 @@ import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 })
 export class TerraTaglistComponentExample
 {
-    private tagList:Array<TerraTagInterface> = [
-        {
-            badge: 'tag1'
-        },
-        {
-            badge: 'tag2'
-        },
-        {
-            badge: 'tag3'
-        }
-    ];
-}
+    public infoBoxTagList:Array<TerraTagInterface> = [];
 
+    constructor()
+    {
+        this.infoBoxTagList.push(
+            {
+                badge: 'Terra'
+            },
+            {
+                badge: 'Terra',
+                color: 'red'
+            },
+            {
+                badge: 'Terra',
+                color:'#f3f3f3'
+            },
+            {
+                badge: 'Terra',
+                isTaggable: true
+            },
+            {
+                badge: 'Terra',
+                isTaggable: true,
+                isTagged: true
+            }
+        );
+    }
+}

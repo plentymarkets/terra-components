@@ -10,7 +10,7 @@ import { Http } from '@angular/http';
 @Injectable()
 export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id:number, value:number }, TerraPagerParameterInterface>
 {
-    private data:[{ id:number, value:number }] = [
+    private data:Array<{ id:number, value:number }> = [
         {
             id:    1,
             value: Math.random()

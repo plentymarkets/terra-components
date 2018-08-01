@@ -5,9 +5,15 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraNodeTreeConfig } from './data/terra-node-tree.config';
-import { isNullOrUndefined } from "util";
+import { isNullOrUndefined } from 'util';
 import { TerraNodeInterface } from './data/terra-node.interface';
 import { TranslationService } from 'angular-l10n';
+import { FormControl } from '@angular/forms';
+import {
+    debounceTime,
+    distinctUntilChanged
+} from 'rxjs/operators';
+import { StringHelper } from '../../../helpers/string.helper';
 
 @Component({
     selector: 'terra-node-tree',
@@ -16,65 +22,51 @@ import { TranslationService } from 'angular-l10n';
 })
 export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 {
-    private _searchValue:string;
-
     /**
      * @description The config to handle actions on tree or node.
      */
-    @Input() inputConfig:TerraNodeTreeConfig<D>;
+    @Input()
+    public inputConfig:TerraNodeTreeConfig<D>;
 
     /**
      * @description Shows the search box above the tree.
      */
-    @Input() inputShowSearch:boolean;
+    @Input()
+    public inputShowSearch:boolean;
 
-    constructor(private _translation:TranslationService)
+    /**
+     * @description Disables or enables the System Tree
+     */
+    @Input()
+    public isTreeDisabled:boolean;
+
+    protected formControl:FormControl = new FormControl();
+
+    constructor(private translation:TranslationService)
     {
     }
 
     public ngOnInit():void
     {
-        this.handleVisibility(this.inputConfig.list);
-    }
-
-    private handleVisibility(nodeList:Array<TerraNodeInterface<D>>):void
-    {
-        nodeList.forEach((node:TerraNodeInterface<D>) =>
+        this.inputConfig.checkVisibilityAndAssignDefault(this.inputConfig.list);
+        this.formControl.valueChanges.pipe(
+            debounceTime(400),
+            distinctUntilChanged()
+        ).subscribe((searchValue:string) =>
         {
-
-            if(node.isVisible)
+            if(StringHelper.isNullUndefinedOrEmpty(searchValue))
             {
-                node.defaultVisibility = true;
+                this.inputConfig.checkDefaultAndAssignVisibility(this.inputConfig.list);
+                this.inputConfig.toggleOpenChildren(this.inputConfig.list, false);
+
+                if(!isNullOrUndefined(this.inputConfig.currentSelectedNode))
+                {
+                    this.inputConfig.toggleOpenParent(this.inputConfig.currentSelectedNode, true);
+                }
             }
             else
             {
-                node.defaultVisibility = false;
-            }
-
-            if(!isNullOrUndefined(node.children))
-            {
-                this.handleVisibility(node.children);
-            }
-        });
-    }
-
-    private handleDefaultVisibility(nodeList:Array<TerraNodeInterface<D>>):void
-    {
-        nodeList.forEach((node:TerraNodeInterface<D>) =>
-        {
-
-            if(node.defaultVisibility)
-            {
-                node.isVisible = true;
-            }
-            else
-            {
-                node.isVisible = false;
-            }
-
-            if(!isNullOrUndefined(node.children))
-            {
-                this.handleDefaultVisibility(node.children);
+                this.doSearch(searchValue);
             }
         });
     }
@@ -84,103 +76,88 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         this.inputConfig.reset();
     }
 
-    protected onChange():void
+    private doSearch(searchValue:string):void
     {
-        if(this._searchValue.length >= 3)
+        this.inputConfig.list.forEach((node:TerraNodeInterface<D>) =>
         {
-            this.inputConfig.toggleVisiblityForAllChildren(this.inputConfig.list, false);
-
-            this.recursiveCheckList(this.inputConfig.list);
-        }
-        else
-        {
-            this.handleDefaultVisibility(this.inputConfig.list);
-            this.inputConfig.closeAllNodes();
-        }
-    }
-
-    private recursiveCheckList(list:Array<TerraNodeInterface<D>>):void
-    {
-        list.forEach((node:TerraNodeInterface<D>) =>
-        {
-            if(this._searchValue.includes(' '))
-            {
-                this._searchValue.split(' ').forEach((word:string) =>
-                {
-                    this.handleSearch(node, word);
-                });
-            }
-            else
-            {
-                this.handleSearch(node, this._searchValue);
-            }
-
-            if(!isNullOrUndefined(node.children))
-            {
-                this.recursiveCheckList(node.children);
-            }
+            this.search(node, false, searchValue);
         });
     }
 
-    private handleSearch(node:TerraNodeInterface<D>, value:string):void
+    private search(node:TerraNodeInterface<D>, isParentVisible:boolean, searchValue:string):boolean
     {
-        let tags:Array<string> = node.tags;
-        if(!isNullOrUndefined(tags))
-        {
-            let tagMatchFound:boolean = false;
-            tags.forEach((tag:string) =>
-            {
-                if(tag.toUpperCase().includes(value.toUpperCase()))
-                {
-                    tagMatchFound = true;
-                    return;
-                }
-            });
-
-            if(tagMatchFound)
-            {
-                this.handleNodeVisibility(node);
-            }
-        }
-
-        let name:string = this._translation.translate(node.name);
-
-        let suggestion:string = name.toUpperCase();
-
-        // check if search string is included in the given suggestion
-        if(suggestion.includes(value.toUpperCase()))
-        {
-            this.handleNodeVisibility(node);
-        }
-    }
-
-    private handleNodeVisibility(node:TerraNodeInterface<D>):void
-    {
+        // ignore non visible nodes
         if(!node.defaultVisibility)
         {
-            return
+            return;
         }
 
-        node.isVisible = true;
-        this.inputConfig.toggleOpenParent(node, true);
+        let isVisible:boolean = isParentVisible || this.checkVisibility(node, searchValue);
+        let isEmptySearchString:boolean = isNullOrUndefined(searchValue) || searchValue.length === 0;
 
-        if(!node.hasLoaded && !isNullOrUndefined(node.onLazyLoad))
-        {
-            this.inputConfig.handleLazyLoading(node);
-        }
+        let hasVisibleChild:boolean = false;
+        let hasChildren:boolean = false;
 
         if(!isNullOrUndefined(node.children))
         {
-            this.inputConfig.toggleVisiblityForAllChildren(node.children, true);
+            node.children.forEach((childNode:TerraNodeInterface<D>) =>
+            {
+                hasChildren = true;
+                hasVisibleChild = this.search(childNode, isVisible, searchValue) || hasVisibleChild;
+            });
         }
 
-        if(!isNullOrUndefined(node.parent))
+        if(hasChildren)
         {
-            if(!node.parent.hasLoaded && !isNullOrUndefined(node.parent.onLazyLoad))
+            if(!node.isOpen && !isEmptySearchString)
             {
-                this.inputConfig.handleLazyLoading(node.parent);
+                node.isOpen = true;
+                this.inputConfig.toggleOpenChildren(node.children, true);
             }
-            this.inputConfig.toggleVisibilityForAllParents(node.parent, true);
+            else if(isEmptySearchString)
+            {
+                node.isOpen = false;
+            }
         }
+
+        node.isVisible = isVisible || hasVisibleChild;
+
+        return isVisible || hasVisibleChild;
+    }
+
+    private checkVisibility(node:TerraNodeInterface<D>, searchValue:string):boolean
+    {
+        let hasValidCaptionOrTag:boolean = false;
+
+        let tags:Array<string> = node.tags;
+
+        // search for tags first
+        if(!isNullOrUndefined(tags))
+        {
+            tags.forEach((tag:string) =>
+            {
+                if(tag.toUpperCase().includes(searchValue.toUpperCase()))
+                {
+                    hasValidCaptionOrTag = true;
+                    return;
+                }
+            });
+        }
+
+        // search node names if no tags found
+        if(!hasValidCaptionOrTag)
+        {
+            let name:string = this.translation.translate(node.name);
+
+            let suggestion:string = name.toUpperCase();
+
+            // check if search string is included in the given suggestion
+            if(suggestion.includes(searchValue.toUpperCase()))
+            {
+                hasValidCaptionOrTag = true;
+            }
+        }
+
+        return hasValidCaptionOrTag;
     }
 }

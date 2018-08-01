@@ -1,6 +1,8 @@
 import {
     AfterViewInit,
+    Compiler,
     Component,
+    ComponentFactory,
     ComponentRef,
     Input,
     ModuleWithComponentFactories,
@@ -11,8 +13,7 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { JitCompiler } from '@angular/compiler';
-import { TerraMultiSplitViewInterface } from '../split-view/multi/data/terra-multi-split-view.interface';
+import { TerraMultiSplitViewInterface } from '../split-view/multi/interfaces/terra-multi-split-view.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraDynamicLoadedComponentInputInterface } from './data/terra-dynamic-loaded-component-input.interface';
 
@@ -23,21 +24,32 @@ import { TerraDynamicLoadedComponentInputInterface } from './data/terra-dynamic-
 })
 export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChanges, OnDestroy
 {
-    @ViewChild('viewChildTarget', {read: ViewContainerRef}) viewChildTarget;
-    @Input() inputModule:any;
-    @Input() inputMainComponentName:string;
-    @Input() inputParameter:any; // TODO: remove input if old split-view is removed
-    @Input() inputInputs:Array<TerraDynamicLoadedComponentInputInterface>;
-    @Input() inputView:TerraMultiSplitViewInterface;
+    @ViewChild('viewChildTarget', {read: ViewContainerRef})
+    public viewChildTarget:ViewContainerRef;
+
+    @Input()
+    public inputModule:any;
+
+    @Input()
+    public inputMainComponentName:string;
+
+    @Input()
+    public inputParameter:any; // TODO: remove input if old split-view is removed
+
+    @Input()
+    public inputInputs:Array<TerraDynamicLoadedComponentInputInterface>;
+
+    @Input()
+    public inputView:TerraMultiSplitViewInterface;
     private _resolvedData:ModuleWithProviders;
 
     private _cmpRef:ComponentRef<any>;
 
-    constructor(private _jitCompiler:JitCompiler)
+    constructor(private _jitCompiler:Compiler)
     {
     }
 
-    public ngAfterViewInit()
+    public ngAfterViewInit():void
     {
         this._resolvedData = this.inputModule as ModuleWithProviders;
         this.updateComponent();
@@ -51,7 +63,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
         }
     }
 
-    public ngOnDestroy()
+    public ngOnDestroy():void
     {
         if(this._cmpRef)
         {
@@ -64,7 +76,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
         this._jitCompiler.compileModuleAndAllComponentsAsync(this._resolvedData.ngModule)
             .then((moduleWithFactories:ModuleWithComponentFactories<any>) =>
             {
-                moduleWithFactories.componentFactories.forEach((factory) =>
+                moduleWithFactories.componentFactories.forEach((factory:ComponentFactory<any>):void =>
                     {
                         if(this.inputMainComponentName === factory.componentType.name)
                         {
@@ -86,7 +98,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
             });
     }
 
-    private assignInputProperties()
+    private assignInputProperties():void
     {
         if(!isNullOrUndefined(this.inputInputs) && this._cmpRef)
         {

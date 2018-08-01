@@ -29,15 +29,26 @@ export class TerraDynamicFormFunctionsHandler<D>
      */
     public errorCallback:(formGroup:FormGroup, translationMapping:{ [key:string]:string }) => void;
 
+    /**
+     * Called after a form value has changed
+     */
+    public onValueChangedCallback:(value:any) => void;
+
+    public valueChangeDebounce:number;
+
     private _formFieldControlService?:TerraFormFieldControlService;
 
     constructor(saveCallback:(formData:D) => void,
                 savedCallback:(observable:Observable<D>) => void,
-                errorCallback:(formGroup:FormGroup, translationMapping:{ [key:string]:string }) => void)
+                errorCallback:(formGroup:FormGroup, translationMapping:{ [key:string]:string }) => void,
+                onValueChangedCallback:(value:any) => void,
+                valueChangeDebounce:number = 1000)
     {
         this.saveCallback = saveCallback;
         this.savedCallback = savedCallback;
         this.errorCallback = errorCallback;
+        this.onValueChangedCallback = onValueChangedCallback;
+        this.valueChangeDebounce = valueChangeDebounce;
     }
 
     public update(formValues:D):void

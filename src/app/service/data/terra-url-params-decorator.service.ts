@@ -4,6 +4,7 @@ import { TerraPagerParameterInterface } from '../../components/pager/data/terra-
 
 /**
  * @author ptopczewski
+ * @deprecated use the createUrlSearchParams-Method of the TerraBaseService instead!
  */
 @Injectable()
 export class TerraUrlParamsDecorator
@@ -13,7 +14,7 @@ export class TerraUrlParamsDecorator
      * @param {URLSearchParams} urlSearchParams
      * @param {TerraPagerParameterInterface} terraPagerParameter
      */
-    public setTerraPagerParameter(urlSearchParams:URLSearchParams, terraPagerParameter:TerraPagerParameterInterface)
+    public setTerraPagerParameter(urlSearchParams:URLSearchParams, terraPagerParameter:TerraPagerParameterInterface):void
     {
         if(terraPagerParameter.page)
         {

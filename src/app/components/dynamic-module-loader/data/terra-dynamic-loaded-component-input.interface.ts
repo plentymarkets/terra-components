@@ -3,6 +3,6 @@
  */
 export class TerraDynamicLoadedComponentInputInterface
 {
-    name:string;
-    value:any;
+    public name:string;
+    public value:any;
 }

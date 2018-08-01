@@ -5,6 +5,9 @@
 	"terraMultiSelectBox": {
 		"selectAll": "Alle"
 	},
+	"terraMultiCheckBox": {
+		"selectAll": "Alle"
+	},
 	"terraFileBrowser": {
 		"cancel": "Abbrechen",
 		"create": "Erstellen",
@@ -29,7 +32,8 @@
 		"lastChange": "Letzte Änderung",
 		"loadingFiles": "Dateien werden geladen",
 		"noFiles": "Keine Dateien",
-		"downloadFile": "Datei herunterladen"
+		"downloadFile": "Datei herunterladen",
+		"uploadProgress": "Dateien werden hochgeladen: {{ filesUploaded }}/{{ filesTotal }} ({{ sizeUploaded }}/{{ sizeTotal }})"
 	},
 	"terraFileInput": {
 		"choose": "Wählen",
@@ -52,10 +56,29 @@
 	"terraNoteEditor": {
 		"insertText": "Text eingeben."
 	},
+	"terraCodeEditor":
+	{
+		"changeViewOverlay":
+		{
+			"title":"Unbekannte Formatierung",
+			"text":"Durch den Wechsel in die Editor-Ansicht gehen unbekannte Formatierungen im Markup verloren. Sind Sie sicher, dass sie die Ansicht wechseln möchten?",
+			"primaryButton":"Zu Editor-Ansicht wechseln",
+			"secondaryButton": "Abbrechen"
+		}
+	},
 	"terraTextInput": {
 		"invalidIban": "IBAN ist ungültig."
 	},
 	"terraNodeTree":{
 		"search": "Suche"
+	},
+	"timepicker": {
+		"minutes": "Minuten",
+		"hours": "Stunden"
+	},
+	"terraCategoryPicker": {
+		"select": "Auswählen",
+		"category": "Kategorie",
+		"reset": "Reset"
 	}
 }

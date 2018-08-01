@@ -1,6 +1,6 @@
 export class TerraPdfHelper
 {
-    static createPdfBlob(base64String:string):Blob
+    public static createPdfBlob(base64String:string):Blob
     {
         let sliceSize:number = 512;
         let byteCharacters:string = atob(base64String);

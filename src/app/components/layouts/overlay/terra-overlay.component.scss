@@ -1,9 +1,3 @@
-.modal-title
-{
-    line-height: 2.3;
-    font-weight: $font-weight-3;
-}
-
 .modal-dialog
 {
     margin: 0;
@@ -14,21 +8,31 @@
     min-width: 300px;
     .modal-content
     {
+        border-radius: var(--border-radius);
+        
         .modal-header
         {
-            padding: 10px 14px;
+            padding: var(--space-md) var(--space-lg);
+            border-bottom: 1px solid var(--border-color);
             --btn-padding: 0;
+            .modal-title
+            {
+                line-height: var(--height-md);
+                font-weight: var(--font-weight-3);
+            }
         }
         .modal-body
         {
             max-height: var(--modal-body-max-height, 525px);
             height: var(--modal-body-height, initial);
             overflow-y: auto;
-            padding: 18px 14px;
+            padding: var(--space-lg) var(--space-lg);
+            background-color: var(--modal-body-background-color, var(--color-structure-2))
         }
         .modal-footer
         {
-            padding: 10px 14px;
+            padding: var(--space-md) var(--space-lg);
+            border-top: 1px solid var(--border-color);
         }
     }
 }
@@ -36,7 +40,7 @@
 .modal.fade .modal-dialog
 {
     transform: translate(-50%, -100%);
-    transition: transform .3s ease-out, -webkit-transform .3s ease-out;
+    transition: transform var(--transition-md), -webkit-transform var(--transition-md);
 }
 
 .modal.in .modal-dialog

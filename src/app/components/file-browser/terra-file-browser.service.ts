@@ -3,15 +3,16 @@ import {
     NgZone
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { isNullOrUndefined } from 'util';
 
 @Injectable()
 export class TerraFileBrowserService
 {
+    public isDragActive:BehaviorSubject<boolean> = new BehaviorSubject(false);
+
     private _dropzones:Array<HTMLElement> = [];
     private _globalListenersDefined:boolean = false;
     private _dragenterTarget:EventTarget = null;
-
-    public isDragActive:BehaviorSubject<boolean> = new BehaviorSubject(false);
 
     constructor(private zone:NgZone)
     {
@@ -42,46 +43,57 @@ export class TerraFileBrowserService
             {
                 return dropzone.contains(element);
             }
-        )
+        );
     }
 
     private setupGlobalListeners():void
     {
         this.zone.runOutsideAngular(() =>
         {
-            let setEffect = (event:DragEvent) =>
+            let setEffect:(event:Event) => void = (event:DragEvent):void =>
             {
-                if(this.isDropzone(<HTMLElement>event.target))
+                if(this.isDropzone(<HTMLElement> event.target))
                 {
                     event.dataTransfer.effectAllowed = 'copy';
-                    event.dataTransfer.dropEffect = 'copy'
+                    event.dataTransfer.dropEffect = 'copy';
                 }
                 else
                 {
                     event.dataTransfer.effectAllowed = 'none';
-                    event.dataTransfer.dropEffect = 'none'
+                    event.dataTransfer.dropEffect = 'none';
                 }
+            };
+
+            let isFileEvent:(event:DragEvent) => boolean = (event:DragEvent):boolean =>
+            {
+                return !isNullOrUndefined(event.dataTransfer.types) && event.dataTransfer.types.indexOf('Files') >= 0;
             };
 
             window.addEventListener('dragenter', (event:DragEvent) =>
             {
-                this._dragenterTarget = event.target;
-                event.preventDefault();
-                if(!this.isDragActive.value)
+                if (isFileEvent(event))
                 {
-                    this.isDragActive.next(true);
+                    this._dragenterTarget = event.target;
+                    event.preventDefault();
+                    if(!this.isDragActive.value)
+                    {
+                        this.isDragActive.next(true);
+                    }
                 }
             });
 
             window.addEventListener('dragover', (event:DragEvent) =>
             {
-                event.preventDefault();
-                setEffect(event);
+                if (isFileEvent(event))
+                {
+                    event.preventDefault();
+                    setEffect(event);
+                }
             });
 
             window.addEventListener('dragleave', (event:DragEvent) =>
             {
-                if(event.target === this._dragenterTarget)
+                if(isFileEvent(event) && event.target === this._dragenterTarget)
                 {
                     this._dragenterTarget = null;
                     this.isDragActive.next(false);
@@ -90,11 +102,14 @@ export class TerraFileBrowserService
 
             window.addEventListener('drop', (event:DragEvent) =>
             {
-                event.preventDefault();
-                this._dragenterTarget = null;
-                if(this.isDragActive.value)
+                if (isFileEvent(event))
                 {
-                    this.isDragActive.next(false);
+                    event.preventDefault();
+                    this._dragenterTarget = null;
+                    if(this.isDragActive.value)
+                    {
+                        this.isDragActive.next(false);
+                    }
                 }
             });
 

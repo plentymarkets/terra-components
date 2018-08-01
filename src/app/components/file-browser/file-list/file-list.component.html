@@ -1,4 +1,4 @@
-<terra-base-toolbar>
+<terra-base-toolbar [inputIsBreadcrumbs]="true">
     <ul class="terra-breadcrumbs" *ngIf="_storageList">
         <li *ngFor="let parent of parentStorageObjects; let first = first; let last = last" (click)="currentStorageRoot = parent">
             <div [class.active]="last">
@@ -48,7 +48,7 @@
     </div>
     
     <label style="width:0; height: 0; visibility: hidden;" #fileChooser>
-        <input type="file" (change)="onFileSelect($event)">
+        <input type="file" (change)="onFileSelect($event)" multiple="multiple">
     </label>
 
 </terra-base-toolbar>
@@ -100,7 +100,7 @@
     </div>
     
     <terra-simple-table *ngIf="_fileTableRowList.length > 0"
-                        fixed-header
+                        fixedHeader
                         [inputHeaderList]="_fileTableHeaderList"
                         [inputRowList]="_fileTableRowList"
                         [inputIsStriped]="true"
@@ -139,5 +139,12 @@
             {{ _translationPrefix + '.uploadFile' | translate:lang }}
         </div>
     
+    </div>
+    
+    <div class="upload-progress-container" *ngIf="_progress">
+        <div class="upload-progress">
+            <div [style.width.%]="_progress.progress"></div>
+        </div>
+        <span>{{ _translationPrefix + '.uploadProgress' | translate:lang:_progress }}</span>
     </div>
 </div>
