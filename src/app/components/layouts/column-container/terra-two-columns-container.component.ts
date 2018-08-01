@@ -49,10 +49,8 @@ export class TerraTwoColumnsContainerComponent
         return this._leftColumnWidth;
     }
 
-    constructor(twoColumnsConfig:TerraTwoColumnsConfig)
+    constructor()
     {
-        twoColumnsConfig.component = this;
-
         this.leftColumnWidth = this._leftColumnWidth; // trigger calculation for default values
     }
 }
