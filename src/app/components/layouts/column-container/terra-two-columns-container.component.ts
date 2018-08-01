@@ -1,16 +1,34 @@
 import {
     Component,
-    Input
+    Input,
+    OnDestroy,
+    OnInit
 } from '@angular/core';
+import {
+    ActivatedRoute,
+    Data,
+    NavigationEnd,
+    Route,
+    Router,
+    RouterEvent,
+    Routes
+} from '@angular/router';
+import { isNullOrUndefined } from 'util';
+import { Event } from '@angular/router/src/events';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * @author mfrank
  */
 @Component({
     selector: 'terra-2-col',
+    styles:   [require('./terra-two-columns-container.component.scss')],
     template: require('./terra-two-columns-container.component.html')
 })
-export class TerraTwoColumnsContainerComponent
+/**
+ * @experimental TerraTwoColumnsContainerComponent is experimental and might be subject to drastic changes in the near future.
+ */
+export class TerraTwoColumnsContainerComponent implements OnDestroy, OnInit
 {
     protected leftColumn:string;
     protected rightColumn:string;
@@ -19,8 +37,10 @@ export class TerraTwoColumnsContainerComponent
     private readonly colMD:string = 'col-md-';
     private readonly colLG:string = 'col-lg-';
     private readonly spacer:string = ' ';
+    private readonly hiddenXS:string = 'hidden-xs';
     private readonly maxColumnWidth:number = 12;
     private _leftColumnWidth:number = 2;
+    private subscription:any;
 
     @Input()
     public set leftColumnWidth(leftColumnWidth:number)
@@ -37,9 +57,60 @@ export class TerraTwoColumnsContainerComponent
         this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
     }
 
-    constructor()
+    private basePath:string;
+
+    constructor(private route:ActivatedRoute,
+                private router:Router)
     {
+        this.basePath = router.url;
+
         this.leftColumnWidth = this._leftColumnWidth; // trigger calculation for default values
+    }
+
+    public ngOnInit():void
+    {
+        let subscribable:Observable<Event> = this.router.events.filter((event:RouterEvent) =>
+        {
+            return event instanceof NavigationEnd && event.urlAfterRedirects === this.basePath;
+        });
+
+        this.subscription = subscribable.subscribe((event:NavigationEnd) =>
+        {
+            if(event.url !== event.urlAfterRedirects)
+            {
+                this.setColumnHidden('right');
+            }
+            else
+            {
+                this.setColumnHidden('left');
+            }
+        });
+
+        this.setColumnHidden('left');
+
+        this.route.data.subscribe((data:Data) =>
+        {
+            this.basePath = this.router.url;
+        });
+    }
+
+    private setColumnHidden(column:string):void
+    {
+        if(column === 'right')
+        {
+            this.leftColumn = this.leftRightColXS() + this.leftColMD() + this.leftColLG();
+            this.rightColumn = this.leftRightHiddenXS() + this.rightColMD() + this.rightColLG();
+        }
+        else if(column === 'left')
+        {
+            this.leftColumn = this.leftRightHiddenXS() + this.leftColMD() + this.leftColLG();
+            this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
+        }
+    }
+
+    public ngOnDestroy():void
+    {
+        this.subscription.unsubscribe();
     }
 
     private leftRightColXS():string
@@ -65,6 +136,11 @@ export class TerraTwoColumnsContainerComponent
     private rightColLG():string
     {
         return this.colLG + this.calculatedRightColumnLGWidth();
+    }
+
+    private leftRightHiddenXS():string
+    {
+        return this.hiddenXS + this.spacer;
     }
 
     private calculatedLeftColumnMDWidth():number
