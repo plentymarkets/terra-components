@@ -12,21 +12,20 @@ import { NestedDataInterface } from './data/nested-data.interface';
 import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
 import { isNullOrUndefined, isNull } from 'util';
 import { NestedValueInterface } from './data/nested-value.interface';
-import { TerraNestedDataPickerBaseService } from './service/terra-nested-data-picker-base.service';
-import { Observable } from 'rxjs/Observable';
-import { forEach } from '@angular/router/src/utils/collection';
+import { TerraNestedDataPickerBaseService } from './service/terra-nested-data-picker-base.service'
 import { TerraNodeTreeConfig } from '../../components/tree/node-tree/data/terra-node-tree.config';
 
 @Component({
-   selector:  'terra-nested-data-picker',
-   template:  require('./terra-nested-data-picker.component.html'),
-   styles:    [require('./terra-nested-data-picker.component.scss')],
-   providers: [{
-       provide:     NG_VALUE_ACCESSOR,
-       useExisting: forwardRef(() => TerraNestedDataPickerComponent),
-       multi:       true
-   },
-               NestedDataTreeConfig]
+    selector:  'terra-nested-data-picker',
+    template:  require('./terra-nested-data-picker.component.html'),
+    styles:    [require('./terra-nested-data-picker.component.scss')],
+    providers: [{
+        provide:     NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => TerraNestedDataPickerComponent),
+        multi:       true
+    },
+    NestedDataTreeConfig,
+    TerraNodeTreeConfig]
 })
 export class TerraNestedDataPickerComponent implements OnInit, AfterContentChecked
 {

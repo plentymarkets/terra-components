@@ -145,6 +145,7 @@ import { RouterModule } from '@angular/router';
 import { TerraTimePickerComponentExample } from './components/forms/input/time-picker/example/terra-time-picker.component.example';
 import { TerraTwoColumnsContainerComponent } from './components/layouts/column-container/terra-two-columns-container.component';
 import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
+import { TerraNestedDataPickerComponentExample } from './components/nested-data-picker/example/terra-nested-data-picker.component.example';
 
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
@@ -257,7 +258,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraCodeEditorComponentExample,
         TerraNoteComponentExample,
         TerraNodeTreeComponentExample,
-        TerraTimePickerComponentExample
+        TerraTimePickerComponentExample,
+        TerraNestedDataPickerComponentExample
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -417,7 +419,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
         TerraNodeTreeComponentExample,
-        TerraTimePickerComponentExample
+        TerraTimePickerComponentExample,
+        TerraNestedDataPickerComponentExample
     ],
     imports:         [
         BrowserModule,
