@@ -16,7 +16,7 @@
                         (outputClicked)="reset()">
         </terra-button>
     </div>
-    <div *ngIf="toggleTree">
+    <div [hidden]="!toggleTree">
         <terra-node-tree [inputShowSearch]="false"
                          [inputConfig]="nestedTreeConfig">
         </terra-node-tree>
