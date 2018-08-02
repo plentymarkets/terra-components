@@ -111,4 +111,13 @@ export class TerraBreadcrumbsComponent
 
         this.mouseLeft = left + 'px';
     }
+
+    protected checkLastBreadcrumbContainer(index:number):boolean
+    {
+        let nextContainer:TerraBreadcrumbContainer = this.breadcrumbContainer[index + 1];
+
+        return !isNullOrUndefined(nextContainer) &&
+               !isNullOrUndefined(nextContainer.currentSelectedBreadcrumb) &&
+               !nextContainer.currentSelectedBreadcrumb.isHidden;
+    }
 }

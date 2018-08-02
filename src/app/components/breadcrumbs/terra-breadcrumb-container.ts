@@ -4,7 +4,6 @@ export class TerraBreadcrumbContainer
 {
     public currentSelectedBreadcrumb:TerraBreadcrumb;
     public breadcrumbList:Array<TerraBreadcrumb>;
-    public isHidden:boolean;
 
     constructor()
     {
