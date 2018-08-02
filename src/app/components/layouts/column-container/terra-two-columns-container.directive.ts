@@ -17,13 +17,14 @@ import { Observable } from 'rxjs/Observable';
 import { TwoColumnHelper } from '../../../helpers/two-column.helper';
 import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';
 import { isNullOrUndefined } from 'util';
+import { Subscription } from 'rxjs/Subscription';
 
 @Directive({
     selector: 'terra-2-col[mobileRouting]'
 })
 export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
 {
-    public subscription:any;
+    public subscription:Subscription;
 
     private basePath:string;
 
