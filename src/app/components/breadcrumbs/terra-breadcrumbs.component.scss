@@ -54,6 +54,7 @@
                 overflow: hidden;
                 font-size: var(--font-size-6);
                 line-height: var(--terra-breadcrumbs-icon-caret-line-height, var(--breadcrumbs-height));
+                padding-left: 8px; // TODO
                 
                 &:hover
                 {
@@ -98,13 +99,6 @@
                 }
             }
         }
-        &:last-child
-        {
-            .icon-next
-            {
-                display: none;
-            }
-        }
         .icon-next
         {
             &::before
@@ -116,70 +110,6 @@
             }
         }
     }
-}
-
-.side-scroller
-{
-    position: relative;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    height: 100%;
-    white-space: nowrap;
-    font-size: 0;
-    &.offset
-    {
-        height: var(--split-view-side-scroller-offset-height, (calc(100% - var(--breadcrumbs-height))));
-    }
-    > *
-    {
-        display: inline-block;
-    }
-    
-    .view
-    {
-        font-size: var(--font-size-3);
-        vertical-align: top;
-        height: 100%;
-        overflow: hidden;
-        white-space: normal;
-        position: relative;
-        
-        > div
-        {
-            height: 100%;
-            min-height: 100%;
-            overflow-y: auto;
-            position: relative;
-        }
-    }
-    
-    .fadeIn
-    {
-        animation-name: fadeInAnimation;
-        animation-duration: 0.25s;
-    }
-    
-    @keyframes fadeInAnimation
-    {
-        from
-        {
-            opacity: 0;
-        }
-        to
-        {
-            opacity: 1;
-        }
-    }
-}
-
-.ellipsis
-{
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    vertical-align: top;
-    max-width: 150px;
-    display: inline-block;
 }
 
 .main-breadcrumbs
