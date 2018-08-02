@@ -91,13 +91,24 @@ export class TerraBreadcrumbsComponent
         return this._breadcrumbsService;
     }
 
-    protected calculatePosition(event:Event):void
+    protected calculatePosition(container:HTMLLIElement, contextMenu:HTMLUListElement):void
     {
-        event.preventDefault();
+        let containerClientRect:ClientRect = container.getBoundingClientRect();
+        let contextMenuClientRect:ClientRect = contextMenu.getBoundingClientRect();
 
-        if(event.currentTarget instanceof HTMLElement)
+        let isOutsideRight:boolean = (contextMenuClientRect.width + containerClientRect.left) > screen.width;
+
+        let left:number = 0;
+
+        if(isOutsideRight)
         {
-            this.mouseLeft = event.currentTarget.offsetLeft + 'px';
+            left = screen.width - contextMenuClientRect.width;
         }
+        else
+        {
+            left = containerClientRect.left;
+        }
+
+        this.mouseLeft = left + 'px';
     }
 }

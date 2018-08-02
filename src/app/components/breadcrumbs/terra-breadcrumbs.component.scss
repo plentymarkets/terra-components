@@ -7,19 +7,20 @@
     transition: height var(--transition-lg);
     display: flex;
     
-    li
+    .terra-breadcrumb-container
     {
-        float: left;
         cursor: pointer;
-        outline: none;
-        div
+        
+        .terra-breadcrumb-wrapper
         {
-            a
+            .terra-breadcrumb
             {
-                display: inline;
                 font-weight: var(--font-weight-1);
                 font-size: var(--font-size-1);
                 color: var(--color-structure-0);
+                max-width: 120px; // TODO
+                text-overflow: ellipsis;
+                overflow: hidden;
     
                 &.active
                 {
@@ -38,7 +39,7 @@
             line-height: var(--terra-breadcrumbs-line-height, var(--breadcrumbs-height));
             transition: padding var(--transition-lg);
             position: relative;
-            display: block;
+            display: flex;
             float: left;
             color: var(--color-structure-0);
             white-space: nowrap;
@@ -50,7 +51,6 @@
             }
             .icon-caret
             {
-                padding-bottom: 5px;
                 overflow: hidden;
                 font-size: var(--font-size-6);
                 line-height: var(--terra-breadcrumbs-icon-caret-line-height, var(--breadcrumbs-height));
@@ -69,13 +69,29 @@
                 .context-menu
                 {
                     position: fixed;
-                    width: 150px;
+                    width: 150px; // TODO
                     top: calc(var(--breadcrumbs-height) + var(--navbar-height) + var(--tabbar-height) - var(--space-sm));
                     li
                     {
                         float: none;
-                        min-width: 150px;
-                        max-width: 200px;
+                        display: flex;
+                        align-items: center;
+                        height: 28px; // TODO
+                        
+                        &:hover
+                        {
+                            background-color: var(--color-structure-9);
+                        }
+                        
+                        a
+                        {
+                            padding: 0 18px 0 10px; // TODO
+                        }
+                        
+                        span
+                        {
+                            margin-right: 5px; // TODO
+                        }
                     }
                 }
             }
@@ -86,10 +102,6 @@
             {
                 display: none;
             }
-        }
-        &:first-child div
-        {
-            padding-left: 10px;
         }
         .icon-next
         {
