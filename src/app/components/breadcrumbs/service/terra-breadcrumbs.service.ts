@@ -106,7 +106,7 @@ export class TerraBreadcrumbsService
                 {
                     let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
 
-                    label = this.translation.translate(route.data.label(activatedSnapshot.data, this.translation));
+                    label = this.translation.translate(route.data.label(this.translation, activatedSnapshot.params, activatedSnapshot.data));
                 }
                 else
                 {
