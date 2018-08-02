@@ -1,11 +1,14 @@
-# Unreleased
+<a name="2.3.4"></a>
+# 2.3.4 (02.08.2018)
 
 ### Features
 * **terra-icons** added new icons
 * **terra-decimal-validator** added a custom validator to validate decimals
 * **object.helper** added a helper for object operations. First there is only a function to remove keys with an `undefined` or `null` value
 * **number.helper** added a helper for number operations. First there is only a function for correctly rounding.
-* **terra-2-col** **_EXPERIMENTAL_** Improved mobile handling for 2 column container.
+* **terra-2-col** reduced two column component to bare necessities
+* **two-column.helper** added a helper for two column component sizing
+* **two-column-mobile.directive** added a  directive for two column mobile handling
 
 #### Bug Fixes
 * **terra-code-editor** added html code validation to check if all tags are closed.
