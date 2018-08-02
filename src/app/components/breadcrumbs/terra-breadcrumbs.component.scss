@@ -18,7 +18,7 @@
                 font-weight: var(--font-weight-1);
                 font-size: var(--font-size-1);
                 color: var(--color-structure-0);
-                max-width: 120px; // TODO
+                max-width: 120px;
                 text-overflow: ellipsis;
                 overflow: hidden;
     
@@ -54,7 +54,7 @@
                 overflow: hidden;
                 font-size: var(--font-size-6);
                 line-height: var(--terra-breadcrumbs-icon-caret-line-height, var(--breadcrumbs-height));
-                padding-left: 8px; // TODO
+                padding-left: 8px;
                 
                 &:hover
                 {
@@ -70,7 +70,7 @@
                 .context-menu
                 {
                     position: fixed;
-                    width: 150px; // TODO
+                    width: 150px;
                     top: calc(var(--breadcrumbs-height) + var(--navbar-height) + var(--tabbar-height) - var(--space-sm));
                     transition: all var(--transition-0);
                     transition-delay: var(--transition-delay-0);
@@ -79,7 +79,7 @@
                         float: none;
                         display: flex;
                         align-items: center;
-                        height: 28px; // TODO
+                        height: var(--height-sm);
                         
                         &:hover
                         {
@@ -88,12 +88,12 @@
                         
                         a
                         {
-                            padding: 0 18px 0 10px; // TODO
+                            padding: 0 18px 0 10px;
                         }
                         
                         span
                         {
-                            margin-right: 5px; // TODO
+                            margin-right: 5px;
                         }
                     }
                 }
