@@ -54,6 +54,9 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     @Input()
     public inputName:string;
 
+    @Input()
+    public displayResetButton:boolean = false;
+
     public toggleTree:boolean = false;
     public isNotInitialCall:boolean;
     public value:number | string;

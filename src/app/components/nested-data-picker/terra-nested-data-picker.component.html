@@ -1,6 +1,6 @@
 <div class="container-fluid" blur="showTree()">
     <div class="row">
-        <terra-text-input class="col-md-11"
+        <terra-text-input [class]="displayResetButton?'col-md-11':'col-md-12'"
                         [inputIsReadonly]="false"
                         [inputIsDisabled]="inputIsDisabled"
                         inputTooltipText="{{inputTooltipText}}"
@@ -8,7 +8,7 @@
                         [(ngModel)]="nestedDataName"
                         (click)="showTree()">
         </terra-text-input>
-        <terra-button   class="col-md-1"
+        <terra-button *ngIf="displayResetButton"  class="col-md-1"
                         inputTooltipText="{{'cancel' | translate:lang}}"
                         inputTooltipPlacement="top"
                         inputIcon="icon-cancel"
