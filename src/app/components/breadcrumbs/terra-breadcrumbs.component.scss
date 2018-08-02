@@ -62,8 +62,8 @@
                         display: block;
                         visibility: visible;
                         opacity: 1;
-                        transition: all var(--transition-sm);
-                        transition-delay: var(--transition-delay-sm);
+                        transition: all var(--transition-0);
+                        transition-delay: var(--transition-delay-0);
                     }
                 }
                 .context-menu
@@ -71,6 +71,8 @@
                     position: fixed;
                     width: 150px; // TODO
                     top: calc(var(--breadcrumbs-height) + var(--navbar-height) + var(--tabbar-height) - var(--space-sm));
+                    transition: all var(--transition-0);
+                    transition-delay: var(--transition-delay-0);
                     li
                     {
                         float: none;
