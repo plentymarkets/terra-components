@@ -3,8 +3,12 @@
         <ng-container *ngFor="let container of breadcrumbContainer; let i = index">
             <li class="terra-breadcrumb-container" *ngIf="getAmountOfVisibleBreadcrumbsForContainer(container) > 0" #breadcrumbContainer>
                 <div class="terra-breadcrumb-wrapper">
-                    <a class="terra-breadcrumb"
+                    <a #breadcrumbName class="terra-breadcrumb"
                        [routerLink]="container.currentSelectedBreadcrumb.routerLink"
+                       [tooltip]="container.currentSelectedBreadcrumb.name"
+                       [isDisabled]="isTooltipDisabled"
+                       [container]="'body'"
+                       (mouseover)="checkTooltip(breadcrumbName)"
                        [ngClass]="{'active' : checkActiveRoute(container.currentSelectedBreadcrumb)}">
                         {{container.currentSelectedBreadcrumb.name}}
                     </a>
