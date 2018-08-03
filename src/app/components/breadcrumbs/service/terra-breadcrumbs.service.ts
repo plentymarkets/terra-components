@@ -130,7 +130,7 @@ export class TerraBreadcrumbsService
     {
         breadcrumbContainer.breadcrumbList.forEach((bc:TerraBreadcrumb) =>
         {
-            bc.isHidden = bc.parent !== parentBreadcrumb;
+            bc.isHidden = bc.parent !== parentBreadcrumb || !isNullOrUndefined(bc.parent) && bc.parent.isHidden;
         });
 
         // is the current selected breadcrumb now hidden?
