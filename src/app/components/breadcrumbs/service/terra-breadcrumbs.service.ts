@@ -276,7 +276,7 @@ export class TerraBreadcrumbsService
             {
                 let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
 
-                breadcrumb.name = this.translation.translate(route.data.label(activatedSnapshot.data, this.translation));
+                breadcrumb.name = this.translation.translate(route.data.label(this.translation, activatedSnapshot.params, activatedSnapshot.data));
             }
             // otherwise it tries to update the name by the label from route data, which should be changed previously
             else
