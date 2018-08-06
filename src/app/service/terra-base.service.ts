@@ -513,10 +513,10 @@ export class TerraBaseService
             {
                 Object.keys(this.dataModel).forEach((comparisonId:string) =>
                 {
-                    let bankIndex:number = this.dataModel[comparisonId].findIndex((data:any) => data.id === dataId);
-                    if(bankIndex >= 0)
+                    let dataIndex:number = this.dataModel[comparisonId].findIndex((data:any) => data.id === dataId);
+                    if(dataIndex >= 0)
                     {
-                        this.dataModel[comparisonId].splice(bankIndex, 1);
+                        this.dataModel[comparisonId].splice(dataIndex, 1);
                     }
                 });
             })
