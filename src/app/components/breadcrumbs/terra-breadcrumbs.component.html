@@ -1,6 +1,6 @@
 <terra-base-toolbar [inputIsBreadcrumbs]="true" class="main-breadcrumbs">
     <ul class="terra-breadcrumbs">
-        <ng-container *ngFor="let container of breadcrumbContainer; let i = index">
+        <ng-container *ngFor="let container of breadcrumbContainers; let i = index">
             <li class="terra-breadcrumb-container" *ngIf="container.visibleBreadcrumbsCount > 0" #breadcrumbContainer>
                 <div class="terra-breadcrumb-wrapper">
                     <a #breadcrumbName class="terra-breadcrumb"

@@ -23,11 +23,11 @@ export class TerraBreadcrumbsComponent
     protected mouseLeft:string = '0px';
     protected isTooltipDisabled:boolean = false;
 
-    constructor(private _breadcrumbsService:TerraBreadcrumbsService,
+    constructor(public readonly breadcrumbsService:TerraBreadcrumbsService,
                 private activatedRoute:ActivatedRoute,
                 private router:Router)
     {
-        this._breadcrumbsService.initialPath =
+        this.breadcrumbsService.initialPath =
             this.getCompletePathByRoute(this.activatedRoute.snapshot.routeConfig, this.router.config, '');
     }
 
@@ -69,24 +69,19 @@ export class TerraBreadcrumbsComponent
 
     protected get breadcrumbContainers():Array<TerraBreadcrumbContainer>
     {
-        return this._breadcrumbsService.containers;
+        return this.breadcrumbsService.containers;
     }
 
     protected closeBreadcrumb(container:TerraBreadcrumbContainer, breadcrumb:TerraBreadcrumb, event:Event):void
     {
         event.stopPropagation();
 
-        this._breadcrumbsService.closeBreadcrumb(container, breadcrumb);
+        this.breadcrumbsService.closeBreadcrumb(container, breadcrumb);
     }
 
     protected checkActiveRoute(bcc:TerraBreadcrumb):boolean
     {
-        return this._breadcrumbsService.checkActiveRoute(bcc);
-    }
-
-    public get breadcrumbsService():TerraBreadcrumbsService
-    {
-        return this._breadcrumbsService;
+        return this.breadcrumbsService.checkActiveRoute(bcc);
     }
 
     protected calculatePosition(container:HTMLLIElement, contextMenu:HTMLUListElement):void
