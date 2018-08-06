@@ -47,8 +47,10 @@ export class TerraBreadcrumbsService
                 {
                     for(let j:number = urlParts.length; j < this._containers.length; j++)
                     {
-                        this.updateBreadcrumbVisibilities(this._containers[j],
-                            this._containers[j - 1].currentSelectedBreadcrumb);
+                        this.updateBreadcrumbVisibilities(
+                            this._containers[j],
+                            this._containers[j - 1].currentSelectedBreadcrumb
+                        );
                     }
                 }
             }
@@ -303,23 +305,19 @@ export class TerraBreadcrumbsService
 
         let routerLink:string = '/' + this._initialPath + url;
 
-        let breadcrumb:TerraBreadcrumb;
-
         if(!isNullOrUndefined(container) &&
            !isNullOrUndefined(container.currentSelectedBreadcrumb) &&
            container.currentSelectedBreadcrumb.routerLink === routerLink)
         {
-            breadcrumb = container.currentSelectedBreadcrumb;
+            return container.currentSelectedBreadcrumb;
         }
         else
         {
-            breadcrumb = container.breadcrumbList.find((bc:TerraBreadcrumb) =>
+            return container.breadcrumbList.find((bc:TerraBreadcrumb) =>
             {
                 return bc.routerLink === routerLink;
             });
         }
-
-        return breadcrumb;
     }
 
     public closeBreadcrumb(breadcrumbContainer:TerraBreadcrumbContainer, breadcrumb:TerraBreadcrumb):void
