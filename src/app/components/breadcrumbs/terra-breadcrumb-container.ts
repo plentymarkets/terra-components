@@ -9,4 +9,9 @@ export class TerraBreadcrumbContainer
     {
         this.breadcrumbList = [];
     }
+
+    public get visibleBreadcrumbsCount():number
+    {
+        return this.breadcrumbList.filter((bc:TerraBreadcrumb) => !bc.isHidden).length;
+    }
 }
