@@ -98,22 +98,7 @@ export class TerraBreadcrumbsService
         // breadcrumb not found
         if(isNullOrUndefined(breadcrumb))
         {
-            let label:string = '';
-
-            if(!isNullOrUndefined(route.data))
-            {
-                if(typeof route.data.label === 'function')
-                {
-                    let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
-
-                    label = this.translation.translate(route.data.label(this.translation, activatedSnapshot.params, activatedSnapshot.data));
-                }
-                else
-                {
-                    label = this.translation.translate(route.data.label);
-                }
-            }
-
+            let label:string = this.getBreadcrumbLabel(route);
             let currentContainerIndex:number = this._containers.indexOf(container);
             let previousContainer:TerraBreadcrumbContainer = this._containers[currentContainerIndex - 1];
             let parentBreadcrumb:TerraBreadcrumb = isNullOrUndefined(previousContainer) ? undefined : previousContainer.currentSelectedBreadcrumb;
@@ -124,6 +109,25 @@ export class TerraBreadcrumbsService
         // select breadcrumb and update visibilities
         container.currentSelectedBreadcrumb = breadcrumb;
         this.updateBreadcrumbVisibilities(container, breadcrumb.parent);
+    }
+
+    private getBreadcrumbLabel(route:Route):string
+    {
+        let label:string = '';
+        if(!isNullOrUndefined(route.data))
+        {
+            if(typeof route.data.label === 'function')
+            {
+                let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
+
+                label = route.data.label(this.translation, activatedSnapshot.params, activatedSnapshot.data);
+            }
+            else
+            {
+                label = this.translation.translate(route.data.label);
+            }
+        }
+        return label;
     }
 
     private updateBreadcrumbVisibilities(breadcrumbContainer:TerraBreadcrumbContainer, parentBreadcrumb:TerraBreadcrumb):void
@@ -271,17 +275,10 @@ export class TerraBreadcrumbsService
             {
                 breadcrumb.name = this.translation.translate(name);
             }
-            // or it will be updated automatically if label from route data is a function
-            else if(typeof route.data.label === 'function')
-            {
-                let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
-
-                breadcrumb.name = this.translation.translate(route.data.label(this.translation, activatedSnapshot.params, activatedSnapshot.data));
-            }
-            // otherwise it tries to update the name by the label from route data, which should be changed previously
+            // or it will be updated automatically from it's route data
             else
             {
-                breadcrumb.name = this.translation.translate(route.data.label);
+                breadcrumb.name = this.getBreadcrumbLabel(route);
             }
         }
     }
