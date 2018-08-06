@@ -23,7 +23,9 @@ export class TerraBreadcrumbsComponent
     protected mouseLeft:string = '0px';
     protected isTooltipDisabled:boolean = false;
 
-    constructor(private _breadcrumbsService:TerraBreadcrumbsService, private activatedRoute:ActivatedRoute, private router:Router)
+    constructor(private _breadcrumbsService:TerraBreadcrumbsService,
+                private activatedRoute:ActivatedRoute,
+                private router:Router)
     {
         this._breadcrumbsService.initialPath =
             this.getCompletePathByRoute(this.activatedRoute.snapshot.routeConfig, this.router.config, '');
@@ -65,9 +67,9 @@ export class TerraBreadcrumbsComponent
         return path;
     }
 
-    protected get breadcrumbContainer():Array<TerraBreadcrumbContainer>
+    protected get breadcrumbContainers():Array<TerraBreadcrumbContainer>
     {
-        return this._breadcrumbsService.breadcrumbContainer;
+        return this._breadcrumbsService.containers;
     }
 
     protected closeBreadcrumb(container:TerraBreadcrumbContainer, breadcrumb:TerraBreadcrumb, event:Event):void
@@ -110,7 +112,7 @@ export class TerraBreadcrumbsComponent
 
     protected checkLastBreadcrumbContainer(index:number):boolean
     {
-        let nextContainer:TerraBreadcrumbContainer = this.breadcrumbContainer[index + 1];
+        let nextContainer:TerraBreadcrumbContainer = this.breadcrumbContainers[index + 1];
 
         return !isNullOrUndefined(nextContainer) &&
                !isNullOrUndefined(nextContainer.currentSelectedBreadcrumb) &&
