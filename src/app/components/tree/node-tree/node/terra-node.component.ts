@@ -59,7 +59,10 @@ export class TerraNodeComponent<D> implements OnInit
 
         this.inputConfig.handleLazyLoading(this.inputNode);
 
-        this.inputConfig.currentSelectedNode = this.inputNode;
+        if(isNullOrUndefined(this.inputNode.selectable) || this.inputNode.selectable)
+        {
+            this.inputConfig.currentSelectedNode = this.inputNode;
+        }
 
     }
 
@@ -74,8 +77,11 @@ export class TerraNodeComponent<D> implements OnInit
             }
 
             this.inputConfig.handleLazyLoading(this.inputNode);
-            this.inputConfig.currentSelectedNode = this.inputNode;
 
+            if(isNullOrUndefined(this.inputNode.selectable) || this.inputNode.selectable)
+            {
+                this.inputConfig.currentSelectedNode = this.inputNode;
+            }
         }
 
     protected handleIconClick(event:Event):void

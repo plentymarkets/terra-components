@@ -216,6 +216,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
                     tooltip:          'ID: ' + nested.key,
                     tooltipPlacement: 'top',
                     onLazyLoad:       nested.onLazyLoad,
+                    selectable: nested.selectable,
                     isVisible:        true,
                     onDblClick:       ():void =>
                                       {
@@ -227,12 +228,13 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
             else
             {
                 newParentId = nested.key;
-                
+
                 this.nestedTreeConfig.addNode({
                     id:               newParentId,
                     name:             nested.label,
                     tooltip:          'ID: ' + nested.key,
                     tooltipPlacement: 'top',
+                    selectable: nested.selectable,
                     onLazyLoad:       nested.onLazyLoad,
                     isVisible:        true,
                 });

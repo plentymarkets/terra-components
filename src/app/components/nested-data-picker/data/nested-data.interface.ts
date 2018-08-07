@@ -10,5 +10,6 @@ export interface NestedDataInterface<T>
     isSelected?:boolean;
     children?:Array<NestedDataInterface<T>>;
     onLazyLoad?:() => Observable<any>;
+    selectable?:boolean;
     data?:T;
 }
