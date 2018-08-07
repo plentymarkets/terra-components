@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Observable';
+
 /**
  * @author chirila-ioan-daniel
  */
@@ -7,5 +9,6 @@ export interface NestedDataInterface<T>
     key?:string;
     isSelected?:boolean;
     children?:Array<NestedDataInterface<T>>;
+    onLazyLoad?:() => Observable<any>;
     data?:T;
 }
