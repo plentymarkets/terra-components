@@ -6,6 +6,9 @@ export interface TerraTagInterface
 {
     isTagged?:boolean;
     isTaggable?:boolean;
+    isClosable?:boolean;
+
+    id?:number | string;
 
     /**
      * @deprecated will be removed in next major release. Please use badge instead.

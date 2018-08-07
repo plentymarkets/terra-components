@@ -1,0 +1,6 @@
+<terra-suggestion-box [inputListBoxValues]="suggestionValues"
+                      [(ngModel)]="selectedTagId"
+                      (ngModelChange)="tagSelected($event)"></terra-suggestion-box>
+<terra-taglist [inputTagList]="selectedTagsList"></terra-taglist>
+
+{{selectedTagId}}

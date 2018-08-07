@@ -10,7 +10,10 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
 import {
     isNull,
     isNullOrUndefined
@@ -32,7 +35,7 @@ const MAX_LASTLY_USED_ENTRIES:number = 5;
         }
     ]
 })
-export class TerraSuggestionBoxComponent implements OnInit, OnChanges
+export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlValueAccessor
 {
     @Input()
     public inputName:string;
