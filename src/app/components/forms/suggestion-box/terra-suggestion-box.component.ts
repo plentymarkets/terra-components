@@ -113,15 +113,23 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes['inputListBoxValues']
-           && changes['inputListBoxValues'].currentValue.length > 0
-           && !this.inputListBoxValues.find((x:TerraSuggestionBoxValueInterface):boolean => this.selectedValue === x))
-        {
-            this.select(this.inputListBoxValues[0]);
-        }
         if(changes['inputListBoxValues'])
         {
             this._displayListBoxValues = this.inputListBoxValues;
+            if(changes['inputListBoxValues'].currentValue.length > 0
+                   && !this.inputListBoxValues.find((x:TerraSuggestionBoxValueInterface):boolean => this.selectedValue === x))
+            {
+                this.select(this.inputListBoxValues[0]);
+            }
+            else
+            {
+                // reset selected value if the list is empty
+                this.selectedValue =
+                    {
+                        value:   '',
+                        caption: ''
+                    };
+            }
         }
     }
 
