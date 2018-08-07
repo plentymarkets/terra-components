@@ -210,7 +210,6 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
             if(parentId)
             {
                 newParentId = parentId + '-' + nested.key;
-                console.log(newParentId);
                 this.nestedTreeConfig.addChildToNodeById(parentId, {
                     id:               newParentId,
                     name:             nested.label,
@@ -228,8 +227,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
             else
             {
                 newParentId = nested.key;
-                console.log(newParentId);
-
+                
                 this.nestedTreeConfig.addNode({
                     id:               newParentId,
                     name:             nested.label,
