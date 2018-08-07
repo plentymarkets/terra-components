@@ -47,6 +47,8 @@ body
         --dropdown-menu-transition-delay-hide-default: var(--transition-delay-0);
         
         //GWT
-        --gwt-has-toolbar-before-top: 38px;
+        --gwt-has-toolbar-before-top: 35px;
+        --gwt-has-titlebar-before-top: 33px;
+        --gwt-has-pagination-before-top: 33px;
     }
 }
