@@ -19,7 +19,7 @@
 		"webpack": "webpack",
 		"build": "gulp build",
 		"build-doc": "gulp build-doc",
-		"publish": "gulp npm-publish",
+		"release": "gulp npm-publish",
 		"start": "npm run server:dev",
 		"server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch",
 		"gulp": "gulp",
