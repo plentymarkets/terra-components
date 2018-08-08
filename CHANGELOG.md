@@ -1,4 +1,5 @@
-# Unreleased
+<a name="2.3.9"></a>
+# 2.3.9 (08.08.2018)
 
 ### Bug Fixes
 * **terra-suggestion-box** reset selected value when `inputListBoxValues` is empty
