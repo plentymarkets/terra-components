@@ -108,7 +108,6 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     // From ControlValueAccessor interface
     public writeValue(value:string | number):void
     {
-
         if(!isNullOrUndefined(value))
         {
             let nodeToSelect:TerraNodeInterface<NestedDataInterface<{}>> = this.nestedTreeConfig.findNodeById(value);
@@ -117,6 +116,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
             {
                 this.nestedTreeConfig.currentSelectedNode = nodeToSelect;
                 this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.name;
+                value = nodeToSelect.value ? nodeToSelect.value.key : nodeToSelect.id;
             }
 
             this.value = value;
@@ -214,10 +214,10 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
                     id:               newParentId,
                     name:             nested.label,
                     tooltip:          'ID: ' + nested.key,
-                    value: nested.key,
+                    value:            nested,
                     tooltipPlacement: 'top',
                     onLazyLoad:       nested.onLazyLoad,
-                    selectable: nested.selectable,
+                    selectable:       nested.selectable,
                     isVisible:        true,
                     onDblClick:       ():void =>
                                       {
@@ -235,8 +235,8 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
                     name:             nested.label,
                     tooltip:          'ID: ' + nested.key,
                     tooltipPlacement: 'top',
-                    value: nested.key,
-                    selectable: nested.selectable,
+                    value:            nested,
+                    selectable:       nested.selectable,
                     onLazyLoad:       nested.onLazyLoad,
                     isVisible:        true,
                 });
