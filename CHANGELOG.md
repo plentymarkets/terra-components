@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 * **terra-suggestion-box** reset selected value when `inputListBoxValues` is empty
+* **style** fixed scss variables 
 
 <a name="2.3.4"></a>
 # 2.3.4 (02.08.2018)
