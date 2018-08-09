@@ -10,10 +10,14 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NestedDataTreeConfig } from './config/nested-data-tree.config';
 import { NestedDataInterface } from './data/nested-data.interface';
 import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
-import { isNullOrUndefined, isNull } from 'util';
+import {
+    isNullOrUndefined,
+    isNull
+} from 'util';
 import { NestedValueInterface } from './data/nested-value.interface';
 import { TerraNestedDataPickerBaseService } from './service/terra-nested-data-picker-base.service'
 import { TerraNodeTreeConfig } from '../../components/tree/node-tree/data/terra-node-tree.config';
+import { CategoryPagerDataInterface } from '../category-picker/data/category-pager-data.interface';
 
 @Component({
     selector:  'terra-nested-data-picker',
@@ -24,8 +28,8 @@ import { TerraNodeTreeConfig } from '../../components/tree/node-tree/data/terra-
         useExisting: forwardRef(() => TerraNestedDataPickerComponent),
         multi:       true
     },
-    NestedDataTreeConfig,
-    TerraNodeTreeConfig]
+                NestedDataTreeConfig,
+                TerraNodeTreeConfig]
 })
 export class TerraNestedDataPickerComponent implements OnInit, AfterContentChecked
 {
@@ -36,7 +40,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     public set inputNestedService(service:TerraNestedDataPickerBaseService<{}>)
     {
         this.inputDataService = service;
-        if (!isNullOrUndefined(service))
+        if(!isNullOrUndefined(service))
         {
             this.getNestedData();
         }
@@ -104,32 +108,32 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     // From ControlValueAccessor interface
     public writeValue(value:string | number):void
     {
-
         if(!isNullOrUndefined(value))
         {
-               let nodeToSelect:TerraNodeInterface<NestedDataInterface<{}>> = this.nestedTreeConfig.findNodeById(value);
+            let nodeToSelect:TerraNodeInterface<NestedDataInterface<{}>> = this.nestedTreeConfig.findNodeById(value);
 
-               if(!isNullOrUndefined(nodeToSelect))
-               {
-                   this.nestedTreeConfig.currentSelectedNode = nodeToSelect;
-                   this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.name;
-               }
+            if(!isNullOrUndefined(nodeToSelect))
+            {
+                this.nestedTreeConfig.currentSelectedNode = nodeToSelect;
+                this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.name;
+                value = nodeToSelect.value ? nodeToSelect.value.key : nodeToSelect.id;
+            }
 
-               this.value = value;
+            this.value = value;
 
-               if(this.isNotInitialCall)
-               {
-                   this.updateCompleteNestedData(nodeToSelect);
-                   this.onTouchedCallback();
-                   this.onChangeCallback(this.value);
-               }
+            if(this.isNotInitialCall)
+            {
+                this.updateCompleteNestedData(nodeToSelect);
+                this.onTouchedCallback();
+                this.onChangeCallback(this.value);
+            }
         }
     }
 
     // Set touched on blur
     public onBlur():void
     {
-         this.onTouchedCallback();
+        this.onTouchedCallback();
     }
 
     // From ControlValueAccessor interface
@@ -146,7 +150,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
     public showTree():void
     {
-      this.toggleTree = !this.toggleTree;
+        this.toggleTree = !this.toggleTree;
     }
 
     public onSelectNode():void
@@ -193,9 +197,9 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     private getNestedData():void
     {
         this.inputDataService.requestNestedData().subscribe((data:Array<NestedDataInterface<{}>>) =>
-                      {
-                          this.addNodes(data, null);
-                      });
+        {
+            this.addNodes(data, null);
+        });
     }
 
     public addNodes(nestedData:Array<NestedDataInterface<{}>>, parentId:number | string):void
@@ -207,35 +211,44 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
             {
                 newParentId = parentId + '-' + nested.key;
                 this.nestedTreeConfig.addChildToNodeById(parentId, {
-                    id: newParentId,
-                    name: nested.label,
-                    tooltip: 'ID: ' + nested.key,
+                    id:               newParentId,
+                    name:             nested.label,
+                    tooltip:          'ID: ' + nested.key,
+                    value:            nested,
                     tooltipPlacement: 'top',
-                    isVisible:true,
-                    onDblClick: ():void =>
-                    {
-                        this.toggleTree = false;
-                        this.nestedDataName = nested.label;
-                    }
+                    onLazyLoad:       nested.onLazyLoad,
+                    selectable:       nested.selectable,
+                    isVisible:        true,
+                    onDblClick:       ():void =>
+                                      {
+                                          this.toggleTree = false;
+                                          this.nestedDataName = nested.label;
+                                      }
                 });
             }
             else
             {
                 newParentId = nested.key;
-                this.nestedTreeConfig.addNode( {
-                    id: newParentId,
-                    name: nested.label,
-                    tooltip: 'ID: ' + nested.key,
+
+                this.nestedTreeConfig.addNode({
+                    id:               newParentId,
+                    name:             nested.label,
+                    tooltip:          'ID: ' + nested.key,
                     tooltipPlacement: 'top',
-                    isVisible:true,
+                    value:            nested,
+                    selectable:       nested.selectable,
+                    onLazyLoad:       nested.onLazyLoad,
+                    isVisible:        true,
                 });
             }
+
             if(!isNullOrUndefined(nested.children))
             {
                 this.addNodes(nested.children, newParentId);
             }
         });
     }
+
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
     public onTouchedCallback:() => void = () => undefined;

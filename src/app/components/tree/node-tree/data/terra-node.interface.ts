@@ -83,6 +83,11 @@ export interface TerraNodeInterface<D>
     defaultVisibility?:boolean;
 
     /**
+     * @description  set the the node is selectable
+     */
+    selectable?:boolean;
+
+    /**
      * @description  set a tooltip for the node. default will be name.
      */
     tooltip?:string;
