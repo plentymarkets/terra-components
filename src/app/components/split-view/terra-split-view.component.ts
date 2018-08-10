@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
 import {
-    isNull,
+    isNull, isNullOrUndefined,
     isUndefined
 } from 'util';
 
@@ -120,7 +120,7 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
             breadcrumb.addClass('active');
 
             // focus breadcrumbs
-            if(!isNull(breadcrumb[0]))
+            if(!isNullOrUndefined(breadcrumb[0]))
             {
                 breadCrumbContainer.stop();
                 breadCrumbContainer.animate(
@@ -129,7 +129,8 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
             }
 
             // focus view
-            if(anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
+            if(!isNullOrUndefined(viewContainer[0]) &&
+                anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
                anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
             {
                 return;
