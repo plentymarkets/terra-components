@@ -86,24 +86,36 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
         this.onTouchedCallback = fn;
     }
 
-    protected tagSelected(value:TerraTagInterface):void
+    /**
+     * Writes the selected tag into the model of the component.
+     * @param {TerraTagInterface} selectedTag
+     */
+    protected tagSelected(selectedTag:TerraTagInterface):void
     {
-        if(!this.selectedTagsList.find((tag:TerraTagInterface) => tag === value))
+        if(!this.selectedTagsList.find((tag:TerraTagInterface) => tag === selectedTag))
         {
-            this.writeValue(this.selectedTagsList.concat(value));
+            this.writeValue(this.selectedTagsList.concat(selectedTag));
         }
     }
 
-    protected closeTag(tagId:any):void
+    /**
+     * Remove the specific tag id and updates the model of the component.
+     * @param {number} tagId
+     */
+    protected closeTag(tagId:number):void
     {
         this.selectedTagsList.splice(
-            this.selectedTagsList.findIndex((tag:any) => tag.id === tagId),
+            this.selectedTagsList.findIndex((tag:TerraTagInterface) => tag.id === tagId),
             1
         );
 
         this.writeValue(this.selectedTagsList);
     }
 
+    /**
+     * Generates the values for the TerraSuggestionsBox from a array of TerraTagInterface.
+     * @param {Array<TerraTagInterface>} tagList
+     */
     private generateSuggestionValues(tagList:Array<TerraTagInterface>):void
     {
         this.suggestionValues = tagList.map((tag:TerraTagInterface) =>
@@ -115,6 +127,11 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
         });
     }
 
+    /**
+     * Returns the name. If the names attribute of the tag is set it returns the name for the current language.
+     * @param {TerraTagInterface} tag
+     * @return {string}
+     */
     private getTranslatedName(tag:TerraTagInterface):string
     {
         if(isNullOrUndefined(tag.names) || isNullOrUndefined(this.lang))
