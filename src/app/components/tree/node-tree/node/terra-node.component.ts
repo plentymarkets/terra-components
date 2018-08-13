@@ -26,22 +26,22 @@ export class TerraNodeComponent<D> implements OnInit
     @Input()
     public inputConfig:TerraNodeTreeConfig<D>;
 
-    private _tooltip:string;
-    private _tooltipPlacement:string = 'right';
+    protected tooltip:string;
+    protected tooltipPlacement:string = 'right';
 
     public ngOnInit():void
     {
         if(!this.inputNode.tooltip)
         {
-            this._tooltip = this.inputNode.name;
+            this.tooltip = this.inputNode.name;
         }
         else
         {
-            this._tooltip = this.inputNode.tooltip;
+            this.tooltip = this.inputNode.tooltip;
         }
         if(this.inputNode.tooltipPlacement)
         {
-            this._tooltipPlacement = this.inputNode.tooltipPlacement;
+            this.tooltipPlacement = this.inputNode.tooltipPlacement;
         }
 
     }

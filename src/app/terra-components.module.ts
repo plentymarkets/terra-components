@@ -144,8 +144,12 @@ import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/m
 import { RouterModule } from '@angular/router';
 import { TerraTimePickerComponentExample } from './components/forms/input/time-picker/example/terra-time-picker.component.example';
 import { TerraTwoColumnsContainerComponent } from './components/layouts/column-container/terra-two-columns-container.component';
-import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
 import { TerraNestedDataPickerComponentExample } from './components/nested-data-picker/example/terra-nested-data-picker.component.example';
+import { TerraTwoColumnsContainerDirective } from './components/layouts/column-container/terra-two-columns-container.directive';
+import { TerraBreadcrumbsComponent } from './components/breadcrumbs/terra-breadcrumbs.component';
+import { TerraBreadcrumbsService } from './components/breadcrumbs/service/terra-breadcrumbs.service';
+import { Type } from '@angular/core/src/type';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
@@ -216,6 +220,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNestedDataPickerComponent,
         TerraCategoryPickerComponent,
         TerraTwoColumnsContainerComponent,
+        TerraTwoColumnsContainerDirective,
+        TerraBreadcrumbsComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -313,7 +319,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNodeComponent,
         TerraCategoryPickerComponent,
         TerraNestedDataPickerComponent,
-        TerraTwoColumnsContainerComponent
+        TerraTwoColumnsContainerComponent,
+        TerraBreadcrumbsComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -375,6 +382,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNestedDataPickerComponent,
         TerraCategoryPickerComponent,
         TerraTwoColumnsContainerComponent,
+        TerraTwoColumnsContainerDirective,
+        TerraBreadcrumbsComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -439,7 +448,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         AceEditorModule,
         TerraInteractModule,
         QuillModule,
-        RouterModule
+        RouterModule,
+        DeviceDetectorModule.forRoot()
     ],
     providers:       [
         TerraNavigatorSplitViewConfig,
@@ -488,29 +498,14 @@ export class TerraComponentsModule
                 TerraDynamicFormService,
                 TerraFormFieldControlService,
                 TerraJsonToFormFieldService,
-                TerraMultiSplitViewBreadcrumbsService
+                TerraMultiSplitViewBreadcrumbsService,
+                TerraBreadcrumbsService
             ]
         };
     }
 
-    public static forChild():ModuleWithProviders
+    public static forChild():Type<any>
     {
-        return {
-            ngModule:  TerraComponentsModule,
-            providers: [
-                TerraLoadingSpinnerService,
-                TerraDataTableContextMenuService,
-                TerraBaseService,
-                TerraNavigatorSplitViewConfig,
-                TerraUrlParamsDecorator,
-                TerraFrontendStorageService,
-                TerraAlertComponent,
-                TerraDynamicFormService,
-                CategoryTreeConfig,
-                TerraFormFieldControlService,
-                TerraJsonToFormFieldService,
-                TerraMultiSplitViewBreadcrumbsService
-            ]
-        };
+        return TerraComponentsModule;
     }
 }

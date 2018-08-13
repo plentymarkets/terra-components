@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <div class="row">
-        <div [ngClass]="leftColumn">
+        <div [ngClass]="leftColumn" class="overflow-auto">
             <ng-content select="[left]"></ng-content>
         </div>
-        <div [ngClass]="rightColumn">
+        <div [ngClass]="rightColumn" class="overflow-auto">
             <ng-content select="[right]"></ng-content>
         </div>
     </div>
