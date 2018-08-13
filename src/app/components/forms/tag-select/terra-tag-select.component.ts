@@ -4,7 +4,10 @@
 import {
     Component,
     forwardRef,
-    Input
+    Input,
+    OnChanges,
+    OnInit,
+    SimpleChanges
 } from '@angular/core';
 import {
     ControlValueAccessor,
@@ -14,6 +17,8 @@ import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraSuggestionBoxValueInterface } from '../suggestion-box/data/terra-suggestion-box.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraBaseData } from '../../data/terra-base.data';
+import { TerraTagNameInterface } from '../../layouts/tag/data/terra-tag-name.interface';
+import { Language } from 'angular-l10n';
 
 @Component({
     selector: 'terra-tag-select',
@@ -27,76 +32,102 @@ import { TerraBaseData } from '../../data/terra-base.data';
         }
     ]
 })
-export class TerraTagSelectComponent implements ControlValueAccessor
+export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, OnChanges
 {
+    @Language()
+    public lang:string;
+
     @Input()
-    public set tags(tagList:Array<any>)
-    {
-        if(isNullOrUndefined(this.tagList))
-        {
-            this.tagList = tagList;
-            this.generateSuggestionValues(tagList);
-        }
-    }
+    public tags:Array<TerraTagInterface>;
+
+    @Input()
+    public isDisabled:boolean = false;
+
+    @Input()
+    public isReadOnly:boolean = false;
 
     protected suggestionValues:Array<TerraSuggestionBoxValueInterface> = [];
     protected selectedTagId:number;
     protected selectedTagsList:Array<TerraTagInterface> = [];
 
-    private tagList:Array<any>;
+    private tagList:Array<TerraTagInterface>;
+
+    public ngOnInit():void
+    {
+        this.generateSuggestionValues(this.tagList);
+    }
+
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes.hasOwnProperty('tags'))
+        {
+            let tags:Array<TerraTagInterface> = (changes['tags'].currentValue as Array<TerraTagInterface>);
+            tags.forEach((tag:TerraTagInterface) => tag.isClosable = true);
+            this.tagList = tags;
+            this.generateSuggestionValues(tags);
+        }
+    }
 
     public writeValue(selectedTagsList:any):void
     {
-        // this.selectedTagsList valueList;
-
         this.selectedTagsList = selectedTagsList;
 
         this.onTouchedCallback();
-        this.onChangeCallback(this.selectedTagsList);
+        this.onChangeCallback(selectedTagsList);
     }
 
     public registerOnChange(fn:any):void
     {
-        this.registerOnChange = fn;
+        this.onChangeCallback = fn;
     }
 
     public registerOnTouched(fn:any):void
     {
-        this.registerOnTouched = fn;
+        this.onTouchedCallback = fn;
     }
 
-    protected tagSelected(value:any):void
+    protected tagSelected(value:TerraTagInterface):void
     {
-        console.log(value);
-
-        const tagToSelect:any = this.tagList.find((tag:any) => tag.id === value);
-
-        this.suggestionValues = this.suggestionValues.filter((suggestionValue:any) => suggestionValue.value !== value);
-
-        this.writeValue(this.selectedTagsList.concat({
-            badge: tagToSelect.name,
-            color: tagToSelect.color,
-            isClosable: true
-        }));
-    }
-
-    private generateSuggestionValues(tagList:Array<any>):void
-    {
-        this.suggestionValues = tagList.map((tag:any) =>
+        if(!this.selectedTagsList.find((tag:TerraTagInterface) => tag === value))
         {
-            /*
-            icon?:string;
-            imgsrc?:string;
-            active?:boolean;
-             */
+            this.writeValue(this.selectedTagsList.concat(value));
+        }
+    }
+
+    protected closeTag(tagId:any):void
+    {
+        this.selectedTagsList.splice(
+            this.selectedTagsList.findIndex((tag:any) => tag.id === tagId),
+            1
+        );
+
+        this.writeValue(this.selectedTagsList);
+    }
+
+    private generateSuggestionValues(tagList:Array<TerraTagInterface>):void
+    {
+        this.suggestionValues = tagList.map((tag:TerraTagInterface) =>
+        {
             return {
-                value: tag.id,
-                caption: tag.name,
+                value: tag,
+                caption: this.getTranslatedName(tag),
             };
         });
     }
 
+    private getTranslatedName(tag:TerraTagInterface):string
+    {
+        if(isNullOrUndefined(tag.names) || isNullOrUndefined(this.lang))
+        {
+            return tag.name;
+        }
+        else
+        {
+            return tag.names.find((name:TerraTagNameInterface) => name.language === this.lang).name;
+        }
+    }
+
     private onTouchedCallback:() => void = ():void => undefined;
 
-    private onChangeCallback:(_:any) => void = (_:Array<TerraTagInterface>):void => undefined;
+    private onChangeCallback:(_:any) => void = (selectedTagsList:Array<TerraTagInterface>):void => undefined;
 }
