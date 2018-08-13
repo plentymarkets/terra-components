@@ -7,7 +7,8 @@ import {
 } from '@angular/core';
 import { TerraSplitViewInterface } from './data/terra-split-view.interface';
 import {
-    isNull, isNullOrUndefined,
+    isNull,
+    isNullOrUndefined,
     isUndefined
 } from 'util';
 
@@ -130,7 +131,7 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
 
             // focus view
             if(!isNullOrUndefined(viewContainer[0]) &&
-                anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
+               anchor[0].getBoundingClientRect().left > viewContainer.scrollLeft() - offset &&
                anchor[0].getBoundingClientRect().right <= viewContainer[0].getBoundingClientRect().right)
             {
                 return;
