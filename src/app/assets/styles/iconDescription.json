@@ -1,5 +1,65 @@
 [
   {
+    "name": "icon-anonymize",
+    "description": ""
+  },
+  {
+    "name": "icon-active_doc",
+    "description": ""
+  },
+  {
+    "name": "icon-active_fold_closed",
+    "description": ""
+  },
+  {
+    "name": "icon-active_fold_open",
+    "description": ""
+  },
+  {
+    "name": "icon-active_settings",
+    "description": ""
+  },
+  {
+    "name": "icon-equals",
+    "description": ""
+  },
+  {
+    "name": "icon-inactive_doc",
+    "description": ""
+  },
+  {
+    "name": "icon-inactive_fold_closed",
+    "description": ""
+  },
+  {
+    "name": "icon-inactive_fold_open",
+    "description": ""
+  },
+  {
+    "name": "icon-intermed_fold_closed",
+    "description": ""
+  },
+  {
+    "name": "icon-intermed_fold_open",
+    "description": ""
+  },
+  {
+    "name": "icon-link",
+    "description": ""
+  },
+  {
+    "name": "icon-real",
+    "description": ""
+  },
+  {
+    "name": "icon-reg_expr",
+    "description": ""
+  },
+  {
+    "name": "icon-plenty_base",
+    "description": ""
+  },
+  {
     "name": "icon-colorpicker",
     "description": ""
   },
