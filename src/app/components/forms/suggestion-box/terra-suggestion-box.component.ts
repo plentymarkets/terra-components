@@ -55,6 +55,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     @Input()
     public inputWithRecentlyUsed:boolean;
 
+    /**
+     * @deprecated since it notifies the user at exactly the same time as ngModelChange <-> onChangeCallback
+     */
     @Output()
     public outputValueChanged:EventEmitter<TerraSuggestionBoxValueInterface> = new EventEmitter<TerraSuggestionBoxValueInterface>();
 
