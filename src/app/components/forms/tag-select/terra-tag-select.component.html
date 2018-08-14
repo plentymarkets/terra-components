@@ -1,6 +1,7 @@
 <terra-suggestion-box class="suggestionBox"
+                      [inputName]="name"
                       [inputListBoxValues]="suggestionValues"
-                      [(ngModel)]="selectedTagId"
+                      [(ngModel)]="selectedTag"
                       (ngModelChange)="tagSelected($event)"
                       [inputIsDisabled]="isDisabled"
                       [ngClass]="{'hidden': isReadOnly}"></terra-suggestion-box>

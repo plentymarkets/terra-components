@@ -38,6 +38,9 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
     public lang:string;
 
     @Input()
+    public name:string;
+
+    @Input()
     public tags:Array<TerraTagInterface>;
 
     @Input()
@@ -47,7 +50,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
     public isReadOnly:boolean = false;
 
     protected suggestionValues:Array<TerraSuggestionBoxValueInterface> = [];
-    protected selectedTagId:number;
+    protected selectedTag:TerraTagInterface;
     protected selectedTagsList:Array<TerraTagInterface> = [];
 
     private tagList:Array<TerraTagInterface>;
@@ -125,6 +128,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
                 caption: this.getTranslatedName(tag),
             };
         });
+        this.suggestionValues.unshift({value: null, caption: ''});
     }
 
     /**
