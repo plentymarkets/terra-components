@@ -138,13 +138,24 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
      */
     private getTranslatedName(tag:TerraTagInterface):string
     {
+        // Fallback if names or this.lang is not set
         if(isNullOrUndefined(tag.names) || isNullOrUndefined(this.lang))
         {
             return tag.name;
         }
         else
         {
-            return tag.names.find((name:TerraTagNameInterface) => name.language === this.lang).name;
+            const tagName:TerraTagNameInterface = tag.names.find((name:TerraTagNameInterface) => name.language === this.lang);
+
+            // Fallback if no name for this.lang is set
+            if(isNullOrUndefined(tagName))
+            {
+                return this.name;
+            }
+            else
+            {
+                return tagName.name;
+            }
         }
     }
 

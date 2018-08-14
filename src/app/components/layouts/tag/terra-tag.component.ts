@@ -73,13 +73,24 @@ export class TerraTagComponent
 
     private getTranslatedName():string
     {
+        // Fallback if names not set
         if(isNullOrUndefined(this.names))
         {
             return this.name;
         }
         else
         {
-            return this.names.find((name:TerraTagNameInterface) => name.language === this.lang).name;
+            const tagName:TerraTagNameInterface = this.names.find((name:TerraTagNameInterface) => name.language === this.lang);
+
+            // Fallback if no name for this.lang is set
+            if(isNullOrUndefined(tagName))
+            {
+                return this.name;
+            }
+            else
+            {
+                return tagName.name;
+            }
         }
     }
 
