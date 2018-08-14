@@ -6,8 +6,8 @@
     * Select a Value from the suggestions if the entered text matches its caption
     * `selectedValue` is reset if `inputListBoxValues` is updated and the previous selected element is not present anymore
     * `selectedValue = null` if entered text does not match any of the `inputListBoxValues`
-    * removed `resetComponentValue`-Method. Use `ngModel` instead to set the value to `null`
-    * `outputValueChanged` is now deprecated
+    * `resetComponentValue`-Method is now deprecated. Use `ngModel` instead to set the value to `null`
+    * `outputValueChanged` is now deprecated. Use `ngModelChange` instead.
     
 ### Bug Fixes
 * **terra-split-view** Fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead

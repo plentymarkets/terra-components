@@ -260,6 +260,14 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         this.selectedValue = this._displayListBoxValues.find((val:TerraSuggestionBoxValueInterface) => val.caption === searchString);
     }
 
+    /**
+     * @deprecated use ngModel instead to reset the selected value
+     */
+    public resetComponentValue():void
+    {
+        this.selectedValue = null;
+    }
+
     protected onKeyDown(event:KeyboardEvent):void
     {
         // check if one of the dedicated keys has been pressed
