@@ -1,3 +1,14 @@
+# Unreleased
+
+### Feature
+* **terra-suggestion-box** 
+	* New Output `textInputValueChange` that emits the current text input value
+    * Select a Value from the suggestions if the entered text matches its caption
+    * `selectedValue` is reset if `inputListBoxValues` is updated and the previous selected element is not present anymore
+    * `selectedValue = null` if entered text does not match any of the `inputListBoxValues`
+    * removed `resetComponentValue`-Method. Use `ngModel` instead to set the value to `null`
+    * `outputValueChanged` is now deprecated
+
 <a name="2.3.10"></a>
 # 2.3.10 (09.08.2018)
 
