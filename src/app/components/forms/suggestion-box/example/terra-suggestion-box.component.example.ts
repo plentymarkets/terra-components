@@ -15,6 +15,24 @@ export class TerraSuggestionBoxComponentExample implements OnInit
     protected iconList:Array<TerraSuggestionBoxValueInterface> = [];
     protected iconClass:string;
 
+    protected contacts:Array<any> = [
+        {
+            name: 'Max Mustermann',
+            age: 28
+        },
+        {
+            name: 'Thomas Schmidt',
+            age: 28
+        },
+        {
+            name: 'Sabrina Meyer',
+            age: 29
+        }
+    ];
+    protected contactsSuggestions:Array<TerraSuggestionBoxValueInterface> = [];
+    protected selectedContact:any;
+    protected contactSelectionText:string;
+
     public ngOnInit():void
     {
         this.iconClass = 'icon-plugin';
@@ -41,5 +59,12 @@ export class TerraSuggestionBoxComponentExample implements OnInit
                 caption: 'icon-flag_blue'
             }
         );
+
+        this.contactsSuggestions = this.contacts.map(contact => {
+            return {
+                caption: contact.name,
+                value: contact
+            };
+        });
     }
 }
