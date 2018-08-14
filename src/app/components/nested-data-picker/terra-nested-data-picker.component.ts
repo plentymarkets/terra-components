@@ -19,13 +19,15 @@ import { TerraNodeTreeConfig } from '../../components/tree/node-tree/data/terra-
     selector:  'terra-nested-data-picker',
     template:  require('./terra-nested-data-picker.component.html'),
     styles:    [require('./terra-nested-data-picker.component.scss')],
-    providers: [{
-        provide:     NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => TerraNestedDataPickerComponent),
-        multi:       true
-    },
-                NestedDataTreeConfig,
-                TerraNodeTreeConfig]
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraNestedDataPickerComponent),
+            multi:       true
+        },
+        NestedDataTreeConfig,
+        TerraNodeTreeConfig
+    ]
 })
 export class TerraNestedDataPickerComponent implements OnInit, AfterContentChecked
 {

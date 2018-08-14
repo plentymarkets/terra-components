@@ -26,12 +26,14 @@ import {
     selector:  'terra-category-picker',
     template:  require('./terra-category-picker.component.html'),
     styles:    [require('./terra-category-picker.component.scss')],
-    providers: [{
-        provide:     NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => TerraCategoryPickerComponent),
-        multi:       true
-    },
-                TerraNodeTreeConfig]
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraCategoryPickerComponent),
+            multi:       true
+        },
+        TerraNodeTreeConfig
+    ]
 })
 export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent implements OnInit, AfterContentChecked
 {
