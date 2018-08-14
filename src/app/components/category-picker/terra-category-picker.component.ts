@@ -17,7 +17,10 @@ import { CategoryValueInterface } from './data/category-value.interface';
 import { Observable } from 'rxjs/Observable';
 import { TerraNestedDataPickerComponent } from '../nested-data-picker/terra-nested-data-picker.component';
 import { NestedDataTreeConfig } from '../nested-data-picker/config/nested-data-tree.config';
-import { TerraNodeTreeConfig, NestedDataInterface } from '../../..';
+import {
+    NestedDataInterface,
+    TerraNodeTreeConfig
+} from '../../..';
 
 @Component({
     selector:  'terra-category-picker',
@@ -28,7 +31,7 @@ import { TerraNodeTreeConfig, NestedDataInterface } from '../../..';
         useExisting: forwardRef(() => TerraCategoryPickerComponent),
         multi:       true
     },
-    TerraNodeTreeConfig]
+                TerraNodeTreeConfig]
 })
 export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent implements OnInit, AfterContentChecked
 {
@@ -124,6 +127,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
             });
         }
     }
+
     public onSelectNode():void
     {
         this.isNotInitialCall = true;
