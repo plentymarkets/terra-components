@@ -65,16 +65,16 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     public textInputValueChange:EventEmitter<string> = new EventEmitter<string>();
 
     public isValid:boolean = true;
+
     protected _displayListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
     protected _lastSelectedValues:Array<TerraSuggestionBoxValueInterface> = [];
     protected _listBoxHeadingKey:string = '';
     protected _noEntriesTextKey:string;
+    protected _selectedValue:TerraSuggestionBoxValueInterface = null;
+    protected _tmpSelectedValue:TerraSuggestionBoxValueInterface = null;
+    protected _textInputValue:string;
+    protected _toggleOpen:boolean = false;
 
-    private _selectedValue:TerraSuggestionBoxValueInterface = null;
-    private _tmpSelectedValue:TerraSuggestionBoxValueInterface = null;
-    private _textInputValue:string;
-    private _toggleOpen:boolean = false;
-    private _hasLabel:boolean;
     private clickListener:(event:Event) => void;
 
     constructor(private _elementRef:ElementRef)
@@ -88,7 +88,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this.clickedOutside(event);
         };
 
-        this._hasLabel = !isNull(this.inputName);
         this._noEntriesTextKey = this.inputWithRecentlyUsed ? 'terraSuggestionBox.noRecentlyUsed' : 'terraSuggestionBox.noSuggestions';
 
         if(!this.inputWithRecentlyUsed)
@@ -103,10 +102,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         if(changes['inputListBoxValues'])
         {
             this._displayListBoxValues = this.inputListBoxValues;
-            if(changes['inputListBoxValues'].currentValue.length > 0
-               && !this.inputListBoxValues.find((x:TerraSuggestionBoxValueInterface):boolean => this.selectedValue === x))
+            if(!this.inputListBoxValues.find((x:TerraSuggestionBoxValueInterface):boolean => this.selectedValue === x))
             {
-                // reset selected value if the list is empty
+                // reset selected value if the value does not exists or the list is empty
                 this.selectedValue = null;
             }
         }
