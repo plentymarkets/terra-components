@@ -10,14 +10,10 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NestedDataTreeConfig } from './config/nested-data-tree.config';
 import { NestedDataInterface } from './data/nested-data.interface';
 import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
-import {
-    isNullOrUndefined,
-    isNull
-} from 'util';
+import { isNullOrUndefined } from 'util';
 import { NestedValueInterface } from './data/nested-value.interface';
 import { TerraNestedDataPickerBaseService } from './service/terra-nested-data-picker-base.service'
 import { TerraNodeTreeConfig } from '../../components/tree/node-tree/data/terra-node-tree.config';
-import { CategoryPagerDataInterface } from '../category-picker/data/category-pager-data.interface';
 
 @Component({
     selector:  'terra-nested-data-picker',
