@@ -47,7 +47,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     public inputTooltipText:string;
 
     @Input()
-    public inputTooltipPlacement:TerraPlacementEnum;
+    public inputTooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
 
     @Input()
     public inputListBoxValues:Array<TerraSuggestionBoxValueInterface>;
@@ -62,19 +62,18 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     public outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
 
     @Output()
-    public textInputValueChanged:EventEmitter<string> = new EventEmitter<string>();
+    public textInputValueChange:EventEmitter<string> = new EventEmitter<string>();
 
-    public isValid:boolean;
-    public selectedValue:TerraSuggestionBoxValueInterface;
-
+    public isValid:boolean = true;
     protected _displayListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
-    protected _lastSelectedValues:Array<TerraSuggestionBoxValueInterface>;
-    protected _listBoxHeadingKey:string;
+    protected _lastSelectedValues:Array<TerraSuggestionBoxValueInterface> = [];
+    protected _listBoxHeadingKey:string = '';
     protected _noEntriesTextKey:string;
 
+    private _selectedValue:TerraSuggestionBoxValueInterface = null;
+    private _tmpSelectedValue:TerraSuggestionBoxValueInterface = null;
     private _textInputValue:string;
-    private _tmpSelectedValue:TerraSuggestionBoxValueInterface;
-    private _toggleOpen:boolean;
+    private _toggleOpen:boolean = false;
     private _hasLabel:boolean;
     private clickListener:(event:Event) => void;
 
@@ -89,19 +88,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this.clickedOutside(event);
         };
 
-        this.inputTooltipPlacement = TerraPlacementEnum.TOP;
-        this.selectedValue =
-            {
-                value:   '',
-                caption: ''
-            };
-        this._tmpSelectedValue = null;
-
-        this.isValid = true;
-        this._toggleOpen = false;
         this._hasLabel = !isNull(this.inputName);
-        this._lastSelectedValues = [];
-        this._listBoxHeadingKey = '';
         this._noEntriesTextKey = this.inputWithRecentlyUsed ? 'terraSuggestionBox.noRecentlyUsed' : 'terraSuggestionBox.noSuggestions';
 
         if(!this.inputWithRecentlyUsed)
@@ -119,16 +106,8 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             if(changes['inputListBoxValues'].currentValue.length > 0
                && !this.inputListBoxValues.find((x:TerraSuggestionBoxValueInterface):boolean => this.selectedValue === x))
             {
-                this.select(this.inputListBoxValues[0]);
-            }
-            else
-            {
                 // reset selected value if the list is empty
-                this.selectedValue =
-                    {
-                        value:   '',
-                        caption: ''
-                    };
+                this.selectedValue = null;
             }
         }
     }
@@ -154,32 +133,15 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     public get value():number | string | TerraBaseData
     {
-        return isNullOrUndefined(this.selectedValue) ? null : this.selectedValue.value;
+        return !isNullOrUndefined(this.selectedValue) ? this.selectedValue.value : null;
     }
 
     public set value(value:number | string | TerraBaseData)
     {
-        if(!isNullOrUndefined(value))
-        {
-            this.selectedValue = this.inputListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item.value === value);
-
-            // execute callback functions
-            this.onTouchedCallback();
-            this.onChangeCallback(this.value);
-            this.outputValueChanged.emit(this.selectedValue);
-        }
-        else if(!isNullOrUndefined(this.inputListBoxValues) && this.inputListBoxValues.length)
-        {
-            this.selectedValue = {
-                caption: this.inputListBoxValues[0].caption,
-                value:   this.inputListBoxValues[0].value
-            };
-        }
-
-        this._tmpSelectedValue = this.selectedValue;
+        this.selectedValue = this.inputListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item.value === value);
     }
 
-    private onClick(evt:Event):void
+    protected onClick(evt:Event):void
     {
         evt.stopPropagation(); // prevents the click listener on the document to be fired right after
         this.toggleOpen = !this.toggleOpen;
@@ -222,22 +184,13 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
         }
 
         // update selected value
-        this.writeValue(value.value);
-
-        // update text input value
-        if(!isNullOrUndefined(this.selectedValue))
-        {
-            this.textInputValue = this.selectedValue.caption;
-        }
+        this.selectedValue = value;
 
         // update last selected values
         if(this.inputWithRecentlyUsed)
         {
             this.updateLastSelectedValues();
         }
-
-        // update temp selected value
-        this._tmpSelectedValue = this.selectedValue;
     }
 
     private updateLastSelectedValues():void
@@ -305,23 +258,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this._displayListBoxValues = this.inputListBoxValues;
         }
 
-        this.value = searchString;
+        // update selected value
+        this.selectedValue = this._displayListBoxValues.find((val:TerraSuggestionBoxValueInterface) => val.caption === searchString);
     }
 
-    public resetComponentValue():void
-    {
-        this.value = null;
-
-        this.selectedValue =
-            {
-                value:   '',
-                caption: ''
-            };
-
-        this._tmpSelectedValue = null;
-    }
-
-    private onKeyDown(event:KeyboardEvent):void
+    protected onKeyDown(event:KeyboardEvent):void
     {
         // check if one of the dedicated keys has been pressed
         if(!(event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'Enter' || event.key === 'Escape'))
@@ -415,7 +356,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
      * workaround to prevent calling the select() method on the label click
      * @param event
      */
-    private onInputClick(event:any):void
+    protected onInputClick(event:any):void
     {
         this.outputClicked.emit(event);
 
@@ -435,7 +376,29 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
     protected set textInputValue(value:string)
     {
         this._textInputValue = value;
-        this.writeValue(null);
-        this.textInputValueChanged.emit(value);
+        this.textInputValueChange.emit(value);
+    }
+
+    public set selectedValue(value:TerraSuggestionBoxValueInterface)
+    {
+        // update local model
+        this._selectedValue = value;
+        this._tmpSelectedValue = this._selectedValue;
+
+        // update text input value
+        if(!isNullOrUndefined(this._selectedValue))
+        {
+            this.textInputValue = this._selectedValue.caption;
+        }
+
+        // execute callback functions
+        this.onTouchedCallback();
+        this.onChangeCallback(this.value);
+        this.outputValueChanged.emit(this._selectedValue);
+    }
+
+    public get selectedValue():TerraSuggestionBoxValueInterface
+    {
+        return this._selectedValue;
     }
 }

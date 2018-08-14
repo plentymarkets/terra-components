@@ -11,8 +11,7 @@
      (keydown)="onKeyDown($event)"
      container="body">
     
-    <terra-text-input #textInput
-                      [inputIsDisabled]="inputIsDisabled"
+    <terra-text-input [inputIsDisabled]="inputIsDisabled"
                       [inputName]="inputName"
                       (outputOnInput)="onChange()"
                       (click)="onInputClick($event)"
@@ -32,7 +31,7 @@
         
         <span *ngFor="let item of _displayListBoxValues"
               (click)="select(item)"
-              [ngClass]="{active: item.value === value, selected: item.value === _tmpSelectedValue?.value}">
+              [ngClass]="{active: item.value === selectedValue?.value, selected: item.value === _tmpSelectedValue?.value}">
             <span class="{{item.icon}}" *ngIf="item.icon"></span>
             <img *ngIf="item.imgsrc" src="{{item.imgsrc}}"/>
             <span [innerHtml]="item.caption"></span>
