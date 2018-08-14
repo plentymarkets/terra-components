@@ -1,4 +1,4 @@
-<form [formGroup]="_formFieldControlService.dynamicFormGroup"
+<form [formGroup]="formFieldControlService.dynamicFormGroup"
       (ngSubmit)="validate()"
       role="form">
     <terra-base-toolbar [ngClass]="{'toolbarHidden': inputHasNoSaveButton && inputHasNoResetButton}">
@@ -22,7 +22,7 @@
                 <terra-dynamic-switch [inputFormFields]="inputFormFields"
                                       [inputUsePortlet]="inputUsePortlet"
                                       [inputIsDisabled]="inputIsDisabled"
-                                      [inputFormGroup]="_formFieldControlService.dynamicFormGroup">
+                                      [inputFormGroup]="formFieldControlService.dynamicFormGroup">
                 </terra-dynamic-switch>
             </div>
         </div>
