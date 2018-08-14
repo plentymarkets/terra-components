@@ -147,6 +147,7 @@ import { TerraTwoColumnsContainerComponent } from './components/layouts/column-c
 import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
 import { TerraTwoColumnsContainerDirective } from './components/layouts/column-container/terra-two-columns-container.directive';
 import { TerraTagSelectComponent } from './components/forms/tag-select/terra-tag-select.component';
+import { TerraTagSelectComponentExample } from './components/forms/tag-select/example/terra-tag-select.component.example';
 
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
@@ -260,7 +261,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraCodeEditorComponentExample,
         TerraNoteComponentExample,
         TerraNodeTreeComponentExample,
-        TerraTimePickerComponentExample
+        TerraTimePickerComponentExample,
+        TerraTagSelectComponentExample
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -421,7 +423,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
         TerraNodeTreeComponentExample,
-        TerraTimePickerComponentExample
+        TerraTimePickerComponentExample,
+        TerraTagSelectComponentExample
     ],
     imports:         [
         BrowserModule,

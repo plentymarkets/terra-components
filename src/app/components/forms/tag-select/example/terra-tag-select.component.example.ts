@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
  * @author mfrank
  */
 @Component({
-    selector: 'terra-tag-select',
+    selector: 'terra-tag-select-example',
     template: require('./terra-tag-select.component.example.html')
 })
 export class TerraTagSelectComponentExample
@@ -14,6 +14,7 @@ export class TerraTagSelectComponentExample
         id:    3,
         name:  'Fast schwarz',
         color: '#000350',
+        isClosable: true,
         names: [
             {
                 id:       3,
