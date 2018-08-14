@@ -1,3 +1,7 @@
+#Unreleased
+### Bug Fixes
+* **terra-split-view** Fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead
+
 <a name="2.3.10"></a>
 # 2.3.10 (09.08.2018)
 
