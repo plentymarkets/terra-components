@@ -1,7 +1,19 @@
-# Unreleased
+#Unreleased
+### Bug Fixes
+* **terra-split-view** Fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead
+
+<a name="2.3.10"></a>
+# 2.3.10 (09.08.2018)
+
+### Feature
+* **terra-breadcrumbs** added. Breadcrumbs using router and routerLink.
+
+<a name="2.3.9"></a>
+# 2.3.9 (08.08.2018)
 
 ### Bug Fixes
 * **terra-suggestion-box** reset selected value when `inputListBoxValues` is empty
+* **style** fixed scss variables 
 
 <a name="2.3.4"></a>
 # 2.3.4 (02.08.2018)
