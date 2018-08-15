@@ -4,13 +4,13 @@
             <div class="col-md-8">
                 <terra-suggestion-box
                     inputName="icons"
-                    [inputListBoxValues]="_iconList"
-                    [(ngModel)]="_iconClass">
+                    [inputListBoxValues]="iconList"
+                    [(ngModel)]="iconClass">
                 </terra-suggestion-box>
             </div>
             <div  class="col-md-4 text-md-left h2">
-               <span [ngClass]="_iconClass"></span>
-               <span>{{_iconClass}}</span>
+               <span [ngClass]="iconClass"></span>
+               <span>{{iconClass}}</span>
             </div>
         </div>
     </div>

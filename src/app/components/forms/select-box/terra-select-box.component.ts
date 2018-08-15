@@ -69,11 +69,12 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 
     public isValid:boolean;
 
+    protected selectedValue:TerraSelectBoxValueInterface;
+    protected hasLabel:boolean;
+
     private _value:number | string;
-    private _selectedValue:TerraSelectBoxValueInterface;
     private _toggleOpen:boolean;
-    private _hasLabel:boolean;
-    private _isInit:boolean;
+    private isInit:boolean;
     private clickListener:(event:Event) => void;
 
     /**
@@ -91,17 +92,17 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                 {
                     if(item.value === value)
                     {
-                        this._selectedValue = item;
+                        this.selectedValue = item;
                     }
                 });
 
-            this.inputSelectedValueChange.emit(this._selectedValue.value);
+            this.inputSelectedValueChange.emit(this.selectedValue.value);
         }
     }
 
     public get inputSelectedValue():number | string
     {
-        return this._selectedValue.value;
+        return this.selectedValue.value;
     }
 
     /**
@@ -115,7 +116,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             this.clickedOutside(event);
         };
 
-        this._isInit = false;
+        this.isInit = false;
         this.inputTooltipPlacement = 'top';
         this.inputIsSmall = false;
         this.inputOpenOnTop = false;
@@ -125,8 +126,8 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         this.isValid = true;
         this._toggleOpen = false;
-        this._hasLabel = !isNull(this.inputName);
-        this._isInit = true;
+        this.hasLabel = !isNull(this.inputName);
+        this.isInit = true;
     }
 
     /**
@@ -135,10 +136,10 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(this._isInit === true
+        if(this.isInit === true
            && changes['inputListBoxValues']
            && changes['inputListBoxValues'].currentValue.length > 0
-           && !this.inputListBoxValues.find((x:TerraSelectBoxValueInterface):boolean => this._selectedValue === x))
+           && !this.inputListBoxValues.find((x:TerraSelectBoxValueInterface):boolean => this.selectedValue === x))
         {
             this.select(this.inputListBoxValues[0]);
         }
@@ -169,9 +170,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 
     public get emptyValueSelected():boolean
     {
-        return isNullOrUndefined(this._selectedValue) ||
-               (StringHelper.isNullUndefinedOrEmpty(this._selectedValue.caption.toString()) &&
-                StringHelper.isNullUndefinedOrEmpty(this._selectedValue.icon));
+        return isNullOrUndefined(this.selectedValue) ||
+               (StringHelper.isNullUndefinedOrEmpty(this.selectedValue.caption.toString()) &&
+                StringHelper.isNullUndefinedOrEmpty(this.selectedValue.icon));
     }
 
     public get value():any
@@ -190,13 +191,13 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                 {
                     if(item.value === value)
                     {
-                        this._selectedValue = item;
+                        this.selectedValue = item;
                     }
                 });
         }
         else if(!isNullOrUndefined(this.inputListBoxValues[0]))
         {
-            this._selectedValue = this.inputListBoxValues[0];
+            this.selectedValue = this.inputListBoxValues[0];
             this.onTouchedCallback();
             this.onChangeCallback(this.inputListBoxValues[0].value);
         }
@@ -245,13 +246,13 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      */
     private select(value:TerraSelectBoxValueInterface):void
     {
-        if(isNullOrUndefined(this._selectedValue) || this._selectedValue.value !== value.value)
+        if(isNullOrUndefined(this.selectedValue) || this.selectedValue.value !== value.value)
         {
             this.onChangeCallback(value.value);
             this.outputValueChanged.emit(value);
         }
 
-        this._selectedValue = value;
+        this.selectedValue = value;
         this.onTouchedCallback();
     }
 

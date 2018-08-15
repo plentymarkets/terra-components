@@ -11,13 +11,13 @@ import { TerraSuggestionBoxValueInterface } from '../data/terra-suggestion-box.i
 })
 export class TerraSuggestionBoxComponentExample implements OnInit
 {
-    private _iconList:Array<TerraSuggestionBoxValueInterface> = [];
-    private _iconClass:string;
+    protected iconList:Array<TerraSuggestionBoxValueInterface> = [];
+    protected iconClass:string;
 
     public ngOnInit():void
     {
-        this._iconClass = 'icon-plugin';
-        this._iconList.push
+        this.iconClass = 'icon-plugin';
+        this.iconList.push
         (
             {
                 value: 'icon-plugin',
