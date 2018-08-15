@@ -12,11 +12,11 @@
      (click)="onClick($event)"
      container="body">
     
-    <label *ngIf="_hasLabel" htmlFor="{{inputName}}">{{inputName}}
+    <label htmlFor="{{inputName}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
     
-    <div class="select-box" [ngClass]="{'error': !isValid, 'labeled': _hasLabel}">
+    <div class="select-box labeled" [ngClass]="{'error': !isValid}">
         <span *ngIf="_selectedValue; then selectedValue else firstInList"></span>
         <ng-template #selectedValue>
             <span class="{{_selectedValue?.icon}}" *ngIf="_selectedValue?.icon"></span>
