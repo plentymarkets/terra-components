@@ -5,7 +5,7 @@
      [ngClass]="{'error': !isValid, 'disabled': isDisabled, 'isSmall': inputIsSmall}"
      container="body">
 
-    <input id="{{_id}}"
+    <input id="{{id}}"
            [ngClass]="{'price-input': inputIsPriceInput}"
            type="number"
            [(ngModel)]="value"
@@ -14,10 +14,10 @@
            autocomplete="off"
            [disabled]="isDisabled"
            pattern="{{regex}}"
-           step="{{_step}}"
+           step="{{step}}"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
            [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0}">
-    <label *ngIf="_innerValue || _innerValue === 0" htmlFor="{{_id}}">{{inputName}}
+    <label *ngIf="_innerValue || _innerValue === 0" htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
 </div>
