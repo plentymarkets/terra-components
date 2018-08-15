@@ -5,7 +5,7 @@
      [ngClass]="{'error': !isValid, 'isSmall': inputIsSmall}"
      container="body">
     
-    <input id="{{_id}}"
+    <input id="{{id}}"
            [type]="inputIsPassword?'password':'text'"
            [(ngModel)]="value"
            name="{{inputName}}"
@@ -13,14 +13,14 @@
            (input)="onInput()"
            autocomplete="off"
            [disabled]="isDisabled"
-           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0}"
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0}"
            pattern="{{regex}}"
            maxlength="{{inputMaxLength}}"
            minlength="{{inputMinLength}}"
            [readonly]="inputIsReadonly"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
            required>
-    <label *ngIf="(_innerValue || _innerValue === 0) && inputName" htmlFor="{{_id}}">{{inputName}}
+    <label *ngIf="(innerValue || innerValue === 0) && inputName" htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
 </div>

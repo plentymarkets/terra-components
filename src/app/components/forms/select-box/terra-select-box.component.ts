@@ -281,7 +281,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                 //    {
                 //        emptyMessage = this.inputEmptyMessage;
                 //
-                //        this._alert.addAlert({
+                //        this.alert.addAlert({
                 //                                 msg:              emptyMessage,
                 //                                 closable:         true,
                 //                                 type:             'danger',
@@ -302,7 +302,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                 //    {
                 //        invalidMessage = this.inputInvalidMessage;
                 //
-                //        this._alert.addAlert({
+                //        this.alert.addAlert({
                 //                                 msg:              invalidMessage,
                 //                                 closable:         true,
                 //                                 type:             'danger',

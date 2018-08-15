@@ -16,8 +16,8 @@
            pattern="{{regex}}"
            step="{{step}}"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
-           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0}">
-    <label *ngIf="_innerValue || _innerValue === 0" htmlFor="{{id}}">{{inputName}}
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0}">
+    <label *ngIf="innerValue || innerValue === 0" htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
 </div>

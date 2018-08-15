@@ -19,7 +19,7 @@ export class TerraUploadQueue
     private progressListeners:Array<Observer<number>> = [];
     private progressValue:number = -1;
 
-    constructor(private _uploadUrl:string | UploadQueueUrlFactory, private _uploadMethod:'GET' | 'POST' | 'DELETE' | 'PUT' = 'POST')
+    constructor(private uploadUrl:string | UploadQueueUrlFactory, private uploadMethod:'GET' | 'POST' | 'DELETE' | 'PUT' = 'POST')
     {
         this.progress = new Observable((observer:Observer<number>):Function =>
         {
@@ -149,7 +149,7 @@ export class TerraUploadQueue
             };
 
             xhr.open(
-                this._uploadMethod,
+                this.uploadMethod,
                 this.getUploadUrl(item.pathname),
                 true
             );
@@ -206,13 +206,13 @@ export class TerraUploadQueue
 
     private getUploadUrl(storageKey:string):string
     {
-        if(typeof this._uploadUrl === 'function')
+        if(typeof this.uploadUrl === 'function')
         {
-            return this._uploadUrl(storageKey);
+            return this.uploadUrl(storageKey);
         }
         else
         {
-            return this._uploadUrl + '?key=' + storageKey;
+            return this.uploadUrl + '?key=' + storageKey;
         }
     }
 }
