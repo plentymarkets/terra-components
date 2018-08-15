@@ -5,3 +5,22 @@
         display: none
     }
 }
+
+:host-context(#tab-content .outlet-container)
+{
+    .container-fluid
+    {
+        height: 100%;
+        
+        .row
+        {
+            height: 100%;
+            
+            .overflow-auto
+            {
+                overflow: auto;
+            }
+        }
+    }
+}
+

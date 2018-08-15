@@ -145,3 +145,7 @@ export * from './app/helpers/number.helper';
 export * from './app/helpers/object.helper';
 export * from './app/validators/decimal/terra-decimal-validator';
 export * from './app/components/layouts/column-container/terra-two-columns-container.component';
+export * from './app/components/layouts/column-container/terra-two-columns-container.directive';
+export * from './app/components/breadcrumbs/terra-breadcrumbs.component';
+export * from './app/components/breadcrumbs/terra-breadcrumb';
+export * from './app/components/breadcrumbs/service/terra-breadcrumbs.service';
