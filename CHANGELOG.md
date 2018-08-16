@@ -1,4 +1,7 @@
 #Unreleased
+### Feature
+* **category-data.interface** && **category-detail-data.interface** extend interfaces since some properties were missing in comparision to the [rest interface](https://developers.plentymarkets.com/rest-doc/category_category/details).
+
 ### Bug Fixes
 * **terra-split-view** Fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead
 
