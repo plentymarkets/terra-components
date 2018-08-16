@@ -29,15 +29,15 @@ export class TerraDynamicForm2EntryListComponent implements OnInit
     {
         if(isNullOrUndefined(value) || !isArray(value))
         {
-            this._value = [];
+            this.value = [];
             setTimeout(() =>
             {
-                this.outputFormValueChanged.next(this._value);
+                this.outputFormValueChanged.next(this.value);
             });
         }
         else
         {
-            this._value = value;
+            this.value = value;
         }
         this.fillRange();
     }
@@ -60,7 +60,7 @@ export class TerraDynamicForm2EntryListComponent implements OnInit
     protected min:number;
     protected max:number;
 
-    private _value:Array<any> = [];
+    private value:Array<any> = [];
 
     public ngOnInit():void
     {
@@ -83,54 +83,54 @@ export class TerraDynamicForm2EntryListComponent implements OnInit
 
     protected get canAddElement():boolean
     {
-        return isNaN(this.max) || this._value.length - 1 < this.max;
+        return isNaN(this.max) || this.value.length - 1 < this.max;
     }
 
     protected addElement():void
     {
         if(this.canAddElement)
         {
-            this._value.push(isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue);
-            this.outputFormValueChanged.next(this._value);
+            this.value.push(isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue);
+            this.outputFormValueChanged.next(this.value);
         }
     }
 
     protected get canRemoveElement():boolean
     {
-        return isNaN(this.min) || this._value.length > this.min;
+        return isNaN(this.min) || this.value.length > this.min;
     }
 
     protected removeElement(index:number):void
     {
-        if(index < 0 || index > this._value.length)
+        if(index < 0 || index > this.value.length)
         {
             return;
         }
 
         if(this.canRemoveElement)
         {
-            this._value.splice(index, 1);
-            this.outputFormValueChanged.next(this._value);
+            this.value.splice(index, 1);
+            this.outputFormValueChanged.next(this.value);
         }
     }
 
     protected fillRange():void
     {
         let defaultValue:any = !isNullOrUndefined(this.inputFormField) ? this.inputFormField.defaultValue : null;
-        while(!isNaN(this.min) && this.min > this._value.length)
+        while(!isNaN(this.min) && this.min > this.value.length)
         {
-            this._value.push(defaultValue);
+            this.value.push(defaultValue);
         }
-        while(!isNaN(this.max) && this.max < this._value.length)
+        while(!isNaN(this.max) && this.max < this.value.length)
         {
-            this._value.pop();
+            this.value.pop();
         }
     }
 
     protected onElementValueChanged(index:number, value:any):void
     {
-        this._value[index] = value;
-        this.outputFormValueChanged.next(this._value);
+        this.value[index] = value;
+        this.outputFormValueChanged.next(this.value);
     }
 
     protected trackByFn(index:number, item:any):number

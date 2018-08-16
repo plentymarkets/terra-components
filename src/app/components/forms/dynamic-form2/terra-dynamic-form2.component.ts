@@ -31,16 +31,16 @@ export class TerraDynamicForm2Component implements ControlValueAccessor
     @Input()
     public set inputFormFields(fields:{ [key:string]:TerraDynamicFormElementInterface })
     {
-        this._formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
+        this.formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
     }
 
     public get inputFormFields():{ [key:string]:TerraDynamicFormElementInterface }
     {
-        if(isNullOrUndefined(this._formFields))
+        if(isNullOrUndefined(this.formFields))
         {
-            this._formFields = TerraFormFieldHelper.extractFormFields(this.values);
+            this.formFields = TerraFormFieldHelper.extractFormFields(this.values);
         }
-        return this._formFields || {};
+        return this.formFields || {};
     }
 
     @Input()
@@ -67,7 +67,7 @@ export class TerraDynamicForm2Component implements ControlValueAccessor
 
     protected controlTypeMap:{ [key:string]:Type<any> };
 
-    private _formFields:{ [key:string]:TerraDynamicFormElementInterface };
+    private formFields:{ [key:string]:TerraDynamicFormElementInterface };
 
     private parseFormField(field:TerraDynamicFormElementInterface):any
     {
