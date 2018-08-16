@@ -387,20 +387,24 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     public set selectedValue(value:TerraSuggestionBoxValueInterface)
     {
-        // update local model
-        this._selectedValue = value;
-        this._tmpSelectedValue = this._selectedValue;
-
-        // update text input value
-        if(!isNullOrUndefined(this._selectedValue))
+        // the value has changed?
+        if(this._selectedValue !== value)
         {
-            this.textInputValue = this._selectedValue.caption;
-        }
+            // update local model
+            this._selectedValue = value;
+            this._tmpSelectedValue = this._selectedValue;
 
-        // execute callback functions
-        this.onTouchedCallback();
-        this.onChangeCallback(this.value);
-        this.outputValueChanged.emit(this._selectedValue);
+            // update text input value
+            if(!isNullOrUndefined(this._selectedValue))
+            {
+                this.textInputValue = this._selectedValue.caption;
+            }
+
+            // execute callback functions
+            this.onTouchedCallback(); // this may be called when the text input value changes instead!?
+            this.onChangeCallback(this.value);
+            this.outputValueChanged.emit(this._selectedValue);
+        }
     }
 
     public get selectedValue():TerraSuggestionBoxValueInterface
