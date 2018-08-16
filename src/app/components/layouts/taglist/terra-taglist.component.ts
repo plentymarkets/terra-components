@@ -20,5 +20,5 @@ export class TerraTaglistComponent
     public isReadOnly:boolean;
 
     @Output()
-    public closeTag:EventEmitter<any> = new EventEmitter<any>();
+    public onCloseTag:EventEmitter<any> = new EventEmitter<any>();
 }

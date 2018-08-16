@@ -25,12 +25,12 @@ export interface TerraTagInterface
 
 
     /**
-     * @deprecated will be removed in next major release. Please use badge instead.
+     * @deprecated will be removed in next major release. Please use name or names instead.
      */
     caption?:string;
 
     /**
-     *  @deprecated will be mandatory in next major release.
+     *  @deprecated will be removed in next major release. Please use name or names instead.
      */
     badge?:string;
 }

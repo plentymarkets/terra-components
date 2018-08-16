@@ -50,7 +50,7 @@ export class TerraTagComponent
     public names:Array<TerraTagNameInterface>;
 
     @Output()
-    public closeTag:EventEmitter<any> = new EventEmitter<any>();
+    public onCloseTag:EventEmitter<any> = new EventEmitter<any>();
 
     constructor()
     {
@@ -63,7 +63,7 @@ export class TerraTagComponent
 
     protected close():void
     {
-        this.closeTag.emit(this.tagId);
+        this.onCloseTag.emit(this.tagId);
     }
 
     protected getName():string

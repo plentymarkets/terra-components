@@ -51,7 +51,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
 
     protected suggestionValues:Array<TerraSuggestionBoxValueInterface> = [];
     protected selectedTag:TerraTagInterface;
-    protected selectedTagsList:Array<TerraTagInterface> = [];
+    protected selectedTags:Array<TerraTagInterface> = [];
 
     private tagList:Array<TerraTagInterface>;
 
@@ -71,12 +71,12 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
         }
     }
 
-    public writeValue(selectedTagsList:any):void
+    public writeValue(selectedTags:any):void
     {
-        this.selectedTagsList = selectedTagsList;
+        this.selectedTags = selectedTags;
 
         this.onTouchedCallback();
-        this.onChangeCallback(selectedTagsList);
+        this.onChangeCallback(selectedTags);
     }
 
     public registerOnChange(fn:any):void
@@ -93,11 +93,11 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
      * Writes the selected tag into the model of the component.
      * @param {TerraTagInterface} selectedTag
      */
-    protected tagSelected(selectedTag:TerraTagInterface):void
+    protected addSelectedTag(selectedTag:TerraTagInterface):void
     {
-        if(!isNullOrUndefined(selectedTag) && !this.selectedTagsList.find((tag:TerraTagInterface) => tag === selectedTag))
+        if(!this.isReadOnly && !isNullOrUndefined(selectedTag) && !this.selectedTags.find((tag:TerraTagInterface) => tag === selectedTag))
         {
-            this.writeValue(this.selectedTagsList.concat(selectedTag));
+            this.writeValue(this.selectedTags.concat(selectedTag));
         }
     }
 
@@ -107,12 +107,12 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
      */
     protected closeTag(tagId:number):void
     {
-        this.selectedTagsList.splice(
-            this.selectedTagsList.findIndex((tag:TerraTagInterface) => tag.id === tagId),
+        this.selectedTags.splice(
+            this.selectedTags.findIndex((tag:TerraTagInterface) => tag.id === tagId),
             1
         );
 
-        this.writeValue(this.selectedTagsList);
+        this.writeValue(this.selectedTags);
     }
 
     /**
