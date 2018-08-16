@@ -87,7 +87,7 @@ gulp.task('npm-publish', function (callback) {
  */
 gulp.task('build-doc', function (done) {
     runSequence(
-        'build-local',
+        'build',
         'dgeni',
         'generateJson',
         'copy-to-terra-doc',
