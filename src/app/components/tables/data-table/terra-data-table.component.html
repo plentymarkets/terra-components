@@ -21,7 +21,7 @@
 </terra-pager>
 
 <div class="table-responsive">
-    <context-menu-holder></context-menu-holder>
+    <context-menu></context-menu>
     <table class="table data-table">
         <thead>
         <tr>
@@ -57,7 +57,7 @@
         <ng-template ngFor let-row [ngForOf]="inputRowList">
             <tr [ngClass]="{'selected': isSelectedRow(row), 'isActive': row.isActive}"
                 [class.disabled]="row.disabled"
-                [context-menu]="row.contextMenuLinkList">
+                [contextMenu]="row.contextMenuLinkList">
                 <td *ngIf="inputHasCheckboxes">
                     <terra-checkbox type="checkbox"
                                     [value]="isSelectedRow(row)"
