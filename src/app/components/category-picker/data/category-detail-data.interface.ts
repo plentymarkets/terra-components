@@ -22,7 +22,7 @@ export interface CategoryDetailDataInterface
     lang?:string;
     metaKeywords?:string;
     metaTitle?:string;
-    metaRobots:string;
+    metaRobots?:string;
     position?:string;
     updatedAt?:string;
 }
