@@ -381,8 +381,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     protected set textInputValue(value:string)
     {
+        if(this._textInputValue !== value)
+        {
+            this.textInputValueChange.emit(value);
+        }
         this._textInputValue = value;
-        this.textInputValueChange.emit(value);
     }
 
     public set selectedValue(value:TerraSuggestionBoxValueInterface)
