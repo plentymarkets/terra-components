@@ -1,11 +1,31 @@
-# Unreleased
+#Unreleased
+### Bug Fixes
+* **terra-split-view** Fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead
+
+<a name="2.3.10"></a>
+# 2.3.10 (09.08.2018)
+
+### Feature
+* **terra-breadcrumbs** added. Breadcrumbs using router and routerLink.
+
+<a name="2.3.9"></a>
+# 2.3.9 (08.08.2018)
+
+### Bug Fixes
+* **terra-suggestion-box** reset selected value when `inputListBoxValues` is empty
+* **style** fixed scss variables 
+
+<a name="2.3.4"></a>
+# 2.3.4 (02.08.2018)
 
 ### Features
 * **terra-icons** added new icons
 * **terra-decimal-validator** added a custom validator to validate decimals
 * **object.helper** added a helper for object operations. First there is only a function to remove keys with an `undefined` or `null` value
 * **number.helper** added a helper for number operations. First there is only a function for correctly rounding.
-* **terra-2-col** **_EXPERIMENTAL_** Improved mobile handling for 2 column container.
+* **terra-2-col** reduced two column component to bare necessities
+* **two-column.helper** added a helper for two column component sizing
+* **two-column-mobile.directive** added a  directive for two column mobile handling
 
 #### Bug Fixes
 * **terra-code-editor** added html code validation to check if all tags are closed.

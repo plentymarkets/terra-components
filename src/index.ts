@@ -154,3 +154,7 @@ export * from './app/components/forms/dynamic-form2/model/terra-dynamic-form-ele
 export * from './app/components/forms/dynamic-form2/model/terra-dynamic-form-scope.data';
 export * from './app/components/forms/dynamic-form2/model/terra-dynamic-form-type-map.enum';
 export * from './app/components/forms/dynamic-form2/model/terra-form-property.decorator';
+export * from './app/components/layouts/column-container/terra-two-columns-container.directive';
+export * from './app/components/breadcrumbs/terra-breadcrumbs.component';
+export * from './app/components/breadcrumbs/terra-breadcrumb';
+export * from './app/components/breadcrumbs/service/terra-breadcrumbs.service';
