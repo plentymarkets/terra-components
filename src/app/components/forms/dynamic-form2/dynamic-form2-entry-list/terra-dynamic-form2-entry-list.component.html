@@ -1,5 +1,5 @@
 <div class="dynamic-form-list clearfix">
-    <div class="dynamic-form-list-entry" *ngFor="let entry of _value; index as i; trackBy: trackByFn">
+    <div class="dynamic-form-list-entry" *ngFor="let entry of value; index as i; trackBy: trackByFn">
         <terra-dynamic-form2-entry
             [inputFormField]="inputFormField"
             [inputFormValue]="entry"
@@ -10,11 +10,15 @@
         
         <terra-button
             inputIcon="icon-delete"
+            [inputIsSecondary]="true"
             (outputClicked)="removeElement(i)"
+            [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate:lang"
             [inputIsDisabled]="!canRemoveElement"></terra-button>
     </div>
     <terra-button
         inputIcon="icon-add"
         (outputClicked)="addElement()"
+        [inputIsTertiary]="true"
+        [inputTooltipText]="'terraDynamicForm.addListEntry' | translate:lang"
         [inputIsDisabled]="!canAddElement"></terra-button>
 </div>
