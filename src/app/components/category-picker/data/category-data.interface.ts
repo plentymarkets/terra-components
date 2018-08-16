@@ -1,4 +1,5 @@
 import { CategoryDetailDataInterface } from './category-detail-data.interface';
+import { CategoryClientInterface } from './category-client.interface';
 
 /**
  * @author ziyad.hajj-hassan
@@ -14,5 +15,5 @@ export interface CategoryDataInterface
     type?:string;
     hasChildren?:boolean;
     details?:Array<CategoryDetailDataInterface>;
-    clients?:Array<{plentyId:number}>;
+    clients?:Array<CategoryClientInterface>;
 }
