@@ -50,7 +50,7 @@ export class TerraTagComponent
     public names:Array<TerraTagNameInterface>;
 
     @Output()
-    public onCloseTag:EventEmitter<any> = new EventEmitter<any>();
+    public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
 
     constructor()
     {
