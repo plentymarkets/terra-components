@@ -11,6 +11,7 @@
            name="{{inputName}}"
            (blur)="onCustomBlur(value)"
            (input)="onInput()"
+           (keyup.enter)="onInput()"
            autocomplete="off"
            [disabled]="isDisabled"
            [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0}"
