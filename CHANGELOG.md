@@ -1,4 +1,5 @@
-# Unreleased
+<a name="2.3.11"></a>
+# 2.3.11 (17.08.2018)
 
 ### Feature
 * **category-data.interface** && **category-detail-data.interface** extend interfaces since some properties were missing in comparision to the [rest interface](https://developers.plentymarkets.com/rest-doc/category_category/details).
@@ -9,6 +10,7 @@
     * `selectedValue = null` if entered text does not match any of the `inputListBoxValues`
     * `resetComponentValue`-Method is now deprecated. Use `ngModel` instead to set the value to `null`
     * `outputValueChanged` is now deprecated. Use `ngModelChange` instead.
+* **terra-form** Added new component to generate forms dynamically from json data.
     
 ### Bug Fixes
 * **terra-split-view** fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead
