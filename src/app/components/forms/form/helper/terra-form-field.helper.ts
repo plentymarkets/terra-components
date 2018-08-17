@@ -1,15 +1,3 @@
-import {
-    TERRA_FORM_PROPERTY_METADATA_KEY,
-    TerraCategoryPickerBaseService,
-    TerraControlTypeEnum,
-    TerraDynamicFormElementInterface,
-    TerraFormFieldBase,
-    TerraFormFieldCategoryPicker,
-    TerraFormFieldCheckBox,
-    TerraFormFieldInputText,
-    TerraFormFieldSelectBox,
-    TerraJsonToFormFieldService
-} from '../../../../../';
 import 'reflect-metadata';
 import {
     isArray,
@@ -21,6 +9,15 @@ import { TerraFormFieldCodeEditorOptions } from '../../dynamic-form/data/terra-f
 import { TerraFormFieldInputDouble } from '../../dynamic-form/data/terra-form-field-input-double';
 import { TerraFormFieldInputFile } from '../../dynamic-form/data/terra-form-field-input-file';
 import { TerraFormFieldMultiCheckBox } from '../../dynamic-form/data/terra-form-field-multi-check-box';
+import {
+    TERRA_FORM_PROPERTY_METADATA_KEY,
+    TerraControlTypeEnum,
+    TerraFormFieldBase,
+    TerraFormFieldInputText,
+    TerraFormFieldSelectBox,
+    TerraJsonToFormFieldService,
+    TerraFormFieldInterface
+} from '../../../../../';
 
 export class TerraFormFieldHelper
 {
@@ -42,9 +39,9 @@ export class TerraFormFieldHelper
         codeEditor:           'codeEditor'
     };
 
-    public static extractFormFields(formModel:any):{ [key:string]:TerraDynamicFormElementInterface }
+    public static extractFormFields(formModel:any):{ [key:string]:TerraFormFieldInterface }
     {
-        let formFields:{ [key:string]:TerraDynamicFormElementInterface }
+        let formFields:{ [key:string]:TerraFormFieldInterface }
             = Reflect.getMetadata(TERRA_FORM_PROPERTY_METADATA_KEY, formModel.constructor);
 
         if(!isNullOrUndefined(formFields))
@@ -52,7 +49,7 @@ export class TerraFormFieldHelper
             Object.keys(formFields)
                   .forEach((formFieldProperty:string) =>
                   {
-                      let formField:TerraDynamicFormElementInterface = formFields[formFieldProperty];
+                      let formField:TerraFormFieldInterface = formFields[formFieldProperty];
                       if(isNullOrUndefined(formField.isList))
                       {
                           formField.isList = Reflect.getMetadata('design:type', formModel.constructor, formFieldProperty) === Array;
@@ -69,10 +66,10 @@ export class TerraFormFieldHelper
         return formFields;
     }
 
-    public static injectOption(formFields:{ [key:string]:TerraDynamicFormElementInterface },
+    public static injectOption(formFields:{ [key:string]:TerraFormFieldInterface },
                                type:string,
                                optionKey:string,
-                               optionValue:any):{ [key:string]:TerraDynamicFormElementInterface }
+                               optionValue:any):{ [key:string]:TerraFormFieldInterface }
     {
         Object.keys(formFields).forEach((key:string) =>
         {
@@ -97,14 +94,14 @@ export class TerraFormFieldHelper
 
     public static detectLegacyFormFields(
         formFields:{ [key:string]:any } | Array<TerraFormFieldBase<any>>
-    ):{ [key:string]:TerraDynamicFormElementInterface }
+    ):{ [key:string]:TerraFormFieldInterface }
     {
         if(isArray(formFields))
         {
-            let transformedFields:{ [key:string]:TerraDynamicFormElementInterface } = {};
+            let transformedFields:{ [key:string]:TerraFormFieldInterface } = {};
             formFields.forEach((field:TerraFormFieldBase<any>) =>
             {
-                let transformedField:{ key:string, field:TerraDynamicFormElementInterface } = this.transformLegacyFormField(field);
+                let transformedField:{ key:string, field:TerraFormFieldInterface } = this.transformLegacyFormField(field);
                 transformedFields[transformedField.key] = transformedField.field;
             });
             return transformedFields;
@@ -116,12 +113,12 @@ export class TerraFormFieldHelper
             );
         }
 
-        return <{ [key:string]:TerraDynamicFormElementInterface }> formFields;
+        return <{ [key:string]:TerraFormFieldInterface }> formFields;
     }
 
-    private static transformLegacyFormField(field:TerraFormFieldBase<any>):{ key:string, field:TerraDynamicFormElementInterface }
+    private static transformLegacyFormField(field:TerraFormFieldBase<any>):{ key:string, field:TerraFormFieldInterface }
     {
-        let result:{ key:string, field:TerraDynamicFormElementInterface } = {
+        let result:{ key:string, field:TerraFormFieldInterface } = {
             key:   field.key,
             field: null
         };
@@ -181,37 +178,37 @@ export class TerraFormFieldHelper
         return result;
     }
 
-    private static transformCodeEditorField(result:TerraDynamicFormElementInterface,
-                                            field:TerraFormFieldCodeEditorOptions):TerraDynamicFormElementInterface
+    private static transformCodeEditorField(result:TerraFormFieldInterface,
+                                            field:TerraFormFieldCodeEditorOptions):TerraFormFieldInterface
     {
         result.options.fixedHeight = field.fixedHeight;
         return result;
     }
 
-    private static transformDoubleField(result:TerraDynamicFormElementInterface,
-                                        field:TerraFormFieldInputDouble):TerraDynamicFormElementInterface
+    private static transformDoubleField(result:TerraFormFieldInterface,
+                                        field:TerraFormFieldInputDouble):TerraFormFieldInterface
     {
         result.options.isPrice = field.isPrice;
         result.options.decimalCount = field.decimalCount;
         return result;
     }
 
-    private static transformFileField(result:TerraDynamicFormElementInterface,
-                                      field:TerraFormFieldInputFile):TerraDynamicFormElementInterface
+    private static transformFileField(result:TerraFormFieldInterface,
+                                      field:TerraFormFieldInputFile):TerraFormFieldInterface
     {
         result.options.allowedExtensions = field.inputAllowedExtensions;
         return result;
     }
 
-    private static transformCheckboxGroupField(result:TerraDynamicFormElementInterface,
-                                               field:TerraFormFieldMultiCheckBox):TerraDynamicFormElementInterface
+    private static transformCheckboxGroupField(result:TerraFormFieldInterface,
+                                               field:TerraFormFieldMultiCheckBox):TerraFormFieldInterface
     {
         result.options.checkBoxValues = field.checkBoxValues;
         return result;
     }
 
-    private static transformTextField(result:TerraDynamicFormElementInterface,
-                                      field:TerraFormFieldInputText):TerraDynamicFormElementInterface
+    private static transformTextField(result:TerraFormFieldInterface,
+                                      field:TerraFormFieldInputText):TerraFormFieldInterface
     {
         result.options.isPassword = field.isPassword;
         result.options.isIBAN = field.isIBAN;
@@ -219,8 +216,8 @@ export class TerraFormFieldHelper
         return result;
     }
 
-    private static transformSelectField(result:TerraDynamicFormElementInterface,
-                                        field:TerraFormFieldSelectBox):TerraDynamicFormElementInterface
+    private static transformSelectField(result:TerraFormFieldInterface,
+                                        field:TerraFormFieldSelectBox):TerraFormFieldInterface
     {
         result.options.listBoxValues = field.selectBoxValues;
         return result;

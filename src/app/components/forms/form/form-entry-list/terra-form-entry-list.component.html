@@ -1,12 +1,12 @@
-<div class="dynamic-form-list clearfix">
-    <div class="dynamic-form-list-entry" *ngFor="let entry of value; index as i; trackBy: trackByFn">
-        <terra-dynamic-form2-entry
+<div class="form-list clearfix">
+    <div class="form-list-entry" *ngFor="let entry of value; index as i; trackBy: trackByFn">
+        <terra-form-entry
             [inputFormField]="inputFormField"
             [inputFormValue]="entry"
             [inputScope]="inputScope"
             [inputControlTypeMap]="inputControlTypeMap"
             [inputIsDisabled]="inputIsDisabled"
-            (outputFormValueChanged)="onElementValueChanged(i, $event)"></terra-dynamic-form2-entry>
+            (outputFormValueChanged)="onElementValueChanged(i, $event)"></terra-form-entry>
         
         <terra-button
             inputIcon="icon-delete"

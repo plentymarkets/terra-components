@@ -9,32 +9,32 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
-import { TerraDynamicFormScope } from './model/terra-dynamic-form-scope.data';
-import { TerraDynamicFormElementInterface } from './model/terra-dynamic-form-element.interface';
-import { TerraDynamicFormTypeMap } from './model/terra-dynamic-form-type-map.enum';
+import { TerraFormScope } from './model/terra-form-scope.data';
+import { TerraFormFieldInterface } from './model/terra-form-field.interface';
+import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { TerraFormFieldHelper } from './helper/terra-form-field.helper';
 
 @Component({
-    selector:  'terra-dynamic-form2',
-    template:  require('./terra-dynamic-form2.component.html'),
-    styles:    [require('./terra-dynamic-form2.component.scss')],
+    selector:  'terra-form',
+    template:  require('./terra-form.component.html'),
+    styles:    [require('./terra-form.component.scss')],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraDynamicForm2Component),
+            useExisting: forwardRef(() => TerraFormComponent),
             multi:       true
         }
     ]
 })
-export class TerraDynamicForm2Component implements ControlValueAccessor
+export class TerraFormComponent implements ControlValueAccessor
 {
     @Input()
-    public set inputFormFields(fields:{ [key:string]:TerraDynamicFormElementInterface })
+    public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
     {
         this.formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
     }
 
-    public get inputFormFields():{ [key:string]:TerraDynamicFormElementInterface }
+    public get inputFormFields():{ [key:string]:TerraFormFieldInterface }
     {
         if(isNullOrUndefined(this.formFields))
         {
@@ -53,7 +53,7 @@ export class TerraDynamicForm2Component implements ControlValueAccessor
     {
         if(isNullOrUndefined(this.controlTypeMap))
         {
-            return new TerraDynamicFormTypeMap();
+            return new TerraFormTypeMap();
         }
         return this.controlTypeMap;
     }
@@ -61,15 +61,15 @@ export class TerraDynamicForm2Component implements ControlValueAccessor
     @Input()
     public inputIsDisabled:boolean = false;
 
-    protected scope:TerraDynamicFormScope = new TerraDynamicFormScope();
+    protected scope:TerraFormScope = new TerraFormScope();
 
     protected values:any = {};
 
     protected controlTypeMap:{ [key:string]:Type<any> };
 
-    private formFields:{ [key:string]:TerraDynamicFormElementInterface };
+    private formFields:{ [key:string]:TerraFormFieldInterface };
 
-    private parseFormField(field:TerraDynamicFormElementInterface):any
+    private parseFormField(field:TerraFormFieldInterface):any
     {
         if(!isNullOrUndefined(field.children))
         {

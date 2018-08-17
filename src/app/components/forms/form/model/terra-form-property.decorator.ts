@@ -1,4 +1,4 @@
-import { TerraDynamicFormElementInterface } from './terra-dynamic-form-element.interface';
+import { TerraFormFieldInterface } from './terra-form-field.interface';
 import 'reflect-metadata';
 
 // Metadata key to get editor property data from
@@ -9,13 +9,13 @@ export const TERRA_FORM_PROPERTY_METADATA_KEY:string = 'TERRA_FORM_PROPERTY_META
  * @param propertyDescription   EditorPropertyInterface
  * @returns PropertyDecorator
  */
-export function TerraFormProperty(propertyDescription?:TerraDynamicFormElementInterface):PropertyDecorator
+export function TerraFormProperty(propertyDescription?:TerraFormFieldInterface):PropertyDecorator
 {
     return (target:Object, propertyKey:string):void =>
     {
         // Store property description in "global" metadata of object's constructor:
         // > 1. get previously defined properties
-        let formFields:{ [key:string]:TerraDynamicFormElementInterface } = Reflect.getMetadata(
+        let formFields:{ [key:string]:TerraFormFieldInterface } = Reflect.getMetadata(
             TERRA_FORM_PROPERTY_METADATA_KEY,
             target.constructor
         ) || {};

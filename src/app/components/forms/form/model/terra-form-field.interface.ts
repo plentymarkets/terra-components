@@ -1,4 +1,4 @@
-export interface TerraDynamicFormElementInterface
+export interface TerraFormFieldInterface
 {
     type:string;
     isList?:boolean | string;
@@ -6,5 +6,5 @@ export interface TerraDynamicFormElementInterface
     isValid?:string;
     defaultValue?:any;
     options?:{ [key:string]:any };
-    children?:{ [key:string]:TerraDynamicFormElementInterface };
+    children?:{ [key:string]:TerraFormFieldInterface };
 }

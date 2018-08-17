@@ -14,7 +14,7 @@ import {
 } from '../../../../../';
 import { Type } from '@angular/core';
 
-export class TerraDynamicFormTypeMap
+export class TerraFormTypeMap
 {
     public readonly checkbox:Type<TerraCheckboxComponent>           = TerraCheckboxComponent;
     public readonly date:Type<TerraDatePickerComponent>             = TerraDatePickerComponent;

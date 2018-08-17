@@ -6,23 +6,23 @@ import {
     Output,
     Type
 } from '@angular/core';
-import { TerraDynamicFormScope } from '../model/terra-dynamic-form-scope.data';
+import { TerraFormScope } from '../model/terra-form-scope.data';
 import {
     isNullOrUndefined,
     isString
 } from 'util';
-import { TerraDynamicFormElementInterface } from '../model/terra-dynamic-form-element.interface';
+import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
 
 @Component({
-    selector: 'terra-dynamic-form2-container',
-    template: require('./terra-dynamic-form2-container.component.html'),
-    styles:   [require('./terra-dynamic-form2-container.component.scss')]
+    selector: 'terra-form-container',
+    template: require('./terra-form-container.component.html'),
+    styles:   [require('./terra-form-container.component.scss')]
 })
-export class TerraDynamicForm2ContainerComponent implements OnInit
+export class TerraFormContainerComponent implements OnInit
 {
     @Input()
-    public inputScope:TerraDynamicFormScope;
+    public inputScope:TerraFormScope;
 
     @Input()
     public inputControlTypeMap:{ [key:string]:Type<any> } = {};
@@ -46,7 +46,7 @@ export class TerraDynamicForm2ContainerComponent implements OnInit
     }
 
     @Input()
-    public set inputFormFields(fields:{ [key:string]:TerraDynamicFormElementInterface })
+    public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
     {
         this.formFields = Object.keys(fields)
                                 .map((key:string) =>
@@ -66,7 +66,7 @@ export class TerraDynamicForm2ContainerComponent implements OnInit
     @Output()
     public outputFormValueChanged:EventEmitter<TerraKeyValuePairInterface<any>> = new EventEmitter<TerraKeyValuePairInterface<any>>();
 
-    protected formFields:Array<TerraKeyValuePairInterface<TerraDynamicFormElementInterface>> = [];
+    protected formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
     protected formFieldVisibility:{ [key:string]:boolean } = {};
 
     private value:any = {};
@@ -92,7 +92,7 @@ export class TerraDynamicForm2ContainerComponent implements OnInit
     private updateFieldVisibility():void
     {
         this.formFields
-            .forEach((field:TerraKeyValuePairInterface<TerraDynamicFormElementInterface>) =>
+            .forEach((field:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
             {
                 if(isString(field.value.isVisible))
                 {

@@ -1,14 +1,14 @@
 :host-context(.form-entry-horizontal)
 {
-    > .dynamic-form
+    > .form
     {
         display: flex;
         
-        > .dynamic-form-entry
+        > .form-entry
         {
             flex: 1;
             
-            + .dynamic-form-entry
+            + .form-entry
             {
                 margin-left: var(--space-sm)
             }

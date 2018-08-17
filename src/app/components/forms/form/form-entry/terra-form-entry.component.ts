@@ -13,33 +13,33 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { TerraDynamicFormElementInterface } from '../model/terra-dynamic-form-element.interface';
+import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
     isFunction,
     isNullOrUndefined
 } from 'util';
-import { TerraDynamicFormScope } from '../model/terra-dynamic-form-scope.data';
+import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraTextInputComponent } from '../../../../../';
-import { TerraDynamicFormTypeInterface } from '../model/terra-dynamic-form-type.interface';
+import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 
 @Component({
-    selector: 'terra-dynamic-form2-entry',
-    template: require('./terra-dynamic-form2-entry.component.html'),
-    styles:   [require('./terra-dynamic-form2-entry.component.scss')]
+    selector: 'terra-form-entry',
+    template: require('./terra-form-entry.component.html'),
+    styles:   [require('./terra-form-entry.component.scss')]
 })
-export class TerraDynamicForm2EntryComponent implements OnInit, AfterViewInit, OnChanges
+export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 {
     @Input()
-    public inputFormField:TerraDynamicFormElementInterface;
+    public inputFormField:TerraFormFieldInterface;
 
     @Input()
     public inputFormValue:any;
 
     @Input()
-    public inputScope:TerraDynamicFormScope;
+    public inputScope:TerraFormScope;
 
     @Input()
-    public inputControlTypeMap:{ [key:string]:Type<any> | TerraDynamicFormTypeInterface } = {};
+    public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
 
     @Input()
     public inputIsDisabled:boolean = false;
@@ -82,7 +82,7 @@ export class TerraDynamicForm2EntryComponent implements OnInit, AfterViewInit, O
                     }
                     else
                     {
-                        controlType = (<TerraDynamicFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
+                        controlType = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
                     }
                 }
 
@@ -125,7 +125,7 @@ export class TerraDynamicForm2EntryComponent implements OnInit, AfterViewInit, O
             let inputMap:{[key:string]:string} = {};
             if ( !(this.inputControlTypeMap[this.inputFormField.type] instanceof Type) )
             {
-                inputMap = (<TerraDynamicFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).inputMap;
+                inputMap = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).inputMap;
             }
 
             if(!isNullOrUndefined(this.inputFormField.options))

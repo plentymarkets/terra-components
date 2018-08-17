@@ -1,8 +1,7 @@
 import { isNullOrUndefined } from 'util';
-import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-export class TerraDynamicFormScope
+export class TerraFormScope
 {
     public onDataChanged:BehaviorSubject<any> = new BehaviorSubject<any>({});
 

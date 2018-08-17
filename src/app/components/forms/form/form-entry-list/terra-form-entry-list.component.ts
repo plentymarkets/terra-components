@@ -6,23 +6,23 @@ import {
     Output,
     Type
 } from '@angular/core';
-import { TerraDynamicFormElementInterface } from '../model/terra-dynamic-form-element.interface';
+import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
     isArray,
     isNullOrUndefined,
     isString
 } from 'util';
-import { TerraDynamicFormScope } from '../model/terra-dynamic-form-scope.data';
+import { TerraFormScope } from '../model/terra-form-scope.data';
 
 @Component({
-    selector: 'terra-dynamic-form2-entry-list',
-    template: require('./terra-dynamic-form2-entry-list.component.html'),
-    styles:   [require('./terra-dynamic-form2-entry-list.component.scss')]
+    selector: 'terra-form-entry-list',
+    template: require('./terra-form-entry-list.component.html'),
+    styles:   [require('./terra-form-entry-list.component.scss')]
 })
-export class TerraDynamicForm2EntryListComponent implements OnInit
+export class TerraFormEntryListComponent implements OnInit
 {
     @Input()
-    public inputFormField:TerraDynamicFormElementInterface;
+    public inputFormField:TerraFormFieldInterface;
 
     @Input()
     public set inputFormValue(value:Array<any>)
@@ -46,7 +46,7 @@ export class TerraDynamicForm2EntryListComponent implements OnInit
     public inputListRange:boolean | string;
 
     @Input()
-    public inputScope:TerraDynamicFormScope;
+    public inputScope:TerraFormScope;
 
     @Input()
     public inputControlTypeMap:{ [key:string]:Type<any> } = {};
