@@ -1,6 +1,7 @@
 # Unreleased
 
 ### Feature
+* **category-data.interface** && **category-detail-data.interface** extend interfaces since some properties were missing in comparision to the [rest interface](https://developers.plentymarkets.com/rest-doc/category_category/details).
 * **terra-suggestion-box** 
 	* New Output `textInputValueChange` that emits the current text input value
     * Select a Value from the suggestions if the entered text matches its caption
@@ -10,14 +11,14 @@
     * `outputValueChanged` is now deprecated. Use `ngModelChange` instead.
     
 ### Bug Fixes
-* **terra-split-view** Fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead
-
+* **terra-split-view** fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead
+* **terra-color-picker** added border to the input field to provide more contrast for the selected color
 
 <a name="2.3.10"></a>
 # 2.3.10 (09.08.2018)
 
 ### Feature
-* **terra-breadcrumbs** added. Breadcrumbs using router and routerLink.
+* **terra-breadcrumbs** added Breadcrumbs using router and routerLink
 
 <a name="2.3.9"></a>
 # 2.3.9 (08.08.2018)
