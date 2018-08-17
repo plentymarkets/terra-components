@@ -76,7 +76,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                 let controlType:Type<any> = TerraTextInputComponent;
                 if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
                 {
-                    if ( this.inputControlTypeMap[this.inputFormField.type] instanceof Type )
+                    if(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)
                     {
                         controlType = <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
                     }
@@ -120,10 +120,10 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
     protected bindInputProperties():void
     {
-        if ( !isNullOrUndefined(this.componentInstance) )
+        if(!isNullOrUndefined(this.componentInstance))
         {
-            let inputMap:{[key:string]:string} = {};
-            if ( !(this.inputControlTypeMap[this.inputFormField.type] instanceof Type) )
+            let inputMap:{ [key:string]:string } = {};
+            if(!(this.inputControlTypeMap[this.inputFormField.type] instanceof Type))
             {
                 inputMap = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).inputMap;
             }
@@ -132,7 +132,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
             {
                 Object.keys(this.inputFormField.options).forEach((optionKey:string) =>
                 {
-                    if ( inputMap.hasOwnProperty(optionKey) )
+                    if(inputMap.hasOwnProperty(optionKey))
                     {
                         this.componentInstance[inputMap[optionKey]] = this.inputFormField.options[optionKey];
                     }
@@ -143,7 +143,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                 });
             }
 
-            if ( inputMap.hasOwnProperty('isDisabled') )
+            if(inputMap.hasOwnProperty('isDisabled'))
             {
                 this.componentInstance[inputMap['isDisabled']] = this.inputIsDisabled;
             }

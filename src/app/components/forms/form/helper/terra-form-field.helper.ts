@@ -92,9 +92,7 @@ export class TerraFormFieldHelper
         return isArray(formFields) || Object.keys(formFields).some((key:string) => !isNullOrUndefined(formFields[key].label));
     }
 
-    public static detectLegacyFormFields(
-        formFields:{ [key:string]:any } | Array<TerraFormFieldBase<any>>
-    ):{ [key:string]:TerraFormFieldInterface }
+    public static detectLegacyFormFields(formFields:{ [key:string]:any } | Array<TerraFormFieldBase<any>>):{ [key:string]:TerraFormFieldInterface }
     {
         if(isArray(formFields))
         {
@@ -106,7 +104,7 @@ export class TerraFormFieldHelper
             });
             return transformedFields;
         }
-        else if( TerraFormFieldHelper.isLegacyFormFields(formFields) )
+        else if(TerraFormFieldHelper.isLegacyFormFields(formFields))
         {
             return this.detectLegacyFormFields(
                 TerraJsonToFormFieldService.generateFormFields(formFields)
