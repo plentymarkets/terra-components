@@ -1,0 +1,17 @@
+:host-context(.form-entry-horizontal)
+{
+    > .form
+    {
+        display: flex;
+        
+        > .form-entry
+        {
+            flex: 1;
+            
+            + .form-entry
+            {
+                margin-left: var(--space-sm)
+            }
+        }
+    }
+}

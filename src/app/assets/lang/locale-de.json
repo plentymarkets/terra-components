@@ -80,5 +80,9 @@
 		"select": "Auswählen",
 		"category": "Kategorie",
 		"reset": "Reset"
+	},
+	"terraDynamicForm": {
+		"addListEntry": "Neuen Eintrag hinzufügen",
+		"removeListEntry": "Eintrag entfernen"
 	}
 }
