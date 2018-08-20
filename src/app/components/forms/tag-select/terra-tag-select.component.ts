@@ -150,7 +150,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
             // Fallback if no name for this.lang is set
             if(isNullOrUndefined(tagName))
             {
-                return this.name;
+                return tag.name;
             }
             else
             {

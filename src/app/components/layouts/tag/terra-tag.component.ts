@@ -41,7 +41,7 @@ export class TerraTagComponent
     public inputColor:string;
 
     @Input()
-    public tagId:number | string;
+    public tagId:number;
 
     @Input()
     public isClosable:boolean;
