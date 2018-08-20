@@ -158,3 +158,4 @@ export * from './app/components/layouts/column-container/terra-two-columns-conta
 export * from './app/components/breadcrumbs/terra-breadcrumbs.component';
 export * from './app/components/breadcrumbs/terra-breadcrumb';
 export * from './app/components/breadcrumbs/service/terra-breadcrumbs.service';
+export * from './app/components/forms/tag-select/terra-tag-select.component';
