@@ -1,5 +1,5 @@
 /**
- * @author chirila-ioan-danie;l
+ * @author chirila-ioan-daniel
  */
 export interface NestedValueInterface
 {

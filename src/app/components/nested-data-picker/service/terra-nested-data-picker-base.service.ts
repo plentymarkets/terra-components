@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { NestedDataInterface } from '../data/nested-data.interface';
-
+import { NestedPagerDataInterface } from '../data/nested-pager-data.interface';
 /**
  * @author chirila-ioan-daniel
  */
@@ -14,5 +13,8 @@ export abstract class TerraNestedDataPickerBaseService<T>
      * @param {string | number} dataId
      * @returns {Observable<Array<NestedDataInterface>>}
      */
-    public abstract requestNestedData():Observable<Array<NestedDataInterface<T>>>;
+    public abstract requestNestedData(parentId:string | number):Observable<NestedPagerDataInterface>;
+
+    public abstract requestNestedDataById(id:number):Observable<NestedPagerDataInterface>;
+
 }
