@@ -145,6 +145,12 @@ import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/m
 import { RouterModule } from '@angular/router';
 import { TerraTimePickerComponentExample } from './components/forms/input/time-picker/example/terra-time-picker.component.example';
 import { TerraTwoColumnsContainerComponent } from './components/layouts/column-container/terra-two-columns-container.component';
+import { TerraFormComponent } from './components/forms/form/terra-form.component';
+import { TerraFormEntryComponent } from './components/forms/form/form-entry/terra-form-entry.component';
+// tslint:disable-next-line
+import { TerraFormEntryListComponent } from './components/forms/form/form-entry-list/terra-form-entry-list.component';
+// tslint:disable-next-line
+import { TerraFormContainerComponent } from './components/forms/form/form-container/terra-form-container.component';
 import { TerraTwoColumnsContainerDirective } from './components/layouts/column-container/terra-two-columns-container.directive';
 import { TerraBreadcrumbsComponent } from './components/breadcrumbs/terra-breadcrumbs.component';
 import { TerraBreadcrumbsService } from './components/breadcrumbs/service/terra-breadcrumbs.service';
@@ -221,6 +227,10 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicSwitchComponent,
         TerraCategoryPickerComponent,
         TerraTwoColumnsContainerComponent,
+        TerraFormComponent,
+        TerraFormContainerComponent,
+        TerraFormEntryComponent,
+        TerraFormEntryListComponent,
         TerraTwoColumnsContainerDirective,
         TerraBreadcrumbsComponent,
         TerraTagSelectComponent,
@@ -321,6 +331,10 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNodeComponent,
         TerraCategoryPickerComponent,
         TerraTwoColumnsContainerComponent,
+        TerraFormComponent,
+        TerraFormContainerComponent,
+        TerraFormEntryComponent,
+        TerraFormEntryListComponent,
         TerraBreadcrumbsComponent,
         TerraTagSelectComponent
     ],
@@ -383,6 +397,10 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicSwitchComponent,
         TerraCategoryPickerComponent,
         TerraTwoColumnsContainerComponent,
+        TerraFormComponent,
+        TerraFormContainerComponent,
+        TerraFormEntryComponent,
+        TerraFormEntryListComponent,
         TerraTwoColumnsContainerDirective,
         TerraBreadcrumbsComponent,
         TerraTagSelectComponent,
