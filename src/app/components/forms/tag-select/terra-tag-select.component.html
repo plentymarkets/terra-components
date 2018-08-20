@@ -1,0 +1,10 @@
+<terra-suggestion-box class="suggestionBox"
+                      [inputName]="name"
+                      [inputListBoxValues]="suggestionValues"
+                      [(ngModel)]="selectedTag"
+                      (ngModelChange)="addSelectedTag($event)"
+                      [inputIsDisabled]="isDisabled"
+                      [ngClass]="{'hidden': isReadOnly}"></terra-suggestion-box>
+<terra-taglist [inputTagList]="selectedTags"
+               [isReadOnly]="isReadOnly || isDisabled"
+               (onCloseTag)="closeTag($event)"></terra-taglist>

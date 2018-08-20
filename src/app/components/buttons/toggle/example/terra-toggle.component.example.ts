@@ -9,9 +9,9 @@ import {
 })
 export class TerraToggleComponentExample
 {
-    private _isToggled:boolean = false;
+    protected isToggled:boolean = false;
 
-    private showMessage(msg:string):void
+    protected showMessage(msg:string):void
     {
         alert(msg);
     }

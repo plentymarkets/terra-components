@@ -29,6 +29,10 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        &.icon-close
+        {
+            cursor: pointer;
+        }
     }
 }
 

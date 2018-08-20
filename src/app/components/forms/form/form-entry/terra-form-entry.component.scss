@@ -1,0 +1,12 @@
+.form-entry-label
+{
+    font-weight: var(--font-weight-2);
+}
+
+.form-entry-vertical
+{
+    .form-entry-container
+    {
+        padding-left: var(--space-lg);
+    }
+}
