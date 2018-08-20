@@ -1,15 +1,14 @@
-import { Observable } from 'rxjs/Observable';
+import { NestedDetailDataInterface } from './nested-detail-data.interface';
 
 /**
  * @author chirila-ioan-daniel
  */
 export interface NestedDataInterface<T>
 {
-    label?:string;
-    key?:string;
-    isSelected?:boolean;
-    children?:Array<NestedDataInterface<T>>;
-    onLazyLoad?:() => Observable<any>;
-    selectable?:boolean;
+    id?:number;
+    hasChildren?:boolean;
+    details?:Array<NestedDetailDataInterface>;
+    parentId?:number;
+    isLastPage?:boolean;
     data?:T;
 }
