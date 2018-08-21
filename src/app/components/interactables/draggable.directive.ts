@@ -122,6 +122,9 @@ export class TerraDraggableDirective implements OnChanges
             manualStart:  (this.options || {}).manualStart || false,
             inertia:      this.inertia,
             enabled:      !this.disabled,
+            allowFrom:    (this.options || {}).allowFrom || null,
+            ignoreFrom:   (this.options || {}).ignoreFrom || null,
+            styleCursor:  false,
             onstart:      (event:InteractEvent):void =>
                           {
                               this.onStart.emit(event);
@@ -163,15 +166,7 @@ export class TerraDraggableDirective implements OnChanges
             this.interactable = interact(this.el.nativeElement);
         }
 
-        draggableConfig.ignoreFrom = (this.options || {}).ignoreFrom || null;
-
         this.interactable.draggable(draggableConfig);
-
-        // this.interactable.set({
-        //     allowFrom:   (this.options || {}).allowFrom || null,
-        //     ignoreFrom:  (this.options || {}).ignoreFrom || null,
-        //     styleCursor: false
-        // })
     }
 
     private handleSnap(x:number, y:number):{ x:number, y:number, range:number }
