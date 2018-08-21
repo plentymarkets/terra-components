@@ -1,3 +1,5 @@
+import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
+
 /**
  * @author chirila-ioan-daniel
  */
@@ -9,5 +11,5 @@ export interface NestedValueInterface
     isVisible:boolean;
     name:string;
     tooltip:string;
-    tooltipPlacement:string;
+    tooltipPlacement:TerraPlacementEnum;
 }
