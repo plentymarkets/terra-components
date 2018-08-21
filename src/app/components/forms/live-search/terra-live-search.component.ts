@@ -108,11 +108,6 @@ export class TerraLiveSearchComponent<T> implements OnInit, ControlValueAccessor
         this.selectedValue = obj;
     }
 
-    public get value():T
-    {
-        return this.selectedValue;
-    }
-
     protected onModelChange(value:any):void
     {
         if(!isNullOrUndefined(this.onChangeCallback))
