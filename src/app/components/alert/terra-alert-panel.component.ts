@@ -16,16 +16,16 @@ import { TerraAlertInterface } from './data/terra-alert.interface';
 
 export class TerraAlertPanelComponent
 {
-    private _alerts:Array<TerraAlertInterface>;
-    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+    protected alerts:Array<TerraAlertInterface>;
+    private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     constructor()
     {
-        this._alerts = this._alert.alerts;
+        this.alerts = this.alert.alerts;
     }
 
     private closeAlert(i:number):void
     {
-        this._alert.closeAlert(i);
+        this.alert.closeAlert(i);
     }
 }

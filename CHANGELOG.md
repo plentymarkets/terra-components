@@ -5,7 +5,7 @@
 * **terra-tag-select** add new component for tag select and deselect with ngModel support
 
 <a name="2.3.11"></a>
-# 2.3.1 (17.08.2018)
+# 2.3.11 (17.08.2018)
 
 ### Feature
 * **category-data.interface** && **category-detail-data.interface** extend interfaces since some properties were missing in comparision to the [rest interface](https://developers.plentymarkets.com/rest-doc/category_category/details).
