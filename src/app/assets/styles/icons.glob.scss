@@ -1,5 +1,6 @@
 @import "_variables";
 @import "_loading.icon";
+
 // Typography
 //
 // Font, line-height, and color for body text, headings, and more.
@@ -60,8 +61,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+
 //Icon-Variables//
 
+$icon-unlink: "\eb0f";
 $icon-anonymize: "\eb0e";
 $icon-active_doc: "\eb01";
 $icon-active_fold_closed: "\eb02";
@@ -602,6 +605,11 @@ $icon-visibility_private: "\eaa3";
 $icon-warning: "\eaa4";
 $icon-zoom: "\eaa5";
 
+.icon-unlink {
+    &:before {
+        content: $icon-unlink;
+    }
+}
 .icon-anonymize {
     &:before {
         content: $icon-anonymize;

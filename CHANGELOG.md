@@ -1,3 +1,8 @@
+# Unreleased
+
+### Feature
+* **terra-icons** added new icons
+
 <a name="2.3.13"></a>
 # 2.3.13 (21.08.2018)
 
