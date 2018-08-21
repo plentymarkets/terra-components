@@ -483,7 +483,6 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
         TerraFileBrowserService,
-        TerraLoadingSpinnerService,
         TerraLiveSearchServiceExample,
         {
             provide:  COMPILER_OPTIONS,
