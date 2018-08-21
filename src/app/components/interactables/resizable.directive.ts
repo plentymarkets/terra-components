@@ -11,7 +11,11 @@ import { ResizeOptions } from './resizeOptions.interface';
 import { InertiaOptions } from './inertiaOptions.interface';
 import { RestrictOptions } from './restrictOptions.interface';
 import { GridOptions } from './gridOptions.interface';
-import * as Interact from 'interactjs';
+import {
+    Interactable,
+    InteractEvent
+} from 'interactjs';
+import interact = require('interactjs');
 
 @Directive({
     selector: '[terraResizable]'
@@ -34,15 +38,15 @@ export class TerraResizableDirective implements OnChanges
     public inertia:boolean | InertiaOptions = false;
 
     @Output('terra-resizable-onStart')
-    public onStart:EventEmitter<Interact.InteractEvent> = new EventEmitter<Interact.InteractEvent>();
+    public onStart:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     @Output('terra-resizable-onMove')
-    public onMove:EventEmitter<Interact.InteractEvent> = new EventEmitter<Interact.InteractEvent>();
+    public onMove:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     @Output('terra-resizable-onEnd')
-    public onEnd:EventEmitter<Interact.InteractEvent> = new EventEmitter<Interact.InteractEvent>();
+    public onEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
-    private interactable:Interact.Interactable;
+    private interactable:Interactable;
 
     constructor(private el:ElementRef)
     {
@@ -91,7 +95,7 @@ export class TerraResizableDirective implements OnChanges
                           {
                               configurable: true,
                               enumerable:   true,
-                              get:          ():any  =>
+                              get:          ():any =>
                                             {
                                                 return this[input]['_' + property];
                                             },
@@ -116,15 +120,15 @@ export class TerraResizableDirective implements OnChanges
             preserveAspectRatio: !!this.options.preserveAspectRatio,
             inertia:             this.inertia,
             enabled:             !this.disabled,
-            onstart:             (event:Interact.InteractEvent):void =>
+            onstart:             (event:InteractEvent):void =>
                                  {
                                      this.onStart.emit(event);
                                  },
-            onmove:              (event:Interact.InteractEvent):void =>
+            onmove:              (event:InteractEvent):void =>
                                  {
                                      this.onMove.emit(event);
                                  },
-            onend:               (event:Interact.InteractEvent):void =>
+            onend:               (event:InteractEvent):void =>
                                  {
                                      this.onEnd.emit(event);
                                  },
@@ -151,7 +155,7 @@ export class TerraResizableDirective implements OnChanges
 
         if(!this.interactable)
         {
-            this.interactable = Interact(this.el.nativeElement);
+            this.interactable = interact(this.el.nativeElement);
         }
 
         this.interactable.resizable(resizableConfig);
@@ -161,7 +165,7 @@ export class TerraResizableDirective implements OnChanges
     {
         if(this.grid)
         {
-            let offset:Interact.Point = {
+            let offset:{ x:number, y:number } = {
                 x: 0,
                 y: 0
             };

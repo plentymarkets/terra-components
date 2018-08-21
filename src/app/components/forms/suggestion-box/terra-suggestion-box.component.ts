@@ -412,10 +412,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
             // finally update text input value
             // This needs to be done after executing the callbacks to make a live search work!!
-            if(!isNullOrUndefined(this._selectedValue))
-            {
-                this.textInputValue = this._selectedValue.caption;
-            }
+            this.textInputValue = !isNullOrUndefined(this._selectedValue) ? this._selectedValue.caption : undefined;
         }
     }
 
