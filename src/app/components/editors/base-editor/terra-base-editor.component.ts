@@ -42,9 +42,6 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     @Input()
     public inputMinHeight:string;
 
-    @Output()
-    public ngModelChange:EventEmitter<string> = new EventEmitter();
-
     protected placeholder:string;
     protected value:string;
     protected modules:{ [index:string]:Object };
@@ -79,14 +76,14 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
         this.value = value;
     }
 
-    public registerOnChange(fn:() => void):void
+    public registerOnChange(fn:(_:any) => void):void
     {
-        this._onChangeCallback = fn;
+        this.onChangeCallback = fn;
     }
 
     public registerOnTouched(fn:() => void):void
     {
-        this._onTouchedCallback = fn;
+        this.onTouchedCallback = fn;
     }
 
     public focus():void
@@ -94,6 +91,6 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
         this.myElement.nativeElement.querySelector('.ql-editor').focus();
     }
 
-    private _onChangeCallback:() => void = ():void => undefined;
-    private _onTouchedCallback:() => void = ():void => undefined;
+    protected onChangeCallback:(_:any) => void = ():void => undefined;
+    protected onTouchedCallback:(_:any) => void = ():void => undefined;
 }

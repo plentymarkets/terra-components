@@ -1,6 +1,7 @@
 import {
     TerraCategoryPickerComponent,
     TerraCheckboxComponent,
+    TerraCodeEditorComponent,
     TerraColorPickerComponent,
     TerraDatePickerComponent,
     TerraDoubleInputComponent,
@@ -28,4 +29,5 @@ export class TerraFormTypeMap
     public readonly color:Type<TerraColorPickerComponent> = TerraColorPickerComponent;
     public readonly checkboxGroup:Type<TerraMultiCheckBoxComponent> = TerraMultiCheckBoxComponent;
     public readonly noteEditor:Type<TerraNoteEditorComponent> = TerraNoteEditorComponent;
+    public readonly codeEditor:Type<TerraCodeEditorComponent> = TerraCodeEditorComponent;
 }
