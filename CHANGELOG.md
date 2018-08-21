@@ -1,3 +1,8 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-suggestion-box** prevent execution of `ngModelChange`-Callback if value changes from `undefined` to `null` or reverse.
+
 <a name="2.3.12"></a>
 # 2.3.12 (20.08.2018)
 
