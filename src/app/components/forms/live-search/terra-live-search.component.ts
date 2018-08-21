@@ -10,9 +10,11 @@ import {
 } from 'rxjs';
 import { TerraSuggestionBoxValueInterface } from '../../../..';
 import {
+    catchError,
     debounceTime,
     distinctUntilChanged,
     filter,
+    map,
     switchMap,
     tap
 } from 'rxjs/operators';
@@ -21,6 +23,7 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
+import { of } from 'rxjs/observable/of';
 
 @Component({
     selector:  'terra-live-search',
@@ -42,6 +45,9 @@ export class TerraLiveSearchComponent<T> implements OnInit, ControlValueAccessor
 
     @Input()
     public call:(text:string) => Observable<Array<T>>;
+
+    @Input()
+    public getSingleElement:(value:T) => Observable<T>;
 
     @Input()
     public mappingFunc:(value:T) => TerraSuggestionBoxValueInterface;
@@ -103,9 +109,25 @@ export class TerraLiveSearchComponent<T> implements OnInit, ControlValueAccessor
         this.onTouchedCallback = fn;
     }
 
-    public writeValue(obj:T):void
+    public writeValue(value:T):void
     {
-        this.selectedValue = obj;
+        if(!this.suggestions.find((suggestion:TerraSuggestionBoxValueInterface) => suggestion.value === value))
+        {
+            this.getSingleElement(value).pipe(
+                catchError(() => of(undefined)),
+                filter((val:T) => !isNullOrUndefined(val)),
+                map(this.mappingFunc),
+                tap((element:TerraSuggestionBoxValueInterface) =>
+                {
+                    this.suggestions = [element];
+                    this.selectedValue = value;
+                })
+            ).subscribe();
+        }
+        else
+        {
+            this.selectedValue = value;
+        }
     }
 
     protected onModelChange(value:any):void
