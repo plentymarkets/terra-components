@@ -11,5 +11,5 @@ export interface NestedValueInterface
     isVisible:boolean;
     name:string;
     tooltip:string;
-    tooltipPlacement:TerraPlacementEnum;
+    tooltipPlacement:string;
 }
