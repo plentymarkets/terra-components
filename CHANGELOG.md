@@ -1,4 +1,8 @@
-# Unreleased
+<a name="2.3.13"></a>
+# 2.3.13 (21.08.2018)
+
+### Feature
+* **terra-nested-data-picker** new component terra-nested-data-picker
 
 ### Bug Fixes
 * **terra-button** fixed disabled state showing the buttons background color while clicked or focused
