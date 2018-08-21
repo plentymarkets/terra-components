@@ -59,8 +59,30 @@ export class TerraNodeComponent<D> implements OnInit
 
         this.inputConfig.handleLazyLoading(this.inputNode);
 
-        this.inputConfig.currentSelectedNode = this.inputNode;
+        if(isNullOrUndefined(this.inputNode.selectable) || this.inputNode.selectable)
+        {
+            this.inputConfig.currentSelectedNode = this.inputNode;
+        }
+
     }
+
+        // handle the node click
+        protected onNodeDblClick(event:Event):void
+        {
+            event.stopPropagation();
+            // check if click function is set
+            if(!isNullOrUndefined(this.inputNode.onDblClick))
+            {
+                this.inputNode.onDblClick();
+            }
+
+            this.inputConfig.handleLazyLoading(this.inputNode);
+
+            if(isNullOrUndefined(this.inputNode.selectable) || this.inputNode.selectable)
+            {
+                this.inputConfig.currentSelectedNode = this.inputNode;
+            }
+        }
 
     protected handleIconClick(event:Event):void
     {
