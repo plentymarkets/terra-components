@@ -1,0 +1,7 @@
+<terra-suggestion-box
+    [inputName]="name"
+    [inputListBoxValues]="suggestions"
+    [(ngModel)]="selectedValue"
+    (ngModelChange)="modelChange$.next($event)"
+    (textInputValueChange)="textInputChange$.next($event)">
+</terra-suggestion-box>

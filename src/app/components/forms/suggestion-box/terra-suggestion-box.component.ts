@@ -102,7 +102,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes['inputListBoxValues'])
+        if(changes['inputListBoxValues'] && !isNullOrUndefined(this.inputListBoxValues))
         {
             this._displayListBoxValues = this.inputListBoxValues;
             if(!this.inputListBoxValues.find((x:TerraSuggestionBoxValueInterface):boolean => this.selectedValue === x))
@@ -400,16 +400,17 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             this._selectedValue = value;
             this._tmpSelectedValue = this._selectedValue;
 
-            // update text input value
-            if(!isNullOrUndefined(this._selectedValue))
-            {
-                this.textInputValue = this._selectedValue.caption;
-            }
-
             // execute callback functions
             this.onTouchedCallback(); // this may be called when the text input value changes instead!?
             this.onChangeCallback(this.value);
             this.outputValueChanged.emit(this._selectedValue);
+
+            // finally update text input value
+            // This needs to be done after executing the callbacks to make the live search work!!
+            if(!isNullOrUndefined(this._selectedValue))
+            {
+                this.textInputValue = this._selectedValue.caption;
+            }
         }
     }
 

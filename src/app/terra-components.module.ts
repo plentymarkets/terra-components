@@ -158,6 +158,9 @@ import { Type } from '@angular/core/src/type';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { TerraTagSelectComponent } from './components/forms/tag-select/terra-tag-select.component';
 import { TerraTagSelectComponentExample } from './components/forms/tag-select/example/terra-tag-select.component.example';
+import { TerraLiveSearchComponentExample } from './components/forms/live-search/example/terra-live-search.component.example';
+import { TerraLiveSearchServiceExample } from './components/forms/live-search/example/terra-live-search.service.example';
+import { TerraLiveSearchComponent } from './components/forms/live-search/terra-live-search.component';
 
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
@@ -234,6 +237,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraTwoColumnsContainerDirective,
         TerraBreadcrumbsComponent,
         TerraTagSelectComponent,
+        TerraLiveSearchComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -277,7 +281,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNoteComponentExample,
         TerraNodeTreeComponentExample,
         TerraTimePickerComponentExample,
-        TerraTagSelectComponentExample
+        TerraTagSelectComponentExample,
+        TerraLiveSearchComponentExample
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -336,7 +341,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraFormEntryComponent,
         TerraFormEntryListComponent,
         TerraBreadcrumbsComponent,
-        TerraTagSelectComponent
+        TerraTagSelectComponent,
+        TerraLiveSearchComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -404,6 +410,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraTwoColumnsContainerDirective,
         TerraBreadcrumbsComponent,
         TerraTagSelectComponent,
+        TerraLiveSearchComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -449,7 +456,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicSwitchComponent,
         TerraNodeTreeComponentExample,
         TerraTimePickerComponentExample,
-        TerraTagSelectComponentExample
+        TerraTagSelectComponentExample,
+        TerraLiveSearchComponentExample
     ],
     imports:         [
         BrowserModule,
@@ -475,6 +483,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
         TerraFileBrowserService,
+        TerraLoadingSpinnerService,
+        TerraLiveSearchServiceExample,
         {
             provide:  COMPILER_OPTIONS,
             useValue: {},
