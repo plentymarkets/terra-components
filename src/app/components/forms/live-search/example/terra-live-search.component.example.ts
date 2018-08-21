@@ -5,7 +5,6 @@ import {
 import { TerraLiveSearchServiceExample } from './terra-live-search.service.example';
 import { Observable } from 'rxjs';
 import { TerraSuggestionBoxValueInterface } from '../../../../..';
-import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'terra-live-search-component-example',
@@ -28,13 +27,13 @@ export class TerraLiveSearchComponentExample implements OnInit
 
     private getContacts(text:string):Observable<any>
     {
-        return this.service.getContacts(text).pipe(map(res => res.entries));
+        return this.service.getContacts(text);
     }
 
     private mapValue(value:any):TerraSuggestionBoxValueInterface
     {
         return {
-            caption: value.firstName + ', ' + value.lastName,
+            caption: value.name,
             value:   value
         };
     }
