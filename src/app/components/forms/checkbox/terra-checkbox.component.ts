@@ -60,32 +60,32 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    private _id:string;
+    protected id:string;
 
     // The internal data model
-    private _innerValue:boolean = false;
+    private innerValue:boolean = false;
     private _isIndeterminate:boolean = false;
 
     constructor()
     {
         // generate the id of the input instance
-        this._id = `checkbox_#${nextId++}`;
+        this.id = `checkbox_#${nextId++}`;
     }
 
     // get accessor
     public get value():boolean
     {
-        return this._innerValue;
+        return this.innerValue;
     }
 
     // set accessor including call the onchange callback
     @Input()
     public set value(v:boolean)
     {
-        if(!isNullOrUndefined(v) && v !== this._innerValue)
+        if(!isNullOrUndefined(v) && v !== this.innerValue)
         {
             this._isIndeterminate = false;
-            this._innerValue = v;
+            this.innerValue = v;
             this.onChangeCallback(v);
         }
     }
@@ -98,7 +98,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     // From ControlValueAccessor interface
     public writeValue(value:boolean):void
     {
-        if(value !== this._innerValue)
+        if(value !== this.innerValue)
         {
             this.value = value;
         }
@@ -126,7 +126,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     {
         if(value)
         {
-            this._innerValue = null;
+            this.innerValue = null;
         }
         this._isIndeterminate = value;
     }

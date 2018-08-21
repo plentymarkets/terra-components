@@ -10,7 +10,10 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraBaseData } from '../../data/terra-base.data';
@@ -29,7 +32,7 @@ const MAX_LASTLY_USED_ENTRIES:number = 5;
         }
     ]
 })
-export class TerraSuggestionBoxComponent implements OnInit, OnChanges
+export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlValueAccessor
 {
     @Input()
     public inputName:string;
@@ -390,6 +393,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
 
     public set selectedValue(value:TerraSuggestionBoxValueInterface)
     {
+        // does not do anything if the value changes from undefined to null or reverse
+        if(isNullOrUndefined(this._selectedValue) && isNullOrUndefined(value))
+        {
+            return;
+        }
         // the value has changed?
         if(this._selectedValue !== value)
         {
@@ -397,16 +405,14 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges
             this._selectedValue = value;
             this._tmpSelectedValue = this._selectedValue;
 
-            // update text input value
-            if(!isNullOrUndefined(this._selectedValue))
-            {
-                this.textInputValue = this._selectedValue.caption;
-            }
-
             // execute callback functions
             this.onTouchedCallback(); // this may be called when the text input value changes instead!?
             this.onChangeCallback(this.value);
             this.outputValueChanged.emit(this._selectedValue);
+
+            // finally update text input value
+            // This needs to be done after executing the callbacks to make a live search work!!
+            this.textInputValue = !isNullOrUndefined(this._selectedValue) ? this._selectedValue.caption : undefined;
         }
     }
 

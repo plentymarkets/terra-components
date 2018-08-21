@@ -8,7 +8,7 @@ export class TerraUploadItem
 {
     public static DONE:TerraUploadItem = new TerraUploadItem(null, null, null);
 
-    public _xhr:XMLHttpRequest;
+    public xhr:XMLHttpRequest;
     public uploaded:boolean = false;
 
     public get filename():string
@@ -81,9 +81,9 @@ export class TerraUploadItem
     public cancelUpload():void
     {
         this._uploadService.queue.remove(this);
-        if(!isNullOrUndefined(this._xhr))
+        if(!isNullOrUndefined(this.xhr))
         {
-            this._xhr.abort();
+            this.xhr.abort();
         }
     }
 
