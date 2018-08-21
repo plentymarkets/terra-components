@@ -86,10 +86,7 @@ export class TerraLiveSearchComponent<T> implements OnInit, ControlValueAccessor
                         this.flag = false;
                         return false;
                     }
-                    else
-                    {
-                        return true;
-                    }
+                    return true;
                 }),
                 tap(() => this.suggestions = []),
                 filter((text:string) => text.length > 2),
