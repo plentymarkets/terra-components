@@ -214,7 +214,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         const tagContentExp:RegExp = /<(\w[^>]*?)(\/?>)/g;
         let output:string = input.replace(tagContentExp, (match:string, tagContent:string, closingTag:string) =>
         {
-            const attributeExp:RegExp = /([a-zA-Z0-9_-]+)=(?:"|')?(.*?)(?:"|')?(?=(?:\w+=)|\s*$)/g;
+            const attributeExp:RegExp = /([a-zA-Z0-9_-]+)=("|')?(.*?)(?:\2)?(?:\2|\w+=|$)/g;
             tagContent = tagContent.replace(attributeExp, (attrMatch:string, attrName:string, attrValue:string) =>
             {
                 if ( !!attrValue.trim() )
