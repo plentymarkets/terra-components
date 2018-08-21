@@ -25,7 +25,10 @@
 		"label-position": true,
 		"max-line-length": [
 			true,
-			150
+			{
+				"limit": 150,
+				"ignore-pattern": "^import |^export {(.*?)}|class [a-zA-Z]+ implements"
+			}
 		],
 		"member-access": [
 			true,
