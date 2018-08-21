@@ -24,6 +24,7 @@
 * **terra-form** Added new component to generate forms dynamically from json data.
     
 ### Bug Fixes
+* **terra-button** fixed disabled state showing the buttons background color while clicked or focused
 * **terra-split-view** fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead
 * **terra-color-picker** added border to the input field to provide more contrast for the selected color
 
