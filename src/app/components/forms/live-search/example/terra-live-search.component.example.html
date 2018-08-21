@@ -3,7 +3,6 @@
     [getSuggestions]="call"
     [mappingFunc]="mappingFunc"
     [(ngModel)]="selectedValue"
-    (ngModelChange)="onChange($event)"
-    [ngModelOptions]="{standalone: true}">
+    (ngModelChange)="onChange($event)">
 </terra-live-search>
 <p>{{ selectedValue | json }}</p>

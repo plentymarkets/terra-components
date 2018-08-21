@@ -108,7 +108,8 @@ export class TerraLiveSearchComponent<T> implements OnInit, ControlValueAccessor
 
     public writeValue(value:T):void
     {
-        if(!this.suggestions.find((suggestion:TerraSuggestionBoxValueInterface) => suggestion.value === value))
+        if(!this.suggestions.find((suggestion:TerraSuggestionBoxValueInterface) => suggestion.value === value) &&
+           !isNullOrUndefined(this.getSingleSuggestion))
         {
             this.getSingleSuggestion(value).pipe(
                 catchError(() => of(undefined)),
