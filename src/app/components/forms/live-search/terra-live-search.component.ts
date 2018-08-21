@@ -44,10 +44,10 @@ export class TerraLiveSearchComponent<T> implements OnInit, ControlValueAccessor
     public name:string;
 
     @Input()
-    public call:(text:string) => Observable<Array<T>>;
+    public getSuggestions:(text:string) => Observable<Array<T>>;
 
     @Input()
-    public getSingleElement:(value:T) => Observable<T>;
+    public getSingleSuggestion:(value:T) => Observable<T>;
 
     @Input()
     public mappingFunc:(value:T) => TerraSuggestionBoxValueInterface;
@@ -74,7 +74,7 @@ export class TerraLiveSearchComponent<T> implements OnInit, ControlValueAccessor
             tap(() => this.flag = true)
         ).subscribe();
 
-        if(!isNullOrUndefined(this.call) && !isNullOrUndefined(this.mappingFunc))
+        if(!isNullOrUndefined(this.getSuggestions) && !isNullOrUndefined(this.mappingFunc))
         {
             this.textInputChange$.pipe(
                 debounceTime(400),
@@ -90,7 +90,7 @@ export class TerraLiveSearchComponent<T> implements OnInit, ControlValueAccessor
                 }),
                 tap(() => this.suggestions = []),
                 filter((text:string) => text.length > 2),
-                switchMap((text:string) => this.call(text)),
+                switchMap((text:string) => this.getSuggestions(text)),
                 tap((response:Array<T>) => this.suggestions = response.map(this.mappingFunc))
             ).subscribe();
         }
@@ -110,7 +110,7 @@ export class TerraLiveSearchComponent<T> implements OnInit, ControlValueAccessor
     {
         if(!this.suggestions.find((suggestion:TerraSuggestionBoxValueInterface) => suggestion.value === value))
         {
-            this.getSingleElement(value).pipe(
+            this.getSingleSuggestion(value).pipe(
                 catchError(() => of(undefined)),
                 filter((val:T) => !isNullOrUndefined(val)),
                 map(this.mappingFunc),
