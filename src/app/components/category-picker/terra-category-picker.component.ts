@@ -32,7 +32,8 @@ import {
             useExisting: forwardRef(() => TerraCategoryPickerComponent),
             multi:       true
         },
-        TerraNodeTreeConfig
+        TerraNodeTreeConfig,
+        NestedDataTreeConfig
     ]
 })
 export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent implements OnInit, AfterContentChecked
