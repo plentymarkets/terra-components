@@ -23,9 +23,9 @@ import {
 } from '@angular/forms';
 
 @Component({
-    selector: 'terra-live-search-component',
-    template: require('./terra-live-search.component.html'),
-    styles:   [require('./terra-live-search.component.scss')],
+    selector:  'terra-live-search',
+    template:  require('./terra-live-search.component.html'),
+    styles:    [require('./terra-live-search.component.scss')],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { of } from '../../../../../../node_modules/rxjs/observable/of';
+import { of } from 'rxjs/observable/of';
 
 
 interface ContactInterface
@@ -28,6 +28,7 @@ export class TerraLiveSearchServiceExample
 
     public getContacts(name:string):Observable<Array<any>>
     {
+        console.log('Search: name = ' + name);
         return of(this.contacts.filter((contact:ContactInterface) => contact.name.includes(name)));
     }
 }

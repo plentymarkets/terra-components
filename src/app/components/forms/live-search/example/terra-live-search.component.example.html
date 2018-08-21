@@ -1,18 +1,9 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-10">
-            <terra-live-search-component
-                [name]="'Live-Search'"
-                [call]="call"
-                [mappingFunc]="mappingFunc"
-                [(ngModel)]="selectedValue"
-                (ngModelChange)="onChange($event)"
-                [ngModelOptions]="{standalone: true}">
-            </terra-live-search-component>
-        </div>
-        <div class="col-md-2">
-            <p>{{ selectedValue | json }}</p>
-        </div>
-    </div>
-
-</div>
+<terra-live-search
+    [name]="'Live-Search'"
+    [call]="call"
+    [mappingFunc]="mappingFunc"
+    [(ngModel)]="selectedValue"
+    (ngModelChange)="onChange($event)"
+    [ngModelOptions]="{standalone: true}">
+</terra-live-search>
+<p>{{ selectedValue | json }}</p>

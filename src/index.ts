@@ -159,3 +159,4 @@ export * from './app/components/breadcrumbs/terra-breadcrumbs.component';
 export * from './app/components/breadcrumbs/terra-breadcrumb';
 export * from './app/components/breadcrumbs/service/terra-breadcrumbs.service';
 export * from './app/components/forms/tag-select/terra-tag-select.component';
+export * from './app/components/forms/live-search/terra-live-search.component';
