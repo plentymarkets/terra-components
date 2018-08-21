@@ -1,0 +1,22 @@
+.form-list
+{
+    > terra-button
+    {
+        float: right;
+    }
+    
+    margin-bottom: var(--space-sm);
+}
+
+.form-list-entry
+{
+    padding-right: calc(var(--height-md) + var(--space-sm));
+    position: relative;
+    
+    > terra-button
+    {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}

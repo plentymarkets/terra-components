@@ -23,7 +23,15 @@ import { isNullOrUndefined } from 'util';
 export class TerraFileBrowserComponent implements OnInit
 {
     @Input()
-    public inputAllowedExtensions:Array<string> = [];
+    public set inputAllowedExtensions(extensions:Array<string>)
+    {
+        this.allowedExtensions = extensions.map((extension:string) => extension.toUpperCase() );
+    }
+
+    public get inputAllowedExtensions():Array<string>
+    {
+        return this.allowedExtensions;
+    }
 
     @Input()
     public inputAllowFolders:boolean = true;
@@ -33,26 +41,28 @@ export class TerraFileBrowserComponent implements OnInit
 
     public onSelectedUrlChange:EventEmitter<string> = new EventEmitter();
 
-    private _storageServices:Array<TerraBaseStorageService>;
+    private storageServices:Array<TerraBaseStorageService>;
+
+    private allowedExtensions:Array<string> = [];
 
     @Input()
     public set inputStorageServices(services:Array<TerraBaseStorageService>)
     {
-        this._storageServices = services;
+        this.storageServices = services;
     }
 
     public get inputStorageServices():Array<TerraBaseStorageService>
     {
-        if(!isNullOrUndefined(this._storageServices) && this._storageServices.length > 0)
+        if(!isNullOrUndefined(this.storageServices) && this.storageServices.length > 0)
         {
-            return this._storageServices;
+            return this.storageServices;
         }
 
-        return [this._frontendStorageService];
+        return [this.frontendStorageService];
     }
 
     constructor(public splitConfig:FileBrowserSplitConfig,
-                private _frontendStorageService:TerraFrontendStorageService)
+                private frontendStorageService:TerraFrontendStorageService)
     {
     }
 
