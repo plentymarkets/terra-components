@@ -14,61 +14,14 @@ var Dgeni = require('dgeni');
 var gulpTasks = require('./component-documentation/tasks/docuTasks.js');
 var paths = require('./component-documentation/tasks/paths');
 
-var version, increment, sequence, preid;
+var version, increment, preid;
 
 /**
  *
  * usage: 'npm run build' for local build
- *        or
- *        'npm run build -- --param1 --param2 param2_value' for publishing
- *
- * @param publish    - If set publish to npm, otherwise publish locally
- * @param increment  - Possible values are
- *                      major           (1.x.x to 2.x.x),
- *                      premajor        (1.x.x to 2.x.x-0 or 2.x.x-subversion.0),
- *                      minor           (x.1.x to x.2.x),
- *                      preminor        (x.1.x to x.2.x-0 or x.2.x-subversion.0)
- *                      patch           (x.x.1 to x.x.2),
- *                      prepatch        (x.x.1 to x.x.2-0 or x.x.1 to x.x.2-subversion.0)
- *                      or prerelease   (x.x.x-0 or x.x.x-subversion.0 to x.x.x-1 or x.x.x-subversion.1)
- *                     If not set patch is default. See VERSIONING.md for further information.
- * @param preid      - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json) for a premajor, preminor or prepatch release. Use only, if really necessary!!
- * @param target     - Actually not implemented!! Sets the target directory to copy build files to. Will copy files to 'node_modules/@plentymarkets/terra-components' in target directory
  *
  **/
 gulp.task('build', function (callback) {
-    increment = argv.increment ? argv.increment : 'patch';
-    sequence = argv.publish ? 'npm-publish' : 'build-local';
-    preid = argv.preid ? argv.preid : '';
-
-    if(argv.level || argv.subversion)
-    {
-        console.log('-------------------------------------------------------------------');
-        console.log('----  Build not started. See gulpfile for further information. ----');
-        console.log('-------------------------------------------------------------------');
-    }
-    else
-    {
-        runSequence(sequence, callback);
-    }
-});
-
-gulp.task('npm-publish', function (callback) {
-    runSequence(
-        'changeVersion',
-        'clean-dist',
-        'compile-ts',
-        'copy-files',
-        'copy-fonts',
-        'copy-images',
-        'copy-lang',
-        'copy-tslint-rules',
-        'publish',
-        callback
-    );
-});
-
-gulp.task('build-local', function (callback) {
     runSequence(
         'clean-dist',
         'compile-ts',
@@ -82,12 +35,59 @@ gulp.task('build-local', function (callback) {
     );
 });
 
+
+/**
+ *
+ * usage: 'npm run publish -- --param1 --param2 param2_value' for publishing
+ *
+ * @param increment  - Possible values are
+ *                      major           (1.x.x to 2.x.x),
+ *                      premajor        (1.x.x to 2.x.x-0 or 2.x.x-subversion.0),
+ *                      minor           (x.1.x to x.2.x),
+ *                      preminor        (x.1.x to x.2.x-0 or x.2.x-subversion.0)
+ *                      patch           (x.x.1 to x.x.2),
+ *                      prepatch        (x.x.1 to x.x.2-0 or x.x.1 to x.x.2-subversion.0)
+ *                      or prerelease   (x.x.x-0 or x.x.x-subversion.0 to x.x.x-1 or x.x.x-subversion.1)
+ *                     If not set patch is default. See VERSIONING.md for further information.
+ * @param preid      - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json) for a premajor,
+ *     preminor or prepatch release. Use only, if really necessary!!
+ * @param target     - Actually not implemented!! Sets the target directory to copy build files to. Will copy files to
+ *     'node_modules/@plentymarkets/terra-components' in target directory
+ *
+ **/
+gulp.task('npm-publish', function (callback) {
+    increment = argv.increment ? argv.increment : 'patch';
+    preid = argv.preid ? argv.preid : '';
+
+    if(argv.level || argv.subversion)
+    {
+        console.log('-------------------------------------------------------------------');
+        console.log('----  Build not started. See gulpfile for further information. ----');
+        console.log('-------------------------------------------------------------------');
+    }
+    else
+    {
+        runSequence(
+            'changeVersion',
+            'clean-dist',
+            'compile-ts',
+            'copy-files',
+            'copy-fonts',
+            'copy-images',
+            'copy-lang',
+            'copy-tslint-rules',
+            'publish',
+            callback
+        );
+    }
+});
+
 /**
  * run "gulp build-doc" to let Dgeni generate api files and to create json data.
  */
 gulp.task('build-doc', function (done) {
     runSequence(
-        'build-local',
+        'build',
         'dgeni',
         'generateJson',
         'copy-to-terra-doc',

@@ -8,6 +8,10 @@
     </span>
     <span class="tag-text"
           [ngStyle]="{ 'color': getColor() }">
-            {{inputBadge}}
+            {{getName()}}
+    </span>
+    <span *ngIf="isClosable"
+          class="icon icon-close"
+          (click)="close()">
     </span>
 </div>

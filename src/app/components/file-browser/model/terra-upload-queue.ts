@@ -16,22 +16,22 @@ export class TerraUploadQueue
     private items:Array<TerraUploadItem> = [];
     private size:number = 0;
 
-    private _progressListeners:Array<Observer<number>> = [];
-    private _progressValue:number = -1;
+    private progressListeners:Array<Observer<number>> = [];
+    private progressValue:number = -1;
 
     constructor(private _uploadUrl:string | UploadQueueUrlFactory, private _uploadMethod:'GET' | 'POST' | 'DELETE' | 'PUT' = 'POST')
     {
         this.progress = new Observable((observer:Observer<number>):Function =>
         {
-            this._progressListeners.push(observer);
-            observer.next(this._progressValue);
+            this.progressListeners.push(observer);
+            observer.next(this.progressValue);
 
             return ():void =>
             {
-                let idx:number = this._progressListeners.indexOf(observer);
+                let idx:number = this.progressListeners.indexOf(observer);
                 if(idx >= 0)
                 {
-                    this._progressListeners.splice(idx, 1);
+                    this.progressListeners.splice(idx, 1);
                 }
             };
         });
@@ -108,7 +108,7 @@ export class TerraUploadQueue
     {
         return new Promise((resolve:(resp:void) => void, reject:(err:any) => void):void =>
         {
-            let xhr:XMLHttpRequest = item._xhr = new XMLHttpRequest();
+            let xhr:XMLHttpRequest = item.xhr = new XMLHttpRequest();
 
             item.emit('beforeUpload', item.file);
 
@@ -173,7 +173,7 @@ export class TerraUploadQueue
 
         let progress:number = 100 - Math.round(((this.size - sizeUploaded) / this.size) * 100);
 
-        this._progressListeners.forEach((listener:Observer<number>) =>
+        this.progressListeners.forEach((listener:Observer<number>) =>
         {
             listener.next(progress || 0);
         });

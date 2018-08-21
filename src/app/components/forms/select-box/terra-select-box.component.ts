@@ -72,7 +72,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     private _value:number | string;
     private _selectedValue:TerraSelectBoxValueInterface;
     private _toggleOpen:boolean;
-    private _hasLabel:boolean;
     private _isInit:boolean;
     private clickListener:(event:Event) => void;
 
@@ -125,7 +124,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         this.isValid = true;
         this._toggleOpen = false;
-        this._hasLabel = !isNull(this.inputName);
         this._isInit = true;
     }
 

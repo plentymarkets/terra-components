@@ -93,9 +93,9 @@ import { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dyn
 import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
 import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
 import { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
+import { TerraNestedDataPickerComponent } from './components/nested-data-picker/terra-nested-data-picker.component';
 import { TerraFileChooserComponent } from './components/buttons/file-chooser/terra-file-chooser.component';
 import { TerraCodeEditorComponent } from './components/editors/code-editor/terra-code-editor.component';
-// ### import of terra-component examples
 import { TerraButtonComponentExample } from './components/buttons/button/example/terra-button.component.example';
 import { TerraAlertComponentExample } from './components/alert/example/terra-alert.component.example';
 import { TerraCardComponentExample } from './components/layouts/card/example/terra-card.component.example';
@@ -130,8 +130,7 @@ import { TerraNoResultNoticeComponentExample } from './components/no-result/exam
 import { TerraButtonWithOptionsComponentExample } from './components/buttons/button-with-options/example/terra-button-with-options.component.example';
 import { TerraInputComponentExample } from './components/forms/input/example/terra-input.component.example';
 import { TerraFilterComponentExample } from './components/filter/example/terra-filter.component.example';
-import { TerraDataTableContextMenuComponentExample }
-from './components/tables/data-table/context-menu/example/terra-data-table-context-menu.component.example';
+import { TerraDataTableContextMenuComponentExample } from './components/tables/data-table/context-menu/example/terra-data-table-context-menu.component.example';
 import { TerraNoteEditorComponentExample } from './components/editors/note-editor/example/terra-note-editor.component.example';
 import { TerraNoteComponentExample } from './components/note/example/terra-note.component.example';
 import { TerraCodeEditorComponentExample } from './components/editors/code-editor/example/terra-code-editor.component.example';
@@ -144,7 +143,20 @@ import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/m
 import { RouterModule } from '@angular/router';
 import { TerraTimePickerComponentExample } from './components/forms/input/time-picker/example/terra-time-picker.component.example';
 import { TerraTwoColumnsContainerComponent } from './components/layouts/column-container/terra-two-columns-container.component';
-import { CategoryTreeConfig } from './components/category-picker/config/category-tree.config';
+import { TerraNestedDataPickerComponentExample } from './components/nested-data-picker/example/terra-nested-data-picker.component.example';
+import { TerraFormComponent } from './components/forms/form/terra-form.component';
+import { TerraFormEntryComponent } from './components/forms/form/form-entry/terra-form-entry.component';
+// tslint:disable-next-line
+import { TerraFormEntryListComponent } from './components/forms/form/form-entry-list/terra-form-entry-list.component';
+// tslint:disable-next-line
+import { TerraFormContainerComponent } from './components/forms/form/form-container/terra-form-container.component';
+import { TerraTwoColumnsContainerDirective } from './components/layouts/column-container/terra-two-columns-container.directive';
+import { TerraBreadcrumbsComponent } from './components/breadcrumbs/terra-breadcrumbs.component';
+import { TerraBreadcrumbsService } from './components/breadcrumbs/service/terra-breadcrumbs.service';
+import { Type } from '@angular/core/src/type';
+import { DeviceDetectorModule } from 'ngx-device-detector';
+import { TerraTagSelectComponent } from './components/forms/tag-select/terra-tag-select.component';
+import { TerraTagSelectComponentExample } from './components/forms/tag-select/example/terra-tag-select.component.example';
 
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
@@ -212,8 +224,16 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraCategoryPickerComponent,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
+        TerraNestedDataPickerComponent,
         TerraCategoryPickerComponent,
         TerraTwoColumnsContainerComponent,
+        TerraFormComponent,
+        TerraFormContainerComponent,
+        TerraFormEntryComponent,
+        TerraFormEntryListComponent,
+        TerraTwoColumnsContainerDirective,
+        TerraBreadcrumbsComponent,
+        TerraTagSelectComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -256,7 +276,9 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraCodeEditorComponentExample,
         TerraNoteComponentExample,
         TerraNodeTreeComponentExample,
-        TerraTimePickerComponentExample
+        TerraTimePickerComponentExample,
+        TerraNestedDataPickerComponentExample,
+        TerraTagSelectComponentExample
     ],
     entryComponents: [
         TerraAlertPanelComponent,
@@ -309,7 +331,14 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraNodeTreeComponent,
         TerraNodeComponent,
         TerraCategoryPickerComponent,
-        TerraTwoColumnsContainerComponent
+        TerraNestedDataPickerComponent,
+        TerraTwoColumnsContainerComponent,
+        TerraFormComponent,
+        TerraFormContainerComponent,
+        TerraFormEntryComponent,
+        TerraFormEntryListComponent,
+        TerraBreadcrumbsComponent,
+        TerraTagSelectComponent
     ],
     exports:         [
         TerraAlertPanelComponent,
@@ -368,8 +397,16 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraCategoryPickerComponent,
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
+        TerraNestedDataPickerComponent,
         TerraCategoryPickerComponent,
         TerraTwoColumnsContainerComponent,
+        TerraFormComponent,
+        TerraFormContainerComponent,
+        TerraFormEntryComponent,
+        TerraFormEntryListComponent,
+        TerraTwoColumnsContainerDirective,
+        TerraBreadcrumbsComponent,
+        TerraTagSelectComponent,
 
         // ### declarations of terra-components examples
         TerraButtonComponentExample,
@@ -414,7 +451,9 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         TerraDynamicFormComponent,
         TerraDynamicSwitchComponent,
         TerraNodeTreeComponentExample,
-        TerraTimePickerComponentExample
+        TerraTimePickerComponentExample,
+        TerraNestedDataPickerComponentExample,
+        TerraTagSelectComponentExample
     ],
     imports:         [
         BrowserModule,
@@ -433,7 +472,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         AceEditorModule,
         TerraInteractModule,
         QuillModule,
-        RouterModule
+        RouterModule,
+        DeviceDetectorModule.forRoot()
     ],
     providers:       [
         TerraNavigatorSplitViewConfig,
@@ -482,29 +522,14 @@ export class TerraComponentsModule
                 TerraDynamicFormService,
                 TerraFormFieldControlService,
                 TerraJsonToFormFieldService,
-                TerraMultiSplitViewBreadcrumbsService
+                TerraMultiSplitViewBreadcrumbsService,
+                TerraBreadcrumbsService
             ]
         };
     }
 
-    public static forChild():ModuleWithProviders
+    public static forChild():Type<any>
     {
-        return {
-            ngModule:  TerraComponentsModule,
-            providers: [
-                TerraLoadingSpinnerService,
-                TerraDataTableContextMenuService,
-                TerraBaseService,
-                TerraNavigatorSplitViewConfig,
-                TerraUrlParamsDecorator,
-                TerraFrontendStorageService,
-                TerraAlertComponent,
-                TerraDynamicFormService,
-                CategoryTreeConfig,
-                TerraFormFieldControlService,
-                TerraJsonToFormFieldService,
-                TerraMultiSplitViewBreadcrumbsService
-            ]
-        };
+        return TerraComponentsModule;
     }
 }
