@@ -393,6 +393,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     public set selectedValue(value:TerraSuggestionBoxValueInterface)
     {
+        if(isNullOrUndefined(this._selectedValue) && isNullOrUndefined(value))
+        {
+            return;
+        }
         // the value has changed?
         if(this._selectedValue !== value)
         {

@@ -64,17 +64,8 @@ export class TerraLiveSearchComponent<T> implements OnInit, ControlValueAccessor
     public ngOnInit():void
     {
         this.modelChange$.pipe(
-            tap((value:T) =>
-            {
-                if(!isNullOrUndefined(this.onChangeCallback))
-                {
-                    this.onChangeCallback(value);
-                }
-            }),
-            tap(() =>
-            {
-                this.flag = true;
-            })
+            tap((value:T) => this.onModelChange(value)),
+            tap(() => this.flag = true)
         ).subscribe();
 
         if(!isNullOrUndefined(this.call) && !isNullOrUndefined(this.mappingFunc))
@@ -84,9 +75,17 @@ export class TerraLiveSearchComponent<T> implements OnInit, ControlValueAccessor
                 distinctUntilChanged(),
                 filter(() =>
                 {
-                    return !this.flag;
+                    if(this.flag)
+                    {
+                        this.flag = false;
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }),
-                tap(() => this.suggestions = []), // TODO: FIX this resets the selected value right after it is set
+                tap(() => this.suggestions = []),
                 filter((text:string) => text.length > 2),
                 switchMap((text:string) => this.call(text)),
                 tap((response:Array<T>) => this.suggestions = response.map(this.mappingFunc))
@@ -114,11 +113,11 @@ export class TerraLiveSearchComponent<T> implements OnInit, ControlValueAccessor
         return this.selectedValue;
     }
 
-    protected onModelChange(event:any):void
+    protected onModelChange(value:any):void
     {
         if(!isNullOrUndefined(this.onChangeCallback))
         {
-            this.onChangeCallback(event);
+            this.onChangeCallback(value);
         }
     }
 }
