@@ -1,6 +1,7 @@
 # Unreleased
 
 ### Feature
+* **terra-icons** added new icons
 * **terra-form** Improve backward compatibility to **terra-dynamic-form**
 
 ### Bug Fixes
