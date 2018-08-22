@@ -8,6 +8,11 @@ export interface TerraNodeInterface<D>
     id:string | number;
 
     /**
+     * @description The identifier of opened subview connected to the node.
+     */
+    subId?:string | number;
+
+    /**
      * @description The caption.
      */
     name:string;
