@@ -14,19 +14,23 @@ button:focus
     position: relative;
     &.disabled
     {
-        cursor: not-allowed;
-        .btn
+        %disabled-state
         {
             background-color: var(--color-structure-3);
             color: var(--color-structure-7);
             cursor: not-allowed;
+            pointer-events: none;
+        }
+        cursor: not-allowed;
+        .btn
+        {
+            @extend %disabled-state;
             &:hover,
             &:active,
+            &:focus,
             &.active
             {
-                background-color: var(--color-structure-3);
-                color: var(--color-structure-7);
-                cursor: not-allowed;
+                @extend %disabled-state;
             }
             &.btn-link
             {

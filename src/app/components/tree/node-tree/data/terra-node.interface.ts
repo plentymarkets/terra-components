@@ -58,6 +58,11 @@ export interface TerraNodeInterface<D>
     onClick?:() => void;
 
     /**
+     * @description A double click function to do something. Optional.
+     */
+    onDblClick?:() => void;
+
+    /**
      * @description Lazy loading function to get data from server. Optional.
      */
     onLazyLoad?:() => Observable<any>;
@@ -81,6 +86,11 @@ export interface TerraNodeInterface<D>
      * @description  set the default visibility to reset search.
      */
     defaultVisibility?:boolean;
+
+    /**
+     * @description  set the the node is selectable
+     */
+    selectable?:boolean;
 
     /**
      * @description  set a tooltip for the node. default will be name.
