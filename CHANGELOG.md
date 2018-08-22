@@ -1,3 +1,11 @@
+# Unreleased
+
+### Feature
+* **terra-form** Improve backward compatibility to **terra-dynamic-form**
+
+### Bug Fixes
+* **terra-code-editor** fixed validation of HTML-tags with multiple attributes
+
 <a name="2.3.13"></a>
 # 2.3.13 (21.08.2018)
 
