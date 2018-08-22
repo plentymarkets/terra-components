@@ -94,12 +94,12 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
                 this.bindInputProperties();
 
-                if(isFunction(this.componentInstance.onChangeCallback) && isFunction(this.componentInstance.writeValue))
+                if(isFunction(this.componentInstance.registerOnChange) && isFunction(this.componentInstance.writeValue))
                 {
-                    this.componentInstance.onChangeCallback = (value:any):void =>
+                    this.componentInstance.registerOnChange((value:any):void =>
                     {
                         this.onValueChanged(value);
-                    };
+                    });
                     this.componentInstance.writeValue(this.inputFormValue);
                 }
                 else
