@@ -135,7 +135,7 @@ export class TerraFormEntryListComponent implements OnInit
 
     protected trackByFn(index:number, item:any):number
     {
-        return index;
+        return item;
     }
 
 }
