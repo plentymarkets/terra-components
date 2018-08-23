@@ -13,6 +13,7 @@ import {
     isString
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
+import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
 
 @Component({
     selector: 'terra-form-entry-list',
@@ -21,6 +22,8 @@ import { TerraFormScope } from '../model/terra-form-scope.data';
 })
 export class TerraFormEntryListComponent implements OnInit
 {
+    private static itemCount:number = 0;
+
     @Input()
     public inputFormField:TerraFormFieldInterface;
 
@@ -32,12 +35,21 @@ export class TerraFormEntryListComponent implements OnInit
             this.value = [];
             setTimeout(() =>
             {
-                this.outputFormValueChanged.next(this.value);
+                this.emitValue();
             });
         }
         else
         {
-            this.value = value;
+            if(!this.compareValues(value))
+            {
+                this.value = value.map((entry:any) =>
+                {
+                    return {
+                        key: TerraFormEntryListComponent.itemCount++,
+                        value: entry
+                    };
+                });
+            }
         }
         this.fillRange();
     }
@@ -60,7 +72,7 @@ export class TerraFormEntryListComponent implements OnInit
     protected min:number;
     protected max:number;
 
-    private value:Array<any> = [];
+    private value:Array<{key:number, value:any}> = [];
 
     public ngOnInit():void
     {
@@ -90,8 +102,11 @@ export class TerraFormEntryListComponent implements OnInit
     {
         if(this.canAddElement)
         {
-            this.value.push(isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue);
-            this.outputFormValueChanged.next(this.value);
+            this.value.push({
+                key: TerraFormEntryListComponent.itemCount++,
+                value: isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue
+            });
+            this.emitValue();
         }
     }
 
@@ -100,8 +115,9 @@ export class TerraFormEntryListComponent implements OnInit
         return isNaN(this.min) || this.value.length > this.min;
     }
 
-    protected removeElement(index:number):void
+    protected removeElement(key:number):void
     {
+        let index:number = this.value.findIndex((entry:{key:number, value:any}) => entry.key === key);
         if(index < 0 || index > this.value.length)
         {
             return;
@@ -110,7 +126,7 @@ export class TerraFormEntryListComponent implements OnInit
         if(this.canRemoveElement)
         {
             this.value.splice(index, 1);
-            this.outputFormValueChanged.next(this.value);
+            this.emitValue();
         }
     }
 
@@ -119,7 +135,10 @@ export class TerraFormEntryListComponent implements OnInit
         let defaultValue:any = !isNullOrUndefined(this.inputFormField) ? this.inputFormField.defaultValue : null;
         while(!isNaN(this.min) && this.min > this.value.length)
         {
-            this.value.push(defaultValue);
+            this.value.push({
+                key: TerraFormEntryListComponent.itemCount++,
+                value: defaultValue
+            });
         }
         while(!isNaN(this.max) && this.max < this.value.length)
         {
@@ -127,15 +146,45 @@ export class TerraFormEntryListComponent implements OnInit
         }
     }
 
-    protected onElementValueChanged(index:number, value:any):void
+    protected onElementValueChanged(key:number, value:any):void
     {
-        this.value[index] = value;
-        this.outputFormValueChanged.next(this.value);
+        let entry:{key:number, value:any} = this.value.find((e:{key:number, value:any}) => e.key === key);
+        if ( !isNullOrUndefined(entry) )
+        {
+            entry.value = value;
+            this.emitValue();
+        }
     }
 
-    protected trackByFn(index:number, item:any):number
+    protected trackByFn(index:number, item:{key:number, value:any}):number
     {
-        return item;
+        console.log(item.key);
+        return item.key;
+    }
+
+    private emitValue():void
+    {
+        this.outputFormValueChanged.next(
+            this.value.map((entry:{key:number, value:any}) => entry.value)
+        );
+    }
+
+    private compareValues(values:Array<any>):boolean
+    {
+        if(values.length !== this.value.length)
+        {
+            return false;
+        }
+
+        this.value.forEach((entry:{ key:number, value:any }, index:number) =>
+        {
+            if(entry.value !== values[index])
+            {
+                return false;
+            }
+        });
+
+        return true;
     }
 
 }
