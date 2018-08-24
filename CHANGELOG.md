@@ -1,4 +1,5 @@
-# Unreleased
+<a name="2.3.15"></a>
+# 2.3.15 (22.08.2018)
 
 ### Bug Fixes
 * **terra-suggestion-box** fixed issue with uninitialised `inputListBoxValues`.
