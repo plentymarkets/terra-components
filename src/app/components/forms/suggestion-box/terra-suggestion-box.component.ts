@@ -393,6 +393,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     public set selectedValue(value:TerraSuggestionBoxValueInterface)
     {
+        // does not do anything if the value changes from undefined to null or reverse
         if(isNullOrUndefined(this._selectedValue) && isNullOrUndefined(value))
         {
             return;
@@ -410,11 +411,8 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             this.outputValueChanged.emit(this._selectedValue);
 
             // finally update text input value
-            // This needs to be done after executing the callbacks to make the live search work!!
-            if(!isNullOrUndefined(this._selectedValue))
-            {
-                this.textInputValue = this._selectedValue.caption;
-            }
+            // This needs to be done after executing the callbacks to make a live search work!!
+            this.textInputValue = !isNullOrUndefined(this._selectedValue) ? this._selectedValue.caption : undefined;
         }
     }
 

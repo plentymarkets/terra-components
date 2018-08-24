@@ -1,3 +1,24 @@
+<a name="2.3.14"></a>
+# 2.3.14 (22.08.2018)
+
+### Feature
+* **terra-icons** added new icons
+* **terra-form** Improve backward compatibility to **terra-dynamic-form**
+
+### Bug Fixes
+* **terra-code-editor** fixed validation of HTML-tags with multiple attributes
+
+<a name="2.3.13"></a>
+# 2.3.13 (21.08.2018)
+
+### Feature
+* **terra-nested-data-picker** new component terra-nested-data-picker
+
+### Bug Fixes
+* **terra-button** fixed disabled state showing the buttons background color while clicked or focused
+* **terra-suggestion-box** prevent execution of `ngModelChange`-Callback if value changes from `undefined` to `null` or reverse.
+* **terra-breadcrumbs** changed handling to find route by url.
+
 <a name="2.3.12"></a>
 # 2.3.12 (20.08.2018)
 

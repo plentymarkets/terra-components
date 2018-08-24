@@ -12,6 +12,7 @@ import { isNullOrUndefined } from 'util';
 import { TranslationService } from 'angular-l10n';
 import { TerraBreadcrumbContainer } from '../terra-breadcrumb-container';
 import { UrlHelper } from '../../../helpers/url.helper';
+import { StringHelper } from '../../../helpers/string.helper';
 
 @Injectable()
 export class TerraBreadcrumbsService
@@ -61,7 +62,7 @@ export class TerraBreadcrumbsService
     {
         this._containers = [];
         this._initialPath = value;
-        this.initialRoute = this.getRouteForUrlParts(this._initialPath.split('/'), this.router.config);
+        this.initialRoute = this.findRoute(value, this.router.config);
     }
 
     public get containers():Array<TerraBreadcrumbContainer>
@@ -72,7 +73,7 @@ export class TerraBreadcrumbsService
     private handleBreadcrumbForUrl(shortUrl:string, fullUrl:string):void
     {
         let shortUrlWithoutLeadingSlash:string = UrlHelper.removeLeadingSlash(shortUrl);
-        let route:Route = this.findRouteByFlatPath(shortUrlWithoutLeadingSlash, this.initialRoute.children);
+        let route:Route = this.findRoute(shortUrlWithoutLeadingSlash, this.initialRoute.children);
         this.handleBreadcrumb(route, fullUrl, shortUrl.split('/').length - 1);
     }
 
@@ -162,85 +163,63 @@ export class TerraBreadcrumbsService
         return activatedRouteSnapshot;
     }
 
-    private findRouteByFlatPath(flatPath:string, routeConfig:Routes):Route
+    private findRoute(url:string, routeConfig:Routes):Route
     {
-        if(isNullOrUndefined(routeConfig))
+        let urlParts:Array<string> =  UrlHelper.removeLeadingSlash(url).split('/');
+        let urlPart:string = urlParts.shift();
+
+        let routes:Routes = routeConfig;
+        let route:Route = routeConfig.find((routeToFind:Route) =>
         {
-            return undefined;
-        }
-        return routeConfig.find((route:Route) =>
+            return routeToFind.path === urlPart;
+        });
+
+        while(!isNullOrUndefined(route) && urlParts.length > 0)
         {
-            let splittedRoutePath:Array<string> = route.path.split('/');
-
-            let parameterisedRoutes:{ [key:string]:number } = {};
-
-            let splittedFlatPath:Array<string> = flatPath.split('/');
-
-            if(splittedFlatPath.length === splittedRoutePath.length)
+            if(!isNullOrUndefined(route.children))
             {
-                for(let path of splittedRoutePath)
+                routes = route.children;
+                urlPart = urlParts.shift();
+            }
+            else
+            {
+                urlPart = urlPart + '/' + urlParts.shift();
+            }
+
+            route = routes.find((routeToFind:Route) =>
+            {
+                let splittedRoutePath:Array<string> = routeToFind.path.split('/');
+
+                let parameterisedRoutes:{ [key:string]:number } = {};
+
+                let splittedFlatPath:Array<string> = urlPart.split('/');
+
+                splittedRoutePath.forEach((path:string, index:number) =>
                 {
                     if(path.startsWith(':'))
                     {
-                        parameterisedRoutes[path] = splittedRoutePath.indexOf(path);
+                        parameterisedRoutes[path] = index;
                     }
-                }
-            }
+                });
 
-            Object.keys(parameterisedRoutes).forEach((key:string) =>
-            {
-                let index:number = parameterisedRoutes[key];
+                Object.values(parameterisedRoutes).forEach((index:number) =>
+                {
+                    splittedRoutePath[index] = splittedFlatPath[index];
+                });
 
-                splittedRoutePath[index] = splittedFlatPath[index];
+                let gluedRoutePath:string = splittedRoutePath.join('/');
+
+                return !StringHelper.isNullUndefinedOrEmpty(routeToFind.path) &&
+                       urlPart === gluedRoutePath;
             });
+        }
 
-            let gluedRoutePath:string = splittedRoutePath.join('/');
-
-            return !isNullOrUndefined(route.path) &&
-                   flatPath === gluedRoutePath;
-        });
+        return route;
     }
 
     public checkActiveRoute(breadcrumb:TerraBreadcrumb):boolean
     {
         return this.router.isActive(breadcrumb.routerLink, true);
-    }
-
-    private getRouteForUrlParts(urlParts:Array<string>, routeConfig:Routes):Route
-    {
-        if(isNullOrUndefined(urlParts) || isNullOrUndefined(routeConfig))
-        {
-            return undefined;
-        }
-
-        let firstUrlPart:string = urlParts.shift();
-
-        let foundRoute:Route = this.findRouteByPath(firstUrlPart, routeConfig);
-
-        if(!isNullOrUndefined(foundRoute) && urlParts.length === 0)
-        {
-            return foundRoute;
-        }
-        else if(!isNullOrUndefined(foundRoute) && urlParts.length > 0)
-        {
-            return this.getRouteForUrlParts(urlParts, foundRoute.children);
-        }
-        else
-        {
-            return undefined;
-        }
-    }
-
-    private findRouteByPath(routePath:string, routeConfig:Routes):Route
-    {
-        if(isNullOrUndefined(routeConfig))
-        {
-            return undefined;
-        }
-        return routeConfig.find((route:Route) =>
-        {
-            return route.path === routePath;
-        });
     }
 
     /**
@@ -268,7 +247,7 @@ export class TerraBreadcrumbsService
         let breadcrumb:TerraBreadcrumb = this.findBreadcrumbByUrl(url);
 
         let shortUrlWithoutLeadingSlash:string = UrlHelper.removeLeadingSlash(url);
-        let route:Route = this.findRouteByFlatPath(shortUrlWithoutLeadingSlash, this.initialRoute.children);
+        let route:Route = this.findRoute(shortUrlWithoutLeadingSlash, this.initialRoute.children);
 
         if(!isNullOrUndefined(route) && !isNullOrUndefined(route.data) && !isNullOrUndefined(breadcrumb))
         {
