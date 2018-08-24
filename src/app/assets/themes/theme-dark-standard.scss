@@ -2,30 +2,48 @@ body
 {
     &.dark-standard
     {
-        //////////// Colors //////////
-        // based on function groups (add, active, alert, accent, background)
-        // Recommendation: To get 3 different hues for a color in a new theme, use https://material.io/color/#!/
+        // function groups
     
-        //add, success
-        --color-add-light: #9eff9a;
-        --color-add: #6AD26A;
-        --color-add-dark: #33a03c;
+        // Add
+        --color-add-light: #9eff9a; // deprecated
+        --color-add: #6AD26A; // deprecated
+        --color-add-dark: #33a03c; // deprecated
+        --color-group-add: #6AD26A;
     
-        //active, focus
-        --color-active-light: #6de5ff;
-        --color-active: #24B3E0;
-        --color-active-dark: #0083ae;
+        // Active
+        --color-active-light: #6de5ff; // deprecated
+        --color-active: #24B3E0; // deprecated
+        --color-active-dark: #0083ae; // deprecated
+        --color-group-active: #24B3E0;
     
-        //alert, warning, danger, caution
-        --color-alert-light: #ff5d63;
-        --color-alert: #F11539;
-        --color-alert-dark: #b60013;
+        // Alert
+        --color-alert-light: #ff5d63; // deprecated
+        --color-alert: #F11539; // deprecated
+        --color-alert-dark: #b60013; // deprecated
+        --color-group-alert: #F11539;
     
-        //accent, highlight, feature, other
-        --color-accent-light: #ffff91;
-        --color-accent: #FDEA5F;
-        --color-accent-dark: #c7b82b;
-    
+        // Action
+        --color-accent-light: #ffff91; // deprecated
+        --color-accent: #FDEA5F; // deprecated
+        --color-accent-dark: #c7b82b; // deprecated
+        --color-group-action: #FDEA5F;
+        
+        // Confirm
+        --color-group-confirm: #a629eb;
+        
+        // Info
+        --color-group-info: #ffb23e;
+        
+        // Transfer
+        --color-group-transfer: #f54d9e;
+        
+        // Navigation
+        --color-group-navigation: #636671;
+        
+        // Disabled
+        --color-group-disabled: #C6C7CA;
+        
+        
         //backgrounds and structural elements
         --color-structure-0: #FFFFFF; //0 white
         --color-structure-1: #F5F5F5; //10

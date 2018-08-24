@@ -4904,3 +4904,39 @@ $icon-zoom: "\eaa5";
         content: $icon-zoom;
     }
 }
+
+
+
+// function group icon colors
+
+// Add: Neu, Erstellen, Generieren, Hinzufügen, Success, Erfolg, Notiz, Hinzufügen
+terra-button[inputicon="icon-add"] .btn, .adminActionIcon.icon-add
+{
+    background-color: var(--color-group-add) !important;
+}
+
+// Active: Hover, Fokus, Highlight, Aktiv
+
+
+// Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen
+
+
+// Action: Bearbeiten, Kopieren, Einfügen, Ausschneiden, Umwandeln, Transformieren, Ändern, Trennen, Splitten, Verbinden, Verknüpfen
+
+
+// Confirm: Übernehmen, Bestätigen, Anwenden, Speichern, Ermitteln, Auswählen
+
+
+// Info: Vorschau, Anzeigen, Information, Warnung, Notiz, Anzeigen
+
+
+// Transfer: Senden (E-Mail), Verschicken, Drucken, Download, Herunterladen, Export, Upload, Datei auswählen, Import
+
+
+/* Navigation:
+   Abbrechen, Schließen, Zoom In/Zoom Out, Play/Reset/Forward/Back/Pause, Verbergen, Einstellungen, Einrichten, Gruppenfunktionen,
+   Öffnen, Suchen, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
+*/
+
+
+// Disabled: Deaktiviert, Nicht auswählbar
