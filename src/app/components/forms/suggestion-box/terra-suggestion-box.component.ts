@@ -92,12 +92,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         };
 
         this._noEntriesTextKey = this.inputWithRecentlyUsed ? 'terraSuggestionBox.noRecentlyUsed' : 'terraSuggestionBox.noSuggestions';
-
-        if(!this.inputWithRecentlyUsed)
-        {
-            // initialize the displayed list with all possible values
-            this._displayListBoxValues = this.inputListBoxValues;
-        }
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -139,7 +133,14 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     public set value(value:number | string | TerraBaseData)
     {
-        this.selectedValue = this.inputListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item.value === value);
+        if(isNullOrUndefined(this.inputListBoxValues))
+        {
+            this.selectedValue = null;
+        }
+        else
+        {
+            this.selectedValue = this.inputListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item.value === value);
+        }
     }
 
     protected onClick(evt:Event):void
@@ -231,22 +232,25 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         {
             this._listBoxHeadingKey = 'terraSuggestionBox.suggestions';
             this._noEntriesTextKey = 'terraSuggestionBox.noSuggestions';
-            this._displayListBoxValues = this.inputListBoxValues.filter((value:TerraSuggestionBoxValueInterface) =>
+            if(!isNullOrUndefined(this.inputListBoxValues))
             {
-                // check if search string has a full match
-                if(value.caption.toUpperCase().includes(searchString.toUpperCase()))
+                this._displayListBoxValues = this.inputListBoxValues.filter((value:TerraSuggestionBoxValueInterface) =>
                 {
-                    return true;
-                }
+                    // check if search string has a full match
+                    if(value.caption.toUpperCase().includes(searchString.toUpperCase()))
+                    {
+                        return true;
+                    }
 
-                // search for partial strings
-                let searchStringIncluded:boolean = true;
-                searchString.split(' ').forEach((word:string) =>
-                {
-                    searchStringIncluded = searchStringIncluded && value.caption.toUpperCase().includes(word.toUpperCase());
+                    // search for partial strings
+                    let searchStringIncluded:boolean = true;
+                    searchString.split(' ').forEach((word:string) =>
+                    {
+                        searchStringIncluded = searchStringIncluded && value.caption.toUpperCase().includes(word.toUpperCase());
+                    });
+                    return searchStringIncluded;
                 });
-                return searchStringIncluded;
-            });
+            }
         }
         else if(this.inputWithRecentlyUsed)
         {
@@ -254,7 +258,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             this._noEntriesTextKey = 'terraSuggestionBox.noRecentlyUsed';
             this._displayListBoxValues = this._lastSelectedValues;
         }
-        else
+        else if(!isNullOrUndefined(this.inputListBoxValues))
         {
             this._displayListBoxValues = this.inputListBoxValues;
         }
