@@ -2,25 +2,26 @@ import {
     Component,
     Input
 } from '@angular/core';
+import { TwoColumnHelper } from '../../../helpers/two-column.helper';
 
 /**
  * @author mfrank
  */
 @Component({
     selector: 'terra-2-col',
+    styles:   [require('./terra-two-columns-container.component.scss')],
     template: require('./terra-two-columns-container.component.html')
 })
+/**
+ * @experimental TerraTwoColumnsContainerComponent is experimental and might be subject to drastic changes in the near future.
+ */
 export class TerraTwoColumnsContainerComponent
 {
-    protected leftColumn:string;
-    protected rightColumn:string;
+    public leftColumn:string;
+    public rightColumn:string;
 
-    private readonly colXS:string = 'col-xs-12';
-    private readonly colMD:string = 'col-md-';
-    private readonly colLG:string = 'col-lg-';
-    private readonly spacer:string = ' ';
-    private readonly maxColumnWidth:number = 12;
     private _leftColumnWidth:number = 2;
+
 
     @Input()
     public set leftColumnWidth(leftColumnWidth:number)
@@ -31,54 +32,23 @@ export class TerraTwoColumnsContainerComponent
                           'It has been limited to this range to prevent invalid rendering. Please check your input value to avoid this error.');
         }
 
-        this._leftColumnWidth = Math.min(this.maxColumnWidth, Math.max(1, leftColumnWidth));
+        this._leftColumnWidth = Math.min(TwoColumnHelper.maxColumnWidth, Math.max(1, leftColumnWidth));
 
-        this.leftColumn = this.leftRightColXS() + this.leftColMD() + this.leftColLG();
-        this.rightColumn = this.leftRightColXS() + this.rightColMD() + this.rightColLG();
+        this.leftColumn = TwoColumnHelper.leftRightColXS()
+                          + TwoColumnHelper.leftColMD(this._leftColumnWidth)
+                          + TwoColumnHelper.leftColLG(this._leftColumnWidth);
+        this.rightColumn = TwoColumnHelper.leftRightColXS()
+                           + TwoColumnHelper.rightColMD(this._leftColumnWidth)
+                           + TwoColumnHelper.rightColLG(this._leftColumnWidth);
+    }
+
+    public get leftColumnWidth():number
+    {
+        return this._leftColumnWidth;
     }
 
     constructor()
     {
         this.leftColumnWidth = this._leftColumnWidth; // trigger calculation for default values
-    }
-
-    private leftRightColXS():string
-    {
-        return this.colXS + this.spacer;
-    }
-
-    private leftColMD():string
-    {
-        return this.colMD + this.calculatedLeftColumnMDWidth() + this.spacer;
-    }
-
-    private leftColLG():string
-    {
-        return this.colLG + this._leftColumnWidth;
-    }
-
-    private rightColMD():string
-    {
-        return this.colMD + this.calculatedRightColumnMDWidth() + this.spacer;
-    }
-
-    private rightColLG():string
-    {
-        return this.colLG + this.calculatedRightColumnLGWidth();
-    }
-
-    private calculatedLeftColumnMDWidth():number
-    {
-        return (this._leftColumnWidth === this.maxColumnWidth) ? this._leftColumnWidth : this._leftColumnWidth + 1;
-    }
-
-    private calculatedRightColumnMDWidth():number
-    {
-        return this.maxColumnWidth - this.calculatedLeftColumnMDWidth();
-    }
-
-    private calculatedRightColumnLGWidth():number
-    {
-        return this.maxColumnWidth - this._leftColumnWidth;
     }
 }

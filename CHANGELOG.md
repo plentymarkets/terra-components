@@ -1,3 +1,92 @@
+<a name="2.3.15"></a>
+# 2.3.15 (22.08.2018)
+
+### Bug Fixes
+* **terra-suggestion-box** fixed issue with uninitialised `inputListBoxValues`.
+
+<a name="2.3.14"></a>
+# 2.3.14 (22.08.2018)
+
+### Feature
+* **terra-icons** added new icons
+* **terra-form** Improve backward compatibility to **terra-dynamic-form**
+
+### Bug Fixes
+* **terra-code-editor** fixed validation of HTML-tags with multiple attributes
+
+<a name="2.3.13"></a>
+# 2.3.13 (21.08.2018)
+
+### Feature
+* **terra-nested-data-picker** new component terra-nested-data-picker
+
+### Bug Fixes
+* **terra-button** fixed disabled state showing the buttons background color while clicked or focused
+* **terra-suggestion-box** prevent execution of `ngModelChange`-Callback if value changes from `undefined` to `null` or reverse.
+* **terra-breadcrumbs** changed handling to find route by url.
+
+<a name="2.3.12"></a>
+# 2.3.12 (20.08.2018)
+
+### Feature
+* **terra-tag-select** add new component for tag select and deselect with ngModel support
+
+<a name="2.3.11"></a>
+# 2.3.11 (17.08.2018)
+
+### Feature
+* **category-data.interface** && **category-detail-data.interface** extend interfaces since some properties were missing in comparision to the [rest interface](https://developers.plentymarkets.com/rest-doc/category_category/details).
+* **terra-suggestion-box** 
+	* New Output `textInputValueChange` that emits the current text input value
+    * Select a Value from the suggestions if the entered text matches its caption
+    * `selectedValue` is reset if `inputListBoxValues` is updated and the previous selected element is not present anymore
+    * `selectedValue = null` if entered text does not match any of the `inputListBoxValues`
+    * `resetComponentValue`-Method is now deprecated. Use `ngModel` instead to set the value to `null`
+    * `outputValueChanged` is now deprecated. Use `ngModelChange` instead.
+* **terra-form** Added new component to generate forms dynamically from json data.
+    
+### Bug Fixes
+* **terra-split-view** fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead
+* **terra-color-picker** added border to the input field to provide more contrast for the selected color
+
+<a name="2.3.10"></a>
+# 2.3.10 (09.08.2018)
+
+### Feature
+* **terra-breadcrumbs** added Breadcrumbs using router and routerLink
+
+<a name="2.3.9"></a>
+# 2.3.9 (08.08.2018)
+
+### Bug Fixes
+* **terra-suggestion-box** reset selected value when `inputListBoxValues` is empty
+* **style** fixed scss variables 
+
+<a name="2.3.4"></a>
+# 2.3.4 (02.08.2018)
+
+### Features
+* **terra-icons** added new icons
+* **terra-decimal-validator** added a custom validator to validate decimals
+* **object.helper** added a helper for object operations. First there is only a function to remove keys with an `undefined` or `null` value
+* **number.helper** added a helper for number operations. First there is only a function for correctly rounding.
+* **terra-2-col** reduced two column component to bare necessities
+* **two-column.helper** added a helper for two column component sizing
+* **two-column-mobile.directive** added a  directive for two column mobile handling
+
+#### Bug Fixes
+* **terra-code-editor** added html code validation to check if all tags are closed.
+
+<a name="2.3.3"></a>
+# 2.3.3 (20.07.2018)
+
+### Bug Fixes
+* **terra-dynamic-form** added possibility to change the debounce time
+
+### Features
+* **terra-loading-spinner** added public getter for `isLoading` property, since this information is a global one and can be used in any component to disable elements while a request is pending.
+* **terra-base-service** added public getter for `isLoading` property to be available in every specific service extension.
+
 <a name="2.3.2"></a>
 # 2.3.2 (20.07.2018)
 
