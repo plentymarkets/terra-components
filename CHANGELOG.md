@@ -2,6 +2,9 @@
 
 ### Bug Fixes
 * **terra-file-list** fixed issue when uploading files using `firefox`.
+* **terra-dynamic-form** adjust horizontal container header layout to the layout of vertical container
+* **terra-dynamic-form** horizontal container gives now equal width to its elements
+
 
 <a name="2.3.15"></a>
 # 2.3.15 (22.08.2018)
