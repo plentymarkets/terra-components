@@ -2,16 +2,16 @@
     <div class="form-list-entry" *ngFor="let entry of value; index as i; trackBy: trackByFn">
         <terra-form-entry
             [inputFormField]="inputFormField"
-            [inputFormValue]="entry"
+            [inputFormValue]="entry.value"
             [inputScope]="inputScope"
             [inputControlTypeMap]="inputControlTypeMap"
             [inputIsDisabled]="inputIsDisabled"
-            (outputFormValueChanged)="onElementValueChanged(i, $event)"></terra-form-entry>
+            (outputFormValueChanged)="onElementValueChanged(entry.key, $event)"></terra-form-entry>
         
         <terra-button
             inputIcon="icon-delete"
             [inputIsSecondary]="true"
-            (outputClicked)="removeElement(i)"
+            (outputClicked)="removeElement(entry.key)"
             [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate:lang"
             [inputIsDisabled]="!canRemoveElement"></terra-button>
     </div>
