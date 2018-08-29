@@ -1,8 +1,19 @@
-:host-context(div.horizontalGroup)
+:host-context(div.horizontalGroup terra-portlet)
 {
     form.horizontalGroupForm
     {
         display: flex;
+        
+        & > * {
+            flex-grow: 1;
+            flex-basis: 0;
+            align-self: center;
+        }
+    
+        & > :not(:last-child)
+        {
+            margin-right: 5px;
+        }
     }
 }
 
@@ -19,11 +30,6 @@
     .horizontalGroupEntry
     {
         width: 100%;
-    }
-    
-    &:not(:last-child)
-    {
-        margin-right: 5px;
     }
 }
 
