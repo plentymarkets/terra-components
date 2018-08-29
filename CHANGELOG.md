@@ -1,4 +1,5 @@
-# Unreleased
+<a name="2.3.16"></a>
+# 2.3.16 (29.08.2018)
 
 ### Bug Fixes
 * **terra-file-list** fixed issue when uploading files using `firefox`.
