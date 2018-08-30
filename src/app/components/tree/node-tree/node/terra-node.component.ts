@@ -26,22 +26,22 @@ export class TerraNodeComponent<D> implements OnInit
     @Input()
     public inputConfig:TerraNodeTreeConfig<D>;
 
-    private _tooltip:string;
-    private _tooltipPlacement:string = 'right';
+    protected tooltip:string;
+    protected tooltipPlacement:string = 'right';
 
     public ngOnInit():void
     {
         if(!this.inputNode.tooltip)
         {
-            this._tooltip = this.inputNode.name;
+            this.tooltip = this.inputNode.name;
         }
         else
         {
-            this._tooltip = this.inputNode.tooltip;
+            this.tooltip = this.inputNode.tooltip;
         }
         if(this.inputNode.tooltipPlacement)
         {
-            this._tooltipPlacement = this.inputNode.tooltipPlacement;
+            this.tooltipPlacement = this.inputNode.tooltipPlacement;
         }
 
     }
@@ -59,8 +59,30 @@ export class TerraNodeComponent<D> implements OnInit
 
         this.inputConfig.handleLazyLoading(this.inputNode);
 
-        this.inputConfig.currentSelectedNode = this.inputNode;
+        if(isNullOrUndefined(this.inputNode.selectable) || this.inputNode.selectable)
+        {
+            this.inputConfig.currentSelectedNode = this.inputNode;
+        }
+
     }
+
+        // handle the node click
+        protected onNodeDblClick(event:Event):void
+        {
+            event.stopPropagation();
+            // check if click function is set
+            if(!isNullOrUndefined(this.inputNode.onDblClick))
+            {
+                this.inputNode.onDblClick();
+            }
+
+            this.inputConfig.handleLazyLoading(this.inputNode);
+
+            if(isNullOrUndefined(this.inputNode.selectable) || this.inputNode.selectable)
+            {
+                this.inputConfig.currentSelectedNode = this.inputNode;
+            }
+        }
 
     protected handleIconClick(event:Event):void
     {

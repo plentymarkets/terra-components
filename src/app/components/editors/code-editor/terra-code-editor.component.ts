@@ -10,6 +10,7 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
 import { TerraButtonInterface } from '../../../../';
 import { isNullOrUndefined } from 'util';
+import { XmlParser } from '@angular/compiler/src/ml_parser/xml_parser';
 
 @Component({
     selector:  'terra-code-editor',
@@ -36,6 +37,10 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
     public overlay:TerraOverlayComponent;
 
     protected viewConfirmation:{primaryButton:TerraButtonInterface, secondaryButton:TerraButtonInterface};
+
+    protected isValidMarkup:boolean = true;
+
+    protected invalidMarkupHint:string = '';
 
     private isInitialized:boolean = false;
 
@@ -73,7 +78,6 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
     public writeValue(value:string):void
     {
         this.value = value;
-
         // check if value is assigned first (initially)
         if (!this.isInitialized)
         {
@@ -131,12 +135,15 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         if ( isEditorContent && !this.showCodeView )
         {
             this.value = this.editorContent;
-            this.ngModelChange.emit(this.value);
+            this.onChangeCallback(this.value);
         }
         else if ( !isEditorContent && this.showCodeView )
         {
-            this.value = this.rawContent;
-            this.ngModelChange.emit(this.value);
+            if ( this.validateMarkup() )
+            {
+                this.value = this.rawContent;
+                this.onChangeCallback(this.value);
+            }
         }
 
     }
@@ -200,5 +207,39 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
                 }
             });
         });
+    }
+
+    private validateMarkup():boolean
+    {
+        const parser:DOMParser           = new DOMParser();
+        const doc:Document               = parser.parseFromString( this.rawContent, 'application/xml');
+        const errors:NodeListOf<Element> = doc.getElementsByTagName('parsererror');
+
+        if ( errors.length > 0 )
+        {
+            const error:Element = errors[0];
+
+            if ( error.querySelector('div') )
+            {
+                this.invalidMarkupHint = error.querySelector('div').textContent;
+            }
+            else if ( error.querySelector('sourcetext') )
+            {
+                this.invalidMarkupHint = error.querySelector('sourcetext').textContent;
+            }
+            else
+            {
+                this.invalidMarkupHint = error.textContent;
+            }
+
+            this.invalidMarkupHint = this.invalidMarkupHint.replace(/\n/g, '<br>');
+            this.isValidMarkup = false;
+        }
+        else
+        {
+            this.isValidMarkup = true;
+        }
+
+        return this.isValidMarkup;
     }
 }

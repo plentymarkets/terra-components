@@ -11,14 +11,15 @@ const SPLIT_WIDTH_SIDEBAR:string = 'col-xs-12 col-md-3 col-lg-2';
 @Injectable()
 export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
 {
-    private _fileListView:TerraMultiSplitViewInterface;
-    private _imagePreviewView:TerraMultiSplitViewInterface;
-    private _storageServices:Array<TerraBaseStorageService>;
+    private fileListView:TerraMultiSplitViewInterface;
+    private imagePreviewView:TerraMultiSplitViewInterface;
+    private storageServices:Array<TerraBaseStorageService>;
 
     public init(storageServices:Array<TerraBaseStorageService>):void
     {
-        this._storageServices = storageServices;
-        this._fileListView = {
+        this.reset();
+        this.storageServices = storageServices;
+        this.fileListView = {
             module:            require('../file-list/file-list.module').TerraFileListModule.forRoot(),
             defaultWidth:      SPLIT_WIDTH_CONTENT,
             focusedWidth:      SPLIT_WIDTH_FULL,
@@ -27,13 +28,13 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
             inputs:            [
                 {
                     name:  'inputStorageServices',
-                    value: this._storageServices
+                    value: this.storageServices
                 }
             ]
         };
-        this.addView(this._fileListView);
+        this.addView(this.fileListView);
 
-        this._imagePreviewView = {
+        this.imagePreviewView = {
             module:            require('../image-preview/image-preview.module').TerraImagePreviewModule.forRoot(),
             defaultWidth:      '',
             focusedWidth:      SPLIT_WIDTH_SIDEBAR,
@@ -50,18 +51,18 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
                 }
             ]
         };
-        this.addView(this._imagePreviewView, this._fileListView);
+        this.addView(this.imagePreviewView, this.fileListView);
 
         setTimeout((():void =>
         {
-            this.setSelectedView(this._fileListView);
+            this.setSelectedView(this.fileListView);
         }).bind(this));
 
     }
 
     public showImagePreview(storageObject:TerraStorageObject, storageService:TerraBaseStorageService):void
     {
-        this._imagePreviewView.inputs = [
+        this.imagePreviewView.inputs = [
             {
                 name:  'inputStorageService',
                 value: storageService
@@ -74,12 +75,12 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
 
         if(storageService.isImagePreviewEnabled)
         {
-            this.setSelectedView(this._imagePreviewView);
+            this.setSelectedView(this.imagePreviewView);
         }
     }
 
     public hideImagePreview():void
     {
-        this.setSelectedView(this._fileListView);
+        this.setSelectedView(this.fileListView);
     }
 }

@@ -7,11 +7,15 @@ import {
     Output,
     SimpleChanges
 } from '@angular/core';
-import * as Interact from 'interactjs';
 import { GridOptions } from './gridOptions.interface';
 import { DraggableOptions } from './draggableOptions.interface';
 import { RestrictOptions } from './restrictOptions.interface';
 import { InertiaOptions } from './inertiaOptions.interface';
+import {
+    Interactable,
+    InteractEvent
+} from 'interactjs';
+import interact = require('interactjs');
 
 @Directive({
     selector: '[terraDraggable]'
@@ -37,15 +41,15 @@ export class TerraDraggableDirective implements OnChanges
     public dragData:any;
 
     @Output('terra-draggable-onStart')
-    public onStart:EventEmitter<Interact.InteractEvent> = new EventEmitter<Interact.InteractEvent>();
+    public onStart:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     @Output('terra-draggable-onMove')
-    public onMove:EventEmitter<Interact.InteractEvent> = new EventEmitter<Interact.InteractEvent>();
+    public onMove:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     @Output('terra-draggable-onEnd')
-    public onEnd:EventEmitter<Interact.InteractEvent> = new EventEmitter<Interact.InteractEvent>();
+    public onEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
-    private interactable:Interact.Interactable;
+    private interactable:Interactable;
 
     constructor(private el:ElementRef)
     {
@@ -118,17 +122,20 @@ export class TerraDraggableDirective implements OnChanges
             manualStart:  (this.options || {}).manualStart || false,
             inertia:      this.inertia,
             enabled:      !this.disabled,
-            onstart:      (event:Interact.InteractEvent):void =>
+            allowFrom:    (this.options || {}).allowFrom || null,
+            ignoreFrom:   (this.options || {}).ignoreFrom || null,
+            styleCursor:  false,
+            onstart:      (event:InteractEvent):void =>
                           {
                               this.onStart.emit(event);
                               event.target.IA_DRAG_DATA = this.dragData;
                           },
-            onmove:       (event:Interact.InteractEvent):void =>
+            onmove:       (event:InteractEvent):void =>
                           {
                               this.onMove.emit(event);
                               event.target.IA_DRAG_DATA = this.dragData;
                           },
-            onend:        (event:Interact.InteractEvent):void =>
+            onend:        (event:InteractEvent):void =>
                           {
                               this.onEnd.emit(event);
                               event.target.IA_DRAG_DATA = null;
@@ -156,23 +163,17 @@ export class TerraDraggableDirective implements OnChanges
 
         if(!this.interactable)
         {
-            this.interactable = Interact(this.el.nativeElement);
+            this.interactable = interact(this.el.nativeElement);
         }
 
-        this.interactable
-            .set({
-                allowFrom:   (this.options || {}).allowFrom || null,
-                ignoreFrom:  (this.options || {}).ignoreFrom || null,
-                styleCursor: false
-            })
-            .draggable(draggableConfig);
+        this.interactable.draggable(draggableConfig);
     }
 
     private handleSnap(x:number, y:number):{ x:number, y:number, range:number }
     {
         if(this.grid)
         {
-            let offset:Interact.Point = {
+            let offset:{ x:number, y:number } = {
                 x: 0,
                 y: 0
             };

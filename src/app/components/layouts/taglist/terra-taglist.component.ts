@@ -1,6 +1,8 @@
 import {
     Component,
-    Input
+    EventEmitter,
+    Input,
+    Output
 } from '@angular/core';
 import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 
@@ -13,4 +15,10 @@ export class TerraTaglistComponent
 {
     @Input()
     public inputTagList:Array<TerraTagInterface>;
+
+    @Input()
+    public isReadOnly:boolean;
+
+    @Output()
+    public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
 }

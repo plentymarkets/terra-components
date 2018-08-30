@@ -6,8 +6,8 @@ import { CategoryDataInterface } from '../data/category-data.interface';
 @Injectable()
 export class CategoryTreeConfig extends TerraNodeTreeConfig<CategoryDataInterface>
 {
-    constructor(public _translation:TranslationService)
+    constructor(public translation:TranslationService)
     {
-        super(_translation);
+        super(translation);
     }
 }

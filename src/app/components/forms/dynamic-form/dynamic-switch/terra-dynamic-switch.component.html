@@ -1,7 +1,8 @@
 <terra-portlet *ngIf="inputUsePortlet;else formWithoutPortlet" [inputPortletHeader]="inputPortletHeader">
     <terra-dynamic-switch [inputFormFields]="inputFormFields"
                           [inputFormGroup]="inputFormGroup"
-                          [inputUsePortlet]="false">
+                          [inputUsePortlet]="false"
+                          [inputSubSwitch]="inputSubSwitch">
     </terra-dynamic-switch>
 </terra-portlet>
 
@@ -130,15 +131,14 @@
                 
                 <ng-container *ngSwitchCase="controlTypeEnum.HORIZONTAL_CONTAINER">
                     <div class="horizontalGroup">
-                        <span class="horizontalGroupLabel">{{ formField.label | translate:lang }}: </span>
-                        <div>
-                            <terra-dynamic-switch class="subSwitch"
-                                                  [formGroupName]="formField.key"
-                                                  [inputFormGroup]="inputFormGroup.controls[formField.key]"
-                                                  [inputFormFields]="formField.containerEntries"
-                                                  [inputSubSwitch]="true">
-                            </terra-dynamic-switch>
-                        </div>
+                        <terra-dynamic-switch class="subSwitch"
+                                              [formGroupName]="formField.key"
+                                              [inputFormGroup]="inputFormGroup.controls[formField.key]"
+                                              [inputFormFields]="formField.containerEntries"
+                                              [inputPortletHeader]="formField.label | translate:lang"
+                                              [inputSubSwitch]="true"
+                                              [inputUsePortlet]="true">
+                        </terra-dynamic-switch>
                     </div>
                 </ng-container>
                 
