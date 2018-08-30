@@ -3,6 +3,8 @@
 ### Bug Fixes
 * **terra-breadcrumbs** fix context menu position.
 * **terra-breadcrumbs** automatically scroll into view for active breadcrumb.
+* **terra-file-browser** reset the file list when `inputStorageServices` is updated.
+* **terra-form** list fields can reference current list entry in isVisible expressions by the key of the parent field leaded by a '$'-sign (e.g. '$entries')
 
 <a name="2.3.16"></a>
 # 2.3.16 (29.08.2018)
