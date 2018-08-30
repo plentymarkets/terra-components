@@ -1,3 +1,8 @@
+#Unreleased
+
+### Bug Fixes
+* **terra-file-browser** reset the file list when `inputStorageServices` is updated.
+
 <a name="2.3.16"></a>
 # 2.3.16 (29.08.2018)
 
