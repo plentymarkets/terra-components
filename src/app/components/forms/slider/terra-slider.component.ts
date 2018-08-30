@@ -11,6 +11,7 @@ import {
 import { isNullOrUndefined } from 'util';
 import { GridOptions } from '../../interactables/gridOptions.interface';
 import { TerraSliderTick } from './data/terra-slider-tick';
+import { InteractEvent } from 'interactjs';
 
 @Component({
     selector: 'terra-slider',
@@ -184,7 +185,7 @@ export class TerraSliderComponent implements OnInit
         }
     }
 
-    public onDrag(event:Interact.InteractEvent):void
+    public onDrag(event:InteractEvent):void
     {
         this.moveToPosition(event.pageX);
     }

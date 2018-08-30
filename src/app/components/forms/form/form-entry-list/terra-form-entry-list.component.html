@@ -1,0 +1,24 @@
+<div class="form-list clearfix">
+    <div class="form-list-entry" *ngFor="let entry of value; index as i; trackBy: trackByFn">
+        <terra-form-entry
+            [inputFormField]="inputFormField"
+            [inputFormValue]="entry.value"
+            [inputScope]="itemScopes[i]"
+            [inputControlTypeMap]="inputControlTypeMap"
+            [inputIsDisabled]="inputIsDisabled"
+            (outputFormValueChanged)="onElementValueChanged(entry.key, $event)"></terra-form-entry>
+        
+        <terra-button
+            inputIcon="icon-delete"
+            [inputIsSecondary]="true"
+            (outputClicked)="removeElement(entry.key)"
+            [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate:lang"
+            [inputIsDisabled]="!canRemoveElement"></terra-button>
+    </div>
+    <terra-button
+        inputIcon="icon-add"
+        (outputClicked)="addElement()"
+        [inputIsTertiary]="true"
+        [inputTooltipText]="'terraDynamicForm.addListEntry' | translate:lang"
+        [inputIsDisabled]="!canAddElement"></terra-button>
+</div>

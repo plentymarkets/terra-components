@@ -20,10 +20,18 @@ import { isNullOrUndefined } from 'util';
         require('./terra-file-browser.component.glob.scss').toString()
     ]
 })
-export class TerraFileBrowserComponent implements OnInit
+export class TerraFileBrowserComponent
 {
     @Input()
-    public inputAllowedExtensions:Array<string> = [];
+    public set inputAllowedExtensions(extensions:Array<string>)
+    {
+        this.allowedExtensions = extensions.map((extension:string) => extension.toUpperCase() );
+    }
+
+    public get inputAllowedExtensions():Array<string>
+    {
+        return this.allowedExtensions;
+    }
 
     @Input()
     public inputAllowFolders:boolean = true;
@@ -35,10 +43,14 @@ export class TerraFileBrowserComponent implements OnInit
 
     private storageServices:Array<TerraBaseStorageService>;
 
+    private allowedExtensions:Array<string> = [];
+
     @Input()
     public set inputStorageServices(services:Array<TerraBaseStorageService>)
     {
         this.storageServices = services;
+
+        this.splitConfig.init(this.inputStorageServices);
     }
 
     public get inputStorageServices():Array<TerraBaseStorageService>
@@ -54,11 +66,6 @@ export class TerraFileBrowserComponent implements OnInit
     constructor(public splitConfig:FileBrowserSplitConfig,
                 private frontendStorageService:TerraFrontendStorageService)
     {
-    }
-
-    public ngOnInit():void
-    {
-        this.splitConfig.init(this.inputStorageServices);
     }
 
     public selectUrl(publicUrl:string):void

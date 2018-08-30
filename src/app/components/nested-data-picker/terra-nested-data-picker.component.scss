@@ -1,0 +1,11 @@
+.tree-dropdown {
+    height: 0;
+    z-index: 1;
+    position: relative;
+}
+
+.terra-node-tree-wrapper {
+    max-height: 20em;
+    overflow: auto;
+}
+

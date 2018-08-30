@@ -1,12 +1,76 @@
 #Unreleased
+
 ### Bug Fixes
-* **terra-split-view** Fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead
+* **terra-breadcrumbs** fix context menu position.
+* **terra-breadcrumbs** automatically scroll into view for active breadcrumb.
+* **terra-file-browser** reset the file list when `inputStorageServices` is updated.
+* **terra-form** list fields can reference current list entry in isVisible expressions by the key of the parent field leaded by a '$'-sign (e.g. '$entries')
+
+<a name="2.3.16"></a>
+# 2.3.16 (29.08.2018)
+
+### Bug Fixes
+* **terra-file-list** fixed issue when uploading files using `firefox`.
+* **terra-dynamic-form** adjust horizontal container header layout to the layout of vertical container
+* **terra-dynamic-form** horizontal container gives now equal width to its elements
+
+
+<a name="2.3.15"></a>
+# 2.3.15 (22.08.2018)
+
+### Bug Fixes
+* **terra-suggestion-box** fixed issue with uninitialised `inputListBoxValues`.
+
+<a name="2.3.14"></a>
+# 2.3.14 (22.08.2018)
+
+### Feature
+* **terra-icons** added new icons
+* **terra-form** Improve backward compatibility to **terra-dynamic-form**
+
+### Bug Fixes
+* **terra-code-editor** fixed validation of HTML-tags with multiple attributes
+
+<a name="2.3.13"></a>
+# 2.3.13 (21.08.2018)
+
+### Feature
+* **terra-nested-data-picker** new component terra-nested-data-picker
+
+### Bug Fixes
+* **terra-button** fixed disabled state showing the buttons background color while clicked or focused
+* **terra-suggestion-box** prevent execution of `ngModelChange`-Callback if value changes from `undefined` to `null` or reverse.
+* **terra-breadcrumbs** changed handling to find route by url.
+
+<a name="2.3.12"></a>
+# 2.3.12 (20.08.2018)
+
+### Feature
+* **terra-tag-select** add new component for tag select and deselect with ngModel support
+
+<a name="2.3.11"></a>
+# 2.3.11 (17.08.2018)
+
+### Feature
+* **category-data.interface** && **category-detail-data.interface** extend interfaces since some properties were missing in comparision to the [rest interface](https://developers.plentymarkets.com/rest-doc/category_category/details).
+* **terra-suggestion-box** 
+	* New Output `textInputValueChange` that emits the current text input value
+    * Select a Value from the suggestions if the entered text matches its caption
+    * `selectedValue` is reset if `inputListBoxValues` is updated and the previous selected element is not present anymore
+    * `selectedValue = null` if entered text does not match any of the `inputListBoxValues`
+    * `resetComponentValue`-Method is now deprecated. Use `ngModel` instead to set the value to `null`
+    * `outputValueChanged` is now deprecated. Use `ngModelChange` instead.
+* **terra-form** Added new component to generate forms dynamically from json data.
+    
+### Bug Fixes
+* **terra-split-view** fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead
+* **terra-color-picker** added border to the input field to provide more contrast for the selected color
 
 <a name="2.3.10"></a>
 # 2.3.10 (09.08.2018)
 
 ### Feature
-* **terra-breadcrumbs** added. Breadcrumbs using router and routerLink.
+* **terra-breadcrumbs** added Breadcrumbs using router and routerLink
 
 <a name="2.3.9"></a>
 # 2.3.9 (08.08.2018)

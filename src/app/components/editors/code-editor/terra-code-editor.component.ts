@@ -10,6 +10,7 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
 import { TerraButtonInterface } from '../../../../';
 import { isNullOrUndefined } from 'util';
+import { XmlParser } from '@angular/compiler/src/ml_parser/xml_parser';
 
 @Component({
     selector:  'terra-code-editor',
@@ -36,6 +37,10 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
     public overlay:TerraOverlayComponent;
 
     protected viewConfirmation:{primaryButton:TerraButtonInterface, secondaryButton:TerraButtonInterface};
+
+    protected isValidMarkup:boolean = true;
+
+    protected invalidMarkupHint:string = '';
 
     private isInitialized:boolean = false;
 
@@ -130,12 +135,15 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         if ( isEditorContent && !this.showCodeView )
         {
             this.value = this.editorContent;
-            this.ngModelChange.emit(this.value);
+            this.onChangeCallback(this.value);
         }
         else if ( !isEditorContent && this.showCodeView )
         {
-            this.value = this.sanitizeHTML(this.rawContent);
-            this.ngModelChange.emit(this.value);
+            if ( this.validateMarkup() )
+            {
+                this.value = this.rawContent;
+                this.onChangeCallback(this.value);
+            }
         }
 
     }
@@ -201,62 +209,37 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         });
     }
 
-    /**
-     * Validates the input html and adds missing closing tag or attribute tag.
-     * @param {string} input
-     * @returns {string}
-     */
-    private sanitizeHTML(input:string):string
+    private validateMarkup():boolean
     {
-        //
-        // CHECK FOR UNCLOSED QUOTES
-        //
-        const tagContentExp:RegExp = /<(\w[^>]*?)(\/?>)/g;
-        let output:string = input.replace(tagContentExp, (match:string, tagContent:string, closingTag:string) =>
+        const parser:DOMParser           = new DOMParser();
+        const doc:Document               = parser.parseFromString( this.rawContent, 'application/xml');
+        const errors:NodeListOf<Element> = doc.getElementsByTagName('parsererror');
+
+        if ( errors.length > 0 )
         {
-            const attributeExp:RegExp = /([a-zA-Z0-9_-]+)=(?:"|')?(.*?)(?:"|')?(?=(?:\w+=)|\s*$)/g;
-            tagContent = tagContent.replace(attributeExp, (attrMatch:string, attrName:string, attrValue:string) =>
+            const error:Element = errors[0];
+
+            if ( error.querySelector('div') )
             {
-                if ( !!attrValue.trim() )
-                {
-                    return attrName + '="' + attrValue.trim() + '"';
-                }
-                return attrName;
-            });
-            return '<' + tagContent + closingTag;
-        });
-
-        //
-        // DISABLE SRC ATTRIBUTES
-        //
-        output = output.replace(/src=/g, '###tmp-src=');
-
-        //
-        // SANITIZE UNCLOSED TAGS BY BROWSER
-        //
-        let tmp:any = document.createElement('div');
-        tmp.innerHTML = output;
-        output = tmp.innerHTML;
-
-        const entities:any = {
-            'lt': '<',
-            'gt': '>',
-            'amp': '&'
-        };
-        output = output.replace(/&(\w+);/g, (match:string, entity:string) =>
-        {
-            if ( entities.hasOwnProperty(entity) )
-            {
-                return entities[entity];
+                this.invalidMarkupHint = error.querySelector('div').textContent;
             }
-            return match;
-        });
+            else if ( error.querySelector('sourcetext') )
+            {
+                this.invalidMarkupHint = error.querySelector('sourcetext').textContent;
+            }
+            else
+            {
+                this.invalidMarkupHint = error.textContent;
+            }
 
-        //
-        // ENABLE SRC ATTRIBUTES AGAIN
-        //
-        output = output.replace(/###tmp-src=/g, 'src=');
+            this.invalidMarkupHint = this.invalidMarkupHint.replace(/\n/g, '<br>');
+            this.isValidMarkup = false;
+        }
+        else
+        {
+            this.isValidMarkup = true;
+        }
 
-        return output;
+        return this.isValidMarkup;
     }
 }

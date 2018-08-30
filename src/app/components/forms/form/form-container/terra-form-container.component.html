@@ -1,0 +1,27 @@
+<div class="form">
+    <ng-template ngFor let-field [ngForOf]="formFields">
+        <div class="form-entry" *ngIf="formFieldVisibility[field.key]">
+            <terra-form-entry
+                *ngIf="!field.value.isList"
+                [inputFormField]="field.value"
+                [inputFormValue]="inputValue[field.key]"
+                [inputIsDisabled]="inputIsDisabled"
+                [inputScope]="inputScope"
+                [inputControlTypeMap]="inputControlTypeMap"
+                (outputFormValueChanged)="onFormValueChanged(field.key, $event)"
+            ></terra-form-entry>
+            
+            <terra-form-entry-list
+                *ngIf="field.value.isList"
+                [inputFormFieldKey]="field.key"
+                [inputFormField]="field.value"
+                [inputFormValue]="inputValue[field.key]"
+                [inputListRange]="field.value.isList"
+                [inputIsDisabled]="inputIsDisabled"
+                [inputScope]="inputScope"
+                [inputControlTypeMap]="inputControlTypeMap"
+                (outputFormValueChanged)="onFormValueChanged(field.key, $event)"
+            ></terra-form-entry-list>
+        </div>
+    </ng-template>
+</div>

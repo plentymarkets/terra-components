@@ -554,7 +554,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         }
 
         return this.parentFileBrowser.inputAllowedExtensions.length <= 0
-               || this.parentFileBrowser.inputAllowedExtensions.indexOf(PathHelper.extName(filename)) >= 0
+               || this.parentFileBrowser.inputAllowedExtensions.indexOf(PathHelper.extName(filename).toUpperCase()) >= 0
                || PathHelper.isDirectory(filename);
     }
 
@@ -594,9 +594,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public onFileSelect(event:Event):void
     {
-        if(!isNullOrUndefined(event.srcElement) && !isNullOrUndefined((<any> event.srcElement).files))
+        let target:any = event.target || event.srcElement;
+
+        if(!isNullOrUndefined(target) && !isNullOrUndefined(target.files))
         {
-            this.uploadFiles((<any> event.srcElement).files);
+            this.uploadFiles(target.files);
 
             // unset value of file input to allow selecting same file again
             (<HTMLInputElement> event.target).value = '';

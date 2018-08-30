@@ -1,7 +1,8 @@
 .editor-container
 {
     position: relative;
-    .close-button
+    .close-button,
+    .error-button
     {
         display: none;
         position: absolute;

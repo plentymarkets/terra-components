@@ -5,12 +5,29 @@
                 <terra-suggestion-box
                     inputName="icons"
                     [inputListBoxValues]="iconList"
-                    [(ngModel)]="iconClass">
+                    [(ngModel)]="iconClass"
+                    (textInputValueChange)="textInputValue = $event">
                 </terra-suggestion-box>
             </div>
-            <div  class="col-md-4 text-md-left h2">
-               <span [ngClass]="iconClass"></span>
-               <span>{{iconClass}}</span>
+            <div class="col-md-4 text-md-left h2">
+                <span [ngClass]="iconClass"></span>
+                <span>{{iconClass}}</span>
+                <span>{{textInputValue}}</span>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-8">
+                <terra-suggestion-box
+                    inputName="Contacts"
+                    [inputListBoxValues]="contactsSuggestions"
+                    [(ngModel)]="selectedContact"
+                    (textInputValueChange)="contactSelectionText = $event">
+                </terra-suggestion-box>
+            </div>
+            <div class="col-md-4 text-md-left h2">
+                <span>{{contactSelectionText}}</span>
+                <span>{{selectedContact | json }}</span>
             </div>
         </div>
     </div>

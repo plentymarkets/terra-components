@@ -56,20 +56,18 @@
 	"terraNoteEditor": {
 		"insertText": "Text eingeben."
 	},
-	"terraCodeEditor":
-	{
-		"changeViewOverlay":
-		{
-			"title":"Unbekannte Formatierung",
-			"text":"Durch den Wechsel in die Editor-Ansicht gehen unbekannte Formatierungen im Markup verloren. Sind Sie sicher, dass sie die Ansicht wechseln möchten?",
-			"primaryButton":"Zu Editor-Ansicht wechseln",
+	"terraCodeEditor": {
+		"changeViewOverlay": {
+			"title": "Unbekannte Formatierung",
+			"text": "Durch den Wechsel in die Editor-Ansicht gehen unbekannte Formatierungen im Markup verloren. Sind Sie sicher, dass sie die Ansicht wechseln möchten?",
+			"primaryButton": "Zu Editor-Ansicht wechseln",
 			"secondaryButton": "Abbrechen"
 		}
 	},
 	"terraTextInput": {
 		"invalidIban": "IBAN ist ungültig."
 	},
-	"terraNodeTree":{
+	"terraNodeTree": {
 		"search": "Suche"
 	},
 	"timepicker": {
@@ -80,5 +78,14 @@
 		"select": "Auswählen",
 		"category": "Kategorie",
 		"reset": "Reset"
+	},
+	"terraNestedDataPicker": {
+		"select": "Auswählen",
+		"nested": "Verschachtelt",
+		"reset": "Reset"
+	},
+	"terraDynamicForm": {
+		"addListEntry": "Neuen Eintrag hinzufügen",
+		"removeListEntry": "Eintrag entfernen"
 	}
 }

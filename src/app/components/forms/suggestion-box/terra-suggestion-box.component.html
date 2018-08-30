@@ -15,7 +15,7 @@
                       [inputName]="inputName"
                       (outputOnInput)="onChange()"
                       (click)="onInputClick($event)"
-                      [(ngModel)]="selectedValue.caption">
+                      [(ngModel)]="textInputValue">
     </terra-text-input>
     
     <!-- suggestions -->
@@ -33,7 +33,7 @@
               (click)="select(item)"
               [ngClass]="{active: item.value === selectedValue?.value, selected: item.value === tmpSelectedValue?.value}">
             <span class="{{item.icon}}" *ngIf="item.icon"></span>
-            <img *ngIf="item.imgsrc" src="{{item.imgsrc}}" />
+            <img *ngIf="item.imgsrc" src="{{item.imgsrc}}"/>
             <span [innerHtml]="item.caption"></span>
         </span>
     </div>

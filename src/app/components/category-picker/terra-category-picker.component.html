@@ -8,7 +8,7 @@
     </terra-text-input>
     <div *ngIf="toggleTree">
         <terra-node-tree [inputShowSearch]="false"
-                         [inputConfig]="categoryTreeConfig">
+                         [inputConfig]="nestedTreeConfig">
         </terra-node-tree>
         <terra-base-toolbar>
             <terra-button inputTooltipText="{{'terraCategoryPicker.select' | translate:lang}}"
