@@ -1,3 +1,9 @@
+#Unreleased
+
+### Bug Fixes
+* **terra-breadcrumbs** fix context menu position.
+* **terra-breadcrumbs** automatically scroll into view for active breadcrumb.
+
 <a name="2.3.16"></a>
 # 2.3.16 (29.08.2018)
 
