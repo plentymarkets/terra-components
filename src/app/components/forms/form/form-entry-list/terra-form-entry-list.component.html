@@ -3,7 +3,7 @@
         <terra-form-entry
             [inputFormField]="inputFormField"
             [inputFormValue]="entry.value"
-            [inputScope]="inputScope"
+            [inputScope]="itemScopes[i]"
             [inputControlTypeMap]="inputControlTypeMap"
             [inputIsDisabled]="inputIsDisabled"
             (outputFormValueChanged)="onElementValueChanged(entry.key, $event)"></terra-form-entry>
