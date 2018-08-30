@@ -79,9 +79,16 @@ export class TerraBreadcrumbsComponent
         this.breadcrumbsService.closeBreadcrumb(container, breadcrumb);
     }
 
-    protected checkActiveRoute(bcc:TerraBreadcrumb):boolean
+    protected checkActiveRoute(bcc:TerraBreadcrumb, container:HTMLLIElement):boolean
     {
-        return this.breadcrumbsService.checkActiveRoute(bcc);
+        let isRouteActive:boolean = this.breadcrumbsService.checkActiveRoute(bcc);
+
+        if(!isNullOrUndefined(container) && isRouteActive)
+        {
+            container.scrollIntoView();
+        }
+
+        return isRouteActive;
     }
 
     protected calculatePosition(container:HTMLLIElement, contextMenu:HTMLUListElement):void
