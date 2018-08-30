@@ -4907,36 +4907,28 @@ $icon-zoom: "\eaa5";
 
 
 
-// function group icon colors
+////// Function group icon colors ///////
 
-// Add: Neu, Erstellen, Generieren, Hinzufügen, Success, Erfolg, Notiz, Hinzufügen
+// Active: Hover, Fokus, Highlight, Aktiv
+
+// Add: Neu, Erstellen, Generieren, Hinzufügen, Success, Erfolg, Übernehmen, Bestätigen, Anwenden, Speichern, Ermitteln, Auswählen
 terra-button[inputicon="icon-add"] .btn, div.adminActionIcon.icon-add, button.adminButton[data-icon="icon-add"], %icon-add
 {
     background-color: var(--color-group-add) !important;
 }
 
-// Active: Hover, Fokus, Highlight, Aktiv
-
-
-// Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen
-
+// Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen, Problem
 
 // Action: Bearbeiten, Kopieren, Einfügen, Ausschneiden, Umwandeln, Transformieren, Ändern, Trennen, Splitten, Verbinden, Verknüpfen
 
+// Warning: Warnung, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
 
-// Confirm: Übernehmen, Bestätigen, Anwenden, Speichern, Ermitteln, Auswählen
-
-
-// Info: Vorschau, Anzeigen, Information, Warnung, Notiz, Anzeigen
-
+// Info: Vorschau, Anzeigen, Information
 
 // Transfer: Senden (E-Mail), Verschicken, Drucken, Download, Herunterladen, Export, Upload, Datei auswählen, Import
 
-
 /* Navigation:
    Abbrechen, Schließen, Zoom In/Zoom Out, Play/Reset/Forward/Back/Pause, Verbergen, Einstellungen, Einrichten, Gruppenfunktionen,
-   Öffnen, Suchen, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
-*/
-
+   Öffnen, Suchen */
 
 // Disabled: Deaktiviert, Nicht auswählbar
