@@ -2,48 +2,46 @@ body
 {
     &.dark-standard
     {
-        // function groups
+        ////// Function Groups //////
     
         // Add
-        --color-add-light: #9eff9a; // deprecated
-        --color-add: #6AD26A; // deprecated
-        --color-add-dark: #33a03c; // deprecated
         --color-group-add: #6AD26A;
+        --color-add-light: var(--color-group-add); // deprecated
+        --color-add: var(--color-group-add); // deprecated
+        --color-add-dark: var(--color-group-add); // deprecated
     
         // Active
-        --color-active-light: #6de5ff; // deprecated
-        --color-active: #24B3E0; // deprecated
-        --color-active-dark: #0083ae; // deprecated
         --color-group-active: #24B3E0;
-    
-        // Alert
-        --color-alert-light: #ff5d63; // deprecated
-        --color-alert: #F11539; // deprecated
-        --color-alert-dark: #b60013; // deprecated
-        --color-group-alert: #F11539;
-    
-        // Action
-        --color-accent-light: #ffff91; // deprecated
-        --color-accent: #FDEA5F; // deprecated
-        --color-accent-dark: #c7b82b; // deprecated
-        --color-group-action: #FDEA5F;
+        --color-active-light: var(--color-group-active); // deprecated
+        --color-active: var(--color-group-active); // deprecated
+        --color-active-dark: var(--color-group-active); // deprecated
         
+        // Alert
+        --color-group-alert: #F11539;
+        --color-alert-light: var(--color-group-alert); // deprecated
+        --color-alert: var(--color-group-alert); // deprecated
+        --color-alert-dark: var(--color-group-alert); // deprecated
+        
+        // Action
+        --color-group-action: #FDEA5F;
+        --color-accent-light: var(--color-group-action); // deprecated
+        --color-accent: var(--color-group-action); // deprecated
+        --color-accent-dark: var(--color-group-action); // deprecated
         
         // Warning
-        --color-group-warning: #ffb23e;
+        --color-group-warning: #FFB233;
         
         // Info
-        --color-group-info: #4a4fe4;
+        --color-group-info: #4A4FE4;
         
         // Transfer
-        --color-group-transfer: #ce65f5;
+        --color-group-transfer: #CE65F5;
         
         // Navigation
         --color-group-navigation: #636671;
         
         // Disabled
         --color-group-disabled: #E5E5E5;
-        
         
         //backgrounds and structural elements
         --color-structure-0: #FFFFFF; //0 white
