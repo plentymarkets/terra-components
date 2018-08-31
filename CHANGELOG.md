@@ -1,5 +1,8 @@
 #Unreleased
 
+### Feature
+* **terra-indicator** added TerraIndicatorLabelTypeEnum and TerraIndicatorInterface for clearer usage
+
 ### Bug Fixes
 * **terra-breadcrumbs** fix context menu position.
 * **terra-breadcrumbs** automatically scroll into view for active breadcrumb.
@@ -103,7 +106,6 @@
 ### Features
 * **terra-loading-spinner** added public getter for `isLoading` property, since this information is a global one and can be used in any component to disable elements while a request is pending.
 * **terra-base-service** added public getter for `isLoading` property to be available in every specific service extension.
-* **terra-indicator** added TerraIndicatorLabelTypeEnum and TerraIndicatorInterface for clearer usage
 
 <a name="2.3.2"></a>
 # 2.3.2 (20.07.2018)
