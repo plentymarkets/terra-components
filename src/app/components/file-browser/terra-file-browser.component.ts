@@ -20,7 +20,7 @@ import { isNullOrUndefined } from 'util';
         require('./terra-file-browser.component.glob.scss').toString()
     ]
 })
-export class TerraFileBrowserComponent
+export class TerraFileBrowserComponent implements OnInit
 {
     @Input()
     public set inputAllowedExtensions(extensions:Array<string>)
@@ -49,8 +49,6 @@ export class TerraFileBrowserComponent
     public set inputStorageServices(services:Array<TerraBaseStorageService>)
     {
         this.storageServices = services;
-
-        this.splitConfig.init(this.inputStorageServices);
     }
 
     public get inputStorageServices():Array<TerraBaseStorageService>
@@ -66,6 +64,11 @@ export class TerraFileBrowserComponent
     constructor(public splitConfig:FileBrowserSplitConfig,
                 private frontendStorageService:TerraFrontendStorageService)
     {
+    }
+
+    public ngOnInit():void
+    {
+        this.splitConfig.init(this.inputStorageServices);
     }
 
     public selectUrl(publicUrl:string):void
