@@ -5157,6 +5157,25 @@ terra-button[inputicon="icon-visibility_private"] .btn, div.adminActionIcon.icon
 }
 
 // Transfer: Senden (E-Mail), Verschicken, Drucken, Download, Herunterladen, Export, Upload, Datei auswählen, Import
+terra-button[inputicon="icon-open_external_link"] .btn, div.adminActionIcon.icon-open_external_link, button.adminButton[data-icon="icon-open_external_link"], %icon-open_external_link,
+terra-button[inputicon="icon-customer_link"] .btn, div.adminActionIcon.icon-customer_link, button.adminButton[data-icon="icon-customer_link"], %icon-customer_link,
+terra-button[inputicon="icon-data_export"] .btn, div.adminActionIcon.icon-data_export, button.adminButton[data-icon="icon-data_export"], %icon-data_export,
+terra-button[inputicon="icon-design_export"] .btn, div.adminActionIcon.icon-design_export, button.adminButton[data-icon="icon-design_export"], %icon-design_export,
+terra-button[inputicon="icon-design_import"] .btn, div.adminActionIcon.icon-design_import, button.adminButton[data-icon="icon-design_import"], %icon-design_import,
+terra-button[inputicon="icon-design_publish"] .btn, div.adminActionIcon.icon-design_publish, button.adminButton[data-icon="icon-design_publish"], %icon-design_publish,
+terra-button[inputicon="icon-design_transfer"] .btn, div.adminActionIcon.icon-design_transfer, button.adminButton[data-icon="icon-design_transfer"], %icon-design_transfer,
+terra-button[inputicon="icon-download"] .btn, div.adminActionIcon.icon-download, button.adminButton[data-icon="icon-download"], %icon-download,
+terra-button[inputicon="icon-email_send"] .btn, div.adminActionIcon.icon-email_send, button.adminButton[data-icon="icon-email_send"], %icon-email_send,
+terra-button[inputicon="icon-export"] .btn, div.adminActionIcon.icon-export, button.adminButton[data-icon="icon-export"], %icon-export,
+terra-button[inputicon="icon-file_attachment"] .btn, div.adminActionIcon.icon-file_attachment, button.adminButton[data-icon="icon-file_attachment"], %icon-file_attachment,
+terra-button[inputicon="icon-print"] .btn, div.adminActionIcon.icon-print, button.adminButton[data-icon="icon-print"], %icon-print,
+terra-button[inputicon="icon-send_email"] .btn, div.adminActionIcon.icon-send_email, button.adminButton[data-icon="icon-send_email"], %icon-send_email,
+terra-button[inputicon="icon-upload"] .btn, div.adminActionIcon.icon-upload, button.adminButton[data-icon="icon-upload"], %icon-upload,
+terra-button[inputicon="icon-vcard"] .btn, div.adminActionIcon.icon-vcard, button.adminButton[data-icon="icon-vcard"], %icon-vcard,
+terra-button[inputicon="icon-ticket_link"] .btn, div.adminActionIcon.icon-ticket_link, button.adminButton[data-icon="icon-ticket_link"], %icon-ticket_link
+{
+    background-color: var(--color-group-transfer) !important;
+}
 
 /* Navigation:
    Abbrechen, Schließen, Zoom In/Zoom Out, Play/Reset/Forward/Back/Pause, Verbergen, Einstellungen, Einrichten, Gruppenfunktionen,
