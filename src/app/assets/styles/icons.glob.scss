@@ -5043,6 +5043,7 @@ terra-button[inputicon="icon-process_polling"] .btn, div.adminActionIcon.icon-pr
 terra-button[inputicon="icon-process_scan"] .btn, div.adminActionIcon.icon-process_scan, button.adminButton[data-icon="icon-process_scan"], %icon-process_scan
 {
     background-color: var(--color-group-action) !important;
+    color: var(--color-structure-11) !important;
 }
 
 // Warning: Warnung, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
