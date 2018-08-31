@@ -4970,8 +4970,86 @@ terra-button[inputicon="icon-telephone_hangup"] .btn, div.adminActionIcon.icon-t
 }
 
 // Action: Bearbeiten, Kopieren, Einfügen, Ausschneiden, Umwandeln, Transformieren, Ändern, Trennen, Splitten, Verbinden, Verknüpfen
+terra-button[inputicon="icon-link"] .btn, div.adminActionIcon.icon-link, button.adminButton[data-icon="icon-link"], %icon-link
+terra-button[inputicon="icon-reg_expr"] .btn, div.adminActionIcon.icon-reg_expr, button.adminButton[data-icon="icon-reg_expr"], %icon-reg_expr,
+terra-button[inputicon="icon-colorpicker"] .btn, div.adminActionIcon.icon-colorpicker, button.adminButton[data-icon="icon-colorpicker"], %icon-colorpicker,
+terra-button[inputicon="icon-unlock_contact"] .btn, div.adminActionIcon.icon-unlock_contact, button.adminButton[data-icon="icon-unlock_contact"], %icon-unlock_contact,
+terra-button[inputicon="icon-exch_adre_type"] .btn, div.adminActionIcon.icon-exch_adre_type, button.adminButton[data-icon="icon-exch_adre_type"], %icon-exch_adre_type,
+terra-button[inputicon="icon-align_center"] .btn, div.adminActionIcon.icon-align_center, button.adminButton[data-icon="icon-align_center"], %icon-align_center,
+terra-button[inputicon="icon-align_justify"] .btn, div.adminActionIcon.icon-align_justify, button.adminButton[data-icon="icon-align_justify"], %icon-align_justify,
+terra-button[inputicon="icon-align_left"] .btn, div.adminActionIcon.icon-align_left, button.adminButton[data-icon="icon-align_left"], %icon-align_left,
+terra-button[inputicon="icon-align_right"] .btn, div.adminActionIcon.icon-align_right, button.adminButton[data-icon="icon-align_right"], %icon-align_right,
+terra-button[inputicon="icon-text_bold"] .btn, div.adminActionIcon.icon-text_bold, button.adminButton[data-icon="icon-text_bold"], %icon-text_bold,
+terra-button[inputicon="icon-text_italic"] .btn, div.adminActionIcon.icon-text_italic, button.adminButton[data-icon="icon-text_italic"], %icon-text_italic,
+terra-button[inputicon="icon-text_strikethrough"] .btn, div.adminActionIcon.icon-text_strikethrough, button.adminButton[data-icon="icon-text_strikethrough"], %icon-text_strikethrough,
+terra-button[inputicon="icon-text_underline"] .btn, div.adminActionIcon.icon-text_underline, button.adminButton[data-icon="icon-text_underline"], %icon-text_underline,
+terra-button[inputicon="icon-design_inline_edit"] .btn, div.adminActionIcon.icon-design_inline_edit, button.adminButton[data-icon="icon-design_inline_edit"], %icon-design_inline_edit,
+terra-button[inputicon="icon-plugin_productive_deploy"] .btn, div.adminActionIcon.icon-plugin_productive_deploy, button.adminButton[data-icon="icon-plugin_productive_deploy"], %icon-plugin_productive_deploy,
+terra-button[inputicon="icon-plugin_to_productive"] .btn, div.adminActionIcon.icon-plugin_to_productive, button.adminButton[data-icon="icon-plugin_to_productive"], %icon-plugin_to_productive,
+terra-button[inputicon="icon-plugin_to_stage"] .btn, div.adminActionIcon.icon-plugin_to_stage, button.adminButton[data-icon="icon-plugin_to_stage"], %icon-plugin_to_stage,
+terra-button[inputicon="icon-plugin_stage_deploy"] .btn, div.adminActionIcon.icon-plugin_stage_deploy, button.adminButton[data-icon="icon-plugin_stage_deploy"], %icon-plugin_stage_deploy,
+terra-button[inputicon="icon-category_edit"] .btn, div.adminActionIcon.icon-category_edit, button.adminButton[data-icon="icon-category_edit"], %icon-category_edit,
+terra-button[inputicon="icon-copy_clipboard"] .btn, div.adminActionIcon.icon-copy_clipboard, button.adminButton[data-icon="icon-copy_clipboard"], %icon-copy_clipboard,
+terra-button[inputicon="icon-copy"] .btn, div.adminActionIcon.icon-copy, button.adminButton[data-icon="icon-copy"], %icon-copy,
+terra-button[inputicon="icon-design_copy"] .btn, div.adminActionIcon.icon-design_copy, button.adminButton[data-icon="icon-design_copy"], %icon-design_copy,
+terra-button[inputicon="icon-edit_blog"] .btn, div.adminActionIcon.icon-edit_blog, button.adminButton[data-icon="icon-edit_blog"], %icon-edit_blog,
+terra-button[inputicon="icon-edit_listing"] .btn, div.adminActionIcon.icon-edit_listing, button.adminButton[data-icon="icon-edit_listing"], %icon-edit_listing,
+terra-button[inputicon="icon-edit"] .btn, div.adminActionIcon.icon-edit, button.adminButton[data-icon="icon-edit"], %icon-edit,
+terra-button[inputicon="icon-insert_after"] .btn, div.adminActionIcon.icon-insert_after, button.adminButton[data-icon="icon-insert_after"], %icon-insert_after,
+terra-button[inputicon="icon-insert_before"] .btn, div.adminActionIcon.icon-insert_before, button.adminButton[data-icon="icon-insert_before"], %icon-insert_before,
+terra-button[inputicon="icon-order_split"] .btn, div.adminActionIcon.icon-order_split, button.adminButton[data-icon="icon-order_split"], %icon-order_split,
+terra-button[inputicon="icon-plugin_copy_to_stage"] .btn, div.adminActionIcon.icon-plugin_copy_to_stage, button.adminButton[data-icon="icon-plugin_copy_to_stage"], %icon-plugin_copy_to_stage,
+terra-button[inputicon="icon-plugin_pull"] .btn, div.adminActionIcon.icon-plugin_pull, button.adminButton[data-icon="icon-plugin_pull"], %icon-plugin_pull,
+terra-button[inputicon="icon-plugin_push"] .btn, div.adminActionIcon.icon-plugin_push, button.adminButton[data-icon="icon-plugin_push"], %icon-plugin_push,
+terra-button[inputicon="icon-plugin_repo_fetch"] .btn, div.adminActionIcon.icon-plugin_repo_fetch, button.adminButton[data-icon="icon-plugin_repo_fetch"], %icon-plugin_repo_fetch,
+terra-button[inputicon="icon-image"] .btn, div.adminActionIcon.icon-image, button.adminButton[data-icon="icon-image"], %icon-image,
+terra-button[inputicon="icon-item_move"] .btn, div.adminActionIcon.icon-item_move, button.adminButton[data-icon="icon-item_move"], %icon-item_move,
+terra-button[inputicon="icon-order_multi"] .btn, div.adminActionIcon.icon-order_multi, button.adminButton[data-icon="icon-order_multi"], %icon-order_multi,
+terra-button[inputicon="icon-booking_carry_outpng"] .btn, div.adminActionIcon.icon-booking_carry_outpng, button.adminButton[data-icon="icon-booking_carry_outpng"], %icon-booking_carry_outpng,
+terra-button[inputicon="icon-booking_reset"] .btn, div.adminActionIcon.icon-booking_reset, button.adminButton[data-icon="icon-booking_reset"], %icon-booking_reset,
+terra-button[inputicon="icon-calculate_acquisition_pricepng"].btn, div.adminActionIcon.icon-calculate_acquisition_pricepng, button.adminButton[data-icon="icon-calculate_acquisition_pricepng"], %icon-calculate_acquisition_pricepng,
+terra-button[inputicon="icon-debug"] .btn, div.adminActionIcon.icon-debug, button.adminButton[data-icon="icon-debug"], %icon-debug,
+terra-button[inputicon="icon-design_inline_edit_toggle"] .btn, div.adminActionIcon.icon-design_inline_edit_toggle, button.adminButton[data-icon="icon-design_inline_edit_toggle"], %icon-design_inline_edit_toggle,
+terra-button[inputicon="icon-customer_new_password"] .btn, div.adminActionIcon.icon-customer_new_password, button.adminButton[data-icon="icon-customer_new_password"], %icon-customer_new_password,
+terra-button[inputicon="icon-filter"] .btn, div.adminActionIcon.icon-filter, button.adminButton[data-icon="icon-filter"], %icon-filter,
+terra-button[inputicon="icon-frontend_open"] .btn, div.adminActionIcon.icon-frontend_open, button.adminButton[data-icon="icon-frontend_open"], %icon-frontend_open,
+terra-button[inputicon="icon-item_scan"] .btn, div.adminActionIcon.icon-item_scan, button.adminButton[data-icon="icon-item_scan"], %icon-item_scan,
+terra-button[inputicon="icon-item_serial_number_register"] .btn, div.adminActionIcon.icon-item_serial_number_register, button.adminButton[data-icon="icon-item_serial_number_register"], %icon-item_serial_number_register,
+terra-button[inputicon="icon-item_serial_number"] .btn, div.adminActionIcon.icon-item_serial_number, button.adminButton[data-icon="icon-item_serial_number"], %icon-item_serial_number,
+terra-button[inputicon="icon-item_variation_distribute_quantity"] .btn, div.adminActionIcon.icon-item_variation_distribute_quantity, button.adminButton[data-icon="icon-item_variation_distribute_quantity"], %icon-item_variation_distribute_quantity,
+terra-button[inputicon="icon-item_variation_inheritance"] .btn, div.adminActionIcon.icon-item_variation_inheritance, button.adminButton[data-icon="icon-item_variation_inheritance"], %icon-item_variation_inheritance,
+terra-button[inputicon="icon-listing_direct_lister"] .btn, div.adminActionIcon.icon-listing_direct_lister, button.adminButton[data-icon="icon-listing_direct_lister"], %icon-listing_direct_lister,
+terra-button[inputicon="icon-listing_show_active"] .btn, div.adminActionIcon.icon-listing_show_active, button.adminButton[data-icon="icon-listing_show_active"], %icon-listing_show_active,
+terra-button[inputicon="icon-listing_template_transfer"] .btn, div.adminActionIcon.icon-listing_template_transfer, button.adminButton[data-icon="icon-listing_template_transfer"], %icon-listing_template_transfer,
+terra-button[inputicon="icon-listings_show"] .btn, div.adminActionIcon.icon-listings_show, button.adminButton[data-icon="icon-listings_show"], %icon-listings_show,
+terra-button[inputicon="icon-order_confirmation_create"] .btn, div.adminActionIcon.icon-order_confirmation_create, button.adminButton[data-icon="icon-order_confirmation_create"], %icon-order_confirmation_create,
+terra-button[inputicon="icon-order_mulit"] .btn, div.adminActionIcon.icon-order_mulit, button.adminButton[data-icon="icon-order_mulit"], %icon-order_mulit,
+terra-button[inputicon="icon-order_open"] .btn, div.adminActionIconicon-order_open, button.adminButton[data-icon="icon-order_open"], %icon-order_open,
+terra-button[inputicon="icon-order_parcel_service_change"] .btn, div.adminActionIcon.icon-order_parcel_service_change, button.adminButton[data-icon="icon-order_parcel_service_change"], %icon-order_parcel_service_change,
+terra-button[inputicon="icon-order_parcel_service_preset_change"] .btn, div.adminActionIcon.icon-order_parcel_service_preset_change, button.adminButton[data-icon="icon-order_parcel_service_preset_change"], %icon-order_parcel_service_preset_change,
+terra-button[inputicon="icon-order_return_create_edit"] .btn, div.adminActionIcon.icon-order_return_create_edit, button.adminButton[data-icon="icon-order_return_create_edit"], %icon-order_return_create_edit,
+terra-button[inputicon="icon-payment_manual_booking"] .btn, div.adminActionIcon.icon-payment_manual_booking, button.adminButton[data-icon="icon-payment_manual_booking"], %icon-payment_manual_booking,
+terra-button[inputicon="icon-plugin_pull_productive"] .btn, div.adminActionIcon.icon-plugin_pull_productive, button.adminButton[data-icon="icon-plugin_pull_productive"], %icon-plugin_pull_productive,
+terra-button[inputicon="icon-plugin_pull_stage"] .btn, div.adminActionIcon.icon-plugin_pull_stage, button.adminButton[data-icon="icon-plugin_pull_stage"], %icon-plugin_pull_stage,
+terra-button[inputicon="icon-process_dialog"] .btn, div.adminActionIcon.icon-process_dialog, button.adminButton[data-icon="icon-process_dialog"], %icon-process_dialog,
+terra-button[inputicon="icon-process_end"] .btn, div.adminActionIcon.icon-process_end, button.adminButton[data-icon="icon-process_end"], %icon-process_end,
+terra-button[inputicon="icon-process_error_grey"] .btn, div.adminActionIcon.icon-process_error_grey, button.adminButton[data-icon="icon-process_error_grey"], %icon-process_error_grey,
+terra-button[inputicon="icon-process_error_red"] .btn, div.adminActionIcon.icon-process_error_red, button.adminButton[data-icon="icon-process_error_red"], %icon-process_error_red,
+terra-button[inputicon="icon-process_error"] .btn, div.adminActionIcon.icon-process_error, button.adminButton[data-icon="icon-process_error"], %icon-process_error,
+terra-button[inputicon="icon-process_jump"] .btn, div.adminActionIcon.icon-process_jump, button.adminButton[data-icon="icon-process_jump"], %icon-process_jump,
+terra-button[inputicon="icon-process_loop"] .btn, div.adminActionIcon.icon-process_loop, button.adminButton[data-icon="icon-process_loop"], %icon-process_loop,
+terra-button[inputicon="icon-process_order_status"] .btn, div.adminActionIcon.icon-process_order_status, button.adminButton[data-icon="icon-process_order_status"], %icon-process_order_status,
+terra-button[inputicon="icon-process_polling"] .btn, div.adminActionIcon.icon-process_polling, button.adminButton[data-icon="icon-process_polling"], %icon-process_polling,
+terra-button[inputicon="icon-process_scan"] .btn, div.adminActionIcon.icon-process_scan, button.adminButton[data-icon="icon-process_scan"], %icon-process_scan
+{
+    background-color: var(--color-group-action) !important;
+}
 
 // Warning: Warnung, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
+terra-button[inputicon="icon-warning"] .btn, div.adminActionIcon.icon-warning, button.adminButton[data-icon="icon-warning"], %icon-warning
+{
+    background-color: var(--color-group-warning) !important;
+}
 
 // Info: Vorschau, Anzeigen, Information
 terra-button[inputicon="icon-active_doc"] .btn, div.adminActionIcon.icon-active_doc, button.adminButton[data-icon="icon-active_doc"], %icon-active_doc,
