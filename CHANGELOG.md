@@ -1,4 +1,5 @@
-#Unreleased
+<a name="2.3.17"></a>
+# 2.3.17 (31.08.2018)
 
 ### Feature
 * **terra-indicator** added TerraIndicatorLabelTypeEnum and TerraIndicatorInterface for clearer usage
