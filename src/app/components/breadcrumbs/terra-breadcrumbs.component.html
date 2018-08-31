@@ -9,12 +9,12 @@
                        [isDisabled]="isTooltipDisabled"
                        [container]="'body'"
                        (mouseover)="checkTooltip(breadcrumbName)"
-                       [ngClass]="{'active' : checkActiveRoute(container.currentSelectedBreadcrumb)}">
+                       [ngClass]="{'active' : checkActiveRoute(container.currentSelectedBreadcrumb, breadcrumbContainer)}">
                         {{container.currentSelectedBreadcrumb.name}}
                     </a>
                     <a class="icon-caret" *ngIf="container.visibleBreadcrumbsCount > 1" (mouseenter)="calculatePosition(breadcrumbContainer, contextMenu)">
                         <ul class="context-menu" [ngStyle]="{'left': mouseLeft}" #contextMenu>
-                            <ng-template ngFor let-breadcrumb [ngForOf]="container.breadcrumbList" let-i="index">
+                            <ng-template ngFor let-breadcrumb [ngForOf]="container.breadcrumbList">
                                 <li *ngIf="!breadcrumb.isHidden">
                                     <a [routerLink]="breadcrumb.routerLink">
                                         {{ breadcrumb.name }}
