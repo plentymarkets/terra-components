@@ -4907,9 +4907,9 @@ $icon-zoom: "\eaa5";
 
 
 
-// function group icon colors
+////// function group icon colors ///////
 
-// Add: Neu, Erstellen, Generieren, Hinzufügen, Success, Erfolg, Notiz, Hinzufügen
+// Add: Neu, Erstellen, Generieren, Hinzufügen, Success, Erfolg, Übernehmen, Bestätigen, Anwenden, Speichern, Ermitteln, Auswählen
 terra-button[inputicon="icon-add"] .btn, div.adminActionIcon.icon-add, button.adminButton[data-icon="icon-add"], %icon-add,
 terra-button[inputicon="icon-order_new"] .btn, div.adminActionIcon.icon-order_new, button.adminButton[data-icon="icon-order_new"], %icon-order_new,
 terra-button[inputicon="icon-gutschrift_erzeugen"] .btn, div.adminActionIcon.icon-gutschrift_erzeugen, button.adminButton[data-icon="icon-gutschrift_erzeugen"], %icon-gutschrift_erzeugen,
@@ -4947,15 +4947,12 @@ terra-button[inputicon="icon-payment_assign"] .btn, div.adminActionIcon.icon-pay
 terra-button[inputicon="icon-ticket_add_faq"] .btn, div.adminActionIcon.icon-ticket_add_faq, button.adminButton[data-icon="icon-ticket_add_faq"], %icon-ticket_add_faq,
 terra-button[inputicon="icon-ticket_message_private"] .btn, div.adminActionIcon.icon-ticket_message_private, button.adminButton[data-icon="icon-ticket_message_private"], %icon-ticket_message_private,
 terra-button[inputicon="icon-ticket_message"] .btn, div.adminActionIcon.icon-ticket_message, button.adminButton[data-icon="icon-ticket_message"], %icon-ticket_message
-{
-    background-color: var(--color-group-add) !important;
-}
+
 
 // Active: Hover, Fokus, Highlight, Aktiv
 
 
-// Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen
-
+// Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen, Problem
 
 
 //icon-gutschrift_stornieren, icon-gutschrift_stornieren, icon-gutschrift_stornieren, icon-gutschrift_stornieren
@@ -4986,20 +4983,14 @@ terra-button[inputicon="icon-ticket_message"] .btn, div.adminActionIcon.icon-tic
 
 // Action: Bearbeiten, Kopieren, Einfügen, Ausschneiden, Umwandeln, Transformieren, Ändern, Trennen, Splitten, Verbinden, Verknüpfen
 
+// Warning: Warnung, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
 
-// Confirm: Übernehmen, Bestätigen, Anwenden, Speichern, Ermitteln, Auswählen
-
-
-// Info: Vorschau, Anzeigen, Information, Warnung, Notiz, Anzeigen
-
+// Info: Vorschau, Anzeigen, Information
 
 // Transfer: Senden (E-Mail), Verschicken, Drucken, Download, Herunterladen, Export, Upload, Datei auswählen, Import
 
-
 /* Navigation:
    Abbrechen, Schließen, Zoom In/Zoom Out, Play/Reset/Forward/Back/Pause, Verbergen, Einstellungen, Einrichten, Gruppenfunktionen,
-   Öffnen, Suchen, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
-*/
-
+   Öffnen, Suchen */
 
 // Disabled: Deaktiviert, Nicht auswählbar
