@@ -4947,39 +4947,27 @@ terra-button[inputicon="icon-payment_assign"] .btn, div.adminActionIcon.icon-pay
 terra-button[inputicon="icon-ticket_add_faq"] .btn, div.adminActionIcon.icon-ticket_add_faq, button.adminButton[data-icon="icon-ticket_add_faq"], %icon-ticket_add_faq,
 terra-button[inputicon="icon-ticket_message_private"] .btn, div.adminActionIcon.icon-ticket_message_private, button.adminButton[data-icon="icon-ticket_message_private"], %icon-ticket_message_private,
 terra-button[inputicon="icon-ticket_message"] .btn, div.adminActionIcon.icon-ticket_message, button.adminButton[data-icon="icon-ticket_message"], %icon-ticket_message
-
+{
+    background-color: var(--color-group-add) !important;
+}
 
 // Active: Hover, Fokus, Highlight, Aktiv
 
-
 // Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen, Problem
-
-
-//icon-gutschrift_stornieren, icon-gutschrift_stornieren, icon-gutschrift_stornieren, icon-gutschrift_stornieren
-//
-//icon-icon-reversal_document-13, icon-icon-reversal_document-13, icon-icon-reversal_document-13, icon-icon-reversal_document-13
-//
-//icon-trash, icon-trash, icon-trash, icon-trash
-//
-//icon-delete, icon-delete, icon-delete, icon-delete
-//
-//icon-error, icon-error, icon-error, icon-error
-//
-//icon-filter_remove, icon-filter_remove, icon-filter_remove, icon-filter_remove
-//
-//icon-listing_remove, icon-listing_remove, icon-listing_remove, icon-listing_remove
-//
-//icon-preview_not_available, icon-preview_not_available, icon-preview_not_available, icon-preview_not_available
-//
-//icon-problem, icon-problem, icon-problem, icon-problem
-//
-//icon-reorder_not_possible, icon-reorder_not_possible, icon-reorder_not_possible, icon-reorder_not_possible
-//
-//icon-telephone_hangup, icon-telephone_hangup, icon-telephone_hangup, icon-telephone_hangup
-
-
-
-
+terra-button[inputicon="icon-gutschrift_stornieren"] .btn, div.adminActionIcon.icon-gutschrift_stornieren, button.adminButton[data-icon="icon-gutschrift_stornieren"], %icon-gutschrift_stornieren,
+terra-button[inputicon="icon-icon-reversal_document-13"] .btn, div.adminActionIcon.icon-icon-reversal_document-13, button.adminButton[data-icon="icon-icon-reversal_document-13"], %icon-icon-reversal_document-13,
+terra-button[inputicon="icon-trash"] .btn, div.adminActionIcon.icon-trash, button.adminButton[data-icon="icon-trash"], %icon-trash,
+terra-button[inputicon="icon-delete"] .btn, div.adminActionIcon.icon-delete, button.adminButton[data-icon="icon-delete"], %icon-delete,
+terra-button[inputicon="icon-error"] .btn, div.adminActionIcon.icon-error, button.adminButton[data-icon="icon-error"], %icon-error,
+terra-button[inputicon="icon-filter_remove"] .btn, div.adminActionIcon.icon-filter_remove, button.adminButton[data-icon="icon-filter_remove"], %icon-filter_remove,
+terra-button[inputicon="icon-listing_remove"] .btn, div.adminActionIcon.icon-listing_remove, button.adminButton[data-icon="icon-listing_remove"], %icon-listing_remove,
+terra-button[inputicon="icon-preview_not_available"] .btn, div.adminActionIcon.icon-preview_not_available, button.adminButton[data-icon="icon-preview_not_available"], %icon-preview_not_available,
+terra-button[inputicon="icon-problem"] .btn, div.adminActionIcon.icon-problem, button.adminButton[data-icon="icon-problem"], %icon-problem,
+terra-button[inputicon="icon-reorder_not_possible"] .btn, div.adminActionIcon.icon-reorder_not_possible, button.adminButton[data-icon="icon-reorder_not_possible"], %icon-reorder_not_possible,
+terra-button[inputicon="icon-telephone_hangup"] .btn, div.adminActionIcon.icon-telephone_hangup, button.adminButton[data-icon="icon-telephone_hangup"], %icon-telephone_hangup
+{
+    background-color: var(--color-group-alert) !important;
+}
 
 // Action: Bearbeiten, Kopieren, Einfügen, Ausschneiden, Umwandeln, Transformieren, Ändern, Trennen, Splitten, Verbinden, Verknüpfen
 
