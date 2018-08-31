@@ -1,3 +1,8 @@
+#unreleased
+
+### Bug Fixes
+* **terra-note-editor** fixed issue for saving notes.
+
 <a name="2.3.17"></a>
 # 2.3.17 (31.08.2018)
 
