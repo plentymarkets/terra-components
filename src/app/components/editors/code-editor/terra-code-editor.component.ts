@@ -10,7 +10,9 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
 import { TerraButtonInterface } from '../../../../';
 import { isNullOrUndefined } from 'util';
-import { XmlParser } from '@angular/compiler/src/ml_parser/xml_parser';
+import { HtmlLinter } from './helper/html-linter.helper';
+import { HtmlLinterRule } from './helper/html-linter-rule.enum';
+import { HtmlLinterMessageInterface } from './helper/html-linter-message.interface';
 
 @Component({
     selector:  'terra-code-editor',
@@ -44,6 +46,8 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     private isInitialized:boolean = false;
 
+    private linter:HtmlLinter;
+
     constructor(protected translation:TranslationService, protected myElement:ElementRef)
     {
         super(translation, myElement);
@@ -73,6 +77,14 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
                 }
             }
         };
+
+        this.linter = new HtmlLinter([
+            HtmlLinterRule.attrUnsafeChars,
+            HtmlLinterRule.doctypeHtml5,
+            HtmlLinterRule.inlineScriptDisabled,
+            HtmlLinterRule.tagPair,
+            HtmlLinterRule.styleDisabled
+        ]);
     }
 
     public writeValue(value:string):void
@@ -141,7 +153,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         {
             if ( this.validateMarkup() )
             {
-                this.value = this.rawContent;
+                this.value = this.safeHtml(this.rawContent);
                 this.onChangeCallback(this.value);
             }
         }
@@ -211,35 +223,32 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     private validateMarkup():boolean
     {
-        const parser:DOMParser           = new DOMParser();
-        const doc:Document               = parser.parseFromString( this.rawContent, 'application/xml');
-        const errors:NodeListOf<Element> = doc.getElementsByTagName('parsererror');
+        this.isValidMarkup = true;
+
+        let errors:Array<HtmlLinterMessageInterface> = this.linter.verify(
+            '<div>' + this.rawContent + '</div>'
+        );
 
         if ( errors.length > 0 )
         {
-            const error:Element = errors[0];
-
-            if ( error.querySelector('div') )
-            {
-                this.invalidMarkupHint = error.querySelector('div').textContent;
-            }
-            else if ( error.querySelector('sourcetext') )
-            {
-                this.invalidMarkupHint = error.querySelector('sourcetext').textContent;
-            }
-            else
-            {
-                this.invalidMarkupHint = error.textContent;
-            }
-
-            this.invalidMarkupHint = this.invalidMarkupHint.replace(/\n/g, '<br>');
             this.isValidMarkup = false;
-        }
-        else
-        {
-            this.isValidMarkup = true;
+            this.invalidMarkupHint = this.translation.translate(
+                'terraCodeEditor.linterMessage',
+                {
+                    line: errors[0].line,
+                    col: errors[0].col,
+                    message: this.translation.translate('terraCodeEditor.linterRules.' + errors[0].rule )
+                }
+            );
         }
 
         return this.isValidMarkup;
+    }
+
+    private safeHtml(input:string):string
+    {
+        let parser:DOMParser = new DOMParser();
+        let doc:HTMLDocument = parser.parseFromString(input, 'text/html');
+        return doc.body.innerHTML;
     }
 }
