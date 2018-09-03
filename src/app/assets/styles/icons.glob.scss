@@ -5340,6 +5340,9 @@ terra-button[inputicon="icon-ticket_mine"] .btn, div.adminActionIcon.icon-ticket
 terra-button[inputicon="icon-ticket_show_parent"] .btn, div.adminActionIcon.icon-ticket_show_parent,  button.adminButton[data-icon="icon-ticket_show_parent"],  %icon-ticket_show_parent,
 terra-button[inputicon="icon-ticket_show"] .btn, div.adminActionIcon.icon-ticket_show, button.adminButton[data-icon="icon-ticket_show"], %icon-ticket_show,
 terra-button[inputicon="icon-user_my_account"] .btn, div.adminActionIcon.icon-user_my_account, button.adminButton[data-icon="icon-user_my_account"], %icon-user_my_account
+{
+    background-color: var(--color-group-navigation) !important;
+}
 
 // Disabled: Deaktiviert, Nicht auswählbar
 terra-button[inputicon="icon-box_minus_disabled"], .btn, div.adminActionIcon.icon-box_minus_disabled, button.adminButton[data-icon="icon-box_minus_disabled"], %icon-box_minus_disabled,
