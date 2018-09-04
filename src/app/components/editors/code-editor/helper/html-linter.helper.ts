@@ -10,7 +10,7 @@ export class HtmlLinter
     {
         Object.keys(HtmlLinterRule).forEach((ruleKey:HtmlLinterRule) =>
         {
-            let rule:string = HtmlLinterRule[ruleKey];
+            const rule:string = HtmlLinterRule[ruleKey];
             this.rules[rule] = rules.indexOf(rule) >= 0;
         });
     }
