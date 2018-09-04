@@ -93,21 +93,24 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         // check if value is assigned first (initially)
         if (!this.isInitialized)
         {
-            // check if editor will change the markup
-            this.checkCodeFormat()
-                .then((hasChanges:boolean) =>
-                {
-                    // show raw content if editor will change the markup
-                    this.showCodeView   = hasChanges;
-                    this.rawContent     = value;
-                    this.editorContent  = value;
-
-                    // wait until next tick to avoid emitting changes when initially assigning values
-                    setTimeout(() =>
+            this.editorContent = value;
+            this.rawContent    = value;
+            setTimeout(() =>
+            {
+                // check if editor will change the markup
+                this.checkCodeFormat()
+                    .then((hasChanges:boolean) =>
                     {
-                        this.isInitialized  = true;
+                        // show raw content if editor will change the markup
+                        this.showCodeView   = hasChanges;
+
+                        // wait until next tick to avoid emitting changes when initially assigning values
+                        setTimeout(() =>
+                        {
+                            this.isInitialized  = true;
+                        });
                     });
-                });
+            });
         }
     }
 
