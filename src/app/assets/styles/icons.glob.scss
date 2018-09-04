@@ -4949,9 +4949,8 @@ terra-button[inputicon="icon-ticket_message_private"] .btn, div.adminActionIcon.
 terra-button[inputicon="icon-ticket_message"] .btn, div.adminActionIcon.icon-ticket_message, button.adminButton[data-icon="icon-ticket_message"], %icon-ticket_message
 {
     background-color: var(--color-group-add) !important;
+    color: var(--color-structure-0);
 }
-
-// Active: Hover, Fokus, Highlight, Aktiv
 
 // Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen, Problem
 terra-button[inputicon="icon-gutschrift_stornieren"] .btn, div.adminActionIcon.icon-gutschrift_stornieren, button.adminButton[data-icon="icon-gutschrift_stornieren"], %icon-gutschrift_stornieren,
@@ -5344,9 +5343,29 @@ terra-button[inputicon="icon-user_my_account"] .btn, div.adminActionIcon.icon-us
     background-color: var(--color-group-navigation) !important;
 }
 
-// Disabled: Deaktiviert, Nicht auswählbar
-terra-button[inputicon="icon-box_minus_disabled"] .btn, div.adminActionIcon.icon-box_minus_disabled, button.adminButton[data-icon="icon-box_minus_disabled"], %icon-box_minus_disabled,
-terra-button[inputicon="icon-box_plus_disabled"] .btn, div.adminActionIcon.icon-box_plus_disabled, button.adminButton[data-icon="icon-box_plus_disabled"], %icon-box_plus_disabled
+//terra-button[inputicon="icon-box_minus_disabled"] .btn, div.adminActionIcon.icon-box_minus_disabled, button.adminButton[data-icon="icon-box_minus_disabled"], %icon-box_minus_disabled,
+//terra-button[inputicon="icon-box_plus_disabled"] .btn, div.adminActionIcon.icon-box_plus_disabled, button.adminButton[data-icon="icon-box_plus_disabled"], %icon-box_plus_disabled
+////div.adminActionIcon.Disabled
+//{
+//    background-color: var(--color-group-disabled) !important;
+//    opacity: 1 !important;
+//}
+
+
+terra-button .btn, div.adminActionIcon, button.adminButton, terra-button .btn-handler
 {
-    background-color: var(--color-group-disabled) !important;
+    // Active: Hover, Fokus, Highlight, Aktiv
+    &:hover
+    {
+        background-color: var(--color-group-active) !important;
+        color: var(--color-structure-0) !important;
+    }
+
+    // Disabled: Deaktiviert, Nicht auswählbar
+    &.Disabled, &.disabled .btn
+    {
+        background-color: var(--color-group-disabled) !important;
+        color: var(--color-structure-8) !important;
+        opacity: 1 !important;
+    }
 }
