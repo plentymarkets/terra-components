@@ -1,4 +1,12 @@
-#Unreleased
+<a name="2.3.18"></a>
+# 2.3.18 (31.08.2018)
+
+### Bug Fixes
+* **terra-note-editor** fixed issue for saving notes.
+* **terra-file-browser** fixed issue when used in a multi split view.
+
+<a name="2.3.17"></a>
+# 2.3.17 (31.08.2018)
 
 ### Bug Fixes
 * **terra-breadcrumbs** fix context menu position.
