@@ -4946,10 +4946,12 @@ terra-button[inputicon="icon-item_plus"] .btn, div.adminActionIcon.icon-item_plu
 terra-button[inputicon="icon-payment_assign"] .btn, div.adminActionIcon.icon-payment_assign, button.adminButton[data-icon="icon-payment_assign"], %icon-payment_assign,
 terra-button[inputicon="icon-ticket_add_faq"] .btn, div.adminActionIcon.icon-ticket_add_faq, button.adminButton[data-icon="icon-ticket_add_faq"], %icon-ticket_add_faq,
 terra-button[inputicon="icon-ticket_message_private"] .btn, div.adminActionIcon.icon-ticket_message_private, button.adminButton[data-icon="icon-ticket_message_private"], %icon-ticket_message_private,
-terra-button[inputicon="icon-ticket_message"] .btn, div.adminActionIcon.icon-ticket_message, button.adminButton[data-icon="icon-ticket_message"], %icon-ticket_message
+terra-button[inputicon="icon-ticket_message"] .btn, div.adminActionIcon.icon-ticket_message, button.adminButton[data-icon="icon-ticket_message"], %icon-ticket_message,
+terra-button[inputicon="icon-create"] .btn, div.adminActionIcon.icon-create, button.adminButton[data-icon="icon-create"], %icon-create
 {
-    background-color: var(--color-group-add) !important;
+    // background-color: var(--color-group-add) !important;
     color: var(--color-structure-0);
+    border-bottom: 4px solid var(--color-group-add);
 }
 
 // Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen, Problem
@@ -4965,7 +4967,9 @@ terra-button[inputicon="icon-problem"] .btn, div.adminActionIcon.icon-problem, b
 terra-button[inputicon="icon-reorder_not_possible"] .btn, div.adminActionIcon.icon-reorder_not_possible, button.adminButton[data-icon="icon-reorder_not_possible"], %icon-reorder_not_possible,
 terra-button[inputicon="icon-telephone_hangup"] .btn, div.adminActionIcon.icon-telephone_hangup, button.adminButton[data-icon="icon-telephone_hangup"], %icon-telephone_hangup
 {
-    background-color: var(--color-group-alert) !important;
+    //background-color: var(--color-group-alert) !important;
+    color: var(--color-structure-0);
+    border-bottom: 4px solid var(--color-group-alert);
 }
 
 // Action: Bearbeiten, Kopieren, Einfügen, Ausschneiden, Umwandeln, Transformieren, Ändern, Trennen, Splitten, Verbinden, Verknüpfen
@@ -5041,14 +5045,20 @@ terra-button[inputicon="icon-process_order_status"] .btn, div.adminActionIcon.ic
 terra-button[inputicon="icon-process_polling"] .btn, div.adminActionIcon.icon-process_polling, button.adminButton[data-icon="icon-process_polling"], %icon-process_polling,
 terra-button[inputicon="icon-process_scan"] .btn, div.adminActionIcon.icon-process_scan, button.adminButton[data-icon="icon-process_scan"], %icon-process_scan
 {
-    background-color: var(--color-group-action) !important;
-    color: var(--color-structure-11) !important;
+    //background-color: var(--color-group-action) !important;
+    //color: var(--color-structure-11) !important;
+    
+    color: var(--color-structure-0);
+    border-bottom: 4px solid var(--color-group-action);
 }
 
 // Warning: Warnung, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
 terra-button[inputicon="icon-warning"] .btn, div.adminActionIcon.icon-warning, button.adminButton[data-icon="icon-warning"], %icon-warning
 {
-    background-color: var(--color-group-warning) !important;
+    //background-color: var(--color-group-warning) !important;
+    
+    color: var(--color-structure-0);
+    border-bottom: 4px solid var(--color-group-warning);
 }
 
 // Info: Vorschau, Anzeigen, Information
@@ -5152,7 +5162,10 @@ terra-button[inputicon="icon-ticket_todo"] .btn, div.adminActionIcon.icon-ticket
 terra-button[inputicon="icon-timer"] .btn, div.adminActionIcon.icon-timer, button.adminButton[data-icon="icon-timer"], %icon-timer
 terra-button[inputicon="icon-visibility_private"] .btn, div.adminActionIcon.icon-visibility_private, button.adminButton[data-icon="icon-visibility_private"], %icon-visibility_private
 {
-    background-color: var(--color-group-info) !important;
+    //background-color: var(--color-group-info) !important;
+    
+    color: var(--color-structure-0);
+    border-bottom: 4px solid var(--color-group-active);
 }
 
 // Transfer: Senden (E-Mail), Verschicken, Drucken, Download, Herunterladen, Export, Upload, Datei auswählen, Import
@@ -5173,7 +5186,10 @@ terra-button[inputicon="icon-upload"] .btn, div.adminActionIcon.icon-upload, but
 terra-button[inputicon="icon-vcard"] .btn, div.adminActionIcon.icon-vcard, button.adminButton[data-icon="icon-vcard"], %icon-vcard,
 terra-button[inputicon="icon-ticket_link"] .btn, div.adminActionIcon.icon-ticket_link, button.adminButton[data-icon="icon-ticket_link"], %icon-ticket_link
 {
-    background-color: var(--color-group-transfer) !important;
+    //background-color: var(--color-group-transfer) !important;
+    
+    color: var(--color-structure-0);
+    border-bottom: 4px solid var(--color-group-transfer);
 }
 
 /* Navigation:
@@ -5338,9 +5354,13 @@ terra-button[inputicon="icon-ticket_mine_todo"] .btn, div.adminActionIcon.icon-t
 terra-button[inputicon="icon-ticket_mine"] .btn, div.adminActionIcon.icon-ticket_mine, button.adminButton[data-icon="icon-ticket_mine"], %icon-ticket_mine,
 terra-button[inputicon="icon-ticket_show_parent"] .btn, div.adminActionIcon.icon-ticket_show_parent,  button.adminButton[data-icon="icon-ticket_show_parent"],  %icon-ticket_show_parent,
 terra-button[inputicon="icon-ticket_show"] .btn, div.adminActionIcon.icon-ticket_show, button.adminButton[data-icon="icon-ticket_show"], %icon-ticket_show,
-terra-button[inputicon="icon-user_my_account"] .btn, div.adminActionIcon.icon-user_my_account, button.adminButton[data-icon="icon-user_my_account"], %icon-user_my_account
+terra-button[inputicon="icon-user_my_account"] .btn, div.adminActionIcon.icon-user_my_account, button.adminButton[data-icon="icon-user_my_account"], %icon-user_my_account,
+terra-button[inputicon="icon-sort_asc"] .btn, div.adminActionIcon.icon-sort_asc, button.adminButton[data-icon="icon-sort_asc"], %icon-sort_asc
 {
-    background-color: var(--color-group-navigation) !important;
+    //background-color: var(--color-group-navigation) !important;
+    
+    color: var(--color-structure-0);
+    box-sizing: border-box;
 }
 
 //terra-button[inputicon="icon-box_minus_disabled"] .btn, div.adminActionIcon.icon-box_minus_disabled, button.adminButton[data-icon="icon-box_minus_disabled"], %icon-box_minus_disabled,
@@ -5352,8 +5372,15 @@ terra-button[inputicon="icon-user_my_account"] .btn, div.adminActionIcon.icon-us
 //}
 
 
-terra-button .btn, div.adminActionIcon, button.adminButton, terra-button .btn-handler
+// Brand
+
+
+
+terra-button .btn, div.adminActionIcon, button.adminButton, terra-button .btn-handler, div.terraIcon
 {
+    box-sizing: border-box;
+    background-color: var(--color-group-navigation) !important;
+    
     // Active: Hover, Fokus, Highlight, Aktiv
     &:hover
     {
@@ -5367,5 +5394,6 @@ terra-button .btn, div.adminActionIcon, button.adminButton, terra-button .btn-ha
         background-color: var(--color-group-disabled) !important;
         color: var(--color-structure-8) !important;
         opacity: 1 !important;
+        border: none;
     }
 }
