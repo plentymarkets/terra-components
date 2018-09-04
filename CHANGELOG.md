@@ -1,3 +1,19 @@
+<a name="2.3.18"></a>
+# 2.3.18 (31.08.2018)
+
+### Bug Fixes
+* **terra-note-editor** fixed issue for saving notes.
+* **terra-file-browser** fixed issue when used in a multi split view.
+
+<a name="2.3.17"></a>
+# 2.3.17 (31.08.2018)
+
+### Bug Fixes
+* **terra-breadcrumbs** fix context menu position.
+* **terra-breadcrumbs** automatically scroll into view for active breadcrumb.
+* **terra-file-browser** reset the file list when `inputStorageServices` is updated.
+* **terra-form** list fields can reference current list entry in isVisible expressions by the key of the parent field leaded by a '$'-sign (e.g. '$entries')
+
 <a name="2.3.16"></a>
 # 2.3.16 (29.08.2018)
 
