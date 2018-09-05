@@ -1,3 +1,9 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-code-editor** Improve validating custom markup
+* **terra-code-editor** Fix initial check which view should be shown
+
 <a name="2.3.18"></a>
 # 2.3.18 (31.08.2018)
 
