@@ -1,4 +1,5 @@
-# Unreleased
+<a name="2.3.19"></a>
+# 2.3.19 (05.09.2018)
 
 ### Bug Fixes
 * **terra-code-editor** Improve validating custom markup
