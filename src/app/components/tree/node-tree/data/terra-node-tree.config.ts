@@ -9,8 +9,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TerraNodeTreeConfig<D>
 {
+    protected _currentSelectedNode:TerraNodeInterface<D>;
     private _list:Array<TerraNodeInterface<D>> = [];
-    private _currentSelectedNode:TerraNodeInterface<D>;
 
     constructor(public _translation:TranslationService)
     {
