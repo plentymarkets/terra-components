@@ -5103,8 +5103,8 @@ terra-button[inputicon="icon-box_plus_disabled"] .btn, div.adminActionIcon.icon-
 
 // Warning: Warnung, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
 terra-button[inputicon="icon-warning"] .btn, div.adminActionIcon.icon-warning, button.adminButton[data-icon="icon-warning"], %icon-warning,
-terra-button[inputicon="icon-order_not_possible"] .btn, div.adminActionIcon.icon-order_not_possible, button.adminButton[data-icon="icon-order_not_possible"], %icon-order_not_possible
-terra-button[inputicon="icon-box_minus_disabled"] .btn, div.adminActionIcon.icon-box_minus_disabled, button.adminButton[data-icon="icon-box_minus_disabled"], %icon-box_minus_disabled,
+terra-button[inputicon="icon-order_not_possible"] .btn, div.adminActionIcon.icon-order_not_possible, button.adminButton[data-icon="icon-order_not_possible"], %icon-order_not_possible,
+terra-button[inputicon="icon-box_minus_disabled"] .btn, div.adminActionIcon.icon-box_minus_disabled, button.adminButton[data-icon="icon-box_minus_disabled"], %icon-box_minus_disabled
 {
     border-bottom: 4px solid var(--color-group-warning);
 }
@@ -5537,6 +5537,12 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
     box-sizing: border-box;
     background-color: var(--color-group-navigation);
     color: var(--color-structure-0);
+
+    // Exceptions
+    &.btn-link
+    {
+        border: none;
+    }
     
     // Active: Hover, Fokus, Highlight, Aktiv
     &:hover
@@ -5550,19 +5556,20 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
 terra-button .btn-handler, terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
 {
     // Disabled: Deaktiviert, Nicht auswählbar
-    &.Disabled
+    %disabled
     {
         background-color: var(--color-group-disabled) !important;
         color: var(--color-structure-8) !important;
         opacity: 1 !important;
         border: none;
     }
+    &.Disabled
+    {
+       @extend %disabled;
+    }
     
     &.disabled .btn
     {
-        background-color: var(--color-group-disabled) !important;
-        color: var(--color-structure-8) !important;
-        opacity: 1 !important;
-        border: none;
+       @extend %disabled;
     }
 }
