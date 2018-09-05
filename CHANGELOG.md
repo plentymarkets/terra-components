@@ -1,3 +1,8 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-form** fixed initial evaluation of child scopes inside list entries
+
 <a name="2.3.18"></a>
 # 2.3.18 (31.08.2018)
 
