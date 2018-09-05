@@ -3,6 +3,7 @@
 ### Bug Fixes
 * **terra-code-editor** Improve validating custom markup
 * **terra-code-editor** Fix initial check which view should be shown
+* **terra-form** fixed initial evaluation of child scopes inside list entries
 
 <a name="2.3.18"></a>
 # 2.3.18 (31.08.2018)
