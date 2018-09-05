@@ -31,9 +31,9 @@ export class TerraFormEntryListComponent implements OnInit
     public inputFormFieldKey:string;
 
     @Input()
-    public set inputFormValue(value:Array<any>)
+    public set inputFormValue(valueList:Array<any>)
     {
-        if(isNullOrUndefined(value) || !isArray(value))
+        if(isNullOrUndefined(valueList) || !isArray(valueList))
         {
             this.value = [];
             this.itemScopes = [];
@@ -44,19 +44,21 @@ export class TerraFormEntryListComponent implements OnInit
         }
         else
         {
-            if(!this.compareValues(value))
+            if(!this.compareValues(valueList))
             {
-                this.value = value.map((entry:any) =>
+                this.value = valueList.map((value:any) =>
                 {
                     return {
-                        key: TerraFormEntryListComponent.itemCount++,
-                        value: entry
+                        key:   TerraFormEntryListComponent.itemCount++,
+                        value: value
                     };
                 });
 
-                this.itemScopes = this.value.map((entry:{key:number, value:any}) =>
+                this.itemScopes = this.value.map((entry:{ key:number, value:any }) =>
                 {
-                    return this.inputScope.createChildScope();
+                    return this.inputScope.createChildScope(
+                        this.createChildScopeData( entry.value )
+                    );
                 });
             }
         }
@@ -81,7 +83,7 @@ export class TerraFormEntryListComponent implements OnInit
     protected min:number;
     protected max:number;
 
-    private value:Array<{key:number, value:any}> = [];
+    private value:Array<{ key:number, value:any }> = [];
 
     private itemScopes:Array<TerraFormScope> = [];
 
@@ -113,11 +115,16 @@ export class TerraFormEntryListComponent implements OnInit
     {
         if(this.canAddElement)
         {
+            let defaultValue:any = isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue;
             this.value.push({
-                key: TerraFormEntryListComponent.itemCount++,
-                value: isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue
+                key:   TerraFormEntryListComponent.itemCount++,
+                value: defaultValue
             });
-            this.itemScopes.push( this.inputScope.createChildScope() );
+            this.itemScopes.push(
+                this.inputScope.createChildScope(
+                    this.createChildScopeData(defaultValue)
+                )
+            );
             this.emitValue();
         }
     }
@@ -129,7 +136,7 @@ export class TerraFormEntryListComponent implements OnInit
 
     protected removeElement(key:number):void
     {
-        let index:number = this.value.findIndex((entry:{key:number, value:any}) => entry.key === key);
+        let index:number = this.value.findIndex((entry:{ key:number, value:any }) => entry.key === key);
         if(index < 0 || index > this.value.length)
         {
             return;
@@ -149,10 +156,12 @@ export class TerraFormEntryListComponent implements OnInit
         while(!isNaN(this.min) && this.min > this.value.length)
         {
             this.value.push({
-                key: TerraFormEntryListComponent.itemCount++,
+                key:   TerraFormEntryListComponent.itemCount++,
                 value: defaultValue
             });
-            this.itemScopes.push(this.inputScope.createChildScope());
+            this.itemScopes.push(
+                this.inputScope.createChildScope(this.createChildScopeData(defaultValue))
+            );
         }
         while(!isNaN(this.max) && this.max < this.value.length)
         {
@@ -162,16 +171,16 @@ export class TerraFormEntryListComponent implements OnInit
 
     protected onElementValueChanged(key:number, value:any):void
     {
-        let idx:number = this.value.findIndex((e:{key:number, value:any}) => e.key === key);
-        if ( idx >= 0 )
+        let idx:number = this.value.findIndex((e:{ key:number, value:any }) => e.key === key);
+        if(idx >= 0)
         {
             this.value[idx].value = value;
-            this.itemScopes[idx].data = this.createChildScopeData( value );
+            this.itemScopes[idx].data = this.createChildScopeData(value);
             this.emitValue();
         }
     }
 
-    protected trackByFn(index:number, item:{key:number, value:any}):number
+    protected trackByFn(index:number, item:{ key:number, value:any }):number
     {
         return item.key;
     }
@@ -179,7 +188,7 @@ export class TerraFormEntryListComponent implements OnInit
     private emitValue():void
     {
         this.outputFormValueChanged.next(
-            this.value.map((entry:{key:number, value:any}) => entry.value)
+            this.value.map((entry:{ key:number, value:any }) => entry.value)
         );
     }
 
@@ -190,18 +199,19 @@ export class TerraFormEntryListComponent implements OnInit
             return false;
         }
 
+        let valueEquals:boolean = true;
         this.value.forEach((entry:{ key:number, value:any }, index:number) =>
         {
             if(entry.value !== values[index])
             {
-                return false;
+                valueEquals = false;
             }
         });
 
-        return true;
+        return valueEquals;
     }
 
-    private createChildScopeData( value:any ):any
+    private createChildScopeData(value:any):any
     {
         let loopKey:string = '$' + this.inputFormFieldKey;
         let childData:any = {};
