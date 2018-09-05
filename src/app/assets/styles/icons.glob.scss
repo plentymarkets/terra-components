@@ -4996,7 +4996,9 @@ terra-button[inputicon="icon-create"] .btn, div.adminActionIcon.icon-create, but
 terra-button[inputicon="icon-ticket-create"] .btn, div.adminActionIcon.icon-ticket-create, button.adminButton[data-icon="icon-ticket-create"], %icon-ticket-create,
 terra-button[inputicon="icon-search_apply"] .btn, div.adminActionIcon.icon-search_apply, button.adminButton[data-icon="icon-search_apply"], %icon-search_apply
 {
-    border-bottom: 4px solid var(--color-group-add);
+    border-bottom: var(--button-border-bottom-group-add);
+    color: var(--button-text-color-group-add);
+    background-color: var(--button-background-color-group-add);
 }
 
 // Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen, Problem
@@ -5012,7 +5014,9 @@ terra-button[inputicon="icon-problem"] .btn, div.adminActionIcon.icon-problem, b
 terra-button[inputicon="icon-reorder_not_possible"] .btn, div.adminActionIcon.icon-reorder_not_possible, button.adminButton[data-icon="icon-reorder_not_possible"], %icon-reorder_not_possible,
 terra-button[inputicon="icon-telephone_hangup"] .btn, div.adminActionIcon.icon-telephone_hangup, button.adminButton[data-icon="icon-telephone_hangup"], %icon-telephone_hangup
 {
-    border-bottom: 4px solid var(--color-group-alert);
+    border-bottom: var(--button-border-bottom-group-alert);
+    color: var(--button-text-color-group-alert);
+    background-color: var(--button-background-color-group-alert);
 }
 
 // Action: Bearbeiten, Kopieren, Einfügen, Ausschneiden, Umwandeln, Transformieren, Ändern, Trennen, Splitten, Verbinden, Verknüpfen
@@ -5098,7 +5102,9 @@ terra-button[inputicon="icon-stock_intake"] .btn, div.adminActionIcon.icon-stock
 terra-button[inputicon="icon-repair_slip"] .btn, div.adminActionIcon.icon-repair_slip, button.adminButton[data-icon="icon-repair_slip"], %icon-repair_slip,
 terra-button[inputicon="icon-box_plus_disabled"] .btn, div.adminActionIcon.icon-box_plus_disabled, button.adminButton[data-icon="icon-box_plus_disabled"], %icon-box_plus_disabled
 {
-    border-bottom: 4px solid var(--color-group-action);
+    border-bottom: var(--button-border-bottom-group-action);
+    color: var(--button-text-color-group-action);
+    background-color: var(--button-background-color-group-action);
 }
 
 // Warning: Warnung, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
@@ -5106,7 +5112,9 @@ terra-button[inputicon="icon-warning"] .btn, div.adminActionIcon.icon-warning, b
 terra-button[inputicon="icon-order_not_possible"] .btn, div.adminActionIcon.icon-order_not_possible, button.adminButton[data-icon="icon-order_not_possible"], %icon-order_not_possible,
 terra-button[inputicon="icon-box_minus_disabled"] .btn, div.adminActionIcon.icon-box_minus_disabled, button.adminButton[data-icon="icon-box_minus_disabled"], %icon-box_minus_disabled
 {
-    border-bottom: 4px solid var(--color-group-warning);
+    border-bottom: var(--button-border-bottom-group-warning);
+    color: var(--button-text-color-group-warning);
+    background-color: var(--button-background-color-group-warning);
 }
 
 // Info: Vorschau, Anzeigen, Information
@@ -5215,7 +5223,9 @@ terra-button[inputicon="icon-placeholder_show_list"] .btn, div.adminActionIcon.i
 terra-button[inputicon="icon-reorder_show"] .btn, div.adminActionIcon.icon-reorder_show, button.adminButton[data-icon="icon-reorder_show"], %icon-reorder_show,
 terra-button[inputicon="icon-ticket_all"] .btn, div.adminActionIcon.icon-ticket_all, button.adminButton[data-icon="icon-ticket_all"], %icon-ticket_all
 {
-    border-bottom: 4px solid var(--color-group-active);
+    border-bottom: var(--button-border-bottom-group-info);
+    color: var(--button-text-color-group-info);
+    background-color: var(--button-background-color-group-info);
 }
 
 // Transfer: Senden (E-Mail), Verschicken, Drucken, Download, Herunterladen, Export, Upload, Datei auswählen, Import
@@ -5236,7 +5246,9 @@ terra-button[inputicon="icon-upload"] .btn, div.adminActionIcon.icon-upload, but
 terra-button[inputicon="icon-vcard"] .btn, div.adminActionIcon.icon-vcard, button.adminButton[data-icon="icon-vcard"], %icon-vcard,
 terra-button[inputicon="icon-ticket_link"] .btn, div.adminActionIcon.icon-ticket_link, button.adminButton[data-icon="icon-ticket_link"], %icon-ticket_link
 {
-    border-bottom: 4px solid var(--color-group-transfer);
+    border-bottom: var(--button-border-bottom-group-transfer);
+    color: var(--button-text-color-group-transfer);
+    background-color: var(--button-background-color-group-transfer);
 }
 
 /* Navigation:
@@ -5421,7 +5433,9 @@ terra-button[inputicon="icon-stock"] .btn, div.adminActionIcon.icon-stock, butto
 terra-button[inputicon="icon-telephone"] .btn, div.adminActionIcon.icon-telephone, button.adminButton[data-icon="icon-telephone"], %icon-telephone,
 terra-button[inputicon="icon-ticket_folder_move"] .btn, div.adminActionIcon.icon-ticket_folder_move, button.adminButton[data-icon="icon-ticket_folder_move"], %icon-ticket_folder_move
 {
-    border-bottom: 4px solid var(--color-group-navigation);
+    border-bottom: var(--button-border-bottom-group-navigation);
+    color: var(--button-text-color-group-navigation);
+    background-color: var(--button-background-color-group-navigation);
 }
 
 // Brand
@@ -5529,7 +5543,9 @@ terra-button[inputicon="icon-shipping_yousellwesend"] .btn, div.adminActionIcon.
 terra-button[inputicon="icon-payment_sepa_pain"] .btn, div.adminActionIcon.icon-payment_sepa_pain, button.adminButton[data-icon="icon-payment_sepa_pain"], %icon-payment_sepa_pain,
 terra-button[inputicon="icon-dropbox"] .btn, div.adminActionIcon.icon-dropbox, button.adminButton[data-icon="icon-dropbox"], %icon-dropbox
 {
-    border-bottom: 4px solid var(--color-group-navigation);
+    border-bottom: var(--button-border-bottom-group-navigation);
+    color: var(--button-text-color-group-navigation);
+    background-color: var(--button-background-color-group-navigation);
 }
 
 terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
@@ -5556,20 +5572,20 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
 terra-button .btn-handler, terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
 {
     // Disabled: Deaktiviert, Nicht auswählbar
-    %disabled
+
+    &.Disabled
     {
         background-color: var(--color-group-disabled) !important;
         color: var(--color-structure-8) !important;
         opacity: 1 !important;
         border: none;
     }
-    &.Disabled
-    {
-       @extend %disabled;
-    }
     
     &.disabled .btn
     {
-       @extend %disabled;
+        background-color: var(--color-group-disabled) !important;
+        color: var(--color-structure-8) !important;
+        opacity: 1 !important;
+        border: none;
     }
 }
