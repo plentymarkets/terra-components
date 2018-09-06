@@ -5,7 +5,7 @@
      [ngClass]="{'error': !isValid, 'disabled': isDisabled, 'isSmall': inputIsSmall}"
      container="body">
 
-    <input id="{{_id}}"
+    <input id="{{id}}"
            type="number"
            [(ngModel)]="value"
            name="{{inputName}}"
@@ -17,8 +17,8 @@
            min="{{inputMinValue}}"
            max="{{inputMaxValue}}"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
-           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0 }">
-    <label *ngIf="_innerValue || _innerValue === 0" htmlFor="{{_id}}">{{inputName}}
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0 }">
+    <label *ngIf="innerValue || innerValue === 0" htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
 </div>

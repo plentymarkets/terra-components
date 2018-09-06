@@ -77,9 +77,9 @@ export class TerraTextInputComponent extends TerraInputComponent
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    private _id:string;
+    protected id:string;
 
-    constructor(private _translation:TranslationService)
+    constructor(private translation:TranslationService)
     {
         super(TerraRegex.MIXED);
 
@@ -89,7 +89,7 @@ export class TerraTextInputComponent extends TerraInputComponent
         }
 
         // generate the id of the input instance
-        this._id = `text-input_#${nextId++}`;
+        this.id = `text-input_#${nextId++}`;
 
         this.inputIsIban = false;
     }
@@ -104,7 +104,7 @@ export class TerraTextInputComponent extends TerraInputComponent
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.focus();
         });
     }
@@ -113,7 +113,7 @@ export class TerraTextInputComponent extends TerraInputComponent
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.select();
         });
     }
@@ -123,7 +123,7 @@ export class TerraTextInputComponent extends TerraInputComponent
         if(this.inputIsIban)
         {
             this.isValid = IBAN.isValid(iban);
-            this.inputTooltipText = this.isValid ? null : this._translation.translate('terraTextInput.invalidIban');
+            this.inputTooltipText = this.isValid ? null : this.translation.translate('terraTextInput.invalidIban');
         }
 
         this.onBlur();
