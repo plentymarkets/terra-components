@@ -83,14 +83,15 @@ export class TerraInputComponent implements ControlValueAccessor
 
     public isValid:boolean;
     public regex:string;
-    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     // The internal data model
-    private _innerValue:any;
+    protected innerValue:any;
 
-    constructor(private _inputRegex:string)
+    private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+
+    constructor(private inputRegex:string)
     {
-        this.regex = _inputRegex;
+        this.regex = inputRegex;
         this.isValid = true;
         this.inputTooltipPlacement = TerraPlacementEnum.TOP;
         this.inputIsSmall = false;
@@ -109,16 +110,16 @@ export class TerraInputComponent implements ControlValueAccessor
     // get accessor
     public get value():any
     {
-        return this._innerValue;
+        return this.innerValue;
     }
 
     // set accessor including call the onchange callback
     public set value(v:any)
     {
-        if(v !== this._innerValue)
+        if(v !== this.innerValue)
         {
-            this._innerValue = v;
-            this.onChangeCallback(this._innerValue);
+            this.innerValue = v;
+            this.onChangeCallback(this.innerValue);
         }
     }
 
@@ -131,9 +132,9 @@ export class TerraInputComponent implements ControlValueAccessor
     // From ControlValueAccessor interface
     public writeValue(value:any):void
     {
-        if(value !== this._innerValue)
+        if(value !== this.innerValue)
         {
-            this._innerValue = value;
+            this.innerValue = value;
         }
     }
 
@@ -181,7 +182,7 @@ export class TerraInputComponent implements ControlValueAccessor
                     {
                         emptyMessage = this.inputEmptyMessage;
 
-                        this._alert.addAlert({
+                        this.alert.addAlert({
                             msg:              emptyMessage,
                             type:             'danger',
                             dismissOnTimeout: 0
@@ -201,7 +202,7 @@ export class TerraInputComponent implements ControlValueAccessor
                     {
                         invalidMessage = this.inputInvalidMessage;
 
-                        this._alert.addAlert({
+                        this.alert.addAlert({
                             msg:              invalidMessage,
                             type:             'danger',
                             dismissOnTimeout: 0

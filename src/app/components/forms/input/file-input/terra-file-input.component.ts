@@ -46,12 +46,12 @@ export class TerraFileInputComponent extends TerraInputComponent
     @Input()
     public set inputStorageServices(services:Array<TerraBaseStorageService>)
     {
-        this._storageServices = services;
+        this.storageServices = services;
     }
 
     public get inputStorageServices():Array<TerraBaseStorageService>
     {
-        return this._storageServices || [this._frontendStorageService];
+        return this.storageServices || [this.frontendStorageService];
     }
 
     @ViewChild('overlay')
@@ -63,16 +63,17 @@ export class TerraFileInputComponent extends TerraInputComponent
     public primaryOverlayButton:TerraOverlayButtonInterface;
     public secondaryOverlayButton:TerraOverlayButtonInterface;
 
-    private _translationPrefix:string = 'terraFileInput';
-    private _storageServices:Array<TerraBaseStorageService>;
-    private _id:string;
+    protected id:string;
+    protected translationPrefix:string = 'terraFileInput';
 
-    constructor(private translation:TranslationService, private _frontendStorageService:TerraFrontendStorageService)
+    private storageServices:Array<TerraBaseStorageService>;
+
+    constructor(private translation:TranslationService, private frontendStorageService:TerraFrontendStorageService)
     {
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance
-        this._id = `file-input_#${nextId++}`;
+        this.id = `file-input_#${nextId++}`;
     }
 
     public onObjectSelected(selectedObject:TerraStorageObject):void
