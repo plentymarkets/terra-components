@@ -56,7 +56,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
             {
                 this.viewChildHeaderCheckbox.value = false;
             }
-            else if(this._selectedValueList.length > 0 && this.inputValueList.length === this._selectedValueList.length)
+            else if(this.selectedValueList.length > 0 && this.inputValueList.length === this.selectedValueList.length)
             {
                 this.viewChildHeaderCheckbox.value = true;
             }
@@ -65,9 +65,9 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
                 this.viewChildHeaderCheckbox.isIndeterminate = true;
             }
 
-            for(let i:number = this._selectedValueList.length; i >= 0; i--)
+            for(let i:number = this.selectedValueList.length; i >= 0; i--)
             {
-                this._selectedValueList.pop();
+                this.selectedValueList.pop();
             }
 
             this.inputValueList
@@ -80,20 +80,20 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
                         if(item.value === key)
                         {
                             item.selected = true;
-                            this._selectedValueList.push(item.value);
+                            this.selectedValueList.push(item.value);
                             return;
                         }
                     });
                 });
 
-            setTimeout(() => this.inputSelectedValueListChange.emit(this._selectedValueList), 0);
+            setTimeout(() => this.inputSelectedValueListChange.emit(this.selectedValueList), 0);
         }
     }
 
-    private _selectedValueList:Array<any> = [];
-    private _isInit:boolean;
+    private selectedValueList:Array<any> = [];
+    private isInit:boolean;
 
-    private _langPrefix:string = 'terraMultiSelectBox';
+    private langPrefix:string = 'terraMultiSelectBox';
 
     constructor(public translation:TranslationService)
     {
@@ -105,16 +105,16 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
     {
         if(!this.inputName)
         {
-            this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
+            this.inputName = this.translation.translate(this.langPrefix + '.selectAll');
 
             // this is necessary for language switch
             this.translation.translationChanged().subscribe(() =>
             {
-                this.inputName = this.translation.translate(this._langPrefix + '.selectAll');
+                this.inputName = this.translation.translate(this.langPrefix + '.selectAll');
             });
         }
 
-        this._isInit = true;
+        this.isInit = true;
     }
 
     /**
@@ -123,7 +123,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
      */
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(this._isInit === true && changes['inputValueList'] && changes['inputValueList'].currentValue.length > 0)
+        if(this.isInit === true && changes['inputValueList'] && changes['inputValueList'].currentValue.length > 0)
         {
             let temp:Array<any> = [];
 
@@ -153,19 +153,19 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
             this.changeValueState(isChecked, value);
         });
 
-        this.inputSelectedValueList = this._selectedValueList;
+        this.inputSelectedValueList = this.selectedValueList;
     }
 
     private onValueCheckboxChange(isChecked:boolean, value:TerraMultiSelectBoxValueInterface):void
     {
         this.changeValueState(isChecked, value);
-        this.inputSelectedValueList = this._selectedValueList;
+        this.inputSelectedValueList = this.selectedValueList;
 
-        if(this._selectedValueList.length === 0)
+        if(this.selectedValueList.length === 0)
         {
             this.viewChildHeaderCheckbox.value = false;
         }
-        else if(this._selectedValueList.length > 0 && this.inputValueList.length === this._selectedValueList.length)
+        else if(this.selectedValueList.length > 0 && this.inputValueList.length === this.selectedValueList.length)
         {
             this.viewChildHeaderCheckbox.value = true;
         }
@@ -181,7 +181,7 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
 
         let valueFound:boolean = false;
 
-        let index:number = this._selectedValueList.indexOf(valueToChange.value);
+        let index:number = this.selectedValueList.indexOf(valueToChange.value);
 
         // check if value exists in list
         if(index === -1)
@@ -190,21 +190,21 @@ export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
         }
         else
         {
-            valueFound = !isNull(this._selectedValueList[index]);
+            valueFound = !isNull(this.selectedValueList[index]);
         }
 
         if(valueToChange.selected)
         {
             if(!valueFound)
             {
-                this._selectedValueList.push(valueToChange.value);
+                this.selectedValueList.push(valueToChange.value);
             }
         }
         else
         {
-            index = this._selectedValueList.indexOf(valueToChange.value);
+            index = this.selectedValueList.indexOf(valueToChange.value);
 
-            this._selectedValueList.splice(index, 1);
+            this.selectedValueList.splice(index, 1);
         }
     }
 
