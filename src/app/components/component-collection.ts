@@ -126,5 +126,5 @@ export const components:Array<Type<any>> = [
     TerraFormEntryComponent,
     TerraFormEntryListComponent,
     TerraBreadcrumbsComponent,
-    TerraTagSelectComponent,
+    TerraTagSelectComponent
 ];
