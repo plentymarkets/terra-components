@@ -44,6 +44,8 @@ body
     
         //specific colors
         --tooltip-color-default: var(--color-structure-12);
+        --border-color: var(--color-structure-5);
+        --color-background: var(--color-structure-2);
     
         //////////// Fonts //////////////
     
@@ -86,7 +88,6 @@ body
         //////////// Others //////////
         
         --border-radius: 2px;
-        --border-color: var(--color-structure-5);
         --box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
         
         --zIndex-1: 100;
@@ -136,5 +137,10 @@ body
         --select-box-toggle-background-position-default: calc(100% - var(--space-lg)) var(--space-lg);
         --select-box-labeled-isSmall-padding-default: 0 var(--space-md) 0 30%;
         --select-box-isSmall-background-position-default: calc(100% - var(--space-lg)) calc(var(--space-lg) / 2);
+    
+        //GWT
+        --gwt-has-toolbar-before-top: 50px;
+        --gwt-has-titlebar-before-top: 40px;
+        --gwt-has-pagination-before-top: 40px;
     }
 }

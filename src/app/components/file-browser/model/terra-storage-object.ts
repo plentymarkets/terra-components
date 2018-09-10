@@ -8,43 +8,43 @@ import { FileTypeHelper } from '../../../helpers/fileType.helper';
 
 export class TerraStorageObject
 {
-    private _s3Object:S3StorageObjectInterface;
+    private s3Object:S3StorageObjectInterface;
     private _children:Array<TerraStorageObject> = [];
     private _parent:TerraStorageObject;
 
     public get eTag():string
     {
-        return this._s3Object.eTag;
+        return this.s3Object.eTag;
     }
 
     public get key():string
     {
-        return this._s3Object.key;
+        return this.s3Object.key;
     }
 
     public get publicUrl():string
     {
-        return this._s3Object.publicUrl;
+        return this.s3Object.publicUrl;
     }
 
     public get previewUrl():string
     {
-        return this._s3Object.previewUrl || this._s3Object.publicUrl;
+        return this.s3Object.previewUrl || this.s3Object.publicUrl;
     }
 
     public get lastModified():Date
     {
-        return new Date(this._s3Object.lastModified);
+        return new Date(this.s3Object.lastModified);
     }
 
     public get size():number
     {
-        return this._s3Object.size;
+        return parseInt( this.s3Object.size + '', 10 );
     }
 
     public get sizeString():string
     {
-        if(typeof this.size !== 'number')
+        if( isNaN(this.size) )
         {
             return '0B';
         }
@@ -53,7 +53,7 @@ export class TerraStorageObject
 
     public get name():string
     {
-        return PathHelper.basename(this._s3Object.key);
+        return PathHelper.basename(this.s3Object.key);
     }
 
     public get icon():string
@@ -68,12 +68,12 @@ export class TerraStorageObject
 
     public get isDirectory():boolean
     {
-        return PathHelper.isDirectory(this._s3Object.key);
+        return PathHelper.isDirectory(this.s3Object.key);
     }
 
     public get isFile():boolean
     {
-        return PathHelper.isFile(this._s3Object.key);
+        return PathHelper.isFile(this.s3Object.key);
     }
 
     public get parent():TerraStorageObject
@@ -129,7 +129,7 @@ export class TerraStorageObject
 
     constructor(s3Object:S3StorageObjectInterface, parent?:TerraStorageObject)
     {
-        this._s3Object = s3Object;
+        this.s3Object = s3Object;
         this._parent = parent;
     }
 

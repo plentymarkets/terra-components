@@ -1,3 +1,230 @@
+<a name="2.3.19"></a>
+# 2.3.19 (05.09.2018)
+
+### Bug Fixes
+* **terra-code-editor** Improve validating custom markup
+* **terra-code-editor** Fix initial check which view should be shown
+* **terra-form** fixed initial evaluation of child scopes inside list entries
+
+<a name="2.3.18"></a>
+# 2.3.18 (31.08.2018)
+
+### Bug Fixes
+* **terra-note-editor** fixed issue for saving notes.
+* **terra-file-browser** fixed issue when used in a multi split view.
+
+<a name="2.3.17"></a>
+# 2.3.17 (31.08.2018)
+
+### Bug Fixes
+* **terra-breadcrumbs** fix context menu position.
+* **terra-breadcrumbs** automatically scroll into view for active breadcrumb.
+* **terra-file-browser** reset the file list when `inputStorageServices` is updated.
+* **terra-form** list fields can reference current list entry in isVisible expressions by the key of the parent field leaded by a '$'-sign (e.g. '$entries')
+
+<a name="2.3.16"></a>
+# 2.3.16 (29.08.2018)
+
+### Bug Fixes
+* **terra-file-list** fixed issue when uploading files using `firefox`.
+* **terra-dynamic-form** adjust horizontal container header layout to the layout of vertical container
+* **terra-dynamic-form** horizontal container gives now equal width to its elements
+
+
+<a name="2.3.15"></a>
+# 2.3.15 (22.08.2018)
+
+### Bug Fixes
+* **terra-suggestion-box** fixed issue with uninitialised `inputListBoxValues`.
+
+<a name="2.3.14"></a>
+# 2.3.14 (22.08.2018)
+
+### Feature
+* **terra-icons** added new icons
+* **terra-form** Improve backward compatibility to **terra-dynamic-form**
+
+### Bug Fixes
+* **terra-code-editor** fixed validation of HTML-tags with multiple attributes
+
+<a name="2.3.13"></a>
+# 2.3.13 (21.08.2018)
+
+### Feature
+* **terra-nested-data-picker** new component terra-nested-data-picker
+
+### Bug Fixes
+* **terra-button** fixed disabled state showing the buttons background color while clicked or focused
+* **terra-suggestion-box** prevent execution of `ngModelChange`-Callback if value changes from `undefined` to `null` or reverse.
+* **terra-breadcrumbs** changed handling to find route by url.
+
+<a name="2.3.12"></a>
+# 2.3.12 (20.08.2018)
+
+### Feature
+* **terra-tag-select** add new component for tag select and deselect with ngModel support
+
+<a name="2.3.11"></a>
+# 2.3.11 (17.08.2018)
+
+### Feature
+* **category-data.interface** && **category-detail-data.interface** extend interfaces since some properties were missing in comparision to the [rest interface](https://developers.plentymarkets.com/rest-doc/category_category/details).
+* **terra-suggestion-box** 
+	* New Output `textInputValueChange` that emits the current text input value
+    * Select a Value from the suggestions if the entered text matches its caption
+    * `selectedValue` is reset if `inputListBoxValues` is updated and the previous selected element is not present anymore
+    * `selectedValue = null` if entered text does not match any of the `inputListBoxValues`
+    * `resetComponentValue`-Method is now deprecated. Use `ngModel` instead to set the value to `null`
+    * `outputValueChanged` is now deprecated. Use `ngModelChange` instead.
+* **terra-form** Added new component to generate forms dynamically from json data.
+    
+### Bug Fixes
+* **terra-split-view** fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead
+* **terra-color-picker** added border to the input field to provide more contrast for the selected color
+
+<a name="2.3.10"></a>
+# 2.3.10 (09.08.2018)
+
+### Feature
+* **terra-breadcrumbs** added Breadcrumbs using router and routerLink
+
+<a name="2.3.9"></a>
+# 2.3.9 (08.08.2018)
+
+### Bug Fixes
+* **terra-suggestion-box** reset selected value when `inputListBoxValues` is empty
+* **style** fixed scss variables 
+
+<a name="2.3.4"></a>
+# 2.3.4 (02.08.2018)
+
+### Features
+* **terra-icons** added new icons
+* **terra-decimal-validator** added a custom validator to validate decimals
+* **object.helper** added a helper for object operations. First there is only a function to remove keys with an `undefined` or `null` value
+* **number.helper** added a helper for number operations. First there is only a function for correctly rounding.
+* **terra-2-col** reduced two column component to bare necessities
+* **two-column.helper** added a helper for two column component sizing
+* **two-column-mobile.directive** added a  directive for two column mobile handling
+
+#### Bug Fixes
+* **terra-code-editor** added html code validation to check if all tags are closed.
+
+<a name="2.3.3"></a>
+# 2.3.3 (20.07.2018)
+
+### Bug Fixes
+* **terra-dynamic-form** added possibility to change the debounce time
+
+### Features
+* **terra-loading-spinner** added public getter for `isLoading` property, since this information is a global one and can be used in any component to disable elements while a request is pending.
+* **terra-base-service** added public getter for `isLoading` property to be available in every specific service extension.
+
+<a name="2.3.2"></a>
+# 2.3.2 (20.07.2018)
+
+### Feature
+* **terra-download-helper** open document / download in new tab (download-helper)
+* **terra-2-col** added. A lightweight 2 column container.
+* **terra-info-box** 
+	* added the `inputButtonList` input to display buttons using the `TerraButtonInterface`
+	* added the `inputNoWordBreak` input to disable the auto word break if set to true
+* **unit testing** added packages for testing with jasmine framework and karma command line tool
+* **terra-base-service** add `arrayAsArray` (default `false`) parameter to `createUrlSearchParams` function. If set to `true` an array is parsed to an array parameter and not a concatenated string.
+
+### Bug Fixes
+* **terra-button** "flagged" buttons are now also clickable in the yellow corner
+* **terra-file-list** date 'last modified' will be formatted according to the default language 
+* **terra-file-list** not allowed files will not be shown in the file list
+* **terra-query-encoder** new class which implements a custom encoding strategy for query parameters based on angular's [`QueryEncoder`](https://angular.io/api/http/QueryEncoder) using es2015's native [`encodeURIComponent`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)-Method
+* **terra-base-service** using new `terra-query-encoder` to encode query params in `createUrlSearchParams()`
+* **terra-url-params-decorator-service** added deprecation warning to the class since its functionality is fully implemented in the `createUrlSearchParams`-Method of the `terra-base-service`
+
+<a name="2.3.1"></a>
+# 2.3.1 (12.07.2018)
+
+### Features
+* **terra-base-service** correct handling of error status 403
+
+### Bug Fixes
+* **update node-sass** because of a security vulnerability in the previous version
+* **update css-loader** because of a security vulnerability in the previous version
+* **terra-code-editor** code view bug in firefox
+
+<a name="2.3.0"></a>
+# 2.3.0 (10.07.2018)
+
+### Bug Fixes
+* **terra-base-service** remove subscription in `mapRequest()` to make request observables lazy again 
+
+<a name="2.2.25"></a>
+# 2.2.25 (04.07.2018)
+
+### Bug Fixes
+* **terra-button** enable button click again
+
+<a name="2.2.24"></a>
+# 2.2.24 (04.07.2018)
+
+### Bug Fixes
+* **terra-button** stop event propagation on click
+* **terra-data-table** add missing "isFlagged" attribute for buttons in buttoncells
+* **terra-simple-table** added missing alignment of cell text
+
+<a name="2.2.23"></a>
+# 2.2.23 (04.07.2018)
+
+### Features
+* **terra-code-editor** added new component for `html` code editing
+* **terra-dynamic-form** added terra-code-editor
+
+### Bug Fixes
+* **terra-node-tree** optimized search with observable
+* **context-menu** context menu cannot be open
+* **terra-multi-check-box** states of checkbox had not been set initial
+
+<a name="2.2.20"></a>
+# 2.2.20 (26.06.2018)
+
+### Features
+* **terra-card** render div for image only if imagePath or placeholder icon is set
+
+
+<a name="2.2.18"></a>
+# 2.2.18 (21.06.2018)
+
+### Bug Fixes
+* **terra-file-picker** fixed bug with empty initialising on ngModel
+* **terra-node-tree** fixed issues with visibility of nodes in search
+* **terra-portlet** fixed issues with dropdowns being cut off in collapsable portlets.
+* **terra-info-box** fixed width when there are no buttons set
+
+### Features
+* **terra-note-editor** added code view
+* **terra-dynamic-switch** added terra-note-editor
+* **terra-dynamic-form** added terra-note-editor
+* **custom tslint rules** added rules to prevent leading underscores, set maximum block depth and restrict getter and setter
+* **terra-file-chooser** added reset button to file chooser
+
+<a name="2.2.16"></a>
+# 2.2.16 (12.06.2018)
+
+### Features
+* **terra-download-helper** added method `downloadFileFromUrl`, which downloads a file from a given url.
+* **converter-helper** remove injectable decorator and replace localeService parameter with the default locale
+* updated the component examples of 
+	* **terra-button-with-options**  	
+	* **terra-note-editor**
+	* **terra-syntax-editor** 
+	* **terra-filter** 
+	* **terra-color-picker**
+	* **terra-info-box** 
+	* **terra-tag** 
+	* **terra-tag-list**
+
+### Bug Fixes
+* **terra-select-box** avoid multipe trigger of value change event if value is the same
+
 <a name="2.2.15"></a>
 # 2.2.15 (06.06.2018)
 

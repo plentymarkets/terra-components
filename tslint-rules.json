@@ -1,5 +1,11 @@
 {
 	"rules": {
+		"restrict-leading-underscore" : true,
+		"get-set" : true,
+		"max-depth": [
+			true,
+			7
+		],
 		"array-type": [
 			true,
 			"generic"
@@ -19,7 +25,10 @@
 		"label-position": true,
 		"max-line-length": [
 			true,
-			150
+			{
+				"limit": 150,
+				"ignore-pattern": "^import |^export {(.*?)}|class [a-zA-Z]+ implements"
+			}
 		],
 		"member-access": [
 			true,

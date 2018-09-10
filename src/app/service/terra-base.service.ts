@@ -9,22 +9,30 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 import { Exception } from './data/exception.interface';
 import {
+    isArray,
     isNull,
     isNullOrUndefined
 } from 'util';
 import { TerraAlertComponent } from '../components/alert/terra-alert.component';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
-
+import { tap } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
+import { TerraQueryEncoder } from './data/terra-query-encoder';
 
 /**
  * @author mfrank
  */
 @Injectable()
+// Please keep the todo comments until TerraBaseService refactoring
+// TODO TerraBaseService<D> or maybe TerraBaseService<D extends BaseData>
 export class TerraBaseService
 {
     public headers:Headers;
     public url:string;
+
+    // TODO use D instead of any
+    protected dataModel:{ [dataId:number]:any } = {};
 
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
@@ -48,6 +56,11 @@ export class TerraBaseService
         return this._baseHttp;
     }
 
+    public get isLoading():boolean
+    {
+        return this._terraLoadingSpinnerService.isLoading;
+    }
+
     protected setToHeader(key:string, value:string):void
     {
         this.headers.set(key, value);
@@ -66,11 +79,12 @@ export class TerraBaseService
         }
     }
 
+    // TODO use D instead of any, use a meaningful error type
     protected mapRequest(request:Observable<any>, err?:(error:any) => void, isRaw?:boolean):Observable<any>
     {
         this._terraLoadingSpinnerService.start();
 
-        let req:Observable<any> = request.map((response:Response) =>
+        return request.map((response:Response) =>
         {
             if(response.status === 204)
             {
@@ -95,12 +109,6 @@ export class TerraBaseService
                 this.handleException(error);
             }
 
-            // START Very unclean workaround! Normally we should get a 403 status code as response
-            // when user has no permission
-            let errorMessage:string = this.getErrorMessage(error);
-
-            let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage();
-
             if(error.status === 403 && this.getErrorClass(error) === 'UIHashExpiredException')
             {
                 let routeToLoginEvent:CustomEvent = new CustomEvent('CustomEvent');
@@ -109,8 +117,10 @@ export class TerraBaseService
 
                 this.dispatchEvent(routeToLoginEvent);
             }
-            else if(error.status === 401 && errorMessage === 'This action is unauthorized.')
+            else if(error.status === 403) // unauthorized
             {
+                let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage(error);
+
                 if(this._isPlugin)
                 {
                     this._alert.addAlertForPlugin({
@@ -129,7 +139,7 @@ export class TerraBaseService
                 }
             }
             // END Very unclean workaround!
-            else if(error.status === 401)
+            else if(error.status === 401) // unauthenticated
             {
                 let loginEvent:CustomEvent = new CustomEvent('login');
                 // Workaround for plugins in Angular (loaded via iFrame)
@@ -137,19 +147,7 @@ export class TerraBaseService
             }
 
             return Observable.throw(error);
-        }).share();
-
-        req.subscribe(() =>
-            {
-                this._terraLoadingSpinnerService.stop();
-            },
-            (error:any) =>
-            {
-                this._terraLoadingSpinnerService.stop();
-            }
-        );
-
-        return req;
+        }).finally(() => this._terraLoadingSpinnerService.stop());
     }
 
     private dispatchEvent(eventToDispatch:Event | CustomEvent):void
@@ -172,6 +170,7 @@ export class TerraBaseService
         }
     }
 
+    // TODO use a meaningful error type
     private getErrorMessage(error:any):string
     {
         try
@@ -191,6 +190,7 @@ export class TerraBaseService
         }
     }
 
+    // TODO use a meaningful error type
     private getErrorClass(error:any):string
     {
         try
@@ -229,6 +229,7 @@ export class TerraBaseService
      * Handles exceptions that are returned from the server on a failed rest call
      * @param exception
      */
+    // TODO rename exception to error and use a meaningful type
     private handleException(exception:any):void
     {
         // parse response object
@@ -289,38 +290,236 @@ export class TerraBaseService
 
     /**
      * @param {TerraBaseParameterInterface} params
+     * @param {boolean} arrayAsArray - Defines if an array search param should interpret and parsed as an array or not. Default is false.
      * @returns {URLSearchParams}
      */
-    protected createUrlSearchParams(params:TerraBaseParameterInterface):URLSearchParams
+    protected createUrlSearchParams(params:TerraBaseParameterInterface, arrayAsArray:boolean = false):URLSearchParams
     {
-        let searchParams:URLSearchParams = new URLSearchParams();
+        let searchParams:URLSearchParams = new URLSearchParams('', new TerraQueryEncoder());
 
         if(!isNullOrUndefined(params))
         {
-            Object.keys(params).map((key:string) =>
+            Object.keys(params).forEach((key:string) =>
             {
                 if(!isNullOrUndefined(params[key]) && params[key] !== '')
                 {
-                    searchParams.set(key, params[key]);
+                    if(arrayAsArray && isArray(params[key]))
+                    {
+                        searchParams.appendAll(this.createArraySearchParams(key, params[key]));
+                    }
+                    else
+                    {
+                        searchParams.set(key, params[key]);
+                    }
                 }
+
             });
         }
 
         return searchParams;
     }
 
-    private getMissingUserPermissionAlertMessage():string
+    private createArraySearchParams(key:string, params:Array<string>):URLSearchParams
     {
-        // START workaround because we do not have a real translation solution in terra components
-        let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
-        if(langInLocalStorage === 'de')
+        let arraySearchParams:URLSearchParams = new URLSearchParams();
+
+        params.forEach((param:string) =>
         {
-            return 'Fehlende Berechtigungen';
+            arraySearchParams.append(key + '[]', param);
+        });
+
+        return arraySearchParams;
+    }
+
+    private getMissingUserPermissionAlertMessage(error:any):string
+    {
+        let missingRights:string = '';
+        let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
+        let isGerman:boolean = langInLocalStorage === 'de';
+
+
+        if(isGerman)
+        {
+            missingRights = 'Fehlende Berechtigungen für: <br/> • ';
         }
         else
         {
-            return 'Missing permissions';
+            missingRights = 'Missing permissions for: <br/> • ';
         }
-        // END workaround
+
+        let body:{} = JSON.parse(error['_body']);
+
+        if(!isNullOrUndefined(body))
+        {
+            let errorFromBody:{} = body['error'];
+
+            if(!isNullOrUndefined(errorFromBody))
+            {
+                let missingPermissions:{ [key:string]:{ [key:string]:string } } = errorFromBody['missing_permissions'];
+
+                let permissionTranslations:Array<{ [key:string]:string }> = [];
+
+                Object.keys(missingPermissions).forEach((key:string) =>
+                {
+                    if(missingPermissions.hasOwnProperty(key))
+                    {
+                        permissionTranslations.push(missingPermissions[key]);
+                    }
+                });
+
+                let english:Array<string> = [];
+                let german:Array<string> = [];
+
+                permissionTranslations.forEach((translations:{ [key:string]:string }) =>
+                {
+                    Object.keys(translations).forEach((key:string) =>
+                    {
+                        switch(key)
+                        {
+                            case 'de':
+                                german.push(translations[key]);
+                                break;
+                            case 'en':
+                                english.push(translations[key]);
+                                break;
+                        }
+                    });
+                });
+
+                let concatedPermissions:string;
+
+                if(isGerman)
+                {
+                    concatedPermissions = german.reverse().join('<br/> • ');
+                }
+                else
+                {
+                    concatedPermissions = english.reverse().join('<br/> • ');
+                }
+
+                missingRights += concatedPermissions;
+            }
+        }
+
+
+        return missingRights;
+    }
+
+    // TODO remove generic if the BaseService get a generic itself
+    protected handleLocalDataModelGetList(getRequest$:Observable<Response>, params?:TerraBaseParameterInterface):Observable<Array<any>>
+    {
+        if(Object.keys(this.dataModel).length > 0 && this.hasAllParamsLoaded(params))
+        {
+            return of(Object.values(this.dataModel));
+        }
+
+        this.setAuthorization();
+
+        return this.mapRequest(getRequest$).pipe(
+            tap((dataList:Array<any>) =>
+                dataList.forEach((data:any) =>
+                {
+                    this.dataModel[data.id] = Object.assign(data, this.dataModel[data.id]);
+                })
+            )
+        );
+    }
+
+    private hasAllParamsLoaded(params:TerraBaseParameterInterface):boolean
+    {
+        if(!isNullOrUndefined(params) && !isNullOrUndefined(params['with']))
+        {
+            return Object.values(this.dataModel).every((value:any) =>
+            {
+                return params['with'].every((param:string) => value.hasOwnProperty(param));
+            });
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    // TODO remove generic if the BaseService get a generic itself
+    protected handleLocalDataModelGet(getRequest$:Observable<Response>, dataId:number):Observable<any>
+    {
+        if(!isNullOrUndefined(this.dataModel[dataId]))
+        {
+            return Observable.of(this.dataModel[dataId]);
+        }
+
+        this.setAuthorization();
+
+        return this.mapRequest(getRequest$).pipe(
+            tap((data:any) => this.dataModel[dataId] = data)
+        );
+    }
+
+    // TODO remove generic if the BaseService get a generic itself
+    protected handleLocalDataModelPost(postRequest$:Observable<Response>, dataId:number):Observable<any>
+    {
+        this.setAuthorization();
+
+        return this.mapRequest(postRequest$).pipe(
+            tap((data:any) =>
+            {
+                if(isNullOrUndefined(this.dataModel[dataId]))
+                {
+                    this.dataModel[dataId] = [];
+                }
+                this.dataModel[dataId].push(data);
+            })
+        );
+    }
+
+    // TODO remove generic if the BaseService get a generic itself
+    protected handleLocalDataModelPut(putRequest$:Observable<Response>, dataId:number):Observable<any>
+    {
+        this.setAuthorization();
+
+        return this.mapRequest(putRequest$).pipe(
+            tap((data:any) =>
+            {
+                let dataToUpdate:any;
+
+                if(!isNullOrUndefined(this.dataModel[dataId]))
+                {
+                    dataToUpdate = this.dataModel[dataId].find((dataItem:any) => dataItem.id === data.id);
+                }
+
+                if(!isNullOrUndefined(dataToUpdate))
+                {
+                    dataToUpdate = data;
+                }
+                else
+                {
+                    if(isNullOrUndefined(this.dataModel[dataId]))
+                    {
+                        this.dataModel[dataId] = [];
+                    }
+                    this.dataModel[dataId].push(data);
+                }
+            })
+        );
+    }
+
+    // TODO remove generic if the BaseService get a generic itself
+    protected handleLocalDataModelDelete(deleteRequest$:Observable<Response>, dataId:number):Observable<void>
+    {
+        this.setAuthorization();
+
+        return this.mapRequest(deleteRequest$).pipe(
+            tap(() =>
+            {
+                Object.keys(this.dataModel).forEach((comparisonId:string) =>
+                {
+                    let dataIndex:number = this.dataModel[comparisonId].findIndex((data:any) => data.id === dataId);
+                    if(dataIndex >= 0)
+                    {
+                        this.dataModel[comparisonId].splice(dataIndex, 1);
+                    }
+                });
+            })
+        );
     }
 }

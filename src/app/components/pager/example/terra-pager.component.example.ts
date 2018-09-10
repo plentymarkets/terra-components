@@ -16,9 +16,7 @@ export interface TerraPagerComponentExampleInterface
 })
 export class TerraPagerComponentExample implements OnInit
 {
-
-
-    private _pagingData:TerraPagerInterface<TerraPagerComponentExampleInterface>;
+    public pagingData:TerraPagerInterface<TerraPagerComponentExampleInterface>;
 
     public ngOnInit():void
     {
@@ -33,15 +31,4 @@ export class TerraPagerComponentExample implements OnInit
             isLastPage:     false
         };
     }
-
-    public get pagingData():TerraPagerInterface<TerraPagerComponentExampleInterface>
-    {
-        return this._pagingData;
-    }
-
-    public set pagingData(value:TerraPagerInterface<TerraPagerComponentExampleInterface>)
-    {
-        this._pagingData = value;
-    }
-
 }

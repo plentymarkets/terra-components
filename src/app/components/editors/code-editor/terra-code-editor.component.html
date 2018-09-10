@@ -1,0 +1,33 @@
+<label>{{inputHeaderLabel}}</label>
+<div class="editor-container">
+    <quill-editor [placeholder]="placeholder"
+                  [(ngModel)]="editorContent"
+                  (ngModelChange)="emitChanges(true)"
+                  [style]="{minHeight:inputMinHeight ,height:inputFixedHeight}"
+                  [modules]="modules">
+    </quill-editor>
+    <textarea class="raw-input"
+              [class.visible]="showCodeView"
+              [(ngModel)]="rawContent"
+              (ngModelChange)="emitChanges(false)">
+    </textarea>
+    <terra-button [class.visible]="showCodeView && isValidMarkup"
+                  class="close-button"
+                  inputIcon="icon-close"
+                  (outputClicked)="closeCodeView()">
+    </terra-button>
+    <terra-button [class.visible]="showCodeView && !isValidMarkup"
+                  class="error-button"
+                  inputIcon="icon-warning"
+                  [inputIsSecondary]="true"
+                  [inputTooltipText]="invalidMarkupHint"
+                  inputTooltipPlacement="left">
+    </terra-button>
+    <terra-overlay #viewConfirmationOverlay
+                   [inputOverlayTitle]="'terraCodeEditor.changeViewOverlay.title' | translate:lang"
+                   [inputPrimaryButtonInterface]="viewConfirmation.primaryButton"
+                   [inputSecondaryButtonInterface]="viewConfirmation.secondaryButton"
+                   class="preview-overlay">
+        <p>{{'terraCodeEditor.changeViewOverlay.text' | translate:lang}}</p>
+    </terra-overlay>
+</div>

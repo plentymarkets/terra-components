@@ -1,0 +1,67 @@
+.editor-container
+{
+    position: relative;
+    .close-button,
+    .error-button
+    {
+        display: none;
+        position: absolute;
+        right: var(--space-sm);
+        top: var(--space-sm);
+        &.visible
+        {
+            display: block;
+        }
+    }
+    .raw-input
+    {
+        font-family: Menlo, Monaco, 'Courier New', monospace;
+        font-size: var(--font-size-2);
+        display: none;
+        position: absolute;
+        padding-right: 40px;
+        border: 1px solid;
+        resize: none;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        right: 0;
+        top:0;
+        bottom: 0;
+        &.visible
+        {
+            display: block;
+        }
+    }
+}
+label
+{
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-1);
+    line-height: 1em !important;
+    font-variant: all-small-caps;
+    
+    width: var(--label-width, var(--label-width-default));
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: var(--label-padding, var(--label-padding-default));
+    margin-bottom: 0;
+    color: var(--label-color, var(--color-structure-8));
+    transition: color var(--transition-sm);
+    
+    user-select: none; /* Standard syntax */
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    & span
+    {
+        font-size: var(--font-size-1);
+    }
+}
+

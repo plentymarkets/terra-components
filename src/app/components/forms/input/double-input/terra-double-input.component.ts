@@ -37,12 +37,12 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     @Input()
     public inputDecimalCount:number = 2;
 
-    private _step:number;
+    protected step:number;
 
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    private _id:string;
+    protected id:string;
 
     /**
      * @deprecated
@@ -61,13 +61,13 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
         super(TerraRegex.DOUBLE);
 
         // generate the id of the input instance
-        this._id = `double-input_#${nextId++}`;
+        this.id = `double-input_#${nextId++}`;
     }
 
     public ngOnInit():void
     {
         this.regex = TerraRegex.getDouble(this.inputDecimalCount);
-        this._step = 1 / (Math.pow(10, this.inputDecimalCount));
+        this.step = 1 / (Math.pow(10, this.inputDecimalCount));
     }
 
     /**
@@ -77,7 +77,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.focus();
         });
     }
@@ -89,7 +89,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.select();
         });
     }

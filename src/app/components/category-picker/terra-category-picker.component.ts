@@ -8,29 +8,33 @@ import {
 import { TranslationService } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraCategoryPickerBaseService } from './service/terra-category-picker-base.service';
-import { CategoryTreeConfig } from './config/category-tree.config';
-import {
-    TerraNodeInterface,
-    TerraPagerInterface
-} from '../../../';
+import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
 import { CategoryDataInterface } from './data/category-data.interface';
 import { CategoryDetailDataInterface } from './data/category-detail-data.interface';
 import { isNullOrUndefined } from 'util';
 import { CategoryValueInterface } from './data/category-value.interface';
 import { Observable } from 'rxjs/Observable';
+import { TerraNestedDataPickerComponent } from '../nested-data-picker/terra-nested-data-picker.component';
+import { NestedDataTreeConfig } from '../nested-data-picker/config/nested-data-tree.config';
+import { NestedDataInterface } from '../nested-data-picker/data/nested-data.interface';
+import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
+import { TerraNodeTreeConfig } from '../tree/node-tree/data/terra-node-tree.config';
 
 @Component({
     selector:  'terra-category-picker',
     template:  require('./terra-category-picker.component.html'),
     styles:    [require('./terra-category-picker.component.scss')],
-    providers: [{
-        provide:     NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => TerraCategoryPickerComponent),
-        multi:       true
-    },
-                CategoryTreeConfig]
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraCategoryPickerComponent),
+            multi:       true
+        },
+        TerraNodeTreeConfig,
+        NestedDataTreeConfig
+    ]
 })
-export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
+export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent implements OnInit, AfterContentChecked
 {
 
     /**
@@ -39,31 +43,16 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
     @Input()
     public inputCategoryService:TerraCategoryPickerBaseService;
 
-    @Input()
-    public inputIsDisabled:boolean;
-
-    /**
-     * @description Tooltip that is shown on the TextInput
-     */
-    @Input()
-    public inputTooltipText:string;
-
-    @Input()
-    public inputName:string;
-
-    public toggleTree:boolean = false;
-
-    private value:number;
     private completeCategory:CategoryValueInterface;
 
     private categoryName:string;
-    private list:Array<TerraNodeInterface<CategoryDataInterface>>;
+    private list:Array<TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>>;
     private isContainerCategorySelected:boolean;
-    private isNotInitialCall:boolean;
 
-    constructor(private translation:TranslationService,
-                public categoryTreeConfig:CategoryTreeConfig)
+    constructor(public translation:TranslationService,
+                public nestedTreeConfig:NestedDataTreeConfig<CategoryDataInterface>)
     {
+        super(translation, nestedTreeConfig);
         this.value = 0;
         this.completeCategory = {
             id:               null,
@@ -82,14 +71,14 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
 
     public ngAfterContentChecked():void
     {
-        if(this.categoryTreeConfig.list.length === 0)
+        if(this.nestedTreeConfig.list.length === 0)
         {
-            this.categoryTreeConfig.list = this.list;
+            this.nestedTreeConfig.list = this.list;
         }
 
-        if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode) && !isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode.value))
+        if(!isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode) && !isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode.value))
         {
-            this.isContainerCategorySelected = (this.categoryTreeConfig.currentSelectedNode.value.type === 'container');
+            this.isContainerCategorySelected = (this.nestedTreeConfig.currentSelectedNode.value.data.type === 'container');
         }
     }
 
@@ -99,7 +88,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         {
             this.inputName = this.translation.translate('terraCategoryPicker.category');
         }
-        this.categoryTreeConfig.list = this.list;
+        this.nestedTreeConfig.list = this.list;
         this.getCategoriesByParent(null);
     }
 
@@ -115,17 +104,17 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         {
             this.inputCategoryService.requestCategoryDataById(value).subscribe((data:any) =>
             {
-                if(isNullOrUndefined(this.categoryTreeConfig.findNodeById(value)))
+                if(isNullOrUndefined(this.nestedTreeConfig.findNodeById(value)))
                 {
                     this.addNodes(data, null);
                 }
 
-                let nodeToSelect:TerraNodeInterface<CategoryDataInterface> = this.categoryTreeConfig.findNodeById(value);
+                let nodeToSelect:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>> = this.nestedTreeConfig.findNodeById(value);
 
                 if(!isNullOrUndefined(nodeToSelect))
                 {
-                    this.categoryTreeConfig.currentSelectedNode = nodeToSelect;
-                    this.categoryName = this.categoryTreeConfig.currentSelectedNode.name;
+                    this.nestedTreeConfig.currentSelectedNode = nodeToSelect;
+                    this.categoryName = this.nestedTreeConfig.currentSelectedNode.name;
                 }
 
                 this.value = value;
@@ -140,44 +129,21 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         }
     }
 
-    // Set touched on blur
-    public onBlur():void
-    {
-        this.onTouchedCallback();
-    }
-
-    // From ControlValueAccessor interface
-    public registerOnChange(fn:any):void
-    {
-        this.onChangeCallback = fn;
-    }
-
-    // From ControlValueAccessor interface
-    public registerOnTouched(fn:any):void
-    {
-        this.onTouchedCallback = fn;
-    }
-
-    public showTree():void
-    {
-        this.toggleTree = !this.toggleTree;
-    }
-
     public onSelectNode():void
     {
         this.isNotInitialCall = true;
 
-        if(!isNullOrUndefined(this.categoryTreeConfig.currentSelectedNode))
+        if(!isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode))
         {
-            this.categoryName = this.categoryTreeConfig.currentSelectedNode.name;
-            this.writeValue(this.categoryTreeConfig.currentSelectedNode.id);
+            this.categoryName = this.nestedTreeConfig.currentSelectedNode.name;
+            this.writeValue(this.nestedTreeConfig.currentSelectedNode.id);
         }
         this.toggleTree = !this.toggleTree;
     }
 
     public reset():void
     {
-        this.categoryTreeConfig.currentSelectedNode = {
+        this.nestedTreeConfig.currentSelectedNode = {
             id:               null,
             isActive:         null,
             isOpen:           null,
@@ -193,7 +159,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         this.onChangeCallback(this.value);
     }
 
-    private updateCompleteCategory(category:TerraNodeInterface<CategoryDataInterface>):void
+    private updateCompleteCategory(category:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>):void
     {
         this.completeCategory.id = +category.id;
         this.completeCategory.isActive = category.isActive;
@@ -221,16 +187,16 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
         return obs;
     }
 
-    private addNodes(data:any, parentNodeId:number | string):void
+    public addNodes(data:any, parentNodeId:number | string):void
     {
         // List of Categories which will be turned into Nodes to add to the node tree
-        let entries:Array<CategoryDataInterface> = data.entries;
+        let entries:Array<{}> = data.entries;
 
         // Necessary for re-initializing of the Node Tree after data was loaded
-        if(this.categoryTreeConfig.list.length === 1 && this.categoryTreeConfig.list[0] === this.categoryTreeConfig.currentSelectedNode)
+        if(this.nestedTreeConfig.list.length === 1 && this.nestedTreeConfig.list[0] === this.nestedTreeConfig.currentSelectedNode)
         {
-            this.categoryTreeConfig.removeNodeById(this.categoryTreeConfig.currentSelectedNode.id);
-            this.categoryTreeConfig.list = [];
+            this.nestedTreeConfig.removeNodeById(this.nestedTreeConfig.currentSelectedNode.id);
+            this.nestedTreeConfig.list = [];
         }
 
         if(!isNullOrUndefined(entries))
@@ -241,26 +207,28 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                 let categoryDetail:CategoryDetailDataInterface = null;
 
                 // If the node hasn't already been added the routine will be started
-                if(isNullOrUndefined(this.categoryTreeConfig.findNodeById(categoryData.id)) && categoryData.details.length > 0)
+                if(isNullOrUndefined(this.nestedTreeConfig.findNodeById(categoryData.id)) && categoryData.details.length > 0)
                 {
                     categoryDetail = categoryData.details[0];
 
                     // Create Node to add to tree later
-                    let childNode:TerraNodeInterface<CategoryDataInterface> = {
+                    let childNode:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>> = {
                         id:               categoryData.id,
                         name:             categoryDetail.name,
                         isVisible:        true,
                         tooltip:          'ID: ' + categoryData.id,
                         tooltipPlacement: 'top',
-                        value:            categoryData
+                        value:            {
+                            data: categoryData
+                        }
                     };
 
-                    let parentNode:TerraNodeInterface<CategoryDataInterface>;
+                    let parentNode:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>;
 
                     // If the category has a parent, the parent node is created from the parentId in the category data
                     if(!isNullOrUndefined(categoryData.parentCategoryId))
                     {
-                        parentNode = this.categoryTreeConfig.findNodeById(categoryData.parentCategoryId);
+                        parentNode = this.nestedTreeConfig.findNodeById(categoryData.parentCategoryId);
                     }
 
                     // If the parentNode is still null it is tried to create the parent node out of the given id
@@ -272,7 +240,7 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                         }
                         else
                         {
-                            parentNode = this.categoryTreeConfig.findNodeById(parentNodeId);
+                            parentNode = this.nestedTreeConfig.findNodeById(parentNodeId);
                         }
                     }
 
@@ -283,15 +251,15 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
                     }
 
                     // The finished node is added to the node tree
-                    this.categoryTreeConfig.addNode(childNode, parentNode);
+                    this.nestedTreeConfig.addNode(childNode, parentNode);
                 }
             });
         }
         // Current List is updated
-        this.list = this.categoryTreeConfig.list;
+        this.list = this.nestedTreeConfig.list;
     }
 
-    private getCategoriesByParent(parentNode:TerraNodeInterface<CategoryDataInterface>):void
+    private getCategoriesByParent(parentNode:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>):void
     {
         let id:number | string = null;
 
@@ -312,10 +280,4 @@ export class TerraCategoryPickerComponent implements OnInit, AfterContentChecked
             }
         });
     }
-
-    // Placeholders for the callbacks which are later provided
-    // by the Control Value Accessor
-    private onTouchedCallback:() => void = () => undefined;
-
-    private onChangeCallback:(_:any) => void = () => undefined;
 }

@@ -80,11 +80,13 @@ export class TerraButtonWithOptionsComponent implements OnInit
     @Input()
     public inputOptionsAlignment:TerraTextAlignEnum;
 
-    // view children
-    @ViewChild(TerraButtonComponent) private toggleButton:TerraButtonComponent;
+    protected optionsToggle:boolean;
+    protected alignRight:boolean;
 
-    private _optionsToggle:boolean;
-    private _alignRight:boolean;
+    // view children
+    @ViewChild(TerraButtonComponent)
+    private toggleButton:TerraButtonComponent;
+
     private clickListener:(event:Event) => void;
 
     constructor(private elementRef:ElementRef)
@@ -95,12 +97,12 @@ export class TerraButtonWithOptionsComponent implements OnInit
             // check if it has been clicked elsewhere
             if(!this.elementRef.nativeElement.contains(event.target))
             {
-                this._optionsToggle = false;
+                this.optionsToggle = false;
             }
         };
 
         this.inputOptionsAlignment = TerraTextAlignEnum.RIGHT;
-        this._alignRight = true;
+        this.alignRight = true;
     }
 
     public ngOnInit():void
@@ -115,17 +117,17 @@ export class TerraButtonWithOptionsComponent implements OnInit
         {
             case TerraTextAlignEnum.LEFT:
             {
-                this._alignRight = false;
+                this.alignRight = false;
                 break;
             }
             case TerraTextAlignEnum.RIGHT:
             {
-                this._alignRight = true;
+                this.alignRight = true;
                 break;
             }
             case TerraTextAlignEnum.CENTER:
             {
-                this._alignRight = false;
+                this.alignRight = false;
                 break;
             }
         }
@@ -145,7 +147,7 @@ export class TerraButtonWithOptionsComponent implements OnInit
 
     private toggleOptions():void
     {
-        if(!this._optionsToggle)
+        if(!this.optionsToggle)
         {
             document.addEventListener('click', this.clickListener);
         }
@@ -154,6 +156,6 @@ export class TerraButtonWithOptionsComponent implements OnInit
             document.removeEventListener('click', this.clickListener);
         }
 
-        this._optionsToggle = !this._optionsToggle;
+        this.optionsToggle = !this.optionsToggle;
     }
 }

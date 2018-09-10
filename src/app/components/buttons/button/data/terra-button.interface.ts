@@ -20,4 +20,5 @@ export interface TerraButtonInterface
     isHighlighted?:boolean;
     isSmall?:boolean;
     isLarge?:boolean;
+    isFlagged?:boolean;
 }

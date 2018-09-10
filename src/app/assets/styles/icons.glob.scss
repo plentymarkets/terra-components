@@ -1,5 +1,6 @@
 @import "_variables";
 @import "_loading.icon";
+
 // Typography
 //
 // Font, line-height, and color for body text, headings, and more.
@@ -60,8 +61,25 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+
 //Icon-Variables//
 
+$icon-unlink: "\eb0f";
+$icon-anonymize: "\eb0e";
+$icon-active_doc: "\eb01";
+$icon-active_fold_closed: "\eb02";
+$icon-active_fold_open: "\eb03";
+$icon-active_settings: "\eb04";
+$icon-equals: "\eb05";
+$icon-inactive_doc: "\eb06";
+$icon-inactive_fold_closed: "\eb07";
+$icon-inactive_fold_open: "\eb08";
+$icon-intermed_fold_closed: "\eb09";
+$icon-intermed_fold_open: "\eb0a";
+$icon-link: "\eb0b";
+$icon-real: "\eb0c";
+$icon-reg_expr: "\eb0d";
+$icon-plenty_base: "\eb00";
 $icon-colorpicker: "\eafe";
 $icon-servicecenter: "\eaff";
 $icon-open_external_link: "\eafc";
@@ -587,7 +605,86 @@ $icon-visibility_private: "\eaa3";
 $icon-warning: "\eaa4";
 $icon-zoom: "\eaa5";
 
-
+.icon-unlink {
+    &:before {
+        content: $icon-unlink;
+    }
+}
+.icon-anonymize {
+    &:before {
+        content: $icon-anonymize;
+    }
+}
+.icon-active_doc {
+    &:before {
+        content: $icon-active_doc;
+    }
+}
+.icon-active_fold_closed {
+    &:before {
+        content: $icon-active_fold_closed;
+    }
+}
+.icon-active_fold_open {
+    &:before {
+        content: $icon-active_fold_open;
+    }
+}
+.icon-active_settings {
+    &:before {
+        content: $icon-active_settings;
+    }
+}
+.icon-equals {
+    &:before {
+        content: $icon-equals;
+    }
+}
+.icon-inactive_doc {
+    &:before {
+        content: $icon-inactive_doc;
+    }
+}
+.icon-inactive_fold_closed {
+    &:before {
+        content: $icon-inactive_fold_closed;
+    }
+}
+.icon-inactive_fold_open {
+    &:before {
+        content: $icon-inactive_fold_open;
+    }
+}
+.icon-intermed_fold_closed {
+    &:before {
+        content: $icon-intermed_fold_closed;
+    }
+}
+.icon-intermed_fold_open {
+    &:before {
+        content: $icon-intermed_fold_open;
+    }
+}
+.icon-link {
+    &:before {
+        content: $icon-link;
+    }
+}
+.icon-real {
+    &:before {
+        content: $icon-real;
+    }
+}
+.icon-reg_expr {
+    &:before {
+        content: $icon-reg_expr;
+    }
+}
+.icon-plenty_base {
+    &:before {
+        content: $icon-plenty_base;
+    }
+}
 .icon-colorpicker
 {
     &:before
