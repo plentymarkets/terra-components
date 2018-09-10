@@ -107,14 +107,14 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     public outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<D>>> = new EventEmitter();
 
     public headerList:Array<TerraDataTableHeaderCellInterface>;
-    public rowList:Array<TerraDataTableRowInterface<D>>;
     public pagingData:TerraPagerInterface<D>;
     public pagingSize:Array<TerraSelectBoxValueInterface>;
     public onSuccessFunction:(res:I) => void;
     public defaultPagingSize:number;
     public TerraRefTypeEnum:object = TerraRefTypeEnum;
 
-    private _selectedRowList:Array<TerraDataTableRowInterface<D>>;
+    private _rowList:Array<TerraDataTableRowInterface<D>> = [];
+    private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
     private _isHeaderCheckboxChecked:boolean = false;
     private _initialLoadingMessage:string;
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
@@ -133,8 +133,19 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this.inputHasCheckboxes = true;
         this.inputHasInitialLoading = false;
         this.inputHasPager = true;
+    }
 
+    public get rowList():Array<TerraDataTableRowInterface<D>>
+    {
+        return this._rowList;
+    }
+
+    public set rowList(value:Array<TerraDataTableRowInterface<D>>)
+    {
+        // reset selected RowList
         this._selectedRowList = [];
+
+        this._rowList = value;
     }
 
     private get getCollapsedState():string
@@ -163,7 +174,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         this._isHeaderCheckboxChecked = isChecked;
 
-        this.rowList.forEach((row:TerraDataTableRowInterface<D>) =>
+        this._rowList.forEach((row:TerraDataTableRowInterface<D>) =>
         {
             if(!row.disabled)
             {
@@ -181,7 +192,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         {
             this._isHeaderCheckboxChecked = false;
         }
-        else if(this.selectedRowList.length > 0 && this.rowList.length === this.selectedRowList.length)
+        else if(this.selectedRowList.length > 0 && this._rowList.length === this.selectedRowList.length)
         {
             this._isHeaderCheckboxChecked = true;
         }
@@ -205,7 +216,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         if(!cell.buttonList && !clickedRow.disabled)
         {
-            this.rowList.forEach((row:TerraDataTableRowInterface<D>):void =>
+            this._rowList.forEach((row:TerraDataTableRowInterface<D>):void =>
             {
                 row.isActive = false;
             });
@@ -323,9 +334,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     public deleteRow(rowToDelete:TerraDataTableRowInterface<D>):void
     {
-        let index:number = this.rowList.indexOf(rowToDelete);
+        let index:number = this._rowList.indexOf(rowToDelete);
 
-        this.rowList.splice(index, 1);
+        this._rowList.splice(index, 1);
 
         let selectedIndex:number = this.selectedRowList.indexOf(rowToDelete);
 
@@ -347,7 +358,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
         this._isHeaderCheckboxChecked = false;
 
-        if(!isNullOrUndefined(this.rowList))
+        if(!isNullOrUndefined(this._rowList))
         {
             this.rowList.forEach((row:TerraDataTableRowInterface<D>) =>
             {
