@@ -16,7 +16,7 @@ import { TerraNestedDataPickerBaseService } from './service/terra-nested-data-pi
 import { TerraNodeTreeConfig } from '../../components/tree/node-tree/data/terra-node-tree.config';
 import { Observable } from 'rxjs/Observable';
 import { NestedDetailDataInterface } from './data/nested-detail-data.interface';
-import { NestedPagerDataInterface } from './data/nested-pager-data.interface';
+import { TerraPagerInterface } from '../../..';
 
 @Component({
     selector:  'terra-nested-data-picker',
@@ -196,11 +196,11 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
         this.toggleTree = !this.toggleTree;
     }
 
-    private getNestedData(parentId:number | string):Observable<NestedPagerDataInterface>
+    private getNestedData(parentId:number | string):Observable<TerraPagerInterface<{}>>
     {
-        let obs:Observable<NestedPagerDataInterface> = this.inputNestedService.requestNestedData(parentId);
+        let obs:Observable<TerraPagerInterface<{}>> = this.inputNestedService.requestNestedData(parentId);
 
-        obs.subscribe((data:NestedPagerDataInterface) =>
+        obs.subscribe((data:TerraPagerInterface<{}>) =>
         {
             this.addNodes(data, parentId);
         });
@@ -216,7 +216,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
             id = parentNode.id;
         }
 
-        this.inputNestedService.requestNestedData(id).subscribe((data:NestedPagerDataInterface) =>
+        this.inputNestedService.requestNestedData(id).subscribe((data:TerraPagerInterface<{}>) =>
         {
             if(isNullOrUndefined(parentNode))
             {
@@ -228,15 +228,15 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
             }
         });
     }
-    private getNestedDataByParentId(parentId:number | string):() => Observable<NestedPagerDataInterface>
+    private getNestedDataByParentId(parentId:number | string):() => Observable<TerraPagerInterface<{}>>
     {
-        return ():Observable<NestedPagerDataInterface> => this.getNestedData(parentId);
+        return ():Observable<TerraPagerInterface<{}>> => this.getNestedData(parentId);
     }
     public onTouchedCallback:() => void = () => undefined;
 
     public onChangeCallback:(_:any) => void = () => undefined;
 
-    public addNodes(nestedData:NestedPagerDataInterface, parentId:number | string):void
+    public addNodes(nestedData:TerraPagerInterface<{}>, parentId:number | string):void
     {
 
         // List of Categories which will be turned into Nodes to add to the node tree
