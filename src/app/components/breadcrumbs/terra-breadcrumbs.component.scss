@@ -7,6 +7,12 @@
     transition: height var(--transition-lg);
     display: flex;
     
+    &.breadcrumbs-overflow-auto
+    {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    
     .terra-breadcrumb-container
     {
         cursor: pointer;
@@ -21,6 +27,7 @@
                 max-width: 120px;
                 text-overflow: ellipsis;
                 overflow: hidden;
+                text-decoration: none;
     
                 &.active
                 {
