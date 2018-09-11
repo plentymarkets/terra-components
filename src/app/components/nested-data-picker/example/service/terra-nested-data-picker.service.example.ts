@@ -6,16 +6,10 @@ import { TerraNestedDataPickerBaseService } from '../../../nested-data-picker/se
 import { of } from 'rxjs/observable/of';
 import { TerraPagerInterface } from '../../../pager/data/terra-pager.interface';
 
-export interface NestedPickerExampleDetailInterface
-{
-    detailId:number;
-    name:string;
-}
-
 @Injectable()
 export class NestedPickerExampleService extends TerraNestedDataPickerBaseService<{}>
 {
-    public parents:TerraPagerInterface<NestedDataInterface<NestedPickerExampleDetailInterface>> = {
+    public parents:TerraPagerInterface<NestedDataInterface<any>> = {
         entries:        [
             {
                 id:          1,
@@ -57,7 +51,7 @@ export class NestedPickerExampleService extends TerraNestedDataPickerBaseService
         totalsCount:    3
     };
 
-    public children:TerraPagerInterface<NestedDataInterface<NestedPickerExampleDetailInterface>> = {
+    public children:TerraPagerInterface<NestedDataInterface<any>> = {
         entries:        [
             {
                 id:       1,
@@ -109,9 +103,9 @@ export class NestedPickerExampleService extends TerraNestedDataPickerBaseService
         totalsCount:    3
     };
 
-    public requestNestedData(parentId:string | number):Observable<TerraPagerInterface<NestedDataInterface<NestedPickerExampleDetailInterface>>>
+    public requestNestedData(parentId:string | number):Observable<TerraPagerInterface<NestedDataInterface<any>>>
     {
-        let data:TerraPagerInterface<NestedDataInterface<NestedPickerExampleDetailInterface>> = this.parents;
+        let data:TerraPagerInterface<NestedDataInterface<any>> = this.parents;
         if(!isNullOrUndefined(parentId))
         {
             data = {
@@ -124,7 +118,7 @@ export class NestedPickerExampleService extends TerraNestedDataPickerBaseService
                 page:           1,
                 totalsCount:    3
             };
-            this.children.entries.forEach((child:NestedDataInterface<NestedPickerExampleDetailInterface>) =>
+            this.children.entries.forEach((child:NestedDataInterface<any>) =>
             {
                 if(child.parentId === parentId)
                 {
@@ -136,7 +130,7 @@ export class NestedPickerExampleService extends TerraNestedDataPickerBaseService
         return of(data);
     }
 
-    public requestNestedDataById(id:number):Observable<TerraPagerInterface<NestedDataInterface<NestedPickerExampleDetailInterface>>>
+    public requestNestedDataById(id:number):Observable<TerraPagerInterface<NestedDataInterface<any>>>
     {
         let children:TerraPagerInterface<{}> = {
             entries:        [],
@@ -148,7 +142,7 @@ export class NestedPickerExampleService extends TerraNestedDataPickerBaseService
             page:           1,
             totalsCount:    3
         };
-        this.children.entries.forEach((child:NestedDataInterface<NestedPickerExampleDetailInterface>) =>
+        this.children.entries.forEach((child:NestedDataInterface<any>) =>
         {
             if(child.parentId === id)
             {
