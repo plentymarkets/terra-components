@@ -1,3 +1,9 @@
+<a name="unreleased"></a>
+# Unreleased
+
+### Bug Fixes
+* **terra-suggestion-box** fixed issue with resetting `selectedValue`
+
 <a name="2.3.19"></a>
 # 2.3.19 (05.09.2018)
 
