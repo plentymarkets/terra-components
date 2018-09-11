@@ -1,3 +1,23 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-breadcrumbs** fixed an issue where the breadcrumb dropdown would not show on iOS devices.
+
+<a name="2.3.19"></a>
+# 2.3.19 (05.09.2018)
+
+### Bug Fixes
+* **terra-code-editor** Improve validating custom markup
+* **terra-code-editor** Fix initial check which view should be shown
+* **terra-form** fixed initial evaluation of child scopes inside list entries
+
+<a name="2.3.18"></a>
+# 2.3.18 (31.08.2018)
+
+### Bug Fixes
+* **terra-note-editor** fixed issue for saving notes.
+* **terra-file-browser** fixed issue when used in a multi split view.
+
 <a name="2.3.17"></a>
 # 2.3.17 (31.08.2018)
 

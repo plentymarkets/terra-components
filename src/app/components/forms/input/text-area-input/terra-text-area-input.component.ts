@@ -75,14 +75,14 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    private _id:string;
+    protected id:string;
     private readonly defaultMaxRows:number = 4;
     constructor()
     {
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance
-        this._id = `text-area-input_#${nextId++}`;
+        this.id = `text-area-input_#${nextId++}`;
         this.inputMaxRows = this.defaultMaxRows;
         this.inputHasFixedHeight = false;
     }
@@ -106,7 +106,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
     {
         setTimeout(():void =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.focus();
         });
     }
@@ -118,7 +118,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
     {
         setTimeout(():void =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.select();
         });
     }
