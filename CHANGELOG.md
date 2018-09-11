@@ -1,7 +1,7 @@
 # Unreleased
 
 ### Bug Fixes
-* **security vulnerability** updated gulp t0 4.0.0
+* **terra-breadcrumbs** fixed an issue where the breadcrumb dropdown would not show on iOS devices.
 
 <a name="2.3.19"></a>
 # 2.3.19 (05.09.2018)
