@@ -1,3 +1,9 @@
+<a name="3.0.0-beta.0"></a>
+# 3.0.0-beta.0 (XX.09.2018)
+
+### Breaking Changes
+* **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
+
 <a name="2.3.19"></a>
 # 2.3.19 (05.09.2018)
 
