@@ -66,9 +66,9 @@ $icomoon-font-path: "fonts" !default;
 
 //Icon-Variables//
 
-$icon-auslog: "\eb10";
+$icon-logout: "\eb10";
 $icon-content: "\eb11";
-$icon-einlog: "\eb12";
+$icon-login: "\eb12";
 $icon-footer: "\eb13";
 $icon-header: "\eb14";
 $icon-unlink: "\eb0f";
@@ -612,11 +612,11 @@ $icon-visibility_private: "\eaa3";
 $icon-warning: "\eaa4";
 $icon-zoom: "\eaa5";
 
-.icon-auslog
+.icon-logout
 {
     &:before
     {
-        content: $icon-auslog;
+        content: $icon-logout;
     }
 }
 
@@ -628,11 +628,11 @@ $icon-zoom: "\eaa5";
     }
 }
 
-.icon-einlog
+.icon-login
 {
     &:before
     {
-        content: $icon-einlog;
+        content: $icon-login;
     }
 }
 
