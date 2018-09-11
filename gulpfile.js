@@ -141,7 +141,7 @@ gulp.task('publish', shell.task([
  *     'node_modules/@plentymarkets/terra-components' in target directory
  *
  **/
-gulp.task('npm-publish', function (callback) {
+gulp.task('npm-publish', function () {
     increment = argv.increment ? argv.increment : 'patch';
     preid = argv.preid ? argv.preid : '';
 
@@ -219,7 +219,7 @@ gulp.task('generateJson', function ()
  * run "gulp build-doc" to let Dgeni generate api files and to create json data.
  */
 gulp.task('build-doc', function (done) {
-    runSequence(
+    gulp.series(
         'build',
         'dgeni',
         'generateJson',
