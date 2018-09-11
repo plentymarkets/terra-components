@@ -16,7 +16,7 @@ import { TerraNestedDataPickerBaseService } from './service/terra-nested-data-pi
 import { TerraNodeTreeConfig } from '../../components/tree/node-tree/data/terra-node-tree.config';
 import { Observable } from 'rxjs/Observable';
 import { NestedDetailDataInterface } from './data/nested-detail-data.interface';
-import { TerraPagerInterface } from '../../..';
+import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
 @Component({
     selector:  'terra-nested-data-picker',
@@ -60,7 +60,6 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     public toggleTree:boolean = false;
     public isNotInitialCall:boolean;
     public value:number | string;
-    private inputDataService:TerraNestedDataPickerBaseService<{}>;
     private completeNestedData:NestedValueInterface;
     private nestedDataName:string;
     private nestedList:Array<TerraNodeInterface<NestedDataInterface<{}>>>;

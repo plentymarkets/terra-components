@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { TerraPagerInterface } from '../../../..';
+import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 
 /**
  * @author chirila-ioan-daniel
@@ -16,6 +16,10 @@ export abstract class TerraNestedDataPickerBaseService<T>
      */
     public abstract requestNestedData(parentId:string | number):Observable<TerraPagerInterface<T>>;
 
+    /**
+     * @description Placeholder for the specific single item retrieval method.
+     * @param id
+     */
     public abstract requestNestedDataById(id:number):Observable<TerraPagerInterface<T>>;
 
 }
