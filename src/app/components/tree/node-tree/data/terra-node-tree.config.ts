@@ -362,7 +362,7 @@ export class TerraNodeTreeConfig<D>
      */
     public toggleOpenParent(node:TerraNodeInterface<D>, isOpen:boolean):void
     {
-        if(!isNullOrUndefined(node.parent))
+        if(!isNullOrUndefined(node) && !isNullOrUndefined(node.parent))
         {
             node.parent.isOpen = isOpen;
 
@@ -431,12 +431,16 @@ export class TerraNodeTreeConfig<D>
      * @description Set a node as selected.
      * @param node The node to be set as selected.
      */
-    public set currentSelectedNode(node:TerraNodeInterface<D>)
-    {
-        this.toggleOpenParent(node, true);
-        this.recursiveSetNodeInactive(this.list);
-        node.isActive = true;
-        this._currentSelectedNode = node;
+    public set currentSelectedNode(node: TerraNodeInterface<D>) {
+        if (!isNullOrUndefined(node)) {
+            this.toggleOpenParent(node, true);
+            this.recursiveSetNodeInactive(this.list);
+            node.isActive = true;
+            this._currentSelectedNode = node;
+        }
+        else {
+            this._currentSelectedNode = null;
+        }
     }
 
     /**
