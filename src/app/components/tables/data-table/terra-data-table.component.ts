@@ -360,7 +360,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
         if(!isNullOrUndefined(this._rowList))
         {
-            this.rowList.forEach((row:TerraDataTableRowInterface<D>) =>
+            this._rowList.forEach((row:TerraDataTableRowInterface<D>) =>
             {
                 this.changeRowState(false, row);
             });
