@@ -16,7 +16,11 @@ import { Subscription } from 'rxjs/Subscription';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
 import { TerraFileBrowserService } from '../terra-file-browser.service';
-import { DefaultLocale, L10nDatePipe, TranslationService } from 'angular-l10n';
+import {
+    DefaultLocale,
+    L10nDatePipe,
+    TranslationService
+} from 'angular-l10n';
 import { TerraUploadProgress } from '../model/terra-upload-progress';
 import {
     isNull,
@@ -235,7 +239,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     constructor(private changeDetector:ChangeDetectorRef,
                 private fileBrowserService:TerraFileBrowserService,
                 private translationService:TranslationService,
-                @Inject(forwardRef(() => TerraFileBrowserComponent)) private parentFileBrowser:TerraFileBrowserComponent)
+                @Inject(forwardRef(() => TerraFileBrowserComponent)) protected parentFileBrowser:TerraFileBrowserComponent)
     {
     }
 
@@ -375,9 +379,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             }
         ).filter((storageObject:TerraStorageObject) => this.isAllowed(storageObject.key))
                                     .map((storageObject:TerraStorageObject) =>
-        {
-            return this.createTableRow(storageObject);
-        });
+                                    {
+                                        return this.createTableRow(storageObject);
+                                    });
     }
 
     private createTableRow(storageObject:TerraStorageObject):TerraSimpleTableRowInterface<TerraStorageObject>
