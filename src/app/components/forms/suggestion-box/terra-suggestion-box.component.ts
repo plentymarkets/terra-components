@@ -123,8 +123,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         if(changes['inputListBoxValues'])
         {
             this.displayListBoxValues = this.inputListBoxValues;
-            if(changes['inputListBoxValues'].currentValue.length > 0
-                   && !this.inputListBoxValues.find((x:TerraSuggestionBoxValueInterface):boolean => this.selectedValue === x))
+            if(changes['inputListBoxValues'].currentValue.length > 0 &&
+                !isNullOrUndefined(this.selectedValue) &&
+                !this.inputListBoxValues.find((x:TerraSuggestionBoxValueInterface):boolean => this.selectedValue.value === x.value))
             {
                 // reset selected value if the value does not exists or the list is empty
                 this.selectedValue = null;
