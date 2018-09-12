@@ -171,17 +171,14 @@ button:focus
     {
         &:not(.highlighted)
         {
-            background-color: var(--color-alert);
             color: var(--color-structure-0);
             &:hover,
             &:focus
             {
-                background-color: var(--color-alert-dark);
                 color: var(--color-structure-0);
                 &:active,
                 &.active
                 {
-                    background-color: var(--color-alert);
                     color: var(--color-structure-0);
                 }
             }
@@ -202,17 +199,14 @@ button:focus
     {
         &:not(.highlighted)
         {
-            background: var(--color-add);
             color: var(--color-structure-0);
             &:hover,
             &:focus
             {
-                background-color: var(--color-add-dark);
                 color: var(--color-structure-0);
                 &:active,
                 &.active
                 {
-                    background-color: var(--color-add);
                     color: var(--color-structure-0);
                 }
             }
