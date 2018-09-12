@@ -4,8 +4,14 @@
 ### Breaking Changes
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
 
+<a name="2.3.21"></a>
+# 2.3.21 (12.09.2018)
+
 ### Bug Fixes
+* **terra-suggestion-box** fixed issue while resetting `selectedValue`
 * **terra-breadcrumbs** fixed an issue where the breadcrumb dropdown would not show on iOS devices.
+* **terra-node-tree** fixed an null pointer.
+* **icons** new icons for login, logout, header, footer, content
 
 <a name="2.3.19"></a>
 # 2.3.19 (05.09.2018)
