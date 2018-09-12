@@ -431,7 +431,8 @@ export class TerraNodeTreeConfig<D>
      * @description Set a node as selected.
      * @param node The node to be set as selected.
      */
-    public set currentSelectedNode(node: TerraNodeInterface<D>) {
+    public set currentSelectedNode(node: TerraNodeInterface<D>) 
+    {
         if (!isNullOrUndefined(node)) {
             this.toggleOpenParent(node, true);
             this.recursiveSetNodeInactive(this.list);
