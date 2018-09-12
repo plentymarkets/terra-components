@@ -2,7 +2,6 @@ import {
     Component,
     Input
 } from '@angular/core';
-import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
     selector: 'terra-base-toolbar',
@@ -17,17 +16,8 @@ export class TerraBaseToolbarComponent
     @Input()
     public inputIsBreadcrumbs:boolean;
 
-    constructor(private deviceDetectorService:DeviceDetectorService)
+    constructor()
     {
         this.inputIsBreadcrumbs = false;
-    }
-
-    protected checkBrowser():boolean
-    {
-        return this.inputIsBreadcrumbs &&
-               (this.deviceDetectorService.isMobile() ||
-                this.deviceDetectorService.isTablet() ||
-                // overflow:auto does not work for safari
-                this.deviceDetectorService.browser !== 'safari');
     }
 }

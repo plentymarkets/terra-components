@@ -1,6 +1,9 @@
 @import "_variables";
 @import "_loading.icon";
 
+$icomoon-font-family: "plentyicons" !default;
+$icomoon-font-path: "fonts" !default;
+
 // Typography
 //
 // Font, line-height, and color for body text, headings, and more.
@@ -35,12 +38,12 @@
 
 @font-face
 {
-    font-family: 'plentyicons';
-    src: url('../fonts/plentyicons.eot?nex54c');
-    src: url('../fonts/plentyicons.eot?nex54c#iefix') format('embedded-opentype'),
-    url('../fonts/plentyicons.ttf?nex54c') format('truetype'),
-    url('../fonts/plentyicons.woff?nex54c') format('woff'),
-    url('../fonts/plentyicons.svg?nex54c#plentyicons') format('svg');
+    font-family: '#{$icomoon-font-family}';
+    src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?z8douy');
+    src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?z8douy#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?z8douy') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?z8douy') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?z8douy##{$icomoon-font-family}') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -63,6 +66,11 @@
 
 //Icon-Variables//
 
+$icon-logout: "\eb10";
+$icon-content: "\eb11";
+$icon-login: "\eb12";
+$icon-footer: "\eb13";
+$icon-header: "\eb14";
 $icon-unlink: "\eb0f";
 $icon-anonymize: "\eb0e";
 $icon-active_doc: "\eb01";
@@ -219,8 +227,8 @@ $icon-file_extension_odt: "\eaf4";
 $icon-payment_sepa_pain: "\eaf5";
 $icon-shipping_centre: "\eaf6";
 $icon-order_new: "\e9e9";
-$icon-gutschrift_erzeugen: "\eb23";
-$icon-gutschrift_stornieren: "\eb24";
+$icon-refund_create: "\eb23";
+$icon-refund_reversal_create: "\eb24";
 $icon-icon-reversal_document-13: "\eb22";
 $icon-reorder_search: "\ea56";
 $icon-shipment_tracking: "\ea64";
@@ -603,6 +611,46 @@ $icon-vcard: "\eaa2";
 $icon-visibility_private: "\eaa3";
 $icon-warning: "\eaa4";
 $icon-zoom: "\eaa5";
+
+.icon-logout
+{
+    &:before
+    {
+        content: $icon-logout;
+    }
+}
+
+.icon-content
+{
+    &:before
+    {
+        content: $icon-content;
+    }
+}
+
+.icon-login
+{
+    &:before
+    {
+        content: $icon-login;
+    }
+}
+
+.icon-footer
+{
+    &:before
+    {
+        content: $icon-footer;
+    }
+}
+
+.icon-header
+{
+    &:before
+    {
+        content: $icon-header;
+    }
+}
 
 .icon-unlink
 {
@@ -1849,22 +1897,6 @@ $icon-zoom: "\eaa5";
     &:before
     {
         content: $icon-order_new;
-    }
-}
-
-.icon-gutschrift_erzeugen
-{
-    &:before
-    {
-        content: $icon-gutschrift_erzeugen;
-    }
-}
-
-.icon-gutschrift_stornieren
-{
-    &:before
-    {
-        content: $icon-gutschrift_stornieren;
     }
 }
 
