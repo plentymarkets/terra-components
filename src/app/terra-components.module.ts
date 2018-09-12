@@ -36,7 +36,6 @@ import { l10nConfig } from './translation/l10n.config';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { Type } from '@angular/core/src/type';
-import { DeviceDetectorModule } from 'ngx-device-detector';
 import { components } from './components/component-collection';
 import { examples } from './components/example-collection';
 import { services } from './service/service-collection';
@@ -69,8 +68,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         AceEditorModule,
         TerraInteractModule,
         QuillModule,
-        RouterModule,
-        DeviceDetectorModule.forRoot()
+        RouterModule
     ],
     providers:       [
         TerraNavigatorSplitViewConfig,
