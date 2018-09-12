@@ -1,6 +1,8 @@
+<a name="unreleased"></a>
 # Unreleased
 
 ### Bug Fixes
+* **terra-suggestion-box** fixed issue while resetting `selectedValue`
 * **terra-breadcrumbs** fixed an issue where the breadcrumb dropdown would not show on iOS devices.
 * **terra-node-tree** fixed an null pointer.
 
