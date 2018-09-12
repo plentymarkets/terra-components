@@ -57,7 +57,8 @@ function findExamplePath(dir, file, filter, exclude)
         }
         else if (name.includes(filter))
         {
-            if (!name.includes('.d.ts'))
+            // exclude js and d.ts files
+            if (!name.includes('.d.ts') && !name.includes('.js'))
             {
                 if (exclude !== null) {
                     for (var x = 0; x < exclude.length;x++)
