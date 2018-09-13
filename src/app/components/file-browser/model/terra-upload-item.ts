@@ -15,12 +15,12 @@ export class TerraUploadItem
     {
         let filenames:Array<string> = this.file.name.split('.');
         let extname:string = filenames.pop();
-        return this._uploadService.prepareKey(this.file.name, true);
+        return this.uploadService.prepareKey(this.file.name, true);
     }
 
     public get pathname():string
     {
-        let pathname:string = this._uploadService.prepareKey(PathHelper.join(this._path, this.filename));
+        let pathname:string = this.uploadService.prepareKey(PathHelper.join(this.path, this.filename));
 
         if(pathname.charAt(0) === '/')
         {
@@ -30,57 +30,57 @@ export class TerraUploadItem
         return pathname;
     }
 
-    private _beforeUpload:Array<(file:File) => void> = [];
-    private _onSuccess:Array<UploadCallback> = [];
-    private _onCancel:Array<UploadCallback> = [];
-    private _onError:Array<UploadCallback> = [];
-    private _onProgress:Array<(progress:number) => void> = [];
+    private beforeUpload:Array<(file:File) => void> = [];
+    private onSuccess:Array<UploadCallback> = [];
+    private onCancel:Array<UploadCallback> = [];
+    private onError:Array<UploadCallback> = [];
+    private onProgress:Array<(progress:number) => void> = [];
 
-    constructor(public file:File, private _path:string, private _uploadService:TerraBaseStorageService)
+    constructor(public file:File, private path:string, private uploadService:TerraBaseStorageService)
     {
         if(isNullOrUndefined(file))
         {
             this.uploaded = true;
         }
-        if(!isNullOrUndefined(this._path) && this._path.charAt(0) === '/')
+        if(!isNullOrUndefined(this.path) && this.path.charAt(0) === '/')
         {
-            this._path = this._path.substr(1);
+            this.path = this.path.substr(1);
         }
     }
 
     public beforeUpload(callback:(file:File) => void):TerraUploadItem
     {
-        this._beforeUpload.push(callback);
+        this.beforeUpload.push(callback);
         return this;
     }
 
     public onSuccess(callback:UploadCallback):TerraUploadItem
     {
-        this._onSuccess.push(callback);
+        this.onSuccess.push(callback);
         return this;
     }
 
     public onError(callback:UploadCallback):TerraUploadItem
     {
-        this._onError.push(callback);
+        this.onError.push(callback);
         return this;
     }
 
     public onCancel(callback:UploadCallback):TerraUploadItem
     {
-        this._onCancel.push(callback);
+        this.onCancel.push(callback);
         return this;
     }
 
     public onProgress(callback:(progress:number) => void):TerraUploadItem
     {
-        this._onProgress.push(callback);
+        this.onProgress.push(callback);
         return this;
     }
 
     public cancelUpload():void
     {
-        this._uploadService.queue.remove(this);
+        this.uploadService.queue.remove(this);
         if(!isNullOrUndefined(this.xhr))
         {
             this.xhr.abort();
