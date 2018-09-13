@@ -1,3 +1,7 @@
+<a name="3.0.0-beta.1"></a>
+# 3.0.0-beta.0 (13.09.2018)
+Adapted Changes from v2.3.21 and v2.3.22
+
 <a name="3.0.0-beta.0"></a>
 # 3.0.0-beta.0 (11.09.2018)
 
