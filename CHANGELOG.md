@@ -1,3 +1,9 @@
+<a name="2.3.22"></a>
+# 2.3.22 (12.09.2018)
+
+### Feature
+* **icons** Added function groups
+
 <a name="2.3.21"></a>
 # 2.3.21 (12.09.2018)
 
