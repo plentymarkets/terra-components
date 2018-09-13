@@ -26,15 +26,14 @@ export class TerraUploadItem
         {
             pathname = pathname.substr(1);
         }
-
         return pathname;
     }
 
-    private beforeUpload:Array<(file:File) => void> = [];
-    private onSuccess:Array<UploadCallback> = [];
-    private onCancel:Array<UploadCallback> = [];
-    private onError:Array<UploadCallback> = [];
-    private onProgress:Array<(progress:number) => void> = [];
+    private beforeUploadList:Array<(file:File) => void> = [];
+    private onSuccessList:Array<UploadCallback> = [];
+    private onCancelList:Array<UploadCallback> = [];
+    private onErrorList:Array<UploadCallback> = [];
+    private onProgressList:Array<(progress:number) => void> = [];
 
     constructor(public file:File, private path:string, private uploadService:TerraBaseStorageService)
     {
@@ -50,31 +49,31 @@ export class TerraUploadItem
 
     public beforeUpload(callback:(file:File) => void):TerraUploadItem
     {
-        this.beforeUpload.push(callback);
+        this.beforeUploadList.push(callback);
         return this;
     }
 
     public onSuccess(callback:UploadCallback):TerraUploadItem
     {
-        this.onSuccess.push(callback);
+        this.onSuccessList.push(callback);
         return this;
     }
 
     public onError(callback:UploadCallback):TerraUploadItem
     {
-        this.onError.push(callback);
+        this.onErrorList.push(callback);
         return this;
     }
 
     public onCancel(callback:UploadCallback):TerraUploadItem
     {
-        this.onCancel.push(callback);
+        this.onCancelList.push(callback);
         return this;
     }
 
     public onProgress(callback:(progress:number) => void):TerraUploadItem
     {
-        this.onProgress.push(callback);
+        this.onProgressList.push(callback);
         return this;
     }
 
