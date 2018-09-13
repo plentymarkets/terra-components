@@ -4,6 +4,12 @@
 ### Breaking Changes
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
 
+<a name="2.3.22"></a>
+# 2.3.22 (12.09.2018)
+
+### Feature
+* **icons** Added function groups
+
 <a name="2.3.21"></a>
 # 2.3.21 (12.09.2018)
 
