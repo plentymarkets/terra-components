@@ -19,10 +19,10 @@ class GetSetRule extends Lint.RuleWalker
     public visitSetAccessor(node:ts.AccessorDeclaration):void
     {
         let setterName:string = node.name.getFullText().trim();
-        let regeEx:RegExp = new RegExp('this\\._' + setterName + '[ \\t]*=[ \\t]*' + node.parameters[0].name.getFullText());
+        let regExp:RegExp = new RegExp('this\\._' + setterName + '[ \\t]*=[ \\t]*' + node.parameters[0].name.getFullText());
 
         if(node.body.statements.length === 1
-           && regeEx.test(node.body.statements[0].getFullText()))
+           && node.body.statements[0].getFullText().trim().search(regExp) === 0)
         {
             if(this.knownGetter.indexOf(setterName) >= 0)
             {
@@ -42,10 +42,10 @@ class GetSetRule extends Lint.RuleWalker
     public visitGetAccessor(node:ts.AccessorDeclaration):void
     {
         let getterName:string = node.name.getFullText().trim();
-        let regeEx:RegExp = new RegExp('return[ \\t]*this\\._' + getterName + '[ \\t]*;');
+        let regExp:RegExp = new RegExp('return[ \\t]*this\\._' + getterName + '[ \\t]*;');
 
         if(node.body.statements.length === 1
-           && regeEx.test(node.body.statements[0].getFullText()))
+           && node.body.statements[0].getFullText().trim().search(regExp) === 0)
         {
             if(this.knownSetter.indexOf(getterName) >= 0)
             {
