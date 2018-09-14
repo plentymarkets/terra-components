@@ -16,7 +16,6 @@ import {
     isNull,
     isNullOrUndefined
 } from 'util';
-import { TerraDataTableHeaderCellInterface } from '../data-table/cell/terra-data-table-header-cell.interface';
 
 @Component({
     selector: 'terra-simple-table',
@@ -69,16 +68,16 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     public onRowListChange:EventEmitter<void> = new EventEmitter();
 
-    private _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
-    private _selectedRowList:Array<TerraSimpleTableRowInterface<D>> = [];
+    private headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
+    private selectedRowList:Array<TerraSimpleTableRowInterface<D>> = [];
 
-    constructor(private _elementRef:ElementRef)
+    constructor(private elementRef:ElementRef)
     {
-        this._headerCheckbox = {
+        this.headerCheckbox = {
             checked:         false,
             isIndeterminate: false
         };
-        this._selectedRowList = [];
+        this.selectedRowList = [];
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -137,9 +136,9 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     private onHeaderCheckboxChange():void
     {
-        this.outputHeaderCheckBoxChanged.emit(!this._headerCheckbox.checked);
+        this.outputHeaderCheckBoxChanged.emit(!this.headerCheckbox.checked);
 
-        if(this._headerCheckbox.checked)
+        if(this.headerCheckbox.checked)
         {
             this.resetSelectedRows();
         }
@@ -168,35 +167,35 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this.updateHeaderCheckboxState();
 
         // notify user
-        this.outputSelectedRowsChange.emit(this._selectedRowList);
+        this.outputSelectedRowsChange.emit(this.selectedRowList);
     }
 
     private checkHeaderCheckbox():void
     {
-        this._headerCheckbox.checked = true;
-        this._headerCheckbox.isIndeterminate = false;
+        this.headerCheckbox.checked = true;
+        this.headerCheckbox.isIndeterminate = false;
     }
 
     private uncheckHeaderCheckbox():void
     {
-        this._headerCheckbox.checked = false;
-        this._headerCheckbox.isIndeterminate = false;
+        this.headerCheckbox.checked = false;
+        this.headerCheckbox.isIndeterminate = false;
     }
 
     private setHeaderCheckboxIndeterminate():void
     {
-        this._headerCheckbox.checked = false;
-        this._headerCheckbox.isIndeterminate = true;
+        this.headerCheckbox.checked = false;
+        this.headerCheckbox.isIndeterminate = true;
     }
 
     private updateHeaderCheckboxState():void
     {
-        if(this._selectedRowList.length === 0) // anything selected?
+        if(this.selectedRowList.length === 0) // anything selected?
         {
             this.uncheckHeaderCheckbox();
         }
-        else if(this._selectedRowList.length > 0 && this.inputRowList.filter(
-                (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === this._selectedRowList.length) // all selected?
+        else if(this.selectedRowList.length > 0 && this.inputRowList.filter(
+                (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === this.selectedRowList.length) // all selected?
         {
             this.checkHeaderCheckbox();
         }
@@ -209,32 +208,32 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     private selectRow(row:TerraSimpleTableRowInterface<D>):void
     {
         // check if row is already selected
-        if(this._selectedRowList.find((r:TerraSimpleTableRowInterface<D>) => r === row))
+        if(this.selectedRowList.find((r:TerraSimpleTableRowInterface<D>) => r === row))
         {
             return;
         }
 
         // add row to selected row list
-        this._selectedRowList.push(row);
+        this.selectedRowList.push(row);
 
         // notify user that selection has changed
-        this.outputSelectedRowsChange.emit(this._selectedRowList);
+        this.outputSelectedRowsChange.emit(this.selectedRowList);
     }
 
     private deselectRow(row:TerraSimpleTableRowInterface<D>):void
     {
         // get index of the row in the selected row list
-        let rowIndex:number = this._selectedRowList.indexOf(row);
+        let rowIndex:number = this.selectedRowList.indexOf(row);
 
         // check if selected row list contains the given row
         if(rowIndex >= 0)
         {
             // remove row from selected row list
-            this._selectedRowList.splice(rowIndex, 1);
+            this.selectedRowList.splice(rowIndex, 1);
         }
 
         // notify user that selection has changed
-        this.outputSelectedRowsChange.emit(this._selectedRowList);
+        this.outputSelectedRowsChange.emit(this.selectedRowList);
     }
 
     private selectAllRows():void
@@ -255,15 +254,15 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this.uncheckHeaderCheckbox();
 
         // reset selected row list
-        this._selectedRowList = [];
+        this.selectedRowList = [];
 
         // notify user that selection has been reset
-        this.outputSelectedRowsChange.emit(this._selectedRowList);
+        this.outputSelectedRowsChange.emit(this.selectedRowList);
     }
 
     private isSelectedRow(row:TerraSimpleTableRowInterface<D>):boolean
     {
-        return this._selectedRowList.indexOf(row) >= 0;
+        return this.selectedRowList.indexOf(row) >= 0;
     }
 
     private onCheckboxClick(event:Event):void
@@ -295,7 +294,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
             {
                 if(event.ctrlKey || event.metaKey)
                 {
-                    this._headerCheckbox.checked = !this._headerCheckbox.checked;
+                    this.headerCheckbox.checked = !this.headerCheckbox.checked;
                     this.onHeaderCheckboxChange();
                 }
                 else
@@ -333,7 +332,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
             if(highlightIndex >= 0 && highlightIndex < this.inputRowList.length)
             {
-                let activeRow:HTMLElement = this._elementRef.nativeElement.querySelector('table tbody tr:nth-child(' + (highlightIndex + 1) + ')');
+                let activeRow:HTMLElement = this.elementRef.nativeElement.querySelector('table tbody tr:nth-child(' + (highlightIndex + 1) + ')');
                 let viewport:ClientRect = this.scrollContainer.nativeElement.getBoundingClientRect();
                 let activeRowPosition:ClientRect = activeRow.getBoundingClientRect();
 

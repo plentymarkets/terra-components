@@ -12,12 +12,11 @@ import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
 
 export class TerraTreeComponentExample implements OnInit
 {
-
-    private _leafList:Array<TerraLeafInterface> = [];
+    protected leafList:Array<TerraLeafInterface> = [];
 
     public ngOnInit():void
     {
-        this._leafList.push({
+        this.leafList.push({
             caption:     'Basic-Settings',
             icon:        'icon-settings',
             subLeafList: [
@@ -37,7 +36,7 @@ export class TerraTreeComponentExample implements OnInit
                 }
             ]
         });
-        this._leafList.push({
+        this.leafList.push({
             caption:     'Client (Store)',
             subLeafList: [
                 {
@@ -48,7 +47,7 @@ export class TerraTreeComponentExample implements OnInit
                 }
             ]
         });
-        this._leafList.push({
+        this.leafList.push({
             caption:     'Item',
             icon:        'icon-item',
             subLeafList: [
