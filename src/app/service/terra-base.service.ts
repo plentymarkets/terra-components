@@ -37,7 +37,7 @@ export class TerraBaseService
     private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     constructor(private terraLoadingSpinnerService:TerraLoadingSpinnerService,
-                private _http:Http,
+                private baseHttp:Http,
                 private baseUrl:string,
                 private isPlugin?:boolean)
     {
@@ -53,7 +53,7 @@ export class TerraBaseService
 
     public get http():Http
     {
-        return this._http;
+        return this.baseHttp;
     }
 
     public get isLoading():boolean
