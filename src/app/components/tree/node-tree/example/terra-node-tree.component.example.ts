@@ -21,7 +21,7 @@ export class TerraNodeTreeComponentExample implements OnInit
     private nodeCounter:number = 0;
 
 
-    constructor(private _nodeTreeConfig:TerraNodeTreeConfig<ExampleTreeData>)
+    constructor(private nodeTreeConfig:TerraNodeTreeConfig<ExampleTreeData>)
     {
     }
 
@@ -32,7 +32,7 @@ export class TerraNodeTreeComponentExample implements OnInit
 
     protected addNode():void
     {
-        this._nodeTreeConfig.addNode({
+        this.nodeTreeConfig.addNode({
             name:      'Test' + this.nodeCounter,
             id:        this.nodeCounter,
             isVisible: true
@@ -43,7 +43,7 @@ export class TerraNodeTreeComponentExample implements OnInit
 
     protected addExistingNode():void
     {
-        this._nodeTreeConfig.addNode({
+        this.nodeTreeConfig.addNode({
             name: 'Test' + this.nodeCounter,
             id:   0
         });
@@ -51,34 +51,34 @@ export class TerraNodeTreeComponentExample implements OnInit
 
     protected findNodeById(id:string | number):void
     {
-        let node:TerraNodeInterface<ExampleTreeData> = this._nodeTreeConfig.findNodeById(id);
+        let node:TerraNodeInterface<ExampleTreeData> = this.nodeTreeConfig.findNodeById(id);
         alert(node.name);
 
     }
 
     protected deleteNodeById(id:string | number):void
     {
-        this._nodeTreeConfig.removeNodeById(id);
+        this.nodeTreeConfig.removeNodeById(id);
     }
 
     protected getSelectedNode():void
     {
-        console.log(this._nodeTreeConfig.currentSelectedNode);
+        console.log(this.nodeTreeConfig.currentSelectedNode);
     }
 
     protected deleteSelectedNode():void
     {
-        this._nodeTreeConfig.removeNode(this._nodeTreeConfig.currentSelectedNode);
+        this.nodeTreeConfig.removeNode(this.nodeTreeConfig.currentSelectedNode);
     }
 
     protected updateSelectedNode():void
     {
-        this._nodeTreeConfig.currentSelectedNode.name = 'Terra';
+        this.nodeTreeConfig.currentSelectedNode.name = 'Terra';
     }
 
     protected updateNodeById(id:string | number):void
     {
-        this._nodeTreeConfig.updateNodeById(id,
+        this.nodeTreeConfig.updateNodeById(id,
             {
                 id:   id,
                 name: 'Terra'
@@ -87,7 +87,7 @@ export class TerraNodeTreeComponentExample implements OnInit
 
     protected addChildToNodeById(id:string | number):void
     {
-        this._nodeTreeConfig.addChildToNodeById(id, {
+        this.nodeTreeConfig.addChildToNodeById(id, {
             id:        133,
             name:      'myNewNode',
             isVisible: true
@@ -96,12 +96,12 @@ export class TerraNodeTreeComponentExample implements OnInit
 
     protected setSelectedNode(id:string | number):void
     {
-        this._nodeTreeConfig.setCurrentSelectedNodeById(id);
+        this.nodeTreeConfig.setCurrentSelectedNodeById(id);
     }
 
     protected createCompleteTree():void
     {
-        this._nodeTreeConfig.list = [
+        this.nodeTreeConfig.list = [
             {
                 id:        11,
                 name:      'Test1',
@@ -137,7 +137,7 @@ export class TerraNodeTreeComponentExample implements OnInit
 
     protected createTreeWithIcons():void
     {
-        this._nodeTreeConfig.list = [
+        this.nodeTreeConfig.list = [
             {
                 id:        1,
                 name:      'Ebay',
