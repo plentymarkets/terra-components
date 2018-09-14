@@ -28,13 +28,18 @@ import { TerraQueryEncoder } from './data/terra-query-encoder';
 // TODO TerraBaseService<D> or maybe TerraBaseService<D extends BaseData>
 export class TerraBaseService
 {
+    public get alert():TerraAlertComponent
+    {
+        return this._alert;
+    }
+
     public headers:Headers;
     public url:string;
 
     // TODO use D instead of any
     protected dataModel:{ [dataId:number]:any } = {};
 
-    private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     constructor(private terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private baseHttp:Http,
@@ -123,7 +128,7 @@ export class TerraBaseService
 
                 if(this.isPlugin)
                 {
-                    this.alert.addAlertForPlugin({
+                    this._alert.addAlertForPlugin({
                         msg:              missingUserPermissionAlertMessage,
                         type:             'danger',
                         dismissOnTimeout: 0
@@ -131,7 +136,7 @@ export class TerraBaseService
                 }
                 else
                 {
-                    this.alert.addAlert({
+                    this._alert.addAlert({
                         msg:              missingUserPermissionAlertMessage,
                         type:             'danger',
                         dismissOnTimeout: 0
@@ -240,7 +245,7 @@ export class TerraBaseService
         {
             if(this.isPlugin)
             {
-                this.alert.addAlertForPlugin({
+                this._alert.addAlertForPlugin({
                     msg:              this.getErrorString() + ': ' + response.message,
                     type:             'danger',
                     dismissOnTimeout: 0
@@ -248,7 +253,7 @@ export class TerraBaseService
             }
             else
             {
-                this.alert.addAlert({
+                this._alert.addAlert({
                     msg:              this.getErrorString() + ': ' + response.message,
                     type:             'danger',
                     dismissOnTimeout: 0
@@ -271,7 +276,7 @@ export class TerraBaseService
 
             if(this.isPlugin)
             {
-                this.alert.addAlertForPlugin({
+                this._alert.addAlertForPlugin({
                     msg:              this.getErrorString() + errorCode + ': ' + error.message,
                     type:             'danger',
                     dismissOnTimeout: 0
@@ -279,7 +284,7 @@ export class TerraBaseService
             }
             else
             {
-                this.alert.addAlert({
+                this._alert.addAlert({
                     msg:              this.getErrorString() + errorCode + ': ' + error.message,
                     type:             'danger',
                     dismissOnTimeout: 0
