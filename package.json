@@ -16,9 +16,9 @@
 	],
 	"license": "MIT",
 	"scripts": {
-		"webpack": "webpack",
 		"build": "gulp build",
 		"build-doc": "gulp build-doc",
+		"build-test": "npm run clean:dist && webpack --config config/webpack.prod.js  --progress --profile --bail",
 		"clean:dist": "npm run rimraf -- dist",
 		"rimraf": "rimraf",
 		"release": "gulp npm-publish",
