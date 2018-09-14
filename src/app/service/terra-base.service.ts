@@ -34,31 +34,31 @@ export class TerraBaseService
     // TODO use D instead of any
     protected dataModel:{ [dataId:number]:any } = {};
 
-    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+    private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
-    constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
-                private _baseHttp:Http,
-                private _baseUrl:string,
-                private _isPlugin?:boolean)
+    constructor(private terraLoadingSpinnerService:TerraLoadingSpinnerService,
+                private _http:Http,
+                private baseUrl:string,
+                private isPlugin?:boolean)
     {
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.setAuthorization();
-        this.url = _baseUrl;
+        this.url = baseUrl;
 
-        if(isNullOrUndefined(this._isPlugin))
+        if(isNullOrUndefined(this.isPlugin))
         {
-            this._isPlugin = false;
+            this.isPlugin = false;
         }
     }
 
     public get http():Http
     {
-        return this._baseHttp;
+        return this._http;
     }
 
     public get isLoading():boolean
     {
-        return this._terraLoadingSpinnerService.isLoading;
+        return this.terraLoadingSpinnerService.isLoading;
     }
 
     protected setToHeader(key:string, value:string):void
@@ -82,7 +82,7 @@ export class TerraBaseService
     // TODO use D instead of any, use a meaningful error type
     protected mapRequest(request:Observable<any>, err?:(error:any) => void, isRaw?:boolean):Observable<any>
     {
-        this._terraLoadingSpinnerService.start();
+        this.terraLoadingSpinnerService.start();
 
         return request.map((response:Response) =>
         {
@@ -121,9 +121,9 @@ export class TerraBaseService
             {
                 let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage(error);
 
-                if(this._isPlugin)
+                if(this.isPlugin)
                 {
-                    this._alert.addAlertForPlugin({
+                    this.alert.addAlertForPlugin({
                         msg:              missingUserPermissionAlertMessage,
                         type:             'danger',
                         dismissOnTimeout: 0
@@ -131,7 +131,7 @@ export class TerraBaseService
                 }
                 else
                 {
-                    this._alert.addAlert({
+                    this.alert.addAlert({
                         msg:              missingUserPermissionAlertMessage,
                         type:             'danger',
                         dismissOnTimeout: 0
@@ -147,7 +147,7 @@ export class TerraBaseService
             }
 
             return Observable.throw(error);
-        }).finally(() => this._terraLoadingSpinnerService.stop());
+        }).finally(() => this.terraLoadingSpinnerService.stop());
     }
 
     private dispatchEvent(eventToDispatch:Event | CustomEvent):void
@@ -238,9 +238,9 @@ export class TerraBaseService
         // check which exception type has been received
         if(!isNullOrUndefined(response.error) && !isNullOrUndefined(response.message))
         {
-            if(this._isPlugin)
+            if(this.isPlugin)
             {
-                this._alert.addAlertForPlugin({
+                this.alert.addAlertForPlugin({
                     msg:              this.getErrorString() + ': ' + response.message,
                     type:             'danger',
                     dismissOnTimeout: 0
@@ -248,7 +248,7 @@ export class TerraBaseService
             }
             else
             {
-                this._alert.addAlert({
+                this.alert.addAlert({
                     msg:              this.getErrorString() + ': ' + response.message,
                     type:             'danger',
                     dismissOnTimeout: 0
@@ -269,9 +269,9 @@ export class TerraBaseService
             // get error code
             let errorCode:string = error.code ? ' ' + error.code : '';
 
-            if(this._isPlugin)
+            if(this.isPlugin)
             {
-                this._alert.addAlertForPlugin({
+                this.alert.addAlertForPlugin({
                     msg:              this.getErrorString() + errorCode + ': ' + error.message,
                     type:             'danger',
                     dismissOnTimeout: 0
@@ -279,7 +279,7 @@ export class TerraBaseService
             }
             else
             {
-                this._alert.addAlert({
+                this.alert.addAlert({
                     msg:              this.getErrorString() + errorCode + ': ' + error.message,
                     type:             'danger',
                     dismissOnTimeout: 0
