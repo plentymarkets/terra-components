@@ -198,8 +198,6 @@ gulp.task('copy-documentation-changelog', function () {
     return gulp.src('component-documentation/documentation-changelog.json')
         .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
 });
-
-
 gulp.task('dgeni', function () {
     try {
         var dgeni = new Dgeni([require('./component-documentation/index')]);
@@ -210,15 +208,16 @@ gulp.task('dgeni', function () {
     }
 });
 
-gulp.task('generateJson', function ()
+gulp.task('generateJson', function (done)
 {
     gulpTasks.buildJsonFile(paths.dataJsonOutputPath);
+    done();
 });
 
 /**
  * run "gulp build-doc" to let Dgeni generate api files and to create json data.
  */
-gulp.task('build-doc', function (done) {
+gulp.task('build-doc',
     gulp.series(
         'build',
         'dgeni',
@@ -228,6 +227,5 @@ gulp.task('build-doc', function (done) {
         'copy-api-to-terra-doc',
         'copy-markdown-to-doc',
         'copy-icon-description-json',
-        'copy-documentation-changelog',
-        done);
-});
+        'copy-documentation-changelog'
+    ));
