@@ -22,7 +22,7 @@ class GetSetRule extends Lint.RuleWalker
         let regExp:RegExp = new RegExp('this\\._' + setterName + '[ \\t]*=[ \\t]*' + node.parameters[0].name.getFullText());
 
         if(node.body.statements.length === 1
-           && regExp.test(node.body.statements[0].getFullText()))
+           && node.body.statements[0].getFullText().trim().search(regExp) === 0)
         {
             if(this.knownGetter.indexOf(setterName) >= 0)
             {
@@ -45,7 +45,7 @@ class GetSetRule extends Lint.RuleWalker
         let regExp:RegExp = new RegExp('return[ \\t]*this\\._' + getterName + '[ \\t]*;');
 
         if(node.body.statements.length === 1
-           && regExp.test(node.body.statements[0].getFullText()))
+           && node.body.statements[0].getFullText().trim().search(regExp) === 0)
         {
             if(this.knownSetter.indexOf(getterName) >= 0)
             {
