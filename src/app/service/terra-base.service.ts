@@ -1,3 +1,4 @@
+/* tslint:disable:restrict-leading-underscore */
 import { Injectable } from '@angular/core';
 import {
     Headers,
@@ -34,10 +35,10 @@ export class TerraBaseService
     // TODO use D instead of any
     protected dataModel:{ [dataId:number]:any } = {};
 
-    private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     constructor(private terraLoadingSpinnerService:TerraLoadingSpinnerService,
-                private _http:Http,
+                private _baseHttp:Http,
                 private baseUrl:string,
                 private isPlugin?:boolean)
     {
@@ -53,7 +54,7 @@ export class TerraBaseService
 
     public get http():Http
     {
-        return this._http;
+        return this._baseHttp;
     }
 
     public get isLoading():boolean
@@ -123,7 +124,7 @@ export class TerraBaseService
 
                 if(this.isPlugin)
                 {
-                    this.alert.addAlertForPlugin({
+                    this._alert.addAlertForPlugin({
                         msg:              missingUserPermissionAlertMessage,
                         type:             'danger',
                         dismissOnTimeout: 0
@@ -131,7 +132,7 @@ export class TerraBaseService
                 }
                 else
                 {
-                    this.alert.addAlert({
+                    this._alert.addAlert({
                         msg:              missingUserPermissionAlertMessage,
                         type:             'danger',
                         dismissOnTimeout: 0
@@ -240,7 +241,7 @@ export class TerraBaseService
         {
             if(this.isPlugin)
             {
-                this.alert.addAlertForPlugin({
+                this._alert.addAlertForPlugin({
                     msg:              this.getErrorString() + ': ' + response.message,
                     type:             'danger',
                     dismissOnTimeout: 0
@@ -248,7 +249,7 @@ export class TerraBaseService
             }
             else
             {
-                this.alert.addAlert({
+                this._alert.addAlert({
                     msg:              this.getErrorString() + ': ' + response.message,
                     type:             'danger',
                     dismissOnTimeout: 0
@@ -271,7 +272,7 @@ export class TerraBaseService
 
             if(this.isPlugin)
             {
-                this.alert.addAlertForPlugin({
+                this._alert.addAlertForPlugin({
                     msg:              this.getErrorString() + errorCode + ': ' + error.message,
                     type:             'danger',
                     dismissOnTimeout: 0
@@ -279,7 +280,7 @@ export class TerraBaseService
             }
             else
             {
-                this.alert.addAlert({
+                this._alert.addAlert({
                     msg:              this.getErrorString() + errorCode + ': ' + error.message,
                     type:             'danger',
                     dismissOnTimeout: 0
