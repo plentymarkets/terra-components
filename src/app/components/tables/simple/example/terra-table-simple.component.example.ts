@@ -21,14 +21,14 @@ export class TerraSimpleTableComponentExample implements OnInit
     @ViewChild('table')
     public table:TerraSimpleTableComponent<any>;
 
-    private _viewContainerRef:ViewContainerRef;
+    private viewContainerRef:ViewContainerRef;
     private _headerList:Array<TerraSimpleTableHeaderCellInterface> = [];
     private _rowList:Array<TerraSimpleTableRowInterface<any>> = [];
 
     public constructor(viewContainerRef:ViewContainerRef)
     {
         // You need this small hack in order to catch application root view container ref
-        this._viewContainerRef = viewContainerRef;
+        this.viewContainerRef = viewContainerRef;
     }
 
     public ngOnInit():void

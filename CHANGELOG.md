@@ -1,3 +1,8 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-suggestion-box** fix an issue where the input text was reset after a value was selected and the user typed again
+
 <a name="3.0.0-beta.1"></a>
 # 3.0.0-beta.0 (13.09.2018)
 Adapted Changes from v2.3.21 and v2.3.22

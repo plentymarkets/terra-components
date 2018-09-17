@@ -113,23 +113,24 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     public defaultPagingSize:number;
     public TerraRefTypeEnum:object = TerraRefTypeEnum;
 
-    private _rowList:Array<TerraDataTableRowInterface<D>> = [];
-    private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
-    private _isHeaderCheckboxChecked:boolean = false;
-    private _initialLoadingMessage:string;
-    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
-    private _langPrefix:string = 'terraDataTable';
-    private _requestPending:boolean;
+    protected isHeaderCheckboxChecked:boolean = false;
+    protected initialLoadingMessage:string;
+    protected alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+    protected langPrefix:string = 'terraDataTable';
+    protected requestPending:boolean;
+
+    private _rowList:Array<TerraDataTableRowInterface<D>>;
+    private _selectedRowList:Array<TerraDataTableRowInterface<D>>;
 
     /**
      * @deprecated
      */
     @Input()
-    private _hasCheckboxes:boolean;
+    private hasCheckboxes:boolean;
 
     constructor()
     {
-        this._hasCheckboxes = true;
+        this.hasCheckboxes = true;
         this.inputHasCheckboxes = true;
         this.inputHasInitialLoading = false;
         this.inputHasPager = true;
@@ -162,17 +163,17 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes['_hasCheckboxes'])
+        if(changes['hasCheckboxes'])
         {
             console.warn(
-                '_hasCheckboxes is deprecated. It will be removed in one of the upcoming releases. Please use inputHasCheckboxes instead.');
-            this.inputHasCheckboxes = changes['_hasCheckboxes'].currentValue;
+                'hasCheckboxes is deprecated. It will be removed in one of the upcoming releases. Please use inputHasCheckboxes instead.');
+            this.inputHasCheckboxes = changes['hasCheckboxes'].currentValue;
         }
     }
 
     public onHeaderCheckboxChange(isChecked:boolean):void
     {
-        this._isHeaderCheckboxChecked = isChecked;
+        this.isHeaderCheckboxChecked = isChecked;
 
         this._rowList.forEach((row:TerraDataTableRowInterface<D>) =>
         {
@@ -190,11 +191,11 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
         if(this.selectedRowList.length === 0)
         {
-            this._isHeaderCheckboxChecked = false;
+            this.isHeaderCheckboxChecked = false;
         }
         else if(this.selectedRowList.length > 0 && this._rowList.length === this.selectedRowList.length)
         {
-            this._isHeaderCheckboxChecked = true;
+            this.isHeaderCheckboxChecked = true;
         }
         else
         {
@@ -356,7 +357,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         this.outputDoPagingEvent.emit(pagerData);
 
-        this._isHeaderCheckboxChecked = false;
+        this.isHeaderCheckboxChecked = false;
 
         if(!isNullOrUndefined(this._rowList))
         {
@@ -374,7 +375,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             return;
         }
 
-        this._requestPending = true;
+        this.requestPending = true;
         restCall.subscribe(
             (res:I) =>
             {
@@ -391,7 +392,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             },
             () =>
             {
-                this._requestPending = false;
+                this.requestPending = false;
             }
         );
     }

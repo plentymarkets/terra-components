@@ -12,37 +12,37 @@ export class TerraNavigatorConfig<D>
     public observableNewNodeByRootPath:Observable<TerraNavigatorNodeInterface<D>>;
     public observableNewNodesByRoute:Observable<Array<TerraNavigatorNodeInterface<D>>>;
 
-    private _subscriberNewNodeByRootPath:Subscriber<TerraNavigatorNodeInterface<D>>;
-    private _subscriberNewNodesByRoute:Subscriber<Array<TerraNavigatorNodeInterface<D>>>;
+    private subscriberNewNodeByRootPath:Subscriber<TerraNavigatorNodeInterface<D>>;
+    private subscriberNewNodesByRoute:Subscriber<Array<TerraNavigatorNodeInterface<D>>>;
 
     constructor()
     {
         this.observableNewNodeByRootPath = new Observable<TerraNavigatorNodeInterface<D>>(
             (subscriber:Subscriber<TerraNavigatorNodeInterface<D>>):void =>
             {
-                this._subscriberNewNodeByRootPath = subscriber;
+                this.subscriberNewNodeByRootPath = subscriber;
             });
 
         this.observableNewNodesByRoute = new Observable<Array<TerraNavigatorNodeInterface<D>>>(
             (subscriber:Subscriber<Array<TerraNavigatorNodeInterface<D>>>):void =>
             {
-                this._subscriberNewNodesByRoute = subscriber;
+                this.subscriberNewNodesByRoute = subscriber;
             });
     }
 
     public addNodeByRootPath(newNode:TerraNavigatorNodeInterface<D>):void
     {
-        if(this._subscriberNewNodeByRootPath)
+        if(this.subscriberNewNodeByRootPath)
         {
-            this._subscriberNewNodeByRootPath.next(newNode);
+            this.subscriberNewNodeByRootPath.next(newNode);
         }
     }
 
     public addNodesByRoute(newNodes:Array<TerraNavigatorNodeInterface<D>>):void
     {
-        if(this._subscriberNewNodesByRoute)
+        if(this.subscriberNewNodesByRoute)
         {
-            this._subscriberNewNodesByRoute.next(newNodes);
+            this.subscriberNewNodesByRoute.next(newNodes);
         }
     }
 }

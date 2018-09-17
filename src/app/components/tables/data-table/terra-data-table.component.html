@@ -16,7 +16,7 @@
              [inputPagingSize]="pagingSize"
              [inputDefaultPagingSize]="defaultPagingSize"
              [inputPagingData]="pagingData"
-             [inputRequestPending]="_requestPending"
+             [inputRequestPending]="requestPending"
              (outputDoPaging)="doPaging($event)">
 </terra-pager>
 
@@ -28,7 +28,7 @@
             <th *ngIf="inputHasCheckboxes && rowList.length" width="25px">
                 <terra-checkbox #viewChildHeaderCheckbox
                                 (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
-                                [value]="_isHeaderCheckboxChecked">
+                                [value]="isHeaderCheckboxChecked">
                 </terra-checkbox>
             </th>
             <ng-template ngFor let-header [ngForOf]="headerList">
@@ -166,7 +166,7 @@
             (inputNoResultButtons && inputNoResultButtons.length > 0)
          || (inputNoResultTextPrimary && inputNoResultTextPrimary.length > 0) 
          || (inputNoResultTextSecondary && inputNoResultTextSecondary.length > 0) )
-         && !_requestPending">
+         && !requestPending">
         <terra-no-result-notice
             [inputButtons]="inputNoResultButtons"
             [inputTextPrimary]="inputNoResultTextPrimary"

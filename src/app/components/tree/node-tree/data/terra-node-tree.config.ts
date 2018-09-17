@@ -12,7 +12,7 @@ export class TerraNodeTreeConfig<D>
     protected _currentSelectedNode:TerraNodeInterface<D>;
     private _list:Array<TerraNodeInterface<D>> = [];
 
-    constructor(public _translation:TranslationService)
+    constructor(private translation:TranslationService)
     {
 
     }
@@ -90,11 +90,11 @@ export class TerraNodeTreeConfig<D>
         {
             if(isNullOrUndefined(name))
             {
-                name = this._translation.translate(node.name);
+                name = this.translation.translate(node.name);
             }
             else
             {
-                name = this._translation.translate(node.name) + ' » ' + name;
+                name = this.translation.translate(node.name) + ' » ' + name;
             }
 
             if(!isNullOrUndefined(node.parent))

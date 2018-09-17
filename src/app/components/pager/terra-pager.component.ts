@@ -33,7 +33,7 @@ export class TerraPagerComponent implements OnInit
     @Output()
     public outputDoPaging:EventEmitter<TerraPagerInterface<any>> = new EventEmitter<TerraPagerInterface<any>>();
 
-    private _pagingClicks:Subject<any> = new Subject();
+    private pagingClicks:Subject<any> = new Subject();
 
     constructor(private zone:NgZone)
     {
@@ -41,7 +41,7 @@ export class TerraPagerComponent implements OnInit
 
     public ngOnInit():void
     {
-        this._pagingClicks.debounceTime(500).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
+        this.pagingClicks.debounceTime(500).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
 
         if(!this.inputDefaultPagingSize)
         {
@@ -147,7 +147,7 @@ export class TerraPagerComponent implements OnInit
     {
         if(!this.inputRequestPending)
         {
-            this._pagingClicks.next(this.inputPagingData);
+            this.pagingClicks.next(this.inputPagingData);
         }
     }
 }
