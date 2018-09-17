@@ -12,12 +12,11 @@ import { TerraLeafInterface } from '../../leaf/terra-leaf.interface';
 
 export class TerraCheckboxTreeComponentExample implements OnInit
 {
-
-    private _checkboxLeafList:Array<TerraLeafInterface> = [];
+    protected checkboxLeafList:Array<TerraLeafInterface> = [];
 
     public ngOnInit():void
     {
-        this._checkboxLeafList.push({
+        this.checkboxLeafList.push({
             caption:     'Leaf1',
             icon:        'icon-settings',
             value:       'leaf1Value',
@@ -39,12 +38,12 @@ export class TerraCheckboxTreeComponentExample implements OnInit
                 {caption: 'SubLeaf2'}
             ]
         });
-        this._checkboxLeafList.push({
+        this.checkboxLeafList.push({
             caption: 'Leaf2',
             icon:    'icon-settings',
             value:   'leaf2Value',
         });
-        this._checkboxLeafList.push({
+        this.checkboxLeafList.push({
             caption: 'Leaf3',
             value:   'leaf3Value',
         });
