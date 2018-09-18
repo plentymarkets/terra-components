@@ -1,5 +1,8 @@
 # Unreleased
 
+### Features
+* **terra-select-box** added input `withEmptySelect`. When set to `true` an empty selection is always the first entry of the selection list.
+
 ### Bug Fixes
 * **terra-suggestion-box** fix an issue where the input text was reset after a value was selected and the user typed again
 
