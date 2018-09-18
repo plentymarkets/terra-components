@@ -29,4 +29,18 @@ export class TerraSelectBoxComponentExample implements OnInit
             }
         );
     }
+
+    protected updateListBoxValues():void
+    {
+        this.selectBoxValueList = [
+            {
+                value:   'fr',
+                caption: 'french'
+            },
+            {
+                value:   'de',
+                caption: 'german'
+            }
+        ];
+    }
 }

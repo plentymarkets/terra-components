@@ -16,4 +16,8 @@
         [inputListBoxValues]="selectBoxValueList"
         [(ngModel)]="selectedValue3">
     </terra-select-box>
+    <terra-button
+        inputCaption="update Values"
+        (outputClicked)="updateListBoxValues()">
+    </terra-button>
 </terra-portlet>

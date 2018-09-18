@@ -68,7 +68,7 @@ export class TerraSelectBoxComponent implements OnInit
         let selectedValue:TerraSelectBoxValueInterface = this.listBoxValues.find((x:TerraSelectBoxValueInterface):boolean =>
             !isNullOrUndefined(this.selectedValue) && this.selectedValue.value === x.value
         );
-        if(this.listBoxValues.length > 0 && isNullOrUndefined(selectedValue) && this.listBoxValues[0] !== this.emptySelect)
+        if(this.listBoxValues.length > 0 && isNullOrUndefined(selectedValue))
         {
             this.select(this.listBoxValues[0]);
         }
