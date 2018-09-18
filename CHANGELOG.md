@@ -1,7 +1,10 @@
 # Unreleased
 
 ### Bug Fixes
-* **terra-suggestion-box** fix an issue where the input text was reset after a value was selected and the user typed again
+* **terra-suggestion-box** 
+	- fix an issue where the input text was reset after a value was selected and the user typed again
+	- prevent duplicate execution of callbacks and emission of notifications when selecting a value from the suggestion list
+
 
 <a name="2.3.22"></a>
 # 2.3.22 (12.09.2018)
