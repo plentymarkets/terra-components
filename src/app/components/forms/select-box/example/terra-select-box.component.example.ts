@@ -12,7 +12,9 @@ import { TerraSelectBoxValueInterface } from '../data/terra-select-box.interface
 export class TerraSelectBoxComponentExample implements OnInit
 {
     protected selectBoxValueList:Array<TerraSelectBoxValueInterface> = [];
-    protected selectedValue:string;
+    protected selectedValue1:string;
+    protected selectedValue2:string;
+    protected selectedValue3:string;
 
     public ngOnInit():void
     {

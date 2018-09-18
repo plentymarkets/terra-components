@@ -23,8 +23,8 @@
             <span [innerHtml]="selectedValue?.caption"></span>
         </ng-template>
         <ng-template #firstInListTemplate>
-            <span class="{{inputListBoxValues[0]?.icon}}" *ngIf="inputListBoxValues[0]?.icon"></span>
-            <span [innerHtml]="inputListBoxValues[0]?.caption"></span>
+            <span class="{{listBoxValues[0]?.icon}}" *ngIf="listBoxValues[0]?.icon"></span>
+            <span [innerHtml]="listBoxValues[0]?.caption"></span>
         </ng-template>
     
     </div>
@@ -33,7 +33,7 @@
         <span *ngIf="selectedValue; then selectedValueActiveTemplate else firstInListActiveTemplate"></span>
         
         <ng-template #selectedValueActiveTemplate>
-            <span *ngFor="let item of inputListBoxValues; let index=index;"
+            <span *ngFor="let item of listBoxValues; let index=index;"
                   (click)="select(item)"
                   [ngClass]="{active: item.value === selectedValue?.value}">
                 <span class="{{item.icon}}" *ngIf="item.icon"></span>
@@ -42,7 +42,7 @@
         </ng-template>
         
         <ng-template #firstInListActiveTemplate>
-            <span *ngFor="let item of inputListBoxValues; let index=index;"
+            <span *ngFor="let item of listBoxValues; let index=index;"
                   (click)="select(item)"
                   [ngClass]="{active: item.value === inputListBoxValues[0]?.value}">
                 <span class="{{item.icon}}" *ngIf="item.icon"></span>
