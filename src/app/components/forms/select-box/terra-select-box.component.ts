@@ -58,6 +58,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input()
     public inputListBoxValues:Array<TerraSelectBoxValueInterface>;
 
+    @Input()
+    public withEmptySelect:boolean;
+
     /**
      * @deprecated
      */
@@ -76,6 +79,8 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     private _toggleOpen:boolean;
     private isInit:boolean;
     private clickListener:(event:Event) => void;
+
+    private readonly emptySelect:TerraSelectBoxValueInterface;
 
     /**
      * @deprecated
@@ -120,6 +125,10 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this.inputTooltipPlacement = 'top';
         this.inputIsSmall = false;
         this.inputOpenOnTop = false;
+        this.emptySelect = {
+            value:   null,
+            caption: ''
+        };
     }
 
     public ngOnInit():void
@@ -128,6 +137,11 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this._toggleOpen = false;
         this.hasLabel = !isNull(this.inputName);
         this.isInit = true;
+
+        if(this.withEmptySelect)
+        {
+            this.inputListBoxValues = [this.emptySelect];
+        }
     }
 
     /**
@@ -141,6 +155,10 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
            && changes['inputListBoxValues'].currentValue.length > 0
            && !this.inputListBoxValues.find((x:TerraSelectBoxValueInterface):boolean => this.selectedValue === x))
         {
+            if(this.withEmptySelect)
+            {
+                this.inputListBoxValues.unshift(this.emptySelect);
+            }
             this.select(this.inputListBoxValues[0]);
         }
     }
