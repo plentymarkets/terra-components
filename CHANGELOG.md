@@ -1,4 +1,5 @@
-# Unreleased
+<a name="2.3.23"></a>
+# 2.3.23 (19.09.2018)
 
 ### Bug Fixes
 * **icons** moved reset to warning-group
