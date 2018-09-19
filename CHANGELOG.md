@@ -1,6 +1,8 @@
 # Unreleased
 
 ### Bug Fixes
+* **icons** moved reset to warning-group
+* **icons** moved search to info-group
 * **terra-suggestion-box** fix an issue where the input text was reset after a value was selected and the user typed again
 
 <a name="2.3.22"></a>
