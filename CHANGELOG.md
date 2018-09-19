@@ -1,3 +1,8 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-data-table** add initialisation for private row list properties
+
 <a name="3.0.0-beta.2"></a>
 # 3.0.0-beta.2 (19.09.2018)
 Adapted Changes from v2.3.23
