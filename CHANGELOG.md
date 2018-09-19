@@ -1,9 +1,5 @@
 # Unreleased
-
-### Bug Fixes
-* **icons** moved reset to warning-group
-* **icons** moved search to info-group
-* **terra-suggestion-box** fix an issue where the input text was reset after a value was selected and the user typed again
+Adapted Changes from v2.3.23
 
 <a name="3.0.0-beta.1"></a>
 # 3.0.0-beta.1 (13.09.2018)
@@ -14,6 +10,14 @@ Adapted Changes from v2.3.21 and v2.3.22
 
 ### Breaking Changes
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
+
+<a name="2.3.23"></a>
+# 2.3.23 (19.09.2018)
+
+### Bug Fixes
+* **icons** moved reset to warning-group
+* **icons** moved search to info-group
+* **terra-suggestion-box** fix an issue where the input text was reset after a value was selected and the user typed again
 
 <a name="2.3.22"></a>
 # 2.3.22 (12.09.2018)
