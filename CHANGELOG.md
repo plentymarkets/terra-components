@@ -1,6 +1,8 @@
 # Unreleased
 
 ### Bug Fixes
+* **icons** moved reset to warning-group
+* **icons** moved search to info-group
 * **terra-suggestion-box** fix an issue where the input text was reset after a value was selected and the user typed again
 
 <a name="3.0.0-beta.1"></a>

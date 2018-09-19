@@ -4990,7 +4990,6 @@ $icon-zoom: "\eaa5";
 terra-button[ng-reflect-input-icon="icon-add"] .btn, div.adminActionIcon.icon-add, button.adminButton[data-icon="icon-add"], %icon-add,
 terra-button[ng-reflect-input-icon="icon-order_new"] .btn, div.adminActionIcon.icon-order_new, button.adminButton[data-icon="icon-order_new"], %icon-order_new,
 terra-button[ng-reflect-input-icon="icon-gutschrift_erzeugen"] .btn, div.adminActionIcon.icon-gutschrift_erzeugen, button.adminButton[data-icon="icon-gutschrift_erzeugen"], %icon-gutschrift_erzeugen,
-terra-button[ng-reflect-input-icon="icon-add"] .btn, div.adminActionIcon.icon-add, button.adminButton[data-icon="icon-add"], %icon-add,
 terra-button[ng-reflect-input-icon="icon-calendar_extend_appointment"] .btn, div.adminActionIcon.icon-calendar_extend_appointment, button.adminButton[data-icon="icon-calendar_extend_appointment"], %icon-calendar_extend_appointment,
 terra-button[ng-reflect-input-icon="icon-delivery_note_create"] .btn, div.adminActionIcon.icon-delivery_note_create, button.adminButton[data-icon="icon-delivery_note_create"], %icon-delivery_note_create,
 terra-button[ng-reflect-input-icon="icon-design_add"] .btn, div.adminActionIcon.icon-design_add, button.adminButton[data-icon="icon-design_add"], %icon-design_add,
@@ -5030,6 +5029,12 @@ terra-button[ng-reflect-input-icon="icon-search_apply"] .btn, div.adminActionIco
     border-bottom: var(--button-border-bottom-group-add);
     color: var(--button-text-color-group-add);
     background-color: var(--button-background-color-group-add);
+}
+
+// temporary group for "+"-icon
+terra-button[ng-reflect-input-icon="icon-add"] .btn, div.adminActionIcon.icon-add, button.adminButton[data-icon="icon-add"], %icon-add
+{
+    background-color: var(--color-group-add);
 }
 
 // Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen, Problem
@@ -5141,7 +5146,9 @@ terra-button[ng-reflect-input-icon="icon-box_plus_disabled"] .btn, div.adminActi
 // Warning: Warnung, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
 terra-button[ng-reflect-input-icon="icon-warning"] .btn, div.adminActionIcon.icon-warning, button.adminButton[data-icon="icon-warning"], %icon-warning,
 terra-button[ng-reflect-input-icon="icon-order_not_possible"] .btn, div.adminActionIcon.icon-order_not_possible, button.adminButton[data-icon="icon-order_not_possible"], %icon-order_not_possible,
-terra-button[ng-reflect-input-icon="icon-box_minus_disabled"] .btn, div.adminActionIcon.icon-box_minus_disabled, button.adminButton[data-icon="icon-box_minus_disabled"], %icon-box_minus_disabled
+terra-button[ng-reflect-input-icon="icon-box_minus_disabled"] .btn, div.adminActionIcon.icon-box_minus_disabled, button.adminButton[data-icon="icon-box_minus_disabled"], %icon-box_minus_disabled,
+terra-button[ng-reflect-input-icon="icon-reset"] .btn, div.adminActionIcon.icon-reset, button.adminButton[data-icon="icon-reset"], %icon-reset,
+terra-button[ng-reflect-input-icon="icon-reset_32"] .btn, div.adminActionIcon.icon-reset_32, button.adminButton[data-icon="icon-reset_32"], %icon-reset_32
 {
     border-bottom: var(--button-border-bottom-group-warning);
     color: var(--button-text-color-group-warning);
@@ -5252,7 +5259,8 @@ terra-button[ng-reflect-input-icon="icon-item_webshop_invisible"] .btn, div.admi
 terra-button[ng-reflect-input-icon="icon-offer"] .btn, div.adminActionIcon.icon-offer, button.adminButton[data-icon="icon-offer"], %icon-offer,
 terra-button[ng-reflect-input-icon="icon-placeholder_show_list"] .btn, div.adminActionIcon.icon-placeholder_show_list, button.adminButton[data-icon="icon-placeholder_show_list"], %icon-placeholder_show_list,
 terra-button[ng-reflect-input-icon="icon-reorder_show"] .btn, div.adminActionIcon.icon-reorder_show, button.adminButton[data-icon="icon-reorder_show"], %icon-reorder_show,
-terra-button[ng-reflect-input-icon="icon-ticket_all"] .btn, div.adminActionIcon.icon-ticket_all, button.adminButton[data-icon="icon-ticket_all"], %icon-ticket_all
+terra-button[ng-reflect-input-icon="icon-ticket_all"] .btn, div.adminActionIcon.icon-ticket_all, button.adminButton[data-icon="icon-ticket_all"], %icon-ticket_all,
+terra-button[ng-reflect-input-icon="icon-search"] .btn, div.adminActionIcon.icon-search, button.adminButton[data-icon="icon-search"], %icon-search
 {
     border-bottom: var(--button-border-bottom-group-info);
     color: var(--button-text-color-group-info);
@@ -5401,9 +5409,6 @@ terra-button[ng-reflect-input-icon="icon-rating_small_4"] .btn, div.adminActionI
 terra-button[ng-reflect-input-icon="icon-rating_small_5"] .btn, div.adminActionIcon.icon-rating_small_5, button.adminButton[data-icon="icon-rating_small_5"], %icon-rating_small_5,
 terra-button[ng-reflect-input-icon="icon-refresh"] .btn, div.adminActionIcon.icon-refresh, button.adminButton[data-icon="icon-refresh"], %icon-refresh,
 terra-button[ng-reflect-input-icon="icon-reload"] .btn, div.adminActionIcon.icon-reload, button.adminButton[data-icon="icon-reload"], %icon-reload,
-terra-button[ng-reflect-input-icon="icon-reset"] .btn, div.adminActionIcon.icon-reset, button.adminButton[data-icon="icon-reset"], %icon-reset,
-terra-button[ng-reflect-input-icon="icon-reset_32"] .btn, div.adminActionIcon.icon-reset_32, button.adminButton[data-icon="icon-reset_32"], %icon-reset_32,
-terra-button[ng-reflect-input-icon="icon-search"] .btn, div.adminActionIcon.icon-search, button.adminButton[data-icon="icon-search"], %icon-search,
 terra-button[ng-reflect-input-icon="icon-settings_transfer"] .btn, div.adminActionIcon.icon-settings_transfer, button.adminButton[data-icon="icon-settings_transfer"], %icon-settings_transfer,
 terra-button[ng-reflect-input-icon="icon-settings"] .btn, div.adminActionIcon.icon-settings, button.adminButton[data-icon="icon-settings"], %icon-settings,
 terra-button[ng-reflect-input-icon="icon-tag_disabled"] .btn, div.adminActionIcon.icon-tag_disabled, button.adminButton[data-icon="icon-tag_disabled"], %icon-tag_disabled,
