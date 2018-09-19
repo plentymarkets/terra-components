@@ -1,4 +1,5 @@
-# Unreleased
+<a name="3.0.0-beta.2"></a>
+# 3.0.0-beta.2 (19.09.2018)
 Adapted Changes from v2.3.23
 
 <a name="3.0.0-beta.1"></a>
