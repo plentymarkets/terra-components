@@ -119,8 +119,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     protected langPrefix:string = 'terraDataTable';
     protected requestPending:boolean;
 
-    private _rowList:Array<TerraDataTableRowInterface<D>>;
-    private _selectedRowList:Array<TerraDataTableRowInterface<D>>;
+    private _rowList:Array<TerraDataTableRowInterface<D>> = [];
+    private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
 
     /**
      * @deprecated
