@@ -1,3 +1,8 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-info-box** changed width text content to 100%
+
 <a name="2.3.23"></a>
 # 2.3.23 (19.09.2018)
 
