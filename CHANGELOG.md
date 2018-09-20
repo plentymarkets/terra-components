@@ -1,3 +1,6 @@
+#Unreleased
+* **terra-file-browser** fixed issue when uploading a file
+
 <a name="3.0.0-beta.3"></a>
 # 3.0.0-beta.3 (19.09.2018)
 
