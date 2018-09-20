@@ -82,10 +82,12 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    private _id:string;
+
+    protected currentLocale:string;
+    protected id:string;
+    protected datePickerOptions:IMyOptions;
+
     private _value:IMyDateModel;
-    private _currentLocale:string;
-    private _datePickerOptions:IMyOptions;
 
     constructor()
     {
@@ -95,10 +97,10 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.inputOpenCalendarTop = false;
         this.inputDisplayDateFormat = 'dd.mm.yyyy';
 
-        this._currentLocale = localStorage.getItem('plentymarkets_lang_');
+        this.currentLocale = localStorage.getItem('plentymarkets_lang_');
 
         // generate the id of the input instance
-        this._id = `date-picker_#${nextId++}`;
+        this.id = `date-picker_#${nextId++}`;
     }
 
     public ngOnChanges():void
@@ -169,7 +171,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 
     private updateDatePickerOptions():void
     {
-        this._datePickerOptions = {
+        this.datePickerOptions = {
             height:                   'inherit',
             componentDisabled:        this.inputIsDisabled,
             openSelectorTopOfInput:   this.inputOpenCalendarTop,

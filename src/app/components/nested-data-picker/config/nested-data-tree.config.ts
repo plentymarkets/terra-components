@@ -6,7 +6,7 @@ import { NestedDataInterface } from '../data/nested-data.interface';
 @Injectable()
 export class NestedDataTreeConfig<T> extends TerraNodeTreeConfig<NestedDataInterface<T>>
 {
-    constructor(public translation:TranslationService)
+    constructor(translation:TranslationService)
     {
         super(translation);
     }

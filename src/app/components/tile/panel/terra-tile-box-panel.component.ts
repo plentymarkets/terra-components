@@ -23,7 +23,7 @@ export class TerraTileBoxPanelComponent
     public selectedTileBoxList:Array<TerraTileBoxInterface> = [];
     public viewStyle:boolean = false;
 
-    private _draggedIndex:number;
+    private draggedIndex:number;
 
     constructor()
     {
@@ -48,7 +48,7 @@ export class TerraTileBoxPanelComponent
 
     private onDragStart(event:DragEvent, draggingTile:TerraTileBoxInterface):void
     {
-        this._draggedIndex = this.inputTileBoxList.indexOf(draggingTile);
+        this.draggedIndex = this.inputTileBoxList.indexOf(draggingTile);
         draggingTile.isDragging = true;
 
         for(let tile of this.inputTileBoxList)
@@ -90,7 +90,7 @@ export class TerraTileBoxPanelComponent
     {
         event.preventDefault();
 
-        let draggedTile:TerraTileBoxInterface = this.inputTileBoxList[this._draggedIndex];
+        let draggedTile:TerraTileBoxInterface = this.inputTileBoxList[this.draggedIndex];
         draggedTile.isDragging = false;
 
         for(let tile of this.inputTileBoxList)
@@ -101,7 +101,7 @@ export class TerraTileBoxPanelComponent
 
         let droppedIndex:number = this.inputTileBoxList.indexOf(droppedTile);
 
-        this.inputTileBoxList.splice(this._draggedIndex, 1);
+        this.inputTileBoxList.splice(this.draggedIndex, 1);
         this.inputTileBoxList.splice(droppedIndex, 0, draggedTile);
     }
 

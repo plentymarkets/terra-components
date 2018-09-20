@@ -14,6 +14,9 @@
     label
     {
         cursor: pointer;
+        font-variant: initial;
+        color: var(--label-color, var(--color-structure-7));
+        font-weight: var(--font-weight-2);
     }
     
     &.isSmall
@@ -43,7 +46,7 @@
         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat;
         background-position: var(--select-box-toggle-background-position, var(--select-box-toggle-background-position-default));
         background-size: 8px 10px;
-        color: var(--color-structure-12);
+        color: var(--color-structure-13);
         height: 100%;
         line-height: 100%;
         border-bottom: 1px solid var(--border-color);

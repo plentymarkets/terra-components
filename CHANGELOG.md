@@ -1,3 +1,34 @@
+<a name="2.3.23"></a>
+# 2.3.23 (19.09.2018)
+
+### Bug Fixes
+* **icons** moved reset to warning-group
+* **icons** moved search to info-group
+* **terra-suggestion-box** fix an issue where the input text was reset after a value was selected and the user typed again
+
+<a name="2.3.22"></a>
+# 2.3.22 (12.09.2018)
+
+### Feature
+* **icons** Added function groups
+
+<a name="2.3.21"></a>
+# 2.3.21 (12.09.2018)
+
+### Bug Fixes
+* **terra-suggestion-box** fixed issue while resetting `selectedValue`
+* **terra-breadcrumbs** fixed an issue where the breadcrumb dropdown would not show on iOS devices.
+* **terra-node-tree** fixed an null pointer.
+* **icons** new icons for login, logout, header, footer, content
+
+<a name="2.3.19"></a>
+# 2.3.19 (05.09.2018)
+
+### Bug Fixes
+* **terra-code-editor** Improve validating custom markup
+* **terra-code-editor** Fix initial check which view should be shown
+* **terra-form** fixed initial evaluation of child scopes inside list entries
+
 <a name="2.3.18"></a>
 # 2.3.18 (31.08.2018)
 

@@ -18,19 +18,15 @@ export class TerraOverlayComponentExample implements OnInit
     @ViewChild('viewChildOverlayWithoutButtons') public viewChildOverlayWithoutButtons:TerraOverlayComponent;
     @ViewChild('viewChildOverlayWithPrimaryButton') public viewChildOverlayWithPrimaryButton:TerraOverlayComponent;
     @ViewChild('viewChildOverlayWithSecondaryButton') public viewChildOverlayWithSecondaryButton:TerraOverlayComponent;
-    @ViewChild('viewChildAddProcessesToCategoryOverlay') public viewChildOverlayWithButtons:TerraOverlayComponent;
     @ViewChild('viewChildOverlayStatic') public viewChildOverlayStatic:TerraOverlayComponent;
 
-    private _addButtonTooltip:string = 'Hinzufügen';
-    private _cancelButtonTooltip:string = 'Abbrechen';
-
-    private _primaryButtonInterface:TerraOverlayButtonInterface;
-    private _secondaryButtonInterface:TerraOverlayButtonInterface;
-    private _PrimaryButtonInterface:TerraOverlayButtonInterface;
-    private _SecondaryButtonInterface:TerraOverlayButtonInterface;
-    private _staticPrimaryButtonInterface:TerraOverlayButtonInterface;
-    private _staticSecondaryButtonInterface:TerraOverlayButtonInterface;
-    private _exampleText:string = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.' +
+    protected addButtonTooltip:string = 'Hinzufügen';
+    protected cancelButtonTooltip:string = 'Abbrechen';
+    protected primaryButtonInterface:TerraOverlayButtonInterface;
+    protected secondaryButtonInterface:TerraOverlayButtonInterface;
+    protected staticPrimaryButtonInterface:TerraOverlayButtonInterface;
+    protected staticSecondaryButtonInterface:TerraOverlayButtonInterface;
+    protected exampleText:string = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.' +
                            'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ' +
                            'ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, ' +
                            'fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, ' +
@@ -64,22 +60,6 @@ export class TerraOverlayComponentExample implements OnInit
             clickFunction: ():void => this.secondaryClicked(this.viewChildOverlayWithSecondaryButton)
         };
 
-        this.PrimaryButtonInterface = {
-            icon:          'icon-add',
-            caption:       'Test',
-            tooltipText:   this.addButtonTooltip,
-            isDisabled:    false,
-            clickFunction: ():void => this.primaryClicked(this.viewChildOverlayWithButtons)
-        };
-
-        this.SecondaryButtonInterface = {
-            icon:          'icon-cancel',
-            caption:       'Cancel',
-            tooltipText:   this.cancelButtonTooltip,
-            isDisabled:    false,
-            clickFunction: ():void => this.secondaryClicked(this.viewChildOverlayWithButtons)
-        };
-
         this.staticPrimaryButtonInterface = {
             icon:          'icon-add',
             caption:       'Test',
@@ -97,27 +77,22 @@ export class TerraOverlayComponentExample implements OnInit
         };
     }
 
-    private openOverlayWithoutButtons():void
+    protected openOverlayWithoutButtons():void
     {
         this.viewChildOverlayWithoutButtons.showOverlay();
     }
 
-    private openOverlayWithPrimaryButton():void
+    protected openOverlayWithPrimaryButton():void
     {
         this.viewChildOverlayWithPrimaryButton.showOverlay();
     }
 
-    private openOverlayWithSecondaryButton():void
+    protected openOverlayWithSecondaryButton():void
     {
         this.viewChildOverlayWithSecondaryButton.showOverlay();
     }
 
-    private openOverlayWithButtons():void
-    {
-        this.viewChildOverlayWithButtons.showOverlay();
-    }
-
-    private openOverlayStatic():void
+    protected openOverlayStatic():void
     {
         this.viewChildOverlayStatic.showOverlay();
     }
@@ -134,87 +109,5 @@ export class TerraOverlayComponentExample implements OnInit
     private secondaryClicked(overlay:TerraOverlayComponent):void
     {
         overlay.hideOverlay();
-    }
-
-    private addAlert():void
-    {
-        this.alert.addAlert({
-            msg:              'Alert aus einem Overlay',
-            type:             'success',
-            dismissOnTimeout: 0
-        });
-    }
-
-
-    public get addButtonTooltip():string
-    {
-        return this._addButtonTooltip;
-    }
-
-    public get cancelButtonTooltip():string
-    {
-        return this._cancelButtonTooltip;
-    }
-
-    public get primaryButtonInterface():TerraOverlayButtonInterface
-    {
-        return this._primaryButtonInterface;
-    }
-
-    public set primaryButtonInterface(value:TerraOverlayButtonInterface)
-    {
-        this._primaryButtonInterface = value;
-    }
-
-
-    public get secondaryButtonInterface():TerraOverlayButtonInterface
-    {
-        return this._secondaryButtonInterface;
-    }
-
-    public set secondaryButtonInterface(value:TerraOverlayButtonInterface)
-    {
-        this._secondaryButtonInterface = value;
-    }
-
-    public get PrimaryButtonInterface():TerraOverlayButtonInterface
-    {
-        return this._PrimaryButtonInterface;
-    }
-
-    public set PrimaryButtonInterface(value:TerraOverlayButtonInterface)
-    {
-        this._PrimaryButtonInterface = value;
-    }
-
-    public get SecondaryButtonInterface():TerraOverlayButtonInterface
-    {
-        return this._SecondaryButtonInterface;
-    }
-
-    public set SecondaryButtonInterface(value:TerraOverlayButtonInterface)
-    {
-        this._SecondaryButtonInterface = value;
-    }
-
-
-    public get staticPrimaryButtonInterface():TerraOverlayButtonInterface
-    {
-        return this._staticPrimaryButtonInterface;
-    }
-
-    public set staticPrimaryButtonInterface(value:TerraOverlayButtonInterface)
-    {
-        this._staticPrimaryButtonInterface = value;
-    }
-
-    public get staticSecondaryButtonInterface():TerraOverlayButtonInterface
-    {
-        return this._staticSecondaryButtonInterface;
-    }
-
-    public set staticSecondaryButtonInterface(value:TerraOverlayButtonInterface)
-    {
-        this._staticSecondaryButtonInterface = value;
     }
 }

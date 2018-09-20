@@ -57,16 +57,14 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
     @Output()
     public outputNodeClicked:EventEmitter<TerraNavigatorNodeInterface<D>>;
 
-    private _isInit:boolean;
-    private _updateViewport:boolean;
+    private isInit:boolean;
     private _searchNodeList:Array<TerraSuggestionBoxValueInterface>;
 
-    constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig<D>, private translation:TranslationService)
+    constructor(protected terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig<D>, private translation:TranslationService)
     {
-        this._isInit = false;
+        this.isInit = false;
         this.outputEndpointClicked = new EventEmitter();
         this.outputNodeClicked = new EventEmitter();
-        this._updateViewport = true;
         this._searchNodeList = [];
     }
 
@@ -87,7 +85,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
                 console.error('You have to define an initial breadcrumb!!!');
             }
 
-            this._terraNavigatorSplitViewConfig.addModule({
+            this.terraNavigatorSplitViewConfig.addModule({
                 module:                TerraButtonGroupModule.forRoot(),
                 instanceKey:           0,
                 defaultWidth:          this.inputModuleWidth,
@@ -100,7 +98,7 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             });
         }
 
-        this._terraNavigatorSplitViewConfig.observableNodeClicked.subscribe((item:TerraNavigatorNodeInterface<D>) =>
+        this.terraNavigatorSplitViewConfig.observableNodeClicked.subscribe((item:TerraNavigatorNodeInterface<D>) =>
         {
             if(isNullOrUndefined(item.rootPath))
             {
@@ -111,9 +109,9 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
             if(!isNullOrUndefined(item.children))
             {
-                this._terraNavigatorSplitViewConfig.modules[0].defaultWidth = 'col-xs-6 col-md-6 col-lg-6';
+                this.terraNavigatorSplitViewConfig.modules[0].defaultWidth = 'col-xs-6 col-md-6 col-lg-6';
 
-                this._terraNavigatorSplitViewConfig
+                this.terraNavigatorSplitViewConfig
                     .addModule({
                         module:                TerraButtonGroupModule.forRoot(),
                         instanceKey:           item.rootPath.length,
@@ -128,9 +126,9 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             }
             else
             {
-                while(this._terraNavigatorSplitViewConfig.modules.length > item.rootPath.length)
+                while(this.terraNavigatorSplitViewConfig.modules.length > item.rootPath.length)
                 {
-                    this._terraNavigatorSplitViewConfig.modules.pop();
+                    this.terraNavigatorSplitViewConfig.modules.pop();
                 }
 
                 this.outputEndpointClicked.emit(item);
@@ -160,21 +158,21 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
         this.updateSearchNodes();
 
-        this._isInit = true;
+        this.isInit = true;
     }
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(this._isInit === true && changes['inputNodes'])
+        if(this.isInit === true && changes['inputNodes'])
         {
-            this._terraNavigatorSplitViewConfig.modules = [];
+            this.terraNavigatorSplitViewConfig.modules = [];
 
             this.initRootPaths(changes['inputNodes'].currentValue, null);
             this.refreshNodeVisibilities(changes['inputNodes'].currentValue);
 
             this.updateSearchNodes();
 
-            this._terraNavigatorSplitViewConfig.addModule({
+            this.terraNavigatorSplitViewConfig.addModule({
                 module:                TerraButtonGroupModule.forRoot(),
                 instanceKey:           0,
                 defaultWidth:          this.inputModuleWidth,
