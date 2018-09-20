@@ -1,3 +1,9 @@
+<a name="2.3.24"></a>
+# 2.3.24 (XX.XX.2018)
+
+### Bug Fixes
+* **terra-file-browser** fixed issue when uploading a file
+
 <a name="2.3.23"></a>
 # 2.3.23 (19.09.2018)
 
