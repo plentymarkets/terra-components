@@ -15,6 +15,7 @@
            [disabled]="isDisabled"
            pattern="{{regex}}"
            step="{{step}}"
+           [lang]="locale"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
            [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0}">
     <label *ngIf="innerValue || innerValue === 0" htmlFor="{{id}}">{{inputName}}
