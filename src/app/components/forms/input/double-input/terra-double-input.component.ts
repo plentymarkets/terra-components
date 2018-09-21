@@ -25,9 +25,6 @@ let nextId:number = 0;
 })
 export class TerraDoubleInputComponent extends TerraInputComponent implements OnInit
 {
-    @DefaultLocale()
-    private locale:string;
-
     /**
      * @description If true, the value will be right-aligned.
      */
@@ -40,6 +37,9 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
      */
     @Input()
     public inputDecimalCount:number = 2;
+
+    @DefaultLocale()
+    protected locale:string;
 
     protected step:number;
 
