@@ -33,6 +33,9 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
     @Input()
     public inputMainComponentName:string;
 
+    /**
+     * @deprecated use `inputInputs` instead
+     */
     @Input()
     public inputParameter:any; // TODO: remove input if old split-view is removed
 

@@ -22,6 +22,7 @@ import { TranslationService } from 'angular-l10n';
 
 /**
  * @author mscharf
+ * @deprecated please use `terra-node-tree` instead
  */
 @Component({
     selector: 'terra-navigator',

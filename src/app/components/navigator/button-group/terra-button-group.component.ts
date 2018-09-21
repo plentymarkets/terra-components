@@ -10,6 +10,7 @@ import { isNullOrUndefined } from 'util';
 
 /**
  * @author mscharf
+ * @deprecated please use `terra-node-tree` instead
  */
 @Component({
     selector: 'terra-button-group',
