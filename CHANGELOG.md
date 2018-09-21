@@ -1,6 +1,15 @@
-# Unreleased
+<a name="2.3.24"></a>
+# 2.3.24 (20.09.2018)
 
 ### Bug Fixes
+* **terra-info-box** changed width text content to 100%
+
+<a name="2.3.23"></a>
+# 2.3.23 (19.09.2018)
+
+### Bug Fixes
+* **icons** moved reset to warning-group
+* **icons** moved search to info-group
 * **terra-suggestion-box** fix an issue where the input text was reset after a value was selected and the user typed again
 
 <a name="2.3.22"></a>
