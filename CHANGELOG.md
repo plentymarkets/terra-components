@@ -3,6 +3,7 @@
 * **terra-dynamic-module-loader** input `inputParameter` is now deprecated. Use input `inputInputs` instead.
 * **terra-button-group** is now deprecated. Use `terra-node-tree` instead.
 * **terra-navigator** is now deprecated. Use `terra-node-tree` instead.
+* **terra-tree** is now deprecated. Use `terra-node-tree` instead.
 
 <a name="2.3.24"></a>
 # 2.3.24 (20.09.2018)
