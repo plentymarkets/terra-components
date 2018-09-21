@@ -1,8 +1,7 @@
 # Unreleased
 
 * **terra-dynamic-module-loader** input `inputParameter` is now deprecated. Use input `inputInputs` instead.
-* **terra-button-group** is now deprecated. Use `terra-node-tree` instead.
-* **terra-navigator** is now deprecated. Use `terra-node-tree` instead.
+* **terra-button-group** && **terra-navigator** && **terra-navigator.config** && **terra-navigator-split-view.config** are now deprecated. Use `terra-node-tree` instead.
 * **terra-tree** is now deprecated. Use `terra-node-tree` instead.
 * **terra-tile-box** && **terra-tile-box-panel** are now deprecated. Use `terra-card` instead.
 
