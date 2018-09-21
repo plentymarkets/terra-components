@@ -4,6 +4,7 @@
 * **terra-button-group** is now deprecated. Use `terra-node-tree` instead.
 * **terra-navigator** is now deprecated. Use `terra-node-tree` instead.
 * **terra-tree** is now deprecated. Use `terra-node-tree` instead.
+* **terra-tile-box** && **terra-tile-box-panel** are now deprecated. Use `terra-card` instead.
 
 <a name="2.3.24"></a>
 # 2.3.24 (20.09.2018)
