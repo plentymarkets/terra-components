@@ -1,64 +1,39 @@
-.info-wrapper
-{
-    display: flex;
-}
-
 .info-handler
 {
     display: inline-block;
     position: relative;
-    &.disabled
+    
+    &:hover,
+    &:active,
+    &.active
     {
-        cursor: not-allowed;
-        .span
-        {
-            background-color: $grey-3;
-            color: $grey-7;
-            cursor: not-allowed;
-            &:hover,
-            &:active,
-            &.active
-            {
-                background-color: $grey-3;
-                color: $grey-7;
-                cursor: not-allowed;
-            }
-        }
+        color: var(--color-group-active);
     }
     
-    height: $terra-btn-md-height;
-    line-height: $terra-btn-md-height;
+    height: var(--height-md);
+    line-height: var(--height-md);
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
     border: 0;
     overflow: hidden;
     text-decoration: none;
     padding: 0 8px;
-    border-radius: $border-radius;
-    font-size: $font-size-5;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-6);
 }
 
-.info-text
+.disabled
 {
-    visibility: hidden;
-    background: black;
-    color: #FFFFFF;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: $zindex-info-text;
-}
-
-.info-handler:hover ~ .info-text
-{
-    visibility: visible;
+    cursor: not-allowed;
+    color: var(--color-structure-7);
+    &:hover,
+    &:active,
+    &.active
+    {
+        color: var(--color-structure-7);
+        cursor: not-allowed;
+    }
 }

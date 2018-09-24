@@ -1,10 +1,8 @@
-<div class="info-wrapper">
-    <ng-content></ng-content>
-    <div class="info-handler icon-icon_questionmark_bck"
-         (mouseenter)="updateTextPosition()">
-    </div>
-    <span [innerHtml]="inputText"
-          class="info-text"
-          [ngStyle]="{ 'width': _locationCss.width, 'height': _locationCss.height, 'top': _locationCss.top, 'left': _locationCss.left}">
-    </span>
+<ng-template #textTemplate>
+    <div [innerHtml]="text"></div>
+</ng-template>
+<div class="info-handler icon-icon_questionmark_bck"
+     [tooltip]="!isDisabled?textTemplate:null"
+     [placement]="textPlacement"
+     [ngClass]="{'disabled': isDisabled}">
 </div>
