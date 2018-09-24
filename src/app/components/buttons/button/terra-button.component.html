@@ -11,6 +11,7 @@
                  'disabled': inputIsDisabled}"
      (click)="click($event)">
     <button class="btn"
+            [attr.data-icon]="inputIcon"
             [ngClass]="{'btn-primary' : inputIsPrimary,
                       'btn-secondary' : inputIsSecondary,
                       'btn-tertiary': inputIsTertiary,
