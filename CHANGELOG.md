@@ -3,13 +3,13 @@
 
 ### Bug Fixes 
 * **button-group** fixed styles
+* **terra-button** updated functiongroup selector
 
 <a name="2.3.24"></a>
 # 2.3.24 (20.09.2018)
 
 ### Bug Fixes
 * **terra-info-box** changed width text content to 100%
-* **terra-button** updated functiongroup selector
 
 <a name="2.3.23"></a>
 # 2.3.23 (19.09.2018)
