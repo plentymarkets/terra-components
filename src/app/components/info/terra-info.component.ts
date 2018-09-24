@@ -3,8 +3,8 @@ import {
     Component,
     Input
 } from '@angular/core';
-import { TerraPlacementEnum } from './terra-placement.enum';
 import Coordinates = JQuery.Coordinates;
+import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 
 export interface Position
 {
