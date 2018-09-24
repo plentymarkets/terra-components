@@ -5,68 +5,95 @@ import {
 } from '@angular/forms';
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { isNullOrUndefined } from 'util';
+import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 export class TerraInputComponent implements ControlValueAccessor
 {
     /**
      * @description Set the label.
-     * */
-    @Input() public inputName:string;
+     */
+    @Input()
+    public inputName:string;
+
     /**
      * @description If true, a * indicates that the value is required. Default false.
-     * */
-    @Input() public inputIsRequired:boolean;
-    @Input() public inputEmptyMessage:string;
-    @Input() public inputInvalidMessage:string;
+     */
+    @Input()
+    public inputIsRequired:boolean;
+
+    @Input()
+    public inputEmptyMessage:string;
+
+    @Input()
+    public inputInvalidMessage:string;
+
     /**
      * @description Set the tooltip.
-     * */
-    @Input() public inputTooltipText:string;
+     */
+    @Input()
+    public inputTooltipText:string;
+
     /**
      * @description If true, the button will be disabled. Default false.
-     * */
-    @Input() public inputIsDisabled:boolean;
+     */
+    @Input()
+    public inputIsDisabled:boolean;
+
     /**
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
-     * */
-    @Input() public inputTooltipPlacement:string;
+     */
+    @Input()
+    public inputTooltipPlacement:TerraPlacementEnum;
+
     /**
      * @description Set a maximum number of characters allowed.
-     * */
-    @Input() public inputMaxLength:number;
+     */
+    @Input()
+    public inputMaxLength:number;
+
     /**
      * @description Set the maximum number value allowed.
-     * */
-    @Input() public inputMaxValue:number;
+     */
+    @Input()
+    public inputMaxValue:number;
+
     /**
      * @description Set a minimum number of characters allowed.
-     * */
-    @Input() public inputMinLength:number;
+     */
+    @Input()
+    public inputMinLength:number;
+
     /**
      * @description Set the minimum number value allowed.
-     * */
-    @Input() public inputMinValue:number;
+     */
+    @Input()
+    public inputMinValue:number;
+
     /**
      * @deprecated inputPlaceholder is deprecated and will be removed in one of the upcoming releases. Use inputName instead.
-     * */
-    @Input() public inputPlaceholder:string;
+     */
+    @Input()
+    public inputPlaceholder:string;
+
     /**
      * @description If true, the button will be small. Default false.
-     * */
-    @Input() public inputIsSmall:boolean;
+     */
+    @Input()
+    public inputIsSmall:boolean;
 
     public isValid:boolean;
     public regex:string;
-    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     // The internal data model
-    private _innerValue:any;
+    protected innerValue:any;
 
-    constructor(private _inputRegex:string)
+    private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+
+    constructor(private inputRegex:string)
     {
-        this.regex = _inputRegex;
+        this.regex = inputRegex;
         this.isValid = true;
-        this.inputTooltipPlacement = 'top';
+        this.inputTooltipPlacement = TerraPlacementEnum.TOP;
         this.inputIsSmall = false;
     }
 
@@ -83,16 +110,16 @@ export class TerraInputComponent implements ControlValueAccessor
     // get accessor
     public get value():any
     {
-        return this._innerValue;
+        return this.innerValue;
     }
 
     // set accessor including call the onchange callback
     public set value(v:any)
     {
-        if(v !== this._innerValue)
+        if(v !== this.innerValue)
         {
-            this._innerValue = v;
-            this.onChangeCallback(this._innerValue);
+            this.innerValue = v;
+            this.onChangeCallback(this.innerValue);
         }
     }
 
@@ -105,9 +132,9 @@ export class TerraInputComponent implements ControlValueAccessor
     // From ControlValueAccessor interface
     public writeValue(value:any):void
     {
-        if(value !== this._innerValue)
+        if(value !== this.innerValue)
         {
-            this._innerValue = value;
+            this.innerValue = value;
         }
     }
 
@@ -122,6 +149,12 @@ export class TerraInputComponent implements ControlValueAccessor
     {
         this.onTouchedCallback = fn;
     }
+
+    // Placeholders for the callbacks which are later provided
+    // by the Control Value Accessor
+    private onTouchedCallback:() => void = ():void => undefined;
+
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 
     public validate(formControl:FormControl):void
     {
@@ -149,7 +182,7 @@ export class TerraInputComponent implements ControlValueAccessor
                     {
                         emptyMessage = this.inputEmptyMessage;
 
-                        this._alert.addAlert({
+                        this.alert.addAlert({
                             msg:              emptyMessage,
                             type:             'danger',
                             dismissOnTimeout: 0
@@ -169,7 +202,7 @@ export class TerraInputComponent implements ControlValueAccessor
                     {
                         invalidMessage = this.inputInvalidMessage;
 
-                        this._alert.addAlert({
+                        this.alert.addAlert({
                             msg:              invalidMessage,
                             type:             'danger',
                             dismissOnTimeout: 0
@@ -178,17 +211,5 @@ export class TerraInputComponent implements ControlValueAccessor
                 }
             }
         }
-    }
-
-    // Placeholders for the callbacks which are later provided
-    // by the Control Value Accessor
-    private onTouchedCallback:() => void = () =>
-    {
-        //
-    }
-
-    private onChangeCallback:(_:any) => void = (_) =>
-    {
-        //
     }
 }

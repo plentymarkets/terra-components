@@ -1,13 +1,11 @@
-<div class="input-unit-v1"
+<div class="input-wrapper"
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
      [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled, 'isSmall': inputIsSmall}"
      container="body">
-    <label *ngIf="_innerValue || _innerValue === 0" htmlFor="{{_id}}">{{inputName}}
-        <span *ngIf="inputIsRequired">*</span>
-    </label>
-    <input id="{{_id}}"
+
+    <input id="{{id}}"
            [ngClass]="{'price-input': inputIsPriceInput}"
            type="number"
            [(ngModel)]="value"
@@ -16,7 +14,10 @@
            autocomplete="off"
            [disabled]="isDisabled"
            pattern="{{regex}}"
-           step="{{_step}}"
+           step="{{step}}"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
-           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0}">
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0}">
+    <label *ngIf="innerValue || innerValue === 0" htmlFor="{{id}}">{{inputName}}
+        <span *ngIf="inputIsRequired">*</span>
+    </label>
 </div>

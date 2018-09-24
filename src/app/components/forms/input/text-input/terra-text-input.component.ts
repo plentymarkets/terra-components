@@ -10,7 +10,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import * as IBAN from 'iban';
 import { TranslationService } from 'angular-l10n';
-import { TerraRegex } from '../../../../../';
+import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 
 let nextId:number = 0;
 
@@ -33,17 +33,24 @@ export class TerraTextInputComponent extends TerraInputComponent
 {
     /**
      * @description If true, the type of input will be 'password'.
-     * */
-    @Input() public inputIsPassword:boolean;
+     */
+    @Input()
+    public inputIsPassword:boolean;
 
-    @Input() public inputIsIban:boolean = false;
+    /**
+     * @description If true, the input will check if the input is a valid iban.
+     */
+    @Input()
+    public inputIsIban:boolean;
 
     /**
      * @description If true, the value cannot be changed. Default false.
-     * */
-    @Input() public inputIsReadonly:boolean;
+     */
+    @Input()
+    public inputIsReadonly:boolean;
 
-    @Output() public outputOnInput:EventEmitter<any> = new EventEmitter<any>();
+    @Output()
+    public outputOnInput:EventEmitter<any> = new EventEmitter<any>();
 
     /**
      * @deprecated inputType is no longer used.  It will be removed in one of the upcoming releases.
@@ -70,9 +77,9 @@ export class TerraTextInputComponent extends TerraInputComponent
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    private _id:string;
+    protected id:string;
 
-    constructor(private _translation:TranslationService)
+    constructor(private translation:TranslationService)
     {
         super(TerraRegex.MIXED);
 
@@ -82,7 +89,9 @@ export class TerraTextInputComponent extends TerraInputComponent
         }
 
         // generate the id of the input instance
-        this._id = `text-input_#${nextId++}`;
+        this.id = `text-input_#${nextId++}`;
+
+        this.inputIsIban = false;
     }
 
     public onInput():void
@@ -93,18 +102,18 @@ export class TerraTextInputComponent extends TerraInputComponent
 
     public focusNativeInput():void
     {
-        setTimeout(()=>
+        setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.focus();
         });
     }
 
     public selectNativeInput():void
     {
-        setTimeout(()=>
+        setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.select();
         });
     }
@@ -114,7 +123,7 @@ export class TerraTextInputComponent extends TerraInputComponent
         if(this.inputIsIban)
         {
             this.isValid = IBAN.isValid(iban);
-            this.inputTooltipText = this.isValid ? null : this._translation.translate('terraTextInput.invalidIban');
+            this.inputTooltipText = this.isValid ? null : this.translation.translate('terraTextInput.invalidIban');
         }
 
         this.onBlur();

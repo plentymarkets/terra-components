@@ -2,49 +2,49 @@ import {
     createS3StorageObject,
     S3StorageObjectInterface
 } from './s3-storage-object.interface';
-import { PathHelper } from '../helper/path.helper';
-import { FileType } from '../helper/fileType.helper';
 import { isNullOrUndefined } from 'util';
+import { PathHelper } from '../../../helpers/path.helper';
+import { FileTypeHelper } from '../../../helpers/fileType.helper';
 
 export class TerraStorageObject
 {
-    private _s3Object:S3StorageObjectInterface;
-    private _children:TerraStorageObject[] = [];
+    private s3Object:S3StorageObjectInterface;
+    private _children:Array<TerraStorageObject> = [];
     private _parent:TerraStorageObject;
 
     public get eTag():string
     {
-        return this._s3Object.eTag;
+        return this.s3Object.eTag;
     }
 
     public get key():string
     {
-        return this._s3Object.key;
+        return this.s3Object.key;
     }
 
     public get publicUrl():string
     {
-        return this._s3Object.publicUrl;
+        return this.s3Object.publicUrl;
     }
 
     public get previewUrl():string
     {
-        return this._s3Object.previewUrl || this._s3Object.publicUrl;
+        return this.s3Object.previewUrl || this.s3Object.publicUrl;
     }
 
     public get lastModified():Date
     {
-        return new Date(this._s3Object.lastModified);
+        return new Date(this.s3Object.lastModified);
     }
 
     public get size():number
     {
-        return this._s3Object.size;
+        return parseInt( this.s3Object.size + '', 10 );
     }
 
     public get sizeString():string
     {
-        if(typeof this.size !== 'number')
+        if( isNaN(this.size) )
         {
             return '0B';
         }
@@ -53,7 +53,7 @@ export class TerraStorageObject
 
     public get name():string
     {
-        return PathHelper.basename(this._s3Object.key);
+        return PathHelper.basename(this.s3Object.key);
     }
 
     public get icon():string
@@ -63,17 +63,17 @@ export class TerraStorageObject
             return 'icon-folder';
         }
 
-        return FileType.mapIconClass(this.name);
+        return FileTypeHelper.mapIconClass(this.name);
     }
 
     public get isDirectory():boolean
     {
-        return PathHelper.isDirectory(this._s3Object.key);
+        return PathHelper.isDirectory(this.s3Object.key);
     }
 
     public get isFile():boolean
     {
-        return PathHelper.isFile(this._s3Object.key);
+        return PathHelper.isFile(this.s3Object.key);
     }
 
     public get parent():TerraStorageObject
@@ -86,14 +86,14 @@ export class TerraStorageObject
         return this.isFile ? false : this._children.length > 0;
     }
 
-    public get children():TerraStorageObject[]
+    public get children():Array<TerraStorageObject>
     {
         if(this.isFile)
         {
             return [];
         }
 
-        return this._children.sort((childA, childB) =>
+        return this._children.sort((childA:TerraStorageObject, childB:TerraStorageObject) =>
         {
             if(childA.name > childB.name)
             {
@@ -129,11 +129,11 @@ export class TerraStorageObject
 
     constructor(s3Object:S3StorageObjectInterface, parent?:TerraStorageObject)
     {
-        this._s3Object = s3Object;
+        this.s3Object = s3Object;
         this._parent = parent;
     }
 
-    public addChild(s3object:S3StorageObjectInterface, paths?:string[]):void
+    public addChild(s3object:S3StorageObjectInterface, paths?:Array<string>):void
     {
         if(this.isFile)
         {
@@ -159,7 +159,7 @@ export class TerraStorageObject
             let object:TerraStorageObject = new TerraStorageObject(s3object, this);
             if(this.hasChild(object.name))
             {
-                let idx = this._children.findIndex((child:TerraStorageObject) =>
+                let idx:number = this._children.findIndex((child:TerraStorageObject) =>
                 {
                     return child.name === object.name;
                 });
@@ -176,7 +176,7 @@ export class TerraStorageObject
             let child:TerraStorageObject = this.getChild(nextPath);
             if(!child)
             {
-                let s3Object = createS3StorageObject(
+                let s3Object:S3StorageObjectInterface = createS3StorageObject(
                     PathHelper.join(this.key, nextPath) + '/'
                 );
                 child = new TerraStorageObject(s3Object, this);
@@ -189,9 +189,9 @@ export class TerraStorageObject
 
     public removeChild(key:string):void
     {
-        let paths:string[] = key.split('/').filter(path => path.length > 0);
-        let nextPath = paths.shift();
-        let child = this.getChild(nextPath);
+        let paths:Array<string> = this.splitKeyIntoPaths(key);
+        let nextPath:string = paths.shift();
+        let child:TerraStorageObject = this.getChild(nextPath);
         if(child)
         {
             if(paths.length > 0)
@@ -200,7 +200,7 @@ export class TerraStorageObject
             }
             else
             {
-                let idx = this._children.indexOf(child);
+                let idx:number = this._children.indexOf(child);
                 this._children.splice(idx, 1);
             }
         }
@@ -229,9 +229,9 @@ export class TerraStorageObject
             return null;
         }
 
-        let paths:string[] = key.split('/').filter(key => key.length > 0);
-        let nextPath = paths.shift();
-        let child = this.getChild(nextPath);
+        let paths:Array<string> = this.splitKeyIntoPaths(key);
+        let nextPath:string = paths.shift();
+        let child:TerraStorageObject = this.getChild(nextPath);
         if(!isNullOrUndefined(child))
         {
             if(paths.length > 0)
@@ -243,5 +243,10 @@ export class TerraStorageObject
         }
 
         return null;
+    }
+
+    private splitKeyIntoPaths(key:string):Array<string>
+    {
+        return key.split('/').filter((part:string):boolean => part.length > 0);
     }
 }

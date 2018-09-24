@@ -10,6 +10,8 @@ import {
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { GridOptions } from '../../interactables/gridOptions.interface';
+import { TerraSliderTick } from './data/terra-slider-tick';
+import { InteractEvent } from 'interactjs';
 
 @Component({
     selector: 'terra-slider',
@@ -18,7 +20,6 @@ import { GridOptions } from '../../interactables/gridOptions.interface';
 })
 export class TerraSliderComponent implements OnInit
 {
-
     @Input()
     public inputValue:number;
 
@@ -59,7 +60,8 @@ export class TerraSliderComponent implements OnInit
     public get handlePosition():number
     {
         let sliderWidth:number = this.sliderBarElement.nativeElement.getBoundingClientRect().width;
-        let percentage:number = Math.abs(this.inputMin - this.inputValue) / Math.abs(this.inputMin - this.inputMax);
+        let percentage:number = Math.abs(this.inputMin - this.inputValue) / this.calculateRangeOfSlider();
+
         if(percentage < 0)
         {
             return 0;
@@ -77,13 +79,12 @@ export class TerraSliderComponent implements OnInit
     {
         let sliderWidth:number = this.sliderBarElement.nativeElement.getBoundingClientRect().width;
         let percentage:number = (value / sliderWidth) * 100;
-        let percentageValue:number = Math.abs(this.inputMin - this.inputMax) / 100;
-        // console.log( percentage + "% * " + percentageValue + " = " + percentage * percentageValue );
-        this.inputValue = this.inputMin + (percentage * percentageValue);
+        let valuePerPercent:number = this.calculateRangeOfSlider() / 100;
+        this.inputValue = this.inputMin + (percentage * valuePerPercent);
 
         if(this.inputInterval > 0)
         {
-            let diff = this.inputValue % this.inputInterval;
+            let diff:number = this.inputValue % this.inputInterval;
             if(diff !== 0)
             {
                 if(diff < this.inputInterval / 2)
@@ -96,7 +97,6 @@ export class TerraSliderComponent implements OnInit
                 }
             }
         }
-
 
         if(this.inputValue < this.inputMin)
         {
@@ -117,10 +117,8 @@ export class TerraSliderComponent implements OnInit
     {
         if(this.inputInterval > 0)
         {
-            let stepSize:number = Math.abs(this.inputMin - this.inputMax) / this.inputInterval;
-
             return {
-                x: this.element.nativeElement.getBoundingClientRect().width / stepSize,
+                x: this.element.nativeElement.getBoundingClientRect().width / this.calculateNumberOfSteps(),
                 y: 0
             };
         }
@@ -132,17 +130,17 @@ export class TerraSliderComponent implements OnInit
     {
         if(isNullOrUndefined(this.inputValue))
         {
-            this.inputValue = this.inputMin + (Math.abs(this.inputMin - this.inputMax) / 2);
+            this.inputValue = this.inputMin + (this.calculateRangeOfSlider() / 2);
         }
 
         if(isNullOrUndefined(this.inputPrecision))
         {
             if(this.inputInterval > 0)
             {
-                let numberOfSteps:number = Math.abs(this.inputMin - this.inputMax) / this.inputInterval;
-                let stepSize:number = Math.abs(this.inputMin - this.inputMax) / numberOfSteps;
-                let steps:number[] = [];
+                let stepSize:number = this.inputInterval;
+                let steps:Array<number> = [];
                 let current:number = this.inputMin;
+
                 while(current <= this.inputMax)
                 {
                     steps.push(current);
@@ -150,16 +148,18 @@ export class TerraSliderComponent implements OnInit
                 }
 
                 this.inputPrecision = Math.max(
-                    ...steps.map(step =>
+                    ...steps.map((step:number):number =>
                     {
-                        let parts = ("" + step).split(".");
+                        let parts:Array<string> = ('' + step).split('.');
+
                         if(!parts[1])
                         {
                             return 0;
                         }
                         else
                         {
-                            let match = /[1-9]/g.exec(parts[1].substr(0, 3));
+                            let match:RegExpExecArray = /[1-9]/g.exec(parts[1].substr(0, 3));
+
                             if(match)
                             {
                                 return match.index;
@@ -174,66 +174,73 @@ export class TerraSliderComponent implements OnInit
             }
             else
             {
-                this.inputPrecision = 5 - Math.max(("" + this.inputMin).length, ("" + this.inputMax).length);
+                this.inputPrecision = 5 - Math.max(('' + this.inputMin).length, ('' + this.inputMax).length);
             }
 
         }
 
         if(this.inputPrecision > 3)
         {
-            this.inputPrecision = 3
+            this.inputPrecision = 3;
         }
     }
 
-    public onDrag(event:Interact.InteractEvent)
+    public onDrag(event:InteractEvent):void
     {
         this.moveToPosition(event.pageX);
     }
 
-    public onBarClicked(event:MouseEvent)
+    public onBarClicked(event:MouseEvent):void
     {
         this.moveToPosition(event.pageX);
     }
 
-    private moveToPosition(position:number)
+    private moveToPosition(position:number):void
     {
         if(!this.inputIsDisabled)
         {
-            let sliderRect = this.sliderBarElement.nativeElement.getBoundingClientRect();
+            let sliderRect:any | ClientRect = this.sliderBarElement.nativeElement.getBoundingClientRect();
             this.handlePosition = position - sliderRect.left;
         }
     }
 
-    public getTicks()
+    public getTicks():Array<TerraSliderTick>
     {
-        let tickPositions:number[] = [];
+        let ticks:Array<TerraSliderTick> = [];
+        let numberOfTicks:number = 10;
+
         if(this.inputInterval > 0)
         {
-            let numberOfTicks:number = Math.abs(this.inputMin - this.inputMax) / this.inputInterval;
-            for(let i = 1; i < numberOfTicks; i++)
-            {
-                tickPositions.push(i * (100 / numberOfTicks));
-            }
-        }
-        else
-        {
-            tickPositions = [10,
-                             20,
-                             30,
-                             40,
-                             50,
-                             60,
-                             70,
-                             80,
-                             90]
+            numberOfTicks = this.calculateNumberOfSteps();
         }
 
-        return tickPositions.map((percentage:number) =>
+        for(let i:number = 1; i < numberOfTicks; i++)
         {
-            return {
-                position: percentage,
-                caption:  this.inputMin + (Math.abs(this.inputMin - this.inputMax) * (percentage / 100))
-            };
-        });
+            let positionInPercent:number = i * (100 / numberOfTicks);
+
+            ticks.push(
+                new TerraSliderTick(
+                    positionInPercent,
+                    this.calculateValueFromPercent(positionInPercent)
+                )
+            );
+        }
+
+        return ticks;
+    }
+
+    private calculateRangeOfSlider():number
+    {
+        return Math.abs(this.inputMin - this.inputMax);
+    }
+
+    private calculateValueFromPercent(positionInPercent:number):number
+    {
+        return this.inputMin + (this.calculateRangeOfSlider() * (positionInPercent / 100));
+    }
+
+    private calculateNumberOfSteps():number
+    {
+        return this.calculateRangeOfSlider() / this.inputInterval;
     }
 }

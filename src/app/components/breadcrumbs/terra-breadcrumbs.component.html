@@ -1,0 +1,34 @@
+<terra-base-toolbar [inputIsBreadcrumbs]="true" class="main-breadcrumbs">
+    <ul class="terra-breadcrumbs breadcrumbs-overflow-auto">
+        <ng-container *ngFor="let container of breadcrumbContainers; let i = index">
+            <li class="terra-breadcrumb-container" *ngIf="container.visibleBreadcrumbsCount > 0" #breadcrumbContainer>
+                <div class="terra-breadcrumb-wrapper">
+                    <a #breadcrumbName class="terra-breadcrumb"
+                       [routerLink]="container.currentSelectedBreadcrumb.routerLink"
+                       [tooltip]="container.currentSelectedBreadcrumb.name"
+                       [isDisabled]="isTooltipDisabled"
+                       [container]="'body'"
+                       (mouseover)="checkTooltip(breadcrumbName)"
+                       [ngClass]="{'active' : checkActiveRoute(container.currentSelectedBreadcrumb, breadcrumbContainer)}">
+                        {{container.currentSelectedBreadcrumb.name}}
+                    </a>
+                    <a class="icon-caret" *ngIf="container.visibleBreadcrumbsCount > 1" (mouseenter)="calculatePosition(breadcrumbContainer, contextMenu)">
+                        <ul class="context-menu" [ngStyle]="{'left': mouseLeft}" #contextMenu>
+                            <ng-template ngFor let-breadcrumb [ngForOf]="container.breadcrumbList">
+                                <li *ngIf="!breadcrumb.isHidden">
+                                    <a [routerLink]="breadcrumb.routerLink">
+                                        {{ breadcrumb.name }}
+                                    </a>
+                                    <span class="right-icon icon-cancel" (click)="closeBreadcrumb(container, breadcrumb, $event)"></span>
+                                </li>
+                            </ng-template>
+                        </ul>
+                    </a>
+                </div>
+            </li>
+            <li class="terra-breadcrumb-container" *ngIf="checkLastBreadcrumbContainer(i)">
+                <a class="terra-breadcrumb icon-next"></a>
+            </li>
+        </ng-container>
+    </ul>
+</terra-base-toolbar>

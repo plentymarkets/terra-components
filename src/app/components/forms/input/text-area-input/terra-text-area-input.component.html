@@ -1,13 +1,10 @@
-<div class="input-unit-v1 textarea-wrapper"
+<div class="input-wrapper textarea-wrapper"
      tooltipPlacement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
      [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
      container="body">
-    <label class="textarea-label" htmlFor="{{_id}}">{{inputName}}
-        <span *ngIf="inputIsRequired">*</span>
-    </label>
-    <textarea id="{{_id}}"
+    <textarea id="{{id}}"
               [(ngModel)]="value"
               name="{{inputName}}"
               (blur)="onBlur()"
@@ -16,6 +13,10 @@
               [required]="inputIsRequired"
               autocomplete="off"
               [disabled]="isDisabled"
-              placeholder="{{inputPlaceholder}}">
+              placeholder="{{inputPlaceholder}}"
+              [class.resizable]="!inputHasFixedHeight">
     </textarea>
+    <label class="textarea-label" htmlFor="{{id}}">{{inputName}}
+        <span *ngIf="inputIsRequired">*</span>
+    </label>
 </div>

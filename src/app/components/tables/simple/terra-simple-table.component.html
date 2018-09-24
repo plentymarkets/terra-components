@@ -6,8 +6,8 @@
                 width="40px">
                 <terra-checkbox #viewChildHeaderCheckbox
                                 (change)="onHeaderCheckboxChange()"
-                                [value]="_headerCheckbox.checked"
-                                [isIndeterminate]="_headerCheckbox.isIndeterminate">
+                                [value]="headerCheckbox.checked"
+                                [isIndeterminate]="headerCheckbox.isIndeterminate">
                 </terra-checkbox>
             </th>
             <ng-template ngFor let-header [ngForOf]="inputHeaderList">
@@ -16,7 +16,7 @@
                     [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                     [tooltip]="header.tooltipText"
                     [isDisabled]="!header.tooltipText || header.tooltipText.length == 0"
-                    [ngStyle]="{ 'text-align': header.textAlign } ">
+                    [ngStyle]="{ 'text-align': getTextAlign(header) }">
                     <span>{{header.caption}}</span>
                 </th>
             </ng-template>
@@ -36,13 +36,14 @@
                     </terra-checkbox>
                 </td>
                 <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
-                    <template #tdTooltip>
+                    <ng-template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>
-                    </template>
+                    </ng-template>
                     <td [container]="'body'"
                         width="{{ inputHeaderList[i].width }}"
                         [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
                         [tooltip]="tdTooltip"
+                        [ngStyle]="{ 'text-align': getTextAlign(headerList[i]) }"
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0">
                         <span [ngClass]="cell.icon"></span>
                         <span [innerHTML]="cell.caption"></span>

@@ -15,24 +15,25 @@
                       [inputName]="inputName"
                       (outputOnInput)="onChange()"
                       (click)="onInputClick($event)"
-                      [(ngModel)]="selectedValue.caption">
+                      [(ngModel)]="textInputValue">
     </terra-text-input>
     
     <!-- suggestions -->
     <div class="select-box-dropdown">
-        <span *ngIf="_displayListBoxValues.length === 0" (click)="$event.stopPropagation()">
-            <i>{{ _noEntriesTextKey | translate:lang }} </i>
+        <span *ngIf="displayListBoxValues.length === 0" (click)="$event.stopPropagation()">
+            <i>{{ noEntriesTextKey | translate:lang }} </i>
         </span>
         
-        <span *ngIf="_displayListBoxValues.length > 0 && inputWithRecentlyUsed" class="select-box-dropdown-heading"
+        <span *ngIf="displayListBoxValues.length > 0 && inputWithRecentlyUsed" class="select-box-dropdown-heading"
               (click)="$event.stopPropagation()">
-            <i><b> {{ _listBoxHeadingKey | translate:lang }} </b></i>
+            <i><b> {{ listBoxHeadingKey | translate:lang }} </b></i>
         </span>
         
-        <span *ngFor="let item of _displayListBoxValues"
+        <span *ngFor="let item of displayListBoxValues"
               (click)="select(item)"
-              [ngClass]="{active: item.value === selectedValue?.value, selected: item.value === _tmpSelectedValue?.value}">
+              [ngClass]="{active: item.value === selectedValue?.value, selected: item.value === tmpSelectedValue?.value}">
             <span class="{{item.icon}}" *ngIf="item.icon"></span>
+            <img *ngIf="item.imgsrc" src="{{item.imgsrc}}"/>
             <span [innerHtml]="item.caption"></span>
         </span>
     </div>

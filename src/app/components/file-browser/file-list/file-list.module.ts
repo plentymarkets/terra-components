@@ -22,7 +22,7 @@ import { TerraComponentsModule } from '../../../terra-components.module';
 })
 export class TerraFileListModule
 {
-    static forRoot():ModuleWithProviders
+    public static forRoot():ModuleWithProviders
     {
         return {
             ngModule:  TerraFileListModule,
@@ -30,7 +30,7 @@ export class TerraFileListModule
         };
     }
 
-    static getMainComponent():string
+    public static getMainComponent():string
     {
         return 'TerraFileListComponent';
     }

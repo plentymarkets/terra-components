@@ -1,92 +1,93 @@
-import { PathHelper } from '../helper/path.helper';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { isNullOrUndefined } from 'util';
+import { PathHelper } from '../../../helpers/path.helper';
 
 export type UploadCallback = (response:string, status:number, headers:{ [key:string]:string }) => void;
 
 export class TerraUploadItem
 {
-    public _xhr:XMLHttpRequest;
+    public static DONE:TerraUploadItem = new TerraUploadItem(null, null, null);
+
+    public xhr:XMLHttpRequest;
     public uploaded:boolean = false;
 
     public get filename():string
     {
-        let filenames = this.file.name.split('.');
-        let extname = filenames.pop();
-        return this._uploadService.prepareKey(this.file.name, true);
+        let filenames:Array<string> = this.file.name.split('.');
+        let extname:string = filenames.pop();
+        return this.uploadService.prepareKey(this.file.name, true);
     }
 
     public get pathname():string
     {
-        let pathname = this._uploadService.prepareKey(PathHelper.join(this._path, this.filename));
+        let pathname:string = this.uploadService.prepareKey(PathHelper.join(this.path, this.filename));
 
         if(pathname.charAt(0) === '/')
         {
             pathname = pathname.substr(1);
         }
-
         return pathname;
     }
 
-    private _beforeUpload:Array<(file:File) => void> = [];
-    private _onSuccess:UploadCallback[] = [];
-    private _onCancel:UploadCallback[] = [];
-    private _onError:UploadCallback[] = [];
-    private _onProgress:Array<(progress:number) => void> = [];
+    private beforeUploadList:Array<(file:File) => void> = [];
+    private onSuccessList:Array<UploadCallback> = [];
+    private onCancelList:Array<UploadCallback> = [];
+    private onErrorList:Array<UploadCallback> = [];
+    private onProgressList:Array<(progress:number) => void> = [];
 
-    constructor(public file:File, private _path:string, private _uploadService:TerraBaseStorageService)
+    constructor(public file:File, private path:string, private uploadService:TerraBaseStorageService)
     {
         if(isNullOrUndefined(file))
         {
             this.uploaded = true;
         }
-        if(!isNullOrUndefined(this._path) && this._path.charAt(0) === '/')
+        if(!isNullOrUndefined(this.path) && this.path.charAt(0) === '/')
         {
-            this._path = this._path.substr(1);
+            this.path = this.path.substr(1);
         }
     }
 
     public beforeUpload(callback:(file:File) => void):TerraUploadItem
     {
-        this._beforeUpload.push(callback);
+        this.beforeUploadList.push(callback);
         return this;
     }
 
     public onSuccess(callback:UploadCallback):TerraUploadItem
     {
-        this._onSuccess.push(callback);
+        this.onSuccessList.push(callback);
         return this;
     }
 
     public onError(callback:UploadCallback):TerraUploadItem
     {
-        this._onError.push(callback);
+        this.onErrorList.push(callback);
         return this;
     }
 
     public onCancel(callback:UploadCallback):TerraUploadItem
     {
-        this._onCancel.push(callback);
+        this.onCancelList.push(callback);
         return this;
     }
 
     public onProgress(callback:(progress:number) => void):TerraUploadItem
     {
-        this._onProgress.push(callback);
+        this.onProgressList.push(callback);
         return this;
     }
 
     public cancelUpload():void
     {
-        this._uploadService.queue.remove(this);
-        if(!isNullOrUndefined(this._xhr))
+        this.uploadService.queue.remove(this);
+        if(!isNullOrUndefined(this.xhr))
         {
-            this._xhr.abort();
+            this.xhr.abort();
         }
     }
 
 
-    public emit(event:string, ...args:any[]):void
+    public emit(event:string, ...args:Array<any>):void
     {
         if(['beforeUpload',
             'onSuccess',
@@ -94,7 +95,7 @@ export class TerraUploadItem
             'onCancel',
             'onProgress'].indexOf(event) >= 0)
         {
-            this['_' + event].forEach((callback:(...args:any[]) => void) =>
+            this['_' + event].forEach((callback:(...args:Array<any>) => void) =>
             {
                 callback(...args);
             });
@@ -107,6 +108,4 @@ export class TerraUploadItem
             }
         }
     }
-
-    public static DONE:TerraUploadItem = new TerraUploadItem(null, null, null);
 }

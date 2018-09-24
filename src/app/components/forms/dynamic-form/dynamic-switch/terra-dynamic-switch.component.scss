@@ -1,14 +1,25 @@
-:host-context(div.horizontalGroup)
+:host-context(div.horizontalGroup terra-portlet)
 {
-    form
+    form.horizontalGroupForm
     {
         display: flex;
+        
+        > * {
+            flex-grow: 1;
+            flex-basis: 0;
+            align-self: center;
+        }
+    
+        > :not(:last-child)
+        {
+            margin-right: 5px;
+        }
     }
 }
 
 .horizontalGroup
 {
-    padding: 4px 0;
+    padding: var(--space-sm) 0;
     
     .horizontalGroupLabel
     {
@@ -20,16 +31,12 @@
     {
         width: 100%;
     }
-    
-    & :not(:last-child)
-    {
-        margin-right: 5px;
-    }
 }
 
 .verticalGroup
 {
-    padding: 4px 0;
+    padding: var(--space-sm) 0;
+    width: 100%;
     
     .subSwitch
     {
@@ -44,6 +51,11 @@
     .verticalGroupEntry
     {
         width: 100%;
+    }
+    
+    &:not(:last-child)
+    {
+        margin-right: 0;
     }
 }
 

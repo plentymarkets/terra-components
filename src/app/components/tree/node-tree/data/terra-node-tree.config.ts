@@ -1,15 +1,18 @@
 import { TerraNodeInterface } from './terra-node.interface';
-import { isNullOrUndefined } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 import { TranslationService } from 'angular-l10n';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class TerraNodeTreeConfig<D>
 {
+    protected _currentSelectedNode:TerraNodeInterface<D>;
     private _list:Array<TerraNodeInterface<D>> = [];
-    private _currentSelectedNode:TerraNodeInterface<D>;
 
-    constructor(public _translation:TranslationService)
+    constructor(protected translation:TranslationService)
     {
 
     }
@@ -22,28 +25,32 @@ export class TerraNodeTreeConfig<D>
      */
     public addNode(nodeToAdd:TerraNodeInterface<D>, parent?:TerraNodeInterface<D>, openParents?:boolean):void
     {
-        //check if the node to add is already added
+        // check if the node to add is already added
+
         let alreadyAddedNode:TerraNodeInterface<D> = this.findNodeById(nodeToAdd.id);
 
         if(isNullOrUndefined(alreadyAddedNode))
         {
-            //check children to set the parent correctly
+            this.setDefaultVisibility(nodeToAdd);
+            // check children to set the parent correctly
             if(!isNullOrUndefined(nodeToAdd.children))
             {
-                this.recursiveSetParent(nodeToAdd.children, nodeToAdd);
+                this.recursiveSetParentAndDefaultVisibility(nodeToAdd.children, nodeToAdd);
             }
 
-            //add to first level if no parent nor current selected node is given
+            // add to first level if no parent nor current selected node is given
             if(isNullOrUndefined(this.currentSelectedNode) && isNullOrUndefined(parent))
             {
+
                 this._list.push(nodeToAdd);
             }
             else
             {
-                //set parent
+
+                // set parent
                 nodeToAdd.parent = !isNullOrUndefined(parent) ? parent : this.currentSelectedNode;
 
-                //check children of parent to decide where to add the node
+                // check children of parent to decide where to add the node
                 if(isNullOrUndefined(nodeToAdd.parent.children))
                 {
                     nodeToAdd.parent.children = [nodeToAdd];
@@ -65,17 +72,29 @@ export class TerraNodeTreeConfig<D>
         }
     }
 
+    private setDefaultVisibility(node:TerraNodeInterface<D>):void
+    {
+        if(node.isVisible)
+        {
+            node.defaultVisibility = true;
+        }
+        else
+        {
+            node.defaultVisibility = false;
+        }
+    }
+
     private getRecursiveNodePath(node:TerraNodeInterface<D>, name:string):string
     {
         if(!isNullOrUndefined(node))
         {
             if(isNullOrUndefined(name))
             {
-                name = this._translation.translate(node.name);
+                name = this.translation.translate(node.name);
             }
             else
             {
-                name = this._translation.translate(node.name) + ' » ' + name;
+                name = this.translation.translate(node.name) + ' » ' + name;
             }
 
             if(!isNullOrUndefined(node.parent))
@@ -99,7 +118,7 @@ export class TerraNodeTreeConfig<D>
      */
     public addChildToNodeById(parentId:string | number, node:TerraNodeInterface<D>, openParents?:boolean):void
     {
-        let foundNode = this.recursiveFindNodeById(this.list, parentId);
+        let foundNode:TerraNodeInterface<D> = this.recursiveFindNodeById(this.list, parentId);
 
         if(isNullOrUndefined(foundNode))
         {
@@ -119,7 +138,7 @@ export class TerraNodeTreeConfig<D>
      */
     public addChildrenToNodeById(parentId:string | number, nodeList:Array<TerraNodeInterface<D>>, openParents?:boolean):void
     {
-        let foundNode = this.recursiveFindNodeById(this.list, parentId);
+        let foundNode:TerraNodeInterface<D> = this.recursiveFindNodeById(this.list, parentId);
 
         if(isNullOrUndefined(foundNode))
         {
@@ -152,7 +171,7 @@ export class TerraNodeTreeConfig<D>
         }
     }
 
-    //removes a given node
+    // removes a given node
     private internalRemoveNode(node:TerraNodeInterface<D>):void
     {
         let parent:TerraNodeInterface<D> = node.parent;
@@ -184,7 +203,7 @@ export class TerraNodeTreeConfig<D>
         }
         else
         {
-            this.internalRemoveNode(foundNode)
+            this.internalRemoveNode(foundNode);
         }
     }
 
@@ -200,8 +219,8 @@ export class TerraNodeTreeConfig<D>
             console.warn('ID ' + id + ' is different from new node ID!');
         }
 
-        //search for node
-        let foundNode = this.recursiveFindNodeById(this.list, id);
+        // search for node
+        let foundNode:TerraNodeInterface<D> = this.recursiveFindNodeById(this.list, id);
 
         if(isNullOrUndefined(foundNode))
         {
@@ -209,7 +228,7 @@ export class TerraNodeTreeConfig<D>
         }
         else
         {
-            //just copy stuff
+            // just copy stuff
             foundNode.id = newNode.id;
             foundNode.name = newNode.name;
             foundNode.children = newNode.children;
@@ -246,7 +265,7 @@ export class TerraNodeTreeConfig<D>
         return this.recursiveFindNode(this.list, node);
     }
 
-    //find node
+    // find node
     private recursiveFindNode(nodeList:Array<TerraNodeInterface<D>>, nodeToFind:TerraNodeInterface<D>):TerraNodeInterface<D>
     {
         let foundNode:TerraNodeInterface<D> = null;
@@ -263,7 +282,7 @@ export class TerraNodeTreeConfig<D>
             {
                 foundNode = this.recursiveFindNode(node.children, nodeToFind);
 
-                if(foundNode != null)
+                if(!isNull(foundNode))
                 {
                     break;
                 }
@@ -273,7 +292,7 @@ export class TerraNodeTreeConfig<D>
         return foundNode;
     }
 
-    //find node by id
+    // find node by id
     private recursiveFindNodeById(nodeList:Array<TerraNodeInterface<D>>, id:string | number):TerraNodeInterface<D>
     {
         let foundNode:TerraNodeInterface<D> = null;
@@ -290,7 +309,7 @@ export class TerraNodeTreeConfig<D>
             {
                 foundNode = this.recursiveFindNodeById(node.children, id);
 
-                if(foundNode != null)
+                if(!isNull(foundNode))
                 {
                     break;
                 }
@@ -314,15 +333,16 @@ export class TerraNodeTreeConfig<D>
      */
     public set list(value:Array<TerraNodeInterface<D>>)
     {
-        this.recursiveSetParent(value);
+        this.recursiveSetParentAndDefaultVisibility(value);
         this._list = value;
     }
 
-    //set parents to all nodes
-    private recursiveSetParent(list:Array<TerraNodeInterface<D>>, parent?:TerraNodeInterface<D>)
+    // set parents to all nodes
+    private recursiveSetParentAndDefaultVisibility(list:Array<TerraNodeInterface<D>>, parent?:TerraNodeInterface<D>):void
     {
         for(let node of list)
         {
+            this.setDefaultVisibility(node);
             if(!isNullOrUndefined(parent))
             {
                 node.parent = parent;
@@ -330,7 +350,7 @@ export class TerraNodeTreeConfig<D>
 
             if(!isNullOrUndefined(node.children))
             {
-                this.recursiveSetParent(node.children, node);
+                this.recursiveSetParentAndDefaultVisibility(node.children, node);
             }
         }
     }
@@ -342,7 +362,7 @@ export class TerraNodeTreeConfig<D>
      */
     public toggleOpenParent(node:TerraNodeInterface<D>, isOpen:boolean):void
     {
-        if(!isNullOrUndefined(node.parent))
+        if(!isNullOrUndefined(node) && !isNullOrUndefined(node.parent))
         {
             node.parent.isOpen = isOpen;
 
@@ -359,7 +379,7 @@ export class TerraNodeTreeConfig<D>
     }
 
     /**
-     * @description Open all parents of given node.
+     * @description Open all children of given node.
      * @param nodeList The node list to open its children.
      * @param isOpen Toggle open or not.
      */
@@ -382,18 +402,18 @@ export class TerraNodeTreeConfig<D>
      */
     public handleLazyLoading(node:TerraNodeInterface<D>):void
     {
-        //check if lazy loading is desired
+        // check if lazy loading is desired
         if(!node.hasLoaded && !isNullOrUndefined(node.onLazyLoad))
         {
             node.hasLoaded = true;
             node.isLoading = true;
-            //subscribe to Observable
+            // subscribe to Observable
             node.onLazyLoad().subscribe(() =>
                 {
                     node.hasLoaded = true;
                     node.isLoading = false;
                     node.isOpen = true;
-                    this.setDefaultVisibilityToChildren(node.children);
+                    this.checkVisibilityAndAssignDefault(node.children);
                 },
                 () =>
                 {
@@ -407,39 +427,23 @@ export class TerraNodeTreeConfig<D>
         }
     }
 
-    private setDefaultVisibilityToChildren(nodeList:Array<TerraNodeInterface<D>>)
-    {
-        if(!isNullOrUndefined(nodeList))
-        {
-            nodeList.forEach((node:TerraNodeInterface<D>) =>
-            {
-                if(node.isVisible)
-                {
-                    node.defaultVisibility = true;
-                }
-                else
-                {
-                    node.defaultVisibility = false;
-                }
-
-                if(!isNullOrUndefined(node.children))
-                {
-                    this.setDefaultVisibilityToChildren(node.children);
-                }
-            });
-        }
-    }
-
     /**
      * @description Set a node as selected.
      * @param node The node to be set as selected.
      */
     public set currentSelectedNode(node:TerraNodeInterface<D>)
     {
-        this.toggleOpenParent(node, true);
-        this.recursiveSetNodeInactive(this.list);
-        node.isActive = true;
-        this._currentSelectedNode = node;
+        if(!isNullOrUndefined(node))
+        {
+            this.toggleOpenParent(node, true);
+            this.recursiveSetNodeInactive(this.list);
+            node.isActive = true;
+            this._currentSelectedNode = node;
+        }
+        else
+        {
+            this._currentSelectedNode = null;
+        }
     }
 
     /**
@@ -477,7 +481,7 @@ export class TerraNodeTreeConfig<D>
         }
     }
 
-    //set all nodes inactive
+    // set all nodes inactive
     private recursiveSetNodeInactive(nodeList:Array<TerraNodeInterface<D>>):void
     {
         nodeList.forEach((node:TerraNodeInterface<D>) =>
@@ -506,7 +510,7 @@ export class TerraNodeTreeConfig<D>
             {
                 this.toggleVisiblityForAllChildren(node.children, isVisible);
             }
-        })
+        });
     }
 
     /**
@@ -522,5 +526,43 @@ export class TerraNodeTreeConfig<D>
         {
             this.toggleVisibilityForAllParents(parentNode.parent, isVisible);
         }
+    }
+
+    public checkVisibilityAndAssignDefault(nodeList:Array<TerraNodeInterface<D>>):void
+    {
+        if(!isNullOrUndefined(nodeList))
+        {
+            nodeList.forEach((node:TerraNodeInterface<D>) =>
+            {
+
+                this.setDefaultVisibility(node);
+
+                if(!isNullOrUndefined(node.children))
+                {
+                    this.checkVisibilityAndAssignDefault(node.children);
+                }
+            });
+        }
+    }
+
+    public checkDefaultAndAssignVisibility(nodeList:Array<TerraNodeInterface<D>>):void
+    {
+        nodeList.forEach((node:TerraNodeInterface<D>) =>
+        {
+
+            if(node.defaultVisibility)
+            {
+                node.isVisible = true;
+            }
+            else
+            {
+                node.isVisible = false;
+            }
+
+            if(!isNullOrUndefined(node.children))
+            {
+                this.checkDefaultAndAssignVisibility(node.children);
+            }
+        });
     }
 }

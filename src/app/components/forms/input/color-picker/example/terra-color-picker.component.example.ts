@@ -1,6 +1,6 @@
 import {
     Component
-} from "@angular/core";
+} from '@angular/core';
 
 @Component({
     selector: 'terra-color-picker-example',
@@ -9,4 +9,5 @@ import {
 })
 export class TerraColorPickerComponentExample
 {
+    public color:string;
 }

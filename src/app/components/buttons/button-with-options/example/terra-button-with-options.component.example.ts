@@ -1,41 +1,37 @@
 import {
     Component,
     OnInit
-} from "@angular/core";
+} from '@angular/core';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 import { TerraSimpleTableCellInterface } from '../../../tables/simple/cell/terra-simple-table-cell.interface';
 import { TerraSimpleTableRowInterface } from '../../../tables/simple/row/terra-simple-table-row.interface';
 
 
 @Component({
-               selector: 'terra-button-with-options-example',
-               styles:   [require('./terra-button-with-options.component.example.scss')],
-               template: require('./terra-button-with-options.component.example.html'),
-           })
+    selector: 'terra-button-with-options-example',
+    styles:   [require('./terra-button-with-options.component.example.scss')],
+    template: require('./terra-button-with-options.component.example.html'),
+})
 export class TerraButtonWithOptionsComponentExample implements OnInit
 {
-    private _buttonOptionList:Array<TerraButtonInterface> = [];
-    private _simpleTableHeaderList:Array<TerraSimpleTableCellInterface> = [];
-    private _simpleTableRowList:Array<TerraSimpleTableRowInterface<any>> = [];
-    private _listEntryCounter:number = 0;
+    protected buttonOptionList:Array<TerraButtonInterface> = [];
+    protected simpleTableHeaderList:Array<TerraSimpleTableCellInterface> = [];
+    protected simpleTableRowList:Array<TerraSimpleTableRowInterface<any>> = [];
+    private listEntryCounter:number = 0;
 
-    public constructor()
+    public ngOnInit():void
     {
-    }
-
-    ngOnInit()
-    {
-        this._buttonOptionList.push({
-                                        caption:       'Add new account',
-                                        icon:          'icon-add',
-                                        clickFunction: ():void => this.addAccount()
-                                    });
-        this._buttonOptionList.push({
-                                        caption:       'Delete all accounts',
-                                        icon:          'icon-delete',
-                                        clickFunction: ():void => this.deleteAllAccounts()
-                                    });
-        this._simpleTableHeaderList.push(
+        this.buttonOptionList.push({
+            caption:       'Add new account',
+            icon:          'icon-add',
+            clickFunction: ():void => this.addAccount()
+        });
+        this.buttonOptionList.push({
+            caption:       'Delete all accounts',
+            icon:          'icon-delete',
+            clickFunction: ():void => this.deleteAllAccounts()
+        });
+        this.simpleTableHeaderList.push(
             {
                 caption: 'id'
             },
@@ -45,7 +41,7 @@ export class TerraButtonWithOptionsComponentExample implements OnInit
             {
                 caption: 'mail'
             });
-        while(this._listEntryCounter < 5)
+        while(this.listEntryCounter < 5)
         {
             this.addAccount();
         }
@@ -53,13 +49,13 @@ export class TerraButtonWithOptionsComponentExample implements OnInit
 
     public addAccount():void
     {
-        let userName = 'user' + Date.now();
-        this._simpleTableRowList.push(
+        let userName:string = 'user' + Date.now();
+        this.simpleTableRowList.push(
             {
                 cellList:
                     [
                         {
-                            caption: this._listEntryCounter++,
+                            caption: this.listEntryCounter++,
                         },
                         {
                             caption: userName,
@@ -71,12 +67,12 @@ export class TerraButtonWithOptionsComponentExample implements OnInit
                         },
 
                     ]
-            })
+            });
     }
 
     public deleteAllAccounts():void
     {
-        this._simpleTableRowList = [];
-        this._listEntryCounter = 0;
+        this.simpleTableRowList = [];
+        this.listEntryCounter = 0;
     }
 }

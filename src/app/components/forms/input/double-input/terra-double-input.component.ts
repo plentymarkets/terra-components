@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TerraRegex } from '../../../../../';
+import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 
 let nextId:number = 0;
 
@@ -26,21 +26,23 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
 {
     /**
      * @description If true, the value will be right-aligned.
-     * */
-    @Input() public inputIsPriceInput:boolean;
+     */
+    @Input()
+    public inputIsPriceInput:boolean;
 
     /**
      *
      * @description Set the decimal count. Default is 2. (0.01)
      */
-    @Input() public inputDecimalCount:number = 2;
+    @Input()
+    public inputDecimalCount:number = 2;
 
-    private _step:number;
+    protected step:number;
 
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    private _id:string;
+    protected id:string;
 
     /**
      * @deprecated
@@ -59,13 +61,13 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
         super(TerraRegex.DOUBLE);
 
         // generate the id of the input instance
-        this._id = `double-input_#${nextId++}`;
+        this.id = `double-input_#${nextId++}`;
     }
 
     public ngOnInit():void
     {
         this.regex = TerraRegex.getDouble(this.inputDecimalCount);
-        this._step = 1 / (Math.pow(10, this.inputDecimalCount));
+        this.step = 1 / (Math.pow(10, this.inputDecimalCount));
     }
 
     /**
@@ -75,7 +77,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.focus();
         });
     }
@@ -87,7 +89,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.select();
         });
     }

@@ -1,5 +1,5 @@
-<div class="group_function" [@collapsedState]="getCollapsedState">
-    <div class="group_function_head">
+<div class="group-function" [@collapsedState]="getCollapsedState">
+    <div class="group-function-head">
         <terra-button inputIcon="icon-execute"
                       [inputIsDisabled]="inputGroupFunctionExecuteButtonIsDisabled"
                       (outputClicked)="onGroupFunctionExecuteButtonClicked($event)">
@@ -7,7 +7,7 @@
         <span>{{'terraDataTable.groupFunction' | translate:lang}}</span>
         <span class="icon-collapse_down" [class.rotated]="inputCollapsed" *ngIf="inputIsCollapsable"></span>
     </div>
-    <div class="group_function_body">
+    <div class="group-function-body">
         <ng-content></ng-content>
     </div>
 </div>
@@ -16,19 +16,19 @@
              [inputPagingSize]="pagingSize"
              [inputDefaultPagingSize]="defaultPagingSize"
              [inputPagingData]="pagingData"
-             [inputRequestPending]="_requestPending"
+             [inputRequestPending]="requestPending"
              (outputDoPaging)="doPaging($event)">
 </terra-pager>
 
 <div class="table-responsive">
-    <context-menu-holder></context-menu-holder>
+    <context-menu></context-menu>
     <table class="table data-table">
         <thead>
         <tr>
             <th *ngIf="inputHasCheckboxes && rowList.length" width="25px">
                 <terra-checkbox #viewChildHeaderCheckbox
                                 (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
-                                [value]="_isHeaderCheckboxChecked">
+                                [value]="isHeaderCheckboxChecked">
                 </terra-checkbox>
             </th>
             <ng-template ngFor let-header [ngForOf]="headerList">
@@ -49,7 +49,7 @@
         <ng-template ngFor let-row [ngForOf]="rowList">
             <tr [ngClass]="{'selected': row.selected, 'isActive': row.isActive}"
                 [class.disabled]="row.disabled"
-                [context-menu]="row.contextMenuLinkList">
+                [contextMenu]="row.contextMenuLinkList">
                 <td *ngIf="inputHasCheckboxes">
                     <terra-checkbox #rowCheckbox type="checkbox"
                                     [value]="row.selected"
@@ -58,9 +58,9 @@
                     </terra-checkbox>
                 </td>
                 <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
-                    <template #tdTooltip>
+                    <ng-template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>
-                    </template>
+                    </ng-template>
                     
                     <!-- LEGACY INTERFACE!!!! -->
                     <td *ngIf="!cell.isHidden && !cell.data"
@@ -91,7 +91,8 @@
                                               [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
                                               [inputCaption]="button.caption"
                                               [inputIsSmall]="true"
-                                              [inputTooltipText]="button.tooltipText">
+                                              [inputTooltipText]="button.tooltipText"
+                                              [inputIsFlagged]="button.isFlagged">
                                 </terra-button>
                             </ng-template>
                         </div>
@@ -123,7 +124,14 @@
                         </div>
                         
                         <div *ngSwitchCase="'TerraRefTypeInterface'">
-                            <a href="{{cell.data.type}}:{{cell.data.value}}" (click)="$event.stopPropagation()">{{cell.data.value}}</a>
+                            <a *ngIf="cell.data.type === TerraRefTypeEnum.email || cell.data.type === TerraRefTypeEnum.phone"
+                               href="{{cell.data.type}}:{{cell.data.value}}"
+                               (click)="$event.stopPropagation()">{{ cell.data.caption || cell.data.value}}
+                            </a>
+                            <a *ngIf="cell.data.type === TerraRefTypeEnum.function"
+                               href="javascript:void(0);"
+                               (click)="cell.data.func(); $event.stopPropagation();">{{cell.data.value}}
+                            </a>
                         </div>
                         
                         <div *ngSwitchCase="'buttons'" class="btn-group">
@@ -138,7 +146,8 @@
                                               [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
                                               [inputCaption]="button.caption"
                                               [inputIsSmall]="true"
-                                              [inputTooltipText]="button.tooltipText">
+                                              [inputTooltipText]="button.tooltipText"
+                                              [inputIsFlagged]="button.isFlagged">
                                 </terra-button>
                             </ng-template>
                         </div>
@@ -156,7 +165,8 @@
     <div *ngIf="!rowList || rowList && rowList.length < 1 && (
             (inputNoResultButtons && inputNoResultButtons.length > 0)
          || (inputNoResultTextPrimary && inputNoResultTextPrimary.length > 0) 
-         || (inputNoResultTextSecondary && inputNoResultTextSecondary.length > 0) )">
+         || (inputNoResultTextSecondary && inputNoResultTextSecondary.length > 0) )
+         && !requestPending">
         <terra-no-result-notice
             [inputButtons]="inputNoResultButtons"
             [inputTextPrimary]="inputNoResultTextPrimary"

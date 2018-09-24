@@ -1,30 +1,46 @@
 import {
     Component,
     Input,
-    OnInit
+    ViewChild
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
-import { TerraTagInterface } from '../../../../';
+import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
+import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 
 @Component({
-    selector: 'terra-info-box',
-    styles:   [require('./terra-info-box.component.scss')],
-    template: require('./terra-info-box.component.html')
-})
-export class TerraInfoBoxComponent implements OnInit
+               selector: 'terra-info-box',
+               styles:   [require('./terra-info-box.component.scss')],
+               template: require('./terra-info-box.component.html')
+           })
+export class TerraInfoBoxComponent
 {
-    @Input() inputTagList:Array<TerraTagInterface>;
-    @Input() inputAddBox:boolean;
-    @Input() inputIsEmpty:boolean;
-    @Input() inputIsSelected:boolean;
-    @Input() inputId:number;
+    @Input()
+    public inputTagList:Array<TerraTagInterface>;
 
-    constructor()
-    {
-    }
+    @Input()
+    public inputButtonList:Array<TerraButtonInterface>;
 
-    ngOnInit()
+    @Input()
+    public inputAddBox:boolean;
+
+    @Input()
+    public inputIsEmpty:boolean;
+
+    @Input()
+    public inputIsSelected:boolean;
+
+    @Input()
+    public inputId:number;
+
+    @Input()
+    public inputNoWordBreak:boolean;
+
+    @ViewChild('buttonRef') private buttonRef:any;
+
+    public get hasButtons():boolean
     {
+        return !isNullOrUndefined(this.buttonRef.nativeElement.childNodes) && this.buttonRef.nativeElement.childNodes > 0 ||
+               !isNullOrUndefined(this.inputButtonList) && this.inputButtonList.length > 0;
     }
 
     public get hasFooter():boolean

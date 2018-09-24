@@ -8,6 +8,11 @@ export interface TerraNodeInterface<D>
     id:string | number;
 
     /**
+     * @description The identifier of opened subview connected to the node.
+     */
+    subId?:string | number;
+
+    /**
      * @description The caption.
      */
     name:string;
@@ -53,6 +58,11 @@ export interface TerraNodeInterface<D>
     onClick?:() => void;
 
     /**
+     * @description A double click function to do something. Optional.
+     */
+    onDblClick?:() => void;
+
+    /**
      * @description Lazy loading function to get data from server. Optional.
      */
     onLazyLoad?:() => Observable<any>;
@@ -78,7 +88,17 @@ export interface TerraNodeInterface<D>
     defaultVisibility?:boolean;
 
     /**
-     * @description  set a tooltip for the node. default will ne name.
+     * @description  set the the node is selectable
+     */
+    selectable?:boolean;
+
+    /**
+     * @description  set a tooltip for the node. default will be name.
      */
     tooltip?:string;
+
+    /**
+     * @description  set a tooltip placement for the node. default will be 'right'. Other values: 'left', 'top', 'bottom'
+     */
+    tooltipPlacement?:string;
 }

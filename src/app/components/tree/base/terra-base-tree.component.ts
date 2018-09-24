@@ -3,6 +3,7 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
+import { isNull } from 'util';
 
 /**
  * @author mkunze
@@ -12,23 +13,22 @@ export class TerraBaseTreeComponent implements OnInit
     /**
      * current level leaf list
      */
-    @Input() inputLeafList:Array<TerraLeafInterface>;
+    @Input()
+    public inputLeafList:Array<TerraLeafInterface>;
 
     /**
      * leafs one level higher than current leaf
      */
-    @Input() inputParentLeafList:Array<TerraLeafInterface>;
+    @Input()
+    public inputParentLeafList:Array<TerraLeafInterface>;
 
     /**
      * complete leaf list for better and faster searching
      */
-    @Input() inputCompleteLeafList:Array<TerraLeafInterface>;
+    @Input()
+    public inputCompleteLeafList:Array<TerraLeafInterface>;
 
-    constructor()
-    {
-    }
-
-    ngOnInit():void
+    public ngOnInit():void
     {
         if(!this.inputCompleteLeafList)
         {
@@ -45,7 +45,7 @@ export class TerraBaseTreeComponent implements OnInit
                     {
                         for(let leaf of this.inputLeafList)
                         {
-                            if(leaf == subLeaf)
+                            if(leaf === subLeaf)
                             {
                                 leaf.parentLeafList = this.inputParentLeafList;
                             }
@@ -59,12 +59,12 @@ export class TerraBaseTreeComponent implements OnInit
 
     private onLeafClick(clickedLeaf:TerraLeafInterface):void
     {
-        if(clickedLeaf.subLeafList != null && !clickedLeaf.avoidOpenOnClick)
+        if(!isNull(clickedLeaf.subLeafList) && !clickedLeaf.avoidOpenOnClick)
         {
             this.toggleOpen(clickedLeaf);
         }
 
-        if(clickedLeaf.clickFunction != null && !clickedLeaf.isActive)
+        if(!isNull(clickedLeaf.clickFunction) && !clickedLeaf.isActive)
         {
             clickedLeaf.clickFunction();
         }
@@ -108,7 +108,7 @@ export class TerraBaseTreeComponent implements OnInit
 
     private onArrowClick(clickedLeaf:TerraLeafInterface):void
     {
-        if(clickedLeaf.onOpenFunction != null && !clickedLeaf.isOnOpenFunctionCalled)
+        if(!isNull(clickedLeaf.onOpenFunction) && !clickedLeaf.isOnOpenFunctionCalled)
         {
             clickedLeaf.onOpenFunction();
             clickedLeaf.isOnOpenFunctionCalled = true;
@@ -127,13 +127,13 @@ export class TerraBaseTreeComponent implements OnInit
             {
                 foundLeaf = leaf;
 
-                return foundLeaf
+                return foundLeaf;
             }
             else if(leaf.subLeafList)
             {
                 foundLeaf = this.recursiveSearchActiveLeaf(leaf.subLeafList);
 
-                if(foundLeaf != null)
+                if(!isNull(foundLeaf))
                 {
                     break;
                 }
@@ -150,6 +150,6 @@ export class TerraBaseTreeComponent implements OnInit
 
     private checkIfArrowNeeded(clickedLeaf:TerraLeafInterface):boolean
     {
-        return clickedLeaf.subLeafList != null || clickedLeaf.onOpenFunction != null;
+        return !isNull(clickedLeaf.subLeafList) || !isNull(clickedLeaf.onOpenFunction);
     }
 }

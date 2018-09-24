@@ -1,9 +1,3 @@
-@import "~bootstrap/scss/mixins";
-
-// List of variables
-$btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
-$btn-active-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-
 button, html [type="button"], [type="reset"], [type="submit"]
 {
     -webkit-appearance: none !important;
@@ -20,35 +14,39 @@ button:focus
     position: relative;
     &.disabled
     {
+        %disabled-state
+        {
+            background-color: var(--color-structure-3);
+            color: var(--color-structure-7);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
         cursor: not-allowed;
         .btn
         {
-            background-color: $grey-3;
-            color: $grey-7;
-            cursor: not-allowed;
+            @extend %disabled-state;
             &:hover,
             &:active,
+            &:focus,
             &.active
             {
-                background-color: $grey-3;
-                color: $grey-7;
-                cursor: not-allowed;
+                @extend %disabled-state;
             }
             &.btn-link
             {
                 background-color: transparent;
-                color: $grey-4;
-                font-weight: $font-weight-3;
+                color: var(--color-structure-4);
+                font-weight: var(--font-weight-3);
                 
                 &:hover
                 {
                     background-color: transparent;
-                    color: $grey-4;
+                    color: var(--color-structure-4);
                     &:active,
                     &.active
                     {
                         background-color: transparent;
-                        color: $grey-4;
+                        color: var(--color-structure-4);
                     }
                 }
             }
@@ -74,7 +72,7 @@ button:focus
         {
             font-weight: 600;
             font-size: 1.1rem;
-            color: $white;
+            color: var(--color-structure-0);
             text-align: center;
             transform: rotate(45deg);
             -webkit-transform: rotate(45deg);
@@ -84,12 +82,12 @@ button:focus
             top: -2px;
             right: -7px;
             cursor: pointer;
-            background: $brand-yellow;
-            border-top: 10px solid $brand-yellow;
+            background: var(--color-accent);
+            border-top: 10px solid var(--color-accent);
             &.disabled
             {
-                background: $brand-yellow-light;
-                border-top: 10px solid $brand-yellow-light;
+                background: var(--color-accent-light);
+                border-top: 10px solid var(--color-accent-light);
                 cursor: not-allowed;
             }
         }
@@ -98,9 +96,12 @@ button:focus
 
 .btn
 {
-    
-    height: $terra-btn-md-height;
-    line-height: $terra-btn-md-height;
+    height: var(--btn-height, var(--height-md));
+    line-height: var(--btn-line-height, var(--height-md));
+    padding: var(--btn-padding, (0 var(--space-md)));
+    background-color: var(--color-structure-9);
+    color: var(--color-structure-0);
+    font-size: var(--font-size-3);
     display: inline-block;
     text-align: center;
     white-space: nowrap;
@@ -117,20 +118,20 @@ button:focus
     width: 100%;
     overflow: hidden;
     text-decoration: none;
-    padding: var(--btn-padding, 0 8px);
-    border-radius: $border-radius;
-    font-size: $font-size-3;
-    @include transition(all .2s ease-in-out);
-    @include button-variant($white, $grey-9, transparent);
+    border-radius: var(--border-radius);
+    border-color: transparent;
+    transition: height var(--transition-lg), line-height var(--transition-lg), padding var(--transition-lg), background-color var(--transition-sm);
     
-    &:hover
+    &:hover,
+    &:focus
     {
-        background-color: $grey-11;
+        background-color: var(--color-structure-11);
         background-clip: padding-box;
         &:active,
         &.active
         {
-            background-color: $grey-9;
+            background-color: var(--color-structure-9);
+            color: var(--color-structure-0);
             background-clip: padding-box;
         }
     }
@@ -139,14 +140,18 @@ button:focus
     {
         &:not(.highlighted)
         {
-            background-color: $blue;
-            &:hover
+            background-color: var(--color-active);
+            color: var(--color-structure-0);
+            &:hover,
+            &:focus
             {
-                background-color: $blue-hover;
+                background-color: var(--color-active-dark);
+                color: var(--color-structure-0);
                 &:active,
                 &.active
                 {
-                    background-color: $blue;
+                    background-color: var(--color-active);
+                    color: var(--color-structure-0);
                 }
             }
         }
@@ -156,7 +161,7 @@ button:focus
             {
                 100%
                 {
-                    background-color: $blue
+                    background-color: var(--color-active)
                 }
             }
             animation: highlight-primary 1500ms ease-in-out 0ms infinite alternate;
@@ -166,14 +171,15 @@ button:focus
     {
         &:not(.highlighted)
         {
-            background-color: $alert-red;
-            &:hover
+            color: var(--color-structure-0);
+            &:hover,
+            &:focus
             {
-                background-color: darken($alert-red, 10%);
+                color: var(--color-structure-0);
                 &:active,
                 &.active
                 {
-                    background-color: $alert-red;
+                    color: var(--color-structure-0);
                 }
             }
         }
@@ -183,7 +189,7 @@ button:focus
             {
                 100%
                 {
-                    background-color: $alert-red
+                    background-color: var(--color-alert)
                 }
             }
             animation: highlight-secondary 1500ms ease-in-out 0ms infinite alternate;
@@ -193,15 +199,15 @@ button:focus
     {
         &:not(.highlighted)
         {
-            background: $alert-green;
-            color: white;
-            &:hover
+            color: var(--color-structure-0);
+            &:hover,
+            &:focus
             {
-                background-color: darken($alert-green, 10%);
+                color: var(--color-structure-0);
                 &:active,
                 &.active
                 {
-                    background-color: $alert-green;
+                    color: var(--color-structure-0);
                 }
             }
         }
@@ -211,7 +217,7 @@ button:focus
             {
                 100%
                 {
-                    background-color: $alert-green
+                    background-color: var(--color-add)
                 }
             }
             animation: highlight-tertiary 1500ms ease-in-out 0ms infinite alternate;
@@ -225,119 +231,113 @@ button:focus
         top: 4.0px;
         &.icon_dist_top
         {
-            line-height: 0px;
+            line-height: 0;
         }
     }
     
     &.btn-lg
     {
         // line-height: ensure even-numbered height of button next to large input
-        height: $terra-btn-lg-height;
-        line-height: $terra-btn-lg-height;
-        padding: var(--btn-lg-padding, 0 8px);
-        font-size: $font-size-5;
+        height: var(--height-lg);
+        line-height: var(--height-lg);
+        padding: var(--btn-lg-padding, (0 var(--space-md)));
+        font-size: var(--font-size-5);
         span
         {
             top: 4px;
-            font-size: $font-size-6;
+            font-size: var(--font-size-6);
         }
     }
     
     &.btn-sm
     {
         // line-height: ensure proper height of button next to small input
-        height: $terra-btn-sm-height;
-        line-height: $terra-btn-sm-height;
-        padding: var(--btn-sm-padding, 0 8px);
-        font-size: $font-size-1;
+        height: var(--height-sm);
+        line-height: var(--height-sm);
+        padding: var(--btn-sm-padding, (0 var(--space-md)));
+        font-size: var(--font-size-1);
         span
         {
             top: 3px;
-            font-size: $font-size-5;
+            font-size: var(--font-size-5);
         }
     }
     
     &.activated
     {
-        background-color: $blue !important;
-        color: $white !important;
+        background-color: var(--color-active) !important;
+        color: var(--color-structure-0) !important;
     }
     
     &.btn-link
     {
         background-color: transparent;
-        color: $grey-9;
-        font-weight: $font-weight-3;
+        color: var(--color-structure-9);
+        font-weight: var(--font-weight-3);
         
-        &:hover
+        &:hover,
+        &:focus
         {
             background-color: transparent;
-            color: $blue;
+            color: var(--color-active);
             &:active,
             &.active
             {
                 background-color: transparent;
-                color: $grey-9;
+                color: var(--color-structure-9);
             }
         }
         &.btn-primary
         {
             background-color: transparent;
-            color: $blue;
-            &:hover
+            color: var(--color-active);
+            &:hover,
+            &:focus
             {
                 background-color: transparent;
-                color: $blue-hover;
+                color: var(--color-active-dark);
                 &:active,
                 &.active
                 {
                     background-color: transparent;
-                    color: $blue;
+                    color: var(--color-active);
                 }
             }
         }
         &.btn-secondary
         {
             background-color: transparent;
-            color: $alert-red;
-            &:hover
+            color: var(--color-alert);
+            &:hover,
+            &:focus
             {
                 background-color: transparent;
-                color: darken($alert-red, 10%);
+                color: var(--color-alert-dark);
                 &:active,
                 &.active
                 {
                     background-color: transparent;
-                    color: $alert-red;
+                    color: var(--color-alert);
                 }
             }
         }
         &.btn-tertiary
         {
             background-color: transparent;
-            color: $alert-green;
-            &:hover
+            color: var(--color-add);
+            &:hover,
+            &:focus
             {
                 background-color: transparent;
-                color: darken($alert-green, 10%);
+                color: var(--color-add-dark);
                 &:active,
                 &.active
                 {
                     background-color: transparent;
-                    color: $alert-green;
+                    color: var(--color-add);
                 }
             }
         }
-    }
-}
-
-button.btn:focus
-{
-    background-color: $grey-9;
-    
-    &.btn-link
-    {
-        background-color: transparent;
     }
 }
 
@@ -367,7 +367,7 @@ fieldset[disabled] a.btn
     float: left;
     &:not(:first-child) .btn
     {
-        border-left: 1px solid $grey-2;
+        border-left: 1px solid var(--color-structure-0);
     }
     
     &:first-child
@@ -376,7 +376,7 @@ fieldset[disabled] a.btn
         &:not(:last-child) > .btn-handler > .btn,
         &:not(:last-child) > .btn-handler > .flag
         {
-            @include border-right-radius(0);
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
         }
     }
     
@@ -392,8 +392,29 @@ fieldset[disabled] a.btn
         &:not(:first-child) > .btn-handler > .btn,
         &:not(:first-child) > .btn-handler > .flag
         {
-            @include border-left-radius(0);
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
         }
+    }
+}
+
+:host-context(.btn-group :not(&):not(:first-child) )
+{
+    & > .btn-handler > .btn,
+    & > .btn-handler > .flag
+    {
+        border-left: 1px solid var(--color-structure-2);
+        border-bottom-left-radius: var(--border-radius);
+        border-top-left-radius: var(--border-radius);
+    }
+}
+
+:host-context(.btn-group :not(&):last-child)
+{
+    & > .btn-handler > .btn,
+    & > .btn-handler > .flag
+    {
+        border-top-right-radius: var(--border-radius) !important;
+        border-bottom-right-radius: var(--border-radius) !important;
     }
 }
 
@@ -412,8 +433,8 @@ fieldset[disabled] a.btn
     }
     &:first-child:not(:last-child) .btn
     {
-        border-radius: $border-radius $border-radius 0 0;
-        margin: 0px 0px 1px 0px;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        margin: 0 0 1px 0;
     }
     
     &:not(:first-child):not(:last-child) .btn
@@ -424,13 +445,13 @@ fieldset[disabled] a.btn
     
     &:last-child:not(:first-child) .btn
     {
-        border-radius: 0 0 $border-radius $border-radius;
-        margin: 1px 0px 0px 0px;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+        margin: 1px 0 0 0;
     }
     
     &:last-child:not(:first-child) .flag
     {
-        border-radius: 0 0 $border-radius $border-radius;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
     }
     
     &:not(:first-child):not(:last-child) .flag
@@ -440,7 +461,7 @@ fieldset[disabled] a.btn
     
     &:first-child:not(:last-child) .flag
     {
-        border-radius: $border-radius $border-radius 0 0;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
     }
 }
 
@@ -448,9 +469,9 @@ fieldset[disabled] a.btn
 {
     .btn
     {
-        padding: 0px 18px 0px 9px !important;
-        border-radius: $border-radius !important;
-        margin: 1px 0px;
+        padding: 0 18px 0 9px !important;
+        border-radius: var(--border-radius) !important;
+        margin: 1px 0;
         
         .icon-right
         {

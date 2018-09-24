@@ -15,9 +15,8 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: $white;
-        -webkit-transition: .4s;
-        transition: .4s;
+        background-color: var(--color-structure-0);
+        transition: all var(--transition-md);
         &:before
         {
             border-radius: 50%;
@@ -27,9 +26,8 @@
             width: 12px;
             left: 3px;
             bottom: 2px;
-            background-color: $alert-red;
-            -webkit-transition: .4s;
-            transition: .4s;
+            background-color: var(--color-alert);
+            transition: all var(--transition-md);
         }
     }
     
@@ -39,7 +37,7 @@
         {
             &:before
             {
-                background-color: $alert-green;
+                background-color: var(--color-add);
                 -webkit-transform: translateX(12px);
                 -ms-transform: translateX(12px);
                 transform: translateX(12px);
@@ -53,7 +51,7 @@
         {
             &:before
             {
-                background-color: $grey-3;
+                background-color: var(--color-structure-3);
             }
         }
     }

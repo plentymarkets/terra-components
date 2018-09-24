@@ -1,20 +1,20 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <terra-button-with-options inputIcon="icon-user_my_account"
-                                       [inputOptions]="_buttonOptionList">
+                                       [inputOptions]="buttonOptionList">
             </terra-button-with-options>
             <terra-button-with-options inputIcon="icon-user_my_account"
-                                       [inputOptions]="_buttonOptionList"
+                                       [inputOptions]="buttonOptionList"
                                        [inputIsDisabled]="true">
             </terra-button-with-options>
         
         </div>
-        <div class="col-md-6">
+        <div class="col-md-10">
             <terra-simple-table [inputIsStriped]="true"
                                 [inputUseHighlighting]="true"
-                                [inputHeaderList]="_simpleTableHeaderList"
-                                [inputRowList]="_simpleTableRowList">
+                                [inputHeaderList]="simpleTableHeaderList"
+                                [inputRowList]="simpleTableRowList">
             </terra-simple-table>
         </div>
     </div>

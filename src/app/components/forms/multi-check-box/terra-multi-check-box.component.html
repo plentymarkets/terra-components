@@ -1,0 +1,33 @@
+<div class="multiselect-container">
+    <div class="multiselect-element" [ngClass]="{'disabled': inputIsDisabled}">
+        <div class="multiselect">
+            <div class="multiselect-header">
+                <div class="checkbox-container">
+                    <terra-checkbox #viewChildHeaderCheckbox
+                                    type="checkbox"
+                                    [inputIsDisabled]="inputIsDisabled"
+                                    [(ngModel)]="headerCheckboxValue"
+                                    (ngModelChange)="onHeaderCheckboxChange($event)">
+                    </terra-checkbox>
+                </div>
+                <label class="header-label">{{ inputName }}</label>
+            </div>
+            <div class="option-list">
+                <div *ngFor="let listEntry of valueList; let i = index">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <terra-checkbox #valueCheckbox
+                                            type="checkbox"
+                                            [inputIsDisabled]="inputIsDisabled"
+                                            [(ngModel)]="listEntry.selected"
+                                            (ngModelChange)="checkHeaderCheckboxState()"
+                                            [inputId]="i">
+                            </terra-checkbox>
+                        </div>
+                        <label class="form-control" htmlFor="{{i}}">{{listEntry.caption}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,10 +6,11 @@
     {
         flex: 1;
         width: 100%;
-        background-color: $gray-light-3;
-        padding: 12px;
+        background-color: var(--color-structure-0);
+        box-shadow: var(--box-shadow);
+        padding: var(--space-lg);
         display: flex;
-        border-radius: $border-radius;
+        border-radius: var(--border-radius);
         margin-bottom: 2px;
         min-height: 150px;
         position: relative;
@@ -34,16 +35,10 @@
                 
                 > [class^="path"]:before
                 {
-                    color: $gray;
+                    color: var(--color-structure-9);
                 }
             }
         }
-    }
-    
-    terra-overlay
-    {
-        --modal-body-max-height: 70vh;
-        --modal-body-height: 70vh;
     }
 }
 
@@ -58,4 +53,9 @@
         background-position: center center;
         background-repeat: no-repeat;
     }
+}
+
+.margin-left
+{
+    margin-left: 1px;
 }

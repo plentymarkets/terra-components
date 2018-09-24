@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TerraRegex } from '../../../../../';
+import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 
 let nextId:number = 0;
 
@@ -24,8 +24,13 @@ let nextId:number = 0;
 export class TerraNumberInputComponent extends TerraInputComponent
 {
     /**
+     * @description a unique string identifier for the specific input instance.
+     */
+    protected id:string;
+
+    /**
      * @deprecated inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.
-     * */
+     */
     @Input()
     public set inputValue(v:number)
     {
@@ -34,17 +39,12 @@ export class TerraNumberInputComponent extends TerraInputComponent
         this.value = v;
     }
 
-    /**
-     * @description a unique string identifier for the specific input instance.
-     */
-    private _id:string;
-
     constructor()
     {
         super(TerraRegex.NUMERIC);
 
         // generate the id of the input instance
-        this._id = `number-input_#${nextId++}`;
+        this.id = `number-input_#${nextId++}`;
     }
 
     /**
@@ -54,7 +54,7 @@ export class TerraNumberInputComponent extends TerraInputComponent
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.focus();
         });
     }
@@ -66,7 +66,7 @@ export class TerraNumberInputComponent extends TerraInputComponent
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.select();
         });
     }

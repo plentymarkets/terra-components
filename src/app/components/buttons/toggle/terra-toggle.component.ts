@@ -9,57 +9,70 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-
-export const TOGGLE_CONTROL_VALUE_ACCESSOR:any = {
-    provide:     NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TerraToggleComponent),
-    multi:       true
-};
+import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
     selector:  'terra-toggle',
     styles:    [require('./terra-toggle.component.scss')],
     template:  require('./terra-toggle.component.html'),
-    providers: [TOGGLE_CONTROL_VALUE_ACCESSOR]
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraToggleComponent),
+            multi:       true
+        }
+    ]
 })
 export class TerraToggleComponent implements ControlValueAccessor
 {
-    @Input() inputIsSmall:boolean;
-    @Input() inputIsLarge:boolean;
-    @Input() inputIsDisabled:boolean;
-    @Input() inputIcon:string;
-    @Input() inputIsAlignRight:boolean;
-    @Input() inputIsHidden:boolean;
-    @Input() inputTooltipText:string;
-    @Input() inputTooltipPlacement:string; //top, bottom, left, right
+    @Input()
+    public inputIsSmall:boolean;
 
-    @Output() deactivated = new EventEmitter<any>();
-    @Output() activated = new EventEmitter<any>();
-    @Output() toggled = new EventEmitter<boolean>();
+    @Input()
+    public inputIsLarge:boolean;
 
-    private _isActive:boolean = false;
+    @Input()
+    public inputIsDisabled:boolean;
 
-    private onTouchedCallback:() => void = () =>
-    {
-    };
+    @Input()
+    public inputIcon:string;
 
-    private onChangeCallback:(_:any) => void = () =>
-    {
-    };
+    @Input()
+    public inputIsAlignRight:boolean;
+
+    @Input()
+    public inputIsHidden:boolean;
+
+    @Input()
+    public inputTooltipText:string;
+
+    @Input()
+    public inputTooltipPlacement:TerraPlacementEnum;
+
+    @Output()
+    public deactivated:EventEmitter<any> = new EventEmitter<any>();
+
+    @Output()
+    public activated:EventEmitter<any> = new EventEmitter<any>();
+
+    @Output()
+    public toggled:EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    protected isActive:boolean = false;
 
     constructor()
     {
-        this.inputTooltipPlacement = 'top';
+        this.inputTooltipPlacement = TerraPlacementEnum.TOP;
     }
 
-    private toggle():void
+    protected toggle():void
     {
         if(!this.inputIsDisabled)
         {
-            this._isActive = !this._isActive;
-            this.toggled.emit(this._isActive);
-            this.onChangeCallback(this._isActive);
-            if(this._isActive)
+            this.isActive = !this.isActive;
+            this.toggled.emit(this.isActive);
+            this.onChangeCallback(this.isActive);
+            if(this.isActive)
             {
                 this.activated.emit();
             }
@@ -70,24 +83,28 @@ export class TerraToggleComponent implements ControlValueAccessor
         }
     }
 
-    //From ControlValueAccessor interface
-    writeValue(value:boolean)
+    // From ControlValueAccessor interface
+    public writeValue(value:boolean):void
     {
-        if(value !== this._isActive)
+        if(value !== this.isActive)
         {
-            this._isActive = value;
+            this.isActive = value;
         }
     }
 
-    //From ControlValueAccessor interface
-    registerOnChange(fn:any)
+    // From ControlValueAccessor interface
+    public registerOnChange(fn:(_:any) => void):void
     {
         this.onChangeCallback = fn;
     }
 
-    //From ControlValueAccessor interface
-    registerOnTouched(fn:any)
+    // From ControlValueAccessor interface
+    public registerOnTouched(fn:() => void):void
     {
         this.onTouchedCallback = fn;
     }
+
+    private onTouchedCallback:() => void = ():void => undefined;
+
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 }

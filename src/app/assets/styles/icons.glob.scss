@@ -1,5 +1,9 @@
 @import "_variables";
 @import "_loading.icon";
+
+$icomoon-font-family: "plentyicons" !default;
+$icomoon-font-path: "../fonts" !default;
+
 // Typography
 //
 // Font, line-height, and color for body text, headings, and more.
@@ -34,12 +38,12 @@
 
 @font-face
 {
-    font-family: 'plentyicons';
-    src: url('../fonts/plentyicons.eot?nex54c');
-    src: url('../fonts/plentyicons.eot?nex54c#iefix') format('embedded-opentype'),
-    url('../fonts/plentyicons.ttf?nex54c') format('truetype'),
-    url('../fonts/plentyicons.woff?nex54c') format('woff'),
-    url('../fonts/plentyicons.svg?nex54c#plentyicons') format('svg');
+    font-family: '#{$icomoon-font-family}';
+    src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?z8douy');
+    src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?z8douy#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?z8douy') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?z8douy') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?z8douy##{$icomoon-font-family}') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -58,6 +62,722 @@
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+//Icon-Variables//
+
+$icon-logout: "\eb10";
+$icon-content: "\eb11";
+$icon-login: "\eb12";
+$icon-footer: "\eb13";
+$icon-header: "\eb14";
+$icon-unlink: "\eb0f";
+$icon-anonymize: "\eb0e";
+$icon-active_doc: "\eb01";
+$icon-active_fold_closed: "\eb02";
+$icon-active_fold_open: "\eb03";
+$icon-active_settings: "\eb04";
+$icon-equals: "\eb05";
+$icon-inactive_doc: "\eb06";
+$icon-inactive_fold_closed: "\eb07";
+$icon-inactive_fold_open: "\eb08";
+$icon-intermed_fold_closed: "\eb09";
+$icon-intermed_fold_open: "\eb0a";
+$icon-link: "\eb0b";
+$icon-real: "\eb0c";
+$icon-reg_expr: "\eb0d";
+$icon-plenty_base: "\eb00";
+$icon-colorpicker: "\eafe";
+$icon-servicecenter: "\eaff";
+$icon-open_external_link: "\eafc";
+$icon-unlock_contact: "\eafd";
+$icon-exch_adre_type: "\e94e";
+$icon-ship_amaz_1st: "\eaf7";
+$icon-ship_amaz_2nd: "\eaf8";
+$icon-ship_amaz_prime_1st: "\eaf9";
+$icon-ship_amaz_prime_2nd: "\eafa";
+$icon-ship_amaz_prime: "\eafb";
+$icon-caret: "\e921";
+$icon-item-artikel: "\e92f";
+$icon-align_center: "\e930";
+$icon-align_justify: "\e931";
+$icon-align_left: "\e932";
+$icon-align_right: "\e935";
+$icon-device_desktop: "\e936";
+$icon-device_laptop: "\e937";
+$icon-device_mobile: "\e938";
+$icon-device_tablet: "\e940";
+$icon-ebay: "\e941";
+$icon-switch_editor: "\e942";
+$icon-text_bold: "\e943";
+$icon-text_italic: "\e944";
+$icon-text_strikethrough: "\e945";
+$icon-text_underline: "\e946";
+$icon-click_and_collect: "\e947";
+$icon-ebay_basket: "\e948";
+$icon-ebay_plus: "\e949";
+$icon-hood: "\e94a";
+$icon-reverse_fullscreen: "\e94c";
+$icon-ricardo: "\e94d";
+$icon-backend_ceres: "\e91e";
+$icon-backend_io: "\e91f";
+$icon-shipping_cbc_logistics: "\e920";
+$icon-application_double: "\e94f";
+$icon-box_minus_disabled: "\e950";
+$icon-box_minus: "\e951";
+$icon-box_plus_disabled: "\e952";
+$icon-box_plus: "\e953";
+$icon-icon_questionmark_bck: "\e954";
+$icon-manual_search: "\e955";
+$icon-pay_5_paypal: "\e956";
+$icon-pay_25_laredoute: "\e957";
+$icon-pay_amazon_payment: "\e958";
+$icon-pay_amazon: "\e95d";
+$icon-pay_bill: "\e95e";
+$icon-pay_billsafe: "\e95f";
+$icon-pay_cash_in_advance: "\e960";
+$icon-pay_cash_on_delivery: "\ea02";
+$icon-pay_cash: "\ea03";
+$icon-pay_cheque: "\ea04";
+$icon-pay_clickandbuy: "\ea05";
+$icon-pay_concardis: "\ea06";
+$icon-pay_coupon: "\ea07";
+$icon-pay_credit_card: "\ea08";
+$icon-pay_crefopay: "\ea09";
+$icon-pay_debit: "\ea0a";
+$icon-pay_ec: "\ea65";
+$icon-pay_eos: "\ea66";
+$icon-pay_expercash: "\ea67";
+$icon-pay_gartenxxl: "\ea68";
+$icon-pay_gimahhot: "\ea69";
+$icon-pay_heidelpay: "\ea6a";
+$icon-pay_hitmeister: "\ea6b";
+$icon-pay_iclear: "\ea6c";
+$icon-pay_iloxx: "\ea6d";
+$icon-pay_klarna: "\ea6e";
+$icon-pay_masterpayment: "\ea6f";
+$icon-pay_meinpaket: "\ea70";
+$icon-pay_neckermann: "\ea71";
+$icon-pay_other: "\eaab";
+$icon-pay_pay_card: "\eab4";
+$icon-pay_paymorrow_new: "\eab5";
+$icon-pay_paymorrow: "\eab6";
+$icon-pay_payolution: "\eab7";
+$icon-pay_payone: "\eab8";
+$icon-pay_paypal_express: "\eab9";
+$icon-pay_paypal_qr: "\eaba";
+$icon-pay_pixmania: "\eabb";
+$icon-pay_plus: "\eabc";
+$icon-pay_postpay: "\eabd";
+$icon-pay_rakuten: "\eabe";
+$icon-pay_ratepay: "\eabf";
+$icon-pay_saferpay: "\eac0";
+$icon-pay_sagepay: "\eac1";
+$icon-pay_santander: "\eac2";
+$icon-pay_shopgate: "\eac3";
+$icon-pay_skrill: "\eac4";
+$icon-pay_sofortueberweisung: "\eac5";
+$icon-pay_wirecard: "\eac6";
+$icon-pay_worldpay: "\eac7";
+$icon-pay_zalando: "\eac8";
+$icon-pay_zentralverkauf: "\eac9";
+$icon-shipping_bilog: "\eaca";
+$icon-shipping_bps: "\eacb";
+$icon-shipping_bvw: "\eacc";
+$icon-shipping_dachser: "\eacd";
+$icon-shipping_db_schenker: "\eace";
+$icon-shipping_deutschepost: "\eacf";
+$icon-shipping_dhl_packstation: "\ead0";
+$icon-shipping_dhl: "\ead1";
+$icon-shipping_dpd: "\ead2";
+$icon-shipping_ems_garantpost: "\ead3";
+$icon-shipping_ereturn: "\ead4";
+$icon-shipping_esellersfriend: "\ead5";
+$icon-shipping_fedex: "\ead6";
+$icon-shipping_gel_express: "\ead7";
+$icon-shipping_gls: "\ead8";
+$icon-shipping_hbh: "\ead9";
+$icon-shipping_hermes: "\eada";
+$icon-shipping_ids_logistik: "\eadb";
+$icon-shipping_ilopack: "\eadc";
+$icon-shipping_iloxx: "\eadd";
+$icon-shipping_lkv: "\eade";
+$icon-shipping_other: "\eadf";
+$icon-shipping_post_at: "\eae0";
+$icon-shipping_pvs_logistik: "\eae1";
+$icon-shipping_rhenus: "\eae2";
+$icon-shipping_selbstabholer: "\eae3";
+$icon-shipping_shippingcenter: "\eae4";
+$icon-shipping_spedition: "\eae5";
+$icon-shipping_swiss_post: "\eae6";
+$icon-shipping_tnt: "\eae7";
+$icon-shipping_trans-o-flex: "\eae8";
+$icon-shipping_ups: "\eae9";
+$icon-shipping_yousellwesend: "\eaea";
+$icon-customer_link: "\eaeb";
+$icon-design_inline_edit: "\eaec";
+$icon-document_show: "\eaed";
+$icon-dunning_level_1: "\eaee";
+$icon-dunning_level_2: "\eaef";
+$icon-dunning_level_3: "\eaf0";
+$icon-dunning_level_4: "\eaf1";
+$icon-dunning_level_5: "\eaf2";
+$icon-email_sent: "\eaf3";
+$icon-file_extension_odt: "\eaf4";
+$icon-payment_sepa_pain: "\eaf5";
+$icon-shipping_centre: "\eaf6";
+$icon-order_new: "\e9e9";
+$icon-refund_create: "\eb23";
+$icon-refund_reversal_create: "\eb24";
+$icon-icon-reversal_document-13: "\eb22";
+$icon-reorder_search: "\ea56";
+$icon-shipment_tracking: "\ea64";
+$icon-zoom_out: "\eb21";
+$icon-plugin_productive_deploy: "\e90c";
+$icon-plugin_to_productive: "\eb1f";
+$icon-plugin_to_stage: "\eb20";
+$icon-image: "\eb17";
+$icon-plugin_stage_deploy: "\eb1c";
+$icon-plugin_stage: "\eb1d";
+$icon-trash: "\eaae";
+$icon-author: "\eab2";
+$icon-changelog: "\eab3";
+$icon-item_move: "\eb1a";
+$icon-marketplace: "\eb1b";
+$icon-plugin: "\eb1e";
+$icon-burger: "\eab0";
+$icon-grid: "\eab1";
+$icon-plugin_inbox: "\eaaf";
+$icon-dunning_level: "\e94b";
+$icon-folder_closeable: "\eaac";
+$icon-order_multi: "\eaad";
+$icon-support: "\eaaa";
+$icon-diagramm: "\eaa6";
+$icon-forum: "\eaa7";
+$icon-handbuch: "\eaa8";
+$icon-statistik: "\eaa9";
+$icon-active: "\e900";
+$icon-add: "\e901";
+$icon-address_label: "\e902";
+$icon-adjustment_form: "\e903";
+$icon-apply_all: "\e904";
+$icon-back: "\e905";
+$icon-booking_carry_outpng: "\e906";
+$icon-booking_reset: "\e907";
+$icon-calculate_acquisition_pricepng: "\e908";
+$icon-calendar_extend_appointment: "\e909";
+$icon-cancel: "\e90a";
+$icon-category_edit: "\e90b";
+$icon-checkbox_checked: "\e90d";
+$icon-checkbox_indeterminate: "\e90e";
+$icon-checkbox_unchecked: "\e90f";
+$icon-close: "\e910";
+$icon-collapse_down: "\e911";
+$icon-collapse_left: "\e912";
+$icon-collapse_rightpng: "\e913";
+$icon-collapse_up: "\e914";
+$icon-confirm: "\e915";
+$icon-control_pause: "\e916";
+$icon-control_play: "\e917";
+$icon-control_skip: "\e918";
+$icon-control_start: "\e919";
+$icon-control_stop: "\e91a";
+$icon-copy_clipboard: "\e91b";
+$icon-copy: "\e91c";
+$icon-credit_note: "\e91d";
+$icon-customer_new_password: "\e922";
+$icon-customer: "\e923";
+$icon-data_export: "\e924";
+$icon-date_pick: "\e925";
+$icon-debug: "\e926";
+$icon-delete: "\e927";
+$icon-delivery_note_create: "\e928";
+$icon-delivery_note: "\e929";
+$icon-design_add: "\e92a";
+$icon-design_copy: "\e92b";
+$icon-design_export: "\e92c";
+$icon-design_import: "\e92d";
+$icon-design_inline_edit_toggle: "\e92e";
+$icon-design_publish: "\e933";
+$icon-design_transfer: "\e934";
+$icon-document: "\e939";
+$icon-domain_new: "\e93a";
+$icon-domains: "\e93b";
+$icon-download: "\e93c";
+$icon-drag_sort_handle: "\e93d";
+$icon-dropbox: "\e93e";
+$icon-dunning_letter: "\e93f";
+$icon-edit_blog: "\e959";
+$icon-edit_listing: "\e95a";
+$icon-edit: "\e95b";
+$icon-email_send: "\e95c";
+$icon-email_service: "\e961";
+$icon-error: "\e962";
+$icon-execute: "\e963";
+$icon-export: "\e964";
+$icon-favourite_active: "\e965";
+$icon-favourite_inactive: "\e966";
+$icon-favourites: "\e967";
+$icon-file_attachment: "\e968";
+$icon-file_extension_blank: "\e969";
+$icon-file_extension_css: "\e96a";
+$icon-file_extension_csv: "\e96b";
+$icon-file_extension_doc: "\e96c";
+$icon-file_extension_docx: "\e96d";
+$icon-file_extension_gif: "\e96e";
+$icon-file_extension_gzip: "\e96f";
+$icon-file_extension_hh: "\e970";
+$icon-file_extension_html: "\e971";
+$icon-file_extension_ico: "\e972";
+$icon-file_extension_jpeg: "\e973";
+$icon-file_extension_jpg: "\e974";
+$icon-file_extension_js: "\e975";
+$icon-file_extension_json: "\e976";
+$icon-file_extension_md: "\e977";
+$icon-file_extension_openoffice: "\e978";
+$icon-file_extension_pdf: "\e979";
+$icon-file_extension_png: "\e97a";
+$icon-file_extension_rtf: "\e97b";
+$icon-file_extension_swf: "\e97c";
+$icon-file_extension_tar: "\e97d";
+$icon-file_extension_tiff: "\e97e";
+$icon-file_extension_twig: "\e97f";
+$icon-file_extension_txt: "\e980";
+$icon-file_extension_xls: "\e981";
+$icon-file_extension_xlsx: "\e982";
+$icon-file_extension_xml: "\e983";
+$icon-file_extension_zip: "\e984";
+$icon-filter_add: "\e985";
+$icon-filter_remove: "\e986";
+$icon-filter: "\e987";
+$icon-first: "\e988";
+$icon-flag_alarm: "\e989";
+$icon-flag_black: "\e98a";
+$icon-flag_blue: "\e98b";
+$icon-flag_bomb_black: "\e98c";
+$icon-flag_bomb_green: "\e98d";
+$icon-flag_bomb_red: "\e98e";
+$icon-flag_green: "\e98f";
+$icon-flag_help: "\e990";
+$icon-flag_ledblack_16: "\e991";
+$icon-flag_ledblue_16: "\e992";
+$icon-flag_leddarkblue_16: "\e993";
+$icon-flag_leddarkgreen_16: "\e994";
+$icon-flag_leddarkred_16: "\e995";
+$icon-flag_ledgreen_16: "\e996";
+$icon-flag_ledgrey_16: "\e997";
+$icon-flag_ledorange_16: "\e998";
+$icon-flag_ledpink_16: "\e999";
+$icon-flag_ledpurple_16: "\e99a";
+$icon-flag_ledred_16: "\e99b";
+$icon-flag_ledyellow_16: "\e99c";
+$icon-flag_none: "\e99d";
+$icon-flag_red: "\e99e";
+$icon-flag_star: "\e99f";
+$icon-flag_user_blue: "\e9a0";
+$icon-flag_user_dark_blue: "\e9a1";
+$icon-flag_user_female: "\e9a2";
+$icon-flag_user_gray: "\e9a3";
+$icon-flag_user_green: "\e9a4";
+$icon-flag_user_light_gray: "\e9a5";
+$icon-flag_user_orange: "\e9a6";
+$icon-flag_user_purple: "\e9a7";
+$icon-flag_user_red: "\e9a8";
+$icon-flag_user_turquoise: "\e9a9";
+$icon-flag_user_yellow: "\e9aa";
+$icon-flag_weather_clouds: "\e9ab";
+$icon-flag_weather_cloudy: "\e9ac";
+$icon-flag_weather_lightning: "\e9ad";
+$icon-flag_weather_rain: "\e9ae";
+$icon-flag_weather_snow: "\e9af";
+$icon-flag_weather_sun: "\e9b0";
+$icon-flag_yellow: "\e9b1";
+$icon-folder_add: "\e9b2";
+$icon-folder_closable: "\e9b3";
+$icon-folder_openable: "\e9b4";
+$icon-folder_opened: "\e9b5";
+$icon-folder: "\e9b6";
+$icon-frontend_open: "\e9b7";
+$icon-fullscreen: "\e9b8";
+$icon-help: "\e9b9";
+$icon-inactive: "\e9ba";
+$icon-infinite: "\e9bb";
+$icon-info: "\e9bc";
+$icon-insert_after: "\e9bd";
+$icon-insert_before: "\e9be";
+$icon-invoice_create: "\e9bf";
+$icon-item_barcode_show: "\e9c0";
+$icon-item_bundle: "\e9c1";
+$icon-item_image_gallery: "\e9c2";
+$icon-item_image_selected_1: "\e9c3";
+$icon-item_image_selected_2: "\e9c4";
+$icon-item_label: "\e9c5";
+$icon-item_plus: "\e9c6";
+$icon-item_referrer_url: "\e9c7";
+$icon-item_scan: "\e9c8";
+$icon-item_search: "\e9c9";
+$icon-item_serial_number_register: "\e9ca";
+$icon-item_serial_number: "\e9cb";
+$icon-item_variation_distribute_quantity: "\e9cc";
+$icon-item_variation_inheritance: "\e9cd";
+$icon-item_webshop_invisible: "\e9ce";
+$icon-item: "\e9cf";
+$icon-items_incoming_history: "\e9d0";
+$icon-lang_de: "\e9d1";
+$icon-lang_en: "\e9d2";
+$icon-lang_multilingual: "\e9d3";
+$icon-last: "\e9d4";
+$icon-lionbridge_status_check: "\e9d5";
+$icon-lionbridge_status_checked: "\e9d6";
+$icon-listing_create: "\e9d7";
+$icon-listing_direct_lister: "\e9d8";
+$icon-listing_remove: "\e9d9";
+$icon-listing_show_active: "\e9da";
+$icon-listing_template_transfer: "\e9db";
+$icon-listing_type_shop: "\e9dc";
+$icon-listings_show_active: "\e9dd";
+$icon-listings_show: "\e9de";
+$icon-more: "\e9df";
+$icon-move_down: "\e9e0";
+$icon-move_up: "\e9e1";
+$icon-navigate_back: "\e9e2";
+$icon-new_todo: "\e9e3";
+$icon-next: "\e9e4";
+$icon-offer: "\e9e5";
+$icon-order_confirmation_create: "\e9e6";
+$icon-order_flag: "\e9e7";
+$icon-order_mulit: "\e9e8";
+$icon-order_not_possible: "\e9ea";
+$icon-order_note_create: "\e9eb";
+$icon-order_note_customer: "\e9ec";
+$icon-order_note: "\e9ed";
+$icon-order_open: "\e9ee";
+$icon-order_parcel_service_change: "\e9ef";
+$icon-order_parcel_service_preset_change: "\e9f0";
+$icon-order_property: "\e9f1";
+$icon-order_return_create_edit: "\e9f2";
+$icon-order_return_slip: "\e9f3";
+$icon-order_return: "\e9f4";
+$icon-order_returns_label: "\e9f5";
+$icon-order_scheduler_new: "\e9f6";
+$icon-order_sent: "\e9f7";
+$icon-order_show_existing_processes: "\e9f8";
+$icon-order_split: "\e9f9";
+$icon-order: "\e9fa";
+$icon-outgoing_items: "\e9fb";
+$icon-owner: "\e9fc";
+$icon-payment_assign: "\e9fd";
+$icon-payment_book_incoming_directly: "\e9fe";
+$icon-payment_credit_note: "\e9ff";
+$icon-payment_manual_booking: "\ea00";
+$icon-payment_register_incoming: "\ea01";
+$icon-picklist_close: "\ea0b";
+$icon-picklist: "\ea0c";
+$icon-placeholder_show_list: "\ea0d";
+$icon-plenty_testsystem_new: "\ea0e";
+$icon-plugin_copy_to_stage: "\ea0f";
+$icon-plugin_linked_to_git: "\ea10";
+$icon-plugin_not_copied_to_stage: "\ea11";
+$icon-plugin_not_linked_to_git: "\ea12";
+$icon-plugin_not_productive: "\ea13";
+$icon-plugin_productive: "\ea14";
+$icon-plugin_pull_productive: "\ea15";
+$icon-plugin_pull_stage: "\ea16";
+$icon-plugin_pull: "\ea17";
+$icon-plugin_push: "\ea18";
+$icon-plugin_repo_fetch: "\ea19";
+$icon-preview_not_available: "\ea1a";
+$icon-preview: "\ea1b";
+$icon-print: "\ea1c";
+$icon-printer_add: "\ea1d";
+$icon-problem: "\ea1e";
+$icon-process_add: "\ea1f";
+$icon-process_caching: "\ea20";
+$icon-process_counter_1: "\ea21";
+$icon-process_counter_2: "\ea22";
+$icon-process_counter_3: "\ea23";
+$icon-process_counter_4: "\ea24";
+$icon-process_counter_5: "\ea25";
+$icon-process_counter_6: "\ea26";
+$icon-process_counter_7: "\ea27";
+$icon-process_counter_8: "\ea28";
+$icon-process_counter_9: "\ea29";
+$icon-process_counter_10: "\ea2a";
+$icon-process_counter_11: "\ea2b";
+$icon-process_counter_12: "\ea2c";
+$icon-process_counter_13: "\ea2d";
+$icon-process_counter_14: "\ea2e";
+$icon-process_counter_15: "\ea2f";
+$icon-process_counter_16: "\ea30";
+$icon-process_counter_17: "\ea31";
+$icon-process_counter_18: "\ea32";
+$icon-process_counter_19: "\ea33";
+$icon-process_counter_20: "\ea34";
+$icon-process_counter_21: "\ea35";
+$icon-process_counter_22: "\ea36";
+$icon-process_counter_23: "\ea37";
+$icon-process_counter_24: "\ea38";
+$icon-process_counter_25: "\ea39";
+$icon-process_dialog: "\ea3a";
+$icon-process_end: "\ea3b";
+$icon-process_error_grey: "\ea3c";
+$icon-process_error_red: "\ea3d";
+$icon-process_error: "\ea3e";
+$icon-process_jump: "\ea3f";
+$icon-process_loop: "\ea40";
+$icon-process_order_status: "\ea41";
+$icon-process_polling: "\ea42";
+$icon-process_scan: "\ea43";
+$icon-rating_small_-1: "\ea44";
+$icon-rating_small_-2: "\ea45";
+$icon-rating_small_-3: "\ea46";
+$icon-rating_small_-4: "\ea47";
+$icon-rating_small_-5: "\ea48";
+$icon-rating_small_0: "\ea49";
+$icon-rating_small_1: "\ea4a";
+$icon-rating_small_02: "\ea4b";
+$icon-rating_small_3: "\ea4c";
+$icon-rating_small_4: "\ea4d";
+$icon-rating_small_5: "\ea4e";
+$icon-receipt_archive: "\ea4f";
+$icon-referrer_backend: "\ea50";
+$icon-refresh: "\ea51";
+$icon-reload: "\ea52";
+$icon-reorder_create: "\ea53";
+$icon-reorder_not_possible: "\ea54";
+$icon-reorder_scan: "\ea55";
+$icon-reorder_show: "\ea57";
+$icon-reorder_type: "\ea58";
+$icon-reorder: "\ea59";
+$icon-repair_slip: "\ea5a";
+$icon-reset_32: "\ea5b";
+$icon-reset: "\ea5c";
+$icon-save: "\ea5d";
+$icon-search_apply: "\ea5e";
+$icon-search: "\ea5f";
+$icon-send_email: "\ea60";
+$icon-set_package_number: "\ea61";
+$icon-settings_transfer: "\ea62";
+$icon-settings: "\ea63";
+$icon-shipping_dhl_packstation_valid: "\ea72";
+$icon-shipping_express: "\ea73";
+$icon-skype: "\ea74";
+$icon-sort_asc: "\ea75";
+$icon-sort_desc: "\ea76";
+$icon-sort_down: "\ea77";
+$icon-sort_up: "\ea78";
+$icon-sound: "\ea79";
+$icon-stock_intake_without_reorder: "\ea7a";
+$icon-stock_intake: "\ea7b";
+$icon-stock_limited: "\ea7c";
+$icon-stock: "\ea7d";
+$icon-success: "\ea7e";
+$icon-tag_disabled: "\ea7f";
+$icon-tag: "\ea80";
+$icon-telephone_hangup: "\ea81";
+$icon-telephone: "\ea82";
+$icon-ticket_add_faq: "\ea83";
+$icon-ticket_all: "\ea84";
+$icon-ticket_attachment_private: "\ea85";
+$icon-ticket_create: "\ea86";
+$icon-ticket_deadline_exceeded: "\ea87";
+$icon-ticket_deadline_today: "\ea88";
+$icon-ticket_events: "\ea89";
+$icon-ticket_folder_move: "\ea8a";
+$icon-ticket_link: "\ea8b";
+$icon-ticket_message_new: "\ea8c";
+$icon-ticket_message_private_new: "\ea8d";
+$icon-ticket_message_private: "\ea8e";
+$icon-ticket_message: "\ea8f";
+$icon-ticket_mine_done: "\ea90";
+$icon-ticket_mine_todo: "\ea91";
+$icon-ticket_mine: "\ea92";
+$icon-ticket_new: "\ea93";
+$icon-ticket_prio1: "\ea94";
+$icon-ticket_prio2: "\ea95";
+$icon-ticket_prio3: "\ea96";
+$icon-ticket_prio4: "\ea97";
+$icon-ticket_prio5: "\ea98";
+$icon-ticket_prio6: "\ea99";
+$icon-ticket_prio7: "\ea9a";
+$icon-ticket_prio8: "\ea9b";
+$icon-ticket_show_parent: "\ea9c";
+$icon-ticket_show: "\ea9d";
+$icon-ticket_todo: "\ea9e";
+$icon-timer: "\ea9f";
+$icon-upload: "\eaa0";
+$icon-user_my_account: "\eaa1";
+$icon-vcard: "\eaa2";
+$icon-visibility_private: "\eaa3";
+$icon-warning: "\eaa4";
+$icon-zoom: "\eaa5";
+
+.icon-logout
+{
+    &:before
+    {
+        content: $icon-logout;
+    }
+}
+
+.icon-content
+{
+    &:before
+    {
+        content: $icon-content;
+    }
+}
+
+.icon-login
+{
+    &:before
+    {
+        content: $icon-login;
+    }
+}
+
+.icon-footer
+{
+    &:before
+    {
+        content: $icon-footer;
+    }
+}
+
+.icon-header
+{
+    &:before
+    {
+        content: $icon-header;
+    }
+}
+
+.icon-unlink
+{
+    &:before
+    {
+        content: $icon-unlink;
+    }
+}
+
+.icon-anonymize
+{
+    &:before
+    {
+        content: $icon-anonymize;
+    }
+}
+
+.icon-active_doc
+{
+    &:before
+    {
+        content: $icon-active_doc;
+    }
+}
+
+.icon-active_fold_closed
+{
+    &:before
+    {
+        content: $icon-active_fold_closed;
+    }
+}
+
+.icon-active_fold_open
+{
+    &:before
+    {
+        content: $icon-active_fold_open;
+    }
+}
+
+.icon-active_settings
+{
+    &:before
+    {
+        content: $icon-active_settings;
+    }
+}
+
+.icon-equals
+{
+    &:before
+    {
+        content: $icon-equals;
+    }
+}
+
+.icon-inactive_doc
+{
+    &:before
+    {
+        content: $icon-inactive_doc;
+    }
+}
+
+.icon-inactive_fold_closed
+{
+    &:before
+    {
+        content: $icon-inactive_fold_closed;
+    }
+}
+
+.icon-inactive_fold_open
+{
+    &:before
+    {
+        content: $icon-inactive_fold_open;
+    }
+}
+
+.icon-intermed_fold_closed
+{
+    &:before
+    {
+        content: $icon-intermed_fold_closed;
+    }
+}
+
+.icon-intermed_fold_open
+{
+    &:before
+    {
+        content: $icon-intermed_fold_open;
+    }
+}
+
+.icon-link
+{
+    &:before
+    {
+        content: $icon-link;
+    }
+}
+
+.icon-real
+{
+    &:before
+    {
+        content: $icon-real;
+    }
+}
+
+.icon-reg_expr
+{
+    &:before
+    {
+        content: $icon-reg_expr;
+    }
+}
+
+.icon-plenty_base
+{
+    &:before
+    {
+        content: $icon-plenty_base;
+    }
 }
 
 .icon-colorpicker
@@ -1177,22 +1897,6 @@
     &:before
     {
         content: $icon-order_new;
-    }
-}
-
-.icon-gutschrift_erzeugen
-{
-    &:before
-    {
-        content: $icon-gutschrift_erzeugen;
-    }
-}
-
-.icon-gutschrift_stornieren
-{
-    &:before
-    {
-        content: $icon-gutschrift_stornieren;
     }
 }
 
@@ -4277,5 +4981,648 @@
     &:before
     {
         content: $icon-zoom;
+    }
+}
+
+////// function group icon colors ///////
+
+// Add: Neu, Erstellen, Generieren, Hinzufügen, Success, Erfolg, Übernehmen, Bestätigen, Anwenden, Speichern, Ermitteln, Auswählen
+terra-button[ng-reflect-input-icon="icon-add"] .btn, div.adminActionIcon.icon-add, button.adminButton[data-icon="icon-add"], %icon-add,
+terra-button[ng-reflect-input-icon="icon-order_new"] .btn, div.adminActionIcon.icon-order_new, button.adminButton[data-icon="icon-order_new"], %icon-order_new,
+terra-button[ng-reflect-input-icon="icon-gutschrift_erzeugen"] .btn, div.adminActionIcon.icon-gutschrift_erzeugen, button.adminButton[data-icon="icon-gutschrift_erzeugen"], %icon-gutschrift_erzeugen,
+terra-button[ng-reflect-input-icon="icon-calendar_extend_appointment"] .btn, div.adminActionIcon.icon-calendar_extend_appointment, button.adminButton[data-icon="icon-calendar_extend_appointment"], %icon-calendar_extend_appointment,
+terra-button[ng-reflect-input-icon="icon-delivery_note_create"] .btn, div.adminActionIcon.icon-delivery_note_create, button.adminButton[data-icon="icon-delivery_note_create"], %icon-delivery_note_create,
+terra-button[ng-reflect-input-icon="icon-design_add"] .btn, div.adminActionIcon.icon-design_add, button.adminButton[data-icon="icon-design_add"], %icon-design_add,
+terra-button[ng-reflect-input-icon="icon-domain_new"] .btn, div.adminActionIcon.icon-domain_new, button.adminButton[data-icon="icon-domain_new"], %icon-domain_new,
+terra-button[ng-reflect-input-icon="icon-filter_add"] .btn, div.adminActionIcon.icon-filter_add, button.adminButton[data-icon="icon-filter_add"], %icon-filter_add,
+terra-button[ng-reflect-input-icon="icon-folder_add"] .btn, div.adminActionIcon.icon-folder_add, button.adminButton[data-icon="icon-folder_add"], %icon-folder_add,
+terra-button[ng-reflect-input-icon="icon-invoice_create"] .btn, div.adminActionIcon.icon-invoice_create, button.adminButton[data-icon="icon-invoice_create"], %icon-invoice_create,
+terra-button[ng-reflect-input-icon="icon-listing_create"] .btn, div.adminActionIcon.icon-listing_create, button.adminButton[data-icon="icon-listing_create"], %icon-listing_create,
+terra-button[ng-reflect-input-icon="icon-new_todo"] .btn, div.adminActionIcon.icon-new_todo, button.adminButton[data-icon="icon-new_todo"], %icon-new_todo,
+terra-button[ng-reflect-input-icon="icon-order_note_create"] .btn, div.adminActionIcon.icon-order_note_create, button.adminButton[data-icon="icon-order_note_create"], %icon-order_note_create,
+terra-button[ng-reflect-input-icon="icon-order_scheduler_new"] .btn, div.adminActionIcon.icon-order_scheduler_new, button.adminButton[data-icon="icon-order_scheduler_new"], %icon-order_scheduler_new,
+terra-button[ng-reflect-input-icon="icon-order_sent"] .btn, div.adminActionIcon.icon-order_sent, button.adminButton[data-icon="icon-order_sent"], %icon-order_sent,
+terra-button[ng-reflect-input-icon="icon-plenty_testsystem_new"] .btn, div.adminActionIcon.icon-plenty_testsystem_new, button.adminButton[data-icon="icon-plenty_testsystem_new"], %icon-plenty_testsystem_new,
+terra-button[ng-reflect-input-icon="icon-printer_add"] .btn, div.adminActionIcon.icon-printer_add, button.adminButton[data-icon="icon-printer_add"], %icon-printer_add,
+terra-button[ng-reflect-input-icon="icon-process_add"] .btn, div.adminActionIcon.icon-process_add, button.adminButton[data-icon="icon-process_add"], %icon-process_add,
+terra-button[ng-reflect-input-icon="icon-reorder_create"] .btn, div.adminActionIcon.icon-reorder_create, button.adminButton[data-icon="icon-reorder_create"], %icon-reorder_create,
+terra-button[ng-reflect-input-icon="icon-shipping_dhl_packstation_valid"] .btn, div.adminActionIcon.icon-shipping_dhl_packstation_valid, button.adminButton[data-icon="icon-shipping_dhl_packstation_valid"], %icon-shipping_dhl_packstation_valid,
+terra-button[ng-reflect-input-icon="icon-success"] .btn, div.adminActionIcon.icon-success, button.adminButton[data-icon="icon-success"], %icon-success,
+terra-button[ng-reflect-input-icon="icon-ticket_create"] .btn, div.adminActionIcon.icon-ticket_create, button.adminButton[data-icon="icon-ticket_create"], %icon-ticket_create,
+terra-button[ng-reflect-input-icon="icon-ticket_message_new"] .btn, div.adminActionIcon.icon-ticket_message_new, button.adminButton[data-icon="icon-ticket_message_new"], %icon-ticket_message_new,
+terra-button[ng-reflect-input-icon="icon-ticket_message_private_new"] .btn, div.adminActionIcon.icon-ticket_message_private_new, button.adminButton[data-icon="icon-ticket_message_private_new"], %icon-ticket_message_private_new,
+terra-button[ng-reflect-input-icon="icon-ticket_mine_done"] .btn, div.adminActionIcon.icon-ticket_mine_done, button.adminButton[data-icon="icon-ticket_mine_done"], %icon-ticket_mine_done,
+terra-button[ng-reflect-input-icon="icon-ticket_new"] .btn, div.adminActionIcon.icon-ticket_new, button.adminButton[data-icon="icon-ticket_new"], %icon-ticket_new,
+terra-button[ng-reflect-input-icon="icon-active_settings"] .btn, div.adminActionIcon.icon-active_settings, button.adminButton[data-icon="icon-active_settings"], %icon-active_settings,
+terra-button[ng-reflect-input-icon="icon-apply_all"] .btn, div.adminActionIcon.icon-apply_all, button.adminButton[data-icon="icon-apply_all"], %icon-apply_all,
+terra-button[ng-reflect-input-icon="icon-confirm"] .btn, div.adminActionIcon.icon-confirm, button.adminButton[data-icon="icon-confirm"], %icon-confirm,
+terra-button[ng-reflect-input-icon="icon-save"] .btn, div.adminActionIcon.icon-save, button.adminButton[data-icon="icon-save"], %icon-save,
+terra-button[ng-reflect-input-icon="icon-item_plus"] .btn, div.adminActionIcon.icon-item_plus, button.adminButton[data-icon="icon-item_plus"], %icon-item_plus,
+terra-button[ng-reflect-input-icon="icon-payment_assign"] .btn, div.adminActionIcon.icon-payment_assign, button.adminButton[data-icon="icon-payment_assign"], %icon-payment_assign,
+terra-button[ng-reflect-input-icon="icon-ticket_add_faq"] .btn, div.adminActionIcon.icon-ticket_add_faq, button.adminButton[data-icon="icon-ticket_add_faq"], %icon-ticket_add_faq,
+terra-button[ng-reflect-input-icon="icon-ticket_message_private"] .btn, div.adminActionIcon.icon-ticket_message_private, button.adminButton[data-icon="icon-ticket_message_private"], %icon-ticket_message_private,
+terra-button[ng-reflect-input-icon="icon-ticket_message"] .btn, div.adminActionIcon.icon-ticket_message, button.adminButton[data-icon="icon-ticket_message"], %icon-ticket_message,
+terra-button[ng-reflect-input-icon="icon-create"] .btn, div.adminActionIcon.icon-create, button.adminButton[data-icon="icon-create"], %icon-create,
+terra-button[ng-reflect-input-icon="icon-ticket-create"] .btn, div.adminActionIcon.icon-ticket-create, button.adminButton[data-icon="icon-ticket-create"], %icon-ticket-create,
+terra-button[ng-reflect-input-icon="icon-search_apply"] .btn, div.adminActionIcon.icon-search_apply, button.adminButton[data-icon="icon-search_apply"], %icon-search_apply
+{
+    border-bottom: var(--button-border-bottom-group-add);
+    color: var(--button-text-color-group-add);
+    background-color: var(--button-background-color-group-add);
+}
+
+// temporary group for "+"-icon
+terra-button[ng-reflect-input-icon="icon-add"] .btn, div.adminActionIcon.icon-add, button.adminButton[data-icon="icon-add"], %icon-add
+{
+    background-color: var(--color-group-add);
+}
+
+// Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen, Problem
+terra-button[ng-reflect-input-icon="icon-gutschrift_stornieren"] .btn, div.adminActionIcon.icon-gutschrift_stornieren, button.adminButton[data-icon="icon-gutschrift_stornieren"], %icon-gutschrift_stornieren,
+terra-button[ng-reflect-input-icon="icon-icon-reversal_document-13"] .btn, div.adminActionIcon.icon-icon-reversal_document-13, button.adminButton[data-icon="icon-icon-reversal_document-13"], %icon-icon-reversal_document-13,
+terra-button[ng-reflect-input-icon="icon-trash"] .btn, div.adminActionIcon.icon-trash, button.adminButton[data-icon="icon-trash"], %icon-trash,
+terra-button[ng-reflect-input-icon="icon-delete"] .btn, div.adminActionIcon.icon-delete, button.adminButton[data-icon="icon-delete"], %icon-delete,
+terra-button[ng-reflect-input-icon="icon-error"] .btn, div.adminActionIcon.icon-error, button.adminButton[data-icon="icon-error"], %icon-error,
+terra-button[ng-reflect-input-icon="icon-filter_remove"] .btn, div.adminActionIcon.icon-filter_remove, button.adminButton[data-icon="icon-filter_remove"], %icon-filter_remove,
+terra-button[ng-reflect-input-icon="icon-listing_remove"] .btn, div.adminActionIcon.icon-listing_remove, button.adminButton[data-icon="icon-listing_remove"], %icon-listing_remove,
+terra-button[ng-reflect-input-icon="icon-preview_not_available"] .btn, div.adminActionIcon.icon-preview_not_available, button.adminButton[data-icon="icon-preview_not_available"], %icon-preview_not_available,
+terra-button[ng-reflect-input-icon="icon-problem"] .btn, div.adminActionIcon.icon-problem, button.adminButton[data-icon="icon-problem"], %icon-problem,
+terra-button[ng-reflect-input-icon="icon-reorder_not_possible"] .btn, div.adminActionIcon.icon-reorder_not_possible, button.adminButton[data-icon="icon-reorder_not_possible"], %icon-reorder_not_possible,
+terra-button[ng-reflect-input-icon="icon-telephone_hangup"] .btn, div.adminActionIcon.icon-telephone_hangup, button.adminButton[data-icon="icon-telephone_hangup"], %icon-telephone_hangup
+{
+    border-bottom: var(--button-border-bottom-group-alert);
+    color: var(--button-text-color-group-alert);
+    background-color: var(--button-background-color-group-alert);
+}
+
+// Action: Bearbeiten, Kopieren, Einfügen, Ausschneiden, Umwandeln, Transformieren, Ändern, Trennen, Splitten, Verbinden, Verknüpfen
+terra-button[ng-reflect-input-icon="icon-link"] .btn, div.adminActionIcon.icon-link, button.adminButton[data-icon="icon-link"], %icon-link
+terra-button[ng-reflect-input-icon="icon-reg_expr"] .btn, div.adminActionIcon.icon-reg_expr, button.adminButton[data-icon="icon-reg_expr"], %icon-reg_expr,
+terra-button[ng-reflect-input-icon="icon-colorpicker"] .btn, div.adminActionIcon.icon-colorpicker, button.adminButton[data-icon="icon-colorpicker"], %icon-colorpicker,
+terra-button[ng-reflect-input-icon="icon-unlock_contact"] .btn, div.adminActionIcon.icon-unlock_contact, button.adminButton[data-icon="icon-unlock_contact"], %icon-unlock_contact,
+terra-button[ng-reflect-input-icon="icon-exch_adre_type"] .btn, div.adminActionIcon.icon-exch_adre_type, button.adminButton[data-icon="icon-exch_adre_type"], %icon-exch_adre_type,
+terra-button[ng-reflect-input-icon="icon-align_center"] .btn, div.adminActionIcon.icon-align_center, button.adminButton[data-icon="icon-align_center"], %icon-align_center,
+terra-button[ng-reflect-input-icon="icon-align_justify"] .btn, div.adminActionIcon.icon-align_justify, button.adminButton[data-icon="icon-align_justify"], %icon-align_justify,
+terra-button[ng-reflect-input-icon="icon-align_left"] .btn, div.adminActionIcon.icon-align_left, button.adminButton[data-icon="icon-align_left"], %icon-align_left,
+terra-button[ng-reflect-input-icon="icon-align_right"] .btn, div.adminActionIcon.icon-align_right, button.adminButton[data-icon="icon-align_right"], %icon-align_right,
+terra-button[ng-reflect-input-icon="icon-text_bold"] .btn, div.adminActionIcon.icon-text_bold, button.adminButton[data-icon="icon-text_bold"], %icon-text_bold,
+terra-button[ng-reflect-input-icon="icon-text_italic"] .btn, div.adminActionIcon.icon-text_italic, button.adminButton[data-icon="icon-text_italic"], %icon-text_italic,
+terra-button[ng-reflect-input-icon="icon-text_strikethrough"] .btn, div.adminActionIcon.icon-text_strikethrough, button.adminButton[data-icon="icon-text_strikethrough"], %icon-text_strikethrough,
+terra-button[ng-reflect-input-icon="icon-text_underline"] .btn, div.adminActionIcon.icon-text_underline, button.adminButton[data-icon="icon-text_underline"], %icon-text_underline,
+terra-button[ng-reflect-input-icon="icon-design_inline_edit"] .btn, div.adminActionIcon.icon-design_inline_edit, button.adminButton[data-icon="icon-design_inline_edit"], %icon-design_inline_edit,
+terra-button[ng-reflect-input-icon="icon-plugin_productive_deploy"] .btn, div.adminActionIcon.icon-plugin_productive_deploy, button.adminButton[data-icon="icon-plugin_productive_deploy"], %icon-plugin_productive_deploy,
+terra-button[ng-reflect-input-icon="icon-plugin_to_productive"] .btn, div.adminActionIcon.icon-plugin_to_productive, button.adminButton[data-icon="icon-plugin_to_productive"], %icon-plugin_to_productive,
+terra-button[ng-reflect-input-icon="icon-plugin_to_stage"] .btn, div.adminActionIcon.icon-plugin_to_stage, button.adminButton[data-icon="icon-plugin_to_stage"], %icon-plugin_to_stage,
+terra-button[ng-reflect-input-icon="icon-plugin_stage_deploy"] .btn, div.adminActionIcon.icon-plugin_stage_deploy, button.adminButton[data-icon="icon-plugin_stage_deploy"], %icon-plugin_stage_deploy,
+terra-button[ng-reflect-input-icon="icon-category_edit"] .btn, div.adminActionIcon.icon-category_edit, button.adminButton[data-icon="icon-category_edit"], %icon-category_edit,
+terra-button[ng-reflect-input-icon="icon-copy_clipboard"] .btn, div.adminActionIcon.icon-copy_clipboard, button.adminButton[data-icon="icon-copy_clipboard"], %icon-copy_clipboard,
+terra-button[ng-reflect-input-icon="icon-copy"] .btn, div.adminActionIcon.icon-copy, button.adminButton[data-icon="icon-copy"], %icon-copy,
+terra-button[ng-reflect-input-icon="icon-design_copy"] .btn, div.adminActionIcon.icon-design_copy, button.adminButton[data-icon="icon-design_copy"], %icon-design_copy,
+terra-button[ng-reflect-input-icon="icon-edit_blog"] .btn, div.adminActionIcon.icon-edit_blog, button.adminButton[data-icon="icon-edit_blog"], %icon-edit_blog,
+terra-button[ng-reflect-input-icon="icon-edit_listing"] .btn, div.adminActionIcon.icon-edit_listing, button.adminButton[data-icon="icon-edit_listing"], %icon-edit_listing,
+terra-button[ng-reflect-input-icon="icon-edit"] .btn, div.adminActionIcon.icon-edit, button.adminButton[data-icon="icon-edit"], %icon-edit,
+terra-button[ng-reflect-input-icon="icon-insert_after"] .btn, div.adminActionIcon.icon-insert_after, button.adminButton[data-icon="icon-insert_after"], %icon-insert_after,
+terra-button[ng-reflect-input-icon="icon-insert_before"] .btn, div.adminActionIcon.icon-insert_before, button.adminButton[data-icon="icon-insert_before"], %icon-insert_before,
+terra-button[ng-reflect-input-icon="icon-order_split"] .btn, div.adminActionIcon.icon-order_split, button.adminButton[data-icon="icon-order_split"], %icon-order_split,
+terra-button[ng-reflect-input-icon="icon-plugin_copy_to_stage"] .btn, div.adminActionIcon.icon-plugin_copy_to_stage, button.adminButton[data-icon="icon-plugin_copy_to_stage"], %icon-plugin_copy_to_stage,
+terra-button[ng-reflect-input-icon="icon-plugin_pull"] .btn, div.adminActionIcon.icon-plugin_pull, button.adminButton[data-icon="icon-plugin_pull"], %icon-plugin_pull,
+terra-button[ng-reflect-input-icon="icon-plugin_push"] .btn, div.adminActionIcon.icon-plugin_push, button.adminButton[data-icon="icon-plugin_push"], %icon-plugin_push,
+terra-button[ng-reflect-input-icon="icon-plugin_repo_fetch"] .btn, div.adminActionIcon.icon-plugin_repo_fetch, button.adminButton[data-icon="icon-plugin_repo_fetch"], %icon-plugin_repo_fetch,
+terra-button[ng-reflect-input-icon="icon-image"] .btn, div.adminActionIcon.icon-image, button.adminButton[data-icon="icon-image"], %icon-image,
+terra-button[ng-reflect-input-icon="icon-item_move"] .btn, div.adminActionIcon.icon-item_move, button.adminButton[data-icon="icon-item_move"], %icon-item_move,
+terra-button[ng-reflect-input-icon="icon-order_multi"] .btn, div.adminActionIcon.icon-order_multi, button.adminButton[data-icon="icon-order_multi"], %icon-order_multi,
+terra-button[ng-reflect-input-icon="icon-booking_carry_outpng"] .btn, div.adminActionIcon.icon-booking_carry_outpng, button.adminButton[data-icon="icon-booking_carry_outpng"], %icon-booking_carry_outpng,
+terra-button[ng-reflect-input-icon="icon-booking_reset"] .btn, div.adminActionIcon.icon-booking_reset, button.adminButton[data-icon="icon-booking_reset"], %icon-booking_reset,
+terra-button[ng-reflect-input-icon="icon-calculate_acquisition_pricepng"].btn, div.adminActionIcon.icon-calculate_acquisition_pricepng, button.adminButton[data-icon="icon-calculate_acquisition_pricepng"], %icon-calculate_acquisition_pricepng,
+terra-button[ng-reflect-input-icon="icon-debug"] .btn, div.adminActionIcon.icon-debug, button.adminButton[data-icon="icon-debug"], %icon-debug,
+terra-button[ng-reflect-input-icon="icon-design_inline_edit_toggle"] .btn, div.adminActionIcon.icon-design_inline_edit_toggle, button.adminButton[data-icon="icon-design_inline_edit_toggle"], %icon-design_inline_edit_toggle,
+terra-button[ng-reflect-input-icon="icon-customer_new_password"] .btn, div.adminActionIcon.icon-customer_new_password, button.adminButton[data-icon="icon-customer_new_password"], %icon-customer_new_password,
+terra-button[ng-reflect-input-icon="icon-filter"] .btn, div.adminActionIcon.icon-filter, button.adminButton[data-icon="icon-filter"], %icon-filter,
+terra-button[ng-reflect-input-icon="icon-frontend_open"] .btn, div.adminActionIcon.icon-frontend_open, button.adminButton[data-icon="icon-frontend_open"], %icon-frontend_open,
+terra-button[ng-reflect-input-icon="icon-item_scan"] .btn, div.adminActionIcon.icon-item_scan, button.adminButton[data-icon="icon-item_scan"], %icon-item_scan,
+terra-button[ng-reflect-input-icon="icon-item_serial_number_register"] .btn, div.adminActionIcon.icon-item_serial_number_register, button.adminButton[data-icon="icon-item_serial_number_register"], %icon-item_serial_number_register,
+terra-button[ng-reflect-input-icon="icon-item_serial_number"] .btn, div.adminActionIcon.icon-item_serial_number, button.adminButton[data-icon="icon-item_serial_number"], %icon-item_serial_number,
+terra-button[ng-reflect-input-icon="icon-item_variation_distribute_quantity"] .btn, div.adminActionIcon.icon-item_variation_distribute_quantity, button.adminButton[data-icon="icon-item_variation_distribute_quantity"], %icon-item_variation_distribute_quantity,
+terra-button[ng-reflect-input-icon="icon-item_variation_inheritance"] .btn, div.adminActionIcon.icon-item_variation_inheritance, button.adminButton[data-icon="icon-item_variation_inheritance"], %icon-item_variation_inheritance,
+terra-button[ng-reflect-input-icon="icon-listing_direct_lister"] .btn, div.adminActionIcon.icon-listing_direct_lister, button.adminButton[data-icon="icon-listing_direct_lister"], %icon-listing_direct_lister,
+terra-button[ng-reflect-input-icon="icon-listing_show_active"] .btn, div.adminActionIcon.icon-listing_show_active, button.adminButton[data-icon="icon-listing_show_active"], %icon-listing_show_active,
+terra-button[ng-reflect-input-icon="icon-listing_template_transfer"] .btn, div.adminActionIcon.icon-listing_template_transfer, button.adminButton[data-icon="icon-listing_template_transfer"], %icon-listing_template_transfer,
+terra-button[ng-reflect-input-icon="icon-listings_show"] .btn, div.adminActionIcon.icon-listings_show, button.adminButton[data-icon="icon-listings_show"], %icon-listings_show,
+terra-button[ng-reflect-input-icon="icon-order_confirmation_create"] .btn, div.adminActionIcon.icon-order_confirmation_create, button.adminButton[data-icon="icon-order_confirmation_create"], %icon-order_confirmation_create,
+terra-button[ng-reflect-input-icon="icon-order_mulit"] .btn, div.adminActionIcon.icon-order_mulit, button.adminButton[data-icon="icon-order_mulit"], %icon-order_mulit,
+terra-button[ng-reflect-input-icon="icon-order_open"] .btn, div.adminActionIconicon-order_open, button.adminButton[data-icon="icon-order_open"], %icon-order_open,
+terra-button[ng-reflect-input-icon="icon-order_parcel_service_change"] .btn, div.adminActionIcon.icon-order_parcel_service_change, button.adminButton[data-icon="icon-order_parcel_service_change"], %icon-order_parcel_service_change,
+terra-button[ng-reflect-input-icon="icon-order_parcel_service_preset_change"] .btn, div.adminActionIcon.icon-order_parcel_service_preset_change, button.adminButton[data-icon="icon-order_parcel_service_preset_change"], %icon-order_parcel_service_preset_change,
+terra-button[ng-reflect-input-icon="icon-order_return_create_edit"] .btn, div.adminActionIcon.icon-order_return_create_edit, button.adminButton[data-icon="icon-order_return_create_edit"], %icon-order_return_create_edit,
+terra-button[ng-reflect-input-icon="icon-payment_manual_booking"] .btn, div.adminActionIcon.icon-payment_manual_booking, button.adminButton[data-icon="icon-payment_manual_booking"], %icon-payment_manual_booking,
+terra-button[ng-reflect-input-icon="icon-plugin_pull_productive"] .btn, div.adminActionIcon.icon-plugin_pull_productive, button.adminButton[data-icon="icon-plugin_pull_productive"], %icon-plugin_pull_productive,
+terra-button[ng-reflect-input-icon="icon-plugin_pull_stage"] .btn, div.adminActionIcon.icon-plugin_pull_stage, button.adminButton[data-icon="icon-plugin_pull_stage"], %icon-plugin_pull_stage,
+terra-button[ng-reflect-input-icon="icon-process_dialog"] .btn, div.adminActionIcon.icon-process_dialog, button.adminButton[data-icon="icon-process_dialog"], %icon-process_dialog,
+terra-button[ng-reflect-input-icon="icon-process_end"] .btn, div.adminActionIcon.icon-process_end, button.adminButton[data-icon="icon-process_end"], %icon-process_end,
+terra-button[ng-reflect-input-icon="icon-process_error_grey"] .btn, div.adminActionIcon.icon-process_error_grey, button.adminButton[data-icon="icon-process_error_grey"], %icon-process_error_grey,
+terra-button[ng-reflect-input-icon="icon-process_error_red"] .btn, div.adminActionIcon.icon-process_error_red, button.adminButton[data-icon="icon-process_error_red"], %icon-process_error_red,
+terra-button[ng-reflect-input-icon="icon-process_error"] .btn, div.adminActionIcon.icon-process_error, button.adminButton[data-icon="icon-process_error"], %icon-process_error,
+terra-button[ng-reflect-input-icon="icon-process_jump"] .btn, div.adminActionIcon.icon-process_jump, button.adminButton[data-icon="icon-process_jump"], %icon-process_jump,
+terra-button[ng-reflect-input-icon="icon-process_loop"] .btn, div.adminActionIcon.icon-process_loop, button.adminButton[data-icon="icon-process_loop"], %icon-process_loop,
+terra-button[ng-reflect-input-icon="icon-process_order_status"] .btn, div.adminActionIcon.icon-process_order_status, button.adminButton[data-icon="icon-process_order_status"], %icon-process_order_status,
+terra-button[ng-reflect-input-icon="icon-process_polling"] .btn, div.adminActionIcon.icon-process_polling, button.adminButton[data-icon="icon-process_polling"], %icon-process_polling,
+terra-button[ng-reflect-input-icon="icon-process_scan"] .btn, div.adminActionIcon.icon-process_scan, button.adminButton[data-icon="icon-process_scan"], %icon-process_scan,
+terra-button[ng-reflect-input-icon="icon-order_return_slip"] .btn, div.adminActionIcon.icon-order_return_slip, button.adminButton[data-icon="icon-order_return_slip"], %icon-order_return_slip,
+terra-button[ng-reflect-input-icon="icon-order_return"] .btn, div.adminActionIcon.icon-order_return, button.adminButton[data-icon="icon-order_return"], %icon-order_return,
+terra-button[ng-reflect-input-icon="icon-order_returns_label"] .btn, div.adminActionIcon.icon-order_returns_label, button.adminButton[data-icon="icon-order_returns_label"], %icon-order_returns_label,
+terra-button[ng-reflect-input-icon="icon-process_caching"] .btn, div.adminActionIcon.icon-process_caching, button.adminButton[data-icon="icon-process_caching"], %icon-process_caching,
+terra-button[ng-reflect-input-icon="icon-reorder_scan"] .btn, div.adminActionIcon.icon-reorder_scan, button.adminButton[data-icon="icon-reorder_scan"], %icon-reorder_scan,
+terra-button[ng-reflect-input-icon="icon-reorder"] .btn, div.adminActionIcon.icon-reorder, button.adminButton[data-icon="icon-reorder"], %icon-reorder,
+terra-button[ng-reflect-input-icon="icon-stock_intake_without_reorder"] .btn, div.adminActionIcon.icon-stock_intake_without_reorder, button.adminButton[data-icon="icon-stock_intake_without_reorder"], %icon-stock_intake_without_reorder,
+terra-button[ng-reflect-input-icon="icon-stock_intake"] .btn, div.adminActionIcon.icon-stock_intake, button.adminButton[data-icon="icon-stock_intake"], %icon-stock_intake,
+terra-button[ng-reflect-input-icon="icon-repair_slip"] .btn, div.adminActionIcon.icon-repair_slip, button.adminButton[data-icon="icon-repair_slip"], %icon-repair_slip,
+terra-button[ng-reflect-input-icon="icon-box_plus_disabled"] .btn, div.adminActionIcon.icon-box_plus_disabled, button.adminButton[data-icon="icon-box_plus_disabled"], %icon-box_plus_disabled
+{
+    border-bottom: var(--button-border-bottom-group-action);
+    color: var(--button-text-color-group-action);
+    background-color: var(--button-background-color-group-action);
+}
+
+// Warning: Warnung, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
+terra-button[ng-reflect-input-icon="icon-warning"] .btn, div.adminActionIcon.icon-warning, button.adminButton[data-icon="icon-warning"], %icon-warning,
+terra-button[ng-reflect-input-icon="icon-order_not_possible"] .btn, div.adminActionIcon.icon-order_not_possible, button.adminButton[data-icon="icon-order_not_possible"], %icon-order_not_possible,
+terra-button[ng-reflect-input-icon="icon-box_minus_disabled"] .btn, div.adminActionIcon.icon-box_minus_disabled, button.adminButton[data-icon="icon-box_minus_disabled"], %icon-box_minus_disabled,
+terra-button[ng-reflect-input-icon="icon-reset"] .btn, div.adminActionIcon.icon-reset, button.adminButton[data-icon="icon-reset"], %icon-reset,
+terra-button[ng-reflect-input-icon="icon-reset_32"] .btn, div.adminActionIcon.icon-reset_32, button.adminButton[data-icon="icon-reset_32"], %icon-reset_32
+{
+    border-bottom: var(--button-border-bottom-group-warning);
+    color: var(--button-text-color-group-warning);
+    background-color: var(--button-background-color-group-warning);
+}
+
+// Info: Vorschau, Anzeigen, Information
+terra-button[ng-reflect-input-icon="icon-active_doc"] .btn, div.adminActionIcon.icon-active_doc, button.adminButton[data-icon="icon-active_doc"], %icon-active_doc,
+terra-button[ng-reflect-input-icon="icon-device_desktop"] .btn, div.adminActionIcon.icon-device_desktop, button.adminButton[data-icon="icon-device_desktop"], %icon-device_desktop,
+terra-button[ng-reflect-input-icon="icon-device_laptop"] .btn, div.adminActionIcon.icon-device_laptop, button.adminButton[data-icon="icon-device_laptop"], %icon-device_laptop,
+terra-button[ng-reflect-input-icon="icon-device_mobile"] .btn, div.adminActionIcon.icon-device_mobile, button.adminButton[data-icon="icon-device_mobile"], %icon-device_mobile,
+terra-button[ng-reflect-input-icon="icon-device_tablet"] .btn, div.adminActionIcon.icon-device_tablet, button.adminButton[data-icon="icon-device_tablet"], %icon-device_tablet,
+terra-button[ng-reflect-input-icon="icon-icon_questionmark_bck"] .btn, div.adminActionIcon.icon-icon_questionmark_bck, button.adminButton[data-icon="icon-icon_questionmark_bck"], %icon-icon_questionmark_bck,
+terra-button[ng-reflect-input-icon="icon-manual_search"] .btn, div.adminActionIcon.icon-manual_search, button.adminButton[data-icon="icon-manual_search"], %icon-manual_search,
+terra-button[ng-reflect-input-icon="icon-document_show"] .btn, div.adminActionIcon.icon-document_show, button.adminButton[data-icon="icon-document_show"], %icon-document_show,
+terra-button[ng-reflect-input-icon="icon-dunning_level"] .btn, div.adminActionIcon.icon-dunning_level, button.adminButton[data-icon="icon-dunning_level"], %icon-dunning_level,
+terra-button[ng-reflect-input-icon="icon-dunning_level_1"] .btn, div.adminActionIcon.icon-dunning_level_1, button.adminButton[data-icon="icon-dunning_level_1"], %icon-dunning_level_1,
+terra-button[ng-reflect-input-icon="icon-dunning_level_2"] .btn, div.adminActionIcon.icon-dunning_level_2, button.adminButton[data-icon="icon-dunning_level_2"], %icon-dunning_level_2,
+terra-button[ng-reflect-input-icon="icon-dunning_level_3"] .btn, div.adminActionIcon.icon-dunning_level_3, button.adminButton[data-icon="icon-dunning_level_3"], %icon-dunning_level_3,
+terra-button[ng-reflect-input-icon="icon-dunning_level_4"] .btn, div.adminActionIcon.icon-dunning_level_4, button.adminButton[data-icon="icon-dunning_level_4"], %icon-dunning_level_4,
+terra-button[ng-reflect-input-icon="icon-dunning_level_5"] .btn, div.adminActionIcon.icon-dunning_level_5, button.adminButton[data-icon="icon-dunning_level_5"], %icon-dunning_level_5,
+terra-button[ng-reflect-input-icon="icon-dunning_letter"] .btn, div.adminActionIcon.icon-dunning_letter, button.adminButton[data-icon="icon-dunning_letter"], %icon-dunning_letter,
+terra-button[ng-reflect-input-icon="icon-file_extension_odt"] .btn, div.adminActionIcon.icon-file_extension_odt, button.adminButton[data-icon="icon-file_extension_odt"], %icon-file_extension_odt,
+terra-button[ng-reflect-input-icon="icon-plugin_stage"] .btn, div.adminActionIcon.icon-plugin_stage, button.adminButton[data-icon="icon-plugin_stage"], %icon-plugin_stage,
+terra-button[ng-reflect-input-icon="icon-changelog"] .btn, div.adminActionIcon.icon-changelog, button.adminButton[data-icon="icon-changelog"], %icon-changelog,
+terra-button[ng-reflect-input-icon="icon-marketplace"] .btn, div.adminActionIcon.icon-marketplace, button.adminButton[data-icon="icon-marketplace"], %icon-marketplace,
+terra-button[ng-reflect-input-icon="icon-file_extension_blank"] .btn, div.adminActionIcon.icon-file_extension_blank, button.adminButton[data-icon="icon-file_extension_blank"], %icon-file_extension_blank,
+terra-button[ng-reflect-input-icon="icon-file_extension_css"] .btn, div.adminActionIcon.icon-file_extension_css, button.adminButton[data-icon="icon-file_extension_css"], %icon-file_extension_css,
+terra-button[ng-reflect-input-icon="icon-file_extension_csv"] .btn, div.adminActionIcon.icon-file_extension_csv, button.adminButton[data-icon="icon-file_extension_csv"], %icon-file_extension_csv,
+terra-button[ng-reflect-input-icon="icon-file_extension_doc"] .btn, div.adminActionIcon.icon-file_extension_doc, button.adminButton[data-icon="icon-file_extension_doc"], %icon-file_extension_doc,
+terra-button[ng-reflect-input-icon="icon-file_extension_docx"] .btn, div.adminActionIcon.icon-file_extension_docx, button.adminButton[data-icon="icon-file_extension_docx"], %icon-file_extension_docx,
+terra-button[ng-reflect-input-icon="icon-file_extension_gif"] .btn, div.adminActionIcon.icon-file_extension_gif, button.adminButton[data-icon="icon-file_extension_gif"], %icon-file_extension_gif,
+terra-button[ng-reflect-input-icon="icon-file_extension_gzip"] .btn, div.adminActionIcon.icon-file_extension_gzip, button.adminButton[data-icon="icon-file_extension_gzip"], %icon-file_extension_gzip,
+terra-button[ng-reflect-input-icon="icon-file_extension_hh"] .btn, div.adminActionIcon.icon-file_extension_hh, button.adminButton[data-icon="icon-file_extension_hh"], %icon-file_extension_hh,
+terra-button[ng-reflect-input-icon="icon-file_extension_html"] .btn, div.adminActionIcon.icon-file_extension_html, button.adminButton[data-icon="icon-file_extension_html"], %icon-file_extension_html,
+terra-button[ng-reflect-input-icon="icon-file_extension_ico"] .btn, div.adminActionIcon.icon-file_extension_ico, button.adminButton[data-icon="icon-file_extension_ico"], %icon-file_extension_ico,
+terra-button[ng-reflect-input-icon="icon-file_extension_jpeg"] .btn, div.adminActionIcon.icon-file_extension_jpeg, button.adminButton[data-icon="icon-file_extension_jpeg"], %icon-file_extension_jpeg,
+terra-button[ng-reflect-input-icon="icon-file_extension_jpg"] .btn, div.adminActionIcon.icon-file_extension_jpg, button.adminButton[data-icon="icon-file_extension_jpg"], %icon-file_extension_jpg,
+terra-button[ng-reflect-input-icon="icon-file_extension_js"] .btn, div.adminActionIcon.icon-file_extension_js, button.adminButton[data-icon="icon-file_extension_js"], %icon-file_extension_js,
+terra-button[ng-reflect-input-icon="icon-file_extension_json"] .btn, div.adminActionIcon.icon-file_extension_json, button.adminButton[data-icon="icon-file_extension_json"], %icon-file_extension_json,
+terra-button[ng-reflect-input-icon="icon-file_extension_md"] .btn, div.adminActionIcon.icon-file_extension_md, button.adminButton[data-icon="icon-file_extension_md"], %icon-file_extension_md,
+terra-button[ng-reflect-input-icon="icon-file_extension_openoffice"] .btn, div.adminActionIcon.icon-file_extension_openoffice, button.adminButton[data-icon="icon-file_extension_openoffice"], %icon-file_extension_openoffice,
+terra-button[ng-reflect-input-icon="icon-file_extension_pdf"] .btn, div.adminActionIcon.icon-file_extension_pdf, button.adminButton[data-icon="icon-file_extension_pdf"], %icon-file_extension_pdf,
+terra-button[ng-reflect-input-icon="icon-file_extension_png"] .btn, div.adminActionIcon.icon-file_extension_png, button.adminButton[data-icon="icon-file_extension_png"], %icon-file_extension_png,
+terra-button[ng-reflect-input-icon="icon-file_extension_rtf"] .btn, div.adminActionIcon.icon-file_extension_rtf, button.adminButton[data-icon="icon-file_extension_rtf"], %icon-file_extension_rtf,
+terra-button[ng-reflect-input-icon="icon-file_extension_swf"] .btn, div.adminActionIcon.icon-file_extension_swf, button.adminButton[data-icon="icon-file_extension_swf"], %icon-file_extension_swf,
+terra-button[ng-reflect-input-icon="icon-file_extension_tar"] .btn, div.adminActionIcon.icon-file_extension_tar, button.adminButton[data-icon="icon-file_extension_tar"], %icon-file_extension_tar,
+terra-button[ng-reflect-input-icon="icon-file_extension_tiff"] .btn, div.adminActionIcon.icon-file_extension_tiff, button.adminButton[data-icon="icon-file_extension_tiff"], %icon-file_extension_tiff,
+terra-button[ng-reflect-input-icon="icon-file_extension_twig"] .btn, div.adminActionIcon.icon-file_extension_twig, button.adminButton[data-icon="icon-file_extension_twig"], %icon-file_extension_twig,
+terra-button[ng-reflect-input-icon="icon-file_extension_txt"] .btn, div.adminActionIcon.icon-file_extension_txt, button.adminButton[data-icon="icon-file_extension_txt"], %icon-file_extension_txt,
+terra-button[ng-reflect-input-icon="icon-file_extension_xls"] .btn, div.adminActionIcon.icon-file_extension_xls, button.adminButton[data-icon="icon-file_extension_xls"], %icon-file_extension_xls
+terra-button[ng-reflect-input-icon="icon-file_extension_xlsx"] .btn, div.adminActionIcon.icon-file_extension_xlsx, button.adminButton[data-icon="icon-file_extension_xlsx"], %icon-file_extension_xlsx,
+terra-button[ng-reflect-input-icon="icon-file_extension_xml"] .btn, div.adminActionIcon.icon-file_extension_xml, button.adminButton[data-icon="icon-file_extension_xml"], %icon-file_extension_xml,
+terra-button[ng-reflect-input-icon="icon-file_extension_zip"] .btn, div.adminActionIcon.icon-file_extension_zip, button.adminButton[data-icon="icon-file_extension_zip"], %icon-file_extension_zip,
+terra-button[ng-reflect-input-icon="icon-help"] .btn, div.adminActionIcon.icon-help, button.adminButton[data-icon="icon-help"], %icon-help,
+terra-button[ng-reflect-input-icon="icon-info"] .btn, div.adminActionIcon.icon-info, button.adminButton[data-icon="icon-info"], %icon-info,
+terra-button[ng-reflect-input-icon="icon-item_barcode_show"] .btn, div.adminActionIcon.icon-item_barcode_show, button.adminButton[data-icon="icon-item_barcode_show"], %icon-item_barcode_show,
+terra-button[ng-reflect-input-icon="icon-preview"] .btn, div.adminActionIcon.icon-preview, button.adminButton[data-icon="icon-preview"], %icon-preview,
+terra-button[ng-reflect-input-icon="icon-inactive_doc"] .btn, div.adminActionIcon.icon-inactive_doc, button.adminButton[data-icon="icon-inactive_doc"], %icon-inactive_doc,
+terra-button[ng-reflect-input-icon="icon-shipping_other"] .btn, div.adminActionIcon.icon-shipping_other button.adminButton[data-icon=",icon-shipping_other"], %icon-shipping_other,
+terra-button[ng-reflect-input-icon="icon-changelog"] .btn, div.adminActionIcon.icon-changelog, button.adminButton[data-icon="icon-changelog"], %icon-changelog,
+terra-button[ng-reflect-input-icon="icon-diagramm"] .btn, div.adminActionIcon.icon-diagramm, button.adminButton[data-icon="icon-diagramm"], %icon-diagramm,
+terra-button[ng-reflect-input-icon="icon-statistik"] .btn, div.adminActionIcon.icon-statistik, button.adminButton[data-icon="icon-statistik"], %icon-statistik,
+terra-button[ng-reflect-input-icon="icon-delivery_note"] .btn, div.adminActionIcon.icon-delivery_note, button.adminButton[data-icon="icon-delivery_note"], %icon-delivery_note,
+terra-button[ng-reflect-input-icon="icon-address_label"] .btn, div.adminActionIcon.icon-address_label, button.adminButton[data-icon="icon-address_label"], %icon-address_label,
+terra-button[ng-reflect-input-icon="icon-credit_note"] .btn, div.adminActionIcon.icon-credit_note, button.adminButton[data-icon="icon-credit_note"], %icon-credit_note,
+terra-button[ng-reflect-input-icon="icon-domains"] .btn, div.adminActionIcon.icon-domains, button.adminButton[data-icon="icon-domains"], %icon-domains,
+terra-button[ng-reflect-input-icon="icon-active"] .btn, div.adminActionIcon.icon-active, button.adminButton[data-icon="icon-active"], %icon-active,
+terra-button[ng-reflect-input-icon="icon-inactive"] .btn, div.adminActionIcon.icon-inactive, button.adminButton[data-icon="icon-inactive"], %icon-inactive,
+terra-button[ng-reflect-input-icon="icon-item_bundle"] .btn, div.adminActionIcon.icon-item_bundle, button.adminButton[data-icon="icon-item_bundle"], %icon-item_bundle,
+terra-button[ng-reflect-input-icon="icon-item_image_gallery"] .btn, div.adminActionIcon.icon-item_image_gallery, button.adminButton[data-icon="icon-item_image_gallery"], %icon-item_image_gallery,
+terra-button[ng-reflect-input-icon="icon-item_image_selected_1"] .btn, div.adminActionIcon.icon-item_image_selected_1, button.adminButton[data-icon="icon-item_image_selected_1"], %icon-item_image_selected_1,
+terra-button[ng-reflect-input-icon="icon-item_image_selected_2"] .btn, div.adminActionIcon.icon-item_image_selected_2, button.adminButton[data-icon="icon-item_image_selected_2"], %icon-item_image_selected_2,
+terra-button[ng-reflect-input-icon="icon-items_incoming_history"] .btn, div.adminActionIcon.icon-items_incoming_history, button.adminButton[data-icon="icon-items_incoming_history"], %icon-items_incoming_history,
+terra-button[ng-reflect-input-icon="icon-lionbridge_status_check"] .btn, div.adminActionIcon.icon-lionbridge_status_check, button.adminButton[data-icon="icon-lionbridge_status_check"], %icon-lionbridge_status_check,
+terra-button[ng-reflect-input-icon="icon-lionbridge_status_checked"] .btn, div.adminActionIcon.icon-lionbridge_status_checked, button.adminButton[data-icon="icon-lionbridge_status_checked"], %icon-lionbridge_status_checked,
+terra-button[ng-reflect-input-icon="icon-listings_show_active"] .btn, div.adminActionIcon.icon-listings_show_active, button.adminButton[data-icon="icon-listings_show_active"], %icon-listings_show_active,
+terra-button[ng-reflect-input-icon="icon-order_note_customer"] .btn, div.adminActionIcon.icon-order_note_customer, button.adminButton[data-icon="icon-order_note_customer"], %icon-order_note_customer,
+terra-button[ng-reflect-input-icon="icon-order_note"] .btn, div.adminActionIcon.icon-order_note, button.adminButton[data-icon="icon-order_note"], %icon-order_note,
+terra-button[ng-reflect-input-icon="icon-order_show_existing_processes"], div.adminActionIcon.icon-order_show_existing_processes, button.adminButton[data-icon="icon-order_show_existing_processes"], %icon-order_show_existing_processes,
+terra-button[ng-reflect-input-icon="icon-owner"] .btn, div.adminActionIcon.icon-owner, button.adminButton[data-icon="icon-owner"], %icon-owner
+terra-button[ng-reflect-input-icon="icon-payment_book_incoming_directly"] .btn, div.adminActionIcon.icon-payment_book_incoming_directly, button.adminButton[data-icon="icon-payment_book_incoming_directly"], %icon-payment_book_incoming_directly,
+terra-button[ng-reflect-input-icon="icon-payment_credit_note"] .btn, div.adminActionIcon.icon-payment_credit_note, button.adminButton[data-icon="icon-payment_credit_note"], %icon-payment_credit_note,
+terra-button[ng-reflect-input-icon="icon-payment_register_incoming"] .btn, div.adminActionIcon.icon-payment_register_incoming, button.adminButton[data-icon="icon-payment_register_incoming"], %icon-payment_register_incoming,
+terra-button[ng-reflect-input-icon="icon-picklist_close"] .btn, div.adminActionIcon.icon-picklist_close, button.adminButton[data-icon="icon-picklist_close"], %icon-picklist_close,
+terra-button[ng-reflect-input-icon="icon-picklist"] .btn, div.adminActionIcon.icon-picklist, button.adminButton[data-icon="icon-picklist"], %icon-picklist,
+terra-button[ng-reflect-input-icon="icon-plugin_linked_to_git"] .btn, div.adminActionIcon.icon-plugin_linked_to_git, button.adminButton[data-icon="icon-plugin_linked_to_git"], %icon-plugin_linked_to_git,
+terra-button[ng-reflect-input-icon="icon-plugin_not_copied_to_stage"] .btn, div.adminActionIcon.icon-plugin_not_copied_to_stage, button.adminButton[data-icon="icon-plugin_not_copied_to_stage"], %icon-plugin_not_copied_to_stage,
+terra-button[ng-reflect-input-icon="icon-plugin_not_linked_to_git"] .btn, div.adminActionIcon.icon-plugin_not_linked_to_git, button.adminButton[data-icon="icon-plugin_not_linked_to_git"], %icon-plugin_not_linked_to_git,
+terra-button[ng-reflect-input-icon="icon-plugin_not_productive"] .btn, div.adminActionIcon.icon-plugin_not_productive, button.adminButton[data-icon="icon-plugin_not_productive"], %icon-plugin_not_productive,
+terra-button[ng-reflect-input-icon="icon-plugin_productive"] .btn, div.adminActionIcon.icon-plugin_productive, button.adminButton[data-icon="icon-plugin_productive"], %icon-plugin_productive,
+terra-button[ng-reflect-input-icon="icon-shipping_express"] .btn, div.adminActionIcon.icon-shipping_express, button.adminButton[data-icon="icon-shipping_express"], %icon-shipping_express,
+terra-button[ng-reflect-input-icon="icon-ticket_attachment_private"] .btn, div.adminActionIcon.icon-ticket_attachment_private, button.adminButton[data-icon="icon-ticket_attachment_private"], %icon-ticket_attachment_private,
+terra-button[ng-reflect-input-icon="icon-ticket_deadline_exceeded"] .btn, div.adminActionIcon.icon-ticket_deadline_exceeded, button.adminButton[data-icon="icon-ticket_deadline_exceeded"], %icon-ticket_deadline_exceeded,
+terra-button[ng-reflect-input-icon="icon-ticket_deadline_today"] .btn, div.adminActionIcon.icon-ticket_deadline_today, button.adminButton[data-icon="icon-ticket_deadline_today"], %icon-ticket_deadline_today,
+terra-button[ng-reflect-input-icon="icon-ticket_prio1"] .btn, div.adminActionIcon.icon-ticket_prio1, button.adminButton[data-icon="icon-ticket_prio1"], %icon-ticket_prio1,
+terra-button[ng-reflect-input-icon="icon-ticket_prio2"] .btn, div.adminActionIcon.icon-ticket_prio2, button.adminButton[data-icon="icon-ticket_prio2"], %icon-ticket_prio2,
+terra-button[ng-reflect-input-icon="icon-ticket_prio3"] .btn, div.adminActionIcon.icon-ticket_prio3, button.adminButton[data-icon="icon-ticket_prio3"], %icon-ticket_prio3,
+terra-button[ng-reflect-input-icon="icon-ticket_prio4"] .btn, div.adminActionIcon.icon-ticket_prio4, button.adminButton[data-icon="icon-ticket_prio4"], %icon-ticket_prio4,
+terra-button[ng-reflect-input-icon="icon-ticket_prio5"] .btn, div.adminActionIcon.icon-ticket_prio5, button.adminButton[data-icon="icon-ticket_prio5"], %icon-ticket_prio5,
+terra-button[ng-reflect-input-icon="icon-ticket_prio6"] .btn, div.adminActionIcon.icon-ticket_prio6, button.adminButton[data-icon="icon-ticket_prio6"], %icon-ticket_prio6,
+terra-button[ng-reflect-input-icon="icon-ticket_prio7"] .btn, div.adminActionIcon.icon-ticket_prio7, button.adminButton[data-icon="icon-ticket_prio7"], %icon-ticket_prio7,
+terra-button[ng-reflect-input-icon="icon-ticket_prio8"] .btn, div.adminActionIcon.icon-ticket_prio8, button.adminButton[data-icon="icon-ticket_prio8"], %icon-ticket_prio8,
+terra-button[ng-reflect-input-icon="icon-ticket_todo"] .btn, div.adminActionIcon.icon-ticket_todo, button.adminButton[data-icon="icon-ticket_todo"], %icon-ticket_todo,
+terra-button[ng-reflect-input-icon="icon-timer"] .btn, div.adminActionIcon.icon-timer, button.adminButton[data-icon="icon-timer"], %icon-timer,
+terra-button[ng-reflect-input-icon="icon-visibility_private"] .btn, div.adminActionIcon.icon-visibility_private, button.adminButton[data-icon="icon-visibility_private"], %icon-visibility_private,
+terra-button[ng-reflect-input-icon="icon-item_webshop_invisible"] .btn, div.adminActionIcon.icon-item_webshop_invisible, button.adminButton[data-icon="icon-item_webshop_invisible"], %icon-item_webshop_invisible,
+terra-button[ng-reflect-input-icon="icon-offer"] .btn, div.adminActionIcon.icon-offer, button.adminButton[data-icon="icon-offer"], %icon-offer,
+terra-button[ng-reflect-input-icon="icon-placeholder_show_list"] .btn, div.adminActionIcon.icon-placeholder_show_list, button.adminButton[data-icon="icon-placeholder_show_list"], %icon-placeholder_show_list,
+terra-button[ng-reflect-input-icon="icon-reorder_show"] .btn, div.adminActionIcon.icon-reorder_show, button.adminButton[data-icon="icon-reorder_show"], %icon-reorder_show,
+terra-button[ng-reflect-input-icon="icon-ticket_all"] .btn, div.adminActionIcon.icon-ticket_all, button.adminButton[data-icon="icon-ticket_all"], %icon-ticket_all,
+terra-button[ng-reflect-input-icon="icon-search"] .btn, div.adminActionIcon.icon-search, button.adminButton[data-icon="icon-search"], %icon-search
+{
+    border-bottom: var(--button-border-bottom-group-info);
+    color: var(--button-text-color-group-info);
+    background-color: var(--button-background-color-group-info);
+}
+
+// Transfer: Senden (E-Mail), Verschicken, Drucken, Download, Herunterladen, Export, Upload, Datei auswählen, Import
+terra-button[ng-reflect-input-icon="icon-open_external_link"] .btn, div.adminActionIcon.icon-open_external_link, button.adminButton[data-icon="icon-open_external_link"], %icon-open_external_link,
+terra-button[ng-reflect-input-icon="icon-customer_link"] .btn, div.adminActionIcon.icon-customer_link, button.adminButton[data-icon="icon-customer_link"], %icon-customer_link,
+terra-button[ng-reflect-input-icon="icon-data_export"] .btn, div.adminActionIcon.icon-data_export, button.adminButton[data-icon="icon-data_export"], %icon-data_export,
+terra-button[ng-reflect-input-icon="icon-design_export"] .btn, div.adminActionIcon.icon-design_export, button.adminButton[data-icon="icon-design_export"], %icon-design_export,
+terra-button[ng-reflect-input-icon="icon-design_import"] .btn, div.adminActionIcon.icon-design_import, button.adminButton[data-icon="icon-design_import"], %icon-design_import,
+terra-button[ng-reflect-input-icon="icon-design_publish"] .btn, div.adminActionIcon.icon-design_publish, button.adminButton[data-icon="icon-design_publish"], %icon-design_publish,
+terra-button[ng-reflect-input-icon="icon-design_transfer"] .btn, div.adminActionIcon.icon-design_transfer, button.adminButton[data-icon="icon-design_transfer"], %icon-design_transfer,
+terra-button[ng-reflect-input-icon="icon-download"] .btn, div.adminActionIcon.icon-download, button.adminButton[data-icon="icon-download"], %icon-download,
+terra-button[ng-reflect-input-icon="icon-email_send"] .btn, div.adminActionIcon.icon-email_send, button.adminButton[data-icon="icon-email_send"], %icon-email_send,
+terra-button[ng-reflect-input-icon="icon-export"] .btn, div.adminActionIcon.icon-export, button.adminButton[data-icon="icon-export"], %icon-export,
+terra-button[ng-reflect-input-icon="icon-file_attachment"] .btn, div.adminActionIcon.icon-file_attachment, button.adminButton[data-icon="icon-file_attachment"], %icon-file_attachment,
+terra-button[ng-reflect-input-icon="icon-print"] .btn, div.adminActionIcon.icon-print, button.adminButton[data-icon="icon-print"], %icon-print,
+terra-button[ng-reflect-input-icon="icon-send_email"] .btn, div.adminActionIcon.icon-send_email, button.adminButton[data-icon="icon-send_email"], %icon-send_email,
+terra-button[ng-reflect-input-icon="icon-upload"] .btn, div.adminActionIcon.icon-upload, button.adminButton[data-icon="icon-upload"], %icon-upload,
+terra-button[ng-reflect-input-icon="icon-vcard"] .btn, div.adminActionIcon.icon-vcard, button.adminButton[data-icon="icon-vcard"], %icon-vcard,
+terra-button[ng-reflect-input-icon="icon-ticket_link"] .btn, div.adminActionIcon.icon-ticket_link, button.adminButton[data-icon="icon-ticket_link"], %icon-ticket_link
+{
+    border-bottom: var(--button-border-bottom-group-transfer);
+    color: var(--button-text-color-group-transfer);
+    background-color: var(--button-background-color-group-transfer);
+}
+
+/* Navigation:
+   Abbrechen, Schließen, Zoom In/Zoom Out, Play/Reset/Forward/Back/Pause, Verbergen, Einstellungen, Einrichten, Gruppenfunktionen,
+   Öffnen, Suchen */
+terra-button[ng-reflect-input-icon="icon-execute"] .btn, div.adminActionIcon.icon-execute, button.adminButton[data-icon="icon-execute"], %icon-execute,
+terra-button[ng-reflect-input-icon="icon-active_fold_closed"] .btn, div.adminActionIcon.icon-active_fold_closed, button.adminButton[data-icon="icon-active_fold_closed"], %icon-active_fold_closed,
+terra-button[ng-reflect-input-icon="icon-active_fold_open"] .btn, div.adminActionIcon.icon-active_fold_open, button.adminButton[data-icon="icon-active_fold_open"], %icon-active_fold_open,
+terra-button[ng-reflect-input-icon="icon-inactive_fold_closed"] .btn, div.adminActionIcon.icon-inactive_fold_closed, button.adminButton[data-icon="icon-inactive_fold_closed"], %icon-inactive_fold_closed,
+terra-button[ng-reflect-input-icon="icon-inactive_fold_open"] .btn, div.adminActionIcon.icon-inactive_fold_open, button.adminButton[data-icon="icon-inactive_fold_open"], %icon-inactive_fold_open,
+terra-button[ng-reflect-input-icon="icon-intermed_fold_closed"] .btn, div.adminActionIcon.icon-intermed_fold_closed, button.adminButton[data-icon="icon-intermed_fold_closed"], %icon-intermed_fold_closed,
+terra-button[ng-reflect-input-icon="icon-intermed_fold_open"] .btn, div.adminActionIcon.icon-intermed_fold_open, button.adminButton[data-icon="icon-intermed_fold_open"], %icon-intermed_fold_open,
+terra-button[ng-reflect-input-icon="icon-servicecenter"] .btn, div.adminActionIcon.icon-servicecenter, button.adminButton[data-icon="icon-servicecenter"], %icon-servicecenter,
+terra-button[ng-reflect-input-icon="icon-caret"] .btn, div.adminActionIcon.icon-caret, button.adminButton[data-icon="icon-caret"], %icon-caret,
+terra-button[ng-reflect-input-icon="icon-item-artikel"] .btn, div.adminActionIcon.icon-item-artikel, button.adminButton[data-icon="icon-item-artikel"], %icon-item-artikel,
+terra-button[ng-reflect-input-icon="icon-switch_editor"] .btn, div.adminActionIcon.icon-switch_editor, button.adminButton[data-icon="icon-switch_editor"], %icon-switch_editor,
+terra-button[ng-reflect-input-icon="icon-reverse_fullscreen"] .btn, div.adminActionIcon.icon-reverse_fullscreen, button.adminButton[data-icon="icon-reverse_fullscreen"], %icon-reverse_fullscreen,
+terra-button[ng-reflect-input-icon="icon-application_double"] .btn, div.adminActionIcon.icon-application_double, button.adminButton[data-icon="icon-application_double"], %icon-application_double,
+terra-button[ng-reflect-input-icon="icon-box_minus"] .btn, div.adminActionIcon.icon-box_minus, button.adminButton[data-icon="icon-box_minus"], %icon-box_minus,
+terra-button[ng-reflect-input-icon="icon-box_plus"] .btn, div.adminActionIcon.icon-box_plus, button.adminButton[data-icon="icon-box_plus"], %icon-box_plus,
+terra-button[ng-reflect-input-icon="icon-shipping_centre"] .btn, div.adminActionIcon.icon-shipping_centre, button.adminButton[data-icon="icon-shipping_centre"], %icon-shipping_centre,
+terra-button[ng-reflect-input-icon="icon-reorder_search"] .btn, div.adminActionIcon.icon-reorder_search, button.adminButton[data-icon="icon-reorder_search"], %icon-reorder_search,
+terra-button[ng-reflect-input-icon="icon-zoom_out"] .btn, div.adminActionIcon.icon-zoom_out, button.adminButton[data-icon="icon-zoom_out"], %icon-zoom_out,
+terra-button[ng-reflect-input-icon="icon-plugin"] .btn, div.adminActionIcon.icon-plugin, button.adminButton[data-icon="icon-plugin"], %icon-plugin,
+terra-button[ng-reflect-input-icon="icon-burger"] .btn, div.adminActionIcon.icon-burger, button.adminButton[data-icon="icon-burger"], %icon-burger,
+terra-button[ng-reflect-input-icon="icon-grid"] .btn, div.adminActionIcon.icon-grid, button.adminButton[data-icon="icon-grid"], %icon-grid,
+terra-button[ng-reflect-input-icon="icon-support"] .btn, div.adminActionIcon.icon-support, button.adminButton[data-icon="icon-support"], %icon-support,
+terra-button[ng-reflect-input-icon="icon-forum"] .btn, div.adminActionIcon.icon-forum, button.adminButton[data-icon="icon-forum"], %icon-forum,
+terra-button[ng-reflect-input-icon="icon-handbuch"] .btn, div.adminActionIcon.icon-handbuch, button.adminButton[data-icon="icon-handbuch"], %icon-handbuch,
+terra-button[ng-reflect-input-icon="icon-back"] .btn, div.adminActionIcon.icon-back, button.adminButton[data-icon="icon-back"], %icon-back,
+terra-button[ng-reflect-input-icon="icon-cancel"] .btn, div.adminActionIcon.icon-cancel, button.adminButton[data-icon="icon-cancel"], %icon-cancel,
+terra-button[ng-reflect-input-icon="icon-checkbox_checked"] .btn, div.adminActionIcon.icon-checkbox_checked, button.adminButton[data-icon="icon-checkbox_checked"], %icon-checkbox_checked,
+terra-button[ng-reflect-input-icon="icon-checkbox_indeterminate"] .btn, div.adminActionIcon.icon-checkbox_indeterminate, button.adminButton[data-icon="icon-checkbox_indeterminate"], %icon-checkbox_indeterminate,
+terra-button[ng-reflect-input-icon="icon-checkbox_unchecked"] .btn, div.adminActionIcon.icon-checkbox_unchecked, button.adminButton[data-icon="icon-checkbox_unchecked"], %icon-checkbox_unchecked,
+terra-button[ng-reflect-input-icon="icon-close"] .btn, div.adminActionIcon.icon-close, button.adminButton[data-icon="icon-close"], %icon-close,
+terra-button[ng-reflect-input-icon="icon-collapse_down"] .btn, div.adminActionIcon.icon-collapse_down, button.adminButton[data-icon="icon-collapse_down"], %icon-collapse_down,
+terra-button[ng-reflect-input-icon="icon-collapse_left"] .btn, div.adminActionIcon.bicon-collapse_left, button.adminButton[data-icon="icon-collapse_left"], %icon-collapse_left,
+terra-button[ng-reflect-input-icon="icon-collapse_rightpng"] .btn, div.adminActionIcon.icon-collapse_rightpng, button.adminButton[data-icon="icon-collapse_rightpng"], %icon-collapse_rightpng,
+terra-button[ng-reflect-input-icon="icon-collapse_up"] .btn, div.adminActionIcon.icon-collapse_up, button.adminButton[data-icon="icon-collapse_up"], %icon-collapse_up,
+terra-button[ng-reflect-input-icon="icon-control_pause"] .btn, div.adminActionIcon.icon-control_pause, button.adminButton[data-icon="icon-control_pause"], %icon-control_pause,
+terra-button[ng-reflect-input-icon="icon-control_play"] .btn, div.adminActionIcon.icon-control_play, button.adminButton[data-icon="icon-control_play"], %icon-control_play,
+terra-button[ng-reflect-input-icon="icon-control_skip"] .btn, div.adminActionIcon.icon-control_skip, button.adminButton[data-icon="icon-control_skip"], %icon-control_skip,
+terra-button[ng-reflect-input-icon="icon-control_start"] .btn, div.adminActionIcon.icon-control_start, button.adminButton[data-icon="icon-control_start"], %icon-control_start,
+terra-button[ng-reflect-input-icon="icon-control_stop"] .btn, div.adminActionIcon.icon-control_stop, button.adminButton[data-icon="icon-control_stop"], %icon-control_stop,
+terra-button[ng-reflect-input-icon="icon-customer"] .btn, div.adminActionIcon.icon-customer, button.adminButton[data-icon="icon-customer"], %icon-customer,
+terra-button[ng-reflect-input-icon="icon-date_pick"] .btn, div.adminActionIcon.icon-date_pick, button.adminButton[data-icon="icon-date_pick"], %icon-date_pick,
+terra-button[ng-reflect-input-icon="icon-drag_sort_handle"] .btn, div.adminActionIcon.icon-drag_sort_handle, button.adminButton[data-icon="icon-drag_sort_handle"], %icon-drag_sort_handle,
+terra-button[ng-reflect-input-icon="icon-email_service"] .btn, div.adminActionIcon.icon-email_service, button.adminButton[data-icon="icon-email_service"], %icon-email_service,
+terra-button[ng-reflect-input-icon="icon-favourite_active"] .btn, div.adminActionIcon.icon-favourite_active, button.adminButton[data-icon="icon-favourite_active"], %icon-favourite_active,
+terra-button[ng-reflect-input-icon="icon-favourite_inactive"] .btn, div.adminActionIcon.icon-favourite_inactive, button.adminButton[data-icon="icon-favourite_inactive"], %icon-favourite_inactive,
+terra-button[ng-reflect-input-icon="icon-favourites"] .btn, div.adminActionIcon.icon-favourites, button.adminButton[data-icon="icon-favourites"], %icon-favourites,
+terra-button[ng-reflect-input-icon="icon-first"] .btn, div.adminActionIcon.icon-first, button.adminButton[data-icon="icon-first"], %icon-first,
+terra-button[ng-reflect-input-icon="icon-flag_alarm"] .btn, div.adminActionIcon.icon-flag_alarm, button.adminButton[data-icon="icon-flag_alarm"], %icon-flag_alarm,
+terra-button[ng-reflect-input-icon="icon-flag_black"] .btn, div.adminActionIcon.icon-flag_black, button.adminButton[data-icon="icon-flag_black"], %icon-flag_black,
+terra-button[ng-reflect-input-icon="icon-flag_blue"] .btn, div.adminActionIcon.icon-flag_blue, button.adminButton[data-icon="icon-flag_blue"], %icon-flag_blue,
+terra-button[ng-reflect-input-icon="icon-flag_bomb_black"] .btn, div.adminActionIcon.icon-flag_bomb_black, button.adminButton[data-icon="icon-flag_bomb_black"], %icon-flag_bomb_black,
+terra-button[ng-reflect-input-icon="icon-flag_bomb_green"] .btn, div.adminActionIcon.icon-flag_bomb_green, button.adminButton[data-icon="icon-flag_bomb_green"], %icon-flag_bomb_green,
+terra-button[ng-reflect-input-icon="icon-flag_bomb_red"] .btn, div.adminActionIcon.icon-flag_bomb_red, button.adminButton[data-icon="icon-flag_bomb_red"], %icon-flag_bomb_red,
+terra-button[ng-reflect-input-icon="icon-flag_green"] .btn, div.adminActionIcon.icon-flag_green, button.adminButton[data-icon="icon-flag_green"], %icon-flag_green,
+terra-button[ng-reflect-input-icon="icon-flag_help"] .btn, div.adminActionIcon.icon-flag_help, button.adminButton[data-icon="icon-flag_help"], %icon-flag_help,
+terra-button[ng-reflect-input-icon="icon-flag_ledblack_16"] .btn, div.adminActionIcon.icon-flag_ledblack_16, button.adminButton[data-icon="icon-flag_ledblack_16"], %icon-flag_ledblack_16,
+terra-button[ng-reflect-input-icon="icon-flag_ledblue_16"] .btn, div.adminActionIcon.icon-flag_ledblue_16, button.adminButton[data-icon="icon-flag_ledblue_16"], %icon-flag_ledblue_16,
+terra-button[ng-reflect-input-icon="icon-flag_leddarkblue_16"] .btn, div.adminActionIcon.icon-flag_leddarkblue_16, button.adminButton[data-icon="icon-flag_leddarkblue_16"], %icon-flag_leddarkblue_16,
+terra-button[ng-reflect-input-icon="icon-flag_leddarkgreen_16"] .btn, div.adminActionIcon.icon-flag_leddarkgreen_16, button.adminButton[data-icon="icon-flag_leddarkgreen_16"], %icon-flag_leddarkgreen_16,
+terra-button[ng-reflect-input-icon="icon-flag_leddarkred_16"] .btn, div.adminActionIcon.icon-flag_leddarkred_16, button.adminButton[data-icon="icon-flag_leddarkred_16"], %icon-flag_leddarkred_16,
+terra-button[ng-reflect-input-icon="icon-flag_ledgreen_16"] .btn, div.adminActionIcon.icon-flag_ledgreen_16, button.adminButton[data-icon="icon-flag_ledgreen_16"], %icon-flag_ledgreen_16,
+terra-button[ng-reflect-input-icon="icon-flag_ledgrey_16"] .btn, div.adminActionIcon.icon-flag_ledgrey_16, button.adminButton[data-icon="icon-flag_ledgrey_16"], %icon-flag_ledgrey_16,
+terra-button[ng-reflect-input-icon="icon-flag_ledorange_16"] .btn, div.adminActionIcon.icon-flag_ledorange_16, button.adminButton[data-icon="icon-flag_ledorange_16"], %icon-flag_ledorange_16,
+terra-button[ng-reflect-input-icon="icon-flag_ledpink_16"] .btn, div.adminActionIcon.icon-flag_ledpink_16, button.adminButton[data-icon="icon-flag_ledpink_16"], %icon-flag_ledpink_16,
+terra-button[ng-reflect-input-icon="icon-flag_ledpurple_16"] .btn, div.adminActionIcon.icon-flag_ledpurple_16, button.adminButton[data-icon="icon-flag_ledpurple_16"], %icon-flag_ledpurple_16,
+terra-button[ng-reflect-input-icon="icon-flag_ledred_16"] .btn, div.adminActionIcon.icon-flag_ledred_16, button.adminButton[data-icon="icon-flag_ledred_16"], %icon-flag_ledred_16,
+terra-button[ng-reflect-input-icon="icon-flag_ledyellow_16"] .btn, div.adminActionIcon.icon-flag_ledyellow_16, button.adminButton[data-icon="icon-flag_ledyellow_16"], %icon-flag_ledyellow_16,
+terra-button[ng-reflect-input-icon="icon-flag_none"] .btn, div.adminActionIcon.icon-flag_none, button.adminButton[data-icon="icon-flag_none"], %icon-flag_none,
+terra-button[ng-reflect-input-icon="icon-flag_red"] .btn, div.adminActionIcon.icon-flag_red, button.adminButton[data-icon="icon-flag_red"], %icon-flag_red,
+terra-button[ng-reflect-input-icon="icon-flag_star"] .btn, div.adminActionIcon.icon-flag_star, button.adminButton[data-icon="icon-flag_star"], %icon-flag_star,
+terra-button[ng-reflect-input-icon="icon-flag_user_blue"] .btn, div.adminActionIcon.icon-flag_user_blue, button.adminButton[data-icon="icon-flag_user_blue"], %icon-flag_user_blue,
+terra-button[ng-reflect-input-icon="icon-flag_user_dark_blue"] .btn, div.adminActionIcon.icon-flag_user_dark_blue, button.adminButton[data-icon="icon-flag_user_dark_blue"], %icon-flag_user_dark_blue,
+terra-button[ng-reflect-input-icon="icon-flag_user_female"] .btn, div.adminActionIcon.icon-flag_user_female, button.adminButton[data-icon="icon-flag_user_female"], %icon-flag_user_female,
+terra-button[ng-reflect-input-icon="icon-flag_user_gray"] .btn, div.adminActionIcon.icon-flag_user_gray, button.adminButton[data-icon="icon-flag_user_gray"], %icon-flag_user_gray,
+terra-button[ng-reflect-input-icon="icon-flag_user_green"] .btn, div.adminActionIcon.icon-flag_user_green, button.adminButton[data-icon="icon-flag_user_green"], %icon-flag_user_green,
+terra-button[ng-reflect-input-icon="icon-flag_user_light_gray"] .btn, div.adminActionIcon.icon-flag_user_light_gray, button.adminButton[data-icon="icon-flag_user_light_gray"], %icon-flag_user_light_gray,
+terra-button[ng-reflect-input-icon="icon-flag_user_orange"] .btn, div.adminActionIcon.icon-flag_user_orange, button.adminButton[data-icon="icon-flag_user_orange"], %icon-flag_user_orange,
+terra-button[ng-reflect-input-icon="icon-flag_user_purple"] .btn, div.adminActionIcon.icon-flag_user_purple, button.adminButton[data-icon="icon-flag_user_purple"], %icon-flag_user_purple,
+terra-button[ng-reflect-input-icon="icon-flag_user_red"] .btn, div.adminActionIcon.icon-flag_user_red, button.adminButton[data-icon="icon-flag_user_red"], %icon-flag_user_red,
+terra-button[ng-reflect-input-icon="icon-flag_user_turquoise"] .btn, div.adminActionIcon.icon-flag_user_turquoise, button.adminButton[data-icon="icon-flag_user_turquoise"], %icon-flag_user_turquoise,
+terra-button[ng-reflect-input-icon="icon-flag_user_yellow"] .btn, div.adminActionIcon.icon-flag_user_yellow, button.adminButton[data-icon="icon-flag_user_yellow"], %icon-flag_user_yellow,
+terra-button[ng-reflect-input-icon="icon-flag_weather_clouds"] .btn, div.adminActionIcon.icon-flag_weather_clouds, button.adminButton[data-icon="icon-flag_weather_clouds"], %icon-flag_weather_clouds,
+terra-button[ng-reflect-input-icon="icon-flag_weather_cloudy"] .btn, div.adminActionIcon.icon-flag_weather_cloudy, button.adminButton[data-icon="icon-flag_weather_cloudy"], %icon-flag_weather_cloudy,
+terra-button[ng-reflect-input-icon="icon-flag_weather_lightning"] .btn, div.adminActionIcon.icon-flag_weather_lightning, button.adminButton[data-icon="icon-flag_weather_lightning"], %icon-flag_weather_lightning,
+terra-button[ng-reflect-input-icon="icon-flag_weather_rain"] .btn, div.adminActionIcon.icon-flag_weather_rain, button.adminButton[data-icon="icon-flag_weather_rain"], %icon-flag_weather_rain,
+terra-button[ng-reflect-input-icon="icon-flag_weather_snow"] .btn, div.adminActionIcon.icon-flag_weather_snow, button.adminButton[data-icon="icon-flag_weather_snow"], %icon-flag_weather_snow,
+terra-button[ng-reflect-input-icon="icon-flag_weather_sun"] .btn, div.adminActionIcon.icon-flag_weather_sun, button.adminButton[data-icon="icon-flag_weather_sun"], %icon-flag_weather_sun,
+terra-button[ng-reflect-input-icon="icon-flag_yellow"] .btn, div.adminActionIcon.icon-flag_yellow, button.adminButton[data-icon="icon-flag_yellow"], %icon-flag_yellow,
+terra-button[ng-reflect-input-icon="icon-folder_closable"] .btn, div.adminActionIcon.icon-folder_closable, button.adminButton[data-icon="icon-folder_closable"], %icon-folder_closable,
+terra-button[ng-reflect-input-icon="icon-folder_openable"] .btn, div.adminActionIcon.icon-folder_openable, button.adminButton[data-icon="icon-folder_openable"], %icon-folder_openable,
+terra-button[ng-reflect-input-icon="icon-folder_opened"] .btn, div.adminActionIcon.icon-folder_opened, button.adminButton[data-icon="icon-folder_opened"], %icon-folder_opened,
+terra-button[ng-reflect-input-icon="icon-folder"] .btn, div.adminActionIcon.icon-folder, button.adminButton[data-icon="icon-folder"], %icon-folder,
+terra-button[ng-reflect-input-icon="icon-fullscreen"] .btn, div.adminActionIcon.icon-fullscreen, button.adminButton[data-icon="icon-fullscreen"], %icon-fullscreen,
+terra-button[ng-reflect-input-icon="icon-item_search"] .btn, div.adminActionIcon.icon-item_search, button.adminButton[data-icon="icon-item_search"], %icon-item_search,
+terra-button[ng-reflect-input-icon="icon-item"] .btn, div.adminActionIcon.icon-item, button.adminButton[data-icon="icon-item"], %icon-item,
+terra-button[ng-reflect-input-icon="icon-last"] .btn, div.adminActionIcon.icon-last, button.adminButton[data-icon="icon-last"], %icon-last,
+terra-button[ng-reflect-input-icon="icon-more"] .btn, div.adminActionIcon.icon-more, button.adminButton[data-icon="icon-more"], %icon-more,
+terra-button[ng-reflect-input-icon="icon-move_down"] .btn, div.adminActionIcon.icon-move_down, button.adminButton[data-icon="icon-move_down"], %icon-move_down,
+terra-button[ng-reflect-input-icon="icon-move_up"] .btn, div.adminActionIcon.icon-move_up, button.adminButton[data-icon="icon-move_up"], %icon-move_up,
+terra-button[ng-reflect-input-icon="icon-navigate_back"] .btn, div.adminActionIcon.icon-navigate_back, button.adminButton[data-icon="icon-navigate_back"], %icon-navigate_back,
+terra-button[ng-reflect-input-icon="icon-next"] .btn, div.adminActionIcon.icon-next, button.adminButton[data-icon="icon-next"], %icon-next,
+terra-button[ng-reflect-input-icon="icon-order_flag"] .btn, div.adminActionIcon.icon-order_flag, button.adminButton[data-icon="icon-order_flag"], %icon-order_flag,
+terra-button[ng-reflect-input-icon="icon-order"] .btn, div.adminActionIcon.icon-order, button.adminButton[data-icon="icon-order"], %icon-order,
+terra-button[ng-reflect-input-icon="icon-rating_small_-1"] .btn, div.adminActionIcon.icon-rating_small_-1, button.adminButton[data-icon="icon-rating_small_-1"], %icon-rating_small_-1,
+terra-button[ng-reflect-input-icon="icon-rating_small_-2"] .btn, div.adminActionIcon.icon-rating_small_-2, button.adminButton[data-icon="icon-rating_small_-2"], %icon-rating_small_-2,
+terra-button[ng-reflect-input-icon="icon-rating_small_-3"] .btn, div.adminActionIcon.icon-rating_small_-3, button.adminButton[data-icon="icon-rating_small_-3"], %icon-rating_small_-3,
+terra-button[ng-reflect-input-icon="icon-rating_small_-4"] .btn, div.adminActionIcon.icon-rating_small_-4, button.adminButton[data-icon="icon-rating_small_-4"], %icon-rating_small_-4,
+terra-button[ng-reflect-input-icon="icon-rating_small_-5"] .btn, div.adminActionIcon.icon-rating_small_-5, button.adminButton[data-icon="icon-rating_small_-5"], %icon-rating_small_-5,
+terra-button[ng-reflect-input-icon="icon-rating_small_0"] .btn, div.adminActionIcon.icon-rating_small_0, button.adminButton[data-icon="icon-rating_small_0"], %icon-rating_small_0,
+terra-button[ng-reflect-input-icon="icon-rating_small_1"] .btn, div.adminActionIcon.icon-rating_small_1, button.adminButton[data-icon="icon-rating_small_1"], %icon-rating_small_1,
+terra-button[ng-reflect-input-icon="icon-rating_small_02"] .btn, div.adminActionIcon.icon-rating_small_02, button.adminButton[data-icon="icon-rating_small_02"], %icon-rating_small_02,
+terra-button[ng-reflect-input-icon="icon-rating_small_3"] .btn, div.adminActionIcon.icon-rating_small_3, button.adminButton[data-icon="icon-rating_small_3"], %icon-rating_small_3,
+terra-button[ng-reflect-input-icon="icon-rating_small_4"] .btn, div.adminActionIcon.icon-rating_small_4, button.adminButton[data-icon="icon-rating_small_4"], %icon-rating_small_4,
+terra-button[ng-reflect-input-icon="icon-rating_small_5"] .btn, div.adminActionIcon.icon-rating_small_5, button.adminButton[data-icon="icon-rating_small_5"], %icon-rating_small_5,
+terra-button[ng-reflect-input-icon="icon-refresh"] .btn, div.adminActionIcon.icon-refresh, button.adminButton[data-icon="icon-refresh"], %icon-refresh,
+terra-button[ng-reflect-input-icon="icon-reload"] .btn, div.adminActionIcon.icon-reload, button.adminButton[data-icon="icon-reload"], %icon-reload,
+terra-button[ng-reflect-input-icon="icon-settings_transfer"] .btn, div.adminActionIcon.icon-settings_transfer, button.adminButton[data-icon="icon-settings_transfer"], %icon-settings_transfer,
+terra-button[ng-reflect-input-icon="icon-settings"] .btn, div.adminActionIcon.icon-settings, button.adminButton[data-icon="icon-settings"], %icon-settings,
+terra-button[ng-reflect-input-icon="icon-tag_disabled"] .btn, div.adminActionIcon.icon-tag_disabled, button.adminButton[data-icon="icon-tag_disabled"], %icon-tag_disabled,
+terra-button[ng-reflect-input-icon="icon-tag"] .btn, div.adminActionIcon.icon-tag, button.adminButton[data-icon="icon-tag"], %icon-tag,
+terra-button[ng-reflect-input-icon="icon-zoom"] .btn, div.adminActionIcon.icon-zoom, button.adminButton[data-icon="icon-zoom"], %icon-zoom,
+terra-button[ng-reflect-input-icon="icon-shipment_tracking"] .btn, div.adminActionIcon.icon-shipment_tracking, button.adminButton[data-icon="icon-shipment_tracking"], %icon-shipment_tracking,
+terra-button[ng-reflect-input-icon="icon-folder_closeable"] .btn, div.adminActionIcon.icon-folder_closeable, button.adminButton[data-icon="icon-folder_closeable"], %icon-folder_closeable,
+terra-button[ng-reflect-input-icon="icon-document"] .btn, div.adminActionIcon.icon-document, button.adminButton[data-icon="icon-document"], %icon-document,
+terra-button[ng-reflect-input-icon="icon-process_counter_1"] .btn, div.adminActionIcon.icon-process_counter_1, button.adminButton[data-icon="icon-process_counter_1"], %icon-process_counter_1,
+terra-button[ng-reflect-input-icon="icon-process_counter_2"] .btn, div.adminActionIcon.icon-process_counter_2, button.adminButton[data-icon="icon-process_counter_2"], %icon-process_counter_2,
+terra-button[ng-reflect-input-icon="icon-process_counter_3"] .btn, div.adminActionIcon.icon-process_counter_3, button.adminButton[data-icon="icon-process_counter_3"], %icon-process_counter_3,
+terra-button[ng-reflect-input-icon="icon-process_counter_4"] .btn, div.adminActionIcon.icon-process_counter_4, button.adminButton[data-icon="icon-process_counter_4"], %icon-process_counter_4,
+terra-button[ng-reflect-input-icon="icon-process_counter_5"] .btn, div.adminActionIcon.icon-process_counter_5, button.adminButton[data-icon="icon-process_counter_5"], %icon-process_counter_5,
+terra-button[ng-reflect-input-icon="icon-process_counter_6"] .btn, div.adminActionIcon.icon-process_counter_6, button.adminButton[data-icon="icon-process_counter_6"], %icon-process_counter_6,
+terra-button[ng-reflect-input-icon="icon-process_counter_7"] .btn, div.adminActionIcon.icon-process_counter_7, button.adminButton[data-icon="icon-process_counter_7"], %icon-process_counter_7,
+terra-button[ng-reflect-input-icon="icon-process_counter_8"] .btn, div.adminActionIcon.icon-process_counter_8, button.adminButton[data-icon="icon-process_counter_8"], %icon-process_counter_8,
+terra-button[ng-reflect-input-icon="icon-process_counter_9"] .btn, div.adminActionIcon.icon-process_counter_9, button.adminButton[data-icon="icon-process_counter_9"], %icon-process_counter_9,
+terra-button[ng-reflect-input-icon="icon-process_counter_10"] .btn, div.adminActionIcon.icon-process_counter_10, button.adminButton[data-icon="icon-process_counter_10"], %icon-process_counter_10,
+terra-button[ng-reflect-input-icon="icon-process_counter_11"] .btn, div.adminActionIcon.icon-process_counter_11, button.adminButton[data-icon="icon-process_counter_11"], %icon-process_counter_11,
+terra-button[ng-reflect-input-icon="icon-process_counter_12"] .btn, div.adminActionIcon.icon-process_counter_12, button.adminButton[data-icon="icon-process_counter_12"], %icon-process_counter_12,
+terra-button[ng-reflect-input-icon="icon-process_counter_13"] .btn, div.adminActionIcon.icon-process_counter_13, button.adminButton[data-icon="icon-process_counter_13"], %icon-process_counter_13,
+terra-button[ng-reflect-input-icon="icon-process_counter_14"] .btn, div.adminActionIcon.icon-process_counter_14, button.adminButton[data-icon="icon-process_counter_14"], %icon-process_counter_14,
+terra-button[ng-reflect-input-icon="icon-process_counter_15"] .btn, div.adminActionIcon.icon-process_counter_15, button.adminButton[data-icon="icon-process_counter_15"], %icon-process_counter_15,
+terra-button[ng-reflect-input-icon="icon-process_counter_16"] .btn, div.adminActionIcon.icon-process_counter_16, button.adminButton[data-icon="icon-process_counter_16"], %icon-process_counter_16,
+terra-button[ng-reflect-input-icon="icon-process_counter_17"] .btn, div.adminActionIcon.icon-process_counter_17, button.adminButton[data-icon="icon-process_counter_17"], %icon-process_counter_17,
+terra-button[ng-reflect-input-icon="icon-process_counter_18"] .btn, div.adminActionIcon.icon-process_counter_18, button.adminButton[data-icon="icon-process_counter_18"], %icon-process_counter_18,
+terra-button[ng-reflect-input-icon="icon-process_counter_19"] .btn, div.adminActionIcon.icon-process_counter_19, button.adminButton[data-icon="icon-process_counter_19"], %icon-process_counter_19,
+terra-button[ng-reflect-input-icon="icon-process_counter_20"] .btn, div.adminActionIcon.icon-process_counter_20, button.adminButton[data-icon="icon-process_counter_20"], %icon-process_counter_20,
+terra-button[ng-reflect-input-icon="icon-process_counter_21"] .btn, div.adminActionIcon.icon-process_counter_21, button.adminButton[data-icon="icon-process_counter_21"], %icon-process_counter_21,
+terra-button[ng-reflect-input-icon="icon-process_counter_22"] .btn, div.adminActionIcon.icon-process_counter_22, button.adminButton[data-icon="icon-process_counter_22"], %icon-process_counter_22,
+terra-button[ng-reflect-input-icon="icon-process_counter_23"] .btn, div.adminActionIcon.icon-process_counter_23, button.adminButton[data-icon="icon-process_counter_23"], %icon-process_counter_23,
+terra-button[ng-reflect-input-icon="icon-process_counter_24"] .btn, div.adminActionIcon.icon-process_counter_24, button.adminButton[data-icon="icon-process_counter_24"], %icon-process_counter_24,
+terra-button[ng-reflect-input-icon="icon-process_counter_25"] .btn, div.adminActionIcon.icon-process_counter_25, button.adminButton[data-icon="icon-process_counter_25"], %icon-process_counter_25,
+terra-button[ng-reflect-input-icon="icon-lang_de"] .btn, div.adminActionIcon.icon-lang_de, button.adminButton[data-icon="icon-lang_de"], %icon-lang_de,
+terra-button[ng-reflect-input-icon="icon-lang_en"] .btn, div.adminActionIcon.icon-lang_en, button.adminButton[data-icon="icon-lang_en"], %icon-lang_en,
+terra-button[ng-reflect-input-icon="icon-ticket_events"] .btn, div.adminActionIcon.icon-ticket_events, button.adminButton[data-icon="icon-ticket_events"], %icon-ticket_events,
+terra-button[ng-reflect-input-icon="icon-ticket_mine_todo"] .btn, div.adminActionIcon.icon-ticket_mine_todo, button.adminButton[data-icon="icon-ticket_mine_todo"], %icon-ticket_mine_todo,
+terra-button[ng-reflect-input-icon="icon-ticket_mine"] .btn, div.adminActionIcon.icon-ticket_mine, button.adminButton[data-icon="icon-ticket_mine"], %icon-ticket_mine,
+terra-button[ng-reflect-input-icon="icon-ticket_show_parent"] .btn, div.adminActionIcon.icon-ticket_show_parent, button.adminButton[data-icon="icon-ticket_show_parent"], %icon-ticket_show_parent,
+terra-button[ng-reflect-input-icon="icon-ticket_show"] .btn, div.adminActionIcon.icon-ticket_show, button.adminButton[data-icon="icon-ticket_show"], %icon-ticket_show,
+terra-button[ng-reflect-input-icon="icon-user_my_account"] .btn, div.adminActionIcon.icon-user_my_account, button.adminButton[data-icon="icon-user_my_account"], %icon-user_my_account,
+terra-button[ng-reflect-input-icon="icon-sort_asc"] .btn, div.adminActionIcon.icon-sort_asc, button.adminButton[data-icon="icon-sort_asc"], %icon-sort_asc,
+terra-button[ng-reflect-input-icon="icon-equals"] .btn, div.adminActionIcon.icon-equals, button.adminButton[data-icon="icon-equals"], %icon-equals,
+terra-button[ng-reflect-input-icon="icon-adjustment_form"] .btn, div.adminActionIcon.icon-adjustment_form, button.adminButton[data-icon="icon-adjustment_form"], %icon-adjustment_form,
+terra-button[ng-reflect-input-icon="icon-infinite"] .btn, div.adminActionIcon.icon-infinite, button.adminButton[data-icon="icon-infinite"], %icon-infinite,
+terra-button[ng-reflect-input-icon="icon-item_label"] .btn, div.adminActionIcon.icon-item_label, button.adminButton[data-icon="icon-item_label"], %icon-item_label,
+terra-button[ng-reflect-input-icon="icon-item_referrer_url"] .btn, div.adminActionIcon.icon-item_referrer_url, button.adminButton[data-icon="icon-item_referrer_url"], %icon-item_referrer_url,
+terra-button[ng-reflect-input-icon="icon-lang_multilingual"] .btn, div.adminActionIcon.icon-lang_multilingual, button.adminButton[data-icon="icon-lang_multilingual"], %icon-lang_multilingual,
+terra-button[ng-reflect-input-icon="icon-listing_type_shop"] .btn, div.adminActionIcon.icon-listing_type_shop, button.adminButton[data-icon="icon-listing_type_shop"], %icon-listing_type_shop,
+terra-button[ng-reflect-input-icon="icon-order_property"] .btn, div.adminActionIcon.icon-order_property, button.adminButton[data-icon="icon-order_property"], %icon-order_property,
+terra-button[ng-reflect-input-icon="icon-outgoing_items"] .btn, div.adminActionIcon.icon-outgoing_items, button.adminButton[data-icon="icon-outgoing_items"], %icon-outgoing_items,
+terra-button[ng-reflect-input-icon="icon-receipt_archive"] .btn, div.adminActionIcon.icon-receipt_archive, button.adminButton[data-icon="icon-receipt_archive"], %icon-receipt_archive,
+terra-button[ng-reflect-input-icon="icon-referrer_backend"] .btn, div.adminActionIcon.icon-referrer_backend, button.adminButton[data-icon="icon-referrer_backend"], %icon-referrer_backend,
+terra-button[ng-reflect-input-icon="icon-reorder_type"] .btn, div.adminActionIcon.icon-reorder_type, button.adminButton[data-icon="icon-reorder_type"], %icon-reorder_type,
+terra-button[ng-reflect-input-icon="icon-set_package_number"] .btn, div.adminActionIcon.icon-set_package_number, button.adminButton[data-icon="icon-set_package_number"], %icon-set_package_number,
+terra-button[ng-reflect-input-icon="icon-sound"] .btn, div.adminActionIcon.icon-sound, button.adminButton[data-icon="icon-sound"], %icon-sound,
+terra-button[ng-reflect-input-icon="icon-stock_limited"] .btn, div.adminActionIcon.icon-stock_limited, button.adminButton[data-icon="icon-stock_limited"], %icon-stock_limited,
+terra-button[ng-reflect-input-icon="icon-stock"] .btn, div.adminActionIcon.icon-stock, button.adminButton[data-icon="icon-stock"], %icon-stock,
+terra-button[ng-reflect-input-icon="icon-telephone"] .btn, div.adminActionIcon.icon-telephone, button.adminButton[data-icon="icon-telephone"], %icon-telephone,
+terra-button[ng-reflect-input-icon="icon-ticket_folder_move"] .btn, div.adminActionIcon.icon-ticket_folder_move, button.adminButton[data-icon="icon-ticket_folder_move"], %icon-ticket_folder_move
+{
+    border-bottom: var(--button-border-bottom-group-navigation);
+    color: var(--button-text-color-group-navigation);
+    background-color: var(--button-background-color-group-navigation);
+}
+
+// Brand
+terra-button[ng-reflect-input-icon="icon-skype"] .btn, div.adminActionIcon.icon-skype, button.adminButton[data-icon="icon-skype"], %icon-skype,
+terra-button[ng-reflect-input-icon="icon-real"] .btn, div.adminActionIcon.icon-real, button.adminButton[data-icon="icon-real"], %icon-real,
+terra-button[ng-reflect-input-icon="icon-plenty_base"] .btn, div.adminActionIcon.icon-plenty_base, button.adminButton[data-icon="icon-plenty_base"], %icon-plenty_base,
+terra-button[ng-reflect-input-icon="icon-ship_amaz_1st"] .btn, div.adminActionIcon.icon-ship_amaz_1st, button.adminButton[data-icon="icon-ship_amaz_1st"], %icon-ship_amaz_1st,
+terra-button[ng-reflect-input-icon="icon-ship_amaz_2nd"] .btn, div.adminActionIcon.icon-ship_amaz_2nd, button.adminButton[data-icon="icon-ship_amaz_2nd"], %icon-ship_amaz_2nd,
+terra-button[ng-reflect-input-icon="icon-ship_amaz_prime_1st"] .btn, div.adminActionIcon.icon-ship_amaz_prime_1st, button.adminButton[data-icon="icon-ship_amaz_prime_1st"], %icon-ship_amaz_prime_1st,
+terra-button[ng-reflect-input-icon="icon-ship_amaz_prime_2nd"] .btn, div.adminActionIcon.icon-ship_amaz_prime_2nd, button.adminButton[data-icon="icon-ship_amaz_prime_2nd"], %icon-ship_amaz_prime_2nd,
+terra-button[ng-reflect-input-icon="icon-ship_amaz_prime"] .btn, div.adminActionIcon.icon-ship_amaz_prime, button.adminButton[data-icon="icon-ship_amaz_prime"], %icon-ship_amaz_prime,
+terra-button[ng-reflect-input-icon="icon-ebay"] .btn, div.adminActionIcon.icon-ebay, button.adminButton[data-icon="icon-ebay"], %icon-ebay,
+terra-button[ng-reflect-input-icon="icon-click_and_collect"] .btn, div.adminActionIcon.icon-click_and_collect, button.adminButton[data-icon="icon-click_and_collect"], %icon-click_and_collect,
+terra-button[ng-reflect-input-icon="icon-ebay_basket"] .btn, div.adminActionIcon.icon-ebay_basket, button.adminButton[data-icon="icon-ebay_basket"], %icon-ebay_basket,
+terra-button[ng-reflect-input-icon="icon-ebay_plus"] .btn, div.adminActionIcon.icon-ebay_plus, button.adminButton[data-icon="icon-ebay_plus"], %icon-ebay_plus,
+terra-button[ng-reflect-input-icon="icon-hood"] .btn, div.adminActionIcon.icon-hood, button.adminButton[data-icon="icon-hood"], %icon-hood,
+terra-button[ng-reflect-input-icon="icon-ricardo"] .btn, div.adminActionIcon.icon-ricardo, button.adminButton[data-icon="icon-ricardo"], %icon-ricardo,
+terra-button[ng-reflect-input-icon="icon-backend_ceres"] .btn, div.adminActionIcon.icon-backend_ceres, button.adminButton[data-icon="icon-backend_ceres"], %icon-backend_ceres,
+terra-button[ng-reflect-input-icon="icon-backend_io"] .btn, div.adminActionIcon.icon-backend_io, button.adminButton[data-icon="icon-backend_io"], %icon-backend_io,
+terra-button[ng-reflect-input-icon="icon-shipping_cbc_logistics"] .btn, div.adminActionIcon.icon-shipping_cbc_logistics, button.adminButton[data-icon="icon-shipping_cbc_logistics"], %icon-shipping_cbc_logistics,
+terra-button[ng-reflect-input-icon="icon-pay_5_paypal"] .btn, div.adminActionIcon.icon-pay_5_paypal, button.adminButton[data-icon="icon-pay_5_paypal"], %icon-pay_5_paypal,
+terra-button[ng-reflect-input-icon="icon-pay_25_laredoute"] .btn, div.adminActionIcon.icon-pay_25_laredoute, button.adminButton[data-icon="icon-pay_25_laredoute"], %icon-pay_25_laredoute,
+terra-button[ng-reflect-input-icon="icon-pay_amazon_payment"] .btn, div.adminActionIcon.icon-pay_amazon_payment, button.adminButton[data-icon="icon-pay_amazon_payment"], %icon-pay_amazon_payment,
+terra-button[ng-reflect-input-icon="icon-pay_amazon"] .btn, div.adminActionIcon.icon-pay_amazon, button.adminButton[data-icon="icon-pay_amazon"], %icon-pay_amazon,
+terra-button[ng-reflect-input-icon="icon-pay_billsafe"] .btn, div.adminActionIcon.icon-pay_billsafe, button.adminButton[data-icon="icon-pay_billsafe"], %icon-pay_billsafe,
+terra-button[ng-reflect-input-icon="icon-pay_bill"] .btn, div.adminActionIcon.icon-pay_bill, button.adminButton[data-icon="icon-pay_bill"], %icon-pay_bill,
+terra-button[ng-reflect-input-icon="icon-pay_cash_in_advance"] .btn, div.adminActionIcon.icon-pay_cash_in_advance, button.adminButton[data-icon="icon-pay_cash_in_advance"], %icon-pay_cash_in_advance,
+terra-button[ng-reflect-input-icon="icon-pay_cash_on_delivery"] .btn, div.adminActionIcon.icon-pay_cash_on_delivery, button.adminButton[data-icon="icon-pay_cash_on_delivery"], %icon-pay_cash_on_delivery,
+terra-button[ng-reflect-input-icon="icon-pay_cash"] .btn, div.adminActionIcon.icon-pay_cash, button.adminButton[data-icon="icon-pay_cash"], %icon-pay_cash,
+terra-button[ng-reflect-input-icon="icon-pay_cheque"] .btn, div.adminActionIcon.icon-pay_cheque, button.adminButton[data-icon="icon-pay_cheque"], %icon-pay_cheque,
+terra-button[ng-reflect-input-icon="icon-pay_clickandbuy"] .btn, div.adminActionIcon.icon-pay_clickandbuy, button.adminButton[data-icon="icon-pay_clickandbuy"], %icon-pay_clickandbuy,
+terra-button[ng-reflect-input-icon="icon-pay_concardis"] .btn, div.adminActionIcon.icon-pay_concardis, button.adminButton[data-icon="icon-pay_concardis"], %icon-pay_concardis,
+terra-button[ng-reflect-input-icon="icon-pay_coupon"] .btn, div.adminActionIcon.icon-pay_coupon, button.adminButton[data-icon="icon-pay_coupon"], %icon-pay_coupon,
+terra-button[ng-reflect-input-icon="icon-pay_credit_card"] .btn, div.adminActionIcon.icon-pay_credit_card, button.adminButton[data-icon="icon-pay_credit_card"], %icon-pay_credit_card,
+terra-button[ng-reflect-input-icon="icon-pay_crefopay"] .btn, div.adminActionIcon.icon-pay_crefopay, button.adminButton[data-icon="icon-pay_crefopay"], %icon-pay_crefopay,
+terra-button[ng-reflect-input-icon="icon-pay_debit"] .btn, div.adminActionIcon.icon-pay_debit, button.adminButton[data-icon="icon-pay_debit"], %icon-pay_debit,
+terra-button[ng-reflect-input-icon="icon-pay_ec"] .btn, div.adminActionIcon.icon-pay_ec, button.adminButton[data-icon="icon-pay_ec"], %icon-pay_ec,
+terra-button[ng-reflect-input-icon="icon-pay_eos"] .btn, div.adminActionIcon.icon-pay_eos, button.adminButton[data-icon="icon-pay_eos"], %icon-pay_eos,
+terra-button[ng-reflect-input-icon="icon-pay_expercash"] .btn, div.adminActionIcon.icon-pay_expercash, button.adminButton[data-icon="icon-pay_expercash"], %icon-pay_expercash,
+terra-button[ng-reflect-input-icon="icon-pay_gartenxxl"] .btn, div.adminActionIcon.icon-pay_gartenxxl, button.adminButton[data-icon="icon-pay_gartenxxl"], %icon-pay_gartenxxl,
+terra-button[ng-reflect-input-icon="icon-pay_gimahhot"] .btn, div.adminActionIcon.icon-pay_gimahhot, button.adminButton[data-icon="icon-pay_gimahhot"], %icon-pay_gimahhot,
+terra-button[ng-reflect-input-icon="icon-pay_heidelpay"] .btn, div.adminActionIcon.icon-pay_heidelpay, button.adminButton[data-icon="icon-pay_heidelpay"], %icon-pay_heidelpay,
+terra-button[ng-reflect-input-icon="icon-pay_hitmeister"] .btn, div.adminActionIcon.icon-pay_hitmeister, button.adminButton[data-icon="icon-pay_hitmeister"], %icon-pay_hitmeister,
+terra-button[ng-reflect-input-icon="icon-pay_iclear"] .btn, div.adminActionIcon.icon-pay_iclear, button.adminButton[data-icon="icon-pay_iclear"], %icon-pay_iclear,
+terra-button[ng-reflect-input-icon="icon-pay_iloxx"] .btn, div.adminActionIcon.icon-pay_iloxx, button.adminButton[data-icon="icon-pay_iloxx"], %icon-pay_iloxx,
+terra-button[ng-reflect-input-icon="icon-pay_klarna"] .btn, div.adminActionIcon.icon-pay_klarna, button.adminButton[data-icon="icon-pay_klarna"], %icon-pay_klarna,
+terra-button[ng-reflect-input-icon="icon-pay_masterpayment"] .btn, div.adminActionIcon.icon-pay_masterpayment, button.adminButton[data-icon="icon-pay_masterpayment"], %icon-pay_masterpayment,
+terra-button[ng-reflect-input-icon="icon-pay_meinpaket"] .btn, div.adminActionIcon.icon-pay_meinpaket, button.adminButton[data-icon="icon-pay_meinpaket"], %icon-pay_meinpaket,
+terra-button[ng-reflect-input-icon="icon-pay_neckermann"] .btn, div.adminActionIcon.icon-pay_neckermann, button.adminButton[data-icon="icon-pay_neckermann"], %icon-pay_neckermann,
+terra-button[ng-reflect-input-icon="icon-pay_other"] .btn, div.adminActionIcon.icon-pay_other, button.adminButton[data-icon="icon-pay_other"], %icon-pay_other,
+terra-button[ng-reflect-input-icon="icon-pay_pay_card"] .btn, div.adminActionIcon.icon-pay_pay_card, button.adminButton[data-icon="icon-pay_pay_card"], %icon-pay_pay_card,
+terra-button[ng-reflect-input-icon="icon-pay_paymorrow_new"] .btn, div.adminActionIcon.icon-pay_paymorrow_new, button.adminButton[data-icon="icon-pay_paymorrow_new"], %icon-pay_paymorrow_new,
+terra-button[ng-reflect-input-icon="icon-pay_paymorrow"] .btn, div.adminActionIcon.icon-pay_paymorrow, button.adminButton[data-icon="icon-pay_paymorrow"], %icon-pay_paymorrow,
+terra-button[ng-reflect-input-icon="icon-pay_payolution"] .btn, div.adminActionIcon.icon-pay_payolution, button.adminButton[data-icon="icon-pay_payolution"], %icon-pay_payolution,
+terra-button[ng-reflect-input-icon="icon-pay_payone"] .btn, div.adminActionIcon.icon-pay_payone, button.adminButton[data-icon="icon-pay_payone"], %icon-pay_payone,
+terra-button[ng-reflect-input-icon="icon-pay_paypal_express"] .btn, div.adminActionIcon.icon-pay_paypal_express, button.adminButton[data-icon="icon-pay_paypal_express"], %icon-pay_paypal_express,
+terra-button[ng-reflect-input-icon="icon-pay_paypal_qr"] .btn, div.adminActionIcon.icon-pay_paypal_qr, button.adminButton[data-icon="icon-pay_paypal_qr"], %icon-pay_paypal_qr,
+terra-button[ng-reflect-input-icon="icon-pay_pixmania"] .btn, div.adminActionIcon.icon-pay_pixmania, button.adminButton[data-icon="icon-pay_pixmania"], %icon-pay_pixmania,
+terra-button[ng-reflect-input-icon="icon-pay_plus"] .btn, div.adminActionIcon.icon-pay_plus, button.adminButton[data-icon="icon-pay_plus"], %icon-pay_plus,
+terra-button[ng-reflect-input-icon="icon-pay_postpay"] .btn, div.adminActionIcon.icon-pay_postpay, button.adminButton[data-icon="icon-pay_postpay"], %icon-pay_postpay,
+terra-button[ng-reflect-input-icon="icon-pay_rakuten"] .btn, div.adminActionIcon.icon-pay_rakuten, button.adminButton[data-icon="icon-pay_rakuten"], %icon-pay_rakuten,
+terra-button[ng-reflect-input-icon="icon-pay_ratepay"] .btn, div.adminActionIcon.icon-pay_ratepay, button.adminButton[data-icon="icon-pay_ratepay"], %icon-pay_ratepay,
+terra-button[ng-reflect-input-icon="icon-pay_saferpay"] .btn, div.adminActionIcon.icon-pay_saferpay, button.adminButton[data-icon="icon-pay_saferpay"], %icon-pay_saferpay,
+terra-button[ng-reflect-input-icon="icon-pay_sagepay"] .btn, div.adminActionIcon.icon-pay_sagepay, button.adminButton[data-icon="icon-pay_sagepay"], %icon-pay_sagepay,
+terra-button[ng-reflect-input-icon="icon-pay_santander"] .btn, div.adminActionIcon.icon-pay_santander, button.adminButton[data-icon="icon-pay_santander"], %icon-pay_santander,
+terra-button[ng-reflect-input-icon="icon-pay_shopgate"] .btn, div.adminActionIcon.icon-pay_shopgate, button.adminButton[data-icon="icon-pay_shopgate"], %icon-pay_shopgate,
+terra-button[ng-reflect-input-icon="icon-pay_skrill"] .btn, div.adminActionIcon.icon-pay_skrill, button.adminButton[data-icon="icon-pay_skrill"], %icon-pay_skrill,
+terra-button[ng-reflect-input-icon="icon-pay_sofortueberweisung"] .btn, div.adminActionIcon.icon-pay_sofortueberweisung, button.adminButton[data-icon="icon-pay_sofortueberweisung"], %icon-pay_sofortueberweisung,
+terra-button[ng-reflect-input-icon="icon-pay_wirecard"] .btn, div.adminActionIcon.icon-pay_wirecard, button.adminButton[data-icon="icon-pay_wirecard"], %icon-pay_wirecard,
+terra-button[ng-reflect-input-icon="icon-pay_worldpay"] .btn, div.adminActionIcon.icon-pay_worldpay, button.adminButton[data-icon="icon-pay_worldpay"], %icon-pay_worldpay,
+terra-button[ng-reflect-input-icon="icon-pay_zalando"] .btn, div.adminActionIcon.icon-pay_zalando, button.adminButton[data-icon="icon-pay_zalando"], %icon-pay_zalando,
+terra-button[ng-reflect-input-icon="icon-pay_zentralverkauf"] .btn, div.adminActionIcon.icon-pay_zentralverkauf, button.adminButton[data-icon="icon-pay_zentralverkauf"], %icon-pay_zentralverkauf,
+terra-button[ng-reflect-input-icon="icon-shipping_bilog"] .btn, div.adminActionIcon.icon-shipping_bilog, button.adminButton[data-icon="icon-shipping_bilog"], %icon-shipping_bilog,
+terra-button[ng-reflect-input-icon="icon-shipping_bps"] .btn, div.adminActionIcon.icon-shipping_bps, button.adminButton[data-icon="icon-shipping_bps"], %icon-shipping_bps,
+terra-button[ng-reflect-input-icon="icon-shipping_bvw"] .btn, div.adminActionIcon.icon-shipping_bvw, button.adminButton[data-icon="icon-shipping_bvw"], %icon-shipping_bvw,
+terra-button[ng-reflect-input-icon="icon-shipping_dachser"] .btn, div.adminActionIcon.icon-shipping_dachser, button.adminButton[data-icon="icon-shipping_dachser"], %icon-shipping_dachser,
+terra-button[ng-reflect-input-icon="icon-shipping_db_schenker"] .btn, div.adminActionIcon.icon-shipping_db_schenker, button.adminButton[data-icon="icon-shipping_db_schenker"], %icon-shipping_db_schenker,
+terra-button[ng-reflect-input-icon="icon-shipping_deutschepost"] .btn, div.adminActionIcon.icon-shipping_deutschepost, button.adminButton[data-icon="icon-shipping_deutschepost"], %icon-shipping_deutschepost,
+terra-button[ng-reflect-input-icon="icon-shipping_dhl_packstation"] .btn, div.adminActionIcon.icon-shipping_dhl_packstation, button.adminButton[data-icon="icon-shipping_dhl_packstation"], %icon-shipping_dhl_packstation,
+terra-button[ng-reflect-input-icon="icon-shipping_dhl"] .btn, div.adminActionIcon.icon-shipping_dhl, button.adminButton[data-icon="icon-shipping_dhl"], %icon-shipping_dhl,
+terra-button[ng-reflect-input-icon="icon-shipping_dpd"] .btn, div.adminActionIcon.icon-shipping_dpd, button.adminButton[data-icon="icon-shipping_dpd"], %icon-shipping_dpd,
+terra-button[ng-reflect-input-icon="icon-shipping_ems_garantpost"] .btn, div.adminActionIcon.icon-shipping_ems_garantpost, button.adminButton[data-icon="icon-shipping_ems_garantpost"], %icon-shipping_ems_garantpost,
+terra-button[ng-reflect-input-icon="icon-shipping_ereturn"] .btn, div.adminActionIcon.icon-shipping_ereturn, button.adminButton[data-icon="icon-shipping_ereturn"], %icon-shipping_ereturn,
+terra-button[ng-reflect-input-icon="icon-shipping_esellersfriend"] .btn, div.adminActionIcon.icon-shipping_esellersfriend, button.adminButton[data-icon="icon-shipping_esellersfriend"], %icon-shipping_esellersfriend,
+terra-button[ng-reflect-input-icon="icon-shipping_fedex"] .btn, div.adminActionIcon.icon-shipping_fedex, button.adminButton[data-icon="icon-shipping_fedex"], %icon-shipping_fedex,
+terra-button[ng-reflect-input-icon="icon-shipping_gel_express"] .btn, div.adminActionIcon.icon-shipping_gel_express, button.adminButton[data-icon="icon-shipping_gel_express"], %icon-shipping_gel_express,
+terra-button[ng-reflect-input-icon="icon-shipping_gls"] .btn, div.adminActionIcon.icon-shipping_gls, button.adminButton[data-icon="icon-shipping_gls"], %icon-shipping_gls,
+terra-button[ng-reflect-input-icon="icon-shipping_hbh"] .btn, div.adminActionIcon.icon-shipping_hbh, button.adminButton[data-icon="icon-shipping_hbh"], %icon-shipping_hbh,
+terra-button[ng-reflect-input-icon="icon-shipping_hermes"] .btn, div.adminActionIcon.icon-shipping_hermes, button.adminButton[data-icon="icon-shipping_hermes"], %icon-shipping_hermes,
+terra-button[ng-reflect-input-icon="icon-shipping_ids_logistik"] .btn, div.adminActionIcon.icon-shipping_ids_logistik, button.adminButton[data-icon="icon-shipping_ids_logistik"], %icon-shipping_ids_logistik,
+terra-button[ng-reflect-input-icon="icon-shipping_ilopack"] .btn, div.adminActionIcon.icon-shipping_ilopack, button.adminButton[data-icon="icon-shipping_ilopack"], %icon-shipping_ilopack,
+terra-button[ng-reflect-input-icon="icon-shipping_iloxx"] .btn, div.adminActionIcon.icon-shipping_iloxx, button.adminButton[data-icon="icon-shipping_iloxx"], %icon-shipping_iloxx,
+terra-button[ng-reflect-input-icon="icon-shipping_lkv"] .btn, div.adminActionIcon.icon-shipping_lkv, button.adminButton[data-icon="icon-shipping_lkv"], %icon-shipping_lkv,
+terra-button[ng-reflect-input-icon="icon-shipping_post_at"] .btn, div.adminActionIcon.icon-shipping_post_at, button.adminButton[data-icon="icon-shipping_post_at"], %icon-shipping_post_at,
+terra-button[ng-reflect-input-icon="icon-shipping_pvs_logistik"] .btn, div.adminActionIcon.icon-shipping_pvs_logistik, button.adminButton[data-icon="icon-shipping_pvs_logistik"], %icon-shipping_pvs_logistik,
+terra-button[ng-reflect-input-icon="icon-shipping_rhenus"] .btn, div.adminActionIcon.icon-shipping_rhenus, button.adminButton[data-icon="icon-shipping_rhenus"], %icon-shipping_rhenus,
+terra-button[ng-reflect-input-icon="icon-shipping_selbstabholer"] .btn, div.adminActionIcon.icon-shipping_selbstabholer, button.adminButton[data-icon="icon-shipping_selbstabholer"], %icon-shipping_selbstabholer,
+terra-button[ng-reflect-input-icon="icon-shipping_shippingcenter"] .btn, div.adminActionIcon.icon-shipping_shippingcenter, button.adminButton[data-icon="icon-shipping_shippingcenter"], %icon-shipping_shippingcenter,
+terra-button[ng-reflect-input-icon="icon-shipping_spedition"] .btn, div.adminActionIcon.icon-shipping_spedition, button.adminButton[data-icon="icon-shipping_spedition"], %icon-shipping_spedition,
+terra-button[ng-reflect-input-icon="icon-shipping_swiss_post"] .btn, div.adminActionIcon.icon-shipping_swiss_post, button.adminButton[data-icon="icon-shipping_swiss_post"], %icon-shipping_swiss_post,
+terra-button[ng-reflect-input-icon="icon-shipping_tnt"] .btn, div.adminActionIcon.icon-shipping_tnt, button.adminButton[data-icon="icon-shipping_tnt"], %icon-shipping_tnt,
+terra-button[ng-reflect-input-icon="icon-shipping_trans-o-flex"] .btn, div.adminActionIcon.icon-shipping_trans-o-flex, button.adminButton[data-icon="icon-shipping_trans-o-flex"], %icon-shipping_trans-o-flex,
+terra-button[ng-reflect-input-icon="icon-shipping_ups"] .btn, div.adminActionIcon.icon-shipping_ups, button.adminButton[data-icon="icon-shipping_ups"], %icon-shipping_ups,
+terra-button[ng-reflect-input-icon="icon-shipping_yousellwesend"] .btn, div.adminActionIcon.icon-shipping_yousellwesend, button.adminButton[data-icon="icon-shipping_yousellwesend"], %icon-shipping_yousellwesend,
+terra-button[ng-reflect-input-icon="icon-payment_sepa_pain"] .btn, div.adminActionIcon.icon-payment_sepa_pain, button.adminButton[data-icon="icon-payment_sepa_pain"], %icon-payment_sepa_pain,
+terra-button[ng-reflect-input-icon="icon-dropbox"] .btn, div.adminActionIcon.icon-dropbox, button.adminButton[data-icon="icon-dropbox"], %icon-dropbox
+{
+    border-bottom: var(--button-border-bottom-group-navigation);
+    color: var(--button-text-color-group-navigation);
+    background-color: var(--button-background-color-group-navigation);
+}
+
+terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
+{
+    box-sizing: border-box;
+    background-color: var(--color-group-navigation);
+    color: var(--color-structure-0);
+
+    // Exceptions
+    &.btn-link
+    {
+        border: none;
+    }
+    
+    // Active: Hover, Fokus, Highlight, Aktiv
+    &:hover
+    {
+        background-color: var(--color-group-active) !important;
+        color: var(--color-structure-0) !important;
+    }
+    
+}
+
+terra-button .btn-handler, terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
+{
+    // Disabled: Deaktiviert, Nicht auswählbar
+
+    &.Disabled
+    {
+        background-color: var(--color-group-disabled) !important;
+        color: var(--color-structure-8) !important;
+        opacity: 1 !important;
+        border: none;
+    }
+    
+    &.disabled .btn
+    {
+        background-color: var(--color-group-disabled) !important;
+        color: var(--color-structure-8) !important;
+        opacity: 1 !important;
+        border: none;
     }
 }

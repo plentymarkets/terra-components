@@ -5,11 +5,11 @@ import {
 } from '@angular/core';
 import { TerraStorageObject } from '../model/terra-storage-object';
 import {
-    TerraBaseMetadataStorageService,
     TerraBaseStorageService
 } from '../terra-base-storage.interface';
 import { TerraImageMetadata } from '../model/terra-image-metadata.interface';
 import { isNullOrUndefined } from 'util';
+import { TerraBaseMetadataStorageService } from '../terra-base-metadata-storage.interface';
 
 @Component({
     selector: 'terra-image-preview',
@@ -18,7 +18,14 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraImagePreviewComponent
 {
-    private _translationPrefix:string = 'terraFileBrowser';
+    @Input()
+    public inputStorageService:TerraBaseStorageService;
+
+    protected translationPrefix:string = 'terraFileBrowser';
+
+    protected metadata:TerraImageMetadata = {};
+
+    protected isLoading:boolean = true;
 
     private _inputStorageObject:TerraStorageObject;
 
@@ -26,20 +33,20 @@ export class TerraImagePreviewComponent
     public set inputStorageObject(object:TerraStorageObject)
     {
         this._inputStorageObject = object;
-        this._metadata = {};
-        this._isLoading = true;
+        this.metadata = {};
+        this.isLoading = true;
         if(!isNullOrUndefined(object) && this.inputStorageService && this.inputStorageService instanceof TerraBaseMetadataStorageService)
         {
             this.inputStorageService.getMetadata(object.key).subscribe((data:TerraImageMetadata) =>
             {
-                this._metadata = data;
-                this._isLoading = false;
-                this._changeDetector.detectChanges();
+                this.metadata = data;
+                this.isLoading = false;
+                this.changeDetector.detectChanges();
             });
         }
         else
         {
-            this._isLoading = false;
+            this.isLoading = false;
         }
     }
 
@@ -48,27 +55,20 @@ export class TerraImagePreviewComponent
         return this._inputStorageObject;
     }
 
-    @Input()
-    public inputStorageService:TerraBaseStorageService;
-
-    private get _canHandleMetadata():boolean
+    protected get _canHandleMetadata():boolean
     {
         return this.inputStorageService instanceof TerraBaseMetadataStorageService;
     }
 
-    private _metadata:TerraImageMetadata = {};
-
-    private _isLoading:boolean = true;
-
-    constructor(private _changeDetector:ChangeDetectorRef)
+    constructor(private changeDetector:ChangeDetectorRef)
     {
     }
 
-    private updateMetadata():void
+    protected updateMetadata():void
     {
         if(this.inputStorageService instanceof TerraBaseMetadataStorageService)
         {
-            this.inputStorageService.updateMetadata(this.inputStorageObject.key, this._metadata);
+            this.inputStorageService.updateMetadata(this.inputStorageObject.key, this.metadata);
         }
     }
 }

@@ -18,18 +18,19 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraButtonGroupComponent<D> implements OnInit
 {
-    @Input() parameter:any;
+    @Input()
+    public parameter:any;
 
-    private _buttonList:Array<TerraButtonGroupInterface>;
+    private buttonList:Array<TerraButtonGroupInterface>;
 
-    public constructor(private _terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig<D>)
+    public constructor(private terraNavigatorSplitViewConfig:TerraNavigatorSplitViewConfig<D>)
     {
-        this._buttonList = [];
+        this.buttonList = [];
     }
 
-    ngOnInit()
+    public ngOnInit():void
     {
-        this._terraNavigatorSplitViewConfig.observableUpdateActiveItem
+        this.terraNavigatorSplitViewConfig.observableUpdateActiveItem
             .subscribe((nodes:Array<TerraNavigatorNodeInterface<D>>) =>
             {
                 this.setRecursiveItemActive(nodes);
@@ -38,7 +39,7 @@ export class TerraButtonGroupComponent<D> implements OnInit
         this.parameter.nodes
             .forEach((item:TerraNavigatorNodeInterface<D>) =>
             {
-                let hasChildren = false;
+                let hasChildren:boolean = false;
 
                 if(!isNullOrUndefined(item.children))
                 {
@@ -47,14 +48,14 @@ export class TerraButtonGroupComponent<D> implements OnInit
 
                 let button:TerraButtonGroupInterface = {
                     caption:       item.nodeName,
-                    clickFunction: () =>
+                    clickFunction: ():void =>
                                    {
-                                       this._terraNavigatorSplitViewConfig.openNextLevel(item);
+                                       this.terraNavigatorSplitViewConfig.openNextLevel(item);
 
                                        item.isButtonClicked = true;
 
-                                       this._buttonList
-                                           .forEach((btnItem) =>
+                                       this.buttonList
+                                           .forEach((btnItem:TerraButtonGroupInterface):void =>
                                            {
                                                btnItem.isActive = false;
                                            });
@@ -65,19 +66,19 @@ export class TerraButtonGroupComponent<D> implements OnInit
                     isVisible:     isNullOrUndefined(item.isVisible) || item.isVisible,
                 };
 
-                this._buttonList
+                this.buttonList
                     .push(button);
 
                 if(!isNullOrUndefined(item.nodeIcon))
                 {
-                    this._buttonList[this._buttonList.length - 1].icon = item.nodeIcon;
+                    this.buttonList[this.buttonList.length - 1].icon = item.nodeIcon;
                 }
             });
 
         this.setRecursiveItemActive(this.parameter.nodes);
     }
 
-    private setRecursiveItemActive(list:Array<TerraNavigatorNodeInterface<D>>)
+    private setRecursiveItemActive(list:Array<TerraNavigatorNodeInterface<D>>):void
     {
         list.forEach((item:TerraNavigatorNodeInterface<D>) =>
         {
@@ -85,14 +86,14 @@ export class TerraButtonGroupComponent<D> implements OnInit
             {
                 setTimeout(() =>
                 {
-                    this._terraNavigatorSplitViewConfig
+                    this.terraNavigatorSplitViewConfig
                         .openNextLevel(item);
                 });
 
                 let btn:TerraButtonGroupInterface =
-                    this._buttonList.find((btn:TerraButtonGroupInterface) =>
+                    this.buttonList.find((button:TerraButtonGroupInterface) =>
                     {
-                        return btn.caption === item.nodeName;
+                        return button.caption === item.nodeName;
                     });
 
                 if(!isNullOrUndefined(btn))

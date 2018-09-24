@@ -1,8 +1,483 @@
-# Unreleased
+<a name="2.3.24"></a>
+# 2.3.24 (20.09.2018)
+
+### Bug Fixes
+* **terra-info-box** changed width text content to 100%
+
+<a name="2.3.23"></a>
+# 2.3.23 (19.09.2018)
+
+### Bug Fixes
+* **icons** moved reset to warning-group
+* **icons** moved search to info-group
+* **terra-suggestion-box** fix an issue where the input text was reset after a value was selected and the user typed again
+
+<a name="2.3.22"></a>
+# 2.3.22 (12.09.2018)
+
+### Feature
+* **icons** Added function groups
+
+<a name="2.3.21"></a>
+# 2.3.21 (12.09.2018)
+
+### Bug Fixes
+* **terra-suggestion-box** fixed issue while resetting `selectedValue`
+* **terra-breadcrumbs** fixed an issue where the breadcrumb dropdown would not show on iOS devices.
+* **terra-node-tree** fixed an null pointer.
+* **icons** new icons for login, logout, header, footer, content
+
+<a name="2.3.19"></a>
+# 2.3.19 (05.09.2018)
+
+### Bug Fixes
+* **terra-code-editor** Improve validating custom markup
+* **terra-code-editor** Fix initial check which view should be shown
+* **terra-form** fixed initial evaluation of child scopes inside list entries
+
+<a name="2.3.18"></a>
+# 2.3.18 (31.08.2018)
+
+### Bug Fixes
+* **terra-note-editor** fixed issue for saving notes.
+* **terra-file-browser** fixed issue when used in a multi split view.
+
+<a name="2.3.17"></a>
+# 2.3.17 (31.08.2018)
+
+### Bug Fixes
+* **terra-breadcrumbs** fix context menu position.
+* **terra-breadcrumbs** automatically scroll into view for active breadcrumb.
+* **terra-file-browser** reset the file list when `inputStorageServices` is updated.
+* **terra-form** list fields can reference current list entry in isVisible expressions by the key of the parent field leaded by a '$'-sign (e.g. '$entries')
+
+<a name="2.3.16"></a>
+# 2.3.16 (29.08.2018)
+
+### Bug Fixes
+* **terra-file-list** fixed issue when uploading files using `firefox`.
+* **terra-dynamic-form** adjust horizontal container header layout to the layout of vertical container
+* **terra-dynamic-form** horizontal container gives now equal width to its elements
+
+
+<a name="2.3.15"></a>
+# 2.3.15 (22.08.2018)
+
+### Bug Fixes
+* **terra-suggestion-box** fixed issue with uninitialised `inputListBoxValues`.
+
+<a name="2.3.14"></a>
+# 2.3.14 (22.08.2018)
+
+### Feature
+* **terra-icons** added new icons
+* **terra-form** Improve backward compatibility to **terra-dynamic-form**
+
+### Bug Fixes
+* **terra-code-editor** fixed validation of HTML-tags with multiple attributes
+
+<a name="2.3.13"></a>
+# 2.3.13 (21.08.2018)
+
+### Feature
+* **terra-nested-data-picker** new component terra-nested-data-picker
+
+### Bug Fixes
+* **terra-button** fixed disabled state showing the buttons background color while clicked or focused
+* **terra-suggestion-box** prevent execution of `ngModelChange`-Callback if value changes from `undefined` to `null` or reverse.
+* **terra-breadcrumbs** changed handling to find route by url.
+
+<a name="2.3.12"></a>
+# 2.3.12 (20.08.2018)
+
+### Feature
+* **terra-tag-select** add new component for tag select and deselect with ngModel support
+
+<a name="2.3.11"></a>
+# 2.3.11 (17.08.2018)
+
+### Feature
+* **category-data.interface** && **category-detail-data.interface** extend interfaces since some properties were missing in comparision to the [rest interface](https://developers.plentymarkets.com/rest-doc/category_category/details).
+* **terra-suggestion-box** 
+	* New Output `textInputValueChange` that emits the current text input value
+    * Select a Value from the suggestions if the entered text matches its caption
+    * `selectedValue` is reset if `inputListBoxValues` is updated and the previous selected element is not present anymore
+    * `selectedValue = null` if entered text does not match any of the `inputListBoxValues`
+    * `resetComponentValue`-Method is now deprecated. Use `ngModel` instead to set the value to `null`
+    * `outputValueChanged` is now deprecated. Use `ngModelChange` instead.
+* **terra-form** Added new component to generate forms dynamically from json data.
+    
+### Bug Fixes
+* **terra-split-view** fix for a null pointer. This component is deprecated, please use `TerraMultiSplitViewComponent` instead
+* **terra-color-picker** added border to the input field to provide more contrast for the selected color
+
+<a name="2.3.10"></a>
+# 2.3.10 (09.08.2018)
+
+### Feature
+* **terra-breadcrumbs** added Breadcrumbs using router and routerLink
+
+<a name="2.3.9"></a>
+# 2.3.9 (08.08.2018)
+
+### Bug Fixes
+* **terra-suggestion-box** reset selected value when `inputListBoxValues` is empty
+* **style** fixed scss variables 
+
+<a name="2.3.4"></a>
+# 2.3.4 (02.08.2018)
+
+### Features
+* **terra-icons** added new icons
+* **terra-decimal-validator** added a custom validator to validate decimals
+* **object.helper** added a helper for object operations. First there is only a function to remove keys with an `undefined` or `null` value
+* **number.helper** added a helper for number operations. First there is only a function for correctly rounding.
+* **terra-2-col** reduced two column component to bare necessities
+* **two-column.helper** added a helper for two column component sizing
+* **two-column-mobile.directive** added a  directive for two column mobile handling
+
+#### Bug Fixes
+* **terra-code-editor** added html code validation to check if all tags are closed.
+
+<a name="2.3.3"></a>
+# 2.3.3 (20.07.2018)
+
+### Bug Fixes
+* **terra-dynamic-form** added possibility to change the debounce time
+
+### Features
+* **terra-loading-spinner** added public getter for `isLoading` property, since this information is a global one and can be used in any component to disable elements while a request is pending.
+* **terra-base-service** added public getter for `isLoading` property to be available in every specific service extension.
+
+<a name="2.3.2"></a>
+# 2.3.2 (20.07.2018)
+
+### Feature
+* **terra-download-helper** open document / download in new tab (download-helper)
+* **terra-2-col** added. A lightweight 2 column container.
+* **terra-info-box** 
+	* added the `inputButtonList` input to display buttons using the `TerraButtonInterface`
+	* added the `inputNoWordBreak` input to disable the auto word break if set to true
+* **unit testing** added packages for testing with jasmine framework and karma command line tool
+* **terra-base-service** add `arrayAsArray` (default `false`) parameter to `createUrlSearchParams` function. If set to `true` an array is parsed to an array parameter and not a concatenated string.
+
+### Bug Fixes
+* **terra-button** "flagged" buttons are now also clickable in the yellow corner
+* **terra-file-list** date 'last modified' will be formatted according to the default language 
+* **terra-file-list** not allowed files will not be shown in the file list
+* **terra-query-encoder** new class which implements a custom encoding strategy for query parameters based on angular's [`QueryEncoder`](https://angular.io/api/http/QueryEncoder) using es2015's native [`encodeURIComponent`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)-Method
+* **terra-base-service** using new `terra-query-encoder` to encode query params in `createUrlSearchParams()`
+* **terra-url-params-decorator-service** added deprecation warning to the class since its functionality is fully implemented in the `createUrlSearchParams`-Method of the `terra-base-service`
+
+<a name="2.3.1"></a>
+# 2.3.1 (12.07.2018)
+
+### Features
+* **terra-base-service** correct handling of error status 403
+
+### Bug Fixes
+* **update node-sass** because of a security vulnerability in the previous version
+* **update css-loader** because of a security vulnerability in the previous version
+* **terra-code-editor** code view bug in firefox
+
+<a name="2.3.0"></a>
+# 2.3.0 (10.07.2018)
+
+### Bug Fixes
+* **terra-base-service** remove subscription in `mapRequest()` to make request observables lazy again 
+
+<a name="2.2.25"></a>
+# 2.2.25 (04.07.2018)
+
+### Bug Fixes
+* **terra-button** enable button click again
+
+<a name="2.2.24"></a>
+# 2.2.24 (04.07.2018)
+
+### Bug Fixes
+* **terra-button** stop event propagation on click
+* **terra-data-table** add missing "isFlagged" attribute for buttons in buttoncells
+* **terra-simple-table** added missing alignment of cell text
+
+<a name="2.2.23"></a>
+# 2.2.23 (04.07.2018)
+
+### Features
+* **terra-code-editor** added new component for `html` code editing
+* **terra-dynamic-form** added terra-code-editor
+
+### Bug Fixes
+* **terra-node-tree** optimized search with observable
+* **context-menu** context menu cannot be open
+* **terra-multi-check-box** states of checkbox had not been set initial
+
+<a name="2.2.20"></a>
+# 2.2.20 (26.06.2018)
+
+### Features
+* **terra-card** render div for image only if imagePath or placeholder icon is set
+
+
+<a name="2.2.18"></a>
+# 2.2.18 (21.06.2018)
+
+### Bug Fixes
+* **terra-file-picker** fixed bug with empty initialising on ngModel
+* **terra-node-tree** fixed issues with visibility of nodes in search
+* **terra-portlet** fixed issues with dropdowns being cut off in collapsable portlets.
+* **terra-info-box** fixed width when there are no buttons set
+
+### Features
+* **terra-note-editor** added code view
+* **terra-dynamic-switch** added terra-note-editor
+* **terra-dynamic-form** added terra-note-editor
+* **custom tslint rules** added rules to prevent leading underscores, set maximum block depth and restrict getter and setter
+* **terra-file-chooser** added reset button to file chooser
+
+<a name="2.2.16"></a>
+# 2.2.16 (12.06.2018)
+
+### Features
+* **terra-download-helper** added method `downloadFileFromUrl`, which downloads a file from a given url.
+* **converter-helper** remove injectable decorator and replace localeService parameter with the default locale
+* updated the component examples of 
+	* **terra-button-with-options**  	
+	* **terra-note-editor**
+	* **terra-syntax-editor** 
+	* **terra-filter** 
+	* **terra-color-picker**
+	* **terra-info-box** 
+	* **terra-tag** 
+	* **terra-tag-list**
+
+### Bug Fixes
+* **terra-select-box** avoid multipe trigger of value change event if value is the same
+
+<a name="2.2.15"></a>
+# 2.2.15 (06.06.2018)
+
+### Features
+* **terra-text-area-input** component has now an initial height of 4 rows and is vertical resizeable.
+This feature can be disabled by setting the input `inputHasFixedHeight` to true.
+* **terra-time-picker** created new terra-time-picker component
+
+### Bug Fixes
+* **terra-suggestion-box** dropdown closes if user clicked on other suggestion box 
+
+<a name="2.2.13"></a>
+# 2.2.13 (28.05.2018)
+
+### Features
+* **terra-multi-split-view** added routing functionality. You are now able to navigate to a view by a specific url. This feature can be enabled by setting the component's input <code>inputHasRouting</code> to true and passing a routing config to the split view using its config's property <code>routingConfig</code>.
+
+### Bug Fixes
+* **terra-text-input**
+	- changed color of text input with readonly attribute
+	- rearranged style selectors to match native html attributes
+
+<a name="2.2.12"></a>
+# 2.2.12 (17.05.2018)
+
+### Features
+* **url.helper** add new functions `removeFragment`, `removeQueryParams` and `getCleanUrl`
+* **query-param.helper** added with `appendQueryParamsToUrl` and `getQueryParamString` functions
+
+<a name="2.2.11"></a>
+# 2.2.11 (16.05.2018)
+
+### Features
+* **alerts** restyled alerts & changed min/max-width for alert-panel
+* **file-browser** restyled file-browser
+* **terra-color-picker** restyled terra-color-picker
+* **terra-overlay** changed the background-color of overlays to grey like all the other content-areas
+* **terra-portlet** added the possibility to stack portlets in portlets
+
+### Bug Fixes
+* **breadcrumbs** fixed issues with background-color of breadcrumbs
+* **text-area** fixed broken text-area
+* **terra-simple-table** fixed issues with [fixedHeader]-class 
+
+<a name="2.2.10"></a>
+# 2.2.10 (16.05.2018)
+
+### Bug Fixes
+* **terra-categroy-picker** fixed error with initial loading of category picker in dynamic form
+
+<a name="2.2.7"></a>
+# 2.2.7 (14.05.2018)
+
+### Bug Fixes
+* **terra-multi-split-view** fixed error with side scroller
+
+<a name="2.2.6"></a>
+# 2.2.6 (09.05.2018)
+
+### Bug Fixes
+* **category-picker** fixed error with the reset button
+
+### Feature
+* **download-helper** added download helper for downloads from the backend
+
+<a name="2.2.5"></a>
+# 2.2.5 (04.05.2018)
+
+### Feature
+* **terra-multi-split-view** set input inputComponentRoute deprecated. It is no longer needed.
+
+### Bug Fixes
+* **terra-converter-helper** updated a used pipe after the angular update
+
+<a name="2.2.4"></a>
+# 2.2.4 (03.05.2018)
+
+### Feature
+* **terra-select-box** fixed null pointer when <code>selectedValue</code> was undefined
+
+<a name="2.2.3"></a>
+# 2.2.3 (02.05.2018)
+
+### Feature
+* **string-helper** new helper for strings
+
+### Bug Fixes
+* **terra-text-input** changed color of text input with readonly attribute
+* **terra-dynamic-form** added tooltip for category picker
+* **terra-category-picker** added input for tooltip
+
+<a name="2.2.2"></a>
+# 2.2.2 (25.04.2018)
+
+### Bug Fixes
+* **terra-base-toolbar** fixed z-Index in toolbars that caused overlapping issues
+
+<a name="2.2.1"></a>
+# 2.2.1 (24.04.2018)
+
+### Bug Fixes
+* **themes** theming restructuring
+
+## Feature
+* **terra-file-chooser** Added new component to open file-browser directly via a button without input element.
+
+<a name="2.2.0"></a>
+# 2.2.0 (24.04.2018)
+ 
+### Minor changes
+* **Update Angular** to Version 5.2.10 and all other packages, except bootstrap, to newest version
+
+
+<a name="2.1.69-zlk"></a>
+# 2.1.69-zlk (24.04.2018)
+### Bug Fixes
+* **themes** fixed bug with variable definitions
+
+<a name="2.1.67-zlk"></a>
+# 2.1.67-zlk (20.04.2018)
+### Bug Fixes
+ **terra-category-picker** fixed a bug with empty category details
+ 
+## Feature
+ **themes** added theme functionality, removed all scss variables, replaced with css variables
+
+<a name="2.1.66-zlk"></a>
+# 2.1.66-zlk (16.04.2018)
+
+### Feature
+* **terra-note-editor** added public method <code>focus</code>, to be able to set the focus to the text-area of the editor.
+
+### Feature
+* **terra-dynamic-form** add input `inputAllowedExtensions` to the file input form field
+
+### Bug Fixes
+* **terra-dynamic-form** fix issue with nested containers
+* **terra-pager** adjusted width of current page input
+* **terra-category-picker** enabled the display of container categories
+
+<a name="2.1.65-zlk"></a>
+# 2.1.65-zlk (05.04.2018)
+
+### Feature
+* **terra-multi-split-view** added routing functionality. You can now handle view addition/selection via routes. This feature is activated by setting the component's input `inputHasRouting`. Use the config's property `routingConfig` to pass in your routing configuration. 
+* **terra-multi-check-box.interface** property `selected` is now optional
+
+### Bug Fixes
+* **terra-multi-split-view** fix reoccurring "Cannot read property 'getBoundingClientRect' of undefined" error
+* **terra-data-table** fix issue where TerraRefTypeEnum is undefined in the template
+
+<a name="2.1.64-zlk"></a>
+# 2.1.64-zlk (28.03.2018)
+
+### Bug Fixes
+* **terra-dynamic-form** remove inner portlet
+
+<a name="2.1.63-zlk"></a>
+# 2.1.63-zlk (27.03.2018)
+
+### Bug Fixes
+* **terra-suggestion-box**  fix issue with value handling and add TerraBaseData as possible value (in addition to number and string)
+
+<a name="2.1.62-zlk"></a>
+# 2.1.62-zlk (26.03.2018)
+
+### Bug Fixes
+* **terra-multi-split-view**  fix issue when view inputs contain circular references
+
+<a name="2.1.61-zlk"></a>
+# 2.1.61-zlk (23.03.2018)
+
+### Feature
+* **terra-tag** add Styling for menu entry tag in terra-tag component
+* **terra-dynamic-form** new component to pick a color 
+* **terra-dynamic-form** callback function for value changed
+* **terra-dynamic-form** added input for portlet usage in <code>TerraDynamicSwitch</code>, default is <code>true</code>
+* **terra-dynamic-switch** 
+	- added input for portlet usage, default is <code>true</code>
+	- using portlet when type is <code>TerraFormFieldVerticalContainer</code>
+
+<a name="2.1.60-zlk"></a>
+# 2.1.60-zlk (22.03.2018)
+
+### Feature
+* **terra-multi-check-box** new component equal to *terra-multi-select-box* but with correct ngModel two way data binding
+* **terra-multi-select-box** this component is now deprecated and will be removed in the next major release
+* **terra-category-picker** new component to comfortable select a category using the **terra-node-tree**
+
+<a name="2.1.58-zlk"></a>
+# 2.1.58-zlk (20.03.2018)
+
+### Bug Fixes
+* **terra-multi-split-view** fixed multi split view breadcrumb event emitter
+* **terra-file-list** added multiple selection to file input
+
+<a name="2.1.57-zlk"></a>
+# 2.1.57-zlk (12.03.2018)
+
+### Feature
+* **models** added new interfaces for key value (TerraKeyValueInterface & TerraKeyValuePairInterface)
+
+### Bug Fixes
+* **terra-base-service** prevent requests with empty params
+* **terra-checkbox-tree** appends parents to leaf list on every change
+
+<a name="2.1.56-zlk"></a>
+# 2.1.56-zlk (08.03.2018)
+
+### Feature
+* **terra-data-table** added new ref-type 'function'.
+
+<a name="2.1.55-zlk"></a>
+# 2.1.55-zlk (06.03.2018)
 
 ### Feature
 * **url-helper** new component that offers methods to edit urls
 * **terra-multi-split-view** inject router instead of passing it via the input `inputRouter`.
+* **terra-placement-enum** new enum with dedicated strings for placement of e.g. tooltips
+* **terra-portlet** if the portlet is collapsable and unfolded, its header is now grey.
+* **terra-data-table** replace underline text decoration of phone and email links with blue color highlighting.
+
+### Bug Fixes
+* **terra-data-table** hide no-results-notice when request is pending
 
 <a name="2.1.47-zlk"></a>
 # 2.1.47-zlk (06.02.2018)
@@ -71,7 +546,7 @@
 
 ### Bug Fixes
 * **terra-text-input** **terra-number-input** **terra-double-input** **terra-select-box** **terra-date-picker** Fixed false cursor style
-* **input components** edit input scss for disabled components. Changed border-color from $grey-3 to $grey-5
+* **input components** edit input scss for disabled components. Changed border-color from var(--color-structure-3) to var(--color-structure-5)
 * **terra-checkbox** fix issue with missing unique IDs
 
 ### Feature
