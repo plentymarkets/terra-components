@@ -5029,7 +5029,7 @@ terra-button[ng-reflect-input-icon="icon-search_apply"] .btn, div.adminActionIco
     --function-group-color: var(--color-group-add);
     border-bottom: var(--button-border-bottom-group-add);
     color: var(--button-text-color-group-add);
-    background-color: var(--color-structure-9);
+    background-color: var(--button-background-color-group-add);
 }
 
 // Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen, Problem
@@ -5048,7 +5048,7 @@ terra-button[ng-reflect-input-icon="icon-telephone_hangup"] .btn, div.adminActio
     --function-group-color: var(--color-group-alert);
     border-bottom: var(--button-border-bottom-group-alert);
     color: var(--button-text-color-group-alert);
-    background-color: var(--color-structure-9);
+    background-color: var(--button-background-color-group-alert);
 }
 
 // Action: Bearbeiten, Kopieren, Einfügen, Ausschneiden, Umwandeln, Transformieren, Ändern, Trennen, Splitten, Verbinden, Verknüpfen
@@ -5137,7 +5137,7 @@ terra-button[ng-reflect-input-icon="icon-box_plus_disabled"] .btn, div.adminActi
     --function-group-color: var(--color-group-action);
     border-bottom: var(--button-border-bottom-group-action);
     color: var(--button-text-color-group-action);
-    background-color: var(--color-structure-9);
+    background-color: var(--button-background-color-group-action);
 }
 
 // Warning: Warnung, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
@@ -5150,7 +5150,7 @@ terra-button[ng-reflect-input-icon="icon-reset_32"] .btn, div.adminActionIcon.ic
     --function-group-color: var(--color-group-warning);
     border-bottom: var(--button-border-bottom-group-warning);
     color: var(--button-text-color-group-warning);
-    background-color: var(--color-structure-9);
+    background-color: var(--button-background-color-group-warning);
 }
 
 // Info: Vorschau, Anzeigen, Information
@@ -5263,7 +5263,7 @@ terra-button[ng-reflect-input-icon="icon-search"] .btn, div.adminActionIcon.icon
     --function-group-color: var(--color-group-info);
     border-bottom: var(--button-border-bottom-group-info);
     color: var(--button-text-color-group-info);
-    background-color: var(--color-structure-9);
+    background-color: var(--button-background-color-group-info);
 }
 
 // Transfer: Senden (E-Mail), Verschicken, Drucken, Download, Herunterladen, Export, Upload, Datei auswählen, Import
@@ -5287,7 +5287,7 @@ terra-button[ng-reflect-input-icon="icon-ticket_link"] .btn, div.adminActionIcon
     --function-group-color: var(--color-group-transfer);
     border-bottom: var(--button-border-bottom-group-transfer);
     color: var(--button-text-color-group-transfer);
-    background-color: var(--color-structure-9);
+    background-color: var(--button-background-color-group-transfer);
 }
 
 /* Navigation:
@@ -5473,7 +5473,7 @@ terra-button[ng-reflect-input-icon="icon-ticket_folder_move"] .btn, div.adminAct
     --function-group-color: var(--color-group-navigation);
     border-bottom: var(--button-border-bottom-group-navigation);
     color: var(--button-text-color-group-navigation);
-    background-color: var(--color-structure-9);
+    background-color: var(--button-background-color-group-navigation);
 }
 
 // Brand
@@ -5584,7 +5584,7 @@ terra-button[ng-reflect-input-icon="icon-dropbox"] .btn, div.adminActionIcon.ico
     --function-group-color: var(--color-group-navigation);
     border-bottom: var(--button-border-bottom-group-navigation);
     color: var(--button-text-color-group-navigation);
-    background-color: var(--color-structure-9);
+    background-color: var(--button-background-color-group-navigation);
 }
 
 terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
