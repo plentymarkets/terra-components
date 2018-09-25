@@ -5033,12 +5033,6 @@ terra-button[ng-reflect-input-icon="icon-search_apply"] .btn, div.adminActionIco
     background-color: var(--color-structure-9);
 }
 
-// temporary group for "+"-icon
-terra-button[ng-reflect-input-icon="icon-add"] .btn, div.adminActionIcon.icon-add, button.adminButton[data-icon="icon-add"], %icon-add
-{
-    background-color: var(--color-group-add);
-}
-
 // Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen, Problem
 terra-button[ng-reflect-input-icon="icon-gutschrift_stornieren"] .btn, div.adminActionIcon.icon-gutschrift_stornieren, button.adminButton[data-icon="icon-gutschrift_stornieren"], %icon-gutschrift_stornieren,
 terra-button[ng-reflect-input-icon="icon-icon-reversal_document-13"] .btn, div.adminActionIcon.icon-icon-reversal_document-13, button.adminButton[data-icon="icon-icon-reversal_document-13"], %icon-icon-reversal_document-13,
