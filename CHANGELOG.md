@@ -3,6 +3,7 @@
 
 ### Bug Fixes 
 * **button-group** fixed styles
+* **terra-button** updated functiongroup selector
 
 <a name="2.3.24"></a>
 # 2.3.24 (20.09.2018)
