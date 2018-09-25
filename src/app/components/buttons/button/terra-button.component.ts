@@ -108,7 +108,7 @@ export class TerraButtonComponent
      * Default false
      */
     @Input()
-    public inputIsCritical:boolean;
+    public inputIsMajor:boolean;
 
     @Output()
     public outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
@@ -126,9 +126,8 @@ export class TerraButtonComponent
         this.inputIsLink = false;
         this.inputIsDisabled = false;
         this.inputIsHighlighted = false;
-        this.inputIsCritical = false;
+        this.inputIsMajor = false;
         this.currentTooltipPlacement = this.inputTooltipPlacement;
-
     }
 
     private click(event:Event):void
