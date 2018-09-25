@@ -1,18 +1,26 @@
-<a name="unreleased"></a>
-# Unreleased
+<a name="3.0.0-beta.4"></a>
+# 3.0.0-beta.4 (20.09.2018)
+* **terra-file-browser** fixed issue when uploading a file
 
-### Bug Fixes 
-* **button-group** fixed styles
-* **terra-button** updated functiongroup selector
-
-### Feature
-* **terra-button** added input `inputIsMajor`. It is used for the primary button in a view (for example delete customer). If true the button gets fully colored.
-
-<a name="2.3.24"></a>
-# 2.3.24 (20.09.2018)
+<a name="3.0.0-beta.3"></a>
+# 3.0.0-beta.3 (19.09.2018)
 
 ### Bug Fixes
-* **terra-info-box** changed width text content to 100%
+* **terra-data-table** add initialisation for private row list properties
+
+<a name="3.0.0-beta.2"></a>
+# 3.0.0-beta.2 (19.09.2018)
+Adapted Changes from v2.3.23
+
+<a name="3.0.0-beta.1"></a>
+# 3.0.0-beta.1 (13.09.2018)
+Adapted Changes from v2.3.21 and v2.3.22
+
+<a name="3.0.0-beta.0"></a>
+# 3.0.0-beta.0 (11.09.2018)
+
+### Breaking Changes
+* **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
 
 <a name="2.3.23"></a>
 # 2.3.23 (19.09.2018)

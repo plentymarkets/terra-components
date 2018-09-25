@@ -364,7 +364,11 @@ fieldset[disabled] a.btn
 
 :host-context(.btn-group)
 {
-    font-size: 4px;
+    float: left;
+    &:not(:first-child) .btn
+    {
+        border-left: 1px solid var(--color-structure-0);
+    }
     
     &:first-child
     {
