@@ -17,9 +17,8 @@ import { Subject } from 'rxjs/Subject';
 })
 export class TerraPagerComponent implements OnInit
 {
-
     @Input()
-    public inputPagingData:TerraPagerInterface<any>;
+    public inputPagingData:TerraPagerInterface;
 
     @Input()
     public inputDefaultPagingSize:number;
@@ -31,7 +30,7 @@ export class TerraPagerComponent implements OnInit
     public inputRequestPending:boolean;
 
     @Output()
-    public outputDoPaging:EventEmitter<TerraPagerInterface<any>> = new EventEmitter<TerraPagerInterface<any>>();
+    public outputDoPaging:EventEmitter<TerraPagerInterface> = new EventEmitter<TerraPagerInterface>();
 
     private pagingClicks:Subject<any> = new Subject();
 
@@ -41,7 +40,7 @@ export class TerraPagerComponent implements OnInit
 
     public ngOnInit():void
     {
-        this.pagingClicks.debounceTime(500).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
+        this.pagingClicks.debounceTime(500).subscribe((e:TerraPagerInterface) => this.outputDoPaging.emit(e));
 
         if(!this.inputDefaultPagingSize)
         {

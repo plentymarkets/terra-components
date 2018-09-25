@@ -166,9 +166,9 @@ export class TerraUploadQueue
 
     private onProgress():void
     {
-        let filesUploaded:Array<TerraUploadItem> = this.items.filter((item:TerraUploadItem) => item.uploaded);
+        let filesUploaded:Array<TerraUploadItem> = this.items.filter( (item:TerraUploadItem) => item.uploaded);
         let sizeUploaded:number = filesUploaded
-            .map((item:TerraUploadItem) => item.file.size)
+            .map( (item:TerraUploadItem) => item.file.size)
             .reduce((prev:number, current:number) => prev + current, 0);
 
         let progress:number = 100 - Math.round(((this.size - sizeUploaded) / this.size) * 100);
@@ -180,11 +180,11 @@ export class TerraUploadQueue
 
 
         this.status.next({
-            filesTotal:    this.items.length,
+            filesTotal: this.items.length,
             filesUploaded: filesUploaded.length,
-            sizeTotal:     this.size,
-            sizeUploaded:  sizeUploaded,
-            progress:      progress
+            sizeTotal: this.size,
+            sizeUploaded: sizeUploaded,
+            progress: progress
         });
     }
 

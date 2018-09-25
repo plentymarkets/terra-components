@@ -12,13 +12,15 @@ import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface'
 import { CategoryDataInterface } from './data/category-data.interface';
 import { CategoryDetailDataInterface } from './data/category-detail-data.interface';
 import { isNullOrUndefined } from 'util';
+import { CategoryPagerDataInterface } from './data/category-pager-data.interface';
 import { CategoryValueInterface } from './data/category-value.interface';
 import { Observable } from 'rxjs/Observable';
 import { TerraNestedDataPickerComponent } from '../nested-data-picker/terra-nested-data-picker.component';
 import { NestedDataTreeConfig } from '../nested-data-picker/config/nested-data-tree.config';
-import { NestedDataInterface } from '../nested-data-picker/data/nested-data.interface';
-import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
-import { TerraNodeTreeConfig } from '../tree/node-tree/data/terra-node-tree.config';
+import {
+    NestedDataInterface,
+    TerraNodeTreeConfig
+} from '../../..';
 
 @Component({
     selector:  'terra-category-picker',
@@ -172,14 +174,14 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
 
     private getCategoriesByParentId(parentId:number | string):() => Observable<any>
     {
-        return ():Observable<TerraPagerInterface<CategoryDataInterface>> => this.getCategories(parentId);
+        return ():Observable<CategoryPagerDataInterface> => this.getCategories(parentId);
     }
 
-    private getCategories(parentId:number | string):Observable<TerraPagerInterface<CategoryDataInterface>>
+    private getCategories(parentId:number | string):Observable<CategoryPagerDataInterface>
     {
-        let obs:Observable<TerraPagerInterface<CategoryDataInterface>> = this.inputCategoryService.requestCategoryData(parentId);
+        let obs:Observable<CategoryPagerDataInterface> = this.inputCategoryService.requestCategoryData(parentId);
 
-        obs.subscribe((data:TerraPagerInterface<CategoryDataInterface>) =>
+        obs.subscribe((data:CategoryPagerDataInterface) =>
         {
             this.addNodes(data, parentId);
         });
@@ -268,7 +270,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
             id = parentNode.id;
         }
 
-        this.inputCategoryService.requestCategoryData(id).subscribe((data:TerraPagerInterface<CategoryDataInterface>) =>
+        this.inputCategoryService.requestCategoryData(id).subscribe((data:CategoryPagerDataInterface) =>
         {
             if(isNullOrUndefined(parentNode))
             {

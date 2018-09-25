@@ -95,7 +95,7 @@ export class TerraUploadItem
             'onCancel',
             'onProgress'].indexOf(event) >= 0)
         {
-            this[event + 'List'].forEach((callback:(...args:Array<any>) => void) =>
+            this['_' + event].forEach((callback:(...args:Array<any>) => void) =>
             {
                 callback(...args);
             });

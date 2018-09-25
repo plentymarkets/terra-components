@@ -3,122 +3,120 @@ import { Observable } from 'rxjs/Observable';
 import { isNullOrUndefined } from 'util';
 import { NestedDataInterface } from '../../../nested-data-picker/data/nested-data.interface';
 import { TerraNestedDataPickerBaseService } from '../../../nested-data-picker/service/terra-nested-data-picker-base.service';
-import { of } from 'rxjs/observable/of';
-import { TerraPagerInterface } from '../../../pager/data/terra-pager.interface';
-
+import { Observer } from 'rxjs';
+import { NestedPagerDataInterface } from '../../data/nested-pager-data.interface';
 @Injectable()
 export class NestedPickerExampleService extends TerraNestedDataPickerBaseService<{}>
 {
-    public parents:TerraPagerInterface<NestedDataInterface<any>> = {
-        entries:        [
+    public parents:NestedPagerDataInterface = {
+        entries:[
             {
-                id:          1,
+                id:1,
                 hasChildren: true,
-                details:     [
+                details:[
                     {
-                        detailId: 1,
-                        name:     'Parent 1'
+                        detailId:1,
+                        name:'Parent 1'
                     }
                 ]
             },
             {
-                id:          2,
+                id:2,
                 hasChildren: true,
-                details:     [
+                details:[
                     {
-                        detailId: 2,
-                        name:     'Parent 2'
+                        detailId:2,
+                        name:'Parent 2'
                     }
                 ]
             },
             {
-                id:          3,
+                id:3,
                 hasChildren: true,
-                details:     [
+                details:[
                     {
-                        detailId: 3,
-                        name:     'Parent 3'
+                        detailId:3,
+                        name:'Parent 3'
                     }
                 ]
             }
         ],
-        firstOnPage:    1,
-        isLastPage:     true,
-        itemsPerPage:   50,
-        lastOnPage:     3,
-        lastPageNumber: 1,
-        page:           1,
-        totalsCount:    3
+        firstOnPage:1,
+        isLastPage:true,
+        itemsPerPage:50,
+        lastOnPage:3,
+        lastPageNumber:1,
+        page:1,
+        totalsCount:3
     };
 
-    public children:TerraPagerInterface<NestedDataInterface<any>> = {
-        entries:        [
+    public childs:NestedPagerDataInterface = {
+        entries:[
             {
-                id:       1,
+                id:1,
                 parentId: 1,
-                details:  [
+                details:[
                     {
-                        detailId: 1,
-                        name:     'Child 1'
+                        detailId:1,
+                        name:'Child 1'
                     }
                 ]
             },
             {
-                id:       2,
+                id:2,
                 parentId: 1,
-                details:  [
+                details:[
                     {
-                        detailId: 1,
-                        name:     'Child 2'
+                        detailId:1,
+                        name:'Child 2'
                     }
                 ]
             },
             {
-                id:       3,
+                id:3,
                 parentId: 2,
-                details:  [
+                details:[
                     {
-                        detailId: 2,
-                        name:     'Child 3'
+                        detailId:2,
+                        name:'Child 3'
                     }
                 ]
             },
             {
-                id:       4,
+                id:4,
                 parentId: 3,
-                details:  [
+                details:[
                     {
-                        detailId: 3,
-                        name:     'Child 4'
+                        detailId:3,
+                        name:'Child 4'
                     }
                 ]
             }
         ],
-        firstOnPage:    1,
-        isLastPage:     true,
-        itemsPerPage:   50,
-        lastOnPage:     3,
-        lastPageNumber: 1,
-        page:           1,
-        totalsCount:    3
+        firstOnPage:1,
+        isLastPage:true,
+        itemsPerPage:50,
+        lastOnPage:3,
+        lastPageNumber:1,
+        page:1,
+        totalsCount:3
     };
-
-    public requestNestedData(parentId:string | number):Observable<TerraPagerInterface<NestedDataInterface<any>>>
+    public requestNestedData(parentId:string | number):Observable<NestedPagerDataInterface>
     {
-        let data:TerraPagerInterface<NestedDataInterface<any>> = this.parents;
+        let data:NestedPagerDataInterface;
         if(!isNullOrUndefined(parentId))
         {
             data = {
-                entries:        [],
-                firstOnPage:    1,
-                isLastPage:     true,
-                itemsPerPage:   50,
-                lastOnPage:     3,
-                lastPageNumber: 1,
-                page:           1,
-                totalsCount:    3
+                entries:[],
+                firstOnPage:1,
+                isLastPage:true,
+                itemsPerPage:50,
+                lastOnPage:3,
+                lastPageNumber:1,
+                page:1,
+                totalsCount:3
             };
-            this.children.entries.forEach((child:NestedDataInterface<any>) =>
+            this.childs.entries.forEach((child:NestedDataInterface<{}>) =>
             {
                 if(child.parentId === parentId)
                 {
@@ -126,29 +124,41 @@ export class NestedPickerExampleService extends TerraNestedDataPickerBaseService
                 }
             });
         }
-
-        return of(data);
+        else
+        {
+            data = this.parents;
+        }
+        return Observable.create((observer:Observer<NestedPagerDataInterface>) =>
+        {
+            observer.next(data);
+            observer.complete();
+        });
     }
 
-    public requestNestedDataById(id:number):Observable<TerraPagerInterface<NestedDataInterface<any>>>
+    public requestNestedDataById(id:number):Observable<NestedPagerDataInterface>
     {
-        let children:TerraPagerInterface<{}> = {
-            entries:        [],
-            firstOnPage:    1,
-            isLastPage:     true,
-            itemsPerPage:   50,
-            lastOnPage:     3,
-            lastPageNumber: 1,
-            page:           1,
-            totalsCount:    3
+        let childs:NestedPagerDataInterface;
+        childs = {
+            entries:[],
+            firstOnPage:1,
+            isLastPage:true,
+            itemsPerPage:50,
+            lastOnPage:3,
+            lastPageNumber:1,
+            page:1,
+            totalsCount:3
         };
-        this.children.entries.forEach((child:NestedDataInterface<any>) =>
+        this.childs.entries.forEach((child:NestedDataInterface<{}>) =>
         {
             if(child.parentId === id)
             {
-                children.entries.push(child);
+                childs.entries.push(child);
             }
         });
-        return of(children);
+        return Observable.create((observer:Observer<NestedPagerDataInterface>) =>
+        {
+            observer.next(childs);
+            observer.complete();
+        });
     }
 }

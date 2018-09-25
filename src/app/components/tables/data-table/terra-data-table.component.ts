@@ -62,7 +62,7 @@ import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
         ])
     ]
 })
-export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface<D>> implements OnChanges
+export class TerraDataTableComponent<S extends TerraBaseService, D extends TerraBaseData, I extends TerraPagerInterface> implements OnChanges
 {
     @ViewChild('viewChildHeaderCheckbox')
     public viewChildHeaderCheckbox:TerraCheckboxComponent;
@@ -98,7 +98,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     public inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
 
     @Output()
-    public outputDoPagingEvent:EventEmitter<TerraPagerInterface<D>> = new EventEmitter<TerraPagerInterface<D>>();
+    public outputDoPagingEvent:EventEmitter<TerraPagerInterface> = new EventEmitter<TerraPagerInterface>();
 
     @Output()
     public outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<D>> = new EventEmitter();
@@ -107,7 +107,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     public outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<D>>> = new EventEmitter();
 
     public headerList:Array<TerraDataTableHeaderCellInterface>;
-    public pagingData:TerraPagerInterface<D>;
+    public pagingData:TerraPagerInterface;
     public pagingSize:Array<TerraSelectBoxValueInterface>;
     public onSuccessFunction:(res:I) => void;
     public defaultPagingSize:number;
@@ -119,8 +119,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     protected langPrefix:string = 'terraDataTable';
     protected requestPending:boolean;
 
-    private _rowList:Array<TerraDataTableRowInterface<D>> = [];
-    private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
+    private _rowList:Array<TerraDataTableRowInterface<D>>;
+    private _selectedRowList:Array<TerraDataTableRowInterface<D>>;
 
     /**
      * @deprecated
@@ -134,6 +134,9 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         this.inputHasCheckboxes = true;
         this.inputHasInitialLoading = false;
         this.inputHasPager = true;
+
+        this._selectedRowList = [];
+        this._rowList = [];
     }
 
     public get rowList():Array<TerraDataTableRowInterface<D>>
@@ -353,7 +356,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         return this._selectedRowList;
     }
 
-    public doPaging(pagerData:TerraPagerInterface<D>):void
+    public doPaging(pagerData:TerraPagerInterface):void
     {
         this.outputDoPagingEvent.emit(pagerData);
 
