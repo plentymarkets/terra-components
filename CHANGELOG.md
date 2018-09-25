@@ -4,6 +4,9 @@
 ### Bug Fixes 
 * **button-group** fixed styles
 
+### Feature
+* **terra-button** added input `inputIsMajor`. It is used for the primary button in a view (for example delete customer). If true the button gets fully colored.
+
 <a name="2.3.24"></a>
 # 2.3.24 (20.09.2018)
 
