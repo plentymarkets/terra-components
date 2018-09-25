@@ -78,7 +78,6 @@
                 {
                     position: fixed;
                     width: 150px;
-                    top: calc(var(--breadcrumbs-height) + var(--navbar-height) + var(--tabbar-height) - var(--space-sm));
                     transition: all var(--transition-0);
                     transition-delay: var(--transition-delay-0);
                     li
