@@ -5026,9 +5026,11 @@ terra-button[ng-reflect-input-icon="icon-create"] .btn, div.adminActionIcon.icon
 terra-button[ng-reflect-input-icon="icon-ticket-create"] .btn, div.adminActionIcon.icon-ticket-create, button.adminButton[data-icon="icon-ticket-create"], %icon-ticket-create,
 terra-button[ng-reflect-input-icon="icon-search_apply"] .btn, div.adminActionIcon.icon-search_apply, button.adminButton[data-icon="icon-search_apply"], %icon-search_apply
 {
+
+    --function-group-color: var(--color-group-add);
     border-bottom: var(--button-border-bottom-group-add);
     color: var(--button-text-color-group-add);
-    background-color: var(--button-background-color-group-add);
+    background-color: var(--color-structure-9);
 }
 
 // temporary group for "+"-icon
@@ -5050,9 +5052,10 @@ terra-button[ng-reflect-input-icon="icon-problem"] .btn, div.adminActionIcon.ico
 terra-button[ng-reflect-input-icon="icon-reorder_not_possible"] .btn, div.adminActionIcon.icon-reorder_not_possible, button.adminButton[data-icon="icon-reorder_not_possible"], %icon-reorder_not_possible,
 terra-button[ng-reflect-input-icon="icon-telephone_hangup"] .btn, div.adminActionIcon.icon-telephone_hangup, button.adminButton[data-icon="icon-telephone_hangup"], %icon-telephone_hangup
 {
+    --function-group-color: var(--color-group-alert);
     border-bottom: var(--button-border-bottom-group-alert);
     color: var(--button-text-color-group-alert);
-    background-color: var(--button-background-color-group-alert);
+    background-color: var(--color-structure-9);
 }
 
 // Action: Bearbeiten, Kopieren, Einfügen, Ausschneiden, Umwandeln, Transformieren, Ändern, Trennen, Splitten, Verbinden, Verknüpfen
@@ -5595,6 +5598,11 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
     &.btn-link
     {
         border: none;
+    }
+
+    &.btn-critical
+    {
+        background-color: var(--function-group-color);
     }
     
     // Active: Hover, Fokus, Highlight, Aktiv

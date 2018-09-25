@@ -103,6 +103,13 @@ export class TerraButtonComponent
     @Input()
     public inputIsHighlighted:boolean;
 
+    /**
+     * @description If true, the button gets full colored background (only for 'add' and 'delete' function group).
+     * Default false
+     */
+    @Input()
+    public inputIsCritical:boolean;
+
     @Output()
     public outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
 
@@ -119,6 +126,7 @@ export class TerraButtonComponent
         this.inputIsLink = false;
         this.inputIsDisabled = false;
         this.inputIsHighlighted = false;
+        this.inputIsCritical = false;
         this.currentTooltipPlacement = this.inputTooltipPlacement;
 
     }
