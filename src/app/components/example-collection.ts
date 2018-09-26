@@ -42,6 +42,7 @@ import { TerraNodeTreeComponentExample } from './tree/node-tree/example/terra-no
 import { TerraTimePickerComponentExample } from './forms/input/time-picker/example/terra-time-picker.component.example';
 import { TerraNestedDataPickerComponentExample } from './nested-data-picker/example/terra-nested-data-picker.component.example';
 import { TerraTagSelectComponentExample } from './forms/tag-select/example/terra-tag-select.component.example';
+import { TerraInfoComponentExample } from './info/example/terra-info.component.example';
 
 export const examples:Array<Type<any>> = [
     TerraButtonComponentExample,
@@ -86,5 +87,6 @@ export const examples:Array<Type<any>> = [
     TerraNodeTreeComponentExample,
     TerraTimePickerComponentExample,
     TerraNestedDataPickerComponentExample,
-    TerraTagSelectComponentExample
+    TerraTagSelectComponentExample,
+    TerraInfoComponentExample
 ];
