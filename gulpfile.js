@@ -114,7 +114,7 @@ gulp.task('changeVersion', function () {
     console.log('-------------------------------------------------');
 
     return fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
-});
+}());
 
 //publish to npm
 gulp.task('publish', shell.task([
@@ -150,10 +150,12 @@ gulp.task('npm-publish', function () {
         console.log('-------------------------------------------------------------------');
         console.log('----  Build not started. See gulpfile for further information. ----');
         console.log('-------------------------------------------------------------------');
+
+        return;
     }
     else
     {
-        gulp.series(
+        return gulp.series(
             'changeVersion',
             'clean-dist',
             'compile-ts',
@@ -165,7 +167,7 @@ gulp.task('npm-publish', function () {
             'publish'
         );
     }
-});
+}());
 
 /**
  * define tasks for 'build-doc'
