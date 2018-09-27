@@ -69,12 +69,14 @@ describe('TerraSuggestionBoxComponent', () =>
     //     expect(component.toggleOpen).toBe(true);
     // });
 
-    it(`should update 'value' and 'selectedValue' if the 'value' is set to a value that is included in 'inputListBoxValues'`, () =>
+    it('`selectedValue` and `value` to be initialised with `null`', () =>
     {
-        // check conditions before setting the value
-        expect(component.value).toEqual(null);
         expect(component.selectedValue).toEqual(null);
+        expect(component.value).toEqual(null);
+    });
 
+    it('should update `value` and `selectedValue` if the `value` is set to a value that is included in `inputListBoxValues`', () =>
+    {
         const suggestion:TerraSuggestionBoxValueInterface = {caption: '1', value: 1};
         component.inputListBoxValues = [suggestion];
         component.value = suggestion.value;
@@ -84,12 +86,8 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.selectedValue).toEqual(suggestion);
     });
 
-    it(`should set 'selectedValue' to null if the value is set to a value that is not included in 'inputListBoxValues'`, () =>
+    it('should set `selectedValue` to `null` if the `value` is set to a `value` that is not included in `inputListBoxValues`', () =>
     {
-        // check conditions before setting the value
-        expect(component.value).toEqual(null);
-        expect(component.selectedValue).toEqual(null);
-
         const suggestion:TerraSuggestionBoxValueInterface = {caption: '1', value: 1};
         const value:number = 2;
         component.inputListBoxValues = [suggestion];
