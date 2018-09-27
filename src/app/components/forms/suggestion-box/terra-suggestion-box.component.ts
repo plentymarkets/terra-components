@@ -305,11 +305,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     {
         this.value = null;
 
-        this.selectedValue =
-            {
-                value:   '',
-                caption: ''
-            };
+        this.selectedValue = null;
 
         this.tmpSelectedValue = null;
     }
