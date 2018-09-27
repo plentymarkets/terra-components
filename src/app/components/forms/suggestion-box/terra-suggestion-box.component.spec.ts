@@ -62,12 +62,12 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    // it('should toggle open', () =>
-    // {
-    //     component.toggleOpen = true;
-    //
-    //     expect(component.toggleOpen).toBe(true);
-    // });
+    it('should toggle open', () =>
+    {
+        component.toggleOpen = true;
+
+        expect(component.toggleOpen).toBe(true);
+    });
 
     it('`selectedValue` and `value` to be initialised with `null`', () =>
     {
