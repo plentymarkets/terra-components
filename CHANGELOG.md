@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 # Unreleased
 
+### Feature
+* **terra-info** add new component `terra-info` for short information about another ui element
+
 ### Bug Fixes 
 * **button-group** fixed styles
 * **terra-button** updated functiongroup selector
