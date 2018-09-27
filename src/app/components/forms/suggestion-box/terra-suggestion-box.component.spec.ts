@@ -89,9 +89,8 @@ describe('TerraSuggestionBoxComponent', () =>
     it('should set `selectedValue` to `null` if the `value` is set to a `value` that is not included in `inputListBoxValues`', () =>
     {
         const suggestion:TerraSuggestionBoxValueInterface = {caption: '1', value: 1};
-        const value:number = 2;
         component.inputListBoxValues = [suggestion];
-        component.value = value;
+        component.value = 2;
 
         // check expectations after setting the value
         expect(component.value).toEqual(null); // TODO: Don't we expect the value to be the value that we have just set here?
