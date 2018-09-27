@@ -154,7 +154,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     public set value(value:number | string | TerraBaseData)
     {
-        if(isNullOrUndefined(this.inputListBoxValues))
+        if(isNullOrUndefined(this.inputListBoxValues) || isNullOrUndefined(value))
         {
             this.selectedValue = null;
         }

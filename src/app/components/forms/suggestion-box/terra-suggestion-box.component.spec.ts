@@ -97,10 +97,19 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.selectedValue).toEqual(null);
     });
 
-    it('Calling `resetComponentValue` should set `selectedValue` and `value` to `null`', () => {
+    it('Calling `resetComponentValue` should set `selectedValue` and `value` to `null`', () =>
+    {
+        const suggestion:TerraSuggestionBoxValueInterface = {caption: '1', value: 1};
+        component.inputListBoxValues = [suggestion];
+        component.value = suggestion.value;
+
+        // check expectations after setting the value
+        expect(component.value).toEqual(suggestion.value);
+        expect(component.selectedValue).toEqual(suggestion);
+
         component.resetComponentValue();
 
         expect(component.value).toEqual(null);
-        expect(component.value).toEqual(null);
+        expect(component.selectedValue).toEqual(null);
     });
 });
