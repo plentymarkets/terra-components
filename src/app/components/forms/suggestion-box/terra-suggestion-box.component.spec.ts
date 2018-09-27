@@ -96,4 +96,11 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.value).toEqual(null); // TODO: Don't we expect the value to be the value that we have just set here?
         expect(component.selectedValue).toEqual(null);
     });
+
+    it('Calling `resetComponentValue` should set `selectedValue` and `value` to `null`', () => {
+        component.resetComponentValue();
+
+        expect(component.value).toEqual(null);
+        expect(component.value).toEqual(null);
+    });
 });
