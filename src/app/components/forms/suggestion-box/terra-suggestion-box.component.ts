@@ -1,4 +1,5 @@
 import {
+    AfterViewInit,
     Component,
     ElementRef,
     EventEmitter,
@@ -7,7 +8,9 @@ import {
     OnChanges,
     OnInit,
     Output,
-    SimpleChanges
+    QueryList,
+    SimpleChanges,
+    ViewChildren
 } from '@angular/core';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import {
@@ -35,7 +38,7 @@ const MAX_LASTLY_USED_ENTRIES:number = 5;
         }
     ]
 })
-export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlValueAccessor
+export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlValueAccessor, AfterViewInit
 {
     @Input()
     public inputName:string;
@@ -85,6 +88,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     private clickListener:(event:Event) => void;
 
+    @ViewChildren('renderedListBoxValues')
+    private renderedListBoxValues:QueryList<ElementRef>;
+
     constructor(private elementRef:ElementRef)
     {
     }
@@ -111,6 +117,12 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             // initialize the displayed list with all possible values
             this.displayListBoxValues = this.inputListBoxValues;
         }
+    }
+
+    public ngAfterViewInit():void
+    {
+        console.log(this.renderedListBoxValues);
+        this.renderedListBoxValues.changes.subscribe(() => console.log(this.renderedListBoxValues));
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -390,13 +402,18 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     private focusSelectedElement():void
     {
         // get the temporary selected DOM element
-        let selectedElement:HTMLElement = $('.select-box-dropdown > span.selected').get().pop();
+        const selectedElementRef:ElementRef = this.renderedListBoxValues.find((value:ElementRef) =>
+        {
+            return value.nativeElement.classList.contains('selected');
+        });
 
         // check if the element has been found
-        if(selectedElement)
+        if(selectedElementRef)
         {
+            const spanElement:HTMLSpanElement = selectedElementRef.nativeElement;
+
             // scroll to the selected element
-            selectedElement.parentElement.scrollTop = selectedElement.offsetTop - selectedElement.parentElement.offsetTop;
+            spanElement.parentElement.scrollTop = spanElement.offsetTop - spanElement.parentElement.offsetTop;
         }
     }
 
