@@ -53,7 +53,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     public inputTooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
 
     @Input()
-    public inputListBoxValues:Array<TerraSuggestionBoxValueInterface>;
+    public inputListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
 
     @Input()
     public inputWithRecentlyUsed:boolean;
@@ -97,11 +97,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         };
 
         this.inputTooltipPlacement = TerraPlacementEnum.TOP;
-        this.selectedValue =
-            {
-                value:   '',
-                caption: ''
-            };
         this.tmpSelectedValue = null;
 
         this.isValid = true;
