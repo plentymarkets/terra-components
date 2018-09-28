@@ -100,7 +100,7 @@ gulp.task('build',
  * define gulp tasks for 'npm-publish'
  */
 //changing version of package.json for new publish
-gulp.task('changeVersion', function () {
+function changeVersion(done) {
     var json = JSON.parse(fs.readFileSync('./package.json'));
 
     console.log('-------------------------------------------------');
@@ -113,8 +113,9 @@ gulp.task('changeVersion', function () {
     console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
     console.log('-------------------------------------------------');
 
-    return fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
-}());
+    fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
+    done();
+};
 
 //publish to npm
 gulp.task('publish', shell.task([
@@ -156,7 +157,7 @@ gulp.task('npm-publish', function () {
     else
     {
         return gulp.series(
-            'changeVersion',
+            changeVersion,
             'clean-dist',
             'compile-ts',
             'copy-files',
