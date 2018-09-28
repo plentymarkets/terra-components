@@ -139,6 +139,8 @@ describe('TerraSuggestionBoxComponent', () =>
 
     it('set #selectedValue should update #value and the displayed text in the input', async(() =>
     {
+        let suggestionBoxElement:HTMLElement = fixture.nativeElement;
+        let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
         component.inputListBoxValues = [suggestion];
         component.selectedValue = suggestion;
 
@@ -146,9 +148,6 @@ describe('TerraSuggestionBoxComponent', () =>
 
         expect(component.selectedValue).toEqual(suggestion);
         expect(component.value).toEqual(suggestion.value);
-
-        let suggestionBoxElement:HTMLElement = fixture.nativeElement;
-        let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
         //expect(inputElement.value).toEqual(suggestion.caption); // TODO: The value is not updated..
     }));
 
