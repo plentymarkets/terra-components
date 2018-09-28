@@ -110,4 +110,9 @@
 		"addListEntry": "Add new entry",
 		"removeListEntry": "Remove entry"
 	}
+	"terraStopwatch": {
+		"start": "Start",
+		"pause": "Pause",
+		"reset": "Reset"
+	}
 }
