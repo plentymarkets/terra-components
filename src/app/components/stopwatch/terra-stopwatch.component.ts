@@ -16,16 +16,24 @@ export class TerraStopwatchComponent implements OnInit
     @Input()
     public inputEnableControls:boolean;
 
+    @Input()
+    public inputIsAutoPlay:boolean;
+
     private stopwatch:any;
 
     constructor()
     {
         this.inputEnableControls = false;
+        this.inputIsAutoPlay = false;
         this.stopwatch = new Stopwatch();
     }
 
     public ngOnInit():void
     {
+        if(this.inputIsAutoPlay)
+        {
+            this.startStopwatch();
+        }
     }
 
     public getStopwatchTimeInMilliseconds():number
