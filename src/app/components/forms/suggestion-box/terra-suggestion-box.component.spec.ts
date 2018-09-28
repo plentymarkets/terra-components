@@ -51,10 +51,11 @@ describe('TerraSuggestionBoxComponent', () =>
     {
         fixture = TestBed.createComponent(TerraSuggestionBoxComponent);
         component = fixture.componentInstance;
+
         component.inputListBoxValues = [];
         component.value = null;
 
-        fixture.detectChanges(false);
+        fixture.detectChanges();
     });
 
     it('should create', () =>
@@ -111,5 +112,19 @@ describe('TerraSuggestionBoxComponent', () =>
 
         expect(component.value).toEqual(null);
         expect(component.selectedValue).toEqual(null);
+    });
+
+    it('Calling `onChange` should open the dropdown (set toggleOpen to `true`)', () =>
+    {
+        component.toggleOpen = true;
+        component.onChange();
+        expect(component.toggleOpen).toEqual(true);
+
+
+        component.toggleOpen = false;
+        expect(component.toggleOpen).toEqual(false);
+        component.onChange();
+
+        expect(component.toggleOpen).toEqual(true);
     });
 });

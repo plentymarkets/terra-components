@@ -81,7 +81,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     protected noEntriesTextKey:string;
     protected _selectedValue:TerraSuggestionBoxValueInterface = null;
     protected tmpSelectedValue:TerraSuggestionBoxValueInterface = null;
-    protected _textInputValue:string;
+    protected _textInputValue:string = '';
     protected _toggleOpen:boolean = false;
 
     private hasLabel:boolean;
@@ -271,7 +271,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         let searchString:any = this.textInputValue;
         this.toggleOpen = true;
 
-        if(searchString.length >= 3)
+        if(!isNullOrUndefined(searchString) && searchString.length >= 3)
         {
             this.listBoxHeadingKey = 'terraSuggestionBox.suggestions';
             this.noEntriesTextKey = 'terraSuggestionBox.noSuggestions';
@@ -474,7 +474,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             // finally update text input value
             if(!onChange)
             {
-                this.textInputValue = !isNullOrUndefined(this._selectedValue) ? this._selectedValue.caption : undefined;
+                this.textInputValue = !isNullOrUndefined(this._selectedValue) ? this._selectedValue.caption : '';
             }
         }
     }
