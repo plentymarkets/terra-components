@@ -137,7 +137,7 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.selectedValue).toEqual(null);
     });
 
-    it('set #selectedValue should update #value and the displayed text in the input', async(() =>
+    it('set #selectedValue should update #value and the displayed text in the input', () =>
     {
         let suggestionBoxElement:HTMLElement = fixture.nativeElement;
         let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
@@ -149,7 +149,7 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.selectedValue).toEqual(suggestion);
         expect(component.value).toEqual(suggestion.value);
         //expect(inputElement.value).toEqual(suggestion.caption); // TODO: The value is not updated..
-    }));
+    });
 
     it('#onChange() should open the dropdown (set #toggleOpen to "true")', () =>
     {
