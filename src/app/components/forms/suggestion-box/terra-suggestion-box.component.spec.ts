@@ -231,4 +231,17 @@ describe('TerraSuggestionBoxComponent', () =>
 
         expect(text).toEqual(enteredText);
     });
+    it('#outputValueChanged should emit if #selectedValue changes', () =>
+    {
+        let value:TerraSuggestionBoxValueInterface;
+        component.outputValueChanged.subscribe((eventValue:TerraSuggestionBoxValueInterface) => value = eventValue);
+
+        // changing the value from undefined to null should not cause outputValueChanged to emit
+        component.selectedValue = null;
+        expect(value).toEqual(undefined);
+
+        // changing the value
+        component.selectedValue = suggestion;
+        expect(value).toEqual(suggestion);
+    });
 });
