@@ -217,6 +217,27 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.value).toEqual(null);
     });
 
+
+    it('should auto-select a suggestion if the entered text matches the caption of the suggestion', () =>
+    {
+        component.inputListBoxValues = [suggestion];
+        let suggestionBoxElement:HTMLElement = fixture.nativeElement;
+        let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
+
+        expect(component.selectedValue).toBeNull(); // TODO: unify.. selectedValue should be undefined or set to a specific value, not null
+
+        inputElement.value = suggestion.caption as string;
+        inputElement.dispatchEvent(new Event('input'));
+
+        expect(component.selectedValue).toEqual(suggestion);
+
+        inputElement.value = 'hasdh';
+        inputElement.dispatchEvent(new Event('input'));
+
+        expect(component.selectedValue).toBeUndefined();
+
+    });
+
     it('#textValueChanged should emit if a text has been entered', () =>
     {
         let suggestionBoxElement:HTMLElement = fixture.nativeElement;
@@ -231,6 +252,7 @@ describe('TerraSuggestionBoxComponent', () =>
 
         expect(text).toEqual(enteredText);
     });
+
     it('#outputValueChanged should emit if #selectedValue changes', () =>
     {
         let value:TerraSuggestionBoxValueInterface;
