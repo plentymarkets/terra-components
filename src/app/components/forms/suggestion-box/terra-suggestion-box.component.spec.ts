@@ -36,7 +36,7 @@ describe('TerraSuggestionBoxComponent', () =>
                 TerraSuggestionBoxComponent,
                 TerraTextInputComponent
             ],
-            imports: [
+            imports:      [
                 TooltipModule.forRoot(),
                 FormsModule,
                 HttpModule,
@@ -191,5 +191,20 @@ describe('TerraSuggestionBoxComponent', () =>
 
         expect(component.selectedValue).toEqual(undefined);
         expect(component.value).toEqual(null);
+    });
+
+    it('#textValueChanged notifies if a text has been entered', () =>
+    {
+        let suggestionBoxElement:HTMLElement = fixture.nativeElement;
+        let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
+
+        const enteredText:string = '123';
+        let text:string = '';
+        component.textInputValueChange.subscribe((eventText:string) => text = eventText);
+
+        inputElement.value = enteredText;
+        inputElement.dispatchEvent(new Event('input'));
+
+        expect(text).toEqual(enteredText);
     });
 });
