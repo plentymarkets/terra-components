@@ -172,7 +172,7 @@ describe('TerraSuggestionBoxComponent', () =>
 
         // simulate user entering a new value into the input box
         // a value that is included in the suggestions
-        inputElement.value = '1';
+        inputElement.value = suggestion.caption as string;
         inputElement.dispatchEvent(new Event('input'));
 
         expect(component.selectedValue).toEqual(suggestion);
