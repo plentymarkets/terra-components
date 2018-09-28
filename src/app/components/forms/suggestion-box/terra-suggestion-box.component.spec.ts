@@ -1,6 +1,9 @@
 /* tslint:disable:no-unused-variable */
 
-import { ElementRef } from '@angular/core';
+import {
+    DebugElement,
+    ElementRef
+} from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -22,6 +25,7 @@ import {
 
 import { MockElementRef } from '../../../testing/mock-element-ref';
 import Spy = jasmine.Spy;
+import { By } from '@angular/platform-browser';
 
 describe('TerraSuggestionBoxComponent', () =>
 {
@@ -70,6 +74,26 @@ describe('TerraSuggestionBoxComponent', () =>
         component.toggleOpen = true;
 
         expect(component.toggleOpen).toBe(true);
+
+        component.toggleOpen = false;
+
+        expect(component.toggleOpen).toBe(false);
+    });
+
+    it('Clicking on the .select-box-wrapper toggles the dropdown', () =>
+    {
+        component.toggleOpen = false; // close the dropdown
+
+        let debugElement:DebugElement = fixture.debugElement;
+        let selectBoxWrapperDe:DebugElement = debugElement.query(By.css('.select-box-wrapper'));
+
+        selectBoxWrapperDe.triggerEventHandler('click', new Event('click'));
+
+        expect(component.toggleOpen).toEqual(true);
+
+        selectBoxWrapperDe.triggerEventHandler('click', new Event('click'));
+
+        expect(component.toggleOpen).toEqual(false);
     });
 
     it('`selectedValue` and `value` to be initialised with `null`', () =>
