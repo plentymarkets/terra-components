@@ -166,33 +166,14 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.toggleOpen).toEqual(true);
     });
 
-    it('Entering text should call #onChange()', () =>
+    it('Entering text should call #onChange() and update #selectedValue and #value', () =>
     {
         component.inputListBoxValues = [suggestion];
 
         let suggestionBoxElement:HTMLElement = fixture.nativeElement;
         let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
 
-        let spy:Spy = spyOn(component, 'onChange');
-
-        // simulate user entering a new value into the input box
-        inputElement.value = '1';
-        inputElement.dispatchEvent(new Event('input'));
-
-        // simulate user entering a new value into the input box
-        inputElement.value = '';
-        inputElement.dispatchEvent(new Event('input'));
-
-        // check if the onChange Method have been called every time the text has changed
-        expect(spy).toHaveBeenCalledTimes(2);
-    });
-
-    it('Entering text should update #selectedValue and #value', () =>
-    {
-        component.inputListBoxValues = [suggestion];
-
-        let suggestionBoxElement:HTMLElement = fixture.nativeElement;
-        let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
+        let spy:Spy = spyOn(component, 'onChange').and.callThrough();
 
         // simulate user entering a new value into the input box
         // a value that is included in the suggestions
@@ -215,6 +196,9 @@ describe('TerraSuggestionBoxComponent', () =>
 
         expect(component.selectedValue).toEqual(undefined);
         expect(component.value).toEqual(null);
+
+        // check if the onChange()-Method has been called every time the text has changed
+        expect(spy).toHaveBeenCalledTimes(3);
     });
 
 
