@@ -193,7 +193,7 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.value).toEqual(null);
     });
 
-    it('#textValueChanged notifies if a text has been entered', () =>
+    it('#textValueChanged should emit if a text has been entered', () =>
     {
         let suggestionBoxElement:HTMLElement = fixture.nativeElement;
         let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
