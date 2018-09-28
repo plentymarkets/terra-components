@@ -2,6 +2,8 @@
     <terra-button *ngIf="inputEnableControls"
                   inputIcon="{{stopwatch.state === 1 ? 'icon-control_pause' : 'icon-control_play'}}"
                   [inputIsSmall]="true"
+                  inputTooltipText="{{stopwatch.state === 1 ? 'Pause' : 'Start'}}"
+                  inputTooltipPlacement="top"
                   (outputClicked)="startAndStopControl()">
     </terra-button>
     <terra-button inputType="submit"
@@ -11,8 +13,8 @@
     <terra-button *ngIf="inputEnableControls"
                   inputIcon="icon-reset"
                   [inputIsSmall]="true"
-                  inputTooltipText="{{'terraStopwatch.startControl' | translate:lang}}"
-                  inputTooltipPlacement="right"
+                  inputTooltipText="Reset"
+                  inputTooltipPlacement="top"
                   (outputClicked)="resetStopwatch()">
     </terra-button>
 </div>

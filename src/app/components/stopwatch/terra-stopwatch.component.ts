@@ -18,7 +18,7 @@ export class TerraStopwatchComponent implements OnInit
 
     private stopwatch:any;
 
-    constructor(public translation:TranslationService)
+    constructor()
     {
         this.inputEnableControls = false;
         this.stopwatch = new Stopwatch();
