@@ -26,6 +26,7 @@ describe('TerraSuggestionBoxComponent', () =>
 {
     let component:TerraSuggestionBoxComponent;
     let fixture:ComponentFixture<TerraSuggestionBoxComponent>;
+    const suggestion:TerraSuggestionBoxValueInterface = {caption: '1', value: 1};
 
     beforeEach(async(() =>
     {
@@ -52,7 +53,7 @@ describe('TerraSuggestionBoxComponent', () =>
         fixture = TestBed.createComponent(TerraSuggestionBoxComponent);
         component = fixture.componentInstance;
 
-        component.inputListBoxValues = [];
+        component.inputListBoxValues = []; // this also resets the selectedValue to null
         component.value = null;
 
         fixture.detectChanges();
@@ -78,7 +79,6 @@ describe('TerraSuggestionBoxComponent', () =>
 
     it('should update `value` and `selectedValue` if the `value` is set to a value that is included in `inputListBoxValues`', () =>
     {
-        const suggestion:TerraSuggestionBoxValueInterface = {caption: '1', value: 1};
         component.inputListBoxValues = [suggestion];
         component.value = suggestion.value;
 
@@ -89,7 +89,6 @@ describe('TerraSuggestionBoxComponent', () =>
 
     it('should set `selectedValue` to `null` if the `value` is set to a `value` that is not included in `inputListBoxValues`', () =>
     {
-        const suggestion:TerraSuggestionBoxValueInterface = {caption: '1', value: 1};
         component.inputListBoxValues = [suggestion];
         component.value = 2;
 
@@ -100,7 +99,6 @@ describe('TerraSuggestionBoxComponent', () =>
 
     it('Calling `resetComponentValue` should set `selectedValue` and `value` to `null`', () =>
     {
-        const suggestion:TerraSuggestionBoxValueInterface = {caption: '1', value: 1};
         component.inputListBoxValues = [suggestion];
         component.value = suggestion.value;
 
@@ -114,7 +112,22 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.selectedValue).toEqual(null);
     });
 
-    it('Calling `onChange` should open the dropdown (set toggleOpen to `true`)', () =>
+    xit('set #selectedValue should update #value and the displayed text in the input', async(() =>
+    {
+        component.inputListBoxValues = [suggestion];
+        component.selectedValue = suggestion;
+
+        fixture.detectChanges();
+
+        expect(component.selectedValue).toEqual(suggestion);
+        expect(component.value).toEqual(suggestion.value);
+
+        let suggestionBoxElement:HTMLElement = fixture.nativeElement;
+        let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
+        expect(inputElement.value).toEqual(suggestion.caption); // TODO: The value is not updated..
+    }));
+
+    it('#onChange() should open the dropdown (set #toggleOpen to "true")', () =>
     {
         component.toggleOpen = true;
         component.onChange();
