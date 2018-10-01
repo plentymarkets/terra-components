@@ -30,7 +30,6 @@ describe('Component: TerraStopwatchComponent', () =>
         {
             expect(component.getStopwatchTimeInMilliseconds()).toBeGreaterThan(0);
             done();
-
         }, 100);
     });
 
@@ -50,7 +49,23 @@ describe('Component: TerraStopwatchComponent', () =>
             component.resetStopwatch();
             expect(component.getStopwatchTimeInMilliseconds()).toEqual(0);
             done();
-
         }, 100);
+    });
+
+    it('should start and stop stopwatch', (done) =>
+    {
+        component.startStopwatch();
+        let time:number;
+        setTimeout(() =>
+        {
+            expect(component.getStopwatchTimeInMilliseconds()).toBeGreaterThan(0);
+            component.stopStopwatch();
+            time = component.getStopwatchTimeInMilliseconds();
+        }, 100);
+        setTimeout(() =>
+        {
+            expect(component.getStopwatchTimeInMilliseconds()).toEqual(time);
+            done();
+        }, 200);
     });
 });
