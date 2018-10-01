@@ -43,6 +43,21 @@ export class TerraStopwatchComponent implements OnInit
         return this.stopwatch.ms;
     }
 
+    public startStopwatch():void
+    {
+        this.stopwatch.start();
+    }
+
+    public stopStopwatch():void
+    {
+        this.stopwatch.stop();
+    }
+
+    public resetStopwatch():void
+    {
+        this.stopwatch.reset();
+    }
+
     protected get stopWatchTime():string
     {
         return this.getStopwatchPattern();
@@ -61,21 +76,6 @@ export class TerraStopwatchComponent implements OnInit
     protected get startAndStopControlIcon():string
     {
         return this.stopwatch.state === 1 ? 'icon-control_pause' : 'icon-control_play';
-    }
-
-    protected startStopwatch():void
-    {
-        this.stopwatch.start();
-    }
-
-    protected stopStopwatch():void
-    {
-        this.stopwatch.stop();
-    }
-
-    protected resetStopwatch():void
-    {
-        this.stopwatch.reset();
     }
 
     protected startAndStopControl():void
