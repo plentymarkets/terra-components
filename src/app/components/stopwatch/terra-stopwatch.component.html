@@ -1,8 +1,8 @@
 <div class="btn-group" role="group">
     <terra-button *ngIf="inputEnableControls"
-                  inputIcon="{{stopwatch.state === 1 ? 'icon-control_pause' : 'icon-control_play'}}"
+                  [inputIcon]="startAndStopControlIcon"
                   [inputIsSmall]="true"
-                  inputTooltipText="{{stopwatch.state === 1 ? 'Pause' : 'Start'}}"
+                  [inputTooltipText]="startAndStopControlTooltip"
                   inputTooltipPlacement="top"
                   (outputClicked)="startAndStopControl()">
     </terra-button>
@@ -13,7 +13,7 @@
     <terra-button *ngIf="inputEnableControls"
                   inputIcon="icon-reset"
                   [inputIsSmall]="true"
-                  inputTooltipText="Reset"
+                  [inputTooltipText]="resetControlTooltip"
                   inputTooltipPlacement="top"
                   (outputClicked)="resetStopwatch()">
     </terra-button>

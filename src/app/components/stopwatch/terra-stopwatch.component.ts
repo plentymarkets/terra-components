@@ -3,8 +3,8 @@ import {
     Input,
     OnInit
 } from '@angular/core';
-import * as Stopwatch from 'timer-stopwatch';
 import { TranslationService } from 'angular-l10n';
+import * as Stopwatch from 'timer-stopwatch';
 
 @Component({
     selector: 'terra-stopwatch',
@@ -19,9 +19,11 @@ export class TerraStopwatchComponent implements OnInit
     @Input()
     public inputIsAutoPlay:boolean;
 
+    protected langPrefix:string = 'terraStopwatch';
+
     private stopwatch:any;
 
-    constructor()
+    constructor(public translation:TranslationService)
     {
         this.inputEnableControls = false;
         this.inputIsAutoPlay = false;
@@ -39,6 +41,26 @@ export class TerraStopwatchComponent implements OnInit
     public getStopwatchTimeInMilliseconds():number
     {
         return this.stopwatch.ms;
+    }
+
+    protected get stopWatchTime():string
+    {
+        return this.getStopwatchPattern();
+    }
+
+    protected get resetControlTooltip():string
+    {
+        return this.translation.translate(this.langPrefix + '.reset');
+    }
+
+    protected get startAndStopControlTooltip():string
+    {
+        return this.translation.translate(this.langPrefix + (this.stopwatch.state === 1 ? '.pause' : '.start'));
+    }
+
+    protected get startAndStopControlIcon():string
+    {
+        return this.stopwatch.state === 1 ? 'icon-control_pause' : 'icon-control_play';
     }
 
     protected startStopwatch():void
@@ -59,11 +81,6 @@ export class TerraStopwatchComponent implements OnInit
     protected startAndStopControl():void
     {
         return this.stopwatch.state === 1 ? this.stopStopwatch() : this.startStopwatch();
-    }
-
-    protected get stopWatchTime():string
-    {
-        return this.getStopwatchPattern();
     }
 
     private getStopwatchPattern():string
