@@ -63,45 +63,44 @@ export class TerraSuggestionBoxComponentExample implements OnInit
                 caption: 'icon-flag_blue'
             },
             {
-                value:   'icon-plugin',
-                caption: 'icon-plugin'
+                value:   'icon-anonymize',
+                caption: 'icon-anonymize'
             },
             {
-                value:   'icon-delete',
-                caption: 'icon-delete'
+                value:   'icon-active_doc',
+                caption: 'icon-active_doc'
             },
             {
-                value:   'icon-add',
-                caption: 'icon-add'
+                value:   'icon-active_fold_open',
+                caption: 'icon-active_fold_open'
             },
             {
-                value:   'icon-box_plus',
-                caption: 'icon-box_plus'
+                value:   'icon-real',
+                caption: 'icon-real'
             },
             {
-                value:   'icon-flag_blue',
-                caption: 'icon-flag_blue'
+                value:   'icon-plenty_base',
+                caption: 'icon-plenty_base'
             },
             {
-                value:   'icon-plugin',
-                caption: 'icon-plugin'
+                value:   'icon-servicecenter',
+                caption: 'icon-servicecenter'
             },
             {
-                value:   'icon-delete',
-                caption: 'icon-delete',
-                active: true
+                value:   'icon-colorpicker',
+                caption: 'icon-colorpicker'
             },
             {
-                value:   'icon-add',
-                caption: 'icon-add'
+                value:   'icon-align_left',
+                caption: 'icon-align_left'
             },
             {
-                value:   'icon-box_plus',
-                caption: 'icon-box_plus'
+                value:   'icon-device_mobile',
+                caption: 'icon-device_mobile'
             },
             {
-                value:   'icon-flag_blue',
-                caption: 'icon-flag_blue'
+                value:   'icon-ebay',
+                caption: 'icon-ebay'
             }
         );
 
