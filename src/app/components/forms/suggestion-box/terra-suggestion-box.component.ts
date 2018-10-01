@@ -38,7 +38,7 @@ const MAX_LASTLY_USED_ENTRIES:number = 5;
         }
     ]
 })
-export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlValueAccessor, AfterViewInit
+export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlValueAccessor
 {
     @Input()
     public inputName:string;
@@ -117,12 +117,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             // initialize the displayed list with all possible values
             this.displayListBoxValues = this.inputListBoxValues;
         }
-    }
-
-    public ngAfterViewInit():void
-    {
-        console.log(this.renderedListBoxValues);
-        this.renderedListBoxValues.changes.subscribe(() => console.log(this.renderedListBoxValues));
     }
 
     public ngOnChanges(changes:SimpleChanges):void
