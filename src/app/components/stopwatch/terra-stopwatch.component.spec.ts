@@ -31,7 +31,7 @@ describe('Component: TerraStopwatchComponent', () =>
             expect(component.getStopwatchTimeInMilliseconds()).toBeGreaterThan(0);
             done();
 
-        }, 500);
+        }, 100);
     });
 
     it('should not auto run the stopwatch', () =>
@@ -39,5 +39,18 @@ describe('Component: TerraStopwatchComponent', () =>
         component.inputIsAutoPlay = false;
         component.ngOnInit();
         expect(component.getStopwatchTimeInMilliseconds()).toEqual(0);
+    });
+
+    it('should start stopwatch and reset value to 0', (done) =>
+    {
+        component.startStopwatch();
+        setTimeout(() =>
+        {
+            expect(component.getStopwatchTimeInMilliseconds()).toBeGreaterThan(0);
+            component.resetStopwatch();
+            expect(component.getStopwatchTimeInMilliseconds()).toEqual(0);
+            done();
+
+        }, 100);
     });
 });
