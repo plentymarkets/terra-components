@@ -1,4 +1,8 @@
 <a name="3.0.0-beta.4"></a>
+# 3.0.0-beta.5 (01.10.2018)
+* **terra-nested-picker** added showFullSelectionPath property to show if you want the entire path for a selected node
+
+<a name="3.0.0-beta.4"></a>
 # 3.0.0-beta.4 (20.09.2018)
 * **terra-file-browser** fixed issue when uploading a file
 
