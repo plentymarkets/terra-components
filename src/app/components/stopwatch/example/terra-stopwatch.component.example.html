@@ -19,4 +19,16 @@
                          [inputIsAutoPlay]="true">
         </terra-stopwatch>
     </terra-base-toolbar>
+    <h3>Terra-Stopwatch with function call on button click</h3>
+    <terra-base-toolbar>
+        <div class="btn-group">
+            <terra-stopwatch #viewChildCurrentTime
+                             [inputIsAutoPlay]="true">
+            </terra-stopwatch>
+            <terra-button inputCaption="Show Current Time in Milliseconds"
+                          [inputIsSmall]="true"
+                          (outputClicked)="showCurrentTimeInMilliseconds()">
+            </terra-button>
+        </div>
+    </terra-base-toolbar>
 </terra-portlet>

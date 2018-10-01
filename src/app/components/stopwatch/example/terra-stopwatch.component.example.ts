@@ -1,23 +1,20 @@
 import {
     Component,
-    Input,
-    OnInit
+    ViewChild
 } from '@angular/core';
-import * as Stopwatch from 'timer-stopwatch';
-import { TranslationService } from 'angular-l10n';
+import { TerraStopwatchComponent } from '../terra-stopwatch.component';
 
 @Component({
     selector: 'terra-stopwatch-example',
     styles:   [require('./terra-stopwatch.component.example.scss')],
     template: require('./terra-stopwatch.component.example.html'),
 })
-export class TerraStopwatchComponentExample implements OnInit
+export class TerraStopwatchComponentExample
 {
-    constructor()
-    {
-    }
+    @ViewChild('viewChildCurrentTime') public viewChildCurrentTime:TerraStopwatchComponent;
 
-    public ngOnInit():void
+    protected showCurrentTimeInMilliseconds():void
     {
+        alert(this.viewChildCurrentTime.getStopwatchTimeInMilliseconds());
     }
 }
