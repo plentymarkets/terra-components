@@ -1,5 +1,3 @@
-/* tslint:disable:no-unused-variable */
-
 import { TerraInfoBoxComponent } from './terra-info-box.component';
 import { TerraTagInterface } from '../../../../';
 
@@ -64,20 +62,4 @@ describe('Component: TerraInfoBoxComponent', () =>
             expect(component.hasFooter).toBe(false);
         }
     );
-
-    // it('passes if subject is true', () =>
-    // {
-    //     expect(true).toBeTruthy();
-    //     expect(false).not.toBeTruthy();
-    // });
-    //
-    // it('passes if subject is a non empty string', () =>
-    // {
-    //     expect('Should pass').toBeTruthy();
-    // });
-    //
-    // it('passes if subject is a number not equal 0', function():void
-    // {
-    //     expect(1).toBeTruthy();
-    // });
 });
