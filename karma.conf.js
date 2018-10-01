@@ -13,7 +13,8 @@ module.exports = function (config) {
         },
         webpack: require('./config/webpack.test')({env: 'test'}),
         reporters: [
-            'progress'
+            'progress',
+            'kjhtml'
         ],
         port: 9876,
         colors: true,
