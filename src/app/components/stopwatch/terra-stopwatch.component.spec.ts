@@ -22,7 +22,7 @@ describe('Component: TerraStopwatchComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should auto run the stopwatch', (done) =>
+    it('should auto run the stopwatch', (done:any) =>
     {
         component.inputIsAutoPlay = true;
         component.ngOnInit();
@@ -40,7 +40,7 @@ describe('Component: TerraStopwatchComponent', () =>
         expect(component.getStopwatchTimeInMilliseconds()).toEqual(0);
     });
 
-    it('should start stopwatch and reset value to 0', (done) =>
+    it('should start stopwatch and reset value to 0', (done:any) =>
     {
         component.startStopwatch();
         setTimeout(() =>
@@ -52,7 +52,7 @@ describe('Component: TerraStopwatchComponent', () =>
         }, 100);
     });
 
-    it('should start and stop stopwatch', (done) =>
+    it('should start and stop stopwatch', (done:any) =>
     {
         component.startStopwatch();
         let time:number;
