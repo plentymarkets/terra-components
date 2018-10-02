@@ -41,7 +41,6 @@ import { examples } from './components/example-collection';
 import { services } from './service/service-collection';
 import { directives } from './components/directive-collection';
 
-
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
     return compilerFactory.createCompiler();
