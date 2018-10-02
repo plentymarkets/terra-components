@@ -14,9 +14,9 @@ These are the official plugin components developed by plentymarkets. This reposi
 
 ## Browser Compatibility
 
-| ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) | 
-| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | 
-| Latest ✔                                                                                 | Latest ✔                                                                                    | 11+ ✔                                                                                                                        | 
+| ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | 
+| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | 
+| Latest ✔                                                                                 | Latest ✔                                                                                    | 
 
 
 ## Join our community
