@@ -13,9 +13,15 @@ import * as Stopwatch from 'timer-stopwatch';
 })
 export class TerraStopwatchComponent implements OnInit
 {
+    /**
+     * @description If true, the start, pause and reset control will show
+     */
     @Input()
     public inputEnableControls:boolean;
 
+    /**
+     * @description If true, stopwatch starts if component initialize
+     */
     @Input()
     public inputIsAutoPlay:boolean;
 
