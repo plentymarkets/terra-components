@@ -5471,6 +5471,7 @@ button.btn[data-icon="icon-telephone"], div.adminActionIcon.icon-telephone, butt
 button.btn[data-icon="icon-ticket_folder_move"], div.adminActionIcon.icon-ticket_folder_move, button.adminButton[data-icon="icon-ticket_folder_move"], %icon-ticket_folder_move
 {
     --function-group-color: var(--color-group-navigation);
+    --function-group-color-highlighted: var(--color-group-active);
     border-bottom: var(--button-border-bottom-group-navigation);
     color: var(--button-text-color-group-navigation);
     background-color: var(--button-background-color-group-navigation);
@@ -5582,6 +5583,7 @@ button.btn[data-icon="icon-payment_sepa_pain"], div.adminActionIcon.icon-payment
 button.btn[data-icon="icon-dropbox"], div.adminActionIcon.icon-dropbox, button.adminButton[data-icon="icon-dropbox"], %icon-dropbox
 {
     --function-group-color: var(--color-group-navigation);
+    --function-group-color-highlighted: var(--color-group-active);
     border-bottom: var(--button-border-bottom-group-navigation);
     color: var(--button-text-color-group-navigation);
     background-color: var(--button-background-color-group-navigation);
