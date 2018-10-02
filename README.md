@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/%40plentymarkets%2Fterra-components.svg)](https://badge.fury.io/js/%40plentymarkets%2Fterra-components)
+
 ![plentymarkets Logo](http://www.plentymarkets.eu/layout/pm/images/logo/plentymarkets-logo.jpg)
 
 # Components for back end plugins
@@ -9,6 +11,13 @@ These are the official plugin components developed by plentymarkets. This reposi
 - Terra Components [API documentation](https://developers.plentymarkets.com/terra-doc/components)
 - Overview of plentymarkets [plugin interfaces](https://developers.plentymarkets.com/dev-doc/basics#guide-interface)
 - The plentymarkets [REST API](https://developers.plentymarkets.com/rest-doc/introduction)
+
+## Browser Compatibility
+
+| ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | 
+| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | 
+| Latest ✔                                                                                 | Latest ✔                                                                                    | 
+
 
 ## Join our community
 
