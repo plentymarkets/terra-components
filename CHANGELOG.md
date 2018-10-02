@@ -1,3 +1,8 @@
+# Unreleased
+
+### Feature
+* **terra-stopwatch** added new terra component terra-stopwatch. 
+
 <a name="3.0.0-beta.4"></a>
 # 3.0.0-beta.4 (20.09.2018)
 * **terra-file-browser** fixed issue when uploading a file
