@@ -136,7 +136,7 @@ button:focus
         }
     }
     
-    &.highlighted
+    &.highlighted:not(:hover):not(focus):not(:active)
     {
         background-color: var(--color-group-navigation);
         border-bottom: var(--color-group-navigation);
