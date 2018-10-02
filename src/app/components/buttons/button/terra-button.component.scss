@@ -140,14 +140,14 @@ button:focus
     {
         background-color: var(--color-group-navigation);
         border-bottom: var(--color-group-navigation);
+        color: var(--color-structure-0);
         
         @keyframes highlighted
         {
             100%
             {
-                background-color: var(--function-group-color-highlighted, var(--function-group-color));
-                border-bottom: var(--function-group-color-highlighted, var(--function-group-color));
-                
+                background-color: var(--function-group-color-highlighted, var(--color-group-active));
+                border-bottom: var(--function-group-color-highlighted, var(--color-group-active));
             }
         }
         animation: highlighted 1500ms ease-in-out 0ms infinite alternate;
