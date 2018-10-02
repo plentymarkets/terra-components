@@ -9,12 +9,14 @@ module.exports = function (config) {
         ],
         exclude: [],
         preprocessors: {
-            'test/main.js': ['webpack', 'sourcemap']
+            'test/main.js': ['webpack', 'sourcemap'],
+            '**/src/*.js': 'coverage'
         },
         webpack: require('./config/webpack.test')({env: 'test'}),
         reporters: [
             'progress',
-            'kjhtml'
+            'kjhtml',
+            'coverage'
         ],
         port: 9876,
         colors: true,
@@ -22,6 +24,10 @@ module.exports = function (config) {
         autoWatch: true,
         browsers: ['Chrome', 'Firefox', 'Safari'],
         singleRun: false,
-        concurrency: Infinity
+        concurrency: Infinity,
+        coverageReporter: {
+            type : 'html',
+            dir : 'coverage/'
+        }
     })
 };
