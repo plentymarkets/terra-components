@@ -1,5 +1,5 @@
-<a name="unreleased"></a>
-# Unreleased
+<a name="2.3.26"></a>
+# 2.3.26 (04.10.2018)
 
 ### Feature
 * **terra-button** added input `inputIsMajor`. It is used for the primary button in a view (for example delete customer). If true the button gets fully colored.
