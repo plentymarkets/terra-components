@@ -1,12 +1,12 @@
 <a name="unreleased"></a>
 # Unreleased
 
+### Feature
+* **terra-button** added input `inputIsMajor`. It is used for the primary button in a view (for example delete customer). If true the button gets fully colored.
+
 ### Bug Fixes 
 * **button-group** fixed styles
 * **terra-button** updated functiongroup selector
-
-### Feature
-* **terra-button** added input `inputIsMajor`. It is used for the primary button in a view (for example delete customer). If true the button gets fully colored.
 * **terra-button** updated highlighted buttons to match function groups
 
 <a name="2.3.24"></a>
