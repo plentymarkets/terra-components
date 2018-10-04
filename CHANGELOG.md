@@ -1,3 +1,20 @@
+<a name="2.3.26"></a>
+# 2.3.26 (04.10.2018)
+
+### Feature
+* **terra-button** added input `inputIsMajor`. It is used for the primary button in a view (for example delete customer). If true the button gets fully colored.
+
+### Bug Fixes 
+* **button-group** fixed styles
+* **terra-button** updated functiongroup selector
+* **terra-button** updated highlighted buttons to match function groups
+
+<a name="2.3.24"></a>
+# 2.3.24 (20.09.2018)
+
+### Bug Fixes
+* **terra-info-box** changed width text content to 100%
+
 <a name="2.3.23"></a>
 # 2.3.23 (19.09.2018)
 
