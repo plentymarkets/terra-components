@@ -57,6 +57,9 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     @Input()
     public displaySearch:boolean = false;
 
+    @Input()
+    public showFullSelectionPath:boolean = false;
+
     public toggleTree:boolean = false;
     public isNotInitialCall:boolean;
     public value:number | string;
@@ -117,7 +120,15 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
                 if(!isNullOrUndefined(nodeToSelect))
                 {
                     this.nestedTreeConfig.currentSelectedNode = nodeToSelect;
-                    this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.name;
+                    if(this.showFullSelectionPath && !isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode.parent))
+                    {
+                        this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.parent.name + ' / '
+                                            + this.nestedTreeConfig.currentSelectedNode.name;
+                    }
+                    else
+                    {
+                        this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.name;
+                    }
                 }
 
                 this.value = value;
@@ -137,7 +148,15 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
         this.isNotInitialCall = true;
         if(!isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode))
         {
-            this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.name;
+            if(this.showFullSelectionPath && !isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode.parent))
+            {
+                this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.parent.name + ' / '
+                                      + this.nestedTreeConfig.currentSelectedNode.name;
+            }
+            else
+            {
+                this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.name;
+            }
             this.writeValue(this.nestedTreeConfig.currentSelectedNode.id);
         }
         this.toggleTree = !this.toggleTree;
