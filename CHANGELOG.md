@@ -1,7 +1,7 @@
 # Unreleased
 
 ### Bug Fixes
-* **terra-data-table** pass click event to a button's `clickFunction` that is placed in a table row
+* **terra-data-table** pass click event to a button's `clickFunction` if it is placed in a table row
 
 <a name="2.3.26"></a>
 # 2.3.26 (04.10.2018)
