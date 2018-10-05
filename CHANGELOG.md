@@ -3,8 +3,8 @@
 ### Feature
 * **terra-stopwatch** added new terra component terra-stopwatch. 
 
-<a name="3.0.0-beta.4"></a>
-# 3.0.0-beta.5 (01.10.2018)
+<a name="3.0.0-beta.5"></a>
+# 3.0.0-beta.5 (04.10.2018)
 * **terra-nested-picker** added showFullSelectionPath property to show if you want the entire path for a selected node
 
 <a name="3.0.0-beta.4"></a>
@@ -30,6 +30,17 @@ Adapted Changes from v2.3.21 and v2.3.22
 
 ### Breaking Changes
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
+
+<a name="2.3.26"></a>
+# 2.3.26 (04.10.2018)
+
+### Feature
+* **terra-button** added input `inputIsMajor`. It is used for the primary button in a view (for example delete customer). If true the button gets fully colored.
+
+### Bug Fixes 
+* **button-group** fixed styles
+* **terra-button** updated functiongroup selector
+* **terra-button** updated highlighted buttons to match function groups
 
 <a name="2.3.23"></a>
 # 2.3.23 (19.09.2018)
