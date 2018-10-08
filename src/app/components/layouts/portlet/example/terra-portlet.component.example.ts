@@ -22,7 +22,6 @@ export class TerraPortletComponentExample implements OnInit
         this.portletButtonList.push(
             {
                 icon:          'icon-delete',
-                isSecondary:   true,
                 clickFunction: ():void => TerraPortletComponentExample.buttonClickFunction()
             },
             {

@@ -39,7 +39,6 @@
     
     <div class="btn-group" role="group">
         <terra-button inputIcon="icon-delete"
-                      [inputIsSecondary]="true"
                       [inputIsDisabled]="selectedStorageObjects.length <= 0"
                       [inputTooltipText]="translationPrefix + '.deleteSelectedFiles' | translate:lang"
                       inputTooltipPlacement="right"
@@ -68,7 +67,6 @@
             <terra-button [inputIcon]="'icon-success'"
                           [inputCaption]="translationPrefix + '.create' | translate:lang"
                           [inputIsSmall]="true"
-                          [inputIsTertiary]="true"
                           [inputIsDisabled]="!newDirectoryName"
                           (outputClicked)="createDirectory()"></terra-button>
         </div>
@@ -93,7 +91,6 @@
             <terra-button [inputIcon]="'icon-success'"
                           [inputCaption]="translationPrefix + '.delete' | translate:lang"
                           [inputIsSmall]="true"
-                          [inputIsSecondary]="true"
                           (outputClicked)="deleteObjects()">
             </terra-button>
         </div>

@@ -23,7 +23,6 @@ export class TerraNoResultNoticeComponentExample implements OnInit
     {
         this.buttons.push({
             caption:       'Search',
-            isTertiary:    true,
             icon:          'icon-add',
             clickFunction: ():void =>
                            {

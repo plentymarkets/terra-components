@@ -31,7 +31,6 @@ export class TerraInfoboxComponentExample
             }, {
                 caption:       'Terra',
                 icon:          'icon-plugin_not_productive',
-                isTertiary: true,
                 clickFunction: ():void => this.clickFunction('Terra')
             });
     }

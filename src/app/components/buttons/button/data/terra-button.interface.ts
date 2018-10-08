@@ -10,21 +10,6 @@ export interface TerraButtonInterface
     tooltipText?:string;
     clickFunction:(event?:Event) => void;
     tooltipPlacement?:string;
-
-    /**
-     * @deprecated The button color depends on the input icon. Each icon has its own fixed color.
-     */
-    isPrimary?:boolean;
-
-    /**
-     * @deprecated The button color depends on the input icon. Each icon has its own fixed color.
-     */
-    isSecondary?:boolean;
-
-    /**
-     * @deprecated The button color depends on the input icon. Each icon has its own fixed color.
-     */
-    isTertiary?:boolean;
     isActive?:boolean;
     isDisabled?:boolean;
     isHidden?:boolean;

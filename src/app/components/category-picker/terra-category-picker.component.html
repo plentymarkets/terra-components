@@ -16,14 +16,12 @@
                           inputIcon="icon-success"
                           [inputIsSmall]="true"
                           [inputIsDisabled]="isContainerCategorySelected"
-                          [inputIsTertiary]="true"
                           (outputClicked)="onSelectNode()">
             </terra-button>
             <terra-button inputTooltipText="{{'cancel' | translate:lang}}"
                           inputTooltipPlacement="top"
                           inputIcon="icon-cancel"
                           [inputIsSmall]="true"
-                          [inputIsSecondary]="true"
                           (outputClicked)="showTree()">
             </terra-button>
             <terra-button inputTooltipText="{{'terraCategoryPicker.reset' | translate:lang}}"
