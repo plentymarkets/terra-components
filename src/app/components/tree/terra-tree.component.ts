@@ -5,6 +5,9 @@ import {
 import { TerraBaseTreeComponent } from './base/terra-base-tree.component';
 import { TerraLeafInterface } from './leaf/terra-leaf.interface';
 
+/**
+ * @deprecated use `terra-node-tree` instead
+ */
 @Component({
     selector: 'terra-tree',
     styles:   [require('./terra-tree.component.scss')],
