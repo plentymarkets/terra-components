@@ -1,3 +1,10 @@
+<a name="3.0.0-beta.6"></a>
+# 3.0.0-beta.6 (xx.xx.2018)
+
+### Bug Fixes
+* **function-groups** added missing styles for .btn-major
+
+
 <a name="3.0.0-beta.5"></a>
 # 3.0.0-beta.5 (04.10.2018)
 * **terra-nested-picker** added showFullSelectionPath property to show if you want the entire path for a selected node
