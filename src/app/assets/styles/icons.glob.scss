@@ -5613,6 +5613,11 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
         border: none;
     }
     
+    &.btn-major
+    {
+        background-color: var(--function-group-color);
+    }
+    
     // Active: Hover, Fokus, Highlight, Aktiv
     &:hover
     {
