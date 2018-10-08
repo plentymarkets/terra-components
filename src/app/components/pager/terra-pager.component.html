@@ -51,7 +51,7 @@
                               [inputIsDisabled]="inputPagingData.totalsCount == 0"
                               [inputIsSmall]="true"
                               [(ngModel)]="inputDefaultPagingSize"
-                              (outputValueChanged)="onChangeOffsetTo($event)">
+                              (ngModelChange)="onChangeOffsetTo($event)">
             </terra-select-box>
             <!--<div class="pager-text">-->
             <!--{{inputPagingData.pagingUnit}} {{inputPagingData.firstOnPage}}-{{inputPagingData.lastOnPage}} / {{inputPagingData.totalsCount}}-->

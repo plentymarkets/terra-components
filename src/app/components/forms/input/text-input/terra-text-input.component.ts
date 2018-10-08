@@ -53,28 +53,6 @@ export class TerraTextInputComponent extends TerraInputComponent
     public outputOnInput:EventEmitter<any> = new EventEmitter<any>();
 
     /**
-     * @deprecated inputType is no longer used.  It will be removed in one of the upcoming releases.
-     * @param v
-     */
-    @Input()
-    public set inputType(v:string)
-    {
-        console.warn('inputType is no longer used.  It will be removed in one of the upcoming releases.');
-    }
-
-    /**
-     * @deprecated inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.
-     * @param v
-     */
-    @Input()
-    public set inputValue(v:string)
-    {
-        console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-
-        this.value = v;
-    }
-
-    /**
      * @description a unique string identifier for the specific input instance.
      */
     protected id:string;

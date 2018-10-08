@@ -43,12 +43,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
     public inputShowBreadcrumbs:boolean;
 
     /**
-     * @deprecated
-     */
-    @Input()
-    public inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
-
-    /**
      * @description adds/activates routing functionality to the split-view. Several dependencies need to be injected to the config as well.
      */
     @Input()

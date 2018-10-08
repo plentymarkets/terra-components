@@ -2,9 +2,10 @@ import {
     TerraFormFieldBase,
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
-import { TerraMultiSelectBoxValueInterface } from '../../multi-select-box/data/terra-multi-select-box-value.interface';
-import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
-import { TerraMultiCheckBoxValueInterface } from '../../multi-check-box/data/terra-multi-check-box-value.interface';
+import {
+    TerraControlTypeEnum,
+    TerraMultiCheckBoxValueInterface
+} from '../../../../..';
 
 export interface TerraFormFieldMultiCheckBoxOptions extends TerraFormFieldBaseOptions<any>
 {
@@ -13,7 +14,7 @@ export interface TerraFormFieldMultiCheckBoxOptions extends TerraFormFieldBaseOp
 
 export class TerraFormFieldMultiCheckBox extends TerraFormFieldBase<any>
 {
-    public checkBoxValues:Array<TerraMultiSelectBoxValueInterface>;
+    public checkBoxValues:Array<TerraMultiCheckBoxValueInterface>;
 
     constructor(key:string, label:string, required:boolean, options:TerraFormFieldMultiCheckBoxOptions = {})
     {

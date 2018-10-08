@@ -16,11 +16,11 @@ export class TerraInfoboxComponentExample
     {
         this.tagList.push(
             {
-                badge: 'Terra',
+                name: 'Terra',
                 color: 'green'
             },
             {
-                badge: 'Plenty',
+                name: 'Plenty',
                 color: 'red'
             });
         this.buttonList.push(

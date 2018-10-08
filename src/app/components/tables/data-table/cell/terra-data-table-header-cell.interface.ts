@@ -11,9 +11,5 @@ export interface TerraDataTableHeaderCellInterface
     isHidden?:boolean;
     tooltipText?:string;
     tooltipPlacement?:string;
-
-    /**
-     * @deprecated type 'string' will be removed in next major release. Please only use values of type TerraTextAlignEnum instead.
-     */
-    textAlign?:string | TerraTextAlignEnum;
+    textAlign?:TerraTextAlignEnum;
 }

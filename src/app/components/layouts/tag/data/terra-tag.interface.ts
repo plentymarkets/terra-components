@@ -22,15 +22,4 @@ export interface TerraTagInterface
     isTaggable?:boolean;
     isClosable?:boolean;
     customClass?:string;
-
-
-    /**
-     * @deprecated will be removed in next major release. Please use name or names instead.
-     */
-    caption?:string;
-
-    /**
-     *  @deprecated will be removed in next major release. Please use name or names instead.
-     */
-    badge?:string;
 }

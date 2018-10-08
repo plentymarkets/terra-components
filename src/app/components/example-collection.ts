@@ -13,7 +13,6 @@ import { TerraNumberInputComponentExample } from './forms/input/number-input/exa
 import { TerraTextAreaInputComponentExample } from './forms/input/text-area-input/example/terra-text-area-input.component.example';
 import { TerraTextInputComponentExample } from './forms/input/text-input/example/terra-text-input.component.example';
 import { TerraCheckboxComponentExample } from './forms/checkbox/example/terra-checkbox.component.example';
-import { TerraMultiSelectBoxComponentExample } from './forms/multi-select-box/example/terra-multi-select-box.component.example';
 import { TerraMultiCheckBoxComponentExample } from './forms/multi-check-box/example/terra-multi-check-box.component.example';
 import { TerraRadioButtonComponentExample } from './forms/radio-button/example/terra-radio-button.component.example';
 import { TerraSelectBoxComponentExample } from './forms/select-box/example/terra-select-box.component.example';
@@ -22,14 +21,12 @@ import { TerraSuggestionBoxComponentExample } from './forms/suggestion-box/examp
 import { TerraDataTableComponentExample } from './tables/data-table/example/terra-data-table.component.example';
 import { TerraTagComponentExample } from './layouts/tag/example/terra-tag.component.example';
 import { TerraFileInputComponentExample } from './forms/input/file-input/example/terra-file-input.component.example';
-import { TerraTreeComponentExample } from './tree/example/terra-tree.component.example';
 import { TerraCheckboxTreeComponentExample } from './tree/checkbox-tree/example/terra-checkbox-tree.component.example';
 import { TerraToggleComponentExample } from './buttons/toggle/example/terra-toggle.component.example';
 import { TerraSyntaxEditorComponentExample } from './editors/syntax-editor/example/terra-syntax-editor.component.example';
 import { TerraSimpleTableComponentExample } from './tables/simple/example/terra-table-simple.component.example';
 import { TerraPagerComponentExample } from './pager/example/terra-pager.component.example';
 import { TerraTaglistComponentExample } from './layouts/taglist/example/terra-taglist.component.example';
-import { TerraNavigatorComponentExample } from './navigator/example/terra-navigator.component.example';
 import { TerraNoResultNoticeComponentExample } from './no-result/example/terra-no-result-notice.component.example';
 import { TerraButtonWithOptionsComponentExample } from './buttons/button-with-options/example/terra-button-with-options.component.example';
 import { TerraInputComponentExample } from './forms/input/example/terra-input.component.example';
@@ -58,7 +55,6 @@ export const examples:Array<Type<any>> = [
     TerraTextAreaInputComponentExample,
     TerraTextInputComponentExample,
     TerraCheckboxComponentExample,
-    TerraMultiSelectBoxComponentExample,
     TerraMultiCheckBoxComponentExample,
     TerraRadioButtonComponentExample,
     TerraSelectBoxComponentExample,
@@ -67,14 +63,12 @@ export const examples:Array<Type<any>> = [
     TerraDataTableComponentExample,
     TerraTagComponentExample,
     TerraFileInputComponentExample,
-    TerraTreeComponentExample,
     TerraCheckboxTreeComponentExample,
     TerraToggleComponentExample,
     TerraSyntaxEditorComponentExample,
     TerraSimpleTableComponentExample,
     TerraPagerComponentExample,
     TerraTaglistComponentExample,
-    TerraNavigatorComponentExample,
     TerraNoResultNoticeComponentExample,
     TerraButtonWithOptionsComponentExample,
     TerraInputComponentExample,

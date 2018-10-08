@@ -44,18 +44,6 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
      */
     protected id:string;
 
-    /**
-     * @deprecated
-     * @param {number} v
-     */
-    @Input()
-    public set inputValue(v:number)
-    {
-        console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-
-        this.value = v;
-    }
-
     constructor()
     {
         super(TerraRegex.DOUBLE);

@@ -27,12 +27,6 @@ export class TerraFilterComponent
     public inputResetLabel:string;
 
     /**
-     * @deprecated Will be removed in an upcoming release.
-     */
-    @Input()
-    public inputInputList:Array<any>;
-
-    /**
      * @description Set the function which will be executed on click of the search button.
      */
     @Output()

@@ -6,13 +6,7 @@ export class TerraMultiSplitViewHelper
     public static isSameView(parent:TerraMultiSplitViewInterface, child:TerraMultiSplitViewInterface):boolean
     {
         return this.hasSameModule(parent, child) &&
-               (this.hasSameParameters(parent, child) || this.hasSameInputs(parent, child) || this.hasSameName(parent, child));
-    }
-
-    private static hasSameParameters(parent:TerraMultiSplitViewInterface, child:TerraMultiSplitViewInterface):boolean
-    {
-        return child.parameter && parent.parameter &&
-               CircularJSON.stringify(child.parameter) === CircularJSON.stringify(parent.parameter);
+               (this.hasSameInputs(parent, child) || this.hasSameName(parent, child));
     }
 
     private static hasSameInputs(parent:TerraMultiSplitViewInterface, child:TerraMultiSplitViewInterface):boolean

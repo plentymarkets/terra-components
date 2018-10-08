@@ -37,6 +37,7 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
+import { TerraTextAlignEnum } from './cell/terra-text-align.enum';
 
 @Component({
     selector:   'terra-data-table',
@@ -122,15 +123,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     private _rowList:Array<TerraDataTableRowInterface<D>> = [];
     private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
 
-    /**
-     * @deprecated
-     */
-    @Input()
-    private hasCheckboxes:boolean;
-
     constructor()
     {
-        this.hasCheckboxes = true;
         this.inputHasCheckboxes = true;
         this.inputHasInitialLoading = false;
         this.inputHasPager = true;
@@ -215,7 +209,8 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
 
     public rowClicked(cell:TerraDataTableCellInterface, clickedRow:TerraDataTableRowInterface<D>):void
     {
-        if(!cell.buttonList && !clickedRow.disabled)
+        let dataType:string = this.getCellDataType(cell.data);
+        if(dataType !== 'buttons' && !clickedRow.disabled)
         {
             this._rowList.forEach((row:TerraDataTableRowInterface<D>):void =>
             {
@@ -253,7 +248,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             let implementsInterface:boolean = true;
             arg.forEach((elem:any) =>
             {
-                implementsInterface = implementsInterface && elem.badge && typeof elem.badge === 'string';
+                implementsInterface = implementsInterface && elem.name && typeof elem.name === 'string';
             });
 
             return arg && implementsInterface;
@@ -405,7 +400,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         }
         else
         {
-            return 'left';
+            return TerraTextAlignEnum.LEFT;
         }
     }
 }

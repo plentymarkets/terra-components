@@ -120,21 +120,6 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.selectedValue).toEqual(null);
     });
 
-    it('Calling `resetComponentValue` should set `selectedValue` and `value` to `null`', () =>
-    {
-        component.inputListBoxValues = [suggestion];
-        component.value = suggestion.value;
-
-        // check expectations after setting the value
-        expect(component.value).toEqual(suggestion.value);
-        expect(component.selectedValue).toEqual(suggestion);
-
-        component.resetComponentValue();
-
-        expect(component.value).toEqual(null);
-        expect(component.selectedValue).toEqual(null);
-    });
-
     it('set #selectedValue should update #value and the displayed text in the input', () =>
     {
         let suggestionBoxElement:HTMLElement = fixture.nativeElement;
@@ -232,19 +217,5 @@ describe('TerraSuggestionBoxComponent', () =>
         inputElement.dispatchEvent(new Event('input'));
 
         expect(text).toEqual(enteredText);
-    });
-
-    it('#outputValueChanged should emit if #selectedValue changes', () =>
-    {
-        let value:TerraSuggestionBoxValueInterface;
-        component.outputValueChanged.subscribe((eventValue:TerraSuggestionBoxValueInterface) => value = eventValue);
-
-        // changing the value from undefined to null should not cause outputValueChanged to emit
-        component.selectedValue = null;
-        expect(value).toEqual(undefined);
-
-        // changing the value
-        component.selectedValue = suggestion;
-        expect(value).toEqual(suggestion);
     });
 });

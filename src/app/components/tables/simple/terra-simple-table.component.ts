@@ -89,36 +89,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         }
     }
 
-    /**
-     * @deprecated
-     *
-     * @returns {Array<TerraSimpleTableHeaderCellInterface>}
-     */
-    public get headerList():Array<TerraSimpleTableHeaderCellInterface>
-    {
-        return this.inputHeaderList;
-    }
-
-    /**
-     * @deprecated
-     *
-     * @param value
-     */
-    public set headerList(value:Array<TerraSimpleTableHeaderCellInterface>)
-    {
-        this.inputHeaderList = value;
-    }
-
-    /**
-     * @deprecated
-     *
-     * @returns {Array<TerraSimpleTableRowInterface>}
-     */
-    public get rowList():Array<TerraSimpleTableRowInterface<D>>
-    {
-        return this.inputRowList;
-    }
-
     public set rowList(value:Array<TerraSimpleTableRowInterface<D>>)
     {
         this.inputRowList = value;
