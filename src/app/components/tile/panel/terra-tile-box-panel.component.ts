@@ -6,6 +6,7 @@ import { TerraTileBoxInterface } from '../box/data/terra-tile-box.interface';
 
 /**
  * @author mkunze
+ * @deprecated use `terra-card` instead.
  */
 @Component({
     selector: 'terra-tile-box-panel',

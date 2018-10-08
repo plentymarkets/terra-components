@@ -26,6 +26,13 @@ Adapted Changes from v2.3.21 and v2.3.22
 ### Breaking Changes
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
 
+# Unreleased
+
+* **terra-dynamic-module-loader** input `inputParameter` is now deprecated. Use input `inputInputs` instead.
+* **terra-button-group** && **terra-navigator** && **terra-navigator.config** && **terra-navigator-split-view.config** are now deprecated. Use `terra-node-tree` instead.
+* **terra-tree** is now deprecated. Use `terra-node-tree` instead.
+* **terra-tile-box** && **terra-tile-box-panel** are now deprecated. Use `terra-card` instead.
+
 <a name="2.3.26"></a>
 # 2.3.26 (04.10.2018)
 

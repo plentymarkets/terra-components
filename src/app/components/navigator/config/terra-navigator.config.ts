@@ -6,6 +6,7 @@ import { TerraNavigatorNodeInterface } from '../data/terra-navigator-node.interf
 
 /**
  * @author mscharf
+ * @deprecated since `terra-navigator` is now deprecated
  */
 export class TerraNavigatorConfig<D>
 {
