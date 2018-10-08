@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 
 /**
  * @author mscharf
+ * @deprecated since `terra-navigator` is now deprecated
  */
 @Injectable()
 export class TerraNavigatorSplitViewConfig<D> extends TerraSplitConfigBase
