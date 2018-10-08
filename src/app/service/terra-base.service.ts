@@ -139,6 +139,32 @@ export class TerraBaseService
                     });
                 }
             }
+            //VALIDATION errors
+            else if(error.status === 422)
+            {
+
+                let errorMsg = "",
+                    errorJson = error.json();
+
+                if ( errorJson.hasOwnProperty ( 'validation_errors' ) )
+                {
+                    for ( let e in  errorJson.validation_errors )
+                    {
+                        errorMsg += errorJson.validation_errors[e].join( "\n" );
+                    }
+                }
+                else
+                {
+                    errorMsg = errorJson.error.message ;
+                }
+
+                this._alert.addAlert({
+                    msg:              errorMsg,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                });
+
+            }
             // END Very unclean workaround!
             else if(error.status === 401) // unauthenticated
             {
