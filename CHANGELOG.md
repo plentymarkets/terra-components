@@ -5,6 +5,17 @@
 * **terra-tree** is now deprecated. Use `terra-node-tree` instead.
 * **terra-tile-box** && **terra-tile-box-panel** are now deprecated. Use `terra-card` instead.
 
+<a name="2.3.26"></a>
+# 2.3.26 (04.10.2018)
+
+### Feature
+* **terra-button** added input `inputIsMajor`. It is used for the primary button in a view (for example delete customer). If true the button gets fully colored.
+
+### Bug Fixes 
+* **button-group** fixed styles
+* **terra-button** updated functiongroup selector
+* **terra-button** updated highlighted buttons to match function groups
+
 <a name="2.3.24"></a>
 # 2.3.24 (20.09.2018)
 
