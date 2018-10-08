@@ -1,5 +1,7 @@
 # Unreleased
 
+* **function-groups** removed custom group for add-icon
+* **function-groups** added missing styles for .btn-major
 * **terra-dynamic-module-loader** input `inputParameter` is now deprecated. Use input `inputInputs` instead.
 * **terra-button-group** && **terra-navigator** && **terra-navigator.config** && **terra-navigator-split-view.config** are now deprecated. Use `terra-node-tree` instead.
 * **terra-tree** is now deprecated. Use `terra-node-tree` instead.
