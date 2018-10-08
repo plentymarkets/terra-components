@@ -102,6 +102,7 @@
                                 <terra-button *ngIf="!button.isHidden"
                                               (outputClicked)="button.clickFunction();$event.stopPropagation()"
                                               [inputIcon]="button.icon"
+                                              [inputIsActive]="button.isActive"
                                               [inputIsDisabled]="button.isDisabled"
                                               [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
                                               [inputCaption]="button.caption"
