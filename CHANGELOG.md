@@ -1,7 +1,8 @@
 # Unreleased
-
 * **function-groups** removed custom group for add-icon
 * **function-groups** added missing styles for .btn-major
+* **TerraButtonInterface** `isPrimary`, `isSecondary` and `isTertiary` are now deprecated. Each icon has its own fixed color.
+* **terra-button-with-options** `inputIsPrimary`, `inputIsSecondary` and `inputIsTertiary` are now deprecated. Each icon has its own fixed color.
 * **terra-dynamic-module-loader** input `inputParameter` is now deprecated. Use input `inputInputs` instead.
 * **terra-button-group** && **terra-navigator** && **terra-navigator.config** && **terra-navigator-split-view.config** are now deprecated. Use `terra-node-tree` instead.
 * **terra-tree** is now deprecated. Use `terra-node-tree` instead.
