@@ -1,3 +1,38 @@
+# Unreleased beta
+
+The following variables were set to deprecated and had been deleted:
+
+* **terra-button-with-options** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
+* **terra-button.interface** `isPrimary`, `isSecondary`, `isTertiary`,
+* **terra-button** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
+* **terra-file-chooser** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
+* **terra-dynamic-module-loader** `inputParameter` (use `inputs` instead)
+* **terra-filter** `inputInputList` (use `ng-content` instead)
+* **terra-checkbox** `inputId`
+* **terra-double-input** `inputValue` (use `ngModel` instead)
+* **terra-number-input** `inputValue` (use `ngModel` instead)
+* **terra-input** `inputPlaceholder` (use `inputName` instead)
+* **terra-text-area-input** `inputType`, `inputValue` (use `ngModel` instead), `inputMaxCols`
+* **terra-text-input** `inputType`, `inputValue` (use `ngModel` instead)
+* **terra-select-box** `outputValueChanged` (use `ngModelChange` instead), `inputSelectedValue` (use `ngModel` instead)
+* **terra-suggestion-box** `outputValueChanged` (use `ngModelChange` instead), `resetComponentValue()` (use `ngModel` instead)
+* **terra-tag.interface** `caption` (use `name` or `names` instead), `badge` (use `name` or `names` instead)
+* **terra-multi-split-view** `inputComponentRoute`
+* **terra-data-table-cell.interface** `caption` (use `data` or `data.caption` instead), `icon` (use `data.icon` instead), `color` (use `data.color` instead), `buttonList` (use `data` instead), `href` (use `data` instead) -> `data` can be a type of `string`, `number`, `TerraDataTableTextInterface`, `TerraRefTypeInterface`, `Array<TerraButtonInterface>`or `Array<TerraTagInterface>`
+* **terra-data-table-header-cell.interface** `textAlign:string` (use `textAlign:TerraTextAlignEnum` instead)
+* **terra-data-table** `hasCheckboxes` (use `inputHasCheckboxes` instead)
+* **terra-simple-table** setter and getter of `headerList` (use `inputHeaderList`), getter and setter of `rowList` (use `inputRowList` instead)
+
+The following components had been deleted:
+
+* **terra-multi-select-box** use `terra-multi-check-box` instead
+* **terra-button-group**
+* **terra-navigator**
+* **terra-split-view** use `terra-multi-split-view` instead
+* **terra-tile-box** use `terra-card` instead
+* **terra-tree** use `terra-node-tree` instead
+* **terra-url-params-decorator** use `terra-base-service::createUrlSearchParams` instead
+
 <a name="3.0.0-beta.6"></a>
 # 3.0.0-beta.6 (xx.xx.2018)
 

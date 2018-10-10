@@ -89,11 +89,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         }
     }
 
-    public set rowList(value:Array<TerraSimpleTableRowInterface<D>>)
-    {
-        this.inputRowList = value;
-    }
-
     private checkTooltipPlacement(placement:string):string
     {
         if(isNull(placement) || placement === '')
