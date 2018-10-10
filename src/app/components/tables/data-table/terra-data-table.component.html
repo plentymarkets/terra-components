@@ -62,7 +62,7 @@
                         <div [innerHTML]="cell.tooltipText"></div>
                     </ng-template>
                     
-                    <td *ngIf="!cell.isHidden && cell.data"
+                    <td *ngIf="!cell.isHidden"
                         [ngSwitch]="getCellDataType(cell.data)"
                         [ngStyle]="{ 'text-align': getTextAlign(headerList[i]) }"
                         (click)="rowClicked(cell, row)"
