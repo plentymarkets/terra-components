@@ -1,6 +1,6 @@
 # Unreleased beta
 
-The following variables were set to deprecated and had been deleted:
+The following deprecated variables had been deleted:
 
 * **terra-button-with-options** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
 * **terra-button.interface** `isPrimary`, `isSecondary`, `isTertiary`,
@@ -23,7 +23,7 @@ The following variables were set to deprecated and had been deleted:
 * **terra-data-table** `hasCheckboxes` (use `inputHasCheckboxes` instead)
 * **terra-simple-table** setter and getter of `headerList` (use `inputHeaderList`), getter and setter of `rowList` (use `inputRowList` instead)
 
-The following components had been deleted:
+The following deprecated components had been deleted:
 
 * **terra-multi-select-box** use `terra-multi-check-box` instead
 * **terra-button-group**
