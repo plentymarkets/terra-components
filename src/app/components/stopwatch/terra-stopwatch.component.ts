@@ -76,26 +76,41 @@ export class TerraStopwatchComponent implements OnInit
         this.stopwatch.reset();
     }
 
+    /**
+     * @description returns the stopwatch format
+     */
     protected get stopWatchTime():string
     {
         return this.getStopwatchPattern();
     }
 
+    /**
+     * @description returns the tooltip for reset control
+     */
     protected get resetControlTooltip():string
     {
         return this.translation.translate(this.langPrefix + '.reset');
     }
 
+    /**
+     * @description returns the tooltip for start and stop control
+     */
     protected get startAndStopControlTooltip():string
     {
         return this.translation.translate(this.langPrefix + (this.stopwatch.state === 1 ? '.pause' : '.start'));
     }
 
+    /**
+     * @description returns the icon for start and stop control
+     */
     protected get startAndStopControlIcon():string
     {
         return this.stopwatch.state === 1 ? 'icon-control_pause' : 'icon-control_play';
     }
 
+    /**
+     * @description returns the function for start and stop control
+     */
     protected startAndStopControl():void
     {
         return this.stopwatch.state === 1 ? this.stopStopwatch() : this.startStopwatch();
