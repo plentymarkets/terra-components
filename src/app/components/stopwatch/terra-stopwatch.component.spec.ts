@@ -1,28 +1,64 @@
-import { TranslationService } from 'angular-l10n';
+import { LocalizationModule } from 'angular-l10n';
 import { TerraStopwatchComponent } from './terra-stopwatch.component';
+import {
+    async,
+    ComponentFixture,
+    TestBed
+} from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { ElementRef } from '@angular/core';
+import { MockElementRef } from '../../testing/mock-element-ref';
+import { TooltipModule } from 'ngx-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { l10nConfig } from '../../translation/l10n.config';
+import { TerraButtonComponent } from '../../../';
 
 describe('Component: TerraStopwatchComponent', () =>
 {
-    let translationService:TranslationService;
-    let component:TerraStopwatchComponent = new TerraStopwatchComponent(translationService);
+    let component:TerraStopwatchComponent;
+    let fixture:ComponentFixture<TerraStopwatchComponent>;
+
+    beforeEach(async(() =>
+    {
+        TestBed.configureTestingModule({
+            declarations: [
+                TerraStopwatchComponent,
+                TerraButtonComponent
+            ],
+            imports:      [
+                TooltipModule.forRoot(),
+                FormsModule,
+                HttpModule,
+                HttpClientModule,
+                LocalizationModule.forRoot(l10nConfig)
+            ],
+            providers:    [
+                {
+                    provide:  ElementRef,
+                    useClass: MockElementRef
+                }
+            ]
+        }).compileComponents();
+    }));
 
     beforeEach(() =>
     {
-        component.ngOnInit();
-    });
+        fixture = TestBed.createComponent(TerraStopwatchComponent);
+        component = fixture.componentInstance;
 
-    afterEach(() =>
-    {
         component.resetStopwatch();
         component.inputIsAutoPlay = false;
+
+        fixture.detectChanges();
     });
 
-    it('should create an instance of TerraStopwatchComponent', () =>
+    it('should create', () =>
     {
         expect(component).toBeTruthy();
     });
 
-    it('should auto run the stopwatch', (done:any) =>
+    it('should auto run', (done:any) =>
     {
         component.inputIsAutoPlay = true;
         component.ngOnInit();
@@ -33,14 +69,14 @@ describe('Component: TerraStopwatchComponent', () =>
         }, 100);
     });
 
-    it('should not auto run the stopwatch', () =>
+    it('should not auto run', () =>
     {
         component.inputIsAutoPlay = false;
         component.ngOnInit();
         expect(component.getStopwatchTimeInMilliseconds()).toEqual(0);
     });
 
-    it('should start stopwatch and reset value to 0', (done:any) =>
+    it('should start and reset', (done:any) =>
     {
         component.startStopwatch();
         setTimeout(() =>
@@ -52,7 +88,7 @@ describe('Component: TerraStopwatchComponent', () =>
         }, 100);
     });
 
-    it('should start and stop stopwatch', (done:any) =>
+    it('should start and stop', (done:any) =>
     {
         component.startStopwatch();
         let time:number;
