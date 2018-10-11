@@ -47,7 +47,7 @@ describe('Component: TerraStopwatchComponent', () =>
         fixture = TestBed.createComponent(TerraStopwatchComponent);
         component = fixture.componentInstance;
 
-        component.resetStopwatch();
+        component.reset();
         component.inputIsAutoPlay = false;
 
         fixture.detectChanges();
@@ -64,7 +64,7 @@ describe('Component: TerraStopwatchComponent', () =>
         component.ngOnInit();
         setTimeout(() =>
         {
-            expect(component.getStopwatchTimeInMilliseconds()).toBeGreaterThan(0);
+            expect(component.getTimeInMilliseconds()).toBeGreaterThan(0);
             done();
         }, 100);
     });
@@ -73,34 +73,34 @@ describe('Component: TerraStopwatchComponent', () =>
     {
         component.inputIsAutoPlay = false;
         component.ngOnInit();
-        expect(component.getStopwatchTimeInMilliseconds()).toEqual(0);
+        expect(component.getTimeInMilliseconds()).toEqual(0);
     });
 
     it('should start and reset', (done:any) =>
     {
-        component.startStopwatch();
+        component.start();
         setTimeout(() =>
         {
-            expect(component.getStopwatchTimeInMilliseconds()).toBeGreaterThan(0);
-            component.resetStopwatch();
-            expect(component.getStopwatchTimeInMilliseconds()).toEqual(0);
+            expect(component.getTimeInMilliseconds()).toBeGreaterThan(0);
+            component.reset();
+            expect(component.getTimeInMilliseconds()).toEqual(0);
             done();
         }, 100);
     });
 
     it('should start and stop', (done:any) =>
     {
-        component.startStopwatch();
+        component.start();
         let time:number;
         setTimeout(() =>
         {
-            expect(component.getStopwatchTimeInMilliseconds()).toBeGreaterThan(0);
-            component.stopStopwatch();
-            time = component.getStopwatchTimeInMilliseconds();
+            expect(component.getTimeInMilliseconds()).toBeGreaterThan(0);
+            component.stop();
+            time = component.getTimeInMilliseconds();
         }, 100);
         setTimeout(() =>
         {
-            expect(component.getStopwatchTimeInMilliseconds()).toEqual(time);
+            expect(component.getTimeInMilliseconds()).toEqual(time);
             done();
         }, 200);
     });

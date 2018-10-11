@@ -4,10 +4,9 @@
                   [inputIsSmall]="true"
                   [inputTooltipText]="startAndStopControlTooltip"
                   inputTooltipPlacement="top"
-                  (outputClicked)="startAndStopControl()">
+                  (outputClicked)="startAndStopControl">
     </terra-button>
-    <terra-button inputType="submit"
-                  [inputCaption]=stopWatchTime
+    <terra-button [inputCaption]=format
                   [inputIsSmall]="true">
     </terra-button>
     <terra-button *ngIf="inputEnableControls"
@@ -15,6 +14,6 @@
                   [inputIsSmall]="true"
                   [inputTooltipText]="resetControlTooltip"
                   inputTooltipPlacement="top"
-                  (outputClicked)="resetStopwatch()">
+                  (outputClicked)="reset()">
     </terra-button>
 </div>

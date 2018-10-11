@@ -17,37 +17,34 @@ export class TerraStopwatchComponent implements OnInit
      * @description If true, the start, pause and reset control will show
      */
     @Input()
-    public inputEnableControls:boolean;
+    public inputEnableControls:boolean = false;
 
     /**
      * @description If true, stopwatch starts if component initialize
      */
     @Input()
-    public inputIsAutoPlay:boolean;
+    public inputIsAutoPlay:boolean = false;
 
     protected langPrefix:string = 'terraStopwatch';
 
-    private stopwatch:any;
+    private stopwatch:Stopwatch = new Stopwatch();
 
     constructor(public translation:TranslationService)
     {
-        this.inputEnableControls = false;
-        this.inputIsAutoPlay = false;
-        this.stopwatch = new Stopwatch();
     }
 
     public ngOnInit():void
     {
         if(this.inputIsAutoPlay)
         {
-            this.startStopwatch();
+            this.start();
         }
     }
 
     /**
      * @description returns stopwatch value in milliseconds
      */
-    public getStopwatchTimeInMilliseconds():number
+    public getTimeInMilliseconds():number
     {
         return this.stopwatch.ms;
     }
@@ -55,7 +52,7 @@ export class TerraStopwatchComponent implements OnInit
     /**
      * @description starts the stopwatch
      */
-    public startStopwatch():void
+    public start():void
     {
         this.stopwatch.start();
     }
@@ -63,7 +60,7 @@ export class TerraStopwatchComponent implements OnInit
     /**
      * @description stops the stopwatch
      */
-    public stopStopwatch():void
+    public stop():void
     {
         this.stopwatch.stop();
     }
@@ -71,7 +68,7 @@ export class TerraStopwatchComponent implements OnInit
     /**
      * @description resets the stopwatch
      */
-    public resetStopwatch():void
+    public reset():void
     {
         this.stopwatch.reset();
     }
@@ -79,7 +76,7 @@ export class TerraStopwatchComponent implements OnInit
     /**
      * @description returns the stopwatch format
      */
-    protected get stopWatchTime():string
+    protected get format():string
     {
         return this.getStopwatchPattern();
     }
@@ -111,9 +108,9 @@ export class TerraStopwatchComponent implements OnInit
     /**
      * @description returns the function for start and stop control
      */
-    protected startAndStopControl():void
+    protected get startAndStopControl():void
     {
-        return this.stopwatch.state === 1 ? this.stopStopwatch() : this.startStopwatch();
+        return this.stopwatch.state === 1 ? this.stop() : this.start();
     }
 
     /**
