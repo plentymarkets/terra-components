@@ -1,5 +1,5 @@
 import { TerraMultiSplitViewInterface } from '../interfaces/terra-multi-split-view.interface';
-import * as CircularJSON from 'circular-json';
+import * as flatted from 'flatted';
 
 export class TerraMultiSplitViewHelper
 {
@@ -12,13 +12,13 @@ export class TerraMultiSplitViewHelper
     private static hasSameParameters(parent:TerraMultiSplitViewInterface, child:TerraMultiSplitViewInterface):boolean
     {
         return child.parameter && parent.parameter &&
-               CircularJSON.stringify(child.parameter) === CircularJSON.stringify(parent.parameter);
+               flatted.stringify(child.parameter) === flatted.stringify(parent.parameter);
     }
 
     private static hasSameInputs(parent:TerraMultiSplitViewInterface, child:TerraMultiSplitViewInterface):boolean
     {
         return child.inputs && parent.inputs &&
-               CircularJSON.stringify(child.inputs) === CircularJSON.stringify(parent.inputs);
+               flatted.stringify(child.inputs) === flatted.stringify(parent.inputs);
     }
 
     private static hasSameName(parent:TerraMultiSplitViewInterface, child:TerraMultiSplitViewInterface):boolean
