@@ -43,8 +43,6 @@
 		"angular-l10n": "4.1.5",
 		"bootstrap": "4.0.0-alpha.4",
 		"bootstrap-loader": "2.1.0",
-		"canonical-path": "0.0.2",
-		"core-js": "^2.5.5",
 		"dgeni": "^0.4.9",
 		"dgeni-packages": "^0.26.0",
 		"flatted": "^1.0.3",
