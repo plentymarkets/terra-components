@@ -25,6 +25,12 @@ export class TerraStopwatchComponent implements OnInit
     @Input()
     public inputIsAutoPlay:boolean = false;
 
+    /**
+     * @description If true, buttons are small
+     */
+    @Input()
+    public inputIsSmall:boolean = false;
+
     protected langPrefix:string = 'terraStopwatch';
 
     private stopwatch:Stopwatch = new Stopwatch();
