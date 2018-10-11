@@ -112,11 +112,11 @@ export class TerraStopwatchComponent implements OnInit
     }
 
     /**
-     * @description returns the function for start and stop control
+     * @description runs the function for start and stop control
      */
-    protected get startAndStopControl():void
+    protected startAndStopControl():void
     {
-        return this.stopwatch.state === 1 ? this.stop() : this.start();
+        this.stopwatch.state === 1 ? this.stop() : this.start();
     }
 
     /**
