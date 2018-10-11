@@ -116,6 +116,9 @@ export class TerraStopwatchComponent implements OnInit
         return this.stopwatch.state === 1 ? this.stopStopwatch() : this.startStopwatch();
     }
 
+    /**
+     * @description build and return stopwatch pattern/format
+     */
     private getStopwatchPattern():string
     {
         return (Math.floor(((this.stopwatch.ms / 3600000) % 24)) < 10 ? '0' : '') +
