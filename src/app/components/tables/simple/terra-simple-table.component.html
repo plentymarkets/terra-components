@@ -43,7 +43,7 @@
                         width="{{ inputHeaderList[i].width }}"
                         [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
                         [tooltip]="tdTooltip"
-                        [ngStyle]="{ 'text-align': getTextAlign(headerList[i]) }"
+                        [ngStyle]="{ 'text-align': getTextAlign(inputHeaderList[i]) }"
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0">
                         <span [ngClass]="cell.icon"></span>
                         <span [innerHTML]="cell.caption"></span>
