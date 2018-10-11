@@ -44,21 +44,33 @@ export class TerraStopwatchComponent implements OnInit
         }
     }
 
+    /**
+     * @description returns stopwatch value in milliseconds
+     */
     public getStopwatchTimeInMilliseconds():number
     {
         return this.stopwatch.ms;
     }
 
+    /**
+     * @description starts the stopwatch
+     */
     public startStopwatch():void
     {
         this.stopwatch.start();
     }
 
+    /**
+     * @description stops the stopwatch
+     */
     public stopStopwatch():void
     {
         this.stopwatch.stop();
     }
 
+    /**
+     * @description resets the stopwatch
+     */
     public resetStopwatch():void
     {
         this.stopwatch.reset();
