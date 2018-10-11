@@ -10,6 +10,7 @@ import { isNullOrUndefined } from 'util';
 
 /**
  * @author mscharf
+ * @deprecated since `terra-navigator` is now deprecated
  */
 @Component({
     selector: 'terra-button-group',

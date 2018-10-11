@@ -7,6 +7,7 @@ import { TerraTileBoxColor } from './data/terra-tile-box-color';
 
 /**
  * @author mkunze
+ * @deprecated use `terra-card` instead.
  */
 @Component({
     selector: 'terra-tile-box',
