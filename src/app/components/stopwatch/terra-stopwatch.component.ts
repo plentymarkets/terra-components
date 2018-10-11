@@ -91,10 +91,10 @@ export class TerraStopwatchComponent implements OnInit
 
     private getStopwatchPattern():string
     {
-        return (Math.floor(((this.stopwatch.ms / (1000 * 60 * 60)) % 24)) < 10 ? '0' : '') +
-               Math.floor(((this.stopwatch.ms / (1000 * 60 * 60)) % 24)) + ':' +
-               (Math.floor(((this.stopwatch.ms / (1000 * 60)) % 60)) < 10 ? '0' : '') +
-               Math.floor(((this.stopwatch.ms / (1000 * 60)) % 60)) + ':' +
+        return (Math.floor(((this.stopwatch.ms / 3600000) % 24)) < 10 ? '0' : '') +
+               Math.floor(((this.stopwatch.ms / 3600000) % 24)) + ':' +
+               (Math.floor(((this.stopwatch.ms / 60000) % 60)) < 10 ? '0' : '') +
+               Math.floor(((this.stopwatch.ms / 60000) % 60)) + ':' +
                (Math.floor(((this.stopwatch.ms / 1000) % 60)) < 10 ? '0' : '') +
                Math.floor(((this.stopwatch.ms / 1000) % 60));
     }
