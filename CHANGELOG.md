@@ -44,6 +44,9 @@ Adapted Changes from v2.3.21 and v2.3.22
 * **terra-tree** is now deprecated. Use `terra-node-tree` instead.
 * **terra-tile-box** && **terra-tile-box-panel** are now deprecated. Use `terra-card` instead.
 
+### Bug Fixes
+* **terra-data-table** pass click event to a button's `clickFunction` if it is placed in a table row
+
 <a name="2.3.26"></a>
 # 2.3.26 (04.10.2018)
 
