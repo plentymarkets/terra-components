@@ -136,10 +136,10 @@ export class TerraPagerComponent implements OnInit
         this.outputDoPaging.emit(this.inputPagingData);
     }
 
-    public onChangeOffsetTo(selectedOffset:TerraSelectBoxValueInterface):void
+    public onChangeOffsetTo(value:number):void
     {
         this.inputPagingData.page = 1;
-        this.inputPagingData.itemsPerPage = selectedOffset.value;
+        this.inputPagingData.itemsPerPage = value;
         this.outputDoPaging.emit(this.inputPagingData);
     }
 

@@ -31,8 +31,6 @@ export * from './app/components/pager/data/terra-pager.interface';
 export * from './app/components/pager/terra-pager.component';
 export * from './app/components/layouts/portlet/terra-portlet.component';
 export * from './app/service/terra-base.service';
-export * from './app/components/split-view/data/terra-split-view.interface';
-export * from './app/components/split-view/data/terra-split-config-base';
 export * from './app/components/tables/data-table/cell/terra-data-table-cell.interface';
 export * from './app/components/tables/data-table/cell/terra-ref-type.interface';
 export * from './app/components/tables/data-table/cell/terra-data-table-text.interface';

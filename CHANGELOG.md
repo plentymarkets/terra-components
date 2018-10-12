@@ -6,7 +6,7 @@ The following deprecated variables have been deleted:
 * **terra-button.interface** `isPrimary`, `isSecondary`, `isTertiary`,
 * **terra-button** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
 * **terra-file-chooser** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
-* **terra-dynamic-module-loader** `inputParameter` (use `inputs` instead)
+* **terra-dynamic-module-loader** `inputParameter` (use `inputInputs` instead)
 * **terra-filter** `inputInputList` (use `ng-content` instead)
 * **terra-checkbox** `inputId`
 * **terra-double-input** `inputValue` (use `ngModel` instead)
