@@ -1,4 +1,5 @@
-# Unreleased
+<a name="2.4.0"></a>
+# 2.4.0 (12.10.2018)
 
 ### Feature
 * **terra-stopwatch** added new terra component terra-stopwatch. 
