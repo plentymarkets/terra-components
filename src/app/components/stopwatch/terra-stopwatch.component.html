@@ -1,0 +1,19 @@
+<div class="btn-group" role="group">
+    <terra-button *ngIf="inputEnableControls"
+                  [inputIcon]="startAndStopControlIcon"
+                  [inputIsSmall]="inputIsSmall"
+                  [inputTooltipText]="startAndStopControlTooltip"
+                  inputTooltipPlacement="top"
+                  (outputClicked)="startAndStopControl()">
+    </terra-button>
+    <terra-button [inputCaption]=format
+                  [inputIsSmall]="inputIsSmall">
+    </terra-button>
+    <terra-button *ngIf="inputEnableControls"
+                  inputIcon="icon-reset"
+                  [inputIsSmall]="inputIsSmall"
+                  [inputTooltipText]="resetControlTooltip"
+                  inputTooltipPlacement="top"
+                  (outputClicked)="reset()">
+    </terra-button>
+</div>
