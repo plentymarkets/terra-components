@@ -1,4 +1,5 @@
-# Unreleased
+<a name="3.0.0-beta.6"></a>
+# 3.0.0-beta.6 (12.10.2018)
 Adapted Changes from v2.4.0
 
 ### Feature
