@@ -1,7 +1,7 @@
 import { TerraMultiSplitViewInterface } from './terra-multi-split-view.interface';
 
 /**
- * @author pweyrich
+ * @deprecated Will be removed in the next major release.
  */
 export interface TerraMultiSplitViewModuleInterface
 {
