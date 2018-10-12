@@ -40,7 +40,7 @@ export class TerraBreadcrumbsComponent
         {
             for(let route of routeConfig)
             {
-                if(!isNullOrUndefined(route.data) && !isNullOrUndefined(route.data.permissions) && route === routeToFind)
+                if(route === routeToFind)
                 {
                     path = parentPath + '/' + route.path;
 

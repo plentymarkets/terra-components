@@ -1,7 +1,26 @@
 # Unreleased
 
+* **TerraButtonInterface** `isPrimary`, `isSecondary` and `isTertiary` are now deprecated. Each icon has its own fixed color.
+* **terra-button-with-options** `inputIsPrimary`, `inputIsSecondary` and `inputIsTertiary` are now deprecated. Each icon has its own fixed color.
+* **terra-dynamic-module-loader** input `inputParameter` is now deprecated. Use input `inputInputs` instead.
+* **terra-button-group** && **terra-navigator** && **terra-navigator.config** && **terra-navigator-split-view.config** are now deprecated. Use `terra-node-tree` instead.
+* **terra-tree** is now deprecated. Use `terra-node-tree` instead.
+* **terra-tile-box** && **terra-tile-box-panel** are now deprecated. Use `terra-card` instead.
+
 ### Bug Fixes
+* **terra-data-table** pass click event to a button's `clickFunction` if it is placed in a table row
 * **terra-double-input** fixed issue with the decimal separator. It now accepts decimal inputs in the localized format.
+
+<a name="2.3.26"></a>
+# 2.3.26 (04.10.2018)
+
+### Feature
+* **terra-button** added input `inputIsMajor`. It is used for the primary button in a view (for example delete customer). If true the button gets fully colored.
+
+### Bug Fixes 
+* **button-group** fixed styles
+* **terra-button** updated functiongroup selector
+* **terra-button** updated highlighted buttons to match function groups
 
 <a name="2.3.24"></a>
 # 2.3.24 (20.09.2018)

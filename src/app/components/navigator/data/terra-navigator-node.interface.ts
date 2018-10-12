@@ -2,6 +2,7 @@ import { TerraBaseData } from '../../data/terra-base.data';
 
 /**
  * @author mscharf
+ * @deprecated since `terra-navigator` is now deprecated
  */
 export interface TerraNavigatorNodeInterface<D> extends TerraBaseData
 {
