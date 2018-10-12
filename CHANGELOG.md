@@ -1,5 +1,5 @@
-<a name="2.4.0"></a>
-# 2.4.0 (12.10.2018)
+# Unreleased
+Adapted Changes from v2.4.0
 
 ### Feature
 * **terra-stopwatch** added new terra component terra-stopwatch. 
@@ -36,8 +36,8 @@ Adapted Changes from v2.3.21 and v2.3.22
 ### Breaking Changes
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
 
-# Unreleased
-
+<a name="2.4.0"></a>
+# 2.4.0 (12.10.2018)
 * **TerraButtonInterface** `isPrimary`, `isSecondary` and `isTertiary` are now deprecated. Each icon has its own fixed color.
 * **terra-button-with-options** `inputIsPrimary`, `inputIsSecondary` and `inputIsTertiary` are now deprecated. Each icon has its own fixed color.
 * **terra-dynamic-module-loader** input `inputParameter` is now deprecated. Use input `inputInputs` instead.
