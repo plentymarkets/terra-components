@@ -4,9 +4,9 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: 'terra-app-root',
-    template: require('./terra-components.component.html'),
-    styles:   [require('./terra-components.component.scss')]
+    selector:    'terra-app-root',
+    templateUrl: './terra-components.component.html',
+    styleUrls:   ['./terra-components.component.scss']
 })
 export class TerraComponentsComponent
 {

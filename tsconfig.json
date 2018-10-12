@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"declaration": true,
+		"declaration": false,
 		"target": "es5",
 		"module": "commonjs",
 		"moduleResolution": "node",
@@ -20,7 +20,6 @@
 	},
 	"exclude": [
 		"node_modules",
-		"dist",
-		"**/*.d.ts"
+		"dist"
 	]
 }
