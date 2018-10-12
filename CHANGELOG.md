@@ -1,4 +1,5 @@
-# Unreleased
+<a name="2.4.0"></a>
+# 2.4.0 (12.10.2018)
 
 * **TerraButtonInterface** `isPrimary`, `isSecondary` and `isTertiary` are now deprecated. Each icon has its own fixed color.
 * **terra-button-with-options** `inputIsPrimary`, `inputIsSecondary` and `inputIsTertiary` are now deprecated. Each icon has its own fixed color.
