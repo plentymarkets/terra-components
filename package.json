@@ -22,7 +22,7 @@
 		"clean:dist": "npm run rimraf -- dist",
 		"rimraf": "rimraf",
 		"release": "gulp npm-publish",
-		"start": "webpack-dev-server --progress --watch --profile --config config/webpack.dev.js",
+		"start": "webpack-dev-server --progress --watch --profile --open --config config/webpack.dev.js",
 		"gulp": "gulp",
 		"test": "karma start",
 		"test-once": "karma start --single-run",
