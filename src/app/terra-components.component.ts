@@ -8,7 +8,8 @@ import {
     selector:      'terra-app-root',
     templateUrl:   './terra-components.component.html',
     styleUrls:     ['./terra-components.component.scss',
-                    '../index.glob.scss'],
+                    '../index.glob.scss',
+                    '../app/assets/styles/icons.glob.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class TerraComponentsComponent
