@@ -9,8 +9,8 @@ import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'terra-node',
-    styles:   [require('./terra-node.component.scss')],
-    template: require('./terra-node.component.html')
+    styleUrls:   ['./terra-node.component.scss'],
+    templateUrl: './terra-node.component.html'
 })
 export class TerraNodeComponent<D> implements OnInit
 {

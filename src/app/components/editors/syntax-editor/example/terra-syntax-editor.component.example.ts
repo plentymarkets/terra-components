@@ -5,8 +5,8 @@ import {
 
 @Component({
     selector: 'terra-syntax-editor-example',
-    styles:   [require('./terra-syntax-editor.component.example.scss')],
-    template: require('./terra-syntax-editor.component.example.html'),
+    styleUrls:   ['./terra-syntax-editor.component.example.scss'],
+    templateUrl: './terra-syntax-editor.component.example.html',
 })
 export class TerraSyntaxEditorComponentExample implements OnInit
 {

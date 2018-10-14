@@ -12,8 +12,8 @@ import { Subject } from 'rxjs/Subject';
 
 @Component({
     selector: 'terra-pager',
-    styles:   [require('./terra-pager.component.scss')],
-    template: require('./terra-pager.component.html')
+    styleUrls:   ['./terra-pager.component.scss'],
+    templateUrl: './terra-pager.component.html'
 })
 export class TerraPagerComponent implements OnInit
 {

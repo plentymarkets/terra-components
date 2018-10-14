@@ -22,8 +22,8 @@ import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
 
 @Component({
     selector: 'terra-syntax-editor',
-    template: require('./terra-syntax-editor.component.html'),
-    styles:   [require('./terra-syntax-editor.component.scss')]
+    templateUrl: './terra-syntax-editor.component.html',
+    styleUrls:   ['./terra-syntax-editor.component.scss']
 })
 export class TerraSyntaxEditorComponent implements AfterViewInit
 {

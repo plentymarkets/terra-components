@@ -14,10 +14,8 @@ import {
     IMyOptions,
     MyDatePicker
 } from 'mydatepicker';
+import { isNullOrUndefined } from 'util';
 import moment = require('moment');
-import {
-    isNullOrUndefined
-} from 'util';
 
 let nextId:number = 0;
 
@@ -25,13 +23,13 @@ let nextId:number = 0;
  * @author mfrank
  */
 @Component({
-    selector:  'terra-date-picker',
-    styles:    [
-        require('./terra-date-picker.component.scss'),
-        require('./terra-date-picker.component.glob.scss').toString()
+    selector:    'terra-date-picker',
+    styleUrls:   [
+        './terra-date-picker.component.scss',
+        './terra-date-picker.component.glob.scss'
     ],
-    template:  require('./terra-date-picker.component.html'),
-    providers: [
+    templateUrl: './terra-date-picker.component.html',
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraDatePickerComponent),

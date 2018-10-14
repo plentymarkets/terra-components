@@ -15,8 +15,8 @@ import { InteractEvent } from 'interactjs';
 
 @Component({
     selector: 'terra-slider',
-    template: require('./terra-slider.component.html'),
-    styles:   [require('./terra-slider.component.scss')]
+    templateUrl: './terra-slider.component.html',
+    styleUrls:   ['./terra-slider.component.scss']
 })
 export class TerraSliderComponent implements OnInit
 {

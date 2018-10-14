@@ -5,8 +5,8 @@ import {
 
 @Component({
     selector: 'terra-indicator',
-    styles:   [require('./terra-indicator.component.scss')],
-    template: require('./terra-indicator.component.html')
+    styleUrls:   ['./terra-indicator.component.scss'],
+    templateUrl: './terra-indicator.component.html'
 })
 export class TerraIndicatorComponent
 {

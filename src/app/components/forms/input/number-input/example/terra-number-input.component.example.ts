@@ -4,8 +4,8 @@ import {
 
 @Component({
     selector: 'terra-number-input-example',
-    styles:   [require('./terra-number-input.component.example.scss')],
-    template: require('./terra-number-input.component.example.html'),
+    styleUrls:   ['./terra-number-input.component.example.scss'],
+    templateUrl: './terra-number-input.component.example.html',
 })
 export class TerraNumberInputComponentExample
 {

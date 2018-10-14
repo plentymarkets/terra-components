@@ -13,8 +13,8 @@ import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.
 
 @Component({
     selector: 'terra-simple-table-example',
-    template: require('./terra-simple-table.component.example.html'),
-    styles:   [require('./terra-simple-table.component.example.scss')],
+    templateUrl: './terra-simple-table.component.example.html',
+    styleUrls:   ['./terra-simple-table.component.example.scss'],
 })
 export class TerraSimpleTableComponentExample implements OnInit
 {

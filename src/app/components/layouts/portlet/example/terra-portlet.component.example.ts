@@ -6,7 +6,7 @@ import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.
 
 @Component({
     selector: 'terra-portlet-example',
-    template: require('./terra-portlet.component.example.html')
+    templateUrl: './terra-portlet.component.example.html'
 })
 export class TerraPortletComponentExample implements OnInit
 {

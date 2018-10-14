@@ -12,12 +12,12 @@ import { TerraBaseStorageService } from './terra-base-storage.interface';
 import { isNullOrUndefined } from 'util';
 
 @Component({
-    selector:  'terra-file-browser',
-    template:  require('./terra-file-browser.component.html'),
-    providers: [FileBrowserSplitConfig],
-    styles:    [
-        require('./terra-file-browser.component.scss'),
-        require('./terra-file-browser.component.glob.scss').toString()
+    selector:    'terra-file-browser',
+    templateUrl: './terra-file-browser.component.html',
+    providers:   [FileBrowserSplitConfig],
+    styleUrls:   [
+        './terra-file-browser.component.scss',
+        './terra-file-browser.component.glob.scss'
     ]
 })
 export class TerraFileBrowserComponent implements OnInit
@@ -25,7 +25,7 @@ export class TerraFileBrowserComponent implements OnInit
     @Input()
     public set inputAllowedExtensions(extensions:Array<string>)
     {
-        this.allowedExtensions = extensions.map((extension:string) => extension.toUpperCase() );
+        this.allowedExtensions = extensions.map((extension:string) => extension.toUpperCase());
     }
 
     public get inputAllowedExtensions():Array<string>

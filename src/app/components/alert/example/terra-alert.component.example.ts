@@ -8,8 +8,8 @@ import { TranslationService } from 'angular-l10n';
 
 @Component({
     selector: 'terra-alert-example',
-    styles:   [require('./terra-alert.component.example.scss')],
-    template: require('./terra-alert.component.example.html')
+    styleUrls:   ['./terra-alert.component.example.scss'],
+    templateUrl: './terra-alert.component.example.html'
 })
 export class TerraAlertComponentExample implements OnInit
 {

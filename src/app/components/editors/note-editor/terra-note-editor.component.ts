@@ -7,15 +7,13 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
 
 @Component({
-    selector:  'terra-note-editor',
-    template:  require('./terra-note-editor.component.html'),
-    styles:    [
-        require('./terra-note-editor.component.scss'),
-        require('quill/dist/quill.bubble.css'),
-        require('quill/dist/quill.snow.css'),
-        require('./terra-note-editor.component.glob.scss').toString()
+    selector:    'terra-note-editor',
+    templateUrl: './terra-note-editor.component.html',
+    styleUrls:   [
+        './terra-note-editor.component.scss',
+        './terra-note-editor.component.glob.scss'
     ],
-    providers: [{
+    providers:   [{
         provide:     NG_VALUE_ACCESSOR,
         useExisting: TerraNoteEditorComponent,
         multi:       true

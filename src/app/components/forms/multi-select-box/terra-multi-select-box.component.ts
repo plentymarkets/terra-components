@@ -19,8 +19,8 @@ import {
 /** @deprecated - please use `TerraMultiCheckBoxComponent` instead */
 @Component({
     selector: 'terra-multi-select-box',
-    styles:   [require('./terra-multi-select-box.component.scss')],
-    template: require('./terra-multi-select-box.component.html')
+    styleUrls:   ['./terra-multi-select-box.component.scss'],
+    templateUrl: './terra-multi-select-box.component.html'
 })
 export class TerraMultiSelectBoxComponent implements OnInit, OnChanges
 {

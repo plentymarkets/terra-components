@@ -25,11 +25,11 @@ import { TerraMultiSplitViewBreadcrumbsService } from './injectables/terra-multi
 let nextSplitViewId:number = 0;
 
 @Component({
-    selector: 'terra-multi-split-view',
-    template: require('./terra-multi-split-view.component.html'),
-    styles:   [
-        require('./terra-multi-split-view.component.scss'),
-        require('./terra-multi-split-view.component.glob.scss').toString()
+    selector:    'terra-multi-split-view',
+    templateUrl: './terra-multi-split-view.component.html',
+    styleUrls:   [
+        './terra-multi-split-view.component.scss',
+        './terra-multi-split-view.component.glob.scss'
     ],
 })
 export class TerraMultiSplitViewComponent implements OnDestroy, OnInit

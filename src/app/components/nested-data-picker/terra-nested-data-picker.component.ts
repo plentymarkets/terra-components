@@ -20,8 +20,8 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
 @Component({
     selector:  'terra-nested-data-picker',
-    template:  require('./terra-nested-data-picker.component.html'),
-    styles:    [require('./terra-nested-data-picker.component.scss')],
+    templateUrl:  './terra-nested-data-picker.component.html',
+    styleUrls:    ['./terra-nested-data-picker.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

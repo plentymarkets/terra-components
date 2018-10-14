@@ -9,8 +9,8 @@ import { TerraBaseData } from '../../../data/terra-base.data';
 @Component({
     // tslint:disable-next-line
     selector: 'context-menu', // it still exists a terra-context-menu in terra, need to refactored first
-    styles:   [require('./terra-data-table-context-menu.component.scss')],
-    template: require('./terra-data-table-context-menu.component.html')
+    styleUrls:   ['./terra-data-table-context-menu.component.scss'],
+    templateUrl: './terra-data-table-context-menu.component.html'
 })
 export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 {

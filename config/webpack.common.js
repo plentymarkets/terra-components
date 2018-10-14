@@ -27,14 +27,13 @@ module.exports = {
                     loader: 'html-loader',
                     exclude: [helpers.root('src/index.html')]
                 },
-                {
-                    test: /\.css$/,
-                    use: [
-                        'to-string-loader',
-                        'style-loader',
-                        'css-loader'
-                    ]
-                },
+                // {
+                //     test: /\.css$/,
+                //     use: [
+                //         'style-loader',
+                //         'css-loader'
+                //     ]
+                // },
                 {
                     test: /\.scss$/,
                     exclude: [/\.glob\.scss$/],
@@ -57,8 +56,7 @@ module.exports = {
                 {
                     test: /\.glob\.scss$/,
                     loaders: [
-                        'style-loader',
-                        'css-loader',
+                        'raw-loader',
                         'sass-loader'
                     ]
                 },

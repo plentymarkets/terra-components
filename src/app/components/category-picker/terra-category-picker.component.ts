@@ -22,8 +22,8 @@ import { TerraNodeTreeConfig } from '../tree/node-tree/data/terra-node-tree.conf
 
 @Component({
     selector:  'terra-category-picker',
-    template:  require('./terra-category-picker.component.html'),
-    styles:    [require('./terra-category-picker.component.scss')],
+    templateUrl:  './terra-category-picker.component.html',
+    styleUrls:    ['./terra-category-picker.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

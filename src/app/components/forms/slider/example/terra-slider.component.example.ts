@@ -4,8 +4,8 @@ import {
 
 @Component({
     selector: 'terra-slider-example',
-    styles:   [require('./terra-slider.component.example.scss')],
-    template: require('./terra-slider.component.example.html'),
+    styleUrls:   ['./terra-slider.component.example.scss'],
+    templateUrl: './terra-slider.component.example.html',
 })
 export class TerraSliderComponentExample
 {

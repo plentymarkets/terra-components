@@ -13,8 +13,8 @@ import { TerraBreadcrumbContainer } from './terra-breadcrumb-container';
 @Component(
     {
         selector:  'terra-breadcrumbs',
-        styles:    [require('./terra-breadcrumbs.component.scss')],
-        template:  require('./terra-breadcrumbs.component.html'),
+        styleUrls:    ['./terra-breadcrumbs.component.scss'],
+        templateUrl:  './terra-breadcrumbs.component.html',
         providers: [TerraBreadcrumbsService]
     }
 )

@@ -4,8 +4,8 @@ import {
 
 @Component({
     selector: 'terra-data-table-context-menu-example',
-    styles:   [require('./terra-data-table-context-menu.component.example.scss')],
-    template: require('./terra-data-table-context-menu.component.example.html'),
+    styleUrls:   ['./terra-data-table-context-menu.component.example.scss'],
+    templateUrl: './terra-data-table-context-menu.component.example.html',
 })
 export class TerraDataTableContextMenuComponentExample
 {

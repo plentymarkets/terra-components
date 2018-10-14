@@ -22,8 +22,8 @@ import { Language } from 'angular-l10n';
 
 @Component({
     selector: 'terra-tag-select',
-    styles:   [require('./terra-tag-select.component.scss')],
-    template: require('./terra-tag-select.component.html'),
+    styleUrls:   ['./terra-tag-select.component.scss'],
+    templateUrl: './terra-tag-select.component.html',
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

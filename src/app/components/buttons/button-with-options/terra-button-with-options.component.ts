@@ -13,8 +13,8 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
 
 @Component({
     selector: 'terra-button-with-options',
-    template: require('./terra-button-with-options.component.html'),
-    styles:   [require('./terra-button-with-options.component.scss')]
+    templateUrl: './terra-button-with-options.component.html',
+    styleUrls:   ['./terra-button-with-options.component.scss']
 })
 export class TerraButtonWithOptionsComponent implements OnInit
 {

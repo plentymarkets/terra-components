@@ -17,8 +17,8 @@ import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-p
 
 @Component({
     selector: 'terra-form-entry-list',
-    template: require('./terra-form-entry-list.component.html'),
-    styles:   [require('./terra-form-entry-list.component.scss')]
+    templateUrl: './terra-form-entry-list.component.html',
+    styleUrls:   ['./terra-form-entry-list.component.scss']
 })
 export class TerraFormEntryListComponent implements OnInit
 {

@@ -28,8 +28,8 @@ const MAX_LASTLY_USED_ENTRIES:number = 5;
 
 @Component({
     selector:  'terra-suggestion-box',
-    styles:    [require('./terra-suggestion-box.component.scss')],
-    template:  require('./terra-suggestion-box.component.html'),
+    styleUrls:    ['./terra-suggestion-box.component.scss'],
+    templateUrl:  './terra-suggestion-box.component.html',
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

@@ -14,8 +14,8 @@ import { isNullOrUndefined } from 'util';
  */
 @Component({
     selector: 'terra-button-group',
-    template: require('./terra-button-group.component.html'),
-    styles:   [require('./terra-button-group.component.scss')]
+    templateUrl: './terra-button-group.component.html',
+    styleUrls:   ['./terra-button-group.component.scss']
 })
 export class TerraButtonGroupComponent<D> implements OnInit
 {

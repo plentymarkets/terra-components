@@ -40,8 +40,8 @@ import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 
 @Component({
     selector:   'terra-data-table',
-    template:   require('./terra-data-table.component.html'),
-    styles:     [require('./terra-data-table.component.scss')],
+    templateUrl:   './terra-data-table.component.html',
+    styleUrls:     ['./terra-data-table.component.scss'],
     providers:  [TerraDataTableContextMenuService],
     animations: [
         trigger('collapsedState', [

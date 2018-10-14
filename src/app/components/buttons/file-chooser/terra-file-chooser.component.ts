@@ -11,8 +11,8 @@ import { TerraFrontendStorageService } from '../../file-browser/terra-frontend-s
 
 @Component({
     selector: 'terra-file-chooser',
-    template: require('./terra-file-chooser.component.html'),
-    styles: [require('./terra-file-chooser.component.scss')]
+    templateUrl: './terra-file-chooser.component.html',
+    styleUrls: ['./terra-file-chooser.component.scss']
 })
 export class TerraFileChooserComponent extends TerraButtonComponent
 {

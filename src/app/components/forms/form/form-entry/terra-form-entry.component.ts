@@ -24,8 +24,8 @@ import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 
 @Component({
     selector: 'terra-form-entry',
-    template: require('./terra-form-entry.component.html'),
-    styles:   [require('./terra-form-entry.component.scss')]
+    templateUrl: './terra-form-entry.component.html',
+    styleUrls:   ['./terra-form-entry.component.scss']
 })
 export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 {

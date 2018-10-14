@@ -13,8 +13,8 @@ import { TerraBaseMetadataStorageService } from '../terra-base-metadata-storage.
 
 @Component({
     selector: 'terra-image-preview',
-    template: require('./image-preview.component.html'),
-    styles:   [require('./image-preview.component.scss')]
+    templateUrl: './image-preview.component.html',
+    styleUrls:   ['./image-preview.component.scss']
 })
 export class TerraImagePreviewComponent
 {

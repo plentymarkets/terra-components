@@ -9,8 +9,8 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 
 @Component({
                selector: 'terra-info-box',
-               styles:   [require('./terra-info-box.component.scss')],
-               template: require('./terra-info-box.component.html')
+               styleUrls:   ['./terra-info-box.component.scss'],
+               templateUrl: './terra-info-box.component.html'
            })
 export class TerraInfoBoxComponent
 {

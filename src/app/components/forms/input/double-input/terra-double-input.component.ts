@@ -12,8 +12,8 @@ let nextId:number = 0;
 
 @Component({
     selector:  'terra-double-input',
-    styles:    [require('./terra-double-input.component.scss')],
-    template:  require('./terra-double-input.component.html'),
+    styleUrls:    ['./terra-double-input.component.scss'],
+    templateUrl:  './terra-double-input.component.html',
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

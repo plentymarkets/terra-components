@@ -10,8 +10,8 @@ import { TerraTileBoxInterface } from '../box/data/terra-tile-box.interface';
  */
 @Component({
     selector: 'terra-tile-box-panel',
-    styles:   [require('./terra-tile-box-panel.component.scss')],
-    template: require('./terra-tile-box-panel.component.html')
+    styleUrls:   ['./terra-tile-box-panel.component.scss'],
+    templateUrl: './terra-tile-box-panel.component.html'
 })
 export class TerraTileBoxPanelComponent
 {

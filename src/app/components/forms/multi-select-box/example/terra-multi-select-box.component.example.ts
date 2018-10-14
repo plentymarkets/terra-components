@@ -6,8 +6,8 @@ import { TerraMultiSelectBoxValueInterface } from '../data/terra-multi-select-bo
 
 @Component({
     selector: 'terra-multi-select-box-example',
-    styles:   [require('./terra-multi-select-box.component.example.scss')],
-    template: require('./terra-multi-select-box.component.example.html'),
+    styleUrls:   ['./terra-multi-select-box.component.example.scss'],
+    templateUrl: './terra-multi-select-box.component.example.html',
 })
 export class TerraMultiSelectBoxComponentExample implements OnInit
 {

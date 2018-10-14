@@ -15,13 +15,13 @@ import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 let nextId:number = 0;
 
 @Component({
-    selector:  'terra-text-input',
-    styles:    [
-        require('./terra-text-input.component.scss'),
-        require('../terra-input.component.glob.scss').toString()
+    selector:    'terra-text-input',
+    templateUrl: './terra-text-input.component.html',
+    styleUrls:   [
+        './terra-text-input.component.scss',
+        '../terra-input.component.glob.scss'
     ],
-    template:  require('./terra-text-input.component.html'),
-    providers: [
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraTextInputComponent),

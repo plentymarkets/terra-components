@@ -14,10 +14,10 @@ import {
 
 /** @deprecated - please use `TerraMultiSplitViewComponent` instead */
 @Component({
-    selector: 'terra-split-view',
-    template: require('./terra-split-view.component.html'),
-    styles:   [require('./terra-split-view.component.scss'),
-               require('./terra-split-view.component.glob.scss').toString()
+    selector:    'terra-split-view',
+    templateUrl: './terra-split-view.component.html',
+    styleUrls:   ['./terra-split-view.component.scss',
+                  './terra-split-view.component.glob.scss'
     ]
 })
 export class TerraSplitViewComponent implements OnChanges, OnDestroy

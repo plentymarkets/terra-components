@@ -14,8 +14,8 @@ import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interfa
  */
 @Component({
     selector: 'terra-overlay',
-    template: require('./terra-overlay.component.html'),
-    styles:   [require('./terra-overlay.component.scss')]
+    templateUrl: './terra-overlay.component.html',
+    styleUrls:   ['./terra-overlay.component.scss']
 })
 export class TerraOverlayComponent implements AfterViewInit
 {

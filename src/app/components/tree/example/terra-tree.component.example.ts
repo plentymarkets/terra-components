@@ -6,8 +6,8 @@ import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
 
 @Component({
     selector: 'terra-tree-example',
-    template: require('./terra-tree.component.example.html'),
-    styles:   [require('./terra-tree.component.example.scss')]
+    templateUrl: './terra-tree.component.example.html',
+    styleUrls:   ['./terra-tree.component.example.scss']
 })
 
 export class TerraTreeComponentExample implements OnInit

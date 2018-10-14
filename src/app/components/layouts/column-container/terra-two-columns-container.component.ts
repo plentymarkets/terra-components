@@ -9,8 +9,8 @@ import { TwoColumnHelper } from '../../../helpers/two-column.helper';
  */
 @Component({
     selector: 'terra-2-col',
-    styles:   [require('./terra-two-columns-container.component.scss')],
-    template: require('./terra-two-columns-container.component.html')
+    styleUrls:   ['./terra-two-columns-container.component.scss'],
+    templateUrl: './terra-two-columns-container.component.html'
 })
 /**
  * @experimental TerraTwoColumnsContainerComponent is experimental and might be subject to drastic changes in the near future.

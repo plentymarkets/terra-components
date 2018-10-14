@@ -10,5 +10,3 @@ import 'rxjs';
 
 import 'jquery';
 import 'bootstrap';
-
-import './app/assets/styles/icons.glob.scss';

@@ -5,8 +5,8 @@ import {
 
 @Component({
     selector: 'terra-note',
-    styles:   [require('./terra-note.component.scss')],
-    template: require('./terra-note.component.html')
+    styleUrls:   ['./terra-note.component.scss'],
+    templateUrl: './terra-note.component.html'
 })
 export class TerraNoteComponent
 {

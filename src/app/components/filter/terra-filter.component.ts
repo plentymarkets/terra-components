@@ -10,7 +10,7 @@ import {
  */
 @Component({
     selector: 'terra-filter',
-    template: require('./terra-filter.component.html')
+    templateUrl: './terra-filter.component.html'
 })
 export class TerraFilterComponent
 {

@@ -19,8 +19,8 @@ import {
 
 @Component({
     selector: 'terra-simple-table',
-    styles:   [require('./terra-simple-table.component.scss')],
-    template: require('./terra-simple-table.component.html')
+    styleUrls:   ['./terra-simple-table.component.scss'],
+    templateUrl: './terra-simple-table.component.html'
 })
 export class TerraSimpleTableComponent<D> implements OnChanges
 {

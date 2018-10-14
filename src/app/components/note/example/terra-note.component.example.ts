@@ -7,8 +7,8 @@ import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.compo
 
 @Component({
     selector: 'terra-note-example',
-    styles:   [require('./terra-note.component.example.scss')],
-    template: require('./terra-note.component.example.html')
+    styleUrls:   ['./terra-note.component.example.scss'],
+    templateUrl: './terra-note.component.example.html'
 })
 export class TerraNoteComponentExample implements OnInit
 {

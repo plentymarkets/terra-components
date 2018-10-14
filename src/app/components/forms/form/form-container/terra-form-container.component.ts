@@ -18,8 +18,8 @@ import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-p
 
 @Component({
     selector: 'terra-form-container',
-    template: require('./terra-form-container.component.html'),
-    styles:   [require('./terra-form-container.component.scss')]
+    templateUrl: './terra-form-container.component.html',
+    styleUrls:   ['./terra-form-container.component.scss']
 })
 export class TerraFormContainerComponent implements OnInit, OnChanges
 {

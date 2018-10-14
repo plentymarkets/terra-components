@@ -8,8 +8,8 @@ import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 
 @Component({
     selector: 'terra-taglist',
-    styles:   [require('./terra-taglist.component.scss')],
-    template: require('./terra-taglist.component.html')
+    styleUrls:   ['./terra-taglist.component.scss'],
+    templateUrl: './terra-taglist.component.html'
 })
 export class TerraTaglistComponent
 {

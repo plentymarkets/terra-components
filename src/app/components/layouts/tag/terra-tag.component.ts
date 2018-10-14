@@ -11,8 +11,8 @@ import { Language } from 'angular-l10n';
 
 @Component({
     selector: 'terra-tag',
-    styles:   [require('./terra-tag.component.scss')],
-    template: require('./terra-tag.component.html')
+    styleUrls:   ['./terra-tag.component.scss'],
+    templateUrl: './terra-tag.component.html'
 })
 export class TerraTagComponent
 {

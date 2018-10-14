@@ -8,8 +8,8 @@ import * as Stopwatch from 'timer-stopwatch';
 
 @Component({
     selector: 'terra-stopwatch',
-    styles:   [require('./terra-stopwatch.component.scss')],
-    template: require('./terra-stopwatch.component.html'),
+    styleUrls:   ['./terra-stopwatch.component.scss'],
+    templateUrl: './terra-stopwatch.component.html',
 })
 export class TerraStopwatchComponent implements OnInit
 {

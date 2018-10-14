@@ -25,11 +25,11 @@ import { TranslationService } from 'angular-l10n';
  * @deprecated please use `terra-node-tree` instead
  */
 @Component({
-    selector: 'terra-navigator',
-    template: require('./terra-navigator.component.html'),
-    styles:   [
-        require('./terra-navigator.component.scss'),
-        require('./terra-navigator.component.glob.scss').toString()
+    selector:    'terra-navigator',
+    templateUrl: './terra-navigator.component.html',
+    styleUrls:   [
+        './terra-navigator.component.scss',
+        './terra-navigator.component.glob.scss'
     ],
 })
 export class TerraNavigatorComponent<D> implements OnInit, OnChanges
@@ -87,13 +87,13 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             }
 
             this.terraNavigatorSplitViewConfig.addModule({
-                module:                TerraButtonGroupModule.forRoot(),
-                instanceKey:           0,
-                defaultWidth:          this.inputModuleWidth,
-                hidden:                false,
-                name:                  this.inputFirstBreadcrumbName,
-                mainComponentName:     'TerraButtonGroupComponent',
-                parameter:             {
+                module:            TerraButtonGroupModule.forRoot(),
+                instanceKey:       0,
+                defaultWidth:      this.inputModuleWidth,
+                hidden:            false,
+                name:              this.inputFirstBreadcrumbName,
+                mainComponentName: 'TerraButtonGroupComponent',
+                parameter:         {
                     nodes: this.inputNodes
                 }
             });
@@ -114,13 +114,13 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
 
                 this.terraNavigatorSplitViewConfig
                     .addModule({
-                        module:                TerraButtonGroupModule.forRoot(),
-                        instanceKey:           item.rootPath.length,
-                        defaultWidth:          'col-xs-6 col-md-6 col-lg-6',
-                        hidden:                false,
-                        name:                  item.nodeName,
-                        mainComponentName:     'TerraButtonGroupComponent',
-                        parameter:             {
+                        module:            TerraButtonGroupModule.forRoot(),
+                        instanceKey:       item.rootPath.length,
+                        defaultWidth:      'col-xs-6 col-md-6 col-lg-6',
+                        hidden:            false,
+                        name:              item.nodeName,
+                        mainComponentName: 'TerraButtonGroupComponent',
+                        parameter:         {
                             nodes: item.children
                         }
                     });
@@ -174,13 +174,13 @@ export class TerraNavigatorComponent<D> implements OnInit, OnChanges
             this.updateSearchNodes();
 
             this.terraNavigatorSplitViewConfig.addModule({
-                module:                TerraButtonGroupModule.forRoot(),
-                instanceKey:           0,
-                defaultWidth:          this.inputModuleWidth,
-                hidden:                false,
-                name:                  this.inputFirstBreadcrumbName,
-                mainComponentName:     'TerraButtonGroupComponent',
-                parameter:             {
+                module:            TerraButtonGroupModule.forRoot(),
+                instanceKey:       0,
+                defaultWidth:      this.inputModuleWidth,
+                hidden:            false,
+                name:              this.inputFirstBreadcrumbName,
+                mainComponentName: 'TerraButtonGroupComponent',
+                parameter:         {
                     nodes: changes['inputNodes'].currentValue
                 }
             });
