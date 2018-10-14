@@ -3,10 +3,12 @@ const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const helpers = require('./helpers');
+var ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
     entry: {
         'polyfills': './src/polyfills.ts',
+        'vendor': './src/vendor.ts',
         'app': './src/main.ts'
     },
     resolve: {
@@ -17,7 +19,12 @@ module.exports = {
             {
                 test: /\.ts$/,
                 loaders: [
-                    'awesome-typescript-loader',
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true
+                        }
+                    },
                     'angular2-template-loader'
                 ],
                 exclude: [/\.(spec|e2e)\.ts$/]
@@ -88,6 +95,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {from: 'src/app/assets', to: 'assets'}
-        ])
+        ]),
+        new ForkTsCheckerWebpackPlugin()
     ]
 };

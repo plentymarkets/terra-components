@@ -7,19 +7,18 @@
 		"sourceMap": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
-		"removeComments": false,
-		"noImplicitAny": false,
-		"suppressImplicitAnyIndexErrors": true,
 		"lib": [
 			"es2017",
 			"dom"
 		],
 		"typeRoots": [
-			"./node_modules/@types"
+			"node_modules/@types"
 		]
 	},
 	"exclude": [
 		"node_modules",
-		"dist"
+		"dist",
+		"src/**/*.spec.ts",
+		"src/**/*.e2e.ts"
 	]
 }
