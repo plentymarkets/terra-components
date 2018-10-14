@@ -27,13 +27,6 @@ module.exports = {
                     loader: 'html-loader',
                     exclude: [helpers.root('src/index.html')]
                 },
-                // {
-                //     test: /\.css$/,
-                //     use: [
-                //         'style-loader',
-                //         'css-loader'
-                //     ]
-                // },
                 {
                     test: /\.scss$/,
                     exclude: [/\.glob\.scss$/],
