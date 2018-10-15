@@ -473,7 +473,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                                       this.objectsToDelete = [storageObject];
                                       event.stopPropagation();
                                   },
-                isSecondary:      true,
                 tooltipText:      storageObject.isFile ?
                                       this.translationService.translate(this.translationPrefix + '.deleteFile') :
                                       this.translationService.translate(this.translationPrefix + '.deleteFolder'),

@@ -29,7 +29,6 @@ import { CommonModule } from '@angular/common';
 import { MyDatePickerModule } from 'mydatepicker';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { TerraInteractModule } from './components/interactables/interact.module';
-import { TerraNavigatorSplitViewConfig } from './components/navigator/config/terra-navigator-split-view.config';
 import { TerraFrontendStorageService } from './components/file-browser/terra-frontend-storage.service';
 import { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
 import { l10nConfig } from './translation/l10n.config';
@@ -70,7 +69,6 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         RouterModule
     ],
     providers:       [
-        TerraNavigatorSplitViewConfig,
         TerraFrontendStorageService,
         TerraFileBrowserService,
         {

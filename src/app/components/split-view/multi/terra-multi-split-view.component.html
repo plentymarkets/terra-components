@@ -55,7 +55,6 @@
                 <div *ngIf="module.currentSelectedView === view" class="{{ view.mainComponentName + '_' + i}} fadeIn">
                     <terra-dynamic-module-loader
                         [inputModule]="view.module"
-                        [inputParameter]="view.parameter"
                         [inputInputs]="view.inputs"
                         [inputView]="view"
                         [inputMainComponentName]="view.mainComponentName">

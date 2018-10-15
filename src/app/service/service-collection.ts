@@ -1,6 +1,4 @@
 import { Provider } from '@angular/core';
-import { TerraNavigatorSplitViewConfig } from '../components/navigator/config/terra-navigator-split-view.config';
-import { TerraUrlParamsDecorator } from './data/terra-url-params-decorator.service';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseService } from './terra-base.service';
 import { TerraFrontendStorageService } from '../components/file-browser/terra-frontend-storage.service';
@@ -16,8 +14,6 @@ export const services:Array<Provider> = [
     TerraLoadingSpinnerService,
     TerraDataTableContextMenuService,
     TerraBaseService,
-    TerraNavigatorSplitViewConfig,
-    TerraUrlParamsDecorator,
     TerraFrontendStorageService,
     TerraAlertComponent,
     TerraDynamicFormService,
