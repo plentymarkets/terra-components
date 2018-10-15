@@ -1,1 +1,10 @@
-<terra-multi-split-view [inputShowBreadcrumbs]="false" [inputConfig]="splitConfig"></terra-multi-split-view>
+<!--<terra-multi-split-view [inputShowBreadcrumbs]="false" [inputConfig]="splitConfig"></terra-multi-split-view>-->
+
+<!-- TODO create 3-col component -->
+<terra-2-col mobileRouting [leftColumnWidth]="3">
+    <div left>replace with nodetree</div>
+    <terra-2-col right>
+        <terra-file-list left [inputStorageServices]="inputStorageServices"></terra-file-list>
+        <terra-image-preview right [inputStorageService]="inputStorageServices"></terra-image-preview>
+    </terra-2-col>
+</terra-2-col>
