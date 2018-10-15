@@ -10,6 +10,7 @@
 
 ### Bug Fixes
 * **terra-data-table** pass click event to a button's `clickFunction` if it is placed in a table row
+* **terra-double-input** fixed issue with the decimal separator. It now accepts decimal inputs in the localized format.
 
 <a name="2.3.26"></a>
 # 2.3.26 (04.10.2018)
