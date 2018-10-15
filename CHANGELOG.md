@@ -1,6 +1,6 @@
 # Unreleased beta
 
-The following components/classes have been marked as deprecated:
+The following components/classes have been marked deprecated:
 
 * **terra-multi-split-view**
 * **terra-multi-split-view.interface**
@@ -15,6 +15,8 @@ The following components/classes have been marked as deprecated:
 * **resolve-list-item.interface**
 * **resolved-data.interface**
 * **terra-resolved-data.helper**
+
+For further information on how to replace it see the [SplitView Migration Guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide).
 
 The following deprecated variables have been deleted:
 
