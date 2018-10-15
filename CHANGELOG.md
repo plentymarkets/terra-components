@@ -1,4 +1,5 @@
-# Unreleased beta
+<a name="3.0.0-beta.7"></a>
+# 3.0.0-beta.7 (15.10.2018)
 
 The following components/classes have been marked deprecated:
 
