@@ -1,6 +1,13 @@
-# Unreleased
+# Unrleased
 * **function-groups** removed custom group for add-icon
 * **function-groups** added missing styles for .btn-major
+
+### Bug Fixes
+* **terra-double-input** fixed issue with the decimal separator. It now accepts decimal inputs in the localized format.
+
+<a name="2.4.0"></a>
+# 2.4.0 (12.10.2018)
+
 * **TerraButtonInterface** `isPrimary`, `isSecondary` and `isTertiary` are now deprecated. Each icon has its own fixed color.
 * **terra-button-with-options** `inputIsPrimary`, `inputIsSecondary` and `inputIsTertiary` are now deprecated. Each icon has its own fixed color.
 * **terra-dynamic-module-loader** input `inputParameter` is now deprecated. Use input `inputInputs` instead.
