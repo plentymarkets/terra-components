@@ -22,6 +22,9 @@ import { ResolverListItemInterface } from '../interfaces/resolve-list-item.inter
 import { TerraResolvedDataHelper } from '../helpers/terra-resolved-data.helper';
 import { TerraMultiSplitViewHelper } from '../helpers/terra-multi-split-view.helper';
 
+/**
+ * @deprecated Will be removed in the next major release.
+ */
 @Injectable()
 export class TerraMultiSplitViewConfig
 {

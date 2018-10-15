@@ -1,6 +1,9 @@
 import { TerraMultiSplitViewInterface } from '../interfaces/terra-multi-split-view.interface';
 import * as flatted from 'flatted';
 
+/**
+ * @deprecated Will be removed in the next major release.
+ */
 export class TerraMultiSplitViewHelper
 {
     public static isSameView(parent:TerraMultiSplitViewInterface, child:TerraMultiSplitViewInterface):boolean

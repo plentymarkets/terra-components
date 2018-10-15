@@ -1,5 +1,23 @@
 # Unreleased beta
 
+The following components/classes have been marked deprecated:
+
+* **terra-multi-split-view**
+* **terra-multi-split-view.interface**
+* **terra-multi-split-view.config**
+* **terra-multi-split-view.helper**
+* **terra-multi-split-view-breadcrumbs.service**
+* **terra-multi-split-view-module.interface**
+* **terra-multi-split-view-route.interface**
+* **terra-multi-split-view-route-data.interface**
+* **terra-multi-split-view-routes.interface**
+
+* **resolve-list-item.interface**
+* **resolved-data.interface**
+* **terra-resolved-data.helper**
+
+For further information on how to replace it see the [SplitView Migration Guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide).
+
 The following deprecated variables have been deleted:
 
 * **terra-button-with-options** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`

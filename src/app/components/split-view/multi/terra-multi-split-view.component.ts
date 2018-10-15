@@ -24,6 +24,9 @@ import { TerraMultiSplitViewBreadcrumbsService } from './injectables/terra-multi
 
 let nextSplitViewId:number = 0;
 
+/**
+ * @deprecated Will be removed in the next major release.
+ */
 @Component({
     selector: 'terra-multi-split-view',
     template: require('./terra-multi-split-view.component.html'),
