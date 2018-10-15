@@ -56,6 +56,8 @@ import { TerraFormEntryListComponent } from './forms/form/form-entry-list/terra-
 import { TerraBreadcrumbsComponent } from './breadcrumbs/terra-breadcrumbs.component';
 import { TerraTagSelectComponent } from './forms/tag-select/terra-tag-select.component';
 import { TerraStopwatchComponent } from './stopwatch/terra-stopwatch.component';
+import { TerraFileListComponent } from './file-browser/file-list/file-list.component';
+import { TerraImagePreviewComponent } from './file-browser/image-preview/image-preview.component';
 
 export const components:Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -94,6 +96,8 @@ export const components:Array<Type<any>> = [
     TerraMultiSplitViewComponent,
     TerraSliderComponent,
     TerraFileBrowserComponent,
+    TerraFileListComponent,
+    TerraImagePreviewComponent,
     TerraFileInputComponent,
     TerraFileChooserComponent,
     TerraNoResultNoticeComponent,
