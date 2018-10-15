@@ -1,6 +1,7 @@
 import {
     Component,
     Input,
+    OnInit,
 } from '@angular/core';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 
@@ -9,7 +10,7 @@ import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
     styles:   [require('./terra-info.component.scss')],
     template: require('./terra-info.component.html')
 })
-export class TerraInfoComponent
+export class TerraInfoComponent implements OnInit
 {
     @Input()
     public textPlacement:TerraPlacementEnum;
@@ -23,5 +24,10 @@ export class TerraInfoComponent
     constructor()
     {
         this.textPlacement = TerraPlacementEnum.TOP;
+    }
+
+    public ngOnInit():void
+    {
+        this.text = this.isDisabled ? '' : this.text;
     }
 }
