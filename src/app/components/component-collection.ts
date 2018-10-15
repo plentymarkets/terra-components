@@ -55,6 +55,7 @@ import { TerraFormEntryComponent } from './forms/form/form-entry/terra-form-entr
 import { TerraFormEntryListComponent } from './forms/form/form-entry-list/terra-form-entry-list.component';
 import { TerraBreadcrumbsComponent } from './breadcrumbs/terra-breadcrumbs.component';
 import { TerraTagSelectComponent } from './forms/tag-select/terra-tag-select.component';
+import { TerraStopwatchComponent } from './stopwatch/terra-stopwatch.component';
 
 export const components:Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -114,5 +115,6 @@ export const components:Array<Type<any>> = [
     TerraFormEntryComponent,
     TerraFormEntryListComponent,
     TerraBreadcrumbsComponent,
-    TerraTagSelectComponent
+    TerraTagSelectComponent,
+    TerraStopwatchComponent
 ];

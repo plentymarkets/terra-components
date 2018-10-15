@@ -6,7 +6,7 @@ The following deprecated variables have been deleted:
 * **terra-button.interface** `isPrimary`, `isSecondary`, `isTertiary`,
 * **terra-button** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
 * **terra-file-chooser** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
-* **terra-dynamic-module-loader** `inputParameter` (use `inputs` instead)
+* **terra-dynamic-module-loader** `inputParameter` (use `inputInputs` instead)
 * **terra-filter** `inputInputList` (use `ng-content` instead)
 * **terra-checkbox** `inputId`
 * **terra-double-input** `inputValue` (use `ngModel` instead)
@@ -34,11 +34,15 @@ The following deprecated components have been deleted:
 * **terra-url-params-decorator** use `terra-base-service::createUrlSearchParams` instead
 
 <a name="3.0.0-beta.6"></a>
+# 3.0.0-beta.6 (12.10.2018)
+Adapted Changes from v2.4.0
+
+### Feature
+* **terra-stopwatch** added new terra component terra-stopwatch. 
+
+<a name="3.0.0-beta.6"></a>
 # 3.0.0-beta.6 (xx.xx.2018)
-
-### Bug Fixes
 * **function-groups** added missing styles for .btn-major
-
 
 <a name="3.0.0-beta.5"></a>
 # 3.0.0-beta.5 (04.10.2018)
@@ -68,14 +72,17 @@ Adapted Changes from v2.3.21 and v2.3.22
 ### Breaking Changes
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
 
-# Unreleased
-
+<a name="2.4.0"></a>
+# 2.4.0 (12.10.2018)
 * **TerraButtonInterface** `isPrimary`, `isSecondary` and `isTertiary` are now deprecated. Each icon has its own fixed color.
 * **terra-button-with-options** `inputIsPrimary`, `inputIsSecondary` and `inputIsTertiary` are now deprecated. Each icon has its own fixed color.
 * **terra-dynamic-module-loader** input `inputParameter` is now deprecated. Use input `inputInputs` instead.
 * **terra-button-group** && **terra-navigator** && **terra-navigator.config** && **terra-navigator-split-view.config** are now deprecated. Use `terra-node-tree` instead.
 * **terra-tree** is now deprecated. Use `terra-node-tree` instead.
 * **terra-tile-box** && **terra-tile-box-panel** are now deprecated. Use `terra-card` instead.
+
+### Bug Fixes
+* **terra-data-table** pass click event to a button's `clickFunction` if it is placed in a table row
 
 <a name="2.3.26"></a>
 # 2.3.26 (04.10.2018)
