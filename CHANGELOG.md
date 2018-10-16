@@ -1,3 +1,10 @@
+# Unreleased beta
+
+### Bug Fixes
+* **terra-data-table** 
+	- fix issue where numbers were formatted using the default locale
+	- fix issue with data of type `TerraDataTableTextInterface` where the icon was not shown, if the text was empty
+
 <a name="3.0.0-beta.7"></a>
 # 3.0.0-beta.7 (15.10.2018)
 
