@@ -76,8 +76,8 @@ fdescribe('Component: TerraThreeColumnsContainerComponent', () =>
         fixture.detectChanges();
 
         expect(columns[0].classes.hasOwnProperty('col-md-4')).toBeTruthy();
-        expect(columns[1].classes.hasOwnProperty('col-md-6')).toBeTruthy();
-        expect(columns[2].classes.hasOwnProperty('col-md-2')).toBeTruthy();
+        expect(columns[1].classes.hasOwnProperty('col-md-7')).toBeTruthy();
+        expect(columns[2].classes.hasOwnProperty('col-md-1')).toBeTruthy();
     });
 
     it('should update the width on the right and the center column if "rightColumnWidth" is set', () =>

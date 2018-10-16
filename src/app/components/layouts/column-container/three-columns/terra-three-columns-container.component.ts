@@ -1,6 +1,8 @@
 import {
     Component,
-    Input
+    Input,
+    OnChanges,
+    SimpleChanges
 } from '@angular/core';
 import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
 
@@ -15,62 +17,61 @@ import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
 /**
  * @experimental TerraThreeColumnsContainerComponent is experimental and might be subject to drastic changes in the near future.
  */
-export class TerraThreeColumnsContainerComponent
+export class TerraThreeColumnsContainerComponent implements OnChanges
 {
+    @Input()
+    public leftColumnWidth:number = 2;
+
+    @Input()
+    public centerColumnWidth:number = 8;
+
+    @Input()
+    public rightColumnWidth:number = 2;
+
     protected leftColumn:string;
     protected centerColumn:string;
     protected rightColumn:string;
 
-    private _leftColumnWidth:number = 2;
-    private _rightColumnWidth:number = 2;
-    private _centerColumnWidth:number = 8;
-
-    @Input()
-    public set leftColumnWidth(leftColumnWidth:number)
-    {
-        if(leftColumnWidth > 12 || leftColumnWidth < 1)
-        {
-            console.error('Given value for Input leftColumnWidth is lower than 1 or greater than 12. ' +
-                          'It has been limited to this range to prevent invalid rendering. Please check your input value to avoid this error.');
-        }
-
-        let maxLeftColumnWidth:number = TwoColumnHelper.maxColumnWidth - TwoColumnHelper.minColumnWidth - this._rightColumnWidth;
-
-        this._leftColumnWidth = Math.min(maxLeftColumnWidth, Math.max(TwoColumnHelper.minColumnWidth, leftColumnWidth));
-        this._centerColumnWidth = TwoColumnHelper.maxColumnWidth - this._leftColumnWidth - this._rightColumnWidth;
-
-        this.updateColumnStyles();
-    }
-
-    @Input()
-    public set rightColumnWidth(rightColumnWidth:number)
-    {
-        if(rightColumnWidth > 12 || rightColumnWidth < 1)
-        {
-            console.error('Given value for Input rightColumnWidth is lower than 1 or greater than 12. ' +
-                          'It has been limited to this range to prevent invalid rendering. Please check your input value to avoid this error.');
-        }
-
-        let maxRightColumnWidth:number = TwoColumnHelper.maxColumnWidth - TwoColumnHelper.minColumnWidth - this._leftColumnWidth;
-
-        this._rightColumnWidth = Math.min(maxRightColumnWidth, Math.max(TwoColumnHelper.minColumnWidth, rightColumnWidth));
-        this._centerColumnWidth = TwoColumnHelper.maxColumnWidth - this._leftColumnWidth - this._rightColumnWidth;
-
-        this.updateColumnStyles();
-    }
 
     constructor()
     {
-        // trigger calculation for default values
-        this.leftColumnWidth = this._leftColumnWidth;
-        this.rightColumnWidth = this._rightColumnWidth;
+        this.updateColumnStyles(this.leftColumnWidth, this.centerColumnWidth, this.rightColumnWidth);
     }
 
-    private updateColumnStyles():void
+    public ngOnChanges(changes:SimpleChanges):void
     {
-        this.leftColumn = this.getStylesForColumn(this._leftColumnWidth);
-        this.centerColumn = this.getStylesForColumn(this._centerColumnWidth);
-        this.rightColumn = this.getStylesForColumn(this._rightColumnWidth);
+        if(this.leftColumnWidth + this.centerColumnWidth + this.rightColumnWidth > 12)
+        {
+            console.error('');
+        }
+
+        let columnsLeft:number = TwoColumnHelper.maxColumnWidth;
+
+        let maxLeftColumnWidth:number = columnsLeft - TwoColumnHelper.minColumnWidth * 2;
+        this.leftColumnWidth = Math.min(maxLeftColumnWidth, Math.max(TwoColumnHelper.minColumnWidth, this.leftColumnWidth));
+
+        columnsLeft -= this.leftColumnWidth;
+
+        let maxCenterColumnWidth:number = columnsLeft - TwoColumnHelper.minColumnWidth;
+        this.centerColumnWidth = Math.min(maxCenterColumnWidth, Math.max(TwoColumnHelper.minColumnWidth, this.centerColumnWidth));
+        columnsLeft -= this.centerColumnWidth;
+
+        this.rightColumnWidth = Math.min(columnsLeft, Math.max(TwoColumnHelper.minColumnWidth, this.rightColumnWidth));
+        columnsLeft -= this.rightColumnWidth;
+
+        if(columnsLeft > 0)
+        {
+            this.rightColumnWidth += columnsLeft;
+        }
+
+        this.updateColumnStyles(this.leftColumnWidth, this.centerColumnWidth, this.rightColumnWidth);
+    }
+
+    private updateColumnStyles(leftColumnWidth:number, centerColumnWidth:number, rightColumnWidth:number):void
+    {
+        this.leftColumn = this.getStylesForColumn(leftColumnWidth);
+        this.centerColumn = this.getStylesForColumn(centerColumnWidth);
+        this.rightColumn = this.getStylesForColumn(rightColumnWidth);
     }
 
     private getStylesForColumn(columnWidth:number):string
