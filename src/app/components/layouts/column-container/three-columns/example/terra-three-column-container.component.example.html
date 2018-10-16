@@ -1,0 +1,26 @@
+<div>
+    <h1>Default</h1>
+    <terra-3-col>
+        <div left [style.background]="'red'">Left</div>
+        <div center [style.background]="'blue'">Center</div>
+        <div right [style.background]="'green'">Right</div>
+    </terra-3-col>
+</div>
+
+<div>
+    <h1>Left column width given</h1>
+    <terra-3-col [leftColumnWidth]="4">
+        <div left [style.background]="'red'">Left</div>
+        <div center [style.background]="'blue'">Center</div>
+        <div right [style.background]="'green'">Right</div>
+    </terra-3-col>
+</div>
+
+<div>
+    <h1>Left and right column width given</h1>
+    <terra-3-col [leftColumnWidth]="4" [rightColumnWidth]="4">
+        <div left [style.background]="'red'">Left</div>
+        <div center [style.background]="'blue'">Center</div>
+        <div right [style.background]="'green'">Right</div>
+    </terra-3-col>
+</div>
