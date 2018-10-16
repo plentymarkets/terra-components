@@ -2,7 +2,7 @@ import {
     Component,
     Input
 } from '@angular/core';
-import { TwoColumnHelper } from '../../../helpers/two-column.helper';
+import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
 
 /**
  * @author mfrank

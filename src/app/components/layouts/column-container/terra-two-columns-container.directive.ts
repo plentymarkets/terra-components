@@ -15,7 +15,7 @@ import {
 import { Event } from '@angular/router/src/events';
 import { Observable } from 'rxjs/Observable';
 import { TwoColumnHelper } from '../../../helpers/two-column.helper';
-import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';
+import { TerraTwoColumnsContainerComponent } from './two-columns/terra-two-columns-container.component';
 import { isNullOrUndefined } from 'util';
 import { Subscription } from 'rxjs/Subscription';
 

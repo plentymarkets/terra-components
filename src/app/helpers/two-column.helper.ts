@@ -6,6 +6,7 @@ export class TwoColumnHelper
     public static spacer:string = ' ';
     public static hiddenXS:string = 'hidden-xs';
     public static maxColumnWidth:number = 12;
+    public static minColumnWidth:number = 1;
 
     public static leftRightColXS():string
     {
