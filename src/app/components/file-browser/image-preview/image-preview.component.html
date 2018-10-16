@@ -1,4 +1,4 @@
-<div *ngIf="inputStorageObject">
+<div *ngIf="inputStorageObject && inputStorageService.isImagePreviewEnabled">
     <terra-base-toolbar *ngIf="_canHandleMetadata">
         <div class="btn-group" role="group">
             <terra-button inputIcon="icon-save"

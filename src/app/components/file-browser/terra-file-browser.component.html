@@ -1,10 +1,7 @@
-<!--<terra-multi-split-view [inputShowBreadcrumbs]="false" [inputConfig]="splitConfig"></terra-multi-split-view>-->
-
-<!-- TODO create 3-col component -->
-<terra-2-col [leftColumnWidth]="3">
-    <div left>replace with nodetree</div>
-    <terra-2-col right [leftColumnWidth]="8">
-        <terra-file-list left [inputStorageServices]="inputStorageServices"></terra-file-list>
-        <terra-image-preview right [inputStorageService]="inputStorageServices"></terra-image-preview>
-    </terra-2-col>
-</terra-2-col>
+<terra-3-col [leftColumnWidth]="3" [rightColumnWidth]="2">
+    <terra-node-tree left [inputConfig]="nodeTreeConfig"></terra-node-tree>
+    <terra-file-list center [inputStorageServices]="inputStorageServices"></terra-file-list>
+    <terra-image-preview right
+                         [inputStorageService]="fileListComponent.activeStorageService"
+                         [inputStorageObject]="fileListComponent.imagePreviewObject"></terra-image-preview>
+</terra-3-col>

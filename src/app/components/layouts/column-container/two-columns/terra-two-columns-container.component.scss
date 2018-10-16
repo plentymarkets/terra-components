@@ -6,7 +6,7 @@
     }
 }
 
-:host-context(#tab-content .outlet-container)
+:host-context(#tab-content, .outlet-container)
 {
     .container-fluid
     {
