@@ -76,7 +76,8 @@
                         </div>
                         
                         <div *ngSwitchCase="'number'">
-                            <span>{{cell.data | number}}</span>
+                            <span>{{cell.data}}</span>
+                            <!-- <span>{{cell.data | number}}</span> TODO: The pipe should be used here! Figure out how. -->
                         </div>
                         
                         <div *ngSwitchCase="'TerraDataTableTextInterface'">

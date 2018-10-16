@@ -1,6 +1,6 @@
 export interface TerraDataTableTextInterface
 {
-    caption:string;
+    caption:string; // TODO: make it optional
     icon?:string;
     color?:string;
 }
