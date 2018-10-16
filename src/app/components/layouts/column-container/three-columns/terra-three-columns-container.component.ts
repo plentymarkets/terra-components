@@ -59,11 +59,6 @@ export class TerraThreeColumnsContainerComponent
         this.updateColumnStyles();
     }
 
-    public get leftColumnWidth():number
-    {
-        return this._leftColumnWidth;
-    }
-
     constructor()
     {
         // trigger calculation for default values
