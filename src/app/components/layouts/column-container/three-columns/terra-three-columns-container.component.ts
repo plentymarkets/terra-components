@@ -17,9 +17,9 @@ import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
  */
 export class TerraThreeColumnsContainerComponent
 {
-    public leftColumn:string;
-    public centerColumn:string;
-    public rightColumn:string;
+    protected leftColumn:string;
+    protected centerColumn:string;
+    protected rightColumn:string;
 
     private _leftColumnWidth:number = 2;
     private _rightColumnWidth:number = 2;

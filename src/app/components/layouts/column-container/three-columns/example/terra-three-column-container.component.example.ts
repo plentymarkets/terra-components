@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 
 export class TerraThreeColumnContainerComponentExample
 {
+    protected leftColumnWidth:number = 4;
+    protected rightColumnWidth:number = 4;
 }
