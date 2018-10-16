@@ -3,6 +3,7 @@ import {
     Input
 } from '@angular/core';
 import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
+import { isNullOrUndefined } from 'util';
 
 /**
  * @author mfrank
@@ -21,9 +22,41 @@ export class TerraThreeColumnsContainerComponent
     protected centerColumn:string;
     protected rightColumn:string;
 
-    private _leftColumnWidth:number = 2;
-    private _rightColumnWidth:number = 2;
-    private _centerColumnWidth:number = 8;
+    private _leftColumnWidth:number = 4;
+    private _rightColumnWidth:number = 4;
+    private _centerColumnWidth:number = 4;
+
+    @Input()
+    public set columnWidths(widths:Array<number>)
+    {
+        if(isNullOrUndefined(widths) || widths.length === 0)
+        {
+            return;
+        }
+
+        if(widths.length > 3)
+        {
+            widths = widths.slice(0, 2); // ignore more than three column widths
+        }
+
+        switch(widths.length)
+        {
+            case 1:
+                let maxLeftColumnWidth:number = TwoColumnHelper.maxColumnWidth - TwoColumnHelper.minColumnWidth * 2;
+                this._leftColumnWidth = Math.min(maxLeftColumnWidth, Math.max(TwoColumnHelper.minColumnWidth, leftColumnWidth));
+                this._centerColumnWidth = Math.floor((TwoColumnHelper.maxColumnWidth - widths[0]) / 2);
+                this._rightColumnWidth = TwoColumnHelper.maxColumnWidth - this._leftColumnWidth - this._centerColumnWidth;
+                break;
+            case 2: break;
+            case 3: break;
+            default:
+                console.error('Given value for Input leftColumnWidth is lower than 1 or greater than 12. ' +
+                              'It has been limited to this range to prevent invalid rendering. Please check your input value to avoid this error.');
+                break;
+        }
+
+        this.updateColumnStyles();
+    }
 
     @Input()
     public set leftColumnWidth(leftColumnWidth:number)

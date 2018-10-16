@@ -54,35 +54,14 @@ fdescribe('Component: TerraThreeColumnsContainerComponent', () =>
         expect(columns.every((column:DebugElement) => column.classes.hasOwnProperty('col-xs-12'))).toBeTruthy();
     });
 
-    it('should initialize the left column with a width of 2 on medium screens', () =>
+    it('should initialize all columns with a width of 4 on medium screens', () =>
     {
-        expect(columns[0].classes.hasOwnProperty('col-md-2')).toBeTruthy();
-    });
-
-    it('should initialize the center column with a width of 8 on medium screens', () =>
-    {
-        expect(columns[1].classes.hasOwnProperty('col-md-8')).toBeTruthy();
-    });
-
-    it('should initialize the right column with a width of 2 on medium screens', () =>
-    {
-        expect(columns[2].classes.hasOwnProperty('col-md-2')).toBeTruthy();
+        expect(columns.every((column:DebugElement) => column.classes.hasOwnProperty('col-md-4'))).toBeTruthy();
     });
 
     it('should update the width on the left and the center column if "leftColumnWidth" is set', () =>
     {
-        component.leftColumnWidth = 4;
-
-        fixture.detectChanges();
-
-        expect(columns[0].classes.hasOwnProperty('col-md-4')).toBeTruthy();
-        expect(columns[1].classes.hasOwnProperty('col-md-6')).toBeTruthy();
-        expect(columns[2].classes.hasOwnProperty('col-md-2')).toBeTruthy();
-    });
-
-    it('should update the width on the right and the center column if "rightColumnWidth" is set', () =>
-    {
-        component.rightColumnWidth = 4;
+        component.leftColumnWidth = 2;
 
         fixture.detectChanges();
 
@@ -91,22 +70,33 @@ fdescribe('Component: TerraThreeColumnsContainerComponent', () =>
         expect(columns[2].classes.hasOwnProperty('col-md-4')).toBeTruthy();
     });
 
+    it('should update the width on the right and the center column if "rightColumnWidth" is set', () =>
+    {
+        component.rightColumnWidth = 2;
+
+        fixture.detectChanges();
+
+        expect(columns[0].classes.hasOwnProperty('col-md-4')).toBeTruthy();
+        expect(columns[1].classes.hasOwnProperty('col-md-6')).toBeTruthy();
+        expect(columns[2].classes.hasOwnProperty('col-md-2')).toBeTruthy();
+    });
+
     it('should handle falsy inputs and limit them to the maximum or minimum possible', () =>
     {
         component.leftColumnWidth = 13;
 
         fixture.detectChanges();
 
-        expect(columns[0].classes.hasOwnProperty('col-md-9')).toBeTruthy();
+        expect(columns[0].classes.hasOwnProperty('col-md-7')).toBeTruthy();
         expect(columns[1].classes.hasOwnProperty('col-md-1')).toBeTruthy();
-        expect(columns[2].classes.hasOwnProperty('col-md-2')).toBeTruthy();
+        expect(columns[2].classes.hasOwnProperty('col-md-4')).toBeTruthy();
 
         component.rightColumnWidth = -1;
 
         fixture.detectChanges();
 
-        expect(columns[0].classes.hasOwnProperty('col-md-9')).toBeTruthy();
-        expect(columns[1].classes.hasOwnProperty('col-md-2')).toBeTruthy();
+        expect(columns[0].classes.hasOwnProperty('col-md-7')).toBeTruthy();
+        expect(columns[1].classes.hasOwnProperty('col-md-4')).toBeTruthy();
         expect(columns[2].classes.hasOwnProperty('col-md-1')).toBeTruthy();
     });
 });
