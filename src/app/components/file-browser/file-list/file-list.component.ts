@@ -108,6 +108,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             if(this.imagePreviewObject)
             {
                 this.imagePreviewObject = null;
+                this.parentFileBrowser.showRightColumn(false, this.activeStorageService);
             }
             this.renderFileList();
             this.storageSubscription = this.activeStorageService.getStorageList().subscribe((storageList:TerraStorageObjectList):void =>
@@ -173,6 +174,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             if(this.imagePreviewObject && storageObject !== this.imagePreviewObject)
             {
                 this.imagePreviewObject = null;
+                this.parentFileBrowser.showRightColumn(false, this.activeStorageService);
             }
 
             this._currentStorageRoot = storageObject;
@@ -270,6 +272,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                     if(FileTypeHelper.isWebImage(object.key))
                     {
                         this.imagePreviewObject = object;
+                        this.parentFileBrowser.showRightColumn(true, this.activeStorageService);
                     }
                     this.fileTableComponent.inputHighlightedRow = this.fileTableRowList.find(
                         (r:TerraSimpleTableRowInterface<TerraStorageObject>):boolean => r.value === object);
@@ -343,6 +346,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             if(!isNullOrUndefined(this.imagePreviewObject) && keyList.indexOf(this.imagePreviewObject.key) === 0)
             {
                 this.imagePreviewObject = null;
+                this.parentFileBrowser.showRightColumn(false, this.activeStorageService);
             }
             this.parentFileBrowser.selectNode(this.currentStorageRoot);
         });
@@ -567,9 +571,14 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this.currentStorageRoot = row.value;
         let storageObject:TerraStorageObject = row.value;
 
-        if(!isNullOrUndefined(storageObject) && !FileTypeHelper.isWebImage(storageObject.key))
+        if(!isNullOrUndefined(storageObject) && FileTypeHelper.isWebImage(storageObject.key))
+        {
+            this.parentFileBrowser.showRightColumn(true, this.activeStorageService);
+        }
+        else
         {
             this.parentFileBrowser.selectNode(row.value);
+            this.parentFileBrowser.showRightColumn(false, this.activeStorageService);
         }
     }
 

@@ -51,6 +51,9 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
     @ViewChild(TerraFileListComponent)
     protected fileListComponent:TerraFileListComponent;
 
+    protected rightColumnWidth:number = 0;
+    protected centerColumnWidth:number = 9;
+
     private storageServices:Array<TerraBaseStorageService>;
 
     private allowedExtensions:Array<string> = [];
@@ -119,6 +122,20 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                 }
             });
         });
+    }
+
+    public showRightColumn(show:boolean, currentService:TerraBaseStorageService):void
+    {
+        if(show && currentService.isImagePreviewEnabled)
+        {
+            this.centerColumnWidth = 7;
+            this.rightColumnWidth = 2;
+        }
+        else
+        {
+            this.centerColumnWidth = 9;
+            this.rightColumnWidth = 0;
+        }
     }
 
     private recursiveCreateNode(storage:TerraStorageObject,
