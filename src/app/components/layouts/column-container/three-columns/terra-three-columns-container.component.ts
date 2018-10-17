@@ -16,6 +16,8 @@ import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
 })
 /**
  * @experimental TerraThreeColumnsContainerComponent is experimental and might be subject to drastic changes in the near future.
+ * It is also not compatible with the mobileRouting directive yet.
+ *
  * @description Container which displays content/views in 3 columns using bootstraps grid system.
  * You can specifiy the width of the columns by using the three given inputs.
  * The sum of all given column width must be 12 at all times to ensure the deserved behaviour. If not, the column widths are calculated automatically.
