@@ -32,7 +32,7 @@ export class TerraTwoColumnsContainerComponent
                           'It has been limited to this range to prevent invalid rendering. Please check your input value to avoid this error.');
         }
 
-        this._leftColumnWidth = Math.min(TwoColumnHelper.maxColumnWidth, Math.max(1, leftColumnWidth));
+        this._leftColumnWidth = Math.min((TwoColumnHelper.maxColumnWidth - 1), Math.max(1, leftColumnWidth));
 
         this.leftColumn = TwoColumnHelper.leftRightColXS()
                           + TwoColumnHelper.leftColMD(this._leftColumnWidth)
