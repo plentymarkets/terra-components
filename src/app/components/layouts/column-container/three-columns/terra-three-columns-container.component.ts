@@ -76,6 +76,11 @@ export class TerraThreeColumnsContainerComponent implements OnChanges
 
     private getStylesForColumn(columnWidth:number):string
     {
-        return `col-xs-12 col-md-${columnWidth}`;
+        if(columnWidth)
+        {
+            return `col-xs-12 col-md-${columnWidth}`;
+        }
+
+        return null;
     }
 }
