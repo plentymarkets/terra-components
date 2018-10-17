@@ -144,6 +144,6 @@ export * from './app/components/breadcrumbs/terra-breadcrumbs.component';
 export * from './app/components/breadcrumbs/terra-breadcrumb';
 export * from './app/components/breadcrumbs/service/terra-breadcrumbs.service';
 export * from './app/components/forms/tag-select/terra-tag-select.component';
-export * from './app/components/layouts/column-container/terra-two-columns-container.directive';
+export * from './app/components/layouts/column-container/two-columns/terra-two-columns-container.directive';
 export * from './app/components/layouts/column-container/two-columns/terra-two-columns-container.component';
 export * from './app/components/layouts/column-container/three-columns/terra-three-columns-container.component';

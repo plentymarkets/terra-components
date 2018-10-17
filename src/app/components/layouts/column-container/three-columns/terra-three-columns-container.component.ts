@@ -1,6 +1,8 @@
 import {
     Component,
-    Input
+    Input,
+    OnChanges,
+    SimpleChanges
 } from '@angular/core';
 import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
 
@@ -14,72 +16,62 @@ import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
 })
 /**
  * @experimental TerraThreeColumnsContainerComponent is experimental and might be subject to drastic changes in the near future.
+ * @description Container which displays content/views in 3 columns using bootstraps grid system.
+ * You can specifiy the width of the columns by using the three given inputs.
+ * The sum of all given column width must be 12 at all times to ensure the deserved behaviour. If not, the column widths are calculated automatically.
  */
-export class TerraThreeColumnsContainerComponent
+export class TerraThreeColumnsContainerComponent implements OnChanges
 {
-    public leftColumn:string;
-    public centerColumn:string;
-    public rightColumn:string;
-
-    private _leftColumnWidth:number = 2;
-    private _rightColumnWidth:number = 2;
-    private _centerColumnWidth:number = 8;
-
+    /**
+     * @description size of the left column
+     */
     @Input()
-    public set leftColumnWidth(leftColumnWidth:number)
+    public leftColumnWidth:number = 4;
+
+    /**
+     * @description size of the center column
+     */
+    @Input()
+    public centerColumnWidth:number = 4;
+
+    /**
+     * @description size of the right column. Default 4
+     */
+    @Input()
+    public rightColumnWidth:number = 4;
+
+    public ngOnChanges(changes:SimpleChanges):void
     {
-        if(leftColumnWidth > 12 || leftColumnWidth < 1)
+        if(this.leftColumnWidth + this.centerColumnWidth + this.rightColumnWidth > 12)
         {
-            console.error('Given value for Input leftColumnWidth is lower than 1 or greater than 12. ' +
-                          'It has been limited to this range to prevent invalid rendering. Please check your input value to avoid this error.');
+            console.error('You have exceeded the maximum amount of columns. The columns are now sized automatically.');
         }
 
-        let maxLeftColumnWidth:number = TwoColumnHelper.maxColumnWidth - TwoColumnHelper.minColumnWidth - this._rightColumnWidth;
+        let columnsLeft:number = TwoColumnHelper.maxColumnWidth;
 
-        this._leftColumnWidth = Math.min(maxLeftColumnWidth, Math.max(TwoColumnHelper.minColumnWidth, leftColumnWidth));
-        this._centerColumnWidth = TwoColumnHelper.maxColumnWidth - this._leftColumnWidth - this._rightColumnWidth;
+        this.leftColumnWidth = Math.min(columnsLeft, Math.max(TwoColumnHelper.minColumnWidth, this.leftColumnWidth));
 
-        this.updateColumnStyles();
+        columnsLeft -= this.leftColumnWidth;
+
+        this.centerColumnWidth = Math.min(columnsLeft, Math.max(TwoColumnHelper.minColumnWidth, this.centerColumnWidth));
+        columnsLeft -= this.centerColumnWidth;
+
+        this.rightColumnWidth = Math.min(columnsLeft, Math.max(TwoColumnHelper.minColumnWidth, this.rightColumnWidth));
+        columnsLeft -= this.rightColumnWidth;
+
+        if(columnsLeft > 0)
+        {
+            this.rightColumnWidth += columnsLeft;
+        }
     }
 
-    @Input()
-    public set rightColumnWidth(rightColumnWidth:number)
+    protected getStylesForColumn(columnWidth:number):string
     {
-        if(rightColumnWidth > 12 || rightColumnWidth < 1)
+        if(columnWidth)
         {
-            console.error('Given value for Input rightColumnWidth is lower than 1 or greater than 12. ' +
-                          'It has been limited to this range to prevent invalid rendering. Please check your input value to avoid this error.');
+            return `col-xs-12 col-md-${columnWidth}`;
         }
 
-        let maxRightColumnWidth:number = TwoColumnHelper.maxColumnWidth - TwoColumnHelper.minColumnWidth - this._leftColumnWidth;
-
-        this._rightColumnWidth = Math.min(maxRightColumnWidth, Math.max(TwoColumnHelper.minColumnWidth, rightColumnWidth));
-        this._centerColumnWidth = TwoColumnHelper.maxColumnWidth - this._leftColumnWidth - this._rightColumnWidth;
-
-        this.updateColumnStyles();
-    }
-
-    public get leftColumnWidth():number
-    {
-        return this._leftColumnWidth;
-    }
-
-    constructor()
-    {
-        // trigger calculation for default values
-        this.leftColumnWidth = this._leftColumnWidth;
-        this.rightColumnWidth = this._rightColumnWidth;
-    }
-
-    private updateColumnStyles():void
-    {
-        this.leftColumn = this.getStylesForColumn(this._leftColumnWidth);
-        this.centerColumn = this.getStylesForColumn(this._centerColumnWidth);
-        this.rightColumn = this.getStylesForColumn(this._rightColumnWidth);
-    }
-
-    private getStylesForColumn(columnWidth:number):string
-    {
-        return `col-xs-12 col-md-${columnWidth}`;
+        return null;
     }
 }
