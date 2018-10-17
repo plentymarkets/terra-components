@@ -226,14 +226,14 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     {
         function isRefType(arg:any):arg is TerraRefTypeInterface
         {
-            return arg
-                   && arg.type && typeof arg.type === 'string'
-                   && arg.value && typeof arg.value === 'string';
+            return !isNullOrUndefined(arg)
+                   && !isNullOrUndefined(arg.type) && typeof arg.type === 'string'
+                   && !isNullOrUndefined(arg.value) && typeof arg.value === 'string';
         }
 
         function isTextType(arg:any):arg is TerraDataTableTextInterface
         {
-            return arg && arg.caption && typeof arg.caption === 'string';
+            return !isNullOrUndefined(arg) && !isNullOrUndefined(arg.caption) && typeof arg.caption === 'string';
         }
 
         function isTagArray(arg:any):arg is Array<TerraTagInterface>
@@ -245,13 +245,12 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             }
 
             // check if every element of the array implements the tag interface
-            let implementsInterface:boolean = true;
-            arg.forEach((elem:any) =>
+            let implementsInterface:boolean = arg.every((elem:any) =>
             {
-                implementsInterface = implementsInterface && elem.name && typeof elem.name === 'string';
+                return !isNullOrUndefined(elem.name) && typeof elem.name === 'string';
             });
 
-            return arg && implementsInterface;
+            return !isNullOrUndefined(arg) && implementsInterface;
         }
 
         function isButtonArray(arg:any):arg is Array<TerraButtonInterface>
@@ -263,13 +262,12 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
             }
 
             // check if every element of the array implements the button interface
-            let implementsInterface:boolean = true;
-            arg.forEach((elem:any) =>
+            let implementsInterface:boolean = arg.every((elem:any) =>
             {
-                implementsInterface = implementsInterface && elem.clickFunction && typeof elem.clickFunction === 'function';
+                return !isNullOrUndefined(elem.clickFunction) && typeof elem.clickFunction === 'function';
             });
 
-            return arg && implementsInterface;
+            return !isNullOrUndefined(arg) && implementsInterface;
         }
 
         if(typeof data === 'object')
