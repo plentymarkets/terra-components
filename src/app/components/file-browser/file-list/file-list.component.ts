@@ -130,7 +130,13 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                     {
                         this.progress.sizeTotal = PathHelper.sizeString(this.progress.sizeTotal);
                     }
+
+                    if(progress.filesTotal === progress.filesUploaded)
+                    {
+                        this.parentFileBrowser.selectNode(this.currentStorageRoot);
+                    }
                 }
+                this.changeDetector.detectChanges();
             });
         }
 
@@ -257,6 +263,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this.dragSubscription = this.fileBrowserService.isDragActive.subscribe((isDragActive:boolean) =>
         {
             this.isDragActive = isDragActive;
+            this.changeDetector.detectChanges();
         });
 
         this.parentFileBrowser.onSelectedUrlChange.subscribe((selectedUrl:string) =>
@@ -370,6 +377,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
         this.selectedStorageObjects = [];
         this.parentFileBrowser.outputSelectedChange.emit(null);
+        this.changeDetector.detectChanges();
     }
 
     private fillTableRowList():void

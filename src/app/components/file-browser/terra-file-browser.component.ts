@@ -93,6 +93,10 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
     {
         if(changes.hasOwnProperty('inputStorageServices'))
         {
+            this.nodeTreeConfig.reset();
+            this.nodeTreeConfig.currentSelectedNode = null;
+            this.currentSelectedNode = null;
+
             this.renderTree(changes['inputStorageServices'].currentValue);
         }
     }
