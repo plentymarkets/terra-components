@@ -52,7 +52,6 @@ export class TerraThreeColumnsContainerComponent implements OnChanges
         let columnsLeft:number = TwoColumnHelper.maxColumnWidth;
 
         this.leftColumnWidth = Math.min(columnsLeft, Math.max(TwoColumnHelper.minColumnWidth, this.leftColumnWidth));
-
         columnsLeft -= this.leftColumnWidth;
 
         this.centerColumnWidth = Math.min(columnsLeft, Math.max(TwoColumnHelper.minColumnWidth, this.centerColumnWidth));

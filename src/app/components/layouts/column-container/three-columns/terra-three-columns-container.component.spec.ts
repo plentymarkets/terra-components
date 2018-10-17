@@ -7,7 +7,7 @@ import {
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('Component: TerraThreeColumnsContainerComponent', () =>
+describe('Component: TerraThreeColumnsContainerComponent', () =>
 {
     let component:TerraThreeColumnsContainerComponent;
     let fixture:ComponentFixture<TerraThreeColumnsContainerComponent>;
