@@ -1,4 +1,5 @@
-# Unreleased beta
+<a name="3.0.0-beta.8"></a>
+# 3.0.0-beta.8 (17.10.2018)
 
 ### Bug Fixes
 * **terra-data-table** 
