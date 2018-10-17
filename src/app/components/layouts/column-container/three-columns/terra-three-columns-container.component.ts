@@ -49,13 +49,11 @@ export class TerraThreeColumnsContainerComponent implements OnChanges
 
         let columnsLeft:number = TwoColumnHelper.maxColumnWidth;
 
-        let maxLeftColumnWidth:number = columnsLeft - TwoColumnHelper.minColumnWidth * 2;
-        this.leftColumnWidth = Math.min(maxLeftColumnWidth, Math.max(TwoColumnHelper.minColumnWidth, this.leftColumnWidth));
+        this.leftColumnWidth = Math.min(columnsLeft, Math.max(TwoColumnHelper.minColumnWidth, this.leftColumnWidth));
 
         columnsLeft -= this.leftColumnWidth;
 
-        let maxCenterColumnWidth:number = columnsLeft - TwoColumnHelper.minColumnWidth;
-        this.centerColumnWidth = Math.min(maxCenterColumnWidth, Math.max(TwoColumnHelper.minColumnWidth, this.centerColumnWidth));
+        this.centerColumnWidth = Math.min(columnsLeft, Math.max(TwoColumnHelper.minColumnWidth, this.centerColumnWidth));
         columnsLeft -= this.centerColumnWidth;
 
         this.rightColumnWidth = Math.min(columnsLeft, Math.max(TwoColumnHelper.minColumnWidth, this.rightColumnWidth));
@@ -74,6 +72,6 @@ export class TerraThreeColumnsContainerComponent implements OnChanges
             return `col-xs-12 col-md-${columnWidth}`;
         }
 
-        return '';
+        return null;
     }
 }
