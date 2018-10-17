@@ -87,7 +87,7 @@
                         [inputHasCheckboxes]="true"
                         [inputEnableHotkeys]="true"
                         (outputHighlightedRowChange)="onActiveRowChange($event)"
-                        (outputRowClicked)="currentStorageRoot = $event.value"
+                        (outputRowClicked)="onRowClick($event)"
                         (outputSelectedRowsChange)="onSelectionChange($event)">
     </terra-simple-table>
     

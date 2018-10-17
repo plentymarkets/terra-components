@@ -399,8 +399,9 @@ export class TerraNodeTreeConfig<D>
     /**
      * @description Call the lazy loading function of given node.
      * @param node The node where lazy loading is defined.
+     * @param isIconClick
      */
-    public handleLazyLoading(node:TerraNodeInterface<D>):void
+    public handleLazyLoading(node:TerraNodeInterface<D>, isIconClick?:boolean):void
     {
         // check if lazy loading is desired
         if(!node.hasLoaded && !isNullOrUndefined(node.onLazyLoad))
@@ -421,9 +422,13 @@ export class TerraNodeTreeConfig<D>
                     node.isLoading = false;
                 });
         }
-        else
+        else if (isIconClick)
         {
             node.isOpen = !node.isOpen;
+        }
+        else
+        {
+            node.isOpen = true;
         }
     }
 
@@ -459,8 +464,8 @@ export class TerraNodeTreeConfig<D>
      */
     public reset():void
     {
-        this._list = [];
-        this._currentSelectedNode = null;
+        this.list = [];
+        this.currentSelectedNode = null;
     }
 
     /**

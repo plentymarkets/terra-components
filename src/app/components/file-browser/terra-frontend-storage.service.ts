@@ -11,6 +11,7 @@ import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseMetadataStorageService } from './terra-base-metadata-storage.interface';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
@@ -68,7 +69,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         path = this.prepareKey(path);
 
         this.setAuthorization();
-        let request:Observable<void> = this.mapRequest(
+        return this.mapRequest(
             this.http.post(
                 this.url + '?key=' + path,
                 null,
@@ -76,16 +77,12 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
                     headers: this.headers
                 }
             )
-        );
-
-        request.subscribe(() =>
+        ).pipe(tap(() =>
         {
             this.storageListSubject.next(
                 this._storageList.insertObject(createS3StorageObject(path))
             );
-        });
-
-        return request;
+        }));
     }
 
     public uploadFiles(files:FileList | Array<File>, path:string = '/'):Array<TerraUploadItem>
@@ -218,16 +215,14 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
     public deleteFiles(keyList:Array<string>):Observable<void>
     {
         this.setAuthorization();
-        let request:Observable<any> = this.mapRequest(
+        return this.mapRequest(
             this.http.delete(
                 '/rest/storage/frontend/files?' + keyList.map((key:string):string => 'keyList[]=' + key).join('&'),
                 {
                     headers: this.headers
                 }
             )
-        );
-
-        request.subscribe(():void =>
+        ).pipe(tap(():void =>
             {
                 keyList.forEach((key:string):void => this._storageList.root.removeChild(key));
                 this.storageListSubject.next(this._storageList);
@@ -237,9 +232,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
                 this.storageInitialized = false;
                 this.storageListSubject.next(null);
             }
-        );
-
-        return request;
+        ));
     }
 
     private initStorageList(continuationToken?:string):void

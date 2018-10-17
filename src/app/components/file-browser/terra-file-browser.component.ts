@@ -2,8 +2,10 @@ import {
     Component,
     EventEmitter,
     Input,
+    OnChanges,
     OnInit,
     Output,
+    SimpleChanges,
     ViewChild,
 } from '@angular/core';
 import { TerraFrontendStorageService } from './terra-frontend-storage.service';
@@ -25,7 +27,7 @@ import { StringHelper } from '../../helpers/string.helper';
         require('./terra-file-browser.component.glob.scss').toString()
     ]
 })
-export class TerraFileBrowserComponent implements OnInit
+export class TerraFileBrowserComponent implements OnChanges, OnInit
 {
     @Input()
     public set inputAllowedExtensions(extensions:Array<string>)
@@ -78,7 +80,23 @@ export class TerraFileBrowserComponent implements OnInit
 
     public ngOnInit():void
     {
-        this.inputStorageServices.forEach((service:TerraBaseStorageService) =>
+        if(isNullOrUndefined(this.storageServices))
+        {
+            this.renderTree(this.inputStorageServices);
+        }
+    }
+
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes.hasOwnProperty('inputStorageServices'))
+        {
+            this.renderTree(changes['inputStorageServices'].currentValue);
+        }
+    }
+
+    private renderTree(services:Array<TerraBaseStorageService>):void
+    {
+        services.forEach((service:TerraBaseStorageService) =>
         {
             let node:TerraNodeInterface<{}> = {
                 id:        service.name,
@@ -155,8 +173,16 @@ export class TerraFileBrowserComponent implements OnInit
 
         if(!isNullOrUndefined(foundNode))
         {
+            foundNode.isOpen = true;
             this.nodeTreeConfig.currentSelectedNode = foundNode;
+            this.currentSelectedNode = foundNode;
         }
+    }
+
+    public resetSelectedNode():void
+    {
+        this.nodeTreeConfig.currentSelectedNode = null;
+        this.currentSelectedNode = null;
     }
 
     public selectUrl(publicUrl:string):void
