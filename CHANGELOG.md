@@ -1,4 +1,5 @@
-# Unreleased
+<a name="2.4.1"></a>
+# 2.4.1 (17.10.2018)
 
 ### Bug Fixes
 * **terra-double-input** fixed issue with the decimal separator. It now accepts decimal inputs in the localized format.
