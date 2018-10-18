@@ -515,11 +515,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             },
             {
                 caption: this.translationService.translate(this.translationPrefix + '.fileURL'),
-                width:   '50%'
+                width:   '40%'
             },
             {
                 caption: '',
-                width:   '1'
+                width:   '5%'
             },
             {
                 caption: this.translationService.translate(this.translationPrefix + '.fileSize'),
@@ -531,7 +531,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             },
             {
                 caption: '',
-                width:   '1'
+                width:   '5%'
             }
         ];
     }
@@ -541,7 +541,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this.fileTableHeaderList = [
             {
                 caption: this.translationService.translate(this.translationPrefix + '.fileName'),
-                width:   '80%'
+                width:   '70%'
             },
             {
                 caption: this.translationService.translate(this.translationPrefix + '.fileSize'),
@@ -553,11 +553,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             },
             {
                 caption: '',
-                width:   '1'
+                width:   '5%'
             },
             {
                 caption: '',
-                width:   '1'
+                width:   '5%'
             }
         ];
     }

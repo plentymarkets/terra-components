@@ -52,7 +52,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
     protected fileListComponent:TerraFileListComponent;
 
     protected rightColumnWidth:number = 0;
-    protected centerColumnWidth:number = 9;
+    protected centerColumnWidth:number = 10;
 
     private storageServices:Array<TerraBaseStorageService>;
 
@@ -132,12 +132,12 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
     {
         if(show && currentService.isImagePreviewEnabled)
         {
-            this.centerColumnWidth = 7;
+            this.centerColumnWidth = 8;
             this.rightColumnWidth = 2;
         }
         else
         {
-            this.centerColumnWidth = 9;
+            this.centerColumnWidth = 10;
             this.rightColumnWidth = 0;
         }
     }
