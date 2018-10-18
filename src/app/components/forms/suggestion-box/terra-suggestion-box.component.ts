@@ -61,12 +61,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     @Input()
     public inputWithRecentlyUsed:boolean;
 
-    /**
-     * @deprecated since it notifies the user at exactly the same time as ngModelChange <-> onChangeCallback
-     */
-    @Output()
-    public outputValueChanged:EventEmitter<TerraSuggestionBoxValueInterface> = new EventEmitter<TerraSuggestionBoxValueInterface>();
-
     @Output()
     public outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
 
@@ -229,7 +223,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         // execute callback functions
         this.onTouchedCallback();
         this.onChangeCallback(value.value);
-        this.outputValueChanged.emit(value);
     }
 
     private updateLastSelectedValues():void
@@ -302,18 +295,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
         // update selected value
         this.setSelectedValue(this.displayListBoxValues.find((val:TerraSuggestionBoxValueInterface) => val.caption === searchString), true);
-    }
-
-    /**
-     * @deprecated use ngModel instead to reset the selected value
-     */
-    public resetComponentValue():void
-    {
-        this.value = null;
-
-        this.selectedValue = null;
-
-        this.tmpSelectedValue = null;
     }
 
     protected onKeyDown(event:KeyboardEvent):void
@@ -463,7 +444,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             // execute callback functions
             this.onTouchedCallback(); // this may be called when the text input value changes instead!?
             this.onChangeCallback(this.value);
-            this.outputValueChanged.emit(this._selectedValue);
 
             // finally update text input value
             if(!onChange)

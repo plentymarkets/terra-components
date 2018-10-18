@@ -10,7 +10,6 @@
         
         <terra-button
             inputIcon="icon-delete"
-            [inputIsSecondary]="true"
             (outputClicked)="removeElement(entry.key)"
             [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate:lang"
             [inputIsDisabled]="!canRemoveElement"></terra-button>
@@ -18,7 +17,6 @@
     <terra-button
         inputIcon="icon-add"
         (outputClicked)="addElement()"
-        [inputIsTertiary]="true"
         [inputTooltipText]="'terraDynamicForm.addListEntry' | translate:lang"
         [inputIsDisabled]="!canAddElement"></terra-button>
 </div>

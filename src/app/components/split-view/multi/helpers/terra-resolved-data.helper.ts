@@ -3,6 +3,9 @@ import { isNullOrUndefined } from 'util';
 import { TerraDynamicLoadedComponentInputInterface } from '../../../dynamic-module-loader/data/terra-dynamic-loaded-component-input.interface';
 import { ResolverListItemInterface } from '../interfaces/resolve-list-item.interface';
 
+/**
+ * @deprecated Will be removed in the next major release.
+ */
 export class TerraResolvedDataHelper
 {
     public static addResolvedData(resolverListItem:ResolverListItemInterface,

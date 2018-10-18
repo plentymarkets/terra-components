@@ -153,61 +153,6 @@ button:focus
         animation: highlighted 1500ms ease-in-out 0ms infinite alternate;
     }
     
-    &.btn-primary
-    {
-        &:not(.highlighted)
-        {
-            background-color: var(--color-active);
-            color: var(--color-structure-0);
-            &:hover,
-            &:focus
-            {
-                background-color: var(--color-active-dark);
-                color: var(--color-structure-0);
-                &:active,
-                &.active
-                {
-                    background-color: var(--color-active);
-                    color: var(--color-structure-0);
-                }
-            }
-        }
-    }
-    &.btn-secondary
-    {
-        &:not(.highlighted)
-        {
-            color: var(--color-structure-0);
-            &:hover,
-            &:focus
-            {
-                color: var(--color-structure-0);
-                &:active,
-                &.active
-                {
-                    color: var(--color-structure-0);
-                }
-            }
-        }
-    }
-    &.btn-tertiary
-    {
-        &:not(.highlighted)
-        {
-            color: var(--color-structure-0);
-            &:hover,
-            &:focus
-            {
-                color: var(--color-structure-0);
-                &:active,
-                &.active
-                {
-                    color: var(--color-structure-0);
-                }
-            }
-        }
-    }
-    
     span
     {
         font-size: 20px;

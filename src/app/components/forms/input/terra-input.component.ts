@@ -70,12 +70,6 @@ export class TerraInputComponent implements ControlValueAccessor
     public inputMinValue:number;
 
     /**
-     * @deprecated inputPlaceholder is deprecated and will be removed in one of the upcoming releases. Use inputName instead.
-     */
-    @Input()
-    public inputPlaceholder:string;
-
-    /**
      * @description If true, the button will be small. Default false.
      */
     @Input()

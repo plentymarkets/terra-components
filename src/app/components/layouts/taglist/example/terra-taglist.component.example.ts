@@ -14,22 +14,22 @@ export class TerraTaglistComponentExample
     {
         this.infoBoxTagList.push(
             {
-                badge: 'Terra'
+                name: 'Terra'
             },
             {
-                badge: 'Terra',
+                name: 'Terra',
                 color: 'red'
             },
             {
-                badge: 'Terra',
+                name: 'Terra',
                 color:'#f3f3f3'
             },
             {
-                badge: 'Terra',
+                name: 'Terra',
                 isTaggable: true
             },
             {
-                badge: 'Terra',
+                name: 'Terra',
                 isTaggable: true,
                 isTagged: true
             }

@@ -39,38 +39,10 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
     public inputHasFixedHeight:boolean;
 
     /**
-     * @deprecated inputType is no longer used.  It will be removed in one of the upcoming releases.
-     * @param v
-     */
-    @Input()
-    public set inputType(v:string)
-    {
-        console.warn('inputType is no longer used.  It will be removed in one of the upcoming releases.');
-    }
-
-    /**
-     * @deprecated inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.
-     * @param v
-     */
-    @Input()
-    public set inputValue(v:string)
-    {
-        console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-
-        this.value = v;
-    }
-
-    /**
      * @description Sets the initial number of rows. Minimum is four.
      */
     @Input()
     public inputMaxRows:number;
-
-    /**
-     * @deprecated Will be removed in an upcoming release.
-     */
-    @Input()
-    public inputMaxCols:number;
 
     /**
      * @description a unique string identifier for the specific input instance.

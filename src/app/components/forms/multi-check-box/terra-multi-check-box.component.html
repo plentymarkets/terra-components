@@ -13,7 +13,7 @@
                 <label class="header-label">{{ inputName }}</label>
             </div>
             <div class="option-list">
-                <div *ngFor="let listEntry of valueList; let i = index">
+                <div *ngFor="let listEntry of valueList;">
                     <div class="input-group">
                         <div class="input-group-addon">
                             <terra-checkbox #valueCheckbox
@@ -21,10 +21,9 @@
                                             [inputIsDisabled]="inputIsDisabled"
                                             [(ngModel)]="listEntry.selected"
                                             (ngModelChange)="checkHeaderCheckboxState()"
-                                            [inputId]="i">
+                                            [inputCaption]="listEntry.caption">
                             </terra-checkbox>
                         </div>
-                        <label class="form-control" htmlFor="{{i}}">{{listEntry.caption}}</label>
                     </div>
                 </div>
             </div>

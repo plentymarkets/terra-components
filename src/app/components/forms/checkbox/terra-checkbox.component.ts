@@ -45,13 +45,6 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     @Input()
     public inputIcon:string;
 
-    /**
-     * @description Set the id.
-     * @deprecated inputId will be removed in next major release.
-     */
-    @Input()
-    public inputId:string;
-
     @Output()
     public valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 

@@ -12,7 +12,6 @@
                         inputTooltipText="{{'cancel' | translate:lang}}"
                         inputTooltipPlacement="top"
                         inputIcon="icon-cancel"
-                        [inputIsSecondary]="true"
                         (outputClicked)="reset()">
         </terra-button>
     </div>
@@ -28,14 +27,12 @@
                           inputIcon="icon-success"
                           [inputIsSmall]="true"
                           [inputIsDisabled]="isContainerDataSelected"
-                          [inputIsTertiary]="true"
                           (outputClicked)="onSelectNode()">
             </terra-button>
             <terra-button inputTooltipText="{{'cancel' | translate:lang}}"
                           inputTooltipPlacement="top"
                           inputIcon="icon-cancel"
                           [inputIsSmall]="true"
-                          [inputIsSecondary]="true"
                           (outputClicked)="showTree()">
             </terra-button>
             <terra-button inputTooltipText="{{'terraNestedDataPicker.reset' | translate:lang}}"

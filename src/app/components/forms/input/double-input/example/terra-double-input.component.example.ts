@@ -9,4 +9,5 @@ import {
 })
 export class TerraDoubleInputComponentExample
 {
+    protected doubleValue:number;
 }

@@ -62,44 +62,7 @@
                         <div [innerHTML]="cell.tooltipText"></div>
                     </ng-template>
                     
-                    <!-- LEGACY INTERFACE!!!! -->
-                    <td *ngIf="!cell.isHidden && !cell.data"
-                        (click)="rowClicked(cell, row)"
-                        [container]="'body'"
-                        [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
-                        [tooltip]="tdTooltip"
-                        [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
-                        [ngStyle]="{ 'text-align': getTextAlign(headerList[i]) }">
-                        <span [ngStyle]="{color: cell.color}">
-                            <span *ngIf="cell.icon" [ngClass]="cell.icon"></span>
-                            <span *ngIf="!cell.href">{{cell.caption}}</span>
-                            <a *ngIf="cell.href" href="{{cell.href}}:{{cell.caption}}"
-                               (click)="$event.stopPropagation()">
-                                {{cell.caption}}
-                            </a>
-                        </span>
-                        
-                        <div class="btn-group" *ngIf="cell.buttonList">
-                            <ng-template ngFor let-button [ngForOf]="cell.buttonList">
-                                <terra-button *ngIf="!button.isHidden"
-                                              (outputClicked)="button.clickFunction()"
-                                              [inputIcon]="button.icon"
-                                              [inputIsPrimary]="button.isPrimary"
-                                              [inputIsSecondary]="button.isSecondary"
-                                              [inputIsTertiary]="button.isTertiary"
-                                              [inputIsDisabled]="button.isDisabled"
-                                              [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
-                                              [inputCaption]="button.caption"
-                                              [inputIsSmall]="true"
-                                              [inputTooltipText]="button.tooltipText"
-                                              [inputIsFlagged]="button.isFlagged">
-                                </terra-button>
-                            </ng-template>
-                        </div>
-                    </td>
-                    
-                    <!-- new cell interface -->
-                    <td *ngIf="!cell.isHidden && cell.data"
+                    <td *ngIf="!cell.isHidden"
                         [ngSwitch]="getCellDataType(cell.data)"
                         [ngStyle]="{ 'text-align': getTextAlign(headerList[i]) }"
                         (click)="rowClicked(cell, row)"
@@ -113,7 +76,8 @@
                         </div>
                         
                         <div *ngSwitchCase="'number'">
-                            <span>{{cell.data | number}}</span>
+                            <span>{{cell.data}}</span>
+                            <!-- <span>{{cell.data | number}}</span> TODO: The pipe should be used here! Figure out how. -->
                         </div>
                         
                         <div *ngSwitchCase="'TerraDataTableTextInterface'">
@@ -139,9 +103,7 @@
                                 <terra-button *ngIf="!button.isHidden"
                                               (outputClicked)="button.clickFunction($event);$event.stopPropagation()"
                                               [inputIcon]="button.icon"
-                                              [inputIsPrimary]="button.isPrimary"
-                                              [inputIsSecondary]="button.isSecondary"
-                                              [inputIsTertiary]="button.isTertiary"
+                                              [inputIsActive]="button.isActive"
                                               [inputIsDisabled]="button.isDisabled"
                                               [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
                                               [inputCaption]="button.caption"

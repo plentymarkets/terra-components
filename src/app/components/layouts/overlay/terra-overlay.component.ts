@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
 import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interface';
+import { TerraPlacementEnum } from '../../../..';
 
 /**
  * @author mfrank
@@ -51,6 +52,8 @@ export class TerraOverlayComponent implements AfterViewInit
 
     @Output()
     public outputOnShow:EventEmitter<ModalDirective>;
+
+    protected readonly tooltipPlacement:TerraPlacementEnum.BOTTOM;
 
     constructor()
     {
