@@ -3,7 +3,7 @@
         <thead>
         <tr *ngIf="inputHeaderList">
             <th *ngIf="inputHasCheckboxes"
-                width="40px">
+                width="{{checkboxWidth}}">
                 <terra-checkbox #viewChildHeaderCheckbox
                                 (change)="onHeaderCheckboxChange()"
                                 [value]="headerCheckbox.checked"
@@ -11,7 +11,7 @@
                 </terra-checkbox>
             </th>
             <ng-template ngFor let-header [ngForOf]="inputHeaderList">
-                <th width="{{header.width}}"
+                <th width="{{calculateWidth(header.width)}}"
                     [container]="'body'"
                     [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                     [tooltip]="header.tooltipText"
@@ -29,7 +29,7 @@
                 [class.isActive]="row === inputHighlightedRow"
                 [class.disabled]="row.disabled"
                 (click)="onRowClick(row)">
-                <td *ngIf="inputHasCheckboxes" width="40px" (click)="onCheckboxClick($event)">
+                <td *ngIf="inputHasCheckboxes" width="3%" (click)="onCheckboxClick($event)">
                     <terra-checkbox [value]="isSelectedRow(row)"
                                     [inputIsDisabled]="row.disabled"
                                     (change)="onRowCheckboxChange(row)">
@@ -40,7 +40,7 @@
                         <div [innerHTML]="cell.tooltipText"></div>
                     </ng-template>
                     <td [container]="'body'"
-                        width="{{ inputHeaderList[i].width }}"
+                        width="{{ calculateWidth(inputHeaderList[i].width) }}"
                         [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
                         [tooltip]="tdTooltip"
                         [ngStyle]="{ 'text-align': getTextAlign(inputHeaderList[i]) }"

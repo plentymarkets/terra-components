@@ -67,6 +67,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     public scrollContainer:ElementRef;
 
     public onRowListChange:EventEmitter<void> = new EventEmitter();
+    protected checkboxWidth:string;
 
     private headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
     private selectedRowList:Array<TerraSimpleTableRowInterface<D>> = [];
@@ -160,7 +161,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
             this.uncheckHeaderCheckbox();
         }
         else if(this.selectedRowList.length > 0 && this.inputRowList.filter(
-                (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === this.selectedRowList.length) // all selected?
+            (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === this.selectedRowList.length) // all selected?
         {
             this.checkHeaderCheckbox();
         }
@@ -323,5 +324,32 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         {
             return 'left';
         }
+    }
+
+    protected calculateWidth(width:string):string
+    {
+        if(!this.inputHasCheckboxes)
+        {
+            return width;
+        }
+
+        if(width.includes('%'))
+        {
+            let widthAsNumber:number = +width.replace('%', '');
+
+            this.checkboxWidth = '3%';
+
+            return (widthAsNumber - 3 / this.inputHeaderList.length).toString() + '%';
+        }
+
+        if(width.includes('px'))
+        {
+            let widthAsNumber:number = +width.replace('px', '');
+
+            this.checkboxWidth = '40px';
+
+            return (widthAsNumber - 40 / this.inputHeaderList.length).toString() + 'px';
+        }
+
     }
 }

@@ -25,7 +25,7 @@
     <table class="table data-table">
         <thead>
         <tr>
-            <th *ngIf="inputHasCheckboxes && rowList.length" width="25px">
+            <th *ngIf="inputHasCheckboxes && rowList.length" width="{{checkboxWidth}}">
                 <terra-checkbox #viewChildHeaderCheckbox
                                 (change)="onHeaderCheckboxChange(viewChildHeaderCheckbox.value)"
                                 [value]="isHeaderCheckboxChecked">
@@ -33,7 +33,7 @@
             </th>
             <ng-template ngFor let-header [ngForOf]="headerList">
                 <th *ngIf="!header.isHidden && rowList && rowList.length > 0"
-                    width="{{header.width}}px"
+                    width="{{calculateWidth(header.width)}}"
                     [ngStyle]="{ 'text-align': getTextAlign(header) }">
                     <span [container]="'body'"
                           [placement]="checkTooltipPlacement(header.tooltipPlacement)"
@@ -50,7 +50,8 @@
             <tr [ngClass]="{'selected': row.selected, 'isActive': row.isActive}"
                 [class.disabled]="row.disabled"
                 [contextMenu]="row.contextMenuLinkList">
-                <td *ngIf="inputHasCheckboxes">
+                <td *ngIf="inputHasCheckboxes"
+                    width="{{checkboxWidth}}">
                     <terra-checkbox #rowCheckbox type="checkbox"
                                     [value]="row.selected"
                                     [inputIsDisabled]="row.disabled"
@@ -63,6 +64,7 @@
                     </ng-template>
                     
                     <td *ngIf="!cell.isHidden"
+                        width="{{calculateWidth(headerList[i].width)}}"
                         [ngSwitch]="getCellDataType(cell.data)"
                         [ngStyle]="{ 'text-align': getTextAlign(headerList[i]) }"
                         (click)="rowClicked(cell, row)"

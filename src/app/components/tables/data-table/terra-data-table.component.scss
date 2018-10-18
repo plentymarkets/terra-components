@@ -51,13 +51,18 @@
                 tr
                 {
                     color: var(--color-structure-11);
+                    border-bottom: 1px solid var(--border-color);
                     td
                     {
                         padding: var(--table-body-td-padding, var(--space-md));
                         transition: padding var(--transition-lg);
                         vertical-align: middle;
-                        border-bottom: 1px solid var(--border-color);
+                        //border-bottom: 1px solid var(--border-color);
                         white-space: nowrap;
+                        //display: inline-block;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        border-top: 0;
                         span
                         {
                             font-size: var(--font-size-2);

@@ -119,6 +119,7 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
     protected alert:TerraAlertComponent = TerraAlertComponent.getInstance();
     protected langPrefix:string = 'terraDataTable';
     protected requestPending:boolean;
+    protected checkboxWidth:string;
 
     private _rowList:Array<TerraDataTableRowInterface<D>> = [];
     private _selectedRowList:Array<TerraDataTableRowInterface<D>> = [];
@@ -400,5 +401,17 @@ export class TerraDataTableComponent<S extends TerraBaseService, D extends Terra
         {
             return TerraTextAlignEnum.LEFT;
         }
+    }
+
+    protected calculateWidth(width:number):string
+    {
+        if(!this.inputHasCheckboxes)
+        {
+            return width.toString() + 'px';
+        }
+
+        this.checkboxWidth = '40px';
+
+        return (width - 40 / this.headerList.length).toString() + 'px';
     }
 }
