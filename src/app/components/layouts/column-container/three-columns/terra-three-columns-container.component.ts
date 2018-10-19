@@ -4,7 +4,7 @@ import {
     OnChanges,
     SimpleChanges
 } from '@angular/core';
-import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
+import { ColumnContainerConfig } from '../column-container.config';
 
 /**
  * @author mfrank
@@ -16,9 +16,12 @@ import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
 })
 /**
  * @experimental TerraThreeColumnsContainerComponent is experimental and might be subject to drastic changes in the near future.
+ * It is also not compatible with the mobileRouting directive yet.
+ *
  * @description Container which displays content/views in 3 columns using bootstraps grid system.
- * You can specifiy the width of the columns by using the three given inputs.
- * The sum of all given column width must be 12 at all times to ensure the deserved behaviour. If not, the column widths are calculated automatically.
+ * You can specify the width of the columns by using the three given inputs.
+ * The sum of width of all given columns must amount to 12 at all times to ensure the deserved behaviour.
+ * If not, the column widths are calculated automatically.
  */
 export class TerraThreeColumnsContainerComponent implements OnChanges
 {
@@ -40,6 +43,11 @@ export class TerraThreeColumnsContainerComponent implements OnChanges
     @Input()
     public rightColumnWidth:number = 4;
 
+    /**
+     * Component's life cycle hook which is executed when the value of any input changes.
+     * It validates the given input values and updates the view.
+     * @param changes
+     */
     public ngOnChanges(changes:SimpleChanges):void
     {
         if(this.leftColumnWidth + this.centerColumnWidth + this.rightColumnWidth > 12)
@@ -47,16 +55,15 @@ export class TerraThreeColumnsContainerComponent implements OnChanges
             console.error('You have exceeded the maximum amount of columns. The columns are now sized automatically.');
         }
 
-        let columnsLeft:number = TwoColumnHelper.maxColumnWidth;
+        let columnsLeft:number = ColumnContainerConfig.maxColumnWidth;
 
-        this.leftColumnWidth = Math.min(columnsLeft, Math.max(TwoColumnHelper.minColumnWidth, this.leftColumnWidth));
-
+        this.leftColumnWidth = Math.min(columnsLeft, Math.max(ColumnContainerConfig.minColumnWidth, this.leftColumnWidth));
         columnsLeft -= this.leftColumnWidth;
 
-        this.centerColumnWidth = Math.min(columnsLeft, Math.max(TwoColumnHelper.minColumnWidth, this.centerColumnWidth));
+        this.centerColumnWidth = Math.min(columnsLeft, Math.max(ColumnContainerConfig.minColumnWidth, this.centerColumnWidth));
         columnsLeft -= this.centerColumnWidth;
 
-        this.rightColumnWidth = Math.min(columnsLeft, Math.max(TwoColumnHelper.minColumnWidth, this.rightColumnWidth));
+        this.rightColumnWidth = Math.min(columnsLeft, Math.max(ColumnContainerConfig.minColumnWidth, this.rightColumnWidth));
         columnsLeft -= this.rightColumnWidth;
 
         if(columnsLeft > 0)
