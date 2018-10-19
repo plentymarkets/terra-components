@@ -1,3 +1,8 @@
+# Unreleased beta
+
+### Feature
+* **terra-3-col** new component that displays given views next to each other in up to three columns
+
 <a name="3.0.0-beta.8"></a>
 # 3.0.0-beta.8 (17.10.2018)
 
