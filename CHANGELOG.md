@@ -1,3 +1,8 @@
+# Unreleased
+
+### Changes
+* The definition of custom font faces have been separated into multiple files.
+
 <a name="3.0.0-beta.8"></a>
 # 3.0.0-beta.8 (17.10.2018)
 
