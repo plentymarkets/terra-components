@@ -43,6 +43,11 @@ export class TerraThreeColumnsContainerComponent implements OnChanges
     @Input()
     public rightColumnWidth:number = 4;
 
+    /**
+     * Component's life cycle hook which is executed when the value of any input changes.
+     * It validates the given input values and updates the view.
+     * @param changes
+     */
     public ngOnChanges(changes:SimpleChanges):void
     {
         if(this.leftColumnWidth + this.centerColumnWidth + this.rightColumnWidth > 12)
