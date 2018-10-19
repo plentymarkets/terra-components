@@ -48,7 +48,7 @@ import { TerraCategoryPickerComponent } from './category-picker/terra-category-p
 import { TerraDynamicFormComponent } from './forms/dynamic-form/terra-dynamic-form.component';
 import { TerraDynamicSwitchComponent } from './forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
 import { TerraNestedDataPickerComponent } from './nested-data-picker/terra-nested-data-picker.component';
-import { TerraTwoColumnsContainerComponent } from './layouts/column-container/terra-two-columns-container.component';
+import { TerraTwoColumnsContainerComponent } from './layouts/column-container/two-columns/terra-two-columns-container.component';
 import { TerraFormComponent } from './forms/form/terra-form.component';
 import { TerraFormContainerComponent } from './forms/form/form-container/terra-form-container.component';
 import { TerraFormEntryComponent } from './forms/form/form-entry/terra-form-entry.component';
@@ -56,6 +56,7 @@ import { TerraFormEntryListComponent } from './forms/form/form-entry-list/terra-
 import { TerraBreadcrumbsComponent } from './breadcrumbs/terra-breadcrumbs.component';
 import { TerraTagSelectComponent } from './forms/tag-select/terra-tag-select.component';
 import { TerraStopwatchComponent } from './stopwatch/terra-stopwatch.component';
+import { TerraThreeColumnsContainerComponent } from './layouts/column-container/three-columns/terra-three-columns-container.component';
 
 export const components:Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -116,5 +117,6 @@ export const components:Array<Type<any>> = [
     TerraFormEntryListComponent,
     TerraBreadcrumbsComponent,
     TerraTagSelectComponent,
-    TerraStopwatchComponent
+    TerraStopwatchComponent,
+    TerraThreeColumnsContainerComponent
 ];
