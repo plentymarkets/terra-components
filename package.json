@@ -27,7 +27,7 @@
 		"gulp": "gulp",
 		"test": "karma start",
 		"test-once": "karma start --single-run",
-		"lint": "NODE_OPTIONS='-r ts-node/register' tslint -p tsconfig.json -c tslint.json -e 'src/**/*.d.ts' 'src/**/*.ts'",
+		"lint": "NODE_OPTIONS='-r ts-node/register' tslint -p tsconfig.json -c tslint.json -e 'src/**/*.d.ts' -e 'src/**/*.spec.ts' 'src/**/*.ts'",
 		"reinstall": "rm -rf node_modules/ && npm i"
 	},
 	"dependencies": {
