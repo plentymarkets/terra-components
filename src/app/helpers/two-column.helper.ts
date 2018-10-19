@@ -1,3 +1,5 @@
+import { ColumnContainerConfig } from '../components/layouts/column-container/column-container.config';
+
 export class TwoColumnHelper
 {
     public static colXS:string = 'col-xs-12';
@@ -5,8 +7,6 @@ export class TwoColumnHelper
     public static colLG:string = 'col-lg-';
     public static spacer:string = ' ';
     public static hiddenXS:string = 'hidden-xs';
-    public static maxColumnWidth:number = 12;
-    public static minColumnWidth:number = 0;
 
     public static leftRightColXS():string
     {
@@ -40,16 +40,16 @@ export class TwoColumnHelper
 
     public static calculatedLeftColumnMDWidth(leftColumnWidth:number):number
     {
-        return (leftColumnWidth === this.maxColumnWidth) ? leftColumnWidth : leftColumnWidth + 1;
+        return (leftColumnWidth === ColumnContainerConfig.maxColumnWidth) ? leftColumnWidth : leftColumnWidth + 1;
     }
 
     public static calculatedRightColumnMDWidth(leftColumnWidth:number):number
     {
-        return this.maxColumnWidth - this.calculatedLeftColumnMDWidth(leftColumnWidth);
+        return ColumnContainerConfig.maxColumnWidth - this.calculatedLeftColumnMDWidth(leftColumnWidth);
     }
 
     public static calculatedRightColumnLGWidth(leftColumnWidth:number):number
     {
-        return this.maxColumnWidth - leftColumnWidth;
+        return ColumnContainerConfig.maxColumnWidth - leftColumnWidth;
     }
 }
