@@ -8,11 +8,12 @@ import { TerraDataTableHeaderCellInterface } from '../interfaces/terra-data-tabl
 import { TerraTextAlignEnum } from '../enums/terra-text-align.enum';
 import { TerraDataTableCellInterface } from '../interfaces/terra-data-table-cell.interface';
 import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.interface';
+import { TerraRefTypeEnum } from '../enums/terra-ref-type.enum';
 
 @Component({
-    selector: 'terra-data-table-example',
-    template: require('./terra-data-table.component.example.html'),
-    styles:   [require('./terra-data-table.component.example.scss')],
+    selector:  'terra-data-table-example',
+    template:  require('./terra-data-table.component.example.html'),
+    styles:    [require('./terra-data-table.component.example.scss')],
     providers: [TerraDataTableServiceExample]
 })
 export class TerraDataTableComponentExample implements OnInit
@@ -66,16 +67,24 @@ export class TerraDataTableComponentExample implements OnInit
     {
         this.headerList = [
             {
-                caption:   'ID',
-                sortBy:    'id',
-                width:     20
+                caption: 'ID',
+                sortBy:  'id',
+                width:   20
             },
             {
-                caption: 'value',
-                sortBy:  'value',
-                width:   20,
+                caption:   'value',
+                sortBy:    'value',
+                width:     20,
                 textAlign: TerraTextAlignEnum.LEFT
             },
+            {
+                caption: 'email',
+                width:   20
+            },
+            {
+                caption: 'buttons',
+                width:   20
+            }
         ];
     }
 
@@ -83,15 +92,28 @@ export class TerraDataTableComponentExample implements OnInit
     {
         this.rowList = res.map((entry:{ id:number, value:number }) =>
         {
-            let cellList:Array<TerraDataTableCellInterface> =
-                [
-                    {
-                        data: entry.id
-                    },
-                    {
-                        data: entry.value
+            let cellList:Array<TerraDataTableCellInterface> = [
+                {
+                    data: entry.id
+                },
+                {
+                    data: entry.value
+                },
+                {
+                    data: {
+                        type:  TerraRefTypeEnum.email,
+                        value: 'pascal.weyrich@plentymarkets.com'
                     }
-                ];
+                },
+                {
+                    data: [
+                        {
+                            icon:          'icon-add',
+                            clickFunction: ():void => console.log('clicked')
+                        }
+                    ]
+                }
+            ];
 
             return {
                 cellList:      cellList,

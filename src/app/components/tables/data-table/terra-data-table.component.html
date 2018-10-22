@@ -56,7 +56,8 @@
         <tbody *ngIf="inputRowList && inputRowList.length > 0">
         <ng-template ngFor let-row [ngForOf]="inputRowList">
             <tr [ngClass]="{'selected': row.selected, 'isActive': row.isActive, 'disabled': row.disabled}"
-                [contextMenu]="row.contextMenuLinkList">
+                [contextMenu]="row.contextMenuLinkList"
+                (click)="rowClicked(row)">
                 <td *ngIf="inputHasCheckboxes">
                     <terra-checkbox type="checkbox"
                                     [value]="row.selected"
@@ -72,7 +73,6 @@
                     <td *ngIf="!cell.isHidden"
                         [ngSwitch]="getCellDataType(cell.data)"
                         [ngStyle]="{ 'text-align': getTextAlign(inputHeaderList[i]) }"
-                        (click)="rowClicked(cell, row)"
                         [tooltip]="tdTooltip"
                         [container]="'body'"
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
@@ -95,9 +95,19 @@
                         </div>
                         
                         <div *ngSwitchCase="'TerraRefTypeInterface'">
-                            <a *ngIf="cell.data.type === refType.email || cell.data.type === refType.phone" href="{{cell.data.type}}:{{cell.data.value}}" (click)="$event.stopPropagation()">{{ cell.data.caption || cell.data.value}}</a>
-                            <a *ngIf="cell.data.type === refType.function" href="javascript:void(0);" (click)="cell.data.value(); $event.stopPropagation();">{{cell.data.caption}}</a>
-                            <a *ngIf="cell.data.type === refType.url" href="{{cell.data.value}}" target="{{cell.data.target || '_self'}}" (click)="$event.stopPropagation()">{{cell.data.caption || cell.data.value}}</a>
+                            <a *ngIf="cell.data.type === refType.email || cell.data.type === refType.phone"
+                               href="{{cell.data.type}}:{{cell.data.value}}"
+                               (click)="$event.stopPropagation()">
+                                {{ cell.data.caption || cell.data.value}}
+                            </a>
+                            <a *ngIf="cell.data.type === refType.function" href="javascript:void(0);"
+                               (click)="cell.data.value(); $event.stopPropagation();">
+                                {{cell.data.caption}}
+                            </a>
+                            <a *ngIf="cell.data.type === refType.url" href="{{cell.data.value}}" target="{{cell.data.target || '_self'}}"
+                               (click)="$event.stopPropagation()">
+                                {{cell.data.caption || cell.data.value}}
+                            </a>
                         </div>
                         
                         <div *ngSwitchCase="'buttons'" class="btn-group">

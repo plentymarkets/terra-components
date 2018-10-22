@@ -307,10 +307,9 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         return this.inputRowList.filter((row:TerraDataTableRowInterface<T>) => row.selected);
     }
 
-    protected rowClicked(cell:TerraDataTableCellInterface, row:TerraDataTableRowInterface<T>):void
+    protected rowClicked(row:TerraDataTableRowInterface<T>):void
     {
-        let dataType:string = this.getCellDataType(cell.data);
-        if(dataType !== 'buttons' && !row.disabled)
+        if(!row.disabled)
         {
             this.inputRowList.forEach((r:TerraDataTableRowInterface<T>) =>
             {
