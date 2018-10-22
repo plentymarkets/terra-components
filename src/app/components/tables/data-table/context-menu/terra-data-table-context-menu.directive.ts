@@ -4,9 +4,9 @@ import {
     Input,
     OnInit
 } from '@angular/core';
-import { TerraDataTableContextMenuService } from '../service/terra-data-table-context-menu.service';
-import { TerraDataTableContextMenuEntryInterface } from '../data/terra-data-table-context-menu-entry.interface';
-import { TerraBaseData } from '../../../../data/terra-base.data';
+import { TerraDataTableContextMenuService } from './terra-data-table-context-menu.service';
+import { TerraDataTableContextMenuEntryInterface } from './data/terra-data-table-context-menu-entry.interface';
+import { TerraBaseData } from '../../../data/terra-base.data';
 
 /**
  * @author mkunze

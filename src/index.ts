@@ -37,9 +37,9 @@ export * from './app/components/tables/data-table/interfaces/terra-data-table-te
 export * from './app/components/tables/data-table/interfaces/terra-data-table-header-cell.interface';
 export * from './app/components/tables/simple/cell/terra-simple-table-cell.interface';
 export * from './app/components/tables/simple/cell/terra-simple-table-header-cell.interface';
-export * from './app/components/tables/data-table/context-menu/directive/terra-data-table-context-menu.directive';
+export * from './app/components/tables/data-table/context-menu/terra-data-table-context-menu.directive';
 export * from './app/components/tables/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
-export * from './app/components/tables/data-table/context-menu/service/terra-data-table-context-menu.service';
+export * from './app/components/tables/data-table/context-menu/terra-data-table-context-menu.service';
 export * from './app/components/tables/data-table/context-menu/terra-data-table-context-menu.component';
 export * from './app/components/tables/data-table/terra-data-table.component';
 export * from './app/components/tables/data-table/interfaces/terra-data-table-row.interface';

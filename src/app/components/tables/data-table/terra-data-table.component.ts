@@ -12,7 +12,7 @@ import {
     Output,
     SimpleChanges
 } from '@angular/core';
-import { TerraDataTableContextMenuService } from './context-menu/service/terra-data-table-context-menu.service';
+import { TerraDataTableContextMenuService } from './context-menu/terra-data-table-context-menu.service';
 import {
     animate,
     state,
