@@ -145,6 +145,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     protected readonly refType:{} = TerraRefTypeEnum;
 
     protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
+
     private _selectedRowList:Array<TerraDataTableRowInterface<T>> = [];
 
     /**
@@ -462,7 +463,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         return typeof data;
     }
 
-    protected onColumnHeaderClick(header:TerraDataTableHeaderCellInterface):void
+    protected onColumnHeaderClick(header:TerraDataTableHeaderCellInterface):void // TODO: debounce!
     {
         // change sorting column and order only if no request is pending and sortBy attribute is given
         if(!this.inputService.requestPending && this.inputIsSortable && header.sortBy)
