@@ -361,7 +361,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         }
     }
 
-    protected checkTooltipPlacement(placement:string):string
+    protected checkTooltipPlacement(placement:string):string // TODO: pipe?
     {
         if(!StringHelper.isNullUndefinedOrEmpty(placement))
         {
@@ -532,7 +532,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         this.outputGroupFunctionExecuteButtonClicked.emit(this._selectedRowList);
     }
 
-    protected getTextAlign(item:TerraDataTableHeaderCellInterface):TerraTextAlignEnum
+    protected getTextAlign(item:TerraDataTableHeaderCellInterface):TerraTextAlignEnum // TODO: Pipe?
     {
 
         if(!isNullOrUndefined(item.textAlign))
