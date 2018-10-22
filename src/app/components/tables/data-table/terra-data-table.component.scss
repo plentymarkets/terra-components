@@ -55,6 +55,11 @@
                 tr
                 {
                     color: var(--color-structure-11);
+                    
+                    &:nth-child(odd)
+                    {
+                        background-color: var(--color-structure-1);
+                    }
                     td
                     {
                         padding: var(--table-body-td-padding, var(--space-md));
