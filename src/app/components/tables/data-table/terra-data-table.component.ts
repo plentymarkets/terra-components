@@ -509,20 +509,16 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 
     private getFirstSortableColumn():TerraDataTableHeaderCellInterface
     {
+        let headerCell:TerraDataTableHeaderCellInterface = null;
         // check if header list is given
         if(this.inputHeaderList)
         {
             // find first header cell where sortBy attribute is given
-            let headerCell:TerraDataTableHeaderCellInterface;
             headerCell = this.inputHeaderList.find((header:TerraDataTableHeaderCellInterface) => !isNullOrUndefined(header.sortBy));
-            if(headerCell)
-            {
-                return headerCell;
-            }
         }
 
         // return null if nothing is found
-        return null;
+        return headerCell;
     }
 
     private getResults():void
