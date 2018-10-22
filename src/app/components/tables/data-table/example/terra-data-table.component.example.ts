@@ -98,7 +98,7 @@ export class TerraDataTableComponentExample implements OnInit
                 data:          entry,
                 clickFunction: ():void =>
                                {
-                                   console.log('Row with id ' + entry.id + 'clicked');
+                                   console.log(`Row with id ${entry.id} clicked`);
                                }
             };
         });
