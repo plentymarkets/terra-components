@@ -4,8 +4,8 @@
 			true,
 			75
 		],
-		"restrict-leading-underscore" : true,
-		"get-set" : true,
+		"restrict-leading-underscore": true,
+		"get-set": true,
 		"max-depth": [
 			true,
 			7
@@ -33,6 +33,10 @@
 				"limit": 150,
 				"ignore-pattern": "^import |^export {(.*?)}|class [a-zA-Z]+ implements"
 			}
+		],
+		"max-file-line-count": [
+			true,
+			425
 		],
 		"member-access": [
 			true,
