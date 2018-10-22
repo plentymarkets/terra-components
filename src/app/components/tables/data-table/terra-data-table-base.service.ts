@@ -21,16 +21,16 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
     public sortBy:string;
     public sortOrder:TerraDataTableSortOrder;
 
-    constructor(private _loadingSpinnerService:TerraLoadingSpinnerService, private _httpService:Http)
+    constructor(loadingSpinner:TerraLoadingSpinnerService, http:Http)
     {
-        super(_loadingSpinnerService, _httpService, '');
+        super(loadingSpinner, http, '');
     }
 
     /**
      * @description Updates the stored paging data with the given data
      * @param {TerraPagerInterface} pagerData
      */
-    public updatePagingData(pagerData:TerraPagerInterface<T>)
+    public updatePagingData(pagerData:TerraPagerInterface<T>):void
     {
         this.pagingData = {
             page:           pagerData.page,
@@ -45,10 +45,9 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
 
     /**
      * @description Wrapper for the abstract requestTableData method. All the default behaviour when retrieving data is implemented here.
-     * @param {boolean} fromFilter
-     * @returns {Observable<TerraPagerInterface>}
+     * @param fromFilter
      */
-    public getResults(fromFilter?:boolean):Observable<TerraPagerInterface<T>>
+    public getResults(fromFilter?:boolean):void
     {
         // initialize pagination parameters
         let params:TerraPagerParameterInterface = {};
@@ -89,18 +88,15 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
 
         // request table data from the server
         this.requestPending = true;
-        let request = this.requestTableData(params);
-        request.subscribe(
+        this.requestTableData(params).subscribe(
             (res:TerraPagerInterface<T>) =>
             {
                 this.updatePagingData(res);
                 this.onSuccessFunction(res.entries);
             },
-            (error:any) => {},
+            (error:any) => undefined,
             () => this.requestPending = false
         );
-
-        return request;
     }
 
     /**
@@ -108,5 +104,5 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
      * @param {TerraPagerParameterInterface} params
      * @returns {Observable<TerraPagerInterface>}
      */
-    public abstract requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface<T>>
+    public abstract requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface<T>>;
 }

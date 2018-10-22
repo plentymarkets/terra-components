@@ -48,18 +48,17 @@ export class TerraDataTableComponentExample implements OnInit
 
     public onSearchBtnClicked():void
     {
-        this.service.getResults().subscribe(() =>
-        {
-            this.noResultButtons = [{
-                caption:       'Add',
-                isHighlighted: false,
-                icon:          'icon-add',
-                clickFunction: ():void => this.service.addEntry()
-            }];
+        this.service.getResults();
 
-            this.noResultTextPrimary = 'No entries found';
-            this.noResultTextSecondary = 'Add a new entry';
-        });
+        this.noResultButtons = [{
+            caption:       'Add',
+            isHighlighted: false,
+            icon:          'icon-add',
+            clickFunction: ():void => this.service.addEntry()
+        }];
+
+        this.noResultTextPrimary = 'No entries found';
+        this.noResultTextSecondary = 'Add a new entry';
     }
 
 
