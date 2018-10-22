@@ -1,4 +1,4 @@
-/* tslint:disable:max-function-line-count */
+/* tslint:disable:max-function-line-count max-file-line-count */
 // Adding disable only because of the deprecated state of the component!
 import {
     Component,
@@ -650,4 +650,3 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         });
     }
 }
-/* tslint:enable:max-function-line-count */

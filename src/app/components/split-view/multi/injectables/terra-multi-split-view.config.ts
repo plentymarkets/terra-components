@@ -1,3 +1,5 @@
+/* tslint:disable:max-file-line-count */
+// Adding disable only because of the deprecated state of the component!
 import {
     EventEmitter,
     Injectable,
