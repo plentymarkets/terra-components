@@ -79,7 +79,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
      * @description List of table rows containing all the data
      */
     @Input()
-    public inputRowList:Array<TerraDataTableRowInterface<T>> = [];
+    public inputRowList:Array<TerraDataTableRowInterface<T>> = []; // TODO: remove from inputs
     /**
      * @description enables the user to sort the table by selected columns
      * @default false
@@ -141,8 +141,6 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     protected readonly refType:{} = TerraRefTypeEnum;
 
     protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
-
-    private _selectedRowList:Array<TerraDataTableRowInterface<T>> = [];
 
     /**
      * @description Constructor initializing the table component
@@ -235,14 +233,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         this.outputRowCheckBoxChanged.emit(row);
 
         // update row selection
-        if(this.isSelectedRow(row))
-        {
-            this.deselectRow(row);
-        }
-        else
-        {
-            this.selectRow(row);
-        }
+        row.selected = !row.selected;
 
         // update header checkbox state
         this.updateHeaderCheckboxState();
@@ -268,42 +259,18 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 
     private updateHeaderCheckboxState():void
     {
-        if(this.selectedRowList.length === 0) // anything selected?
+        let selectedRowsCount:number = this.selectedRowList.length;
+        if(selectedRowsCount === 0) // anything selected?
         {
             this.uncheckHeaderCheckbox();
         }
-        else if(this.selectedRowList.length > 0 && this.inputRowList.length === this.selectedRowList.length) // all selected?
+        else if(selectedRowsCount > 0 && this.inputRowList.length === selectedRowsCount) // all selected?
         {
             this.checkHeaderCheckbox();
         }
         else // some rows selected -> indeterminate
         {
             this.setHeaderCheckboxIndeterminate();
-        }
-    }
-
-    private selectRow(row:TerraDataTableRowInterface<T>):void
-    {
-        // check if row is already selected
-        if(this.selectedRowList.find((r:TerraDataTableRowInterface<T>) => r === row))
-        {
-            return;
-        }
-
-        // add row to selected row list
-        this.selectedRowList.push(row);
-    }
-
-    private deselectRow(row:TerraDataTableRowInterface<T>):void
-    {
-        // get index of the row in the selected row list
-        let rowIndex:number = this.selectedRowList.indexOf(row);
-
-        // check if selected row list contains the given row
-        if(rowIndex >= 0)
-        {
-            // remove row from selected row list
-            this.selectedRowList.splice(rowIndex, 1);
         }
     }
 
@@ -315,7 +282,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         {
             if(!row.disabled)
             {
-                this.selectRow(row);
+                row.selected = true;
             }
         });
     }
@@ -324,13 +291,11 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     {
         this.uncheckHeaderCheckbox();
 
-        // reset selected row list
-        this._selectedRowList = [];
-    }
-
-    private isSelectedRow(row:TerraDataTableRowInterface<T>):boolean
-    {
-        return this.selectedRowList.indexOf(row) >= 0;
+        // reset selected rows
+        this.inputRowList.forEach((row:TerraDataTableRowInterface<T>) =>
+        {
+            row.selected = false;
+        });
     }
 
     /**
@@ -339,7 +304,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
      */
     public get selectedRowList():Array<TerraDataTableRowInterface<T>>
     {
-        return this._selectedRowList;
+        return this.inputRowList.filter((row:TerraDataTableRowInterface<T>) => row.selected);
     }
 
     protected rowClicked(cell:TerraDataTableCellInterface, row:TerraDataTableRowInterface<T>):void
@@ -525,7 +490,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 
     protected onGroupFunctionExecuteButtonClicked(event:Event):void
     {
-        this.outputGroupFunctionExecuteButtonClicked.emit(this._selectedRowList);
+        this.outputGroupFunctionExecuteButtonClicked.emit(this.selectedRowList);
     }
 
     protected getTextAlign(item:TerraDataTableHeaderCellInterface):TerraTextAlignEnum // TODO: Pipe?

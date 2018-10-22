@@ -13,4 +13,5 @@ export interface TerraDataTableRowInterface<D>
     contextMenuLinkList?:Array<TerraDataTableContextMenuEntryInterface<D>>;
     isActive?:boolean;
     disabled?:boolean;
+    selected?:boolean;
 }

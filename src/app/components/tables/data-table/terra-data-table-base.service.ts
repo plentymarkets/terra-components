@@ -13,7 +13,7 @@ import { TerraDataTableSortOrder } from './enums/terra-data-table-sort-order.enu
 export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
 {
     public requestPending:boolean;
-    public onSuccessFunction:(res:Array<T>) => void;
+    public onSuccessFunction:(res:Array<T>) => void; // TODO: refine in mapping function
     public pagingData:TerraPagerInterface<T>;
     public pagingSizes:Array<TerraSelectBoxValueInterface>;
     public defaultPagingSize:number;
