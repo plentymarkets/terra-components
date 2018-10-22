@@ -370,12 +370,12 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         return TerraPlacementEnum.TOP;
     }
 
-    protected isTableDataAvailable():boolean
+    protected get isTableDataAvailable():boolean
     {
         return this.inputRowList && this.inputRowList.length > 0;
     }
 
-    protected isNoResultsNoticeDefined():boolean
+    protected get isNoResultsNoticeDefined():boolean
     {
         return (this.inputNoResultButtons && this.inputNoResultButtons.length > 0) || // a button is given
                (this.inputNoResultTextPrimary && this.inputNoResultTextPrimary.length > 0) || // a primary text is given
