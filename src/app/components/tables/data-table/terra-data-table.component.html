@@ -55,8 +55,7 @@
         </thead>
         <tbody *ngIf="inputRowList && inputRowList.length > 0">
         <ng-template ngFor let-row [ngForOf]="inputRowList">
-            <tr [ngClass]="{'selected': isSelectedRow(row), 'isActive': row.isActive}"
-                [class.disabled]="row.disabled"
+            <tr [ngClass]="{'selected': isSelectedRow(row), 'isActive': row.isActive, 'disabled': row.disabled}"
                 [contextMenu]="row.contextMenuLinkList">
                 <td *ngIf="inputHasCheckboxes">
                     <terra-checkbox type="checkbox"
