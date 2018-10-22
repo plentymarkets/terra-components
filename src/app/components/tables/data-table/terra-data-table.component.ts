@@ -26,7 +26,6 @@ import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.in
 import { TerraDataTableSortOrder } from './enums/terra-data-table-sort-order.enum';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import {
-    TerraRefTypeEnum,
     TerraRefTypeInterface
 } from './interfaces/terra-ref-type.interface';
 import {
@@ -42,6 +41,7 @@ import {
 import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
 import { StringHelper } from '../../../helpers/string.helper';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
+import { TerraRefTypeEnum } from './enums/terra-ref-type.enum';
 
 @Component({
     selector:   'terra-data-table',
