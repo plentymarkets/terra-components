@@ -213,6 +213,11 @@ body
         //--tooltip-background-color: var(--color-structure-12);
         //--tooltip-color: var(--color-structure-0);
         
+        //Table
+        //--table-head-background-color: var(--color-structure-9);
+        //--table-head-color: var(--color-structure-0);
+        //--dropdown-menu-background-color-mobile: var(--color-structure-12);
+        
         /////Light-Theme
         //Navbar, Tabbar, Breadcrumbs
         --nav-background-color: var(--color-structure-0);
@@ -224,6 +229,7 @@ body
         --nav-link-background-color-mobile: var(--color-structure-0);
         --nav-link-border-mobile: 1px var(--color-structure-4) solid;
         --nav-dropdown-caret-mobile: var(--color-structure-0);
+        --dropdown-menu-background-color-mobile: var(--color-structure-2);
         --tabs-background-color: var(--color-structure-2);
         --tabs-nav-item: var(--color-structure-0);
         --tabs-nav-item-box-shadow: var(--box-shadow);
@@ -239,5 +245,8 @@ body
         --context-menu-color: var(--color-structure-11) !important;
         --tooltip-background-color: var(--color-structure-0);
         --tooltip-color: var(--color-structure-11);
+    
+        --table-head-background-color: var(--color-structure-0);
+        --table-head-color: var(--color-structure-8);
     }
 }
