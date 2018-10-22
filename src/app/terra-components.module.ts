@@ -39,6 +39,7 @@ import { components } from './components/component-collection';
 import { examples } from './components/example-collection';
 import { services } from './service/service-collection';
 import { directives } from './components/directive-collection';
+import { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -69,6 +70,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         RouterModule
     ],
     providers:       [
+        TerraLoadingSpinnerService,
         TerraFrontendStorageService,
         TerraFileBrowserService,
         {
