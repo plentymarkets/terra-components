@@ -1,3 +1,5 @@
+/* tslint:disable:max-function-line-count */
+// Adding disable only because of the deprecated state of the component!
 import {
     Component,
     HostListener,
@@ -451,18 +453,61 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         // delete all children only if the view is selected and the children are rendered
         if(view === module.currentSelectedView)
         {
-            this.deleteAllChildren(view);
+            if(!isNullOrUndefined(view.children))
+            {
+                view.children.forEach((elem:TerraMultiSplitViewInterface) =>
+                    {
+                        this.removeFromModules(elem);
+                    }
+                );
+            }
         }
 
         // check if module has more than one view
         if(module.views.length <= 1)
         {
-            // remove module and select the views parent view
-            return this.removeSingleModule(view, module);
+            // get the index of the module in the modules array
+            let moduleIndex:number = this.modules.findIndex((mod:TerraMultiSplitViewModuleInterface) => mod === module);
+
+            // check if the module has been found
+            if(moduleIndex >= 0 && moduleIndex < this.modules.length)
+            {
+                // remove the whole module
+                this.modules.splice(moduleIndex, 1);
+
+                // select the views parent view
+                return view.parent;
+            }
         }
         else
         {
-            return this.removeAndSelectModule(view, module);
+            // get the index of the view in the module's views array
+            let viewIndex:number = module.views.findIndex((elem:TerraMultiSplitViewInterface) => elem === view);
+
+            // check if the view has been found
+            if(viewIndex >= 0 && viewIndex < module.views.length)
+            {
+                // remove view from module's views array
+                module.views.splice(viewIndex, 1);
+            }
+
+            // return the view that should be selected after deletion
+            if(module.currentSelectedView === view && this.inputConfig.currentSelectedView === view)
+            {
+                return this.getLastSelectedOfModule(module);
+            }
+            else
+            {
+                // check if vertical selection has to be changed
+                if(module.currentSelectedView === view)
+                {
+                    // rebuild modules array depending on the selected view
+                    this.rebuildModules(this.getLastSelectedOfModule(module), module);
+
+                }
+                // do not change anything -> select the currently selected view
+                return this.inputConfig.currentSelectedView;
+            }
         }
     }
 
@@ -472,65 +517,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         let hierarchyLevel:number = this.getHierarchyLevelOfView(view);
 
         return this.modules[hierarchyLevel];
-    }
-
-    private deleteAllChildren(view:TerraMultiSplitViewInterface):void
-    {
-        if(!isNullOrUndefined(view.children))
-        {
-            view.children.forEach((elem:TerraMultiSplitViewInterface) =>
-                {
-                    this.removeFromModules(elem);
-                }
-            );
-        }
-    }
-
-    private removeSingleModule(view:TerraMultiSplitViewInterface, module:TerraMultiSplitViewModuleInterface):TerraMultiSplitViewInterface
-    {
-        // get the index of the module in the modules array
-        let moduleIndex:number = this.modules.findIndex((mod:TerraMultiSplitViewModuleInterface) => mod === module);
-
-        // check if the module has been found
-        if(moduleIndex >= 0 && moduleIndex < this.modules.length)
-        {
-            // remove the whole module
-            this.modules.splice(moduleIndex, 1);
-
-            // return parent to select
-            return view.parent;
-        }
-    }
-
-    private removeAndSelectModule(view:TerraMultiSplitViewInterface, module:TerraMultiSplitViewModuleInterface):TerraMultiSplitViewInterface
-    {
-        // get the index of the view in the module's views array
-        let viewIndex:number = module.views.findIndex((elem:TerraMultiSplitViewInterface) => elem === view);
-
-        // check if the view has been found
-        if(viewIndex >= 0 && viewIndex < module.views.length)
-        {
-            // remove view from module's views array
-            module.views.splice(viewIndex, 1);
-        }
-
-        // return the view that should be selected after deletion
-        if(module.currentSelectedView === view && this.inputConfig.currentSelectedView === view)
-        {
-            return this.getLastSelectedOfModule(module);
-        }
-        else
-        {
-            // check if vertical selection has to be changed
-            if(module.currentSelectedView === view)
-            {
-                // rebuild modules array depending on the selected view
-                this.rebuildModules(this.getLastSelectedOfModule(module), module);
-
-            }
-            // do not change anything -> select the currently selected view
-            return this.inputConfig.currentSelectedView;
-        }
     }
 
     private getHierarchyLevelOfView(view:TerraMultiSplitViewInterface):number
@@ -664,3 +650,4 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         });
     }
 }
+/* tslint:enable:max-function-line-count */
