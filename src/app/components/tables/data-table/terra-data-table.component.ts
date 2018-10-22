@@ -72,68 +72,87 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     /**
      * @description Service, that is used to request the table data from the server
      */
-    @Input() inputService:TerraDataTableBaseService<T, P>;
+    @Input()
+    public inputService:TerraDataTableBaseService<T, P>;
     /**
      * @description List of header cell elements
      */
-    @Input() inputHeaderList:Array<TerraDataTableHeaderCellInterface>;
+    @Input()
+    public inputHeaderList:Array<TerraDataTableHeaderCellInterface> = [];
     /**
      * @description List of table rows containing all the data
      */
-    @Input() inputRowList:Array<TerraDataTableRowInterface<T>>;
-
+    @Input()
+    public inputRowList:Array<TerraDataTableRowInterface<T>> = [];
     /**
      * @description enables the user to sort the table by selected columns
+     * @default false
      */
-    @Input() inputIsSortable:boolean;
+    @Input()
+    public inputIsSortable:boolean = false;
     /**
-     * @description show checkboxes in the table, to be able to select any row
+     * @description shows checkboxes in the table, to be able to select any row
+     * @default true
      */
-    @Input() inputHasCheckboxes:boolean;
+    @Input()
+    public inputHasCheckboxes:boolean = true;
     /**
      * @description show/hides the pager above the table
+     * @default true
      */
-    @Input() inputHasPager:boolean;
+    @Input()
+    public inputHasPager:boolean = true;
     /**
      * @description Primary text for no results notice
      */
-    @Input() inputNoResultTextPrimary:string;
+    @Input()
+    public inputNoResultTextPrimary:string;
     /**
      * @description Secondary text for no results notice
      */
-    @Input() inputNoResultTextSecondary:string;
+    @Input()
+    public inputNoResultTextSecondary:string;
     /**
      * @description Buttons for no results notice
      */
-    @Input() inputNoResultButtons:Array<TerraButtonInterface>;
-    @Input() inputShowGroupFunctions:boolean = false;
-    @Input() inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
-
+    @Input()
+    public inputNoResultButtons:Array<TerraButtonInterface>;
+    /**
+     * @description shows group functions container if set to true
+     * @default false
+     */
+    @Input()
+    public inputShowGroupFunctions:boolean = false;
+    /**
+     * @description disables execute group function button
+     * @default true
+     */
+    @Input()
+    public inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
     /**
      * @description EventEmitter that notifies when a row has been selected via the select box. This is enabled, only if
      *     `inputHasCheckboxes` is true.
      */
-    @Output() outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
-    @Output() outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<T>>> = new EventEmitter();
+    @Output()
+    public outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
+    /**
+     * @description emits if the execute group functions button has been clicked
+     */
+    @Output()
+    public outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<T>>> = new EventEmitter();
 
-    private _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
-    private _selectedRowList:Array<TerraDataTableRowInterface<T>>;
-    private _sortOrderEnum = TerraDataTableSortOrder;
-    private _refTypeEnum = TerraRefTypeEnum;
-    
+    protected readonly sortOrder:{} = TerraDataTableSortOrder;
+    protected readonly refType:{} = TerraRefTypeEnum;
+
+    protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
+    private _selectedRowList:Array<TerraDataTableRowInterface<T>> = [];
+
     /**
      * @description Constructor initializing the table component
      */
     constructor()
     {
-        // set default input values
-        this.inputHasCheckboxes = true;
-        this.inputHasPager = true;
-        this.inputIsSortable = false;
-
-        // initialize local variables
-        this._selectedRowList = [];
-        this._headerCheckbox = {
+        this.headerCheckbox = {
             checked:         false,
             isIndeterminate: false
         };
@@ -177,7 +196,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     /**
      * default initialization of the paging information which are stored in the input service
      */
-    private initPagination()
+    private initPagination():void
     {
         let itemsPerPage:number = 25;
         if(this.inputService.defaultPagingSize)
@@ -203,7 +222,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 
     protected onHeaderCheckboxChange():void
     {
-        if(this._headerCheckbox.checked)
+        if(this.headerCheckbox.checked)
         {
             this.resetSelectedRows();
         }
@@ -234,20 +253,20 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 
     private checkHeaderCheckbox():void
     {
-        this._headerCheckbox.checked = true;
-        this._headerCheckbox.isIndeterminate = false;
+        this.headerCheckbox.checked = true;
+        this.headerCheckbox.isIndeterminate = false;
     }
 
     private uncheckHeaderCheckbox():void
     {
-        this._headerCheckbox.checked = false;
-        this._headerCheckbox.isIndeterminate = false;
+        this.headerCheckbox.checked = false;
+        this.headerCheckbox.isIndeterminate = false;
     }
 
     private setHeaderCheckboxIndeterminate():void
     {
-        this._headerCheckbox.checked = false;
-        this._headerCheckbox.isIndeterminate = true;
+        this.headerCheckbox.checked = false;
+        this.headerCheckbox.isIndeterminate = true;
     }
 
     private updateHeaderCheckboxState():void
@@ -295,7 +314,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     {
         this.checkHeaderCheckbox();
 
-        this.inputRowList.forEach((row) =>
+        this.inputRowList.forEach((row:TerraDataTableRowInterface<T>) =>
         {
             if(!row.disabled)
             {
@@ -378,7 +397,8 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         {
             return !isNullOrUndefined(arg)
                    && !isNullOrUndefined(arg.type) && typeof arg.type === 'string'
-                   && !isNullOrUndefined(arg.value) && (typeof arg.value === 'string' || typeof arg.value === 'number' || typeof arg.value === 'function');
+                   && !isNullOrUndefined(arg.value)
+                   && (typeof arg.value === 'string' || typeof arg.value === 'number' || typeof arg.value === 'function');
         }
 
         function isTextType(arg:any):arg is TerraDataTableTextInterface
