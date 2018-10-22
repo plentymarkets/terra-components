@@ -24,20 +24,20 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
             value: Math.random()
         }];
 
-    constructor(private _spinner:TerraLoadingSpinnerService, private _http:Http)
+    constructor(spinner:TerraLoadingSpinnerService, http:Http)
     {
-        super(_spinner, _http);
+        super(spinner, http);
     }
 
     // This method usually just requests data from the server via REST using another service, which has to be injected in the constructor
-    public requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface>
+    public requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface<{ id:number, value:number }>>
     {
         // build up paging information
         let firstOnPage:number = Math.max((params.page - 1) * params.itemsPerPage, 0);
         let lastOnPage:number = Math.min(params.page * params.itemsPerPage, this.data.length);
         let lastPageNumber:number = Math.ceil(this.data.length / params.itemsPerPage);
 
-        let results:TerraPagerInterface =
+        let results:TerraPagerInterface<{ id:number, value:number }> =
             {
                 page:           params.page,
                 itemsPerPage:   params.itemsPerPage,
@@ -67,11 +67,11 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
         let comparator:(a:any, b:any) => number;
         if(sortOrder === TerraDataTableSortOrder.ASCENDING)
         {
-            comparator = (a, b) => a[sortBy] - b[sortBy];
+            comparator = (a:any, b:any):number => a[sortBy] - b[sortBy];
         }
         else
         {
-            comparator = (a, b) => b[sortBy] - a[sortBy];
+            comparator = (a:any, b:any):number => b[sortBy] - a[sortBy];
         }
         data.sort(comparator);
     }
@@ -80,7 +80,7 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
     {
         this.data.push(
             {
-                id:    this.data.reduce((a:number, b:{ id:number, value:number }) => { return Math.max(a, b.id) }, 0) + 1,
+                id:    this.data.reduce((a:number, b:{ id:number, value:number }) => Math.max(a, b.id) , 0) + 1,
                 value: Math.random()
             }
         );
