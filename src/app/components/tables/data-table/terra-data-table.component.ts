@@ -1,8 +1,3 @@
-
-
-/**
- * @author pweyrich
- */
 import {
     Component,
     EventEmitter,
@@ -42,6 +37,7 @@ import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
 import { StringHelper } from '../../../helpers/string.helper';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraRefTypeEnum } from './enums/terra-ref-type.enum';
+
 
 @Component({
     selector:   'terra-data-table',
