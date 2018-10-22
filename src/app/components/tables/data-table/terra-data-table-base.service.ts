@@ -5,7 +5,7 @@ import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 import { Http } from '@angular/http';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
-import { TerraDataTableSortOrder } from './terra-data-table-sort-order.enum';
+import { TerraDataTableSortOrder } from './enums/terra-data-table-sort-order.enum';
 
 /**
  * @author pweyrich

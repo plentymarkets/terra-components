@@ -3,7 +3,7 @@ import { TerraDataTableBaseService } from '../terra-data-table-base.service';
 import { TerraPagerParameterInterface } from '../../../pager/data/terra-pager.parameter.interface';
 import { Observable } from 'rxjs/Observable';
 import { TerraPagerInterface } from '../../../pager/data/terra-pager.interface';
-import { TerraDataTableSortOrder } from '../terra-data-table-sort-order.enum';
+import { TerraDataTableSortOrder } from '../enums/terra-data-table-sort-order.enum';
 import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/terra-loading-spinner.service';
 import { Http } from '@angular/http';
 

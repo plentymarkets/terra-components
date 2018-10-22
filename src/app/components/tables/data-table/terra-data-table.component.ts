@@ -23,7 +23,7 @@ import {
 import { TerraDataTableBaseService } from './terra-data-table-base.service';
 import { TerraDataTableHeaderCellInterface } from './interfaces/terra-data-table-header-cell.interface';
 import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
-import { TerraDataTableSortOrder } from './terra-data-table-sort-order.enum';
+import { TerraDataTableSortOrder } from './enums/terra-data-table-sort-order.enum';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import {
     TerraRefTypeEnum,
