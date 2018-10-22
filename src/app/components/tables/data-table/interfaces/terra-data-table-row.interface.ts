@@ -1,4 +1,4 @@
-import { TerraDataTableCellInterface } from '../cell/terra-data-table-cell.interface';
+import { TerraDataTableCellInterface } from './terra-data-table-cell.interface';
 import { TerraDataTableContextMenuEntryInterface } from '../context-menu/data/terra-data-table-context-menu-entry.interface';
 import { TerraBaseData } from '../../../data/terra-base.data';
 

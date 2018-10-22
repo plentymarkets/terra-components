@@ -21,14 +21,14 @@ import {
     trigger
 } from '@angular/animations';
 import { TerraDataTableBaseService } from './terra-data-table-base.service';
-import { TerraDataTableHeaderCellInterface } from './cell/terra-data-table-header-cell.interface';
-import { TerraDataTableRowInterface } from './row/terra-data-table-row.interface';
+import { TerraDataTableHeaderCellInterface } from './interfaces/terra-data-table-header-cell.interface';
+import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
 import { TerraDataTableSortOrder } from './terra-data-table-sort-order.enum';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import {
     TerraRefTypeEnum,
     TerraRefTypeInterface
-} from './cell/terra-ref-type.interface';
+} from './interfaces/terra-ref-type.interface';
 import {
     TerraDataTableCellInterface,
     TerraDataTableTextInterface,
@@ -39,7 +39,7 @@ import {
     isArray,
     isNullOrUndefined
 } from 'util';
-import { TerraTextAlignEnum } from './cell/terra-text-align.enum';
+import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
 import { StringHelper } from '../../../helpers/string.helper';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 

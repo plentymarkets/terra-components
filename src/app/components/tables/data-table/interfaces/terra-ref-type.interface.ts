@@ -1,10 +1,4 @@
-export enum TerraRefTypeEnum
-{
-    email = 'mailto',
-    phone = 'tel',
-    url = 'url',
-    function = 'function'
-}
+import { TerraRefTypeEnum } from '../enums/terra-ref-type.enum';
 
 export interface TerraRefTypeInterface
 {
