@@ -259,6 +259,12 @@ Adapted Changes from v2.3.21 and v2.3.22
 <a name="2.3.4"></a>
 # 2.3.4 (02.08.2018)
 
+### Breaking Changes
+* **terra-data-table** 
+	- Table is now sortable. Use the sortBy interface property to state whether a column is sortable
+	- Refactoring -> Removed deprecated interface and input properties
+	- New `TerraDataTableBaseService` which replaces custom directives and configs. It also stores all information needed for retrieving data from the server
+
 ### Features
 * **terra-icons** added new icons
 * **terra-decimal-validator** added a custom validator to validate decimals
@@ -640,8 +646,6 @@ This feature can be disabled by setting the input `inputHasFixedHeight` to true.
 * **terra-button** 
 - add properties `isSmall` and `isLarge` to button interface
 - fix styling when inputIsLink is used
-
-### Feature
 * **terra-multi-split-view** divider styling 
 * **terra-overlay** changed footer & header height
 

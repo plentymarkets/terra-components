@@ -5,10 +5,9 @@ import { TerraBaseData } from '../../../data/terra-base.data';
 /**
  * @author mkunze
  */
-export interface TerraDataTableRowInterface<D extends TerraBaseData>
+export interface TerraDataTableRowInterface<D>
 {
     cellList:Array<TerraDataTableCellInterface>;
-    selected?:boolean;
     data?:D;
     clickFunction?:() => void;
     contextMenuLinkList?:Array<TerraDataTableContextMenuEntryInterface<D>>;
