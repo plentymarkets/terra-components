@@ -17,56 +17,55 @@ import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.
 })
 export class TerraDataTableComponentExample implements OnInit
 {
-    private _noResultButtons:Array<TerraButtonInterface>;
-    private _noResultTextPrimary:string;
-    private _noResultTextSecondary:string;
+    protected rowList:Array<TerraDataTableRowInterface<{ id:number, value:number }>>;
+    protected headerList:Array<TerraDataTableHeaderCellInterface>;
 
-    private _rowList:TerraDataTableRowInterface<{ id:number, value:number }>[];
-    private _headerList:TerraDataTableHeaderCellInterface[];
+    protected noResultButtons:Array<TerraButtonInterface>;
+    protected noResultTextPrimary:string;
+    protected noResultTextSecondary:string;
 
-    constructor(private _exampleService:TerraDataTableServiceExample)
+    constructor(private service:TerraDataTableServiceExample)
     {
     }
 
     public ngOnInit():void
     {
-        this._noResultButtons = [{
+        this.noResultButtons = [{
             caption:       'Search',
             isHighlighted: true,
             icon:          'icon-search',
             clickFunction: ():void => this.onSearchBtnClicked()
         }];
 
-        this._noResultTextPrimary = 'No results available';
-        this._noResultTextSecondary = 'Search to refresh';
-
-        this._exampleService.defaultPagingSize = 25;
+        this.noResultTextPrimary = 'No results available';
+        this.noResultTextSecondary = 'Search to refresh';
 
         this.initTableHeader();
 
-        this.defineOnSuccessFunction();
+        this.service.defaultPagingSize = 25;
+        this.service.onSuccessFunction = (res:[{ id:number, value:number }]):void => this.updateRowList(res);
     }
 
     public onSearchBtnClicked():void
     {
-        this._exampleService.getResults().subscribe(() =>
+        this.service.getResults().subscribe(() =>
         {
-            this._noResultButtons = [{
+            this.noResultButtons = [{
                 caption:       'Add',
                 isHighlighted: false,
                 icon:          'icon-add',
-                clickFunction: ():void => this._exampleService.addEntry()
+                clickFunction: ():void => this.service.addEntry()
             }];
 
-            this._noResultTextPrimary = 'No entries found';
-            this._noResultTextSecondary = 'Add a new entry';
+            this.noResultTextPrimary = 'No entries found';
+            this.noResultTextSecondary = 'Add a new entry';
         });
     }
 
 
     private initTableHeader():void
     {
-        this._headerList = [
+        this.headerList = [
             {
                 caption:   'ID',
                 sortBy:    'id',
@@ -81,14 +80,9 @@ export class TerraDataTableComponentExample implements OnInit
         ];
     }
 
-    private defineOnSuccessFunction():void
+    private updateRowList(res:[{ id:number, value:number }]):void
     {
-        this._exampleService.onSuccessFunction = (res:[{ id:number, value:number }]):void => this.generateTableData(res);
-    }
-
-    private generateTableData(res:[{ id:number, value:number }]):void
-    {
-        this._rowList = res.map((entry:{ id:number, value:number }) =>
+        this.rowList = res.map((entry:{ id:number, value:number }) =>
         {
             let cellList:Array<TerraDataTableCellInterface> =
                 [
@@ -111,9 +105,9 @@ export class TerraDataTableComponentExample implements OnInit
         });
     }
 
-    private addEntry():void
+    protected addEntry():void
     {
-        this._exampleService.addEntry();
-        this._exampleService.getResults();
+        this.service.addEntry();
+        this.service.getResults();
     }
 }
