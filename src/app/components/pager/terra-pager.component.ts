@@ -33,11 +33,7 @@ export class TerraPagerComponent implements OnInit
     @Output()
     public outputDoPaging:EventEmitter<TerraPagerInterface<any>> = new EventEmitter<TerraPagerInterface<any>>();
 
-    private pagingClicks:Subject<any> = new Subject();
-
-    constructor(private zone:NgZone)
-    {
-    }
+    private pagingClicks:Subject<TerraPagerInterface<any>> = new Subject<TerraPagerInterface<any>>();
 
     public ngOnInit():void
     {
