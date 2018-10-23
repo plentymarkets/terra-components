@@ -137,7 +137,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     protected get rowList():Array<TerraDataTableRowInterface<T>>
     {
-        return this.inputService.rowList;
+        return !isNullOrUndefined(this.inputService) ? this.inputService.rowList : [];
     }
 
     protected get collapsedState():string
