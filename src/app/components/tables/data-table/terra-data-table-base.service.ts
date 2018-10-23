@@ -12,6 +12,7 @@ import {
     map,
     tap
 } from 'rxjs/operators';
+import { StringHelper } from '../../../helpers/string.helper';
 
 /**
  * @author pweyrich
