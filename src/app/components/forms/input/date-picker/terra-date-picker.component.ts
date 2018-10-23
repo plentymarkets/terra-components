@@ -15,6 +15,7 @@ import {
     MyDatePicker
 } from 'mydatepicker';
 import { isNullOrUndefined } from 'util';
+import moment = require('moment');
 
 let nextId:number = 0;
 
@@ -150,7 +151,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
             this._value = value;
 
             this.onTouchedCallback();
-            this.onChangeCallback(value.jsdate.toISOString());
+            this.onChangeCallback(moment(value.jsdate).format());
         }
         else
         {

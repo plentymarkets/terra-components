@@ -1,3 +1,8 @@
+# Unreleased beta
+
+### Bug Fixes
+* **terra-date-picker** fix format of the date string emitted by `ngModelChange`
+
 <a name="3.0.0-beta.9"></a>
 # 3.0.0-beta.9 (22.10.2018)
 
