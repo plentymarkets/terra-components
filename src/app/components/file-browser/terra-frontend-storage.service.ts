@@ -170,7 +170,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
             )
         );
 
-        request.subscribe((metadata:any) =>
+        request.pipe(tap((metadata:any) =>
             {
                 this.metadataCache[key] = metadata;
             },
@@ -178,7 +178,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
             {
                 delete this.metadataCache[key];
             }
-        );
+        ));
 
         return request;
     }
@@ -199,7 +199,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
             )
         );
 
-        request.subscribe(() =>
+        request.pipe(tap(() =>
             {
                 this.metadataCache[key] = metadata;
             },
@@ -207,7 +207,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
             {
                 delete this.metadataCache[key];
             }
-        );
+        ));
 
         return request;
     }

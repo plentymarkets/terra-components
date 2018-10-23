@@ -23,7 +23,6 @@ import {
 } from 'angular-l10n';
 import { TerraUploadProgress } from '../model/terra-upload-progress';
 import {
-    isNull,
     isNullOrUndefined,
     isNumber
 } from 'util';
@@ -43,8 +42,7 @@ import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/te
 @Component({
     selector:  'terra-file-list',
     template:  require('./file-list.component.html'),
-    styles:    [require('./file-list.component.scss')],
-    providers: [TerraFileBrowserService]
+    styles:    [require('./file-list.component.scss')]
 })
 export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
 {
