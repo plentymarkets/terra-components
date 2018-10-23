@@ -25,6 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraDataTableServiceExample } from './example/terra-data-table.service.example';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 fdescribe('Component: TerraDataTableComponent', () =>
 {
@@ -57,7 +59,7 @@ fdescribe('Component: TerraDataTableComponent', () =>
                 NoopAnimationsModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],
-            providers: [
+            providers:    [
                 TerraDataTableServiceExample,
                 TerraLoadingSpinnerService
             ]
@@ -70,21 +72,29 @@ fdescribe('Component: TerraDataTableComponent', () =>
         component = fixture.componentInstance;
     });
 
-     it('should create', () =>
-     {
-         expect(component).toBeTruthy();
-     });
+    it('should create', () =>
+    {
+        expect(component).toBeTruthy();
+    });
 
-     describe('With an inputService', () =>
-     {
-         beforeEach(() =>
-         {
-             component.inputService = TestBed.get(TerraDataTableServiceExample);
-         });
+    it('should have a pager by default', () =>
+    {
+        expect(component.inputHasPager).toBe(true);
+        let pagerDE:DebugElement = fixture.debugElement.query(By.directive(TerraPagerComponent));
+        expect(pagerDE).toBeDefined();
+    });
 
-         it('should have an inputService', () =>
-         {
-             expect(component.inputService).toBeDefined();
-         });
-     });
+
+    describe('With an inputService', () =>
+    {
+        beforeEach(() =>
+        {
+            component.inputService = TestBed.get(TerraDataTableServiceExample);
+        });
+
+        it('should have an inputService', () =>
+        {
+            expect(component.inputService).toBeDefined();
+        });
+    });
 });
