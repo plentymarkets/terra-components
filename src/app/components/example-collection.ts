@@ -41,6 +41,7 @@ import { TerraNestedDataPickerComponentExample } from './nested-data-picker/exam
 import { TerraTagSelectComponentExample } from './forms/tag-select/example/terra-tag-select.component.example';
 import { TerraStopwatchComponentExample } from './stopwatch/example/terra-stopwatch.component.example';
 import { TerraTwoColumnContainerComponentExample } from './layouts/column-container/two-columns/example/terra-two-column-container.component.example';
+import { TerraThreeColumnContainerComponentExample } from './layouts/column-container/three-columns/example/terra-three-column-container.component.example';
 
 export const examples:Array<Type<any>> = [
     TerraButtonComponentExample,
@@ -84,5 +85,6 @@ export const examples:Array<Type<any>> = [
     TerraNestedDataPickerComponentExample,
     TerraTagSelectComponentExample,
     TerraStopwatchComponentExample,
-    TerraTwoColumnContainerComponentExample
+    TerraTwoColumnContainerComponentExample,
+    TerraThreeColumnContainerComponentExample
 ];
