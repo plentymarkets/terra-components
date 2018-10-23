@@ -36,7 +36,6 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
 import { TerraRefTypeEnum } from './enums/terra-ref-type.enum';
 import {
     debounceTime,
-    distinct,
     filter,
     tap
 } from 'rxjs/operators';
