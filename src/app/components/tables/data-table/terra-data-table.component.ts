@@ -69,7 +69,7 @@ import { TerraBaseTable } from '../terra-base-table';
 export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges
 {
     /**
-     * @description Mandatory service, that is used to request the table data from the server
+     * @description Mandatory service that is used to request the table data from the server
      */
     @Input()
     public inputService:TerraDataTableBaseService<T, P>;
@@ -140,7 +140,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         return this.inputService.rowList;
     }
 
-    protected get getCollapsedState():string
+    protected get collapsedState():string
     {
         if(this.inputShowGroupFunctions)
         {
