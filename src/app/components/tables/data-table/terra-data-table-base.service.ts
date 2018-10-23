@@ -20,7 +20,6 @@ import { StringHelper } from '../../../helpers/string.helper';
 export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
 {
     public requestPending:boolean;
-    public dataToRowMapping:(res:T) => TerraDataTableRowInterface<T>; // TODO: Naming
     public pagingData:TerraPagerInterface<T>;
     public pagingSizes:Array<TerraSelectBoxValueInterface>;
     public defaultPagingSize:number;
@@ -115,4 +114,11 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
      * @returns {Observable<TerraPagerInterface>}
      */
     public abstract requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface<T>>;
+
+    /**
+     * @description Placeholder for the specific data mapping method.
+     * The response data is mapped to the `TerraDataTableRowInterface` in order to be able to display the data in the table.
+     * @param res
+     */
+    public abstract dataToRowMapping(res:T):TerraDataTableRowInterface<T>;
 }
