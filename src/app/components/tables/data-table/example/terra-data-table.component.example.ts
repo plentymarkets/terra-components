@@ -44,40 +44,6 @@ export class TerraDataTableComponentExample implements OnInit
         this.initTableHeader();
 
         this.service.defaultPagingSize = 25;
-        this.service.dataToRowMapping = (entry:DataTableExampleInterface):TerraDataTableRowInterface<DataTableExampleInterface> =>
-        {
-            let cellList:Array<TerraDataTableCellInterface> = [
-                {
-                    data: entry.id
-                },
-                {
-                    data: entry.value
-                },
-                {
-                    data: {
-                        type:  TerraRefTypeEnum.email,
-                        value: 'pascal.weyrich@plentymarkets.com'
-                    }
-                },
-                {
-                    data: [
-                        {
-                            icon:          'icon-add',
-                            clickFunction: ():void => console.log('clicked')
-                        }
-                    ]
-                }
-            ];
-
-            return {
-                cellList:      cellList,
-                data:          entry,
-                clickFunction: ():void =>
-                               {
-                                   console.log(`Row with id ${entry.id} clicked`);
-                               }
-            };
-        };
     }
 
     public onSearchBtnClicked():void

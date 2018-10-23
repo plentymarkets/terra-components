@@ -7,6 +7,9 @@ import { TerraDataTableSortOrderEnum } from '../enums/terra-data-table-sort-orde
 import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/terra-loading-spinner.service';
 import { Http } from '@angular/http';
 import { DataTableExampleInterface } from './terra-data-table.interface.example';
+import { TerraRefTypeEnum } from '../enums/terra-ref-type.enum';
+import { TerraDataTableCellInterface } from '../interfaces/terra-data-table-cell.interface';
+import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
 
 @Injectable()
 export class TerraDataTableServiceExample extends TerraDataTableBaseService<DataTableExampleInterface, TerraPagerParameterInterface>
@@ -85,5 +88,40 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Data
                 value: Math.random()
             }
         );
+    }
+
+    public dataToRowMapping(entry:DataTableExampleInterface):TerraDataTableRowInterface<DataTableExampleInterface>
+    {
+        let cellList:Array<TerraDataTableCellInterface> = [
+            {
+                data: entry.id
+            },
+            {
+                data: entry.value
+            },
+            {
+                data: {
+                    type:  TerraRefTypeEnum.email,
+                    value: 'pascal.weyrich@plentymarkets.com'
+                }
+            },
+            {
+                data: [
+                    {
+                        icon:          'icon-add',
+                        clickFunction: ():void => console.log('clicked')
+                    }
+                ]
+            }
+        ];
+
+        return {
+            cellList:      cellList,
+            data:          entry,
+            clickFunction: ():void =>
+                           {
+                               console.log(`Row with id ${entry.id} clicked`);
+                           }
+        };
     }
 }
