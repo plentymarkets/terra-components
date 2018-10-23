@@ -1,4 +1,4 @@
-<div class="group-function" [@collapsedState]="getCollapsedState">
+<div class="group-function" [@collapsedState]="collapsedState">
     <div class="group-function-head">
         <terra-button inputIcon="icon-execute"
                       [inputIsDisabled]="inputGroupFunctionExecuteButtonIsDisabled"
@@ -13,10 +13,10 @@
 </div>
 
 <terra-pager *ngIf="inputHasPager && rowList && rowList.length > 0"
-             [inputPagingSize]="inputService.pagingSizes"
-             [inputDefaultPagingSize]="inputService.defaultPagingSize"
-             [inputPagingData]="inputService.pagingData"
-             [inputRequestPending]="inputService.requestPending"
+             [inputPagingSize]="inputService?.pagingSizes"
+             [inputDefaultPagingSize]="inputService?.defaultPagingSize"
+             [inputPagingData]="inputService?.pagingData"
+             [inputRequestPending]="inputService?.requestPending"
              (outputDoPaging)="doPaging($event)">
 </terra-pager>
 
@@ -43,10 +43,10 @@
                           [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
                           {{header.caption}}
                         <span class="icon-sort_asc"
-                              *ngIf="this.inputIsSortable && header?.sortBy === inputService.sortBy && inputService.sortOrder === sortOrder.ASCENDING">
+                              *ngIf="this.inputIsSortable && header?.sortBy === inputService?.sortBy && inputService?.sortOrder === sortOrder.ASCENDING">
                         </span>
                         <span class="icon-sort_desc"
-                              *ngIf="this.inputIsSortable && header?.sortBy === inputService.sortBy && inputService.sortOrder === sortOrder.DESCENDING">
+                              *ngIf="this.inputIsSortable && header?.sortBy === inputService?.sortBy && inputService?.sortOrder === sortOrder.DESCENDING">
                         </span>
                     </span>
                 </th>
@@ -136,7 +136,7 @@
         </tbody>
     </table>
     
-    <div *ngIf="!isTableDataAvailable && isNoResultsNoticeDefined && !inputService.requestPending">
+    <div *ngIf="!isTableDataAvailable && isNoResultsNoticeDefined && !inputService?.requestPending">
         <terra-no-result-notice
             [inputButtons]="inputNoResultButtons"
             [inputTextPrimary]="inputNoResultTextPrimary"

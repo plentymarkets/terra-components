@@ -69,7 +69,7 @@ import { TerraBaseTable } from '../terra-base-table';
 export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges
 {
     /**
-     * @description Service, that is used to request the table data from the server
+     * @description Mandatory service that is used to request the table data from the server
      */
     @Input()
     public inputService:TerraDataTableBaseService<T, P>;
@@ -140,7 +140,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         return this.inputService.rowList;
     }
 
-    protected get getCollapsedState():string
+    protected get collapsedState():string
     {
         if(this.inputShowGroupFunctions)
         {
@@ -190,6 +190,12 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
      */
     private initPagination():void
     {
+        if(isNullOrUndefined(this.inputService))
+        {
+            console.error(`No 'inputService' given. This service is mandatory to display data in the table`);
+            return;
+        }
+
         let itemsPerPage:number = 25;
         if(this.inputService.defaultPagingSize)
         {
