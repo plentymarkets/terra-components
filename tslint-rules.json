@@ -8,7 +8,7 @@
 		"get-set": true,
 		"max-depth": [
 			true,
-			7
+			5
 		],
 		"array-type": [
 			true,
