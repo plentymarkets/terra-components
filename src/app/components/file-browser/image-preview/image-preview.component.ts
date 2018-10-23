@@ -72,9 +72,8 @@ export class TerraImagePreviewComponent
         {
             this.inputStorageService
                 .updateMetadata(this.inputStorageObject.key, this.metadata)
-                .subscribe((response:any) =>
+                .subscribe(() =>
                 {
-                    console.log(response);
                     this.translation.translate(this.translationPrefix + '.metadataUpdated');
                 });
         }
