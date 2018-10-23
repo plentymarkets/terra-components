@@ -18,7 +18,7 @@ import {
 import { TerraDataTableBaseService } from './terra-data-table-base.service';
 import { TerraDataTableHeaderCellInterface } from './interfaces/terra-data-table-header-cell.interface';
 import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
-import { TerraDataTableSortOrder } from './enums/terra-data-table-sort-order.enum';
+import { TerraDataTableSortOrderEnum } from './enums/terra-data-table-sort-order.enum';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraRefTypeInterface } from './interfaces/terra-ref-type.interface';
 import {
@@ -132,7 +132,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
-    protected readonly sortOrder:{} = TerraDataTableSortOrder;
+    protected readonly sortOrder:{} = TerraDataTableSortOrderEnum;
     protected readonly refType:{} = TerraRefTypeEnum;
 
     protected get rowList():Array<TerraDataTableRowInterface<T>>
@@ -325,15 +325,15 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         else
         {
             this.inputService.sortBy = header.sortBy;
-            this.inputService.sortOrder = TerraDataTableSortOrder.DESCENDING; // default is descending
+            this.inputService.sortOrder = TerraDataTableSortOrderEnum.DESCENDING; // default is descending
         }
     }
 
     private toggleSortingOrder():void
     {
-        this.inputService.sortOrder = this.inputService.sortOrder === TerraDataTableSortOrder.DESCENDING ?
-            TerraDataTableSortOrder.ASCENDING :
-            TerraDataTableSortOrder.DESCENDING;
+        this.inputService.sortOrder = this.inputService.sortOrder === TerraDataTableSortOrderEnum.DESCENDING ?
+            TerraDataTableSortOrderEnum.ASCENDING :
+            TerraDataTableSortOrderEnum.DESCENDING;
     }
 
     private resetSorting():void
@@ -343,7 +343,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         if(this.inputHeaderList && defaultSortColumn)
         {
             this.inputService.sortBy = defaultSortColumn.sortBy;
-            this.inputService.sortOrder = TerraDataTableSortOrder.DESCENDING;
+            this.inputService.sortOrder = TerraDataTableSortOrderEnum.DESCENDING;
         }
     }
 

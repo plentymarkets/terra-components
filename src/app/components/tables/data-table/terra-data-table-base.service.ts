@@ -5,7 +5,7 @@ import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 import { Http } from '@angular/http';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
-import { TerraDataTableSortOrder } from './enums/terra-data-table-sort-order.enum';
+import { TerraDataTableSortOrderEnum } from './enums/terra-data-table-sort-order.enum';
 import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
 import {
     finalize,
@@ -25,7 +25,7 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
     public defaultPagingSize:number;
     public filterParameter:P;
     public sortBy:string;
-    public sortOrder:TerraDataTableSortOrder;
+    public sortOrder:TerraDataTableSortOrderEnum;
 
     private _rowList:Array<TerraDataTableRowInterface<T>> = [];
 

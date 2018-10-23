@@ -3,7 +3,7 @@ import { TerraDataTableBaseService } from '../terra-data-table-base.service';
 import { TerraPagerParameterInterface } from '../../../pager/data/terra-pager.parameter.interface';
 import { Observable } from 'rxjs/Observable';
 import { TerraPagerInterface } from '../../../pager/data/terra-pager.interface';
-import { TerraDataTableSortOrder } from '../enums/terra-data-table-sort-order.enum';
+import { TerraDataTableSortOrderEnum } from '../enums/terra-data-table-sort-order.enum';
 import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/terra-loading-spinner.service';
 import { Http } from '@angular/http';
 import { DataTableExampleInterface } from './terra-data-table.interface.example';
@@ -63,10 +63,10 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Data
         return Observable.of(results);
     }
 
-    private applySorting(data:Array<DataTableExampleInterface>, sortBy:string, sortOrder:TerraDataTableSortOrder):void
+    private applySorting(data:Array<DataTableExampleInterface>, sortBy:string, sortOrder:TerraDataTableSortOrderEnum):void
     {
         let comparator:(a:DataTableExampleInterface, b:DataTableExampleInterface) => number;
-        if(sortOrder === TerraDataTableSortOrder.ASCENDING)
+        if(sortOrder === TerraDataTableSortOrderEnum.ASCENDING)
         {
             comparator = (a:DataTableExampleInterface, b:DataTableExampleInterface):number => a[sortBy] - b[sortBy];
         }
