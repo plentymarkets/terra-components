@@ -13,21 +13,24 @@ export class TerraNodeTreeHelper
     {
         let foundNode:TerraNodeInterface<D> = null;
 
-        for(let node of nodeList)
+        if(!isNullOrUndefined(nodeToFind))
         {
-            if(node === nodeToFind)
+            for(let node of nodeList)
             {
-                foundNode = node;
-
-                return foundNode;
-            }
-            else if(node.children)
-            {
-                foundNode = this.recursiveFindNode(node.children, nodeToFind);
-
-                if(!isNull(foundNode))
+                if(node === nodeToFind)
                 {
-                    break;
+                    foundNode = node;
+
+                    return foundNode;
+                }
+                else if(node.children)
+                {
+                    foundNode = this.recursiveFindNode(node.children, nodeToFind);
+
+                    if(!isNull(foundNode))
+                    {
+                        break;
+                    }
                 }
             }
         }
@@ -39,21 +42,24 @@ export class TerraNodeTreeHelper
     {
         let foundNode:TerraNodeInterface<D> = null;
 
-        for(let node of nodeList)
+        if(!isNullOrUndefined(id))
         {
-            if(node.id.toString() === id.toString())
+            for(let node of nodeList)
             {
-                foundNode = node;
-
-                return foundNode;
-            }
-            else if(node.children)
-            {
-                foundNode = this.recursiveFindNodeById(node.children, id);
-
-                if(!isNull(foundNode))
+                if(node.id.toString() === id.toString())
                 {
-                    break;
+                    foundNode = node;
+
+                    return foundNode;
+                }
+                else if(node.children)
+                {
+                    foundNode = this.recursiveFindNodeById(node.children, id);
+
+                    if(!isNull(foundNode))
+                    {
+                        break;
+                    }
                 }
             }
         }

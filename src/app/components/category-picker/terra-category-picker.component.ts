@@ -234,14 +234,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                     // If the parentNode is still null it is tried to create the parent node out of the given id
                     if(isNullOrUndefined(parentNode))
                     {
-                        if(isNullOrUndefined(parentNodeId))
-                        {
-                            parentNode = null;
-                        }
-                        else
-                        {
-                            parentNode = this.nestedTreeConfig.findNodeById(parentNodeId);
-                        }
+                        parentNode = this.nestedTreeConfig.findNodeById(parentNodeId);
                     }
 
                     // If the category has children the lazy-loading method will be added to the parent node
