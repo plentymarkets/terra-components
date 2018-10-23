@@ -36,7 +36,7 @@
 		],
 		"max-file-line-count": [
 			true,
-			425
+			450
 		],
 		"member-access": [
 			true,
