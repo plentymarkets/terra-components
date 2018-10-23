@@ -9,6 +9,7 @@ import { TerraTextAlignEnum } from '../enums/terra-text-align.enum';
 import { TerraDataTableCellInterface } from '../interfaces/terra-data-table-cell.interface';
 import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.interface';
 import { TerraRefTypeEnum } from '../enums/terra-ref-type.enum';
+import { DataTableExampleInterface } from './terra-data-table.interface.example';
 
 @Component({
     selector:  'terra-data-table-example',
@@ -18,10 +19,9 @@ import { TerraRefTypeEnum } from '../enums/terra-ref-type.enum';
 })
 export class TerraDataTableComponentExample implements OnInit
 {
-    protected rowList:Array<TerraDataTableRowInterface<{ id:number, value:number }>>;
     protected headerList:Array<TerraDataTableHeaderCellInterface>;
 
-    protected noResultButtons:Array<TerraButtonInterface>;
+    protected noResultButtons:Array<TerraButtonInterface> = [];
     protected noResultTextPrimary:string;
     protected noResultTextSecondary:string;
 
@@ -44,12 +44,45 @@ export class TerraDataTableComponentExample implements OnInit
         this.initTableHeader();
 
         this.service.defaultPagingSize = 25;
-        this.service.onSuccessFunction = (res:[{ id:number, value:number }]):void => this.updateRowList(res);
+        this.service.dataToRowMapping = (entry:DataTableExampleInterface):TerraDataTableRowInterface<DataTableExampleInterface> =>
+        {
+            let cellList:Array<TerraDataTableCellInterface> = [
+                {
+                    data: entry.id
+                },
+                {
+                    data: entry.value
+                },
+                {
+                    data: {
+                        type:  TerraRefTypeEnum.email,
+                        value: 'pascal.weyrich@plentymarkets.com'
+                    }
+                },
+                {
+                    data: [
+                        {
+                            icon:          'icon-add',
+                            clickFunction: ():void => console.log('clicked')
+                        }
+                    ]
+                }
+            ];
+
+            return {
+                cellList:      cellList,
+                data:          entry,
+                clickFunction: ():void =>
+                               {
+                                   console.log(`Row with id ${entry.id} clicked`);
+                               }
+            };
+        };
     }
 
     public onSearchBtnClicked():void
     {
-        this.service.getResults();
+        this.service.getResults(true);
 
         this.noResultButtons = [{
             caption:       'Add',
@@ -86,44 +119,6 @@ export class TerraDataTableComponentExample implements OnInit
                 width:   20
             }
         ];
-    }
-
-    private updateRowList(res:[{ id:number, value:number }]):void
-    {
-        this.rowList = res.map((entry:{ id:number, value:number }) =>
-        {
-            let cellList:Array<TerraDataTableCellInterface> = [
-                {
-                    data: entry.id
-                },
-                {
-                    data: entry.value
-                },
-                {
-                    data: {
-                        type:  TerraRefTypeEnum.email,
-                        value: 'pascal.weyrich@plentymarkets.com'
-                    }
-                },
-                {
-                    data: [
-                        {
-                            icon:          'icon-add',
-                            clickFunction: ():void => console.log('clicked')
-                        }
-                    ]
-                }
-            ];
-
-            return {
-                cellList:      cellList,
-                data:          entry,
-                clickFunction: ():void =>
-                               {
-                                   console.log(`Row with id ${entry.id} clicked`);
-                               }
-            };
-        });
     }
 
     protected addEntry():void

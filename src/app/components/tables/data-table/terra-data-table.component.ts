@@ -18,7 +18,7 @@ import {
 import { TerraDataTableBaseService } from './terra-data-table-base.service';
 import { TerraDataTableHeaderCellInterface } from './interfaces/terra-data-table-header-cell.interface';
 import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
-import { TerraDataTableSortOrder } from './enums/terra-data-table-sort-order.enum';
+import { TerraDataTableSortOrderEnum } from './enums/terra-data-table-sort-order.enum';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraRefTypeInterface } from './interfaces/terra-ref-type.interface';
 import {
@@ -34,6 +34,12 @@ import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
 import { StringHelper } from '../../../helpers/string.helper';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraRefTypeEnum } from './enums/terra-ref-type.enum';
+import {
+    debounceTime,
+    filter,
+    tap
+} from 'rxjs/operators';
+import { TerraBaseTable } from '../terra-base-table';
 
 
 @Component({
@@ -60,7 +66,7 @@ import { TerraRefTypeEnum } from './enums/terra-ref-type.enum';
         ])
     ]
 })
-export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
+export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges
 {
     /**
      * @description Mandatory service, that is used to request the table data from the server
@@ -72,11 +78,6 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
      */
     @Input()
     public inputHeaderList:Array<TerraDataTableHeaderCellInterface> = [];
-    /**
-     * @description List of table rows containing all the data
-     */
-    @Input()
-    public inputRowList:Array<TerraDataTableRowInterface<T>> = []; // TODO: remove from inputs
     /**
      * @description enables the user to sort the table by selected columns
      * @default false
@@ -122,32 +123,21 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
      */
     @Input()
     public inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
-    /**
-     * @description EventEmitter that notifies when a row has been selected via the select box. This is enabled, only if
-     *     `inputHasCheckboxes` is true.
-     */
-    @Output()
-    public outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
+
     /**
      * @description emits if the execute group functions button has been clicked
      */
     @Output()
     public outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<T>>> = new EventEmitter();
 
-    protected readonly sortOrder:{} = TerraDataTableSortOrder;
+    protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
+
+    protected readonly sortOrder:{} = TerraDataTableSortOrderEnum;
     protected readonly refType:{} = TerraRefTypeEnum;
 
-    protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
-
-    /**
-     * @description Constructor initializing the table component
-     */
-    constructor()
+    protected get rowList():Array<TerraDataTableRowInterface<T>>
     {
-        this.headerCheckbox = {
-            checked:         false,
-            isIndeterminate: false
-        };
+        return this.inputService.rowList;
     }
 
     protected get getCollapsedState():string
@@ -168,6 +158,16 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     public ngOnInit():void
     {
         this.initPagination();
+
+        this.columnHeaderClicked.pipe(
+            filter((header:TerraDataTableHeaderCellInterface) =>
+            {
+                // change sorting column and order only if no request is pending and sortBy attribute is given
+                return !this.inputService.requestPending && this.inputIsSortable && !isNullOrUndefined(header.sortBy);
+            }),
+            tap((header:TerraDataTableHeaderCellInterface) => this.changeSortingColumn(header)),
+            debounceTime(400)
+        ).subscribe(() => this.getResults());
     }
 
     /**
@@ -218,112 +218,6 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         });
     }
 
-    protected onHeaderCheckboxChange():void
-    {
-        if(this.headerCheckbox.checked)
-        {
-            this.resetSelectedRows();
-        }
-        else
-        {
-            this.selectAllRows();
-        }
-    }
-
-    protected onRowCheckboxChange(row:TerraDataTableRowInterface<T>):void
-    {
-        // notify component user
-        this.outputRowCheckBoxChanged.emit(row);
-
-        // update row selection
-        row.selected = !row.selected;
-
-        // update header checkbox state
-        this.updateHeaderCheckboxState();
-    }
-
-    private checkHeaderCheckbox():void
-    {
-        this.headerCheckbox.checked = true;
-        this.headerCheckbox.isIndeterminate = false;
-    }
-
-    private uncheckHeaderCheckbox():void
-    {
-        this.headerCheckbox.checked = false;
-        this.headerCheckbox.isIndeterminate = false;
-    }
-
-    private setHeaderCheckboxIndeterminate():void
-    {
-        this.headerCheckbox.checked = false;
-        this.headerCheckbox.isIndeterminate = true;
-    }
-
-    private updateHeaderCheckboxState():void
-    {
-        let selectedRowsCount:number = this.selectedRowList.length;
-        if(selectedRowsCount === 0) // anything selected?
-        {
-            this.uncheckHeaderCheckbox();
-        }
-        else if(selectedRowsCount > 0 && this.inputRowList.length === selectedRowsCount) // all selected?
-        {
-            this.checkHeaderCheckbox();
-        }
-        else // some rows selected -> indeterminate
-        {
-            this.setHeaderCheckboxIndeterminate();
-        }
-    }
-
-    private selectAllRows():void
-    {
-        this.checkHeaderCheckbox();
-
-        this.inputRowList.forEach((row:TerraDataTableRowInterface<T>) =>
-        {
-            if(!row.disabled)
-            {
-                row.selected = true;
-            }
-        });
-    }
-
-    private resetSelectedRows():void
-    {
-        this.uncheckHeaderCheckbox();
-
-        // reset selected rows
-        this.inputRowList.forEach((row:TerraDataTableRowInterface<T>) =>
-        {
-            row.selected = false;
-        });
-    }
-
-    /**
-     * @description Getter for selectedRowList
-     * @returns {Array<TerraDataTableRowInterface<T>>}
-     */
-    public get selectedRowList():Array<TerraDataTableRowInterface<T>>
-    {
-        return this.inputRowList.filter((row:TerraDataTableRowInterface<T>) => row.selected);
-    }
-
-    protected rowClicked(row:TerraDataTableRowInterface<T>):void
-    {
-        if(!row.disabled)
-        {
-            this.inputRowList.forEach((r:TerraDataTableRowInterface<T>) =>
-            {
-                r.isActive = false;
-            });
-
-            row.isActive = true;
-            row.clickFunction();
-        }
-    }
-
     protected checkTooltipPlacement(placement:string):string // TODO: pipe?
     {
         if(!StringHelper.isNullUndefinedOrEmpty(placement))
@@ -336,7 +230,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 
     protected get isTableDataAvailable():boolean
     {
-        return this.inputRowList && this.inputRowList.length > 0;
+        return this.rowList && this.rowList.length > 0;
     }
 
     protected get isNoResultsNoticeDefined():boolean
@@ -426,15 +320,6 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         return typeof data;
     }
 
-    protected onColumnHeaderClick(header:TerraDataTableHeaderCellInterface):void // TODO: debounce!
-    {
-        // change sorting column and order only if no request is pending and sortBy attribute is given
-        if(!this.inputService.requestPending && this.inputIsSortable && header.sortBy)
-        {
-            this.changeSortingColumn(header);
-        }
-    }
-
     private changeSortingColumn(header:TerraDataTableHeaderCellInterface):void
     {
         // clicked on the same column?
@@ -446,18 +331,15 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         else
         {
             this.inputService.sortBy = header.sortBy;
-            this.inputService.sortOrder = TerraDataTableSortOrder.DESCENDING; // default is descending
+            this.inputService.sortOrder = TerraDataTableSortOrderEnum.DESCENDING; // default is descending
         }
-
-        // get Results with updated parameter
-        this.getResults();
     }
 
     private toggleSortingOrder():void
     {
-        this.inputService.sortOrder = this.inputService.sortOrder === TerraDataTableSortOrder.DESCENDING ?
-            TerraDataTableSortOrder.ASCENDING :
-            TerraDataTableSortOrder.DESCENDING;
+        this.inputService.sortOrder = this.inputService.sortOrder === TerraDataTableSortOrderEnum.DESCENDING ?
+            TerraDataTableSortOrderEnum.ASCENDING :
+            TerraDataTableSortOrderEnum.DESCENDING;
     }
 
     private resetSorting():void
@@ -467,7 +349,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         if(this.inputHeaderList && defaultSortColumn)
         {
             this.inputService.sortBy = defaultSortColumn.sortBy;
-            this.inputService.sortOrder = TerraDataTableSortOrder.DESCENDING;
+            this.inputService.sortOrder = TerraDataTableSortOrderEnum.DESCENDING;
         }
     }
 
@@ -497,7 +379,6 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 
     protected getTextAlign(item:TerraDataTableHeaderCellInterface):TerraTextAlignEnum // TODO: Pipe?
     {
-
         if(!isNullOrUndefined(item.textAlign))
         {
             return item.textAlign;
