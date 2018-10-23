@@ -6,11 +6,12 @@ import { TerraPagerInterface } from '../../../pager/data/terra-pager.interface';
 import { TerraDataTableSortOrder } from '../enums/terra-data-table-sort-order.enum';
 import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/terra-loading-spinner.service';
 import { Http } from '@angular/http';
+import { DataTableExampleInterface } from './terra-data-table.interface.example';
 
 @Injectable()
-export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id:number, value:number }, TerraPagerParameterInterface>
+export class TerraDataTableServiceExample extends TerraDataTableBaseService<DataTableExampleInterface, TerraPagerParameterInterface>
 {
-    private data:Array<{ id:number, value:number }> = [
+    private data:Array<DataTableExampleInterface> = [
         {
             id:    1,
             value: Math.random()
@@ -30,7 +31,7 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
     }
 
     // This method usually just requests data from the server via REST using another service, which has to be injected in the constructor
-    public requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface<{ id:number, value:number }>>
+    public requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface<DataTableExampleInterface>>
     {
         // build up paging information
         let firstOnPage:number = Math.max((params.page - 1) * params.itemsPerPage, 0);
@@ -62,16 +63,16 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
         return Observable.of(results);
     }
 
-    private applySorting(data:Array<any>, sortBy:string, sortOrder:TerraDataTableSortOrder):void
+    private applySorting(data:Array<DataTableExampleInterface>, sortBy:string, sortOrder:TerraDataTableSortOrder):void
     {
-        let comparator:(a:any, b:any) => number;
+        let comparator:(a:DataTableExampleInterface, b:DataTableExampleInterface) => number;
         if(sortOrder === TerraDataTableSortOrder.ASCENDING)
         {
-            comparator = (a:any, b:any):number => a[sortBy] - b[sortBy];
+            comparator = (a:DataTableExampleInterface, b:DataTableExampleInterface):number => a[sortBy] - b[sortBy];
         }
         else
         {
-            comparator = (a:any, b:any):number => b[sortBy] - a[sortBy];
+            comparator = (a:DataTableExampleInterface, b:DataTableExampleInterface):number => b[sortBy] - a[sortBy];
         }
         data.sort(comparator);
     }
@@ -80,7 +81,7 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<{ id
     {
         this.data.push(
             {
-                id:    this.data.reduce((a:number, b:{ id:number, value:number }) => Math.max(a, b.id) , 0) + 1,
+                id:    this.data.reduce((a:number, b:DataTableExampleInterface) => Math.max(a, b.id) , 0) + 1,
                 value: Math.random()
             }
         );

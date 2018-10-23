@@ -1,5 +1,11 @@
 # Unreleased beta
 
+### Breaking Changes
+* **terra-data-table** 
+	- Table is now sortable. Use the sortBy interface property to state whether a column is sortable
+	- Refactoring -> Removed deprecated interface and input properties
+	- New `TerraDataTableBaseService` which replaces custom directives and configs. It also stores all information needed for retrieving data from the server
+
 ### Feature
 * **terra-3-col** new component that displays given views next to each other in up to three columns
 

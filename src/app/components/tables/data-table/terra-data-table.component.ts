@@ -20,11 +20,8 @@ import { TerraDataTableHeaderCellInterface } from './interfaces/terra-data-table
 import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
 import { TerraDataTableSortOrder } from './enums/terra-data-table-sort-order.enum';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
+import { TerraRefTypeInterface } from './interfaces/terra-ref-type.interface';
 import {
-    TerraRefTypeInterface
-} from './interfaces/terra-ref-type.interface';
-import {
-    TerraDataTableCellInterface,
     TerraDataTableTextInterface,
     TerraPagerInterface,
     TerraTagInterface
@@ -75,11 +72,6 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
      */
     @Input()
     public inputHeaderList:Array<TerraDataTableHeaderCellInterface> = [];
-    /**
-     * @description List of table rows containing all the data
-     */
-    @Input()
-    public inputRowList:Array<TerraDataTableRowInterface<T>> = []; // TODO: remove from inputs
     /**
      * @description enables the user to sort the table by selected columns
      * @default false
@@ -137,10 +129,10 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     @Output()
     public outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<T>>> = new EventEmitter();
 
+    protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
+
     protected readonly sortOrder:{} = TerraDataTableSortOrder;
     protected readonly refType:{} = TerraRefTypeEnum;
-
-    protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
 
     /**
      * @description Constructor initializing the table component
@@ -151,6 +143,11 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
             checked:         false,
             isIndeterminate: false
         };
+    }
+
+    protected get rowList():Array<TerraDataTableRowInterface<T>>
+    {
+        return this.inputService.rowList;
     }
 
     protected get getCollapsedState():string
@@ -264,7 +261,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         {
             this.uncheckHeaderCheckbox();
         }
-        else if(selectedRowsCount > 0 && this.inputRowList.length === selectedRowsCount) // all selected?
+        else if(selectedRowsCount > 0 && this.rowList.length === selectedRowsCount) // all selected?
         {
             this.checkHeaderCheckbox();
         }
@@ -278,7 +275,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     {
         this.checkHeaderCheckbox();
 
-        this.inputRowList.forEach((row:TerraDataTableRowInterface<T>) =>
+        this.rowList.forEach((row:TerraDataTableRowInterface<T>) =>
         {
             if(!row.disabled)
             {
@@ -292,7 +289,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         this.uncheckHeaderCheckbox();
 
         // reset selected rows
-        this.inputRowList.forEach((row:TerraDataTableRowInterface<T>) =>
+        this.rowList.forEach((row:TerraDataTableRowInterface<T>) =>
         {
             row.selected = false;
         });
@@ -304,14 +301,14 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
      */
     public get selectedRowList():Array<TerraDataTableRowInterface<T>>
     {
-        return this.inputRowList.filter((row:TerraDataTableRowInterface<T>) => row.selected);
+        return this.rowList.filter((row:TerraDataTableRowInterface<T>) => row.selected);
     }
 
     protected rowClicked(row:TerraDataTableRowInterface<T>):void
     {
         if(!row.disabled)
         {
-            this.inputRowList.forEach((r:TerraDataTableRowInterface<T>) =>
+            this.rowList.forEach((r:TerraDataTableRowInterface<T>) =>
             {
                 r.isActive = false;
             });
@@ -333,7 +330,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 
     protected get isTableDataAvailable():boolean
     {
-        return this.inputRowList && this.inputRowList.length > 0;
+        return this.rowList && this.rowList.length > 0;
     }
 
     protected get isNoResultsNoticeDefined():boolean

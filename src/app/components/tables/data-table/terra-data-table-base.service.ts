@@ -6,6 +6,12 @@ import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-
 import { Http } from '@angular/http';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
 import { TerraDataTableSortOrder } from './enums/terra-data-table-sort-order.enum';
+import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
+import {
+    finalize,
+    map,
+    tap
+} from 'rxjs/operators';
 
 /**
  * @author pweyrich
@@ -13,7 +19,7 @@ import { TerraDataTableSortOrder } from './enums/terra-data-table-sort-order.enu
 export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
 {
     public requestPending:boolean;
-    public onSuccessFunction:(res:Array<T>) => void; // TODO: refine in mapping function
+    public dataToRowMapping:(res:T) => TerraDataTableRowInterface<T>; // TODO: Naming
     public pagingData:TerraPagerInterface<T>;
     public pagingSizes:Array<TerraSelectBoxValueInterface>;
     public defaultPagingSize:number;
@@ -21,9 +27,16 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
     public sortBy:string;
     public sortOrder:TerraDataTableSortOrder;
 
+    private _rowList:Array<TerraDataTableRowInterface<T>> = [];
+
     constructor(loadingSpinner:TerraLoadingSpinnerService, http:Http)
     {
         super(loadingSpinner, http, '');
+    }
+
+    public get rowList():Array<TerraDataTableRowInterface<T>>
+    {
+        return this._rowList;
     }
 
     /**
@@ -45,9 +58,9 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
 
     /**
      * @description Wrapper for the abstract requestTableData method. All the default behaviour when retrieving data is implemented here.
-     * @param fromFilter
+     * @param firstPage
      */
-    public getResults(fromFilter?:boolean):void
+    public getResults(firstPage?:boolean):void
     {
         // initialize pagination parameters
         let params:TerraPagerParameterInterface = {};
@@ -69,7 +82,7 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
 
         // if search is triggered by a filter component, always retrieve the first page
         // TODO: maybe implement another behavior by checking if filter params have changed
-        if(fromFilter)
+        if(firstPage)
         {
             params.page = 1;
         }
@@ -88,15 +101,11 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
 
         // request table data from the server
         this.requestPending = true;
-        this.requestTableData(params).subscribe(
-            (res:TerraPagerInterface<T>) =>
-            {
-                this.updatePagingData(res);
-                this.onSuccessFunction(res.entries);
-            },
-            (error:any) => undefined,
-            () => this.requestPending = false
-        );
+        this.requestTableData(params).pipe(
+            tap((res:TerraPagerInterface<T>) => this.updatePagingData(res)),
+            map((res:TerraPagerInterface<T>) => res.entries.map(this.dataToRowMapping)),
+            finalize(() => this.requestPending = false)
+        ).subscribe((rowList:Array<TerraDataTableRowInterface<T>>) => this._rowList = rowList);
     }
 
     /**
