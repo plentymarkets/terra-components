@@ -20,11 +20,8 @@ import { TerraDataTableHeaderCellInterface } from './interfaces/terra-data-table
 import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
 import { TerraDataTableSortOrder } from './enums/terra-data-table-sort-order.enum';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
+import { TerraRefTypeInterface } from './interfaces/terra-ref-type.interface';
 import {
-    TerraRefTypeInterface
-} from './interfaces/terra-ref-type.interface';
-import {
-    TerraDataTableCellInterface,
     TerraDataTableTextInterface,
     TerraPagerInterface,
     TerraTagInterface
