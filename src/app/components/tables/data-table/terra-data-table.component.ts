@@ -34,6 +34,12 @@ import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
 import { StringHelper } from '../../../helpers/string.helper';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraRefTypeEnum } from './enums/terra-ref-type.enum';
+import {
+    debounceTime,
+    distinct,
+    filter,
+    tap
+} from 'rxjs/operators';
 
 
 @Component({
@@ -129,6 +135,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     @Output()
     public outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<T>>> = new EventEmitter();
 
+    protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
     protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
 
     protected readonly sortOrder:{} = TerraDataTableSortOrder;
@@ -168,6 +175,16 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     public ngOnInit():void
     {
         this.initPagination();
+
+        this.columnHeaderClicked.pipe(
+            filter((header:TerraDataTableHeaderCellInterface) =>
+            {
+                // change sorting column and order only if no request is pending and sortBy attribute is given
+                return !this.inputService.requestPending && this.inputIsSortable && !isNullOrUndefined(header.sortBy);
+            }),
+            tap((header:TerraDataTableHeaderCellInterface) => this.changeSortingColumn(header)),
+            debounceTime(400)
+        ).subscribe(() => this.getResults());
     }
 
     /**
@@ -420,15 +437,6 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
         return typeof data;
     }
 
-    protected onColumnHeaderClick(header:TerraDataTableHeaderCellInterface):void // TODO: debounce!
-    {
-        // change sorting column and order only if no request is pending and sortBy attribute is given
-        if(!this.inputService.requestPending && this.inputIsSortable && header.sortBy)
-        {
-            this.changeSortingColumn(header);
-        }
-    }
-
     private changeSortingColumn(header:TerraDataTableHeaderCellInterface):void
     {
         // clicked on the same column?
@@ -442,9 +450,6 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
             this.inputService.sortBy = header.sortBy;
             this.inputService.sortOrder = TerraDataTableSortOrder.DESCENDING; // default is descending
         }
-
-        // get Results with updated parameter
-        this.getResults();
     }
 
     private toggleSortingOrder():void
