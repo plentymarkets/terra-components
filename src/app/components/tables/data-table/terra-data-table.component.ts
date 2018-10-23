@@ -66,7 +66,7 @@ import { TerraRefTypeEnum } from './enums/terra-ref-type.enum';
 export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
 {
     /**
-     * @description Service, that is used to request the table data from the server
+     * @description Mandatory service, that is used to request the table data from the server
      */
     @Input()
     public inputService:TerraDataTableBaseService<T, P>;
@@ -193,6 +193,12 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
      */
     private initPagination():void
     {
+        if(isNullOrUndefined(this.inputService))
+        {
+            console.error(`No 'inputService' given. This service is mandatory to display data in the table`);
+            return;
+        }
+
         let itemsPerPage:number = 25;
         if(this.inputService.defaultPagingSize)
         {
