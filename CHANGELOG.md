@@ -1,3 +1,21 @@
+<a name="3.0.0-beta.10"></a>
+# 3.0.0-beta.10 (23.10.2018)
+
+### Bug Fixes
+* **terra-date-picker** fix format of the date string emitted by `ngModelChange`
+
+<a name="3.0.0-beta.9"></a>
+# 3.0.0-beta.9 (22.10.2018)
+
+### Feature
+* **terra-3-col** new component that displays given views next to each other in up to three columns
+
+### Bug Fixes
+* **terra-date-picker** fixed format of the date string emitted by `ngModelChange`.
+
+### Changes
+* The definition of custom font faces have been separated into multiple files.
+
 <a name="3.0.0-beta.8"></a>
 # 3.0.0-beta.8 (17.10.2018)
 

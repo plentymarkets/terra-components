@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="overflow-auto" [ngClass]="getStylesForColumn(leftColumnWidth)" [hidden]="!leftColumnWidth">
+            <ng-content select="[left]"></ng-content>
+        </div>
+        <div class="overflow-auto" [ngClass]="getStylesForColumn(centerColumnWidth)" [hidden]="!centerColumnWidth">
+            <ng-content select="[center]"></ng-content>
+        </div>
+        <div class="overflow-auto" [ngClass]="getStylesForColumn(rightColumnWidth)" [hidden]="!rightColumnWidth">
+            <ng-content select="[right]"></ng-content>
+        </div>
+    </div>
+</div>
