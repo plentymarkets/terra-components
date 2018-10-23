@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
 @import './app/assets/styles/_variables.scss';
-@import './app/assets/themes/theme-dark-standard.scss';
-@import './app/assets/themes/theme-dark-compact.scss';
+@import './app/assets/themes/theme-core.scss';
+@import './app/assets/themes/theme-compact.scss';
+@import './app/assets/themes/theme-dark.scss';
+@import './app/assets/themes/theme-light.scss';
 
 *
 {
