@@ -41,7 +41,7 @@ export class TerraPagerComponent implements OnInit
 
     public ngOnInit():void
     {
-        this.pagingClicks.debounceTime(500).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
+        this.pagingClicks.debounceTime(400).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
 
         if(!this.inputDefaultPagingSize)
         {
