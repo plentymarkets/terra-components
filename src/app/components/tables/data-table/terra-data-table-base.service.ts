@@ -88,7 +88,7 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
         }
 
         // add sortBy attribute to pager params
-        if(this.sortBy && this.sortBy !== '')
+        if(!StringHelper.isNullUndefinedOrEmpty(this.sortBy))
         {
             params['sortBy'] = this.sortBy;
 
