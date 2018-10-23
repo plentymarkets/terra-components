@@ -373,7 +373,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     protected getTextAlign(item:TerraDataTableHeaderCellInterface):TerraTextAlignEnum // TODO: Pipe?
     {
-
         if(!isNullOrUndefined(item.textAlign))
         {
             return item.textAlign;
