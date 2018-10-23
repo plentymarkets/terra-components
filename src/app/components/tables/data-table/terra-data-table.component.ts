@@ -157,6 +157,12 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
      */
     public ngOnInit():void
     {
+        if(isNullOrUndefined(this.inputService))
+        {
+            console.error(`No 'inputService' given. This service is mandatory to display data in the table`);
+            return;
+        }
+
         this.initPagination();
 
         this.columnHeaderClicked.pipe(
@@ -192,7 +198,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     {
         if(isNullOrUndefined(this.inputService))
         {
-            console.error(`No 'inputService' given. This service is mandatory to display data in the table`);
             return;
         }
 
@@ -322,6 +327,11 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     private changeSortingColumn(header:TerraDataTableHeaderCellInterface):void
     {
+        if(isNullOrUndefined(this.inputService))
+        {
+            return;
+        }
+
         // clicked on the same column?
         if(this.inputService.sortBy === header.sortBy)
         {
@@ -346,7 +356,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     {
         // sort by the first sortable column, if available
         let defaultSortColumn:TerraDataTableHeaderCellInterface = this.getFirstSortableColumn();
-        if(this.inputHeaderList && defaultSortColumn)
+        if(!isNullOrUndefined(this.inputService) && this.inputHeaderList && defaultSortColumn)
         {
             this.inputService.sortBy = defaultSortColumn.sortBy;
             this.inputService.sortOrder = TerraDataTableSortOrderEnum.DESCENDING;
@@ -369,7 +379,10 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     private getResults():void
     {
-        this.inputService.getResults();
+        if(!isNullOrUndefined(this.inputService))
+        {
+            this.inputService.getResults();
+        }
     }
 
     protected onGroupFunctionExecuteButtonClicked(event:Event):void
