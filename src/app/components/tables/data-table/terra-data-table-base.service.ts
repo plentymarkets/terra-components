@@ -58,9 +58,9 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
 
     /**
      * @description Wrapper for the abstract requestTableData method. All the default behaviour when retrieving data is implemented here.
-     * @param firstPage
+     * @param loadFirstPage
      */
-    public getResults(firstPage?:boolean):void
+    public getResults(loadFirstPage?:boolean):void
     {
         // initialize pagination parameters
         let params:TerraPagerParameterInterface = {};
@@ -82,7 +82,7 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
 
         // if search is triggered by a filter component, always retrieve the first page
         // TODO: maybe implement another behavior by checking if filter params have changed
-        if(firstPage)
+        if(loadFirstPage)
         {
             params.page = 1;
         }
