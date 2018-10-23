@@ -82,7 +82,7 @@ export class TerraDataTableComponentExample implements OnInit
 
     public onSearchBtnClicked():void
     {
-        this.service.getResults();
+        this.service.getResults(true);
 
         this.noResultButtons = [{
             caption:       'Add',
