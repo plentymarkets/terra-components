@@ -39,6 +39,7 @@ import {
     filter,
     tap
 } from 'rxjs/operators';
+import { TerraBaseTable } from '../terra-base-table';
 
 
 @Component({
@@ -65,7 +66,7 @@ import {
         ])
     ]
 })
-export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
+export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges
 {
     /**
      * @description Service, that is used to request the table data from the server
@@ -122,12 +123,7 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
      */
     @Input()
     public inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
-    /**
-     * @description EventEmitter that notifies when a row has been selected via the select box. This is enabled, only if
-     *     `inputHasCheckboxes` is true.
-     */
-    @Output()
-    public outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
+
     /**
      * @description emits if the execute group functions button has been clicked
      */
@@ -135,21 +131,9 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
     public outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<T>>> = new EventEmitter();
 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
-    protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
 
     protected readonly sortOrder:{} = TerraDataTableSortOrder;
     protected readonly refType:{} = TerraRefTypeEnum;
-
-    /**
-     * @description Constructor initializing the table component
-     */
-    constructor()
-    {
-        this.headerCheckbox = {
-            checked:         false,
-            isIndeterminate: false
-        };
-    }
 
     protected get rowList():Array<TerraDataTableRowInterface<T>>
     {
@@ -226,112 +210,6 @@ export class TerraDataTableComponent<T, P> implements OnInit, OnChanges
             lastOnPage:     1,
             firstOnPage:    1
         });
-    }
-
-    protected onHeaderCheckboxChange():void
-    {
-        if(this.headerCheckbox.checked)
-        {
-            this.resetSelectedRows();
-        }
-        else
-        {
-            this.selectAllRows();
-        }
-    }
-
-    protected onRowCheckboxChange(row:TerraDataTableRowInterface<T>):void
-    {
-        // notify component user
-        this.outputRowCheckBoxChanged.emit(row);
-
-        // update row selection
-        row.selected = !row.selected;
-
-        // update header checkbox state
-        this.updateHeaderCheckboxState();
-    }
-
-    private checkHeaderCheckbox():void
-    {
-        this.headerCheckbox.checked = true;
-        this.headerCheckbox.isIndeterminate = false;
-    }
-
-    private uncheckHeaderCheckbox():void
-    {
-        this.headerCheckbox.checked = false;
-        this.headerCheckbox.isIndeterminate = false;
-    }
-
-    private setHeaderCheckboxIndeterminate():void
-    {
-        this.headerCheckbox.checked = false;
-        this.headerCheckbox.isIndeterminate = true;
-    }
-
-    private updateHeaderCheckboxState():void
-    {
-        let selectedRowsCount:number = this.selectedRowList.length;
-        if(selectedRowsCount === 0) // anything selected?
-        {
-            this.uncheckHeaderCheckbox();
-        }
-        else if(selectedRowsCount > 0 && this.rowList.length === selectedRowsCount) // all selected?
-        {
-            this.checkHeaderCheckbox();
-        }
-        else // some rows selected -> indeterminate
-        {
-            this.setHeaderCheckboxIndeterminate();
-        }
-    }
-
-    private selectAllRows():void
-    {
-        this.checkHeaderCheckbox();
-
-        this.rowList.forEach((row:TerraDataTableRowInterface<T>) =>
-        {
-            if(!row.disabled)
-            {
-                row.selected = true;
-            }
-        });
-    }
-
-    private resetSelectedRows():void
-    {
-        this.uncheckHeaderCheckbox();
-
-        // reset selected rows
-        this.rowList.forEach((row:TerraDataTableRowInterface<T>) =>
-        {
-            row.selected = false;
-        });
-    }
-
-    /**
-     * @description Getter for selectedRowList
-     * @returns {Array<TerraDataTableRowInterface<T>>}
-     */
-    public get selectedRowList():Array<TerraDataTableRowInterface<T>>
-    {
-        return this.rowList.filter((row:TerraDataTableRowInterface<T>) => row.selected);
-    }
-
-    protected rowClicked(row:TerraDataTableRowInterface<T>):void
-    {
-        if(!row.disabled)
-        {
-            this.rowList.forEach((r:TerraDataTableRowInterface<T>) =>
-            {
-                r.isActive = false;
-            });
-
-            row.isActive = true;
-            row.clickFunction();
-        }
     }
 
     protected checkTooltipPlacement(placement:string):string // TODO: pipe?
