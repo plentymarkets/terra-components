@@ -23,6 +23,8 @@ import { CommonModule } from '@angular/common';
 import { TerraTagComponent } from '../../layouts/tag/terra-tag.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TerraDataTableServiceExample } from './example/terra-data-table.service.example';
+import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
 
 fdescribe('Component: TerraDataTableComponent', () =>
 {
@@ -54,6 +56,10 @@ fdescribe('Component: TerraDataTableComponent', () =>
                 HttpClientModule,
                 NoopAnimationsModule,
                 LocalizationModule.forRoot(l10nConfig)
+            ],
+            providers: [
+                TerraDataTableServiceExample,
+                TerraLoadingSpinnerService
             ]
         }).compileComponents();
     }));
@@ -62,12 +68,23 @@ fdescribe('Component: TerraDataTableComponent', () =>
     {
         fixture = TestBed.createComponent(TerraDataTableComponent);
         component = fixture.componentInstance;
-
-        fixture.detectChanges();
     });
 
      it('should create', () =>
      {
          expect(component).toBeTruthy();
+     });
+
+     describe('With an inputService', () =>
+     {
+         beforeEach(() =>
+         {
+             component.inputService = TestBed.get(TerraDataTableServiceExample);
+         });
+
+         it('should have an inputService', () =>
+         {
+             expect(component.inputService).toBeDefined();
+         });
      });
 });
