@@ -25,7 +25,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraDataTableServiceExample } from './example/terra-data-table.service.example';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
-import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 fdescribe('Component: TerraDataTableComponent', () =>
@@ -70,6 +69,7 @@ fdescribe('Component: TerraDataTableComponent', () =>
     {
         fixture = TestBed.createComponent(TerraDataTableComponent);
         component = fixture.componentInstance;
+        fixture.detectChanges();
     });
 
     it('should create', () =>
@@ -77,11 +77,49 @@ fdescribe('Component: TerraDataTableComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should have a pager by default', () =>
+    describe('#inputHasPager', () =>
     {
-        expect(component.inputHasPager).toBe(true);
-        let pagerDE:DebugElement = fixture.debugElement.query(By.directive(TerraPagerComponent));
-        expect(pagerDE).toBeDefined();
+        it('should initialise `inputHasPager` with true', () =>
+        {
+            expect(component.inputHasPager).toBe(true);
+        });
+
+        it('should hide the pager if `inputHasPager` is set but no data is available', () =>
+        {
+            let service:TerraDataTableServiceExample = TestBed.get(TerraDataTableServiceExample);
+            let pagerDE:DebugElement = fixture.nativeElement.querySelector('terra-pager');
+            expect(component.inputHasPager).toBe(true);
+            expect(service.rowList).toBeDefined();
+            expect(service.rowList.length).toEqual(0);
+            expect(pagerDE).toBeNull();
+        });
+
+        // TODO: Make it run!
+        xit('should have a pager if `inputHasPager` is set and data is available', async(() =>
+        {
+            let service:TerraDataTableServiceExample = TestBed.get(TerraDataTableServiceExample);
+            let pagerDE:DebugElement = fixture.nativeElement.querySelector('terra-pager');
+            service.getResults();
+            fixture.detectChanges();
+            expect(service.rowList).toBeDefined();
+            expect(service.rowList.length).toBe(3);
+            expect(pagerDE).toBeTruthy();
+        }));
+    });
+
+    it('should have a not results notice if no data is given', () =>
+    {
+        let noResultNoticeNE:DebugElement = fixture.nativeElement.querySelector('terra-no-result-notice');
+        expect(noResultNoticeNE).toBeNull();
+
+        component.inputNoResultButtons = [{icon: 'icon-search', caption: 'search', clickFunction: ():void => { console.log('test') }}];
+        component.inputNoResultTextPrimary = 'No results';
+        component.inputNoResultTextSecondary = 'Press search to query data';
+
+        fixture.detectChanges();
+
+        noResultNoticeNE = fixture.nativeElement.querySelector('terra-no-result-notice');
+        expect(noResultNoticeNE).toBeTruthy();
     });
 
 
