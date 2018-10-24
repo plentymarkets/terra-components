@@ -1,6 +1,6 @@
 import { TerraBaseTable } from './terra-base-table';
 
-fdescribe('TerraBaseTable', () =>
+describe('TerraBaseTable', () =>
 {
     let baseTable:TerraBaseTable<any> = new TerraBaseTable<any>();
 
