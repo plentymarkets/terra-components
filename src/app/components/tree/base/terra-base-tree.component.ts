@@ -37,25 +37,39 @@ export class TerraBaseTreeComponent implements OnInit
 
         if(this.inputParentLeafList)
         {
-            for(let parentLeaf of this.inputParentLeafList)
+            this.iterateOverParents(this.inputParentLeafList);
+        }
+    }
+
+    private iterateOverParents(parents:Array<TerraLeafInterface>):void
+    {
+        for(let parentLeaf of parents)
+        {
+            if(parentLeaf.subLeafList)
             {
-                if(parentLeaf.subLeafList)
-                {
-                    for(let subLeaf of parentLeaf.subLeafList)
-                    {
-                        for(let leaf of this.inputLeafList)
-                        {
-                            if(leaf === subLeaf)
-                            {
-                                leaf.parentLeafList = this.inputParentLeafList;
-                            }
-                        }
-                    }
-                }
+                this.iterateOverSiblings(parentLeaf.subLeafList);
             }
         }
     }
 
+    private iterateOverSiblings(siblings:Array<TerraLeafInterface>):void
+    {
+        for(let subLeaf of siblings)
+        {
+            this.iterateOverChildren(subLeaf);
+        }
+    }
+
+    private iterateOverChildren(parentOfChild:TerraLeafInterface):void
+    {
+        for(let leaf of this.inputLeafList)
+        {
+            if(leaf === parentOfChild)
+            {
+                leaf.parentLeafList = this.inputParentLeafList;
+            }
+        }
+    }
 
     private onLeafClick(clickedLeaf:TerraLeafInterface):void
     {
