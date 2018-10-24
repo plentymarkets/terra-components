@@ -7,7 +7,7 @@ import { TerraAlertComponent } from '../terra-alert.component';
 import { TranslationService } from 'angular-l10n';
 
 @Component({
-    selector: 'terra-alert-example',
+    selector:    'terra-alert-example',
     styleUrls:   ['./terra-alert.component.example.scss'],
     templateUrl: './terra-alert.component.example.html'
 })

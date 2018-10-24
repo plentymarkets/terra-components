@@ -1,9 +1,7 @@
-import {
-    Component
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'terra-number-input-example',
+    selector:    'terra-number-input-example',
     styleUrls:   ['./terra-number-input.component.example.scss'],
     templateUrl: './terra-number-input.component.example.html',
 })

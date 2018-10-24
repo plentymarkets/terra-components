@@ -13,10 +13,10 @@ import { isNullOrUndefined } from 'util';
 let nextId:number = 0;
 
 @Component({
-    selector:  'terra-text-area-input',
-    templateUrl:  './terra-text-area-input.component.html',
-    styleUrls:    ['./terra-text-area-input.component.scss'],
-    providers: [
+    selector:    'terra-text-area-input',
+    templateUrl: './terra-text-area-input.component.html',
+    styleUrls:   ['./terra-text-area-input.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraTextAreaInputComponent),
@@ -49,6 +49,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
      */
     protected id:string;
     private readonly defaultMaxRows:number = 4;
+
     constructor()
     {
         super(TerraRegex.MIXED);
@@ -71,6 +72,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
             this.inputHasFixedHeight = !!changes.inputHasFixedHeight.currentValue;
         }
     }
+
     /**
      * Set the focus on the native input element.
      */

@@ -12,7 +12,7 @@ import { TerraTextAlignEnum } from '../../tables/data-table/cell/terra-text-alig
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
-    selector: 'terra-button-with-options',
+    selector:    'terra-button-with-options',
     templateUrl: './terra-button-with-options.component.html',
     styleUrls:   ['./terra-button-with-options.component.scss']
 })

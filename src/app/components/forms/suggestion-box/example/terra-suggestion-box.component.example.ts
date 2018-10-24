@@ -5,7 +5,7 @@ import {
 import { TerraSuggestionBoxValueInterface } from '../data/terra-suggestion-box.interface';
 
 @Component({
-    selector: 'terra-suggestion-box-example',
+    selector:    'terra-suggestion-box-example',
     styleUrls:   ['./terra-suggestion-box.component.example.scss'],
     templateUrl: './terra-suggestion-box.component.example.html',
 })
@@ -18,7 +18,7 @@ export class TerraSuggestionBoxComponentExample implements OnInit
     protected contacts:Array<any> = [
         {
             name: 'Max',
-            age: 26
+            age:  26
         },
         {
             name: 'Max Mustermann',

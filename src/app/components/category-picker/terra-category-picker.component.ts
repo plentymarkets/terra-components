@@ -21,10 +21,10 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 import { TerraNodeTreeConfig } from '../tree/node-tree/data/terra-node-tree.config';
 
 @Component({
-    selector:  'terra-category-picker',
-    templateUrl:  './terra-category-picker.component.html',
-    styleUrls:    ['./terra-category-picker.component.scss'],
-    providers: [
+    selector:    'terra-category-picker',
+    templateUrl: './terra-category-picker.component.html',
+    styleUrls:   ['./terra-category-picker.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraCategoryPickerComponent),

@@ -1,9 +1,7 @@
-import {
-    Component
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'terra-time-picker-example',
+    selector:    'terra-time-picker-example',
     styleUrls:   ['./terra-time-picker.component.example.scss'],
     templateUrl: './terra-time-picker.component.example.html',
 })

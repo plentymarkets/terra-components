@@ -165,7 +165,7 @@ export class TerraBreadcrumbsService
 
     private findRoute(url:string, routeConfig:Routes):Route
     {
-        let urlParts:Array<string> =  UrlHelper.removeLeadingSlash(url).split('/');
+        let urlParts:Array<string> = UrlHelper.removeLeadingSlash(url).split('/');
         let urlPart:string = urlParts.shift();
 
         let routes:Routes = routeConfig;

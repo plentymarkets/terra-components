@@ -8,7 +8,7 @@ import { TerraSimpleTableRowInterface } from '../../../tables/simple/row/terra-s
 
 
 @Component({
-    selector: 'terra-button-with-options-example',
+    selector:    'terra-button-with-options-example',
     styleUrls:   ['./terra-button-with-options.component.example.scss'],
     templateUrl: './terra-button-with-options.component.example.html',
 })

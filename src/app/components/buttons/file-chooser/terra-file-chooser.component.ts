@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+    ViewChild
+} from '@angular/core';
 import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { TerraFileBrowserComponent } from '../../file-browser/terra-file-browser.component';
@@ -10,9 +16,9 @@ import { TerraOverlayButtonInterface } from '../../layouts/overlay/data/terra-ov
 import { TerraFrontendStorageService } from '../../file-browser/terra-frontend-storage.service';
 
 @Component({
-    selector: 'terra-file-chooser',
+    selector:    'terra-file-chooser',
     templateUrl: './terra-file-chooser.component.html',
-    styleUrls: ['./terra-file-chooser.component.scss']
+    styleUrls:   ['./terra-file-chooser.component.scss']
 })
 export class TerraFileChooserComponent extends TerraButtonComponent
 {
@@ -24,7 +30,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent
 
     public get inputPrimaryBrowserButtonCaption():string
     {
-        if ( !isNullOrUndefined(this.primaryBrowserButtonCaption) && this.primaryBrowserButtonCaption.length > 0)
+        if(!isNullOrUndefined(this.primaryBrowserButtonCaption) && this.primaryBrowserButtonCaption.length > 0)
         {
             return this.primaryBrowserButtonCaption;
         }
@@ -40,7 +46,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent
 
     public get inputSecondaryBrowserButtonCaption():string
     {
-        if ( !isNullOrUndefined(this.secondaryBrowserButtonCaption) && this.secondaryBrowserButtonCaption.length > 0)
+        if(!isNullOrUndefined(this.secondaryBrowserButtonCaption) && this.secondaryBrowserButtonCaption.length > 0)
         {
             return this.secondaryBrowserButtonCaption;
         }
@@ -106,21 +112,21 @@ export class TerraFileChooserComponent extends TerraButtonComponent
             caption:       this.inputPrimaryBrowserButtonCaption,
             isDisabled:    true,
             clickFunction: ():void =>
-            {
-                this.outputSelected.emit(this.selectedObject);
-                this.overlay.hideOverlay();
-            }
+                           {
+                               this.outputSelected.emit(this.selectedObject);
+                               this.overlay.hideOverlay();
+                           }
         };
 
         this.secondaryOverlayButton = {
-            icon: 'icon-close',
-            caption: this.inputSecondaryBrowserButtonCaption,
-            isDisabled: false,
+            icon:          'icon-close',
+            caption:       this.inputSecondaryBrowserButtonCaption,
+            isDisabled:    false,
             clickFunction: ():void =>
-            {
-                this.outputCancelled.emit();
-                this.overlay.hideOverlay();
-            }
+                           {
+                               this.outputCancelled.emit();
+                               this.overlay.hideOverlay();
+                           }
         };
     }
 

@@ -16,7 +16,7 @@
     .terra-breadcrumb-container
     {
         cursor: pointer;
-    
+        
         .terra-breadcrumb-wrapper
         {
             .terra-breadcrumb
@@ -28,13 +28,13 @@
                 text-overflow: ellipsis;
                 overflow: hidden;
                 text-decoration: none;
-    
+                
                 &.active
                 {
                     color: var(--color-active);
                     cursor: default;
                 }
-    
+                
                 &:not(.active):hover
                 {
                     color: var(--color-active);

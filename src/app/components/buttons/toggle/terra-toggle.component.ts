@@ -12,10 +12,10 @@ import {
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
-    selector:  'terra-toggle',
-    styleUrls:    ['./terra-toggle.component.scss'],
-    templateUrl:  './terra-toggle.component.html',
-    providers: [
+    selector:    'terra-toggle',
+    styleUrls:   ['./terra-toggle.component.scss'],
+    templateUrl: './terra-toggle.component.html',
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraToggleComponent),

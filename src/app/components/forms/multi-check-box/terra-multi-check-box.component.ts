@@ -15,10 +15,10 @@ import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import { TerraMultiCheckBoxValueInterface } from './data/terra-multi-check-box-value.interface';
 
 @Component({
-    selector: 'terra-multi-check-box',
+    selector:    'terra-multi-check-box',
     styleUrls:   ['./terra-multi-check-box.component.scss'],
     templateUrl: './terra-multi-check-box.component.html',
-    providers: [
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraMultiCheckBoxComponent),

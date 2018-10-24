@@ -6,7 +6,7 @@
     height: var(--terra-breadcrumbs-height, var(--breadcrumbs-height));
     transition: height var(--transition-lg);
     display: flex;
-    
+
     li
     {
         float: left;
@@ -28,7 +28,7 @@
             float: left;
             color: var(--color-structure-0);
             white-space: nowrap;
-            
+
             &:hover
             {
                 color: var(--color-active);
@@ -114,7 +114,7 @@
     {
         display: inline-block;
     }
-    
+
     .view
     {
         font-size: var(--font-size-3);
@@ -132,13 +132,13 @@
             position: relative;
         }
     }
-    
+
     .fadeIn
     {
         animation-name: fadeInAnimation;
         animation-duration: 0.25s;
     }
-    
+
     @keyframes fadeInAnimation
     {
         from

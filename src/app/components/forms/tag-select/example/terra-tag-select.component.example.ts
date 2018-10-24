@@ -5,17 +5,17 @@ import { Component } from '@angular/core';
  * @author mfrank
  */
 @Component({
-    selector: 'terra-tag-select-example',
+    selector:    'terra-tag-select-example',
     templateUrl: './terra-tag-select.component.example.html'
 })
 export class TerraTagSelectComponentExample
 {
     protected selectedTags:Array<TerraTagInterface> = [{
-        id:    3,
-        name:  'Fast schwarz',
-        color: '#000350',
+        id:         3,
+        name:       'Fast schwarz',
+        color:      '#000350',
         isClosable: true,
-        names: [
+        names:      [
             {
                 id:       3,
                 tagId:    3,

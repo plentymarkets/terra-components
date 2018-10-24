@@ -5,7 +5,7 @@ import {
 import { TerraMultiCheckBoxValueInterface } from '../data/terra-multi-check-box-value.interface';
 
 @Component({
-    selector: 'terra-multi-check-box-example',
+    selector:    'terra-multi-check-box-example',
     styleUrls:   ['./terra-multi-check-box.component.example.scss'],
     templateUrl: './terra-multi-check-box.component.example.html',
 })

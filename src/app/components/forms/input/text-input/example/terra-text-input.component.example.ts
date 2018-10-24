@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: 'terra-text-input-example',
+    selector:    'terra-text-input-example',
     styleUrls:   ['./terra-text-input.component.example.scss'],
     templateUrl: './terra-text-input.component.example.html',
 })
