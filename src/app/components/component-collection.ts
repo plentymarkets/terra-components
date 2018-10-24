@@ -60,7 +60,7 @@ import { TerraFileListComponent } from './file-browser/file-list/file-list.compo
 import { TerraImagePreviewComponent } from './file-browser/image-preview/image-preview.component';
 import { TerraThreeColumnsContainerComponent } from './layouts/column-container/three-columns/terra-three-columns-container.component';
 
-export const components:Array<Type<any>> = [
+export const exportedComponents:Array<Type<any>> = [
     TerraAlertPanelComponent,
     TerraTextInputComponent,
     TerraColorPickerComponent,
@@ -97,8 +97,6 @@ export const components:Array<Type<any>> = [
     TerraMultiSplitViewComponent,
     TerraSliderComponent,
     TerraFileBrowserComponent,
-    TerraFileListComponent,
-    TerraImagePreviewComponent,
     TerraFileInputComponent,
     TerraFileChooserComponent,
     TerraNoResultNoticeComponent,
@@ -123,4 +121,10 @@ export const components:Array<Type<any>> = [
     TerraTagSelectComponent,
     TerraStopwatchComponent,
     TerraThreeColumnsContainerComponent
+];
+
+export const components:Array<Type<any>> = [
+    ...exportedComponents,
+    TerraFileListComponent,
+    TerraImagePreviewComponent,
 ];

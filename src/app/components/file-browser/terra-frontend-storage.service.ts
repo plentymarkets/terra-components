@@ -161,16 +161,14 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         }
 
         this.setAuthorization();
-        let request:Observable<any> = this.mapRequest(
+        return this.mapRequest(
             this.http.get(
                 this.url + '/metadata?key=' + key,
                 {
                     headers: this.headers
                 }
             )
-        );
-
-        request.pipe(tap((metadata:any) =>
+        ).pipe(tap((metadata:any) =>
             {
                 this.metadataCache[key] = metadata;
             },
@@ -179,14 +177,12 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
                 delete this.metadataCache[key];
             }
         ));
-
-        return request;
     }
 
     public updateMetadata(key:string, metadata:TerraImageMetadata):Observable<any>
     {
         this.setAuthorization();
-        let request:Observable<any> = this.mapRequest(
+        return this.mapRequest(
             this.http.post(
                 this.url + '/metadata',
                 {
@@ -197,9 +193,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
                     headers: this.headers
                 }
             )
-        );
-
-        request.pipe(tap(() =>
+        ).pipe(tap(() =>
             {
                 this.metadataCache[key] = metadata;
             },
@@ -208,8 +202,6 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
                 delete this.metadataCache[key];
             }
         ));
-
-        return request;
     }
 
     public deleteFiles(keyList:Array<string>):Observable<void>

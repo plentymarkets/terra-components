@@ -35,7 +35,7 @@
 </terra-base-toolbar>
 
 <div class="file-list-container" [class.empty]="fileTableRowList.length <= 0">
-    <div *ngIf="showNewDirectoryPrompt" class="prompt" [class.in]="showNewDirectoryPrompt">
+    <div [hidden]="!showNewDirectoryPrompt" class="prompt" [class.in]="showNewDirectoryPrompt">
         <span class="prompt-title">{{ translationPrefix + '.createFolder' | translate:lang }}</span>
         <terra-text-input [inputName]="translationPrefix + '.folderName' | translate:lang"
                           [(ngModel)]="newDirectoryName">
@@ -46,7 +46,7 @@
                           [inputIsSmall]="true"
                           (outputClicked)="showNewDirectoryPrompt = false"></terra-button>
             
-            <terra-button [inputIcon]="'icon-success'"
+            <terra-button [inputIcon]="'icon-folder_add'"
                           [inputCaption]="translationPrefix + '.create' | translate:lang"
                           [inputIsSmall]="true"
                           [inputIsDisabled]="!newDirectoryName"
@@ -54,13 +54,11 @@
         </div>
     </div>
     
-    <div *ngIf="objectsToDelete.length > 0" class="prompt" [class.in]="objectsToDelete.length > 0">
-        <span class="prompt-title"
-              *ngIf="objectsToDelete.length === 1">
+    <div [hidden]="objectsToDelete.length === 0" class="prompt" [class.in]="objectsToDelete.length > 0">
+        <span class="prompt-title">
             {{ translationPrefix + '.confirmDelete' | translate:lang }}
         </span>
-        <span class="prompt-title"
-              *ngIf="objectsToDelete.length > 1">
+        <span class="prompt-title">
             {{ translationPrefix + '.confirmDeleteMany' | translate:lang:{count: _deleteCount } }}
         </span>
         <div class="pull-lg-right">
@@ -70,7 +68,7 @@
                           (outputClicked)="objectsToDelete = []">
             </terra-button>
             
-            <terra-button [inputIcon]="'icon-success'"
+            <terra-button [inputIcon]="'icon-delete'"
                           [inputCaption]="translationPrefix + '.delete' | translate:lang"
                           [inputIsSmall]="true"
                           (outputClicked)="deleteObjects()">
@@ -78,7 +76,7 @@
         </div>
     </div>
     
-    <terra-simple-table *ngIf="fileTableRowList.length > 0 && !isDragActive"
+    <terra-simple-table *ngIf="fileTableRowList.length > 0" [hidden]="isDragActive"
                         [inputHeaderList]="fileTableHeaderList"
                         [inputRowList]="fileTableRowList"
                         [inputIsStriped]="true"

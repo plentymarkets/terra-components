@@ -128,18 +128,23 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         });
     }
 
-    public showRightColumn(show:boolean, currentService:TerraBaseStorageService):void
+    protected showImagePreview(isPreviewEnabled:boolean):void
     {
-        if(show && currentService.isImagePreviewEnabled)
+        if(isPreviewEnabled)
         {
             this.centerColumnWidth = 8;
             this.rightColumnWidth = 2;
         }
         else
         {
-            this.centerColumnWidth = 10;
-            this.rightColumnWidth = 0;
+            this.hideImagePreview();
         }
+    }
+
+    protected hideImagePreview():void
+    {
+        this.centerColumnWidth = 10;
+        this.rightColumnWidth = 0;
     }
 
     private recursiveCreateNode(storage:TerraStorageObject,
