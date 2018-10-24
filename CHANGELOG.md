@@ -7,7 +7,7 @@
 
 * **terra-node-tree** avoid closing node on click while it's open.
 * **terra-2-col** adjusted styles to handle column heights correctly.
-* **terra-3-col** adjusted the css to handle columns height correctly.
+* **terra-3-col** adjusted styles to handle column heights correctly.
 
 <a name="3.0.0-beta.10"></a>
 # 3.0.0-beta.10 (23.10.2018)
