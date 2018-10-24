@@ -10,7 +10,7 @@ export interface TerraPagerComponentExampleInterface
 }
 
 @Component({
-    selector: 'terra-pager-example',
+    selector:    'terra-pager-example',
     styleUrls:   ['./terra-pager.component.example.scss'],
     templateUrl: './terra-pager.component.example.html'
 })

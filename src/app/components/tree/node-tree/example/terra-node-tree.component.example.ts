@@ -11,10 +11,10 @@ export interface ExampleTreeData
 }
 
 @Component({
-    selector:  'terra-node-tree-example',
-    templateUrl:  './terra-node-tree.component.example.html',
-    styleUrls:    ['./terra-node-tree.component.example.scss'],
-    providers: [TerraNodeTreeConfig]
+    selector:    'terra-node-tree-example',
+    templateUrl: './terra-node-tree.component.example.html',
+    styleUrls:   ['./terra-node-tree.component.example.scss'],
+    providers:   [TerraNodeTreeConfig]
 })
 export class TerraNodeTreeComponentExample implements OnInit
 {

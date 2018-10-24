@@ -8,7 +8,7 @@ import { TerraNodeTreeConfig } from '../data/terra-node-tree.config';
 import { isNullOrUndefined } from 'util';
 
 @Component({
-    selector: 'terra-node',
+    selector:    'terra-node',
     styleUrls:   ['./terra-node.component.scss'],
     templateUrl: './terra-node.component.html'
 })
@@ -66,23 +66,23 @@ export class TerraNodeComponent<D> implements OnInit
 
     }
 
-        // handle the node click
-        protected onNodeDblClick(event:Event):void
+    // handle the node click
+    protected onNodeDblClick(event:Event):void
+    {
+        event.stopPropagation();
+        // check if click function is set
+        if(!isNullOrUndefined(this.inputNode.onDblClick))
         {
-            event.stopPropagation();
-            // check if click function is set
-            if(!isNullOrUndefined(this.inputNode.onDblClick))
-            {
-                this.inputNode.onDblClick();
-            }
-
-            this.inputConfig.handleLazyLoading(this.inputNode);
-
-            if(isNullOrUndefined(this.inputNode.selectable) || this.inputNode.selectable)
-            {
-                this.inputConfig.currentSelectedNode = this.inputNode;
-            }
+            this.inputNode.onDblClick();
         }
+
+        this.inputConfig.handleLazyLoading(this.inputNode);
+
+        if(isNullOrUndefined(this.inputNode.selectable) || this.inputNode.selectable)
+        {
+            this.inputConfig.currentSelectedNode = this.inputNode;
+        }
+    }
 
     protected handleIconClick(event:Event):void
     {

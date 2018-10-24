@@ -1,9 +1,7 @@
-import {
-    Component
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'terra-data-table-context-menu-example',
+    selector:    'terra-data-table-context-menu-example',
     styleUrls:   ['./terra-data-table-context-menu.component.example.scss'],
     templateUrl: './terra-data-table-context-menu.component.example.html',
 })

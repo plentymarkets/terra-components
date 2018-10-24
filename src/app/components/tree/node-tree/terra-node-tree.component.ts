@@ -16,7 +16,7 @@ import {
 import { StringHelper } from '../../../helpers/string.helper';
 
 @Component({
-    selector: 'terra-node-tree',
+    selector:    'terra-node-tree',
     styleUrls:   ['./terra-node-tree.component.scss'],
     templateUrl: './terra-node-tree.component.html'
 })

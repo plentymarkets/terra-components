@@ -18,7 +18,7 @@ import {
 } from 'util';
 
 @Component({
-    selector: 'terra-simple-table',
+    selector:    'terra-simple-table',
     styleUrls:   ['./terra-simple-table.component.scss'],
     templateUrl: './terra-simple-table.component.html'
 })
@@ -160,7 +160,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
             this.uncheckHeaderCheckbox();
         }
         else if(this.selectedRowList.length > 0 && this.inputRowList.filter(
-                (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === this.selectedRowList.length) // all selected?
+            (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === this.selectedRowList.length) // all selected?
         {
             this.checkHeaderCheckbox();
         }

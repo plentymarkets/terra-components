@@ -5,7 +5,7 @@ import {
 import { TerraLeafInterface } from '../../leaf/terra-leaf.interface';
 
 @Component({
-    selector: 'terra-checkbox-tree-example',
+    selector:    'terra-checkbox-tree-example',
     templateUrl: './terra-checkbox-tree.component.example.html',
     styleUrls:   ['./terra-checkbox-tree.component.example.scss']
 })

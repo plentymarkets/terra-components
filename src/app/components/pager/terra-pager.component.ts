@@ -11,7 +11,7 @@ import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-sel
 import { Subject } from 'rxjs/Subject';
 
 @Component({
-    selector: 'terra-pager',
+    selector:    'terra-pager',
     styleUrls:   ['./terra-pager.component.scss'],
     templateUrl: './terra-pager.component.html'
 })

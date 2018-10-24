@@ -12,7 +12,7 @@ import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.
 
 
 @Component({
-    selector: 'terra-simple-table-example',
+    selector:    'terra-simple-table-example',
     templateUrl: './terra-simple-table.component.example.html',
     styleUrls:   ['./terra-simple-table.component.example.scss'],
 })

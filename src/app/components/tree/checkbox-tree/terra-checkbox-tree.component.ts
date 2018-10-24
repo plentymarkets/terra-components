@@ -4,14 +4,15 @@ import {
     Input,
     OnChanges,
     OnInit,
-    Output, SimpleChanges,
+    Output,
+    SimpleChanges,
 } from '@angular/core';
 import { TerraBaseTreeComponent } from '../base/terra-base-tree.component';
 import { TerraCheckboxLeafInterface } from '../leaf/terra-checkbox-leaf.interface';
 import { TerraCheckboxTreeLeafState } from './data/terra-checkbox-tree-leaf-state';
 
 @Component({
-    selector: 'terra-checkbox-tree',
+    selector:    'terra-checkbox-tree',
     styleUrls:   ['./terra-checkbox-tree.component.scss'],
     templateUrl: './terra-checkbox-tree.component.html'
 })
@@ -197,7 +198,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if (changes['inputLeafList'])
+        if(changes['inputLeafList'])
         {
             this.appendParentsToLeafList(this.inputLeafList);
         }

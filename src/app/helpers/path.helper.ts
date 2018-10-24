@@ -89,10 +89,10 @@ export class PathHelper
     public static sizeString(size:number):string
     {
         let units:Array<string> = ['B',
-                              'kB',
-                              'MB',
-                              'GB',
-                              'TB'];
+                                   'kB',
+                                   'MB',
+                                   'GB',
+                                   'TB'];
         let unitIdx:number = 0;
         while(size > 1000)
         {
