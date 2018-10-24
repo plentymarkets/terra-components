@@ -13,6 +13,7 @@ import {
     tap
 } from 'rxjs/operators';
 import { StringHelper } from '../../../helpers/string.helper';
+import { isNullOrUndefined } from 'util';
 
 /**
  * @author pweyrich
@@ -32,11 +33,40 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
     constructor(loadingSpinner:TerraLoadingSpinnerService, http:Http)
     {
         super(loadingSpinner, http, '');
+
+        this.initPagination();
     }
 
     public get rowList():Array<TerraDataTableRowInterface<T>>
     {
         return this._rowList;
+    }
+
+    /**
+     * default initialization of the paging information which are stored in the input service
+     */
+    private initPagination():void
+    {
+        let itemsPerPage:number = 25;
+        if(this.defaultPagingSize)
+        {
+            itemsPerPage = this.defaultPagingSize;
+        }
+        else if(this.pagingSizes && this.pagingSizes[0])
+        {
+            itemsPerPage = this.pagingSizes[0].value;
+        }
+
+        // init paging data
+        this.updatePagingData({
+            page:           1,
+            itemsPerPage:   itemsPerPage,
+            totalsCount:    1,
+            isLastPage:     true,
+            lastPageNumber: 1,
+            lastOnPage:     1,
+            firstOnPage:    1
+        });
     }
 
     /**

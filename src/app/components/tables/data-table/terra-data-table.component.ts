@@ -163,8 +163,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
             return;
         }
 
-        this.initPagination();
-
         this.columnHeaderClicked.pipe(
             filter((header:TerraDataTableHeaderCellInterface) =>
             {
@@ -189,38 +187,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
                 this.resetSorting();
             }
         }
-    }
-
-    /**
-     * default initialization of the paging information which are stored in the input service
-     */
-    private initPagination():void
-    {
-        if(isNullOrUndefined(this.inputService))
-        {
-            return;
-        }
-
-        let itemsPerPage:number = 25;
-        if(this.inputService.defaultPagingSize)
-        {
-            itemsPerPage = this.inputService.defaultPagingSize;
-        }
-        else if(this.inputService.pagingSizes && this.inputService.pagingSizes[0])
-        {
-            itemsPerPage = this.inputService.pagingSizes[0].value;
-        }
-
-        // init paging data
-        this.inputService.updatePagingData({
-            page:           1,
-            itemsPerPage:   itemsPerPage,
-            totalsCount:    1,
-            isLastPage:     true,
-            lastPageNumber: 1,
-            lastOnPage:     1,
-            firstOnPage:    1
-        });
     }
 
     protected checkTooltipPlacement(placement:string):string // TODO: pipe?
