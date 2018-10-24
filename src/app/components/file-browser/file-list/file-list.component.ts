@@ -148,7 +148,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private _currentStorageRoot:TerraStorageObject;
 
-    private imagePreviewTimeout:number;
+    private imagePreviewTimeout:any;
 
     private imagePreviewObject:TerraStorageObject;
 
