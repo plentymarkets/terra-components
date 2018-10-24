@@ -6,7 +6,7 @@
 	- file list is refreshed when inputStorageService changes
 
 * **terra-node-tree** avoid closing node on click while it's open.
-* **terra-2-col** adjusted the css to handle columns height correctly.
+* **terra-2-col** adjusted styles to handle column heights correctly.
 * **terra-3-col** adjusted the css to handle columns height correctly.
 
 <a name="3.0.0-beta.10"></a>
