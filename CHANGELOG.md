@@ -1,3 +1,13 @@
+### Unreleased
+* **terra-file-browser** 
+	- breadcrumbs replaced with tree for folder navigation.
+	- saving alternative text working as intended with success message.
+	- image preview now closing after delete.
+
+* **terra-node-tree** avoid closing node on click while it's open.
+* **terra-2-col** adjusted the css to handle columns height correctly.
+* **terra-3-col** adjusted the css to handle columns height correctly.
+
 <a name="3.0.0-beta.10"></a>
 # 3.0.0-beta.10 (23.10.2018)
 
