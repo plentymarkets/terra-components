@@ -20,9 +20,9 @@
              (outputDoPaging)="doPaging($event)">
 </terra-pager>
 
-<div class="table-responsive" *ngIf="isTableDataAvailable">
+<div class="table-responsive">
     <context-menu></context-menu>
-    <table class="table data-table">
+    <table class="table data-table" *ngIf="isTableDataAvailable">
         <thead>
         <tr>
             <th *ngIf="inputHasCheckboxes" width="25px">
@@ -135,12 +135,11 @@
         </tbody>
     </table>
     
-    <div *ngIf="!isTableDataAvailable && isNoResultsNoticeDefined && !inputService?.requestPending">
-        <terra-no-result-notice
-            [inputButtons]="inputNoResultButtons"
-            [inputTextPrimary]="inputNoResultTextPrimary"
-            [inputTextSecondary]="inputNoResultTextSecondary">
-        </terra-no-result-notice>
-    </div>
+    <terra-no-result-notice
+        *ngIf="!isTableDataAvailable && isNoResultsNoticeDefined && !inputService?.requestPending"
+        [inputButtons]="inputNoResultButtons"
+        [inputTextPrimary]="inputNoResultTextPrimary"
+        [inputTextSecondary]="inputNoResultTextSecondary">
+    </terra-no-result-notice>
 
 </div>
