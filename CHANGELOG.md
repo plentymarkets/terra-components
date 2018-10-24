@@ -3,6 +3,7 @@
 	- breadcrumbs replaced with tree for folder navigation.
 	- saving alternative text working as intended with success message.
 	- image preview now closing after delete.
+	- file list is refreshed when inputStorageService changes
 
 * **terra-node-tree** avoid closing node on click while it's open.
 * **terra-2-col** adjusted the css to handle columns height correctly.
