@@ -6,7 +6,7 @@ import {
 import { TerraCheckboxComponent } from '../terra-checkbox.component';
 
 @Component({
-    selector: 'terra-checkbox-example',
+    selector:    'terra-checkbox-example',
     styleUrls:   ['./terra-checkbox.component.example.scss'],
     templateUrl: './terra-checkbox.component.example.html',
 })

@@ -19,7 +19,7 @@ import { TerraFormTypeInterface } from './terra-form-type.interface';
 export class TerraFormTypeMap
 {
     public readonly checkbox:TerraFormTypeInterface = {
-        inputMap: {
+        inputMap:  {
             name: 'inputCaption'
         },
         component: TerraCheckboxComponent
@@ -35,13 +35,13 @@ export class TerraFormTypeMap
     public readonly color:Type<TerraColorPickerComponent> = TerraColorPickerComponent;
     public readonly checkboxGroup:Type<TerraMultiCheckBoxComponent> = TerraMultiCheckBoxComponent;
     public readonly noteEditor:TerraFormTypeInterface = {
-        inputMap: {
+        inputMap:  {
             name: 'inputHeaderLabel'
         },
         component: TerraNoteEditorComponent
     };
     public readonly codeEditor:TerraFormTypeInterface = {
-        inputMap: {
+        inputMap:  {
             name: 'inputHeaderLabel'
         },
         component: TerraCodeEditorComponent

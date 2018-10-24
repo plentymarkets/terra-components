@@ -23,7 +23,7 @@ import { TerraTextInputComponent } from '../../../../../';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 
 @Component({
-    selector: 'terra-form-entry',
+    selector:    'terra-form-entry',
     templateUrl: './terra-form-entry.component.html',
     styleUrls:   ['./terra-form-entry.component.scss']
 })

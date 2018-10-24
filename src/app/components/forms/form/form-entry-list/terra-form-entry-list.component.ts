@@ -13,10 +13,9 @@ import {
     isString
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
-import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
 
 @Component({
-    selector: 'terra-form-entry-list',
+    selector:    'terra-form-entry-list',
     templateUrl: './terra-form-entry-list.component.html',
     styleUrls:   ['./terra-form-entry-list.component.scss']
 })
@@ -57,7 +56,7 @@ export class TerraFormEntryListComponent implements OnInit
                 this.itemScopes = this.value.map((entry:{ key:number, value:any }) =>
                 {
                     return this.inputScope.createChildScope(
-                        this.createChildScopeData( entry.value )
+                        this.createChildScopeData(entry.value)
                     );
                 });
             }

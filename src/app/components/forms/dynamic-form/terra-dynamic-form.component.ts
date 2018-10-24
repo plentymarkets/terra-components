@@ -32,10 +32,10 @@ export interface TerraDynamicFormRequestParams
  * @author mfrank
  */
 @Component({
-    selector:  'terra-dynamic-form',
-    templateUrl:  './terra-dynamic-form.component.html',
-    styleUrls:    ['./terra-dynamic-form.component.scss'],
-    providers: [TerraDynamicFormService]
+    selector:    'terra-dynamic-form',
+    templateUrl: './terra-dynamic-form.component.html',
+    styleUrls:   ['./terra-dynamic-form.component.scss'],
+    providers:   [TerraDynamicFormService]
 })
 export class TerraDynamicFormComponent implements OnInit, OnChanges
 {

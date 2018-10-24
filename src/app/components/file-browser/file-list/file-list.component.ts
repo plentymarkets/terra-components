@@ -41,7 +41,7 @@ import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/te
 
 
 @Component({
-    selector: 'terra-file-list',
+    selector:    'terra-file-list',
     templateUrl: './file-list.component.html',
     styleUrls:   ['./file-list.component.scss']
 })

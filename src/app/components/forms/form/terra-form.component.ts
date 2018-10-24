@@ -15,10 +15,10 @@ import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { TerraFormFieldHelper } from './helper/terra-form-field.helper';
 
 @Component({
-    selector:  'terra-form',
-    templateUrl:  './terra-form.component.html',
-    styleUrls:    ['./terra-form.component.scss'],
-    providers: [
+    selector:    'terra-form',
+    templateUrl: './terra-form.component.html',
+    styleUrls:   ['./terra-form.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraFormComponent),

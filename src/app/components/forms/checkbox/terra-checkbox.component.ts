@@ -14,10 +14,10 @@ import { isNullOrUndefined } from 'util';
 let nextId:number = 0;
 
 @Component({
-    selector:  'terra-checkbox',
-    styleUrls:    ['./terra-checkbox.component.scss'],
-    templateUrl:  './terra-checkbox.component.html',
-    providers: [
+    selector:    'terra-checkbox',
+    styleUrls:   ['./terra-checkbox.component.scss'],
+    templateUrl: './terra-checkbox.component.html',
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraCheckboxComponent),

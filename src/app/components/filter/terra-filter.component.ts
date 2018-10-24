@@ -9,7 +9,7 @@ import {
  * @author mscharf
  */
 @Component({
-    selector: 'terra-filter',
+    selector:    'terra-filter',
     templateUrl: './terra-filter.component.html'
 })
 export class TerraFilterComponent

@@ -5,7 +5,7 @@ import {
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 
 @Component({
-    selector: 'terra-input-example',
+    selector:    'terra-input-example',
     styleUrls:   ['./terra-input.component.example.scss'],
     templateUrl: './terra-input.component.example.html',
 })

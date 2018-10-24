@@ -17,7 +17,7 @@ import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
 
 @Component({
-    selector: 'terra-form-container',
+    selector:    'terra-form-container',
     templateUrl: './terra-form-container.component.html',
     styleUrls:   ['./terra-form-container.component.scss']
 })

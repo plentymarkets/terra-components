@@ -1,9 +1,7 @@
-import {
-    Component
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'terra-color-picker-example',
+    selector:    'terra-color-picker-example',
     styleUrls:   ['./terra-color-picker.component.example.scss'],
     templateUrl: './terra-color-picker.component.example.html',
 })

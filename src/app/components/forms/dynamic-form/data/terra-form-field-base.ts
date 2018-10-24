@@ -1,7 +1,4 @@
-import {
-    isNull,
-    isNullOrUndefined
-} from 'util';
+import { isNull } from 'util';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
@@ -60,7 +57,7 @@ export class TerraFormFieldBase<T>
         this.label = label;
         this.required = required;
 
-        this.defaultValue = options.defaultValue || null;
+        this.defaultValue = options.defaultValue || null;
         this.tooltip = options.tooltip || null;
         this.tooltipPlacement = options.tooltipPlacement || 'top';
         this.minLength = options.minLength || -1;

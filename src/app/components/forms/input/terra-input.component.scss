@@ -148,7 +148,6 @@ input[type="search"]::-webkit-search-decoration
         }
     }
     
-    
     input[readonly]
     {
         color: var(--color-structure-6);
@@ -326,7 +325,7 @@ label
 {
     height: initial;
     line-height: 0;
-
+    
     textarea
     {
         -webkit-appearance: textarea;

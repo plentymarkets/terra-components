@@ -8,10 +8,10 @@ import { Color } from './color.helper';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 
 @Component({
-    selector:  'terra-color-picker',
-    styleUrls:    ['./terra-color-picker.component.scss'],
-    templateUrl:  './terra-color-picker.component.html',
-    providers: [
+    selector:    'terra-color-picker',
+    styleUrls:   ['./terra-color-picker.component.scss'],
+    templateUrl: './terra-color-picker.component.html',
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraColorPickerComponent),

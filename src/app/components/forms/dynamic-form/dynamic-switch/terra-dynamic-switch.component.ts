@@ -10,7 +10,7 @@ import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
  * @author mfrank
  */
 @Component({
-    selector: 'terra-dynamic-switch',
+    selector:    'terra-dynamic-switch',
     templateUrl: './terra-dynamic-switch.component.html',
     styleUrls:   ['./terra-dynamic-switch.component.scss']
 })
