@@ -14,11 +14,8 @@ import {
     IMyOptions,
     MyDatePicker
 } from 'mydatepicker';
-import {
-    DefaultLocale,
-    L10nDatePipe
-} from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
+import moment = require('moment');
 
 let nextId:number = 0;
 
@@ -42,12 +39,6 @@ let nextId:number = 0;
 })
 export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 {
-    /**
-     * @description default locale
-     */
-    @DefaultLocale()
-    public defaultLocale:string;
-
     /**
      * @description Set the label.
      */
@@ -95,7 +86,6 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     protected datePickerOptions:IMyOptions;
 
     private _value:IMyDateModel;
-    private datePipe:L10nDatePipe = new L10nDatePipe();
 
     constructor()
     {
@@ -161,7 +151,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
             this._value = value;
 
             this.onTouchedCallback();
-            this.onChangeCallback(this.datePipe.transform(value.jsdate, this.defaultLocale));
+            this.onChangeCallback(moment(value.jsdate).format());
         }
         else
         {
