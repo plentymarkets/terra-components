@@ -1,4 +1,3 @@
-
 # Unrleased
 * **function-groups** removed custom group for add-icon
 * **function-groups** added missing styles for .btn-major
