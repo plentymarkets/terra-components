@@ -17,10 +17,10 @@ import { isNullOrUndefined } from 'util';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 
 @Component({
-    selector:   'terra-portlet',
-    styleUrls:     ['./terra-portlet.component.scss'],
-    templateUrl:   './terra-portlet.component.html',
-    animations: [
+    selector:    'terra-portlet',
+    styleUrls:   ['./terra-portlet.component.scss'],
+    templateUrl: './terra-portlet.component.html',
+    animations:  [
         trigger('collapsedState', [
             state('inputCollapsed', style({
                 height:           0,

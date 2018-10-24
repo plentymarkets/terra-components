@@ -12,10 +12,10 @@ import { TerraBreadcrumbContainer } from './terra-breadcrumb-container';
 
 @Component(
     {
-        selector:  'terra-breadcrumbs',
-        styleUrls:    ['./terra-breadcrumbs.component.scss'],
-        templateUrl:  './terra-breadcrumbs.component.html',
-        providers: [TerraBreadcrumbsService]
+        selector:    'terra-breadcrumbs',
+        styleUrls:   ['./terra-breadcrumbs.component.scss'],
+        templateUrl: './terra-breadcrumbs.component.html',
+        providers:   [TerraBreadcrumbsService]
     }
 )
 export class TerraBreadcrumbsComponent

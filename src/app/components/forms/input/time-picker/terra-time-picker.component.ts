@@ -15,12 +15,12 @@ import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select
 import { isNullOrUndefined } from 'util';
 
 @Component({
-    selector:  'terra-time-picker',
-    styleUrls:    [
+    selector:    'terra-time-picker',
+    styleUrls:   [
         './terra-time-picker.component.scss',
     ],
-    templateUrl:  './terra-time-picker.component.html',
-    providers: [
+    templateUrl: './terra-time-picker.component.html',
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraTimePickerComponent),

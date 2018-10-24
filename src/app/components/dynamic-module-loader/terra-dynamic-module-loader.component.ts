@@ -18,7 +18,7 @@ import { isNullOrUndefined } from 'util';
 import { TerraDynamicLoadedComponentInputInterface } from './data/terra-dynamic-loaded-component-input.interface';
 
 @Component({
-    selector: 'terra-dynamic-module-loader',
+    selector:    'terra-dynamic-module-loader',
     templateUrl: './terra-dynamic-module-loader.component.html',
     styleUrls:   ['./terra-dynamic-module-loader.component.scss']
 })

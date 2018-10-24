@@ -6,7 +6,7 @@ import { TerraAlertInterface } from './data/terra-alert.interface';
  * @author mkunze
  */
 @Component({
-    selector: 'terra-alert-panel',
+    selector:    'terra-alert-panel',
     styleUrls:   [
         './terra-alert-panel.component.scss',
         './terra-alert-panel.component.glob.scss'.toString()

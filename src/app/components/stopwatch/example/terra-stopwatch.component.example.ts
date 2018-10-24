@@ -5,14 +5,14 @@ import {
 import { TerraStopwatchComponent } from '../terra-stopwatch.component';
 
 @Component({
-    selector: 'terra-stopwatch-example',
+    selector:    'terra-stopwatch-example',
     styleUrls:   ['./terra-stopwatch.component.example.scss'],
     templateUrl: './terra-stopwatch.component.example.html',
 })
 export class TerraStopwatchComponentExample
 {
     @ViewChild('viewChildCurrentTime')
-        public viewChildCurrentTime:TerraStopwatchComponent;
+    public viewChildCurrentTime:TerraStopwatchComponent;
 
     protected showCurrentTimeInMilliseconds():void
     {

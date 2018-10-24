@@ -14,7 +14,7 @@ import { TerraSliderTick } from './data/terra-slider-tick';
 import { InteractEvent } from 'interactjs';
 
 @Component({
-    selector: 'terra-slider',
+    selector:    'terra-slider',
     templateUrl: './terra-slider.component.html',
     styleUrls:   ['./terra-slider.component.scss']
 })

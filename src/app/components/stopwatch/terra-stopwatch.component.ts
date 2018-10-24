@@ -7,7 +7,7 @@ import { TranslationService } from 'angular-l10n';
 import * as Stopwatch from 'timer-stopwatch';
 
 @Component({
-    selector: 'terra-stopwatch',
+    selector:    'terra-stopwatch',
     styleUrls:   ['./terra-stopwatch.component.scss'],
     templateUrl: './terra-stopwatch.component.html',
 })

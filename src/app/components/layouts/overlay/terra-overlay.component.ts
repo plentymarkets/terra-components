@@ -14,7 +14,7 @@ import { TerraPlacementEnum } from '../../../..';
  * @author mfrank
  */
 @Component({
-    selector: 'terra-overlay',
+    selector:    'terra-overlay',
     templateUrl: './terra-overlay.component.html',
     styleUrls:   ['./terra-overlay.component.scss']
 })

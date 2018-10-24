@@ -13,10 +13,10 @@ import {
  * @author mfrank
  */
 @Component({
-    selector:  'terra-radio-button',
-    templateUrl:  './terra-radio-button.component.html',
-    styleUrls:    ['./terra-radio-button.component.scss'],
-    providers: [
+    selector:    'terra-radio-button',
+    templateUrl: './terra-radio-button.component.html',
+    styleUrls:   ['./terra-radio-button.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraRadioButtonComponent),

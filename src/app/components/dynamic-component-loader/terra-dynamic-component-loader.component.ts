@@ -15,7 +15,7 @@ import {
 import { isNullOrUndefined } from 'util';
 
 @Component({
-    selector: 'terra-dynamic-component-loader',
+    selector:    'terra-dynamic-component-loader',
     templateUrl: './terra-dynamic-component-loader.component.html',
 })
 export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDestroy, OnChanges

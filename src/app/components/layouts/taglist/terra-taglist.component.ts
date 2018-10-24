@@ -7,7 +7,7 @@ import {
 import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 
 @Component({
-    selector: 'terra-taglist',
+    selector:    'terra-taglist',
     styleUrls:   ['./terra-taglist.component.scss'],
     templateUrl: './terra-taglist.component.html'
 })

@@ -6,7 +6,7 @@ import {
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
 
 @Component({
-    selector: 'terra-note-example',
+    selector:    'terra-note-example',
     styleUrls:   ['./terra-note.component.example.scss'],
     templateUrl: './terra-note.component.example.html'
 })

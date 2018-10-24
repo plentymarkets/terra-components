@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: 'terra-indicator',
+    selector:    'terra-indicator',
     styleUrls:   ['./terra-indicator.component.scss'],
     templateUrl: './terra-indicator.component.html'
 })

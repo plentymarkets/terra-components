@@ -40,11 +40,11 @@ import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraTextAlignEnum } from './cell/terra-text-align.enum';
 
 @Component({
-    selector:   'terra-data-table',
-    templateUrl:   './terra-data-table.component.html',
-    styleUrls:     ['./terra-data-table.component.scss'],
-    providers:  [TerraDataTableContextMenuService],
-    animations: [
+    selector:    'terra-data-table',
+    templateUrl: './terra-data-table.component.html',
+    styleUrls:   ['./terra-data-table.component.scss'],
+    providers:   [TerraDataTableContextMenuService],
+    animations:  [
         trigger('collapsedState', [
             state('hidden', style({
                 height:          '0',

@@ -21,10 +21,10 @@ import {
 import { StringHelper } from '../../../helpers/string.helper';
 
 @Component({
-    selector:  'terra-select-box',
-    styleUrls:    ['./terra-select-box.component.scss'],
-    templateUrl:  './terra-select-box.component.html',
-    providers: [
+    selector:    'terra-select-box',
+    styleUrls:   ['./terra-select-box.component.scss'],
+    templateUrl: './terra-select-box.component.html',
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraSelectBoxComponent),

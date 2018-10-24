@@ -21,10 +21,10 @@ import { StringHelper } from '../../../../helpers/string.helper';
 let nextId:number = 0;
 
 @Component({
-    selector:  'terra-file-input',
-    templateUrl:  './terra-file-input.component.html',
-    styleUrls:    ['./terra-file-input.component.scss'],
-    providers: [
+    selector:    'terra-file-input',
+    templateUrl: './terra-file-input.component.html',
+    styleUrls:   ['./terra-file-input.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraFileInputComponent),

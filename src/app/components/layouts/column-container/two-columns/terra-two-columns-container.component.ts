@@ -9,7 +9,7 @@ import { ColumnContainerConfig } from '../column-container.config';
  * @author mfrank
  */
 @Component({
-    selector: 'terra-2-col',
+    selector:    'terra-2-col',
     styleUrls:   ['./terra-two-columns-container.component.scss'],
     templateUrl: './terra-two-columns-container.component.html'
 })

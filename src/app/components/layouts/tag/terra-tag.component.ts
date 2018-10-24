@@ -10,7 +10,7 @@ import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 import { Language } from 'angular-l10n';
 
 @Component({
-    selector: 'terra-tag',
+    selector:    'terra-tag',
     styleUrls:   ['./terra-tag.component.scss'],
     templateUrl: './terra-tag.component.html'
 })
@@ -68,7 +68,7 @@ export class TerraTagComponent
 
     protected getName():string
     {
-        return this.inputBadge ? this.inputBadge :  this.getTranslatedName();
+        return this.inputBadge ? this.inputBadge : this.getTranslatedName();
     }
 
     private getTranslatedName():string

@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: 'terra-card',
+    selector:    'terra-card',
     styleUrls:   ['./terra-card.component.scss'],
     templateUrl: './terra-card.component.html'
 })

@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: 'terra-syntax-editor-example',
+    selector:    'terra-syntax-editor-example',
     styleUrls:   ['./terra-syntax-editor.component.example.scss'],
     templateUrl: './terra-syntax-editor.component.example.html',
 })

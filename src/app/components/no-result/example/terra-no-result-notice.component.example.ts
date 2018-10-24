@@ -5,7 +5,7 @@ import {
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 
 @Component({
-    selector: 'terra-no-result-notice-example',
+    selector:    'terra-no-result-notice-example',
     styleUrls:   ['./terra-no-result-notice.component.example.scss'],
     templateUrl: './terra-no-result-notice.component.example.html',
 })

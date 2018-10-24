@@ -21,7 +21,7 @@ import 'brace/ext/error_marker';
 import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
 
 @Component({
-    selector: 'terra-syntax-editor',
+    selector:    'terra-syntax-editor',
     templateUrl: './terra-syntax-editor.component.html',
     styleUrls:   ['./terra-syntax-editor.component.scss']
 })

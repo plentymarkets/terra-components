@@ -19,10 +19,10 @@ import { NestedDetailDataInterface } from './data/nested-detail-data.interface';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
 @Component({
-    selector:  'terra-nested-data-picker',
-    templateUrl:  './terra-nested-data-picker.component.html',
-    styleUrls:    ['./terra-nested-data-picker.component.scss'],
-    providers: [
+    selector:    'terra-nested-data-picker',
+    templateUrl: './terra-nested-data-picker.component.html',
+    styleUrls:   ['./terra-nested-data-picker.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraNestedDataPickerComponent),
@@ -123,7 +123,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
                     if(this.showFullSelectionPath && !isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode.parent))
                     {
                         this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.parent.name + ' / '
-                                            + this.nestedTreeConfig.currentSelectedNode.name;
+                                              + this.nestedTreeConfig.currentSelectedNode.name;
                     }
                     else
                     {
@@ -225,6 +225,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
         return obs;
     }
+
     private getNestedDataByParent(parentNode:NestedDataInterface<{}>):void
     {
         let id:number | string = null;
@@ -246,10 +247,12 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
             }
         });
     }
+
     private getNestedDataByParentId(parentId:number | string):() => Observable<TerraPagerInterface<{}>>
     {
         return ():Observable<TerraPagerInterface<{}>> => this.getNestedData(parentId);
     }
+
     public onTouchedCallback:() => void = () => undefined;
 
     public onChangeCallback:(_:any) => void = () => undefined;
@@ -324,6 +327,6 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
         }
         // Current List is updated
         this.nestedList = this.nestedTreeConfig.list;
-        }
+    }
 
 }
