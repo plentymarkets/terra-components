@@ -5,6 +5,8 @@
 	- Table is now sortable. Use the sortBy interface property to state whether a column is sortable
 	- Refactoring -> Removed deprecated interface and input properties
 	- New `TerraDataTableBaseService` which replaces custom directives and configs. It also stores all information needed for retrieving data from the server
+	- New `terra-function-group` component which has been extracted from the `terra-data-table` component
+	- Removed inputs for `terra-no-result-notice` and `terra-function-group` since they can now be passed to the content of the `terra-data-table` component.
 
 <a name="3.0.0-beta.10"></a>
 # 3.0.0-beta.10 (23.10.2018)

@@ -147,4 +147,5 @@ export * from './app/components/layouts/column-container/two-columns/terra-two-c
 export * from './app/components/layouts/column-container/two-columns/terra-two-columns-container.component';
 export * from './app/components/layouts/column-container/three-columns/terra-three-columns-container.component';
 export * from './app/components/tables/data-table/enums/terra-ref-type.enum';
+export * from './app/components/tables/group-function/terra-group-function.component';
 export * from './app/components/tables/data-table/terra-data-table-base.service';

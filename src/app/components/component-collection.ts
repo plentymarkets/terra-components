@@ -57,6 +57,7 @@ import { TerraBreadcrumbsComponent } from './breadcrumbs/terra-breadcrumbs.compo
 import { TerraTagSelectComponent } from './forms/tag-select/terra-tag-select.component';
 import { TerraStopwatchComponent } from './stopwatch/terra-stopwatch.component';
 import { TerraThreeColumnsContainerComponent } from './layouts/column-container/three-columns/terra-three-columns-container.component';
+import { TerraGroupFunctionComponent } from './tables/group-function/terra-group-function.component';
 
 export const components:Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -118,5 +119,6 @@ export const components:Array<Type<any>> = [
     TerraBreadcrumbsComponent,
     TerraTagSelectComponent,
     TerraStopwatchComponent,
-    TerraThreeColumnsContainerComponent
+    TerraThreeColumnsContainerComponent,
+    TerraGroupFunctionComponent
 ];

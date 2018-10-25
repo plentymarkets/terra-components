@@ -1,16 +1,4 @@
-<div class="group-function" [@collapsedState]="collapsedState">
-    <div class="group-function-head">
-        <terra-button inputIcon="icon-execute"
-                      [inputIsDisabled]="inputGroupFunctionExecuteButtonIsDisabled"
-                      (outputClicked)="onGroupFunctionExecuteButtonClicked($event)">
-        </terra-button>
-        <span>{{'terraDataTable.groupFunction' | translate:lang}}</span>
-        <span class="icon-collapse_down" [class.rotated]="inputCollapsed" *ngIf="inputIsCollapsable"></span>
-    </div>
-    <div class="group-function-body">
-        <ng-content></ng-content>
-    </div>
-</div>
+<ng-content select="terra-group-function"></ng-content>
 
 <terra-pager *ngIf="inputHasPager && rowList && rowList.length > 0"
              [inputPagingSize]="inputService?.pagingSizes"
@@ -135,11 +123,6 @@
         </tbody>
     </table>
     
-    <terra-no-result-notice
-        *ngIf="!isTableDataAvailable && isNoResultsNoticeDefined && !inputService?.requestPending"
-        [inputButtons]="inputNoResultButtons"
-        [inputTextPrimary]="inputNoResultTextPrimary"
-        [inputTextSecondary]="inputNoResultTextSecondary">
-    </terra-no-result-notice>
+    <ng-content *ngIf="!isTableDataAvailable && !inputService?.requestPending" select="terra-no-result-notice"></ng-content>
 
 </div>
