@@ -107,22 +107,6 @@ fdescribe('Component: TerraDataTableComponent', () =>
         }));
     });
 
-    it('should have a not results notice if no data is given', () =>
-    {
-        let noResultNoticeNE:DebugElement = fixture.nativeElement.querySelector('terra-no-result-notice');
-        expect(noResultNoticeNE).toBeNull();
-
-        component.inputNoResultButtons = [{icon: 'icon-search', caption: 'search', clickFunction: ():void => { console.log('test') }}];
-        component.inputNoResultTextPrimary = 'No results';
-        component.inputNoResultTextSecondary = 'Press search to query data';
-
-        fixture.detectChanges();
-
-        noResultNoticeNE = fixture.nativeElement.querySelector('terra-no-result-notice');
-        expect(noResultNoticeNE).toBeTruthy();
-    });
-
-
     describe('With an inputService', () =>
     {
         beforeEach(() =>
