@@ -1,4 +1,5 @@
-### Unreleased
+<a name="3.0.0-beta.11"></a>
+# 3.0.0-beta.11 (25.10.2018)
 * **terra-file-browser** 
 	- breadcrumbs replaced with tree for folder navigation.
 	- saving alternative text working as intended with success message.
