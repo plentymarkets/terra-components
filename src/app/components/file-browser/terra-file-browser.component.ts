@@ -103,7 +103,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         services.forEach((service:TerraBaseStorageService) =>
         {
             let node:TerraNodeInterface<{}> = {
-                id:        service.name,
+                id:        null,
                 name:      service.name,
                 isVisible: true
             };
@@ -121,6 +121,9 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                 node.children = [];
                 if(!isNullOrUndefined(storage))
                 {
+                    let root:TerraStorageObject = storage.root;
+                    node.id = root.key;
+
                     if(isNullOrUndefined(node.onClick))
                     {
                         // only one root folder is existing
@@ -128,11 +131,11 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                         {
                             // TODO maybe change to inputs
                             this.fileListComponent.activeStorageService = service;
-                            this.fileListComponent.currentStorageRoot = storage.root;
+                            this.fileListComponent.currentStorageRoot = root;
                         };
                     }
 
-                    this.getSortedList(storage.root.children).forEach((child:TerraStorageObject) =>
+                    this.getSortedList(root.children).forEach((child:TerraStorageObject) =>
                     {
                         this.recursiveCreateNode(child, node, service);
                     });
