@@ -110,14 +110,32 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
 
             this.nodeTreeConfig.addNode(node);
 
+            if(isNullOrUndefined(this.nodeTreeConfig.currentSelectedNode))
+            {
+                this.nodeTreeConfig.currentSelectedNode = node;
+                node.isOpen = true;
+            }
+
             service.getStorageList().subscribe((storage:TerraStorageObjectList) =>
             {
                 node.children = [];
                 if(!isNullOrUndefined(storage))
                 {
-                    let root:TerraStorageObject = storage.root;
+                    if(isNullOrUndefined(node.onClick))
+                    {
+                        // only one root folder is existing
+                        node.onClick = ():void =>
+                        {
+                            // TODO maybe change to inputs
+                            this.fileListComponent.activeStorageService = service;
+                            this.fileListComponent.currentStorageRoot = storage.root;
+                        };
+                    }
 
-                    this.recursiveCreateNode(root, node, service);
+                    this.getSortedList(storage.root.children).forEach((child:TerraStorageObject) =>
+                    {
+                        this.recursiveCreateNode(child, node, service);
+                    });
                 }
             });
         });
@@ -174,25 +192,20 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
 
             this.nodeTreeConfig.addNode(directory, parentNode);
 
-            directory.isOpen = true;
-
-            if(isNullOrUndefined(this.nodeTreeConfig.currentSelectedNode))
-            {
-                this.nodeTreeConfig.currentSelectedNode = directory;
-            }
-
-            let sortedChildren:Array<TerraStorageObject> =
-                storage.children.sort((objectA:TerraStorageObject, objectB:TerraStorageObject) =>
-                    {
-                        return objectA.name.localeCompare(objectB.name);
-                    }
-                );
-
-            sortedChildren.forEach((childStorage:TerraStorageObject) =>
+            this.getSortedList(storage.children).forEach((childStorage:TerraStorageObject) =>
             {
                 this.recursiveCreateNode(childStorage, directory, service);
             });
         }
+    }
+
+    private getSortedList(list:Array<TerraStorageObject>):Array<TerraStorageObject>
+    {
+        return list.sort((objectA:TerraStorageObject, objectB:TerraStorageObject) =>
+            {
+                return objectA.name.localeCompare(objectB.name);
+            }
+        );
     }
 
     public selectNode(storage:TerraStorageObject):void
