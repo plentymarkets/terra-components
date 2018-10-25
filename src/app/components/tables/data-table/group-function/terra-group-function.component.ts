@@ -30,7 +30,6 @@ import {
             })),
             transition('hidden <=> collapsed', [
                 animate(300)
-
             ])
         ])
     ]
