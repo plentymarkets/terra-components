@@ -52,6 +52,15 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     @Input()
     public inputStorageServices:Array<TerraBaseStorageService> = null;
 
+    @Output()
+    public showImagePreview:EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    @Output()
+    public hideImagePreview:EventEmitter<void> = new EventEmitter<void>();
+
+    @Output()
+    public selectNode:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
+
     public imagePreviewObject:TerraStorageObject;
 
     protected translationPrefix:string = 'terraFileBrowser';
@@ -72,12 +81,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     protected fileTableRowList:Array<TerraSimpleTableRowInterface<TerraStorageObject>> = [];
 
     private _activeStorageService:TerraBaseStorageService;
-    @Output()
-    private showImagePreview:EventEmitter<boolean> = new EventEmitter<boolean>();
-    @Output()
-    private hideImagePreview:EventEmitter<void> = new EventEmitter<void>();
-    @Output()
-    private selectNode:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
     public get activeStorageService():TerraBaseStorageService
     {
@@ -590,9 +593,13 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         {
             this.showImagePreview.emit(this.activeStorageService.isImagePreviewEnabled);
         }
+        else if(storageObject.isDirectory)
+        {
+            this.selectNode.emit(storageObject);
+            this.hideImagePreview.emit(null);
+        }
         else
         {
-            this.selectNode.emit(row.value);
             this.hideImagePreview.emit(null);
         }
     }
