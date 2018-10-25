@@ -47,24 +47,6 @@ import { TerraBaseTable } from '../terra-base-table';
     template:   require('./terra-data-table.component.html'),
     styles:     [require('./terra-data-table.component.scss')],
     providers:  [TerraDataTableContextMenuService],
-    animations: [
-        trigger('collapsedState', [
-            state('hidden', style({
-                height:          '0',
-                overflow:        'hidden',
-                'margin-bottom': '0'
-            })),
-            state('collapsed', style({
-                height:          '*',
-                overflow:        'initial',
-                'margin-bottom': '6px'
-            })),
-            transition('hidden <=> collapsed', [
-                animate(300)
-
-            ])
-        ])
-    ]
 })
 export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges
 {
@@ -138,18 +120,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     protected get rowList():Array<TerraDataTableRowInterface<T>>
     {
         return !isNullOrUndefined(this.inputService) ? this.inputService.rowList : [];
-    }
-
-    protected get collapsedState():string
-    {
-        if(this.inputShowGroupFunctions)
-        {
-            return 'collapsed';
-        }
-        else
-        {
-            return 'hidden';
-        }
     }
 
     /**

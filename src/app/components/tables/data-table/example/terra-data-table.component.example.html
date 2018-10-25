@@ -1,9 +1,12 @@
 <terra-base-toolbar>
     <div class="btn-group" role="group">
-        <terra-button class="terra-button"
-                      [inputIcon]="'icon-add'"
+        <terra-button [inputIcon]="'icon-add'"
                       [inputTooltipText]="'New entry'"
                       (outputClicked)="addEntry()">
+        </terra-button>
+        <terra-button [inputIcon]="'icon-settings_transfer'"
+                      [inputTooltipText]="'Group function'"
+                      (outputClicked)="showGroupFunction = !showGroupFunction">
         </terra-button>
     </div>
 </terra-base-toolbar>
@@ -16,4 +19,8 @@
     [inputNoResultTextPrimary]="noResultTextPrimary"
     [inputNoResultTextSecondary]="noResultTextSecondary"
     [inputHeaderList]="headerList">
+    
+    <terra-group-function [show]="showGroupFunction" [disableExecution]="false">
+        <terra-text-input [inputName]="'Text'"></terra-text-input>
+    </terra-group-function>
 </terra-data-table>

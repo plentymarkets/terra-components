@@ -3,13 +3,9 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraDataTableServiceExample } from './terra-data-table.service.example';
-import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
 import { TerraDataTableHeaderCellInterface } from '../interfaces/terra-data-table-header-cell.interface';
 import { TerraTextAlignEnum } from '../enums/terra-text-align.enum';
-import { TerraDataTableCellInterface } from '../interfaces/terra-data-table-cell.interface';
 import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.interface';
-import { TerraRefTypeEnum } from '../enums/terra-ref-type.enum';
-import { DataTableExampleInterface } from './terra-data-table.interface.example';
 
 @Component({
     selector:  'terra-data-table-example',
@@ -24,6 +20,8 @@ export class TerraDataTableComponentExample implements OnInit
     protected noResultButtons:Array<TerraButtonInterface> = [];
     protected noResultTextPrimary:string;
     protected noResultTextSecondary:string;
+
+    protected showGroupFunction:boolean = false;
 
     constructor(private service:TerraDataTableServiceExample)
     {
