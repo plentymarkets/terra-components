@@ -3,6 +3,7 @@ import {
     EventEmitter,
     Output
 } from '@angular/core';
+import { isNullOrUndefined } from 'util';
 
 export class TerraBaseTable<T>
 {
@@ -33,6 +34,10 @@ export class TerraBaseTable<T>
      */
     public get selectedRowList():Array<TerraDataTableRowInterface<T>>
     {
+        if(isNullOrUndefined(this.rowList))
+        {
+            return [];
+        }
         return this.rowList.filter((row:TerraDataTableRowInterface<T>) => row.selected);
     }
 
