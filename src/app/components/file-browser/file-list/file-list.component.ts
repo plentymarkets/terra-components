@@ -363,7 +363,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             if(!isNullOrUndefined(this.imagePreviewObject) && keyList.indexOf(this.imagePreviewObject.key) >= 0)
             {
                 this.imagePreviewObject = null;
-                this.hideImagePreview.emit(null);
+                this.hideImagePreview.emit();
             }
             this.selectNode.emit(this.currentStorageRoot);
         });
@@ -586,33 +586,36 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     protected onRowClick(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
     {
-        this.currentStorageRoot = row.value;
         let storageObject:TerraStorageObject = row.value;
+        if(storageObject.isDirectory)
+        {
+            this.currentStorageRoot = storageObject;
+            this.selectNode.emit(storageObject);
+        }
+    }
 
+    private showOrHideImagePreview(storageObject:TerraStorageObject):void
+    {
         if(!isNullOrUndefined(storageObject) && FileTypeHelper.isWebImage(storageObject.key))
         {
             this.showImagePreview.emit(this.activeStorageService.isImagePreviewEnabled);
         }
-        else if(storageObject.isDirectory)
-        {
-            this.selectNode.emit(storageObject);
-            this.hideImagePreview.emit(null);
-        }
         else
         {
-            this.hideImagePreview.emit(null);
+            this.hideImagePreview.emit();
         }
     }
 
     protected onActiveRowChange(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
     {
+        let storageObject:TerraStorageObject = row.value;
+        this.showOrHideImagePreview(storageObject);
         if(isNullOrUndefined(this.imagePreviewTimeout))
         {
             clearTimeout(this.imagePreviewTimeout);
         }
         let debounceFn:Function = ():void =>
         {
-            let storageObject:TerraStorageObject = row.value;
 
             if(!isNullOrUndefined(storageObject) && FileTypeHelper.isWebImage(storageObject.key))
             {
