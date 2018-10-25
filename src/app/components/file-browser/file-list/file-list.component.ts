@@ -190,7 +190,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             if(this.imagePreviewObject && storageObject !== this.imagePreviewObject)
             {
                 this.imagePreviewObject = null;
-                this.hideImagePreview.emit(null);
+                this.hideImagePreview.emit();
             }
 
             this._currentStorageRoot = storageObject;
