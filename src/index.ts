@@ -108,7 +108,6 @@ export * from './app/components/category-picker/service/terra-category-picker-ba
 export * from './app/components/pager/data/terra-pager.data';
 export * from './app/models/terra-key-value.interface';
 export * from './app/components/category-picker/terra-category-picker.component';
-export * from './app/components/category-picker/service/terra-category-picker-base.service';
 export * from './app/components/category-picker/data/category-data.interface';
 export * from './app/components/category-picker/data/category-detail-data.interface';
 export * from './app/components/category-picker/data/category-value.interface';
@@ -147,4 +146,5 @@ export * from './app/components/forms/tag-select/terra-tag-select.component';
 export * from './app/components/layouts/column-container/two-columns/terra-two-columns-container.directive';
 export * from './app/components/layouts/column-container/two-columns/terra-two-columns-container.component';
 export * from './app/components/layouts/column-container/three-columns/terra-three-columns-container.component';
-export * from './app/components/tables/data-table/enums/terra-ref-type.enum'
+export * from './app/components/tables/data-table/enums/terra-ref-type.enum';
+export * from './app/components/tables/data-table/terra-data-table-base.service';
