@@ -88,6 +88,6 @@ export class TerraNodeComponent<D> implements OnInit
     {
         event.stopPropagation();
 
-        this.inputConfig.handleLazyLoading(this.inputNode);
+        this.inputConfig.handleLazyLoading(this.inputNode, true);
     }
 }

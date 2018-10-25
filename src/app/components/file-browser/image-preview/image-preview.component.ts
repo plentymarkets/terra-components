@@ -8,6 +8,7 @@ import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraImageMetadata } from '../model/terra-image-metadata.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraBaseMetadataStorageService } from '../terra-base-metadata-storage.interface';
+import { TranslationService } from 'angular-l10n';
 
 @Component({
     selector:    'terra-image-preview',
@@ -58,7 +59,8 @@ export class TerraImagePreviewComponent
         return this.inputStorageService instanceof TerraBaseMetadataStorageService;
     }
 
-    constructor(private changeDetector:ChangeDetectorRef)
+    constructor(private changeDetector:ChangeDetectorRef,
+                private translation:TranslationService)
     {
     }
 
@@ -66,7 +68,12 @@ export class TerraImagePreviewComponent
     {
         if(this.inputStorageService instanceof TerraBaseMetadataStorageService)
         {
-            this.inputStorageService.updateMetadata(this.inputStorageObject.key, this.metadata);
+            this.inputStorageService
+                .updateMetadata(this.inputStorageObject.key, this.metadata)
+                .subscribe(() =>
+                {
+                    this.translation.translate(this.translationPrefix + '.metadataUpdated');
+                });
         }
     }
 }
