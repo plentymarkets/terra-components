@@ -14,19 +14,7 @@ import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.i
 @Injectable()
 export class TerraDataTableServiceExample extends TerraDataTableBaseService<DataTableExampleInterface, TerraPagerParameterInterface>
 {
-    private data:Array<DataTableExampleInterface> = [
-        {
-            id:    1,
-            value: Math.random()
-        },
-        {
-            id:    2,
-            value: Math.random()
-        },
-        {
-            id:    3,
-            value: Math.random()
-        }];
+    private data:Array<DataTableExampleInterface> = [];
 
     constructor(spinner:TerraLoadingSpinnerService, http:Http)
     {

@@ -78,21 +78,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
      */
     @Input()
     public inputHasPager:boolean = true;
-    /**
-     * @description Primary text for no results notice
-     */
-    @Input()
-    public inputNoResultTextPrimary:string;
-    /**
-     * @description Secondary text for no results notice
-     */
-    @Input()
-    public inputNoResultTextSecondary:string;
-    /**
-     * @description Buttons for no results notice
-     */
-    @Input()
-    public inputNoResultButtons:Array<TerraButtonInterface>;
 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
@@ -154,13 +139,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     protected get isTableDataAvailable():boolean
     {
         return this.rowList && this.rowList.length > 0;
-    }
-
-    protected get isNoResultsNoticeDefined():boolean
-    {
-        return (this.inputNoResultButtons && this.inputNoResultButtons.length > 0) || // a button is given
-               (this.inputNoResultTextPrimary && this.inputNoResultTextPrimary.length > 0) || // a primary text is given
-               (this.inputNoResultTextSecondary && this.inputNoResultTextSecondary.length > 0); // a secondary text is given
     }
 
     protected doPaging(pagerData:TerraPagerInterface<T>):void

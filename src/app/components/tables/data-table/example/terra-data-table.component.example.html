@@ -16,12 +16,17 @@
     [inputService]="service"
     [inputHasCheckboxes]="true"
     [inputIsSortable]="true"
-    [inputNoResultButtons]="noResultButtons"
-    [inputNoResultTextPrimary]="noResultTextPrimary"
-    [inputNoResultTextSecondary]="noResultTextSecondary"
     [inputHeaderList]="headerList">
     
-    <terra-group-function [show]="showGroupFunction" [disableExecution]="false" (executeGroupFunction)="executeGroupFunction(table.selectedRowList)">
+    <terra-group-function [show]="showGroupFunction"
+                          [disableExecution]="false"
+                          (executeGroupFunction)="executeGroupFunction(table.selectedRowList)">
         <terra-text-input [inputName]="'Text'"></terra-text-input>
     </terra-group-function>
+    
+    <terra-no-result-notice
+        [inputButtons]="noResultButtons"
+        [inputTextPrimary]="noResultTextPrimary"
+        [inputTextSecondary]="noResultTextSecondary">
+    </terra-no-result-notice>
 </terra-data-table>

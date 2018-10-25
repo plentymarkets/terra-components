@@ -123,11 +123,6 @@
         </tbody>
     </table>
     
-    <terra-no-result-notice
-        *ngIf="!isTableDataAvailable && isNoResultsNoticeDefined && !inputService?.requestPending"
-        [inputButtons]="inputNoResultButtons"
-        [inputTextPrimary]="inputNoResultTextPrimary"
-        [inputTextSecondary]="inputNoResultTextSecondary">
-    </terra-no-result-notice>
+    <ng-content *ngIf="!isTableDataAvailable && !inputService?.requestPending" select="terra-no-result-notice"></ng-content>
 
 </div>

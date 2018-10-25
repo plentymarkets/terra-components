@@ -54,7 +54,7 @@ export class TerraDataTableComponentExample implements OnInit
             caption:       'Add',
             isHighlighted: false,
             icon:          'icon-add',
-            clickFunction: ():void => this.service.addEntry()
+            clickFunction: ():void => this.addEntry()
         }];
 
         this.noResultTextPrimary = 'No entries found';
