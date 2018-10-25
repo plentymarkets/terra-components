@@ -47,24 +47,6 @@ import { TerraBaseTable } from '../terra-base-table';
     template:   require('./terra-data-table.component.html'),
     styles:     [require('./terra-data-table.component.scss')],
     providers:  [TerraDataTableContextMenuService],
-    animations: [
-        trigger('collapsedState', [
-            state('hidden', style({
-                height:          '0',
-                overflow:        'hidden',
-                'margin-bottom': '0'
-            })),
-            state('collapsed', style({
-                height:          '*',
-                overflow:        'initial',
-                'margin-bottom': '6px'
-            })),
-            transition('hidden <=> collapsed', [
-                animate(300)
-
-            ])
-        ])
-    ]
 })
 export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges
 {
@@ -96,39 +78,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
      */
     @Input()
     public inputHasPager:boolean = true;
-    /**
-     * @description Primary text for no results notice
-     */
-    @Input()
-    public inputNoResultTextPrimary:string;
-    /**
-     * @description Secondary text for no results notice
-     */
-    @Input()
-    public inputNoResultTextSecondary:string;
-    /**
-     * @description Buttons for no results notice
-     */
-    @Input()
-    public inputNoResultButtons:Array<TerraButtonInterface>;
-    /**
-     * @description shows group functions container if set to true
-     * @default false
-     */
-    @Input()
-    public inputShowGroupFunctions:boolean = false;
-    /**
-     * @description disables execute group function button
-     * @default true
-     */
-    @Input()
-    public inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
-
-    /**
-     * @description emits if the execute group functions button has been clicked
-     */
-    @Output()
-    public outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<T>>> = new EventEmitter();
 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
@@ -138,18 +87,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     protected get rowList():Array<TerraDataTableRowInterface<T>>
     {
         return !isNullOrUndefined(this.inputService) ? this.inputService.rowList : [];
-    }
-
-    protected get collapsedState():string
-    {
-        if(this.inputShowGroupFunctions)
-        {
-            return 'collapsed';
-        }
-        else
-        {
-            return 'hidden';
-        }
     }
 
     /**
@@ -202,13 +139,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     protected get isTableDataAvailable():boolean
     {
         return this.rowList && this.rowList.length > 0;
-    }
-
-    protected get isNoResultsNoticeDefined():boolean
-    {
-        return (this.inputNoResultButtons && this.inputNoResultButtons.length > 0) || // a button is given
-               (this.inputNoResultTextPrimary && this.inputNoResultTextPrimary.length > 0) || // a primary text is given
-               (this.inputNoResultTextSecondary && this.inputNoResultTextSecondary.length > 0); // a secondary text is given
     }
 
     protected doPaging(pagerData:TerraPagerInterface<T>):void
@@ -349,11 +279,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         {
             this.inputService.getResults();
         }
-    }
-
-    protected onGroupFunctionExecuteButtonClicked(event:Event):void
-    {
-        this.outputGroupFunctionExecuteButtonClicked.emit(this.selectedRowList);
     }
 
     protected getTextAlign(item:TerraDataTableHeaderCellInterface):TerraTextAlignEnum // TODO: Pipe?

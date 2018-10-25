@@ -1,4 +1,4 @@
-<div *ngIf="inputStorageObject">
+<div *ngIf="inputStorageObject && inputStorageService?.isImagePreviewEnabled">
     <terra-base-toolbar *ngIf="_canHandleMetadata">
         <div class="btn-group" role="group">
             <terra-button inputIcon="icon-save"
@@ -20,7 +20,7 @@
                                   [ngModel]="metadata.width ? (metadata.width + ' x ' + metadata.height + ' px') : '-'"></terra-text-input>
                 
                 <terra-text-input [inputName]="translationPrefix + '.altText' | translate:lang"
-                                  [(ngModel)]="metadata.altText"></terra-text-input>
+                                  [(ngModel)]="metadata.alttext"></terra-text-input>
             </div>
         </div>
         

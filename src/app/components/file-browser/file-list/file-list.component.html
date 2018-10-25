@@ -1,27 +1,3 @@
-<terra-base-toolbar [inputIsBreadcrumbs]="true">
-    <ul class="terra-breadcrumbs" *ngIf="storageList">
-        <li *ngFor="let parent of parentStorageObjects; let first = first; let last = last" (click)="currentStorageRoot = parent">
-            <div [class.active]="last">
-                <span>{{ parent.name || activeStorageService.name }}</span>
-                <a class="caret" *ngIf="first && inputStorageServices.length > 1">
-                    <ul class="context-menu">
-                        <li *ngFor="let storageService of inputStorageServices">
-                            <a (click)="activeStorageService = storageService" [class.active]="storageService === activeStorageService">
-                                {{ storageService.name }}
-                            </a>
-                        </li>
-                    </ul>
-                </a>
-            </div>
-            <a class="icon-next"></a>
-        </li>
-    </ul>
-    <div class="loading-placeholder" *ngIf="!storageList">
-        <p>{{ translationPrefix + '.loadingFiles' | translate:lang }}</p>
-        <span class="icon-loading"></span>
-    </div>
-</terra-base-toolbar>
-
 <terra-base-toolbar>
     <div class="btn-group" role="group">
         <terra-button inputIcon="icon-upload"
@@ -49,11 +25,17 @@
     <label style="width:0; height: 0; visibility: hidden;" #fileChooser>
         <input type="file" (change)="onFileSelect($event)" multiple="multiple">
     </label>
+    
+    <!-- TODO is this needed???? -->
+    <!--<div class="loading-placeholder" *ngIf="!storageList">-->
+        <!--<p>{{ translationPrefix + '.loadingFiles' | translate:lang }}</p>-->
+        <!--<span class="icon-loading"></span>-->
+    <!--</div>-->
 
 </terra-base-toolbar>
 
 <div class="file-list-container" [class.empty]="fileTableRowList.length <= 0">
-    <div class="prompt" [class.in]="showNewDirectoryPrompt">
+    <div [hidden]="!showNewDirectoryPrompt" class="prompt" [class.in]="showNewDirectoryPrompt">
         <span class="prompt-title">{{ translationPrefix + '.createFolder' | translate:lang }}</span>
         <terra-text-input [inputName]="translationPrefix + '.folderName' | translate:lang"
                           [(ngModel)]="newDirectoryName">
@@ -64,7 +46,7 @@
                           [inputIsSmall]="true"
                           (outputClicked)="showNewDirectoryPrompt = false"></terra-button>
             
-            <terra-button [inputIcon]="'icon-success'"
+            <terra-button [inputIcon]="'icon-folder_add'"
                           [inputCaption]="translationPrefix + '.create' | translate:lang"
                           [inputIsSmall]="true"
                           [inputIsDisabled]="!newDirectoryName"
@@ -72,13 +54,11 @@
         </div>
     </div>
     
-    <div class="prompt" [class.in]="objectsToDelete.length > 0">
-        <span class="prompt-title"
-              *ngIf="objectsToDelete.length === 1">
+    <div [hidden]="objectsToDelete.length === 0" class="prompt" [class.in]="objectsToDelete.length > 0">
+        <span class="prompt-title">
             {{ translationPrefix + '.confirmDelete' | translate:lang }}
         </span>
-        <span class="prompt-title"
-              *ngIf="objectsToDelete.length > 1">
+        <span class="prompt-title">
             {{ translationPrefix + '.confirmDeleteMany' | translate:lang:{count: _deleteCount } }}
         </span>
         <div class="pull-lg-right">
@@ -88,7 +68,7 @@
                           (outputClicked)="objectsToDelete = []">
             </terra-button>
             
-            <terra-button [inputIcon]="'icon-success'"
+            <terra-button [inputIcon]="'icon-delete'"
                           [inputCaption]="translationPrefix + '.delete' | translate:lang"
                           [inputIsSmall]="true"
                           (outputClicked)="deleteObjects()">
@@ -96,16 +76,15 @@
         </div>
     </div>
     
-    <terra-simple-table *ngIf="fileTableRowList.length > 0"
-                        fixedHeader
+    <terra-simple-table *ngIf="fileTableRowList.length > 0" [hidden]="isDragActive"
                         [inputHeaderList]="fileTableHeaderList"
                         [inputRowList]="fileTableRowList"
                         [inputIsStriped]="true"
                         [inputUseHighlighting]="true"
                         [inputHasCheckboxes]="true"
                         [inputEnableHotkeys]="true"
+                        (outputRowClicked)="onRowClick($event)"
                         (outputHighlightedRowChange)="onActiveRowChange($event)"
-                        (outputRowClicked)="currentStorageRoot = $event.value"
                         (outputSelectedRowsChange)="onSelectionChange($event)">
     </terra-simple-table>
     

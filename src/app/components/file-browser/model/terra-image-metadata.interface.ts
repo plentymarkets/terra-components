@@ -1,6 +1,6 @@
 export interface TerraImageMetadata
 {
-    altText?:string;
+    alttext?:string;
     width?:number;
     height?:number;
 }
