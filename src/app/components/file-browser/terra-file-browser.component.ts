@@ -58,8 +58,6 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
 
     private allowedExtensions:Array<string> = [];
 
-    private currentSelectedNode:TerraNodeInterface<{}>;
-
     @Input()
     public set inputStorageServices(services:Array<TerraBaseStorageService>)
     {
@@ -95,7 +93,6 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         {
             this.nodeTreeConfig.reset();
             this.nodeTreeConfig.currentSelectedNode = null;
-            this.currentSelectedNode = null;
 
             this.renderTree(changes['inputStorageServices'].currentValue);
         }
@@ -108,8 +105,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
             let node:TerraNodeInterface<{}> = {
                 id:        service.name,
                 name:      service.name,
-                isVisible: true,
-                children:  []
+                isVisible: true
             };
 
             this.nodeTreeConfig.addNode(node);
@@ -117,7 +113,6 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
             service.getStorageList().subscribe((storage:TerraStorageObjectList) =>
             {
                 node.children = [];
-
                 if(!isNullOrUndefined(storage))
                 {
                     let root:TerraStorageObject = storage.root;
@@ -151,7 +146,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                                 parentNode:TerraNodeInterface<{}>,
                                 service:TerraBaseStorageService):void
     {
-        if(!isNullOrUndefined(storage.children) && storage.isDirectory)
+        if(storage.isDirectory)
         {
             let name:string;
 
@@ -170,23 +165,30 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                 icon:      storage.icon,
                 onClick:   ():void =>
                            {
+                               // TODO maybe change to inputs
                                this.fileListComponent.activeStorageService = service;
                                this.fileListComponent.currentStorageRoot = storage;
-                               this.currentSelectedNode = directory;
                            },
                 isVisible: true
             };
 
-            if(isNullOrUndefined(this.currentSelectedNode))
+            this.nodeTreeConfig.addNode(directory, parentNode);
+
+            directory.isOpen = true;
+
+            if(isNullOrUndefined(this.nodeTreeConfig.currentSelectedNode))
             {
-                this.currentSelectedNode = directory;
+                this.nodeTreeConfig.currentSelectedNode = directory;
             }
-            this.nodeTreeConfig.addChildToNodeById(parentNode.id, directory);
 
-            this.currentSelectedNode.isOpen = true;
-            this.nodeTreeConfig.currentSelectedNode = this.currentSelectedNode;
+            let sortedChildren:Array<TerraStorageObject> =
+                storage.children.sort((objectA:TerraStorageObject, objectB:TerraStorageObject) =>
+                    {
+                        return objectA.name.localeCompare(objectB.name);
+                    }
+                );
 
-            storage.children.forEach((childStorage:TerraStorageObject) =>
+            sortedChildren.forEach((childStorage:TerraStorageObject) =>
             {
                 this.recursiveCreateNode(childStorage, directory, service);
             });
@@ -201,14 +203,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         {
             foundNode.isOpen = true;
             this.nodeTreeConfig.currentSelectedNode = foundNode;
-            this.currentSelectedNode = foundNode;
         }
-    }
-
-    public resetSelectedNode():void
-    {
-        this.nodeTreeConfig.currentSelectedNode = null;
-        this.currentSelectedNode = null;
     }
 
     public selectUrl(publicUrl:string):void
