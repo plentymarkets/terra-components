@@ -59,6 +59,7 @@
 		"rxjs": "5.5.10",
 		"timer-stopwatch": "^0.2.0",
 		"ts-keycode-enum": "^1.0.4",
+		"web-animations-js": "^2.3.1",
 		"zone.js": "0.8.26"
 	},
 	"devDependencies": {
