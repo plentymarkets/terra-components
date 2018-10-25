@@ -13,7 +13,6 @@ import {
     tap
 } from 'rxjs/operators';
 import { StringHelper } from '../../../helpers/string.helper';
-import { isNullOrUndefined } from 'util';
 
 /**
  * @author pweyrich
