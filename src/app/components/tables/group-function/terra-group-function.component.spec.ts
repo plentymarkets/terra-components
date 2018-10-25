@@ -11,7 +11,7 @@ import { TooltipModule } from 'ngx-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-fdescribe('Component: TerraGroupFunctionComponent', () =>
+describe('Component: TerraGroupFunctionComponent', () =>
 {
     let component:TerraGroupFunctionComponent;
     let fixture:ComponentFixture<TerraGroupFunctionComponent>;
