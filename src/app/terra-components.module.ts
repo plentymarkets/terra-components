@@ -71,6 +71,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         RouterModule
     ],
     providers:       [
+        TerraLoadingSpinnerService,
         {
             provide:  COMPILER_OPTIONS,
             useValue: {},
