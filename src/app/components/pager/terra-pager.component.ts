@@ -17,7 +17,6 @@ import { Subject } from 'rxjs/Subject';
 })
 export class TerraPagerComponent implements OnInit
 {
-
     @Input()
     public inputPagingData:TerraPagerInterface<any>;
 

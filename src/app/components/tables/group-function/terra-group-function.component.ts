@@ -11,6 +11,7 @@ import {
     transition,
     trigger
 } from '@angular/animations';
+import { Language } from 'angular-l10n';
 
 @Component({
     selector: 'terra-group-function',
@@ -54,6 +55,12 @@ export class TerraGroupFunctionComponent
      */
     @Output()
     public executeGroupFunction:EventEmitter<void> = new EventEmitter();
+
+    /**
+     * @description currently selected language
+     */
+    @Language()
+    protected lang:string;
 
 
     protected get collapsedState():string
