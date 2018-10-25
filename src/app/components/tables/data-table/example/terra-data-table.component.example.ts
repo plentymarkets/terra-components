@@ -6,6 +6,8 @@ import { TerraDataTableServiceExample } from './terra-data-table.service.example
 import { TerraDataTableHeaderCellInterface } from '../interfaces/terra-data-table-header-cell.interface';
 import { TerraTextAlignEnum } from '../enums/terra-text-align.enum';
 import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.interface';
+import { TerraDataTableRowInterface } from '../../../../..';
+import { DataTableExampleInterface } from './terra-data-table.interface.example';
 
 @Component({
     selector:  'terra-data-table-example',
@@ -89,5 +91,10 @@ export class TerraDataTableComponentExample implements OnInit
     {
         this.service.addEntry();
         this.service.getResults();
+    }
+
+    protected executeGroupFunction(selectedRows:Array<TerraDataTableRowInterface<DataTableExampleInterface>>):void
+    {
+        console.log(selectedRows);
     }
 }

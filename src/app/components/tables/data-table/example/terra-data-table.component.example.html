@@ -12,6 +12,7 @@
 </terra-base-toolbar>
 
 <terra-data-table
+    #table
     [inputService]="service"
     [inputHasCheckboxes]="true"
     [inputIsSortable]="true"
@@ -20,7 +21,7 @@
     [inputNoResultTextSecondary]="noResultTextSecondary"
     [inputHeaderList]="headerList">
     
-    <terra-group-function [show]="showGroupFunction" [disableExecution]="false">
+    <terra-group-function [show]="showGroupFunction" [disableExecution]="false" (executeGroupFunction)="executeGroupFunction(table.selectedRowList)">
         <terra-text-input [inputName]="'Text'"></terra-text-input>
     </terra-group-function>
 </terra-data-table>

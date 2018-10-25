@@ -93,24 +93,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
      */
     @Input()
     public inputNoResultButtons:Array<TerraButtonInterface>;
-    /**
-     * @description shows group functions container if set to true
-     * @default false
-     */
-    @Input()
-    public inputShowGroupFunctions:boolean = false;
-    /**
-     * @description disables execute group function button
-     * @default true
-     */
-    @Input()
-    public inputGroupFunctionExecuteButtonIsDisabled:boolean = true;
-
-    /**
-     * @description emits if the execute group functions button has been clicked
-     */
-    @Output()
-    public outputGroupFunctionExecuteButtonClicked:EventEmitter<Array<TerraDataTableRowInterface<T>>> = new EventEmitter();
 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
@@ -319,11 +301,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         {
             this.inputService.getResults();
         }
-    }
-
-    protected onGroupFunctionExecuteButtonClicked(event:Event):void
-    {
-        this.outputGroupFunctionExecuteButtonClicked.emit(this.selectedRowList);
     }
 
     protected getTextAlign(item:TerraDataTableHeaderCellInterface):TerraTextAlignEnum // TODO: Pipe?
