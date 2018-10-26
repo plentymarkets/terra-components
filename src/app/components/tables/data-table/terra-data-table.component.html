@@ -15,6 +15,7 @@
         <tr>
             <th *ngIf="inputHasCheckboxes" width="25px">
                 <terra-checkbox (change)="onHeaderCheckboxChange()"
+                                (click)="$event.stopPropagation()"
                                 [value]="headerCheckbox.checked"
                                 [isIndeterminate]="headerCheckbox.isIndeterminate">
                 </terra-checkbox>

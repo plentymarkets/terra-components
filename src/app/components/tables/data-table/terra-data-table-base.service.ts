@@ -34,6 +34,7 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
         super(loadingSpinner, http, '');
 
         this.initPagination();
+        this.filterParameter = {} as P;
     }
 
     public get rowList():Array<TerraDataTableRowInterface<T>>
@@ -91,29 +92,23 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
      */
     public getResults(loadFirstPage?:boolean):void
     {
-        // initialize pagination parameters
-        let params:TerraPagerParameterInterface = {};
-
-        // use filter params if available
-        if(this.filterParameter)
-        {
-            params = this.filterParameter;
-        }
+        // initialize parameters with filter params
+        let params:P = this.filterParameter;
 
         // set page and itemsPerPage attribute
         // IMPORTANT: this must be done after the filter parameters have been applied,...
         // since they can also have a page and itemsPerPage attribute, but those should be ignored!!
         if(this.pagingData && this.pagingData.page && this.pagingData.itemsPerPage)
         {
-            params.page = this.pagingData.page;
-            params.itemsPerPage = this.pagingData.itemsPerPage;
+            params['page'] = this.pagingData.page;
+            params['itemsPerPage'] = this.pagingData.itemsPerPage;
         }
 
         // if search is triggered by a filter component, always retrieve the first page
         // TODO: maybe implement another behavior by checking if filter params have changed
         if(loadFirstPage)
         {
-            params.page = 1;
+            params['page'] = 1;
         }
 
         // add sortBy attribute to pager params
@@ -142,7 +137,7 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
      * @param {TerraPagerParameterInterface} params
      * @returns {Observable<TerraPagerInterface>}
      */
-    public abstract requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface<T>>;
+    public abstract requestTableData(params?:P):Observable<TerraPagerInterface<T>>;
 
     /**
      * @description Placeholder for the specific data mapping method.
