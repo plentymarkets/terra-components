@@ -132,7 +132,7 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
         this.requestPending = true;
         this.requestTableData(params).pipe(
             tap((res:TerraPagerInterface<T>) => this.updatePagingData(res)),
-            map((res:TerraPagerInterface<T>) => res.entries.map(this.dataToRowMapping)),
+            map((res:TerraPagerInterface<T>) => res.entries.map((entry:T) => this.dataToRowMapping(entry))),
             finalize(() => this.requestPending = false)
         ).subscribe((rowList:Array<TerraDataTableRowInterface<T>>) => this._rowList = rowList);
     }
