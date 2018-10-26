@@ -17,7 +17,7 @@ import {
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
-import { TerraTooltipHelperDirective } from './terra-tooltip-helper.directive';
+import { TerraTooltipHelperDirective } from '../../../helpers/terra-tooltip-helper.directive';
 
 @Component({
     selector:  'terra-select-box',

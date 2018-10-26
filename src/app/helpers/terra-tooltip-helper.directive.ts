@@ -7,7 +7,7 @@ import {
     OnInit,
     Output
 } from '@angular/core';
-import { StringHelper } from '../../../helpers/string.helper';
+import { StringHelper } from './string.helper';
 
 @Directive(
     {

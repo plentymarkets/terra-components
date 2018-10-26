@@ -1,7 +1,7 @@
 <div class="input-wrapper"
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
-     [isDisabled]="!inputTooltipText"
+     [isDisabled]="isTooltipDisabled"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
      container="body">
     
@@ -13,7 +13,15 @@
            [disabled]="isDisabled"
            [required]="inputIsRequired"
            placeholder="{{inputPlaceholder}}">
-    <label>{{inputName}}
+    <label terraTooltipHelper
+           [nameOfInput]="inputName"
+           [tooltipTextOfInput]="inputTooltipText"
+           [(tooltipOfInputDisabled)]="isTooltipDisabled"
+           [(tooltipText)]="helperTooltip"
+           [(tooltipDisabled)]="isHelperTooltipDisabled"
+           [placement]="inputTooltipPlacement"
+           [tooltip]="helperTooltip"
+           [isDisabled]="isHelperTooltipDisabled">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
 
     </label>

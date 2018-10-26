@@ -1,11 +1,15 @@
 <div class="input-wrapper"
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
-     [isDisabled]="!inputTooltipText"
+     [isDisabled]="isTooltipDisabled"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled, 'isSmall': inputIsSmall}"
      container="body">
 
-    <input id="{{id}}"
+    <input terraTooltipHelper
+           [placement]="inputTooltipPlacement"
+           [tooltip]="helperTooltip"
+           [isDisabled]="isHelperTooltipDisabled"
+           id="{{id}}"
            type="number"
            [(ngModel)]="value"
            name="{{inputName}}"

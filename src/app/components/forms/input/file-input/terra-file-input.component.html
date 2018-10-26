@@ -17,7 +17,7 @@
             <div class="input-wrapper"
                  placement="{{inputTooltipPlacement}}"
                  tooltip="{{inputTooltipText}}"
-                 [isDisabled]="!inputTooltipText"
+                 [isDisabled]="isTooltipDisabled"
                  [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
                  container="body">
 
@@ -35,7 +35,16 @@
                        required
                        (click)="valueInput.select()">
             </div>
-            <label htmlFor="{{id}}">{{inputName}}
+            <label terraTooltipHelper
+                   [nameOfInput]="inputName"
+                   [tooltipTextOfInput]="inputTooltipText"
+                   [(tooltipOfInputDisabled)]="isTooltipDisabled"
+                   [(tooltipText)]="helperTooltip"
+                   [(tooltipDisabled)]="isHelperTooltipDisabled"
+                   [placement]="inputTooltipPlacement"
+                   [tooltip]="helperTooltip"
+                   [isDisabled]="isHelperTooltipDisabled"
+                   htmlFor="{{id}}">{{inputName}}
                 <span *ngIf="inputIsRequired">*</span>
             </label>
         </div>
