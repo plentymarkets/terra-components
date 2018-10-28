@@ -39,6 +39,7 @@
     {
         display: flex;
         justify-content: space-between;
+        max-height: 100%;
         
         &.has-footer
         {
@@ -54,6 +55,7 @@
             color: var(--color-structure-11);
             overflow: var(--info-box-text-overflow, hidden);
             text-overflow: ellipsis;
+            overflow-y: auto;
         }
         .has-buttons
         {
