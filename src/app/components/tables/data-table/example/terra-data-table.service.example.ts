@@ -16,11 +16,6 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Data
 {
     private data:Array<DataTableExampleInterface> = [];
 
-    constructor(spinner:TerraLoadingSpinnerService, http:Http)
-    {
-        super(spinner, http);
-    }
-
     // This method usually just requests data from the server via REST using another service, which has to be injected in the constructor
     public requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface<DataTableExampleInterface>>
     {
