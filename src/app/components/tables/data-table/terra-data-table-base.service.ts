@@ -1,10 +1,7 @@
-import { TerraBaseService } from '../../../service/terra-base.service';
 import { Observable } from 'rxjs/Observable';
 import { TerraPagerParameterInterface } from '../../pager/data/terra-pager.parameter.interface';
 import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
-import { Http } from '@angular/http';
-import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
 import { TerraDataTableSortOrderEnum } from './enums/terra-data-table-sort-order.enum';
 import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
 import {
@@ -17,7 +14,7 @@ import { StringHelper } from '../../../helpers/string.helper';
 /**
  * @author pweyrich
  */
-export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
+export abstract class TerraDataTableBaseService<T, P>
 {
     public requestPending:boolean;
     public pagingData:TerraPagerInterface<T>;
@@ -29,10 +26,8 @@ export abstract class TerraDataTableBaseService<T, P> extends TerraBaseService
 
     private _rowList:Array<TerraDataTableRowInterface<T>> = [];
 
-    constructor(loadingSpinner:TerraLoadingSpinnerService, http:Http)
+    constructor()
     {
-        super(loadingSpinner, http, '');
-
         this.initPagination();
         this.filterParameter = {} as P;
     }
