@@ -7,7 +7,7 @@ import { TerraDataTableSortOrderEnum } from '../enums/terra-data-table-sort-orde
 import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/terra-loading-spinner.service';
 import { Http } from '@angular/http';
 import { TerraDataTableExampleInterface } from './terra-data-table.interface.example';
-import { TerraRefTypeEnum } from '../enums/terra-ref-type.enum';
+import { TerraHrefTypeEnum } from '../enums/terra-href-type.enum';
 import { TerraDataTableCellInterface } from '../interfaces/terra-data-table-cell.interface';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
 
@@ -84,7 +84,7 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
             },
             {
                 data: {
-                    type:  TerraRefTypeEnum.email,
+                    type:  TerraHrefTypeEnum.email,
                     value: 'pascal.weyrich@plentymarkets.com'
                 }
             },
