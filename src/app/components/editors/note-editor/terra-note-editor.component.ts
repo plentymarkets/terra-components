@@ -11,8 +11,6 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
     template:  require('./terra-note-editor.component.html'),
     styles:    [
         require('./terra-note-editor.component.scss'),
-        require('quill/dist/quill.bubble.css'),
-        require('quill/dist/quill.snow.css'),
         require('./terra-note-editor.component.glob.scss').toString()
     ],
     providers: [{
@@ -23,7 +21,6 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 })
 export class TerraNoteEditorComponent extends TerraBaseEditorComponent
 {
-
     constructor(protected translation:TranslationService, protected myElement:ElementRef)
     {
         super(translation, myElement);
