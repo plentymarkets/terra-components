@@ -18,7 +18,7 @@
            [lang]="locale"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
            [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0}">
-    <label terraTooltipHelper
+    <label terraLabelTooltip
            [nameOfInput]="inputName"
            [tooltipTextOfInput]="inputTooltipText"
            [(tooltipOfInputDisabled)]="isTooltipDisabled"

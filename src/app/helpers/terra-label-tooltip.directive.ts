@@ -11,10 +11,10 @@ import { StringHelper } from './string.helper';
 
 @Directive(
     {
-        selector: '[terraTooltipHelper]'
+        selector: '[terraLabelTooltip]'
     }
 )
-export class TerraTooltipHelperDirective implements OnInit
+export class TerraLabelTooltipDirective implements OnInit
 {
     @Input()
     public nameOfInput:string;
