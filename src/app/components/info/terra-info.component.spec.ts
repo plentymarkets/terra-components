@@ -44,12 +44,4 @@ describe('TerraInfoComponent', () =>
     {
         expect(component.textPlacement).toBe(TerraPlacementEnum.TOP);
     });
-
-    it('should text be set to an empty string if \'isDisabled\' is true', () =>
-    {
-        component.text = 'test';
-        component.isDisabled = true;
-        component.ngOnInit();
-        expect(component.text).toBe('');
-    });
 });
