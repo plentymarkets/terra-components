@@ -10,6 +10,9 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
 import { TerraButtonInterface } from '../../../../';
 import { isNullOrUndefined } from 'util';
+import { HtmlLinter } from './helper/html-linter.helper';
+import { HtmlLinterRule } from './helper/html-linter-rule.enum';
+import { HtmlLinterMessageInterface } from './helper/html-linter-message.interface';
 
 @Component({
     selector:  'terra-code-editor',
@@ -37,7 +40,13 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     protected viewConfirmation:{primaryButton:TerraButtonInterface, secondaryButton:TerraButtonInterface};
 
+    protected isValidMarkup:boolean = true;
+
+    protected invalidMarkupHint:string = '';
+
     private isInitialized:boolean = false;
+
+    private linter:HtmlLinter;
 
     constructor(protected translation:TranslationService, protected myElement:ElementRef)
     {
@@ -68,6 +77,14 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
                 }
             }
         };
+
+        this.linter = new HtmlLinter([
+            HtmlLinterRule.attrUnsafeChars,
+            HtmlLinterRule.doctypeHtml5,
+            HtmlLinterRule.inlineScriptDisabled,
+            HtmlLinterRule.tagPair,
+            HtmlLinterRule.styleDisabled
+        ]);
     }
 
     public writeValue(value:string):void
@@ -76,21 +93,24 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         // check if value is assigned first (initially)
         if (!this.isInitialized)
         {
-            // check if editor will change the markup
-            this.checkCodeFormat()
-                .then((hasChanges:boolean) =>
-                {
-                    // show raw content if editor will change the markup
-                    this.showCodeView   = hasChanges;
-                    this.rawContent     = value;
-                    this.editorContent  = value;
-
-                    // wait until next tick to avoid emitting changes when initially assigning values
-                    setTimeout(() =>
+            this.editorContent = value;
+            this.rawContent    = value;
+            setTimeout(() =>
+            {
+                // check if editor will change the markup
+                this.checkCodeFormat()
+                    .then((hasChanges:boolean) =>
                     {
-                        this.isInitialized  = true;
+                        // show raw content if editor will change the markup
+                        this.showCodeView   = hasChanges;
+
+                        // wait until next tick to avoid emitting changes when initially assigning values
+                        setTimeout(() =>
+                        {
+                            this.isInitialized  = true;
+                        });
                     });
-                });
+            });
         }
     }
 
@@ -134,8 +154,11 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         }
         else if ( !isEditorContent && this.showCodeView )
         {
-            this.value = this.sanitizeHTML(this.rawContent);
-            this.onChangeCallback(this.value);
+            if ( this.validateMarkup() )
+            {
+                this.value = this.safeHtml(this.rawContent);
+                this.onChangeCallback(this.value);
+            }
         }
 
     }
@@ -201,62 +224,34 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         });
     }
 
-    /**
-     * Validates the input html and adds missing closing tag or attribute tag.
-     * @param {string} input
-     * @returns {string}
-     */
-    private sanitizeHTML(input:string):string
+    private validateMarkup():boolean
     {
-        //
-        // CHECK FOR UNCLOSED QUOTES
-        //
-        const tagContentExp:RegExp = /<(\w[^>]*?)(\/?>)/g;
-        let output:string = input.replace(tagContentExp, (match:string, tagContent:string, closingTag:string) =>
+        this.isValidMarkup = true;
+
+        let errors:Array<HtmlLinterMessageInterface> = this.linter.verify(
+            '<div>' + this.rawContent + '</div>'
+        );
+
+        if ( errors.length > 0 )
         {
-            const attributeExp:RegExp = /([a-zA-Z0-9_-]+)=("|')?(.*?)(?:\2)?(?:\2|\w+=|$)/g;
-            tagContent = tagContent.replace(attributeExp, (attrMatch:string, attrName:string, quote:string, attrValue:string) =>
-            {
-                if ( !!attrValue.trim() )
+            this.isValidMarkup = false;
+            this.invalidMarkupHint = this.translation.translate(
+                'terraCodeEditor.linterMessage',
                 {
-                    return attrName + '="' + attrValue.trim() + '"';
+                    line: errors[0].line,
+                    col: errors[0].col,
+                    message: this.translation.translate('terraCodeEditor.linterRules.' + errors[0].rule )
                 }
-                return attrName;
-            });
-            return '<' + tagContent + closingTag;
-        });
+            );
+        }
 
-        //
-        // DISABLE SRC ATTRIBUTES
-        //
-        output = output.replace(/src=/g, '###tmp-src=');
+        return this.isValidMarkup;
+    }
 
-        //
-        // SANITIZE UNCLOSED TAGS BY BROWSER
-        //
-        let tmp:any = document.createElement('div');
-        tmp.innerHTML = output;
-        output = tmp.innerHTML;
-
-        const entities:any = {
-            'lt': '<',
-            'gt': '>',
-            'amp': '&'
-        };
-        output = output.replace(/&(\w+);/g, (match:string, entity:string) =>
-        {
-            if ( entities.hasOwnProperty(entity) )
-            {
-                return entities[entity];
-            }
-            return match;
-        });
-
-        //
-        // ENABLE SRC ATTRIBUTES AGAIN
-        //
-        output = output.replace(/###tmp-src=/g, 'src=');
-
-        return output;
+    private safeHtml(input:string):string
+    {
+        let parser:DOMParser = new DOMParser();
+        let doc:HTMLDocument = parser.parseFromString(input, 'text/html');
+        return doc.body.innerHTML;
     }
 }

@@ -27,18 +27,19 @@ export class TerraMultiSplitViewConfig
 {
     public currentSelectedView:TerraMultiSplitViewInterface;
     public routingConfig:Routes = [];
-    public deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
 
-    private _views:Array<TerraMultiSplitViewInterface> = [];
-    private _selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+    public deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+    public selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
+
+    private views:Array<TerraMultiSplitViewInterface> = [];
+    private routerStateSnapshot:RouterStateSnapshot;
+    private activatedRouteSnapshot:ActivatedRouteSnapshot;
+
     private _splitViewComponent:TerraMultiSplitViewComponent;
 
-    private _routerStateSnapshot:RouterStateSnapshot;
-    private _activatedRouteSnapshot:ActivatedRouteSnapshot;
-
-    constructor(private _router?:Router,
-                private _injector?:Injector,
-                private _translation?:TranslationService,
+    constructor(private router?:Router,
+                private injector?:Injector,
+                private translation?:TranslationService,
                 private activatedRoute?:ActivatedRoute)
     {
 
@@ -60,7 +61,7 @@ export class TerraMultiSplitViewConfig
                     if(isNullOrUndefined(this.currentSelectedView))
                     {
                         this.currentSelectedView = view;
-                        this._views.push(view);
+                        this.views.push(view);
                     }
                     else
                     {
@@ -162,10 +163,10 @@ export class TerraMultiSplitViewConfig
 
     public reset():void
     {
-        this._views = [];
+        this.views = [];
         this.currentSelectedView = null;
-        this._selectBreadcrumbEventEmitter.unsubscribe();
-        this._selectBreadcrumbEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
+        this.selectBreadcrumbEventEmitter.unsubscribe();
+        this.selectBreadcrumbEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
     }
 
     public navigateToViewByUrl(url:string):void
@@ -177,27 +178,27 @@ export class TerraMultiSplitViewConfig
         }
 
         // check if the needed dependencies are injected
-        if(isNullOrUndefined(this._router))
+        if(isNullOrUndefined(this.router))
         {
             console.error(
                 '_router is not defined.. Please inject the Router in your config-instance to make routing functionality available');
             return;
         }
-        if(isNullOrUndefined(this._injector))
+        if(isNullOrUndefined(this.injector))
         {
             console.error(
                 '_injector is not defined. Please inject the Injector in your config-instance to make routing functionality available');
             return;
         }
-        if(isNullOrUndefined(this._translation))
+        if(isNullOrUndefined(this.translation))
         {
             console.error(
                 '_translation is not defined. Please inject the TranslationService in your config-instance to make routing functionality available');
             return;
         }
 
-        this._routerStateSnapshot = this._router.routerState.snapshot;
-        this._activatedRouteSnapshot = this.activatedRoute.snapshot;
+        this.routerStateSnapshot = this.router.routerState.snapshot;
+        this.activatedRouteSnapshot = this.activatedRoute.snapshot;
         let remainingUrl:string = url.replace(this._splitViewComponent.componentRoute, '');
         let redirectUrl:string = this.urlIsRedirected(remainingUrl);
 
@@ -205,7 +206,7 @@ export class TerraMultiSplitViewConfig
         {
             if(redirectUrl === 'invalidRoute')
             {
-                this._router.navigate(['/error-page'],
+                this.router.navigate(['/error-page'],
                     {
                         queryParams: {
                             errorCode: 'invalidRoute',
@@ -214,7 +215,7 @@ export class TerraMultiSplitViewConfig
                     });
                 return;
             }
-            this._router.navigateByUrl(url + redirectUrl);
+            this.router.navigateByUrl(url + redirectUrl);
             return;
         }
 
@@ -223,7 +224,7 @@ export class TerraMultiSplitViewConfig
 
     private addOrSelectViewsByUrl(url:string, resolveData:Array<ResolvedDataInterface>):void
     {
-        let views:Array<TerraMultiSplitViewInterface> = this._views;
+        let views:Array<TerraMultiSplitViewInterface> = this.views;
         let routeConfig:Routes = this.routingConfig;
 
         let urlParts:Array<string> = url.split('/');
@@ -306,12 +307,12 @@ export class TerraMultiSplitViewConfig
                 {
                     obj[resolve.name] = resolve.value;
                 });
-                viewName = this._translation.translate(route.data.name(obj), {id: urlPart});
+                viewName = this.translation.translate(route.data.name(obj), {id: urlPart});
             }
         }
         else
         {
-            viewName = this._translation.translate(route.data.name, {id: urlPart});
+            viewName = this.translation.translate(route.data.name, {id: urlPart});
         }
         let newView:TerraMultiSplitViewInterface =
             {
@@ -337,7 +338,7 @@ export class TerraMultiSplitViewConfig
     private urlIsRedirected(url:string):string
     {
         let routeConfig:Routes = this.routingConfig;
-        let views:Array<TerraMultiSplitViewInterface> = this._views;
+        let views:Array<TerraMultiSplitViewInterface> = this.views;
         let urlParts:Array<string> = url.split('/');
         let route:Route;
         let isInvalidRoute:boolean = false;
@@ -400,7 +401,7 @@ export class TerraMultiSplitViewConfig
     {
         let resolverList:Array<ResolverListItemInterface> = this.getResolversForUrl(url, routeConfig);
         let data:Array<ResolvedDataInterface> = [];
-        this._activatedRouteSnapshot.params = {};
+        this.activatedRouteSnapshot.params = {};
         this.resolveInSequence(url, resolverList, data);
     }
 
@@ -423,7 +424,7 @@ export class TerraMultiSplitViewConfig
                             routePath: route.path,
                             resolver:  {
                                 key:     elem,
-                                service: this._injector.get(route.resolve[elem])
+                                service: this.injector.get(route.resolve[elem])
                             }
                         };
 
@@ -468,7 +469,7 @@ export class TerraMultiSplitViewConfig
         let resolverListItem:ResolverListItemInterface = resolverList.shift();
         if(!isNullOrUndefined(resolverListItem.routePath) && resolverListItem.routePath.startsWith(':'))
         {
-            this._activatedRouteSnapshot.params[resolverListItem.routePath.substring(1)] = resolverListItem.urlPart; // pass route params
+            this.activatedRouteSnapshot.params[resolverListItem.routePath.substring(1)] = resolverListItem.urlPart; // pass route params
         }
 
         let resolvedResolver:ResolverListItemInterface = resolvedResolvers.find((res:ResolverListItemInterface) =>
@@ -485,7 +486,7 @@ export class TerraMultiSplitViewConfig
         }
         else
         {
-            resolverListItem.resolver.service.resolve(this._activatedRouteSnapshot, this._routerStateSnapshot).subscribe((res:any) =>
+            resolverListItem.resolver.service.resolve(this.activatedRouteSnapshot, this.routerStateSnapshot).subscribe((res:any) =>
             {
                 resolvedResolvers.push(resolverListItem);
 
@@ -496,11 +497,6 @@ export class TerraMultiSplitViewConfig
             });
         }
 
-    }
-
-    public get selectBreadcrumbEventEmitter():EventEmitter<TerraMultiSplitViewInterface>
-    {
-        return this._selectBreadcrumbEventEmitter;
     }
 
     public set splitViewComponent(value:TerraMultiSplitViewComponent)

@@ -4,7 +4,7 @@
      [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
      container="body">
-    <textarea id="{{_id}}"
+    <textarea id="{{id}}"
               [(ngModel)]="value"
               name="{{inputName}}"
               (blur)="onBlur()"
@@ -16,7 +16,7 @@
               placeholder="{{inputPlaceholder}}"
               [class.resizable]="!inputHasFixedHeight">
     </textarea>
-    <label class="textarea-label" htmlFor="{{_id}}">{{inputName}}
+    <label class="textarea-label" htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
 </div>

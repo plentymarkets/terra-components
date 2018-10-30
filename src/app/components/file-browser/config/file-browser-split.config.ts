@@ -17,6 +17,7 @@ export class FileBrowserSplitConfig extends TerraMultiSplitViewConfig
 
     public init(storageServices:Array<TerraBaseStorageService>):void
     {
+        this.reset();
         this.storageServices = storageServices;
         this.fileListView = {
             module:            require('../file-list/file-list.module').TerraFileListModule.forRoot(),

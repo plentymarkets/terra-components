@@ -81,14 +81,16 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
     protected _rowList:Array<TerraSimpleTableRowInterface<D>>;
 
-    constructor(private _elementRef:ElementRef)
+    private selectedRowList:Array<TerraSimpleTableRowInterface<D>> = [];
+
+    constructor(private elementRef:ElementRef)
     {
         this.headerCheckbox = {
             checked:         false,
             isIndeterminate: false
         };
-
         this._rowList = [];
+        this.selectedRowList = [];
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -251,7 +253,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
             this.uncheckHeaderCheckbox();
         }
         else if(selectedRows.length > 0 && this.inputRowList.filter(
-                (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === selectedRows.length) // all selected?
+            (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === selectedRows.length) // all selected?
         {
             this.checkHeaderCheckbox();
         }
@@ -320,7 +322,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
             if(highlightIndex >= 0 && highlightIndex < this.inputRowList.length)
             {
-                let activeRow:HTMLElement = this._elementRef.nativeElement.querySelector('table tbody tr:nth-child(' + (highlightIndex + 1) + ')');
+                let activeRow:HTMLElement = this.elementRef.nativeElement.querySelector('table tbody tr:nth-child(' + (highlightIndex + 1) + ')');
                 let viewport:ClientRect = this.scrollContainer.nativeElement.getBoundingClientRect();
                 let activeRowPosition:ClientRect = activeRow.getBoundingClientRect();
 

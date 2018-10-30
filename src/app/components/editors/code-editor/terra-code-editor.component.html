@@ -11,16 +11,23 @@
               [(ngModel)]="rawContent"
               (ngModelChange)="emitChanges(false)">
     </textarea>
-    <terra-button [class.visible]="showCodeView"
+    <terra-button [class.visible]="showCodeView && isValidMarkup"
                   class="close-button"
                   inputIcon="icon-close"
                   (outputClicked)="closeCodeView()">
+    </terra-button>
+    <terra-button [class.visible]="showCodeView && !isValidMarkup"
+                  class="error-button"
+                  inputIcon="icon-warning"
+                  [inputIsSecondary]="true"
+                  [inputTooltipText]="invalidMarkupHint"
+                  inputTooltipPlacement="left">
     </terra-button>
     <terra-overlay #viewConfirmationOverlay
                    [inputOverlayTitle]="'terraCodeEditor.changeViewOverlay.title' | translate:lang"
                    [inputPrimaryButtonInterface]="viewConfirmation.primaryButton"
                    [inputSecondaryButtonInterface]="viewConfirmation.secondaryButton"
                    class="preview-overlay">
-                   <p>{{'terraCodeEditor.changeViewOverlay.text' | translate:lang}}</p>
+        <p>{{'terraCodeEditor.changeViewOverlay.text' | translate:lang}}</p>
     </terra-overlay>
 </div>

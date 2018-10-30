@@ -12,17 +12,17 @@
      (click)="onClick($event)"
      container="body">
     
-    <label htmlFor="{{inputName}}">{{inputName}}
+    <label *ngIf="hasLabel" htmlFor="{{inputName}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
     
-    <div class="select-box labeled" [ngClass]="{'error': !isValid}">
-        <span *ngIf="_selectedValue; then selectedValue else firstInList"></span>
-        <ng-template #selectedValue>
-            <span class="{{_selectedValue?.icon}}" *ngIf="_selectedValue?.icon"></span>
-            <span [innerHtml]="_selectedValue?.caption"></span>
+    <div class="select-box" [ngClass]="{'error': !isValid, 'labeled': hasLabel}">
+        <span *ngIf="selectedValue; then selectedValueTemplate else firstInListTemplate"></span>
+        <ng-template #selectedValueTemplate>
+            <span class="{{selectedValue?.icon}}" *ngIf="selectedValue?.icon"></span>
+            <span [innerHtml]="selectedValue?.caption"></span>
         </ng-template>
-        <ng-template #firstInList>
+        <ng-template #firstInListTemplate>
             <span class="{{inputListBoxValues[0]?.icon}}" *ngIf="inputListBoxValues[0]?.icon"></span>
             <span [innerHtml]="inputListBoxValues[0]?.caption"></span>
         </ng-template>
@@ -30,18 +30,18 @@
     </div>
     
     <div class="select-box-dropdown" [ngClass]="{'isSmall': inputIsSmall, 'openOnTop': inputOpenOnTop}">
-        <span *ngIf="_selectedValue; then selectedValueActive else firstInListActive"></span>
+        <span *ngIf="selectedValue; then selectedValueActiveTemplate else firstInListActiveTemplate"></span>
         
-        <ng-template #selectedValueActive>
+        <ng-template #selectedValueActiveTemplate>
             <span *ngFor="let item of inputListBoxValues; let index=index;"
                   (click)="select(item)"
-                  [ngClass]="{active: item.value === _selectedValue?.value}">
+                  [ngClass]="{active: item.value === selectedValue?.value}">
                 <span class="{{item.icon}}" *ngIf="item.icon"></span>
                 <span [innerHtml]="item.caption"></span>
             </span>
         </ng-template>
         
-        <ng-template #firstInListActive>
+        <ng-template #firstInListActiveTemplate>
             <span *ngFor="let item of inputListBoxValues; let index=index;"
                   (click)="select(item)"
                   [ngClass]="{active: item.value === inputListBoxValues[0]?.value}">

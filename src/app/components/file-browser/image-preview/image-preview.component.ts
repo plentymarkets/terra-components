@@ -41,7 +41,7 @@ export class TerraImagePreviewComponent
             {
                 this.metadata = data;
                 this.isLoading = false;
-                this._changeDetector.detectChanges();
+                this.changeDetector.detectChanges();
             });
         }
         else
@@ -60,7 +60,7 @@ export class TerraImagePreviewComponent
         return this.inputStorageService instanceof TerraBaseMetadataStorageService;
     }
 
-    constructor(private _changeDetector:ChangeDetectorRef)
+    constructor(private changeDetector:ChangeDetectorRef)
     {
     }
 

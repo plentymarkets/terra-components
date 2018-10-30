@@ -2,8 +2,10 @@ import {
     Component,
     EventEmitter,
     Input,
+    OnChanges,
     OnInit,
     Output,
+    SimpleChanges,
     Type
 } from '@angular/core';
 import { TerraFormScope } from '../model/terra-form-scope.data';
@@ -19,7 +21,7 @@ import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-p
     template: require('./terra-form-container.component.html'),
     styles:   [require('./terra-form-container.component.scss')]
 })
-export class TerraFormContainerComponent implements OnInit
+export class TerraFormContainerComponent implements OnInit, OnChanges
 {
     @Input()
     public inputScope:TerraFormScope;
@@ -77,6 +79,14 @@ export class TerraFormContainerComponent implements OnInit
         {
             this.updateFieldVisibility();
         });
+    }
+
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes.hasOwnProperty('inputScope'))
+        {
+            this.updateFieldVisibility();
+        }
     }
 
     protected onFormValueChanged(key:string, value:any):void

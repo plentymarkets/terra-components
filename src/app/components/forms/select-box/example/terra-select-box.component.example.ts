@@ -11,12 +11,12 @@ import { TerraSelectBoxValueInterface } from '../data/terra-select-box.interface
 })
 export class TerraSelectBoxComponentExample implements OnInit
 {
-    private _selectableOptionTypesList:Array<TerraSelectBoxValueInterface> = [];
-    private _pickedValue:string;
+    protected selectBoxValueList:Array<TerraSelectBoxValueInterface> = [];
+    protected selectedValue:string;
 
     public ngOnInit():void
     {
-        this._selectableOptionTypesList.push(
+        this.selectBoxValueList.push(
             {
                 value:   'en',
                 caption: 'english'

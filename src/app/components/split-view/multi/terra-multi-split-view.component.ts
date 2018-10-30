@@ -59,7 +59,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
      */
     protected isNullOrUndefined:(object:any) => object is null | undefined;
 
-    private _breadCrumbsPath:string;
+    private breadCrumbsPath:string;
 
     private modules:Array<TerraMultiSplitViewModuleInterface> = [];
 
@@ -69,13 +69,13 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private _componentRoute:string;
 
-    constructor(private zone:NgZone, private _router:Router, private breadcrumbsService:TerraMultiSplitViewBreadcrumbsService)
+    constructor(private zone:NgZone, private router:Router, private breadcrumbsService:TerraMultiSplitViewBreadcrumbsService)
     {
         this.isNullOrUndefined = isNullOrUndefined;
         this.inputShowBreadcrumbs = true; // default
-        this._breadCrumbsPath = '';
+        this.breadCrumbsPath = '';
         this.splitViewId = nextSplitViewId++;
-        this._componentRoute = this.searchAngularRoutes(this._router.url);
+        this._componentRoute = this.searchAngularRoutes(this.router.url);
     }
 
     @HostListener('window:resize')
@@ -110,14 +110,14 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         this.inputConfig.splitViewComponent = this;
 
         // catch routing events, but only those that select the tab where the split view is instantiated
-        if(!isNullOrUndefined(this._router) && !isNullOrUndefined(this._componentRoute))
+        if(!isNullOrUndefined(this.router) && !isNullOrUndefined(this._componentRoute))
         {
             // check if the given route exists in the route config
             if(this.routeExists(this._componentRoute))
             {
                 if(this.inputHasRouting)
                 {
-                    this._router.events.filter((event:AngularRouter.Event) =>
+                    this.router.events.filter((event:AngularRouter.Event) =>
                         event instanceof NavigationEnd && event.url.startsWith(this._componentRoute)
                     ).subscribe((event:NavigationEnd) =>
                     {
@@ -131,11 +131,11 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                         }
                     });
 
-                    this.inputConfig.navigateToViewByUrl(this._router.url);
+                    this.inputConfig.navigateToViewByUrl(this.router.url);
                 }
                 else
                 {
-                    this._router.events.filter((event:AngularRouter.Event) =>
+                    this.router.events.filter((event:AngularRouter.Event) =>
                         event instanceof NavigationStart && event.url === this._componentRoute
                     ).subscribe((path:NavigationStart) =>
                     {
@@ -557,7 +557,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         let routeLevel:number = 0;
 
         // get the routing config
-        let registeredRoutes:TerraMultiSplitViewRoutes = this._router.config as TerraMultiSplitViewRoutes;
+        let registeredRoutes:TerraMultiSplitViewRoutes = this.router.config as TerraMultiSplitViewRoutes;
 
         // scan the routing config
         while(routeLevel < routeParts.length)
@@ -614,7 +614,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         let urlWithoutLeadingSlash:string = UrlHelper.removeLeadingSlash(url);
         let urlParts:Array<string> = urlWithoutLeadingSlash.split('/');
         let urlPart:string = urlParts.shift();
-        let routes:Routes = this._router.config;
+        let routes:Routes = this.router.config;
         let route:Route = this.findRouteByPath(urlPart, routes);
         let baseUrl:string = '';
 

@@ -13,6 +13,7 @@
             
             <terra-form-entry-list
                 *ngIf="field.value.isList"
+                [inputFormFieldKey]="field.key"
                 [inputFormField]="field.value"
                 [inputFormValue]="inputValue[field.key]"
                 [inputListRange]="field.value.isList"

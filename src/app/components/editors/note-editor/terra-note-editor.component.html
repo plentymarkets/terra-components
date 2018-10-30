@@ -1,7 +1,7 @@
 <div>
     <quill-editor [placeholder]="placeholder"
                   [(ngModel)]="value"
-                  (onContentChanged)="ngModelChange.emit(value)"
+                  (onContentChanged)="onChangeCallback(value)"
                   [style]="{minHeight:inputMinHeight ,height:inputFixedHeight}"
                   [modules]="modules">
     </quill-editor>

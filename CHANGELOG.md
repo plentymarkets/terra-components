@@ -1,3 +1,95 @@
+<a name="2.4.1"></a>
+# 2.4.1 (17.10.2018)
+
+### Bug Fixes
+* **terra-double-input** fixed issue with the decimal separator. It now accepts decimal inputs in the localized format.
+
+<a name="2.4.0"></a>
+# 2.4.0 (12.10.2018)
+
+* **TerraButtonInterface** `isPrimary`, `isSecondary` and `isTertiary` are now deprecated. Each icon has its own fixed color.
+* **terra-button-with-options** `inputIsPrimary`, `inputIsSecondary` and `inputIsTertiary` are now deprecated. Each icon has its own fixed color.
+* **terra-dynamic-module-loader** input `inputParameter` is now deprecated. Use input `inputInputs` instead.
+* **terra-button-group** && **terra-navigator** && **terra-navigator.config** && **terra-navigator-split-view.config** are now deprecated. Use `terra-node-tree` instead.
+* **terra-tree** is now deprecated. Use `terra-node-tree` instead.
+* **terra-tile-box** && **terra-tile-box-panel** are now deprecated. Use `terra-card` instead.
+
+### Bug Fixes
+* **terra-data-table** pass click event to a button's `clickFunction` if it is placed in a table row
+
+<a name="2.3.26"></a>
+# 2.3.26 (04.10.2018)
+
+### Feature
+* **terra-button** added input `inputIsMajor`. It is used for the primary button in a view (for example delete customer). If true the button gets fully colored.
+
+### Bug Fixes 
+* **button-group** fixed styles
+* **terra-button** updated functiongroup selector
+* **terra-button** updated highlighted buttons to match function groups
+
+<a name="2.3.24"></a>
+# 2.3.24 (20.09.2018)
+
+### Bug Fixes
+* **terra-info-box** changed width text content to 100%
+
+<a name="2.3.23"></a>
+# 2.3.23 (19.09.2018)
+
+### Bug Fixes
+* **icons** moved reset to warning-group
+* **icons** moved search to info-group
+* **terra-suggestion-box** fix an issue where the input text was reset after a value was selected and the user typed again
+
+<a name="2.3.22"></a>
+# 2.3.22 (12.09.2018)
+
+### Feature
+* **icons** Added function groups
+
+<a name="2.3.21"></a>
+# 2.3.21 (12.09.2018)
+
+### Bug Fixes
+* **terra-suggestion-box** fixed issue while resetting `selectedValue`
+* **terra-breadcrumbs** fixed an issue where the breadcrumb dropdown would not show on iOS devices.
+* **terra-node-tree** fixed an null pointer.
+* **icons** new icons for login, logout, header, footer, content
+
+<a name="2.3.19"></a>
+# 2.3.19 (05.09.2018)
+
+### Bug Fixes
+* **terra-code-editor** Improve validating custom markup
+* **terra-code-editor** Fix initial check which view should be shown
+* **terra-form** fixed initial evaluation of child scopes inside list entries
+
+<a name="2.3.18"></a>
+# 2.3.18 (31.08.2018)
+
+### Bug Fixes
+* **terra-note-editor** fixed issue for saving notes.
+* **terra-file-browser** fixed issue when used in a multi split view.
+
+<a name="2.3.17"></a>
+# 2.3.17 (31.08.2018)
+
+### Bug Fixes
+* **terra-breadcrumbs** fix context menu position.
+* **terra-breadcrumbs** automatically scroll into view for active breadcrumb.
+* **terra-file-browser** reset the file list when `inputStorageServices` is updated.
+* **terra-form** list fields can reference current list entry in isVisible expressions by the key of the parent field leaded by a '$'-sign (e.g. '$entries')
+
+<a name="2.3.16"></a>
+# 2.3.16 (29.08.2018)
+
+### Bug Fixes
+* **terra-file-list** fixed issue when uploading files using `firefox`.
+* **terra-dynamic-form** adjust horizontal container header layout to the layout of vertical container
+* **terra-dynamic-form** horizontal container gives now equal width to its elements
+
+
 <a name="2.3.15"></a>
 # 2.3.15 (22.08.2018)
 

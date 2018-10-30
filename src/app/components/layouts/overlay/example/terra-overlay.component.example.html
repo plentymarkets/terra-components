@@ -7,34 +7,35 @@
 <terra-button inputCaption="Open overlay with secondary button"
               (outputClicked)="openOverlayWithSecondaryButton()">
 </terra-button>
-<terra-button inputCaption="Open static overlay"
+<terra-button inputCaption="Open static overlay with primary and secondary button"
               (outputClicked)="openOverlayStatic()">
 </terra-button>
+
 
 <terra-overlay #viewChildOverlayWithoutButtons
                inputOverlayTitle="Showcase overlay with no buttons"
                [inputIsSmall]="true">
-    {{_exampleText}}
+    <p>{{exampleText}}</p>
 </terra-overlay>
 
 <terra-overlay #viewChildOverlayWithPrimaryButton
                inputOverlayTitle="Showcase overlay with primary button (large)"
                [inputIsLarge]="true"
                [inputPrimaryButtonInterface]="primaryButtonInterface">
-    {{_exampleText}}
+    <p>{{exampleText}}</p>
 </terra-overlay>
 
 <terra-overlay #viewChildOverlayWithSecondaryButton
-               inputOverlayTitle="Showcase overlay with secondary button"
+               inputOverlayTitle="Showcase overlay with secondary button (small)"
                [inputIsSmall]="true"
                [inputSecondaryButtonInterface]="secondaryButtonInterface">
-    {{_exampleText}}
+    <p>{{exampleText}}</p>
 </terra-overlay>
 
 <terra-overlay #viewChildOverlayStatic
-               inputOverlayTitle="Showcase static overlay"
+               inputOverlayTitle="Showcase static overlay with primary and secondary button"
                [inputPrimaryButtonInterface]="staticPrimaryButtonInterface"
                [inputSecondaryButtonInterface]="staticSecondaryButtonInterface"
                [inputIsStatic]="true">
-    {{_exampleText}}
+    <p>{{exampleText}}</p>
 </terra-overlay>

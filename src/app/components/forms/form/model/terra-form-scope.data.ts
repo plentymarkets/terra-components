@@ -1,5 +1,6 @@
 import { isNullOrUndefined } from 'util';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { TerraKeyValueInterface } from '../../../../../';
 
 export class TerraFormScope
 {
@@ -16,7 +17,7 @@ export class TerraFormScope
         this.onDataChanged.next(value);
     }
 
-    constructor(private _data:any = {})
+    constructor(private _data:any = {}, private parent?:TerraFormScope)
     {
     }
 
@@ -30,8 +31,10 @@ export class TerraFormScope
             }
             else
             {
-                let keys:Array<string> = Object.keys(this._data);
-                let values:Array<any> = keys.map((key:string) => this._data[key] || null);
+                let data:TerraKeyValueInterface<any> = this.getEvaluationData();
+                let keys:Array<string> = Object.keys(data);
+                let values:Array<any> = keys.map((key:string) => data[key] || null);
+
                 return (new Function(...keys, 'return ' + expression)).apply(null, values);
             }
         }
@@ -39,5 +42,32 @@ export class TerraFormScope
         {
             return null;
         }
+    }
+
+    public createChildScope(data:any = {}):TerraFormScope
+    {
+        let scope:TerraFormScope = new TerraFormScope( data, this );
+        this.onDataChanged.subscribe((value:any) =>
+        {
+            scope.onDataChanged.next(scope.data);
+        });
+        return scope;
+    }
+
+    protected getEvaluationData():TerraKeyValueInterface<any>
+    {
+        let result:TerraKeyValueInterface<any> = {};
+
+        if ( !isNullOrUndefined(this.parent) )
+        {
+            result = this.parent.getEvaluationData();
+        }
+
+        Object.keys( this._data ).forEach((key:string) =>
+        {
+            result[key] = this._data[key] || null;
+        });
+
+        return result;
     }
 }

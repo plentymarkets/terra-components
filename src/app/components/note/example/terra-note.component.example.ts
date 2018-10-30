@@ -15,10 +15,10 @@ export class TerraNoteComponentExample implements OnInit
     @ViewChild('overlay')
     public overlay:TerraOverlayComponent;
 
-    private _noteTextAndID:string;
-    private _noteTextAndSelected:string;
-    private _noteTextDynamicExample:string;
-    private _editorText:string;
+    protected noteTextAndID:string;
+    protected noteTextAndSelected:string;
+    protected noteTextDynamicExample:string;
+    protected editorText:string;
 
     public ngOnInit():void
     {
@@ -27,10 +27,10 @@ export class TerraNoteComponentExample implements OnInit
                                  'plans to the Empire\'s ultimate weapon, the Death Star, an armoured space station with enough power ' +
                                  'to destroy an entire planet. Pursued by the Empire\'s sinister agents, Princess Leia races home aboard ' +
                                  'her starship, custodian of the stolen plans that can save her people and restore freedom to the galaxy...';
-        this._noteTextAndID = defaultText;
-        this._noteTextAndSelected = defaultText;
-        this._noteTextDynamicExample = defaultText;
-        this._editorText = this._noteTextDynamicExample;
+        this.noteTextAndID = defaultText;
+        this.noteTextAndSelected = defaultText;
+        this.noteTextDynamicExample = defaultText;
+        this.editorText = this.noteTextDynamicExample;
     }
 
     public showOverlay():void
@@ -40,7 +40,7 @@ export class TerraNoteComponentExample implements OnInit
 
     public saveText(text:string):void
     {
-        this._noteTextDynamicExample = text;
+        this.noteTextDynamicExample = text;
         this.overlay.hideOverlay();
     }
 }

@@ -40,7 +40,7 @@ export class TerraBreadcrumbsComponent
         {
             for(let route of routeConfig)
             {
-                if(!isNullOrUndefined(route.data) && !isNullOrUndefined(route.data.permissions) && route === routeToFind)
+                if(route === routeToFind)
                 {
                     path = parentPath + '/' + route.path;
 
@@ -79,9 +79,16 @@ export class TerraBreadcrumbsComponent
         this.breadcrumbsService.closeBreadcrumb(container, breadcrumb);
     }
 
-    protected checkActiveRoute(bcc:TerraBreadcrumb):boolean
+    protected checkActiveRoute(bcc:TerraBreadcrumb, container:HTMLLIElement):boolean
     {
-        return this.breadcrumbsService.checkActiveRoute(bcc);
+        let isRouteActive:boolean = this.breadcrumbsService.checkActiveRoute(bcc);
+
+        if(!isNullOrUndefined(container) && isRouteActive)
+        {
+            container.scrollIntoView();
+        }
+
+        return isRouteActive;
     }
 
     protected calculatePosition(container:HTMLLIElement, contextMenu:HTMLUListElement):void
@@ -89,13 +96,13 @@ export class TerraBreadcrumbsComponent
         let containerClientRect:ClientRect = container.getBoundingClientRect();
         let contextMenuClientRect:ClientRect = contextMenu.getBoundingClientRect();
 
-        let isOutsideRight:boolean = (contextMenuClientRect.width + containerClientRect.left) > screen.width;
+        let isOutsideRight:boolean = (contextMenuClientRect.width + containerClientRect.left) > window.innerWidth;
 
         let left:number = 0;
 
         if(isOutsideRight)
         {
-            left = screen.width - contextMenuClientRect.width;
+            left = window.innerWidth - contextMenuClientRect.width;
         }
         else
         {

@@ -7,6 +7,12 @@
     transition: height var(--transition-lg);
     display: flex;
     
+    &.breadcrumbs-overflow-auto
+    {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    
     .terra-breadcrumb-container
     {
         cursor: pointer;
@@ -21,6 +27,7 @@
                 max-width: 120px;
                 text-overflow: ellipsis;
                 overflow: hidden;
+                text-decoration: none;
     
                 &.active
                 {
@@ -71,7 +78,6 @@
                 {
                     position: fixed;
                     width: 150px;
-                    top: calc(var(--breadcrumbs-height) + var(--navbar-height) + var(--tabbar-height) - var(--space-sm));
                     transition: all var(--transition-0);
                     transition-delay: var(--transition-delay-0);
                     li

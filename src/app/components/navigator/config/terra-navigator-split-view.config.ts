@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 
 /**
  * @author mscharf
+ * @deprecated since `terra-navigator` is now deprecated
  */
 @Injectable()
 export class TerraNavigatorSplitViewConfig<D> extends TerraSplitConfigBase
@@ -15,8 +16,8 @@ export class TerraNavigatorSplitViewConfig<D> extends TerraSplitConfigBase
     public observableNodeClicked:Observable<TerraNavigatorNodeInterface<D>>;
     public observableUpdateActiveItem:Observable<Array<TerraNavigatorNodeInterface<D>>>;
 
-    private _subscriberNodeClicked:Subscriber<TerraNavigatorNodeInterface<D>>;
-    private _subscriberUpdateActiveItem:Subscriber<Array<TerraNavigatorNodeInterface<D>>>;
+    private subscriberNodeClicked:Subscriber<TerraNavigatorNodeInterface<D>>;
+    private subscriberUpdateActiveItem:Subscriber<Array<TerraNavigatorNodeInterface<D>>>;
 
     constructor()
     {
@@ -25,29 +26,29 @@ export class TerraNavigatorSplitViewConfig<D> extends TerraSplitConfigBase
         this.observableUpdateActiveItem = new Observable<Array<TerraNavigatorNodeInterface<D>>>(
             (subscriber:Subscriber<Array<TerraNavigatorNodeInterface<D>>>):void =>
             {
-                this._subscriberUpdateActiveItem = subscriber;
+                this.subscriberUpdateActiveItem = subscriber;
             });
 
         this.observableNodeClicked = new Observable<TerraNavigatorNodeInterface<D>>(
             (subscriber:Subscriber<TerraNavigatorNodeInterface<D>>):void =>
             {
-                this._subscriberNodeClicked = subscriber;
+                this.subscriberNodeClicked = subscriber;
             });
     }
 
     public openNextLevel(currentLevelItem:TerraNavigatorNodeInterface<D>):void
     {
-        if(this._subscriberNodeClicked)
+        if(this.subscriberNodeClicked)
         {
-            this._subscriberNodeClicked.next(currentLevelItem);
+            this.subscriberNodeClicked.next(currentLevelItem);
         }
     }
 
     public updateActiveItem(nodes:Array<TerraNavigatorNodeInterface<D>>):void
     {
-        if(this._subscriberUpdateActiveItem)
+        if(this.subscriberUpdateActiveItem)
         {
-            this._subscriberUpdateActiveItem.next(nodes);
+            this.subscriberUpdateActiveItem.next(nodes);
         }
     }
 }

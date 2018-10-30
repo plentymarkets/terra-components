@@ -63,7 +63,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     @Input()
     public inputUsePortlet:boolean = true;
 
-    constructor(private _formFieldControlService:TerraFormFieldControlService)
+    constructor(protected formFieldControlService:TerraFormFieldControlService)
     {
         this.inputPortletStyle = 'col-xs-12 col-md-8 col-lg-5';
         this.inputRequestParams = {
@@ -85,8 +85,8 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         }
         else
         {
-            this._formFieldControlService.createFormGroup(this.inputFormFields);
-            this.inputFormFunctions.formFieldControlService = this._formFieldControlService;
+            this.formFieldControlService.createFormGroup(this.inputFormFields);
+            this.inputFormFunctions.formFieldControlService = this.formFieldControlService;
 
             this.registerValueChange();
         }
@@ -96,34 +96,34 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     {
         if(changes['inputFormFields'])
         {
-            this._formFieldControlService.createFormGroup(this.inputFormFields);
+            this.formFieldControlService.createFormGroup(this.inputFormFields);
             this.registerValueChange();
         }
     }
 
     protected validate():void
     {
-        if(this._formFieldControlService.dynamicFormGroup.valid)
+        if(this.formFieldControlService.dynamicFormGroup.valid)
         {
-            this.inputFormFunctions.saveCallback(this._formFieldControlService.dynamicFormGroup.value);
+            this.inputFormFunctions.saveCallback(this.formFieldControlService.dynamicFormGroup.value);
         }
         else
         {
-            this.inputFormFunctions.errorCallback(this._formFieldControlService.dynamicFormGroup,
-                this._formFieldControlService.translationMapping);
+            this.inputFormFunctions.errorCallback(this.formFieldControlService.dynamicFormGroup,
+                this.formFieldControlService.translationMapping);
         }
     }
 
     protected onResetClick():void
     {
-        this._formFieldControlService.resetForm();
+        this.formFieldControlService.resetForm();
     }
 
     private registerValueChange():void
     {
         if(!isNullOrUndefined(this.inputFormFunctions.onValueChangedCallback))
         {
-            let stream$:Observable<any> = this._formFieldControlService
+            let stream$:Observable<any> = this.formFieldControlService
                 .dynamicFormGroup
                 .valueChanges;
 

@@ -26,7 +26,7 @@ export class TerraNumberInputComponent extends TerraInputComponent
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    private _id:string;
+    protected id:string;
 
     /**
      * @deprecated inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.
@@ -44,7 +44,7 @@ export class TerraNumberInputComponent extends TerraInputComponent
         super(TerraRegex.NUMERIC);
 
         // generate the id of the input instance
-        this._id = `number-input_#${nextId++}`;
+        this.id = `number-input_#${nextId++}`;
     }
 
     /**
@@ -54,7 +54,7 @@ export class TerraNumberInputComponent extends TerraInputComponent
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.focus();
         });
     }
@@ -66,7 +66,7 @@ export class TerraNumberInputComponent extends TerraInputComponent
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.select();
         });
     }

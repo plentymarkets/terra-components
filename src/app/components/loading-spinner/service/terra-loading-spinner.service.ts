@@ -16,30 +16,30 @@ export class TerraLoadingSpinnerService
     public observable:Observable<boolean>;
 
     private _isLoading:boolean = false;
-    private _subscriber:Subscriber<boolean>;
+    private subscriber:Subscriber<boolean>;
 
     constructor(private zone:NgZone)
     {
         this.observable = new Observable<boolean>((subscriber:Subscriber<boolean>):void =>
         {
-            this._subscriber = subscriber;
+            this.subscriber = subscriber;
         });
     }
 
     public start():void
     {
         // check if currently not loading to reduce unnecessary change detections
-        if(this._subscriber && !this._isLoading)
+        if(this.subscriber && !this._isLoading)
         {
             this._isLoading = true;
-            this._subscriber.next(this._isLoading);
+            this.subscriber.next(this._isLoading);
         }
     }
 
     public stop():void
     {
         // check if currently loading to reduce unnecessary change detections
-        if(this._subscriber && this._isLoading)
+        if(this.subscriber && this._isLoading)
         {
             this._isLoading = false;
 
@@ -54,7 +54,7 @@ export class TerraLoadingSpinnerService
                             // run inside angular zone to detect changes from isLoading to false
                             this.zone.run(() =>
                             {
-                                this._subscriber.next(this._isLoading);
+                                this.subscriber.next(this._isLoading);
                             });
                         }
                     }, 100);

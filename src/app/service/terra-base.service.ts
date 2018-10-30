@@ -1,3 +1,4 @@
+/* tslint:disable:restrict-leading-underscore */
 import { Injectable } from '@angular/core';
 import {
     Headers,
@@ -36,18 +37,18 @@ export class TerraBaseService
 
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
-    constructor(private _terraLoadingSpinnerService:TerraLoadingSpinnerService,
+    constructor(private terraLoadingSpinnerService:TerraLoadingSpinnerService,
                 private _baseHttp:Http,
-                private _baseUrl:string,
-                private _isPlugin?:boolean)
+                private baseUrl:string,
+                private isPlugin?:boolean)
     {
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.setAuthorization();
-        this.url = _baseUrl;
+        this.url = baseUrl;
 
-        if(isNullOrUndefined(this._isPlugin))
+        if(isNullOrUndefined(this.isPlugin))
         {
-            this._isPlugin = false;
+            this.isPlugin = false;
         }
     }
 
@@ -58,7 +59,7 @@ export class TerraBaseService
 
     public get isLoading():boolean
     {
-        return this._terraLoadingSpinnerService.isLoading;
+        return this.terraLoadingSpinnerService.isLoading;
     }
 
     protected setToHeader(key:string, value:string):void
@@ -82,7 +83,7 @@ export class TerraBaseService
     // TODO use D instead of any, use a meaningful error type
     protected mapRequest(request:Observable<any>, err?:(error:any) => void, isRaw?:boolean):Observable<any>
     {
-        this._terraLoadingSpinnerService.start();
+        this.terraLoadingSpinnerService.start();
 
         return request.map((response:Response) =>
         {
@@ -121,7 +122,7 @@ export class TerraBaseService
             {
                 let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage(error);
 
-                if(this._isPlugin)
+                if(this.isPlugin)
                 {
                     this._alert.addAlertForPlugin({
                         msg:              missingUserPermissionAlertMessage,
@@ -147,7 +148,7 @@ export class TerraBaseService
             }
 
             return Observable.throw(error);
-        }).finally(() => this._terraLoadingSpinnerService.stop());
+        }).finally(() => this.terraLoadingSpinnerService.stop());
     }
 
     private dispatchEvent(eventToDispatch:Event | CustomEvent):void
@@ -238,7 +239,7 @@ export class TerraBaseService
         // check which exception type has been received
         if(!isNullOrUndefined(response.error) && !isNullOrUndefined(response.message))
         {
-            if(this._isPlugin)
+            if(this.isPlugin)
             {
                 this._alert.addAlertForPlugin({
                     msg:              this.getErrorString() + ': ' + response.message,
@@ -269,7 +270,7 @@ export class TerraBaseService
             // get error code
             let errorCode:string = error.code ? ' ' + error.code : '';
 
-            if(this._isPlugin)
+            if(this.isPlugin)
             {
                 this._alert.addAlertForPlugin({
                     msg:              this.getErrorString() + errorCode + ': ' + error.message,

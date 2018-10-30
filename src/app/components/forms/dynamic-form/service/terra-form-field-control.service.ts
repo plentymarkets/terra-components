@@ -8,7 +8,6 @@ import {
     Validators
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
-import { TerraFormFieldHorizontalContainer } from '../data/terra-form-field-horizontal-container';
 import { TerraFormFieldConditionalContainer } from '../data/terra-form-field-conditional-container';
 import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
 
@@ -24,7 +23,7 @@ export class TerraFormFieldControlService
 
     private formFieldsToGroup:{ [key:string]:any };
 
-    constructor(private _formBuilder:FormBuilder)
+    constructor(private formBuilder:FormBuilder)
     {
         this.formFieldsToGroup = {};
         this.defaultValues = {};
@@ -39,7 +38,7 @@ export class TerraFormFieldControlService
     public createFormGroup(formFields:Array<TerraFormFieldBase<any>>):void
     {
         this.formFieldsToGroup = this.initFormGroupHelper(formFields, {}, false);
-        this.dynamicFormGroup = this._formBuilder.group(this.formFieldsToGroup);
+        this.dynamicFormGroup = this.formBuilder.group(this.formFieldsToGroup);
     }
 
     /**
@@ -67,7 +66,7 @@ export class TerraFormFieldControlService
         {
             if(formField instanceof TerraFormFieldBaseContainer && !isNullOrUndefined(formField.containerEntries))
             {
-                toGroup[formField.key] = this._formBuilder.group(this.initFormGroupHelper(formField.containerEntries, {}, false));
+                toGroup[formField.key] = this.formBuilder.group(this.initFormGroupHelper(formField.containerEntries, {}, false));
             }
             else if(formField instanceof TerraFormFieldConditionalContainer && !isNullOrUndefined(formField.conditionalEntries))
             {

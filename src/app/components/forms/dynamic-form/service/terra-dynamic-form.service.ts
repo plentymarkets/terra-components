@@ -10,10 +10,10 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class TerraDynamicFormService extends TerraBaseService
 {
-    constructor(private _spinnerService:TerraLoadingSpinnerService,
-                private _http:Http)
+    constructor(private spinnerService:TerraLoadingSpinnerService,
+                private baseHttp:Http)
     {
-        super(_spinnerService, _http, '', false);
+        super(spinnerService, baseHttp, '', false);
     }
 
     /**

@@ -210,7 +210,7 @@ textarea
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     border-bottom: var(--input-wrapper-border, (1px solid var(--border-color)));
     background-color: var(--input-background-color, var(--color-structure-0));
-    color: var(--input-color, var(--color-structure-12));
+    color: var(--input-color, var(--color-structure-13));
     
     &:active,
     &:focus
@@ -282,12 +282,8 @@ textarea
     
     &::placeholder
     {
-        color: var(--input-placeholder-color, var(--color-structure-8));
-        font-size: var(--font-size-3);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+        color: var(--input-placeholder-color, var(--color-structure-7));
         font-weight: var(--font-weight-1);
-        font-variant: all-small-caps;
     }
 }
 
