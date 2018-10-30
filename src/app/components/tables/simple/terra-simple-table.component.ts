@@ -174,22 +174,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this.triggerOutputSelectedRowsChange();
     }
 
-    protected onCheckboxClick(event:Event):void
-    {
-        // do not emit 'outputRowClicked' when toggling checkbox
-        event.stopPropagation();
-    }
-
-    protected onRowClick(row:TerraSimpleTableRowInterface<D>):void
-    {
-        if(this.inputUseHighlighting && !row.disabled)
-        {
-            this.inputHighlightedRow = row;
-            this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
-        }
-        this.outputRowClicked.emit(row);
-    }
-
     private triggerOutputSelectedRowsChange():void
     {
         this.outputSelectedRowsChange.emit(this.getSelectedRows());
@@ -269,6 +253,22 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
         // notify user that selection has been reset
         this.triggerOutputSelectedRowsChange();
+    }
+
+    protected onCheckboxClick(event:Event):void
+    {
+        // do not emit 'outputRowClicked' when toggling checkbox
+        event.stopPropagation();
+    }
+
+    protected onRowClick(row:TerraSimpleTableRowInterface<D>):void
+    {
+        if(this.inputUseHighlighting && !row.disabled)
+        {
+            this.inputHighlightedRow = row;
+            this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
+        }
+        this.outputRowClicked.emit(row);
     }
 
     protected onKeydown(event:KeyboardEvent):void
