@@ -81,8 +81,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
     protected _rowList:Array<TerraSimpleTableRowInterface<D>>;
 
-    private selectedRowList:Array<TerraSimpleTableRowInterface<D>> = [];
-
     constructor(private elementRef:ElementRef)
     {
         this.headerCheckbox = {
@@ -90,7 +88,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
             isIndeterminate: false
         };
         this._rowList = [];
-        this.selectedRowList = [];
     }
 
     public ngOnChanges(changes:SimpleChanges):void
