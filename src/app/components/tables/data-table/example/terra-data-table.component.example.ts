@@ -17,7 +17,7 @@ import { TerraDataTableExampleInterface } from './terra-data-table.interface.exa
 })
 export class TerraDataTableComponentExample implements OnInit
 {
-    protected headerList:Array<TerraDataTableHeaderCellInterface>;
+    protected readonly headerList:Array<TerraDataTableHeaderCellInterface>;
 
     protected noResultButtons:Array<TerraButtonInterface> = [];
     protected noResultTextPrimary:string;
@@ -27,6 +27,7 @@ export class TerraDataTableComponentExample implements OnInit
 
     constructor(private service:TerraDataTableServiceExample)
     {
+        this.headerList = this.createHeaderList();
     }
 
     public ngOnInit():void
@@ -40,10 +41,6 @@ export class TerraDataTableComponentExample implements OnInit
 
         this.noResultTextPrimary = 'No results available';
         this.noResultTextSecondary = 'Search to refresh';
-
-        this.initTableHeader();
-
-        this.service.defaultPagingSize = 25;
     }
 
     public onSearchBtnClicked():void
@@ -62,9 +59,9 @@ export class TerraDataTableComponentExample implements OnInit
     }
 
 
-    private initTableHeader():void
+    private createHeaderList():Array<TerraDataTableHeaderCellInterface>
     {
-        this.headerList = [
+        return [
             {
                 caption: 'ID',
                 sortBy:  'id',
