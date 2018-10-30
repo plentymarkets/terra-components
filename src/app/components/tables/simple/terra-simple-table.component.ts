@@ -190,37 +190,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this.outputRowClicked.emit(row);
     }
 
-    protected onKeydown(event:KeyboardEvent):void
-    {
-        if(this.inputEnableHotkeys && this.inputUseHighlighting && this.inputHighlightedRow)
-        {
-            if(event.which === Key.DownArrow || event.which === Key.UpArrow)
-            {
-                this.highlightSiblingRow(event.which === Key.DownArrow);
-            }
-
-            if(event.which === Key.Space && this.inputHasCheckboxes)
-            {
-                if(event.ctrlKey || event.metaKey)
-                {
-                    this.headerCheckbox.checked = !this.headerCheckbox.checked;
-                    // this.onHeaderCheckboxChange();
-                }
-                else
-                {
-                    this.onRowCheckboxChange(this.inputHighlightedRow);
-                }
-            }
-
-            if(event.which === Key.Enter)
-            {
-                this.outputRowClicked.emit(this.inputHighlightedRow);
-            }
-
-            event.preventDefault();
-        }
-    }
-
     private triggerOutputSelectedRowsChange():void
     {
         this.outputSelectedRowsChange.emit(this.getSelectedRows());
@@ -300,6 +269,37 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
         // notify user that selection has been reset
         this.triggerOutputSelectedRowsChange();
+    }
+
+    protected onKeydown(event:KeyboardEvent):void
+    {
+        if(this.inputEnableHotkeys && this.inputUseHighlighting && this.inputHighlightedRow)
+        {
+            if(event.which === Key.DownArrow || event.which === Key.UpArrow)
+            {
+                this.highlightSiblingRow(event.which === Key.DownArrow);
+            }
+
+            if(event.which === Key.Space && this.inputHasCheckboxes)
+            {
+                if(event.ctrlKey || event.metaKey)
+                {
+                    this.headerCheckbox.checked = !this.headerCheckbox.checked;
+                    // this.onHeaderCheckboxChange();
+                }
+                else
+                {
+                    this.onRowCheckboxChange(this.inputHighlightedRow);
+                }
+            }
+
+            if(event.which === Key.Enter)
+            {
+                this.outputRowClicked.emit(this.inputHighlightedRow);
+            }
+
+            event.preventDefault();
+        }
     }
 
     private highlightSiblingRow(nextSibling:boolean):void
