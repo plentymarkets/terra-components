@@ -79,7 +79,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     public onRowListChange:EventEmitter<void> = new EventEmitter();
 
     protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
-    protected _rowList:Array<TerraSimpleTableRowInterface<D>>;
+    private _rowList:Array<TerraSimpleTableRowInterface<D>>;
 
     constructor(private elementRef:ElementRef)
     {
@@ -87,6 +87,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
             checked:         false,
             isIndeterminate: false
         };
+
         this._rowList = [];
     }
 

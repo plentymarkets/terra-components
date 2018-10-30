@@ -22,7 +22,7 @@
         </tr>
         </thead>
         <tbody [class.highlighting]="inputUseHighlighting">
-        <tr *ngFor="let row of _rowList"
+        <tr *ngFor="let row of inputRowList"
             [ngClass]="row.textColorCss"
             [ngStyle]="{'background-color': row.backgroundColor}"
             [class.isActive]="row === inputHighlightedRow"
