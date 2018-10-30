@@ -2,7 +2,6 @@ import {
     Component,
     EventEmitter,
     Input,
-    NgZone,
     OnInit,
     Output
 } from '@angular/core';
