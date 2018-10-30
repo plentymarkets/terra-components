@@ -1,3 +1,9 @@
+<a name="2.X.X"></a>
+# 2.X.X (XX.XX.2018)
+
+### Feature
+* **terra-simple-table** added support to set selected rows
+
 <a name="2.4.1"></a>
 # 2.4.1 (17.10.2018)
 
