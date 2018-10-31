@@ -66,6 +66,7 @@
 		"zone.js": "0.8.26"
 	},
 	"devDependencies": {
+		"@angular/cli": "^7.0.2",
 		"@types/jasmine": "^2.8.6",
 		"@types/jquery": "^3.3.1",
 		"@types/node": "^9.6.5",

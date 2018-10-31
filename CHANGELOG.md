@@ -1,7 +1,8 @@
-<a name="2.X.X"></a>
-# 2.X.X (XX.XX.2018)
+<a name="X.X.X"></a>
+# X.X.X (XX.XX.2018)
 
 ### Feature
+* **angular-cli** added support for angular-cli usage
 * **terra-simple-table** added support to set selected rows
 * **terra-info** add new component `terra-info` for short information about another ui element
 
