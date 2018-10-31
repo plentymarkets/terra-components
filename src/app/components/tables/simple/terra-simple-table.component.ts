@@ -28,15 +28,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     public inputHeaderList:Array<TerraSimpleTableHeaderCellInterface>;
 
     @Input()
-    public set inputRowList(value:Array<TerraSimpleTableRowInterface<D>>)
-    {
-        this._rowList = value;
-    }
-
-    public get inputRowList():Array<TerraSimpleTableRowInterface<D>>
-    {
-        return this._rowList;
-    }
+    public inputRowList:Array<TerraSimpleTableRowInterface<D>>;
 
     @Input()
     public inputUseHighlighting:boolean = false;
@@ -82,7 +74,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     }
 
     protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
-    private _rowList:Array<TerraSimpleTableRowInterface<D>>;
 
     constructor(private elementRef:ElementRef)
     {
@@ -91,7 +82,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
             isIndeterminate: false
         };
 
-        this._rowList = [];
+        this.inputRowList = [];
     }
 
     public ngOnChanges(changes:SimpleChanges):void
