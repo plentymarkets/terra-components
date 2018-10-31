@@ -2,8 +2,6 @@
 # Unreleased
 
 ### Bug Fixes 
-* **button-group** fixed styles
-* **terra-button** updated functiongroup selector
 * **terra-suggestion-box** prevent duplicate execution of callbacks and emission of notifications when selecting a value from the suggestion list
 
 ### Feature
