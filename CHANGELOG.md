@@ -1,12 +1,12 @@
-<a name="unreleased"></a>
-# Unreleased
+<a name="2.X.X"></a>
+# 2.X.X (XX.XX.2018)
 
 ### Feature
+* **terra-simple-table** added support to set selected rows
 * **terra-info** add new component `terra-info` for short information about another ui element
 
 <a name="2.4.1"></a>
 # 2.4.1 (17.10.2018)
-
 
 ### Bug Fixes
 * **terra-double-input** fixed issue with the decimal separator. It now accepts decimal inputs in the localized format.
