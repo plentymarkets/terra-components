@@ -135,6 +135,14 @@ Adapted Changes from v2.3.21 and v2.3.22
 ### Breaking Changes
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
 
+
+<a name="2.X.X"></a>
+# 2.X.X (XX.XX.2018)
+
+### Feature
+* **terra-simple-table** added support to set selected rows
+* **terra-info** add new component `terra-info` for short information about another ui element
+
 <a name="2.4.1"></a>
 # 2.4.1 (17.10.2018)
 

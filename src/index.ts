@@ -84,6 +84,7 @@ export * from './app/components/forms/input/time-picker/terra-time-picker.compon
 export * from './app/components/dynamic-module-loader/data/terra-dynamic-loaded-component-input.interface';
 export * from './app/components/tables/data-table/cell/terra-text-align.enum';
 export * from './app/components/data/terra-base-parameter.interface';
+export * from './app/components/info/terra-info.component';
 export * from './app/components/forms/dynamic-form/terra-dynamic-form.component';
 export * from './app/components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
 export * from './app/components/forms/dynamic-form/data/terra-form-field-base';

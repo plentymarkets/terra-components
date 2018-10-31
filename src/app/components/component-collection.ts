@@ -59,6 +59,7 @@ import { TerraStopwatchComponent } from './stopwatch/terra-stopwatch.component';
 import { TerraFileListComponent } from './file-browser/file-list/file-list.component';
 import { TerraImagePreviewComponent } from './file-browser/image-preview/image-preview.component';
 import { TerraThreeColumnsContainerComponent } from './layouts/column-container/three-columns/terra-three-columns-container.component';
+import { TerraInfoComponent } from './info/terra-info.component';
 
 export const exportedComponents:Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -127,4 +128,5 @@ export const components:Array<Type<any>> = [
     ...exportedComponents,
     TerraFileListComponent,
     TerraImagePreviewComponent,
+    TerraInfoComponent
 ];
