@@ -1,10 +1,4 @@
-import {
-    Component,
-    Input,
-    OnChanges,
-    OnInit,
-    SimpleChanges
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { TerraFormFieldControlService } from './service/terra-form-field-control.service';
 import { TerraFormFieldBase } from './data/terra-form-field-base';
@@ -58,10 +52,20 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     public inputHasNoResetButton:boolean;
 
     @Input()
+    public inputHasToggleButton:boolean;
+
+    @Input()
     public inputIsDisabled:boolean;
 
     @Input()
     public inputUsePortlet:boolean = true;
+
+    @Input()
+    public inputShowDeprecatedEntries:boolean = false;
+
+    @Output()
+    public inputShowDeprecatedEntriesChange:EventEmitter<boolean> = new EventEmitter();
+
 
     constructor(protected formFieldControlService:TerraFormFieldControlService)
     {
@@ -74,6 +78,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
 
         this.inputHasNoSaveButton = false;
         this.inputHasNoResetButton = false;
+        this.inputHasToggleButton = false;
         this.inputIsDisabled = false;
     }
 
@@ -139,5 +144,11 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
                 this.inputFormFunctions.onValueChangedCallback(value);
             });
         }
+    }
+
+    protected onToggleClick():void
+    {
+        this.inputShowDeprecatedEntries = !this.inputShowDeprecatedEntries;
+        this.inputShowDeprecatedEntriesChange.emit(this.inputShowDeprecatedEntries);
     }
 }

@@ -1,3 +1,9 @@
+<a name="3.0.0-beta."></a>
+# 3.0.0-beta. (unreleased)
+
+### Feature
+* **terra-dynamic-form** new optional toggle button to display/hide deprecated plugin config entries
+
 <a name="3.0.0-beta.11"></a>
 # 3.0.0-beta.11 (25.10.2018)
 * **terra-file-browser** 

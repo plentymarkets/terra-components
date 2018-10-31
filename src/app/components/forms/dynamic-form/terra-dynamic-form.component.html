@@ -1,7 +1,7 @@
 <form [formGroup]="formFieldControlService.dynamicFormGroup"
       (ngSubmit)="validate()"
       role="form">
-    <terra-base-toolbar [ngClass]="{'toolbarHidden': inputHasNoSaveButton && inputHasNoResetButton}">
+    <terra-base-toolbar [ngClass]="{'toolbarHidden': inputHasNoSaveButton && inputHasNoResetButton && inputHasToggleButton}">
         <div class="btn-group" role="group">
             <terra-button [inputIcon]="'icon-save'"
                           [inputTooltipText]="'save' | translate:lang"
@@ -14,6 +14,12 @@
                           [inputIsHidden]="inputHasNoResetButton">
             </terra-button>
         </div>
+        <terra-toggle [inputTooltipText]="'terraDynamicForm.deprecated' | translate:lang"
+                      (toggled)="onToggleClick()"
+                      [(ngModel)]="inputShowDeprecatedEntries"
+                      [ngModelOptions]="{standalone: true}"
+                      [inputIsHidden]="!inputHasToggleButton">
+        </terra-toggle>
     </terra-base-toolbar>
     
     <div class="container-fluid">
@@ -22,6 +28,7 @@
                 <terra-dynamic-switch [inputFormFields]="inputFormFields"
                                       [inputUsePortlet]="inputUsePortlet"
                                       [inputIsDisabled]="inputIsDisabled"
+                                      [inputShowDeprecatedConfig]="inputShowDeprecatedEntries"
                                       [inputFormGroup]="formFieldControlService.dynamicFormGroup">
                 </terra-dynamic-switch>
             </div>
