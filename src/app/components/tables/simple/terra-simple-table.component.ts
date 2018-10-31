@@ -28,17 +28,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     public inputHeaderList:Array<TerraSimpleTableHeaderCellInterface>;
 
     @Input()
-    public set inputRowList(value:Array<TerraSimpleTableRowInterface<D>>)
-    {
-        this._rowList = value;
-
-        this.updateHeaderCheckboxState();
-    }
-
-    public get inputRowList():Array<TerraSimpleTableRowInterface<D>>
-    {
-        return this._rowList;
-    }
+    public inputRowList:Array<TerraSimpleTableRowInterface<D>>;
 
     @Input()
     public inputUseHighlighting:boolean = false;
@@ -78,8 +68,12 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     public onRowListChange:EventEmitter<void> = new EventEmitter();
 
+    public get selectedRowList():Array<TerraSimpleTableRowInterface<D>>
+    {
+        return this.inputRowList.filter((row:TerraSimpleTableRowInterface<D>) => row.selected === true);
+    }
+
     protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
-    private _rowList:Array<TerraSimpleTableRowInterface<D>>;
 
     constructor(private elementRef:ElementRef)
     {
@@ -88,13 +82,15 @@ export class TerraSimpleTableComponent<D> implements OnChanges
             isIndeterminate: false
         };
 
-        this._rowList = [];
+        this.inputRowList = [];
     }
 
     public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes.hasOwnProperty('inputRowList'))
         {
+            this.updateHeaderCheckboxState();
+
             this.onRowListChange.emit();
         }
     }
@@ -172,7 +168,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     private triggerOutputSelectedRowsChange():void
     {
-        this.outputSelectedRowsChange.emit(this.getSelectedRows());
+        this.outputSelectedRowsChange.emit(this.selectedRowList);
     }
 
     private checkHeaderCheckbox():void
@@ -195,7 +191,8 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     private updateHeaderCheckboxState():void
     {
-        let selectedRowsCount:number = this.getSelectedRows().length;
+        let selectedRowsCount:number = this.selectedRowList.length;
+
         if(selectedRowsCount === 0) // anything selected?
         {
             this.uncheckHeaderCheckbox();
@@ -208,17 +205,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         {
             this.setHeaderCheckboxIndeterminate();
         }
-    }
-
-    private checkIfRowSelected(selectedRows:Array<TerraSimpleTableRowInterface<D>>):boolean
-    {
-        return selectedRows.length > 0 && this.inputRowList.filter(
-            (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === selectedRows.length;
-    }
-
-    private getSelectedRows():Array<TerraSimpleTableRowInterface<D>>
-    {
-        return this.inputRowList.filter((row:TerraSimpleTableRowInterface<D>) => row.selected === true);
     }
 
     private selectRow(row:TerraSimpleTableRowInterface<D>):void
