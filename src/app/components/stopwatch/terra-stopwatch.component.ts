@@ -4,7 +4,7 @@ import {
     OnInit
 } from '@angular/core';
 import { TranslationService } from 'angular-l10n';
-import * as Stopwatch from 'timer-stopwatch';
+import { TerraStopwatchInterface } from './data/terra-stopwatch.interface';
 
 @Component({
     selector: 'terra-stopwatch',
@@ -31,9 +31,8 @@ export class TerraStopwatchComponent implements OnInit
     @Input()
     public inputIsSmall:boolean = false;
 
+    protected stopwatch:TerraStopwatchInterface;
     protected langPrefix:string = 'terraStopwatch';
-
-    private stopwatch:Stopwatch = new Stopwatch();
 
     constructor(public translation:TranslationService)
     {
@@ -41,6 +40,7 @@ export class TerraStopwatchComponent implements OnInit
 
     public ngOnInit():void
     {
+        this.initStopwatch();
         if(this.inputIsAutoPlay)
         {
             this.start();
@@ -48,11 +48,11 @@ export class TerraStopwatchComponent implements OnInit
     }
 
     /**
-     * @description returns stopwatch value in milliseconds
+     * @description returns stopwatch value in seconds
      */
-    public getTimeInMilliseconds():number
+    public getTimeInSeconds():number
     {
-        return this.stopwatch.ms;
+        return this.stopwatch.seconds;
     }
 
     /**
@@ -60,7 +60,8 @@ export class TerraStopwatchComponent implements OnInit
      */
     public start():void
     {
-        this.stopwatch.start();
+        this.stopwatch.timer = setInterval(() => this.incrementSeconds(), 1000);
+        this.stopwatch.state = 1;
     }
 
     /**
@@ -68,7 +69,8 @@ export class TerraStopwatchComponent implements OnInit
      */
     public stop():void
     {
-        this.stopwatch.stop();
+        clearInterval(this.stopwatch.timer);
+        this.stopwatch.state = 0;
     }
 
     /**
@@ -76,7 +78,8 @@ export class TerraStopwatchComponent implements OnInit
      */
     public reset():void
     {
-        this.stopwatch.reset();
+        clearInterval(this.stopwatch.timer);
+        this.initStopwatch();
     }
 
     /**
@@ -124,11 +127,23 @@ export class TerraStopwatchComponent implements OnInit
      */
     private getStopwatchPattern():string
     {
-        return (Math.floor(((this.stopwatch.ms / 3600000) % 24)) < 10 ? '0' : '') +
-               Math.floor(((this.stopwatch.ms / 3600000) % 24)) + ':' +
-               (Math.floor(((this.stopwatch.ms / 60000) % 60)) < 10 ? '0' : '') +
-               Math.floor(((this.stopwatch.ms / 60000) % 60)) + ':' +
-               (Math.floor(((this.stopwatch.ms / 1000) % 60)) < 10 ? '0' : '') +
-               Math.floor(((this.stopwatch.ms / 1000) % 60));
+        return (Math.floor(((this.stopwatch.seconds / 3600) % 24)) < 10 ? '0' : '') +
+               Math.floor(((this.stopwatch.seconds / 3600) % 24)) + ':' +
+               (Math.floor((this.stopwatch.seconds / 60 % 60)) < 10 ? '0' : '') + Math.floor((this.stopwatch.seconds / 60 % 60)) + ':' +
+               (this.stopwatch.seconds % 60 < 10 ? '0' : '') + this.stopwatch.seconds % 60;
+    }
+
+    private incrementSeconds():number
+    {
+        return this.stopwatch.seconds += 1;
+    }
+
+    private initStopwatch():void
+    {
+        this.stopwatch = {
+            seconds: 0,
+            state: 0,
+            timer: 0
+        };
     }
 }

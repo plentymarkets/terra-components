@@ -14,8 +14,8 @@ export class TerraStopwatchComponentExample
     @ViewChild('viewChildCurrentTime')
         public viewChildCurrentTime:TerraStopwatchComponent;
 
-    protected showCurrentTimeInMilliseconds():void
+    protected showCurrentTimeInSeconds():void
     {
-        alert(this.viewChildCurrentTime.getTimeInMilliseconds());
+        alert(this.viewChildCurrentTime.getTimeInSeconds());
     }
 }

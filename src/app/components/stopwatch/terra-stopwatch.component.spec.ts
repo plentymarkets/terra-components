@@ -64,16 +64,16 @@ describe('Component: TerraStopwatchComponent', () =>
         component.ngOnInit();
         setTimeout(() =>
         {
-            expect(component.getTimeInMilliseconds()).toBeGreaterThan(0);
+            expect(component.getTimeInSeconds()).toBeGreaterThan(0);
             done();
-        }, 100);
+        }, 1000);
     });
 
     it('should not auto run', () =>
     {
         component.inputIsAutoPlay = false;
         component.ngOnInit();
-        expect(component.getTimeInMilliseconds()).toEqual(0);
+        expect(component.getTimeInSeconds()).toEqual(0);
     });
 
     it('should start and reset', (done:any) =>
@@ -81,11 +81,11 @@ describe('Component: TerraStopwatchComponent', () =>
         component.start();
         setTimeout(() =>
         {
-            expect(component.getTimeInMilliseconds()).toBeGreaterThan(0);
+            expect(component.getTimeInSeconds()).toBeGreaterThan(0);
             component.reset();
-            expect(component.getTimeInMilliseconds()).toEqual(0);
+            expect(component.getTimeInSeconds()).toEqual(0);
             done();
-        }, 100);
+        }, 1000);
     });
 
     it('should start and stop', (done:any) =>
@@ -94,14 +94,14 @@ describe('Component: TerraStopwatchComponent', () =>
         let time:number;
         setTimeout(() =>
         {
-            expect(component.getTimeInMilliseconds()).toBeGreaterThan(0);
+            expect(component.getTimeInSeconds()).toBeGreaterThan(0);
             component.stop();
-            time = component.getTimeInMilliseconds();
-        }, 100);
+            time = component.getTimeInSeconds();
+        }, 1000);
         setTimeout(() =>
         {
-            expect(component.getTimeInMilliseconds()).toEqual(time);
+            expect(component.getTimeInSeconds()).toEqual(time);
             done();
-        }, 200);
+        }, 2000);
     });
 });
