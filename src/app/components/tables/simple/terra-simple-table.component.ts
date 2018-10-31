@@ -162,7 +162,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         {
             this.uncheckHeaderCheckbox();
         }
-        else if(selectedRowsCount > 0 && this._rowList.length === selectedRowsCount) // all selected?
+        else if(selectedRowsCount > 0 && this.inputRowList.length === selectedRowsCount) // all selected?
         {
             this.checkHeaderCheckbox();
         }
