@@ -13,13 +13,14 @@ module.exports = function (config) {
         },
         webpack: require('./config/webpack.test')({env: 'test'}),
         reporters: [
-            'progress'
+            'progress',
+            'kjhtml'
         ],
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: true,
-        browsers: ['Chrome'],
+        browsers: ['Chrome', 'Firefox', 'Safari'],
         singleRun: false,
         concurrency: Infinity
     })

@@ -29,7 +29,8 @@
             <i><b> {{ listBoxHeadingKey | translate:lang }} </b></i>
         </span>
         
-        <span *ngFor="let item of displayListBoxValues"
+        <span #renderedListBoxValues
+              *ngFor="let item of displayListBoxValues"
               (click)="select(item)"
               [ngClass]="{active: item.value === selectedValue?.value, selected: item.value === tmpSelectedValue?.value}">
             <span class="{{item.icon}}" *ngIf="item.icon"></span>
