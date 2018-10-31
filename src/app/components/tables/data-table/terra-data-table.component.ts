@@ -4,23 +4,15 @@ import {
     Input,
     OnChanges,
     OnInit,
-    Output,
     SimpleChanges
 } from '@angular/core';
 import { TerraDataTableContextMenuService } from './context-menu/terra-data-table-context-menu.service';
-import {
-    animate,
-    state,
-    style,
-    transition,
-    trigger
-} from '@angular/animations';
 import { TerraDataTableBaseService } from './terra-data-table-base.service';
 import { TerraDataTableHeaderCellInterface } from './interfaces/terra-data-table-header-cell.interface';
 import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
 import { TerraDataTableSortOrderEnum } from './enums/terra-data-table-sort-order.enum';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
-import { TerraRefTypeInterface } from './interfaces/terra-ref-type.interface';
+import { TerraHrefTypeInterface } from './interfaces/terra-href-type.interface';
 import {
     TerraDataTableTextInterface,
     TerraPagerInterface,
@@ -33,7 +25,7 @@ import {
 import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
 import { StringHelper } from '../../../helpers/string.helper';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
-import { TerraRefTypeEnum } from './enums/terra-ref-type.enum';
+import { TerraHrefTypeEnum } from './enums/terra-href-type.enum';
 import {
     debounceTime,
     filter,
@@ -82,7 +74,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
     protected readonly sortOrder:{} = TerraDataTableSortOrderEnum;
-    protected readonly refType:{} = TerraRefTypeEnum;
+    protected readonly refType:{} = TerraHrefTypeEnum;
 
     protected get rowList():Array<TerraDataTableRowInterface<T>>
     {
@@ -152,7 +144,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     protected getCellDataType(data:any):string
     {
-        function isRefType(arg:any):arg is TerraRefTypeInterface
+        function isRefType(arg:any):arg is TerraHrefTypeInterface
         {
             return !isNullOrUndefined(arg)
                    && !isNullOrUndefined(arg.type) && typeof arg.type === 'string'
@@ -283,7 +275,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     protected getTextAlign(item:TerraDataTableHeaderCellInterface):TerraTextAlignEnum // TODO: Pipe?
     {
-        if(!isNullOrUndefined(item.textAlign))
+        if(!isNullOrUndefined(item) && !isNullOrUndefined(item.textAlign))
         {
             return item.textAlign;
         }
