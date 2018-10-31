@@ -203,8 +203,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         {
             this.uncheckHeaderCheckbox();
         }
-        else if(selectedRows.length > 0 && this.inputRowList.filter(
-            (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === selectedRows.length) // all selected?
+        else if(this.checkIfRowSelected(selectedRows)) // all selected?
         {
             this.checkHeaderCheckbox();
         }
@@ -212,6 +211,12 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         {
             this.setHeaderCheckboxIndeterminate();
         }
+    }
+
+    private checkIfRowSelected(selectedRows:Array<TerraSimpleTableRowInterface<D>>):boolean
+    {
+        return selectedRows.length > 0 && this.inputRowList.filter(
+            (r:TerraSimpleTableRowInterface<D>):boolean => !r.disabled).length === selectedRows.length;
     }
 
     private getSelectedRows():Array<TerraSimpleTableRowInterface<D>>
@@ -283,7 +288,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
                 if(event.ctrlKey || event.metaKey)
                 {
                     this.headerCheckbox.checked = !this.headerCheckbox.checked;
-                    // this.onHeaderCheckboxChange();
                 }
                 else
                 {
