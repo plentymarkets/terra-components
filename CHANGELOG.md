@@ -1,3 +1,9 @@
+<a name="Unreleased"></a>
+# Unreleased
+* **category-detail-data**
+	- added preview url	 
+
+
 <a name="3.0.0-beta.11"></a>
 # 3.0.0-beta.11 (25.10.2018)
 * **terra-file-browser** 
