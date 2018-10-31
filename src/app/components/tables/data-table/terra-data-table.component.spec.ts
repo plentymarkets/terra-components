@@ -27,7 +27,7 @@ import { TerraDataTableServiceExample } from './example/terra-data-table.service
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
 import { DebugElement } from '@angular/core';
 
-fdescribe('Component: TerraDataTableComponent', () =>
+describe('Component: TerraDataTableComponent', () =>
 {
     let component:TerraDataTableComponent<any, any>; // TODO T and P should be defined
     let fixture:ComponentFixture<TerraDataTableComponent<any, any>>;

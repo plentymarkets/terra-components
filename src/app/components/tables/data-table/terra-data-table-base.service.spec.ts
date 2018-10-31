@@ -1,24 +1,20 @@
-import { DataTableExampleInterface } from './example/terra-data-table.interface.example';
+import { TerraDataTableExampleInterface } from './example/terra-data-table.interface.example';
 import {
-    TerraLoadingSpinnerService,
     TerraPagerInterface,
     TerraPagerParameterInterface
 } from '../../../..';
-import { Http } from '@angular/http';
 import { TerraDataTableServiceExample } from './example/terra-data-table.service.example';
 import { Observable } from 'rxjs';
 
-fdescribe('Service: TerraDataTableBaseService', () =>
+describe('Service: TerraDataTableBaseService', () =>
     {
         let service:TerraDataTableServiceExample;
-        let loadingSpinner:TerraLoadingSpinnerService;
-        let http:Http;
-        let data:DataTableExampleInterface;
+        let data:TerraDataTableExampleInterface;
         let pagerData:TerraPagerParameterInterface;
 
         beforeEach(() =>
         {
-            service = new TerraDataTableServiceExample(loadingSpinner, http);
+            service = new TerraDataTableServiceExample();
             data = {
                 id:    1,
                 value: 5
@@ -57,6 +53,8 @@ fdescribe('Service: TerraDataTableBaseService', () =>
 
         it('should updatePagingData change paging data', () =>
         {
+            let oldData:TerraPagerInterface<any> = service.pagingData;
+
             let updatedData:TerraPagerInterface<any> = {
                 page:           2,
                 totalsCount:    2,
@@ -66,17 +64,6 @@ fdescribe('Service: TerraDataTableBaseService', () =>
                 lastOnPage:     28,
                 itemsPerPage:   25
             };
-
-            let oldData:TerraPagerInterface<any> = {
-                page:           1,
-                totalsCount:    1,
-                isLastPage:     true,
-                lastPageNumber: 1,
-                firstOnPage:    1,
-                lastOnPage:     25,
-                itemsPerPage:   25
-        };
-            service.pagingData = oldData;
             service.updatePagingData(updatedData);
             expect(service.pagingData).not.toEqual(oldData);
         });
