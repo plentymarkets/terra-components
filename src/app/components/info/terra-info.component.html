@@ -1,0 +1,9 @@
+<ng-template #textTemplate>
+    <div [innerHtml]="text"></div>
+</ng-template>
+<div class="info-handler icon-icon_questionmark_bck"
+     [tooltip]="textTemplate"
+     [isDisabled]="isDisabled || !text"
+     [placement]="textPlacement"
+     [ngClass]="{'disabled': isDisabled}">
+</div>
