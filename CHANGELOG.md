@@ -3,6 +3,9 @@
 * **category-detail-data**
 	- added preview url	 
 
+* **terra-stopwatch**
+	- add timer method 
+	- add state method 
 
 <a name="3.0.0-beta.11"></a>
 # 3.0.0-beta.11 (25.10.2018)
