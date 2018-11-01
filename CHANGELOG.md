@@ -4,7 +4,7 @@
 	- added preview url	 
 
 * **terra-stopwatch**
-	- add timer method 
+	- add method to count seconds 
 	- add state method 
 
 <a name="3.0.0-beta.11"></a>
