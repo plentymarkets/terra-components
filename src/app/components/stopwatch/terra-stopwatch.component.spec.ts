@@ -46,11 +46,13 @@ describe('Component: TerraStopwatchComponent', () =>
     {
         fixture = TestBed.createComponent(TerraStopwatchComponent);
         component = fixture.componentInstance;
-
-        component.reset();
         component.inputIsAutoPlay = false;
-
         fixture.detectChanges();
+    });
+
+    afterEach(() =>
+    {
+        component.reset();
     });
 
     it('should create', () =>
@@ -66,7 +68,7 @@ describe('Component: TerraStopwatchComponent', () =>
         {
             expect(component.getTimeInSeconds()).toBeGreaterThan(0);
             done();
-        }, 1000);
+        }, 2000);
     });
 
     it('should not auto run', () =>
@@ -85,7 +87,7 @@ describe('Component: TerraStopwatchComponent', () =>
             component.reset();
             expect(component.getTimeInSeconds()).toEqual(0);
             done();
-        }, 1000);
+        }, 2000);
     });
 
     it('should start and stop', (done:any) =>
@@ -97,11 +99,11 @@ describe('Component: TerraStopwatchComponent', () =>
             expect(component.getTimeInSeconds()).toBeGreaterThan(0);
             component.stop();
             time = component.getTimeInSeconds();
-        }, 1000);
+        }, 2000);
         setTimeout(() =>
         {
             expect(component.getTimeInSeconds()).toEqual(time);
             done();
-        }, 2000);
+        }, 4000);
     });
 });
