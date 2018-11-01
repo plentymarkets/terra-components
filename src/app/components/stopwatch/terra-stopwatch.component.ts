@@ -82,6 +82,9 @@ export class TerraStopwatchComponent implements OnInit
         this.initStopwatch();
     }
 
+    /**
+     * @description returns the stopwatch state (start, stop, pause)
+     */
     public get state():number
     {
         return this.stopwatch.state;
