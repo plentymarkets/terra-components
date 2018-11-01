@@ -60,7 +60,7 @@ export class TerraStopwatchComponent implements OnInit
      */
     public start():void
     {
-        this.stopwatch.timer = setInterval(() => this.incrementSeconds(), 1000);
+        this.stopwatch.timer = window.setInterval(() => this.incrementSeconds(), 1000);
         this.stopwatch.state = 1;
     }
 
@@ -69,7 +69,7 @@ export class TerraStopwatchComponent implements OnInit
      */
     public stop():void
     {
-        clearInterval(this.stopwatch.timer);
+        window.clearInterval(this.stopwatch.timer);
         this.stopwatch.state = 0;
     }
 
@@ -78,7 +78,7 @@ export class TerraStopwatchComponent implements OnInit
      */
     public reset():void
     {
-        clearInterval(this.stopwatch.timer);
+        window.clearInterval(this.stopwatch.timer);
         this.initStopwatch();
     }
 
