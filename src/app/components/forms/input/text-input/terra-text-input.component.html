@@ -29,6 +29,7 @@
            [placement]="inputTooltipPlacement"
            [tooltip]="helperTooltip"
            [isDisabled]="isHelperTooltipDisabled"
+           [container]="'body'"
            *ngIf="(innerValue || innerValue === 0) && inputName" htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
