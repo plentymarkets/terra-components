@@ -1,7 +1,7 @@
 <div class="select-box-wrapper"
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
-     [isDisabled]="!inputTooltipText"
+     [isDisabled]="isTooltipDisabled"
      [ngClass]="{
                   'error': !isValid,
                   'disabled': inputIsDisabled,
@@ -12,7 +12,17 @@
      (click)="onClick($event)"
      container="body">
     
-    <label *ngIf="hasLabel" htmlFor="{{inputName}}">{{inputName}}
+    <label terraLabelTooltip
+           [nameOfInput]="inputName"
+           [tooltipTextOfInput]="inputTooltipText"
+           [(tooltipOfInputDisabled)]="isTooltipDisabled"
+           [(tooltipText)]="helperTooltip"
+           [(tooltipDisabled)]="isHelperTooltipDisabled"
+           [placement]="inputTooltipPlacement"
+           [tooltip]="helperTooltip"
+           [isDisabled]="isHelperTooltipDisabled"
+           htmlFor="{{inputName}}">
+        {{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
     

@@ -7,18 +7,17 @@ import {
     OnChanges,
     OnInit,
     Output,
-    SimpleChanges
+    SimpleChanges,
+    ViewChild
 } from '@angular/core';
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
 import {
     FormControl,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import {
-    isNull,
-    isNullOrUndefined
-} from 'util';
+import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
+import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 
 @Component({
     selector:  'terra-select-box',
@@ -65,6 +64,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 
     protected selectedValue:TerraSelectBoxValueInterface;
     protected hasLabel:boolean;
+    protected isTooltipDisabled:boolean;
+    protected helperTooltip:string;
+    protected isHelperTooltipDisabled:boolean;
 
     private _value:number | string;
     private _toggleOpen:boolean;
@@ -97,7 +99,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         this.isValid = true;
         this._toggleOpen = false;
-        this.hasLabel = !isNull(this.inputName);
+        this.hasLabel = !StringHelper.isNullUndefinedOrEmpty(this.inputName);
         this.isInit = true;
     }
 
