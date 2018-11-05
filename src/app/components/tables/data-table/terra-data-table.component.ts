@@ -14,11 +14,6 @@ import { TerraDataTableSortOrderEnum } from './enums/terra-data-table-sort-order
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraHrefTypeInterface } from './interfaces/terra-href-type.interface';
 import {
-    TerraDataTableTextInterface,
-    TerraPagerInterface,
-    TerraTagInterface
-} from '../../../..';
-import {
     isArray,
     isNullOrUndefined
 } from 'util';
@@ -32,6 +27,9 @@ import {
     tap
 } from 'rxjs/operators';
 import { TerraBaseTable } from '../terra-base-table';
+import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
+import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
+import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 
 
 @Component({
