@@ -1,6 +1,9 @@
 <a name="X.X.X"></a>
 # X.X.X (XX.XX.2018)
 
+### Bug Fixes 
+* **terra-suggestion-box** prevent duplicate execution of callbacks and emission of notifications when selecting a value from the suggestion list
+
 ### Feature
 * **angular-cli** added support for angular-cli usage
 * **terra-simple-table** added support to set selected rows
