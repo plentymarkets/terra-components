@@ -166,7 +166,7 @@ export abstract class TerraDataTableBaseService<T, P>
     /**
      * @description Placeholder for the specific data-retrieval method. In General the specific rest call is given here.
      * @param {TerraPagerParameterInterface} params
-     * @returns {Observable<TerraPagerInterface>}
+     * @returns {Observable<TerraPagerInterface<T>>}
      */
     public abstract requestTableData(params?:P):Observable<TerraPagerInterface<T>>;
 
