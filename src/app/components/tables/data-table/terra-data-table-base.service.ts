@@ -173,7 +173,8 @@ export abstract class TerraDataTableBaseService<T, P>
     /**
      * @description Placeholder for the specific data mapping method.
      * The response data is mapped to the `TerraDataTableRowInterface` in order to be able to display the data in the table.
-     * @param res
+     * @param {T} res
+     * @returns {TerraDataTableRowInterface<T>}
      */
     public abstract dataToRowMapping(res:T):TerraDataTableRowInterface<T>;
 }
