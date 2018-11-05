@@ -4,8 +4,6 @@ import { TerraPagerParameterInterface } from '../../../pager/data/terra-pager.pa
 import { Observable } from 'rxjs/Observable';
 import { TerraPagerInterface } from '../../../pager/data/terra-pager.interface';
 import { TerraDataTableSortOrderEnum } from '../enums/terra-data-table-sort-order.enum';
-import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/terra-loading-spinner.service';
-import { Http } from '@angular/http';
 import { TerraDataTableExampleInterface } from './terra-data-table.interface.example';
 import { TerraHrefTypeEnum } from '../enums/terra-href-type.enum';
 import { TerraDataTableCellInterface } from '../interfaces/terra-data-table-cell.interface';
@@ -24,17 +22,16 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
         let lastOnPage:number = Math.min(params.page * params.itemsPerPage, this.data.length);
         let lastPageNumber:number = Math.ceil(this.data.length / params.itemsPerPage);
 
-        let results:TerraPagerInterface<{ id:number, value:number }> =
-            {
-                page:           params.page,
-                itemsPerPage:   params.itemsPerPage,
-                totalsCount:    this.data.length,
-                isLastPage:     params.page === lastPageNumber,
-                lastPageNumber: lastPageNumber,
-                firstOnPage:    firstOnPage + 1,
-                lastOnPage:     lastOnPage,
-                entries:        this.data
-            };
+        let results:TerraPagerInterface<TerraDataTableExampleInterface> = {
+            page:           params.page,
+            itemsPerPage:   params.itemsPerPage,
+            totalsCount:    this.data.length,
+            isLastPage:     params.page === lastPageNumber,
+            lastPageNumber: lastPageNumber,
+            firstOnPage:    firstOnPage + 1,
+            lastOnPage:     lastOnPage,
+            entries:        this.data
+        };
 
         // apply sorting if sorting parameters are given
         if(params && params['sortBy'] && params['sortOrder'])
@@ -67,7 +64,7 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
     {
         this.data.push(
             {
-                id:    this.data.reduce((a:number, b:TerraDataTableExampleInterface) => Math.max(a, b.id) , 0) + 1,
+                id:    this.data.reduce((a:number, b:TerraDataTableExampleInterface) => Math.max(a, b.id), 0) + 1,
                 value: Math.random()
             }
         );
@@ -85,7 +82,7 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
             {
                 data: {
                     type:  TerraHrefTypeEnum.email,
-                    value: 'pascal.weyrich@plentymarkets.com'
+                    value: 'example-mail@host.com'
                 }
             },
             {
