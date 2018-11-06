@@ -66,9 +66,6 @@ $icomoon-font-path: "../fonts" !default;
 
 //Icon-Variables//
 
-$icon-table_sort_desc: "\eb15";
-$icon-table_sort_asc: "\eb16";
-$icon-table_sort: "\eb18";
 $icon-logout: "\eb10";
 $icon-content: "\eb11";
 $icon-login: "\eb12";
@@ -565,8 +562,9 @@ $icon-settings: "\ea63";
 $icon-shipping_dhl_packstation_valid: "\ea72";
 $icon-shipping_express: "\ea73";
 $icon-skype: "\ea74";
-$icon-sort_asc: "\ea75";
-$icon-sort_desc: "\ea76";
+$icon-table_sort: "\eb18";
+$icon-sort_asc: "\eb16";
+$icon-sort_desc: "\eb15";
 $icon-sort_down: "\ea77";
 $icon-sort_up: "\ea78";
 $icon-sound: "\ea79";
@@ -614,30 +612,6 @@ $icon-vcard: "\eaa2";
 $icon-visibility_private: "\eaa3";
 $icon-warning: "\eaa4";
 $icon-zoom: "\eaa5";
-
-.icon-table_sort_desc
-{
-    &:before
-    {
-        content: $icon-table_sort_desc;
-    }
-}
-
-.icon-table_sort_asc
-{
-    &:before
-    {
-        content: $icon-table_sort_asc;
-    }
-}
-
-.icon-table_sort
-{
-    &:before
-    {
-        content: $icon-table_sort;
-    }
-}
 
 .icon-logout
 {
@@ -4616,6 +4590,14 @@ $icon-zoom: "\eaa5";
     &:before
     {
         content: $icon-skype;
+    }
+}
+
+.icon-table_sort
+{
+    &:before
+    {
+        content: $icon-table_sort;
     }
 }
 
