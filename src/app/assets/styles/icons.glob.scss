@@ -66,6 +66,9 @@ $icomoon-font-path: "../fonts" !default;
 
 //Icon-Variables//
 
+$icon-table_sort_desc: "\eb15";
+$icon-table_sort_asc: "\eb16";
+$icon-table_sort: "\eb18";
 $icon-logout: "\eb10";
 $icon-content: "\eb11";
 $icon-login: "\eb12";
@@ -611,6 +614,30 @@ $icon-vcard: "\eaa2";
 $icon-visibility_private: "\eaa3";
 $icon-warning: "\eaa4";
 $icon-zoom: "\eaa5";
+
+.icon-table_sort_desc
+{
+    &:before
+    {
+        content: $icon-table_sort_desc;
+    }
+}
+
+.icon-table_sort_asc
+{
+    &:before
+    {
+        content: $icon-table_sort_asc;
+    }
+}
+
+.icon-table_sort
+{
+    &:before
+    {
+        content: $icon-table_sort;
+    }
+}
 
 .icon-logout
 {
@@ -5600,13 +5627,13 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
     box-sizing: border-box;
     background-color: var(--color-group-navigation);
     color: var(--color-structure-0);
-
+    
     // Exceptions
     &.btn-link
     {
         border: none;
     }
-
+    
     &.btn-major
     {
         background-color: var(--function-group-color);
@@ -5624,7 +5651,7 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
 terra-button .btn-handler, terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
 {
     // Disabled: Deaktiviert, Nicht auswählbar
-
+    
     &.Disabled
     {
         background-color: var(--color-group-disabled) !important;

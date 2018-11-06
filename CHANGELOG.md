@@ -8,6 +8,7 @@
 * **angular-cli** added support for angular-cli usage
 * **terra-simple-table** added support to set selected rows
 * **terra-info** add new component `terra-info` for short information about another ui element
+* **terra-icons** new icons for table sorting: icon-table_sort_desc, icon-table_sort_asc, icon-table_sort
 
 <a name="2.4.1"></a>
 # 2.4.1 (17.10.2018)
