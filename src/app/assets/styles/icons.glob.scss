@@ -562,8 +562,9 @@ $icon-settings: "\ea63";
 $icon-shipping_dhl_packstation_valid: "\ea72";
 $icon-shipping_express: "\ea73";
 $icon-skype: "\ea74";
-$icon-sort_asc: "\ea75";
-$icon-sort_desc: "\ea76";
+$icon-table_sort: "\eb18";
+$icon-sort_asc: "\eb16";
+$icon-sort_desc: "\eb15";
 $icon-sort_down: "\ea77";
 $icon-sort_up: "\ea78";
 $icon-sound: "\ea79";
@@ -4592,6 +4593,14 @@ $icon-zoom: "\eaa5";
     }
 }
 
+.icon-table_sort
+{
+    &:before
+    {
+        content: $icon-table_sort;
+    }
+}
+
 .icon-sort_asc
 {
     &:before
@@ -5600,13 +5609,13 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
     box-sizing: border-box;
     background-color: var(--color-group-navigation);
     color: var(--color-structure-0);
-
+    
     // Exceptions
     &.btn-link
     {
         border: none;
     }
-
+    
     &.btn-major
     {
         background-color: var(--function-group-color);
@@ -5624,7 +5633,7 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
 terra-button .btn-handler, terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
 {
     // Disabled: Deaktiviert, Nicht auswählbar
-
+    
     &.Disabled
     {
         background-color: var(--color-group-disabled) !important;
