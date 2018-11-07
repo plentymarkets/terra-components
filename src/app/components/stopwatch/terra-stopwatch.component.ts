@@ -34,7 +34,7 @@ export class TerraStopwatchComponent implements OnInit
     protected stopwatch:TerraStopwatchInterface;
     protected langPrefix:string = 'terraStopwatch';
 
-    constructor(public translation:TranslationService)
+    constructor(private translation:TranslationService)
     {
     }
 
