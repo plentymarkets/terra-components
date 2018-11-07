@@ -40,7 +40,10 @@
                         padding: var(--table-head-th-padding, var(--space-md));
                         transition: padding var(--transition-lg);
                         border: none;
-                        
+                        &.sortable
+                        {
+                            cursor: pointer;
+                        }
                         span
                         {
                             font-size: var(--font-size-3);
