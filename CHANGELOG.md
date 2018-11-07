@@ -1,4 +1,9 @@
+# Unrleased
+* **terra themes** changed main style selector 'dark-standard' to 'theme-core'
+* **function-groups** removed custom group for add-icon
+* **function-groups** added missing styles for .btn-major
 <a name="X.X.X"></a>
+
 # X.X.X (XX.XX.2018)
 
 ### Bug Fixes 
