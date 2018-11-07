@@ -147,6 +147,9 @@ Adapted Changes from v2.3.21 and v2.3.22
 * **terra-simple-table** added support to set selected rows
 * **terra-info** add new component `terra-info` for short information about another ui element
 * **terra-icons** new icons for table sorting: icon-table_sort, icon-sort-asc, icon-sort-desc
+* **terra themes** changed main style selector 'dark-standard' to 'theme-core'
+* **function-groups** removed custom group for add-icon
+* **function-groups** added missing styles for .btn-major
 
 <a name="2.4.1"></a>
 # 2.4.1 (17.10.2018)
