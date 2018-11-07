@@ -30,6 +30,9 @@
                           [tooltip]="header.tooltipText"
                           [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
                           {{header.caption}}
+                        <span class="icon-table_sort"
+                              *ngIf="this.inputIsSortable && header?.sortBy && header?.sortBy !== inputService?.sortBy">
+                        </span>
                         <span class="icon-sort_asc"
                               *ngIf="this.inputIsSortable && header?.sortBy === inputService?.sortBy && inputService?.sortOrder === sortOrder.ASCENDING">
                         </span>
