@@ -628,7 +628,7 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
     box-sizing: border-box;
     background-color: var(--color-group-navigation);
     color: var(--color-structure-0);
-
+    
     // Exceptions
     &.btn-link
     {
@@ -652,7 +652,7 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
 terra-button .btn-handler, terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
 {
     // Disabled: Deaktiviert, Nicht auswählbar
-
+    
     &.Disabled
     {
         background-color: var(--color-group-disabled) !important;

@@ -103,7 +103,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         services.forEach((service:TerraBaseStorageService) =>
         {
             let node:TerraNodeInterface<{}> = {
-                id:        null,
+                id:        service.name,
                 name:      service.name,
                 isVisible: true
             };
