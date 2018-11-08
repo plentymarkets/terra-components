@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { TerraPagerInterface } from '../../../../';
+import { TerraPagerInterface } from '../../../../../index';
 import { CategoryDataInterface } from '../data/category-data.interface';
 
 /**

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { isNullOrUndefined } from 'util';
-import { NestedDataInterface } from '../../../nested-data-picker/data/nested-data.interface';
-import { TerraNestedDataPickerBaseService } from '../../../nested-data-picker/service/terra-nested-data-picker-base.service';
+import { NestedDataInterface } from '../../data/nested-data.interface';
+import { TerraNestedDataPickerBaseService } from '../../service/terra-nested-data-picker-base.service';
 import { of } from 'rxjs/observable/of';
 import { TerraPagerInterface } from '../../../pager/data/terra-pager.interface';
 

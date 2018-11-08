@@ -8,7 +8,7 @@ import {
 import { TranslationService } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraCategoryPickerBaseService } from './service/terra-category-picker-base.service';
-import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
+import { TerraNodeInterface } from '../../tree/node-tree/data/terra-node.interface';
 import { CategoryDataInterface } from './data/category-data.interface';
 import { CategoryDetailDataInterface } from './data/category-detail-data.interface';
 import { isNullOrUndefined } from 'util';
@@ -17,8 +17,8 @@ import { Observable } from 'rxjs/Observable';
 import { TerraNestedDataPickerComponent } from '../nested-data-picker/terra-nested-data-picker.component';
 import { NestedDataTreeConfig } from '../nested-data-picker/config/nested-data-tree.config';
 import { NestedDataInterface } from '../nested-data-picker/data/nested-data.interface';
-import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
-import { TerraNodeTreeConfig } from '../tree/node-tree/data/terra-node-tree.config';
+import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
+import { TerraNodeTreeConfig } from '../../tree/node-tree/data/terra-node-tree.config';
 
 @Component({
     selector:  'terra-category-picker',
