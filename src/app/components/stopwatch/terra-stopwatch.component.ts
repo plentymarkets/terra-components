@@ -6,6 +6,13 @@ import {
 import { TranslationService } from 'angular-l10n';
 import { TerraStopwatchInterface } from './data/terra-stopwatch.interface';
 
+export enum TerraStopWatchState
+{
+    STOP = 0,
+    START = 1,
+    PAUSE = 2
+}
+
 @Component({
     selector: 'terra-stopwatch',
     styles:   [require('./terra-stopwatch.component.scss')],
@@ -61,7 +68,7 @@ export class TerraStopwatchComponent implements OnInit
     public start():void
     {
         this.stopwatch.timer = window.setInterval(() => this.incrementSeconds(), 1000);
-        this.stopwatch.state = 1;
+        this.stopwatch.state = TerraStopWatchState.START;
     }
 
     /**
@@ -70,7 +77,7 @@ export class TerraStopwatchComponent implements OnInit
     public stop():void
     {
         window.clearInterval(this.stopwatch.timer);
-        this.stopwatch.state = 0;
+        this.stopwatch.state = TerraStopWatchState.PAUSE;
     }
 
     /**
@@ -79,6 +86,7 @@ export class TerraStopwatchComponent implements OnInit
     public reset():void
     {
         window.clearInterval(this.stopwatch.timer);
+        this.stopwatch.state = TerraStopWatchState.STOP;
         this.initStopwatch();
     }
 
@@ -111,7 +119,7 @@ export class TerraStopwatchComponent implements OnInit
      */
     protected get startAndStopControlTooltip():string
     {
-        return this.translation.translate(this.langPrefix + (this.stopwatch.state === 1 ? '.pause' : '.start'));
+        return this.translation.translate(this.langPrefix + (this.stopwatch.state === TerraStopWatchState.START ? '.pause' : '.start'));
     }
 
     /**
@@ -119,7 +127,7 @@ export class TerraStopwatchComponent implements OnInit
      */
     protected get startAndStopControlIcon():string
     {
-        return this.stopwatch.state === 1 ? 'icon-control_pause' : 'icon-control_play';
+        return this.state === TerraStopWatchState.START ? 'icon-control_pause' : 'icon-control_play';
     }
 
     /**
@@ -127,7 +135,7 @@ export class TerraStopwatchComponent implements OnInit
      */
     protected startAndStopControl():void
     {
-        this.stopwatch.state === 1 ? this.stop() : this.start();
+        this.state === TerraStopWatchState.PAUSE || this.state === TerraStopWatchState.STOP ? this.stop() : this.start();
     }
 
     /**
@@ -150,7 +158,7 @@ export class TerraStopwatchComponent implements OnInit
     {
         this.stopwatch = {
             seconds: 0,
-            state: 0,
+            state: TerraStopWatchState.STOP,
             timer: 0
         };
     }
