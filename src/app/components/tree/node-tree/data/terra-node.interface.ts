@@ -57,6 +57,8 @@ export interface TerraNodeInterface<D>
      */
     onClick?:() => void;
 
+    closeOnClick?:boolean;
+
     /**
      * @description Lazy loading function to get data from server. Optional.
      */
