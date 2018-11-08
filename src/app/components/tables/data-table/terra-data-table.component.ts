@@ -250,16 +250,15 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     private getFirstSortableColumn():TerraDataTableHeaderCellInterface
     {
-        let headerCell:TerraDataTableHeaderCellInterface = null;
         // check if header list is given
         if(this.inputHeaderList)
         {
             // find first header cell where sortBy attribute is given
-            headerCell = this.inputHeaderList.find((header:TerraDataTableHeaderCellInterface) => !isNullOrUndefined(header.sortBy));
+            return this.inputHeaderList.find((header:TerraDataTableHeaderCellInterface) => !isNullOrUndefined(header.sortBy));
         }
 
         // return null if nothing is found
-        return headerCell;
+        return null;
     }
 
     private getResults():void
