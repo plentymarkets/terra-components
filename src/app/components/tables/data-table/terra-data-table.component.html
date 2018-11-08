@@ -42,7 +42,7 @@
         <tbody>
             <tr *ngFor="let row of rowList"
                 [ngClass]="{'selected': row.selected, 'isActive': row.isActive, 'disabled': row.disabled}"
-                [contextMenu]="contextMenu"
+                [contextMenu]="inputContextMenu"
                 [rowData]="row.data"
                 (click)="rowClicked(row)">
                 <td *ngIf="inputHasCheckboxes">

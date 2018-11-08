@@ -74,7 +74,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
      * @description context menu for rows
      */
     @Input()
-    public contextMenu:Array<TerraDataTableContextMenuEntryInterface<T>> = [];
+    public inputContextMenu:Array<TerraDataTableContextMenuEntryInterface<T>> = [];
 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
