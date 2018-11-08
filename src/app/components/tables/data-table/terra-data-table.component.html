@@ -24,18 +24,16 @@
                 <th *ngIf="!header.isHidden"
                     width="{{header.width}}px"
                     [ngStyle]="{ 'text-align': getTextAlign(header) }"
+                    [class.sortable]="isSortable(header)"
                     (click)="columnHeaderClicked.emit(header)">
                     <span [container]="'body'"
                           [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                           [tooltip]="header.tooltipText"
                           [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
                           {{header.caption}}
-                        <span class="icon-sort_asc"
-                              *ngIf="this.inputIsSortable && header?.sortBy === inputService?.sortBy && inputService?.sortOrder === sortOrder.ASCENDING">
-                        </span>
-                        <span class="icon-sort_desc"
-                              *ngIf="this.inputIsSortable && header?.sortBy === inputService?.sortBy && inputService?.sortOrder === sortOrder.DESCENDING">
-                        </span>
+                    </span>
+    
+                    <span [ngClass]="{'icon-table_sort': isUnsorted(header),'icon-sort_asc': isSortedAsc(header),'icon-sort_desc': isSortedDesc(header)}">
                     </span>
                 </th>
             </ng-template>
