@@ -7,6 +7,7 @@
 	- New `TerraDataTableBaseService` which replaces custom directives and configs. It also stores all information needed for retrieving data from the server
 	- New `terra-group-function` component which has been extracted from the `terra-data-table` component
 	- Removed inputs for `terra-no-result-notice` and `terra-group-function` since they can now be passed to the content of the `terra-data-table` component.
+* **terra-node.interface** removed double click function
 
 <a name="3.0.0-beta.12"></a>
 # 3.0.0-beta.12 (07.11.2018)
