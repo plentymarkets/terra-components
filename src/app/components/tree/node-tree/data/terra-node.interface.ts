@@ -57,6 +57,9 @@ export interface TerraNodeInterface<D>
      */
     onClick?:() => void;
 
+    /**
+     * @description Toggle isOpen when set to true. Optional.
+     */
     closeOnClick?:boolean;
 
     /**
