@@ -71,7 +71,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
-    protected readonly sortOrder:{} = TerraDataTableSortOrderEnum;
     protected readonly refType:{} = TerraHrefTypeEnum;
 
     protected get rowList():Array<TerraDataTableRowInterface<T>>
@@ -281,5 +280,34 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         {
             return TerraTextAlignEnum.LEFT;
         }
+    }
+
+    protected isSortable(header:TerraDataTableHeaderCellInterface):boolean
+    {
+        if(isNullOrUndefined(header))
+        {
+            return false;
+        }
+        return this.inputIsSortable && !isNullOrUndefined(header.sortBy);
+    }
+
+    protected isUnsorted(header:TerraDataTableHeaderCellInterface):boolean
+    {
+        return this.isSortable(header) && header.sortBy !== this.inputService.sortBy;
+    }
+
+    private isSorted(header:TerraDataTableHeaderCellInterface, sortOrder:TerraDataTableSortOrderEnum):boolean
+    {
+        return this.isSortable(header) && header.sortBy === this.inputService.sortBy && this.inputService.sortOrder === sortOrder;
+    }
+
+    protected isSortedAsc(header:TerraDataTableHeaderCellInterface):boolean
+    {
+        return this.isSorted(header, TerraDataTableSortOrderEnum.ASCENDING);
+    }
+
+    protected isSortedDesc(header:TerraDataTableHeaderCellInterface):boolean
+    {
+        return this.isSorted(header, TerraDataTableSortOrderEnum.DESCENDING);
     }
 }
