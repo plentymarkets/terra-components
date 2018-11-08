@@ -9,8 +9,8 @@ import { TerraBaseData } from '../../../data/terra-base.data';
 @Injectable()
 export class TerraDataTableContextMenuService<D extends TerraBaseData>
 {
-    public show:Subject<{ event:MouseEvent, obj:Array<TerraDataTableContextMenuEntryInterface<D>> }> =
-        new Subject<{ event:MouseEvent, obj:Array<TerraDataTableContextMenuEntryInterface<D>> }>();
+    public show:Subject<{ event:MouseEvent, obj:Array<TerraDataTableContextMenuEntryInterface<D>>, data:D }> =
+        new Subject<{ event:MouseEvent, obj:Array<TerraDataTableContextMenuEntryInterface<D>>, data:D}>();
 
     public init:Subject<Array<TerraDataTableContextMenuEntryInterface<D>>> =
         new Subject<Array<TerraDataTableContextMenuEntryInterface<D>>>();

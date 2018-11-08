@@ -9,7 +9,6 @@ export interface TerraDataTableRowInterface<D>
     cellList:Array<TerraDataTableCellInterface>;
     data?:D;
     clickFunction?:() => void;
-    contextMenuLinkList?:Array<TerraDataTableContextMenuEntryInterface<D>>;
     isActive?:boolean;
     disabled?:boolean;
     selected?:boolean;

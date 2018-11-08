@@ -15,6 +15,7 @@ import { TerraBaseData } from '../../../data/terra-base.data';
 export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
 {
     protected contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
+    protected data:D;
     protected locationCss:any = {
         visibility: 'hidden',
         left:       0,
@@ -33,7 +34,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
     constructor(private contextMenuService:TerraDataTableContextMenuService<D>)
     {
         contextMenuService.show.subscribe(
-            (e:any):void => this.showMenu(e.event, e.obj));
+            (e:any):void => this.showMenu(e.event, e.obj, e.data));
 
         contextMenuService.init.subscribe(
             (e:any):void => this.contextMenuLinkList = e
@@ -53,10 +54,11 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData>
         document.removeEventListener('click', this.clickListener);
     }
 
-    public showMenu(event:MouseEvent, contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>>):void
+    public showMenu(event:MouseEvent, contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>>, data:D):void
     {
         this.isShown = true;
         this.contextMenuLinkList = contextMenuLinkList;
+        this.data = data;
         this.mouseLocation = {
             left: event.clientX,
             top:  event.clientY

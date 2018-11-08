@@ -19,6 +19,9 @@ export class TerraDataTableContextMenuDirective<D extends TerraBaseData> impleme
     @Input('contextMenu')
     public inputLinks:Array<TerraDataTableContextMenuEntryInterface<D>>;
 
+    @Input()
+    public rowData:D;
+
     constructor(private contextMenuService:TerraDataTableContextMenuService<D>)
     {
     }
@@ -28,7 +31,8 @@ export class TerraDataTableContextMenuDirective<D extends TerraBaseData> impleme
     {
         this.contextMenuService.show.next({
             event: event,
-            obj:   this.inputLinks
+            obj:   this.inputLinks,
+            data:  this.rowData
         });
         event.preventDefault();
         event.stopPropagation();
