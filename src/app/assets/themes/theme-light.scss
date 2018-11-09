@@ -1,0 +1,36 @@
+body
+{
+    &.theme-light
+    {
+        // Navbar, Tabbar, Breadcrumbs
+        --nav-background-color: var(--color-structure-0);
+        --nav-link-color: var(--color-structure-11);
+        --nav-link-icon-color: var(--color-structure-10);
+        --nav-link-icon-color-mobile: var(--color-structure-10);
+        --nav-box-shadow: var(--box-shadow);
+        --nav-link-border: 1px solid var(--color-structure-2);
+        --nav-link-background-color-mobile: var(--color-structure-0);
+        --nav-link-border-mobile: 1px var(--color-structure-4) solid;
+        --nav-dropdown-caret-mobile: var(--color-structure-0);
+        --dropdown-menu-background-color-mobile: var(--color-structure-2);
+        --tabs-background-color: var(--color-structure-2);
+        --tabs-nav-item: var(--color-structure-0);
+        --tabs-nav-item-box-shadow: var(--box-shadow);
+        --tabs-nav-item-color: var(--color-structure-11);
+        --terra-breadcrumbs-wrapper-background-color: var(--color-structure-0);
+        --terra-breadcrumb-color: var(--color-structure-11);
+        --terra-breadcrumb-icon-color: var(--color-structure-6);
+        
+        // Dropdowns, Context-Menu, Tooltips
+        --dropdown-menu-background-color: var(--color-structure-0);
+        --dropdown-item-color: var(--color-structure-11);
+        --context-menu-background-color: var(--color-structure-0);
+        --context-menu-color: var(--color-structure-11) !important;
+        --tooltip-background-color: var(--color-structure-0);
+        --tooltip-color: var(--color-structure-11);
+    
+        // Table
+        --table-head-background-color: var(--color-structure-0);
+        --table-head-color: var(--color-structure-8);
+    }
+}

@@ -58,11 +58,6 @@ export interface TerraNodeInterface<D>
     onClick?:() => void;
 
     /**
-     * @description A double click function to do something. Optional.
-     */
-    onDblClick?:() => void;
-
-    /**
      * @description Lazy loading function to get data from server. Optional.
      */
     onLazyLoad?:() => Observable<any>;
