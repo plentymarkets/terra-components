@@ -58,6 +58,11 @@ export interface TerraNodeInterface<D>
     onClick?:() => void;
 
     /**
+     * @description Toggle isOpen when set to true. Optional.
+     */
+    closeOnClick?:boolean;
+
+    /**
      * @description Lazy loading function to get data from server. Optional.
      */
     onLazyLoad?:() => Observable<any>;
