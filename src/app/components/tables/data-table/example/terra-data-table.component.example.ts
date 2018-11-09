@@ -8,6 +8,7 @@ import { TerraTextAlignEnum } from '../enums/terra-text-align.enum';
 import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.interface';
 import { TerraDataTableExampleInterface } from './terra-data-table.interface.example';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
+import { TerraDataTableContextMenuEntryInterface } from '../context-menu/data/terra-data-table-context-menu-entry.interface';
 
 @Component({
     selector:  'terra-data-table-example',
@@ -18,6 +19,7 @@ import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.i
 export class TerraDataTableComponentExample implements OnInit
 {
     protected readonly headerList:Array<TerraDataTableHeaderCellInterface>;
+    protected readonly contextMenu:Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>;
 
     protected noResultButtons:Array<TerraButtonInterface> = [];
     protected noResultTextPrimary:string;
@@ -28,6 +30,7 @@ export class TerraDataTableComponentExample implements OnInit
     constructor(private service:TerraDataTableServiceExample)
     {
         this.headerList = this.createHeaderList();
+        this.contextMenu = this.createContextMenu();
     }
 
     public ngOnInit():void
@@ -84,6 +87,14 @@ export class TerraDataTableComponentExample implements OnInit
         ];
     }
 
+    private createContextMenu():Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>
+    {
+        return [{
+            title:         'Show alert',
+            clickFunction: (data:TerraDataTableExampleInterface):void => alert(`The rows value is ${data.value}`)
+        }];
+    }
+
     protected addEntry():void
     {
         this.service.addEntry();
@@ -94,4 +105,5 @@ export class TerraDataTableComponentExample implements OnInit
     {
         console.log(selectedRows);
     }
+
 }
