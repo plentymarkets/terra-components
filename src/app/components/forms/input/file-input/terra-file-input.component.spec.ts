@@ -1,13 +1,17 @@
 import { ElementRef } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import {
+    FormsModule,
+    ReactiveFormsModule
+} from '@angular/forms';
 import {
     async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { TooltipModule } from 'ngx-bootstrap';
+import { TooltipModule,
+    ModalModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../translation/l10n.config';
 import { MockElementRef } from '../../../../testing/mock-element-ref';
@@ -22,13 +26,18 @@ import {
     TerraFileChooserComponent,
     TerraOverlayComponent,
     TerraPortletComponent,
-    TerraSimpleTableComponent
+    TerraSimpleTableComponent,
+    TerraFrontendStorageService,
+    TerraLoadingSpinnerService,
+    TerraFileBrowserService
 } from '../../../../..';
 import { TerraImagePreviewComponent } from '../../../file-browser/image-preview/image-preview.component';
 import { TerraFileListComponent } from '../../../file-browser/file-list/file-list.component';
 import { TerraTextInputComponent } from '../text-input/terra-text-input.component';
+import { TerraCheckboxComponent } from '../../checkbox/terra-checkbox.component';
+import { TerraNodeComponent } from '../../../tree/node-tree/node/terra-node.component';
 
-describe('TerraDoubleInputComponent', () =>
+fdescribe('TerraFileInputComponent', () =>
 {
     let component:TerraFileInputComponent;
     let fixture:ComponentFixture<TerraFileInputComponent>;
@@ -45,16 +54,20 @@ describe('TerraDoubleInputComponent', () =>
                 TerraButtonComponent,
                 TerraOverlayComponent,
                 TerraThreeColumnsContainerComponent,
-                TerraNodeTreeComponent,
                 TerraSimpleTableComponent,
                 TerraPortletComponent,
                 TerraTextInputComponent,
+                TerraCheckboxComponent,
                 TerraBaseToolbarComponent,
+                TerraNodeComponent,
+                TerraNodeTreeComponent,
                 TerraLabelTooltipDirective
             ],
             imports:      [
                 TooltipModule.forRoot(),
+                ModalModule.forRoot(),
                 FormsModule,
+                ReactiveFormsModule,
                 HttpModule,
                 HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
@@ -63,7 +76,10 @@ describe('TerraDoubleInputComponent', () =>
                 {
                     provide:  ElementRef,
                     useClass: MockElementRef
-                }
+                },
+                TerraFrontendStorageService,
+                TerraLoadingSpinnerService,
+                TerraFileBrowserService
             ]
         }).compileComponents();
     }));
@@ -81,5 +97,10 @@ describe('TerraDoubleInputComponent', () =>
     it('should create', () =>
     {
         expect(component).toBeTruthy();
+    });
+
+    afterAll(() =>
+    {
+        TestBed.resetTestingModule();
     });
 });
