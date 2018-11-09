@@ -80,7 +80,8 @@ export class TerraSimpleTableComponentExample implements OnInit
 
             let row:TerraSimpleTableRowInterface<any> = {
                 cellList: cellList,
-                disabled: i % 3 === 0
+                disabled: i % 3 === 0,
+                selected: i % 2 === 0
             };
 
             this.rowList.push(row);

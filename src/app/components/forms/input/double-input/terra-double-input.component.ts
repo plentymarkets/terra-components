@@ -7,6 +7,7 @@ import {
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
+import { DefaultLocale } from 'angular-l10n';
 
 let nextId:number = 0;
 
@@ -36,6 +37,9 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
      */
     @Input()
     public inputDecimalCount:number = 2;
+
+    @DefaultLocale()
+    protected locale:string;
 
     protected step:number;
 

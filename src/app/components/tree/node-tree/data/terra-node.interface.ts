@@ -59,6 +59,7 @@ export interface TerraNodeInterface<D>
 
     /**
      * @description A double click function to do something. Optional.
+     * @deprecated will be removed in the next major release.
      */
     onDblClick?:() => void;
 
