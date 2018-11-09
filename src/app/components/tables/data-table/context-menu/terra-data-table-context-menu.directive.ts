@@ -1,41 +1,37 @@
 import {
     Directive,
     HostListener,
-    Input,
-    OnInit
+    Input
 } from '@angular/core';
-import { TerraDataTableContextMenuService } from './terra-data-table-context-menu.service';
-import { TerraDataTableContextMenuEntryInterface } from './data/terra-data-table-context-menu-entry.interface';
 import { TerraBaseData } from '../../../data/terra-base.data';
+import { TerraDataTableContextMenuService } from './terra-data-table-context-menu.service';
 
 /**
  * @author mkunze
  */
 @Directive({
-    selector: '[contextMenu]',
+    selector: '[hasContextMenu]',
 })
-export class TerraDataTableContextMenuDirective<D extends TerraBaseData> implements OnInit
+export class TerraDataTableContextMenuDirective<D extends TerraBaseData>
 {
-    @Input('contextMenu')
-    public inputLinks:Array<TerraDataTableContextMenuEntryInterface<D>>;
+    /**
+     * @description data that is passed to the context menu component when clicking on a row
+     */
+    @Input()
+    public rowData:D;
 
-    constructor(private contextMenuService:TerraDataTableContextMenuService<D>)
+    constructor(private service:TerraDataTableContextMenuService<D>)
     {
     }
 
     @HostListener('contextmenu', ['$event'])
     public rightClicked(event:MouseEvent):void
     {
-        this.contextMenuService.show.next({
+        this.service.show.next({
             event: event,
-            obj:   this.inputLinks
+            data:  this.rowData
         });
         event.preventDefault();
         event.stopPropagation();
-    }
-
-    public ngOnInit():void
-    {
-        this.contextMenuService.init.next(this.inputLinks);
     }
 }
