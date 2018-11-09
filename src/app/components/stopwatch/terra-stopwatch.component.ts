@@ -10,7 +10,6 @@ import {
 import { TerraStopwatchInterface } from './data/terra-stopwatch.interface';
 import { TerraStopWatchStateEnum } from './data/terra-stopwatch.enum';
 
-
 @Component({
     selector: 'terra-stopwatch',
     styles:   [require('./terra-stopwatch.component.scss')],
@@ -18,7 +17,6 @@ import { TerraStopWatchStateEnum } from './data/terra-stopwatch.enum';
 })
 export class TerraStopwatchComponent implements OnInit
 {
-
     @Language()
     public lang:string;
 
