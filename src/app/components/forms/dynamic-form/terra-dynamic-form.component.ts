@@ -95,6 +95,10 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
 
             this.registerValueChange();
         }
+        if(!isNullOrUndefined(this.inputHasToggleButton) && !this.inputHasToggleButton)
+        {
+            this.inputShowDeprecatedEntries = false;
+        }
     }
 
     public ngOnChanges(changes:SimpleChanges):void
