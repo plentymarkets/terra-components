@@ -8,13 +8,8 @@ import {
     TranslationService
 } from 'angular-l10n';
 import { TerraStopwatchInterface } from './data/terra-stopwatch.interface';
+import { TerraStopWatchStateEnum } from './data/terra-stopwatch.enum';
 
-export enum TerraStopWatchState
-{
-    STOP = 0,
-    START = 1,
-    PAUSE = 2
-}
 
 @Component({
     selector: 'terra-stopwatch',
@@ -75,7 +70,7 @@ export class TerraStopwatchComponent implements OnInit
     public start():void
     {
         this.stopwatch.timer = window.setInterval(() => this.incrementSeconds(), 1000);
-        this.stopwatch.state = TerraStopWatchState.START;
+        this.stopwatch.state = TerraStopWatchStateEnum.START;
     }
 
     /**
@@ -84,7 +79,7 @@ export class TerraStopwatchComponent implements OnInit
     public stop():void
     {
         window.clearInterval(this.stopwatch.timer);
-        this.stopwatch.state = TerraStopWatchState.PAUSE;
+        this.stopwatch.state = TerraStopWatchStateEnum.PAUSE;
     }
 
     /**
@@ -93,7 +88,7 @@ export class TerraStopwatchComponent implements OnInit
     public reset():void
     {
         window.clearInterval(this.stopwatch.timer);
-        this.stopwatch.state = TerraStopWatchState.STOP;
+        this.stopwatch.state = TerraStopWatchStateEnum.STOP;
         this.initStopwatch();
     }
 
@@ -133,7 +128,7 @@ export class TerraStopwatchComponent implements OnInit
     {
         this.stopwatch = {
             seconds: 0,
-            state: TerraStopWatchState.STOP,
+            state: TerraStopWatchStateEnum.STOP,
             timer: 0
         };
     }
