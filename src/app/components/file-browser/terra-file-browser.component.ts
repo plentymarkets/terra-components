@@ -58,6 +58,8 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
 
     private allowedExtensions:Array<string> = [];
 
+    private readonly defaultStorageServices:Array<TerraBaseStorageService>;
+
     @Input()
     public set inputStorageServices(services:Array<TerraBaseStorageService>)
     {
@@ -71,12 +73,13 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
             return this.storageServices;
         }
 
-        return [this.frontendStorageService];
+        return this.defaultStorageServices;
     }
 
-    constructor(private frontendStorageService:TerraFrontendStorageService,
+    constructor(frontendStorageService:TerraFrontendStorageService,
                 protected nodeTreeConfig:TerraNodeTreeConfig<{}>)
     {
+        this.defaultStorageServices = [frontendStorageService];
     }
 
     public ngOnInit():void
@@ -89,7 +92,8 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes.hasOwnProperty('inputStorageServices'))
+        if(changes.hasOwnProperty('inputStorageServices') &&
+           !isNullOrUndefined(changes['inputStorageServices'].currentValue))
         {
             this.nodeTreeConfig.reset();
             this.nodeTreeConfig.currentSelectedNode = null;
