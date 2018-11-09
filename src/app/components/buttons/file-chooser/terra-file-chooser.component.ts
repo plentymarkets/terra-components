@@ -62,7 +62,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent
 
     public get inputStorageServices():Array<TerraBaseStorageService>
     {
-        return this.storageServices || [this.frontendStorageService];
+        return this.storageServices;
     }
 
     @Output()
@@ -97,7 +97,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent
 
     private storageServices:Array<TerraBaseStorageService>;
 
-    constructor(private translation:TranslationService, private frontendStorageService:TerraFrontendStorageService)
+    constructor(private translation:TranslationService)
     {
         super();
 
