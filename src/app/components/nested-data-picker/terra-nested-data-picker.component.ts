@@ -164,15 +164,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
     public reset():void
     {
-        this.nestedTreeConfig.currentSelectedNode = {
-            id:               null,
-            isActive:         null,
-            isOpen:           null,
-            isVisible:        null,
-            name:             '',
-            tooltip:          '',
-            tooltipPlacement: '',
-        };
+        this.nestedTreeConfig.currentSelectedNode = null;
         this.nestedDataName = '';
         this.value = 0;
 
