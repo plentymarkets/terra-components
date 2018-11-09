@@ -2,6 +2,9 @@
 * **terra-stopwatch**
 	- add method to count seconds 
 	- add state method 
+  
+* **terra-node.interface**
+	- removed double click function
 
 <a name="3.0.0-beta.12"></a>
 # 3.0.0-beta.12 (07.11.2018)
