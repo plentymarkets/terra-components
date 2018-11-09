@@ -1,4 +1,4 @@
-var gulp = require('gulp');
+cvar gulp = require('gulp');
 var del = require('del');
 var sourcemaps = require('gulp-sourcemaps');
 var merge = require('merge2');

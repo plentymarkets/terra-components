@@ -1,4 +1,41 @@
-# Unreleased beta
+<a name="Unreleased"></a>
+# Unreleased
+* **category-detail-data**
+	- added preview url	 
+
+
+<a name="3.0.0-beta.11"></a>
+# 3.0.0-beta.11 (25.10.2018)
+* **terra-file-browser** 
+	- breadcrumbs replaced with tree for folder navigation.
+	- saving alternative text working as intended with success message.
+	- image preview now closing after delete.
+	- file list is refreshed when inputStorageService changes
+
+* **terra-node-tree** avoid closing node on click while it's open.
+* **terra-2-col** adjusted styles to handle column heights correctly.
+* **terra-3-col** adjusted styles to handle column heights correctly.
+
+<a name="3.0.0-beta.10"></a>
+# 3.0.0-beta.10 (23.10.2018)
+
+### Bug Fixes
+* **terra-date-picker** fix format of the date string emitted by `ngModelChange`
+
+<a name="3.0.0-beta.9"></a>
+# 3.0.0-beta.9 (22.10.2018)
+
+### Feature
+* **terra-3-col** new component that displays given views next to each other in up to three columns
+
+### Bug Fixes
+* **terra-date-picker** fixed format of the date string emitted by `ngModelChange`.
+
+### Changes
+* The definition of custom font faces have been separated into multiple files.
+
+<a name="3.0.0-beta.8"></a>
+# 3.0.0-beta.8 (17.10.2018)
 
 ### Bug Fixes
 * **terra-data-table** 
@@ -98,7 +135,21 @@ Adapted Changes from v2.3.21 and v2.3.22
 ### Breaking Changes
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
 
-# Unreleased
+
+<a name="2.X.X"></a>
+# 2.X.X (XX.XX.2018)
+
+### Bug Fixes 
+* **terra-suggestion-box** prevent duplicate execution of callbacks and emission of notifications when selecting a value from the suggestion list
+
+### Feature
+* **angular-cli** added support for angular-cli usage
+* **terra-simple-table** added support to set selected rows
+* **terra-info** add new component `terra-info` for short information about another ui element
+* **terra-icons** new icons for table sorting: icon-table_sort, icon-sort-asc, icon-sort-desc
+
+<a name="2.4.1"></a>
+# 2.4.1 (17.10.2018)
 
 ### Bug Fixes
 * **terra-double-input** fixed issue with the decimal separator. It now accepts decimal inputs in the localized format.

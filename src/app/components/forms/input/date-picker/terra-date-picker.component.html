@@ -8,7 +8,15 @@
                     [locale]="currentLocale"
                     [options]="datePickerOptions">
     </my-date-picker>
-    <label htmlFor="{{id}}">{{inputName}}
+    <label terraLabelTooltip
+           [nameOfInput]="inputName"
+           [(tooltipText)]="helperTooltip"
+           [(tooltipDisabled)]="isHelperTooltipDisabled"
+           [placement]="'top'"
+           [tooltip]="helperTooltip"
+           [isDisabled]="isHelperTooltipDisabled"
+           [container]="'body'"
+           htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
 </div>

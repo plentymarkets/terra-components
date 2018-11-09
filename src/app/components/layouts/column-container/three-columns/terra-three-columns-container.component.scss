@@ -1,0 +1,22 @@
+@media (max-width: 767px)
+{
+    .hidden-xs
+    {
+        display: none
+    }
+}
+
+.container-fluid
+{
+    height: 100%;
+    
+    .row
+    {
+        height: 100%;
+        
+        .overflow-auto
+        {
+            overflow: auto;
+        }
+    }
+}

@@ -12,6 +12,7 @@ export interface CategoryDetailDataInterface
     shortDescription?:string;
     metaDescription?:string;
     nameUrl?:string;
+    previewUrl?:string;
     image?:string;
     image2?:string;
     itemListView?:string;

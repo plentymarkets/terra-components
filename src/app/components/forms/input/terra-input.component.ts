@@ -80,6 +80,9 @@ export class TerraInputComponent implements ControlValueAccessor
 
     // The internal data model
     protected innerValue:any;
+    protected isTooltipDisabled:boolean;
+    protected helperTooltip:string;
+    protected isHelperTooltipDisabled:boolean;
 
     private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
