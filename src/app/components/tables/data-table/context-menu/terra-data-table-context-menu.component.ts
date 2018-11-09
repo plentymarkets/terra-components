@@ -18,6 +18,9 @@ import { TerraDataTableContextMenuService } from './terra-data-table-context-men
 })
 export class TerraDataTableContextMenuComponent<D extends TerraBaseData> implements OnInit
 {
+    /**
+     * @description list of links (buttons) to be shown in the context menu
+     */
     @Input()
     public links:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
 
@@ -31,6 +34,10 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     protected isShown:boolean = false;
     private clickListener:(event:Event) => void;
 
+    /**
+     * @description constructor
+     * @param contextMenuService
+     */
     constructor(private contextMenuService:TerraDataTableContextMenuService<D>)
     {
         this.clickListener = (event:Event):void =>
@@ -40,6 +47,9 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
         };
     }
 
+    /**
+     * @description initialisation life cycle hook.
+     */
     public ngOnInit():void
     {
         this.contextMenuService.show.subscribe((e:{event:MouseEvent, data:D}):void =>
@@ -48,13 +58,13 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
         });
     }
 
-    public clickedOutside():void
+    private clickedOutside():void
     {
         this.isShown = false;
         document.removeEventListener('click', this.clickListener);
     }
 
-    public showMenu(event:MouseEvent, data:D):void
+    private showMenu(event:MouseEvent, data:D):void
     {
         this.isShown = true;
         this.data = data;

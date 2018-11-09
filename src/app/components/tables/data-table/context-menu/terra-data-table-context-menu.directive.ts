@@ -14,6 +14,9 @@ import { TerraDataTableContextMenuService } from './terra-data-table-context-men
 })
 export class TerraDataTableContextMenuDirective<D extends TerraBaseData>
 {
+    /**
+     * @description data that is passed to the context menu component when clicking on a row
+     */
     @Input()
     public rowData:D;
 
