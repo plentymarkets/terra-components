@@ -24,6 +24,7 @@ import {
 import { MockElementRef } from '../../../testing/mock-element-ref';
 import Spy = jasmine.Spy;
 import { By } from '@angular/platform-browser';
+import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 
 describe('TerraSuggestionBoxComponent', () =>
 {
@@ -35,8 +36,9 @@ describe('TerraSuggestionBoxComponent', () =>
     {
         TestBed.configureTestingModule({
             declarations: [
+                TerraTextInputComponent,
                 TerraSuggestionBoxComponent,
-                TerraTextInputComponent
+                TerraLabelTooltipDirective
             ],
             imports:      [
                 TooltipModule.forRoot(),

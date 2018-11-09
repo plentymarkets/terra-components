@@ -37,7 +37,7 @@ import { TerraTextInputComponent } from '../text-input/terra-text-input.componen
 import { TerraCheckboxComponent } from '../../checkbox/terra-checkbox.component';
 import { TerraNodeComponent } from '../../../tree/node-tree/node/terra-node.component';
 
-fdescribe('TerraFileInputComponent', () =>
+describe('TerraFileInputComponent', () =>
 {
     let component:TerraFileInputComponent;
     let fixture:ComponentFixture<TerraFileInputComponent>;
