@@ -19,7 +19,8 @@ import { TerraFormFieldCodeEditor } from '../data/terra-form-field-code-editor';
  * @author mfrank
  *
  */
-export class TerraJsonToFormFieldService {
+export class TerraJsonToFormFieldService 
+{
     public static generateFormFields(formFieldsJSON:{ [key:string]:any }):Array<TerraFormFieldBase<any>>
     {
         let formFields:Array<TerraFormFieldBase<any>> = [];
@@ -36,7 +37,8 @@ export class TerraJsonToFormFieldService {
     {
         let formField:TerraFormFieldBase<any>;
 
-        switch (formFieldData.type) {
+        switch (formFieldData.type) 
+        {
             case TerraControlTypeEnum.INPUT_TEXT:
                 formField = new TerraFormFieldInputText(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
                 break;
