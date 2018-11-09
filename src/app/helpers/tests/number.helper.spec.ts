@@ -1,6 +1,6 @@
 import { NumberHelper } from '../number.helper';
 
-fdescribe('Helper: NumberHelper', () =>
+describe('Helper: NumberHelper', () =>
 {
     it('should round up a given number with different decimals', () =>
     {
