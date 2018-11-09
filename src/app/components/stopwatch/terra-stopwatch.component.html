@@ -1,10 +1,17 @@
 <div class="btn-group" role="group">
-    <terra-button *ngIf="inputEnableControls"
-                  [inputIcon]="startAndStopControlIcon"
+    <terra-button *ngIf="inputEnableControls && state === 1"
+                  inputIcon="icon-control_pause"
                   [inputIsSmall]="inputIsSmall"
-                  [inputTooltipText]="startAndStopControlTooltip"
+                  inputTooltipText="{{ langPrefix + '.pause' | translate:lang}}"
                   inputTooltipPlacement="top"
-                  (outputClicked)="startAndStopControl()">
+                  (outputClicked)="stop()">
+    </terra-button>
+    <terra-button *ngIf="inputEnableControls && (state === 2 || state === 0)"
+                  inputIcon="icon-control_play"
+                  [inputIsSmall]="inputIsSmall"
+                  inputTooltipText="{{langPrefix + '.start' | translate:lang}}"
+                  inputTooltipPlacement="top"
+                  (outputClicked)="start()">
     </terra-button>
     <terra-button [inputCaption]=format
                   [inputIsSmall]="inputIsSmall">
@@ -12,7 +19,7 @@
     <terra-button *ngIf="inputEnableControls"
                   inputIcon="icon-reset"
                   [inputIsSmall]="inputIsSmall"
-                  [inputTooltipText]="resetControlTooltip"
+                  inputTooltipText="{{langPrefix + '.reset' | translate:lang}}"
                   inputTooltipPlacement="top"
                   (outputClicked)="reset()">
     </terra-button>

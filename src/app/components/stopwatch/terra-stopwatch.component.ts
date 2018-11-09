@@ -3,7 +3,10 @@ import {
     Input,
     OnInit
 } from '@angular/core';
-import { TranslationService } from 'angular-l10n';
+import {
+    Language,
+    TranslationService
+} from 'angular-l10n';
 import { TerraStopwatchInterface } from './data/terra-stopwatch.interface';
 
 export enum TerraStopWatchState
@@ -20,6 +23,10 @@ export enum TerraStopWatchState
 })
 export class TerraStopwatchComponent implements OnInit
 {
+
+    @Language()
+    public lang:string;
+
     /**
      * @description If true, the start, pause and reset control will show
      */
@@ -41,7 +48,7 @@ export class TerraStopwatchComponent implements OnInit
     protected stopwatch:TerraStopwatchInterface;
     protected langPrefix:string = 'terraStopwatch';
 
-    constructor(private translation:TranslationService)
+    constructor(public translation:TranslationService)
     {
     }
 
@@ -104,38 +111,6 @@ export class TerraStopwatchComponent implements OnInit
     protected get format():string
     {
         return this.getStopwatchPattern();
-    }
-
-    /**
-     * @description returns the tooltip for reset control
-     */
-    protected get resetControlTooltip():string
-    {
-        return this.translation.translate(this.langPrefix + '.reset');
-    }
-
-    /**
-     * @description returns the tooltip for start and stop control
-     */
-    protected get startAndStopControlTooltip():string
-    {
-        return this.translation.translate(this.langPrefix + (this.stopwatch.state === TerraStopWatchState.START ? '.pause' : '.start'));
-    }
-
-    /**
-     * @description returns the icon for start and stop control
-     */
-    protected get startAndStopControlIcon():string
-    {
-        return this.state === TerraStopWatchState.START ? 'icon-control_pause' : 'icon-control_play';
-    }
-
-    /**
-     * @description runs the function for start and stop control
-     */
-    protected startAndStopControl():void
-    {
-        this.state === TerraStopWatchState.PAUSE || this.state === TerraStopWatchState.STOP ? this.stop() : this.start();
     }
 
     /**
