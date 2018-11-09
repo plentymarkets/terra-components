@@ -1,5 +1,6 @@
 import {
     Component,
+    Input,
     OnInit
 } from '@angular/core';
 import { TerraDataTableContextMenuEntryInterface } from './data/terra-data-table-context-menu-entry.interface';
@@ -17,7 +18,9 @@ import { TerraDataTableContextMenuService } from './terra-data-table-context-men
 })
 export class TerraDataTableContextMenuComponent<D extends TerraBaseData> implements OnInit
 {
-    protected contextMenuLinkList:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
+    @Input()
+    public links:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
+
     protected data:D;
     protected locationCss:any = {
         left:       0,
@@ -42,10 +45,6 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
         this.contextMenuService.show.subscribe((e:{event:MouseEvent, data:D}):void =>
         {
             this.showMenu(e.event, e.data);
-        });
-        this.contextMenuService.setLinkList.subscribe((linkList:Array<TerraDataTableContextMenuEntryInterface<D>>) =>
-        {
-            this.contextMenuLinkList = linkList;
         });
     }
 

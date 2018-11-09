@@ -3,7 +3,6 @@ import {
     HostListener,
     Input
 } from '@angular/core';
-import { TerraDataTableContextMenuEntryInterface } from './data/terra-data-table-context-menu-entry.interface';
 import { TerraBaseData } from '../../../data/terra-base.data';
 import { TerraDataTableContextMenuService } from './terra-data-table-context-menu.service';
 
@@ -11,16 +10,10 @@ import { TerraDataTableContextMenuService } from './terra-data-table-context-men
  * @author mkunze
  */
 @Directive({
-    selector: '[contextMenu]',
+    selector: '[hasContextMenu]',
 })
 export class TerraDataTableContextMenuDirective<D extends TerraBaseData>
 {
-    @Input('contextMenu')
-    public set links(links:Array<TerraDataTableContextMenuEntryInterface<D>>)
-    {
-        this.service.setLinkList.next(links);
-    }
-
     @Input()
     public rowData:D;
 
