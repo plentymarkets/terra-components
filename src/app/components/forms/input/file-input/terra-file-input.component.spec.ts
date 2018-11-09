@@ -12,20 +12,44 @@ import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../translation/l10n.config';
 import { MockElementRef } from '../../../../testing/mock-element-ref';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
-import { TerraDoubleInputComponent } from './terra-double-input.component';
-import { TerraButtonComponent } from '../../../../..';
+import { TerraFileInputComponent } from './terra-file-input.component';
+import { TerraThreeColumnsContainerComponent } from '../../../layouts/column-container/three-columns/terra-three-columns-container.component';
+import { TerraNodeTreeComponent } from '../../../tree/node-tree/terra-node-tree.component';
+import {
+    TerraBaseToolbarComponent,
+    TerraButtonComponent,
+    TerraFileBrowserComponent,
+    TerraFileChooserComponent,
+    TerraOverlayComponent,
+    TerraPortletComponent,
+    TerraSimpleTableComponent
+} from '../../../../..';
+import { TerraImagePreviewComponent } from '../../../file-browser/image-preview/image-preview.component';
+import { TerraFileListComponent } from '../../../file-browser/file-list/file-list.component';
+import { TerraTextInputComponent } from '../text-input/terra-text-input.component';
 
 describe('TerraDoubleInputComponent', () =>
 {
-    let component:TerraDoubleInputComponent;
-    let fixture:ComponentFixture<TerraDoubleInputComponent>;
+    let component:TerraFileInputComponent;
+    let fixture:ComponentFixture<TerraFileInputComponent>;
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
-                TerraDoubleInputComponent,
+                TerraFileInputComponent,
+                TerraFileChooserComponent,
+                TerraFileBrowserComponent,
+                TerraFileListComponent,
+                TerraImagePreviewComponent,
                 TerraButtonComponent,
+                TerraOverlayComponent,
+                TerraThreeColumnsContainerComponent,
+                TerraNodeTreeComponent,
+                TerraSimpleTableComponent,
+                TerraPortletComponent,
+                TerraTextInputComponent,
+                TerraBaseToolbarComponent,
                 TerraLabelTooltipDirective
             ],
             imports:      [
@@ -46,7 +70,7 @@ describe('TerraDoubleInputComponent', () =>
 
     beforeEach(() =>
     {
-        fixture = TestBed.createComponent(TerraDoubleInputComponent);
+        fixture = TestBed.createComponent(TerraFileInputComponent);
         component = fixture.componentInstance;
 
         component.value = null;
