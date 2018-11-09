@@ -93,7 +93,7 @@ export class TerraStopwatchComponent implements OnInit
     /**
      * @description returns the stopwatch state (start, stop, pause)
      */
-    public get state():number
+    public get state():TerraStopWatchStateEnum
     {
         return this.stopwatch.state;
     }
