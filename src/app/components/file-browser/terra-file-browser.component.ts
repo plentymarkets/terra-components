@@ -92,18 +92,20 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes.hasOwnProperty('inputStorageServices') &&
-           !isNullOrUndefined(changes['inputStorageServices'].currentValue))
+        if(changes.hasOwnProperty('inputStorageServices'))
         {
             this.nodeTreeConfig.reset();
-            this.nodeTreeConfig.currentSelectedNode = null;
-
             this.renderTree(changes['inputStorageServices'].currentValue);
         }
     }
 
     private renderTree(services:Array<TerraBaseStorageService>):void
     {
+        if(isNullOrUndefined(services))
+        {
+            return;
+        }
+
         services.forEach((service:TerraBaseStorageService) =>
         {
             let node:TerraNodeInterface<{}> = {
