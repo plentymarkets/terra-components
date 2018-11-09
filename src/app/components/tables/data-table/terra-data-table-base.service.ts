@@ -89,7 +89,7 @@ export abstract class TerraDataTableBaseService<T, P>
     private get itemsPerPage():number
     {
         let itemsPerPage:number = 25;
-        if(this._defaultPagingSize)
+        if(this._defaultPagingSize && this.pagingSizes.some((size:TerraSelectBoxValueInterface) => +size.value === this._defaultPagingSize))
         {
             itemsPerPage = this._defaultPagingSize;
         }
