@@ -1,6 +1,7 @@
 ###UNRELEASED
 * **terra-node.interface**
-	- removed double click function
+	- removed double click function.
+	- add closeOnClick to close node on click again.
 * **terra-dynamic-form** new optional toggle button to display/hide deprecated plugin config entries
 
 <a name="3.0.0-beta.12"></a>
