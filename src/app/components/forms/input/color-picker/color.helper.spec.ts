@@ -46,4 +46,8 @@ describe('Helper / Class: Color', () =>
             }
         ));
     });
+
+    // TODO getGreyScale
+    // TODO isDark
+    // TODO isLight
 });
