@@ -25,6 +25,7 @@ fdescribe('Component: TerraTextInputComponent', () =>
                     HttpClientModule,
                     TooltipModule.forRoot(),
                     FormsModule,
+                    IBAN,
                     LocalizationModule.forRoot(l10nConfig)
                 ]
             }
@@ -63,10 +64,28 @@ fdescribe('Component: TerraTextInputComponent', () =>
         expect(inputElement.readOnly).toBeTruthy();
     });
 
-    it(`should set the input element's type property to 'password' if inputIsPassword is set`, () =>
+    it(`should set the input element's type property to 'password' if #inputIsPassword is set`, () =>
     {
         component.inputIsPassword = true;
         fixture.detectChanges();
         expect(inputElement.type).toEqual('password');
+    });
+
+    it(`should validate the entered text whether it is a valid IBAN if #inputIsIban is set`, () =>
+    {
+        expect(component.isValid).toBeTruthy();
+
+        component.inputIsIban = true;
+        fixture.detectChanges();
+
+        inputElement.value = 'lkjahsdlajkds';
+        inputElement.dispatchEvent(new Event('blur'));
+
+        expect(component.isValid).toBeFalsy();
+
+        inputElement.value = 'DE12500105170648489890';
+        inputElement.dispatchEvent(new Event('blur'));
+
+        expect(component.isValid).toBeTruthy();
     });
 });
