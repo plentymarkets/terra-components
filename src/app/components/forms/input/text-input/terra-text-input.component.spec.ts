@@ -10,12 +10,15 @@ import { l10nConfig } from '../../../../translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { HttpClientModule } from '@angular/common/http';
 import Spy = jasmine.Spy;
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 fdescribe('Component: TerraTextInputComponent', () =>
 {
     let component:TerraTextInputComponent;
     let fixture:ComponentFixture<TerraTextInputComponent>;
     let inputElement:HTMLInputElement;
+    let inputDebugElement:DebugElement;
 
     beforeEach(() =>
     {
@@ -36,7 +39,8 @@ fdescribe('Component: TerraTextInputComponent', () =>
     {
         fixture = TestBed.createComponent(TerraTextInputComponent);
         component = fixture.componentInstance;
-        inputElement = fixture.nativeElement.querySelector('input');
+        inputDebugElement = fixture.debugElement.query(By.css('input'));
+        inputElement = inputDebugElement.nativeElement;
 
         fixture.detectChanges();
     });
@@ -88,22 +92,19 @@ fdescribe('Component: TerraTextInputComponent', () =>
         expect(component.isValid).toBeTruthy();
     });
 
-    xit(`should validate the entered text whether it is a valid IBAN if #inputIsIban is set`, () =>
+    it(`should validate the entered text whether it is a valid IBAN if #inputIsIban is set`, () =>
     {
         expect(component.isValid).toBeTruthy();
 
         component.inputIsIban = true;
-        fixture.detectChanges();
 
-        inputElement.value = 'lkjahsdlajkds';
+        component.value = 'kjashdlkasd';
         inputElement.dispatchEvent(new Event('blur'));
-
         expect(component.isValid).toBeFalsy();
 
-        inputElement.value = 'DE12500105170648489890';
+        component.value = 'DK5750510001322617';
         inputElement.dispatchEvent(new Event('blur'));
-
-        expect(component.isValid).toBeTruthy(); // TODO: Why does this not work??
+        expect(component.isValid).toBeTruthy();
     });
 
     it(`should call #onInput method if something is typed in`, () =>
