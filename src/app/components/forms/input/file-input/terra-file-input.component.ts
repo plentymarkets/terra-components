@@ -51,7 +51,7 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     public get inputStorageServices():Array<TerraBaseStorageService>
     {
-        return this.storageServices || [this.frontendStorageService];
+        return this.storageServices;
     }
 
     @ViewChild('overlay')
@@ -68,7 +68,7 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     private storageServices:Array<TerraBaseStorageService>;
 
-    constructor(private translation:TranslationService, private frontendStorageService:TerraFrontendStorageService)
+    constructor()
     {
         super(TerraRegex.MIXED);
 
