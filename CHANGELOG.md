@@ -3,6 +3,7 @@
 
 ### Bug Fixes 
 * **terra-suggestion-box** prevent duplicate execution of callbacks and emission of notifications when selecting a value from the suggestion list
+* **terra-simple-table** fixed selectedValue of onRowCheckboxChange() Event
 
 ### Feature
 * **angular-cli** added support for angular-cli usage
