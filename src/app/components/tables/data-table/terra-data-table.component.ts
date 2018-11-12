@@ -79,6 +79,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
     protected readonly refType:{} = TerraHrefTypeEnum;
+    protected readonly checkboxColumnWidth:number = 25;
 
     protected get rowList():Array<TerraDataTableRowInterface<T>>
     {

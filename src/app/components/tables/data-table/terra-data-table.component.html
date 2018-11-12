@@ -13,7 +13,7 @@
     <table class="table data-table" *ngIf="isTableDataAvailable">
         <thead>
         <tr>
-            <th *ngIf="inputHasCheckboxes" width="25px">
+            <th *ngIf="inputHasCheckboxes" width="{{checkboxColumnWidth}}px">
                 <terra-checkbox (change)="onHeaderCheckboxChange()"
                                 (click)="$event.stopPropagation()"
                                 [value]="headerCheckbox.checked"
