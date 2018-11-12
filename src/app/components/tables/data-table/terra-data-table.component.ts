@@ -233,15 +233,15 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         else
         {
             this.inputService.sortBy = header.sortBy;
-            this.inputService.sortOrder = TerraDataTableSortOrderEnum.DESCENDING; // default is descending
+            this.inputService.sortOrder = TerraDataTableSortOrderEnum.descending; // default is descending
         }
     }
 
     private toggleSortingOrder():void
     {
-        this.inputService.sortOrder = this.inputService.sortOrder === TerraDataTableSortOrderEnum.DESCENDING ?
-            TerraDataTableSortOrderEnum.ASCENDING :
-            TerraDataTableSortOrderEnum.DESCENDING;
+        this.inputService.sortOrder = this.inputService.sortOrder === TerraDataTableSortOrderEnum.descending ?
+            TerraDataTableSortOrderEnum.ascending :
+            TerraDataTableSortOrderEnum.descending;
     }
 
     private resetSorting():void
@@ -251,7 +251,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         if(!isNullOrUndefined(this.inputService) && this.inputHeaderList && defaultSortColumn)
         {
             this.inputService.sortBy = defaultSortColumn.sortBy;
-            this.inputService.sortOrder = TerraDataTableSortOrderEnum.DESCENDING;
+            this.inputService.sortOrder = TerraDataTableSortOrderEnum.descending;
         }
     }
 
@@ -309,11 +309,11 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     protected isSortedAsc(header:TerraDataTableHeaderCellInterface):boolean
     {
-        return this.isSorted(header, TerraDataTableSortOrderEnum.ASCENDING);
+        return this.isSorted(header, TerraDataTableSortOrderEnum.ascending);
     }
 
     protected isSortedDesc(header:TerraDataTableHeaderCellInterface):boolean
     {
-        return this.isSorted(header, TerraDataTableSortOrderEnum.DESCENDING);
+        return this.isSorted(header, TerraDataTableSortOrderEnum.descending);
     }
 }

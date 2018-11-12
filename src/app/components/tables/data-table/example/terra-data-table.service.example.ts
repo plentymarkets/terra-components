@@ -49,7 +49,7 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
     private applySorting(data:Array<TerraDataTableExampleInterface>, sortBy:string, sortOrder:TerraDataTableSortOrderEnum):void
     {
         let comparator:(a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface) => number;
-        if(sortOrder === TerraDataTableSortOrderEnum.ASCENDING)
+        if(sortOrder === TerraDataTableSortOrderEnum.ascending)
         {
             comparator = (a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface):number => a[sortBy] - b[sortBy];
         }
