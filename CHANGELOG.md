@@ -1,4 +1,10 @@
-###UNRELEASED
+<a name="3.0.0-beta.13"></a>
+# 3.0.0-beta.13 (12.11.2018)
+
+Adapted Changes from v2.4.2
+
+### Bug Fixes
+
 * **terra-node.interface**
 	- removed double click function.
 	- add closeOnClick to close node on click again.
@@ -141,9 +147,8 @@ Adapted Changes from v2.3.21 and v2.3.22
 ### Breaking Changes
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
 
-
-<a name="2.X.X"></a>
-# 2.X.X (XX.XX.2018)
+<a name="2.4.2"></a>
+# 2.4.2 (12.11.2018)
 
 ### Bug Fixes 
 * **terra-suggestion-box** prevent duplicate execution of callbacks and emission of notifications when selecting a value from the suggestion list
