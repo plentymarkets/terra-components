@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
 import * as IBAN from 'iban';
 import { TranslationService } from 'angular-l10n';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
@@ -92,7 +91,7 @@ export class TerraTextInputComponent extends TerraInputComponent
         });
     }
 
-    private onCustomBlur(iban:string):void
+    protected onCustomBlur(iban:string):void
     {
         if(this.inputIsIban)
         {
