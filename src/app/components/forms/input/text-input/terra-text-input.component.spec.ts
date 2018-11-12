@@ -25,7 +25,6 @@ fdescribe('Component: TerraTextInputComponent', () =>
                     HttpClientModule,
                     TooltipModule.forRoot(),
                     FormsModule,
-                    IBAN,
                     LocalizationModule.forRoot(l10nConfig)
                 ]
             }
