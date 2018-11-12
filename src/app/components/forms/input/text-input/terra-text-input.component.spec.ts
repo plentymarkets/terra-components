@@ -122,4 +122,14 @@ fdescribe('Component: TerraTextInputComponent', () =>
 
         expect(called).toBeTruthy();
     });
+
+    it(`should emit the value on #outputOnInput that has just been entered`, () =>
+    {
+        const testString:string = 'test';
+        let value:string = '';
+        component.outputOnInput.subscribe((enteredValue:string) => value = enteredValue);
+        inputElement.value = testString;
+        inputElement.dispatchEvent(new Event('input'));
+        expect(value).toEqual(testString);
+    });
 });
