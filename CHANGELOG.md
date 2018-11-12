@@ -1,5 +1,5 @@
-<a name="2.X.X"></a>
-# 2.X.X (XX.XX.2018)
+<a name="2.4.2"></a>
+# 2.4.2 (12.11.2018)
 
 ### Bug Fixes 
 * **terra-suggestion-box** prevent duplicate execution of callbacks and emission of notifications when selecting a value from the suggestion list
