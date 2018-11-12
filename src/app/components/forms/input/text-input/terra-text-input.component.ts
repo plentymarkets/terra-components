@@ -33,21 +33,24 @@ export class TerraTextInputComponent extends TerraInputComponent
 {
     /**
      * @description If true, the type of input will be 'password'.
+     * @default false
      */
     @Input()
-    public inputIsPassword:boolean;
+    public inputIsPassword:boolean = false;
 
     /**
      * @description If true, the input will check if the input is a valid iban.
+     * @default false
      */
     @Input()
-    public inputIsIban:boolean;
+    public inputIsIban:boolean = false;
 
     /**
-     * @description If true, the value cannot be changed. Default false.
+     * @description If true, the value cannot be changed.
+     * @default false
      */
     @Input()
-    public inputIsReadonly:boolean;
+    public inputIsReadonly:boolean = false;
 
     @Output()
     public outputOnInput:EventEmitter<any> = new EventEmitter<any>();
@@ -61,15 +64,8 @@ export class TerraTextInputComponent extends TerraInputComponent
     {
         super(TerraRegex.MIXED);
 
-        if(isNullOrUndefined(this.inputIsPassword))
-        {
-            this.inputIsPassword = false;
-        }
-
         // generate the id of the input instance
         this.id = `text-input_#${nextId++}`;
-
-        this.inputIsIban = false;
     }
 
     public onInput():void
