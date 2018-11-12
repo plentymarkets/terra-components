@@ -51,8 +51,11 @@ export class TerraTextInputComponent extends TerraInputComponent
     @Input()
     public inputIsReadonly:boolean = false;
 
+    /**
+     * @description notifies if something is typed in the input element. Emits the string that has been entered.
+     */
     @Output()
-    public outputOnInput:EventEmitter<any> = new EventEmitter<any>();
+    public outputOnInput:EventEmitter<string> = new EventEmitter<string>();
 
     /**
      * @description a unique string identifier for the specific input instance.
@@ -69,7 +72,7 @@ export class TerraTextInputComponent extends TerraInputComponent
 
     public onInput():void
     {
-        this.outputOnInput.emit();
+        this.outputOnInput.emit(this.value);
     }
 
     public focusNativeInput():void
