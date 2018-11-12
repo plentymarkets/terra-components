@@ -14,6 +14,7 @@ fdescribe('Component: TerraTextInputComponent', () =>
 {
     let component:TerraTextInputComponent;
     let fixture:ComponentFixture<TerraTextInputComponent>;
+    let inputElement:HTMLInputElement;
 
     beforeEach(() =>
     {
@@ -34,6 +35,9 @@ fdescribe('Component: TerraTextInputComponent', () =>
     {
         fixture = TestBed.createComponent(TerraTextInputComponent);
         component = fixture.componentInstance;
+        inputElement = fixture.nativeElement.querySelector('input');
+
+        fixture.detectChanges();
     });
 
     it('should create an instance', () =>
@@ -41,22 +45,28 @@ fdescribe('Component: TerraTextInputComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it(`should set the input element's readonly property according to the state of #inputIsReadonly`,  () =>
+    it(`should initialise it's inputs`, () =>
     {
-        let inputElement:HTMLInputElement = fixture.nativeElement.querySelector('input');
+        // #inputIsReadonly
         expect(component.inputIsReadonly).toBeFalsy();
         expect(inputElement.readOnly).toBeFalsy();
 
+        // #inputIsPassword
+        expect(component.inputIsPassword).toBeFalsy();
+        expect(inputElement.type).toEqual('text');
+    });
+
+    it(`should set the input element's readonly property according to the state of #inputIsReadonly`,  () =>
+    {
         component.inputIsReadonly = true;
-
         fixture.detectChanges();
-
         expect(inputElement.readOnly).toBeTruthy();
     });
 
-    //afterAll(() =>
-    //{
-    //    fixture.destroy();
-    //    TestBed.resetTestingModule();
-    //});
+    it(`should set the input element's type property to 'password' if inputIsPassword is set`, () =>
+    {
+        component.inputIsPassword = true;
+        fixture.detectChanges();
+        expect(inputElement.type).toEqual('password');
+    });
 });
