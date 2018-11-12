@@ -10,6 +10,7 @@ import {
     tap
 } from 'rxjs/operators';
 import { StringHelper } from '../../../helpers/string.helper';
+import { terraPagerDefaultPagingSizes } from '../../pager/data/terra-pager-default-paging-sizes';
 
 /**
  * @author pweyrich
@@ -53,7 +54,7 @@ export abstract class TerraDataTableBaseService<T, P>
 
     public get pagingSizes():Array<TerraSelectBoxValueInterface>
     {
-        return this._pagingSizes;
+        return this._pagingSizes || terraPagerDefaultPagingSizes;
     }
 
     public set pagingSizes(value:Array<TerraSelectBoxValueInterface>)
