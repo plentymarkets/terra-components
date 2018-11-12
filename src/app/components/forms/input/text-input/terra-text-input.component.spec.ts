@@ -108,7 +108,7 @@ fdescribe('Component: TerraTextInputComponent', () =>
 
     it(`should call #onInput method if something is typed in`, () =>
     {
-        let onInputSpy:Spy = spyOn(component, 'onInput').and.callThrough();
+        let onInputSpy:Spy = spyOn(component, 'onInput');
         inputElement.dispatchEvent(new Event('input'));
 
         expect(onInputSpy).toHaveBeenCalled();
