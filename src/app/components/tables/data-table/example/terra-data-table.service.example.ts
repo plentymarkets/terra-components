@@ -14,6 +14,12 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
 {
     private data:Array<TerraDataTableExampleInterface> = [];
 
+    constructor()
+    {
+        super();
+        this.defaultPagingSize = 50;
+    }
+
     // This method usually just requests data from the server via REST using another service, which has to be injected in the constructor
     public requestTableData(params?:TerraPagerParameterInterface):Observable<TerraPagerInterface<TerraDataTableExampleInterface>>
     {

@@ -8,6 +8,7 @@ import {
 import { TerraPagerInterface } from './data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-select-box.interface';
 import { Subject } from 'rxjs/Subject';
+import { terraPagerDefaultPagingSizes } from './data/terra-pager-default-paging-sizes';
 
 @Component({
     selector: 'terra-pager',
@@ -44,24 +45,7 @@ export class TerraPagerComponent implements OnInit
 
         if(!this.inputPagingSize)
         {
-            this.inputPagingSize = [
-                {
-                    value:   25,
-                    caption: '25'
-                },
-                {
-                    value:   50,
-                    caption: '50'
-                },
-                {
-                    value:   75,
-                    caption: '75'
-                },
-                {
-                    value:   100,
-                    caption: '100'
-                }
-            ];
+            this.inputPagingSize = terraPagerDefaultPagingSizes;
         }
 
         if(!this.inputPagingData)

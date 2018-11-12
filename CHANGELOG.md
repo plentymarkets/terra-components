@@ -21,6 +21,7 @@
 * **terra-node.interface**
 	- removed double click function.
 	- add closeOnClick to close node on click again.
+* **terra-pager.data** removed unused class
 
 <a name="3.0.0-beta.12"></a>
 # 3.0.0-beta.12 (07.11.2018)
