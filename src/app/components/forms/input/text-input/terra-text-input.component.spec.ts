@@ -9,6 +9,7 @@ import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { HttpClientModule } from '@angular/common/http';
+import Spy = jasmine.Spy;
 
 fdescribe('Component: TerraTextInputComponent', () =>
 {
@@ -102,6 +103,15 @@ fdescribe('Component: TerraTextInputComponent', () =>
         inputElement.value = 'DE12500105170648489890';
         inputElement.dispatchEvent(new Event('blur'));
 
-        expect(component.isValid).toBeTruthy();
+        expect(component.isValid).toBeTruthy(); // TODO: Why does this not work??
+    });
+
+    it(`should call #onInput method if something is typed in`, () =>
+    {
+        let onInputSpy:Spy = spyOn(component, 'onInput').and.callThrough();
+        inputElement.dispatchEvent(new Event('input'));
+
+        expect(onInputSpy).toHaveBeenCalled();
+    });
     });
 });
