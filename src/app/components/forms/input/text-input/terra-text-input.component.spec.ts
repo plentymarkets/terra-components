@@ -50,7 +50,7 @@ fdescribe('Component: TerraTextInputComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it(`should initialise it's inputs`, () =>
+    it(`should initialise it's inputs and outputs`, () =>
     {
         // #inputIsReadonly
         expect(component.inputIsReadonly).toBeFalsy();
@@ -59,6 +59,12 @@ fdescribe('Component: TerraTextInputComponent', () =>
         // #inputIsPassword
         expect(component.inputIsPassword).toBeFalsy();
         expect(inputElement.type).toEqual('text');
+
+        // #inputIsIban
+        expect(component.inputIsIban).toBeFalsy();
+
+        // #outputOnInput
+        expect(component.outputOnInput).toBeDefined();
     });
 
     it(`should set the input element's readonly property according to the state of #inputIsReadonly`,  () =>
