@@ -41,6 +41,19 @@ fdescribe('Component: TerraTextInputComponent', () =>
         expect(component).toBeTruthy();
     });
 
+    it(`should set the input element's readonly property according to the state of #inputIsReadonly`,  () =>
+    {
+        let inputElement:HTMLInputElement = fixture.nativeElement.querySelector('input');
+        expect(component.inputIsReadonly).toBeFalsy();
+        expect(inputElement.readOnly).toBeFalsy();
+
+        component.inputIsReadonly = true;
+
+        fixture.detectChanges();
+
+        expect(inputElement.readOnly).toBeTruthy();
+    });
+
     //afterAll(() =>
     //{
     //    fixture.destroy();
