@@ -113,5 +113,13 @@ fdescribe('Component: TerraTextInputComponent', () =>
 
         expect(onInputSpy).toHaveBeenCalled();
     });
+
+    it(`should emit a value on #ouputOnInput if #onInput is called`, () =>
+    {
+        let called:boolean = false;
+        component.outputOnInput.subscribe(() => called = true);
+        component.onInput();
+
+        expect(called).toBeTruthy();
     });
 });
