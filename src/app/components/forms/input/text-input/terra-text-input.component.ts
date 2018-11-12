@@ -70,7 +70,6 @@ export class TerraTextInputComponent extends TerraInputComponent
     public onInput():void
     {
         this.outputOnInput.emit();
-
     }
 
     public focusNativeInput():void
