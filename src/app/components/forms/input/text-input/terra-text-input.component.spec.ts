@@ -70,7 +70,24 @@ fdescribe('Component: TerraTextInputComponent', () =>
         expect(inputElement.type).toEqual('password');
     });
 
-    it(`should validate the entered text whether it is a valid IBAN if #inputIsIban is set`, () =>
+    it(`should set the input element's type property to 'text' if #inputIsPassword is not set`, () =>
+    {
+        expect(component.inputIsPassword).toBeFalsy();
+        expect(inputElement.type).toEqual('text');
+    });
+
+    it(`should NOT validate the entered text if #inputIsIban is not set`, () =>
+    {
+        expect(component.isValid).toBeTruthy();
+        expect(component.inputIsIban).toBeFalsy();
+
+        inputElement.value = 'lkjahsdlajkds';
+        inputElement.dispatchEvent(new Event('blur'));
+
+        expect(component.isValid).toBeTruthy();
+    });
+
+    xit(`should validate the entered text whether it is a valid IBAN if #inputIsIban is set`, () =>
     {
         expect(component.isValid).toBeTruthy();
 
