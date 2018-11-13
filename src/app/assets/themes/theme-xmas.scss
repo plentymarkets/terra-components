@@ -74,7 +74,7 @@ body
                     position: absolute;
                     left: 3px;
                     top: -12px;
-                    background-image: url(https://i.imgur.com/6HN9Cmz.png);
+                    background-image: url('https://i.imgur.com/6HN9Cmz.png');
                     background-repeat: no-repeat;
                     background-size: contain;
                 }
@@ -84,6 +84,34 @@ body
         .snowflakes
         {
             display: block;
+    
+    
+            &:after
+            {
+                content:'';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 128px;
+                background-image: url('https://i.imgur.com/sSxSurF.gif');
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position-y: 10px;
+                background-position-x: -200px;
+        
+                animation: animatedBackground 30s linear infinite;
+                -webkit-animation: animatedBackground 30s linear infinite;
+            }
+    
+            @keyframes animatedBackground {
+                0% { background-position-x: -200px; }
+                100% { background-position-x: calc(100% + 200px); }
+            }
+            @-webkit-keyframes animatedBackground {
+                0% { background-position-x: -200px; }
+                100% { background-position-x: calc(100% + 200px); }
+            }
     
             .snowflake
             {
@@ -107,7 +135,7 @@ body
                 animation-duration: 10s, 3s;
                 animation-timing-function: linear, ease-in-out;
                 animation-iteration-count: infinite, infinite;
-                animation-play-state: running, running
+                animation-play-state: running, running;
 
                 &:nth-of-type(0)
                 {
