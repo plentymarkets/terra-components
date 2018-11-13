@@ -100,8 +100,8 @@ body
                 background-position-y: 10px;
                 background-position-x: -200px;
         
-                animation: animatedBackground 30s linear infinite;
-                -webkit-animation: animatedBackground 30s linear infinite;
+                animation: animatedBackground 30s linear;
+                -webkit-animation: animatedBackground 30s linear;
             }
     
             @keyframes animatedBackground {
