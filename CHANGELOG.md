@@ -1,19 +1,18 @@
-# Unrleased
-* **terra themes** changed main style selector 'dark-standard' to 'theme-core'
-* **function-groups** removed custom group for add-icon
-* **function-groups** added missing styles for .btn-major
-<a name="X.X.X"></a>
-
-# X.X.X (XX.XX.2018)
+<a name="2.4.2"></a>
+# 2.4.2 (12.11.2018)
 
 ### Bug Fixes 
 * **terra-suggestion-box** prevent duplicate execution of callbacks and emission of notifications when selecting a value from the suggestion list
+* **terra-simple-table** fixed selectedValue of onRowCheckboxChange() Event
 
 ### Feature
 * **angular-cli** added support for angular-cli usage
 * **terra-simple-table** added support to set selected rows
 * **terra-info** add new component `terra-info` for short information about another ui element
 * **terra-icons** new icons for table sorting: icon-table_sort, icon-sort-asc, icon-sort-desc
+* **terra themes** changed main style selector 'dark-standard' to 'theme-core'
+* **function-groups** removed custom group for add-icon
+* **function-groups** added missing styles for .btn-major
 
 <a name="2.4.1"></a>
 # 2.4.1 (17.10.2018)
