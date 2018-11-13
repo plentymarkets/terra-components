@@ -75,22 +75,26 @@ describe('Helper / Class: Color', () =>
     it('should \'isDark\' return true if color is dark', () =>
     {
         color = new Color('#123456');
-
         expect(color.isDark()).toBe(true);
 
         color = new Color('#AADDFF');
+        expect(color.isDark()).toBe(false);
 
+        // edge case
+        color = new Color('#BABABA');
         expect(color.isDark()).toBe(false);
     });
 
     fit('should \'isLight\' return true if color is light', () =>
     {
         color = new Color('#AADDFF');
-
         expect(color.isLight()).toBe(true);
 
         color = new Color('#123456');
-
         expect(color.isLight()).toBe(false);
+
+        // edge case
+        color = new Color('#BABABA');
+        expect(color.isLight()).toBe(true);
     });
 });
