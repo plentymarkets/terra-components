@@ -29,7 +29,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
      * @description If true, the value will be right-aligned.
      */
     @Input()
-    public inputIsPriceInput:boolean;
+    public inputIsPriceInput:boolean = false;
 
     /**
      *
@@ -65,24 +65,27 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     /**
      * Set the focus on the native input element.
      */
-    public focusNativeInput():void
+    public focusNativeInput():Promise<boolean>
     {
-        setTimeout(() =>
+        return new Promise<boolean>((resolve:Function):void =>
         {
             let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.focus();
+            resolve(true);
         });
     }
 
     /**
      * Select the content of the native input element.
      */
-    public selectNativeInput():void
+    public selectNativeInput():Promise<boolean>
     {
-        setTimeout(() =>
+        return new Promise<boolean>((resolve:Function):void =>
         {
             let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
+            input.focus();
             input.select();
+            resolve(true);
         });
     }
 }
