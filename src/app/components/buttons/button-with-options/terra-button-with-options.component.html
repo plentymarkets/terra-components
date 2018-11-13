@@ -1,19 +1,22 @@
 <terra-button #optionsToggleButton
               [inputCaption]="inputCaption"
               [inputIcon]="inputIcon"
+              [inputIsSmall]="inputIsSmall"
               [inputIsDisabled]="inputIsDisabled"
               [inputTooltipPlacement]="inputTooltipPlacement"
               [inputTooltipText]="inputTooltipText"
-              (outputClicked)="toggleOptions()">
+              (outputClicked)="toggleOptions($event)">
     
     <!-- options dropdown -->
     <ul btn-outer *ngIf="optionsToggle" class="context-menu" [ngClass]="{'alignRight': alignRight}">
         <li *ngFor="let option of inputOptions">
-            <a (click)="optionsClick(option)"
-               [ngClass]="{'disabled': option.isDisabled, 'alignRight': alignRight}">
+            <a *ngIf="!option.isDivider"
+               (click)="optionsClick(option)"
+               [ngClass]="{'disabled': option.isDisabled, 'alignRight': alignRight, 'body.dark-standard': option.isFlagged}">
                 <span *ngIf="option.icon" class="left-icon" [ngClass]="option.icon"></span>
                 {{ option.caption }}
             </a>
+            <div *ngIf="option.isDivider" class="context-menu-divider"></div>
         </li>
     </ul>
 

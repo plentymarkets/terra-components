@@ -32,6 +32,12 @@ export class TerraButtonWithOptionsComponent implements OnInit
     public inputIcon:string;
 
     /**
+     * @description If true, the button will be small. Default false.
+     */
+    @Input()
+    public inputIsSmall:boolean;
+
+    /**
      * @description If true, the button will be disabled. Default false.
      */
     @Input()
@@ -127,8 +133,13 @@ export class TerraButtonWithOptionsComponent implements OnInit
         }
     }
 
-    private toggleOptions():void
+    private toggleOptions(event?:Event):void
     {
+        if (!isNullOrUndefined(event))
+        {
+            event.stopPropagation();
+        }
+
         if(!this.optionsToggle)
         {
             document.addEventListener('click', this.clickListener);
