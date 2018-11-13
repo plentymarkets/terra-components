@@ -6,6 +6,18 @@ describe('Helper / Class: Color', () =>
 {
     let color:Color;
     let validColor:string = '#123456';
+    let round:Function;
+
+    beforeEach(() =>
+    {
+        round = function(value:number, decimals:number):number
+        {
+            {
+                const factor:number = Math.pow(10, decimals);
+                return Math.round(value * factor) / factor;
+            }
+        };
+    });
 
     it('should random return a valid Color', () =>
     {
@@ -47,7 +59,38 @@ describe('Helper / Class: Color', () =>
         ));
     });
 
-    // TODO getGreyScale
-    // TODO isDark
-    // TODO isLight
+    it('should \'getGrayscale\' return a gray scale value a given color', () =>
+    {
+        let nonGrayColor:string = '#FF0000';
+        color = new Color(nonGrayColor);
+
+        expect(color.getGrayscale()).toEqual(jasmine.any(Number));
+        let grayScaleColor:string = '#' + round(color.getGrayscale(), 0).toString()
+                                             + round(color.getGrayscale(), 0).toString()
+                                             + round(color.getGrayscale(), 0).toString();
+        let expectedColor:Color = new Color(grayScaleColor);
+        expect(expectedColor.toRGB()).not.toEqual(color.toRGB());
+    });
+
+    it('should \'isDark\' return true if color is dark', () =>
+    {
+        color = new Color('#123456');
+
+        expect(color.isDark()).toBe(true);
+
+        color = new Color('#AADDFF');
+
+        expect(color.isDark()).toBe(false);
+    });
+
+    fit('should \'isLight\' return true if color is light', () =>
+    {
+        color = new Color('#AADDFF');
+
+        expect(color.isLight()).toBe(true);
+
+        color = new Color('#123456');
+
+        expect(color.isLight()).toBe(false);
+    });
 });
