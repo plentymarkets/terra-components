@@ -146,11 +146,13 @@ describe('Component: TerraTextInputComponent', () =>
         expect(value).toEqual(testString);
     });
 
-    xit(`should focus nativeElement if #focusNativeInput method is called`, fakeAsync(() =>
+    it(`should focus nativeElement if #focusNativeInput method is called`, () =>
     {
-        let spy:Spy = spyOn(inputElement, 'focus');
+        expect(document.activeElement).not.toEqual(inputElement);
         component.focusNativeInput();
-        tick(100);
-        expect(spy).toHaveBeenCalled(); // TODO: How do i manage to check this?
-    }));
+        setTimeout(() =>
+        {
+            expect(document.activeElement).toEqual(inputElement);
+        });
+    });
 });
