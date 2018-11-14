@@ -13,7 +13,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import Spy = jasmine.Spy;
 
-fdescribe('Component: TerraTextInputComponent', () =>
+describe('Component: TerraTextInputComponent', () =>
 {
     let component:TerraTextInputComponent;
     let fixture:ComponentFixture<TerraTextInputComponent>;
