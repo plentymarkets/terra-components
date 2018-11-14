@@ -43,7 +43,7 @@ import { TerraFileBrowserService } from '../../../file-browser/terra-file-browse
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
 import Spy = jasmine.Spy;
 
-fdescribe('TerraFileInputComponent', () =>
+describe('TerraFileInputComponent', () =>
 {
     let component:TerraFileInputComponent;
     let fixture:ComponentFixture<TerraFileInputComponent>;
