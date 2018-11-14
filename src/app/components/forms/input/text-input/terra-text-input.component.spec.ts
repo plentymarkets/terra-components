@@ -27,8 +27,9 @@ describe('Component: TerraTextInputComponent', () =>
     {
         TestBed.configureTestingModule(
             {
-                declarations: [TerraTextInputComponent, TerraLabelTooltipDirective],
-                imports: [
+                declarations: [TerraTextInputComponent,
+                               TerraLabelTooltipDirective],
+                imports:      [
                     HttpClientModule,
                     TooltipModule.forRoot(),
                     FormsModule,
@@ -70,7 +71,7 @@ describe('Component: TerraTextInputComponent', () =>
         expect(component.outputOnInput).toBeDefined();
     });
 
-    it(`should set the input element's readonly property according to the state of #inputIsReadonly`,  () =>
+    it(`should set the input element's readonly property according to the state of #inputIsReadonly`, () =>
     {
         component.inputIsReadonly = true;
         fixture.detectChanges();
@@ -156,15 +157,17 @@ describe('Component: TerraTextInputComponent', () =>
         });
     });
 
-    xit(`should select the text of the input if #selectNativeInput method is called`, () =>
+    it(`should select the text of the input if #selectNativeInput method is called`, () =>
     {
         inputElement.value = testString;
         expect(inputElement.selectionStart).toEqual(inputElement.selectionEnd); // nothing selected
-        component.selectNativeInput();
-        setTimeout( () =>
+
+        inputElement.onselect = ():void =>
         {
             expect(inputElement.selectionStart).toEqual(0);
-            expect(inputElement.selectionEnd).toEqual(testString.length); // TODO: this is 0.. Why?
-        });
+            expect(inputElement.selectionEnd).toEqual(testString.length);
+        };
+        component.selectNativeInput();
+
     });
 });
