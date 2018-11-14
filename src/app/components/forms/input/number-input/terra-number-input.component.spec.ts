@@ -104,6 +104,16 @@ describe('TerraNumberInputComponent', () =>
         component.focusNativeInput();
     });
 
+    it('should be active native content be selected', () =>
+    {
+        inputElement.onselect = ():void =>
+        {
+            expect(document.activeElement).toEqual(inputElement);
+        };
+
+        component.selectNativeInput();
+    });
+
     it('should step of native element be 1 to get an incremented of 1 of the value', () =>
     {
         expect(inputElement.step).toBe('1');
