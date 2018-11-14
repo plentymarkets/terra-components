@@ -94,13 +94,13 @@ describe('TerraNumberInputComponent', () =>
         expect(component.isValid).toBeTruthy();
     });
 
-    it('should be true if active element is the inputElement', () =>
+    fit('should be true if active element is the inputElement', () =>
     {
-        component.focusNativeInput();
-
-        setTimeout(() =>
+        inputElement.onfocus = ():void =>
         {
             expect(document.activeElement).toEqual(inputElement);
-        });
+        };
+
+        component.focusNativeInput();
     });
 });
