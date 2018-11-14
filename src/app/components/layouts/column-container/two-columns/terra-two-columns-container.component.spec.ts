@@ -5,8 +5,8 @@ import {
 } from '@angular/core/testing';
 import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../translation/l10n.config';
-import { TerraTwoColumnsContainerComponent } from '../../../..';
+import { l10nConfig } from '../../../../translation/l10n.config';
+import { TerraTwoColumnsContainerComponent } from '../../../../../index';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
@@ -42,9 +42,6 @@ describe('TerraTwoColumnsContainerComponent', () =>
 
         left = fixture.debugElement.query(By.css('.row')).children[0];
         right = fixture.debugElement.query(By.css('.row')).children[1];
-
-        // component.inputListBoxValues = []; // this also resets the selectedValue to null
-        // component.value = null;
 
         fixture.detectChanges();
     });
@@ -177,7 +174,7 @@ describe('TerraTwoColumnsContainerComponent', () =>
         expect(right.classes[colMd + 5]).toBeTruthy();
     });
 
-    it('should have right column width of col-lg-10 and not default value when leftColumnWidth set to 6', () =>
+    it('should have right column width of col-lg-6 and not default value when leftColumnWidth set to 6', () =>
     {
         component.leftColumnWidth = 6;
         fixture.detectChanges();
