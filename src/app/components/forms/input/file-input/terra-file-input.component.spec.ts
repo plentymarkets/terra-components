@@ -120,17 +120,17 @@ describe('TerraFileInputComponent', () =>
 
     it('should have showPreview false by default', () =>
     {
-        expect(component.inputShowPreview).toBeFalsy();
+        expect(component.inputShowPreview).toBe(false);
     });
 
     it('should have inputAllowFolders true by default', () =>
     {
-        expect(component.inputAllowFolders).toBeTruthy();
+        expect(component.inputAllowFolders).toBe(true);
     });
 
     it('should be an webImage if the extension is .jpg', () =>
     {
-        expect(component.isWebImage(jpgFileName)).toBeTruthy();
+        expect(component.isWebImage(jpgFileName)).toBe(true);
     });
 
     it('should have publicUrl as value after selection', () =>
