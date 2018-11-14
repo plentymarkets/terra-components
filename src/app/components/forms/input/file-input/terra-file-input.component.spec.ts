@@ -145,7 +145,7 @@ describe('TerraFileInputComponent', () =>
         expect(component.getIconClass(jpgFileName)).toBe('icon-file_extension_jpg');
     });
 
-    it('should have a icon class `jpg` if the file has a jpg extension', () =>
+    it('should have a icon class `folder` if the file is a folder', () =>
     {
         expect(component.getIconClass(folderName)).toBe('icon-folder');
     });
