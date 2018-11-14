@@ -18,6 +18,7 @@
 	- added input `links`. The list of links in the context menu can be passed here.
 	- changed parameters of the `showMenu` method. It now accepts the mouse event and the data which will be passed to the `clickFunction` of the context menu link.
 * **terra-data-table-context-menu.interface** remove `data` property. Use the directive's input `rowData` instead.
+* **terra-pager.data** removed unused class
 
 ### Feature
 * **terra-dynamic-form** new optional toggle button to display/hide deprecated plugin config entries
@@ -34,7 +35,6 @@ Adapted Changes from v2.4.2
 * **terra-node.interface**
 	- removed double click function.
 	- add closeOnClick to close node on click again.
-* **terra-pager.data** removed unused class
 
 <a name="3.0.0-beta.12"></a>
 # 3.0.0-beta.12 (07.11.2018)
