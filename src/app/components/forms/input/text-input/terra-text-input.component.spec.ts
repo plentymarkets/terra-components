@@ -13,7 +13,7 @@ import Spy = jasmine.Spy;
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-fdescribe('Component: TerraTextInputComponent', () =>
+describe('Component: TerraTextInputComponent', () =>
 {
     let component:TerraTextInputComponent;
     let fixture:ComponentFixture<TerraTextInputComponent>;
@@ -108,9 +108,13 @@ fdescribe('Component: TerraTextInputComponent', () =>
         inputElement.dispatchEvent(new Event('blur'));
         expect(component.isValid).toBeFalsy();
 
-        component.value = 'DK5750510001322617';
+        component.value = 'DE12500105170648489890'; // from https://www.iban-bic.com/sample_accounts.html
         inputElement.dispatchEvent(new Event('blur'));
         expect(component.isValid).toBeTruthy();
+
+        component.value = 'DE12500105170648489892'; // changed one digit of the previous one which should make it invalid
+        inputElement.dispatchEvent(new Event('blur'));
+        expect(component.isValid).toBeFalsy();
     });
 
     it(`should call #onInput method if something is typed in`, () =>
