@@ -94,7 +94,7 @@ describe('TerraNumberInputComponent', () =>
         expect(component.isValid).toBeTruthy();
     });
 
-    fit('should be true if active element is the inputElement', () =>
+    it('should be true if active element is the inputElement', () =>
     {
         inputElement.onfocus = ():void =>
         {
