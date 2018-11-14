@@ -6,7 +6,6 @@
      container="body">
 
     <input id="{{id}}"
-           [ngClass]="{'price-input': inputIsPriceInput}"
            type="number"
            [(ngModel)]="value"
            name="{{inputName}}"
@@ -17,7 +16,7 @@
            step="{{step}}"
            [lang]="locale"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
-           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0}">
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0, 'price-input': inputIsPriceInput}">
     <label terraLabelTooltip
            [nameOfInput]="inputName"
            [tooltipTextOfInput]="inputTooltipText"

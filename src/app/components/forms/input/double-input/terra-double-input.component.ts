@@ -65,27 +65,24 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     /**
      * Set the focus on the native input element.
      */
-    public focusNativeInput():Promise<boolean>
+    public focusNativeInput():void
     {
-        return new Promise<boolean>((resolve:Function):void =>
+        setTimeout(() =>
         {
             let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.focus();
-            resolve(true);
         });
     }
 
     /**
      * Select the content of the native input element.
      */
-    public selectNativeInput():Promise<boolean>
+    public selectNativeInput():void
     {
-        return new Promise<boolean>((resolve:Function):void =>
+        setTimeout(() =>
         {
             let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
-            input.focus();
             input.select();
-            resolve(true);
         });
     }
 }

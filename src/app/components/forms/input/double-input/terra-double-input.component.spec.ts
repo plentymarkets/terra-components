@@ -1,4 +1,7 @@
-import { ElementRef } from '@angular/core';
+import {
+    DebugElement,
+    ElementRef
+} from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import {
@@ -21,11 +24,14 @@ import {
     TerraButtonComponent,
     TerraRegex
 } from '../../../../..';
+import { By } from '@angular/platform-browser';
 
 describe('TerraDoubleInputComponent', () =>
 {
     let component:TerraDoubleInputComponent;
     let fixture:ComponentFixture<TerraDoubleInputComponent>;
+    let debugElement:DebugElement;
+    let inputElement:HTMLInputElement;
     const testValue:number = 3.2;
 
     beforeEach(async(() =>
@@ -57,6 +63,9 @@ describe('TerraDoubleInputComponent', () =>
         fixture = TestBed.createComponent(TerraDoubleInputComponent);
         component = fixture.componentInstance;
 
+        debugElement = fixture.debugElement.query(By.css('input'));
+        inputElement = debugElement.nativeElement;
+
         component.value = null;
 
         fixture.detectChanges();
@@ -67,13 +76,17 @@ describe('TerraDoubleInputComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should be invalid', () =>
+    it('component should be invalid after validating the input with wrong regex', () =>
     {
-        component.value = 'Test';
-        expect(component.value).not.toEqual(jasmine.any(Number));
+        const formControl:FormControl = new FormControl(testValue, [Validators.pattern(TerraRegex.IBAN_BIC)]);
+
+        component.value = testValue;
+        component.validate(formControl);
+
+        expect(component.isValid).toBeFalsy();
     });
 
-    it('should be valid', () =>
+    it('component should be valid after validating the input with correct regex', () =>
     {
         const formControl:FormControl = new FormControl(testValue, [Validators.pattern(TerraRegex.DOUBLE)]);
 
@@ -83,44 +96,27 @@ describe('TerraDoubleInputComponent', () =>
         expect(component.isValid).toBeTruthy();
     });
 
-    it('should be true if greater than 0', () =>
+    it('inputs should be initialized correctly', () =>
     {
-        component.inputDecimalCount = 1;
-        expect(component.inputDecimalCount).toBeGreaterThan(0);
-    });
-
-    it('should be false as default', () =>
-    {
+        expect(component.regex).toEqual(TerraRegex.getDouble(component.inputDecimalCount));
         expect(component.inputIsPriceInput).toBe(false);
+        expect(component.inputDecimalCount).toEqual(2);
     });
 
-    it('should be price input if true is set', () =>
+    it('component should have price-input css if input is given', () =>
     {
         component.inputIsPriceInput = true;
-        expect(component.inputIsPriceInput).toBe(true);
+
+        expect(debugElement.classes.hasOwnProperty('price-input')).toBeTruthy();
     });
 
-    fit('should be true if focusNativeInput is called', (done:any) =>
+    it('should be true if active element is the inputElement', () =>
     {
-        let doubleInputElement:HTMLInputElement = fixture.nativeElement;
-        let inputElement:HTMLInputElement = doubleInputElement.querySelector('input');
+        component.focusNativeInput();
 
-        component.focusNativeInput().then(() =>
+        setTimeout(() =>
         {
             expect(document.activeElement).toEqual(inputElement);
-            done();
-        });
-    });
-
-    fit('should be true if selectNativeInput is called', (done:Function) =>
-    {
-        component.value = testValue;
-        fixture.detectChanges();
-
-        component.selectNativeInput().then((isSelected:boolean) =>
-        {
-            expect(isSelected).toBe(true);
-            done();
         });
     });
 });
