@@ -14,23 +14,22 @@ import {
 import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../translation/l10n.config';
-
 import { TerraSuggestionBoxComponent } from './terra-suggestion-box.component';
-import {
-    TerraSuggestionBoxValueInterface,
-    TerraTextInputComponent
-} from '../../../..';
-
 import { MockElementRef } from '../../../testing/mock-element-ref';
-import Spy = jasmine.Spy;
 import { By } from '@angular/platform-browser';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
+import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
+import { TerraTextInputComponent } from '../input/text-input/terra-text-input.component';
+import Spy = jasmine.Spy;
 
 describe('TerraSuggestionBoxComponent', () =>
 {
     let component:TerraSuggestionBoxComponent;
     let fixture:ComponentFixture<TerraSuggestionBoxComponent>;
-    const suggestion:TerraSuggestionBoxValueInterface = {caption: '1', value: 1};
+    const suggestion:TerraSuggestionBoxValueInterface = {
+        caption: '1',
+        value:   1
+    };
 
     beforeEach(async(() =>
     {
@@ -48,8 +47,11 @@ describe('TerraSuggestionBoxComponent', () =>
                 LocalizationModule.forRoot(l10nConfig),
                 TooltipModule.forRoot()
             ],
-            providers: [
-                { provide: ElementRef, useClass: MockElementRef }
+            providers:    [
+                {
+                    provide:  ElementRef,
+                    useClass: MockElementRef
+                }
             ]
         }).compileComponents();
     }));

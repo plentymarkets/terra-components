@@ -108,12 +108,12 @@ describe('TerraTwoColumnsContainerComponent', () =>
         expect(left.classes[colMd + 12]).toBeTruthy();
     });
 
-    it('should have left column width of col-lg-11 and not default value when leftColumnWidth set to 15', () =>
+    it('should have left column width of col-lg-12 and not default value when leftColumnWidth set to 15', () =>
     {
         component.leftColumnWidth = 15;
         fixture.detectChanges();
         expect(left.classes[colLg + 2]).toBeFalsy();
-        expect(left.classes[colLg + 11]).toBeTruthy();
+        expect(left.classes[colLg + 12]).toBeTruthy();
     });
 
     it('should have left column width of col-xs-12 when leftColumnWidth set to -5', () =>
@@ -197,12 +197,12 @@ describe('TerraTwoColumnsContainerComponent', () =>
         expect(right.classes[colMd + 0]).toBeTruthy();
     });
 
-    it('should have right column width of col-lg-1 and not default value when leftColumnWidth set to 15', () =>
+    it('should have right column width of col-lg-0 and not default value when leftColumnWidth set to 15', () =>
     {
         component.leftColumnWidth = 15;
         fixture.detectChanges();
         expect(right.classes[colLg + 10]).toBeFalsy();
-        expect(right.classes[colLg + 1]).toBeTruthy();
+        expect(right.classes[colLg + 0]).toBeTruthy();
     });
 
 
