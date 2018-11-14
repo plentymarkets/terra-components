@@ -1,7 +1,9 @@
 import { TerraTextInputComponent } from './terra-text-input.component';
 import {
     ComponentFixture,
-    TestBed
+    fakeAsync,
+    TestBed,
+    tick
 } from '@angular/core/testing';
 import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
@@ -143,4 +145,12 @@ describe('Component: TerraTextInputComponent', () =>
         inputElement.dispatchEvent(new Event('input'));
         expect(value).toEqual(testString);
     });
+
+    xit(`should focus nativeElement if #focusNativeInput method is called`, fakeAsync(() =>
+    {
+        let spy:Spy = spyOn(inputElement, 'focus');
+        component.focusNativeInput();
+        tick(100);
+        expect(spy).toHaveBeenCalled(); // TODO: How do i manage to check this?
+    }));
 });
