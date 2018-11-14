@@ -143,15 +143,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
 
     public reset():void
     {
-        this.nestedTreeConfig.currentSelectedNode = {
-            id:               null,
-            isActive:         null,
-            isOpen:           null,
-            isVisible:        null,
-            name:             '',
-            tooltip:          '',
-            tooltipPlacement: '',
-        };
+        this.nestedTreeConfig.currentSelectedNode = null;
         this.categoryName = '';
         this.value = 0;
 

@@ -58,10 +58,9 @@ export interface TerraNodeInterface<D>
     onClick?:() => void;
 
     /**
-     * @description A double click function to do something. Optional.
-     * @deprecated will be removed in the next major release.
+     * @description Toggle isOpen when set to true. Optional.
      */
-    onDblClick?:() => void;
+    closeOnClick?:boolean;
 
     /**
      * @description Lazy loading function to get data from server. Optional.
