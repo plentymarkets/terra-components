@@ -1,9 +1,7 @@
 import { TerraTextInputComponent } from './terra-text-input.component';
 import {
     ComponentFixture,
-    fakeAsync,
-    TestBed,
-    tick
+    TestBed
 } from '@angular/core/testing';
 import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
@@ -11,11 +9,11 @@ import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { HttpClientModule } from '@angular/common/http';
-import Spy = jasmine.Spy;
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import Spy = jasmine.Spy;
 
-describe('Component: TerraTextInputComponent', () =>
+fdescribe('Component: TerraTextInputComponent', () =>
 {
     let component:TerraTextInputComponent;
     let fixture:ComponentFixture<TerraTextInputComponent>;
@@ -147,18 +145,19 @@ describe('Component: TerraTextInputComponent', () =>
         expect(value).toEqual(testString);
     });
 
-    it(`should focus nativeElement if #focusNativeInput method is called`, () =>
+    it(`should focus the input element if #focusNativeInput method is called`, () =>
     {
         expect(document.activeElement).not.toEqual(inputElement);
-        component.focusNativeInput();
-        setTimeout(() =>
+        inputElement.onfocus = ():void =>
         {
             expect(document.activeElement).toEqual(inputElement);
-        });
+        };
+        component.focusNativeInput();
     });
 
     it(`should select the text of the input if #selectNativeInput method is called`, () =>
     {
+        let spy:Spy = spyOn(inputElement, 'select').and.callThrough();
         inputElement.value = testString;
         expect(inputElement.selectionStart).toEqual(inputElement.selectionEnd); // nothing selected
 
@@ -166,8 +165,8 @@ describe('Component: TerraTextInputComponent', () =>
         {
             expect(inputElement.selectionStart).toEqual(0);
             expect(inputElement.selectionEnd).toEqual(testString.length);
+            expect(spy).toHaveBeenCalled();
         };
         component.selectNativeInput();
-
     });
 });
