@@ -137,7 +137,7 @@ describe('TerraFileInputComponent', () =>
     {
         component.onObjectSelected(new TerraStorageObject(fileData.objects[0]));
 
-        expect(component.value).toBe(fileData.objects[0].publicUrl);
+        expect(component.value).toEqual(fileData.objects[0].publicUrl);
     });
 
     it('should have a icon class `jpg` if the file has a jpg extension', () =>
@@ -145,7 +145,7 @@ describe('TerraFileInputComponent', () =>
         expect(component.getIconClass(jpgFileName)).toBe('icon-file_extension_jpg');
     });
 
-    it('should have a icon class `jpg` if the file has a jpg extension', () =>
+    it('should have a icon class `folder` if the file is a folder', () =>
     {
         expect(component.getIconClass(folderName)).toBe('icon-folder');
     });
