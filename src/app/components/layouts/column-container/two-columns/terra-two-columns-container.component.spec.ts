@@ -57,86 +57,86 @@ describe('TerraTwoColumnsContainerComponent', () =>
 
     it('should have a default left column definition of col-xs-12', () =>
     {
-        expect(left.classes[colXs + 12]).toBeTruthy();
+        expect(left.classes[colXs + 12]).toBe(true);
     });
 
     it('should have a default left column definition of col-md-3', () =>
     {
-        expect(left.classes[colMd + 3]).toBeTruthy();
+        expect(left.classes[colMd + 3]).toBe(true);
     });
 
     it('should have a default left column definition of col-lg-2', () =>
     {
-        expect(left.classes[colLg + 2]).toBeTruthy();
+        expect(left.classes[colLg + 2]).toBe(true);
     });
 
     it('should have left column width of col-xs-12 when leftColumnWidth set to 6', () =>
     {
         component.leftColumnWidth = 6;
         fixture.detectChanges();
-        expect(left.classes[colXs + 12]).toBeTruthy();
+        expect(left.classes[colXs + 12]).toBe(true);
     });
 
     it('should have left column width of col-md-7 and not default value when leftColumnWidth set to 6', () =>
     {
         component.leftColumnWidth = 6;
         fixture.detectChanges();
-        expect(left.classes[colMd + 3]).toBeFalsy();
-        expect(left.classes[colMd + 7]).toBeTruthy();
+        expect(left.classes[colMd + 3]).toBe(false);
+        expect(left.classes[colMd + 7]).toBe(true);
     });
 
     it('should have left column width of col-lg-6 and not default value when leftColumnWidth set to 6', () =>
     {
         component.leftColumnWidth = 6;
         fixture.detectChanges();
-        expect(left.classes[colLg + 2]).toBeFalsy();
-        expect(left.classes[colLg + 6]).toBeTruthy();
+        expect(left.classes[colLg + 2]).toBe(false);
+        expect(left.classes[colLg + 6]).toBe(true);
     });
 
     it('should have left column width of col-xs-12 when leftColumnWidth set to 15', () =>
     {
         component.leftColumnWidth = 15;
         fixture.detectChanges();
-        expect(left.classes[colXs + 12]).toBeTruthy();
+        expect(left.classes[colXs + 12]).toBe(true);
     });
 
     it('should have left column width of col-md-12 and not default value when leftColumnWidth set to 15', () =>
     {
         component.leftColumnWidth = 15;
         fixture.detectChanges();
-        expect(left.classes[colMd + 3]).toBeFalsy();
-        expect(left.classes[colMd + 12]).toBeTruthy();
+        expect(left.classes[colMd + 3]).toBe(false);
+        expect(left.classes[colMd + 12]).toBe(true);
     });
 
-    it('should have left column width of col-lg-12 and not default value when leftColumnWidth set to 15', () =>
+    it('should have left column width of col-lg-11 and not default value when leftColumnWidth set to 15', () =>
     {
         component.leftColumnWidth = 15;
         fixture.detectChanges();
-        expect(left.classes[colLg + 2]).toBeFalsy();
-        expect(left.classes[colLg + 12]).toBeTruthy();
+        expect(left.classes[colLg + 2]).toBe(false);
+        expect(left.classes[colLg + 11]).toBe(true);
     });
 
     it('should have left column width of col-xs-12 when leftColumnWidth set to -5', () =>
     {
         component.leftColumnWidth = -5;
         fixture.detectChanges();
-        expect(left.classes[colXs + 12]).toBeTruthy();
+        expect(left.classes[colXs + 12]).toBe(true);
     });
 
     it('should have left column width of col-md-2 and not default value when leftColumnWidth set to -5', () =>
     {
         component.leftColumnWidth = -5;
         fixture.detectChanges();
-        expect(left.classes[colMd + 3]).toBeFalsy();
-        expect(left.classes[colMd + 2]).toBeTruthy();
+        expect(left.classes[colMd + 3]).toBe(false);
+        expect(left.classes[colMd + 2]).toBe(true);
     });
 
     it('should have left column width of col-lg-1 and not default value when leftColumnWidth set to -5', () =>
     {
         component.leftColumnWidth = -5;
         fixture.detectChanges();
-        expect(left.classes[colLg + 2]).toBeFalsy();
-        expect(left.classes[colLg + 1]).toBeTruthy();
+        expect(left.classes[colLg + 2]).toBe(false);
+        expect(left.classes[colLg + 1]).toBe(true);
     });
 
 
@@ -146,63 +146,63 @@ describe('TerraTwoColumnsContainerComponent', () =>
 
     it('should have a default right column definition of col-xs-12', () =>
     {
-        expect(right.classes[colXs + 12]).toBeTruthy();
+        expect(right.classes[colXs + 12]).toBe(true);
     });
 
     it('should have a default right column definition of col-md-9', () =>
     {
-        expect(right.classes[colMd + 9]).toBeTruthy();
+        expect(right.classes[colMd + 9]).toBe(true);
     });
 
     it('should have a default right column definition of col-lg-10', () =>
     {
-        expect(right.classes[colLg + 10]).toBeTruthy();
+        expect(right.classes[colLg + 10]).toBe(true);
     });
 
     it('should have right column width of col-xs-12 when leftColumnWidth set to 6', () =>
     {
         component.leftColumnWidth = 6;
         fixture.detectChanges();
-        expect(right.classes[colXs + 12]).toBeTruthy();
+        expect(right.classes[colXs + 12]).toBe(true);
     });
 
     it('should have right column width of col-md-9 and not default value when leftColumnWidth set to 6', () =>
     {
         component.leftColumnWidth = 6;
         fixture.detectChanges();
-        expect(right.classes[colMd + 9]).toBeFalsy();
-        expect(right.classes[colMd + 5]).toBeTruthy();
+        expect(right.classes[colMd + 9]).toBe(false);
+        expect(right.classes[colMd + 5]).toBe(true);
     });
 
     it('should have right column width of col-lg-6 and not default value when leftColumnWidth set to 6', () =>
     {
         component.leftColumnWidth = 6;
         fixture.detectChanges();
-        expect(right.classes[colLg + 10]).toBeFalsy();
-        expect(right.classes[colLg + 6]).toBeTruthy();
+        expect(right.classes[colLg + 10]).toBe(false);
+        expect(right.classes[colLg + 6]).toBe(true);
     });
 
     it('should have right column width of col-xs-12 when leftColumnWidth set to 15', () =>
     {
         component.leftColumnWidth = 15;
         fixture.detectChanges();
-        expect(right.classes[colXs + 12]).toBeTruthy();
+        expect(right.classes[colXs + 12]).toBe(true);
     });
 
     it('should have right column width of col-md-1 and not default value when leftColumnWidth set to 15', () =>
     {
         component.leftColumnWidth = 15;
         fixture.detectChanges();
-        expect(right.classes[colMd + 9]).toBeFalsy();
-        expect(right.classes[colMd + 0]).toBeTruthy();
+        expect(right.classes[colMd + 9]).toBe(false);
+        expect(right.classes[colMd + 0]).toBe(true);
     });
 
-    it('should have right column width of col-lg-0 and not default value when leftColumnWidth set to 15', () =>
+    it('should have right column width of col-lg-1 and not default value when leftColumnWidth set to 15', () =>
     {
         component.leftColumnWidth = 15;
         fixture.detectChanges();
-        expect(right.classes[colLg + 10]).toBeFalsy();
-        expect(right.classes[colLg + 0]).toBeTruthy();
+        expect(right.classes[colLg + 10]).toBe(false);
+        expect(right.classes[colLg + 1]).toBe(true);
     });
 
 
@@ -210,23 +210,23 @@ describe('TerraTwoColumnsContainerComponent', () =>
     {
         component.leftColumnWidth = -5;
         fixture.detectChanges();
-        expect(right.classes[colXs + 12]).toBeTruthy();
+        expect(right.classes[colXs + 12]).toBe(true);
     });
 
     it('should have right column width of col-md-1 and not default value when leftColumnWidth set to -5', () =>
     {
         component.leftColumnWidth = -5;
         fixture.detectChanges();
-        expect(right.classes[colMd + 9]).toBeFalsy();
-        expect(right.classes[colMd + 10]).toBeTruthy();
+        expect(right.classes[colMd + 9]).toBe(false);
+        expect(right.classes[colMd + 10]).toBe(true);
     });
 
     it('should have right column width of col-lg-1 and not default value when leftColumnWidth set to -5', () =>
     {
         component.leftColumnWidth = -5;
         fixture.detectChanges();
-        expect(right.classes[colLg + 10]).toBeFalsy();
-        expect(right.classes[colLg + 11]).toBeTruthy();
+        expect(right.classes[colLg + 10]).toBe(false);
+        expect(right.classes[colLg + 11]).toBe(true);
     });
 
 });
