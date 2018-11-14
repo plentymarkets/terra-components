@@ -21,6 +21,7 @@ describe('Component: TerraTextInputComponent', () =>
     let fixture:ComponentFixture<TerraTextInputComponent>;
     let inputElement:HTMLInputElement;
     let inputDebugElement:DebugElement;
+    const testString:string = 'test';
 
     beforeEach(() =>
     {
@@ -138,7 +139,6 @@ describe('Component: TerraTextInputComponent', () =>
 
     it(`should emit the value on #outputOnInput that has just been entered`, () =>
     {
-        const testString:string = 'test';
         let value:string = '';
         component.outputOnInput.subscribe((enteredValue:string) => value = enteredValue);
         inputElement.value = testString;
@@ -153,6 +153,18 @@ describe('Component: TerraTextInputComponent', () =>
         setTimeout(() =>
         {
             expect(document.activeElement).toEqual(inputElement);
+        });
+    });
+
+    xit(`should select the text of the input if #selectNativeInput method is called`, () =>
+    {
+        inputElement.value = testString;
+        expect(inputElement.selectionStart).toEqual(inputElement.selectionEnd); // nothing selected
+        component.selectNativeInput();
+        setTimeout( () =>
+        {
+            expect(inputElement.selectionStart).toEqual(0);
+            expect(inputElement.selectionEnd).toEqual(testString.length); // TODO: this is 0.. Why?
         });
     });
 });
