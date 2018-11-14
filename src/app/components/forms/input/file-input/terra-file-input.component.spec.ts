@@ -165,7 +165,7 @@ describe('TerraFileInputComponent', () =>
     {
         component.onObjectSelected(new TerraStorageObject(fileData.objects[1]));
 
-        expect(component.value).toBe(fileData.objects[1].publicUrl);
+        expect(component.value).toEqual(fileData.objects[1].publicUrl);
 
         component.resetValue();
 
