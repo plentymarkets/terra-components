@@ -1,6 +1,11 @@
 ###UNRELEASED
+
 ### Feature
 * **terra-dynamic-form** new optional toggle button to display/hide deprecated plugin config entries
+
+### Bug Fixes
+* **terra-regex** public access to properties
+
 <a name="3.0.0-beta.13"></a>
 # 3.0.0-beta.13 (12.11.2018)
 
