@@ -137,7 +137,7 @@ describe('TerraFileInputComponent', () =>
     {
         component.onObjectSelected(new TerraStorageObject(fileData.objects[0]));
 
-        expect(component.value).toBe(fileData.objects[0].publicUrl);
+        expect(component.value).toEqual(fileData.objects[0].publicUrl);
     });
 
     it('should have a icon class `jpg` if the file has a jpg extension', () =>
