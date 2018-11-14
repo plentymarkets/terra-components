@@ -109,7 +109,8 @@
 	},
 	"terraDynamicForm": {
 		"addListEntry": "Neuen Eintrag hinzufügen",
-		"removeListEntry": "Eintrag entfernen"
+		"removeListEntry": "Eintrag entfernen",
+		"deprecated": "Veraltete Einträge zeigen/verstecken"
 	},
 	"terraStopwatch": {
 		"start": "Start",
