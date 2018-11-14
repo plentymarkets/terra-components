@@ -20,10 +20,8 @@ import { l10nConfig } from '../../../../translation/l10n.config';
 import { MockElementRef } from '../../../../testing/mock-element-ref';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { TerraDoubleInputComponent } from './terra-double-input.component';
-import {
-    TerraButtonComponent,
-    TerraRegex
-} from '../../../../..';
+import { TerraButtonComponent } from '../../../buttons/button/terra-button.component';
+import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { By } from '@angular/platform-browser';
 
 describe('TerraDoubleInputComponent', () =>
