@@ -4,7 +4,7 @@ import { isNullOrUndefined } from 'util';
 import { NestedDataInterface } from '../../data/nested-data.interface';
 import { TerraNestedDataPickerBaseService } from '../../service/terra-nested-data-picker-base.service';
 import { of } from 'rxjs/observable/of';
-import { TerraPagerInterface } from '../../../pager/data/terra-pager.interface';
+import { TerraPagerInterface } from '../../../../../..';
 
 @Injectable()
 export class NestedPickerExampleService extends TerraNestedDataPickerBaseService<{}>
