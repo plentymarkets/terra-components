@@ -21,19 +21,6 @@ import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tool
 import { TerraFileInputComponent } from './terra-file-input.component';
 import { TerraThreeColumnsContainerComponent } from '../../../layouts/column-container/three-columns/terra-three-columns-container.component';
 import { TerraNodeTreeComponent } from '../../../tree/node-tree/terra-node-tree.component';
-import {
-    TerraBaseToolbarComponent,
-    TerraButtonComponent,
-    TerraFileBrowserComponent,
-    TerraFileBrowserService,
-    TerraFileChooserComponent,
-    TerraFrontendStorageService,
-    TerraLoadingSpinnerService,
-    TerraOverlayComponent,
-    TerraPortletComponent,
-    TerraSimpleTableComponent,
-    TerraStorageObject
-} from '../../../../..';
 import { TerraImagePreviewComponent } from '../../../file-browser/image-preview/image-preview.component';
 import { TerraFileListComponent } from '../../../file-browser/file-list/file-list.component';
 import { TerraTextInputComponent } from '../text-input/terra-text-input.component';
@@ -42,8 +29,19 @@ import { TerraNodeComponent } from '../../../tree/node-tree/node/terra-node.comp
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { terraFrontendStorageServiceStub } from '../../../../testing/file-input/terra-frontend-storage-service-stub';
 import { fileData } from '../../../../testing/file-input/file-data';
-import Spy = jasmine.Spy;
 import { By } from '@angular/platform-browser';
+import { TerraFrontendStorageService } from '../../../file-browser/terra-frontend-storage.service';
+import { TerraFileChooserComponent } from '../../../buttons/file-chooser/terra-file-chooser.component';
+import { TerraFileBrowserComponent } from '../../../file-browser/terra-file-browser.component';
+import { TerraButtonComponent } from '../../../buttons/button/terra-button.component';
+import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.component';
+import { TerraSimpleTableComponent } from '../../../tables/simple/terra-simple-table.component';
+import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
+import { TerraBaseToolbarComponent } from '../../../toolbar/base-toolbar/terra-base-toolbar.component';
+import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/terra-loading-spinner.service';
+import { TerraFileBrowserService } from '../../../file-browser/terra-file-browser.service';
+import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
+import Spy = jasmine.Spy;
 
 fdescribe('TerraFileInputComponent', () =>
 {
