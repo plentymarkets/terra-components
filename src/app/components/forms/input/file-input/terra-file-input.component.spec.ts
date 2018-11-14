@@ -42,6 +42,8 @@ import { TerraNodeComponent } from '../../../tree/node-tree/node/terra-node.comp
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { terraFrontendStorageServiceStub } from '../../../../testing/file-input/terra-frontend-storage-service-stub';
 import { fileData } from '../../../../testing/file-input/file-data';
+import Spy = jasmine.Spy;
+import { By } from '@angular/platform-browser';
 
 fdescribe('TerraFileInputComponent', () =>
 {
@@ -50,7 +52,7 @@ fdescribe('TerraFileInputComponent', () =>
     let frontendStorageService:TerraFrontendStorageService;
 
     const jpgFileName:string = 'a-total-NewFile_name.jpg';
-    const folderName:string = 'i-aYour_folder/';
+    const folderName:string = 'i-amYour_folder/';
 
     beforeEach(async(() =>
     {
@@ -150,6 +152,17 @@ fdescribe('TerraFileInputComponent', () =>
         expect(component.getIconClass(folderName)).toBe('icon-folder');
     });
 
+    it('should call `resetValue` on button click', () =>
+    {
+        const resetValue:Spy = spyOn(component, 'resetValue');
+        const button:TerraButtonComponent =
+            fixture.debugElement.query(By.css('terra-button.input-group-btn.margin-left')).componentInstance as TerraButtonComponent;
+
+        button.outputClicked.emit();
+
+        expect(resetValue).toHaveBeenCalled();
+    });
+
     it('should have a value after selection and after reset the value should an empty string', () =>
     {
         component.onObjectSelected(new TerraStorageObject(fileData.objects[1]));
@@ -159,5 +172,54 @@ fdescribe('TerraFileInputComponent', () =>
         component.resetValue();
 
         expect(component.value).toBe('');
+    });
+
+    it('should call `onPreviewClicked` on file preview click', () =>
+    {
+        component.inputShowPreview = true;
+        fixture.detectChanges();
+
+        const onPreviewClicked:Spy = spyOn(component, 'onPreviewClicked');
+        const divFilePreview:HTMLDivElement =
+            fixture.debugElement.query(By.css('div.file-preview')).nativeElement;
+
+        divFilePreview.click();
+
+        expect(onPreviewClicked).toHaveBeenCalled();
+    });
+
+    it('should call `isWebImage` after value changed', () =>
+    {
+        const isWebImage:Spy = spyOn(component, 'isWebImage');
+
+        component.inputShowPreview = true;
+        component.onObjectSelected(new TerraStorageObject(fileData.objects[1]));
+
+        fixture.detectChanges();
+
+        expect(isWebImage).toHaveBeenCalled();
+    });
+
+    it('should have a span with a image equal to the value as background-image when the image is a web image', () =>
+    {
+        component.inputShowPreview = true;
+        component.onObjectSelected(new TerraStorageObject(fileData.objects[1]));
+
+        fixture.detectChanges();
+
+        const spanElement:HTMLSpanElement = fixture.debugElement.query(By.css('div.file-preview span:first-child')).nativeElement;
+
+        expect(spanElement.style.backgroundImage).toContain('url("' + component.value + '")');
+    });
+
+    it('should have a span with a span that have the value as class in it when the image is not a web image', () =>
+    {
+        component.inputShowPreview = true;
+
+        fixture.detectChanges();
+
+        const spanElement:HTMLSpanElement = fixture.debugElement.query(By.css('div.file-preview span:first-child span:first-child')).nativeElement;
+
+        expect(spanElement.className).toBe('');
     });
 });
