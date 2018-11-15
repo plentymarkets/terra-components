@@ -40,6 +40,9 @@ export class TerraDynamicSwitchComponent
     // Necessary for using enum in html
     protected controlTypeEnum:any = TerraControlTypeEnum;
 
+    @Input()
+    private inputShowDeprecatedConfig:boolean;
+
     constructor()
     {
         this.inputSubSwitch = false;

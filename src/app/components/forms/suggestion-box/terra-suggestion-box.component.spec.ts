@@ -26,6 +26,7 @@ import Spy = jasmine.Spy;
 import { By } from '@angular/platform-browser';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 
+
 describe('TerraSuggestionBoxComponent', () =>
 {
     let component:TerraSuggestionBoxComponent;
@@ -38,6 +39,7 @@ describe('TerraSuggestionBoxComponent', () =>
             declarations: [
                 TerraTextInputComponent,
                 TerraSuggestionBoxComponent,
+                TerraTextInputComponent,
                 TerraLabelTooltipDirective
             ],
             imports:      [

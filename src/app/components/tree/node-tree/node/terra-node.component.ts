@@ -51,6 +51,8 @@ export class TerraNodeComponent<D> implements OnInit
     {
         event.stopPropagation();
 
+        this.handleOpenNode(false);
+
         // check if click function is set
         if(!isNullOrUndefined(this.inputNode.onClick))
         {
@@ -63,31 +65,26 @@ export class TerraNodeComponent<D> implements OnInit
         {
             this.inputConfig.currentSelectedNode = this.inputNode;
         }
-
     }
 
-        // handle the node click
-        protected onNodeDblClick(event:Event):void
+    private handleOpenNode(isIconClick:boolean):void
+    {
+        if(isIconClick || this.inputNode.closeOnClick)
         {
-            event.stopPropagation();
-            // check if click function is set
-            if(!isNullOrUndefined(this.inputNode.onDblClick))
-            {
-                this.inputNode.onDblClick();
-            }
-
-            this.inputConfig.handleLazyLoading(this.inputNode);
-
-            if(isNullOrUndefined(this.inputNode.selectable) || this.inputNode.selectable)
-            {
-                this.inputConfig.currentSelectedNode = this.inputNode;
-            }
+            this.inputNode.isOpen = !this.inputNode.isOpen;
         }
+        else
+        {
+            this.inputNode.isOpen = true;
+        }
+    }
 
     protected handleIconClick(event:Event):void
     {
         event.stopPropagation();
 
-        this.inputConfig.handleLazyLoading(this.inputNode, true);
+        this.handleOpenNode(true);
+
+        this.inputConfig.handleLazyLoading(this.inputNode);
     }
 }

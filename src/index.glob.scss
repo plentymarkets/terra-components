@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
 @import './app/assets/styles/_variables.scss';
-@import './app/assets/themes/theme-dark-standard.scss';
-@import './app/assets/themes/theme-dark-compact.scss';
+@import './app/assets/themes/theme-core.scss';
+@import './app/assets/themes/theme-compact.scss';
+@import './app/assets/themes/theme-dark.scss';
+@import './app/assets/themes/theme-light.scss';
 
 *
 {
@@ -37,23 +39,27 @@ body
     
     &.top .tooltip-arrow
     {
-        border-top-color: var(--tooltip-color, var(--tooltip-color-default));
+        border-top-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
     }
     &.left .tooltip-arrow
     {
-        border-left-color: var(--tooltip-color, var(--tooltip-color-default));
+        border-left-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
     }
     &.bottom .tooltip-arrow
     {
-        border-bottom-color: var(--tooltip-color, var(--tooltip-color-default));
+        border-bottom-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
     }
     &.right .tooltip-arrow
     {
-        border-right-color: var(--tooltip-color, var(--tooltip-color-default));
+        border-right-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
     }
+    
     .tooltip-inner
     {
-        background-color: var(--tooltip-color, var(--tooltip-color-default));
+        background-color: var(--tooltip-background-color, var(--color-structure-12));
+        color: var(--tooltip-color, var(--color-structure-12));
+        box-shadow: var(--box-shadow);
+        @include font-rendering;
     }
 }
 
@@ -123,7 +129,7 @@ p, span, a
     transition: var(--transition-menu);
     transition-delay: var(--transition-menu-delay);
     padding: var(--space-sm) 0;
-    background-color: var(--color-structure-11);
+    background-color: var(--context-menu-background-color, var(--color-structure-11));
     border-radius: var(--border-radius);
     
     right: 0;
@@ -134,57 +140,65 @@ p, span, a
     z-index: var(--zIndex-9);
     box-shadow: var(--box-shadow);
     
-    a
+    li
     {
-        cursor: pointer;
-        padding: 4px 18px 4px 10px;
-        display: list-item;
-        width: 100%;
-        text-decoration: none;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        font-size: var(--context-menu-a-font-size, var(--font-size-1));
-        line-height: var(--font-size-5);
-        font-weight: var(--font-weight-1);
-        color: var(--color-structure-0) !important;
-        -webkit-font-smoothing: initial;
+        color: var(--context-menu-color, var(--color-structure-0)) !important;
         
         &:hover
         {
-            background-color: var(--color-structure-9);
+            background-color: var(--color-active);
+            color: var(--color-structure-0) !important;
         }
-        
-        .left-icon
+    
+        a
         {
-            padding-right: 2px;
-            &:before
-            {
-                vertical-align: middle;
-            }
-        }
-        .right-icon
-        {
-            position: absolute;
-            right: 4px;
+            cursor: pointer;
+            padding: 4px 18px 4px 10px;
+            display: list-item;
+            width: 100%;
+            text-decoration: none;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: var(--context-menu-a-font-size, var(--font-size-1));
             line-height: var(--font-size-5);
-            
-            &:hover
+            font-weight: var(--font-weight-1);
+            color: inherit;
+            @include font-rendering;
+        
+        
+            .left-icon
             {
-                color: var(--color-active);
-                opacity: 1;
+                padding-right: 2px;
+                &:before
+                {
+                    vertical-align: middle;
+                }
             }
-        }
-        &.disabled
-        {
-            color: var(--color-structure-6) !important;
-            &:hover
+            .right-icon
             {
-                background-color: inherit;
-                cursor: not-allowed;
+                position: absolute;
+                right: 4px;
+                line-height: var(--font-size-5);
+            
+                &:hover
+                {
+                    color: var(--color-active);
+                    opacity: 1;
+                }
+            }
+            &.disabled
+            {
+                color: var(--color-structure-6) !important;
+                &:hover
+                {
+                    background-color: inherit;
+                    cursor: not-allowed;
+                }
             }
         }
     }
+
 }
 
 .tab-wrapper
