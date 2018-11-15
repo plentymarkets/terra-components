@@ -8,6 +8,7 @@ import { LocalizationModule } from 'angular-l10n';
 import { TooltipModule } from 'ngx-bootstrap';
 import { l10nConfig } from '../../../../translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
+import { TerraRegex } from '../../../../..';
 
 describe('Component: TerraColorPickerComponent', () =>
 {
@@ -54,6 +55,7 @@ describe('Component: TerraColorPickerComponent', () =>
     it('should constructor\'s regex be defined', () =>
     {
         expect(component.regex).toBeDefined();
+        expect(component.regex).toEqual(TerraRegex.COLOR_HEX);
     });
 
     it('should color regex be defined and the value of input be #ffffff', () =>
