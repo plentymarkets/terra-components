@@ -55,15 +55,15 @@ describe('Component: TerraTextInputComponent', () =>
     it(`should initialise it's inputs and outputs`, () =>
     {
         // #inputIsReadonly
-        expect(component.inputIsReadonly).toBeFalsy();
+        expect(component.inputIsReadonly).toBe(false);
         expect(inputElement.readOnly).toBeFalsy();
 
         // #inputIsPassword
-        expect(component.inputIsPassword).toBeFalsy();
+        expect(component.inputIsPassword).toBe(false);
         expect(inputElement.type).toEqual('text');
 
         // #inputIsIban
-        expect(component.inputIsIban).toBeFalsy();
+        expect(component.inputIsIban).toBe(false);
 
         // #outputOnInput
         expect(component.outputOnInput).toBeDefined();
@@ -73,7 +73,7 @@ describe('Component: TerraTextInputComponent', () =>
     {
         component.inputIsReadonly = true;
         fixture.detectChanges();
-        expect(inputElement.readOnly).toBeTruthy();
+        expect(inputElement.readOnly).toBe(true);
     });
 
     it(`should set the input element's type property to 'password' if #inputIsPassword is set`, () =>
@@ -83,21 +83,15 @@ describe('Component: TerraTextInputComponent', () =>
         expect(inputElement.type).toEqual('password');
     });
 
-    it(`should set the input element's type property to 'text' if #inputIsPassword is not set`, () =>
-    {
-        expect(component.inputIsPassword).toBeFalsy();
-        expect(inputElement.type).toEqual('text');
-    });
-
     it(`should NOT validate the entered text if #inputIsIban is not set`, () =>
     {
-        expect(component.isValid).toBeTruthy();
-        expect(component.inputIsIban).toBeFalsy();
+        expect(component.isValid).toBe(true);
+        expect(component.inputIsIban).toBe(false);
 
         inputElement.value = 'lkjahsdlajkds';
         inputElement.dispatchEvent(new Event('blur'));
 
-        expect(component.isValid).toBeTruthy();
+        expect(component.isValid).toBe(true);
     });
 
     it(`should validate the entered text whether it is a valid IBAN if #inputIsIban is set`, () =>
@@ -108,15 +102,15 @@ describe('Component: TerraTextInputComponent', () =>
 
         component.value = 'kjashdlkasd';
         inputElement.dispatchEvent(new Event('blur'));
-        expect(component.isValid).toBeFalsy();
+        expect(component.isValid).toBe(false);
 
         component.value = 'DE12500105170648489890'; // from https://www.iban-bic.com/sample_accounts.html
         inputElement.dispatchEvent(new Event('blur'));
-        expect(component.isValid).toBeTruthy();
+        expect(component.isValid).toBe(true);
 
         component.value = 'DE12500105170648489892'; // changed one digit of the previous one which should make it invalid
         inputElement.dispatchEvent(new Event('blur'));
-        expect(component.isValid).toBeFalsy();
+        expect(component.isValid).toBe(false);
     });
 
     it(`should call #onInput method if something is typed in`, () =>
@@ -133,7 +127,7 @@ describe('Component: TerraTextInputComponent', () =>
         component.outputOnInput.subscribe(() => called = true);
         component.onInput();
 
-        expect(called).toBeTruthy();
+        expect(called).toBe(true);
     });
 
     it(`should emit the value on #outputOnInput that has just been entered`, () =>
