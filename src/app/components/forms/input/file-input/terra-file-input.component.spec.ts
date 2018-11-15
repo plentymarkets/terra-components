@@ -128,7 +128,7 @@ describe('TerraFileInputComponent', () =>
         expect(component.inputAllowFolders).toBe(true);
     });
 
-    it('should be an webImage if the extension is .jpg', () =>
+    it('should be a webImage if the extension is .jpg', () =>
     {
         expect(component.isWebImage(jpgFileName)).toBe(true);
     });
@@ -161,7 +161,7 @@ describe('TerraFileInputComponent', () =>
         expect(resetValue).toHaveBeenCalled();
     });
 
-    it('should have a value after selection and after reset the value should an empty string', () =>
+    it('should have a value after selection and after reset the value should be an empty string', () =>
     {
         component.onObjectSelected(new TerraStorageObject(fileData.objects[1]));
 
