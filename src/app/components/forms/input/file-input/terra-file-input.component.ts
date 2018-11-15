@@ -54,6 +54,9 @@ export class TerraFileInputComponent extends TerraInputComponent
         return this.storageServices || [this.frontendStorageService];
     }
 
+    /**
+     * @Deprecated ViewChild overlay does not exist in the template
+     */
     @ViewChild('overlay')
     public overlay:TerraOverlayComponent;
 
@@ -89,9 +92,16 @@ export class TerraFileInputComponent extends TerraInputComponent
         }
     }
 
+    /**
+     * @Deprecated ViewChild overlay does not exist in the template
+     */
     public showFileBrowser():void
     {
-        this.overlay.showOverlay();
+        console.warn('Function showFileBrowser() is deprecated and should not called.');
+        if(!isNullOrUndefined(this.overlay))
+        {
+            this.overlay.showOverlay();
+        }
     }
 
     public getIconClass(filename:string):string
