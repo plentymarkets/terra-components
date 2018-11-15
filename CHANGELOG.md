@@ -20,6 +20,8 @@
 * **terra-data-table-context-menu.interface** remove `data` property. Use the directive's input `rowData` instead.
 * **terra-pager.data** removed unused class
 
+For further information see the [table migration guide](https://developers.plentymarkets.com/dev-doc/data-table-migration-guide).
+
 ### Feature
 * **terra-dynamic-form** new optional toggle button to display/hide deprecated plugin config entries
 
