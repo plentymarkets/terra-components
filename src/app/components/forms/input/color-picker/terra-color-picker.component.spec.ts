@@ -10,15 +10,12 @@ import { LocalizationModule } from 'angular-l10n';
 import { TooltipModule } from 'ngx-bootstrap';
 import { l10nConfig } from '../../../../translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
-import { Color } from './color.helper';
 
 describe('Component: TerraColorPickerComponent', () =>
 {
     let component:any = new TerraColorPickerComponent();
     let expectedColor:string = '';
-    let darkColor:string = '#111111';
     let fixture:ComponentFixture<TerraColorPickerComponent>;
-    let color:Color = new Color(darkColor);
 
     beforeEach(() =>
         {
