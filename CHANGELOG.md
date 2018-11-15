@@ -1,4 +1,5 @@
-# Unreleased beta
+<a name="3.0.0-beta.14"></a>
+# 3.0.0-beta.14 (15.11.2018)
 
 ### Breaking Changes
 * **terra-data-table** 
