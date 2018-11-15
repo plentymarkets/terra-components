@@ -58,7 +58,7 @@ describe('Helper / Class: Color', () =>
         ));
     });
 
-    it('should \'getGrayscale\' return a gray scale value a given color', () =>
+    it('should \'getGrayscale\' return a gray scale value to a given color', () =>
     {
         let nonGrayColor:string = '#FF0000';
         color = new Color(nonGrayColor);
