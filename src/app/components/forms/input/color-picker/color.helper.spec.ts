@@ -4,6 +4,7 @@ describe('Helper / Class: Color', () =>
 {
     let color:Color;
     let validColor:string = '#123456';
+    let blue:string = '#0000ff';
     let round:Function;
 
     beforeEach(() =>
@@ -45,7 +46,7 @@ describe('Helper / Class: Color', () =>
 
     it('should \'toHSL\' return a value of type ColorHSL', () =>
     {
-        color = new Color('#0000ff');
+        color = new Color(blue);
 
         expect(color.toHSL()).toEqual(jasmine.any(Object));
         expect(color.toHSL()).toEqual(jasmine.objectContaining(
@@ -83,7 +84,7 @@ describe('Helper / Class: Color', () =>
         expect(color.isDark()).toBe(false);
     });
 
-    fit('should \'isLight\' return true if color is light', () =>
+    it('should \'isLight\' return true if color is light', () =>
     {
         color = new Color('#AADDFF');
         expect(color.isLight()).toBe(true);

@@ -1,5 +1,3 @@
-/* tslint:disable:no-unused-variable */
-
 import { TerraColorPickerComponent } from './terra-color-picker.component';
 import {
     ComponentFixture,
