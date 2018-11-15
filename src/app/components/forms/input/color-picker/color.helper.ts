@@ -3,6 +3,7 @@
  * @package modules/helpers
  */
 import { isUndefined } from 'util';
+import { TerraRegex } from '../../../../..';
 
 export type ColorRGB = { r:number, g:number, b:number };
 
@@ -72,7 +73,7 @@ export class Color
      */
     private isHEX(color:string | ColorRGB | ColorHSL):boolean
     {
-        let hexExp:RegExp = /^#[a-f0-9]{3}$|#[a-f0-9]{6}$/i;
+        let hexExp:RegExp = new RegExp(TerraRegex.COLOR_HEX);
         return typeof color === 'string' && hexExp.test(color);
     }
 

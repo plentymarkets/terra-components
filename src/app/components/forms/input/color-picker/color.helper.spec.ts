@@ -1,4 +1,5 @@
 import { Color } from './color.helper';
+import { TerraRegex } from '../../../../..';
 
 describe('Helper / Class: Color', () =>
 {
@@ -6,6 +7,7 @@ describe('Helper / Class: Color', () =>
     let validColor:string = '#123456';
     let blue:string = '#0000ff';
     let round:Function;
+    let hexExp:RegExp;
 
     beforeEach(() =>
     {
@@ -18,6 +20,11 @@ describe('Helper / Class: Color', () =>
         };
     });
 
+    beforeEach( () =>
+    {
+        hexExp = new RegExp(TerraRegex.COLOR_HEX);
+    });
+
     it('should random return a valid Color', () =>
     {
         expect(Color.random()).toEqual(jasmine.any(Color));
@@ -25,7 +32,6 @@ describe('Helper / Class: Color', () =>
 
     it('should \'toHex\' return a string in range of a valid colors', () =>
     {
-        let hexExp:RegExp = /^#[a-f0-9]{3}$|#[a-f0-9]{6}$/i;
         color = new Color(validColor);
 
         expect(color.toHEX()).toEqual(jasmine.any(String));
