@@ -42,6 +42,7 @@ import { TerraTagSelectComponentExample } from './forms/tag-select/example/terra
 import { TerraStopwatchComponentExample } from './stopwatch/example/terra-stopwatch.component.example';
 import { TerraTwoColumnContainerComponentExample } from './layouts/column-container/two-columns/example/terra-two-column-container.component.example';
 import { TerraThreeColumnContainerComponentExample } from './layouts/column-container/three-columns/example/terra-three-column-container.component.example';
+import { TerraGroupFunctionComponentExample } from './tables/group-function/example/terra-group-function.component.example';
 import { TerraInfoComponentExample } from './info/example/terra-info.component.example';
 
 export const examples:Array<Type<any>> = [
@@ -88,5 +89,6 @@ export const examples:Array<Type<any>> = [
     TerraStopwatchComponentExample,
     TerraTwoColumnContainerComponentExample,
     TerraThreeColumnContainerComponentExample,
+    TerraGroupFunctionComponentExample,
     TerraInfoComponentExample
 ];
