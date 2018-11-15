@@ -44,7 +44,7 @@ describe('Helper / Class: Color', () =>
         }));
     });
 
-    it('should \'toHSL\' return a value of type ColorRGB', () =>
+    it('should \'toHSL\' return a value of type ColorHSL, () =>
     {
         color = new Color('#0000ff');
 
