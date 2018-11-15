@@ -1,4 +1,3 @@
-/* tslint:disable:no-unused-variable */
 
 import { Color } from './color.helper';
 
