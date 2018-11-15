@@ -70,14 +70,14 @@ describe('TerraTextAreaInputComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('inputs should be initialized correctly', () =>
+    it('should initialize inputs correctly', () =>
     {
         expect(component.regex).toEqual(TerraRegex.MIXED);
         expect(component.inputHasFixedHeight).toBe(false);
         expect(component.inputMaxRows).toEqual(4);
     });
 
-    it('should be true after firing ngOnChanges', () =>
+    it('should limit #inputMaxRows to at least 4 rows', () =>
     {
         expect(component.inputMaxRows).toEqual(4);
 
@@ -88,7 +88,7 @@ describe('TerraTextAreaInputComponent', () =>
         expect(component.inputMaxRows).toEqual(4);
     });
 
-    it('should be true after firing ngOnChanges', () =>
+    it('should update #inputHasFixedHeight accordingly when #ngOnChanges is called', () =>
     {
         expect(component.inputHasFixedHeight).toEqual(false);
 
@@ -99,14 +99,18 @@ describe('TerraTextAreaInputComponent', () =>
         expect(component.inputHasFixedHeight).toEqual(true);
     });
 
-    it('class resizable should not be inputHasFixedHeight', () =>
+    it('should set resizable attribute of the input element dependent on #inputHasFixedHeight', () =>
     {
-        let resizable:boolean = debugElement.classes.hasOwnProperty('resizable') && debugElement.classes['resizable'];
+        component.inputHasFixedHeight = false;
+        fixture.detectChanges();
+        expect(debugElement.classes['resizable']).not.toBe(component.inputHasFixedHeight);
 
-        expect(resizable).not.toBe(component.inputHasFixedHeight);
+        component.inputHasFixedHeight = true;
+        fixture.detectChanges();
+        expect(debugElement.classes['resizable']).not.toBe(component.inputHasFixedHeight);
     });
 
-    it('should be true if active element is the inputElement', () =>
+    it('should focus the input element if #focusNativInput is called', () =>
     {
         inputElement.onfocus = ():void =>
         {
