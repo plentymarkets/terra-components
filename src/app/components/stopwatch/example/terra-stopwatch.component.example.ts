@@ -11,11 +11,5 @@ import { TerraStopwatchComponent } from '../terra-stopwatch.component';
 })
 export class TerraStopwatchComponentExample
 {
-    @ViewChild('viewChildCurrentTime')
-        public viewChildCurrentTime:TerraStopwatchComponent;
-
-    protected showCurrentTimeInSeconds():void
-    {
-        alert(this.viewChildCurrentTime.getTimeInSeconds());
-    }
+    protected currentValue:number = 0;
 }

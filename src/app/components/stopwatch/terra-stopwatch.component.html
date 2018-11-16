@@ -1,25 +1,25 @@
 <div class="btn-group" role="group">
-    <terra-button *ngIf="inputEnableControls && state === 1"
+    <terra-button *ngIf="controls && isRunning"
                   inputIcon="icon-control_pause"
-                  [inputIsSmall]="inputIsSmall"
-                  inputTooltipText="{{ langPrefix + '.pause' | translate:lang}}"
+                  [inputIsSmall]="isSmall"
+                  [inputTooltipText]="langPrefix + '.pause' | translate:lang"
                   inputTooltipPlacement="top"
                   (outputClicked)="stop()">
     </terra-button>
-    <terra-button *ngIf="inputEnableControls && (state === 2 || state === 0)"
+    <terra-button *ngIf="controls && !isRunning"
                   inputIcon="icon-control_play"
-                  [inputIsSmall]="inputIsSmall"
-                  inputTooltipText="{{langPrefix + '.start' | translate:lang}}"
+                  [inputIsSmall]="isSmall"
+                  [inputTooltipText]="langPrefix + '.start' | translate:lang"
                   inputTooltipPlacement="top"
                   (outputClicked)="start()">
     </terra-button>
     <terra-button [inputCaption]=format
-                  [inputIsSmall]="inputIsSmall">
+                  [inputIsSmall]="isSmall">
     </terra-button>
-    <terra-button *ngIf="inputEnableControls"
+    <terra-button *ngIf="controls"
                   inputIcon="icon-reset"
-                  [inputIsSmall]="inputIsSmall"
-                  inputTooltipText="{{langPrefix + '.reset' | translate:lang}}"
+                  [inputIsSmall]="isSmall"
+                  [inputTooltipText]="langPrefix + '.reset' | translate:lang"
                   inputTooltipPlacement="top"
                   (outputClicked)="reset()">
     </terra-button>

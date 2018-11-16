@@ -6,18 +6,18 @@ import {
     TestBed
 } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { ElementRef } from '@angular/core';
-import { MockElementRef } from '../../testing/mock-element-ref';
 import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { l10nConfig } from '../../translation/l10n.config';
-import { TerraButtonComponent } from '../../../';
+import { TerraButtonComponent } from '../buttons/button/terra-button.component';
+import Spy = jasmine.Spy;
 
-describe('Component: TerraStopwatchComponent', () =>
+fdescribe('Component: TerraStopwatchComponent', () =>
 {
     let component:TerraStopwatchComponent;
     let fixture:ComponentFixture<TerraStopwatchComponent>;
+    const ticks:number = 2000;
 
     beforeEach(async(() =>
     {
@@ -32,12 +32,6 @@ describe('Component: TerraStopwatchComponent', () =>
                 HttpModule,
                 HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
-            ],
-            providers:    [
-                {
-                    provide:  ElementRef,
-                    useClass: MockElementRef
-                }
             ]
         }).compileComponents();
     }));
@@ -46,7 +40,7 @@ describe('Component: TerraStopwatchComponent', () =>
     {
         fixture = TestBed.createComponent(TerraStopwatchComponent);
         component = fixture.componentInstance;
-        component.inputIsAutoPlay = false;
+        component.autoPlay = false;
         fixture.detectChanges();
     });
 
@@ -60,34 +54,76 @@ describe('Component: TerraStopwatchComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should auto run', (done:any) =>
+    it('should initialise its inputs and outputs', () =>
     {
-        component.inputIsAutoPlay = true;
-        component.ngOnInit();
-        setTimeout(() =>
-        {
-            expect(component.getTimeInSeconds()).toBeGreaterThan(0);
-            done();
-        }, 2000);
+        expect(component.autoPlay).toBe(false);
+        expect(component.isSmall).toBe(false);
+        expect(component.controls).toBe(false);
+        expect(component.isRunning).toBe(false);
+        expect(component.seconds).toBe(0);
     });
 
-    it('should not auto run', () =>
+    it('should update #isRunning when starting, stopping and resetting the watch', () =>
     {
-        component.inputIsAutoPlay = false;
-        component.ngOnInit();
-        expect(component.getTimeInSeconds()).toEqual(0);
+        component.start();
+        expect(component.isRunning).toBe(true);
+        component.stop();
+        expect(component.isRunning).toBe(false);
+        component.start();
+        expect(component.isRunning).toBe(true);
+        component.reset();
+        expect(component.isRunning).toBe(false);
     });
 
-    it('should start and reset', (done:any) =>
+    it('should reset seconds value when calling the #reset method', () =>
+    {
+        component.seconds = 2;
+        expect(component.seconds).toBe(2);
+        component.reset();
+        expect(component.seconds).toBe(0);
+    });
+
+    it('should call the #stop method when calling #reset', () =>
+    {
+        let spy:Spy = spyOn(component, 'stop');
+        component.reset();
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('should start the watch when calling the #start method', (done:any) =>
     {
         component.start();
         setTimeout(() =>
         {
-            expect(component.getTimeInSeconds()).toBeGreaterThan(0);
-            component.reset();
-            expect(component.getTimeInSeconds()).toEqual(0);
+            expect(component.seconds).toBeGreaterThan(0);
             done();
-        }, 2000);
+        }, ticks);
+    });
+
+    it('should start automatically if #autoPlay is true', (done:any) =>
+    {
+        let spy:Spy = spyOn(component, 'start').and.callThrough();
+        component.autoPlay = true;
+        component.ngOnInit();
+        expect(spy).toHaveBeenCalled();
+        setTimeout(() =>
+        {
+            expect(component.seconds).toBeGreaterThan(0);
+            done();
+        }, ticks);
+    });
+
+    it('should not start automatically if #autoPlay is false', (done:any) =>
+    {
+        let spy:Spy = spyOn(component, 'start').and.callThrough();
+        component.autoPlay = false;
+        component.ngOnInit();
+        expect(spy).not.toHaveBeenCalled();
+        setTimeout(() =>
+        {
+            expect(component.seconds).toBe(0);
+            done();
+        }, ticks);
     });
 
     it('should start and stop', (done:any) =>
@@ -96,14 +132,14 @@ describe('Component: TerraStopwatchComponent', () =>
         let time:number;
         setTimeout(() =>
         {
-            expect(component.getTimeInSeconds()).toBeGreaterThan(0);
+            expect(component.seconds).toBeGreaterThan(0);
             component.stop();
-            time = component.getTimeInSeconds();
-        }, 2000);
+            time = component.seconds;
+        }, ticks);
         setTimeout(() =>
         {
-            expect(component.getTimeInSeconds()).toEqual(time);
+            expect(component.seconds).toEqual(time);
             done();
-        }, 4000);
+        }, 2 * ticks);
     });
 });

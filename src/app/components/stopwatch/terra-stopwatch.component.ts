@@ -1,14 +1,12 @@
 import {
     Component,
+    EventEmitter,
     Input,
-    OnInit
+    OnInit,
+    Output
 } from '@angular/core';
-import {
-    Language,
-    TranslationService
-} from 'angular-l10n';
-import { TerraStopwatchInterface } from './data/terra-stopwatch.interface';
-import { TerraStopWatchStateEnum } from './data/terra-stopwatch.enum';
+import { Language } from 'angular-l10n';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'terra-stopwatch',
@@ -17,49 +15,74 @@ import { TerraStopWatchStateEnum } from './data/terra-stopwatch.enum';
 })
 export class TerraStopwatchComponent implements OnInit
 {
-    @Language()
-    public lang:string;
-
     /**
      * @description If true, the start, pause and reset control will show
      */
     @Input()
-    public inputEnableControls:boolean = false;
+    public controls:boolean = false;
 
     /**
      * @description If true, stopwatch starts if component initialize
      */
     @Input()
-    public inputIsAutoPlay:boolean = false;
+    public autoPlay:boolean = false;
 
     /**
      * @description If true, buttons are small
      */
     @Input()
-    public inputIsSmall:boolean = false;
+    public isSmall:boolean = false;
 
-    protected stopwatch:TerraStopwatchInterface;
-    protected langPrefix:string = 'terraStopwatch';
-
-    constructor(public translation:TranslationService)
+    /**
+     * @description set the current value of the stopwatch
+     */
+    @Input()
+    public set seconds(value:number)
     {
+        this.secondsValue = value;
+        this.secondsChange.emit(this.seconds);
     }
 
+    /**
+     * @description returns the current value of the stopwatch
+     */
+    public get seconds():number
+    {
+        return this.secondsValue || 0;
+    }
+
+    /**
+     * @description notification if the current value of the stopwatch changes. If the stopwatch is running it emits a new value every
+     *     single second.
+     */
+    @Output()
+    public secondsChange:EventEmitter<number> = new EventEmitter<number>();
+
+    @Language()
+    protected lang:string;
+
+    protected readonly langPrefix:string = 'terraStopwatch';
+
+    private timer:number = null;
+    private secondsValue:number = 0;
+
+    /**
+     * @description initialisation routine. Stats the stopwatch if autoPlay is set.
+     */
     public ngOnInit():void
     {
-        this.initStopwatch();
-        if(this.inputIsAutoPlay)
+        if(this.autoPlay)
         {
             this.start();
         }
     }
 
     /**
-     * @description returns stopwatch value in seconds
+     * @description states whether the stop watch is currently running
      */
-    public getTimeInSeconds():number
+    public get isRunning():boolean
     {
-        return this.stopwatch.seconds;
+        return !isNullOrUndefined(this.timer);
     }
 
     /**
@@ -67,8 +90,7 @@ export class TerraStopwatchComponent implements OnInit
      */
     public start():void
     {
-        this.stopwatch.timer = window.setInterval(() => this.incrementSeconds(), 1000);
-        this.stopwatch.state = TerraStopWatchStateEnum.START;
+        this.timer = window.setInterval(() => this.incrementSeconds(), 1000);
     }
 
     /**
@@ -76,8 +98,8 @@ export class TerraStopwatchComponent implements OnInit
      */
     public stop():void
     {
-        window.clearInterval(this.stopwatch.timer);
-        this.stopwatch.state = TerraStopWatchStateEnum.PAUSE;
+        window.clearInterval(this.timer);
+        this.timer = null;
     }
 
     /**
@@ -85,17 +107,8 @@ export class TerraStopwatchComponent implements OnInit
      */
     public reset():void
     {
-        window.clearInterval(this.stopwatch.timer);
-        this.stopwatch.state = TerraStopWatchStateEnum.STOP;
-        this.initStopwatch();
-    }
-
-    /**
-     * @description returns the stopwatch state (start, stop, pause)
-     */
-    public get state():TerraStopWatchStateEnum
-    {
-        return this.stopwatch.state;
+        this.stop();
+        this.seconds = 0;
     }
 
     /**
@@ -103,31 +116,14 @@ export class TerraStopwatchComponent implements OnInit
      */
     protected get format():string
     {
-        return this.getStopwatchPattern();
+        return (Math.floor(((this.seconds / 3600) % 24)) < 10 ? '0' : '') +
+               Math.floor(((this.seconds / 3600) % 24)) + ':' +
+               (Math.floor((this.seconds / 60 % 60)) < 10 ? '0' : '') + Math.floor((this.seconds / 60 % 60)) + ':' +
+               (this.seconds % 60 < 10 ? '0' : '') + this.seconds % 60;
     }
 
-    /**
-     * @description build and return stopwatch pattern/format
-     */
-    private getStopwatchPattern():string
+    private incrementSeconds():void
     {
-        return (Math.floor(((this.stopwatch.seconds / 3600) % 24)) < 10 ? '0' : '') +
-               Math.floor(((this.stopwatch.seconds / 3600) % 24)) + ':' +
-               (Math.floor((this.stopwatch.seconds / 60 % 60)) < 10 ? '0' : '') + Math.floor((this.stopwatch.seconds / 60 % 60)) + ':' +
-               (this.stopwatch.seconds % 60 < 10 ? '0' : '') + this.stopwatch.seconds % 60;
-    }
-
-    private incrementSeconds():number
-    {
-        return this.stopwatch.seconds += 1;
-    }
-
-    private initStopwatch():void
-    {
-        this.stopwatch = {
-            seconds: 0,
-            state: TerraStopWatchStateEnum.STOP,
-            timer: 0
-        };
+        this.seconds += 1;
     }
 }
