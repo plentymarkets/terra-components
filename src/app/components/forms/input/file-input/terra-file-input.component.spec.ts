@@ -1,4 +1,5 @@
-import { ElementRef } from '@angular/core';
+import { ElementRef,
+    forwardRef } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import {
@@ -43,11 +44,10 @@ import { TerraFileBrowserService } from '../../../file-browser/terra-file-browse
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
 import Spy = jasmine.Spy;
 
-describe('TerraFileInputComponent', () =>
+fdescribe('TerraFileInputComponent', () =>
 {
     let component:TerraFileInputComponent;
     let fixture:ComponentFixture<TerraFileInputComponent>;
-    let frontendStorageService:TerraFrontendStorageService;
 
     const jpgFileName:string = 'a-total-NewFile_name.jpg';
     const folderName:string = 'i-amYour_folder/';
@@ -56,10 +56,10 @@ describe('TerraFileInputComponent', () =>
     {
         TestBed.configureTestingModule({
             declarations: [
-                TerraFileInputComponent,
-                TerraFileChooserComponent,
-                TerraFileBrowserComponent,
                 TerraFileListComponent,
+                TerraFileBrowserComponent,
+                TerraFileChooserComponent,
+                TerraFileInputComponent,
                 TerraImagePreviewComponent,
                 TerraButtonComponent,
                 TerraOverlayComponent,
@@ -101,7 +101,6 @@ describe('TerraFileInputComponent', () =>
     {
         fixture = TestBed.createComponent(TerraFileInputComponent);
         component = fixture.componentInstance;
-        frontendStorageService = fixture.debugElement.injector.get(TerraFrontendStorageService);
 
         component.value = null;
 
