@@ -4,12 +4,12 @@ import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 describe('Helper / Class: Color', () =>
 {
     let color:Color;
-    let validColor:string = '#123456';
-    let blue:string = '#0000ff';
+    const validColor:string = '#123456';
+    const blue:string = '#0000ff';
     let round:Function;
-    let hexExp:RegExp;
+    let hexExp:RegExp = new RegExp(TerraRegex.COLOR_HEX);
 
-    beforeEach(() =>
+    beforeAll(() =>
     {
         round = function(value:number, decimals:number):number
         {
@@ -18,11 +18,6 @@ describe('Helper / Class: Color', () =>
                 return Math.round(value * factor) / factor;
             }
         };
-    });
-
-    beforeEach( () =>
-    {
-        hexExp = new RegExp(TerraRegex.COLOR_HEX);
     });
 
     it('should random return a valid Color', () =>
