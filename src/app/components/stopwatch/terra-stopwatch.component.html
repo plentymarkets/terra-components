@@ -2,14 +2,14 @@
     <terra-button *ngIf="controls && isRunning"
                   inputIcon="icon-control_pause"
                   [inputIsSmall]="isSmall"
-                  [inputTooltipText]="langPrefix + '.pause' | translate:lang"
+                  [inputTooltipText]="langPrefix + 'pause' | translate:lang"
                   inputTooltipPlacement="top"
                   (outputClicked)="stop()">
     </terra-button>
     <terra-button *ngIf="controls && !isRunning"
                   inputIcon="icon-control_play"
                   [inputIsSmall]="isSmall"
-                  [inputTooltipText]="langPrefix + '.start' | translate:lang"
+                  [inputTooltipText]="langPrefix + 'start' | translate:lang"
                   inputTooltipPlacement="top"
                   (outputClicked)="start()">
     </terra-button>
@@ -19,7 +19,7 @@
     <terra-button *ngIf="controls"
                   inputIcon="icon-reset"
                   [inputIsSmall]="isSmall"
-                  [inputTooltipText]="langPrefix + '.reset' | translate:lang"
+                  [inputTooltipText]="langPrefix + 'reset' | translate:lang"
                   inputTooltipPlacement="top"
                   (outputClicked)="reset()">
     </terra-button>
