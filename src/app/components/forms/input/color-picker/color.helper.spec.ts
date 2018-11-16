@@ -1,5 +1,5 @@
 import { Color } from './color.helper';
-import { TerraRegex } from '../../../../..';
+import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 
 describe('Helper / Class: Color', () =>
 {
