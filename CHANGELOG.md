@@ -46,7 +46,7 @@ Adapted Changes from v2.4.2
 # 3.0.0-beta.12 (07.11.2018)
 * **category-detail-data**
 	- added preview url	 
-  
+
 <a name="3.0.0-beta.11"></a>
 # 3.0.0-beta.11 (25.10.2018)
 
