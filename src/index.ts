@@ -106,7 +106,6 @@ export * from './app/components/file-browser/terra-file-browser.service';
 export * from './app/components/file-browser/terra-file-browser.component';
 export * from './app/components/data-picker/category-picker/terra-category-picker.component';
 export * from './app/components/data-picker/category-picker/service/terra-category-picker-base.service';
-export * from './app/components/pager/data/terra-pager.data';
 export * from './app/models/terra-key-value.interface';
 export * from './app/components/data-picker/category-picker/terra-category-picker.component';
 export * from './app/components/data-picker/category-picker/service/terra-category-picker-base.service';
@@ -117,7 +116,6 @@ export * from './app/components/data-picker/nested-data-picker/terra-nested-data
 export * from './app/components/data-picker/nested-data-picker/service/terra-nested-data-picker-base.service';
 export * from './app/components/data-picker/nested-data-picker/data/nested-data.interface';
 export * from './app/components/data-picker/nested-data-picker/data/nested-value.interface';
-export * from './app/models/terra-key-value.interface';
 export * from './app/helpers/enums/button-color.enum';
 export * from './app/helpers/enums/terra-placement.enum';
 export * from './app/helpers/regex/terra-regex';
