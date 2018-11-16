@@ -112,14 +112,39 @@ export class TerraStopwatchComponent implements OnInit
     }
 
     /**
-     * @description returns the stopwatch format
+     * @description returns the current stopwatch value in a time string format
      */
-    protected get format():string
+    protected get timeString():string
     {
-        return (Math.floor(((this.seconds / 3600) % 24)) < 10 ? '0' : '') +
-               Math.floor(((this.seconds / 3600) % 24)) + ':' +
-               (Math.floor((this.seconds / 60 % 60)) < 10 ? '0' : '') + Math.floor((this.seconds / 60 % 60)) + ':' +
-               (this.seconds % 60 < 10 ? '0' : '') + this.seconds % 60;
+        return this.format(this.seconds);
+    }
+
+    private format(timerSeconds:number):string
+    {
+        let hours:number = this.getHours(timerSeconds);
+        let minutes:number = this.getMinutes(timerSeconds);
+        let seconds:number = this.getSeconds(timerSeconds);
+        return this.getDigitString(hours) + ':' + this.getDigitString(minutes) + ':' + this.getDigitString(seconds);
+    }
+
+    private getDigitString(value:number):string
+    {
+        return (value < 10 ? '0' : '') + value;
+    }
+
+    private getHours(seconds:number):number
+    {
+        return Math.floor(seconds / 3600 % 24);
+    }
+
+    private getMinutes(seconds:number):number
+    {
+        return Math.floor(seconds / 60 % 60);
+    }
+
+    private getSeconds(seconds:number):number
+    {
+        return seconds % 60;
     }
 
     private incrementSeconds():void

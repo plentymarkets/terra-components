@@ -13,7 +13,7 @@ import { l10nConfig } from '../../translation/l10n.config';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import Spy = jasmine.Spy;
 
-fdescribe('Component: TerraStopwatchComponent', () =>
+describe('Component: TerraStopwatchComponent', () =>
 {
     let component:TerraStopwatchComponent;
     let fixture:ComponentFixture<TerraStopwatchComponent>;

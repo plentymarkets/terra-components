@@ -13,7 +13,7 @@
                   inputTooltipPlacement="top"
                   (outputClicked)="start()">
     </terra-button>
-    <terra-button [inputCaption]=format
+    <terra-button [inputCaption]="timeString"
                   [inputIsSmall]="isSmall">
     </terra-button>
     <terra-button *ngIf="controls"
