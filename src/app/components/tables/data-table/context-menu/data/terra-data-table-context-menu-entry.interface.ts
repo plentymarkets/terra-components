@@ -7,8 +7,7 @@ import { TerraButtonColorEnum } from '../../../../../helpers/enums/button-color.
 export interface TerraDataTableContextMenuEntryInterface<D extends TerraBaseData>
 {
     title?:string;
-    clickFunction?:(value?:D) => void;
-    data?:D;
+    clickFunction?:(data?:D) => void;
     isDivider?:boolean;
     buttonColor?:TerraButtonColorEnum;
 }
