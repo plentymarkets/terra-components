@@ -1,6 +1,7 @@
 <terra-portlet *ngIf="inputUsePortlet;else formWithoutPortlet" [inputPortletHeader]="inputPortletHeader">
     <terra-dynamic-switch [inputFormFields]="inputFormFields"
                           [inputFormGroup]="inputFormGroup"
+                          [inputShowDeprecatedConfig]="inputShowDeprecatedConfig"
                           [inputUsePortlet]="false"
                           [inputSubSwitch]="inputSubSwitch">
     </terra-dynamic-switch>
@@ -9,7 +10,8 @@
 <ng-template #formWithoutPortlet>
     <form [formGroup]="inputFormGroup" [ngClass]="{'horizontalGroupForm': inputSubSwitch}">
         <ng-container *ngFor="let formField of inputFormFields">
-            <ng-container [ngSwitch]="formField?.controlType">
+            <ng-container *ngIf="!formField.isHidden || (formField.isHidden && inputShowDeprecatedConfig)"
+                          [ngSwitch]="formField?.controlType">
                 <terra-text-input *ngSwitchCase="controlTypeEnum.INPUT_TEXT"
                                   [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                                   [formControlName]="formField.key"
