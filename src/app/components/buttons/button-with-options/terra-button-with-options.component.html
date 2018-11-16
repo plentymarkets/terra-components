@@ -12,7 +12,7 @@
         <li *ngFor="let option of inputOptions">
             <a *ngIf="!option.isDivider"
                (click)="optionsClick(option)"
-               [ngClass]="{'disabled': option.isDisabled, 'alignRight': alignRight, 'body.dark-standard': option.isFlagged}">
+               [ngClass]="{'disabled': option.isDisabled, 'alignRight': alignRight}">
                 <span *ngIf="option.icon" class="left-icon" [ngClass]="option.icon"></span>
                 {{ option.caption }}
             </a>
