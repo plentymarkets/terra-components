@@ -1,10 +1,46 @@
-# unreleased 
-* **terra-stopwatch**
-	- add method to count seconds 
-	- add state method 
+# Unreleased 
+* **terra-stopwatch** rework. removed dependency to [timer-stopwatch](https://www.npmjs.com/package/timer-stopwatch) package.
   
+<a name="3.0.0-beta.14"></a>
+# 3.0.0-beta.14 (15.11.2018)
+
+### Breaking Changes
+* **terra-data-table** 
+	- Table is now sortable. Use the sortBy interface property to state whether a column is sortable
+	- Refactoring -> Removed deprecated interface and input properties
+	- New `TerraDataTableBaseService` which replaces custom directives and configs. It also stores all information needed for retrieving data from the server
+	- New `terra-group-function` component which has been extracted from the `terra-data-table` component
+	- Removed inputs for `terra-no-result-notice` and `terra-group-function` since they can now be passed to the content of the `terra-data-table` component.
+	- Added input `inputContextMenu` to be able to pass the context menu only once to the component
+* **terra-data-table-row.interface** removed `contextMenuLinkList` property since it can now be passed to the data table component using `inputContextMenu`.
+* **terra-data-table-context-menu.service** removed `init` subject and changed type of `show` subject
+* **terra-data-table-context-menu.directive**
+	- changed selector to `[hasContextMenu]`
+	- removed input `inputLinks` which was aliased with the selector before
+	- new input `rowData` which is used to pass the data of a row to the context menu component
+* **terra-data-table-context-menu.component** 
+	- added input `links`. The list of links in the context menu can be passed here.
+	- changed parameters of the `showMenu` method. It now accepts the mouse event and the data which will be passed to the `clickFunction` of the context menu link.
+* **terra-data-table-context-menu.interface** remove `data` property. Use the directive's input `rowData` instead.
+* **terra-pager.data** removed unused class
+
+For further information see the [table migration guide](https://developers.plentymarkets.com/dev-doc/data-table-migration-guide).
+
+### Feature
+* **terra-dynamic-form** new optional toggle button to display/hide deprecated plugin config entries
+
+### Bug Fixes
+* **terra-regex** public access to properties
+
+<a name="3.0.0-beta.13"></a>
+# 3.0.0-beta.13 (12.11.2018)
+
+Adapted Changes from v2.4.2
+
+### Bug Fixes
 * **terra-node.interface**
-	- removed double click function
+	- removed double click function.
+	- add closeOnClick to close node on click again.
 
 <a name="3.0.0-beta.12"></a>
 # 3.0.0-beta.12 (07.11.2018)
@@ -143,12 +179,12 @@ Adapted Changes from v2.3.21 and v2.3.22
 ### Breaking Changes
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
 
-
-<a name="2.X.X"></a>
-# 2.X.X (XX.XX.2018)
+<a name="2.4.2"></a>
+# 2.4.2 (12.11.2018)
 
 ### Bug Fixes 
 * **terra-suggestion-box** prevent duplicate execution of callbacks and emission of notifications when selecting a value from the suggestion list
+* **terra-simple-table** fixed selectedValue of onRowCheckboxChange() Event
 
 ### Feature
 * **angular-cli** added support for angular-cli usage
@@ -692,8 +728,6 @@ This feature can be disabled by setting the input `inputHasFixedHeight` to true.
 * **terra-button** 
 - add properties `isSmall` and `isLarge` to button interface
 - fix styling when inputIsLink is used
-
-### Feature
 * **terra-multi-split-view** divider styling 
 * **terra-overlay** changed footer & header height
 

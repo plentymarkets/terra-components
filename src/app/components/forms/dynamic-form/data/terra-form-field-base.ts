@@ -17,6 +17,7 @@ export interface TerraFormFieldBaseOptions<T>
     minValue?:number;
     maxValue?:number;
     pattern?:string | RegExp;
+    isHidden?:boolean;
 }
 
 /**
@@ -27,6 +28,7 @@ export class TerraFormFieldBase<T>
     public defaultValue:T;
     public key:string;
     public label:string;
+    public isHidden:boolean;
 
     // Tooltip
     public tooltip:string;
@@ -59,6 +61,7 @@ export class TerraFormFieldBase<T>
 
         this.label = label;
         this.required = required;
+        this.isHidden = options.isHidden || false;
 
         this.defaultValue = options.defaultValue || null;
         this.tooltip = options.tooltip || null;

@@ -121,11 +121,11 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     protected onRowCheckboxChange(row:TerraSimpleTableRowInterface<D>):void
     {
-        // notify component user
-        this.outputRowCheckBoxChanged.emit(row);
-
         // update row selection
         row.selected = !row.selected;
+
+        // notify component user
+        this.outputRowCheckBoxChanged.emit(row);
 
         // update header checkbox state
         this.updateHeaderCheckboxState();
