@@ -2,13 +2,13 @@ import {
     Component,
     EventEmitter,
     Input,
-    NgZone,
     OnInit,
     Output
 } from '@angular/core';
 import { TerraPagerInterface } from './data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-select-box.interface';
 import { Subject } from 'rxjs/Subject';
+import { terraPagerDefaultPagingSizes } from './data/terra-pager-default-paging-sizes';
 
 @Component({
     selector: 'terra-pager',
@@ -17,7 +17,6 @@ import { Subject } from 'rxjs/Subject';
 })
 export class TerraPagerComponent implements OnInit
 {
-
     @Input()
     public inputPagingData:TerraPagerInterface<any>;
 
@@ -33,15 +32,11 @@ export class TerraPagerComponent implements OnInit
     @Output()
     public outputDoPaging:EventEmitter<TerraPagerInterface<any>> = new EventEmitter<TerraPagerInterface<any>>();
 
-    private pagingClicks:Subject<any> = new Subject();
-
-    constructor(private zone:NgZone)
-    {
-    }
+    private pagingClicks:Subject<TerraPagerInterface<any>> = new Subject<TerraPagerInterface<any>>();
 
     public ngOnInit():void
     {
-        this.pagingClicks.debounceTime(500).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
+        this.pagingClicks.debounceTime(400).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
 
         if(!this.inputDefaultPagingSize)
         {
@@ -50,24 +45,7 @@ export class TerraPagerComponent implements OnInit
 
         if(!this.inputPagingSize)
         {
-            this.inputPagingSize = [
-                {
-                    value:   25,
-                    caption: '25'
-                },
-                {
-                    value:   50,
-                    caption: '50'
-                },
-                {
-                    value:   75,
-                    caption: '75'
-                },
-                {
-                    value:   100,
-                    caption: '100'
-                }
-            ];
+            this.inputPagingSize = terraPagerDefaultPagingSizes;
         }
 
         if(!this.inputPagingData)

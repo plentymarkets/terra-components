@@ -59,6 +59,7 @@ import { TerraStopwatchComponent } from './stopwatch/terra-stopwatch.component';
 import { TerraFileListComponent } from './file-browser/file-list/file-list.component';
 import { TerraImagePreviewComponent } from './file-browser/image-preview/image-preview.component';
 import { TerraThreeColumnsContainerComponent } from './layouts/column-container/three-columns/terra-three-columns-container.component';
+import { TerraGroupFunctionComponent } from './tables/group-function/terra-group-function.component';
 import { TerraInfoComponent } from './info/terra-info.component';
 
 export const exportedComponents:Array<Type<any>> = [
@@ -121,7 +122,8 @@ export const exportedComponents:Array<Type<any>> = [
     TerraBreadcrumbsComponent,
     TerraTagSelectComponent,
     TerraStopwatchComponent,
-    TerraThreeColumnsContainerComponent
+    TerraThreeColumnsContainerComponent,
+    TerraGroupFunctionComponent
 ];
 
 export const components:Array<Type<any>> = [

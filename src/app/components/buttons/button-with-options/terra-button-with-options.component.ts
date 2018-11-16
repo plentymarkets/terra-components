@@ -8,7 +8,7 @@ import {
 import { TerraButtonInterface } from '../button/data/terra-button.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraButtonComponent } from '../button/terra-button.component';
-import { TerraTextAlignEnum } from '../../tables/data-table/cell/terra-text-align.enum';
+import { TerraTextAlignEnum } from '../../tables/data-table/enums/terra-text-align.enum';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
