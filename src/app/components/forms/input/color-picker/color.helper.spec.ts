@@ -38,11 +38,11 @@ describe('Helper / Class: Color', () =>
         color = new Color(validColor);
 
         expect(color.toRGB()).toEqual(jasmine.any(Object));
-        expect(color.toRGB()).toEqual(jasmine.objectContaining({
+        expect(color.toRGB()).toEqual({
             r: 18,
             g: 52,
             b: 86
-        }));
+        });
     });
 
     it('should \'toHSL\' return a value of type ColorHSL', () =>
@@ -50,13 +50,11 @@ describe('Helper / Class: Color', () =>
         color = new Color(blue);
 
         expect(color.toHSL()).toEqual(jasmine.any(Object));
-        expect(color.toHSL()).toEqual(jasmine.objectContaining(
-            {
-                h: 0.6666666666666666,
-                s: 1,
-                l: 0.5
-            }
-        ));
+        expect(color.toHSL()).toEqual({
+            h: 0.6666666666666666,
+            s: 1,
+            l: 0.5
+        });
     });
 
     it('should \'getGrayscale\' return a gray scale value to a given color', () =>
