@@ -9,48 +9,37 @@ import { TooltipModule } from 'ngx-bootstrap';
 import { l10nConfig } from '../../../../translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { TerraRegex } from '../../../../..';
-import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 describe('Component: TerraColorPickerComponent', () =>
 {
-    let component:any = new TerraColorPickerComponent();
-    let expectedColor:string = '';
+    let component:TerraColorPickerComponent;
     let fixture:ComponentFixture<TerraColorPickerComponent>;
-    let inputElement:HTMLInputElement;
-    let inputDebugElement:DebugElement;
+
+    const white:string = '#ffffff';
+    const testColor:string = '#123456';
 
     beforeEach(() =>
-        {
-            TestBed.configureTestingModule(
-                {
-                    declarations: [TerraColorPickerComponent,
-                                   TerraLabelTooltipDirective],
-                    imports: [
-                        TooltipModule.forRoot(),
-                        FormsModule,
-                        LocalizationModule.forRoot(l10nConfig)
-                    ]
-                }
-            ).compileComponents();
-        }
-    );
+    {
+        TestBed.configureTestingModule(
+            {
+                declarations: [TerraColorPickerComponent,
+                               TerraLabelTooltipDirective],
+                imports:      [
+                    TooltipModule.forRoot(),
+                    FormsModule,
+                    LocalizationModule.forRoot(l10nConfig)
+                ]
+            }
+        ).compileComponents();
+    });
 
     beforeEach(() =>
     {
         fixture = TestBed.createComponent(TerraColorPickerComponent);
         component = fixture.componentInstance;
-        inputDebugElement = fixture.debugElement.query(By.css('input'));
-        inputElement = inputDebugElement.nativeElement;
-
-        expectedColor = '#ffffff';
-
         fixture.detectChanges();
-    });
-
-    afterEach(() =>
-    {
-        expectedColor = '';
     });
 
     it('should create an instance', () =>
@@ -67,15 +56,14 @@ describe('Component: TerraColorPickerComponent', () =>
     it('should color regex be defined and the value of input be #ffffff', () =>
     {
         expect(component.color).toBeDefined();
-        expect(component.color).toEqual(expectedColor);
+        expect(component.color).toEqual(white);
     });
 
     it('should getter of color return the value of the input or #ffffff', () =>
     {
-        expect(component.color).toEqual(expectedColor);
-        expectedColor = '#123456';
-        component.color = expectedColor;
-        expect(component.color).toEqual(expectedColor);
+        expect(component.color).toEqual(white);
+        component.color = testColor;
+        expect(component.color).toEqual(testColor);
     });
 
     it('should isDark return true if color is dark', () =>
@@ -93,12 +81,11 @@ describe('Component: TerraColorPickerComponent', () =>
 
     it('should display a given color in the graphical picker', () =>
     {
-        expectedColor = '#123456';
-        component.color = expectedColor;
+        component.color = testColor;
         fixture.detectChanges();
-        inputDebugElement = fixture.debugElement.query(By.css('div.color-picker'));
-        expect(inputDebugElement).toBeTruthy();
-        expect(inputDebugElement.styles['background-color']).toBeTruthy();
-        expect(inputDebugElement.styles['background-color']).toEqual(expectedColor);
+        let colorDisplayDebug:DebugElement = fixture.debugElement.query(By.css('div.color-picker'));
+        expect(colorDisplayDebug).toBeTruthy();
+        expect(colorDisplayDebug.styles['background-color']).toBeTruthy();
+        expect(colorDisplayDebug.styles['background-color']).toEqual(testColor);
     });
 });
