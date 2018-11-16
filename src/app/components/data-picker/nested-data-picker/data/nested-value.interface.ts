@@ -1,4 +1,4 @@
-import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
+import { TerraPlacementEnum } from '../../../../helpers/enums/terra-placement.enum';
 
 /**
  * @author chirila-ioan-daniel
