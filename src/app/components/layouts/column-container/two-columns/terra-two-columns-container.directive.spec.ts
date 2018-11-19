@@ -51,8 +51,9 @@ fdescribe('TerraTwoColumnsContainerDirective', () =>
         directive = fixture.debugElement.query(By.directive(TerraTwoColumnsContainerDirective)).nativeElement;
     });
 
-    it('should create', () =>
+    it('should create the test component and the directive', () =>
     {
+        expect(component).toBeTruthy();
         expect(directive).toBeTruthy();
     });
 });
