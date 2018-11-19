@@ -30,7 +30,7 @@
                       (outputClicked)="fileChooser.click()">
         </terra-button>
         <terra-button inputIcon="icon-folder_add"
-                      *ngIf="_parentFileBrowser.inputAllowFolders"
+                      *ngIf="parentFileBrowser.inputAllowFolders"
                       [inputTooltipText]="translationPrefix + '.createFolder' | translate:lang"
                       inputTooltipPlacement="right"
                       (outputClicked)="showNewDirectoryPrompt = true">
@@ -123,7 +123,7 @@
                 </terra-button>
                 
                 <terra-button inputIcon="icon-folder_add"
-                              *ngIf="_parentFileBrowser.inputAllowFolders"
+                              *ngIf="parentFileBrowser.inputAllowFolders"
                               [inputCaption]="translationPrefix + '.createFolder' | translate:lang"
                               (outputClicked)="showNewDirectoryPrompt = true">
                 </terra-button>

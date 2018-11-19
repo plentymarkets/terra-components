@@ -12,7 +12,7 @@ export class TerraNodeTreeConfig<D>
     protected _currentSelectedNode:TerraNodeInterface<D>;
     private _list:Array<TerraNodeInterface<D>> = [];
 
-    constructor(public _translation:TranslationService)
+    constructor(protected translation:TranslationService)
     {
 
     }
@@ -90,11 +90,11 @@ export class TerraNodeTreeConfig<D>
         {
             if(isNullOrUndefined(name))
             {
-                name = this._translation.translate(node.name);
+                name = this.translation.translate(node.name);
             }
             else
             {
-                name = this._translation.translate(node.name) + ' » ' + name;
+                name = this.translation.translate(node.name) + ' » ' + name;
             }
 
             if(!isNullOrUndefined(node.parent))
@@ -362,7 +362,7 @@ export class TerraNodeTreeConfig<D>
      */
     public toggleOpenParent(node:TerraNodeInterface<D>, isOpen:boolean):void
     {
-        if(!isNullOrUndefined(node.parent))
+        if(!isNullOrUndefined(node) && !isNullOrUndefined(node.parent))
         {
             node.parent.isOpen = isOpen;
 
@@ -433,10 +433,17 @@ export class TerraNodeTreeConfig<D>
      */
     public set currentSelectedNode(node:TerraNodeInterface<D>)
     {
-        this.toggleOpenParent(node, true);
-        this.recursiveSetNodeInactive(this.list);
-        node.isActive = true;
-        this._currentSelectedNode = node;
+        if(!isNullOrUndefined(node))
+        {
+            this.toggleOpenParent(node, true);
+            this.recursiveSetNodeInactive(this.list);
+            node.isActive = true;
+            this._currentSelectedNode = node;
+        }
+        else
+        {
+            this._currentSelectedNode = null;
+        }
     }
 
     /**

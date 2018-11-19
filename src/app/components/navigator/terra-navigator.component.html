@@ -1,12 +1,12 @@
 <terra-split-view class="terra-navigator"
                   [ngClass]="{'has-search': inputBaseRoute && inputRouter}"
-                  [inputUpdateViewport]="_updateViewport"
-                  [inputModules]="_terraNavigatorSplitViewConfig.modules"
+                  [inputUpdateViewport]="true"
+                  [inputModules]="terraNavigatorSplitViewConfig.modules"
                   [inputShowBreadcrumbs]="true">
     <terra-suggestion-box
         *ngIf="inputBaseRoute && inputRouter"
         [inputName]="'terraNavigator.search' | translate:lang"
-        [inputListBoxValues]="_searchNodeList"
+        [inputListBoxValues]="searchNodeList"
         [inputWithRecentlyUsed]="true"
         (outputValueChanged)="openSelectedNode($event)">
     </terra-suggestion-box>

@@ -1,0 +1,39 @@
+.info-handler
+{
+    display: inline-block;
+    position: relative;
+    
+    &:hover,
+    &:active,
+    &.active
+    {
+        color: var(--color-group-active);
+    }
+    
+    height: var(--height-md);
+    line-height: var(--height-md);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: 0;
+    overflow: hidden;
+    text-decoration: none;
+    padding: 0 8px;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-6);
+}
+
+.disabled
+{
+    cursor: not-allowed;
+    color: var(--color-structure-7);
+    &:hover,
+    &:active,
+    &.active
+    {
+        color: var(--color-structure-7);
+        cursor: not-allowed;
+    }
+}

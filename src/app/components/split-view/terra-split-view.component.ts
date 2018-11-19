@@ -33,12 +33,12 @@ export class TerraSplitViewComponent implements OnChanges, OnDestroy
     @Input()
     public inputUpdateViewport:boolean;
 
-    private _breadCrumbsPath:string;
+    private breadCrumbsPath:string;
 
     constructor()
     {
         this.inputShowBreadcrumbs = true; // default
-        this._breadCrumbsPath = '';
+        this.breadCrumbsPath = '';
         this.inputUpdateViewport = true;
     }
 

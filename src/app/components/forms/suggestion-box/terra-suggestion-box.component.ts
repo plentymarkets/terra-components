@@ -1,4 +1,5 @@
 import {
+    AfterViewInit,
     Component,
     ElementRef,
     EventEmitter,
@@ -7,7 +8,9 @@ import {
     OnChanges,
     OnInit,
     Output,
-    SimpleChanges
+    QueryList,
+    SimpleChanges,
+    ViewChildren
 } from '@angular/core';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import {
@@ -53,7 +56,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     public inputTooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
 
     @Input()
-    public inputListBoxValues:Array<TerraSuggestionBoxValueInterface>;
+    public inputListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
 
     @Input()
     public inputWithRecentlyUsed:boolean;
@@ -78,12 +81,15 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     protected noEntriesTextKey:string;
     protected _selectedValue:TerraSuggestionBoxValueInterface = null;
     protected tmpSelectedValue:TerraSuggestionBoxValueInterface = null;
-    protected _textInputValue:string;
+    protected _textInputValue:string = '';
     protected _toggleOpen:boolean = false;
 
     private hasLabel:boolean;
 
     private clickListener:(event:Event) => void;
+
+    @ViewChildren('renderedListBoxValues')
+    private renderedListBoxValues:QueryList<ElementRef>;
 
     constructor(private elementRef:ElementRef)
     {
@@ -97,11 +103,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         };
 
         this.inputTooltipPlacement = TerraPlacementEnum.TOP;
-        this.selectedValue =
-            {
-                value:   '',
-                caption: ''
-            };
         this.tmpSelectedValue = null;
 
         this.isValid = true;
@@ -123,8 +124,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         if(changes['inputListBoxValues'])
         {
             this.displayListBoxValues = this.inputListBoxValues;
-            if(changes['inputListBoxValues'].currentValue.length > 0
-                   && !this.inputListBoxValues.find((x:TerraSuggestionBoxValueInterface):boolean => this.selectedValue === x))
+            if(changes['inputListBoxValues'].currentValue.length > 0 &&
+                !isNullOrUndefined(this.selectedValue) &&
+                !this.inputListBoxValues.find((x:TerraSuggestionBoxValueInterface):boolean => this.selectedValue.value === x.value))
             {
                 // reset selected value if the value does not exists or the list is empty
                 this.selectedValue = null;
@@ -158,7 +160,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     public set value(value:number | string | TerraBaseData)
     {
-        if(isNullOrUndefined(this.inputListBoxValues))
+        if(isNullOrUndefined(this.inputListBoxValues) || isNullOrUndefined(value))
         {
             this.selectedValue = null;
         }
@@ -223,11 +225,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
         // update temp selected value
         this.tmpSelectedValue = this.selectedValue;
-
-        // execute callback functions
-        this.onTouchedCallback();
-        this.onChangeCallback(value.value);
-        this.outputValueChanged.emit(value);
     }
 
     private updateLastSelectedValues():void
@@ -263,7 +260,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         let searchString:any = this.textInputValue;
         this.toggleOpen = true;
 
-        if(searchString.length >= 3)
+        if(!isNullOrUndefined(searchString) && searchString.length >= 3)
         {
             this.listBoxHeadingKey = 'terraSuggestionBox.suggestions';
             this.noEntriesTextKey = 'terraSuggestionBox.noSuggestions';
@@ -299,7 +296,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         }
 
         // update selected value
-        this.selectedValue = this.displayListBoxValues.find((val:TerraSuggestionBoxValueInterface) => val.caption === searchString);
+        this.setSelectedValue(this.displayListBoxValues.find((val:TerraSuggestionBoxValueInterface) => val.caption === searchString), true);
     }
 
     /**
@@ -309,11 +306,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     {
         this.value = null;
 
-        this.selectedValue =
-            {
-                value:   '',
-                caption: ''
-            };
+        this.selectedValue = null;
 
         this.tmpSelectedValue = null;
     }
@@ -398,13 +391,18 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     private focusSelectedElement():void
     {
         // get the temporary selected DOM element
-        let selectedElement:HTMLElement = $('.select-box-dropdown > span.selected').get().pop();
+        const selectedElementRef:ElementRef = this.renderedListBoxValues.find((value:ElementRef) =>
+        {
+            return value.nativeElement.classList.contains('selected');
+        });
 
         // check if the element has been found
-        if(selectedElement)
+        if(selectedElementRef)
         {
+            const spanElement:HTMLSpanElement = selectedElementRef.nativeElement;
+
             // scroll to the selected element
-            selectedElement.parentElement.scrollTop = selectedElement.offsetTop - selectedElement.parentElement.offsetTop;
+            spanElement.parentElement.scrollTop = spanElement.offsetTop - spanElement.parentElement.offsetTop;
         }
     }
 
@@ -440,6 +438,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     public set selectedValue(value:TerraSuggestionBoxValueInterface)
     {
+        this.setSelectedValue(value);
+    }
+
+    private setSelectedValue(value:TerraSuggestionBoxValueInterface, onChange?:boolean):void
+    {
         // does not do anything if the value changes from undefined to null or reverse
         if(isNullOrUndefined(this._selectedValue) && isNullOrUndefined(value))
         {
@@ -458,8 +461,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             this.outputValueChanged.emit(this._selectedValue);
 
             // finally update text input value
-            // This needs to be done after executing the callbacks to make a live search work!!
-            this.textInputValue = !isNullOrUndefined(this._selectedValue) ? this._selectedValue.caption : undefined;
+            if(!onChange)
+            {
+                this.textInputValue = !isNullOrUndefined(this._selectedValue) ? this._selectedValue.caption : '';
+            }
         }
     }
 

@@ -1,7 +1,82 @@
 # Unreleased
 
 ### Bug Fixes
+* **terra-simple-table** fix issue with notifications on `selectedRowList` changes via `outputSelectedRowsChange`.
+
+<a name="2.4.2"></a>
+# 2.4.2 (12.11.2018)
+
+### Bug Fixes 
+* **terra-suggestion-box** prevent duplicate execution of callbacks and emission of notifications when selecting a value from the suggestion list
+* **terra-simple-table** fixed selectedValue of onRowCheckboxChange() Event
+
+### Feature
+* **angular-cli** added support for angular-cli usage
+* **terra-simple-table** added support to set selected rows
+* **terra-info** add new component `terra-info` for short information about another ui element
+* **terra-icons** new icons for table sorting: icon-table_sort, icon-sort-asc, icon-sort-desc
+* **terra themes** changed main style selector 'dark-standard' to 'theme-core'
+* **function-groups** removed custom group for add-icon
+* **function-groups** added missing styles for .btn-major
+
+<a name="2.4.1"></a>
+# 2.4.1 (17.10.2018)
+
+### Bug Fixes
+* **terra-double-input** fixed issue with the decimal separator. It now accepts decimal inputs in the localized format.
+
+<a name="2.4.0"></a>
+# 2.4.0 (12.10.2018)
+
+* **TerraButtonInterface** `isPrimary`, `isSecondary` and `isTertiary` are now deprecated. Each icon has its own fixed color.
+* **terra-button-with-options** `inputIsPrimary`, `inputIsSecondary` and `inputIsTertiary` are now deprecated. Each icon has its own fixed color.
+* **terra-dynamic-module-loader** input `inputParameter` is now deprecated. Use input `inputInputs` instead.
+* **terra-button-group** && **terra-navigator** && **terra-navigator.config** && **terra-navigator-split-view.config** are now deprecated. Use `terra-node-tree` instead.
+* **terra-tree** is now deprecated. Use `terra-node-tree` instead.
+* **terra-tile-box** && **terra-tile-box-panel** are now deprecated. Use `terra-card` instead.
+
+### Bug Fixes
+* **terra-data-table** pass click event to a button's `clickFunction` if it is placed in a table row
+
+<a name="2.3.26"></a>
+# 2.3.26 (04.10.2018)
+
+### Feature
+* **terra-button** added input `inputIsMajor`. It is used for the primary button in a view (for example delete customer). If true the button gets fully colored.
+
+### Bug Fixes 
+* **button-group** fixed styles
+* **terra-button** updated functiongroup selector
+* **terra-button** updated highlighted buttons to match function groups
+
+<a name="2.3.24"></a>
+# 2.3.24 (20.09.2018)
+
+### Bug Fixes
+* **terra-info-box** changed width text content to 100%
+
+<a name="2.3.23"></a>
+# 2.3.23 (19.09.2018)
+
+### Bug Fixes
+* **icons** moved reset to warning-group
+* **icons** moved search to info-group
+* **terra-suggestion-box** fix an issue where the input text was reset after a value was selected and the user typed again
+
+<a name="2.3.22"></a>
+# 2.3.22 (12.09.2018)
+
+### Feature
+* **icons** Added function groups
+
+<a name="2.3.21"></a>
+# 2.3.21 (12.09.2018)
+
+### Bug Fixes
+* **terra-suggestion-box** fixed issue while resetting `selectedValue`
 * **terra-breadcrumbs** fixed an issue where the breadcrumb dropdown would not show on iOS devices.
+* **terra-node-tree** fixed an null pointer.
+* **icons** new icons for login, logout, header, footer, content
 
 <a name="2.3.19"></a>
 # 2.3.19 (05.09.2018)
