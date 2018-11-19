@@ -66,7 +66,7 @@ export class TerraStopwatchComponent implements OnInit
     private secondsValue:number = 0;
 
     /**
-     * @description initialisation routine. Stats the stopwatch if autoPlay is set.
+     * @description initialisation routine. Starts the stopwatch if autoPlay is set.
      */
     public ngOnInit():void
     {
