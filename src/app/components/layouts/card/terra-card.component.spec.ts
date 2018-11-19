@@ -1,4 +1,7 @@
-import { DebugElement } from '@angular/core';
+import {
+    DebugElement,
+    ElementRef
+} from '@angular/core';
 import {
     async,
     ComponentFixture,
@@ -45,8 +48,12 @@ fdescribe('TerraCardComponent', () =>
 
     it('should div-element for footer be present if content is given', () =>
     {
-        let debugElement:DebugElement = component.viewChildFooter.nativeElement;
-        expect(debugElement).toBeTruthy();
+        let debugElement:DebugElement = fixture.debugElement;
+        let footerElement:DebugElement = debugElement.query(By.css('div.card-footer'));
+        let elemRef:ElementRef = component.viewChildFooter.nativeElement;
+        elemRef.nativeElement.innerHtml = '<div>Test</div>';
+        expect(elemRef).toBeDefined();
+        expect(footerElement).toBeTruthy();
     });
 
 });
