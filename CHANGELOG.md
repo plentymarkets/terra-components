@@ -1,5 +1,8 @@
 # Unreleased
 
+### Feature
+* **terra-indicator** added TerraIndicatorLabelTypeEnum and TerraIndicatorInterface for clearer usage
+
 ### Bug Fixes
 * **terra-simple-table** fix issue with notifications on `selectedRowList` changes via `outputSelectedRowsChange`.
 
@@ -95,9 +98,6 @@
 
 <a name="2.3.17"></a>
 # 2.3.17 (31.08.2018)
-
-### Feature
-* **terra-indicator** added TerraIndicatorLabelTypeEnum and TerraIndicatorInterface for clearer usage
 
 ### Bug Fixes
 * **terra-breadcrumbs** fix context menu position.
