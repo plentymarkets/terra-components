@@ -37,7 +37,7 @@ import { TerraCodeEditorComponentExample } from './editors/code-editor/example/t
 import { TerraNoteComponentExample } from './note/example/terra-note.component.example';
 import { TerraNodeTreeComponentExample } from './tree/node-tree/example/terra-node-tree.component.example';
 import { TerraTimePickerComponentExample } from './forms/input/time-picker/example/terra-time-picker.component.example';
-import { TerraNestedDataPickerComponentExample } from './nested-data-picker/example/terra-nested-data-picker.component.example';
+import { TerraNestedDataPickerComponentExample } from './data-picker/nested-data-picker/example/terra-nested-data-picker.component.example';
 import { TerraTagSelectComponentExample } from './forms/tag-select/example/terra-tag-select.component.example';
 import { TerraStopwatchComponentExample } from './stopwatch/example/terra-stopwatch.component.example';
 import { TerraTwoColumnContainerComponentExample } from './layouts/column-container/two-columns/example/terra-two-column-container.component.example';
