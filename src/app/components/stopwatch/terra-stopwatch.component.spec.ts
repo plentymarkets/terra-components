@@ -1,25 +1,25 @@
-import { LocalizationModule } from 'angular-l10n';
 import { TerraStopwatchComponent } from './terra-stopwatch.component';
+import Spy = jasmine.Spy;
 import {
-    async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../translation/l10n.config';
-import { TerraButtonComponent } from '../buttons/button/terra-button.component';
-import Spy = jasmine.Spy;
 
 describe('Component: TerraStopwatchComponent', () =>
 {
     let component:TerraStopwatchComponent;
     let fixture:ComponentFixture<TerraStopwatchComponent>;
-    const ticks:number = 2000;
+    const ticks:number = 2;
+    const ticksInMilliseconds:number = ticks * 1000 + 1;
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
@@ -34,19 +34,14 @@ describe('Component: TerraStopwatchComponent', () =>
                 LocalizationModule.forRoot(l10nConfig)
             ]
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() =>
     {
         fixture = TestBed.createComponent(TerraStopwatchComponent);
         component = fixture.componentInstance;
-        component.autoPlay = false;
-        fixture.detectChanges();
-    });
-
-    afterEach(() =>
-    {
-        component.reset();
+        jasmine.clock().uninstall();
+        jasmine.clock().install();
     });
 
     it('should create', () =>
@@ -90,56 +85,43 @@ describe('Component: TerraStopwatchComponent', () =>
         expect(spy).toHaveBeenCalled();
     });
 
-    it('should start the watch when calling the #start method', (done:any) =>
+    it('should start the watch when calling the #start method', () =>
     {
         component.start();
-        setTimeout(() =>
-        {
-            expect(component.seconds).toBeGreaterThan(0);
-            done();
-        }, ticks);
+        jasmine.clock().tick(ticksInMilliseconds);
+        expect(component.seconds).toBe(ticks);
     });
 
-    it('should start automatically if #autoPlay is true', (done:any) =>
+    it('should start automatically if #autoPlay is true', () =>
     {
         let spy:Spy = spyOn(component, 'start').and.callThrough();
         component.autoPlay = true;
         component.ngOnInit();
+
         expect(spy).toHaveBeenCalled();
-        setTimeout(() =>
-        {
-            expect(component.seconds).toBeGreaterThan(0);
-            done();
-        }, ticks);
+        jasmine.clock().tick(ticksInMilliseconds);
+        expect(component.seconds).toBeGreaterThan(0);
     });
 
-    it('should not start automatically if #autoPlay is false', (done:any) =>
+    it('should not start automatically if #autoPlay is false', () =>
     {
         let spy:Spy = spyOn(component, 'start').and.callThrough();
         component.autoPlay = false;
         component.ngOnInit();
+
         expect(spy).not.toHaveBeenCalled();
-        setTimeout(() =>
-        {
-            expect(component.seconds).toBe(0);
-            done();
-        }, ticks);
+        jasmine.clock().tick(ticksInMilliseconds);
+        expect(component.seconds).toBe(0);
     });
 
-    it('should start and stop', (done:any) =>
+    it('should start and stop', () =>
     {
         component.start();
-        let time:number;
-        setTimeout(() =>
-        {
-            expect(component.seconds).toBeGreaterThan(0);
-            component.stop();
-            time = component.seconds;
-        }, ticks);
-        setTimeout(() =>
-        {
-            expect(component.seconds).toEqual(time);
-            done();
-        }, 2 * ticks);
+        jasmine.clock().tick(ticksInMilliseconds);
+        expect(component.seconds).toBe(ticks);
+
+        component.stop();
+        jasmine.clock().tick(ticksInMilliseconds);
+        expect(component.seconds).toEqual(ticks);
     });
 });
