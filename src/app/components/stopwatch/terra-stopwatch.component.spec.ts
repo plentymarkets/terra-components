@@ -1,6 +1,7 @@
 import { TerraStopwatchComponent } from './terra-stopwatch.component';
 import Spy = jasmine.Spy;
 import {
+    async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
@@ -19,7 +20,7 @@ describe('Component: TerraStopwatchComponent', () =>
     const ticks:number = 2;
     const ticksInMilliseconds:number = ticks * 1000 + 1;
 
-    beforeEach(() =>
+    beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
@@ -34,7 +35,7 @@ describe('Component: TerraStopwatchComponent', () =>
                 LocalizationModule.forRoot(l10nConfig)
             ]
         }).compileComponents();
-    });
+    }));
 
     beforeEach(() =>
     {
@@ -42,6 +43,11 @@ describe('Component: TerraStopwatchComponent', () =>
         component = fixture.componentInstance;
         jasmine.clock().uninstall();
         jasmine.clock().install();
+    });
+
+    afterEach(() =>
+    {
+        jasmine.clock().uninstall();
     });
 
     it('should create', () =>
