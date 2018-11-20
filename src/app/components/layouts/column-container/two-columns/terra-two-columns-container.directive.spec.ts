@@ -35,7 +35,6 @@ describe('TerraTwoColumnsContainerDirective', () =>
     let component:TwoColumnsContainerDirectiveTestComponent;
     let directive:TerraTwoColumnsContainerDirective;
     let twoColComponent:TerraTwoColumnsContainerComponent;
-    const activatedRoute:MockActivatedRoute = new MockActivatedRoute();
     const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
@@ -48,7 +47,7 @@ describe('TerraTwoColumnsContainerDirective', () =>
             ],
             providers:    [
                 { provide: Router, useValue: router },
-                { provide: ActivatedRoute, useValue: activatedRoute }
+                { provide: ActivatedRoute, useClass: MockActivatedRoute }
             ]
         }).compileComponents();
     }));
