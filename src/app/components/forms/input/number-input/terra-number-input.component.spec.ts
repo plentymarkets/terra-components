@@ -30,7 +30,7 @@ describe('TerraNumberInputComponent', () =>
     let fixture:ComponentFixture<TerraNumberInputComponent>;
     let debugElement:DebugElement;
     let inputElement:HTMLInputElement;
-    let testValue:number = 3;
+    const testValue:number = 3;
 
     beforeEach(async(() =>
     {
