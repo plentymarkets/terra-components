@@ -26,7 +26,7 @@ describe('TerraTwoColumnsContainerComponent', () =>
     {
         TestBed.configureTestingModule({
             declarations: [
-                TerraTwoColumnsContainerComponent,
+                TerraTwoColumnsContainerComponent
             ],
             imports:      [
                 TooltipModule.forRoot(),
