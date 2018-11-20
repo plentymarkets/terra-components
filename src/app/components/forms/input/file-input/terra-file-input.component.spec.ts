@@ -209,7 +209,7 @@ describe('TerraFileInputComponent', () =>
         expect(spanElement.style.backgroundImage).toContain('url("' + component.value + '")');
     });
 
-    it('should have a span with a span that have the value as class in it when the image is not a web image', () =>
+    it('should have a span with a span that has the value as class in it when the image is not a web image', () =>
     {
         component.inputShowPreview = true;
 
