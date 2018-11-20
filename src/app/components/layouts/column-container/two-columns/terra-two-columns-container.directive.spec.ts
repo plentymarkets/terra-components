@@ -90,4 +90,16 @@ describe('TerraTwoColumnsContainerDirective', () =>
         expect(twoColComponent.leftColumn).not.toContain('hidden-xs');
         expect(twoColComponent.rightColumn).toContain('hidden-xs');
     });
+
+    it(`should not do anything if routed to a route that does not equal the basePath`, () =>
+    {
+        const leftColumn:string = twoColComponent.leftColumn;
+        const rightColumn:string = twoColComponent.rightColumn;
+
+        router.sendEvent(new NavigationEnd(1, 'dummy', 'dummy'));
+
+        // nothing has changed
+        expect(twoColComponent.leftColumn).toEqual(leftColumn);
+        expect(twoColComponent.rightColumn).toEqual(rightColumn);
+    });
 });
