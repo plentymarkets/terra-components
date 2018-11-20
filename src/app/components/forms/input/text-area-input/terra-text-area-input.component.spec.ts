@@ -1,5 +1,6 @@
 import {
     DebugElement,
+    ElementRef,
     SimpleChange
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +17,7 @@ import { TerraTextAreaInputComponent } from './terra-text-area-input.component';
 import { TerraRegex } from '../../../../..';
 import { By } from '@angular/platform-browser';
 import Spy = jasmine.Spy;
+import { MockElementRef } from '../../../../testing/mock-element-ref';
 
 describe('TerraTextAreaInputComponent', () =>
 {
@@ -36,6 +38,12 @@ describe('TerraTextAreaInputComponent', () =>
                 TooltipModule.forRoot(),
                 FormsModule,
                 LocalizationModule.forRoot(l10nConfig)
+            ],
+            providers:    [
+                {
+                    provide:  ElementRef,
+                    useClass: MockElementRef
+                }
             ]
         }).compileComponents();
     }));
