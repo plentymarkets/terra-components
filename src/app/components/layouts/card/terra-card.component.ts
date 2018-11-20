@@ -20,12 +20,21 @@ export class TerraCardComponent implements AfterContentChecked
     @ViewChild('footer')
     public viewChildFooter:ElementRef;
 
+    /**
+     * @description an url to set for the background image of the card
+     */
     @Input()
     public inputImagePath:string;
 
+    /**
+     * @description set an icon class if there is no image path set
+     */
     @Input()
     public inputPlaceholderIcon:string;
 
+    /**
+     * @description set a class to show footer and wrapping div element as selected
+     */
     @Input()
     public inputIsSelected:boolean = false;
 

@@ -78,17 +78,21 @@ describe('TerraCardComponent', () =>
         expect(cardComponent.viewChildFooter).toBeTruthy();
         expect(cardComponent.viewChildFooter.nativeElement.children.length).toBeGreaterThan(0);
         expect(ngContentElement.nativeElement.textContent.trim()).toEqual('card footer');
+        expect(footerElement.nativeElement.hidden).toBe(false);
     });
 
     it('should set class selected depending on #inputIsSelected', () =>
     {
         let debugElement:DebugElement = fixture.debugElement;
         let footerElement:DebugElement = debugElement.query(By.css('div.card-footer'));
+        let terraCardElement:DebugElement = debugElement.query(By.css('div.terra-card'))
         expect(footerElement.classes['selected']).toBeFalsy();
+        expect(terraCardElement.classes['selected']).toBeFalsy();
 
         cardComponent.inputIsSelected = true;
         fixture.detectChanges();
         expect(footerElement.classes['selected']).toBeTruthy();
+        expect(terraCardElement.classes['selected']).toBeTruthy();
     });
 
     // header
@@ -101,6 +105,7 @@ describe('TerraCardComponent', () =>
         expect(cardComponent.viewChildHeader).toBeTruthy();
         expect(cardComponent.viewChildHeader.nativeElement.children.length).toBeGreaterThan(0);
         expect(ngContentElement.nativeElement.textContent.trim()).toEqual('card header');
+        expect(headerElement.nativeElement.hidden).toBe(false);
     });
 
     // block
