@@ -13,7 +13,10 @@ import { MockRouter } from '../../../../testing/mock-router';
 import {
     TerraTwoColumnsContainerComponent
 } from './terra-two-columns-container.component';
-import { Component } from '@angular/core';
+import {
+    Component,
+    DebugElement
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MockActivatedRoute } from '../../../../testing/mock-activated-route';
 
@@ -55,8 +58,9 @@ fdescribe('TerraTwoColumnsContainerDirective', () =>
     {
         fixture = TestBed.createComponent(TwoColumnsContainerDirectiveTestComponent);
         component = fixture.componentInstance;
-        directive = fixture.debugElement.query(By.directive(TerraTwoColumnsContainerDirective)).nativeElement;
-        twoColComponent = fixture.debugElement.query(By.css('terra-2-col')).nativeElement;
+        twoColComponent = fixture.debugElement.query(By.css('terra-2-col')).componentInstance;
+        let dE:DebugElement = fixture.debugElement.query(By.directive(TerraTwoColumnsContainerDirective));
+        directive = dE.injector.get(TerraTwoColumnsContainerDirective);
 
         fixture.detectChanges();
     });
@@ -70,10 +74,11 @@ fdescribe('TerraTwoColumnsContainerDirective', () =>
 
     it(`should hide left column on small devices if it is routed to a redirected route`, () =>
     {
-        router.sendEvent(new NavigationEnd(1, 'hmm', 'hmm2'));
-        //directive.ngOnInit();
-        // right column should be hidden
-        //expect(twoColComponent.leftColumn).toContain(TwoColumnHelper.leftRightHiddenXS());
+        router.sendEvent(new NavigationEnd(1, 'start', 'start/dashboard'));
+        expect(twoColComponent.rightColumn).toContain('hidden-xs');
+
+        router.sendEvent(new NavigationEnd(1, 'start/dashboard', 'start/dashboard'));
+        expect(twoColComponent.leftColumn).toContain('hidden-xs');
     });
 
     xit(`updates the #basePath if the route data changes`, () =>
