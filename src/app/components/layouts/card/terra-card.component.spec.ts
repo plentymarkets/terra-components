@@ -66,6 +66,15 @@ fdescribe('TerraCardComponent', () =>
         expect(ngContentElement.nativeElement.textContent.trim()).toEqual('card footer');
     });
 
+    it('should class selected is set depending on #inputIsSelected', () =>
+    {
+        cardComponent.inputIsSelected = true;
+        fixture.detectChanges();
+        let debugElement:DebugElement = fixture.debugElement;
+        let selectedClass:DebugElement = debugElement.query(By.css('div.selected'));
+        expect(selectedClass).toBeTruthy();
+    });
+
     // header
     it('should div-element for header be shown if content is given', () =>
     {
