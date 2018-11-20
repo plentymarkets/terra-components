@@ -197,7 +197,7 @@ describe('TerraFileInputComponent', () =>
         expect(isWebImage).toHaveBeenCalled();
     });
 
-    it('should have a span with a image equal to the value as background-image when the image is a web image', () =>
+    it('should have a span with an image equal to the value as background-image when the image is a web image', () =>
     {
         component.inputShowPreview = true;
         component.onObjectSelected(new TerraStorageObject(fileData.objects[1]));
