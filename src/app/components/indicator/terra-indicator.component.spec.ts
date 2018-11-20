@@ -10,7 +10,7 @@ import {
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('Component: TerraIndicatorComponent', () =>
+describe('Component: TerraIndicatorComponent', () =>
 {
     let component:TerraIndicatorComponent;
     let fixture:ComponentFixture<TerraIndicatorComponent>;
