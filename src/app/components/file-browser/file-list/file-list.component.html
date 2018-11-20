@@ -16,7 +16,7 @@
     <div class="btn-group" role="group">
         <terra-button inputIcon="icon-delete"
                       [inputIsDisabled]="selectedStorageObjects.length <= 0"
-                      [inputTooltipText]="translationPrefix + '.deleteSelectedFiles' | translate:lang"
+                      [inputTooltipText]="translationPrefix + '.deleteSelectedFoldersAndFiles' | translate:lang"
                       inputTooltipPlacement="right"
                       (outputClicked)="objectsToDelete = selectedStorageObjects">
         </terra-button>
@@ -55,10 +55,10 @@
     </div>
     
     <div [hidden]="objectsToDelete.length === 0" class="prompt" [class.in]="objectsToDelete.length > 0">
-        <span class="prompt-title">
+        <span *ngIf="objectsToDelete.length === 1" class="prompt-title">
             {{ translationPrefix + '.confirmDelete' | translate:lang }}
         </span>
-        <span class="prompt-title">
+        <span *ngIf="objectsToDelete.length > 1" class="prompt-title">
             {{ translationPrefix + '.confirmDeleteMany' | translate:lang:{count: _deleteCount } }}
         </span>
         <div class="pull-lg-right">

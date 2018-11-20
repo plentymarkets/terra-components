@@ -127,6 +127,17 @@ export class TerraStorageObject
         }
     }
 
+    public get folderCount():number
+    {
+        if(this.isDirectory)
+        {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+
     constructor(s3Object:S3StorageObjectInterface, parent?:TerraStorageObject)
     {
         this.s3Object = s3Object;

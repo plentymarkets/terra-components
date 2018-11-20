@@ -236,15 +236,28 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             return 0;
         }
 
-        return this.objectsToDelete
-                   .map((object:TerraStorageObject) =>
-                   {
-                       return object.fileCount;
-                   })
-                   .reduce((sum:number, current:number) =>
-                   {
-                       return sum + current;
-                   }, 0);
+        let numberOfFilesToBeDeleted:number = this.objectsToDelete
+            .map((object:TerraStorageObject) =>
+            {
+                return object.fileCount;
+            })
+            .reduce((sum:number, current:number) =>
+            {
+                return sum + current;
+            }, 0);
+        
+        let numberOfFoldersToBeDeleted:number = this.objectsToDelete
+            .map((object:TerraStorageObject) =>
+            {
+                return object.folderCount;
+            })
+            .reduce((sum:number, current:number) =>
+            {
+                return sum + current;
+            }, 0);
+        
+        
+        return numberOfFilesToBeDeleted + numberOfFoldersToBeDeleted;
     }
 
     private datePipe:L10nDatePipe = new L10nDatePipe();
