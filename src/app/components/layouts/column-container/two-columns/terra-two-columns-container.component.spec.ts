@@ -43,7 +43,6 @@ describe('TerraTwoColumnsContainerComponent', () =>
         left = fixture.debugElement.query(By.css('.row')).children[0];
         right = fixture.debugElement.query(By.css('.row')).children[1];
 
-        fixture.detectChanges();
     });
 
     it('should create', () =>
