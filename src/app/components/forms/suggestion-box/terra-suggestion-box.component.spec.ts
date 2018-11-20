@@ -36,7 +36,6 @@ describe('TerraSuggestionBoxComponent', () =>
     {
         TestBed.configureTestingModule({
             declarations: [
-                TerraTextInputComponent,
                 TerraSuggestionBoxComponent,
                 TerraTextInputComponent,
                 TerraLabelTooltipDirective

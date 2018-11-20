@@ -1,7 +1,4 @@
-import {
-    DebugElement,
-    ElementRef
-} from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import {
@@ -17,7 +14,6 @@ import {
 import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../translation/l10n.config';
-import { MockElementRef } from '../../../../testing/mock-element-ref';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { TerraNumberInputComponent } from './terra-number-input.component';
 import { By } from '@angular/platform-browser';
@@ -43,15 +39,7 @@ describe('TerraNumberInputComponent', () =>
             imports:      [
                 TooltipModule.forRoot(),
                 FormsModule,
-                HttpModule,
-                HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
-            ],
-            providers:    [
-                {
-                    provide:  ElementRef,
-                    useClass: MockElementRef
-                }
             ]
         }).compileComponents();
     }));
@@ -63,8 +51,6 @@ describe('TerraNumberInputComponent', () =>
 
         debugElement = fixture.debugElement.query(By.css('input'));
         inputElement = debugElement.nativeElement;
-
-        component.value = null;
 
         fixture.detectChanges();
     });

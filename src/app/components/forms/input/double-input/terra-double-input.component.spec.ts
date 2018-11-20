@@ -1,9 +1,4 @@
-import {
-    DebugElement,
-    ElementRef
-} from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { DebugElement } from '@angular/core';
 import {
     FormControl,
     FormsModule,
@@ -17,7 +12,6 @@ import {
 import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../translation/l10n.config';
-import { MockElementRef } from '../../../../testing/mock-element-ref';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { TerraDoubleInputComponent } from './terra-double-input.component';
 import { TerraButtonComponent } from '../../../buttons/button/terra-button.component';
@@ -43,15 +37,7 @@ describe('TerraDoubleInputComponent', () =>
             imports:      [
                 TooltipModule.forRoot(),
                 FormsModule,
-                HttpModule,
-                HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
-            ],
-            providers:    [
-                {
-                    provide:  ElementRef,
-                    useClass: MockElementRef
-                }
             ]
         }).compileComponents();
     }));

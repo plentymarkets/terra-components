@@ -1,5 +1,3 @@
-import { ElementRef,
-    forwardRef } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import {
@@ -17,7 +15,6 @@ import {
 } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../translation/l10n.config';
-import { MockElementRef } from '../../../../testing/mock-element-ref';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { TerraFileInputComponent } from './terra-file-input.component';
 import { TerraThreeColumnsContainerComponent } from '../../../layouts/column-container/three-columns/terra-three-columns-container.component';
@@ -84,10 +81,6 @@ describe('TerraFileInputComponent', () =>
             ],
             providers:    [
                 {
-                    provide:  ElementRef,
-                    useClass: MockElementRef
-                },
-                {
                     provide:  TerraFrontendStorageService,
                     useValue: terraFrontendStorageServiceStub
                 },
@@ -101,8 +94,6 @@ describe('TerraFileInputComponent', () =>
     {
         fixture = TestBed.createComponent(TerraFileInputComponent);
         component = fixture.componentInstance;
-
-        component.value = null;
 
         fixture.detectChanges();
     });

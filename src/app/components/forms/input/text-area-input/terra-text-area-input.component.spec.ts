@@ -1,10 +1,7 @@
 import {
     DebugElement,
-    ElementRef,
     SimpleChange
 } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {
     async,
@@ -14,7 +11,6 @@ import {
 import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../translation/l10n.config';
-import { MockElementRef } from '../../../../testing/mock-element-ref';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { TerraTextAreaInputComponent } from './terra-text-area-input.component';
 import { TerraRegex } from '../../../../..';
@@ -39,15 +35,7 @@ describe('TerraTextAreaInputComponent', () =>
             imports:      [
                 TooltipModule.forRoot(),
                 FormsModule,
-                HttpModule,
-                HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
-            ],
-            providers:    [
-                {
-                    provide:  ElementRef,
-                    useClass: MockElementRef
-                }
             ]
         }).compileComponents();
     }));
@@ -59,8 +47,6 @@ describe('TerraTextAreaInputComponent', () =>
 
         debugElement = fixture.debugElement.query(By.css('textarea'));
         inputElement = debugElement.nativeElement;
-
-        component.value = null;
 
         fixture.detectChanges();
     });

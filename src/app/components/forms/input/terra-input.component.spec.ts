@@ -1,4 +1,3 @@
-import { async } from '@angular/core/testing';
 import { TerraInputComponent } from './terra-input.component';
 import { TerraRegex } from '../../../helpers/regex/terra-regex';
 import {
@@ -12,10 +11,9 @@ describe('TerraInputComponent', () =>
     let component:TerraInputComponent;
     const testString:string = 'Test string';
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         component = new TerraInputComponent(TerraRegex.MIXED);
-        component.value = null;
     });
 
     it('should create', () =>
