@@ -30,7 +30,7 @@ describe('Service: TerraDataTableBaseService', () =>
             expect(service).toBeTruthy();
         });
 
-        it('should get an empty row list', () =>
+        it('should have an empty row list', () =>
         {
             expect(service.rowList).toBeDefined();
             expect(service.rowList.length).toBe(0);
