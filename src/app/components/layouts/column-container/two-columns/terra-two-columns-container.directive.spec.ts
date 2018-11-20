@@ -29,8 +29,7 @@ import { MockActivatedRoute } from '../../../../testing/mock-activated-route';
 })
 class TwoColumnsContainerDirectiveTestComponent {}
 
-
-fdescribe('TerraTwoColumnsContainerDirective', () =>
+describe('TerraTwoColumnsContainerDirective', () =>
 {
     let fixture:ComponentFixture<TwoColumnsContainerDirectiveTestComponent>;
     let component:TwoColumnsContainerDirectiveTestComponent;
