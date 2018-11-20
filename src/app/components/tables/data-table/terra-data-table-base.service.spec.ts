@@ -36,7 +36,7 @@ describe('Service: TerraDataTableBaseService', () =>
             expect(service.rowList.length).toBe(0);
         });
 
-        it('should return type of abstract method \'requestTableData()\' be an Observable', () =>
+        it('should have an abstract method \'requestTableData()\' which returns an Observable', () =>
         {
             expect(service.requestTableData(pagerData)).toEqual(jasmine.any(Observable));
         });
