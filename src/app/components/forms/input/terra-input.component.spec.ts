@@ -28,7 +28,7 @@ describe('TerraInputComponent', () =>
         component.value = testString;
         component.validate(formControl);
 
-        expect(component.isValid).toBeTruthy();
+        expect(component.isValid).toBe(true);
     });
 
     it('should be invalid', () =>
@@ -39,7 +39,7 @@ describe('TerraInputComponent', () =>
         component.value = testString;
         component.validate(formControl);
 
-        expect(component.isValid).toBeFalsy();
+        expect(component.isValid).toBe(false);
     });
 
     it('should have TooltipPlacement.TOP as default', () =>
@@ -47,22 +47,23 @@ describe('TerraInputComponent', () =>
         expect(component.inputTooltipPlacement).toBe(TerraPlacementEnum.TOP);
     });
 
-    it('should not have TooltipPlacement.TOP when changed to TerraPlacementEnum.BOTTOM', () =>
+    it('should have TooltipPlacement.BOTTOM` when changed to `TerraPlacementEnum.BOTTOM` and not `TerraPlacementEnum.TOP', () =>
     {
         component.inputTooltipPlacement = TerraPlacementEnum.BOTTOM;
 
         expect(component.inputTooltipPlacement).not.toBe(TerraPlacementEnum.TOP);
+        expect(component.inputTooltipPlacement).toBe(TerraPlacementEnum.BOTTOM);
     });
 
     it('should not be small as default', () =>
     {
-        expect(component.inputIsSmall).toBeFalsy();
+        expect(component.inputIsSmall).toBe(false);
     });
 
     it('should be small if it set to true', () =>
     {
         component.inputIsSmall = true;
 
-        expect(component.inputIsSmall).toBeTruthy();
+        expect(component.inputIsSmall).toBe(true);
     });
 });
