@@ -27,10 +27,13 @@ import { TerraDataTableServiceExample } from './example/terra-data-table.service
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
 import { DebugElement } from '@angular/core';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
+import { TerraDataTableExampleInterface } from './example/terra-data-table.interface.example';
+import { TerraPagerParameterInterface } from '../../../..';
+import { By } from '@angular/platform-browser';
 
 describe('TerraDataTableComponent', () =>
 {
-    let component:TerraDataTableComponent<any, any>; // TODO T and P should be defined
+    let component:TerraDataTableComponent<TerraDataTableExampleInterface, TerraPagerParameterInterface>;
     let fixture:ComponentFixture<TerraDataTableComponent<any, any>>;
 
     beforeEach(async(() =>
@@ -99,10 +102,12 @@ describe('TerraDataTableComponent', () =>
         // TODO: Make it run!
         xit('should have a pager if `inputHasPager` is set and data is available', async(() =>
         {
+            let debugElement:DebugElement = fixture.debugElement;
             let service:TerraDataTableServiceExample = TestBed.get(TerraDataTableServiceExample);
-            let pagerDE:DebugElement = fixture.nativeElement.querySelector('terra-pager');
             service.getResults();
+            component.inputHasPager = true;
             fixture.detectChanges();
+            let pagerDE:DebugElement = debugElement.query(By.css('terra-pager'));
             expect(service.rowList).toBeDefined();
             expect(service.rowList.length).toBe(3);
             expect(pagerDE).toBeTruthy();
