@@ -72,7 +72,7 @@ export class TerraBreadcrumbsService
 
     private handleBreadcrumbForUrl(shortUrl:string, fullUrl:string):void
     {
-        let shortUrlWithoutLeadingSlash:string = UrlHelper.removeLeadingSlash(shortUrl);
+        let shortUrlWithoutLeadingSlash:string = UrlHelper.getCleanUrl(shortUrl);
         let route:Route = this.findRoute(shortUrlWithoutLeadingSlash, this.initialRoute.children);
         this.handleBreadcrumb(route, fullUrl, shortUrl.split('/').length - 1);
     }
@@ -123,7 +123,7 @@ export class TerraBreadcrumbsService
             {
                 let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
 
-                label = route.data.label(this.translation, activatedSnapshot.params, activatedSnapshot.data);
+                label = route.data.label(this.translation, activatedSnapshot.params, activatedSnapshot.data, activatedSnapshot.queryParams);
             }
             else
             {
