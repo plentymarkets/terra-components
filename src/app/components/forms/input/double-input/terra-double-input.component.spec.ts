@@ -81,7 +81,7 @@ describe('TerraDoubleInputComponent', () =>
         component.value = testValue;
         component.validate(formControl);
 
-        expect(component.isValid).toBeFalsy();
+        expect(component.isValid).toBe(false);
     });
 
     it('component should be valid after validating the input with correct regex', () =>
