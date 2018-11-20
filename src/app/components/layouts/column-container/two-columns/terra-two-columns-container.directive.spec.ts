@@ -58,8 +58,8 @@ describe('TerraTwoColumnsContainerDirective', () =>
         fixture = TestBed.createComponent(TwoColumnsContainerDirectiveTestComponent);
         component = fixture.componentInstance;
         twoColComponent = fixture.debugElement.query(By.css('terra-2-col')).componentInstance;
-        let dE:DebugElement = fixture.debugElement.query(By.directive(TerraTwoColumnsContainerDirective));
-        directive = dE.injector.get(TerraTwoColumnsContainerDirective);
+        let directiveDebugElement:DebugElement = fixture.debugElement.query(By.directive(TerraTwoColumnsContainerDirective));
+        directive = directiveDebugElement.injector.get(TerraTwoColumnsContainerDirective);
 
         fixture.detectChanges();
     });
