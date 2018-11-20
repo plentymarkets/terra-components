@@ -11,7 +11,7 @@ import { TerraCardComponent } from './terra-card.component';
 import { By } from '@angular/platform-browser';
 
 @Component({
-    template : `
+    template: `
                   <terra-card inputPlaceholderIcon="icon-save">
                       <div terra-card-header>
                           <p>card header</p>
@@ -126,11 +126,22 @@ fdescribe('TerraCardComponent', () =>
     it('should show icon if #inputPlaceholderIcon is set', () =>
     {
         let debugElement:DebugElement = fixture.debugElement;
-        let iconElement:DebugElement;
-
-        fixture.detectChanges();
-        iconElement = debugElement.query(By.css('div.terra-card-placeholder'));
+        let iconElement:DebugElement = debugElement.query(By.css('div.terra-card-placeholder'));
         expect(iconElement).toBeTruthy();
         expect(cardComponent.inputPlaceholderIcon).toEqual('icon-save');
+    });
+
+    it('should show no image and no icon if #inputPlaceholderIcon and #inputPlaceholderIcon are not set', () =>
+    {
+        let debugElement:DebugElement = fixture.debugElement;
+        let imageElement:DebugElement;
+        let iconElement:DebugElement;
+
+        cardComponent.inputPlaceholderIcon = cardComponent.inputImagePath = null;
+        fixture.detectChanges();
+        iconElement = debugElement.query(By.css('div.terra-card-placeholder'));
+        imageElement = debugElement.query(By.css('div.terra-card-image'));
+        expect(iconElement).toBeFalsy();
+        expect(imageElement).toBeFalsy();
     });
 });
