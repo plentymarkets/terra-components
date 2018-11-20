@@ -108,7 +108,7 @@ describe('TerraDoubleInputComponent', () =>
         expect(debugElement.classes.hasOwnProperty('price-input')).toBeTruthy();
     });
 
-    it('should be true if active element is the inputElement', () =>
+    it('should focus inputElement if #focusNativeInput is called', () =>
     {
         inputElement.onfocus = ():void =>
         {
