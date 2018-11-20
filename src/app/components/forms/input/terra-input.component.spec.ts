@@ -16,7 +16,7 @@ describe('TerraInputComponent', () =>
     {
         component = new TerraInputComponent(TerraRegex.MIXED);
         component.value = null;
-    }));
+    });
 
     it('should create', () =>
     {
