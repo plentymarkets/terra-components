@@ -9,14 +9,14 @@ import { TranslationService } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NestedDataTreeConfig } from './config/nested-data-tree.config';
 import { NestedDataInterface } from './data/nested-data.interface';
-import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
+import { TerraNodeInterface } from '../../tree/node-tree/data/terra-node.interface';
 import { isNullOrUndefined } from 'util';
 import { NestedValueInterface } from './data/nested-value.interface';
 import { TerraNestedDataPickerBaseService } from './service/terra-nested-data-picker-base.service';
-import { TerraNodeTreeConfig } from '../../components/tree/node-tree/data/terra-node-tree.config';
+import { TerraNodeTreeConfig } from '../../tree/node-tree/data/terra-node-tree.config';
 import { Observable } from 'rxjs/Observable';
 import { NestedDetailDataInterface } from './data/nested-detail-data.interface';
-import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
+import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 
 @Component({
     selector:  'terra-nested-data-picker',
@@ -164,15 +164,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
     public reset():void
     {
-        this.nestedTreeConfig.currentSelectedNode = {
-            id:               null,
-            isActive:         null,
-            isOpen:           null,
-            isVisible:        null,
-            name:             '',
-            tooltip:          '',
-            tooltipPlacement: '',
-        };
+        this.nestedTreeConfig.currentSelectedNode = null;
         this.nestedDataName = '';
         this.value = 0;
 

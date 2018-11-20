@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
+import { TerraPagerInterface } from '../../../pager/data/terra-pager.interface';
 
 /**
  * @author chirila-ioan-daniel

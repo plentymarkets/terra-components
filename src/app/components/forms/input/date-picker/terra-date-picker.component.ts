@@ -84,6 +84,8 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     protected currentLocale:string;
     protected id:string;
     protected datePickerOptions:IMyOptions;
+    protected helperTooltip:string;
+    protected isHelperTooltipDisabled:boolean;
 
     private _value:IMyDateModel;
 

@@ -214,7 +214,9 @@ export class TerraNodeTreeConfig<D>
      */
     public updateNodeById(id:string | number, newNode:TerraNodeInterface<D>):void
     {
-        if(newNode.id.toString() !== id.toString())
+        if(!isNullOrUndefined(newNode.id) &&
+            !isNullOrUndefined(id ) &&
+            (newNode.id.toString() !== id.toString()))
         {
             console.warn('ID ' + id + ' is different from new node ID!');
         }
@@ -299,7 +301,9 @@ export class TerraNodeTreeConfig<D>
 
         for(let node of nodeList)
         {
-            if(node.id.toString() === id.toString())
+            if(!isNullOrUndefined(id) &&
+                !isNullOrUndefined(node.id) &&
+                (node.id.toString() === id.toString()))
             {
                 foundNode = node;
 
@@ -399,9 +403,8 @@ export class TerraNodeTreeConfig<D>
     /**
      * @description Call the lazy loading function of given node.
      * @param node The node where lazy loading is defined.
-     * @param isIconClick
      */
-    public handleLazyLoading(node:TerraNodeInterface<D>, isIconClick?:boolean):void
+    public handleLazyLoading(node:TerraNodeInterface<D>):void
     {
         // check if lazy loading is desired
         if(!node.hasLoaded && !isNullOrUndefined(node.onLazyLoad))
@@ -413,7 +416,6 @@ export class TerraNodeTreeConfig<D>
                 {
                     node.hasLoaded = true;
                     node.isLoading = false;
-                    node.isOpen = true;
                     this.checkVisibilityAndAssignDefault(node.children);
                 },
                 () =>
@@ -421,14 +423,6 @@ export class TerraNodeTreeConfig<D>
                     node.hasLoaded = false;
                     node.isLoading = false;
                 });
-        }
-        else if (isIconClick)
-        {
-            node.isOpen = !node.isOpen;
-        }
-        else
-        {
-            node.isOpen = true;
         }
     }
 

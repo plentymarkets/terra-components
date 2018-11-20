@@ -14,11 +14,6 @@ import { TerraDataTableSortOrderEnum } from './enums/terra-data-table-sort-order
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraHrefTypeInterface } from './interfaces/terra-href-type.interface';
 import {
-    TerraDataTableTextInterface,
-    TerraPagerInterface,
-    TerraTagInterface
-} from '../../../..';
-import {
     isArray,
     isNullOrUndefined
 } from 'util';
@@ -32,6 +27,10 @@ import {
     tap
 } from 'rxjs/operators';
 import { TerraBaseTable } from '../terra-base-table';
+import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
+import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
+import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
+import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 
 
 @Component({
@@ -71,10 +70,16 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     @Input()
     public inputHasPager:boolean = true;
 
+    /**
+     * @description context menu for rows
+     */
+    @Input()
+    public inputContextMenu:Array<TerraDataTableContextMenuEntryInterface<T>> = [];
+
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
-    protected readonly sortOrder:{} = TerraDataTableSortOrderEnum;
     protected readonly refType:{} = TerraHrefTypeEnum;
+    protected readonly checkboxColumnWidth:number = 25;
 
     protected get rowList():Array<TerraDataTableRowInterface<T>>
     {
@@ -229,15 +234,15 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         else
         {
             this.inputService.sortBy = header.sortBy;
-            this.inputService.sortOrder = TerraDataTableSortOrderEnum.DESCENDING; // default is descending
+            this.inputService.sortOrder = TerraDataTableSortOrderEnum.descending; // default is descending
         }
     }
 
     private toggleSortingOrder():void
     {
-        this.inputService.sortOrder = this.inputService.sortOrder === TerraDataTableSortOrderEnum.DESCENDING ?
-            TerraDataTableSortOrderEnum.ASCENDING :
-            TerraDataTableSortOrderEnum.DESCENDING;
+        this.inputService.sortOrder = this.inputService.sortOrder === TerraDataTableSortOrderEnum.descending ?
+            TerraDataTableSortOrderEnum.ascending :
+            TerraDataTableSortOrderEnum.descending;
     }
 
     private resetSorting():void
@@ -247,22 +252,21 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         if(!isNullOrUndefined(this.inputService) && this.inputHeaderList && defaultSortColumn)
         {
             this.inputService.sortBy = defaultSortColumn.sortBy;
-            this.inputService.sortOrder = TerraDataTableSortOrderEnum.DESCENDING;
+            this.inputService.sortOrder = TerraDataTableSortOrderEnum.descending;
         }
     }
 
     private getFirstSortableColumn():TerraDataTableHeaderCellInterface
     {
-        let headerCell:TerraDataTableHeaderCellInterface = null;
         // check if header list is given
         if(this.inputHeaderList)
         {
             // find first header cell where sortBy attribute is given
-            headerCell = this.inputHeaderList.find((header:TerraDataTableHeaderCellInterface) => !isNullOrUndefined(header.sortBy));
+            return this.inputHeaderList.find((header:TerraDataTableHeaderCellInterface) => !isNullOrUndefined(header.sortBy));
         }
 
         // return null if nothing is found
-        return headerCell;
+        return null;
     }
 
     private getResults():void
@@ -283,5 +287,34 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         {
             return TerraTextAlignEnum.LEFT;
         }
+    }
+
+    protected isSortable(header:TerraDataTableHeaderCellInterface):boolean
+    {
+        if(isNullOrUndefined(header))
+        {
+            return false;
+        }
+        return this.inputIsSortable && !isNullOrUndefined(header.sortBy);
+    }
+
+    protected isUnsorted(header:TerraDataTableHeaderCellInterface):boolean
+    {
+        return this.isSortable(header) && header.sortBy !== this.inputService.sortBy;
+    }
+
+    private isSorted(header:TerraDataTableHeaderCellInterface, sortOrder:TerraDataTableSortOrderEnum):boolean
+    {
+        return this.isSortable(header) && header.sortBy === this.inputService.sortBy && this.inputService.sortOrder === sortOrder;
+    }
+
+    protected isSortedAsc(header:TerraDataTableHeaderCellInterface):boolean
+    {
+        return this.isSorted(header, TerraDataTableSortOrderEnum.ascending);
+    }
+
+    protected isSortedDesc(header:TerraDataTableHeaderCellInterface):boolean
+    {
+        return this.isSorted(header, TerraDataTableSortOrderEnum.descending);
     }
 }

@@ -121,11 +121,14 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     protected onRowCheckboxChange(row:TerraSimpleTableRowInterface<D>):void
     {
+        // update row selection
+        row.selected = !row.selected;
+
         // notify component user
         this.outputRowCheckBoxChanged.emit(row);
 
-        // update row selection
-        row.selected = !row.selected;
+        // notify user that selection has changed
+        this.triggerOutputSelectedRowsChange();
 
         // update header checkbox state
         this.updateHeaderCheckboxState();
@@ -172,14 +175,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         }
     }
 
-    private selectRow(row:TerraSimpleTableRowInterface<D>):void
-    {
-        row.selected = true;
-
-        // notify user that selection has changed
-        this.triggerOutputSelectedRowsChange();
-    }
-
     private selectAllRows():void
     {
         this.checkHeaderCheckbox();
@@ -188,9 +183,12 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         {
             if(!row.disabled)
             {
-                this.selectRow(row);
+                row.selected = true;
             }
         });
+
+        // notify user that selection has changed
+        this.triggerOutputSelectedRowsChange();
     }
 
     private resetSelectedRows():void

@@ -10,6 +10,7 @@ import {
     tap
 } from 'rxjs/operators';
 import { StringHelper } from '../../../helpers/string.helper';
+import { terraPagerDefaultPagingSizes } from '../../pager/data/terra-pager-default-paging-sizes';
 
 /**
  * @author pweyrich
@@ -53,7 +54,7 @@ export abstract class TerraDataTableBaseService<T, P>
 
     public get pagingSizes():Array<TerraSelectBoxValueInterface>
     {
-        return this._pagingSizes;
+        return this._pagingSizes || terraPagerDefaultPagingSizes;
     }
 
     public set pagingSizes(value:Array<TerraSelectBoxValueInterface>)
@@ -89,7 +90,7 @@ export abstract class TerraDataTableBaseService<T, P>
     private get itemsPerPage():number
     {
         let itemsPerPage:number = 25;
-        if(this._defaultPagingSize)
+        if(this._defaultPagingSize && this.pagingSizes.some((size:TerraSelectBoxValueInterface) => +size.value === this._defaultPagingSize))
         {
             itemsPerPage = this._defaultPagingSize;
         }
@@ -166,14 +167,15 @@ export abstract class TerraDataTableBaseService<T, P>
     /**
      * @description Placeholder for the specific data-retrieval method. In General the specific rest call is given here.
      * @param {TerraPagerParameterInterface} params
-     * @returns {Observable<TerraPagerInterface>}
+     * @returns {Observable<TerraPagerInterface<T>>}
      */
     public abstract requestTableData(params?:P):Observable<TerraPagerInterface<T>>;
 
     /**
      * @description Placeholder for the specific data mapping method.
      * The response data is mapped to the `TerraDataTableRowInterface` in order to be able to display the data in the table.
-     * @param res
+     * @param {T} res
+     * @returns {TerraDataTableRowInterface<T>}
      */
     public abstract dataToRowMapping(res:T):TerraDataTableRowInterface<T>;
 }
