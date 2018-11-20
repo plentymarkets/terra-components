@@ -6,7 +6,7 @@ import {
 
 export class MockRouter
 {
-    public url:string = 'start';
+    public url:string = 'start/dashboard';
 
     private subject:ReplaySubject<Event> = new ReplaySubject<Event>();
 
