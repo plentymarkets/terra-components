@@ -4,7 +4,7 @@ import {
 } from 'rxjs';
 import { Data } from '@angular/router';
 
-export class ActivatedRouteStub
+export class MockActivatedRoute
 {
     private subject:ReplaySubject<Data> = new ReplaySubject<Data>();
 
