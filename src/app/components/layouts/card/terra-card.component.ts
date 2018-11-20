@@ -5,6 +5,7 @@ import {
     Input,
     ViewChild
 } from '@angular/core';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'terra-card',
@@ -41,5 +42,10 @@ export class TerraCardComponent implements AfterContentChecked
     {
         this.showHeader = this.viewChildHeader.nativeElement.children.length > 0;
         this.showFooter = this.viewChildFooter.nativeElement.children.length > 0;
+    }
+
+    protected isImageOrIconShown():boolean
+    {
+        return (this.inputImagePath && this.inputImagePath.length > 0) || !isNullOrUndefined(this.inputPlaceholderIcon);
     }
 }

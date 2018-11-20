@@ -49,6 +49,12 @@ fdescribe('TerraCardComponent', () =>
         fixture.detectChanges();
     });
 
+    afterEach(() =>
+    {
+        cardComponent.inputPlaceholderIcon = null;
+        cardComponent.inputImagePath = null;
+    });
+
     it('should create', () =>
     {
         expect(component).toBeTruthy();
@@ -66,17 +72,19 @@ fdescribe('TerraCardComponent', () =>
         expect(ngContentElement.nativeElement.textContent.trim()).toEqual('card footer');
     });
 
-    it('should class selected is set depending on #inputIsSelected', () =>
+    it('should set class selected depending on #inputIsSelected', () =>
     {
+        let debugElement:DebugElement = fixture.debugElement;
+        let footerElement:DebugElement = debugElement.query(By.css('div.card-footer'));
+        expect(footerElement.classes['selected']).toBeFalsy();
+
         cardComponent.inputIsSelected = true;
         fixture.detectChanges();
-        let debugElement:DebugElement = fixture.debugElement;
-        let selectedClass:DebugElement = debugElement.query(By.css('div.selected'));
-        expect(selectedClass).toBeTruthy();
+        expect(footerElement.classes['selected']).toBeTruthy();
     });
 
     // header
-    it('should div-element for header be shown if content is given', () =>
+    it('should show div-element for header if content is given', () =>
     {
         let debugElement:DebugElement = fixture.debugElement;
         let headerElement:DebugElement = debugElement.query(By.css('div.card-header'));
@@ -88,12 +96,41 @@ fdescribe('TerraCardComponent', () =>
     });
 
     // block
-    it('should div-element for content be shown if content is given', () =>
+    it('should show div-element for content if content is given', () =>
     {
         let debugElement:DebugElement = fixture.debugElement;
         let contentElement:DebugElement = debugElement.query(By.css('div.card-block'));
         let ngContentElement:DebugElement = contentElement.query(By.css('p'));
         expect(contentElement).toBeTruthy();
         expect(ngContentElement.nativeElement.textContent.trim()).toEqual('card content');
+    });
+
+    // image
+    it('should show image if #inputImagePath is set', () =>
+    {
+        let debugElement:DebugElement;
+        let imageElement:DebugElement;
+
+        cardComponent.inputImagePath = '';
+        fixture.detectChanges();
+        debugElement = fixture.debugElement;
+        imageElement = debugElement.query(By.css('div.terra-card-image'));
+        expect(imageElement).toBeFalsy();
+
+        cardComponent.inputImagePath = 'app/assets/images/logo_plenty.svg';
+        fixture.detectChanges();
+        imageElement = debugElement.query(By.css('div.terra-card-image'));
+        expect(imageElement).toBeTruthy();
+    });
+
+    xit('should show icon if #inputPlaceholderIcon is set', () =>
+    {
+        let debugElement:DebugElement = fixture.debugElement;
+        let iconElement:DebugElement;
+
+        cardComponent.inputPlaceholderIcon = 'icon-save';
+        fixture.detectChanges();
+        iconElement = debugElement.query(By.css('div.terra-card-placeholder'));
+        expect(iconElement).toBeTruthy();
     });
 });
