@@ -33,6 +33,9 @@ fdescribe('TerraCardComponent', () =>
     let cardComponent:TerraCardComponent;
     let fixture:ComponentFixture<CardTestComponent>;
 
+    const expectedImagePath:string = 'app/assets/images/logo_plenty.svg';
+    const expectedIcon:string = 'icon-save';
+
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
@@ -117,7 +120,7 @@ fdescribe('TerraCardComponent', () =>
         imageElement = debugElement.query(By.css('div.terra-card-image'));
         expect(imageElement).toBeFalsy();
 
-        cardComponent.inputImagePath = 'app/assets/images/logo_plenty.svg';
+        cardComponent.inputImagePath = expectedImagePath;
         fixture.detectChanges();
         imageElement = debugElement.query(By.css('div.terra-card-image'));
         expect(imageElement).toBeTruthy();
@@ -128,7 +131,7 @@ fdescribe('TerraCardComponent', () =>
         let debugElement:DebugElement = fixture.debugElement;
         let iconElement:DebugElement = debugElement.query(By.css('div.terra-card-placeholder'));
         expect(iconElement).toBeTruthy();
-        expect(cardComponent.inputPlaceholderIcon).toEqual('icon-save');
+        expect(cardComponent.inputPlaceholderIcon).toEqual(expectedIcon);
     });
 
     it('should show no image and no icon if #inputPlaceholderIcon and #inputPlaceholderIcon are not set', () =>
@@ -143,5 +146,20 @@ fdescribe('TerraCardComponent', () =>
         imageElement = debugElement.query(By.css('div.terra-card-image'));
         expect(iconElement).toBeFalsy();
         expect(imageElement).toBeFalsy();
+    });
+
+    it('should show only the image if both #inputPlaceholderIcon and #inputPlaceholderIcon are set', () =>
+    {
+        let debugElement:DebugElement = fixture.debugElement;
+        let imageElement:DebugElement;
+        let iconElement:DebugElement;
+
+        cardComponent.inputPlaceholderIcon = expectedIcon;
+        cardComponent.inputImagePath = expectedImagePath;
+        fixture.detectChanges();
+        imageElement = debugElement.query(By.css('div.terra-card-image'));
+        iconElement = debugElement.query(By.css('div.terra-card-placeholder'));
+        expect(imageElement).toBeTruthy();
+        expect(iconElement).toBeFalsy();
     });
 });
