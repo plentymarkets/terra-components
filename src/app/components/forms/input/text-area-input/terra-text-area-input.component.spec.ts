@@ -27,7 +27,7 @@ describe('TerraTextAreaInputComponent', () =>
     let fixture:ComponentFixture<TerraTextAreaInputComponent>;
     let debugElement:DebugElement;
     let inputElement:HTMLInputElement;
-    let testString:string = 'test';
+    const testString:string = 'test';
 
     beforeEach(async(() =>
     {
