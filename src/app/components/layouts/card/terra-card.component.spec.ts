@@ -85,7 +85,7 @@ describe('TerraCardComponent', () =>
     {
         let debugElement:DebugElement = fixture.debugElement;
         let footerElement:DebugElement = debugElement.query(By.css('div.card-footer'));
-        let terraCardElement:DebugElement = debugElement.query(By.css('div.terra-card'))
+        let terraCardElement:DebugElement = debugElement.query(By.css('div.terra-card'));
         expect(footerElement.classes['selected']).toBeFalsy();
         expect(terraCardElement.classes['selected']).toBeFalsy();
 
