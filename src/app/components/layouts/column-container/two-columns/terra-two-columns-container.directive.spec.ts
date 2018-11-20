@@ -6,13 +6,16 @@ import {
 } from '@angular/core/testing';
 import {
     ActivatedRoute,
+    NavigationEnd,
     Router
 } from '@angular/router';
-import { RouterStub } from '../../../../testing/router-stub';
-import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';
+import { MockRouter } from '../../../../testing/mock-router';
+import {
+    TerraTwoColumnsContainerComponent
+} from './terra-two-columns-container.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { ActivatedRouteStub } from '../../../../testing/activated-route-stub';
+import { MockActivatedRoute } from '../../../../testing/mock-activated-route';
 
 
 @Component({
@@ -23,11 +26,15 @@ import { ActivatedRouteStub } from '../../../../testing/activated-route-stub';
 })
 class TwoColumnsContainerDirectiveTestComponent {}
 
+
 fdescribe('TerraTwoColumnsContainerDirective', () =>
 {
     let fixture:ComponentFixture<TwoColumnsContainerDirectiveTestComponent>;
     let component:TwoColumnsContainerDirectiveTestComponent;
     let directive:TerraTwoColumnsContainerDirective;
+    let twoColComponent:TerraTwoColumnsContainerComponent;
+    const activatedRoute:MockActivatedRoute = new MockActivatedRoute();
+    const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
@@ -37,9 +44,9 @@ fdescribe('TerraTwoColumnsContainerDirective', () =>
                 TerraTwoColumnsContainerComponent,
                 TwoColumnsContainerDirectiveTestComponent
             ],
-            providers: [
-                { provide: Router, useValue: RouterStub },
-                { provide: ActivatedRoute, useValue: ActivatedRouteStub }
+            providers:    [
+                { provide: Router, useValue: router },
+                { provide: ActivatedRoute, useValue: activatedRoute }
             ]
         }).compileComponents();
     }));
@@ -49,11 +56,25 @@ fdescribe('TerraTwoColumnsContainerDirective', () =>
         fixture = TestBed.createComponent(TwoColumnsContainerDirectiveTestComponent);
         component = fixture.componentInstance;
         directive = fixture.debugElement.query(By.directive(TerraTwoColumnsContainerDirective)).nativeElement;
+        twoColComponent = fixture.debugElement.query(By.css('terra-2-col')).nativeElement;
     });
 
     it('should create the test component and the directive', () =>
     {
         expect(component).toBeTruthy();
         expect(directive).toBeTruthy();
+    });
+
+    it(`should hide left column on small devices if it is routed to a redirected route`, () =>
+    {
+        router.sendEvent(new NavigationEnd(1, 'hmm', 'hmm2'));
+        //directive.ngOnInit();
+        // right column should be hidden
+        //expect(twoColComponent.leftColumn).toContain(TwoColumnHelper.leftRightHiddenXS());
+    });
+
+    xit(`updates the #basePath if the route data changes`, () =>
+    {
+
     });
 });
