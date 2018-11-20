@@ -14,13 +14,13 @@ import {
 } from 'ngx-bootstrap';
 import { TerraButtonComponent } from '../../../..';
 
-fdescribe('Component: TerraOverlayComponent', () =>
+describe('Component: TerraOverlayComponent', () =>
 {
     let component:TerraOverlayComponent;
     let fixture:ComponentFixture<TerraOverlayComponent>;
     let divElement:DebugElement;
     let modalDialogElement:DebugElement;
-    let overlayTitle:string = 'Test';
+    const overlayTitle:string = 'Test';
 
     beforeEach(async(() =>
     {
@@ -41,8 +41,6 @@ fdescribe('Component: TerraOverlayComponent', () =>
         fixture = TestBed.createComponent(TerraOverlayComponent);
         component = fixture.componentInstance;
 
-        fixture.detectChanges();
-
         divElement = fixture.debugElement.query(By.css('div.modal.fade'));
         modalDialogElement = fixture.debugElement.query(By.css('div.modal-dialog'));
     });
@@ -61,6 +59,8 @@ fdescribe('Component: TerraOverlayComponent', () =>
         expect(component.inputIsStatic).toBe(false);
 
         expect(component.inputOverlayTitle).toBeFalsy(); // default is not set
+
+        fixture.detectChanges();
 
         let header:DebugElement = fixture.debugElement.query(By.css('div.modal-header'));
 
@@ -82,7 +82,7 @@ fdescribe('Component: TerraOverlayComponent', () =>
         expect(onOutputSpy).toHaveBeenCalled();
     });
 
-    it(`should call 'emitOutputOnShow' after it has been hidden`, () =>
+    it(`should call 'emitOutputOnShow' after it has been opened`, () =>
     {
         let onOutputSpy:Spy = spyOn(component, 'emitOutputOnShow');
         divElement.triggerEventHandler('onShown', null);
@@ -92,6 +92,7 @@ fdescribe('Component: TerraOverlayComponent', () =>
 
     it(`should set modal sizes (classes) according to the inputs`, () =>
     {
+        fixture.detectChanges(); // needed to set css classes correctly
         expect(modalDialogElement.classes['modal-lg']).toBe(true); // default
 
         component.inputIsExtraLarge = true;
@@ -160,7 +161,7 @@ fdescribe('Component: TerraOverlayComponent', () =>
 
         let header:DebugElement = fixture.debugElement.query(By.css('div.modal-header'));
 
-        expect(header.children.length).toBe(2); // button is present
+        expect(header.query(By.css('terra-button'))).toBeTruthy(); // button is present
     });
 
     it(`should NOT show close button depending on 'inputIsClosable'`, () =>
@@ -171,7 +172,7 @@ fdescribe('Component: TerraOverlayComponent', () =>
 
         let header:DebugElement = fixture.debugElement.query(By.css('div.modal-header'));
 
-        expect(header.children.length).toBe(1); // button is NOT present
+        expect(header.query(By.css('terra-button'))).toBeFalsy(); // button is NOT present
     });
 
     it(`should NOT show title depending on 'inputOverlayTitle'`, () =>
@@ -183,15 +184,9 @@ fdescribe('Component: TerraOverlayComponent', () =>
         let titleElement:HTMLHeadingElement = title.nativeElement;
 
         expect(titleElement.innerHTML).toBeFalsy(); // title text is NOT present
-    });
 
-    it(`should NOT show title depending on 'inputOverlayTitle'`, () =>
-    {
         component.inputOverlayTitle = overlayTitle;
         fixture.detectChanges();
-
-        let title:DebugElement = fixture.debugElement.query(By.css('h4.modal-title'));
-        let titleElement:HTMLHeadingElement = title.nativeElement;
 
         expect(titleElement.innerHTML).toBe(overlayTitle); // title text is present
     });
