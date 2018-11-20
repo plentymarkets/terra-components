@@ -91,7 +91,7 @@ describe('TerraDoubleInputComponent', () =>
         component.value = testValue;
         component.validate(formControl);
 
-        expect(component.isValid).toBeTruthy();
+        expect(component.isValid).toBe(true);
     });
 
     it('inputs should be initialized correctly', () =>
