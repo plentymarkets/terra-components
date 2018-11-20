@@ -51,7 +51,7 @@ describe('Service: TerraDataTableBaseService', () =>
                 }));
         });
 
-        it('should updatePagingData change paging data', () =>
+        it('should change paging data if updatePagingData() is called', () =>
         {
             let oldData:TerraPagerInterface<any> = service.pagingData;
 
