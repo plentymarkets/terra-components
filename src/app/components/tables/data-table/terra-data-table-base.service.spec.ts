@@ -41,7 +41,7 @@ describe('Service: TerraDataTableBaseService', () =>
             expect(service.requestTableData(pagerData)).toEqual(jasmine.any(Observable));
         });
 
-        it('should return type of abstract method \'dataToRowMapping()\' be of type TerraDataTableRowInterface', () =>
+        it('should have an abstract method \'dataToRowMapping()\' which returns a TerraDataTableRowInterface', () =>
         {
             // expect(service.dataToRowMapping(data).data).toEqual(jasmine.any(data));
             expect(service.dataToRowMapping(data).data).toEqual(
