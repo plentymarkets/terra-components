@@ -2,22 +2,7 @@ import {
     Component,
     Input
 } from '@angular/core';
-
-export enum TerraIndicatorLabelTypeEnum
-{
-    default = 'default',
-    primary = 'primary',
-    success = 'success',
-    info = 'info',
-    warning = 'warning',
-    danger = 'danger',
-}
-
-export interface TerraIndicatorInterface
-{
-    label:string;
-    type:TerraIndicatorLabelTypeEnum;
-}
+import { TerraIndicatorLabelTypeEnum } from '../../helpers/enums/indicator-label-type.enum';
 
 @Component({
     selector: 'terra-indicator',
