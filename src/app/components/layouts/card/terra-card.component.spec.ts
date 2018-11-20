@@ -27,7 +27,7 @@ import { By } from '@angular/platform-browser';
 })
 class CardTestComponent{}
 
-fdescribe('TerraCardComponent', () =>
+describe('TerraCardComponent', () =>
 {
     let component:CardTestComponent;
     let cardComponent:TerraCardComponent;
@@ -61,6 +61,11 @@ fdescribe('TerraCardComponent', () =>
     it('should create', () =>
     {
         expect(component).toBeTruthy();
+    });
+
+    it('should initialize its inputs', () =>
+    {
+        expect(cardComponent.inputIsSelected).toBe(false);
     });
 
     // footer
