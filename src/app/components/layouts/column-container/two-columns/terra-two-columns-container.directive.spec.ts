@@ -65,24 +65,30 @@ fdescribe('TerraTwoColumnsContainerDirective', () =>
         fixture.detectChanges();
     });
 
-    it('should create the test component, terra-2-col and the directive', () =>
+    it(`should create the test component, terra-2-col and the directive`, () =>
     {
         expect(component).toBeTruthy();
         expect(twoColComponent).toBeTruthy();
         expect(directive).toBeTruthy();
     });
 
-    it(`should hide left column on small devices if it is routed to a redirected route`, () =>
+    it(`should hide left but show right column on small devices by default`, () =>
     {
-        router.sendEvent(new NavigationEnd(1, 'start', 'start/dashboard'));
-        expect(twoColComponent.rightColumn).toContain('hidden-xs');
-
-        router.sendEvent(new NavigationEnd(1, 'start/dashboard', 'start/dashboard'));
         expect(twoColComponent.leftColumn).toContain('hidden-xs');
+        expect(twoColComponent.rightColumn).not.toContain('hidden-xs');
     });
 
-    xit(`updates the #basePath if the route data changes`, () =>
+    it(`should hide left but show right column on small devices if routed to a route that is not redirected`, () =>
     {
+        router.sendEvent(new NavigationEnd(1, 'start/dashboard', 'start/dashboard'));
+        expect(twoColComponent.leftColumn).toContain('hidden-xs');
+        expect(twoColComponent.rightColumn).not.toContain('hidden-xs');
+    });
 
+    it(`should hide right but show left column on small devices if routed to a redirected route`, () =>
+    {
+        router.sendEvent(new NavigationEnd(1, 'start', 'start/dashboard'));
+        expect(twoColComponent.leftColumn).not.toContain('hidden-xs');
+        expect(twoColComponent.rightColumn).toContain('hidden-xs');
     });
 });
