@@ -162,4 +162,14 @@ fdescribe('TerraCardComponent', () =>
         expect(imageElement).toBeTruthy();
         expect(iconElement).toBeFalsy();
     });
+
+    it('should set style.background-image if an image is given', () =>
+    {
+        let backgroundImageElement:DebugElement;
+        cardComponent.inputImagePath = expectedImagePath;
+        fixture.detectChanges();
+        backgroundImageElement = fixture.debugElement.query(By.css('div.terra-card-image'));
+        expect(backgroundImageElement).toBeTruthy();
+        expect(backgroundImageElement.styles['background-image']).toBeTruthy();
+    });
 });
