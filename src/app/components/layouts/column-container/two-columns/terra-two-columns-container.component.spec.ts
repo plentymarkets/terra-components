@@ -43,6 +43,7 @@ describe('TerraTwoColumnsContainerComponent', () =>
         left = fixture.debugElement.query(By.css('.row')).children[0];
         right = fixture.debugElement.query(By.css('.row')).children[1];
 
+        fixture.detectChanges();
     });
 
     it('should create', () =>
@@ -53,7 +54,6 @@ describe('TerraTwoColumnsContainerComponent', () =>
     /**
      * Test for left column
      */
-
     it('should have a default left column definition of `col-xs-12`', () =>
     {
         expect(left.classes[colXs + 12]).toBe(true);
@@ -142,7 +142,6 @@ describe('TerraTwoColumnsContainerComponent', () =>
     /**
      * Test for right column
      */
-
     it('should have a default right column definition of `col-xs-12`', () =>
     {
         expect(right.classes[colXs + 12]).toBe(true);
@@ -227,5 +226,4 @@ describe('TerraTwoColumnsContainerComponent', () =>
         expect(right.classes[colLg + 10]).toBe(false);
         expect(right.classes[colLg + 11]).toBe(true);
     });
-
 });
