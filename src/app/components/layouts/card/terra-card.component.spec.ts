@@ -12,7 +12,7 @@ import { By } from '@angular/platform-browser';
 
 @Component({
     template : `
-                  <terra-card inputImagePath="app/assets/images/logo_plenty.svg">
+                  <terra-card inputPlaceholderIcon="icon-save">
                       <div terra-card-header>
                           <p>card header</p>
                       </div>
@@ -123,14 +123,14 @@ fdescribe('TerraCardComponent', () =>
         expect(imageElement).toBeTruthy();
     });
 
-    xit('should show icon if #inputPlaceholderIcon is set', () =>
+    it('should show icon if #inputPlaceholderIcon is set', () =>
     {
         let debugElement:DebugElement = fixture.debugElement;
         let iconElement:DebugElement;
 
-        cardComponent.inputPlaceholderIcon = 'icon-save';
         fixture.detectChanges();
         iconElement = debugElement.query(By.css('div.terra-card-placeholder'));
         expect(iconElement).toBeTruthy();
+        expect(cardComponent.inputPlaceholderIcon).toEqual('icon-save');
     });
 });
