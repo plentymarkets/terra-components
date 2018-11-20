@@ -30,18 +30,18 @@ describe('Service: TerraDataTableBaseService', () =>
             expect(service).toBeTruthy();
         });
 
-        it('should get an empty row list', () =>
+        it('should have an empty row list', () =>
         {
             expect(service.rowList).toBeDefined();
             expect(service.rowList.length).toBe(0);
         });
 
-        it('should return type of abstract method \'requestTableData()\' be an Observable', () =>
+        it('should have an abstract method \'requestTableData()\' which returns an Observable', () =>
         {
             expect(service.requestTableData(pagerData)).toEqual(jasmine.any(Observable));
         });
 
-        it('should return type of abstract method \'dataToRowMapping()\' be of type TerraDataTableRowInterface', () =>
+        it('should have an abstract method \'dataToRowMapping()\' which returns a TerraDataTableRowInterface', () =>
         {
             // expect(service.dataToRowMapping(data).data).toEqual(jasmine.any(data));
             expect(service.dataToRowMapping(data).data).toEqual(
@@ -51,7 +51,7 @@ describe('Service: TerraDataTableBaseService', () =>
                 }));
         });
 
-        it('should updatePagingData change paging data', () =>
+        it('should change paging data if updatePagingData() is called', () =>
         {
             let oldData:TerraPagerInterface<any> = service.pagingData;
 
