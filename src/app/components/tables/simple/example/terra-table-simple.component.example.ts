@@ -21,6 +21,8 @@ export class TerraSimpleTableComponentExample implements OnInit
     @ViewChild('table')
     public table:TerraSimpleTableComponent<any>;
 
+    protected selectedRows:Array<TerraSimpleTableHeaderCellInterface>;
+
     private viewContainerRef:ViewContainerRef;
     private _headerList:Array<TerraSimpleTableHeaderCellInterface> = [];
     private _rowList:Array<TerraSimpleTableRowInterface<any>> = [];
@@ -80,7 +82,8 @@ export class TerraSimpleTableComponentExample implements OnInit
 
             let row:TerraSimpleTableRowInterface<any> = {
                 cellList: cellList,
-                disabled: i % 3 === 0
+                disabled: i % 3 === 0,
+                selected: i % 2 === 0
             };
 
             this.rowList.push(row);

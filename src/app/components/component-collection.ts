@@ -44,10 +44,10 @@ import { TerraTimePickerComponent } from './forms/input/time-picker/terra-time-p
 import { TerraNoteComponent } from './note/terra-note.component';
 import { TerraNodeTreeComponent } from './tree/node-tree/terra-node-tree.component';
 import { TerraNodeComponent } from './tree/node-tree/node/terra-node.component';
-import { TerraCategoryPickerComponent } from './category-picker/terra-category-picker.component';
+import { TerraCategoryPickerComponent } from './data-picker/category-picker/terra-category-picker.component';
 import { TerraDynamicFormComponent } from './forms/dynamic-form/terra-dynamic-form.component';
 import { TerraDynamicSwitchComponent } from './forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
-import { TerraNestedDataPickerComponent } from './nested-data-picker/terra-nested-data-picker.component';
+import { TerraNestedDataPickerComponent } from './data-picker/nested-data-picker/terra-nested-data-picker.component';
 import { TerraTwoColumnsContainerComponent } from './layouts/column-container/two-columns/terra-two-columns-container.component';
 import { TerraFormComponent } from './forms/form/terra-form.component';
 import { TerraFormContainerComponent } from './forms/form/form-container/terra-form-container.component';
@@ -56,10 +56,13 @@ import { TerraFormEntryListComponent } from './forms/form/form-entry-list/terra-
 import { TerraBreadcrumbsComponent } from './breadcrumbs/terra-breadcrumbs.component';
 import { TerraTagSelectComponent } from './forms/tag-select/terra-tag-select.component';
 import { TerraStopwatchComponent } from './stopwatch/terra-stopwatch.component';
+import { TerraFileListComponent } from './file-browser/file-list/file-list.component';
+import { TerraImagePreviewComponent } from './file-browser/image-preview/image-preview.component';
 import { TerraThreeColumnsContainerComponent } from './layouts/column-container/three-columns/terra-three-columns-container.component';
-import { TerraGroupFunctionComponent } from './tables/data-table/group-function/terra-group-function.component';
+import { TerraGroupFunctionComponent } from './tables/group-function/terra-group-function.component';
+import { TerraInfoComponent } from './info/terra-info.component';
 
-export const components:Array<Type<any>> = [
+export const exportedComponents:Array<Type<any>> = [
     TerraAlertPanelComponent,
     TerraTextInputComponent,
     TerraColorPickerComponent,
@@ -121,4 +124,11 @@ export const components:Array<Type<any>> = [
     TerraStopwatchComponent,
     TerraThreeColumnsContainerComponent,
     TerraGroupFunctionComponent
+];
+
+export const components:Array<Type<any>> = [
+    ...exportedComponents,
+    TerraFileListComponent,
+    TerraImagePreviewComponent,
+    TerraInfoComponent
 ];

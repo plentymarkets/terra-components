@@ -8,7 +8,7 @@ export interface TerraDataTableHeaderCellInterface
     caption:string;
     width:number;
     /**
-     * this parameter should state the name of the corresponding data base table cell
+     * If given, the list can be sorted by the given identifier
      */
     sortBy?:string;
     isHidden?:boolean;

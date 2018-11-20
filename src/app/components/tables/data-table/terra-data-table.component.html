@@ -9,13 +9,13 @@
 </terra-pager>
 
 <div class="table-responsive">
-    <context-menu></context-menu>
+    <context-menu [links]="inputContextMenu"></context-menu>
     <table class="table data-table" *ngIf="isTableDataAvailable">
         <thead>
         <tr>
-            <th *ngIf="inputHasCheckboxes" width="25px">
-                <terra-checkbox #viewChildHeaderCheckbox
-                                (change)="onHeaderCheckboxChange()"
+            <th *ngIf="inputHasCheckboxes" width="{{checkboxColumnWidth}}px">
+                <terra-checkbox (change)="onHeaderCheckboxChange()"
+                                (click)="$event.stopPropagation()"
                                 [value]="headerCheckbox.checked"
                                 [isIndeterminate]="headerCheckbox.isIndeterminate">
                 </terra-checkbox>
@@ -24,33 +24,34 @@
                 <th *ngIf="!header.isHidden"
                     width="{{header.width}}px"
                     [ngStyle]="{ 'text-align': getTextAlign(header) }"
+                    [class.sortable]="isSortable(header)"
                     (click)="columnHeaderClicked.emit(header)">
                     <span [container]="'body'"
                           [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                           [tooltip]="header.tooltipText"
                           [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
                           {{header.caption}}
-                        <span class="icon-sort_asc"
-                              *ngIf="this.inputIsSortable && header?.sortBy === inputService?.sortBy && inputService?.sortOrder === sortOrder.ASCENDING">
-                        </span>
-                        <span class="icon-sort_desc"
-                              *ngIf="this.inputIsSortable && header?.sortBy === inputService?.sortBy && inputService?.sortOrder === sortOrder.DESCENDING">
+                        
+                        <span [ngClass]="{'icon-table_sort': isUnsorted(header),'icon-sort_asc': isSortedAsc(header),'icon-sort_desc': isSortedDesc(header)}">
                         </span>
                     </span>
+    
                 </th>
             </ng-template>
         </tr>
         </thead>
         <tbody>
             <tr *ngFor="let row of rowList"
+                hasContextMenu
                 [ngClass]="{'selected': row.selected, 'isActive': row.isActive, 'disabled': row.disabled}"
-                [contextMenu]="row.contextMenuLinkList"
+                [rowData]="row.data"
                 (click)="rowClicked(row)">
                 <td *ngIf="inputHasCheckboxes">
                     <terra-checkbox type="checkbox"
                                     [value]="row.selected"
                                     [inputIsDisabled]="row.disabled"
-                                    (change)="onRowCheckboxChange(row)">
+                                    (change)="onRowCheckboxChange(row)"
+                                    (click)="$event.stopPropagation()">
                     </terra-checkbox>
                 </td>
                 <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">

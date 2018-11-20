@@ -1,0 +1,91 @@
+body
+{
+    &.theme-compact
+    {
+        --navbar-height: 32px;
+        --tabbar-height: 32px;
+        --breadcrumbs-height: 32px;
+
+        --height-sm: 24px;
+        --height-md: 24px;
+        --height-lg: 36px;
+    
+        --space-xs: 1px;
+        --space-sm: 2px;
+        --space-md: 4px;
+        --space-lg: 6px;
+        --space-xl: 12px;
+    
+        --transition-xs: ease 0.1s;
+        --transition-sm: ease 0.2s; //for colors and background-colors
+        --transition-md: ease 0.3s;
+        --transition-lg: ease 0.6s; //for transformations of heights, widths, spaces, margins, paddings
+        --transition-xl: ease 1.2s;
+        --transition-delay-xs: 0.1s;
+        --transition-delay-sm: 0.2s;
+        --transition-delay-md: 0.3s;
+        --transition-delay-lg: 0.6s;
+        --transition-delay-xl: 1.2s;
+    
+        --transition-menu: all var(--transition-0);
+        --transition-menu-delay: var(--transition-delay-0);
+        
+        //Function groups
+        --button-background-color-group-add: var(--color-group-add);
+        --button-text-color-group-add: var(--color-structure-0);
+        --button-border-bottom-group-add: 0;
+        
+        --button-background-color-group-active: var(--color-group-active);
+        --button-text-color-group-active: var(--color-structure-0);
+        --button-border-bottom-group-active: 0;
+        
+        --button-background-color-group-alert: var(--color-group-alert);
+        --button-text-color-group-alert: var(--color-structure-0);
+        --button-border-bottom-group-alert: 0;
+        
+        --button-background-color-group-action: var(--color-group-action);
+        --button-text-color-group-action: var(--color-structure-10);
+        --button-border-bottom-group-action: 0;
+        
+        --button-background-color-group-warning: var(--color-group-warning);
+        --button-text-color-group-warning: var(--color-structure-0);
+        --button-border-bottom-group-warning: 0;
+        
+        --button-background-color-group-info: var(--color-group-info);
+        --button-text-color-group-info: var(--color-structure-0);
+        --button-border-bottom-group-info: 0;
+        
+        --button-background-color-group-transfer: var(--color-group-transfer);
+        --button-text-color-group-transfer: var(--color-structure-0);
+        --button-border-bottom-group-transfer: 0;
+        
+        --button-background-color-group-navigation: var(--color-group-navigation);
+        --button-text-color-group-navigation: var(--color-structure-0);
+        --button-border-bottom-group-navigation: 0;
+        
+        --button-background-color-group-disabled: var(--color-group-disabled);
+        --button-text-color-group-disabled: var(--color-structure-0);
+        --button-border-bottom-group-disabled: 0;
+        
+        //Inputs & Select-Boxes//
+        --input-padding-default: 0 var(--space-md) 0 30%;
+        --input-isEmpty-padding-default: 0;
+        --label-width-default: 30%;
+        --label-padding-default: var(--space-lg) 0;
+        --select-box-labeled-padding-default: var(--space-md) var(--space-md) var(--space-md) 30%;
+        --select-box-labeled-isSmall-padding-default: var(--space-md) var(--space-md) var(--space-md) 30%;
+        --select-box-isSmall-background-position-default: calc(100% - var(--space-lg)) var(--space-lg);
+        --textarea-label-padding-default: var(--space-sm) 0 0 0;
+        
+        //Navbar-dropdown-menu//
+        --dropdown-menu-transition-default: all var(--transition-0);
+        --dropdown-menu-transition-delay-default: var(--transition-delay-0);
+        --dropdown-menu-transition-hide-default: all var(--transition-0);
+        --dropdown-menu-transition-delay-hide-default: var(--transition-delay-0);
+        
+        //GWT
+        --gwt-has-toolbar-before-top: 35px;
+        --gwt-has-titlebar-before-top: 33px;
+        --gwt-has-pagination-before-top: 33px;
+    }
+}

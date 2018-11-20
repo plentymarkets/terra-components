@@ -3,6 +3,7 @@ import {
     EventEmitter,
     Output
 } from '@angular/core';
+import { isNullOrUndefined } from 'util';
 
 export class TerraBaseTable<T>
 {
@@ -33,6 +34,10 @@ export class TerraBaseTable<T>
      */
     public get selectedRowList():Array<TerraDataTableRowInterface<T>>
     {
+        if(isNullOrUndefined(this.rowList))
+        {
+            return [];
+        }
         return this.rowList.filter((row:TerraDataTableRowInterface<T>) => row.selected);
     }
 
@@ -111,8 +116,7 @@ export class TerraBaseTable<T>
 
     private selectAllRows():void
     {
-        this.checkHeaderCheckbox();
-
+        // select all rows which are not disabled
         this.rowList.forEach((row:TerraDataTableRowInterface<T>) =>
         {
             if(!row.disabled)
@@ -120,16 +124,23 @@ export class TerraBaseTable<T>
                 row.selected = true;
             }
         });
+
+        // evaluate new header checkbox state
+        this.updateHeaderCheckboxState();
     }
 
     protected resetSelectedRows():void
     {
-        this.uncheckHeaderCheckbox();
-
-        // reset selected rows
+        // reset selected rows which are not disabled
         this.rowList.forEach((row:TerraDataTableRowInterface<T>) =>
         {
-            row.selected = false;
+            if(!row.disabled)
+            {
+                row.selected = false;
+            }
         });
+
+        // evaluate new header checkbox state
+        this.updateHeaderCheckboxState();
     }
 }

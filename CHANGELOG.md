@@ -1,10 +1,61 @@
-# Unreleased beta
+<a name="3.0.0-beta.14"></a>
+# 3.0.0-beta.14 (15.11.2018)
 
 ### Breaking Changes
 * **terra-data-table** 
 	- Table is now sortable. Use the sortBy interface property to state whether a column is sortable
 	- Refactoring -> Removed deprecated interface and input properties
 	- New `TerraDataTableBaseService` which replaces custom directives and configs. It also stores all information needed for retrieving data from the server
+	- New `terra-group-function` component which has been extracted from the `terra-data-table` component
+	- Removed inputs for `terra-no-result-notice` and `terra-group-function` since they can now be passed to the content of the `terra-data-table` component.
+	- Added input `inputContextMenu` to be able to pass the context menu only once to the component
+* **terra-data-table-row.interface** removed `contextMenuLinkList` property since it can now be passed to the data table component using `inputContextMenu`.
+* **terra-data-table-context-menu.service** removed `init` subject and changed type of `show` subject
+* **terra-data-table-context-menu.directive**
+	- changed selector to `[hasContextMenu]`
+	- removed input `inputLinks` which was aliased with the selector before
+	- new input `rowData` which is used to pass the data of a row to the context menu component
+* **terra-data-table-context-menu.component** 
+	- added input `links`. The list of links in the context menu can be passed here.
+	- changed parameters of the `showMenu` method. It now accepts the mouse event and the data which will be passed to the `clickFunction` of the context menu link.
+* **terra-data-table-context-menu.interface** remove `data` property. Use the directive's input `rowData` instead.
+* **terra-pager.data** removed unused class
+
+For further information see the [table migration guide](https://developers.plentymarkets.com/dev-doc/data-table-migration-guide).
+
+### Feature
+* **terra-dynamic-form** new optional toggle button to display/hide deprecated plugin config entries
+
+### Bug Fixes
+* **terra-regex** public access to properties
+
+<a name="3.0.0-beta.13"></a>
+# 3.0.0-beta.13 (12.11.2018)
+
+Adapted Changes from v2.4.2
+
+### Bug Fixes
+* **terra-node.interface**
+	- removed double click function.
+	- add closeOnClick to close node on click again.
+
+<a name="3.0.0-beta.12"></a>
+# 3.0.0-beta.12 (07.11.2018)
+* **category-detail-data**
+	- added preview url	 
+
+<a name="3.0.0-beta.11"></a>
+# 3.0.0-beta.11 (25.10.2018)
+
+* **terra-file-browser** 
+	- breadcrumbs replaced with tree for folder navigation.
+	- saving alternative text working as intended with success message.
+	- image preview now closing after delete.
+	- file list is refreshed when inputStorageService changes
+
+* **terra-node-tree** avoid closing node on click while it's open.
+* **terra-2-col** adjusted styles to handle column heights correctly.
+* **terra-3-col** adjusted styles to handle column heights correctly.
 
 <a name="3.0.0-beta.10"></a>
 # 3.0.0-beta.10 (23.10.2018)
@@ -124,6 +175,28 @@ Adapted Changes from v2.3.21 and v2.3.22
 
 ### Breaking Changes
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
+
+
+# Unreleased
+
+### Bug Fixes
+* **terra-simple-table** fix issue with notifications on `selectedRowList` changes via `outputSelectedRowsChange`.
+
+<a name="2.4.2"></a>
+# 2.4.2 (12.11.2018)
+
+### Bug Fixes 
+* **terra-suggestion-box** prevent duplicate execution of callbacks and emission of notifications when selecting a value from the suggestion list
+* **terra-simple-table** fixed selectedValue of onRowCheckboxChange() Event
+
+### Feature
+* **angular-cli** added support for angular-cli usage
+* **terra-simple-table** added support to set selected rows
+* **terra-info** add new component `terra-info` for short information about another ui element
+* **terra-icons** new icons for table sorting: icon-table_sort, icon-sort-asc, icon-sort-desc
+* **terra themes** changed main style selector 'dark-standard' to 'theme-core'
+* **function-groups** removed custom group for add-icon
+* **function-groups** added missing styles for .btn-major
 
 <a name="2.4.1"></a>
 # 2.4.1 (17.10.2018)
@@ -276,12 +349,6 @@ Adapted Changes from v2.3.21 and v2.3.22
 
 <a name="2.3.4"></a>
 # 2.3.4 (02.08.2018)
-
-### Breaking Changes
-* **terra-data-table** 
-	- Table is now sortable. Use the sortBy interface property to state whether a column is sortable
-	- Refactoring -> Removed deprecated interface and input properties
-	- New `TerraDataTableBaseService` which replaces custom directives and configs. It also stores all information needed for retrieving data from the server
 
 ### Features
 * **terra-icons** added new icons

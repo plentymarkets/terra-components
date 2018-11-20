@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
 import * as IBAN from 'iban';
 import { TranslationService } from 'angular-l10n';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
@@ -33,24 +32,30 @@ export class TerraTextInputComponent extends TerraInputComponent
 {
     /**
      * @description If true, the type of input will be 'password'.
+     * @default false
      */
     @Input()
-    public inputIsPassword:boolean;
+    public inputIsPassword:boolean = false;
 
     /**
      * @description If true, the input will check if the input is a valid iban.
+     * @default false
      */
     @Input()
-    public inputIsIban:boolean;
+    public inputIsIban:boolean = false;
 
     /**
-     * @description If true, the value cannot be changed. Default false.
+     * @description If true, the value cannot be changed.
+     * @default false
      */
     @Input()
-    public inputIsReadonly:boolean;
+    public inputIsReadonly:boolean = false;
 
+    /**
+     * @description notifies if something is typed in the input element. Emits the string that has been entered.
+     */
     @Output()
-    public outputOnInput:EventEmitter<any> = new EventEmitter<any>();
+    public outputOnInput:EventEmitter<string> = new EventEmitter<string>();
 
     /**
      * @description a unique string identifier for the specific input instance.
@@ -61,21 +66,13 @@ export class TerraTextInputComponent extends TerraInputComponent
     {
         super(TerraRegex.MIXED);
 
-        if(isNullOrUndefined(this.inputIsPassword))
-        {
-            this.inputIsPassword = false;
-        }
-
         // generate the id of the input instance
         this.id = `text-input_#${nextId++}`;
-
-        this.inputIsIban = false;
     }
 
     public onInput():void
     {
-        this.outputOnInput.emit();
-
+        this.outputOnInput.emit(this.value);
     }
 
     public focusNativeInput():void
@@ -96,7 +93,7 @@ export class TerraTextInputComponent extends TerraInputComponent
         });
     }
 
-    private onCustomBlur(iban:string):void
+    protected onCustomBlur(iban:string):void
     {
         if(this.inputIsIban)
         {

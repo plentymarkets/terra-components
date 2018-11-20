@@ -33,7 +33,8 @@
 		"loadingFiles": "Dateien werden geladen",
 		"noFiles": "Keine Dateien",
 		"downloadFile": "Datei herunterladen",
-		"uploadProgress": "Dateien werden hochgeladen: {{ filesUploaded }}/{{ filesTotal }} ({{ sizeUploaded }}/{{ sizeTotal }})"
+		"uploadProgress": "Dateien werden hochgeladen: {{ filesUploaded }}/{{ filesTotal }} ({{ sizeUploaded }}/{{ sizeTotal }})",
+		"metadataUpdated": "Metadaten aktualisiert."
 	},
 	"terraFileInput": {
 		"choose": "Wählen",
@@ -108,7 +109,8 @@
 	},
 	"terraDynamicForm": {
 		"addListEntry": "Neuen Eintrag hinzufügen",
-		"removeListEntry": "Eintrag entfernen"
+		"removeListEntry": "Eintrag entfernen",
+		"deprecated": "Veraltete Einträge zeigen/verstecken"
 	},
 	"terraStopwatch": {
 		"start": "Start",

@@ -1,4 +1,5 @@
-export interface DataTableExampleInterface
+export interface TerraDataTableExampleInterface
 {
-    id:number; value:number;
+    id:number;
+    value:number;
 }
