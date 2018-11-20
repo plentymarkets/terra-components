@@ -26,8 +26,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraDataTableServiceExample } from './example/terra-data-table.service.example';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
 import { DebugElement } from '@angular/core';
+import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 
-describe('Component: TerraDataTableComponent', () =>
+describe('TerraDataTableComponent', () =>
 {
     let component:TerraDataTableComponent<any, any>; // TODO T and P should be defined
     let fixture:ComponentFixture<TerraDataTableComponent<any, any>>;
@@ -47,7 +48,8 @@ describe('Component: TerraDataTableComponent', () =>
                 TerraTagComponent,
                 TerraBaseToolbarComponent,
                 TerraNumberInputComponent,
-                TerraSelectBoxComponent
+                TerraSelectBoxComponent,
+                TerraLabelTooltipDirective
             ],
             imports:      [
                 TooltipModule.forRoot(),
