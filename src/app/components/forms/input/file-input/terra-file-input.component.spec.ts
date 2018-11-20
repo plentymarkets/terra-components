@@ -117,7 +117,7 @@ describe('TerraFileInputComponent', () =>
         expect(component.regex).toBe(TerraRegex.MIXED);
     });
 
-    it('should have showPreview false by default', () =>
+    it('should have inputShowPreview false by default', () =>
     {
         expect(component.inputShowPreview).toBe(false);
     });
