@@ -1,7 +1,4 @@
-import {
-    TerraIndicatorComponent,
-    TerraIndicatorLabelTypeEnum
-} from './terra-indicator.component';
+import { TerraIndicatorComponent } from './terra-indicator.component';
 import {
     async,
     ComponentFixture,
@@ -9,6 +6,7 @@ import {
 } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { TerraIndicatorLabelTypeEnum } from '../../helpers/enums/indicator-label-type.enum';
 
 describe('Component: TerraIndicatorComponent', () =>
 {
