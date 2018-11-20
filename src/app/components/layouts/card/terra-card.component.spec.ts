@@ -1,44 +1,52 @@
 import {
-    DebugElement,
-    ElementRef
+    Component,
+    DebugElement
 } from '@angular/core';
 import {
     async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-
 import { TerraCardComponent } from './terra-card.component';
-
-import Spy = jasmine.Spy;
 import { By } from '@angular/platform-browser';
+
+@Component({
+    template : `
+                  <terra-card inputImagePath="app/assets/images/logo_plenty.svg">
+                      <div terra-card-header>
+                          <p>card header</p>
+                      </div>
+                      <div terra-card-content>
+                          <p>card content</p>
+                      </div>
+                      <div terra-card-footer>
+                          <p>card footer</p>
+                      </div>
+                  </terra-card>
+              `
+})
+class CardTestComponent{}
 
 fdescribe('TerraCardComponent', () =>
 {
-    let component:TerraCardComponent;
-    let fixture:ComponentFixture<TerraCardComponent>;
-    let createContent:Function;
-
-    beforeAll(() =>
-    {
-        createContent = function(content:string):HTMLElement
-        {
-            let cont:HTMLElement = document.createElement(content);
-            return cont;
-        };
-    });
+    let component:CardTestComponent;
+    let cardComponent:TerraCardComponent;
+    let fixture:ComponentFixture<CardTestComponent>;
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [TerraCardComponent]
+            declarations: [TerraCardComponent,
+                           CardTestComponent]
         }).compileComponents();
     }));
 
     beforeEach(() =>
     {
-        fixture = TestBed.createComponent(TerraCardComponent);
+        fixture = TestBed.createComponent(CardTestComponent);
         component = fixture.componentInstance;
+        cardComponent = fixture.debugElement.query(By.css('terra-card')).componentInstance;
+        fixture.detectChanges();
     });
 
     it('should create', () =>
@@ -46,14 +54,37 @@ fdescribe('TerraCardComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should div-element for footer be present if content is given', () =>
+    // footer
+    it('should div-element for footer be shown if content is given', () =>
     {
         let debugElement:DebugElement = fixture.debugElement;
         let footerElement:DebugElement = debugElement.query(By.css('div.card-footer'));
-        let elemRef:ElementRef = component.viewChildFooter.nativeElement;
-        elemRef.nativeElement.innerHtml = '<div>Test</div>';
-        expect(elemRef).toBeDefined();
+        let ngContentElement:DebugElement = footerElement.query(By.css('p'));
         expect(footerElement).toBeTruthy();
+        expect(cardComponent.viewChildFooter).toBeTruthy();
+        expect(cardComponent.viewChildFooter.nativeElement.children.length).toBeGreaterThan(0);
+        expect(ngContentElement.nativeElement.textContent.trim()).toEqual('card footer');
     });
 
+    // header
+    it('should div-element for header be shown if content is given', () =>
+    {
+        let debugElement:DebugElement = fixture.debugElement;
+        let headerElement:DebugElement = debugElement.query(By.css('div.card-header'));
+        let ngContentElement:DebugElement = headerElement.query(By.css('p'));
+        expect(headerElement).toBeTruthy();
+        expect(cardComponent.viewChildHeader).toBeTruthy();
+        expect(cardComponent.viewChildHeader.nativeElement.children.length).toBeGreaterThan(0);
+        expect(ngContentElement.nativeElement.textContent.trim()).toEqual('card header');
+    });
+
+    // block
+    it('should div-element for content be shown if content is given', () =>
+    {
+        let debugElement:DebugElement = fixture.debugElement;
+        let contentElement:DebugElement = debugElement.query(By.css('div.card-block'));
+        let ngContentElement:DebugElement = contentElement.query(By.css('p'));
+        expect(contentElement).toBeTruthy();
+        expect(ngContentElement.nativeElement.textContent.trim()).toEqual('card content');
+    });
 });
