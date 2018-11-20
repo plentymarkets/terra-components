@@ -245,7 +245,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             {
                 return sum + current;
             }, 0);
-        
+
         let numberOfFoldersToBeDeleted:number = this.objectsToDelete
             .map((object:TerraStorageObject) =>
             {
@@ -255,8 +255,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             {
                 return sum + current;
             }, 0);
-        
-        
+
+
         return numberOfFilesToBeDeleted + numberOfFoldersToBeDeleted;
     }
 
