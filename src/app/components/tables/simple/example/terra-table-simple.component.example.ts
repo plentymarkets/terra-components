@@ -21,6 +21,8 @@ export class TerraSimpleTableComponentExample implements OnInit
     @ViewChild('table')
     public table:TerraSimpleTableComponent<any>;
 
+    protected selectedRows:Array<TerraSimpleTableHeaderCellInterface>;
+
     private viewContainerRef:ViewContainerRef;
     private _headerList:Array<TerraSimpleTableHeaderCellInterface> = [];
     private _rowList:Array<TerraSimpleTableRowInterface<any>> = [];
