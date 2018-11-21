@@ -1,10 +1,12 @@
 import {
     Component,
+    EventEmitter,
     Input,
-    OnInit
+    OnInit,
+    Output
 } from '@angular/core';
-import { TranslationService } from 'angular-l10n';
-import * as Stopwatch from 'timer-stopwatch';
+import { Language } from 'angular-l10n';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'terra-stopwatch',
@@ -17,42 +19,69 @@ export class TerraStopwatchComponent implements OnInit
      * @description If true, the start, pause and reset control will show
      */
     @Input()
-    public inputEnableControls:boolean = false;
+    public controls:boolean = false;
 
     /**
      * @description If true, stopwatch starts if component initialize
      */
     @Input()
-    public inputIsAutoPlay:boolean = false;
+    public autoPlay:boolean = false;
 
     /**
      * @description If true, buttons are small
      */
     @Input()
-    public inputIsSmall:boolean = false;
+    public isSmall:boolean = false;
 
-    protected langPrefix:string = 'terraStopwatch';
-
-    private stopwatch:Stopwatch = new Stopwatch();
-
-    constructor(public translation:TranslationService)
+    /**
+     * @description set the current value of the stopwatch
+     */
+    @Input()
+    public set seconds(value:number)
     {
+        this.secondsValue = value;
+        this.secondsChange.emit(this.seconds);
     }
 
+    /**
+     * @description returns the current value of the stopwatch
+     */
+    public get seconds():number
+    {
+        return this.secondsValue || 0;
+    }
+
+    /**
+     * @description notification if the current value of the stopwatch changes. If the stopwatch is running it emits a new value every single second.
+     */
+    @Output()
+    public secondsChange:EventEmitter<number> = new EventEmitter<number>();
+
+    @Language()
+    protected lang:string;
+
+    protected readonly langPrefix:string = 'terraStopwatch.';
+
+    private timer:number = null;
+    private secondsValue:number = 0;
+
+    /**
+     * @description initialisation routine. Starts the stopwatch if autoPlay is set.
+     */
     public ngOnInit():void
     {
-        if(this.inputIsAutoPlay)
+        if(this.autoPlay)
         {
             this.start();
         }
     }
 
     /**
-     * @description returns stopwatch value in milliseconds
+     * @description states whether the stop watch is currently running
      */
-    public getTimeInMilliseconds():number
+    public get isRunning():boolean
     {
-        return this.stopwatch.ms;
+        return !isNullOrUndefined(this.timer);
     }
 
     /**
@@ -60,7 +89,7 @@ export class TerraStopwatchComponent implements OnInit
      */
     public start():void
     {
-        this.stopwatch.start();
+        this.timer = window.setInterval(() => this.incrementSeconds(), 1000);
     }
 
     /**
@@ -68,7 +97,8 @@ export class TerraStopwatchComponent implements OnInit
      */
     public stop():void
     {
-        this.stopwatch.stop();
+        window.clearInterval(this.timer);
+        this.timer = null;
     }
 
     /**
@@ -76,59 +106,48 @@ export class TerraStopwatchComponent implements OnInit
      */
     public reset():void
     {
-        this.stopwatch.reset();
+        this.stop();
+        this.seconds = 0;
     }
 
     /**
-     * @description returns the stopwatch format
+     * @description returns the current stopwatch value in a time string format
      */
-    protected get format():string
+    protected get timeString():string
     {
-        return this.getStopwatchPattern();
+        return this.format(this.seconds);
     }
 
-    /**
-     * @description returns the tooltip for reset control
-     */
-    protected get resetControlTooltip():string
+    private format(timerSeconds:number):string
     {
-        return this.translation.translate(this.langPrefix + '.reset');
+        let hours:number = this.getHours(timerSeconds);
+        let minutes:number = this.getMinutes(timerSeconds);
+        let seconds:number = this.getSeconds(timerSeconds);
+        return this.getDigitString(hours) + ':' + this.getDigitString(minutes) + ':' + this.getDigitString(seconds);
     }
 
-    /**
-     * @description returns the tooltip for start and stop control
-     */
-    protected get startAndStopControlTooltip():string
+    private getDigitString(value:number):string
     {
-        return this.translation.translate(this.langPrefix + (this.stopwatch.state === 1 ? '.pause' : '.start'));
+        return (value < 10 ? '0' : '') + value;
     }
 
-    /**
-     * @description returns the icon for start and stop control
-     */
-    protected get startAndStopControlIcon():string
+    private getHours(seconds:number):number
     {
-        return this.stopwatch.state === 1 ? 'icon-control_pause' : 'icon-control_play';
+        return Math.floor(seconds / 3600 % 24);
     }
 
-    /**
-     * @description runs the function for start and stop control
-     */
-    protected startAndStopControl():void
+    private getMinutes(seconds:number):number
     {
-        this.stopwatch.state === 1 ? this.stop() : this.start();
+        return Math.floor(seconds / 60 % 60);
     }
 
-    /**
-     * @description build and return stopwatch pattern/format
-     */
-    private getStopwatchPattern():string
+    private getSeconds(seconds:number):number
     {
-        return (Math.floor(((this.stopwatch.ms / 3600000) % 24)) < 10 ? '0' : '') +
-               Math.floor(((this.stopwatch.ms / 3600000) % 24)) + ':' +
-               (Math.floor(((this.stopwatch.ms / 60000) % 60)) < 10 ? '0' : '') +
-               Math.floor(((this.stopwatch.ms / 60000) % 60)) + ':' +
-               (Math.floor(((this.stopwatch.ms / 1000) % 60)) < 10 ? '0' : '') +
-               Math.floor(((this.stopwatch.ms / 1000) % 60));
+        return seconds % 60;
+    }
+
+    private incrementSeconds():void
+    {
+        this.seconds += 1;
     }
 }
