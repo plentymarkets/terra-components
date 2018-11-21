@@ -154,7 +154,7 @@ describe('TerraOverlayComponent', () =>
 
         let header:DebugElement = fixture.debugElement.query(By.css('div.modal-header'));
 
-        expect(header).not.toBeTruthy(); // should NOT be present because inputOverlayTitle and inputIsCloseable are NOT set
+        expect(header).toBeFalsy(); // should NOT be present because inputOverlayTitle and inputIsCloseable are NOT set
     });
 
     it(`should show close button depending on 'inputIsClosable'`, () =>
