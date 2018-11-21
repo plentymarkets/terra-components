@@ -3,7 +3,7 @@ import {
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
-import { TerraCategoryPickerBaseService } from '../../../category-picker/service/terra-category-picker-base.service';
+import { TerraCategoryPickerBaseService } from '../../../data-picker/category-picker/service/terra-category-picker-base.service';
 
 /**
  *@author Ziyad.Hajj-Hassan

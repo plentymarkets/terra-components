@@ -24,9 +24,9 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
 {
-    public subscription:Subscription;
-
     private basePath:string;
+    private dataSub:Subscription;
+    private eventsSub:Subscription;
 
     constructor(private route:ActivatedRoute,
                 private router:Router,
@@ -37,12 +37,12 @@ export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
 
     public ngOnInit():void
     {
-        let subscribable:Observable<Event> = this.router.events.filter((event:RouterEvent) =>
+        let navigationEndEvents$:Observable<Event> = this.router.events.filter((event:RouterEvent) =>
         {
             return event instanceof NavigationEnd && event.urlAfterRedirects === this.basePath;
         });
 
-        this.subscription = subscribable.subscribe((event:NavigationEnd) =>
+        this.eventsSub = navigationEndEvents$.subscribe((event:NavigationEnd) =>
         {
             if(event.url !== event.urlAfterRedirects)
             {
@@ -54,17 +54,18 @@ export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
             }
         });
 
-        this.setColumnHidden('left');
-
-        this.route.data.subscribe((data:Data) =>
+        this.dataSub = this.route.data.subscribe((data:Data) =>
         {
             this.basePath = this.router.url;
         });
+
+        this.setColumnHidden('left');
     }
 
     public ngOnDestroy():void
     {
-        this.subscription.unsubscribe();
+        this.eventsSub.unsubscribe();
+        this.dataSub.unsubscribe();
     }
 
     private setColumnHidden(column:string):void
