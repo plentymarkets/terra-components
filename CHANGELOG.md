@@ -2,6 +2,9 @@
 # 3.0.0-beta.15 (21.11.2018)
 Adapted Changes from v2.4.3
 
+### Breaking Changes
+* **terra-stopwatch** rework. removed dependency to [timer-stopwatch](https://www.npmjs.com/package/timer-stopwatch) package.
+
 <a name="3.0.0-beta.14"></a>
 # 3.0.0-beta.14 (15.11.2018)
 
