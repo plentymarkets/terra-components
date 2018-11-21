@@ -18,7 +18,7 @@ import {
     mockButtonTwo
 } from '../../../testing/mock-buttons';
 
-describe('Component: TerraOverlayComponent', () =>
+describe('TerraOverlayComponent', () =>
 {
     let component:TerraOverlayComponent;
     let fixture:ComponentFixture<TerraOverlayComponent>;
@@ -154,7 +154,7 @@ describe('Component: TerraOverlayComponent', () =>
 
         let header:DebugElement = fixture.debugElement.query(By.css('div.modal-header'));
 
-        expect(header).not.toBeTruthy(); // should NOT be present because inputOverlayTitle and inputIsCloseable are NOT set
+        expect(header).toBeFalsy(); // should NOT be present because inputOverlayTitle and inputIsCloseable are NOT set
     });
 
     it(`should show close button depending on 'inputIsClosable'`, () =>
@@ -233,7 +233,7 @@ describe('Component: TerraOverlayComponent', () =>
         expect(footer).toBeTruthy(); // footer should be present as default
     });
 
-    it(`should NOT show the footer if 'inputSecondaryButtonInterface' or 'inputPrimaryButtonInterface' aren't set`, () =>
+    it(`should NOT show the footer if 'inputSecondaryButtonInterface' and 'inputPrimaryButtonInterface' are not set`, () =>
     {
         component.inputPrimaryButtonInterface = null;
         component.inputSecondaryButtonInterface = null;
