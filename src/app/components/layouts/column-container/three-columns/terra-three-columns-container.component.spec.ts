@@ -89,16 +89,18 @@ describe('Component: TerraThreeColumnsContainerComponent', () =>
         expect(columns[1].classList.length).toEqual(1);
     });
 
-    xit('should handle a sum of column width smaller than 12 and fill up the last column so that it fits', () =>
+    it('should handle a sum of column width smaller than 12 and fill up the last column so that it fits', () =>
     {
         component.leftColumnWidth = 2;
         component.centerColumnWidth = 4;
         component.rightColumnWidth = 4;
 
+        component.ngOnChanges();
+
         fixture.detectChanges();
 
         expect(columns[0].classList.contains('col-md-2')).toBeTruthy();
         expect(columns[1].classList.contains('col-md-4')).toBeTruthy();
-        expect(columns[2].classList.contains('col-md-6')).toBeTruthy(); // TODO: Find out why this fails
+        expect(columns[2].classList.contains('col-md-6')).toBeTruthy();
     });
 });
