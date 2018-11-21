@@ -1,4 +1,5 @@
-# Unreleased
+<a name="2.4.3"></a>
+# 2.4.3 (21.11.2018)
 
 ### Bug Fixes
 * **terra-simple-table** fix issue with notifications on `selectedRowList` changes via `outputSelectedRowsChange`.
