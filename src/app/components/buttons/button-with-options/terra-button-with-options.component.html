@@ -13,7 +13,7 @@
             <a *ngIf="!option.isDivider"
                (click)="optionsClick(option)"
                [ngClass]="{'disabled': option.isDisabled, 'alignRight': alignRight}">
-                <span *ngIf="option.icon" class="left-icon" [ngClass]="option.icon"></span>
+                <span *ngIf="option.icon" class="left-icon" [ngClass]="option.icon" [ngStyle]="{color: option.iconColor}"></span>
                 {{ option.caption }}
             </a>
             <div *ngIf="option.isDivider" class="context-menu-divider"></div>
