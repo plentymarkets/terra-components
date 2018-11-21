@@ -74,7 +74,7 @@ export class TerraBreadcrumbsService
     {
         let shortUrlWithoutLeadingSlash:string = UrlHelper.getCleanUrl(shortUrl);
         let route:Route = this.findRoute(shortUrlWithoutLeadingSlash, this.initialRoute.children);
-        this.handleBreadcrumb(route, fullUrl, shortUrl.split('/').length - 1);
+        this.handleBreadcrumb(route, UrlHelper.removeQueryParams(fullUrl), shortUrl.split('/').length - 1);
     }
 
     private handleBreadcrumb(route:Route, url:string, urlPartsCount:number):void
@@ -101,11 +101,12 @@ export class TerraBreadcrumbsService
         // breadcrumb not found
         if(isNullOrUndefined(breadcrumb))
         {
-            let label:string = this.getBreadcrumbLabel(route);
+            let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
+            let label:string = this.getBreadcrumbLabel(route, activatedSnapshot);
             let currentContainerIndex:number = this._containers.indexOf(container);
             let previousContainer:TerraBreadcrumbContainer = this._containers[currentContainerIndex - 1];
             let parentBreadcrumb:TerraBreadcrumb = isNullOrUndefined(previousContainer) ? undefined : previousContainer.currentSelectedBreadcrumb;
-            breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url);
+            breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url, activatedSnapshot.queryParams);
             container.breadcrumbList.push(breadcrumb);
         }
 
@@ -114,15 +115,13 @@ export class TerraBreadcrumbsService
         this.updateBreadcrumbVisibilities(container, breadcrumb.parent);
     }
 
-    private getBreadcrumbLabel(route:Route):string
+    private getBreadcrumbLabel(route:Route, activatedSnapshot:ActivatedRouteSnapshot):string
     {
         let label:string = '';
         if(!isNullOrUndefined(route.data))
         {
             if(typeof route.data.label === 'function')
             {
-                let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
-
                 label = route.data.label(this.translation, activatedSnapshot.params, activatedSnapshot.data, activatedSnapshot.queryParams);
             }
             else
@@ -165,7 +164,7 @@ export class TerraBreadcrumbsService
 
     private findRoute(url:string, routeConfig:Routes):Route
     {
-        let urlParts:Array<string> =  UrlHelper.removeLeadingSlash(url).split('/');
+        let urlParts:Array<string> = UrlHelper.removeLeadingSlash(url).split('/');
         let urlPart:string = urlParts.shift();
 
         let routes:Routes = routeConfig;
@@ -259,7 +258,9 @@ export class TerraBreadcrumbsService
             // or it will be updated automatically from it's route data
             else
             {
-                breadcrumb.name = this.getBreadcrumbLabel(route);
+                let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
+
+                breadcrumb.name = this.getBreadcrumbLabel(route, activatedSnapshot);
             }
         }
     }

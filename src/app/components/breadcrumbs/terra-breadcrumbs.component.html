@@ -5,6 +5,7 @@
                 <div class="terra-breadcrumb-wrapper">
                     <a class="terra-breadcrumb"
                        [routerLink]="container.currentSelectedBreadcrumb.routerLink"
+                       [queryParams]="container.currentSelectedBreadcrumb.queryParams"
                        [container]="'body'"
                        terraLabelTooltip
                        [nameOfInput]="container.currentSelectedBreadcrumb.name "
