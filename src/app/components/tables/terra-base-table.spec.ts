@@ -9,7 +9,7 @@ describe('TerraBaseTable', () =>
         expect(baseTable).toBeTruthy();
     });
 
-    it('should return an empty array for #selectedRowList', () =>
+    it('should return an empty array for #selectedRowList by default', () =>
     {
         expect(baseTable.selectedRowList).toBeDefined();
         expect(baseTable.selectedRowList.length).toEqual(0);
