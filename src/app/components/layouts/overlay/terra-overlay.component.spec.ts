@@ -12,7 +12,7 @@ import {
     ModalModule,
     TooltipModule
 } from 'ngx-bootstrap';
-import { TerraButtonComponent } from '../../../..';
+import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import {
     mockButtonOne,
     mockButtonTwo
