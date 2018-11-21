@@ -13,6 +13,10 @@ import {
     TooltipModule
 } from 'ngx-bootstrap';
 import { TerraButtonComponent } from '../../../..';
+import {
+    mockButtonOne,
+    mockButtonTwo
+} from '../../../testing/mock-buttons';
 
 describe('Component: TerraOverlayComponent', () =>
 {
@@ -208,12 +212,7 @@ describe('Component: TerraOverlayComponent', () =>
 
     it(`should show the footer if 'inputPrimaryButtonInterface' is set`, () =>
     {
-        component.inputPrimaryButtonInterface = {
-            clickFunction: ():void =>
-                           {
-                               console.log('Button clicked');
-                           }
-        };
+        component.inputPrimaryButtonInterface = mockButtonOne;
 
         fixture.detectChanges();
 
@@ -225,12 +224,7 @@ describe('Component: TerraOverlayComponent', () =>
     it(`should show the footer if 'inputSecondaryButtonInterface' is set`, () =>
     {
         component.inputPrimaryButtonInterface = null;
-        component.inputSecondaryButtonInterface = {
-            clickFunction: ():void =>
-                           {
-                               console.log('Button clicked');
-                           }
-        };
+        component.inputSecondaryButtonInterface = mockButtonTwo;
 
         fixture.detectChanges();
 
