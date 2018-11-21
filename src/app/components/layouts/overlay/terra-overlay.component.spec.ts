@@ -18,7 +18,7 @@ import {
     mockButtonTwo
 } from '../../../testing/mock-buttons';
 
-describe('Component: TerraOverlayComponent', () =>
+describe('TerraOverlayComponent', () =>
 {
     let component:TerraOverlayComponent;
     let fixture:ComponentFixture<TerraOverlayComponent>;
