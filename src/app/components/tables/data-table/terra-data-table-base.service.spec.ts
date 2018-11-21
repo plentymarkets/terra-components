@@ -1,10 +1,8 @@
 import { TerraDataTableExampleInterface } from './example/terra-data-table.interface.example';
-import {
-    TerraPagerInterface,
-    TerraPagerParameterInterface
-} from '../../../..';
 import { TerraDataTableServiceExample } from './example/terra-data-table.service.example';
 import { Observable } from 'rxjs';
+import { TerraPagerParameterInterface } from '../../pager/data/terra-pager.parameter.interface';
+import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 
 describe('Service: TerraDataTableBaseService', () =>
     {
