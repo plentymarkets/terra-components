@@ -27,13 +27,11 @@ import { TerraDataTableServiceExample } from './example/terra-data-table.service
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
 import { DebugElement } from '@angular/core';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
-import { TerraDataTableExampleInterface } from './example/terra-data-table.interface.example';
-import { TerraPagerParameterInterface } from '../../../..';
 import { By } from '@angular/platform-browser';
 
-describe('TerraDataTableComponent', () =>
+fdescribe('TerraDataTableComponent', () =>
 {
-    let component:TerraDataTableComponent<TerraDataTableExampleInterface, TerraPagerParameterInterface>;
+    let component:TerraDataTableComponent<any, any>;
     let fixture:ComponentFixture<TerraDataTableComponent<any, any>>;
 
     beforeEach(async(() =>
@@ -89,7 +87,7 @@ describe('TerraDataTableComponent', () =>
             expect(component.inputHasPager).toBe(true);
         });
 
-        it('should hide the pager if `inputHasPager` is set but no data is available', () =>
+        it('should hide the pager if #inputHasPager is set but no data is available', () =>
         {
             let service:TerraDataTableServiceExample = TestBed.get(TerraDataTableServiceExample);
             let pagerDE:DebugElement = fixture.nativeElement.querySelector('terra-pager');
@@ -100,16 +98,18 @@ describe('TerraDataTableComponent', () =>
         });
 
         // TODO: Make it run!
-        xit('should have a pager if `inputHasPager` is set and data is available', async(() =>
+        it('should show the pager if #inputHasPager is set and data is available', async(() =>
         {
             let debugElement:DebugElement = fixture.debugElement;
             let service:TerraDataTableServiceExample = TestBed.get(TerraDataTableServiceExample);
-            service.getResults();
+            component.inputService = service;
             component.inputHasPager = true;
+            service.addEntry();
+            service.getResults();
             fixture.detectChanges();
             let pagerDE:DebugElement = debugElement.query(By.css('terra-pager'));
             expect(service.rowList).toBeDefined();
-            expect(service.rowList.length).toBe(3);
+            expect(service.rowList.length).toBe(1);
             expect(pagerDE).toBeTruthy();
         }));
     });
