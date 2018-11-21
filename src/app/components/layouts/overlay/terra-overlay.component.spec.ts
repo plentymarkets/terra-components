@@ -233,7 +233,7 @@ describe('TerraOverlayComponent', () =>
         expect(footer).toBeTruthy(); // footer should be present as default
     });
 
-    it(`should NOT show the footer if 'inputSecondaryButtonInterface' or 'inputPrimaryButtonInterface' aren't set`, () =>
+    it(`should NOT show the footer if 'inputSecondaryButtonInterface' and 'inputPrimaryButtonInterface' are not set`, () =>
     {
         component.inputPrimaryButtonInterface = null;
         component.inputSecondaryButtonInterface = null;
