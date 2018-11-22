@@ -74,10 +74,11 @@ describe('TerraCardComponent', () =>
         let debugElement:DebugElement = fixture.debugElement;
         let footerElement:DebugElement = debugElement.query(By.css('div.card-footer'));
         let ngContentElement:DebugElement = footerElement.query(By.css('p'));
+        let footerContentElement:HTMLElement = ngContentElement.nativeElement;
         expect(footerElement).toBeTruthy();
         expect(cardComponent.viewChildFooter).toBeTruthy();
         expect(cardComponent.viewChildFooter.nativeElement.children.length).toBeGreaterThan(0);
-        expect(ngContentElement.nativeElement.textContent.trim()).toEqual('card footer');
+        expect(footerContentElement.innerHTML).toEqual('card footer');
         expect(footerElement.nativeElement.hidden).toBe(false);
     });
 
@@ -101,10 +102,11 @@ describe('TerraCardComponent', () =>
         let debugElement:DebugElement = fixture.debugElement;
         let headerElement:DebugElement = debugElement.query(By.css('div.card-header'));
         let ngContentElement:DebugElement = headerElement.query(By.css('p'));
+        let headerCOntentElement:HTMLElement = ngContentElement.nativeElement;
         expect(headerElement).toBeTruthy();
         expect(cardComponent.viewChildHeader).toBeTruthy();
         expect(cardComponent.viewChildHeader.nativeElement.children.length).toBeGreaterThan(0);
-        expect(ngContentElement.nativeElement.textContent.trim()).toEqual('card header');
+        expect(headerCOntentElement.innerHTML).toEqual('card header');
         expect(headerElement.nativeElement.hidden).toBe(false);
     });
 
@@ -114,8 +116,9 @@ describe('TerraCardComponent', () =>
         let debugElement:DebugElement = fixture.debugElement;
         let contentElement:DebugElement = debugElement.query(By.css('div.card-block'));
         let ngContentElement:DebugElement = contentElement.query(By.css('p'));
+        let blockContentElement:HTMLElement = ngContentElement.nativeElement;
         expect(contentElement).toBeTruthy();
-        expect(ngContentElement.nativeElement.textContent.trim()).toEqual('card content');
+        expect(blockContentElement.innerHTML).toEqual('card content');
     });
 
     // image
