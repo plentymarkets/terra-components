@@ -22,7 +22,7 @@ export class TerraIndicatorComponent
         this.inputType = TerraIndicatorLabelTypeEnum.default;
     }
 
-    protected getIndicator():string
+    protected get indicator():string
     {
         return 'label-' + this.inputType;
     }
