@@ -1,3 +1,8 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-data-table** fixed coloring of links in the table if the row is selected or active
+
 <a name="3.0.0-beta.15"></a>
 # 3.0.0-beta.15 (21.11.2018)
 Adapted Changes from v2.4.3
