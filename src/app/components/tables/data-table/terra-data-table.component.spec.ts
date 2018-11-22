@@ -30,7 +30,7 @@ import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip
 import { By } from '@angular/platform-browser';
 import Spy = jasmine.Spy;
 
-fdescribe('TerraDataTableComponent', () =>
+describe('TerraDataTableComponent', () =>
 {
     let component:TerraDataTableComponent<any, any>;
     let fixture:ComponentFixture<TerraDataTableComponent<any, any>>;
