@@ -21,16 +21,21 @@ export class TerraButtonWithOptionsComponentExample implements OnInit
 
     public ngOnInit():void
     {
-        this.buttonOptionList.push({
-            caption:       'Add new account',
-            icon:          'icon-add',
-            clickFunction: ():void => this.addAccount()
-        });
-        this.buttonOptionList.push({
-            caption:       'Delete all accounts',
-            icon:          'icon-delete',
-            clickFunction: ():void => this.deleteAllAccounts()
-        });
+        this.buttonOptionList.push(
+            {
+                caption: 'Add new account',
+                icon: 'icon-add',
+                clickFunction: ():void => this.addAccount()
+            },
+            {
+                isDivider: true,
+                clickFunction: null
+            },
+            {
+                caption: 'Delete all accounts',
+                icon: 'icon-delete',
+                clickFunction: ():void => this.deleteAllAccounts()
+            });
         this.simpleTableHeaderList.push(
             {
                 caption: 'id'
