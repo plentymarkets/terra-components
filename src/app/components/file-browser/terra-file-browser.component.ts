@@ -1,6 +1,7 @@
 import {
     Component,
     EventEmitter,
+    forwardRef,
     Input,
     OnChanges,
     OnInit,
@@ -48,7 +49,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
 
     public onSelectedUrlChange:EventEmitter<string> = new EventEmitter();
 
-    @ViewChild(TerraFileListComponent)
+    @ViewChild(forwardRef(() => TerraFileListComponent))
     protected fileListComponent:TerraFileListComponent;
 
     protected rightColumnWidth:number = 0;

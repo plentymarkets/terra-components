@@ -116,21 +116,22 @@
                 background: var(--color-structure-2);
                 cursor: pointer;
             }
-            tbody tr.selected
+            tbody
             {
-                background-color: var(--color-active);
-                color: var(--color-structure-0);
-            }
-            tbody tr.isActive
-            {
-                background-color: var(--color-active);
-                color: var(--color-structure-0);
-                td a[href]
+                tr
                 {
-                    color: var(--color-structure-0);
-                    &:hover
+                    &.selected, &.isActive
                     {
-                        color: var(--color-structure-13);
+                        background-color: var(--color-active);
+                        color: var(--color-structure-0);
+                        td a[href]
+                        {
+                            color: var(--color-structure-0);
+                            &:hover
+                            {
+                                color: var(--color-structure-13);
+                            }
+                        }
                     }
                 }
             }
