@@ -1,4 +1,7 @@
-###Unreleased
+# Unreleased
+
+### Bug Fixes
+* **terra-data-table** fixed coloring of links in the table if the row is selected or active
 
 ### Feature
 * **terra-button-with-options** 
