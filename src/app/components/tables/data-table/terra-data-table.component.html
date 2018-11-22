@@ -1,6 +1,6 @@
 <ng-content select="terra-group-function"></ng-content>
 
-<terra-pager *ngIf="inputHasPager && rowList && rowList.length > 0"
+<terra-pager *ngIf="inputHasPager && dataAvailableOrRequestPending"
              [inputPagingSize]="inputService?.pagingSizes"
              [inputDefaultPagingSize]="inputService?.defaultPagingSize"
              [inputPagingData]="inputService?.pagingData"
@@ -10,7 +10,7 @@
 
 <div class="table-responsive">
     <context-menu [links]="inputContextMenu"></context-menu>
-    <table class="table data-table" *ngIf="isTableDataAvailable">
+    <table class="table data-table" *ngIf="dataAvailableOrRequestPending">
         <thead>
         <tr>
             <th *ngIf="inputHasCheckboxes" width="{{checkboxColumnWidth}}px">
@@ -124,6 +124,6 @@
         </tbody>
     </table>
     
-    <ng-content *ngIf="!isTableDataAvailable && !inputService?.requestPending" select="terra-no-result-notice"></ng-content>
+    <ng-content *ngIf="!dataAvailableOrRequestPending" select="terra-no-result-notice"></ng-content>
 
 </div>
