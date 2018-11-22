@@ -27,6 +27,7 @@ fdescribe('TerraPortletComponent', () =>
 {
     let component:TerraPortletComponent;
     let fixture:ComponentFixture<TerraPortletComponent>;
+    let debugElement:DebugElement;
 
     const portletHeader:string = 'What is my purpose?';
 
@@ -51,6 +52,7 @@ fdescribe('TerraPortletComponent', () =>
     {
         fixture = TestBed.createComponent(TerraPortletComponent);
         component = fixture.componentInstance;
+        debugElement = fixture.debugElement;
 
         fixture.detectChanges();
     });
@@ -63,7 +65,7 @@ fdescribe('TerraPortletComponent', () =>
     it(`should initialize with the correct values`, () =>
     {
         expect(component.inputHighlightPortlet).toBe(false);
-        expect(component.inputPortletHeader).not.toBeDefined();
+        expect(component.inputPortletHeader).toBeUndefined();
         expect(component.inputIsCollapsable).toBe(false);
         expect(component.inputCollapsed).toBe(false);
         expect(component.inputButtonList).toEqual([]);
@@ -71,7 +73,7 @@ fdescribe('TerraPortletComponent', () =>
 
     it(`should set classes accordingly to 'inputIsCollapsable' and 'inputHighlightPortlet'`, () =>
     {
-        const portletDiv:DebugElement = fixture.debugElement.query(By.css('div.portlet'));
+        const portletDiv:DebugElement = debugElement.query(By.css('div.portlet'));
 
         component.inputIsCollapsable = true;
         fixture.detectChanges();
@@ -84,12 +86,12 @@ fdescribe('TerraPortletComponent', () =>
 
     it(`should have a visible header after 'inputPortletHeader' is set`, () =>
     {
-        expect(fixture.debugElement.query(By.css('div.portlet-head'))).toBeFalsy();
+        expect(debugElement.query(By.css('div.portlet-head'))).toBeFalsy();
 
         component.inputPortletHeader = portletHeader;
         fixture.detectChanges();
 
-        expect(fixture.debugElement.query(By.css('div.portlet-head'))).toBeTruthy();
+        expect(debugElement.query(By.css('div.portlet-head'))).toBeTruthy();
     });
 
     it(`should have his header unfolded/folded according 'inputCollapsed = false' or 'inputCollapsed = true'`, () =>
@@ -98,7 +100,7 @@ fdescribe('TerraPortletComponent', () =>
         component.inputIsCollapsable = true;
         fixture.detectChanges();
 
-        let portletHead:DebugElement = fixture.debugElement.query(By.css('div.portlet-head'));
+        let portletHead:DebugElement = debugElement.query(By.css('div.portlet-head'));
 
         expect(portletHead.classes['unfolded']).toBe(true);
 
@@ -116,7 +118,7 @@ fdescribe('TerraPortletComponent', () =>
 
         let onHeaderClick:Spy = spyOn(component, 'toggleCollapse');
 
-        fixture.debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
+        debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
 
         expect(onHeaderClick).toHaveBeenCalled();
     });
@@ -127,14 +129,14 @@ fdescribe('TerraPortletComponent', () =>
         component.inputIsCollapsable = true;
         fixture.detectChanges();
 
-        expect(fixture.debugElement.query(By.css('span.icon-collapse_down'))).toBeTruthy();
-        expect(fixture.debugElement.query(By.css('span.icon-collapse_up'))).toBeFalsy();
+        expect(debugElement.query(By.css('span.icon-collapse_down'))).toBeTruthy();
+        expect(debugElement.query(By.css('span.icon-collapse_up'))).toBeFalsy();
 
-        fixture.debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
+        debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
         fixture.detectChanges();
 
-        expect(fixture.debugElement.query(By.css('span.icon-collapse_down'))).toBeFalsy();
-        expect(fixture.debugElement.query(By.css('span.icon-collapse_up'))).toBeTruthy();
+        expect(debugElement.query(By.css('span.icon-collapse_down'))).toBeFalsy();
+        expect(debugElement.query(By.css('span.icon-collapse_up'))).toBeTruthy();
     });
 
     it(`should collapse icon only of 'inputIsCollapsable' set to true`, () =>
@@ -142,12 +144,12 @@ fdescribe('TerraPortletComponent', () =>
         component.inputPortletHeader = portletHeader;
         fixture.detectChanges();
 
-        expect(fixture.debugElement.query(By.css('span.icon-collapse_down'))).toBeFalsy();
+        expect(debugElement.query(By.css('span.icon-collapse_down'))).toBeFalsy();
 
         component.inputIsCollapsable = true;
         fixture.detectChanges();
 
-        expect(fixture.debugElement.query(By.css('span.icon-collapse_down'))).toBeTruthy();
+        expect(debugElement.query(By.css('span.icon-collapse_down'))).toBeTruthy();
     });
 
     it(`should set classes on portlet-body depending on it's #collapsedState()`, () =>
@@ -156,17 +158,17 @@ fdescribe('TerraPortletComponent', () =>
         component.inputIsCollapsable = true;
         fixture.detectChanges();
 
-        expect(fixture.debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBe(false);
+        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBe(false);
 
-        fixture.debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
+        debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
         fixture.detectChanges();
 
-        expect(fixture.debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBe(true);
+        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBe(true);
 
-        fixture.debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
+        debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
         fixture.detectChanges();
 
-        expect(fixture.debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBe(false);
+        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBe(false);
     });
 
     it(`should update view correctly if 'inputIsCollapsable' is changed`, () =>
@@ -228,7 +230,7 @@ fdescribe('TerraPortletComponent', () =>
         component.inputButtonList = buttonList;
         fixture.detectChanges();
 
-        let htmlButtonDebugElements:Array<DebugElement> = fixture.debugElement.queryAll(By.css('div.header-buttons terra-button'));
+        let htmlButtonDebugElements:Array<DebugElement> = debugElement.queryAll(By.css('div.header-buttons terra-button'));
 
         expect(htmlButtonDebugElements.length).toBe(buttonList.length);
 
