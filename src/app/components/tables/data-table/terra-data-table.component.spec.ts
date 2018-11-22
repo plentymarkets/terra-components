@@ -28,6 +28,7 @@ import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-
 import { DebugElement } from '@angular/core';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { By } from '@angular/platform-browser';
+import Spy = jasmine.Spy;
 
 fdescribe('TerraDataTableComponent', () =>
 {
@@ -91,7 +92,6 @@ fdescribe('TerraDataTableComponent', () =>
         {
             let service:TerraDataTableServiceExample = TestBed.get(TerraDataTableServiceExample);
             let pagerDE:DebugElement = fixture.nativeElement.querySelector('terra-pager');
-            expect(component.inputHasPager).toBe(true);
             expect(service.rowList).toBeDefined();
             expect(service.rowList.length).toEqual(0);
             expect(pagerDE).toBeNull();
@@ -111,6 +111,24 @@ fdescribe('TerraDataTableComponent', () =>
             expect(service.rowList.length).toBe(1);
             expect(pagerDE).toBeTruthy();
         }));
+
+        it(`should #getResults() and #resetSelectedRows when the pager-component emits on #outputDoPaging`, () =>
+        {
+            let service:TerraDataTableServiceExample = TestBed.get(TerraDataTableServiceExample);
+            let spy:Spy = spyOn(service, 'getResults').and.callThrough();
+            component.inputService = service;
+            service.addEntry();
+            service.getResults();
+
+            fixture.detectChanges();
+
+            let pagerDE:DebugElement = fixture.debugElement.query(By.css('terra-pager'));
+            let pagerComponent:TerraPagerComponent = pagerDE.componentInstance;
+            pagerComponent.outputDoPaging.emit();
+
+            expect(spy).toHaveBeenCalled();
+            expect(component.selectedRowList.length).toEqual(0);
+        });
     });
 
     describe('With an inputService', () =>

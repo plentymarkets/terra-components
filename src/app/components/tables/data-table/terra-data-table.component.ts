@@ -138,7 +138,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         return this.rowList && this.rowList.length > 0;
     }
 
-    protected doPaging(pagerData:TerraPagerInterface<T>):void
+    protected doPaging():void
     {
         // request data from server
         this.getResults();
