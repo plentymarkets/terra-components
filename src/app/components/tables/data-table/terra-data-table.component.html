@@ -67,23 +67,23 @@
                         [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
                         [placement]="checkTooltipPlacement(cell.tooltipPlacement)">
                         
-                        <div *ngSwitchCase="'string'">
+                        <ng-container *ngSwitchCase="'string'">
                             <span>{{cell.data}}</span>
-                        </div>
+                        </ng-container>
                         
-                        <div *ngSwitchCase="'number'">
+                        <ng-container *ngSwitchCase="'number'">
                             <span>{{cell.data}}</span>
                             <!-- <span>{{cell.data | number}}</span> TODO: The pipe should be used here! Figure out how. -->
-                        </div>
+                        </ng-container>
                         
-                        <div *ngSwitchCase="'TerraDataTableTextInterface'">
+                        <ng-container *ngSwitchCase="'TerraDataTableTextInterface'">
                             <span [ngStyle]="{color: cell.data.color}">
                                 <span *ngIf="cell.data.icon" [ngClass]="cell.data.icon"></span>
                                 <span> {{cell.data.caption}} </span>
                             </span>
-                        </div>
+                        </ng-container>
                         
-                        <div *ngSwitchCase="'TerraRefTypeInterface'">
+                        <ng-container *ngSwitchCase="'TerraRefTypeInterface'">
                             <a *ngIf="cell.data.type === refType.email || cell.data.type === refType.phone"
                                href="{{cell.data.type}}:{{cell.data.value}}"
                                (click)="$event.stopPropagation()">
@@ -97,9 +97,9 @@
                                (click)="$event.stopPropagation()">
                                 {{cell.data.caption || cell.data.value}}
                             </a>
-                        </div>
+                        </ng-container>
                         
-                        <div *ngSwitchCase="'buttons'" class="btn-group">
+                        <ng-container *ngSwitchCase="'buttons'" class="btn-group">
                             <ng-template ngFor let-button [ngForOf]="cell.data">
                                 <terra-button *ngIf="!button.isHidden"
                                               (outputClicked)="button.clickFunction($event);$event.stopPropagation()"
@@ -113,11 +113,11 @@
                                               [inputIsFlagged]="button.isFlagged">
                                 </terra-button>
                             </ng-template>
-                        </div>
+                        </ng-container>
                         
-                        <div *ngSwitchCase="'tags'">
+                        <ng-container *ngSwitchCase="'tags'">
                             <terra-taglist [inputTagList]="cell.data"></terra-taglist>
-                        </div>
+                        </ng-container>
                     </td>
                 </ng-template>
             </tr>
