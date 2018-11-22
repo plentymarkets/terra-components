@@ -24,6 +24,8 @@ describe('Component: TerraIndicatorComponent', () =>
     {
         fixture = TestBed.createComponent(TerraIndicatorComponent);
         component = fixture.componentInstance;
+
+        fixture.detectChanges();
     });
 
     it('should create an instance', () =>
@@ -39,16 +41,19 @@ describe('Component: TerraIndicatorComponent', () =>
 
     it('should #inputType and #inputLabel be set properly', () =>
     {
-        let debugElement:DebugElement = fixture.debugElement;
-        let indicatorDebugElement:DebugElement = debugElement.query(By.css('span'));
-
         let expectedLabel:string = 'attention';
         component.inputLabel = expectedLabel;
         component.inputType = TerraIndicatorLabelTypeEnum.warning;
 
         fixture.detectChanges();
 
-        expect(indicatorDebugElement.properties['className']).toEqual('label label-warning');
-        expect(indicatorDebugElement.nativeElement.textContent.trim()).toBe(expectedLabel);
+        let debugElement:DebugElement = fixture.debugElement;
+        let indicatorDebugElement:DebugElement = debugElement.query(By.css('span.label'));
+
+        expect(indicatorDebugElement.classes['label-warning']).toBe(true);
+
+        let spanElement:HTMLSpanElement = indicatorDebugElement.nativeElement;
+
+        expect(spanElement.innerHTML).toBe(expectedLabel);
     });
 });

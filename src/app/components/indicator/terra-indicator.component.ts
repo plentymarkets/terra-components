@@ -21,4 +21,9 @@ export class TerraIndicatorComponent
     {
         this.inputType = TerraIndicatorLabelTypeEnum.default;
     }
+
+    protected getIndicator():string
+    {
+        return 'label-' + this.inputType;
+    }
 }
