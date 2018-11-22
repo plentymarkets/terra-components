@@ -79,7 +79,7 @@ fdescribe('TerraPortletComponent', () =>
 
         component.inputHighlightPortlet = true;
         fixture.detectChanges();
-        expect(portletDiv.classes['highlight']).toBe(true, 'highlight');
+        expect(portletDiv.classes['highlight']).toBe(true);
     });
 
     it(`should have a visible header after 'inputPortletHeader' is set`, () =>
