@@ -20,7 +20,7 @@
                               [inputIsSmall]="true">
                 </terra-button>
             </div>
-            <span class="icon-collapse_down" [class.rotated]="inputCollapsed" *ngIf="inputIsCollapsable"></span>
+            <span [ngClass]="{'icon-collapse_down': !inputCollapsed, 'icon-collapse_up': inputCollapsed}" *ngIf="inputIsCollapsable"></span>
         </div>
     </div>
     <div class="portlet-body" [@collapsedState]="collapsedState"
