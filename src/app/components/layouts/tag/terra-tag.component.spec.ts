@@ -58,12 +58,13 @@ fdescribe('TerraTagComponent', () =>
 
     it('`inputCustomClass` should set and equal to class of tagDiv', () =>
     {
-        expect(tagDiv.classes).toBe({}); // no background color set
+        expect(Object.entries(tagDiv.classes).length).toBe(0); // no classes set
 
         component.inputCustomClass = 'myClass';
 
         fixture.detectChanges();
 
         expect(tagDiv.classes['myClass']).toBe(true);
+        expect(Object.entries(tagDiv.classes).length).toBeGreaterThan(0);
     });
 });
