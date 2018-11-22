@@ -97,17 +97,16 @@ fdescribe('TerraDataTableComponent', () =>
             expect(pagerDE).toBeNull();
         });
 
-        // TODO: Make it run!
         it('should show the pager if #inputHasPager is set and data is available', async(() =>
         {
-            let debugElement:DebugElement = fixture.debugElement;
             let service:TerraDataTableServiceExample = TestBed.get(TerraDataTableServiceExample);
             component.inputService = service;
             component.inputHasPager = true;
             service.addEntry();
             service.getResults();
             fixture.detectChanges();
-            let pagerDE:DebugElement = debugElement.query(By.css('terra-pager'));
+
+            let pagerDE:DebugElement = fixture.debugElement.query(By.css('terra-pager'));
             expect(service.rowList).toBeDefined();
             expect(service.rowList.length).toBe(1);
             expect(pagerDE).toBeTruthy();
