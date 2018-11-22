@@ -75,7 +75,7 @@ fdescribe('TerraPortletComponent', () =>
 
         component.inputIsCollapsable = true;
         fixture.detectChanges();
-        expect(portletDiv.classes['collapsable']).toBe(true, 'collapsable');
+        expect(portletDiv.classes['collapsable']).toBe(true);
 
         component.inputHighlightPortlet = true;
         fixture.detectChanges();
