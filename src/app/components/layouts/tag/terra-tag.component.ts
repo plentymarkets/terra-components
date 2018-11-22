@@ -26,40 +26,31 @@ export class TerraTagComponent
     public inputBadge:string;
 
     @Input()
-    public inputIsTagged:boolean;
+    public inputIsTagged:boolean = false;
 
     @Input()
-    public inputIsTaggable:boolean;
+    public inputIsTaggable:boolean = false;
 
     @Input()
-    public inputCustomClass:string;
+    public inputCustomClass:string = null;
 
     @Input()
     /**
      * The background color for the tag.
      */
-    public inputColor:string;
+    public inputColor:string = null;
 
     @Input()
     public tagId:number;
 
     @Input()
-    public isClosable:boolean;
+    public isClosable:boolean = false;
 
     @Input()
-    public names:Array<TerraTagNameInterface>;
+    public names:Array<TerraTagNameInterface> = [];
 
     @Output()
     public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
-
-    constructor()
-    {
-        this.inputIsTagged = false;
-        this.inputIsTaggable = false;
-        this.inputColor = null;
-        this.inputCustomClass = null;
-        this.isClosable = false;
-    }
 
     protected close():void
     {
@@ -99,7 +90,7 @@ export class TerraTagComponent
      * @returns {string}
      * @see inputColor
      */
-    private getBgColor():string
+    protected getBgColor():string
     {
         if(!isNullOrUndefined(this.inputColor))
         {
@@ -111,7 +102,7 @@ export class TerraTagComponent
     /**
      * Get the foreground color.
      */
-    private getColor():string
+    protected getColor():string
     {
         if(!isNullOrUndefined(this.inputColor))
         {
