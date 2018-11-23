@@ -2,22 +2,21 @@
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
      [isDisabled]="!inputTooltipText"
-     [ngClass]="{'error': !isValid, 'disabled': isDisabled, 'isSmall': inputIsSmall}"
+     [ngClass]="{'error': !isValid, 'disabled': inputIsDisabled, 'isSmall': inputIsSmall}"
      container="body">
 
     <input id="{{id}}"
-           [ngClass]="{'price-input': inputIsPriceInput}"
            type="number"
            [(ngModel)]="value"
            name="{{inputName}}"
            (blur)="onBlur()"
            autocomplete="off"
-           [disabled]="isDisabled"
+           [disabled]="inputIsDisabled"
            pattern="{{regex}}"
            step="{{step}}"
            [lang]="locale"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
-           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0}">
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0, 'price-input': inputIsPriceInput}">
     <label terraLabelTooltip
            [nameOfInput]="inputName"
            [tooltipTextOfInput]="inputTooltipText"

@@ -12,7 +12,8 @@ import { Exception } from './data/exception.interface';
 import {
     isArray,
     isNull,
-    isNullOrUndefined
+    isNullOrUndefined,
+    isObject
 } from 'util';
 import { TerraAlertComponent } from '../components/alert/terra-alert.component';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
@@ -233,6 +234,16 @@ export class TerraBaseService
     // TODO rename exception to error and use a meaningful type
     private handleException(exception:any):void
     {
+        if(!isObject(exception._body))
+        {
+            this._alert.addAlert({
+                msg:              this.getErrorString() + ': ' + exception._body,
+                type:             'danger',
+                dismissOnTimeout: 0
+            });
+            return;
+        }
+
         // parse response object
         let response:any = JSON.parse(exception._body);
 
