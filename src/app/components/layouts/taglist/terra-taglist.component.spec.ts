@@ -10,7 +10,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 
-fdescribe('TerraTaglistComponent', () =>
+describe('TerraTaglistComponent', () =>
 {
     let component:TerraTaglistComponent;
     let fixture:ComponentFixture<TerraTaglistComponent>;
