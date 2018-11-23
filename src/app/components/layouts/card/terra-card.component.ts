@@ -55,6 +55,6 @@ export class TerraCardComponent implements AfterContentChecked
 
     protected isImageOrIconShown():boolean
     {
-        return (this.inputImagePath && this.inputImagePath.length > 0) || !isNullOrUndefined(this.inputPlaceholderIcon);
+        return !StringHelper.isNullUndefinedOrEmpty(this.inputImagePath) || !isNullOrUndefined(this.inputPlaceholderIcon);
     }
 }
