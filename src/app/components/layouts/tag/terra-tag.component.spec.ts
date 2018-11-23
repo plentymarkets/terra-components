@@ -15,10 +15,8 @@ import {
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
-import Spy = jasmine.Spy;
-import { ModalDirective } from 'ngx-bootstrap';
 
-fdescribe('TerraTagComponent', () =>
+describe('TerraTagComponent', () =>
 {
     let component:TerraTagComponent;
     let fixture:ComponentFixture<TerraTagComponent>;
@@ -35,8 +33,7 @@ fdescribe('TerraTagComponent', () =>
             imports:      [
                 HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
-            ],
-            providers:    []
+            ]
         }).compileComponents();
     }));
 
@@ -119,7 +116,7 @@ fdescribe('TerraTagComponent', () =>
         iconElement = tagDiv.query(By.css('span.tag-icon'));
 
         // getting access to protected/private methods
-        expect(iconElement.styles['color']).toEqual(component['getColor']()); // style is present and equals #ffffff or #000000
+        expect(iconElement.styles['color']).toEqual(component['color']); // style is present and equals #ffffff or #000000
     });
 
     it('should set classes to tag icon depending on inputIsTagged', () =>
@@ -158,7 +155,7 @@ fdescribe('TerraTagComponent', () =>
         fixture.detectChanges();
 
         // getting access to protected/private methods
-        expect(textElement.styles['color']).toEqual(component['getColor']()); // style is present and equals #ffffff or #000000
+        expect(textElement.styles['color']).toEqual(component['color']); // style is present and equals #ffffff or #000000
     });
 
     it('should set text depending on inputBadge', () =>

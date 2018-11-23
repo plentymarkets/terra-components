@@ -89,7 +89,7 @@ export class TerraTagComponent
      * @returns {string}
      * @see inputColor
      */
-    protected getBgColor():string
+    protected get bgColor():string
     {
         if(!isNullOrUndefined(this.inputColor))
         {
@@ -101,7 +101,7 @@ export class TerraTagComponent
     /**
      * Get the foreground color.
      */
-    protected getColor():string
+    protected get color():string
     {
         if(!isNullOrUndefined(this.inputColor))
         {
