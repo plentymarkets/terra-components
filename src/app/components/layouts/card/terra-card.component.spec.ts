@@ -149,7 +149,6 @@ describe('TerraCardComponent', () =>
 
     it('should show no image and no icon if #inputPlaceholderIcon and #inputPlaceholderIcon are not set', () =>
     {
-        cardComponent.inputPlaceholderIcon = cardComponent.inputImagePath = null;
         fixture.detectChanges();
         let imageElement:DebugElement;
         let iconElement:DebugElement;
