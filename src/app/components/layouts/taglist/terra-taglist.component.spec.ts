@@ -8,6 +8,7 @@ import {
 import { TerraTagComponent } from '../tag/terra-tag.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 
 fdescribe('TerraTaglistComponent', () =>
 {
@@ -77,6 +78,39 @@ fdescribe('TerraTaglistComponent', () =>
             {
                 expect(tag.isClosable).toBeFalsy();
             });
+        });
+
+        it(`should properly map the tag interface's properties to the tag component's inputs`, () =>
+        {
+            let tags:Array<TerraTagComponent> = tagDebugElements.map((debugElement:DebugElement) => debugElement.componentInstance);
+
+            tags.forEach((tag:TerraTagComponent, index:number) =>
+            {
+                let tagInterface:TerraTagInterface = tagList[index];
+
+                expect(tag.tagId).toEqual(tagInterface.id);
+                expect(tag.inputBadge).toEqual(tagInterface.name);
+                expect(tag.name).toEqual(tagInterface.name);
+                expect(tag.inputIsTaggable).toEqual(tagInterface.isTaggable);
+                expect(tag.inputIsTagged).toEqual(tagInterface.isTagged);
+                expect(tag.inputCustomClass).toEqual(tagInterface.customClass);
+                expect(tag.inputColor).toEqual(tagInterface.color);
+                expect(tag.isClosable).toEqual(tagInterface.isClosable && !component.isReadOnly);
+                expect(tag.names).toEqual(tagInterface.names);
+            });
+        });
+
+        it(`should emit on #onCloseTag if a tag emits on #onCloseTag`, () =>
+        {
+            let tagToClose:number = 0;
+            component.onCloseTag.subscribe((tagId:number) => tagToClose = tagId);
+
+            let tags:Array<TerraTagComponent> = tagDebugElements.map((debugElement:DebugElement) => debugElement.componentInstance);
+            let tag:TerraTagComponent = tags[0];
+            tag.onCloseTag.emit(tag.tagId);
+
+            expect(tagToClose).not.toBe(0);
+            expect(tagToClose).toBe(tag.tagId);
         });
     });
 });
