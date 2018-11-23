@@ -1,3 +1,17 @@
+###Unreleased
+
+### Feature
+* **terra-button-with-options** 
+    - new input `inputIsSmall`
+    - Added the ability to add a divider button to the 'inputOptions'
+    
+<a name="3.0.0-beta.15"></a>
+# 3.0.0-beta.15 (21.11.2018)
+Adapted Changes from v2.4.3
+
+### Breaking Changes
+* **terra-stopwatch** rework. removed dependency to [timer-stopwatch](https://www.npmjs.com/package/timer-stopwatch) package.
+
 <a name="3.0.0-beta.14"></a>
 # 3.0.0-beta.14 (15.11.2018)
 
@@ -177,7 +191,8 @@ Adapted Changes from v2.3.21 and v2.3.22
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
 
 
-# Unreleased
+<a name="2.4.3"></a>
+# 2.4.3 (21.11.2018)
 
 ### Bug Fixes
 * **terra-simple-table** fix issue with notifications on `selectedRowList` changes via `outputSelectedRowsChange`.
