@@ -12,7 +12,7 @@ import { By } from '@angular/platform-browser';
 
 @Component({
     template: `
-                  <terra-card inputPlaceholderIcon="icon-save">
+                  <terra-card>
                       <div terra-card-header>
                           <p>card header</p>
                       </div>
@@ -66,8 +66,8 @@ describe('TerraCardComponent', () =>
     it('should initialize its inputs', () =>
     {
         expect(cardComponent.inputIsSelected).toBe(false);
-         expect(cardComponent.inputImagePath).toBeUndefined();
-         expect(cardComponent.inputPlaceholderIcon).toBeUndefined();
+        expect(cardComponent.inputImagePath).toBeUndefined();
+        expect(cardComponent.inputPlaceholderIcon).toBeUndefined();
     });
 
     // footer
@@ -143,8 +143,11 @@ describe('TerraCardComponent', () =>
 
     it('should show icon if #inputPlaceholderIcon is set', () =>
     {
+        cardComponent.inputPlaceholderIcon = expectedIcon;
+        fixture.detectChanges();
         let debugElement:DebugElement = fixture.debugElement;
         let iconElement:DebugElement = debugElement.query(By.css('div.terra-card-placeholder'));
+
         expect(iconElement).toBeTruthy();
         expect(cardComponent.inputPlaceholderIcon).toEqual(expectedIcon);
     });
