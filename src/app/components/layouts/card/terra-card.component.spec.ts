@@ -103,11 +103,11 @@ describe('TerraCardComponent', () =>
     {
         let headerElement:DebugElement = debugElement.query(By.css('div.card-header'));
         let ngContentElement:DebugElement = headerElement.query(By.css('p'));
-        let headerCOntentElement:HTMLElement = ngContentElement.nativeElement;
+        let headerContentElement:HTMLElement = ngContentElement.nativeElement;
         expect(headerElement).toBeTruthy();
         expect(cardComponent.viewChildHeader).toBeTruthy();
         expect(cardComponent.viewChildHeader.nativeElement.children.length).toBeGreaterThan(0);
-        expect(headerCOntentElement.innerHTML).toEqual('card header');
+        expect(headerContentElement.innerHTML).toEqual('card header');
         expect(headerElement.nativeElement.hidden).toBe(false);
     });
 
@@ -124,11 +124,11 @@ describe('TerraCardComponent', () =>
     // image
     it('should show image if #inputImagePath is set', () =>
     {
-        let imageElement:DebugElement;
-
         cardComponent.inputImagePath = '';
         fixture.detectChanges();
+        let imageElement:DebugElement;
         imageElement = debugElement.query(By.css('div.terra-card-image'));
+
         expect(imageElement).toBeFalsy();
 
         cardComponent.inputImagePath = expectedImagePath;
@@ -149,11 +149,11 @@ describe('TerraCardComponent', () =>
 
     it('should show no image and no icon if #inputPlaceholderIcon and #inputPlaceholderIcon are not set', () =>
     {
+        cardComponent.inputPlaceholderIcon = cardComponent.inputImagePath = null;
+        fixture.detectChanges();
         let imageElement:DebugElement;
         let iconElement:DebugElement;
 
-        cardComponent.inputPlaceholderIcon = cardComponent.inputImagePath = null;
-        fixture.detectChanges();
         iconElement = debugElement.query(By.css('div.terra-card-placeholder'));
         imageElement = debugElement.query(By.css('div.terra-card-image'));
         expect(iconElement).toBeFalsy();
@@ -162,12 +162,12 @@ describe('TerraCardComponent', () =>
 
     it('should show only the image if both #inputPlaceholderIcon and #inputPlaceholderIcon are set', () =>
     {
-        let imageElement:DebugElement;
-        let iconElement:DebugElement;
-
         cardComponent.inputPlaceholderIcon = expectedIcon;
         cardComponent.inputImagePath = expectedImagePath;
         fixture.detectChanges();
+        let imageElement:DebugElement;
+        let iconElement:DebugElement;
+
         imageElement = debugElement.query(By.css('div.terra-card-image'));
         iconElement = debugElement.query(By.css('div.terra-card-placeholder'));
         expect(imageElement).toBeTruthy();
