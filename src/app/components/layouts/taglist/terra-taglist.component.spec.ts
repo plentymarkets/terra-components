@@ -59,7 +59,10 @@ fdescribe('TerraTaglistComponent', () =>
         {
             let tags:Array<TerraTagComponent> = tagDebugElements.map((debugElement:DebugElement) => debugElement.componentInstance);
 
-            expect(tags.every((tag:TerraTagComponent, index:number) => tag.isClosable === tagList[index].isClosable)).toBe(true);
+            tags.forEach((tag:TerraTagComponent, index:number) =>
+            {
+                expect(tag.isClosable).toEqual(tagList[index].isClosable);
+            });
         });
 
         it(`should isClosable be falsy if #isReadOnly is true`, () =>
@@ -70,7 +73,10 @@ fdescribe('TerraTaglistComponent', () =>
             tagDebugElements = fixture.debugElement.queryAll(By.css('terra-tag'));
             let tags:Array<TerraTagComponent> = tagDebugElements.map((debugElement:DebugElement) => debugElement.componentInstance);
 
-            expect(tags.every((tag:TerraTagComponent) => !tag.isClosable)).toBe(true);
+            tags.forEach((tag:TerraTagComponent) =>
+            {
+                expect(tag.isClosable).toBeFalsy();
+            });
         });
     });
 });
