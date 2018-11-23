@@ -66,6 +66,8 @@ describe('TerraCardComponent', () =>
     it('should initialize its inputs', () =>
     {
         expect(cardComponent.inputIsSelected).toBe(false);
+         expect(cardComponent.inputImagePath).toBeUndefined();
+         expect(cardComponent.inputPlaceholderIcon).toBeUndefined();
     });
 
     // footer
