@@ -2,6 +2,7 @@ import {
     Component,
     Input
 } from '@angular/core';
+import { TerraIndicatorLabelTypeEnum } from '../../helpers/enums/indicator-label-type.enum';
 
 @Component({
     selector: 'terra-indicator',
@@ -14,10 +15,15 @@ export class TerraIndicatorComponent
     public inputLabel:string;
 
     @Input()
-    public inputType:string;
+    public inputType:TerraIndicatorLabelTypeEnum;
 
     constructor()
     {
-        this.inputType = 'default';
+        this.inputType = TerraIndicatorLabelTypeEnum.default;
+    }
+
+    protected get indicator():string
+    {
+        return 'label-' + this.inputType;
     }
 }
