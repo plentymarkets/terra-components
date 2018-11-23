@@ -15,10 +15,8 @@ import {
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
-import Spy = jasmine.Spy;
-import { ModalDirective } from 'ngx-bootstrap';
 
-fdescribe('TerraTagComponent', () =>
+describe('TerraTagComponent', () =>
 {
     let component:TerraTagComponent;
     let fixture:ComponentFixture<TerraTagComponent>;
