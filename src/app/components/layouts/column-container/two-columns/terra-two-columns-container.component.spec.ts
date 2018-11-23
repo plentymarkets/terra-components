@@ -3,25 +3,22 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { TooltipModule } from 'ngx-bootstrap';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../translation/l10n.config';
 import { TerraTwoColumnsContainerComponent } from '../../../../../index';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
+let component:TerraTwoColumnsContainerComponent;
+let fixture:ComponentFixture<TerraTwoColumnsContainerComponent>;
+
+let left:DebugElement;
+let right:DebugElement;
+
+const colXs:string = 'col-xs-';
+const colMd:string = 'col-md-';
+const colLg:string = 'col-lg-';
+
 describe('TerraTwoColumnsContainerComponent', () =>
 {
-    let component:TerraTwoColumnsContainerComponent;
-    let fixture:ComponentFixture<TerraTwoColumnsContainerComponent>;
-
-    let left:DebugElement;
-    let right:DebugElement;
-
-    let colXs:string = 'col-xs-';
-    let colMd:string = 'col-md-';
-    let colLg:string = 'col-lg-';
-
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
@@ -42,184 +39,172 @@ describe('TerraTwoColumnsContainerComponent', () =>
         fixture.detectChanges();
     });
 
+    describe(`with default values`, terraTwoColumnDefaultValues);
+    describe(`with 'leftColumnWidth' set to 6`, terraTwoColumnValue6);
+    describe(`with 'leftColumnWidth' set to 15`, terraTwoColumnValue15);
+    describe(`with 'leftColumnWidth' set to -5`, terraTwoColumnValue5Negative);
+});
+
+function terraTwoColumnDefaultValues():void
+{
     it('should create', () =>
     {
         expect(component).toBeTruthy();
     });
 
-    /**
-     * Test for left column
-     */
-    it('should have a default left column definition of `col-xs-12`', () =>
+    it(`should have a default left column definition of 'col-xs-12 col-md-3 col-lg-2'`, () =>
     {
         expect(left.classes[colXs + 12]).toBe(true);
-    });
-
-    it('should have a default left column definition of `col-md-3`', () =>
-    {
         expect(left.classes[colMd + 3]).toBe(true);
-    });
-
-    it('should have a default left column definition of `col-lg-2`', () =>
-    {
         expect(left.classes[colLg + 2]).toBe(true);
     });
 
-    it('should have a left column width of `col-xs-12` when `leftColumnWidth` set to 6', () =>
+    it(`should have a default right column definition of 'col-xs-12 col-md-9 col-lg-10'`, () =>
+    {
+        expect(right.classes[colXs + 12]).toBe(true);
+        expect(right.classes[colMd + 9]).toBe(true);
+        expect(right.classes[colLg + 10]).toBe(true);
+    });
+}
+
+function checkColumnClass(className:string, columnClasses:{ [key:string]:boolean; }):void
+{
+    let count:number = Object.keys(columnClasses).filter((key:string) => key.startsWith(className) && columnClasses[key]).length;
+
+    expect(count).toBe(1);
+}
+
+function terraTwoColumnValue6():void
+{
+    beforeEach(() =>
     {
         component.leftColumnWidth = 6;
         fixture.detectChanges();
+    });
+
+    it(`should have a left column width of 'col-xs-12'`, () =>
+    {
+        checkColumnClass(colXs, left.classes);
         expect(left.classes[colXs + 12]).toBe(true);
     });
 
-    it('should have a left column width of `col-md-7` and not default value when `leftColumnWidth` set to 6', () =>
+    it(`should have a left column width of 'col-md-7'`, () =>
     {
-        component.leftColumnWidth = 6;
-        fixture.detectChanges();
-        expect(left.classes[colMd + 3]).toBe(false);
+        checkColumnClass(colMd, left.classes);
         expect(left.classes[colMd + 7]).toBe(true);
     });
 
-    it('should have a left column width of `col-lg-6` and not default value when `leftColumnWidth` set to 6', () =>
+    it(`should have a left column width of 'col-lg-6'`, () =>
     {
-        component.leftColumnWidth = 6;
-        fixture.detectChanges();
-        expect(left.classes[colLg + 2]).toBe(false);
+        checkColumnClass(colLg, left.classes);
         expect(left.classes[colLg + 6]).toBe(true);
     });
 
-    it('should have a left column width of `col-xs-12` when `leftColumnWidth` set to 15', () =>
+    it(`should have a right column width of 'col-xs-12'`, () =>
     {
-        component.leftColumnWidth = 15;
-        fixture.detectChanges();
-        expect(left.classes[colXs + 12]).toBe(true);
-    });
-
-    it('should have a left column width of `col-md-12` and not default value when `leftColumnWidth` set to 15', () =>
-    {
-        component.leftColumnWidth = 15;
-        fixture.detectChanges();
-        expect(left.classes[colMd + 3]).toBe(false);
-        expect(left.classes[colMd + 12]).toBe(true);
-    });
-
-    it('should have a left column width of `col-lg-11` and not default value when `leftColumnWidth` set to 15', () =>
-    {
-        component.leftColumnWidth = 15;
-        fixture.detectChanges();
-        expect(left.classes[colLg + 2]).toBe(false);
-        expect(left.classes[colLg + 11]).toBe(true);
-    });
-
-    it('should have a left column width of `col-xs-12` when `leftColumnWidth` set to -5', () =>
-    {
-        component.leftColumnWidth = -5;
-        fixture.detectChanges();
-        expect(left.classes[colXs + 12]).toBe(true);
-    });
-
-    it('should have a left column width of `col-md-2` and not default value when `leftColumnWidth` set to -5', () =>
-    {
-        component.leftColumnWidth = -5;
-        fixture.detectChanges();
-        expect(left.classes[colMd + 3]).toBe(false);
-        expect(left.classes[colMd + 2]).toBe(true);
-    });
-
-    it('should have a left column width of `col-lg-1` and not default value when `leftColumnWidth` set to -5', () =>
-    {
-        component.leftColumnWidth = -5;
-        fixture.detectChanges();
-        expect(left.classes[colLg + 2]).toBe(false);
-        expect(left.classes[colLg + 1]).toBe(true);
-    });
-
-
-    /**
-     * Test for right column
-     */
-    it('should have a default right column definition of `col-xs-12`', () =>
-    {
+        checkColumnClass(colXs, right.classes);
         expect(right.classes[colXs + 12]).toBe(true);
     });
 
-    it('should have a default right column definition of `col-md-9`', () =>
+    it(`should have a right column width of 'col-md-9'`, () =>
     {
-        expect(right.classes[colMd + 9]).toBe(true);
-    });
-
-    it('should have a default right column definition of `col-lg-10`', () =>
-    {
-        expect(right.classes[colLg + 10]).toBe(true);
-    });
-
-    it('should have a right column width of `col-xs-12` when `leftColumnWidth` set to 6', () =>
-    {
-        component.leftColumnWidth = 6;
-        fixture.detectChanges();
-        expect(right.classes[colXs + 12]).toBe(true);
-    });
-
-    it('should have a right column width of `col-md-9` and not default value when `leftColumnWidth` set to 6', () =>
-    {
-        component.leftColumnWidth = 6;
-        fixture.detectChanges();
-        expect(right.classes[colMd + 9]).toBe(false);
+        checkColumnClass(colMd, right.classes);
         expect(right.classes[colMd + 5]).toBe(true);
     });
 
-    it('should have a right column width of `col-lg-6` and not default value when `leftColumnWidth` set to 6', () =>
+    it(`should have a right column width of 'col-lg-6'`, () =>
     {
-        component.leftColumnWidth = 6;
-        fixture.detectChanges();
-        expect(right.classes[colLg + 10]).toBe(false);
+        checkColumnClass(colLg, right.classes);
         expect(right.classes[colLg + 6]).toBe(true);
     });
+}
 
-    it('should have a right column width of `col-xs-12` when `leftColumnWidth` set to 15', () =>
+function terraTwoColumnValue15():void
+{
+    beforeEach(() =>
     {
         component.leftColumnWidth = 15;
         fixture.detectChanges();
+    });
+
+    it(`should have a left column width of 'col-xs-12'`, () =>
+    {
+        checkColumnClass(colXs, left.classes);
+        expect(left.classes[colXs + 12]).toBe(true);
+    });
+
+    it(`should have a left column width of 'col-md-12'`, () =>
+    {
+        checkColumnClass(colMd, left.classes);
+        expect(left.classes[colMd + 12]).toBe(true);
+    });
+
+    it(`should have a left column width of 'col-lg-11'`, () =>
+    {
+        checkColumnClass(colLg, left.classes);
+        expect(left.classes[colLg + 11]).toBe(true);
+    });
+
+    it(`should have a right column width of 'col-xs-12'`, () =>
+    {
+        checkColumnClass(colXs, right.classes);
         expect(right.classes[colXs + 12]).toBe(true);
     });
 
-    it('should have a right column width of `col-md-1` and not default value when `leftColumnWidth` set to 15', () =>
+    it(`should have a right column width of 'col-md-1'`, () =>
     {
-        component.leftColumnWidth = 15;
-        fixture.detectChanges();
-        expect(right.classes[colMd + 9]).toBe(false);
+        checkColumnClass(colMd, right.classes);
         expect(right.classes[colMd + 0]).toBe(true);
     });
 
-    it('should have a right column width of `col-lg-1` and not default value when `leftColumnWidth` set to 15', () =>
+    it(`should have a right column width of 'col-lg-1'`, () =>
     {
-        component.leftColumnWidth = 15;
-        fixture.detectChanges();
-        expect(right.classes[colLg + 10]).toBe(false);
+        checkColumnClass(colLg, right.classes);
         expect(right.classes[colLg + 1]).toBe(true);
     });
+}
 
-
-    it('should have a right column width of `col-xs-12` when `leftColumnWidth` set to -5', () =>
+function terraTwoColumnValue5Negative():void
+{
+    beforeEach(() =>
     {
         component.leftColumnWidth = -5;
         fixture.detectChanges();
+    });
+
+    it(`should have a left column width of 'col-xs-12'`, () =>
+    {
+        checkColumnClass(colXs, left.classes);
+        expect(left.classes[colXs + 12]).toBe(true);
+    });
+
+    it(`should have a left column width of 'col-md-12'`, () =>
+    {
+        checkColumnClass(colMd, left.classes);
+        expect(left.classes[colMd + 2]).toBe(true);
+    });
+
+    it(`should have a left column width of 'col-lg-11'`, () =>
+    {
+        checkColumnClass(colLg, left.classes);
+        expect(left.classes[colLg + 1]).toBe(true);
+    });
+
+    it(`should have a right column width of 'col-xs-12'`, () =>
+    {
+        checkColumnClass(colXs, right.classes);
         expect(right.classes[colXs + 12]).toBe(true);
     });
 
-    it('should have a right column width of `col-md-1` and not default value when `leftColumnWidth` set to -5', () =>
+    it(`should have a right column width of 'col-md-1'`, () =>
     {
-        component.leftColumnWidth = -5;
-        fixture.detectChanges();
-        expect(right.classes[colMd + 9]).toBe(false);
+        checkColumnClass(colMd, right.classes);
         expect(right.classes[colMd + 10]).toBe(true);
     });
 
-    it('should have a right column width of `col-lg-1` and not default value when `leftColumnWidth` set to -5', () =>
+    it(`should have a right column width of 'col-lg-1'`, () =>
     {
-        component.leftColumnWidth = -5;
-        fixture.detectChanges();
-        expect(right.classes[colLg + 10]).toBe(false);
+        checkColumnClass(colLg, right.classes);
         expect(right.classes[colLg + 11]).toBe(true);
     });
-});
+}
