@@ -53,7 +53,7 @@ export class TerraCardComponent implements AfterContentChecked
         this.showFooter = this.viewChildFooter.nativeElement.children.length > 0;
     }
 
-    protected isImageOrIconShown():boolean
+    protected get hasImageOrPlaceholderIcon():boolean
     {
         return !StringHelper.isNullUndefinedOrEmpty(this.inputImagePath) || !isNullOrUndefined(this.inputPlaceholderIcon);
     }
