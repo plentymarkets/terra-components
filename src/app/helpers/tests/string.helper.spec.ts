@@ -1,8 +1,8 @@
 import { StringHelper } from '../string.helper';
 
-describe('StringHelper', () =>
+describe('StringHelper:', () =>
 {
-    it('should validate the variable', () =>
+    it('Method: isNullUndefinedOrEmpty() should validate the variable', () =>
     {
         // undefined
         let testVar:string = undefined;
