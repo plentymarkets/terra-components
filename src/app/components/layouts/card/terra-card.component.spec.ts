@@ -32,6 +32,7 @@ describe('TerraCardComponent', () =>
     let component:CardTestComponent;
     let cardComponent:TerraCardComponent;
     let fixture:ComponentFixture<CardTestComponent>;
+    let debugElement:DebugElement;
 
     const expectedImagePath:string = 'app/assets/images/logo_plenty.svg';
     const expectedIcon:string = 'icon-save';
@@ -50,6 +51,7 @@ describe('TerraCardComponent', () =>
         component = fixture.componentInstance;
         cardComponent = fixture.debugElement.query(By.css('terra-card')).componentInstance;
         fixture.detectChanges();
+        debugElement = fixture.debugElement;
     });
 
     afterEach(() =>
@@ -73,7 +75,6 @@ describe('TerraCardComponent', () =>
     // footer
     it('should div-element for footer be shown if content is given', () =>
     {
-        let debugElement:DebugElement = fixture.debugElement;
         let footerElement:DebugElement = debugElement.query(By.css('div.card-footer'));
         let ngContentElement:DebugElement = footerElement.query(By.css('p'));
         let footerContentElement:HTMLElement = ngContentElement.nativeElement;
@@ -86,7 +87,6 @@ describe('TerraCardComponent', () =>
 
     it('should set class selected depending on #inputIsSelected', () =>
     {
-        let debugElement:DebugElement = fixture.debugElement;
         let footerElement:DebugElement = debugElement.query(By.css('div.card-footer'));
         let terraCardElement:DebugElement = debugElement.query(By.css('div.terra-card'));
         expect(footerElement.classes['selected']).toBeFalsy();
@@ -101,7 +101,6 @@ describe('TerraCardComponent', () =>
     // header
     it('should show div-element for header if content is given', () =>
     {
-        let debugElement:DebugElement = fixture.debugElement;
         let headerElement:DebugElement = debugElement.query(By.css('div.card-header'));
         let ngContentElement:DebugElement = headerElement.query(By.css('p'));
         let headerCOntentElement:HTMLElement = ngContentElement.nativeElement;
@@ -115,7 +114,6 @@ describe('TerraCardComponent', () =>
     // block
     it('should show div-element for content if content is given', () =>
     {
-        let debugElement:DebugElement = fixture.debugElement;
         let contentElement:DebugElement = debugElement.query(By.css('div.card-block'));
         let ngContentElement:DebugElement = contentElement.query(By.css('p'));
         let blockContentElement:HTMLElement = ngContentElement.nativeElement;
@@ -126,12 +124,10 @@ describe('TerraCardComponent', () =>
     // image
     it('should show image if #inputImagePath is set', () =>
     {
-        let debugElement:DebugElement;
         let imageElement:DebugElement;
 
         cardComponent.inputImagePath = '';
         fixture.detectChanges();
-        debugElement = fixture.debugElement;
         imageElement = debugElement.query(By.css('div.terra-card-image'));
         expect(imageElement).toBeFalsy();
 
@@ -145,7 +141,6 @@ describe('TerraCardComponent', () =>
     {
         cardComponent.inputPlaceholderIcon = expectedIcon;
         fixture.detectChanges();
-        let debugElement:DebugElement = fixture.debugElement;
         let iconElement:DebugElement = debugElement.query(By.css('div.terra-card-placeholder'));
 
         expect(iconElement).toBeTruthy();
@@ -154,7 +149,6 @@ describe('TerraCardComponent', () =>
 
     it('should show no image and no icon if #inputPlaceholderIcon and #inputPlaceholderIcon are not set', () =>
     {
-        let debugElement:DebugElement = fixture.debugElement;
         let imageElement:DebugElement;
         let iconElement:DebugElement;
 
@@ -168,7 +162,6 @@ describe('TerraCardComponent', () =>
 
     it('should show only the image if both #inputPlaceholderIcon and #inputPlaceholderIcon are set', () =>
     {
-        let debugElement:DebugElement = fixture.debugElement;
         let imageElement:DebugElement;
         let iconElement:DebugElement;
 
