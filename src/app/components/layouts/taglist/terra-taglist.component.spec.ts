@@ -100,7 +100,7 @@ fdescribe('TerraTaglistComponent', () =>
             });
         });
 
-        it(`should emit on #onCloseTag if a tag emits on #onCloseTag`, () =>
+        it(`should emit on #onCloseTag if a tag component emits on its #onCloseTag-Emitter`, () =>
         {
             let tagToClose:number = 0;
             component.onCloseTag.subscribe((tagId:number) => tagToClose = tagId);
