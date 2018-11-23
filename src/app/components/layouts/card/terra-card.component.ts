@@ -6,6 +6,7 @@ import {
     ViewChild
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
+import { StringHelper } from '../../../helpers/string.helper';
 
 @Component({
     selector: 'terra-card',
