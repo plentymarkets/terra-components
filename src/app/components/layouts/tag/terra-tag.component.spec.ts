@@ -16,6 +16,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 import Spy = jasmine.Spy;
+import { ModalDirective } from 'ngx-bootstrap';
 
 fdescribe('TerraTagComponent', () =>
 {
@@ -233,24 +234,22 @@ fdescribe('TerraTagComponent', () =>
         expect(closeElement).toBeDefined();
     });
 
-    it('should close tag on close icon click', () =>
+    it('should close tag on close icon click', (done:Function) =>
     {
         component.isClosable = true;
+        component.tagId = 1337;
 
         fixture.detectChanges();
 
+        component.onCloseTag.subscribe((id:number) =>
+        {
+            expect(id).toBe(component.tagId);
+            done();
+        });
+
         let closeElement:DebugElement = tagDiv.query(By.css('span.icon-close'));
 
-        let spanElement:HTMLSpanElement = closeElement.nativeElement;
-
-        spanElement.onclick = ():void =>
-        {
-            expect(closeElement).toBeNull();
-        };
-
-        // let spy:Spy = spyOn(component, 'close');
-
-        // closeElement.triggerEventHandler('click', null);
+        closeElement.triggerEventHandler('click', null);
     });
 });
 
