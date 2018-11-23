@@ -56,14 +56,14 @@ fdescribe('TerraTagComponent', () =>
     it('should be initialized', () =>
     {
         expect(component.inputIsTaggable).toBe(false);
-        expect(component.inputCustomClass).toBeFalsy();
-        expect(component.inputColor).toBeFalsy();
-        expect(component.inputBadge).toBeFalsy();
-        expect(component.name).toBeFalsy();
-        expect(component.names).toBeFalsy();
+        expect(component.inputCustomClass).toBeUndefined();
+        expect(component.inputColor).toBeUndefined();
+        expect(component.inputBadge).toBeUndefined();
+        expect(component.name).toBeUndefined();
+        expect(component.names).toBeUndefined();
         expect(component.inputIsTagged).toBe(false);
         expect(component.isClosable).toBe(false);
-        expect(component.tagId).toBeFalsy();
+        expect(component.tagId).toBeUndefined();
     });
 
     it('`inputColor` should be equal to background-color style', () =>

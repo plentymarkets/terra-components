@@ -29,13 +29,13 @@ export class TerraTagComponent
     public inputIsTaggable:boolean = false;
 
     @Input()
-    public inputCustomClass:string = null;
+    public inputCustomClass:string;
 
     @Input()
     /**
      * The background color for the tag.
      */
-    public inputColor:string = null;
+    public inputColor:string;
 
     @Input()
     public tagId:number;
