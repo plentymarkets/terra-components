@@ -1,18 +1,23 @@
 import { StringHelper } from '../string.helper';
 
-describe('Helper: StringHelper', () =>
+describe('StringHelper', () =>
 {
-    let undefinedVariable:string;
-
-    it('should return true', () =>
+    it('should validate the variable', () =>
     {
-        expect(StringHelper.isNullUndefinedOrEmpty(null)).toBe(true);
-        expect(StringHelper.isNullUndefinedOrEmpty('')).toBe(true);
-        expect(StringHelper.isNullUndefinedOrEmpty(undefinedVariable)).toBe(true);
-    });
+        // undefined
+        let testVar:string = undefined;
+        expect(StringHelper.isNullUndefinedOrEmpty(testVar)).toBe(true);
 
-    it('should return false', () =>
-    {
-        expect(StringHelper.isNullUndefinedOrEmpty('randomstring')).toBe(false);
+        // null
+        testVar = null;
+        expect(StringHelper.isNullUndefinedOrEmpty(testVar)).toBe(true);
+
+        // empty
+        testVar = '';
+        expect(StringHelper.isNullUndefinedOrEmpty(testVar)).toBe(true);
+
+        testVar = 'Test';
+
+        expect(StringHelper.isNullUndefinedOrEmpty(testVar)).toBe(false);
     });
 });
