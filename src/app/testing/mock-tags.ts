@@ -20,6 +20,7 @@ export const tagOne:TerraTagInterface =
 export const tagTwo:TerraTagInterface =
     {
         name:  'Tag Two',
+        color: 'red',
         names: [
             {
                 language: 'de',

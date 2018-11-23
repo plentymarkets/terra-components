@@ -7,7 +7,7 @@ import {
 import { isNullOrUndefined } from 'util';
 import { Color } from '../../forms/input/color-picker/color.helper';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
-import { Language } from 'angular-l10n';
+import { LocaleService } from 'angular-l10n';
 
 @Component({
     selector: 'terra-tag',
@@ -16,9 +16,6 @@ import { Language } from 'angular-l10n';
 })
 export class TerraTagComponent
 {
-    @Language()
-    public lang:string;
-
     @Input()
     public name:string;
 
@@ -47,10 +44,12 @@ export class TerraTagComponent
     public isClosable:boolean = false;
 
     @Input()
-    public names:Array<TerraTagNameInterface> = [];
+    public names:Array<TerraTagNameInterface>;
 
     @Output()
     public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
+
+    private lang:string = localStorage.getItem('plentymarkets_lang_');
 
     protected close():void
     {
@@ -59,7 +58,7 @@ export class TerraTagComponent
 
     protected getName():string
     {
-        return this.inputBadge ? this.inputBadge :  this.getTranslatedName();
+        return this.inputBadge ? this.inputBadge : this.getTranslatedName();
     }
 
     private getTranslatedName():string
