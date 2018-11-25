@@ -6,7 +6,8 @@ import {
     Route,
     Router,
     RouterEvent,
-    Routes
+    Routes,
+    UrlSerializer
 } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 import { TranslationService } from 'angular-l10n';
@@ -23,7 +24,8 @@ export class TerraBreadcrumbsService
     private initialRoute:Route;
 
     constructor(private router:Router,
-                private translation:TranslationService)
+                private translation:TranslationService,
+                private urlSerializer:UrlSerializer)
     {
         this.router.events.filter((event:RouterEvent) =>
         {
@@ -237,7 +239,18 @@ export class TerraBreadcrumbsService
 
     public checkActiveRoute(breadcrumb:TerraBreadcrumb):boolean
     {
-        return this.router.isActive(breadcrumb.routerLink, true);
+        let breadcrumbUrl:string = breadcrumb.routerLink;
+
+        if(Object.getOwnPropertyNames(breadcrumb.queryParams).length > 0)
+        {
+            breadcrumbUrl = this.urlSerializer.serialize(
+                this.router.createUrlTree([],
+                    {
+                        queryParams: breadcrumb.queryParams
+                    }));
+        }
+
+        return (this.router.url === breadcrumbUrl);
     }
 
     /**
