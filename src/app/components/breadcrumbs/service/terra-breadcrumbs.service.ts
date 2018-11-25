@@ -106,7 +106,26 @@ export class TerraBreadcrumbsService
             let currentContainerIndex:number = this._containers.indexOf(container);
             let previousContainer:TerraBreadcrumbContainer = this._containers[currentContainerIndex - 1];
             let parentBreadcrumb:TerraBreadcrumb = isNullOrUndefined(previousContainer) ? undefined : previousContainer.currentSelectedBreadcrumb;
-            breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url, activatedSnapshot.queryParams);
+
+            let snapshotCompleteUrl:string = '';
+
+            activatedSnapshot.pathFromRoot.forEach((path:ActivatedRouteSnapshot) =>
+            {
+                if(path.url.length > 0)
+                {
+                    snapshotCompleteUrl += '/' + path.url.join('/');
+                }
+            });
+
+            if(snapshotCompleteUrl === url)
+            {
+                breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url, activatedSnapshot.queryParams);
+            }
+            else
+            {
+                breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url, {});
+            }
+
             container.breadcrumbList.push(breadcrumb);
         }
 
