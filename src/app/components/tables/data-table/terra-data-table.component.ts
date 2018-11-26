@@ -132,13 +132,17 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
         return TerraPlacementEnum.TOP;
     }
+    protected get dataAvailableOrRequestPending():boolean
+    {
+        return this.isTableDataAvailable || (!isNullOrUndefined(this.inputService) && this.inputService.requestPending);
+    }
 
-    protected get isTableDataAvailable():boolean
+    private get isTableDataAvailable():boolean
     {
         return this.rowList && this.rowList.length > 0;
     }
 
-    protected doPaging(pagerData:TerraPagerInterface<T>):void
+    protected doPaging():void
     {
         // request data from server
         this.getResults();

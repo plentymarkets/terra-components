@@ -15,12 +15,13 @@ import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../translation/l10n.config';
 import { TerraSuggestionBoxComponent } from './terra-suggestion-box.component';
+
 import { MockElementRef } from '../../../testing/mock-element-ref';
 import { By } from '@angular/platform-browser';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
+import Spy = jasmine.Spy;
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { TerraTextInputComponent } from '../input/text-input/terra-text-input.component';
-import Spy = jasmine.Spy;
 
 describe('TerraSuggestionBoxComponent', () =>
 {
@@ -156,30 +157,28 @@ describe('TerraSuggestionBoxComponent', () =>
     it('Entering text should call #onChange() and update #selectedValue and #value', () =>
     {
         component.inputListBoxValues = [suggestion];
-
-        let suggestionBoxElement:HTMLElement = fixture.nativeElement;
-        let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
-
         let spy:Spy = spyOn(component, 'onChange').and.callThrough();
+
+        let terraTextInput:TerraTextInputComponent = fixture.debugElement.query(By.css('terra-text-input')).componentInstance;
 
         // simulate user entering a new value into the input box
         // a value that is included in the suggestions
-        inputElement.value = suggestion.caption as string;
-        inputElement.dispatchEvent(new Event('input'));
+        terraTextInput.value = suggestion.caption as string;
+        terraTextInput.outputOnInput.emit();
 
         expect(component.selectedValue).toEqual(suggestion);
         expect(component.value).toEqual(suggestion.value);
 
         // empty input
-        inputElement.value = '';
-        inputElement.dispatchEvent(new Event('input'));
+        terraTextInput.value = '';
+        terraTextInput.outputOnInput.emit();
 
         expect(component.selectedValue).toEqual(undefined);
         expect(component.value).toEqual(null);
 
         // input that is not included in the suggestions
-        inputElement.value = '123';
-        inputElement.dispatchEvent(new Event('input'));
+        terraTextInput.value = '123';
+        terraTextInput.outputOnInput.emit();
 
         expect(component.selectedValue).toEqual(undefined);
         expect(component.value).toEqual(null);
