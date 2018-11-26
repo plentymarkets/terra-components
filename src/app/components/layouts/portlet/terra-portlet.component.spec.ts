@@ -184,7 +184,8 @@ describe('TerraPortletComponent', () =>
         expect(component.inputCollapsed).toBe(false);
     });
 
-    it(`[NEED BETTER EXPECTATION] should toggles 'inputCollapsed' and emits 'inputCollapsedChange' if 'inputIsCollapsable is true and #toggleCollapse() is called`,
+    /* tslint:disable:max-line-length */
+    it(`[NEED BETTER EXPECTATION] should toggle 'inputCollapsed' and emits 'inputCollapsedChange' if 'inputIsCollapsable is true and #toggleCollapse() is called`,
         () =>
         {
             let inputCollapsedChangeEmit:Spy = spyOn(component.inputCollapsedChange, 'emit');
