@@ -27,16 +27,10 @@ let nextId:number = 0;
 export class TerraTextAreaInputComponent extends TerraInputComponent implements OnChanges
 {
     /**
-     * @description If true, a * indicates that the value is required. Default false.
-     */
-    @Input()
-    public inputIsRequired:boolean;
-
-    /**
      * @description If true, the textarea is not resizeable. Default false.
      */
     @Input()
-    public inputHasFixedHeight:boolean;
+    public inputHasFixedHeight:boolean = false;
 
     /**
      * @description Sets the initial number of rows. Minimum is four.
@@ -56,7 +50,6 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
         // generate the id of the input instance
         this.id = `text-area-input_#${nextId++}`;
         this.inputMaxRows = this.defaultMaxRows;
-        this.inputHasFixedHeight = false;
     }
 
     public ngOnChanges(changes:SimpleChanges):void
