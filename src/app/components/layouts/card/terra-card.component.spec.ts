@@ -153,7 +153,7 @@ describe('TerraCardComponent', () =>
             iconElement = debugElement.query(By.css('div.terra-card-placeholder'));
 
             expect(iconElement).toBeTruthy();
-            expect(cardComponent.inputPlaceholderIcon).toEqual(expectedIcon);
+            expect(iconElement.classes[expectedIcon]).toBe(true);
         });
 
         it('should show no image and no icon if #inputPlaceholderIcon and #inputPlaceholderIcon are not set', () =>
