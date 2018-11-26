@@ -2,7 +2,6 @@ import 'core-js'; // ES6 + reflect-metadata
 
 // zone.js
 import 'zone.js/dist/zone';
-(window as any)['__zone_symbol__fakeAsyncPatchLock'] = true;
 import 'zone.js/dist/zone-testing';
 
 // TestBed initialization
