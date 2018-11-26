@@ -32,10 +32,10 @@ export class TerraTagComponent implements OnChanges
     @Input()
     public inputCustomClass:string;
 
-    @Input()
     /**
      * The background color for the tag.
      */
+    @Input()
     public inputColor:string;
 
     @Input()
@@ -45,7 +45,7 @@ export class TerraTagComponent implements OnChanges
     public isClosable:boolean = false;
 
     @Input()
-    public names:Array<TerraTagNameInterface>;
+    public names:Array<TerraTagNameInterface> = [];
 
     @Output()
     public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
@@ -71,24 +71,19 @@ export class TerraTagComponent implements OnChanges
 
     private get translatedName():string
     {
-        // Fallback if names not set
         if(isNullOrUndefined(this.names))
+        {
+            return this.name;
+        }
+
+        const tagName:TerraTagNameInterface = this.names.find((name:TerraTagNameInterface) => name.language === this.lang);
+        if(isNullOrUndefined(tagName))
         {
             return this.name;
         }
         else
         {
-            const tagName:TerraTagNameInterface = this.names.find((name:TerraTagNameInterface) => name.language === this.lang);
-
-            // Fallback if no name for this.lang is set
-            if(isNullOrUndefined(tagName))
-            {
-                return this.name;
-            }
-            else
-            {
-                return tagName.name;
-            }
+            return tagName.name;
         }
     }
 
