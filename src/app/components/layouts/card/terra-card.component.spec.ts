@@ -74,9 +74,16 @@ describe('TerraCardComponent', () =>
 
     describe('footer content', () =>
     {
+        let footerElement:DebugElement;
+
+        beforeEach(() =>
+            {
+                footerElement = debugElement.query(By.css('div.card-footer'));
+            }
+        );
+
         it('should div-element for footer be shown if content is given', () =>
         {
-            let footerElement:DebugElement = debugElement.query(By.css('div.card-footer'));
             let ngContentElement:DebugElement = footerElement.query(By.css('p'));
             let footerContentElement:HTMLElement = ngContentElement.nativeElement;
             expect(footerElement).toBeTruthy();
@@ -88,7 +95,6 @@ describe('TerraCardComponent', () =>
 
         it('should set class selected depending on #inputIsSelected', () =>
         {
-            let footerElement:DebugElement = debugElement.query(By.css('div.card-footer'));
             let terraCardElement:DebugElement = debugElement.query(By.css('div.terra-card'));
             expect(footerElement.classes['selected']).toBeFalsy();
             expect(terraCardElement.classes['selected']).toBeFalsy();
