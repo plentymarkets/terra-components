@@ -60,11 +60,6 @@ describe('TerraCardComponent', () =>
         cardComponent.inputImagePath = null;
     });
 
-    describe('footer content', footer);
-    describe('header content', header);
-    describe('block content', block);
-    describe('image', image);
-
     it('should create', () =>
     {
         expect(component).toBeTruthy();
@@ -77,7 +72,7 @@ describe('TerraCardComponent', () =>
         expect(cardComponent.inputPlaceholderIcon).toBeUndefined();
     });
 
-    function footer():void
+    describe('footer content', () =>
     {
         it('should div-element for footer be shown if content is given', () =>
         {
@@ -103,9 +98,9 @@ describe('TerraCardComponent', () =>
             expect(footerElement.classes['selected']).toBeTruthy();
             expect(terraCardElement.classes['selected']).toBeTruthy();
         });
-    }
+    });
 
-    function header():void
+    describe('header content', () =>
     {
         it('should show div-element for header if content is given', () =>
         {
@@ -118,9 +113,9 @@ describe('TerraCardComponent', () =>
             expect(headerContentElement.innerHTML).toEqual('card header');
             expect(headerElement.nativeElement.hidden).toBe(false);
         });
-    }
+    });
 
-    function block():void
+    describe('block content', () =>
     {
         it('should show div-element for content if content is given', () =>
         {
@@ -130,9 +125,9 @@ describe('TerraCardComponent', () =>
             expect(contentElement).toBeTruthy();
             expect(blockContentElement.innerHTML).toEqual('card content');
         });
-    }
+    });
 
-    function image():void
+    describe('image', () =>
     {
         it('should show image if #inputImagePath is set', () =>
         {
@@ -194,5 +189,5 @@ describe('TerraCardComponent', () =>
             expect(backgroundImageElement).toBeTruthy();
             expect(backgroundImageElement.styles['background-image']).toBe(`url(${expectedImagePath})`);
         });
-    }
+    });
 });
