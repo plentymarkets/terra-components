@@ -63,7 +63,7 @@ describe('TerraTagComponent', () =>
         expect(component.tagId).toBeUndefined();
     });
 
-    it('`inputColor` should be equal to background-color style', () =>
+    it('should have background-color style equal to `inputColor`', () =>
     {
         expect(tagDiv.styles['background-color']).toBeFalsy(); // no background color set
 
@@ -74,7 +74,7 @@ describe('TerraTagComponent', () =>
         expect(tagDiv.styles['background-color']).toEqual(component.inputColor);
     });
 
-    it('`inputCustomClass` should set and equal to class of tagDiv', () =>
+    it('should have set tagDiv classes equal to `inputCustomClass`', () =>
     {
         expect(Object.entries(tagDiv.classes).length).toBe(0); // no classes set
 
@@ -182,8 +182,6 @@ describe('TerraTagComponent', () =>
         component.inputBadge = null;
         component.name = null;
         component.names = tagOne.names;
-
-        fixture.detectChanges();
     });
 
     it('should set text depending on name', () =>
