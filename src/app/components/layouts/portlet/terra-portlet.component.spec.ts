@@ -1,4 +1,3 @@
-/* tslint:disable:no-unused-variable */
 import {
     async,
     ComponentFixture,
@@ -7,7 +6,7 @@ import {
 import {
     TerraButtonComponent,
     TerraButtonInterface,
-    TerraPortletComponent,
+    TerraPortletComponent
 } from '../../../..';
 import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
@@ -23,7 +22,7 @@ import { By } from '@angular/platform-browser';
 import Spy = jasmine.Spy;
 import { buttonList } from '../../../testing/mock-buttons';
 
-fdescribe('TerraPortletComponent', () =>
+describe('TerraPortletComponent', () =>
 {
     let component:TerraPortletComponent;
     let fixture:ComponentFixture<TerraPortletComponent>;
