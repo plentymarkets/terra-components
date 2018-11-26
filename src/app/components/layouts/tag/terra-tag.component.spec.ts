@@ -54,7 +54,7 @@ fdescribe('TerraTagComponent', () =>
         expect(component.inputColor).toBeUndefined();
         expect(component.inputBadge).toBeUndefined();
         expect(component.name).toBeUndefined();
-        expect(component.names).toBeUndefined();
+        expect(component.names).toEqual([]);
         expect(component.inputIsTagged).toBe(false);
         expect(component.isClosable).toBe(false);
         expect(component.tagId).toBeUndefined();
