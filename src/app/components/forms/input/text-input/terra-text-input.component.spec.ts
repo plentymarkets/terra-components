@@ -13,7 +13,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import Spy = jasmine.Spy;
 
-describe('Component: TerraTextInputComponent', () =>
+fdescribe('Component: TerraTextInputComponent', () =>
 {
     let component:TerraTextInputComponent;
     let fixture:ComponentFixture<TerraTextInputComponent>;
@@ -139,14 +139,15 @@ describe('Component: TerraTextInputComponent', () =>
         expect(value).toEqual(testString);
     });
 
-    it(`should focus the input element if #focusNativeInput method is called`, () =>
+    it(`should focus the input element if #focusNativeInput method is called`, (done:any) =>
     {
         expect(document.activeElement).not.toEqual(inputElement);
-        inputElement.onfocus = ():void =>
+        component.focusNativeInput();
+        setTimeout( () =>
         {
             expect(document.activeElement).toEqual(inputElement);
-        };
-        component.focusNativeInput();
+            done();
+        });
     });
 
     it(`should select the text of the input if #selectNativeInput method is called`, () =>
