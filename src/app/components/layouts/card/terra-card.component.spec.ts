@@ -54,12 +54,6 @@ describe('TerraCardComponent', () =>
         debugElement = fixture.debugElement;
     });
 
-    afterEach(() =>
-    {
-        cardComponent.inputPlaceholderIcon = null;
-        cardComponent.inputImagePath = null;
-    });
-
     it('should create', () =>
     {
         expect(component).toBeTruthy();
@@ -72,7 +66,7 @@ describe('TerraCardComponent', () =>
         expect(cardComponent.inputPlaceholderIcon).toBeUndefined();
     });
 
-    describe('footer content', () =>
+    describe('in footer content section', () =>
     {
         let footerElement:DebugElement;
 
@@ -106,7 +100,7 @@ describe('TerraCardComponent', () =>
         });
     });
 
-    describe('header content', () =>
+    describe('in header content section', () =>
     {
         it('should show div-element for header if content is given', () =>
         {
@@ -121,7 +115,7 @@ describe('TerraCardComponent', () =>
         });
     });
 
-    describe('block content', () =>
+    describe('in block content section', () =>
     {
         it('should show div-element for content if content is given', () =>
         {
@@ -133,13 +127,15 @@ describe('TerraCardComponent', () =>
         });
     });
 
-    describe('image', () =>
+    describe('in image section', () =>
     {
+        let imageElement:DebugElement;
+        let iconElement:DebugElement;
+
         it('should show image if #inputImagePath is set', () =>
         {
             cardComponent.inputImagePath = '';
             fixture.detectChanges();
-            let imageElement:DebugElement;
             imageElement = debugElement.query(By.css('div.terra-card-image'));
 
             expect(imageElement).toBeFalsy();
@@ -154,7 +150,7 @@ describe('TerraCardComponent', () =>
         {
             cardComponent.inputPlaceholderIcon = expectedIcon;
             fixture.detectChanges();
-            let iconElement:DebugElement = debugElement.query(By.css('div.terra-card-placeholder'));
+            iconElement = debugElement.query(By.css('div.terra-card-placeholder'));
 
             expect(iconElement).toBeTruthy();
             expect(cardComponent.inputPlaceholderIcon).toEqual(expectedIcon);
@@ -163,9 +159,6 @@ describe('TerraCardComponent', () =>
         it('should show no image and no icon if #inputPlaceholderIcon and #inputPlaceholderIcon are not set', () =>
         {
             fixture.detectChanges();
-            let imageElement:DebugElement;
-            let iconElement:DebugElement;
-
             iconElement = debugElement.query(By.css('div.terra-card-placeholder'));
             imageElement = debugElement.query(By.css('div.terra-card-image'));
             expect(iconElement).toBeFalsy();
@@ -177,9 +170,6 @@ describe('TerraCardComponent', () =>
             cardComponent.inputPlaceholderIcon = expectedIcon;
             cardComponent.inputImagePath = expectedImagePath;
             fixture.detectChanges();
-            let imageElement:DebugElement;
-            let iconElement:DebugElement;
-
             imageElement = debugElement.query(By.css('div.terra-card-image'));
             iconElement = debugElement.query(By.css('div.terra-card-placeholder'));
             expect(imageElement).toBeTruthy();
