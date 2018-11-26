@@ -2,19 +2,20 @@ import {
     Component,
     EventEmitter,
     Input,
-    Output
+    OnChanges,
+    Output,
+    SimpleChanges
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { Color } from '../../forms/input/color-picker/color.helper';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
-import { LocaleService } from 'angular-l10n';
 
 @Component({
     selector: 'terra-tag',
     styles:   [require('./terra-tag.component.scss')],
     template: require('./terra-tag.component.html')
 })
-export class TerraTagComponent
+export class TerraTagComponent implements OnChanges
 {
     @Input()
     public name:string;
@@ -50,23 +51,43 @@ export class TerraTagComponent
     public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
 
     private lang:string = localStorage.getItem('plentymarkets_lang_');
+    private translatedName:string;
+
+    public ngOnChanges(changes?:SimpleChanges):void
+    {
+        if(changes.hasOwnProperty('name'))
+        {
+            this.name = changes['name'].currentValue;
+            this.translateName();
+        }
+        else if(changes.hasOwnProperty('names'))
+        {
+            this.names = changes['names'].currentValue;
+            this.translateName();
+        }
+    }
 
     protected close():void
     {
         this.onCloseTag.emit(this.tagId);
     }
 
-    protected getName():string
+    protected get displayedName():string
     {
-        return this.inputBadge ? this.inputBadge : this.getTranslatedName();
+        if(isNullOrUndefined(this.translatedName))
+        {
+            this.translateName();
+        }
+
+        return this.inputBadge ? this.inputBadge : this.translatedName;
     }
 
-    private getTranslatedName():string
+    private translateName():void
     {
         // Fallback if names not set
         if(isNullOrUndefined(this.names))
         {
-            return this.name;
+            this.translatedName = this.name;
         }
         else
         {
@@ -75,11 +96,11 @@ export class TerraTagComponent
             // Fallback if no name for this.lang is set
             if(isNullOrUndefined(tagName))
             {
-                return this.name;
+                this.translatedName = this.name;
             }
             else
             {
-                return tagName.name;
+                this.translatedName = tagName.name;
             }
         }
     }

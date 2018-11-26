@@ -12,11 +12,14 @@ import {
     tagOne,
     tagTwo
 } from '../../../testing/mock-tags';
-import { DebugElement } from '@angular/core';
+import {
+    DebugElement,
+    SimpleChange
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 
-describe('TerraTagComponent', () =>
+fdescribe('TerraTagComponent', () =>
 {
     let component:TerraTagComponent;
     let fixture:ComponentFixture<TerraTagComponent>;
@@ -245,6 +248,47 @@ describe('TerraTagComponent', () =>
         let closeElement:DebugElement = tagDiv.query(By.css('span.icon-close'));
 
         closeElement.triggerEventHandler('click', null);
+    });
+
+    it('should set `translatedName` when `name` is changed', () =>
+    {
+        let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
+        let text:HTMLSpanElement = textElement.nativeElement;
+
+        expect(text.innerHTML).toBe('');
+
+        component.ngOnChanges({name: new SimpleChange(null, name, true)});
+
+        fixture.detectChanges();
+
+        textElement = tagDiv.query(By.css('span.tag-text'));
+        text = textElement.nativeElement;
+
+        expect(text.innerHTML).toBe(name);
+    });
+
+    it('should set `translatedName` when `names` is changed', () =>
+    {
+        let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
+        let text:HTMLSpanElement = textElement.nativeElement;
+
+        expect(text.innerHTML).toBe('');
+
+        let lang:string = localStorage.getItem('plentymarkets_lang_');
+
+        component.inputBadge = null;
+        component.name = null;
+
+        component.ngOnChanges({names: new SimpleChange(null, tagOne.names, true)});
+
+        fixture.detectChanges();
+
+        textElement = tagDiv.query(By.css('span.tag-text'));
+        text = textElement.nativeElement;
+
+        let tagName:TerraTagNameInterface = tagOne.names.find((tag:TerraTagNameInterface) => tag.language === lang);
+
+        expect(text.innerHTML).toEqual(tagName.name);
     });
 });
 
