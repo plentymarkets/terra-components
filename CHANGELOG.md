@@ -1,6 +1,9 @@
 <a name="2.4.3"></a>
 # 2.4.3 (21.11.2018)
 
+### Feature
+* **terra-indicator** added TerraIndicatorLabelTypeEnum and TerraIndicatorInterface for clearer usage
+
 ### Bug Fixes
 * **terra-simple-table** fix issue with notifications on `selectedRowList` changes via `outputSelectedRowsChange`.
 
@@ -269,7 +272,6 @@
 
 ### Features
 * **terra-card** render div for image only if imagePath or placeholder icon is set
-
 
 <a name="2.2.18"></a>
 # 2.2.18 (21.06.2018)
