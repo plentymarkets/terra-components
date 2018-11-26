@@ -3,9 +3,9 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { TerraTwoColumnsContainerComponent } from '../../../../../index';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';
 
 describe('TerraTwoColumnsContainerComponent', () =>
 {
