@@ -4,7 +4,7 @@ import {
     TestBed
 } from '@angular/core/testing';
 
-import { TerraTagComponent } from '../../../..';
+import { TerraTagComponent } from './terra-tag.component';
 import {
     tagOne,
     tagTwo
