@@ -5,9 +5,6 @@ import {
 } from '@angular/core/testing';
 
 import { TerraTagComponent } from '../../../..';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../translation/l10n.config';
-import { HttpClientModule } from '@angular/common/http';
 import {
     tagOne,
     tagTwo
@@ -161,7 +158,7 @@ fdescribe('TerraTagComponent', () =>
     it('should set text depending on inputBadge', () =>
     {
         component.inputBadge = name;
-
+        component.ngOnChanges({inputBadge: new SimpleChange(null, name, true)});
         fixture.detectChanges();
 
         let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
@@ -171,6 +168,8 @@ fdescribe('TerraTagComponent', () =>
 
         component.inputBadge = null;
         component.name = name;
+
+        component.ngOnChanges({name: new SimpleChange(null, name, true)});
 
         fixture.detectChanges();
 
@@ -189,6 +188,8 @@ fdescribe('TerraTagComponent', () =>
         component.inputBadge = null;
         component.name = name;
 
+        component.ngOnChanges({name: new SimpleChange(null, name, true)});
+
         fixture.detectChanges();
 
         let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
@@ -204,6 +205,8 @@ fdescribe('TerraTagComponent', () =>
         component.inputBadge = null;
         component.name = null;
         component.names = tagOne.names;
+
+        component.ngOnChanges({names: new SimpleChange(null, tagOne.names, true)});
 
         fixture.detectChanges();
 
@@ -245,47 +248,6 @@ fdescribe('TerraTagComponent', () =>
         let closeElement:DebugElement = tagDiv.query(By.css('span.icon-close'));
 
         closeElement.triggerEventHandler('click', null);
-    });
-
-    it('should set `translatedName` when `name` is changed', () =>
-    {
-        let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
-        let text:HTMLSpanElement = textElement.nativeElement;
-
-        expect(text.innerHTML).toBe('');
-
-        component.ngOnChanges({name: new SimpleChange(null, name, true)});
-
-        fixture.detectChanges();
-
-        textElement = tagDiv.query(By.css('span.tag-text'));
-        text = textElement.nativeElement;
-
-        expect(text.innerHTML).toBe(name);
-    });
-
-    it('should set `translatedName` when `names` is changed', () =>
-    {
-        let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
-        let text:HTMLSpanElement = textElement.nativeElement;
-
-        expect(text.innerHTML).toBe('');
-
-        let lang:string = localStorage.getItem('plentymarkets_lang_');
-
-        component.inputBadge = null;
-        component.name = null;
-
-        component.ngOnChanges({names: new SimpleChange(null, tagOne.names, true)});
-
-        fixture.detectChanges();
-
-        textElement = tagDiv.query(By.css('span.tag-text'));
-        text = textElement.nativeElement;
-
-        let tagName:TerraTagNameInterface = tagOne.names.find((tag:TerraTagNameInterface) => tag.language === lang);
-
-        expect(text.innerHTML).toEqual(tagName.name);
     });
 });
 

@@ -50,20 +50,17 @@ export class TerraTagComponent implements OnChanges
     @Output()
     public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
 
+    protected tagName:string;
+
     private lang:string = localStorage.getItem('plentymarkets_lang_');
-    private translatedName:string;
 
     public ngOnChanges(changes?:SimpleChanges):void
     {
-        if(changes.hasOwnProperty('name'))
+        if(changes.hasOwnProperty('name') ||
+           changes.hasOwnProperty('names') ||
+           changes.hasOwnProperty('inputBadge'))
         {
-            this.name = changes['name'].currentValue;
-            this.translateName();
-        }
-        else if(changes.hasOwnProperty('names'))
-        {
-            this.names = changes['names'].currentValue;
-            this.translateName();
+            this.tagName = this.inputBadge ? this.inputBadge : this.translatedName;
         }
     }
 
@@ -72,22 +69,12 @@ export class TerraTagComponent implements OnChanges
         this.onCloseTag.emit(this.tagId);
     }
 
-    protected get displayedName():string
-    {
-        if(isNullOrUndefined(this.translatedName))
-        {
-            this.translateName();
-        }
-
-        return this.inputBadge ? this.inputBadge : this.translatedName;
-    }
-
-    private translateName():void
+    private get translatedName():string
     {
         // Fallback if names not set
         if(isNullOrUndefined(this.names))
         {
-            this.translatedName = this.name;
+            return this.name;
         }
         else
         {
@@ -96,11 +83,11 @@ export class TerraTagComponent implements OnChanges
             // Fallback if no name for this.lang is set
             if(isNullOrUndefined(tagName))
             {
-                this.translatedName = this.name;
+                return this.name;
             }
             else
             {
-                this.translatedName = tagName.name;
+                return tagName.name;
             }
         }
     }
