@@ -1,3 +1,15 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-data-table** 
+	- fixed coloring of links in the table if the row is selected or active
+	- reset rowList before requesting data from the server. Show pager and header while data is loaded.
+
+### Feature
+* **terra-button-with-options** 
+    - new input `inputIsSmall`
+    - Added the ability to add a divider button to the 'inputOptions'
+    
 <a name="3.0.0-beta.15"></a>
 # 3.0.0-beta.15 (21.11.2018)
 Adapted Changes from v2.4.3
@@ -186,6 +198,9 @@ Adapted Changes from v2.3.21 and v2.3.22
 
 <a name="2.4.3"></a>
 # 2.4.3 (21.11.2018)
+
+### Feature
+* **terra-indicator** added TerraIndicatorLabelTypeEnum and TerraIndicatorInterface for clearer usage
 
 ### Bug Fixes
 * **terra-simple-table** fix issue with notifications on `selectedRowList` changes via `outputSelectedRowsChange`.
@@ -448,7 +463,6 @@ Adapted Changes from v2.3.21 and v2.3.22
 
 ### Features
 * **terra-card** render div for image only if imagePath or placeholder icon is set
-
 
 <a name="2.2.18"></a>
 # 2.2.18 (21.06.2018)

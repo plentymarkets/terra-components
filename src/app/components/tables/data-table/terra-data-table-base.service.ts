@@ -157,6 +157,7 @@ export abstract class TerraDataTableBaseService<T, P>
 
         // request table data from the server
         this._requestPending = true;
+        this._rowList = [];
         this.requestTableData(params).pipe(
             tap((res:TerraPagerInterface<T>) => this.updatePagingData(res)),
             map((res:TerraPagerInterface<T>) => res.entries.map((entry:T) => this.dataToRowMapping(entry))),
