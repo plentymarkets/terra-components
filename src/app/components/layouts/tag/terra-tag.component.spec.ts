@@ -71,7 +71,7 @@ describe('TerraTagComponent', () =>
 
         fixture.detectChanges();
 
-        expect(tagDiv.styles['background-color']).toEqual(component.inputColor);
+        expect(tagDiv.styles['background-color']).toEqual(tagOne.color);
     });
 
     it('should have set tagDiv classes equal to `inputCustomClass`', () =>
