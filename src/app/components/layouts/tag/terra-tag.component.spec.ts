@@ -33,10 +33,7 @@ fdescribe('TerraTagComponent', () =>
             declarations: [
                 TerraTagComponent
             ],
-            imports:      [
-                HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig)
-            ]
+            imports:      []
         }).compileComponents();
     }));
 
