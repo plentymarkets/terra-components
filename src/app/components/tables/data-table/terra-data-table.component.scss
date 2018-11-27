@@ -73,16 +73,6 @@
                             font-size: var(--font-size-3);
                             @include font-rendering;
                         }
-                        a[href]
-                        {
-                            color: var(--color-active);
-                            text-decoration: none;
-                            &:hover
-                            {
-                                color: var(--color-active-dark);
-                                text-decoration: underline;
-                            }
-                        }
                     }
                     &:last-child
                     {
