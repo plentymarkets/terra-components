@@ -3,10 +3,11 @@
     visibility: visible;
     opacity: 1;
     top: calc(var(--height-md) + 2px);
-}
-.context-menu-small
-{
-    top: calc(var(--height-sm) + 2px);
+    
+    &.small
+    {
+        top: calc(var(--height-sm) + 2px);
+    }
 }
 
 .alignRight

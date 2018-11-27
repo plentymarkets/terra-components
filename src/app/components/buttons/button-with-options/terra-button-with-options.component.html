@@ -8,7 +8,7 @@
               (outputClicked)="toggleOptions($event)">
     
     <!-- options dropdown -->
-    <ul btn-outer *ngIf="optionsToggle" class="context-menu" [ngClass]="{'alignRight': alignRight, 'context-menu-small': inputIsSmall}">
+    <ul btn-outer *ngIf="optionsToggle" class="context-menu" [ngClass]="{'alignRight': alignRight, small': inputIsSmall}">
         <li *ngFor="let option of inputOptions">
             <a *ngIf="!option.isDivider"
                (click)="optionsClick(option)"
