@@ -25,11 +25,6 @@
             padding: var(--space-sm);
             transition: all var(--transition-xs);
             justify-content: flex-end;
-            
-            &.rotated
-            {
-                transform: rotate(180deg);
-            }
         }
         
         .header-caption
