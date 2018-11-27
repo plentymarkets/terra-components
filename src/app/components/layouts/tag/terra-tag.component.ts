@@ -142,7 +142,7 @@ export class TerraTagComponent implements OnChanges
     }
 
     /**
-     * Get the foreground color.
+     * Get the text color.
      */
     protected get color():string
     {
