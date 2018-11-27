@@ -231,7 +231,7 @@ describe('TerraTagComponent', () =>
         expect(closeElement).toBeDefined();
     });
 
-    it('should close tag on close icon click', (done:Function) =>
+    it('should close tag on close icon click', (done:DoneFn) =>
     {
         component.isClosable = true;
         component.tagId = 1337;
