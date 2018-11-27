@@ -1,7 +1,9 @@
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
-import { ITranslationService } from 'angular-l10n';
 
+/**
+ * based on https://github.com/robisim74/angular-l10n/blob/angular_v5/src/services/translation.service.ts
+ */
 export class MockTranslationService// implements ITranslationService
 {
     private lang:string = 'de';

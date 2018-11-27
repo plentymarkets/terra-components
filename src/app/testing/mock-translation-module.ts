@@ -7,6 +7,9 @@ import {
 
 const translationService:MockTranslationService = new MockTranslationService();
 
+/**
+ * based on https://github.com/robisim74/angular-l10n/blob/angular_v5/src/modules/translation.module.ts
+ */
 @NgModule({
     providers: [
         InjectorRef,
