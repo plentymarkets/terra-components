@@ -19,8 +19,7 @@ import { MockTranslationModule } from '../../../testing/mock-translation-module'
 import { TranslationService } from 'angular-l10n';
 import { MockTranslationService } from '../../../testing/mock-translation-service';
 
-
-fdescribe('TerraTagComponent', () =>
+describe('TerraTagComponent', () =>
 {
     let component:TerraTagComponent;
     let fixture:ComponentFixture<TerraTagComponent>;
