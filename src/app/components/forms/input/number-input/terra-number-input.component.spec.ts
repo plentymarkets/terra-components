@@ -98,7 +98,6 @@ describe('TerraNumberInputComponent', () =>
         component.selectNativeInput();
         flush();
 
-        expect(document.activeElement).toEqual(inputElement);
         expect(spy).toHaveBeenCalled();
     }));
 
