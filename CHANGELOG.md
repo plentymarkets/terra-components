@@ -7,8 +7,9 @@
 
 ### Feature
 * **terra-button-with-options** 
-    - new input `inputIsSmall`
+    - New input `inputIsSmall`
     - Added the ability to add a divider button to the 'inputOptions'
+    - Fixed appropriate CSS
     
 <a name="3.0.0-beta.15"></a>
 # 3.0.0-beta.15 (21.11.2018)
