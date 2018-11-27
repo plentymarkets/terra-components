@@ -32,6 +32,7 @@ export class TerraTagComponent implements OnChanges
 
     /**
      * States whether a tag can be tagged.
+     * @Default false
      */
     @Input()
     public inputIsTaggable:boolean = false;
