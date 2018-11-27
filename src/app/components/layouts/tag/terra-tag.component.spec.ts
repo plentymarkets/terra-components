@@ -73,40 +73,43 @@ describe('TerraTagComponent', () =>
         expect(tagDiv.classes[customClass]).toBe(true);
     });
 
-    it('should show tag icon depending on inputIsTaggable', () =>
+    describe('taggable', () =>
     {
-        let iconElement:DebugElement = tagDiv.query(By.css('span.tag-icon'));
-        expect(iconElement).toBeFalsy();
+        it('should show tag icon depending on inputIsTaggable', () =>
+        {
+            let iconElement:DebugElement = tagDiv.query(By.css('span.tag-icon'));
+            expect(iconElement).toBeFalsy();
 
-        component.inputIsTaggable = true;
+            component.inputIsTaggable = true;
 
-        fixture.detectChanges();
+            fixture.detectChanges();
 
-        iconElement = tagDiv.query(By.css('span.tag-icon'));
+            iconElement = tagDiv.query(By.css('span.tag-icon'));
 
-        expect(iconElement).toBeTruthy();
-    });
+            expect(iconElement).toBeTruthy();
+        });
 
-    it('should set classes to tag icon depending on inputIsTagged', () =>
-    {
-        component.inputIsTaggable = true;
-        component.inputIsTagged = true;
+        it('should set classes to tag icon depending on inputIsTagged', () =>
+        {
+            component.inputIsTaggable = true;
+            component.inputIsTagged = true;
 
-        fixture.detectChanges();
+            fixture.detectChanges();
 
-        let iconElement:DebugElement = tagDiv.query(By.css('span.tag-icon'));
+            let iconElement:DebugElement = tagDiv.query(By.css('span.tag-icon'));
 
-        expect(iconElement.classes['isTagged']).toBe(true);
-        expect(iconElement.classes['icon-ticket_prio1']).toBe(true);
-        expect(iconElement.classes['icon-ticket_prio8']).toBe(false);
+            expect(iconElement.classes['isTagged']).toBe(true);
+            expect(iconElement.classes['icon-ticket_prio1']).toBe(true);
+            expect(iconElement.classes['icon-ticket_prio8']).toBe(false);
 
-        component.inputIsTagged = false;
+            component.inputIsTagged = false;
 
-        fixture.detectChanges();
+            fixture.detectChanges();
 
-        expect(iconElement.classes['isTagged']).toBe(false);
-        expect(iconElement.classes['icon-ticket_prio1']).toBe(false);
-        expect(iconElement.classes['icon-ticket_prio8']).toBe(true);
+            expect(iconElement.classes['isTagged']).toBe(false);
+            expect(iconElement.classes['icon-ticket_prio1']).toBe(false);
+            expect(iconElement.classes['icon-ticket_prio8']).toBe(true);
+        });
     });
 
     describe(`depending on #inputColor`, () =>
