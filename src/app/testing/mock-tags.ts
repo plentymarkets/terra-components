@@ -1,4 +1,4 @@
-import { TerraTagInterface } from '../..';
+import { TerraTagInterface } from '../components/layouts/tag/data/terra-tag.interface';
 
 export const tagOne:TerraTagInterface =
     {
