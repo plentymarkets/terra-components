@@ -3,11 +3,6 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import {
-    TerraButtonComponent,
-    TerraButtonInterface,
-    TerraPortletComponent
-} from '../../../..';
 import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
@@ -21,6 +16,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import Spy = jasmine.Spy;
 import { buttonList } from '../../../testing/mock-buttons';
+import { TerraPortletComponent } from './terra-portlet.component';
+import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
+import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 
 describe('TerraPortletComponent', () =>
 {
