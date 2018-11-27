@@ -14,7 +14,6 @@ import {
 import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../translation/l10n.config';
-
 import { TerraSuggestionBoxComponent } from './terra-suggestion-box.component';
 
 import { MockElementRef } from '../../../testing/mock-element-ref';
@@ -28,7 +27,10 @@ describe('TerraSuggestionBoxComponent', () =>
 {
     let component:TerraSuggestionBoxComponent;
     let fixture:ComponentFixture<TerraSuggestionBoxComponent>;
-    const suggestion:TerraSuggestionBoxValueInterface = {caption: '1', value: 1};
+    const suggestion:TerraSuggestionBoxValueInterface = {
+        caption: '1',
+        value:   1
+    };
 
     beforeEach(async(() =>
     {
@@ -43,10 +45,14 @@ describe('TerraSuggestionBoxComponent', () =>
                 FormsModule,
                 HttpModule,
                 HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig)
+                LocalizationModule.forRoot(l10nConfig),
+                TooltipModule.forRoot()
             ],
-            providers: [
-                { provide: ElementRef, useClass: MockElementRef }
+            providers:    [
+                {
+                    provide:  ElementRef,
+                    useClass: MockElementRef
+                }
             ]
         }).compileComponents();
     }));

@@ -2,7 +2,9 @@ import {
     Component,
     EventEmitter,
     Input,
-    Output
+    OnChanges,
+    Output,
+    SimpleChanges
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { Color } from '../../forms/input/color-picker/color.helper';
@@ -14,51 +16,87 @@ import { Language } from 'angular-l10n';
     styles:   [require('./terra-tag.component.scss')],
     template: require('./terra-tag.component.html')
 })
-export class TerraTagComponent
+export class TerraTagComponent implements OnChanges
 {
-    @Language()
-    public lang:string;
-
+    /**
+     * If no translation is given for the current language, this will be used as caption for the tag
+     */
     @Input()
     public name:string;
 
+    /**
+     * Caption of the tag. If given, this is always shown.
+     */
     @Input()
     public inputBadge:string;
 
+    /**
+     * States whether a tag can be tagged.
+     * @Default false
+     */
     @Input()
-    public inputIsTagged:boolean;
+    public inputIsTaggable:boolean = false;
 
+    /**
+     * States whether the tag should be tagged. This is only considered if 'inputIsTaggable' is set.
+     * @default false
+     */
     @Input()
-    public inputIsTaggable:boolean;
+    public inputIsTagged:boolean = false;
 
+    /**
+     * custom css class styles that are applied to the root container (div.tag) of the component
+     */
     @Input()
     public inputCustomClass:string;
 
-    @Input()
     /**
      * The background color for the tag.
      */
+    @Input()
     public inputColor:string;
 
+    /**
+     * Id of a given tag
+     */
     @Input()
     public tagId:number;
 
+    /**
+     * States whether a tag is closable or not. Displays a close icon if it is closable.
+     * @default false
+     */
     @Input()
-    public isClosable:boolean;
+    public isClosable:boolean = false;
 
+    /**
+     * Name of the tag in different languages.
+     * @default []
+     */
     @Input()
-    public names:Array<TerraTagNameInterface>;
+    public names:Array<TerraTagNameInterface> = [];
 
+    /**
+     * Notifies when the user clicks on the close icon.
+     */
     @Output()
     public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
 
-    constructor()
+    @Language()
+    protected lang:string;
+
+    protected tagName:string;
+
+    /**
+     * Change detection routine. Updates the 'tagName' depending on the inputs 'inputBadge', 'name' and 'names'.
+     * @param changes
+     */
+    public ngOnChanges(changes?:SimpleChanges):void
     {
-        this.inputIsTagged = false;
-        this.inputIsTaggable = false;
-        this.inputColor = null;
-        this.inputCustomClass = null;
-        this.isClosable = false;
+        if(changes.hasOwnProperty('name') || changes.hasOwnProperty('names') || changes.hasOwnProperty('inputBadge'))
+        {
+            this.tagName = this.getTagName();
+        }
     }
 
     protected close():void
@@ -66,31 +104,26 @@ export class TerraTagComponent
         this.onCloseTag.emit(this.tagId);
     }
 
-    protected getName():string
+    private getTagName():string
     {
-        return this.inputBadge ? this.inputBadge :  this.getTranslatedName();
-    }
+        if(this.inputBadge)
+        {
+            return this.inputBadge;
+        }
 
-    private getTranslatedName():string
-    {
-        // Fallback if names not set
         if(isNullOrUndefined(this.names))
+        {
+            return this.name;
+        }
+
+        const tagName:TerraTagNameInterface = this.names.find((name:TerraTagNameInterface) => name.language === this.lang);
+        if(isNullOrUndefined(tagName))
         {
             return this.name;
         }
         else
         {
-            const tagName:TerraTagNameInterface = this.names.find((name:TerraTagNameInterface) => name.language === this.lang);
-
-            // Fallback if no name for this.lang is set
-            if(isNullOrUndefined(tagName))
-            {
-                return this.name;
-            }
-            else
-            {
-                return tagName.name;
-            }
+            return tagName.name;
         }
     }
 
@@ -99,7 +132,7 @@ export class TerraTagComponent
      * @returns {string}
      * @see inputColor
      */
-    private getBgColor():string
+    protected get bgColor():string
     {
         if(!isNullOrUndefined(this.inputColor))
         {
@@ -109,9 +142,9 @@ export class TerraTagComponent
     }
 
     /**
-     * Get the foreground color.
+     * Get the text color.
      */
-    private getColor():string
+    protected get color():string
     {
         if(!isNullOrUndefined(this.inputColor))
         {
