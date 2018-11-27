@@ -89,10 +89,7 @@ describe('Component: TerraThreeColumnsContainerComponent', () =>
 
         fixture.detectChanges();
 
-        let leftElement:HTMLDivElement = fixture.debugElement.query(By.css('.row')).children[0].nativeElement;
-
-        expect(leftColumn.attributes.getNamedItem('hidden')).toBeDefined();
-        expect(leftElement.hidden).toBe(true);
+        expect(leftColumn.hidden).toBe(true);
         expect(leftColumn.classList.contains('overflow-auto')).toBeTruthy();
         expect(leftColumn.classList.length).toEqual(1);
 
@@ -100,10 +97,7 @@ describe('Component: TerraThreeColumnsContainerComponent', () =>
 
         fixture.detectChanges();
 
-        let centerElement:HTMLDivElement = fixture.debugElement.query(By.css('.row')).children[1].nativeElement;
-
-        expect(centerColumn.attributes.getNamedItem('hidden')).toBeDefined();
-        expect(centerElement.hidden).toBe(true);
+        expect(centerColumn.hidden).toBe(true);
         expect(centerColumn.classList.contains('overflow-auto')).toBeTruthy();
         expect(centerColumn.classList.length).toEqual(1);
 
@@ -111,10 +105,7 @@ describe('Component: TerraThreeColumnsContainerComponent', () =>
 
         fixture.detectChanges();
 
-        let rightElement:HTMLDivElement = fixture.debugElement.query(By.css('.row')).children[2].nativeElement;
-
-        expect(rightColumn.attributes.getNamedItem('hidden')).toBeDefined();
-        expect(rightElement.hidden).toBe(true);
+        expect(rightColumn.hidden).toBe(true);
         expect(rightColumn.classList.contains('overflow-auto')).toBeTruthy();
         expect(rightColumn.classList.length).toEqual(1);
 
