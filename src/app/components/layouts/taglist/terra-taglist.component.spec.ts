@@ -9,6 +9,7 @@ import { TerraTagComponent } from '../tag/terra-tag.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TerraTagInterface } from '../tag/data/terra-tag.interface';
+import { MockTranslationModule } from '../../../testing/mock-translation-module';
 
 describe('TerraTaglistComponent', () =>
 {
@@ -18,7 +19,8 @@ describe('TerraTaglistComponent', () =>
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [TerraTagComponent, TerraTaglistComponent]
+            declarations: [TerraTagComponent, TerraTaglistComponent],
+            imports: [MockTranslationModule]
         }).compileComponents();
     }));
 
