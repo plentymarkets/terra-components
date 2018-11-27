@@ -209,8 +209,6 @@ fdescribe('TerraTagComponent', () =>
 
         it('should set text depending on names', () =>
         {
-            fixture.detectChanges();
-
             component.inputBadge = null;
             component.name = null;
             component.names = tagOne.names;
