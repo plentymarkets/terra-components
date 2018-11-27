@@ -95,7 +95,7 @@ export class TerraTagComponent implements OnChanges
     {
         if(changes.hasOwnProperty('name') || changes.hasOwnProperty('names') || changes.hasOwnProperty('inputBadge'))
         {
-            this.tagName = this.inputBadge ? this.inputBadge : this.translatedName;
+            this.tagName = this.getTagName();
         }
     }
 
@@ -104,8 +104,13 @@ export class TerraTagComponent implements OnChanges
         this.onCloseTag.emit(this.tagId);
     }
 
-    private get translatedName():string
+    private getTagName():string
     {
+        if(this.inputBadge)
+        {
+            return this.inputBadge;
+        }
+
         if(isNullOrUndefined(this.names))
         {
             return this.name;
