@@ -33,7 +33,7 @@ describe('TerraTaglistComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it(`should initialise its inputs and outputs`, () =>
+    it(`should initialize its inputs and outputs`, () =>
     {
         expect(component.inputTagList).toBeUndefined();
         expect(component.isReadOnly).toBeFalsy();
