@@ -93,9 +93,7 @@ export class TerraTagComponent implements OnChanges
      */
     public ngOnChanges(changes?:SimpleChanges):void
     {
-        if(changes.hasOwnProperty('name') ||
-           changes.hasOwnProperty('names') ||
-           changes.hasOwnProperty('inputBadge'))
+        if(changes.hasOwnProperty('name') || changes.hasOwnProperty('names') || changes.hasOwnProperty('inputBadge'))
         {
             this.tagName = this.inputBadge ? this.inputBadge : this.translatedName;
         }
