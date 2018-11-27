@@ -18,21 +18,35 @@ import { Language } from 'angular-l10n';
 })
 export class TerraTagComponent implements OnChanges
 {
-    @Language()
-    public lang:string;
-
+    /**
+     * If no translation is given for the current language, this will be used as caption for the tag
+     */
     @Input()
     public name:string;
 
+    /**
+     * Caption of the tag. If given, this is always shown.
+     * @deprecated use 'name' instead
+     */
     @Input()
     public inputBadge:string;
 
-    @Input()
-    public inputIsTagged:boolean = false;
-
+    /**
+     * States whether a tag can be tagged.
+     */
     @Input()
     public inputIsTaggable:boolean = false;
 
+    /**
+     * States whether the tag should be tagged. This is only considered if 'inputIsTaggable' is set.
+     * @default false
+     */
+    @Input()
+    public inputIsTagged:boolean = false;
+
+    /**
+     * custom css class styles that are applied to the root container (div.tag) of the component
+     */
     @Input()
     public inputCustomClass:string;
 
@@ -42,20 +56,41 @@ export class TerraTagComponent implements OnChanges
     @Input()
     public inputColor:string;
 
+    /**
+     * Id of a given tag
+     */
     @Input()
     public tagId:number;
 
+    /**
+     * States whether a tag is closable or not. Displays a close icon if it is closable.
+     * @default false
+     */
     @Input()
     public isClosable:boolean = false;
 
+    /**
+     * Name of the tag in different languages.
+     * @default []
+     */
     @Input()
     public names:Array<TerraTagNameInterface> = [];
 
+    /**
+     * Notifies when the user clicks on the close icon.
+     */
     @Output()
     public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
 
+    @Language()
+    protected lang:string;
+
     protected tagName:string;
 
+    /**
+     * Change detection routine. Updates the 'tagName' depending on the inputs 'inputBadge', 'name' and 'names'.
+     * @param changes
+     */
     public ngOnChanges(changes?:SimpleChanges):void
     {
         if(changes.hasOwnProperty('name') ||
