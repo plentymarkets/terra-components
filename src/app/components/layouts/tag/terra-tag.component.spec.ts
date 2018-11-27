@@ -220,36 +220,39 @@ describe('TerraTagComponent', () =>
         });
     });
 
-    it('should show close icon depending on isClosable', () =>
+    describe('closable', () =>
     {
-        let closeElement:DebugElement = tagDiv.query(By.css('span.icon-close'));
-        expect(closeElement).toBeNull();
-
-        component.isClosable = true;
-
-        fixture.detectChanges();
-
-        closeElement = tagDiv.query(By.css('span.icon-close'));
-
-        expect(closeElement).toBeDefined();
-    });
-
-    it('should close tag on close icon click', (done:DoneFn) =>
-    {
-        component.isClosable = true;
-        component.tagId = 1337;
-
-        fixture.detectChanges();
-
-        component.onCloseTag.subscribe((id:number) =>
+        it('should show close icon depending on isClosable', () =>
         {
-            expect(id).toBe(component.tagId);
-            done();
+            let closeElement:DebugElement = tagDiv.query(By.css('span.icon-close'));
+            expect(closeElement).toBeNull();
+
+            component.isClosable = true;
+
+            fixture.detectChanges();
+
+            closeElement = tagDiv.query(By.css('span.icon-close'));
+
+            expect(closeElement).toBeDefined();
         });
 
-        let closeElement:DebugElement = tagDiv.query(By.css('span.icon-close'));
+        it('should close tag on close icon click', (done:DoneFn) =>
+        {
+            component.isClosable = true;
+            component.tagId = 1337;
 
-        closeElement.triggerEventHandler('click', null);
+            fixture.detectChanges();
+
+            component.onCloseTag.subscribe((id:number) =>
+            {
+                expect(id).toBe(component.tagId);
+                done();
+            });
+
+            let closeElement:DebugElement = tagDiv.query(By.css('span.icon-close'));
+
+            closeElement.triggerEventHandler('click', null);
+        });
     });
 });
 
