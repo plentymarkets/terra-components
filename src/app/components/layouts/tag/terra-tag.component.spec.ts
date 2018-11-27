@@ -15,6 +15,10 @@ import {
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
+import { MockTranslationModule } from '../../../testing/mock-translation-module';
+import { TranslationService } from 'angular-l10n';
+import { MockTranslationService } from '../../../testing/mock-translation-service';
+
 
 fdescribe('TerraTagComponent', () =>
 {
@@ -27,10 +31,8 @@ fdescribe('TerraTagComponent', () =>
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [
-                TerraTagComponent
-            ],
-            imports:      []
+            declarations: [TerraTagComponent],
+            imports:      [MockTranslationModule]
         }).compileComponents();
     }));
 
@@ -155,67 +157,74 @@ fdescribe('TerraTagComponent', () =>
         expect(textElement.styles['color']).toEqual(component['color']); // style is present and equals #ffffff or #000000
     });
 
-    it('should set text depending on inputBadge', () =>
+    describe(`translates the tag name`, () =>
     {
-        component.inputBadge = name;
-        component.ngOnChanges({inputBadge: new SimpleChange(null, name, true)});
-        fixture.detectChanges();
+        beforeEach(() =>
+        {
+            fixture.detectChanges(); // this needs to be called to initialize the Language-Decorator!!
+        });
 
-        let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
-        let text:HTMLSpanElement = textElement.nativeElement;
+        it('should set text depending on inputBadge', () =>
+        {
+            component.inputBadge = name;
+            component.ngOnChanges({inputBadge: new SimpleChange(null, name, true)});
+            fixture.detectChanges();
 
-        expect(text.innerHTML).toEqual(name);
+            let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
+            let text:HTMLSpanElement = textElement.nativeElement;
 
-        component.inputBadge = null;
-        component.name = name;
+            expect(text.innerHTML).toEqual(name);
 
-        component.ngOnChanges({name: new SimpleChange(null, name, true)});
+            component.inputBadge = null;
+            component.name = name;
 
-        fixture.detectChanges();
+            component.ngOnChanges({name: new SimpleChange(null, name, true)});
 
-        textElement = tagDiv.query(By.css('span.tag-text'));
-        text = textElement.nativeElement;
+            fixture.detectChanges();
 
-        expect(text.innerHTML).toEqual(name);
+            textElement = tagDiv.query(By.css('span.tag-text'));
+            text = textElement.nativeElement;
 
-        component.inputBadge = null;
-        component.name = null;
-        component.names = tagOne.names;
-    });
+            expect(text.innerHTML).toEqual(name);
 
-    it('should set text depending on name', () =>
-    {
-        component.inputBadge = null;
-        component.name = name;
+            component.inputBadge = null;
+            component.name = null;
+            component.names = tagOne.names;
+        });
 
-        component.ngOnChanges({name: new SimpleChange(null, name, true)});
+        it('should set text depending on name', () =>
+        {
+            component.inputBadge = null;
+            component.name = name;
 
-        fixture.detectChanges();
+            component.ngOnChanges({name: new SimpleChange(null, name, true)});
 
-        let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
-        let text:HTMLSpanElement = textElement.nativeElement;
+            fixture.detectChanges();
 
-        expect(text.innerHTML).toEqual(name);
-    });
+            let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
+            let text:HTMLSpanElement = textElement.nativeElement;
 
-    it('should set text depending on names', () =>
-    {
-        let lang:string = localStorage.getItem('plentymarkets_lang_');
+            expect(text.innerHTML).toEqual(name);
+        });
 
-        component.inputBadge = null;
-        component.name = null;
-        component.names = tagOne.names;
+        it('should set text depending on names', () =>
+        {
+            fixture.detectChanges();
 
-        component.ngOnChanges({names: new SimpleChange(null, tagOne.names, true)});
+            component.inputBadge = null;
+            component.name = null;
+            component.names = tagOne.names;
 
-        fixture.detectChanges();
+            component.ngOnChanges({names: new SimpleChange(null, tagOne.names, true)});
+            fixture.detectChanges();
 
-        let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
-        let text:HTMLSpanElement = textElement.nativeElement;
+            let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
+            let text:HTMLSpanElement = textElement.nativeElement;
 
-        let tagName:TerraTagNameInterface = tagOne.names.find((tag:TerraTagNameInterface) => tag.language === lang);
-
-        expect(text.innerHTML).toEqual(tagName.name);
+            let translationService:MockTranslationService = TestBed.get(TranslationService);
+            let tagName:TerraTagNameInterface = tagOne.names.find((tag:TerraTagNameInterface) => tag.language === translationService.getLanguage());
+            expect(text.innerHTML).toEqual(tagName.name);
+        });
     });
 
     it('should show close icon depending on isClosable', () =>

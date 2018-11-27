@@ -9,6 +9,7 @@ import {
 import { isNullOrUndefined } from 'util';
 import { Color } from '../../forms/input/color-picker/color.helper';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
+import { Language } from 'angular-l10n';
 
 @Component({
     selector: 'terra-tag',
@@ -17,6 +18,9 @@ import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 })
 export class TerraTagComponent implements OnChanges
 {
+    @Language()
+    public lang:string;
+
     @Input()
     public name:string;
 
@@ -51,8 +55,6 @@ export class TerraTagComponent implements OnChanges
     public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
 
     protected tagName:string;
-
-    private lang:string = localStorage.getItem('plentymarkets_lang_');
 
     public ngOnChanges(changes?:SimpleChanges):void
     {
