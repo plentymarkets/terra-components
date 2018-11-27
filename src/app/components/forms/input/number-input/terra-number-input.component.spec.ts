@@ -9,6 +9,8 @@ import {
 import {
     async,
     ComponentFixture,
+    fakeAsync,
+    flush,
     TestBed
 } from '@angular/core/testing';
 import { TooltipModule } from 'ngx-bootstrap';
@@ -19,6 +21,7 @@ import { TerraNumberInputComponent } from './terra-number-input.component';
 import { By } from '@angular/platform-browser';
 import { TerraButtonComponent } from '../../../buttons/button/terra-button.component';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
+import Spy = jasmine.Spy;
 
 describe('TerraNumberInputComponent', () =>
 {
@@ -80,25 +83,23 @@ describe('TerraNumberInputComponent', () =>
         expect(component.isValid).toBeTruthy();
     });
 
-    it('should be true if active element is the inputElement', () =>
+    it('should focus input element if #focusNativeInput is called', fakeAsync(() =>
     {
-        inputElement.onfocus = ():void =>
-        {
-            expect(document.activeElement).toEqual(inputElement);
-        };
-
         component.focusNativeInput();
-    });
+        flush();
 
-    it('should be active native content be selected', () =>
+        expect(document.activeElement).toEqual(inputElement);
+    }));
+
+    it('should focus input element if #selectNativeInput is called', fakeAsync(() =>
     {
-        inputElement.onselect = ():void =>
-        {
-            expect(document.activeElement).toEqual(inputElement);
-        };
+        let spy:Spy = spyOn(inputElement, 'select').and.callThrough();
 
         component.selectNativeInput();
-    });
+        flush();
+
+        expect(spy).toHaveBeenCalled();
+    }));
 
     it('should step of native element be 1 to get an incremented of 1 of the value', () =>
     {

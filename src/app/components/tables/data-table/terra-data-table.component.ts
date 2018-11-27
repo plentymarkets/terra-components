@@ -27,7 +27,6 @@ import {
     tap
 } from 'rxjs/operators';
 import { TerraBaseTable } from '../terra-base-table';
-import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
