@@ -171,7 +171,7 @@ describe('TerraTagComponent', () =>
 
             let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
             let text:HTMLSpanElement = textElement.nativeElement;
-            expect(text.innerHTML).toEqual(name);
+            expect(text.innerText).toEqual(name);
 
             component.inputBadge = null;
             component.name = name;
@@ -182,7 +182,7 @@ describe('TerraTagComponent', () =>
             textElement = tagDiv.query(By.css('span.tag-text'));
             text = textElement.nativeElement;
 
-            expect(text.innerHTML).toEqual(name);
+            expect(text.innerText).toEqual(name);
         });
 
         it('should set text depending on name', () =>
@@ -196,7 +196,7 @@ describe('TerraTagComponent', () =>
             let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
             let text:HTMLSpanElement = textElement.nativeElement;
 
-            expect(text.innerHTML).toEqual(name);
+            expect(text.innerText).toEqual(name);
         });
 
         it('should set text depending on names', () =>
@@ -213,7 +213,7 @@ describe('TerraTagComponent', () =>
 
             let translationService:MockTranslationService = TestBed.get(TranslationService);
             let tagName:TerraTagNameInterface = tagOne.names.find((tag:TerraTagNameInterface) => tag.language === translationService.getLanguage());
-            expect(text.innerHTML).toEqual(tagName.name);
+            expect(text.innerText).toEqual(tagName.name);
         });
     });
 
