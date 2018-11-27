@@ -172,24 +172,18 @@ fdescribe('TerraTagComponent', () =>
 
             let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
             let text:HTMLSpanElement = textElement.nativeElement;
-
             expect(text.innerHTML).toEqual(name);
 
             component.inputBadge = null;
             component.name = name;
 
             component.ngOnChanges({name: new SimpleChange(null, name, true)});
-
             fixture.detectChanges();
 
             textElement = tagDiv.query(By.css('span.tag-text'));
             text = textElement.nativeElement;
 
             expect(text.innerHTML).toEqual(name);
-
-            component.inputBadge = null;
-            component.name = null;
-            component.names = tagOne.names;
         });
 
         it('should set text depending on name', () =>
@@ -198,7 +192,6 @@ fdescribe('TerraTagComponent', () =>
             component.name = name;
 
             component.ngOnChanges({name: new SimpleChange(null, name, true)});
-
             fixture.detectChanges();
 
             let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
