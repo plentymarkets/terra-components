@@ -10,9 +10,7 @@ import {
     Router
 } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
-import {
-    TerraTwoColumnsContainerComponent
-} from './terra-two-columns-container.component';
+import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';
 import {
     Component,
     DebugElement

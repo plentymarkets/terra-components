@@ -33,6 +33,7 @@ export class TerraTagComponent implements OnChanges
 
     /**
      * States whether a tag can be tagged.
+     * @Default false
      */
     @Input()
     public inputIsTaggable:boolean = false;
@@ -93,11 +94,9 @@ export class TerraTagComponent implements OnChanges
      */
     public ngOnChanges(changes?:SimpleChanges):void
     {
-        if(changes.hasOwnProperty('name') ||
-           changes.hasOwnProperty('names') ||
-           changes.hasOwnProperty('inputBadge'))
+        if(changes.hasOwnProperty('name') || changes.hasOwnProperty('names') || changes.hasOwnProperty('inputBadge'))
         {
-            this.tagName = this.inputBadge ? this.inputBadge : this.translatedName;
+            this.tagName = this.getTagName();
         }
     }
 
@@ -106,8 +105,13 @@ export class TerraTagComponent implements OnChanges
         this.onCloseTag.emit(this.tagId);
     }
 
-    private get translatedName():string
+    private getTagName():string
     {
+        if(this.inputBadge)
+        {
+            return this.inputBadge;
+        }
+
         if(isNullOrUndefined(this.names))
         {
             return this.name;
@@ -139,7 +143,7 @@ export class TerraTagComponent implements OnChanges
     }
 
     /**
-     * Get the foreground color.
+     * Get the text color.
      */
     protected get color():string
     {

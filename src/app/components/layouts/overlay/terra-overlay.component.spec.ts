@@ -263,7 +263,7 @@ describe('TerraOverlayComponent', () =>
         expect(spy).toHaveBeenCalled();
     });
 
-    it(`should return the directive when #emitOutputOnHide is called`, (done:Function) =>
+    it(`should return the directive when #emitOutputOnHide is called`, (done:DoneFn) =>
     {
         component.outputOnHide.subscribe((directive:ModalDirective) =>
         {
@@ -274,7 +274,7 @@ describe('TerraOverlayComponent', () =>
         component.emitOutputOnHide();
     });
 
-    it(`should return the directive when #emitOutputOnShow is called`, (done:Function) =>
+    it(`should return the directive when #emitOutputOnShow is called`, (done:DoneFn) =>
     {
         component.outputOnShow.subscribe((directive:ModalDirective) =>
         {

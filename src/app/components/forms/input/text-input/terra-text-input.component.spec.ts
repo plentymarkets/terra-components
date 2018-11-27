@@ -1,6 +1,8 @@
 import { TerraTextInputComponent } from './terra-text-input.component';
 import {
     ComponentFixture,
+    fakeAsync,
+    flush,
     TestBed
 } from '@angular/core/testing';
 import { TooltipModule } from 'ngx-bootstrap';
@@ -139,28 +141,23 @@ describe('Component: TerraTextInputComponent', () =>
         expect(value).toEqual(testString);
     });
 
-    it(`should focus the input element if #focusNativeInput method is called`, () =>
+    it(`should focus the input element if #focusNativeInput method is called`, fakeAsync(() =>
     {
         expect(document.activeElement).not.toEqual(inputElement);
-        inputElement.onfocus = ():void =>
-        {
-            expect(document.activeElement).toEqual(inputElement);
-        };
         component.focusNativeInput();
-    });
+        flush();
+        expect(document.activeElement).toEqual(inputElement);
+    }));
 
-    it(`should select the text of the input if #selectNativeInput method is called`, () =>
+    it(`should select the text of the input if #selectNativeInput method is called`, fakeAsync(() =>
     {
         let spy:Spy = spyOn(inputElement, 'select').and.callThrough();
         inputElement.value = testString;
         expect(inputElement.selectionStart).toEqual(inputElement.selectionEnd); // nothing selected
-
-        inputElement.onselect = ():void =>
-        {
-            expect(inputElement.selectionStart).toEqual(0);
-            expect(inputElement.selectionEnd).toEqual(testString.length);
-            expect(spy).toHaveBeenCalled();
-        };
         component.selectNativeInput();
-    });
+        flush();
+        expect(inputElement.selectionStart).toEqual(0);
+        expect(inputElement.selectionEnd).toEqual(testString.length);
+        expect(spy).toHaveBeenCalled();
+    }));
 });
