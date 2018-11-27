@@ -26,7 +26,6 @@ export class TerraTagComponent implements OnChanges
 
     /**
      * Caption of the tag. If given, this is always shown.
-     * @deprecated use 'name' instead
      */
     @Input()
     public inputBadge:string;
