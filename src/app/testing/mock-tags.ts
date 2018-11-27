@@ -32,5 +32,4 @@ export const tagTwo:TerraTagInterface =
             }]
     };
 
-export const tagList:Array<TerraTagInterface> = [tagOne,
-                                                 tagTwo];
+export const tagList:Array<TerraTagInterface> = [tagOne, tagTwo];
