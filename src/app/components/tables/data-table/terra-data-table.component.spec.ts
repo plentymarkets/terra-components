@@ -73,6 +73,7 @@ describe('TerraDataTableComponent', () =>
     {
         fixture = TestBed.createComponent(TerraDataTableComponent);
         component = fixture.componentInstance;
+        spyOn(console, 'error'); // do not log anything to console
         fixture.detectChanges();
     });
 
@@ -81,42 +82,64 @@ describe('TerraDataTableComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    describe('#inputHasPager', () =>
+    describe('With an #inputService', () =>
     {
-        it('should initialise `inputHasPager` with true', () =>
+        let service:TerraDataTableServiceExample;
+        beforeEach(() =>
         {
-            expect(component.inputHasPager).toBe(true);
-        });
-
-        it('should hide the pager if #inputHasPager is set but no data is available', () =>
-        {
-            let service:TerraDataTableServiceExample = TestBed.get(TerraDataTableServiceExample);
-            let pagerDE:DebugElement = fixture.nativeElement.querySelector('terra-pager');
-            expect(service.rowList).toBeDefined();
-            expect(service.rowList.length).toEqual(0);
-            expect(pagerDE).toBeNull();
-        });
-
-        it('should show the pager if #inputHasPager is set and data is available', async(() =>
-        {
-            let service:TerraDataTableServiceExample = TestBed.get(TerraDataTableServiceExample);
+            service = TestBed.get(TerraDataTableServiceExample);
             component.inputService = service;
-            component.inputHasPager = true;
-            service.addEntry();
-            service.getResults();
-            fixture.detectChanges();
+        });
 
-            let pagerDE:DebugElement = fixture.debugElement.query(By.css('terra-pager'));
-            expect(service.rowList).toBeDefined();
-            expect(service.rowList.length).toBe(1);
-            expect(pagerDE).toBeTruthy();
-        }));
+        it('should have an #inputService', () =>
+        {
+            expect(component.inputService).toBeDefined();
+        });
+
+        describe('#inputHasPager', () =>
+        {
+            it('should initialise #inputHasPager with true', () =>
+            {
+                expect(component.inputHasPager).toBe(true);
+            });
+
+            it('should hide the pager if #inputHasPager is set but no data is available', () =>
+            {
+                let pagerDE:DebugElement = fixture.nativeElement.querySelector('terra-pager');
+                expect(service.rowList).toBeDefined();
+                expect(service.rowList.length).toEqual(0);
+                expect(pagerDE).toBeNull();
+            });
+
+            it('should show the pager if #inputHasPager is set and data is available', async(() =>
+            {
+                service.addEntry();
+                service.getResults();
+                fixture.detectChanges();
+
+                let pagerDE:DebugElement = fixture.debugElement.query(By.css('terra-pager'));
+                expect(service.rowList).toBeDefined();
+                expect(service.rowList.length).toBe(1);
+                expect(pagerDE).toBeTruthy();
+            }));
+
+            it(`should hide the pager if #inputHasPager is not set`, () =>
+            {
+                component.inputHasPager = false;
+                service.addEntry();
+                service.getResults();
+                fixture.detectChanges();
+
+                let pagerDE:DebugElement = fixture.debugElement.query(By.css('terra-pager'));
+                expect(service.rowList).toBeDefined();
+                expect(service.rowList.length).toBe(1);
+                expect(pagerDE).toBeNull();
+            });
+        });
 
         it(`should #getResults() and #resetSelectedRows when the pager-component emits on #outputDoPaging`, () =>
         {
-            let service:TerraDataTableServiceExample = TestBed.get(TerraDataTableServiceExample);
             let spy:Spy = spyOn(service, 'getResults').and.callThrough();
-            component.inputService = service;
             service.addEntry();
             service.getResults();
 
@@ -128,19 +151,6 @@ describe('TerraDataTableComponent', () =>
 
             expect(spy).toHaveBeenCalled();
             expect(component.selectedRowList.length).toEqual(0);
-        });
-    });
-
-    describe('With an inputService', () =>
-    {
-        beforeEach(() =>
-        {
-            component.inputService = TestBed.get(TerraDataTableServiceExample);
-        });
-
-        it('should have an inputService', () =>
-        {
-            expect(component.inputService).toBeDefined();
         });
     });
 });
