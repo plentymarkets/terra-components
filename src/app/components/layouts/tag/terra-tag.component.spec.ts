@@ -61,17 +61,6 @@ describe('TerraTagComponent', () =>
         expect(component.tagId).toBeUndefined();
     });
 
-    it('should have background-color style equal to `inputColor`', () =>
-    {
-        expect(tagDiv.styles['background-color']).toBeFalsy(); // no background color set
-
-        component.inputColor = tagOne.color;
-
-        fixture.detectChanges();
-
-        expect(tagDiv.styles['background-color']).toEqual(tagOne.color);
-    });
-
     it('should have set tagDiv classes equal to `inputCustomClass`', () =>
     {
         expect(Object.entries(tagDiv.classes).length).toBe(0); // no classes set
@@ -98,25 +87,6 @@ describe('TerraTagComponent', () =>
         expect(iconElement).toBeTruthy();
     });
 
-    it('should set color style to tag icon depending on inputColor', () =>
-    {
-        component.inputIsTaggable = true;
-        fixture.detectChanges();
-
-        let iconElement:DebugElement = tagDiv.query(By.css('span.tag-icon'));
-
-        expect(iconElement.styles['color']).toBeFalsy(); // style is not present
-
-        component.inputColor = tagTwo.color;
-
-        fixture.detectChanges();
-
-        iconElement = tagDiv.query(By.css('span.tag-icon'));
-
-        // getting access to protected/private methods
-        expect(iconElement.styles['color']).toEqual(component['color']); // style is present and equals #ffffff or #000000
-    });
-
     it('should set classes to tag icon depending on inputIsTagged', () =>
     {
         component.inputIsTaggable = true;
@@ -139,21 +109,51 @@ describe('TerraTagComponent', () =>
         expect(iconElement.classes['icon-ticket_prio8']).toBe(true);
     });
 
-    it('should set color style to tag text depending on inputColor', () =>
+    describe(`depending on #inputColor`, () =>
     {
-        component.inputIsTaggable = true;
-        fixture.detectChanges();
+        it('should have background-color style equal to #inputColor', () =>
+        {
+            expect(tagDiv.styles['background-color']).toBeFalsy(); // no background color set
 
-        let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
+            component.inputColor = tagOne.color;
 
-        expect(textElement.styles['color']).toBeFalsy(); // style is not present
+            fixture.detectChanges();
 
-        component.inputColor = tagTwo.color;
+            expect(tagDiv.styles['background-color']).toEqual(tagOne.color);
+        });
 
-        fixture.detectChanges();
+        it('should set color style to tag icon depending on #inputColor', () =>
+        {
+            component.inputIsTaggable = true;
+            fixture.detectChanges();
 
-        // getting access to protected/private methods
-        expect(textElement.styles['color']).toEqual(component['color']); // style is present and equals #ffffff or #000000
+            let iconElement:DebugElement = tagDiv.query(By.css('span.tag-icon'));
+
+            expect(iconElement.styles['color']).toBeFalsy(); // style is not present
+
+            component.inputColor = tagTwo.color;
+
+            fixture.detectChanges();
+
+            iconElement = tagDiv.query(By.css('span.tag-icon'));
+
+            // getting access to protected/private methods
+            expect(iconElement.styles['color']).toEqual(component['color']); // style is present and equals #ffffff or #000000
+        });
+
+        it('should set color style to tag text depending on #inputColor', () =>
+        {
+            let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
+
+            expect(textElement.styles['color']).toBeFalsy(); // style is not present
+
+            component.inputColor = tagTwo.color;
+
+            fixture.detectChanges();
+
+            // getting access to protected/private methods
+            expect(textElement.styles['color']).toEqual(component['color']); // style is present and equals #ffffff or #000000
+        });
     });
 
     describe(`translates the tag name`, () =>
