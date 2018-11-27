@@ -6,6 +6,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';
+import Spy = jasmine.Spy;
 
 describe('TerraTwoColumnsContainerComponent', () =>
 {
@@ -108,10 +109,17 @@ describe('TerraTwoColumnsContainerComponent', () =>
 
     describe(`with 'leftColumnWidth' set to 15`, () =>
     {
+        let consoleErrorSpy:Spy;
         beforeEach(() =>
         {
+            consoleErrorSpy = spyOn(console, 'error');
             component.leftColumnWidth = 15;
             fixture.detectChanges();
+        });
+
+        afterEach(() =>
+        {
+            expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
         });
 
         it(`should have a left column width of 'col-xs-12'`, () =>
@@ -153,10 +161,17 @@ describe('TerraTwoColumnsContainerComponent', () =>
 
     describe(`with 'leftColumnWidth' set to -5`, () =>
     {
+        let consoleErrorSpy:Spy;
         beforeEach(() =>
         {
+            consoleErrorSpy = spyOn(console, 'error');
             component.leftColumnWidth = -5;
             fixture.detectChanges();
+        });
+
+        afterEach(() =>
+        {
+            expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
         });
 
         it(`should have a left column width of 'col-xs-12'`, () =>
