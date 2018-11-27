@@ -54,8 +54,7 @@ describe('TerraTaglistComponent', () =>
 
         it(`should render tags defined by #inputTagList`, () =>
         {
-            let tags:Array<DebugElement> = fixture.debugElement.queryAll(By.css('terra-tag'));
-            expect(tags.length).toEqual(tagList.length);
+            expect(tagDebugElements.length).toEqual(tagList.length);
         });
 
         it(`should set isClosable depending on the tag's isClosable property if #isReadOnly is falsy`, () =>
