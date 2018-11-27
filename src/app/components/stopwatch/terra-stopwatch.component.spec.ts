@@ -1,9 +1,11 @@
 import { TerraStopwatchComponent } from './terra-stopwatch.component';
-import Spy = jasmine.Spy;
 import {
     async,
     ComponentFixture,
-    TestBed
+    discardPeriodicTasks,
+    fakeAsync,
+    TestBed,
+    tick
 } from '@angular/core/testing';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { TooltipModule } from 'ngx-bootstrap';
@@ -12,6 +14,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../translation/l10n.config';
+import Spy = jasmine.Spy;
 
 describe('Component: TerraStopwatchComponent', () =>
 {
@@ -41,13 +44,6 @@ describe('Component: TerraStopwatchComponent', () =>
     {
         fixture = TestBed.createComponent(TerraStopwatchComponent);
         component = fixture.componentInstance;
-        jasmine.clock().uninstall();
-        jasmine.clock().install();
-    });
-
-    afterEach(() =>
-    {
-        jasmine.clock().uninstall();
     });
 
     it('should create', () =>
@@ -91,43 +87,47 @@ describe('Component: TerraStopwatchComponent', () =>
         expect(spy).toHaveBeenCalled();
     });
 
-    it('should start the watch when calling the #start method', () =>
+    it('should start the watch when calling the #start method', fakeAsync(() =>
     {
         component.start();
-        jasmine.clock().tick(ticksInMilliseconds);
+        tick(ticksInMilliseconds);
         expect(component.seconds).toBe(ticks);
-    });
 
-    it('should start automatically if #autoPlay is true', () =>
+        discardPeriodicTasks();
+    }));
+
+    it('should start automatically if #autoPlay is true', fakeAsync(() =>
     {
         let spy:Spy = spyOn(component, 'start').and.callThrough();
         component.autoPlay = true;
         component.ngOnInit();
 
         expect(spy).toHaveBeenCalled();
-        jasmine.clock().tick(ticksInMilliseconds);
+        tick(ticksInMilliseconds);
         expect(component.seconds).toBeGreaterThan(0);
-    });
 
-    it('should not start automatically if #autoPlay is false', () =>
+        discardPeriodicTasks();
+    }));
+
+    it('should not start automatically if #autoPlay is false', fakeAsync(() =>
     {
         let spy:Spy = spyOn(component, 'start').and.callThrough();
         component.autoPlay = false;
         component.ngOnInit();
 
         expect(spy).not.toHaveBeenCalled();
-        jasmine.clock().tick(ticksInMilliseconds);
+        tick(ticksInMilliseconds);
         expect(component.seconds).toBe(0);
-    });
+    }));
 
-    it('should start and stop', () =>
+    it('should start and stop', fakeAsync(() =>
     {
         component.start();
-        jasmine.clock().tick(ticksInMilliseconds);
+        tick(ticksInMilliseconds);
         expect(component.seconds).toBe(ticks);
 
         component.stop();
-        jasmine.clock().tick(ticksInMilliseconds);
+        tick(ticksInMilliseconds);
         expect(component.seconds).toEqual(ticks);
-    });
+    }));
 });
