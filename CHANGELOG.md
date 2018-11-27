@@ -1,5 +1,8 @@
 # Unreleased
 
+### Breaking changes
+* **terra-tag** `inputBadge` is now deprecated. Please use `name` instead.
+
 ### Bug Fixes
 * **terra-data-table** 
 	- fixed coloring of links in the table if the row is selected or active
