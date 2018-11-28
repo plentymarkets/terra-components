@@ -104,22 +104,17 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
                 }
             },
             {
-                data: [
-                    {
-                        icon:          'icon-add',
-                        clickFunction: ():void => console.log('clicked')
-                    }
-                ]
+                data: [{
+                    icon:          'icon-add',
+                    clickFunction: ():void => console.log('clicked')
+                }]
             }
         ];
 
         return {
             cellList:      cellList,
             data:          entry,
-            clickFunction: ():void =>
-                           {
-                               console.log(`Row with id ${entry.id} clicked`);
-                           }
+            clickFunction: ():void => console.log(`Row with id ${entry.id} clicked`)
         };
     }
 }
