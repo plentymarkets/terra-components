@@ -1,5 +1,8 @@
 # Unreleased
 
+### Breaking changes
+* **terra-tag** `inputBadge` is now deprecated. Please use `name` instead.
+
 ### Bug Fixes
 * **terra-data-table** 
 	- fixed coloring of links in the table if the row is selected or active
@@ -7,8 +10,9 @@
 
 ### Feature
 * **terra-button-with-options** 
-    - new input `inputIsSmall`
+    - New input `inputIsSmall`
     - Added the ability to add a divider button to the 'inputOptions'
+    - Fixed corresponding CSS
     
 <a name="3.0.0-beta.15"></a>
 # 3.0.0-beta.15 (21.11.2018)

@@ -7,6 +7,8 @@ import {
 import {
     async,
     ComponentFixture,
+    fakeAsync,
+    flush,
     TestBed
 } from '@angular/core/testing';
 import { TooltipModule } from 'ngx-bootstrap';
@@ -94,13 +96,10 @@ describe('TerraDoubleInputComponent', () =>
         expect(debugElement.classes.hasOwnProperty('price-input')).toBeTruthy();
     });
 
-    it('should focus inputElement if #focusNativeInput is called', () =>
+    it('should focus inputElement if #focusNativeInput is called', fakeAsync(() =>
     {
-        inputElement.onfocus = ():void =>
-        {
-            expect(document.activeElement).toEqual(inputElement);
-        };
-
         component.focusNativeInput();
-    });
+        flush();
+        expect(document.activeElement).toEqual(inputElement);
+    }));
 });

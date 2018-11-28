@@ -8,7 +8,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TerraIndicatorLabelTypeEnum } from '../../helpers/enums/indicator-label-type.enum';
 
-describe('Component: TerraIndicatorComponent', () =>
+describe('TerraIndicatorComponent:', () =>
 {
     let component:TerraIndicatorComponent;
     let fixture:ComponentFixture<TerraIndicatorComponent>;
@@ -33,7 +33,7 @@ describe('Component: TerraIndicatorComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should inputType be defined', () =>
+    it('should #inputType be defined', () =>
     {
         expect(component.inputType).toBeDefined();
         expect(component.inputType).toEqual(TerraIndicatorLabelTypeEnum.default);

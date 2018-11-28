@@ -13,7 +13,6 @@ import {
     transition,
     trigger
 } from '@angular/animations';
-import { isNullOrUndefined } from 'util';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 
 @Component({
@@ -86,11 +85,6 @@ export class TerraPortletComponent implements OnChanges
         return 'expanded';
     }
 
-    constructor()
-    {
-        this.inputPortletHeader = isNullOrUndefined(this.inputPortletHeader) ? '' : this.inputPortletHeader;
-    }
-
     public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes.hasOwnProperty('inputIsCollapsable') && !this.inputIsCollapsable)
@@ -108,13 +102,12 @@ export class TerraPortletComponent implements OnChanges
      */
     public toggleCollapse():void
     {
-        this.inputCollapsed = !this.inputCollapsed;
-
         if(!this.inputIsCollapsable)
         {
             this.inputCollapsed = false;
+            return;
         }
-
+        this.inputCollapsed = !this.inputCollapsed;
         this.inputCollapsedChange.emit(this.inputCollapsed);
     }
 }
