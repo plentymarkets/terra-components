@@ -2,6 +2,7 @@
 
 ### Breaking changes
 * **terra-tag** `inputBadge` is now deprecated. Please use `name` instead.
+* **terra-data-table** removed `inputIsSortable` due to redundancy.
 
 ### Bug Fixes
 * **terra-data-table** 
@@ -13,6 +14,7 @@
     - New input `inputIsSmall`
     - Added the ability to add a divider button to the 'inputOptions'
     - Fixed corresponding CSS
+* **terra-data-table.service** added `resetSortParams()` to be able to reset sorting params.
     
 <a name="3.0.0-beta.15"></a>
 # 3.0.0-beta.15 (21.11.2018)
