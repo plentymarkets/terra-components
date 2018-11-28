@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import {
     async,
     ComponentFixture,
+    fakeAsync,
+    flush,
     TestBed
 } from '@angular/core/testing';
 import { TooltipModule } from 'ngx-bootstrap';
@@ -16,8 +18,8 @@ import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tool
 import { TerraTextAreaInputComponent } from './terra-text-area-input.component';
 import { TerraRegex } from '../../../../..';
 import { By } from '@angular/platform-browser';
-import Spy = jasmine.Spy;
 import { MockElementRef } from '../../../../testing/mock-element-ref';
+import Spy = jasmine.Spy;
 
 describe('TerraTextAreaInputComponent', () =>
 {
@@ -104,26 +106,25 @@ describe('TerraTextAreaInputComponent', () =>
         expect(debugElement.classes['resizable']).not.toBe(component.inputHasFixedHeight);
     });
 
-    it('should focus the input element if #focusNativInput is called', () =>
+    it('should focus the input element if #focusNativeInput is called', fakeAsync(() =>
     {
-        inputElement.onfocus = ():void =>
-        {
-            expect(document.activeElement).toEqual(inputElement);
-        };
         component.focusNativeInput();
-    });
+        flush();
 
-    it(`should select the text of the input if #selectNativeInput method is called`, () =>
+        expect(document.activeElement).toEqual(inputElement);
+    }));
+
+    it(`should select the text of the input if #selectNativeInput method is called`, fakeAsync(() =>
     {
         let spy:Spy = spyOn(inputElement, 'select').and.callThrough();
         inputElement.value = testString;
         expect(inputElement.selectionStart).toEqual(inputElement.selectionEnd); // nothing selected
-        inputElement.onselect = ():void =>
-        {
-            expect(inputElement.selectionStart).toEqual(0);
-            expect(inputElement.selectionEnd).toEqual(testString.length);
-            expect(spy).toHaveBeenCalled();
-        };
+
         component.selectNativeInput();
-    });
+        flush();
+
+        expect(inputElement.selectionStart).toEqual(0);
+        expect(inputElement.selectionEnd).toEqual(testString.length);
+        expect(spy).toHaveBeenCalled();
+    }));
 });
