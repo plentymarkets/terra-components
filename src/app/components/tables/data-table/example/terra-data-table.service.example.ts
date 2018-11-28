@@ -63,7 +63,8 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
         return Observable.of(results);
     }
 
-    private applySorting(data:Array<TerraDataTableExampleInterface>, sortBy:string, sortOrder:TerraDataTableSortOrderEnum):Array<TerraDataTableExampleInterface>
+    private applySorting(data:Array<TerraDataTableExampleInterface>, sortBy:string,
+                         sortOrder:TerraDataTableSortOrderEnum):Array<TerraDataTableExampleInterface>
     {
         let comparator:(a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface) => number;
         if(sortOrder === TerraDataTableSortOrderEnum.ascending)
