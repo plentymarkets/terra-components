@@ -1,7 +1,7 @@
 import { TerraInfoBoxComponent } from './terra-info-box.component';
 import { TerraTagInterface } from '../../../../';
 
-describe('Component: TerraInfoBoxComponent', () =>
+describe('TerraInfoBoxComponent:', () =>
 {
     let component:TerraInfoBoxComponent = new TerraInfoBoxComponent();
     let tagList:Array<TerraTagInterface> = [];
@@ -32,14 +32,14 @@ describe('Component: TerraInfoBoxComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should getter \'hasFooter\' return true if \'inputTagList\' has entries', () =>
+    it(`should getter #hasFooter return true if #inputTagList has entries`, () =>
         {
             component.inputTagList = tagList;
             expect(component.hasFooter).toBe(true);
         }
     );
 
-    it('should getter \'hasFooter\' return true if \'inputId\' has a value', () =>
+    it(`should getter #hasFooter return true if #inputId has a value`, () =>
         {
             component.inputId = 5;
             expect(component.hasFooter).toBe(true);
@@ -48,7 +48,7 @@ describe('Component: TerraInfoBoxComponent', () =>
         }
     );
 
-    it('should getter \'hasFooter\' return false if \'inputTagList\' or \'inputId\' are null', () =>
+    it(`should getter #hasFooter return false if #inputTagList or #inputId are null`, () =>
         {
             component.inputTagList = null;
             component.inputId = null;
@@ -56,7 +56,7 @@ describe('Component: TerraInfoBoxComponent', () =>
         }
     );
 
-    it('should getter \'hasFooter\' return false if \'inputTagList\' is empty', () =>
+    it(`should getter #hasFooter return false if #inputTagList is empty`, () =>
         {
             component.inputTagList = [];
             expect(component.hasFooter).toBe(false);
