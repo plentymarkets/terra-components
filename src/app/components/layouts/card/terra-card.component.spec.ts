@@ -27,7 +27,7 @@ import { By } from '@angular/platform-browser';
 })
 class CardTestComponent{}
 
-describe('TerraCardComponent', () =>
+describe(`TerraCardComponent:`, () =>
 {
     let component:CardTestComponent;
     let cardComponent:TerraCardComponent;
@@ -76,7 +76,7 @@ describe('TerraCardComponent', () =>
             }
         );
 
-        it('should div-element for footer be shown if content is given', () =>
+        it(`should <div> for footer be shown if content is given`, () =>
         {
             let ngContentElement:DebugElement = footerElement.query(By.css('p'));
             let footerContentElement:HTMLElement = ngContentElement.nativeElement;
@@ -102,7 +102,7 @@ describe('TerraCardComponent', () =>
 
     describe('in header content section', () =>
     {
-        it('should show div-element for header if content is given', () =>
+        it(`should show <div> for header if content is given`, () =>
         {
             let headerElement:DebugElement = debugElement.query(By.css('div.card-header'));
             let ngContentElement:DebugElement = headerElement.query(By.css('p'));
@@ -117,7 +117,7 @@ describe('TerraCardComponent', () =>
 
     describe('in block content section', () =>
     {
-        it('should show div-element for content if content is given', () =>
+        it(`should show <div> for content if content is given`, () =>
         {
             let contentElement:DebugElement = debugElement.query(By.css('div.card-block'));
             let ngContentElement:DebugElement = contentElement.query(By.css('p'));

@@ -9,7 +9,7 @@ import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../translation/l10n.config';
 import { TerraPlacementEnum } from '../../..';
 
-describe('TerraInfoComponent', () =>
+describe('TerraInfoComponent:', () =>
 {
     let component:TerraInfoComponent;
     let fixture:ComponentFixture<TerraInfoComponent>;
@@ -40,7 +40,7 @@ describe('TerraInfoComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should \'textPlacement\' be set to top by default if not set by input', () =>
+    it(`should #textPlacement be set to top by default if not set by input`, () =>
     {
         expect(component.textPlacement).toBe(TerraPlacementEnum.TOP);
     });
