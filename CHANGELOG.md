@@ -2,6 +2,7 @@
 
 ### Breaking changes
 * **terra-tag** `inputBadge` is now deprecated. Please use `name` instead.
+* **TerraBreadcrumbsService** support to handle queryParams in url 
 
 ### Bug Fixes
 * **terra-data-table** 
