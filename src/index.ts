@@ -112,6 +112,7 @@ export * from './app/components/data-picker/category-picker/service/terra-catego
 export * from './app/components/data-picker/category-picker/data/category-data.interface';
 export * from './app/components/data-picker/category-picker/data/category-detail-data.interface';
 export * from './app/components/data-picker/category-picker/data/category-value.interface';
+export * from './app/components/data-picker/category-picker/data/category-client.interface';
 export * from './app/components/data-picker/nested-data-picker/terra-nested-data-picker.component';
 export * from './app/components/data-picker/nested-data-picker/service/terra-nested-data-picker-base.service';
 export * from './app/components/data-picker/nested-data-picker/data/nested-data.interface';
