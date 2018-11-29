@@ -1,7 +1,9 @@
-# Unreleased
+<a name="3.0.0-beta.16"></a>
+# 3.0.0-beta.16 (29.11.2018)
 
 ### Breaking changes
 * **terra-tag** `inputBadge` is now deprecated. Please use `name` instead.
+* **terra-data-table** removed `inputIsSortable` due to redundancy.
 
 ### Bug Fixes
 * **terra-data-table** 
@@ -13,10 +15,13 @@
     - New input `inputIsSmall`
     - Added the ability to add a divider button to the 'inputOptions'
     - Fixed corresponding CSS
+
 * **terra-storage-object** 
 	- Now counting selected folders and files
 	- Messages changed according to the change above
 	
+* **terra-data-table.service** added `resetSortParams()` to be able to reset sorting params.
+    
 <a name="3.0.0-beta.15"></a>
 # 3.0.0-beta.15 (21.11.2018)
 Adapted Changes from v2.4.3

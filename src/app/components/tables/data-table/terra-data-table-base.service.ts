@@ -102,6 +102,15 @@ export abstract class TerraDataTableBaseService<T, P>
     }
 
     /**
+     * @description resets the sorting parameters `sortBy` and `sortOrder`
+     */
+    public resetSortParams():void
+    {
+        this.sortBy = undefined;
+        this.sortOrder = undefined;
+    }
+
+    /**
      * @description Updates the stored paging data with the given data
      * @param {TerraPagerInterface} pagerData
      */
@@ -124,8 +133,14 @@ export abstract class TerraDataTableBaseService<T, P>
      */
     public getResults(loadFirstPage?:boolean):void
     {
+        // create a new object - this is crucial
+        let params:P = {} as P;
+
         // initialize parameters with filter params
-        let params:P = this.filterParameter;
+        Object.keys(this.filterParameter).forEach((key:string) =>
+        {
+            params[key] = this.filterParameter[key];
+        });
 
         // set page and itemsPerPage attribute
         // IMPORTANT: this must be done after the filter parameters have been applied,...
@@ -136,14 +151,13 @@ export abstract class TerraDataTableBaseService<T, P>
             params['itemsPerPage'] = this._pagingData.itemsPerPage;
         }
 
-        // if search is triggered by a filter component, always retrieve the first page
-        // TODO: maybe implement another behavior by checking if filter params have changed
+        // retrieve the first page, if requested - e.g. if search is triggered by a filter component
         if(loadFirstPage)
         {
             params['page'] = 1;
         }
 
-        // add sortBy attribute to pager params
+        // add sortBy attribute to params
         if(!StringHelper.isNullUndefinedOrEmpty(this.sortBy))
         {
             params['sortBy'] = this.sortBy;
