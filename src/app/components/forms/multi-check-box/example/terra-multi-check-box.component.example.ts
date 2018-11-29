@@ -54,6 +54,6 @@ export class TerraMultiCheckBoxComponentExample implements OnInit
 
     protected checkboxesChanged(checkboxes:Array<TerraMultiCheckBoxValueInterface>):void
     {
-        this.currentChangedCheckboxes = checkbox;
+        this.currentChangedCheckboxes = checkboxes;
     }
 }
