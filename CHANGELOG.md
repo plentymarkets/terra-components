@@ -13,7 +13,10 @@
     - New input `inputIsSmall`
     - Added the ability to add a divider button to the 'inputOptions'
     - Fixed corresponding CSS
-    
+* **terra-storage-object** 
+	- Now counting selected folders and files
+	- Messages changed according to the change above
+	
 <a name="3.0.0-beta.15"></a>
 # 3.0.0-beta.15 (21.11.2018)
 Adapted Changes from v2.4.3

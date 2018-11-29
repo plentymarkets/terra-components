@@ -127,6 +127,9 @@ export class TerraStorageObject
         }
     }
 
+    /**
+     * @returns the number of selected folders
+     * */
     public get folderCount():number
     {
         if(this.isDirectory)
