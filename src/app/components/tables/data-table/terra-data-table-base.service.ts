@@ -151,8 +151,7 @@ export abstract class TerraDataTableBaseService<T, P>
             params['itemsPerPage'] = this._pagingData.itemsPerPage;
         }
 
-        // if search is triggered by a filter component, always retrieve the first page
-        // TODO: maybe implement another behavior by checking if filter params have changed
+        // retrieve the first page, if requested - e.g. if search is triggered by a filter component
         if(loadFirstPage)
         {
             params['page'] = 1;
