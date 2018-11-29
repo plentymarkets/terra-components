@@ -7,6 +7,9 @@
 * **terra-data-table** 
 	- fixed coloring of links in the table if the row is selected or active
 	- reset rowList before requesting data from the server. Show pager and header while data is loaded.
+* **terra-multi-check-box** 
+	- now emits correctly ngModel callbacks after a checkbox has changed
+	- add new `checkboxStateChange` output that emits the current changed checkbox 	
 
 ### Feature
 * **terra-button-with-options** 

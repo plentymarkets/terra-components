@@ -20,7 +20,7 @@
                                             type="checkbox"
                                             [inputIsDisabled]="inputIsDisabled"
                                             [(ngModel)]="listEntry.selected"
-                                            (ngModelChange)="checkHeaderCheckboxState()"
+                                            (ngModelChange)="checkboxChanged(listEntry)"
                                             [inputCaption]="listEntry.caption">
                             </terra-checkbox>
                         </div>

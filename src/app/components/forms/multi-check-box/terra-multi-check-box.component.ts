@@ -1,8 +1,10 @@
 import {
     Component,
+    EventEmitter,
     forwardRef,
     Input,
     OnInit,
+    Output,
     ViewChild
 } from '@angular/core';
 import {
@@ -31,12 +33,14 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
     /**
      * @description If true, the multi check box will be disabled. Default false.
      * */
-    @Input() public inputIsDisabled:boolean;
+    @Input()
+    public inputIsDisabled:boolean;
 
     /**
      * @description If true, the multi check box will be disabled. Default false.
      * */
-    @Input() public inputName:string;
+    @Input()
+    public inputName:string;
 
     protected valueList:Array<TerraMultiCheckBoxValueInterface> = [];
 
@@ -44,6 +48,9 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
     protected viewChildHeaderCheckbox:TerraCheckboxComponent;
 
     protected headerCheckboxValue:boolean;
+
+    @Output()
+    private checkboxStateChange:EventEmitter<TerraMultiCheckBoxValueInterface> = new EventEmitter<TerraMultiCheckBoxValueInterface>();
 
     private isInit:boolean;
 
@@ -59,8 +66,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
 
         this.checkHeaderCheckboxState();
 
-        this.onTouchedCallback();
-        this.onChangeCallback(this.valueList);
+        this.emitCallbacks(this.valueList);
     }
 
     public registerOnChange(fn:any):void
@@ -89,12 +95,21 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
         this.isInit = true;
     }
 
+    protected checkboxChanged(checkBox:TerraMultiCheckBoxValueInterface):void
+    {
+        this.checkHeaderCheckboxState();
+        this.emitCallbacks(this.valueList);
+        this.checkboxStateChange.emit(checkBox);
+    }
+
     protected onHeaderCheckboxChange(isChecked:boolean):void
     {
         this.valueList.forEach((value:TerraMultiCheckBoxValueInterface) =>
         {
             value.selected = isChecked;
         });
+
+        this.emitCallbacks(this.valueList);
     }
 
     protected checkHeaderCheckboxState():void
@@ -108,6 +123,12 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
 
             this.changeHeaderCheckboxState(filteredValues.length);
         }
+    }
+
+    private emitCallbacks(value:Array<TerraMultiCheckBoxValueInterface>):void
+    {
+        this.onTouchedCallback();
+        this.onChangeCallback(value);
     }
 
     private changeHeaderCheckboxState(filteredLength:number):void

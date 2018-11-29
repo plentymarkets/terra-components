@@ -1,6 +1,18 @@
 <terra-multi-check-box [(ngModel)]="values"
-                       [inputIsDisabled]="disabled1">
+                       (ngModelChange)="valuesChanged()"
+                       [inputIsDisabled]="!disabled"
+                       (checkboxStateChange)="checkboxChanged($event)">
 </terra-multi-check-box>
+
+<p>
+    ngModelChange called {{ ngModelChangeCount }} times
+</p>
+
+<p>
+    Current changed checkbox:<br>
+    {{ currentChangedCheckbox | json }}
+</p>
+
 <terra-multi-check-box [(ngModel)]="values"
-                       [inputIsDisabled]="disabled3">
+                       [inputIsDisabled]="disabled">
 </terra-multi-check-box>

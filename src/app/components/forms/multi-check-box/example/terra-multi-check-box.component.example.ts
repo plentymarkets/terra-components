@@ -11,9 +11,10 @@ import { TerraMultiCheckBoxValueInterface } from '../data/terra-multi-check-box-
 })
 export class TerraMultiCheckBoxComponentExample implements OnInit
 {
-    protected disabled1:boolean = false;
     protected values:Array<TerraMultiCheckBoxValueInterface>;
-    protected disabled3:boolean = true;
+    protected disabled:boolean = true;
+    protected currentChangedCheckbox:TerraMultiCheckBoxValueInterface;
+    protected ngModelChangeCount:number = 0;
 
     public ngOnInit():void
     {
@@ -44,5 +45,15 @@ export class TerraMultiCheckBoxComponentExample implements OnInit
                 selected: false
             }
         ];
+    }
+
+    protected valuesChanged():void
+    {
+        this.ngModelChangeCount++;
+    }
+
+    protected checkboxChanged(checkbox:TerraMultiCheckBoxValueInterface):void
+    {
+        this.currentChangedCheckbox = checkbox;
     }
 }
