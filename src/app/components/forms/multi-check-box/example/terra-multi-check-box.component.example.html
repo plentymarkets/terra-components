@@ -1,7 +1,7 @@
 <terra-multi-check-box [(ngModel)]="values"
                        (ngModelChange)="valuesChanged()"
                        [inputIsDisabled]="!disabled"
-                       (checkboxStateChanges)="checkboxChanged($event)">
+                       (checkboxStateChanges)="checkboxesChanged($event)">
 </terra-multi-check-box>
 
 <p>
@@ -10,7 +10,7 @@
 
 <p>
     Current changed checkbox:<br>
-    {{ currentChangedCheckbox | json }}
+    {{ currentChangedCheckboxes | json }}
 </p>
 
 <terra-multi-check-box [(ngModel)]="values"

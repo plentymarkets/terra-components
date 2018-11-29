@@ -13,7 +13,7 @@ export class TerraMultiCheckBoxComponentExample implements OnInit
 {
     protected values:Array<TerraMultiCheckBoxValueInterface>;
     protected disabled:boolean = true;
-    protected currentChangedCheckbox:Array<TerraMultiCheckBoxValueInterface>;
+    protected currentChangedCheckboxes:Array<TerraMultiCheckBoxValueInterface>;
     protected ngModelChangeCount:number = 0;
 
     public ngOnInit():void
@@ -52,8 +52,8 @@ export class TerraMultiCheckBoxComponentExample implements OnInit
         this.ngModelChangeCount++;
     }
 
-    protected checkboxChanged(checkbox:Array<TerraMultiCheckBoxValueInterface>):void
+    protected checkboxesChanged(checkbox:Array<TerraMultiCheckBoxValueInterface>):void
     {
-        this.currentChangedCheckbox = checkbox;
+        this.currentChangedCheckboxes = checkbox;
     }
 }
