@@ -33,10 +33,10 @@ import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/ter
 
 
 @Component({
-    selector:   'terra-data-table',
-    template:   require('./terra-data-table.component.html'),
-    styles:     [require('./terra-data-table.component.scss')],
-    providers:  [TerraDataTableContextMenuService],
+    selector:  'terra-data-table',
+    template:  require('./terra-data-table.component.html'),
+    styles:    [require('./terra-data-table.component.scss')],
+    providers: [TerraDataTableContextMenuService],
 })
 export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges
 {
@@ -50,12 +50,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
      */
     @Input()
     public inputHeaderList:Array<TerraDataTableHeaderCellInterface> = [];
-    /**
-     * @description enables the user to sort the table by selected columns
-     * @default false
-     */
-    @Input()
-    public inputIsSortable:boolean = false;
+
     /**
      * @description shows checkboxes in the table, to be able to select any row
      * @default true
@@ -100,7 +95,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
             filter((header:TerraDataTableHeaderCellInterface) =>
             {
                 // change sorting column and order only if no request is pending and sortBy attribute is given
-                return !this.inputService.requestPending && this.inputIsSortable && !isNullOrUndefined(header.sortBy);
+                return !this.inputService.requestPending && !isNullOrUndefined(header.sortBy);
             }),
             tap((header:TerraDataTableHeaderCellInterface) => this.changeSortingColumn(header)),
             debounceTime(400)
@@ -115,9 +110,9 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     {
         if(changes['inputHeaderList'])
         {
-            if(this.inputIsSortable)
+            if(!isNullOrUndefined(this.inputService))
             {
-                this.resetSorting();
+                this.inputService.resetSortParams();
             }
         }
     }
@@ -131,6 +126,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
         return TerraPlacementEnum.TOP;
     }
+
     protected get dataAvailableOrRequestPending():boolean
     {
         return this.isTableDataAvailable || (!isNullOrUndefined(this.inputService) && this.inputService.requestPending);
@@ -248,30 +244,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
             TerraDataTableSortOrderEnum.descending;
     }
 
-    private resetSorting():void
-    {
-        // sort by the first sortable column, if available
-        let defaultSortColumn:TerraDataTableHeaderCellInterface = this.getFirstSortableColumn();
-        if(!isNullOrUndefined(this.inputService) && this.inputHeaderList && defaultSortColumn)
-        {
-            this.inputService.sortBy = defaultSortColumn.sortBy;
-            this.inputService.sortOrder = TerraDataTableSortOrderEnum.descending;
-        }
-    }
-
-    private getFirstSortableColumn():TerraDataTableHeaderCellInterface
-    {
-        // check if header list is given
-        if(this.inputHeaderList)
-        {
-            // find first header cell where sortBy attribute is given
-            return this.inputHeaderList.find((header:TerraDataTableHeaderCellInterface) => !isNullOrUndefined(header.sortBy));
-        }
-
-        // return null if nothing is found
-        return null;
-    }
-
     private getResults():void
     {
         if(!isNullOrUndefined(this.inputService))
@@ -298,7 +270,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         {
             return false;
         }
-        return this.inputIsSortable && !isNullOrUndefined(header.sortBy);
+        return !isNullOrUndefined(header.sortBy);
     }
 
     protected isUnsorted(header:TerraDataTableHeaderCellInterface):boolean

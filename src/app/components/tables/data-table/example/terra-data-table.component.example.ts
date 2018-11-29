@@ -101,6 +101,12 @@ export class TerraDataTableComponentExample implements OnInit
         this.service.getResults();
     }
 
+    protected resetSorting():void
+    {
+        this.service.resetSortParams();
+        this.service.getResults(true);
+    }
+
     protected executeGroupFunction(selectedRows:Array<TerraDataTableRowInterface<TerraDataTableExampleInterface>>):void
     {
         console.log(selectedRows);
