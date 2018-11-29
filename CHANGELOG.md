@@ -1,3 +1,8 @@
+###unreleased
+
+### Bug Fixes
+* **terra-node-tree** Fixed a bug concerning the deleting of a node on the first level
+
 <a name="3.0.0-beta.16"></a>
 # 3.0.0-beta.16 (29.11.2018)
 
