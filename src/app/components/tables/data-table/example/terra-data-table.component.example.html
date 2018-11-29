@@ -8,6 +8,10 @@
                       [inputTooltipText]="'Group function'"
                       (outputClicked)="showGroupFunction = !showGroupFunction">
         </terra-button>
+        <terra-button [inputIcon]="'icon-reset'"
+                      [inputTooltipText]="'Reset sorting'"
+                      (outputClicked)="resetSorting()">
+        </terra-button>
     </div>
 </terra-base-toolbar>
 
@@ -15,7 +19,6 @@
     #table
     [inputService]="service"
     [inputHasCheckboxes]="true"
-    [inputIsSortable]="true"
     [inputHeaderList]="headerList"
     [inputContextMenu]="contextMenu">
     
