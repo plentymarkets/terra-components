@@ -1,4 +1,5 @@
-# Unreleased
+<a name="3.0.0-beta.16"></a>
+# 3.0.0-beta.16 (29.11.2018)
 
 ### Breaking changes
 * **terra-tag** `inputBadge` is now deprecated. Please use `name` instead.
