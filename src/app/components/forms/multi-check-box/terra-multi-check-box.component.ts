@@ -17,9 +17,9 @@ import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import { TerraMultiCheckBoxValueInterface } from './data/terra-multi-check-box-value.interface';
 
 @Component({
-    selector: 'terra-multi-check-box',
-    styles:   [require('./terra-multi-check-box.component.scss')],
-    template: require('./terra-multi-check-box.component.html'),
+    selector:  'terra-multi-check-box',
+    styles:    [require('./terra-multi-check-box.component.scss')],
+    template:  require('./terra-multi-check-box.component.html'),
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
@@ -50,9 +50,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
     protected headerCheckboxValue:boolean;
 
     @Output()
-    private checkboxStateChange:EventEmitter<TerraMultiCheckBoxValueInterface> = new EventEmitter<TerraMultiCheckBoxValueInterface>();
-
-    private isInit:boolean;
+    private checkboxStateChanges:EventEmitter<Array<TerraMultiCheckBoxValueInterface>> = new EventEmitter<Array<TerraMultiCheckBoxValueInterface>>();
 
     private langPrefix:string = 'terraMultiCheckBox';
 
@@ -66,7 +64,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
 
         this.checkHeaderCheckboxState();
 
-        this.emitCallbacks(this.valueList);
+        this.emitCallbacks(this.valueList, this.valueList);
     }
 
     public registerOnChange(fn:any):void
@@ -83,33 +81,34 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
     {
         if(!this.inputName)
         {
-            this.inputName = this.translation.translate(this.langPrefix + '.selectAll');
-
             // this is necessary for language switch
             this.translation.translationChanged().subscribe(() =>
             {
                 this.inputName = this.translation.translate(this.langPrefix + '.selectAll');
             });
         }
-
-        this.isInit = true;
     }
 
     protected checkboxChanged(checkBox:TerraMultiCheckBoxValueInterface):void
     {
         this.checkHeaderCheckboxState();
-        this.emitCallbacks(this.valueList);
-        this.checkboxStateChange.emit(checkBox);
+        this.emitCallbacks(this.valueList, [checkBox]);
     }
 
     protected onHeaderCheckboxChange(isChecked:boolean):void
     {
+        let changedCheckboxes:Array<TerraMultiCheckBoxValueInterface> = [];
+
         this.valueList.forEach((value:TerraMultiCheckBoxValueInterface) =>
         {
-            value.selected = isChecked;
+            if(value.selected !== isChecked)
+            {
+                value.selected = isChecked;
+                changedCheckboxes.push(value);
+            }
         });
 
-        this.emitCallbacks(this.valueList);
+        this.emitCallbacks(this.valueList, changedCheckboxes);
     }
 
     protected checkHeaderCheckboxState():void
@@ -125,10 +124,11 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
         }
     }
 
-    private emitCallbacks(value:Array<TerraMultiCheckBoxValueInterface>):void
+    private emitCallbacks(value:Array<TerraMultiCheckBoxValueInterface>, changedCheckboxes:Array<TerraMultiCheckBoxValueInterface>):void
     {
         this.onTouchedCallback();
-        this.onChangeCallback(value);
+        this.onChangeCallback(this.valueList);
+        this.checkboxStateChanges.emit(changedCheckboxes);
     }
 
     private changeHeaderCheckboxState(filteredLength:number):void

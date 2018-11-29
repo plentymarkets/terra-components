@@ -16,11 +16,10 @@
                 <div *ngFor="let listEntry of valueList;">
                     <div class="input-group">
                         <div class="input-group-addon">
-                            <terra-checkbox #valueCheckbox
-                                            type="checkbox"
+                            <terra-checkbox type="checkbox"
                                             [inputIsDisabled]="inputIsDisabled"
                                             [(ngModel)]="listEntry.selected"
-                                            (ngModelChange)="checkboxChanged(listEntry)"
+                                            (click)="checkboxChanged(listEntry)"
                                             [inputCaption]="listEntry.caption">
                             </terra-checkbox>
                         </div>
