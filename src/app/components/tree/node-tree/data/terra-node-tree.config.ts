@@ -182,6 +182,12 @@ export class TerraNodeTreeConfig<D>
 
             parent.children.splice(index, 1);
         }
+        else
+        {
+            let index:number = this.list.indexOf(node);
+
+            this.list.splice(index, 1);
+        }
 
         if(node === this.currentSelectedNode)
         {
@@ -215,8 +221,8 @@ export class TerraNodeTreeConfig<D>
     public updateNodeById(id:string | number, newNode:TerraNodeInterface<D>):void
     {
         if(!isNullOrUndefined(newNode.id) &&
-            !isNullOrUndefined(id ) &&
-            (newNode.id.toString() !== id.toString()))
+           !isNullOrUndefined(id) &&
+           (newNode.id.toString() !== id.toString()))
         {
             console.warn('ID ' + id + ' is different from new node ID!');
         }
@@ -302,8 +308,8 @@ export class TerraNodeTreeConfig<D>
         for(let node of nodeList)
         {
             if(!isNullOrUndefined(id) &&
-                !isNullOrUndefined(node.id) &&
-                (node.id.toString() === id.toString()))
+               !isNullOrUndefined(node.id) &&
+               (node.id.toString() === id.toString()))
             {
                 foundNode = node;
 
