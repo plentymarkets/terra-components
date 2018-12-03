@@ -49,7 +49,7 @@ describe(`TerraSliderComponent`, () =>
         expect(component.inputShowTicks).toBe(false);
     });
 
-    describe(``, () =>
+    describe(`with 2-way-data-binding via ngModel or #inputValue`, () =>
     {
         let sliderWidth:number;
         beforeEach(() =>
@@ -58,7 +58,7 @@ describe(`TerraSliderComponent`, () =>
             sliderWidth = sliderBar.getBoundingClientRect().width;
         });
 
-        it(`should update slider position (#handlePosition) when calling #writeValue via ngModel`, () =>
+        it(`should update slider position (#handlePosition) when calling #writeValue`, () =>
         {
             component.writeValue(0.2);
             expect(component.handlePosition).toBe(sliderWidth * 0.2);
