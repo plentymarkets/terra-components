@@ -5,6 +5,7 @@
                 <div class="terra-breadcrumb-wrapper">
                     <a class="terra-breadcrumb"
                        [routerLink]="container.currentSelectedBreadcrumb.routerLink"
+                       [queryParams]="container.currentSelectedBreadcrumb.queryParams"
                        [container]="'body'"
                        terraLabelTooltip
                        [nameOfInput]="container.currentSelectedBreadcrumb.name "
@@ -16,11 +17,14 @@
                        [ngClass]="{'active' : checkActiveRoute(container.currentSelectedBreadcrumb, breadcrumbContainer)}">
                         {{container.currentSelectedBreadcrumb.name}}
                     </a>
-                    <a class="icon-caret" *ngIf="container.visibleBreadcrumbsCount > 1" (mouseenter)="calculatePosition(breadcrumbContainer, contextMenu)">
+                    <a *ngIf="container.visibleBreadcrumbsCount > 1"
+                       class="icon-caret"
+                       (mouseenter)="calculatePosition(breadcrumbContainer, contextMenu)">
                         <ul class="context-menu" [ngStyle]="{'left': mouseLeft}" #contextMenu>
                             <ng-template ngFor let-breadcrumb [ngForOf]="container.breadcrumbList">
                                 <li *ngIf="!breadcrumb.isHidden">
-                                    <a [routerLink]="breadcrumb.routerLink">
+                                    <a [routerLink]="breadcrumb.routerLink"
+                                       [queryParams]="breadcrumb.queryParams">
                                         {{ breadcrumb.name }}
                                     </a>
                                     <span class="right-icon icon-cancel" (click)="closeBreadcrumb(container, breadcrumb, $event)"></span>
