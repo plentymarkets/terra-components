@@ -1,4 +1,7 @@
-###unreleased
+# Unreleased
+
+### Features
+* **terra-slider** implement `ControlValueAccessor` interface to be able to use ngModel instead of `inputValue`.
 
 ### Bug Fixes
 * **terra-node-tree** Fixed a bug concerning the deletion of a node on the first level
