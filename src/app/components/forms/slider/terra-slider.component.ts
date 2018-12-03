@@ -3,6 +3,7 @@ import {
     Component,
     ElementRef,
     EventEmitter,
+    forwardRef,
     Input,
     OnInit,
     Output,
@@ -12,13 +13,24 @@ import { isNullOrUndefined } from 'util';
 import { GridOptions } from '../../interactables/gridOptions.interface';
 import { TerraSliderTick } from './data/terra-slider-tick';
 import { InteractEvent } from 'interactjs';
+import {
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
 
 @Component({
     selector: 'terra-slider',
     template: require('./terra-slider.component.html'),
-    styles:   [require('./terra-slider.component.scss')]
+    styles:   [require('./terra-slider.component.scss')],
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraSliderComponent),
+            multi:       true
+        }
+    ]
 })
-export class TerraSliderComponent implements OnInit
+export class TerraSliderComponent implements OnInit, ControlValueAccessor
 {
     @Input()
     public inputValue:number;
@@ -52,6 +64,9 @@ export class TerraSliderComponent implements OnInit
 
     @ViewChild('sliderBar', {read: ElementRef})
     private sliderBarElement:ElementRef;
+
+    private changeCallback:(value:number) => void = ():void => undefined;
+    private touchedCallback:() => void = ():void => undefined;
 
     constructor(private element:ElementRef, private changeDetector:ChangeDetectorRef)
     {
@@ -109,6 +124,8 @@ export class TerraSliderComponent implements OnInit
         }
 
         this.inputValueChange.emit(this.inputValue);
+        this.changeCallback(this.inputValue);
+        this.touchedCallback();
 
         this.changeDetector.detectChanges();
     }
@@ -242,5 +259,20 @@ export class TerraSliderComponent implements OnInit
     private calculateNumberOfSteps():number
     {
         return this.calculateRangeOfSlider() / this.inputInterval;
+    }
+
+    public registerOnChange(fn:any):void
+    {
+        this.changeCallback = fn;
+    }
+
+    public registerOnTouched(fn:any):void
+    {
+        this.touchedCallback = fn;
+    }
+
+    public writeValue(value:number):void
+    {
+        this.inputValue = value;
     }
 }
