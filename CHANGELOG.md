@@ -1,5 +1,6 @@
 ###unreleased
-
+### Feature
+* **terra-select-box** is now focusable while navigating with tab key
 ### Bug Fixes
 * **terra-node-tree** Fixed a bug concerning the deletion of a node on the first level
 
