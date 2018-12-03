@@ -75,9 +75,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     @ViewChild('sliderBar', {read: ElementRef})
     private sliderBarElement:ElementRef;
 
-    private changeCallback:(value:number) => void = ():void => undefined;
-    private touchedCallback:() => void = ():void => undefined;
-
     constructor(private element:ElementRef, private changeDetector:ChangeDetectorRef)
     {
     }
@@ -279,6 +276,9 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     {
         return this.calculateRangeOfSlider() / this.inputInterval;
     }
+
+    private changeCallback:(value:number) => void = ():void => undefined;
+    private touchedCallback:() => void = ():void => undefined;
 
     public registerOnChange(fn:any):void
     {
