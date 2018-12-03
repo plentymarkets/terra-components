@@ -17,7 +17,7 @@
                      [terra-draggable-restrict]="'self'"
                      [terra-draggable-grid]="grid"
                      (terra-draggable-onMove)="onDrag( $event )">
-                    {{ value.toFixed(inputPrecision) }}
+                    {{ value?.toFixed(inputPrecision) }}
                 </div>
                 
                 <div *ngIf="inputShowTicks" class="slider-ticks">
