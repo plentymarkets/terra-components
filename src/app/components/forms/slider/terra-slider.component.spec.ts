@@ -5,6 +5,9 @@ import {
     TestBed
 } from '@angular/core/testing';
 import { TerraDraggableDirective } from '../../interactables/draggable.directive';
+import { By } from '@angular/platform-browser';
+import { SimpleChange } from '@angular/core';
+import Spy = jasmine.Spy;
 
 fdescribe(`TerraSliderComponent`, () =>
 {
@@ -44,5 +47,49 @@ fdescribe(`TerraSliderComponent`, () =>
         expect(component.inputIsDisabled).toBe(false);
         expect(component.inputShowMinMax).toBe(false);
         expect(component.inputShowTicks).toBe(false);
+    });
+
+    describe(``, () =>
+    {
+        let sliderWidth:number;
+        beforeEach(() =>
+        {
+            let sliderBar:HTMLDivElement = fixture.debugElement.query(By.css('.slider-bar')).nativeElement;
+            sliderWidth = sliderBar.getBoundingClientRect().width;
+        });
+
+        it(`should update slider position (#handlePosition) when calling #writeValue via ngModel`, () =>
+        {
+            component.writeValue(0.2);
+            expect(component.handlePosition).toBe(sliderWidth * 0.2);
+
+            component.writeValue(0.4);
+            expect(component.handlePosition).toBe(sliderWidth * 0.4);
+        });
+
+        it(`should update slider position (#handlePosition) when updating #inputValue`, () =>
+        {
+            component.inputValue = 0.2;
+            component.ngOnChanges({ inputValue: null });
+            expect(component.handlePosition).toBe(sliderWidth * 0.2);
+
+            component.inputValue = 0.7;
+            component.ngOnChanges({ inputValue: null });
+            expect(component.handlePosition).toBe(sliderWidth * 0.7);
+        });
+
+        it(`should emit on #inputValueChanged and call registered #changeCallback when setting the value of #handlePosition`, () =>
+        {
+            let emittedValue:number = 0;
+            let spy:Spy = jasmine.createSpy('spy');
+            component.registerOnChange(spy);
+            component.inputValueChange.subscribe((value:number) => emittedValue = value);
+
+            const testValue:number = 0.6;
+            component.handlePosition = sliderWidth * testValue;
+
+            expect(spy).toHaveBeenCalledWith(testValue);
+            expect(emittedValue).toBe(testValue);
+        });
     });
 });
