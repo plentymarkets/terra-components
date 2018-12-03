@@ -109,6 +109,210 @@ The following deprecated components have been deleted:
 
 [SplitView Migration Guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide).
 
+<a name="3.0.0-beta.16"></a>
+# 3.0.0-beta.16 (29.11.2018)
+
+### Breaking changes
+* **terra-tag** `inputBadge` is now deprecated. Please use `name` instead.
+* **terra-data-table** removed `inputIsSortable` due to redundancy.
+
+### Bug Fixes
+* **terra-data-table** 
+	- fixed coloring of links in the table if the row is selected or active
+	- reset rowList before requesting data from the server. Show pager and header while data is loaded.
+
+### Feature
+* **terra-button-with-options** 
+    - New input `inputIsSmall`
+    - Added the ability to add a divider button to the 'inputOptions'
+    - Fixed corresponding CSS
+* **terra-data-table.service** added `resetSortParams()` to be able to reset sorting params.
+    
+<a name="3.0.0-beta.15"></a>
+# 3.0.0-beta.15 (21.11.2018)
+Adapted Changes from v2.4.3
+
+### Breaking Changes
+* **terra-stopwatch** rework. removed dependency to [timer-stopwatch](https://www.npmjs.com/package/timer-stopwatch) package.
+
+<a name="3.0.0-beta.14"></a>
+# 3.0.0-beta.14 (15.11.2018)
+
+### Breaking Changes
+* **terra-data-table** 
+	- Table is now sortable. Use the sortBy interface property to state whether a column is sortable
+	- Refactoring -> Removed deprecated interface and input properties
+	- New `TerraDataTableBaseService` which replaces custom directives and configs. It also stores all information needed for retrieving data from the server
+	- New `terra-group-function` component which has been extracted from the `terra-data-table` component
+	- Removed inputs for `terra-no-result-notice` and `terra-group-function` since they can now be passed to the content of the `terra-data-table` component.
+	- Added input `inputContextMenu` to be able to pass the context menu only once to the component
+* **terra-data-table-row.interface** removed `contextMenuLinkList` property since it can now be passed to the data table component using `inputContextMenu`.
+* **terra-data-table-context-menu.service** removed `init` subject and changed type of `show` subject
+* **terra-data-table-context-menu.directive**
+	- changed selector to `[hasContextMenu]`
+	- removed input `inputLinks` which was aliased with the selector before
+	- new input `rowData` which is used to pass the data of a row to the context menu component
+* **terra-data-table-context-menu.component** 
+	- added input `links`. The list of links in the context menu can be passed here.
+	- changed parameters of the `showMenu` method. It now accepts the mouse event and the data which will be passed to the `clickFunction` of the context menu link.
+* **terra-data-table-context-menu.interface** remove `data` property. Use the directive's input `rowData` instead.
+* **terra-pager.data** removed unused class
+
+For further information see the [table migration guide](https://developers.plentymarkets.com/dev-doc/data-table-migration-guide).
+
+### Feature
+* **terra-dynamic-form** new optional toggle button to display/hide deprecated plugin config entries
+
+### Bug Fixes
+* **terra-regex** public access to properties
+
+<a name="3.0.0-beta.13"></a>
+# 3.0.0-beta.13 (12.11.2018)
+
+Adapted Changes from v2.4.2
+
+### Bug Fixes
+* **terra-node.interface**
+	- removed double click function.
+	- add closeOnClick to close node on click again.
+
+<a name="3.0.0-beta.12"></a>
+# 3.0.0-beta.12 (07.11.2018)
+* **category-detail-data**
+	- added preview url	 
+
+<a name="3.0.0-beta.11"></a>
+# 3.0.0-beta.11 (25.10.2018)
+
+* **terra-file-browser** 
+	- breadcrumbs replaced with tree for folder navigation.
+	- saving alternative text working as intended with success message.
+	- image preview now closing after delete.
+	- file list is refreshed when inputStorageService changes
+
+* **terra-node-tree** avoid closing node on click while it's open.
+* **terra-2-col** adjusted styles to handle column heights correctly.
+* **terra-3-col** adjusted styles to handle column heights correctly.
+
+<a name="3.0.0-beta.10"></a>
+# 3.0.0-beta.10 (23.10.2018)
+
+### Bug Fixes
+* **terra-date-picker** fix format of the date string emitted by `ngModelChange`
+
+<a name="3.0.0-beta.9"></a>
+# 3.0.0-beta.9 (22.10.2018)
+
+### Feature
+* **terra-3-col** new component that displays given views next to each other in up to three columns
+
+### Bug Fixes
+* **terra-date-picker** fixed format of the date string emitted by `ngModelChange`.
+
+### Changes
+* The definition of custom font faces have been separated into multiple files.
+
+<a name="3.0.0-beta.8"></a>
+# 3.0.0-beta.8 (17.10.2018)
+
+### Bug Fixes
+* **terra-data-table** 
+	- fix issue where numbers were formatted using the default locale
+	- fix issue with data of type `TerraDataTableTextInterface` where the icon was not shown, if the text was empty
+
+<a name="3.0.0-beta.7"></a>
+# 3.0.0-beta.7 (15.10.2018)
+
+The following components/classes have been marked deprecated:
+
+* **terra-multi-split-view**
+* **terra-multi-split-view.interface**
+* **terra-multi-split-view.config**
+* **terra-multi-split-view.helper**
+* **terra-multi-split-view-breadcrumbs.service**
+* **terra-multi-split-view-module.interface**
+* **terra-multi-split-view-route.interface**
+* **terra-multi-split-view-route-data.interface**
+* **terra-multi-split-view-routes.interface**
+
+* **resolve-list-item.interface**
+* **resolved-data.interface**
+* **terra-resolved-data.helper**
+
+For further information on how to replace it see the [SplitView Migration Guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide).
+
+The following deprecated variables have been deleted:
+
+* **terra-button-with-options** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
+* **terra-button.interface** `isPrimary`, `isSecondary`, `isTertiary`,
+* **terra-button** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
+* **terra-file-chooser** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
+* **terra-dynamic-module-loader** `inputParameter` (use `inputInputs` instead)
+* **terra-filter** `inputInputList` (use `ng-content` instead)
+* **terra-checkbox** `inputId`
+* **terra-double-input** `inputValue` (use `ngModel` instead)
+* **terra-number-input** `inputValue` (use `ngModel` instead)
+* **terra-input** `inputPlaceholder` (use `inputName` instead)
+* **terra-text-area-input** `inputType`, `inputValue` (use `ngModel` instead), `inputMaxCols`
+* **terra-text-input** `inputType`, `inputValue` (use `ngModel` instead)
+* **terra-select-box** `outputValueChanged` (use `ngModelChange` instead), `inputSelectedValue` (use `ngModel` instead)
+* **terra-suggestion-box** `outputValueChanged` (use `ngModelChange` instead), `resetComponentValue()` (use `ngModel` instead)
+* **terra-tag.interface** `caption` (use `name` or `names` instead), `badge` (use `name` or `names` instead)
+* **terra-multi-split-view** `inputComponentRoute`
+* **terra-data-table-cell.interface** `caption` (use `data` or `data.caption` instead), `icon` (use `data.icon` instead), `color` (use `data.color` instead), `buttonList` (use `data` instead), `href` (use `data` instead) -> `data` can be a type of `string`, `number`, `TerraDataTableTextInterface`, `TerraRefTypeInterface`, `Array<TerraButtonInterface>`or `Array<TerraTagInterface>`
+* **terra-data-table-header-cell.interface** `textAlign:string` (use `textAlign:TerraTextAlignEnum` instead)
+* **terra-data-table** `hasCheckboxes` (use `inputHasCheckboxes` instead)
+* **terra-simple-table** setter and getter of `headerList` (use `inputHeaderList`), getter and setter of `rowList` (use `inputRowList` instead)
+
+The following deprecated components have been deleted:
+
+* **terra-multi-select-box** use `terra-multi-check-box` instead
+* **terra-button-group**
+* **terra-navigator**
+* **terra-split-view** use `terra-multi-split-view` instead
+* **terra-tile-box** use `terra-card` instead
+* **terra-tree** use `terra-node-tree` instead
+* **terra-url-params-decorator** use `terra-base-service::createUrlSearchParams` instead
+
+<a name="3.0.0-beta.6"></a>
+# 3.0.0-beta.6 (12.10.2018)
+Adapted Changes from v2.4.0
+
+### Feature
+* **terra-stopwatch** added new terra component terra-stopwatch. 
+
+<a name="3.0.0-beta.6"></a>
+# 3.0.0-beta.6 (xx.xx.2018)
+* **function-groups** added missing styles for .btn-major
+
+<a name="3.0.0-beta.5"></a>
+# 3.0.0-beta.5 (04.10.2018)
+* **terra-nested-picker** added showFullSelectionPath property to show if you want the entire path for a selected node
+
+<a name="3.0.0-beta.4"></a>
+# 3.0.0-beta.4 (20.09.2018)
+* **terra-file-browser** fixed issue when uploading a file
+
+<a name="3.0.0-beta.3"></a>
+# 3.0.0-beta.3 (19.09.2018)
+
+### Bug Fixes
+* **terra-data-table** add initialisation for private row list properties
+
+<a name="3.0.0-beta.2"></a>
+# 3.0.0-beta.2 (19.09.2018)
+Adapted Changes from v2.3.23
+
+<a name="3.0.0-beta.1"></a>
+# 3.0.0-beta.1 (13.09.2018)
+Adapted Changes from v2.3.21 and v2.3.22
+
+<a name="3.0.0-beta.0"></a>
+# 3.0.0-beta.0 (11.09.2018)
+
+### Breaking Changes
+* **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
+
 
 <a name="2.4.3"></a>
 # 2.4.3 (21.11.2018)
