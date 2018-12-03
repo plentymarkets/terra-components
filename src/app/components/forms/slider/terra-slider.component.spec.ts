@@ -9,7 +9,7 @@ import { By } from '@angular/platform-browser';
 import { SimpleChange } from '@angular/core';
 import Spy = jasmine.Spy;
 
-fdescribe(`TerraSliderComponent`, () =>
+describe(`TerraSliderComponent`, () =>
 {
     let component:TerraSliderComponent;
     let fixture:ComponentFixture<TerraSliderComponent>;
