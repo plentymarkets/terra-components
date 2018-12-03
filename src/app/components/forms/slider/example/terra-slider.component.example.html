@@ -55,6 +55,15 @@
     </div>
     <div class="row">
         <div class="col-md-6">
+            <p>Slider with float values and 2-Way-Data-Binding. Current value: {{sliderValue}}</p>
+            <terra-slider inputName="Float slider"
+                          [inputMin]="0"
+                          [inputMax]="1"
+                          [inputInterval]="0.1"
+                          [(inputValue)]="sliderValue">
+            </terra-slider>
+        </div>
+        <div class="col-md-6">
             <p>Slider with float values and ngModel. Current value: {{sliderValue}}</p>
             <terra-slider inputName="Float slider"
                           [inputMin]="0"
