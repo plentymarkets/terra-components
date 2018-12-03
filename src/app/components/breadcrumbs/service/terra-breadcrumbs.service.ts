@@ -6,7 +6,8 @@ import {
     Route,
     Router,
     RouterEvent,
-    Routes
+    Routes,
+    UrlSerializer
 } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 import { TranslationService } from 'angular-l10n';
@@ -23,7 +24,8 @@ export class TerraBreadcrumbsService
     private initialRoute:Route;
 
     constructor(private router:Router,
-                private translation:TranslationService)
+                private translation:TranslationService,
+                private urlSerializer:UrlSerializer)
     {
         this.router.events.filter((event:RouterEvent) =>
         {
@@ -34,13 +36,15 @@ export class TerraBreadcrumbsService
         {
             if(!isNullOrUndefined(this.initialRoute.children))
             {
-                let shortUrl:string = event.urlAfterRedirects.replace('/' + this._initialPath, '');
+                let cleanEventUrl:string = UrlHelper.getCleanUrl(event.urlAfterRedirects);
+
+                let shortUrl:string = cleanEventUrl.replace(this._initialPath, '');
 
                 let urlParts:Array<string> = shortUrl.split('/');
                 let urls:Array<string> = urlParts.map((urlPart:string, index:number) => urlParts.slice(0, index + 1).join('/'));
                 urls.forEach((url:string) =>
                 {
-                    this.handleBreadcrumbForUrl(url, '/' + this._initialPath + url);
+                    this.handleBreadcrumbForUrl(url, '/' + this._initialPath + url, '/' + cleanEventUrl);
                 });
 
                 // update breadcrumb visibility for containers that have not been checked since the url is to short
@@ -70,14 +74,13 @@ export class TerraBreadcrumbsService
         return this._containers;
     }
 
-    private handleBreadcrumbForUrl(shortUrl:string, fullUrl:string):void
+    private handleBreadcrumbForUrl(shortUrl:string, fullUrl:string, cleanEventUrl:string):void
     {
-        let shortUrlWithoutLeadingSlash:string = UrlHelper.removeLeadingSlash(shortUrl);
-        let route:Route = this.findRoute(shortUrlWithoutLeadingSlash, this.initialRoute.children);
-        this.handleBreadcrumb(route, fullUrl, shortUrl.split('/').length - 1);
+        let route:Route = this.findRoute(shortUrl, this.initialRoute.children);
+        this.handleBreadcrumb(route, fullUrl, cleanEventUrl, shortUrl.split('/').length - 1);
     }
 
-    private handleBreadcrumb(route:Route, url:string, urlPartsCount:number):void
+    private handleBreadcrumb(route:Route, url:string, cleanEventUrl:string, urlPartsCount:number):void
     {
         if(isNullOrUndefined(route))
         {
@@ -101,11 +104,21 @@ export class TerraBreadcrumbsService
         // breadcrumb not found
         if(isNullOrUndefined(breadcrumb))
         {
-            let label:string = this.getBreadcrumbLabel(route);
+            let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
+            let label:string = this.getBreadcrumbLabel(route, activatedSnapshot);
             let currentContainerIndex:number = this._containers.indexOf(container);
             let previousContainer:TerraBreadcrumbContainer = this._containers[currentContainerIndex - 1];
             let parentBreadcrumb:TerraBreadcrumb = isNullOrUndefined(previousContainer) ? undefined : previousContainer.currentSelectedBreadcrumb;
-            breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url);
+
+            if(cleanEventUrl === url)
+            {
+                breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url, activatedSnapshot.queryParams);
+            }
+            else
+            {
+                breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url);
+            }
+
             container.breadcrumbList.push(breadcrumb);
         }
 
@@ -114,16 +127,14 @@ export class TerraBreadcrumbsService
         this.updateBreadcrumbVisibilities(container, breadcrumb.parent);
     }
 
-    private getBreadcrumbLabel(route:Route):string
+    private getBreadcrumbLabel(route:Route, activatedSnapshot:ActivatedRouteSnapshot):string
     {
         let label:string = '';
         if(!isNullOrUndefined(route.data))
         {
             if(typeof route.data.label === 'function')
             {
-                let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
-
-                label = route.data.label(this.translation, activatedSnapshot.params, activatedSnapshot.data);
+                label = route.data.label(this.translation, activatedSnapshot.params, activatedSnapshot.data, activatedSnapshot.queryParams);
             }
             else
             {
@@ -165,7 +176,7 @@ export class TerraBreadcrumbsService
 
     private findRoute(url:string, routeConfig:Routes):Route
     {
-        let urlParts:Array<string> =  UrlHelper.removeLeadingSlash(url).split('/');
+        let urlParts:Array<string> = UrlHelper.removeLeadingSlash(url).split('/');
         let urlPart:string = urlParts.shift();
 
         let routes:Routes = routeConfig;
@@ -219,7 +230,19 @@ export class TerraBreadcrumbsService
 
     public checkActiveRoute(breadcrumb:TerraBreadcrumb):boolean
     {
-        return this.router.isActive(breadcrumb.routerLink, true);
+        let breadcrumbUrl:string = breadcrumb.routerLink;
+
+        if(!isNullOrUndefined(breadcrumb.queryParams)
+           && Object.getOwnPropertyNames(breadcrumb.queryParams).length > 0)
+        {
+            breadcrumbUrl = this.urlSerializer.serialize(
+                this.router.createUrlTree([],
+                    {
+                        queryParams: breadcrumb.queryParams
+                    }));
+        }
+
+        return (this.router.url === breadcrumbUrl);
     }
 
     /**
@@ -259,7 +282,9 @@ export class TerraBreadcrumbsService
             // or it will be updated automatically from it's route data
             else
             {
-                breadcrumb.name = this.getBreadcrumbLabel(route);
+                let activatedSnapshot:ActivatedRouteSnapshot = this.findActivatedRouteSnapshot(this.router.routerState.snapshot.root);
+
+                breadcrumb.name = this.getBreadcrumbLabel(route, activatedSnapshot);
             }
         }
     }
