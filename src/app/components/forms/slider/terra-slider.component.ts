@@ -146,7 +146,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         this.changeDetector.detectChanges();
     }
 
-    private get grid():GridOptions
+    protected get grid():GridOptions
     {
         if(this.inputInterval > 0)
         {
