@@ -1,4 +1,5 @@
-###unreleased
+<a name="3.0.0-beta.17"></a>
+# 3.0.0-beta.17 (03.12.2018)
 
 ### Feature
 * **TerraBreadcrumbsService** support to handle queryParams in url 
