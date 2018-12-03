@@ -7,7 +7,9 @@ import {
     Input,
     OnInit,
     Output,
-    ViewChild
+    ViewChild,
+    OnChanges,
+    SimpleChanges
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { GridOptions } from '../../interactables/gridOptions.interface';
@@ -30,24 +32,13 @@ import {
         }
     ]
 })
-export class TerraSliderComponent implements OnInit, ControlValueAccessor
+export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAccessor
 {
     /**
      * @deprecated use `ngModel` instead
      */
     @Input()
-    public set inputValue(value:number)
-    {
-        this.value = value;
-    }
-
-    /**
-     * @deprecated related to `inputValue` setter
-     */
-    public get inputValue():number
-    {
-        return this.value;
-    }
+    public inputValue:number;
 
     /**
      * @deprecated use `ngModelChange` instead
@@ -89,6 +80,14 @@ export class TerraSliderComponent implements OnInit, ControlValueAccessor
 
     constructor(private element:ElementRef, private changeDetector:ChangeDetectorRef)
     {
+    }
+
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes.hasOwnProperty('inputValue'))
+        {
+            this.value = this.inputValue; // for backwards compatibility
+        }
     }
 
     public get handlePosition():number
@@ -145,6 +144,7 @@ export class TerraSliderComponent implements OnInit, ControlValueAccessor
         this.inputValueChange.emit(this.value);
         this.changeCallback(this.value);
         this.touchedCallback();
+        this.inputValue = this.value; // for backwards compatibility
 
         this.changeDetector.detectChanges();
     }
