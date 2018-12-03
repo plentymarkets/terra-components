@@ -1,8 +1,10 @@
 ###unreleased
 
+### Feature
+* **TerraBreadcrumbsService** support to handle queryParams in url 
+
 ### Bug Fixes
 * **terra-node-tree** Fixed a bug concerning the deletion of a node on the first level
-* **TerraBreadcrumbsService** support to handle queryParams in url 
 
 <a name="3.0.0-beta.16"></a>
 # 3.0.0-beta.16 (29.11.2018)
