@@ -79,6 +79,10 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     {
     }
 
+    /**
+     * @public
+     * @param changes
+     */
     public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes.hasOwnProperty('inputValue'))
@@ -87,6 +91,11 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         }
     }
 
+    /**
+     * get position of slider element in px to left bound
+     * @returns {number}
+     * @public
+     */
     public get handlePosition():number
     {
         let sliderWidth:number = this.sliderBarElement.nativeElement.getBoundingClientRect().width;
@@ -105,6 +114,11 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         return sliderWidth * percentage;
     }
 
+    /**
+     * set position of slider element in px to left bound
+     * @public
+     * @param value
+     */
     public set handlePosition(value:number)
     {
         let sliderWidth:number = this.sliderBarElement.nativeElement.getBoundingClientRect().width;
@@ -159,6 +173,9 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         return null;
     }
 
+    /**
+     * @public
+     */
     public ngOnInit():void
     {
         if(isNullOrUndefined(this.value))
@@ -218,11 +235,21 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         }
     }
 
+    /**
+     * handle drag event
+     * @public
+     * @param event
+     */
     public onDrag(event:InteractEvent):void
     {
         this.moveToPosition(event.pageX);
     }
 
+    /**
+     * handle click event on bar
+     * @public
+     * @param event
+     */
     public onBarClicked(event:MouseEvent):void
     {
         this.moveToPosition(event.pageX);
@@ -237,6 +264,11 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         }
     }
 
+    /**
+     * get ticks
+     * @returns {Array<TerraSliderTick>}
+     * @public
+     */
     public getTicks():Array<TerraSliderTick>
     {
         let ticks:Array<TerraSliderTick> = [];
@@ -280,16 +312,28 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     private changeCallback:(value:number) => void = ():void => undefined;
     private touchedCallback:() => void = ():void => undefined;
 
+    /**
+     * @public
+     * @param fn
+     */
     public registerOnChange(fn:any):void
     {
         this.changeCallback = fn;
     }
 
+    /**
+     * @public
+     * @param fn
+     */
     public registerOnTouched(fn:any):void
     {
         this.touchedCallback = fn;
     }
 
+    /**
+     * @public
+     * @param value
+     */
     public writeValue(value:number):void
     {
         this.value = value;
