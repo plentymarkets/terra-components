@@ -24,11 +24,25 @@ fdescribe(`TerraSliderComponent`, () =>
     beforeEach(() =>
     {
         fixture = TestBed.createComponent(TerraSliderComponent);
-        component = fixture.nativeElement;
+        component = fixture.componentInstance;
     });
 
     it(`should create`, () =>
     {
         expect(component).toBeTruthy();
+    });
+
+    it(`should initialize its inputs and outputs`, () =>
+    {
+        expect(component.inputValue).toBeUndefined();
+        expect(component.inputValueChange).toBeDefined();
+        expect(component.inputName).toBeUndefined();
+        expect(component.inputInterval).toBe(0);
+        expect(component.inputMin).toBe(0);
+        expect(component.inputMax).toBe(1);
+        expect(component.inputPrecision).toBeNull();
+        expect(component.inputIsDisabled).toBe(false);
+        expect(component.inputShowMinMax).toBe(false);
+        expect(component.inputShowTicks).toBe(false);
     });
 });
