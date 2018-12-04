@@ -1,7 +1,25 @@
 # Unreleased
 
+### Features
+* **terra-slider** implement `ControlValueAccessor` interface to be able to use ngModel instead of `inputValue`.
+
+<a name="3.0.0-beta.17"></a>
+# 3.0.0-beta.17 (03.12.2018)
+
+### Feature
+* **TerraBreadcrumbsService** support to handle queryParams in url 
+
+### Bug Fixes
+* **terra-node-tree** Fixed a bug concerning the deletion of a node on the first level
+* **terra-3-col** fixed style bug in firefox
+* **terra-2-col** fixed style bug in firefox
+
+<a name="3.0.0-beta.16"></a>
+# 3.0.0-beta.16 (29.11.2018)
+
 ### Breaking changes
 * **terra-tag** `inputBadge` is now deprecated. Please use `name` instead.
+* **terra-data-table** removed `inputIsSortable` due to redundancy.
 
 ### Bug Fixes
 * **terra-data-table** 
@@ -13,6 +31,7 @@
     - New input `inputIsSmall`
     - Added the ability to add a divider button to the 'inputOptions'
     - Fixed corresponding CSS
+* **terra-data-table.service** added `resetSortParams()` to be able to reset sorting params.
     
 <a name="3.0.0-beta.15"></a>
 # 3.0.0-beta.15 (21.11.2018)
