@@ -90,9 +90,13 @@ fdescribe(`TerraRadioGroupComponent:`, () =>
             fixture.detectChanges();
         });
 
-        it(`should update #checked attribute of the corresponding input if #value is updated`, () =>
+        it(`#value should be undefined initially`, () =>
         {
             expect(radioGroupComponent.value).toBeUndefined();
+        });
+
+        it(`should update #checked attribute of the corresponding input if #value is updated`, () =>
+        {
             let inputElement:HTMLInputElement = fixture.debugElement.queryAll(By.css('input[type="radio"]'))[1].nativeElement;
             expect(inputElement.checked).toBe(false);
 
@@ -101,6 +105,16 @@ fdescribe(`TerraRadioGroupComponent:`, () =>
             expect(inputElement.checked).toBe(true);
         });
 
+        it(`should update the group's #value if a radio input is clicked`, () =>
+        {
+            let inputElement0:HTMLInputElement = fixture.debugElement.queryAll(By.css('input[type="radio"]'))[0].nativeElement;
+            let inputElement1:HTMLInputElement = fixture.debugElement.queryAll(By.css('input[type="radio"]'))[1].nativeElement;
 
+            inputElement0.click();
+            expect(radioGroupComponent.value).toBe(+inputElement0.value);
+
+            inputElement1.click();
+            expect(radioGroupComponent.value).toBe(+inputElement1.value);
+        });
     });
 });
