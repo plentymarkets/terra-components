@@ -5,7 +5,6 @@ import {
 } from '@angular/core/testing';
 import { TerraRadioInputComponent } from './terra-radio-input.component';
 import { TerraRadioGroupComponent } from './terra-radio-group.component';
-import { TerraRadioGroupComponentExample } from './example/terra-radio-group.component.example';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -40,7 +39,7 @@ fdescribe(`TerraRadioGroupComponent:`, () =>
         component = fixture.componentInstance;
     });
 
-    describe(`raw`, () =>
+    describe(`itself`, () =>
     {
         beforeEach(() =>
         {
