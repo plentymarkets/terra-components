@@ -21,9 +21,9 @@ import {
 } from '@angular/forms';
 
 @Component({
-    selector: 'terra-slider',
-    template: require('./terra-slider.component.html'),
-    styles:   [require('./terra-slider.component.scss')],
+    selector:  'terra-slider',
+    template:  require('./terra-slider.component.html'),
+    styles:    [require('./terra-slider.component.scss')],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
@@ -316,6 +316,45 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         }
 
         return ticks;
+    }
+
+    protected onKeyDown(event:KeyboardEvent):void
+    {
+        // check if one of the dedicated keys has been pressed
+        if(!(event.code === 'ArrowLeft' ||
+             event.code === 'ArrowRight'))
+        {
+            return;
+        }
+
+        let currentPosition:number = this.handlePosition;
+
+        // determine the key, that has been pressed
+        switch(event.code)
+        {
+            case 'ArrowLeft':
+                if(this.inputInterval > 0)
+                {
+                    // this.moveToPosition();
+                }
+                else
+                {
+                    this.handlePosition = currentPosition - 1;
+                }
+                break;
+            case 'ArrowRight': // mark the preceding list element
+                if(this.inputInterval > 0)
+                {
+                    // this.moveToPosition();
+                }
+                else
+                {
+                    this.handlePosition = currentPosition + 1;
+                }
+                break;
+        }
+        // stop event bubbling
+        event.stopPropagation();
     }
 
     private calculateRangeOfSlider():number
