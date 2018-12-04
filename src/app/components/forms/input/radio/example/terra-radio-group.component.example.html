@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            Default
+            <terra-radio-group name="radio1">
+                <terra-radio-input [label]="'Option 1'" [value]="1"></terra-radio-input>
+                <terra-radio-input [label]="'Option 2'" [value]="2"></terra-radio-input>
+            </terra-radio-group>
+        </div>
+    
+        <div class="col-md-4">
+            With legend
+            <terra-radio-group name="radio2" [legend]="'Select an option'">
+                <terra-radio-input [label]="'Option 1'" [value]="1"></terra-radio-input>
+                <terra-radio-input [label]="'Option 2'" [value]="2"></terra-radio-input>
+            </terra-radio-group>
+        </div>
+    
+        <div class="col-md-4">
+            With ngModel
+            <terra-radio-group name="radio3" [(ngModel)]="radioValue">
+                <terra-radio-input [label]="'Option 1'" [value]="1"></terra-radio-input>
+                <terra-radio-input [label]="'Option 2'" [value]="2"></terra-radio-input>
+            </terra-radio-group>
+            Current value: {{radioValue}}
+        </div>
+    </div>
+</div>
+
