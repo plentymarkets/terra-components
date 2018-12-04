@@ -61,6 +61,8 @@ import { TerraImagePreviewComponent } from './file-browser/image-preview/image-p
 import { TerraThreeColumnsContainerComponent } from './layouts/column-container/three-columns/terra-three-columns-container.component';
 import { TerraGroupFunctionComponent } from './tables/group-function/terra-group-function.component';
 import { TerraInfoComponent } from './info/terra-info.component';
+import { TerraRadioInputComponent } from './forms/input/radio/terra-radio-input.component';
+import { TerraRadioGroupComponent } from './forms/input/radio/terra-radio-group.component';
 
 export const exportedComponents:Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -123,7 +125,9 @@ export const exportedComponents:Array<Type<any>> = [
     TerraTagSelectComponent,
     TerraStopwatchComponent,
     TerraThreeColumnsContainerComponent,
-    TerraGroupFunctionComponent
+    TerraGroupFunctionComponent,
+    TerraRadioInputComponent,
+    TerraRadioGroupComponent
 ];
 
 export const components:Array<Type<any>> = [

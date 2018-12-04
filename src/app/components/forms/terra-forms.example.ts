@@ -11,6 +11,7 @@ import { TerraSelectBoxValueInterface } from './select-box/data/terra-select-box
 
 export class TerraFormsExampleComponent
 {
+    protected radioValue:number = 1;
     protected readonly listBoxValues:Array<TerraSelectBoxValueInterface> = [
         {
             caption: '',
