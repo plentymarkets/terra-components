@@ -52,7 +52,7 @@ export class TerraRadioGroupComponent implements ControlValueAccessor
     public set value(value:any)
     {
         this._value = value;
-        this.onChangeCallback(this._value);
+        this.changeCallback(this._value);
     }
 
     /**
@@ -72,17 +72,25 @@ export class TerraRadioGroupComponent implements ControlValueAccessor
         this.value = value;
     }
 
+    /**
+     * register a change callback which is executed when the #value of the radio group changes
+     * @param fn
+     */
     public registerOnChange(fn:(_:any) => void):void
     {
-        this.onChangeCallback = fn;
+        this.changeCallback = fn;
     }
-
+    /**
+     * register a touched callback which is executed when one of the given radio inputs has been visited
+     * TODO: To be implemented
+     * @param fn
+     */
     public registerOnTouched(fn:() => void):void
     {
-        this.onTouchedCallback = fn;
+        this.touchedCallback = fn;
     }
 
-    private onTouchedCallback:() => void = ():void => undefined;
+    private touchedCallback:() => void = ():void => undefined;
 
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
+    private changeCallback:(_:any) => void = (_:any):void => undefined;
 }
