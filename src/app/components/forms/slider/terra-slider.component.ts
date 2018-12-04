@@ -46,27 +46,56 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     @Output()
     public inputValueChange:EventEmitter<number> = new EventEmitter<number>();
 
+    /**
+     * label text
+     */
     @Input()
     public inputName:string;
 
+    /**
+     * lower limit of the slider
+     * @default 0
+     */
     @Input()
     public inputMin:number = 0;
 
+    /**
+     * upper limit of the slider
+     * @default 1
+     */
     @Input()
     public inputMax:number = 1;
 
+    /**
+     * step size of the slider
+     * @default 0
+     */
     @Input()
     public inputInterval:number = 0;
 
+    /**
+     * amount of digits that will be shown when displaying any values (current value, lower limit, upper limit, ticks) in the slider.
+     */
     @Input()
     public inputPrecision:number = null;
 
+    /**
+     * If set to true, the upper and lower limits will be displayed
+     * @default false
+     */
     @Input()
     public inputShowMinMax:boolean = false;
 
+    /**
+     * If set to true, the ticks' label will be displayed
+     * @default false
+     */
     @Input()
     public inputShowTicks:boolean = false;
 
+    /**
+     * If set to true, the slider is disabled and can not be moved
+     */
     @Input()
     public inputIsDisabled:boolean = false;
 
@@ -80,7 +109,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     }
 
     /**
-     * @public
+     * change detection routine. Updates the #value if #inputValue has changed for backwards compatibility purposes.
      * @param changes
      */
     public ngOnChanges(changes:SimpleChanges):void
@@ -94,7 +123,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     /**
      * get position of slider element in px to left bound
      * @returns {number}
-     * @public
      */
     public get handlePosition():number
     {
@@ -116,7 +144,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
 
     /**
      * set position of slider element in px to left bound
-     * @public
      * @param value
      */
     public set handlePosition(value:number)
@@ -174,7 +201,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     }
 
     /**
-     * @public
+     * Initialization routine. Initializes the #value of the slider and #inputPrecision if they are not given.
      */
     public ngOnInit():void
     {
@@ -237,7 +264,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
 
     /**
      * handle drag event
-     * @public
      * @param event
      */
     public onDrag(event:InteractEvent):void
@@ -247,7 +273,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
 
     /**
      * handle click event on bar
-     * @public
      * @param event
      */
     public onBarClicked(event:MouseEvent):void
@@ -267,7 +292,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     /**
      * get ticks
      * @returns {Array<TerraSliderTick>}
-     * @public
      */
     public getTicks():Array<TerraSliderTick>
     {
@@ -313,26 +337,26 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     private touchedCallback:() => void = ():void => undefined;
 
     /**
-     * @public
+     * register a change callback which is executed when the #value of the slider changes
      * @param fn
      */
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:(value:number) => void):void
     {
         this.changeCallback = fn;
     }
 
     /**
-     * @public
+     * register a touched callback which is executed when the #value of the slider changes
      * @param fn
      */
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this.touchedCallback = fn;
     }
 
     /**
-     * @public
-     * @param value
+     * updates the #value of the slider
+     * @param {number}value
      */
     public writeValue(value:number):void
     {
