@@ -20,7 +20,7 @@ import Spy = jasmine.Spy;
 class RadioGroupTestComponent {}
 
 
-fdescribe(`TerraRadioGroupComponent:`, () =>
+describe(`TerraRadioGroupComponent:`, () =>
 {
     let component:RadioGroupTestComponent;
     let fixture:ComponentFixture<RadioGroupTestComponent>;
