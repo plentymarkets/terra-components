@@ -358,7 +358,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
                 {
                     if(this.inputInterval > 0)
                     {
-                        this.moveToPosition(this.getSliderHandlePositionX() - this.grid.x);
+                        this.moveToPosition(this.getSliderHandlePositionX() - this.grid.x + this.getCorrectiveGridEdgeValueForSliderHandle());
                     }
                     else
                     {
@@ -388,6 +388,11 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     private getSliderHandlePositionX():number
     {
         return this.sliderHandleElement.nativeElement.getBoundingClientRect().x;
+    }
+
+    private getCorrectiveGridEdgeValueForSliderHandle():number
+    {
+        return this.sliderHandleElement.nativeElement.getBoundingClientRect().width / 2;
     }
 
     private moveToPosition(position:number):void
