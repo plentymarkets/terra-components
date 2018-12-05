@@ -7,8 +7,7 @@ import {
     OnChanges,
     OnInit,
     Output,
-    SimpleChanges,
-    ViewChild
+    SimpleChanges
 } from '@angular/core';
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
 import {
@@ -17,7 +16,6 @@ import {
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
-import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 
 @Component({
     selector:  'terra-select-box',
