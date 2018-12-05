@@ -7,7 +7,7 @@ import {
 import { TerraRadioGroupComponent } from './terra-radio-group.component';
 import { By } from '@angular/platform-browser';
 
-fdescribe(`TerraRadioInputComponent`, () =>
+fdescribe(`TerraRadioInputComponent:`, () =>
 {
     let fixture:ComponentFixture<TerraRadioInputComponent>;
     let component:TerraRadioInputComponent;
@@ -43,15 +43,46 @@ fdescribe(`TerraRadioInputComponent`, () =>
         expect(component.value).toBeUndefined();
     });
 
-    it(`should set disabled attribute of the <input>-element depending on #disabled`, () =>
+    describe(``, () =>
     {
-        let inputElement:HTMLInputElement = fixture.debugElement.query(By.css('input[type="radio"]')).nativeElement;
-        expect(inputElement.disabled).toBe(false);
+        let inputElement:HTMLInputElement;
+        beforeEach(() =>
+        {
+            inputElement = fixture.debugElement.query(By.css('input[type="radio"]')).nativeElement;
+        });
 
-        component.disabled = true;
+        it(`should set disabled attribute of the <input>-element depending on #disabled`, () =>
+        {
+            expect(inputElement.disabled).toBe(false);
 
-        fixture.detectChanges();
+            component.disabled = true;
+            fixture.detectChanges();
 
-        expect(inputElement.disabled).toBe(true);
+            expect(inputElement.disabled).toBe(true);
+        });
+
+        it(`should set value attribute of the <input>-element depending on #value`, () =>
+        {
+            const testValue:string = 'Test value';
+
+            expect(inputElement.value).not.toBe(testValue);
+
+            component.value = testValue;
+            fixture.detectChanges();
+
+            expect(inputElement.value).toBe(testValue);
+        });
+
+        it(`should set name attribute of the <input>-element depending on the group's #name property`, () =>
+        {
+            expect(inputElement.name).toBe('');
+
+            const name:string = 'Test name';
+            radioGroupComponent.name = name;
+            fixture.detectChanges();
+
+            expect(inputElement.name).toBe(name);
+        });
     });
+
 });
