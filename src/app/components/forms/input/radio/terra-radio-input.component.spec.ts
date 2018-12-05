@@ -8,7 +8,7 @@ import { TerraRadioGroupComponent } from './terra-radio-group.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-fdescribe(`TerraRadioInputComponent:`, () =>
+describe(`TerraRadioInputComponent:`, () =>
 {
     let fixture:ComponentFixture<TerraRadioInputComponent>;
     let component:TerraRadioInputComponent;
@@ -127,5 +127,4 @@ fdescribe(`TerraRadioInputComponent:`, () =>
             expect(radioGroupComponent.value).toBe(value);
         });
     });
-
 });
