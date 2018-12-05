@@ -8,7 +8,7 @@
                [disabled]="inputIsDisabled"
                [indeterminate]="_isIndeterminate"
                id="{{id}}">
-        <span class="check" [ngClass]="{ 'invalid': !isValid }"></span>
+        <span class="check" [ngClass]="{ 'invalid': !isValid, 'active': isFocused }"></span>
         <span *ngIf="inputIcon" class="checkbox-icon" [ngClass]="inputIcon"></span>
         <span *ngIf="inputCaption" [ngClass]="{'disabled-chk': inputIsDisabled}">{{inputCaption}}</span>
     </label>
