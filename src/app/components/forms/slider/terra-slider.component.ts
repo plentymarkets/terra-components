@@ -371,7 +371,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
                 {
                     if(this.inputInterval > 0)
                     {
-                        this.moveToPosition(this.getSliderHandlePositionX() + this.grid.x);
+                        this.moveToPosition(this.getSliderHandlePositionX() + this.grid.x + this.getCorrectiveGridEdgeValueForSliderHandle());
                     }
                     else
                     {
