@@ -1,0 +1,14 @@
+<terra-portlet>
+    <form (ngSubmit)="submit()">
+        <terra-text-input [inputName]="'text'"></terra-text-input>
+        <terra-number-input [inputName]="'number'"></terra-number-input>
+        <div>
+            <terra-radio-button [inputCaption]="'option1'" [inputValue]="'option1'"></terra-radio-button>
+            <terra-radio-button [inputCaption]="'option2'" [inputValue]="'option2'"></terra-radio-button>
+        </div>
+        <terra-select-box [inputName]="'select'" [inputListBoxValues]="listBoxValues"></terra-select-box>
+        <button type="submit" [hidden]="true">
+            Submit
+        </button>
+    </form>
+</terra-portlet>
