@@ -15,7 +15,7 @@ import { TerraRadioInputComponent } from './terra-radio-input.component';
 import { isNullOrUndefined } from 'util';
 
 /**
- * @author mfrank
+ * @author pweyrich
  */
 @Component({
     selector:  'terra-radio-group',

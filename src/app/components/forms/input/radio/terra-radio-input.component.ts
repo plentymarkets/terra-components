@@ -6,7 +6,7 @@ import {
 import { TerraRadioGroupComponent } from './terra-radio-group.component';
 
 /**
- * @author mfrank
+ * @author pweyrich
  */
 @Component({
     selector:  'terra-radio-input',
