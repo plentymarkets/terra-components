@@ -4,6 +4,7 @@
 * **terra-slider** 
 	- implement `ControlValueAccessor` interface to be able to use ngModel instead of `inputValue`.
 	- add focus highlighting for tab navigation
+	- add left and right arrow key navigation
 * **terra-select-box** is now focusable while navigating with tab key
 
 <a name="3.0.0-beta.17"></a>
