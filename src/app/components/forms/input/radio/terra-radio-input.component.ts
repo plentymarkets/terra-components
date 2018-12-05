@@ -7,6 +7,8 @@ import { TerraRadioGroupComponent } from './terra-radio-group.component';
 
 /**
  * @author pweyrich
+ * @description This component is a wrapper for HTML5's native <input [type="radio"]> element including a corresponding <label> element.
+ * It must be used within a hosting <terra-radio-group> element!
  */
 @Component({
     selector:  'terra-radio-input',
