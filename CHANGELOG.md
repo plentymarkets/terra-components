@@ -1,7 +1,9 @@
 # Unreleased
 
 ### Features
-* **terra-slider** implement `ControlValueAccessor` interface to be able to use ngModel instead of `inputValue`.
+* **terra-slider** 
+	- implement `ControlValueAccessor` interface to be able to use ngModel instead of `inputValue`.
+	- add focus highlighting for tab navigation
 
 <a name="3.0.0-beta.17"></a>
 # 3.0.0-beta.17 (03.12.2018)
