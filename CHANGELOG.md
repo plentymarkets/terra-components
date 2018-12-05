@@ -1,4 +1,5 @@
 # Unreleased
+
 ### Features
 * **terra-slider** implement `ControlValueAccessor` interface to be able to use ngModel instead of `inputValue`.
 * **terra-select-box** is now focusable while navigating with tab key
