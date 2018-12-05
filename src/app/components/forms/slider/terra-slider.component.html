@@ -11,7 +11,8 @@
                      class="slider-bar"
                      (click)="onBarClicked($event)"></div>
                 
-                <div class="slider-handle"
+                <div #slideHandle
+                     class="slider-handle"
                      [style.left.px]="handlePosition"
                      [terraDraggable]
                      tabindex="0"

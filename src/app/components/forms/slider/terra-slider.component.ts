@@ -104,6 +104,9 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     @ViewChild('sliderBar', {read: ElementRef})
     private sliderBarElement:ElementRef;
 
+    @ViewChild('slideHandle', {read: ElementRef})
+    private sliderHandleElement:ElementRef;
+
     constructor(private element:ElementRef, private changeDetector:ChangeDetectorRef)
     {
     }
@@ -187,19 +190,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         this.changeDetector.detectChanges();
     }
 
-    protected get grid():GridOptions
-    {
-        if(this.inputInterval > 0)
-        {
-            return {
-                x: this.element.nativeElement.getBoundingClientRect().width / this.calculateNumberOfSteps(),
-                y: 0
-            };
-        }
-
-        return null;
-    }
-
     /**
      * Initialization routine. Initializes the #value of the slider and #inputPrecision if they are not given.
      */
@@ -280,15 +270,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         this.moveToPosition(event.pageX);
     }
 
-    private moveToPosition(position:number):void
-    {
-        if(!this.inputIsDisabled)
-        {
-            let sliderRect:any | ClientRect = this.sliderBarElement.nativeElement.getBoundingClientRect();
-            this.handlePosition = position - sliderRect.left;
-        }
-    }
-
     /**
      * get ticks
      * @returns {Array<TerraSliderTick>}
@@ -318,63 +299,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         return ticks;
     }
 
-    protected onKeyDown(event:KeyboardEvent):void
-    {
-        // check if one of the dedicated keys has been pressed
-        if(!(event.code === 'ArrowLeft' ||
-             event.code === 'ArrowRight'))
-        {
-            return;
-        }
-
-        let currentPosition:number = this.handlePosition;
-
-        // determine the key, that has been pressed
-        switch(event.code)
-        {
-            case 'ArrowLeft':
-                if(this.inputInterval > 0)
-                {
-                    // this.moveToPosition();
-                }
-                else
-                {
-                    this.handlePosition = currentPosition - 1;
-                }
-                break;
-            case 'ArrowRight': // mark the preceding list element
-                if(this.inputInterval > 0)
-                {
-                    // this.moveToPosition();
-                }
-                else
-                {
-                    this.handlePosition = currentPosition + 1;
-                }
-                break;
-        }
-        // stop event bubbling
-        event.stopPropagation();
-    }
-
-    private calculateRangeOfSlider():number
-    {
-        return Math.abs(this.inputMin - this.inputMax);
-    }
-
-    private calculateValueFromPercent(positionInPercent:number):number
-    {
-        return this.inputMin + (this.calculateRangeOfSlider() * (positionInPercent / 100));
-    }
-
-    private calculateNumberOfSteps():number
-    {
-        return this.calculateRangeOfSlider() / this.inputInterval;
-    }
-
-    private changeCallback:(value:number) => void = ():void => undefined;
-    private touchedCallback:() => void = ():void => undefined;
-
     /**
      * register a change callback which is executed when the #value of the slider changes
      * @param fn
@@ -401,4 +325,96 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     {
         this.value = value;
     }
+
+    protected get grid():GridOptions
+    {
+        if(this.inputInterval > 0)
+        {
+            return {
+                x: this.element.nativeElement.getBoundingClientRect().width / this.calculateNumberOfSteps(),
+                y: 0
+            };
+        }
+
+        return null;
+    }
+
+    protected onKeyDown(event:KeyboardEvent):void
+    {
+        // check if one of the dedicated keys has been pressed
+        if(!(event.code === 'ArrowLeft' ||
+             event.code === 'ArrowRight'))
+        {
+            return;
+        }
+
+        let currentPosition:number = this.handlePosition;
+
+        // determine the key, that has been pressed
+        switch(event.code)
+        {
+            case 'ArrowLeft':
+                if(this.value > this.inputMin)
+                {
+                    if(this.inputInterval > 0)
+                    {
+                        this.moveToPosition(this.getSliderHandlePositionX() - this.grid.x);
+                    }
+                    else
+                    {
+                        this.handlePosition = currentPosition - 1;
+                    }
+                }
+                break;
+            case 'ArrowRight':
+                if(this.value < this.inputMax)
+                {
+                    if(this.inputInterval > 0)
+                    {
+                        this.moveToPosition(this.getSliderHandlePositionX() + this.grid.x);
+                    }
+                    else
+                    {
+                        this.handlePosition = currentPosition + 1;
+                    }
+                }
+                break;
+        }
+
+        // stop event bubbling
+        event.stopPropagation();
+    }
+
+    private getSliderHandlePositionX():number
+    {
+        return this.sliderHandleElement.nativeElement.getBoundingClientRect().x;
+    }
+
+    private moveToPosition(position:number):void
+    {
+        if(!this.inputIsDisabled)
+        {
+            let sliderRect:any | ClientRect = this.sliderBarElement.nativeElement.getBoundingClientRect();
+            this.handlePosition = position - sliderRect.left;
+        }
+    }
+
+    private calculateRangeOfSlider():number
+    {
+        return Math.abs(this.inputMin - this.inputMax);
+    }
+
+    private calculateValueFromPercent(positionInPercent:number):number
+    {
+        return this.inputMin + (this.calculateRangeOfSlider() * (positionInPercent / 100));
+    }
+
+    private calculateNumberOfSteps():number
+    {
+        return this.calculateRangeOfSlider() / this.inputInterval;
+    }
+
+    private changeCallback:(value:number) => void = ():void => undefined;
+
+    private touchedCallback:() => void = ():void => undefined;
 }
