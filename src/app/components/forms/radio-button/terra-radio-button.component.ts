@@ -11,6 +11,7 @@ import {
 
 /**
  * @author mfrank
+ * @deprecated use <terra-radio-input> and <terra-radio-group> instead
  */
 @Component({
     selector:  'terra-radio-button',
@@ -42,6 +43,7 @@ export class TerraRadioButtonComponent implements ControlValueAccessor
 
     constructor()
     {
+        console.warn(`This component is deprecated. Please use <terra-radio-input> and <terra-radio-group> instead.`);
         this.inputIsUncheckable = false;
         this.inputIsDisabled = false;
     }
