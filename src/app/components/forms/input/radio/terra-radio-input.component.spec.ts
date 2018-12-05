@@ -39,9 +39,21 @@ fdescribe(`TerraRadioInputComponent:`, () =>
 
     it(`should initialize its inputs`, () =>
     {
-        expect(component.disabled).toBe(false);
         expect(component.label).toBeUndefined();
         expect(component.value).toBeUndefined();
+        expect(component.disabled).toBe(false);
+    });
+
+    it(`should display the given #label text in the <label>-element`, () =>
+    {
+        let labelElement:HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
+        expect(labelElement.innerText).toBe('');
+
+        const label:string = 'label';
+        component.label = label;
+        fixture.detectChanges();
+
+        expect(labelElement.innerText).toBe(label);
     });
 
     describe(``, () =>
