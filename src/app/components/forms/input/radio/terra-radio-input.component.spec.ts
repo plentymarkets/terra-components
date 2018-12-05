@@ -6,6 +6,7 @@ import {
 } from '@angular/core/testing';
 import { TerraRadioGroupComponent } from './terra-radio-group.component';
 import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 fdescribe(`TerraRadioInputComponent:`, () =>
 {
@@ -45,10 +46,12 @@ fdescribe(`TerraRadioInputComponent:`, () =>
 
     describe(``, () =>
     {
+        let inputDebugElement:DebugElement;
         let inputElement:HTMLInputElement;
         beforeEach(() =>
         {
-            inputElement = fixture.debugElement.query(By.css('input[type="radio"]')).nativeElement;
+            inputDebugElement = fixture.debugElement.query(By.css('input[type="radio"]'));
+            inputElement = inputDebugElement.nativeElement;
         });
 
         it(`should set [disabled] attribute of the <input>-element depending on #disabled`, () =>
@@ -84,7 +87,7 @@ fdescribe(`TerraRadioInputComponent:`, () =>
             expect(inputElement.name).toBe(name);
         });
 
-        it(`should set [checked] attribute of the <input>-element if the group's #value equals the input's #value`, () =>
+        it(`should set [checked] attribute of the <input>-element if the group's #value equals #value`, () =>
         {
             expect(inputElement.checked).toBe(false);
 
@@ -99,6 +102,17 @@ fdescribe(`TerraRadioInputComponent:`, () =>
             fixture.detectChanges();
 
             expect(inputElement.checked).toBe(false);
+        });
+
+        it(`should assign #value to the group's #value if the <input>-element's (change) event is triggered`, () =>
+        {
+            const value:string = 'Test value';
+            component.value = value;
+            expect(radioGroupComponent.value).not.toBe(value);
+
+            inputDebugElement.triggerEventHandler('change', {});
+
+            expect(radioGroupComponent.value).toBe(value);
         });
     });
 
