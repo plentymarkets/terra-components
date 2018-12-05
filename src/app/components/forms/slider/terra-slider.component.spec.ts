@@ -114,10 +114,5 @@ describe(`TerraSliderComponent:`, () =>
             flush();
             expect(document.activeElement).toEqual(sliderHandle);
         }));
-
-        xit(`should move slider by push left and right arrow button`, () =>
-        {
-            // TOOD implement
-        });
     });
 });
