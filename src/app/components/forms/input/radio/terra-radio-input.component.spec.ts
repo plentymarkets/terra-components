@@ -51,7 +51,7 @@ fdescribe(`TerraRadioInputComponent:`, () =>
             inputElement = fixture.debugElement.query(By.css('input[type="radio"]')).nativeElement;
         });
 
-        it(`should set disabled attribute of the <input>-element depending on #disabled`, () =>
+        it(`should set [disabled] attribute of the <input>-element depending on #disabled`, () =>
         {
             expect(inputElement.disabled).toBe(false);
 
@@ -61,7 +61,7 @@ fdescribe(`TerraRadioInputComponent:`, () =>
             expect(inputElement.disabled).toBe(true);
         });
 
-        it(`should set value attribute of the <input>-element depending on #value`, () =>
+        it(`should set [value] attribute of the <input>-element depending on #value`, () =>
         {
             const testValue:string = 'Test value';
 
@@ -73,7 +73,7 @@ fdescribe(`TerraRadioInputComponent:`, () =>
             expect(inputElement.value).toBe(testValue);
         });
 
-        it(`should set name attribute of the <input>-element depending on the group's #name property`, () =>
+        it(`should set [name] attribute of the <input>-element depending on the group's #name property`, () =>
         {
             expect(inputElement.name).toBe('');
 
@@ -82,6 +82,23 @@ fdescribe(`TerraRadioInputComponent:`, () =>
             fixture.detectChanges();
 
             expect(inputElement.name).toBe(name);
+        });
+
+        it(`should set [checked] attribute of the <input>-element if the group's #value equals the input's #value`, () =>
+        {
+            expect(inputElement.checked).toBe(false);
+
+            const value:string = 'Test value';
+            component.value = value;
+            radioGroupComponent.value = value;
+            fixture.detectChanges();
+
+            expect(inputElement.checked).toBe(true);
+
+            radioGroupComponent.value = 'Another value';
+            fixture.detectChanges();
+
+            expect(inputElement.checked).toBe(false);
         });
     });
 
