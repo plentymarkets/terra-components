@@ -1,3 +1,12 @@
+# UNRELEASED
+
+### Feature
+* **themes** added christmas theme
+* **themes** added full color button theme
+
+### Bug Fixes
+* **loading-spinner** fixed issue with light theme
+
 <a name="2.4.3"></a>
 # 2.4.3 (21.11.2018)
 
