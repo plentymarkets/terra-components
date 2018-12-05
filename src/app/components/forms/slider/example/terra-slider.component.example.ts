@@ -9,4 +9,5 @@ import {
 })
 export class TerraSliderComponentExample
 {
+    protected sliderValue:number = 0.5;
 }

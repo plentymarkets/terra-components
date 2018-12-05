@@ -106,7 +106,8 @@
             transition: width var(--transition-md);
             bottom: 0;
         }
-        &:hover
+        &:hover,
+        &:focus
         {
             label
             {
