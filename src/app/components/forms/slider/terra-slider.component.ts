@@ -346,7 +346,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         }
 
         // evaluate step size
-        let stepSize:number = 1; // default one px
+        let stepSize:number = 1; // default: 1px
         if(this.inputInterval > 0)
         {
             stepSize = this.grid.x; // use grid if interval is given
