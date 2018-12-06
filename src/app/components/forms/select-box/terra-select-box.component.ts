@@ -18,7 +18,7 @@ import {
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
-import { TerraSuggestionBoxValueInterface } from '../../../..';
+import { TerraSuggestionBoxValueInterface } from '../suggestion-box/data/terra-suggestion-box.interface';
 
 @Component({
     selector:  'terra-select-box',
