@@ -1,6 +1,7 @@
 # Unreleased
 
 ### Features
+* **terra-select-box** added key events for better handling
 * **terra-slider** 
 	- add focus highlighting for tab navigation
 	- add left and right arrow key navigation
