@@ -18,7 +18,6 @@ import {
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
-import { TerraSuggestionBoxValueInterface } from '../suggestion-box/data/terra-suggestion-box.interface';
 
 @Component({
     selector:  'terra-select-box',
@@ -311,7 +310,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         }
 
         // get the array index of the selected value
-        let index:number = this.inputListBoxValues.findIndex((item:TerraSuggestionBoxValueInterface) =>
+        let index:number = this.inputListBoxValues.findIndex((item:TerraSelectBoxValueInterface) =>
             item.value === this.tmpSelectedValue.value
         );
 
@@ -354,7 +353,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                     break;
                 case 'Enter': // select the marked element
                     // check if element is really available
-                    if(this.toggleOpen && this.inputListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item === this.tmpSelectedValue))
+                    if(this.toggleOpen && this.inputListBoxValues.find((item:TerraSelectBoxValueInterface) => item === this.tmpSelectedValue))
                     {
                         this.select(this.tmpSelectedValue); // select the chosen element
                         this.toggleOpen = false; // close the dropdown
