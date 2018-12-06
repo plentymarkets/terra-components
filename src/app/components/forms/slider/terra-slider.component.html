@@ -14,6 +14,7 @@
                 <div class="slider-handle"
                      [style.left.px]="handlePosition"
                      [terraDraggable]
+                     tabindex="0"
                      [terra-draggable-restrict]="'self'"
                      [terra-draggable-grid]="grid"
                      (terra-draggable-onMove)="onDrag( $event )">

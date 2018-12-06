@@ -2,6 +2,7 @@
     <form (ngSubmit)="submit()">
         <terra-text-input [inputName]="'text'"></terra-text-input>
         <terra-number-input [inputName]="'number'"></terra-number-input>
+        <terra-slider [inputName]="'slider'"></terra-slider>
         <terra-checkbox [inputCaption]="'checkbox'"></terra-checkbox>
         <terra-radio-group name="radio" [(ngModel)]="radioValue">
             <terra-radio-input [label]="'Option 1'" [value]="1"></terra-radio-input>
@@ -10,6 +11,7 @@
         <terra-select-box [inputName]="'select'" [inputListBoxValues]="listBoxValues"></terra-select-box>
         <terra-suggestion-box [inputName]="'suggestion'" [inputListBoxValues]="listBoxValues"></terra-suggestion-box>
         <terra-multi-check-box [(ngModel)]="multiCheckboxValues" [inputName]="'multiCheckbox'" name="'multiCheckbox'"></terra-multi-check-box>
+        <terra-date-picker [inputName]="'date'"></terra-date-picker>
         <button type="submit" [hidden]="true">
             Submit
         </button>

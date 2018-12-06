@@ -73,7 +73,8 @@
             font-size: 0.9em;
             z-index: 1;
             
-            &:hover
+            &:hover,
+            &:focus
             {
                 background-color: var(--color-active);
             }

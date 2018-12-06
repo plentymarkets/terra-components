@@ -1,3 +1,8 @@
+# Unreleased
+
+### Features
+* **terra-slider** add focus highlighting for tab navigation
+
 <a name="3.0.0-beta.18"></a>
 # 3.0.0-beta.18 (06.12.2018)
 
