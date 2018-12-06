@@ -64,7 +64,7 @@ export class TerraRadioGroupComponent implements ControlValueAccessor
     }
 
     /**
-     * sets the value of the radio group.
+     * set the value of the radio group.
      * @param value
      */
     public writeValue(value:any):void
