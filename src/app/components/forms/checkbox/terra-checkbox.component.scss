@@ -19,12 +19,6 @@ input[type="checkbox"]
     border-color: var(--color-alert) !important;
 }
 
-.checkbox
-{
-    display: inline-block;
-    cursor: pointer;
-}
-
 .checkbox-icon
 {
     display: inline-block;
@@ -35,12 +29,30 @@ input[type="checkbox"]
 
 .input-control.checkbox
 {
-    margin: 0 0.1rem 0 0;
+    margin: 0 0.5rem 0.5rem 0;
     min-width: 1rem;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    
+    cursor: pointer;
+    display: inline;
+    
+    &:hover
+    {
+        color: var(--color-active);
+
+        .check
+        {
+            border-color: var(--color-active);
+        }
+    }
+    
+    input:focus + span.check
+    {
+        outline: var(--color-active) solid 2px;
+    }
 }
 
 .input-control.checkbox input[type="checkbox"]
@@ -69,11 +81,6 @@ input[type="checkbox"]
     vertical-align: middle;
     cursor: pointer;
     border-radius: var(--border-radius);
-}
-
-.input-control.checkbox .check:hover
-{
-    
 }
 
 .input-control.checkbox.text-left .check
