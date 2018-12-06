@@ -348,45 +348,32 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
             return;
         }
 
+        // evaluate step size
+        let stepSize:number = 1; // default one px
+        if(this.inputInterval > 0)
+        {
+            stepSize = this.grid.x; // use grid if interval is given
+        }
+
         // determine the key, that has been pressed
         switch(event.code)
         {
             case 'ArrowLeft':
                 if(this.value > this.inputMin)
                 {
-                    if(this.inputInterval > 0)
-                    {
-                        this.moveToPosition(this.getSliderHandlePositionX() - this.grid.x);
-                    }
-                    else
-                    {
-                        this.handlePosition--;
-                    }
+                    this.handlePosition -= stepSize;
                 }
                 break;
             case 'ArrowRight':
                 if(this.value < this.inputMax)
                 {
-                    if(this.inputInterval > 0)
-                    {
-                        this.moveToPosition(this.getSliderHandlePositionX() + this.grid.x);
-                    }
-                    else
-                    {
-                        this.handlePosition++;
-                    }
+                    this.handlePosition += stepSize;
                 }
                 break;
         }
 
         // stop event bubbling
         event.stopPropagation();
-    }
-
-    private getSliderHandlePositionX():number
-    {
-        let boundingClientRect:DOMRect = this.sliderHandleElement.nativeElement.getBoundingClientRect();
-        return boundingClientRect.x + boundingClientRect.width / 2;
     }
 
     private moveToPosition(position:number):void
