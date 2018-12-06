@@ -2,7 +2,7 @@
 
 ### Features
 * **terra-slider** 
-  - add focus highlighting for tab navigation
+	- add focus highlighting for tab navigation
 	- add left and right arrow key navigation
 
 <a name="3.0.0-beta.18"></a>
