@@ -1,7 +1,13 @@
-# Unreleased
+<a name="3.0.0-beta.18"></a>
+# 3.0.0-beta.18 (06.12.2018)
 
 ### Features
 * **terra-slider** implement `ControlValueAccessor` interface to be able to use ngModel instead of `inputValue`.
+* **themes** added christmas theme
+* **themes** added full color button theme
+
+### Bug Fixes
+* **loading-spinner** fixed issue with light theme
 * **terra-select-box** is now focusable while navigating with tab key
 * **terra-check-box** is now focusable while navigating with tab key
 * **terra-radio-input** new component that wraps html's native input of type radio including it's label. It must be used within a `<terra-radio-group>` element.
