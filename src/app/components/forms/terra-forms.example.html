@@ -2,7 +2,7 @@
     <form (ngSubmit)="submit()">
         <terra-text-input [inputName]="'text'"></terra-text-input>
         <terra-number-input [inputName]="'number'"></terra-number-input>
-        <terra-slider [inputName]="'slider'"></terra-slider>
+        <terra-slider [inputName]="'slider'" [inputInterval]="0.1" [inputPrecision]="1" [inputMax]="10"></terra-slider>
         <terra-checkbox [inputCaption]="'checkbox'"></terra-checkbox>
         <div>
             <terra-radio-button [inputCaption]="'option1'" [inputValue]="'option1'"></terra-radio-button>
