@@ -39,15 +39,19 @@ input[type="checkbox"]
     cursor: pointer;
     display: inline;
     
-    &:hover,
-    &.active
+    &:hover
     {
         color: var(--color-active);
-        
+
         .check
         {
             border-color: var(--color-active);
         }
+    }
+    
+    .check.active
+    {
+        border-color: var(--color-active);
     }
 }
 
