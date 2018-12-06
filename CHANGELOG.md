@@ -6,6 +6,11 @@
   - is now focusable while navigating with tab key
 	- added key events for better handling
 * **terra-check-box** is now focusable while navigating with tab key
+* **themes** added christmas theme
+* **themes** added full color button theme
+
+### Bug Fixes
+* **loading-spinner** fixed issue with light theme
 
 <a name="3.0.0-beta.17"></a>
 # 3.0.0-beta.17 (03.12.2018)
