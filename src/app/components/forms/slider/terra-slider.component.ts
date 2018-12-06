@@ -348,8 +348,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
             return;
         }
 
-        let currentPosition:number = this.handlePosition;
-
         // determine the key, that has been pressed
         switch(event.code)
         {
@@ -358,11 +356,11 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
                 {
                     if(this.inputInterval > 0)
                     {
-                        this.moveToPosition(this.getSliderHandlePositionX() - this.grid.x + this.getCorrectiveValueToLeapGridEdge());
+                        this.moveToPosition(this.getSliderHandlePositionX() - this.grid.x);
                     }
                     else
                     {
-                        this.handlePosition = currentPosition - 1;
+                        this.handlePosition--;
                     }
                 }
                 break;
@@ -371,11 +369,11 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
                 {
                     if(this.inputInterval > 0)
                     {
-                        this.moveToPosition(this.getSliderHandlePositionX() + this.grid.x + this.getCorrectiveValueToLeapGridEdge());
+                        this.moveToPosition(this.getSliderHandlePositionX() + this.grid.x);
                     }
                     else
                     {
-                        this.handlePosition = currentPosition + 1;
+                        this.handlePosition++;
                     }
                 }
                 break;
@@ -387,12 +385,8 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
 
     private getSliderHandlePositionX():number
     {
-        return this.sliderHandleElement.nativeElement.getBoundingClientRect().x;
-    }
-
-    private getCorrectiveValueToLeapGridEdge():number
-    {
-        return this.sliderHandleElement.nativeElement.getBoundingClientRect().width / 2;
+        let boundingClientRect:DOMRect = this.sliderHandleElement.nativeElement.getBoundingClientRect();
+        return boundingClientRect.x + boundingClientRect.width / 2;
     }
 
     private moveToPosition(position:number):void
