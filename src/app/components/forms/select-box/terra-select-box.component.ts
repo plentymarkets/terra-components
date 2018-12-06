@@ -7,7 +7,9 @@ import {
     OnChanges,
     OnInit,
     Output,
-    SimpleChanges
+    QueryList,
+    SimpleChanges,
+    ViewChildren
 } from '@angular/core';
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
 import {
@@ -61,6 +63,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     public isValid:boolean;
 
     protected selectedValue:TerraSelectBoxValueInterface;
+    protected tmpSelectedValue:TerraSelectBoxValueInterface;
     protected hasLabel:boolean;
     protected isTooltipDisabled:boolean;
     protected helperTooltip:string;
@@ -70,6 +73,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     private _toggleOpen:boolean;
     private isInit:boolean;
     private clickListener:(event:Event) => void;
+
+    @ViewChildren('renderedListBoxValues')
+    private renderedListBoxValues:QueryList<ElementRef>;
 
     public get inputSelectedValue():number | string
     {
@@ -205,7 +211,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         }
     }
 
-    private onClick(evt:Event):void
+    protected onClick(evt:Event):void
     {
         evt.stopPropagation(); // prevents the click listener on the document to be fired right after
         this.toggleOpen = !this.toggleOpen;
@@ -283,5 +289,106 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                 // }
             }
         }
+    }
+
+    protected onKeyDown(event:KeyboardEvent):void
+    {
+        // check if one of the dedicated keys has been pressed
+        if(!(event.code === 'ArrowDown' ||
+             event.code === 'ArrowUp' ||
+             event.code === 'Enter' ||
+             event.code === 'Escape' ||
+             event.code === 'Space'))
+        {
+            return;
+        }
+
+        // check if there is any selected value yet
+        if(isNullOrUndefined(this.tmpSelectedValue) && this.inputListBoxValues.length > 0)
+        {
+            this.tmpSelectedValue = this.inputListBoxValues[0];
+        }
+
+        // get the array index of the selected value
+        let index:number = this.inputListBoxValues.findIndex((item:TerraSelectBoxValueInterface) =>
+            item.value === this.tmpSelectedValue.value
+        );
+
+        // check if element has been found
+        if(index >= 0)
+        {
+            // determine the key, that has been pressed
+            switch(event.code)
+            {
+                case 'Space':
+                    this.toggleOpen = !this.toggleOpen;
+                    break;
+                case 'ArrowDown': // mark the succeeding list element
+                    if(index + 1 < this.inputListBoxValues.length)
+                    {
+                        // open dropdown if not already opened
+                        if(!this.toggleOpen)
+                        {
+                            this.toggleOpen = true;
+                        }
+                        // mark next element for selection
+                        this.tmpSelectedValue = this.inputListBoxValues[index + 1];
+                        // adjust scrolling viewport
+                        this.focusSelectedElement();
+                    }
+                    break;
+                case 'ArrowUp': // mark the preceding list element
+                    if(index - 1 >= 0)
+                    {
+                        // open dropdown if not already opened
+                        if(!this.toggleOpen)
+                        {
+                            this.toggleOpen = true;
+                        }
+                        // mark previous element for selection
+                        this.tmpSelectedValue = this.inputListBoxValues[index - 1];
+                        // adjust scrolling viewport
+                        this.focusSelectedElement();
+                    }
+                    break;
+                case 'Enter': // select the marked element
+                    // check if element is really available
+                    if(this.toggleOpen && this.inputListBoxValues.find((item:TerraSelectBoxValueInterface) => item === this.tmpSelectedValue))
+                    {
+                        this.select(this.tmpSelectedValue); // select the chosen element
+                        this.toggleOpen = false; // close the dropdown
+                    }
+                    break;
+                case 'Escape': // close the dropdown
+                    this.toggleOpen = false; // close the dropdown
+                    break;
+            }
+        }
+
+        // stop event bubbling
+        event.stopPropagation();
+    }
+
+    private focusSelectedElement():void
+    {
+        // get the temporary selected DOM element
+        const selectedElementRef:ElementRef = this.renderedListBoxValues.find((value:ElementRef) =>
+        {
+            return value.nativeElement.classList.contains('selected');
+        });
+
+        // check if the element has been found
+        if(selectedElementRef)
+        {
+            const spanElement:HTMLSpanElement = selectedElementRef.nativeElement;
+
+            // scroll to the selected element
+            spanElement.parentElement.scrollTop = spanElement.offsetTop - spanElement.parentElement.offsetTop;
+        }
+    }
+
+    protected onBlur():void
+    {
+        this.toggleOpen = false;
     }
 }
