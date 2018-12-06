@@ -7,6 +7,7 @@
 
 ### Bug Fixes
 * **loading-spinner** fixed issue with light theme
+* **terra-select-box** is now focusable while navigating with tab key
 
 <a name="3.0.0-beta.17"></a>
 # 3.0.0-beta.17 (03.12.2018)
