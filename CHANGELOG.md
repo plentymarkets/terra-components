@@ -2,6 +2,11 @@
 
 ### Features
 * **terra-slider** implement `ControlValueAccessor` interface to be able to use ngModel instead of `inputValue`.
+* **themes** added christmas theme
+* **themes** added full color button theme
+
+### Bug Fixes
+* **loading-spinner** fixed issue with light theme
 * **terra-select-box** is now focusable while navigating with tab key
 * **terra-check-box** is now focusable while navigating with tab key
 

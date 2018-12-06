@@ -47,7 +47,7 @@ body
         --button-border-bottom-group-warning: 4px solid var(--color-group-warning);
         
         // Info
-        --color-group-info: #7777ff;
+        --color-group-info: #3f54d0;
         --button-background-color-group-info: var(--color-group-navigation);
         --button-text-color-group-info: var(--color-structure-0);
         --button-border-bottom-group-info: 4px solid var(--color-group-info);
@@ -89,6 +89,7 @@ body
         //specific colors
         --border-color: var(--color-structure-5);
         --color-background: var(--color-structure-2);
+        --color-link: var(--color-group-info);
         
         //////////// Fonts //////////////
         
