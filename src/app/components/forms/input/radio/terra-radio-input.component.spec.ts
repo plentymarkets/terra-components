@@ -44,7 +44,7 @@ describe(`TerraRadioInputComponent:`, () =>
         expect(component.disabled).toBe(false);
     });
 
-    it(`should display the given #label text in the <label>-element`, () =>
+    it(`should display the given #label text in the <label>`, () =>
     {
         let labelElement:HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
         expect(labelElement.innerText).toBe('');
@@ -66,7 +66,7 @@ describe(`TerraRadioInputComponent:`, () =>
             inputElement = inputDebugElement.nativeElement;
         });
 
-        it(`should set [disabled] attribute of the <input>-element depending on #disabled`, () =>
+        it(`should set [disabled] attribute of the <input> depending on #disabled`, () =>
         {
             expect(inputElement.disabled).toBe(false);
 
@@ -76,7 +76,7 @@ describe(`TerraRadioInputComponent:`, () =>
             expect(inputElement.disabled).toBe(true);
         });
 
-        it(`should set [value] attribute of the <input>-element depending on #value`, () =>
+        it(`should set [value] attribute of the <input> depending on #value`, () =>
         {
             const testValue:string = 'Test value';
 
@@ -88,7 +88,7 @@ describe(`TerraRadioInputComponent:`, () =>
             expect(inputElement.value).toBe(testValue);
         });
 
-        it(`should set [name] attribute of the <input>-element depending on the group's #name property`, () =>
+        it(`should set [name] attribute of the <input> depending on the group's #name property`, () =>
         {
             expect(inputElement.name).toBe('');
 
@@ -99,7 +99,7 @@ describe(`TerraRadioInputComponent:`, () =>
             expect(inputElement.name).toBe(name);
         });
 
-        it(`should set [checked] attribute of the <input>-element if the group's #value equals #value`, () =>
+        it(`should set [checked] attribute of the <input> if the group's #value equals #value`, () =>
         {
             expect(inputElement.checked).toBe(false);
 
@@ -116,7 +116,7 @@ describe(`TerraRadioInputComponent:`, () =>
             expect(inputElement.checked).toBe(false);
         });
 
-        it(`should assign #value to the group's #value if the <input>-element's (change) event is triggered`, () =>
+        it(`should assign #value to the group's #value if the <input>'s (change) event is triggered`, () =>
         {
             const value:string = 'Test value';
             component.value = value;
