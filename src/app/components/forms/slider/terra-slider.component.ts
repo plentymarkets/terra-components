@@ -104,9 +104,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     @ViewChild('sliderBar', {read: ElementRef})
     private sliderBarElement:ElementRef;
 
-    @ViewChild('slideHandle', {read: ElementRef})
-    private sliderHandleElement:ElementRef;
-
     constructor(private element:ElementRef, private changeDetector:ChangeDetectorRef)
     {
     }
