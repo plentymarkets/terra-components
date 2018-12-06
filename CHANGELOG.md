@@ -2,6 +2,10 @@
 
 ### Features
 * **terra-slider** add focus highlighting for tab navigation
+* **terra-radio-input** new component that wraps html's native input of type radio including it's label. It must be used within a `<terra-radio-group>` element.
+* **terra-radio-group** new component to contain and manage `<terra-radio-input>` elements. It implements the `ControlValueAccessor` interface (`ngModel`) to be able to use it in a form.
+* **terra-radio-button** is now deprecated. Use `<terra-radio-input>` and `<terra-radio-group>` instead.
+
 
 <a name="3.0.0-beta.18"></a>
 # 3.0.0-beta.18 (06.12.2018)
@@ -15,9 +19,6 @@
 * **loading-spinner** fixed issue with light theme
 * **terra-select-box** is now focusable while navigating with tab key
 * **terra-check-box** is now focusable while navigating with tab key
-* **terra-radio-input** new component that wraps html's native input of type radio including it's label. It must be used within a `<terra-radio-group>` element.
-* **terra-radio-group** new component to contain and manage `<terra-radio-input>` elements. It implements the `ControlValueAccessor` interface (`ngModel`) to be able to use it in a form.
-* **terra-radio-button** is now deprecated. Use `<terra-radio-input>` and `<terra-radio-group>` instead.
 
 <a name="3.0.0-beta.17"></a>
 # 3.0.0-beta.17 (03.12.2018)
