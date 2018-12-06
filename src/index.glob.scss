@@ -2,6 +2,8 @@
 @import './app/assets/styles/_variables.scss';
 @import './app/assets/themes/theme-core.scss';
 @import './app/assets/themes/theme-compact.scss';
+@import './app/assets/themes/theme-filled-buttons.scss';
+@import './app/assets/themes/theme-xmas.scss';
 @import './app/assets/themes/theme-dark.scss';
 @import './app/assets/themes/theme-light.scss';
 
@@ -117,6 +119,18 @@ p, span, a
     font-weight: var(--font-weight-1);
 }
 
+a[href]
+{
+    color: var(--color-link);
+    text-decoration: none;
+    
+    &:hover
+    {
+        color: var(--color-active);
+        cursor: pointer;
+    }
+}
+
 /// context-menu ////
 
 .context-menu
@@ -165,6 +179,11 @@ p, span, a
             font-weight: var(--font-weight-1);
             color: inherit;
             @include font-rendering;
+    
+            &:hover
+            {
+                color: inherit;
+            }
         
         
             .left-icon

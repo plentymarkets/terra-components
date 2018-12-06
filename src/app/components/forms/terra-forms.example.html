@@ -2,12 +2,14 @@
     <form (ngSubmit)="submit()">
         <terra-text-input [inputName]="'text'"></terra-text-input>
         <terra-number-input [inputName]="'number'"></terra-number-input>
+        <terra-checkbox [inputCaption]="'checkbox'"></terra-checkbox>
         <div>
             <terra-radio-button [inputCaption]="'option1'" [inputValue]="'option1'"></terra-radio-button>
             <terra-radio-button [inputCaption]="'option2'" [inputValue]="'option2'"></terra-radio-button>
         </div>
         <terra-select-box [inputName]="'select'" [inputListBoxValues]="listBoxValues"></terra-select-box>
         <terra-suggestion-box [inputName]="'suggestion'" [inputListBoxValues]="listBoxValues"></terra-suggestion-box>
+        <terra-multi-check-box [(ngModel)]="multiCheckboxValues" [inputName]="'multiCheckbox'" name="'multiCheckbox'"></terra-multi-check-box>
         <button type="submit" [hidden]="true">
             Submit
         </button>
