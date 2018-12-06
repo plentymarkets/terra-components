@@ -9,7 +9,9 @@
             <terra-radio-button [inputCaption]="'option2'" [inputValue]="'option2'"></terra-radio-button>
         </div>
         <terra-select-box [inputName]="'select'" [inputListBoxValues]="listBoxValues"></terra-select-box>
+        <terra-suggestion-box [inputName]="'suggestion'" [inputListBoxValues]="listBoxValues"></terra-suggestion-box>
         <terra-multi-check-box [(ngModel)]="multiCheckboxValues" [inputName]="'multiCheckbox'" name="'multiCheckbox'"></terra-multi-check-box>
+        <terra-date-picker [inputName]="'date'"></terra-date-picker>
         <button type="submit" [hidden]="true">
             Submit
         </button>
