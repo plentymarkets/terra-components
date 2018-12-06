@@ -49,9 +49,9 @@ input[type="checkbox"]
         }
     }
     
-    .check.active
+    input:focus + span.check
     {
-        outline: -webkit-focus-ring-color auto 4px;
+        outline: var(--color-active) solid 2px;
     }
 }
 

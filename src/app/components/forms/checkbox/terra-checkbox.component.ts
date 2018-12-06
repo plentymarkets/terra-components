@@ -54,7 +54,6 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      * @description a unique string identifier for the specific input instance.
      */
     protected id:string;
-    protected isFocused:boolean = false;
 
     // The internal data model
     private innerValue:boolean = false;
