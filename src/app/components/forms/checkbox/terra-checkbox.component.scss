@@ -51,7 +51,7 @@ input[type="checkbox"]
     
     .check.active
     {
-        border-color: var(--color-active);
+        outline: -webkit-focus-ring-color auto 4px;
     }
 }
 
