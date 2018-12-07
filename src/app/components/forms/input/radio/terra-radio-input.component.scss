@@ -1,4 +1,4 @@
-input[type="radio"]
+input[type="radio"] // bind styles of the radio to the input
 {
     position:absolute;
     opacity: 0;
@@ -22,6 +22,17 @@ input[type="radio"]
             background-color: var(--color-active);
         }
     }
+    
+    &:disabled + span.check
+    {
+        border-color: var(--color-structure-4);
+        cursor: not-allowed;
+    }
+    
+    &:disabled:checked + span.check:before
+    {
+        background-color: var(--color-structure-4);
+    }
 }
 
 label
@@ -43,31 +54,16 @@ label
         }
     }
     
-    .caption
+    &.disabled
+    {
+        color: var(--color-structure-4);
+        cursor: not-allowed;
+    }
+    
+    .caption // TODO: needed?
     {
         margin: 0 .125rem;
         vertical-align: middle;
-        
-        &.disabled
-        {
-            color: var(--color-structure-4);
-            cursor: not-allowed;
-        }
-    }
-    
-    
-    .check.disabled
-    {
-        border-color: var(--color-structure-4);
-        cursor: not-allowed;
-    }
-    .check.disabled:before
-    {
-        border-color: var(--color-structure-0);
-    }
-    .check.disabled.active:before
-    {
-        border-color: var(--color-structure-4);
     }
 }
 

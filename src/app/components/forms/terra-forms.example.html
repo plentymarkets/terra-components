@@ -6,7 +6,8 @@
         <terra-checkbox [inputCaption]="'checkbox'"></terra-checkbox>
         <terra-radio-group name="radio" [(ngModel)]="radioValue">
             <terra-radio-input [label]="'Option 1'" [value]="1"></terra-radio-input>
-            <terra-radio-input [label]="'Option 2'" [value]="2"></terra-radio-input>
+            <terra-radio-input [label]="'Option 2'" [value]="2" [disabled]="true"></terra-radio-input>
+            <terra-radio-input [label]="'Option 3'" [value]="3"></terra-radio-input>
         </terra-radio-group>
         <terra-select-box [inputName]="'select'" [inputListBoxValues]="listBoxValues"></terra-select-box>
         <terra-suggestion-box [inputName]="'suggestion'" [inputListBoxValues]="listBoxValues"></terra-suggestion-box>
