@@ -15,6 +15,7 @@
                      [style.left.px]="handlePosition"
                      [terraDraggable]
                      tabindex="0"
+                     (keydown)="onKeyDown($event)"
                      [terra-draggable-restrict]="'self'"
                      [terra-draggable-grid]="grid"
                      (terra-draggable-onMove)="onDrag( $event )">

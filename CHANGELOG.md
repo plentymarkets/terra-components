@@ -1,8 +1,10 @@
 # Unreleased
 
 ### Features
-* **terra-slider** add focus highlighting for tab navigation
 * **terra-select-box** added key events for better handling
+* **terra-slider** 
+	- add focus highlighting for tab navigation
+	- add left and right arrow key navigation
 * **terra-radio-input** new component that wraps html's native input of type radio including it's label. It must be used within a `<terra-radio-group>` element.
 * **terra-radio-group** new component to contain and manage `<terra-radio-input>` elements. It implements the `ControlValueAccessor` interface (`ngModel`) to be able to use it in a form.
 * **terra-radio-button** is now deprecated. Use `<terra-radio-input>` and `<terra-radio-group>` instead.
