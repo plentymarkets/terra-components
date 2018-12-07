@@ -6,8 +6,6 @@ input[type="radio"]
     // apply styles to the checkmark depending on the state of the input
     &:checked + span.check
     {
-        transition: all var(--transition-sm);
-        
         &:before
         {
             background-color: var(--color-structure-11);
@@ -27,7 +25,6 @@ input[type="radio"]
     &:disabled + span.check
     {
         border-color: var(--color-structure-4);
-        cursor: not-allowed;
     }
     
     &:disabled:checked + span.check:before
@@ -57,8 +54,8 @@ label
     
     &.disabled
     {
-        color: var(--color-structure-4);
         cursor: not-allowed;
+        color: var(--color-structure-4);
     }
     
     .check
