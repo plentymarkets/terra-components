@@ -7,6 +7,11 @@
 * **terra-radio-group** new component to contain and manage `<terra-radio-input>` elements. It implements the `ControlValueAccessor` interface (`ngModel`) to be able to use it in a form.
 * **terra-radio-button** is now deprecated. Use `<terra-radio-input>` and `<terra-radio-group>` instead.
 
+### Bug Fixes
+* **terra-multi-check-box** 
+	- now correctly emits ngModel callbacks after a checkbox has changed
+	- add new `checkboxStateChanges` output that emits the changed checkboxes	
+
 <a name="3.0.0-beta.18"></a>
 # 3.0.0-beta.18 (06.12.2018)
 
@@ -42,9 +47,6 @@
 * **terra-data-table** 
 	- fixed coloring of links in the table if the row is selected or active
 	- reset rowList before requesting data from the server. Show pager and header while data is loaded.
-* **terra-multi-check-box** 
-	- now emits correctly ngModel callbacks after a checkbox has changed
-	- add new `checkboxStateChange` output that emits the current changed checkbox 	
 
 ### Feature
 * **terra-button-with-options** 
