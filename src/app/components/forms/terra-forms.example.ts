@@ -9,6 +9,7 @@ import { TerraMultiCheckBoxValueInterface } from './multi-check-box/data/terra-m
 
 export class TerraFormsExampleComponent
 {
+    protected radioValue:number = 1;
     protected readonly listBoxValues:Array<TerraSelectBoxValueInterface> = [
         {
             caption: '',

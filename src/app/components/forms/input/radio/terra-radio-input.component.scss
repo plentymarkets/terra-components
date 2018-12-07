@@ -1,0 +1,4 @@
+input[type="radio"]:focus
+{
+    outline: var(--color-active) auto 2px;
+}

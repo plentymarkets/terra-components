@@ -4,10 +4,10 @@
         <terra-number-input [inputName]="'number'"></terra-number-input>
         <terra-slider [inputName]="'slider'"></terra-slider>
         <terra-checkbox [inputCaption]="'checkbox'"></terra-checkbox>
-        <div>
-            <terra-radio-button [inputCaption]="'option1'" [inputValue]="'option1'"></terra-radio-button>
-            <terra-radio-button [inputCaption]="'option2'" [inputValue]="'option2'"></terra-radio-button>
-        </div>
+        <terra-radio-group name="radio" [(ngModel)]="radioValue">
+            <terra-radio-input [label]="'Option 1'" [value]="1"></terra-radio-input>
+            <terra-radio-input [label]="'Option 2'" [value]="2"></terra-radio-input>
+        </terra-radio-group>
         <terra-select-box [inputName]="'select'" [inputListBoxValues]="listBoxValues"></terra-select-box>
         <terra-suggestion-box [inputName]="'suggestion'" [inputListBoxValues]="listBoxValues"></terra-suggestion-box>
         <terra-multi-check-box [(ngModel)]="multiCheckboxValues" [inputName]="'multiCheckbox'" name="'multiCheckbox'"></terra-multi-check-box>
