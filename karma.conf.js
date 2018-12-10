@@ -22,6 +22,14 @@ module.exports = function (config) {
         autoWatch: true,
         browsers: ['Chrome', 'Firefox', 'Safari'],
         singleRun: false,
-        concurrency: Infinity
+        concurrency: Infinity,
+        customLaunchers: {
+            FirefoxHeadless: {
+                base: 'Firefox',
+                flags: [
+                    '--headless'
+                ]
+            }
+        }
     })
 };

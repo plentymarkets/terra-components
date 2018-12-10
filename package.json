@@ -26,7 +26,8 @@
 		"server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch",
 		"gulp": "gulp",
 		"test": "karma start",
-		"test-once": "karma start --single-run",
+		"test-once": "karma start --single-run --browsers Chrome,Firefox,Safari",
+		"test-headless": "karma start --single-run --browsers ChromeHeadless,FirefoxHeadless",
 		"lint": "NODE_OPTIONS='-r ts-node/register' tslint -p tsconfig.json -c tslint.json -e 'src/**/*.d.ts' 'src/**/*.ts'",
 		"reinstall": "rm -rf node_modules/ && npm i"
 	},
