@@ -53,7 +53,7 @@ describe(`TerraRadioInputComponent:`, () =>
         component.label = label;
         fixture.detectChanges();
 
-        expect(labelElement.innerText).toBe(label);
+        expect(labelElement.innerText.trim()).toBe(label.trim());
     });
 
     describe(``, () =>
