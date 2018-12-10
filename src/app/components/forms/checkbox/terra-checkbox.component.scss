@@ -42,16 +42,29 @@ input[type="checkbox"]
     &:hover
     {
         color: var(--color-active);
-
-        .check
+        
+        span.check,
+        input[type="checkbox"]:checked ~ .check:before
         {
             border-color: var(--color-active);
         }
     }
     
-    input:focus + span.check
+    input[type="checkbox"]
     {
-        outline: var(--color-active) solid 2px;
+        &:focus
+        {
+            + span.check + span
+            {
+                color: var(--color-active);
+            }
+            
+            &:checked ~ .check:before,
+            + span.check
+            {
+                border-color: var(--color-active);
+            }
+        }
     }
 }
 
