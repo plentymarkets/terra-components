@@ -7,6 +7,7 @@ import {
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
+import { DefaultLocale } from 'angular-l10n';
 
 let nextId:number = 0;
 
@@ -28,7 +29,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
      * @description If true, the value will be right-aligned.
      */
     @Input()
-    public inputIsPriceInput:boolean;
+    public inputIsPriceInput:boolean = false;
 
     /**
      *
@@ -37,24 +38,15 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     @Input()
     public inputDecimalCount:number = 2;
 
+    @DefaultLocale()
+    protected locale:string;
+
     protected step:number;
 
     /**
      * @description a unique string identifier for the specific input instance.
      */
     protected id:string;
-
-    /**
-     * @deprecated
-     * @param {number} v
-     */
-    @Input()
-    public set inputValue(v:number)
-    {
-        console.warn('inputValue is deprecated. It will be removed in one of the upcoming releases. Please use ngModel instead.');
-
-        this.value = v;
-    }
 
     constructor()
     {

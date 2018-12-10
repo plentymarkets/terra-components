@@ -24,6 +24,9 @@ import { TerraMultiSplitViewBreadcrumbsService } from './injectables/terra-multi
 
 let nextSplitViewId:number = 0;
 
+/**
+ * @deprecated Will be removed in the next major release.
+ */
 @Component({
     selector: 'terra-multi-split-view',
     template: require('./terra-multi-split-view.component.html'),
@@ -41,12 +44,6 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     @Input()
     public inputShowBreadcrumbs:boolean;
-
-    /**
-     * @deprecated
-     */
-    @Input()
-    public inputComponentRoute:string; // to catch the routing event, when selecting the tab where the split view is instantiated
 
     /**
      * @description adds/activates routing functionality to the split-view. Several dependencies need to be injected to the config as well.

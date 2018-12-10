@@ -1,0 +1,12 @@
+
+<terra-3-col>
+    <terra-number-input left [inputName]="'Left column width'" [(ngModel)]="leftColumnWidth"></terra-number-input>
+    <terra-number-input center [inputName]="'center column width'" [(ngModel)]="centerColumnWidth"></terra-number-input>
+    <terra-number-input right [inputName]="'Right column width'" [(ngModel)]="rightColumnWidth"></terra-number-input>
+</terra-3-col>
+
+<terra-3-col [leftColumnWidth]="leftColumnWidth" [centerColumnWidth]="centerColumnWidth" [rightColumnWidth]="rightColumnWidth">
+    <div left [style.background]="'red'">Left</div>
+    <div center [style.background]="'blue'">Center</div>
+    <div right [style.background]="'green'">Right</div>
+</terra-3-col>

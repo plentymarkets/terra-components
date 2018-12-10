@@ -8,8 +8,8 @@ export interface TerraTagInterface
 {
     /** The ID of the tag */
     id?:number;
-    /** The base name of the tag. Will be mandatory in next major release.*/
-    name?:string;
+    /** The base name of the tag.*/
+    name:string;
     tagName?:string;
 
     /** A list with translation of the base name. */
@@ -22,15 +22,4 @@ export interface TerraTagInterface
     isTaggable?:boolean;
     isClosable?:boolean;
     customClass?:string;
-
-
-    /**
-     * @deprecated will be removed in next major release. Please use name or names instead.
-     */
-    caption?:string;
-
-    /**
-     *  @deprecated will be removed in next major release. Please use name or names instead.
-     */
-    badge?:string;
 }

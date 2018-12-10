@@ -17,7 +17,7 @@
             <div class="input-wrapper"
                  placement="{{inputTooltipPlacement}}"
                  tooltip="{{inputTooltipText}}"
-                 [isDisabled]="!inputTooltipText"
+                 [isDisabled]="isTooltipDisabled"
                  [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
                  container="body">
 
@@ -35,7 +35,17 @@
                        required
                        (click)="valueInput.select()">
             </div>
-            <label htmlFor="{{id}}">{{inputName}}
+            <label terraLabelTooltip
+                   [nameOfInput]="inputName"
+                   [tooltipTextOfInput]="inputTooltipText"
+                   [(tooltipOfInputDisabled)]="isTooltipDisabled"
+                   [(tooltipText)]="helperTooltip"
+                   [(tooltipDisabled)]="isHelperTooltipDisabled"
+                   [placement]="inputTooltipPlacement"
+                   [tooltip]="helperTooltip"
+                   [isDisabled]="isHelperTooltipDisabled"
+                   [container]="'body'"
+                   htmlFor="{{id}}">{{inputName}}
                 <span *ngIf="inputIsRequired">*</span>
             </label>
         </div>
@@ -47,8 +57,7 @@
                                 [inputAllowFolders]="inputAllowFolders"
                                 [inputStorageServices]="inputStorageServices"
                                 (outputSelected)="onObjectSelected($event)"
-                                (outputFileBrowserShow)="$event.selectUrl(value)"
-                                (outputFileBrowserHide)="_selectedObjectUrl = value">
+                                (outputFileBrowserShow)="$event.selectUrl(value)">
             </terra-file-chooser>
             <terra-button class="input-group-btn margin-left"
                           [inputIcon]="'icon-reset'"

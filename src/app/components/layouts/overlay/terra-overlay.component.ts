@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
 import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interface';
+import { TerraPlacementEnum } from '../../../..';
 
 /**
  * @author mfrank
@@ -32,38 +33,27 @@ export class TerraOverlayComponent implements AfterViewInit
     public inputSecondaryButtonInterface:TerraOverlayButtonInterface;
 
     @Input()
-    public inputIsStatic:boolean;
+    public inputIsStatic:boolean = false;
 
     @Input()
-    public inputIsCloseable:boolean;
+    public inputIsCloseable:boolean = true;
 
     @Input()
-    public inputIsLarge:boolean;
+    public inputIsLarge:boolean = true;
 
     @Input()
-    public inputIsSmall:boolean;
+    public inputIsSmall:boolean = false;
 
     @Input()
-    public inputIsExtraLarge:boolean;
+    public inputIsExtraLarge:boolean = false;
 
     @Output()
-    public outputOnHide:EventEmitter<ModalDirective>;
+    public outputOnHide:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
     @Output()
-    public outputOnShow:EventEmitter<ModalDirective>;
+    public outputOnShow:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
-    constructor()
-    {
-        this.inputIsStatic = false;
-        this.inputIsCloseable = true;
-        this.inputIsExtraLarge = false;
-        this.inputIsLarge = false;
-        this.inputIsSmall = false;
-
-
-        this.outputOnHide = new EventEmitter<ModalDirective>();
-        this.outputOnShow = new EventEmitter<ModalDirective>();
-    }
+    protected readonly tooltipPlacement:TerraPlacementEnum.BOTTOM;
 
     public ngAfterViewInit():void
     {
@@ -91,11 +81,11 @@ export class TerraOverlayComponent implements AfterViewInit
 
     public emitOutputOnShow():void
     {
-        this.outputOnShow.emit(null);
+        this.outputOnShow.emit(this.viewChildOverlay);
     }
 
     public emitOutputOnHide():void
     {
-        this.outputOnHide.emit(null);
+        this.outputOnHide.emit(this.viewChildOverlay);
     }
 }

@@ -14,39 +14,45 @@ import {
 import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../translation/l10n.config';
-
 import { TerraSuggestionBoxComponent } from './terra-suggestion-box.component';
-import {
-    TerraSuggestionBoxValueInterface,
-    TerraTextInputComponent
-} from '../../../..';
 
 import { MockElementRef } from '../../../testing/mock-element-ref';
-import Spy = jasmine.Spy;
 import { By } from '@angular/platform-browser';
+import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
+import Spy = jasmine.Spy;
+import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
+import { TerraTextInputComponent } from '../input/text-input/terra-text-input.component';
 
 describe('TerraSuggestionBoxComponent', () =>
 {
     let component:TerraSuggestionBoxComponent;
     let fixture:ComponentFixture<TerraSuggestionBoxComponent>;
-    const suggestion:TerraSuggestionBoxValueInterface = {caption: '1', value: 1};
+    const suggestion:TerraSuggestionBoxValueInterface = {
+        caption: '1',
+        value:   1
+    };
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
                 TerraSuggestionBoxComponent,
-                TerraTextInputComponent
+                TerraTextInputComponent,
+                TerraLabelTooltipDirective
             ],
             imports:      [
                 TooltipModule.forRoot(),
                 FormsModule,
                 HttpModule,
                 HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig)
+                LocalizationModule.forRoot(l10nConfig),
+                TooltipModule.forRoot()
             ],
-            providers: [
-                { provide: ElementRef, useClass: MockElementRef }
+            providers:    [
+                {
+                    provide:  ElementRef,
+                    useClass: MockElementRef
+                }
             ]
         }).compileComponents();
     }));
@@ -120,21 +126,6 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.selectedValue).toEqual(null);
     });
 
-    it('Calling `resetComponentValue` should set `selectedValue` and `value` to `null`', () =>
-    {
-        component.inputListBoxValues = [suggestion];
-        component.value = suggestion.value;
-
-        // check expectations after setting the value
-        expect(component.value).toEqual(suggestion.value);
-        expect(component.selectedValue).toEqual(suggestion);
-
-        component.resetComponentValue();
-
-        expect(component.value).toEqual(null);
-        expect(component.selectedValue).toEqual(null);
-    });
-
     it('set #selectedValue should update #value and the displayed text in the input', () =>
     {
         let suggestionBoxElement:HTMLElement = fixture.nativeElement;
@@ -166,30 +157,28 @@ describe('TerraSuggestionBoxComponent', () =>
     it('Entering text should call #onChange() and update #selectedValue and #value', () =>
     {
         component.inputListBoxValues = [suggestion];
-
-        let suggestionBoxElement:HTMLElement = fixture.nativeElement;
-        let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
-
         let spy:Spy = spyOn(component, 'onChange').and.callThrough();
+
+        let terraTextInput:TerraTextInputComponent = fixture.debugElement.query(By.css('terra-text-input')).componentInstance;
 
         // simulate user entering a new value into the input box
         // a value that is included in the suggestions
-        inputElement.value = suggestion.caption as string;
-        inputElement.dispatchEvent(new Event('input'));
+        terraTextInput.value = suggestion.caption as string;
+        terraTextInput.outputOnInput.emit();
 
         expect(component.selectedValue).toEqual(suggestion);
         expect(component.value).toEqual(suggestion.value);
 
         // empty input
-        inputElement.value = '';
-        inputElement.dispatchEvent(new Event('input'));
+        terraTextInput.value = '';
+        terraTextInput.outputOnInput.emit();
 
         expect(component.selectedValue).toEqual(undefined);
         expect(component.value).toEqual(null);
 
         // input that is not included in the suggestions
-        inputElement.value = '123';
-        inputElement.dispatchEvent(new Event('input'));
+        terraTextInput.value = '123';
+        terraTextInput.outputOnInput.emit();
 
         expect(component.selectedValue).toEqual(undefined);
         expect(component.value).toEqual(null);
@@ -232,19 +221,5 @@ describe('TerraSuggestionBoxComponent', () =>
         inputElement.dispatchEvent(new Event('input'));
 
         expect(text).toEqual(enteredText);
-    });
-
-    it('#outputValueChanged should emit if #selectedValue changes', () =>
-    {
-        let value:TerraSuggestionBoxValueInterface;
-        component.outputValueChanged.subscribe((eventValue:TerraSuggestionBoxValueInterface) => value = eventValue);
-
-        // changing the value from undefined to null should not cause outputValueChanged to emit
-        component.selectedValue = null;
-        expect(value).toEqual(undefined);
-
-        // changing the value
-        component.selectedValue = suggestion;
-        expect(value).toEqual(suggestion);
     });
 });

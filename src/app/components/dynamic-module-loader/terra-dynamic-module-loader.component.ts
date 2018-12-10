@@ -34,9 +34,6 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
     public inputMainComponentName:string;
 
     @Input()
-    public inputParameter:any; // TODO: remove input if old split-view is removed
-
-    @Input()
     public inputInputs:Array<TerraDynamicLoadedComponentInputInterface>;
 
     @Input()
@@ -85,9 +82,6 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
 
                             // pass the instance of the loaded view back to the component
                             this.cmpRef.instance.splitViewInstance = this.inputView;
-
-                            // pass the delivered parameter to the component
-                            this.cmpRef.instance.parameter = this.inputParameter; // TODO: deprecated if old split view is removed
 
                             // add inputs to component for data binding purposes
                             this.assignInputProperties();

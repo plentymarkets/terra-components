@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Tooltip placement right</h2>
+            <terra-info [text]="'This <b>information</b> will be used for...'" [textPlacement]="tooltipPlacement"></terra-info>
+        </div>
+        <div class="col-md-6">
+            <h2>Disabled</h2>
+            <terra-info [text]="'This information will be used for...'" [isDisabled]="true" [textPlacement]="tooltipPlacement"></terra-info>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Combination with <code>terra-text-input</code></h2>
+            <div class="d-flex">
+                <terra-text-input inputName="address"></terra-text-input>
+                <terra-info [text]="'This <i>information</i> will be used for...'" [textPlacement]="tooltipPlacement"></terra-info>
+            </div>
+        </div>
+    </div>
+</div>
+

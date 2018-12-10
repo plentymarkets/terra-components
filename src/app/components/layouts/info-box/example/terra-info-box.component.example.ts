@@ -16,11 +16,11 @@ export class TerraInfoboxComponentExample
     {
         this.tagList.push(
             {
-                badge: 'Terra',
+                name: 'Terra',
                 color: 'green'
             },
             {
-                badge: 'Plenty',
+                name: 'Plenty',
                 color: 'red'
             });
         this.buttonList.push(
@@ -31,7 +31,6 @@ export class TerraInfoboxComponentExample
             }, {
                 caption:       'Terra',
                 icon:          'icon-plugin_not_productive',
-                isTertiary: true,
                 clickFunction: ():void => this.clickFunction('Terra')
             });
     }

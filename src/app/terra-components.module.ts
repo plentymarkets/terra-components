@@ -29,17 +29,18 @@ import { CommonModule } from '@angular/common';
 import { MyDatePickerModule } from 'mydatepicker';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { TerraInteractModule } from './components/interactables/interact.module';
-import { TerraNavigatorSplitViewConfig } from './components/navigator/config/terra-navigator-split-view.config';
-import { TerraFrontendStorageService } from './components/file-browser/terra-frontend-storage.service';
-import { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
 import { l10nConfig } from './translation/l10n.config';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { Type } from '@angular/core/src/type';
-import { components } from './components/component-collection';
+import {
+    components,
+    exportedComponents
+} from './components/component-collection';
 import { examples } from './components/example-collection';
 import { services } from './service/service-collection';
 import { directives } from './components/directive-collection';
+import { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -48,8 +49,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
 
 @NgModule({
     declarations:    [TerraComponentsComponent, ...components, ...directives, ...examples],
-    entryComponents: components,
-    exports:         [...components, ...directives, ...examples],
+    entryComponents: exportedComponents,
+    exports:         [...exportedComponents, ...directives, ...examples],
     imports:         [
         BrowserModule,
         BrowserAnimationsModule,
@@ -70,9 +71,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         RouterModule
     ],
     providers:       [
-        TerraNavigatorSplitViewConfig,
-        TerraFrontendStorageService,
-        TerraFileBrowserService,
+        TerraLoadingSpinnerService,
         {
             provide:  COMPILER_OPTIONS,
             useValue: {},
