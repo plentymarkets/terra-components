@@ -1,22 +1,18 @@
 
-
 module.exports = function (config) {
     config.set({
         basePath: '',
         frameworks: ['jasmine'],
-        files: [
-            { pattern: 'test/main.js', watched: false }
-        ],
+        files: ['test/main.js'],
         exclude: [],
         preprocessors: {
-            'test/main.js': ['webpack', 'sourcemap'],
-            '**/src/*.js': 'coverage'
+            'test/main.js': ['webpack', 'sourcemap']
         },
         webpack: require('./config/webpack.test')({env: 'test'}),
         reporters: [
             'progress',
             'kjhtml',
-            'coverage'
+            'coverage-istanbul'
         ],
         port: 9876,
         colors: true,
@@ -25,9 +21,12 @@ module.exports = function (config) {
         browsers: ['Chrome', 'Firefox', 'Safari'],
         singleRun: false,
         concurrency: Infinity,
-        coverageReporter: {
-            type : 'html',
-            dir : 'coverage/'
+        coverageIstanbulReporter: {
+            reports: ['html'],
+            dir: 'coverage',
+            combineBrowserReports: true,
+            fixWebpackSourcePaths: true,
+            skipFilesWithNoCoverage: false
         }
     })
 };

@@ -178,7 +178,11 @@ module.exports = function (options) {
                     include: helpers.root('src'),
                     exclude: [
                         /\.(e2e|spec)\.ts$/,
-                        helpers.root('node_modules')
+                        helpers.root('node_modules'),
+                        helpers.root('src/app/assets'),
+                        helpers.root('src/app/models'),
+                        helpers.root('src/app/testing'),
+                        helpers.root('src/app/translation')
                     ]
                 }
             ]
