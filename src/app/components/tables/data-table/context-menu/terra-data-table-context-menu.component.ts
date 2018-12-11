@@ -24,15 +24,12 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     @Input()
     public links:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
 
-    protected data:D;
-    protected locationCss:any = {
-        left:       0,
-        top:        0,
-        right:      0
-    };
+    protected top:number = 0;
+    protected left:number = 0;
 
-    protected isShown:boolean = false;
-    private clickListener:(event:Event) => void;
+    private _isShown:boolean = false;
+    private readonly clickListener:(event:Event) => void;
+    private eventData:{ event:MouseEvent, data:D };
 
     /**
      * @description constructor
@@ -42,8 +39,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     {
         this.clickListener = (event:Event):void =>
         {
-            this.clickedOutside();
-            event.stopPropagation();
+            this.clickedOutside(event);
         };
     }
 
@@ -52,61 +48,40 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
      */
     public ngOnInit():void
     {
-        this.contextMenuService.show.subscribe((e:{event:MouseEvent, data:D}):void =>
+        this.contextMenuService.show.subscribe((eventData:{ event:MouseEvent, data:D }):void =>
         {
-            this.showMenu(e.event, e.data);
+            this.eventData = eventData;
+            this.isShown = !this.isShown;
         });
     }
 
-    private clickedOutside():void
+    private clickedOutside(event:Event):void
     {
-        this.isShown = false;
-        document.removeEventListener('click', this.clickListener);
+        if(this.eventData.event.target !== event.target)
+        {
+            this.isShown = false;
+        }
     }
 
-    private showMenu(event:MouseEvent, data:D):void
+    private set isShown(value:boolean)
     {
-        this.isShown = true;
-        this.data = data;
-        this.locationCss = this.calcMenuPosition(event.clientX, event.clientY);
-
-        event.stopPropagation();
-        document.addEventListener('click', this.clickListener);
-    }
-
-    private calcMenuPosition(mouseLeft:number, mouseTop:number):{left:string, top:string }
-    {
-        // 70 (navbar) + 46 (tabbar) + 36 (breadcrumbs)
-        let offsetTop:number = 108; // 161
-        let offsetLeft:number;
-        let anchor:JQuery = $('.context-menu#menu');
-        let isMenuAtBottom:boolean;
-        let contextMenuHeight:number = anchor.height();
-        let contextMenuWidth:number = anchor.width();
-        let tableWidth:number;
-
-        let buttomTop:string = mouseTop - offsetTop - contextMenuHeight + 'px';
-        let top:string = mouseTop - offsetTop - 2 + 'px';
-
-        if(mouseTop + contextMenuHeight > innerHeight)
+        if(this._isShown !== value && value)
         {
-            isMenuAtBottom = true;
+            document.addEventListener('click', this.clickListener, true);
+        }
+        else if(this._isShown !== value && !value)
+        {
+            document.removeEventListener('click', this.clickListener);
         }
 
-        let dataTableElement:JQuery = anchor.closest('terra-data-table');
-
-        offsetLeft = dataTableElement.offset().left;
-
-        tableWidth = dataTableElement.find('tbody').width();
-
-        if(Math.abs(mouseLeft - offsetLeft - 2) + contextMenuWidth > tableWidth)
+        if(value)
         {
-            offsetLeft = offsetLeft + contextMenuWidth - 6;
+            this.top = this.eventData.event.clientY + window.scrollY;
+            this.left = this.eventData.event.clientX + window.scrollX;
+
+            this.eventData.event.stopPropagation();
         }
 
-        return {
-            left:       mouseLeft - offsetLeft - 2 + 'px',
-            top:        isMenuAtBottom ? buttomTop : top
-        };
+        this._isShown = value;
     }
 }

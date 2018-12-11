@@ -1,10 +1,11 @@
 <ul [hidden]="links?.length === 0"
     class="context-menu"
     id="menu"
-    [style.visibility]="isShown ? 'visible' : 'hidden'"
-    [ngStyle]="locationCss">
+    [ngClass]="{'visible': _isShown}"
+    [style.top]="top + 'px'"
+    [style.left]="left + 'px'">
     <ng-template ngFor let-link [ngForOf]="links">
-        <li *ngIf="!link.isDivider" (click)="link.clickFunction(data)" [ngStyle]="{ 'background': link.buttonColor }">
+        <li *ngIf="!link.isDivider" (click)="link.clickFunction(eventData.data)" [ngStyle]="{ 'background': link.buttonColor }">
             <a>{{link.title}}</a>
         </li>
         <div *ngIf="link.isDivider" class="context-menu-divider"></div>
