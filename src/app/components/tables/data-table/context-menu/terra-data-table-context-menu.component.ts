@@ -9,7 +9,6 @@ import {
 import { TerraDataTableContextMenuEntryInterface } from './data/terra-data-table-context-menu-entry.interface';
 import { TerraBaseData } from '../../../data/terra-base.data';
 import { TerraDataTableContextMenuService } from './terra-data-table-context-menu.service';
-import { isNullOrUndefined } from 'util';
 
 /**
  * @author mkunze
@@ -57,16 +56,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
      */
     public ngOnInit():void
     {
-        // append to body for better handling
-        if(this.isPlugin())
-        {
-            // for plugins
-            window.parent.window.document.body.appendChild(this.elementRef.nativeElement);
-        }
-        else
-        {
-            window.document.body.appendChild(this.elementRef.nativeElement);
-        }
+        window.document.body.appendChild(this.elementRef.nativeElement);
 
         this.contextMenuService.show.subscribe((eventData:{ event:MouseEvent, data:D }):void =>
         {
@@ -77,15 +67,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
 
     public ngOnDestroy():void
     {
-        if(this.isPlugin())
-        {
-            // for plugins
-            window.parent.window.document.body.removeChild(this.elementRef.nativeElement);
-        }
-        else
-        {
-            window.document.body.removeChild(this.elementRef.nativeElement);
-        }
+        window.document.body.removeChild(this.elementRef.nativeElement);
     }
 
     private clickedOutside(event:Event):void
@@ -94,11 +76,6 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
         {
             this.isShown = false;
         }
-    }
-
-    private isPlugin():boolean
-    {
-        return !isNullOrUndefined(window.parent) && !isNullOrUndefined(window.parent.window);
     }
 
     private set isShown(value:boolean)
@@ -122,12 +99,6 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
 
             let windowHeight:number = window.innerHeight;
             let windowWidth:number = window.innerWidth;
-
-            if(this.isPlugin())
-            {
-                windowHeight = window.parent.window.innerHeight;
-                windowWidth = window.parent.window.innerWidth;
-            }
 
             let isOutsideRight:boolean = mousePosX + contextMenuWidth > windowWidth;
             let isOutsideBottom:boolean = mousePosY + contextMenuHeight > windowHeight;
