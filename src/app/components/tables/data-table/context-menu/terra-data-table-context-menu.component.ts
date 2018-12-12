@@ -112,7 +112,6 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
             else if(isOutsideBottom)
             {
                 this.top = mousePosY - contextMenuHeight;
-
                 this.left = mousePosX;
             }
             else if(isOutsideRight)
