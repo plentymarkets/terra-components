@@ -1,4 +1,5 @@
-<ul [hidden]="links?.length === 0"
+<ul #list
+    [hidden]="links?.length === 0"
     class="context-menu"
     id="menu"
     [ngClass]="{'visible': _isShown}"

@@ -1,11 +1,15 @@
 import {
     Component,
+    ElementRef,
     Input,
-    OnInit
+    OnDestroy,
+    OnInit,
+    ViewChild
 } from '@angular/core';
 import { TerraDataTableContextMenuEntryInterface } from './data/terra-data-table-context-menu-entry.interface';
 import { TerraBaseData } from '../../../data/terra-base.data';
 import { TerraDataTableContextMenuService } from './terra-data-table-context-menu.service';
+import { isNullOrUndefined } from 'util';
 
 /**
  * @author mkunze
@@ -16,7 +20,7 @@ import { TerraDataTableContextMenuService } from './terra-data-table-context-men
     styles:   [require('./terra-data-table-context-menu.component.scss')],
     template: require('./terra-data-table-context-menu.component.html')
 })
-export class TerraDataTableContextMenuComponent<D extends TerraBaseData> implements OnInit
+export class TerraDataTableContextMenuComponent<D extends TerraBaseData> implements OnInit, OnDestroy
 {
     /**
      * @description list of links (buttons) to be shown in the context menu
@@ -27,6 +31,9 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     protected top:number = 0;
     protected left:number = 0;
 
+    @ViewChild('list')
+    private list:ElementRef;
+
     private _isShown:boolean = false;
     private readonly clickListener:(event:Event) => void;
     private eventData:{ event:MouseEvent, data:D };
@@ -34,8 +41,10 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     /**
      * @description constructor
      * @param contextMenuService
+     * @param elementRef
      */
-    constructor(private contextMenuService:TerraDataTableContextMenuService<D>)
+    constructor(private contextMenuService:TerraDataTableContextMenuService<D>,
+                private elementRef:ElementRef)
     {
         this.clickListener = (event:Event):void =>
         {
@@ -48,11 +57,35 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
      */
     public ngOnInit():void
     {
+        // append to body for better handling
+        if(this.isPlugin())
+        {
+            // for plugins
+            window.parent.window.document.body.appendChild(this.elementRef.nativeElement);
+        }
+        else
+        {
+            window.document.body.appendChild(this.elementRef.nativeElement);
+        }
+
         this.contextMenuService.show.subscribe((eventData:{ event:MouseEvent, data:D }):void =>
         {
             this.eventData = eventData;
             this.isShown = !this.isShown;
         });
+    }
+
+    public ngOnDestroy():void
+    {
+        if(this.isPlugin())
+        {
+            // for plugins
+            window.parent.window.document.body.removeChild(this.elementRef.nativeElement);
+        }
+        else
+        {
+            window.document.body.removeChild(this.elementRef.nativeElement);
+        }
     }
 
     private clickedOutside(event:Event):void
@@ -61,6 +94,11 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
         {
             this.isShown = false;
         }
+    }
+
+    private isPlugin():boolean
+    {
+        return !isNullOrUndefined(window.parent) && !isNullOrUndefined(window.parent.window);
     }
 
     private set isShown(value:boolean)
@@ -73,15 +111,51 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
         {
             document.removeEventListener('click', this.clickListener);
         }
-
+        this._isShown = value;
         if(value)
         {
-            this.top = this.eventData.event.clientY + window.scrollY;
-            this.left = this.eventData.event.clientX + window.scrollX;
+            let mousePosX:number = this.eventData.event.clientX; // left
+            let mousePosY:number = this.eventData.event.clientY; // top
+
+            let contextMenuHeight:number = this.list.nativeElement.offsetHeight;
+            let contextMenuWidth:number = this.list.nativeElement.offsetWidth;
+
+            let windowHeight:number = window.innerHeight;
+            let windowWidth:number = window.innerWidth;
+
+            if(this.isPlugin())
+            {
+                windowHeight = window.parent.window.innerHeight;
+                windowWidth = window.parent.window.innerWidth;
+            }
+
+            let isOutsideRight:boolean = mousePosX + contextMenuWidth > windowWidth;
+            let isOutsideBottom:boolean = mousePosY + contextMenuHeight > windowHeight;
+            let isOutsideRightAndBottom:boolean = isOutsideRight && isOutsideBottom;
+
+            if(isOutsideRightAndBottom)
+            {
+                this.top = mousePosY - contextMenuHeight;
+                this.left = mousePosX - contextMenuWidth;
+            }
+            else if(isOutsideBottom)
+            {
+                this.top = mousePosY - contextMenuHeight;
+
+                this.left = mousePosX;
+            }
+            else if(isOutsideRight)
+            {
+                this.top = mousePosY;
+                this.left = mousePosX - contextMenuWidth;
+            }
+            else
+            {
+                this.top = mousePosY;
+                this.left = mousePosX;
+            }
 
             this.eventData.event.stopPropagation();
         }
-
-        this._isShown = value;
     }
 }
