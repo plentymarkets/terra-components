@@ -1,6 +1,7 @@
 # Unreleased
 
 ### Features
+* **terra-data-table** fixed position and styles of context menu in FireFox
 * **terra-select-box** added key events for better handling
 * **terra-slider** 
 	- add focus highlighting for tab navigation
