@@ -8,7 +8,7 @@ import {
 import { TerraButtonInterface } from '../button/data/terra-button.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraButtonComponent } from '../button/terra-button.component';
-import { TerraTextAlignEnum } from '../../tables/data-table/cell/terra-text-align.enum';
+import { TerraTextAlignEnum } from '../../tables/data-table/enums/terra-text-align.enum';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
@@ -30,6 +30,12 @@ export class TerraButtonWithOptionsComponent implements OnInit
      */
     @Input()
     public inputIcon:string;
+
+    /**
+     * @description If true, the button will be small. Default false.
+     */
+    @Input()
+    public inputIsSmall:boolean;
 
     /**
      * @description If true, the button will be disabled. Default false.
@@ -127,8 +133,13 @@ export class TerraButtonWithOptionsComponent implements OnInit
         }
     }
 
-    private toggleOptions():void
+    private toggleOptions(event?:Event):void
     {
+        if (!isNullOrUndefined(event))
+        {
+            event.stopPropagation();
+        }
+
         if(!this.optionsToggle)
         {
             document.addEventListener('click', this.clickListener);

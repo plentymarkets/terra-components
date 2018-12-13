@@ -37,11 +37,15 @@ import { TerraCodeEditorComponentExample } from './editors/code-editor/example/t
 import { TerraNoteComponentExample } from './note/example/terra-note.component.example';
 import { TerraNodeTreeComponentExample } from './tree/node-tree/example/terra-node-tree.component.example';
 import { TerraTimePickerComponentExample } from './forms/input/time-picker/example/terra-time-picker.component.example';
-import { TerraNestedDataPickerComponentExample } from './nested-data-picker/example/terra-nested-data-picker.component.example';
+import { TerraNestedDataPickerComponentExample } from './data-picker/nested-data-picker/example/terra-nested-data-picker.component.example';
 import { TerraTagSelectComponentExample } from './forms/tag-select/example/terra-tag-select.component.example';
 import { TerraStopwatchComponentExample } from './stopwatch/example/terra-stopwatch.component.example';
 import { TerraTwoColumnContainerComponentExample } from './layouts/column-container/two-columns/example/terra-two-column-container.component.example';
 import { TerraThreeColumnContainerComponentExample } from './layouts/column-container/three-columns/example/terra-three-column-container.component.example';
+import { TerraGroupFunctionComponentExample } from './tables/group-function/example/terra-group-function.component.example';
+import { TerraInfoComponentExample } from './info/example/terra-info.component.example';
+import { TerraFormsExampleComponent } from './forms/terra-forms.example';
+import { TerraRadioGroupComponentExample } from './forms/input/radio/example/terra-radio-group.component.example';
 
 export const examples:Array<Type<any>> = [
     TerraButtonComponentExample,
@@ -86,5 +90,9 @@ export const examples:Array<Type<any>> = [
     TerraTagSelectComponentExample,
     TerraStopwatchComponentExample,
     TerraTwoColumnContainerComponentExample,
-    TerraThreeColumnContainerComponentExample
+    TerraThreeColumnContainerComponentExample,
+    TerraGroupFunctionComponentExample,
+    TerraInfoComponentExample,
+    TerraFormsExampleComponent,
+    TerraRadioGroupComponentExample
 ];

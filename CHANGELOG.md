@@ -1,5 +1,115 @@
+# Unreleased
+
+### Features
+* **terra-data-table** fixed position and styles of context menu in FireFox
+* **terra-select-box** added key events for better handling
+* **terra-slider** 
+	- add focus highlighting for tab navigation
+	- add left and right arrow key navigation
+* **terra-radio-input** new component that wraps html's native input of type radio including it's label. It must be used within a `<terra-radio-group>` element.
+* **terra-radio-group** new component to contain and manage `<terra-radio-input>` elements. It implements the `ControlValueAccessor` interface (`ngModel`) to be able to use it in a form.
+* **terra-radio-button** is now deprecated. Use `<terra-radio-input>` and `<terra-radio-group>` instead.
+* **terra-check-box** removed outline css
+
+<a name="3.0.0-beta.18"></a>
+# 3.0.0-beta.18 (06.12.2018)
+
+### Features
+* **terra-slider** implement `ControlValueAccessor` interface to be able to use ngModel instead of `inputValue`.
+* **themes** added christmas theme
+* **themes** added full color button theme
+
+### Bug Fixes
+* **loading-spinner** fixed issue with light theme
+* **terra-select-box** is now focusable while navigating with tab key
+* **terra-check-box** is now focusable while navigating with tab key
+
+<a name="3.0.0-beta.17"></a>
+# 3.0.0-beta.17 (03.12.2018)
+
+### Feature
+* **TerraBreadcrumbsService** support to handle queryParams in url 
+
+### Bug Fixes
+* **terra-node-tree** Fixed a bug concerning the deletion of a node on the first level
+* **terra-3-col** fixed style bug in firefox
+* **terra-2-col** fixed style bug in firefox
+
+<a name="3.0.0-beta.16"></a>
+# 3.0.0-beta.16 (29.11.2018)
+
+### Breaking changes
+* **terra-tag** `inputBadge` is now deprecated. Please use `name` instead.
+* **terra-data-table** removed `inputIsSortable` due to redundancy.
+
+### Bug Fixes
+* **terra-data-table** 
+	- fixed coloring of links in the table if the row is selected or active
+	- reset rowList before requesting data from the server. Show pager and header while data is loaded.
+
+### Feature
+* **terra-button-with-options** 
+    - New input `inputIsSmall`
+    - Added the ability to add a divider button to the 'inputOptions'
+    - Fixed corresponding CSS
+* **terra-data-table.service** added `resetSortParams()` to be able to reset sorting params.
+    
+<a name="3.0.0-beta.15"></a>
+# 3.0.0-beta.15 (21.11.2018)
+Adapted Changes from v2.4.3
+
+### Breaking Changes
+* **terra-stopwatch** rework. removed dependency to [timer-stopwatch](https://www.npmjs.com/package/timer-stopwatch) package.
+
+<a name="3.0.0-beta.14"></a>
+# 3.0.0-beta.14 (15.11.2018)
+
+### Breaking Changes
+* **terra-data-table** 
+	- Table is now sortable. Use the sortBy interface property to state whether a column is sortable
+	- Refactoring -> Removed deprecated interface and input properties
+	- New `TerraDataTableBaseService` which replaces custom directives and configs. It also stores all information needed for retrieving data from the server
+	- New `terra-group-function` component which has been extracted from the `terra-data-table` component
+	- Removed inputs for `terra-no-result-notice` and `terra-group-function` since they can now be passed to the content of the `terra-data-table` component.
+	- Added input `inputContextMenu` to be able to pass the context menu only once to the component
+* **terra-data-table-row.interface** removed `contextMenuLinkList` property since it can now be passed to the data table component using `inputContextMenu`.
+* **terra-data-table-context-menu.service** removed `init` subject and changed type of `show` subject
+* **terra-data-table-context-menu.directive**
+	- changed selector to `[hasContextMenu]`
+	- removed input `inputLinks` which was aliased with the selector before
+	- new input `rowData` which is used to pass the data of a row to the context menu component
+* **terra-data-table-context-menu.component** 
+	- added input `links`. The list of links in the context menu can be passed here.
+	- changed parameters of the `showMenu` method. It now accepts the mouse event and the data which will be passed to the `clickFunction` of the context menu link.
+* **terra-data-table-context-menu.interface** remove `data` property. Use the directive's input `rowData` instead.
+* **terra-pager.data** removed unused class
+
+For further information see the [table migration guide](https://developers.plentymarkets.com/dev-doc/data-table-migration-guide).
+
+### Feature
+* **terra-dynamic-form** new optional toggle button to display/hide deprecated plugin config entries
+
+### Bug Fixes
+* **terra-regex** public access to properties
+
+<a name="3.0.0-beta.13"></a>
+# 3.0.0-beta.13 (12.11.2018)
+
+Adapted Changes from v2.4.2
+
+### Bug Fixes
+* **terra-node.interface**
+	- removed double click function.
+	- add closeOnClick to close node on click again.
+
+<a name="3.0.0-beta.12"></a>
+# 3.0.0-beta.12 (07.11.2018)
+* **category-detail-data**
+	- added preview url	 
+
 <a name="3.0.0-beta.11"></a>
 # 3.0.0-beta.11 (25.10.2018)
+
 * **terra-file-browser** 
 	- breadcrumbs replaced with tree for folder navigation.
 	- saving alternative text working as intended with success message.
@@ -128,6 +238,32 @@ Adapted Changes from v2.3.21 and v2.3.22
 
 ### Breaking Changes
 * **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
+
+
+<a name="2.4.3"></a>
+# 2.4.3 (21.11.2018)
+
+### Feature
+* **terra-indicator** added TerraIndicatorLabelTypeEnum and TerraIndicatorInterface for clearer usage
+
+### Bug Fixes
+* **terra-simple-table** fix issue with notifications on `selectedRowList` changes via `outputSelectedRowsChange`.
+
+<a name="2.4.2"></a>
+# 2.4.2 (12.11.2018)
+
+### Bug Fixes 
+* **terra-suggestion-box** prevent duplicate execution of callbacks and emission of notifications when selecting a value from the suggestion list
+* **terra-simple-table** fixed selectedValue of onRowCheckboxChange() Event
+
+### Feature
+* **angular-cli** added support for angular-cli usage
+* **terra-simple-table** added support to set selected rows
+* **terra-info** add new component `terra-info` for short information about another ui element
+* **terra-icons** new icons for table sorting: icon-table_sort, icon-sort-asc, icon-sort-desc
+* **terra themes** changed main style selector 'dark-standard' to 'theme-core'
+* **function-groups** removed custom group for add-icon
+* **function-groups** added missing styles for .btn-major
 
 <a name="2.4.1"></a>
 # 2.4.1 (17.10.2018)
@@ -371,7 +507,6 @@ Adapted Changes from v2.3.21 and v2.3.22
 
 ### Features
 * **terra-card** render div for image only if imagePath or placeholder icon is set
-
 
 <a name="2.2.18"></a>
 # 2.2.18 (21.06.2018)
@@ -662,8 +797,6 @@ This feature can be disabled by setting the input `inputHasFixedHeight` to true.
 * **terra-button** 
 - add properties `isSmall` and `isLarge` to button interface
 - fix styling when inputIsLink is used
-
-### Feature
 * **terra-multi-split-view** divider styling 
 * **terra-overlay** changed footer & header height
 
