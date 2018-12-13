@@ -28,8 +28,8 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     @Input()
     public links:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
 
-    protected _top:number = 0;
-    protected _left:number = 0;
+    protected top:number = 0;
+    protected left:number = 0;
 
     @ViewChild('list')
     private list:ElementRef;
@@ -107,23 +107,23 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
 
             if(isOutsideRightAndBottom)
             {
-                this._top = mousePosY - contextMenuHeight;
-                this._left = mousePosX - contextMenuWidth;
+                this.top = mousePosY - contextMenuHeight;
+                this.left = mousePosX - contextMenuWidth;
             }
             else if(isOutsideBottom)
             {
-                this._top = mousePosY - contextMenuHeight;
-                this._left = mousePosX;
+                this.top = mousePosY - contextMenuHeight;
+                this.left = mousePosX;
             }
             else if(isOutsideRight)
             {
-                this._top = mousePosY;
-                this._left = mousePosX - contextMenuWidth;
+                this.top = mousePosY;
+                this.left = mousePosX - contextMenuWidth;
             }
             else
             {
-                this._top = mousePosY;
-                this._left = mousePosX;
+                this.top = mousePosY;
+                this.left = mousePosX;
             }
 
             this.eventData.event.stopPropagation();
@@ -132,12 +132,12 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
 
     protected get topAsString():string
     {
-        return this._top + 'px';
+        return this.top + 'px';
     }
 
     protected get leftAsString():string
     {
-        return this._left + 'px';
+        return this.left + 'px';
     }
 
     protected get linksAreSet():boolean
