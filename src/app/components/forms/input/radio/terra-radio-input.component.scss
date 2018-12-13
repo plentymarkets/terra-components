@@ -89,5 +89,10 @@ label
             display: block;
         }
     }
+    
+    span:not(.check)
+    {
+        vertical-align: middle;
+    }
 }
 
