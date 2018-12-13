@@ -127,7 +127,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
     private emitCallbacks(value:Array<TerraMultiCheckBoxValueInterface>, changedCheckboxes:Array<TerraMultiCheckBoxValueInterface>):void
     {
         this.onTouchedCallback();
-        this.onChangeCallback(this.valueList);
+        this.onChangeCallback(value);
         this.checkboxStateChanges.emit(changedCheckboxes);
     }
 
