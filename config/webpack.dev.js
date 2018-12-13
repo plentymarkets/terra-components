@@ -4,7 +4,7 @@ var commonConfig = require('./webpack.common');
 
 module.exports = merge(commonConfig, {
     mode: 'development',
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'cheap-module-source-map',
     output: {
         path: helpers.root('dist'),
         publicPath: '/',
@@ -13,9 +13,6 @@ module.exports = merge(commonConfig, {
     },
     devServer: {
         port: 3001,
-        historyApiFallback: true,
-        stats: {
-            warningsFilter: /System.import/ // https://github.com/angular/angular/issues/21560
-        }
+        historyApiFallback: true
     }
 });

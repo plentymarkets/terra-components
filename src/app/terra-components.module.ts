@@ -48,9 +48,18 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
 }
 
 @NgModule({
-    declarations:    [TerraComponentsComponent, ...components, ...directives, ...examples],
+    declarations:    [
+        TerraComponentsComponent,
+        ...components,
+        ...directives,
+        ...examples
+    ],
     entryComponents: exportedComponents,
-    exports:         [...exportedComponents, ...directives, ...examples],
+    exports:         [
+        ...exportedComponents,
+        ...directives,
+        ...examples
+    ],
     imports:         [
         BrowserModule,
         BrowserAnimationsModule,

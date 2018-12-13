@@ -5,8 +5,7 @@ import {
 
 @Component({
     selector: 'terra-app-root',
-    template: require('./terra-components.component.html'),
-    styles:   [require('./terra-components.component.scss')]
+    template: require('./terra-components.component.html')
 })
 export class TerraComponentsComponent
 {
