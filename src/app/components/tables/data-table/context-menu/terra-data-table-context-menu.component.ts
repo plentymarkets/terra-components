@@ -9,6 +9,7 @@ import {
 import { TerraDataTableContextMenuEntryInterface } from './data/terra-data-table-context-menu-entry.interface';
 import { TerraBaseData } from '../../../data/terra-base.data';
 import { TerraDataTableContextMenuService } from './terra-data-table-context-menu.service';
+import { isNullOrUndefined } from 'util';
 
 /**
  * @author mkunze
@@ -27,8 +28,8 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     @Input()
     public links:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
 
-    protected top:number = 0;
-    protected left:number = 0;
+    protected _top:number = 0;
+    protected _left:number = 0;
 
     @ViewChild('list')
     private list:ElementRef;
@@ -106,26 +107,41 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
 
             if(isOutsideRightAndBottom)
             {
-                this.top = mousePosY - contextMenuHeight;
-                this.left = mousePosX - contextMenuWidth;
+                this._top = mousePosY - contextMenuHeight;
+                this._left = mousePosX - contextMenuWidth;
             }
             else if(isOutsideBottom)
             {
-                this.top = mousePosY - contextMenuHeight;
-                this.left = mousePosX;
+                this._top = mousePosY - contextMenuHeight;
+                this._left = mousePosX;
             }
             else if(isOutsideRight)
             {
-                this.top = mousePosY;
-                this.left = mousePosX - contextMenuWidth;
+                this._top = mousePosY;
+                this._left = mousePosX - contextMenuWidth;
             }
             else
             {
-                this.top = mousePosY;
-                this.left = mousePosX;
+                this._top = mousePosY;
+                this._left = mousePosX;
             }
 
             this.eventData.event.stopPropagation();
         }
+    }
+
+    protected get topAsString():string
+    {
+        return this._top + 'px';
+    }
+
+    protected get leftAsString():string
+    {
+        return this._left + 'px';
+    }
+
+    protected get linksAreSet():boolean
+    {
+        return !isNullOrUndefined(this.links) && this.links.length > 0;
     }
 }
