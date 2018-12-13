@@ -293,6 +293,10 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 
     protected onKeyDown(event:KeyboardEvent):void
     {
+        event.preventDefault();
+        // stop event bubbling
+        event.stopPropagation();
+
         // check if one of the dedicated keys has been pressed
         if(!(event.code === 'ArrowDown' ||
              event.code === 'ArrowUp' ||
@@ -364,9 +368,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                     break;
             }
         }
-
-        // stop event bubbling
-        event.stopPropagation();
     }
 
     private focusSelectedElement():void
