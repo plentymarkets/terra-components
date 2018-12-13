@@ -2,12 +2,14 @@ import { TerraSliderComponent } from './terra-slider.component';
 import {
     async,
     ComponentFixture,
+    fakeAsync,
+    flush,
     TestBed
 } from '@angular/core/testing';
 import { TerraDraggableDirective } from '../../interactables/draggable.directive';
 import { By } from '@angular/platform-browser';
-import { SimpleChange } from '@angular/core';
 import Spy = jasmine.Spy;
+import { DebugElement } from '@angular/core';
 
 describe(`TerraSliderComponent:`, () =>
 {
@@ -70,11 +72,11 @@ describe(`TerraSliderComponent:`, () =>
         it(`should update slider position (#handlePosition) when updating #inputValue`, () =>
         {
             component.inputValue = 0.2;
-            component.ngOnChanges({ inputValue: null });
+            component.ngOnChanges({inputValue: null});
             expect(component.handlePosition).toBe(sliderWidth * 0.2);
 
             component.inputValue = 0.7;
-            component.ngOnChanges({ inputValue: null });
+            component.ngOnChanges({inputValue: null});
             expect(component.handlePosition).toBe(sliderWidth * 0.7);
         });
 
@@ -91,5 +93,26 @@ describe(`TerraSliderComponent:`, () =>
             expect(spy).toHaveBeenCalledWith(testValue);
             expect(emittedValue).toBe(testValue);
         });
+    });
+
+    describe(`with form navigation`, () =>
+    {
+        let debugElement:DebugElement;
+        let sliderElement:DebugElement;
+        let sliderHandle:HTMLElement;
+
+        beforeEach(() =>
+        {
+            debugElement = fixture.debugElement;
+            sliderElement = debugElement.query(By.css('div.slider-handle'));
+            sliderHandle = sliderElement.nativeElement;
+        });
+
+        it(`should focus slider by navigating with tab`, fakeAsync(() =>
+        {
+            sliderHandle.focus();
+            flush();
+            expect(document.activeElement).toEqual(sliderHandle);
+        }));
     });
 });

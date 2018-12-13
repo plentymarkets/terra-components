@@ -21,9 +21,9 @@ import {
 } from '@angular/forms';
 
 @Component({
-    selector: 'terra-slider',
-    template: require('./terra-slider.component.html'),
-    styles:   [require('./terra-slider.component.scss')],
+    selector:  'terra-slider',
+    template:  require('./terra-slider.component.html'),
+    styles:    [require('./terra-slider.component.scss')],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
@@ -187,19 +187,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         this.changeDetector.detectChanges();
     }
 
-    protected get grid():GridOptions
-    {
-        if(this.inputInterval > 0)
-        {
-            return {
-                x: this.element.nativeElement.getBoundingClientRect().width / this.calculateNumberOfSteps(),
-                y: 0
-            };
-        }
-
-        return null;
-    }
-
     /**
      * Initialization routine. Initializes the #value of the slider and #inputPrecision if they are not given.
      */
@@ -280,15 +267,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         this.moveToPosition(event.pageX);
     }
 
-    private moveToPosition(position:number):void
-    {
-        if(!this.inputIsDisabled)
-        {
-            let sliderRect:any | ClientRect = this.sliderBarElement.nativeElement.getBoundingClientRect();
-            this.handlePosition = position - sliderRect.left;
-        }
-    }
-
     /**
      * get ticks
      * @returns {Array<TerraSliderTick>}
@@ -318,24 +296,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         return ticks;
     }
 
-    private calculateRangeOfSlider():number
-    {
-        return Math.abs(this.inputMin - this.inputMax);
-    }
-
-    private calculateValueFromPercent(positionInPercent:number):number
-    {
-        return this.inputMin + (this.calculateRangeOfSlider() * (positionInPercent / 100));
-    }
-
-    private calculateNumberOfSteps():number
-    {
-        return this.calculateRangeOfSlider() / this.inputInterval;
-    }
-
-    private changeCallback:(value:number) => void = ():void => undefined;
-    private touchedCallback:() => void = ():void => undefined;
-
     /**
      * register a change callback which is executed when the #value of the slider changes
      * @param fn
@@ -362,4 +322,82 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     {
         this.value = value;
     }
+
+    protected get grid():GridOptions
+    {
+        if(this.inputInterval > 0)
+        {
+            return {
+                x: this.element.nativeElement.getBoundingClientRect().width / this.calculateNumberOfSteps(),
+                y: 0
+            };
+        }
+
+        return null;
+    }
+
+    protected onKeyDown(event:KeyboardEvent):void
+    {
+        // check if one of the dedicated keys has been pressed
+        if(!(event.code === 'ArrowLeft' ||
+             event.code === 'ArrowRight'))
+        {
+            return;
+        }
+
+        // evaluate step size
+        let stepSize:number = 1; // default: 1px
+        if(this.inputInterval > 0)
+        {
+            stepSize = this.grid.x; // use grid if interval is given
+        }
+
+        // determine the key, that has been pressed
+        switch(event.code)
+        {
+            case 'ArrowLeft':
+                if(this.value > this.inputMin)
+                {
+                    this.handlePosition -= stepSize;
+                }
+                break;
+            case 'ArrowRight':
+                if(this.value < this.inputMax)
+                {
+                    this.handlePosition += stepSize;
+                }
+                break;
+        }
+
+        // stop event bubbling
+        event.stopPropagation();
+    }
+
+    private moveToPosition(position:number):void
+    {
+        if(!this.inputIsDisabled)
+        {
+            let sliderRect:any | ClientRect = this.sliderBarElement.nativeElement.getBoundingClientRect();
+            this.handlePosition = position - sliderRect.left;
+        }
+    }
+
+    private calculateRangeOfSlider():number
+    {
+        return Math.abs(this.inputMin - this.inputMax);
+    }
+
+    private calculateValueFromPercent(positionInPercent:number):number
+    {
+        return this.inputMin + (this.calculateRangeOfSlider() * (positionInPercent / 100));
+    }
+
+    private calculateNumberOfSteps():number
+    {
+        return this.calculateRangeOfSlider() / this.inputInterval;
+    }
+
+    private changeCallback:(value:number) => void = ():void => undefined;
+
+    private touchedCallback:() => void = ():void => undefined;
 }
