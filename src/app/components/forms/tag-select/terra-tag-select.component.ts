@@ -16,14 +16,13 @@ import {
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraSuggestionBoxValueInterface } from '../suggestion-box/data/terra-suggestion-box.interface';
 import { isNullOrUndefined } from 'util';
-import { TerraBaseData } from '../../data/terra-base.data';
 import { TerraTagNameInterface } from '../../layouts/tag/data/terra-tag-name.interface';
 import { Language } from 'angular-l10n';
 
 @Component({
-    selector: 'terra-tag-select',
-    styles:   [require('./terra-tag-select.component.scss')],
-    template: require('./terra-tag-select.component.html'),
+    selector:  'terra-tag-select',
+    styles:    [require('./terra-tag-select.component.scss')],
+    template:  require('./terra-tag-select.component.html'),
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
@@ -124,11 +123,14 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
         this.suggestionValues = tagList.map((tag:TerraTagInterface) =>
         {
             return {
-                value: tag,
+                value:   tag,
                 caption: this.getTranslatedName(tag),
             };
         });
-        this.suggestionValues.unshift({value: null, caption: ''});
+        this.suggestionValues.unshift({
+            value:   null,
+            caption: ''
+        });
     }
 
     /**

@@ -69,7 +69,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement>document.getElementById(this.id);
             input.focus();
         });
     }
@@ -81,7 +81,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement>document.getElementById(this.id);
             input.select();
         });
     }

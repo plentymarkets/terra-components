@@ -11,9 +11,9 @@ import { TerraRadioGroupComponent } from './terra-radio-group.component';
  * It must be used within a hosting <terra-radio-group> element!
  */
 @Component({
-    selector:  'terra-radio-input',
-    template:  require('./terra-radio-input.component.html'),
-    styles:    [require('./terra-radio-input.component.scss')],
+    selector: 'terra-radio-input',
+    template: require('./terra-radio-input.component.html'),
+    styles:   [require('./terra-radio-input.component.scss')],
 })
 export class TerraRadioInputComponent
 {
@@ -37,5 +37,6 @@ export class TerraRadioInputComponent
     public disabled:boolean = false;
 
     constructor(@Host() protected group:TerraRadioGroupComponent)
-    {}
+    {
+    }
 }

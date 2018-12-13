@@ -4,6 +4,7 @@
 .editor-container
 {
     position: relative;
+    
     .close-button,
     .error-button
     {
@@ -11,11 +12,13 @@
         position: absolute;
         right: var(--space-sm);
         top: var(--space-sm);
+        
         &.visible
         {
             display: block;
         }
     }
+    
     .raw-input
     {
         font-family: Menlo, Monaco, 'Courier New', monospace;
@@ -29,14 +32,16 @@
         height: 100%;
         left: 0;
         right: 0;
-        top:0;
+        top: 0;
         bottom: 0;
+        
         &.visible
         {
             display: block;
         }
     }
 }
+
 label
 {
     font-size: var(--font-size-3);

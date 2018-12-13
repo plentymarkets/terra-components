@@ -78,11 +78,11 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                 {
                     if(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)
                     {
-                        controlType = <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
+                        controlType = <Type<any>>this.inputControlTypeMap[this.inputFormField.type];
                     }
                     else
                     {
-                        controlType = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
+                        controlType = (<TerraFormTypeInterface>this.inputControlTypeMap[this.inputFormField.type]).component;
                     }
                 }
 
@@ -125,7 +125,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
             let inputMap:{ [key:string]:string } = {};
             if(!(this.inputControlTypeMap[this.inputFormField.type] instanceof Type))
             {
-                inputMap = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).inputMap;
+                inputMap = (<TerraFormTypeInterface>this.inputControlTypeMap[this.inputFormField.type]).inputMap;
             }
 
             if(!isNullOrUndefined(this.inputFormField.options))

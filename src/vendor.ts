@@ -5,8 +5,10 @@ import '@angular/common';
 import '@angular/http';
 import '@angular/router';
 
-// RxJS
 import 'rxjs';
 
 import 'jquery';
 import 'bootstrap';
+
+import './index.glob.scss';
+import './app/assets/styles/icons.glob.scss';

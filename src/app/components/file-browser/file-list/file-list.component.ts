@@ -477,7 +477,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 icon:             'icon-download',
                 clickFunction:    (event:Event):void =>
                                   {
-                                      (<TerraBasePrivateStorageService> this.activeStorageService).downloadFile(storageObject.key);
+                                      (<TerraBasePrivateStorageService>this.activeStorageService).downloadFile(storageObject.key);
                                       event.stopPropagation();
                                   },
                 tooltipText:      this.translationService.translate(this.translationPrefix + '.downloadFile'),
@@ -648,7 +648,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             this.uploadFiles(target.files);
 
             // unset value of file input to allow selecting same file again
-            (<HTMLInputElement> event.target).value = '';
+            (<HTMLInputElement>event.target).value = '';
         }
     }
 

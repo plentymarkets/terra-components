@@ -5,11 +5,11 @@ import {
     EventEmitter,
     forwardRef,
     Input,
+    OnChanges,
     OnInit,
     Output,
-    ViewChild,
-    OnChanges,
-    SimpleChanges
+    SimpleChanges,
+    ViewChild
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { GridOptions } from '../../interactables/gridOptions.interface';

@@ -4,6 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var helpers = require('./helpers');
 var ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -20,7 +21,7 @@ module.exports = {
                 // Mark files inside `@angular/core` as using SystemJS style dynamic imports.
                 // Removing this will cause deprecation warnings to appear.
                 test: /[\/\\]@angular[\/\\]core[\/\\].+\.js$/,
-                parser: { system: true }  // enable SystemJS
+                parser: {system: true}  // enable SystemJS
             },
             {
                 test: /\.ts$/,
@@ -62,6 +63,7 @@ module.exports = {
             {
                 test: /\.glob\.scss$/,
                 loaders: [
+                    'style-loader',
                     'raw-loader',
                     'sass-loader'
                 ]
@@ -71,6 +73,11 @@ module.exports = {
                 loader: 'file-loader?name=assets/[name].[hash].[ext]'
             }
         ]
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
     },
     plugins: [
         new webpack.ContextReplacementPlugin(

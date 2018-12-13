@@ -18,7 +18,7 @@ export class TerraFormFieldCodeEditor extends TerraFormFieldBase<number>
     public type:string;
     public fixedHeight:string;
 
-    constructor(key:string, label:string, required:boolean,  options:TerraFormFieldCodeEditorOptions = {})
+    constructor(key:string, label:string, required:boolean, options:TerraFormFieldCodeEditorOptions = {})
     {
         super(key, TerraControlTypeEnum.CODE_EDITOR, label, required, options);
 

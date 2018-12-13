@@ -52,7 +52,7 @@ export class TerraFileBrowserService
         {
             let setEffect:(event:Event) => void = (event:DragEvent):void =>
             {
-                if(this.isDropzone(<HTMLElement> event.target))
+                if(this.isDropzone(<HTMLElement>event.target))
                 {
                     event.dataTransfer.effectAllowed = 'copy';
                     event.dataTransfer.dropEffect = 'copy';

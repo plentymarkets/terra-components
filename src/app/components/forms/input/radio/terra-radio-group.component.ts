@@ -74,6 +74,7 @@ export class TerraRadioGroupComponent implements ControlValueAccessor
     {
         this.changeCallback = fn;
     }
+
     /**
      * register a touched callback which is executed when one of the given radio inputs has been visited
      * TODO: To be implemented

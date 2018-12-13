@@ -6,23 +6,23 @@
     position: relative;
     padding-top: 16px;
     margin-bottom: 3px;
-    
+
     &.has-ticks
     {
         margin-bottom: 24px;
     }
-    
+
     .slider-label
     {
         @extend label;
         color: var(--color-structure-8);
     }
-    
+
     .slider-container
     {
         display: flex;
         flex-direction: row;
-        
+
         & > span
         {
             font-size: .9em;
@@ -31,18 +31,18 @@
             padding: 0 var(--space-md);
         }
     }
-    
+
     .slider-inner
     {
         position: relative;
         width: 100%;
         padding: 0 20px;
-        
+
         & > div
         {
             position: relative;
         }
-        
+
         .slider-bar
         {
             width: 100%;
@@ -53,7 +53,7 @@
             cursor: pointer;
             background-color: var(--color-structure-0);
         }
-        
+
         .slider-handle
         {
             position: absolute;
@@ -72,14 +72,14 @@
             text-align: center;
             font-size: 0.9em;
             z-index: 1;
-            
+
             &:hover,
             &:focus
             {
                 background-color: var(--color-active);
             }
         }
-        
+
         .slider-ticks
         {
             span
@@ -91,7 +91,7 @@
                 margin-left: -25px;
                 text-align: center;
                 color: var(--color-structure-8);
-                
+
                 &:before
                 {
                     content: "";
@@ -103,21 +103,21 @@
                     left: 50%;
                     top: -10px;
                 }
-                
+
             }
         }
     }
-    
+
     &.disabled
     {
         background-color: var(--color-structure-2);
         border: 1px solid var(--color-structure-3);
-        
+
         label, .slider-bar, .slider-handle
         {
             cursor: not-allowed !important;
         }
-        
+
         .slider-inner
         {
             filter: opacity(30%) !important;

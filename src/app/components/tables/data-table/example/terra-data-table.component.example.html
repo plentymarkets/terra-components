@@ -17,20 +17,20 @@
                 </terra-button>
             </div>
         </terra-base-toolbar>
-    
+        
         <terra-data-table
             #table
             [inputService]="service"
             [inputHasCheckboxes]="true"
             [inputHeaderList]="headerList"
             [inputContextMenu]="contextMenu">
-        
+            
             <terra-group-function [show]="showGroupFunction"
                                   [disableExecution]="false"
                                   (executeGroupFunction)="executeGroupFunction(table.selectedRowList)">
                 <terra-text-input [inputName]="'Text'"></terra-text-input>
             </terra-group-function>
-        
+            
             <terra-no-result-notice
                 [inputButtons]="noResultButtons"
                 [inputTextPrimary]="noResultTextPrimary"

@@ -1,11 +1,14 @@
 import {
     Component,
-    ViewContainerRef
+    ViewContainerRef,
+    ViewEncapsulation
 } from '@angular/core';
 
 @Component({
-    selector: 'terra-app-root',
-    template: require('./terra-components.component.html')
+    selector:      'terra-app-root',
+    template:      require('./terra-components.component.html'),
+    styles:        [require('./terra-components.component.scss')],
+    encapsulation: ViewEncapsulation.None
 })
 export class TerraComponentsComponent
 {

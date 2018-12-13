@@ -16,7 +16,9 @@ import Spy = jasmine.Spy;
         <terra-radio-input [label]="'Option 2'" [value]="2"></terra-radio-input>
     </terra-radio-group>`
 })
-class RadioGroupTestComponent {}
+class RadioGroupTestComponent
+{
+}
 
 
 describe(`TerraRadioGroupComponent:`, () =>
@@ -27,7 +29,9 @@ describe(`TerraRadioGroupComponent:`, () =>
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [TerraRadioInputComponent, TerraRadioGroupComponent, RadioGroupTestComponent]
+            declarations: [TerraRadioInputComponent,
+                           TerraRadioGroupComponent,
+                           RadioGroupTestComponent]
         }).compileComponents();
     }));
 

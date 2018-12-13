@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { TerraFormFieldBase } from '../data/terra-form-field-base';
-import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    ValidatorFn,
+    Validators
+} from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
 
@@ -67,7 +73,7 @@ export class TerraFormFieldControlService
                 if(isDisabled)
                 {
                     toGroup[formField.key].disable({
-                        onlySelf:  true,
+                        onlySelf: true,
                         emitEvent: false
                     });
                 }

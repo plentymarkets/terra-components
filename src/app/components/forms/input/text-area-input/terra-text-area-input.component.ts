@@ -43,6 +43,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
      */
     protected id:string;
     private readonly defaultMaxRows:number = 4;
+
     constructor()
     {
         super(TerraRegex.MIXED);
@@ -64,6 +65,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
             this.inputHasFixedHeight = !!changes.inputHasFixedHeight.currentValue;
         }
     }
+
     /**
      * Set the focus on the native input element.
      */
@@ -71,7 +73,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
     {
         setTimeout(():void =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement>document.getElementById(this.id);
             input.focus();
         });
     }
@@ -83,7 +85,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
     {
         setTimeout(():void =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement>document.getElementById(this.id);
             input.select();
         });
     }

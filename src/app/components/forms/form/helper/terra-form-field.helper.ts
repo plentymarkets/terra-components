@@ -14,9 +14,9 @@ import {
     TerraControlTypeEnum,
     TerraFormFieldBase,
     TerraFormFieldInputText,
+    TerraFormFieldInterface,
     TerraFormFieldSelectBox,
-    TerraJsonToFormFieldService,
-    TerraFormFieldInterface
+    TerraJsonToFormFieldService
 } from '../../../../../';
 
 export class TerraFormFieldHelper
@@ -111,7 +111,7 @@ export class TerraFormFieldHelper
             );
         }
 
-        return <{ [key:string]:TerraFormFieldInterface }> formFields;
+        return <{ [key:string]:TerraFormFieldInterface }>formFields;
     }
 
     private static transformLegacyFormField(field:TerraFormFieldBase<any>):{ key:string, field:TerraFormFieldInterface }
@@ -169,7 +169,7 @@ export class TerraFormFieldHelper
            || field.controlType === TerraControlTypeEnum.VERTICAL_CONTAINER)
         {
             result.field.children = this.detectLegacyFormFields(
-                (<TerraFormFieldBaseContainer> field).containerEntries
+                (<TerraFormFieldBaseContainer>field).containerEntries
             );
         }
 

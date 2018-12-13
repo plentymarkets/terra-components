@@ -69,7 +69,7 @@ export class TerraDropzoneDirective implements OnChanges
     {
         let createDropEvent:any = (event:DropEvent):DropEvent =>
         {
-            event.dropData = (<any> event.relatedTarget).IA_DRAG_DATA;
+            event.dropData = (<any>event.relatedTarget).IA_DRAG_DATA;
             return event;
         };
 
@@ -137,7 +137,7 @@ export class TerraDropzoneDirective implements OnChanges
                               dropzone:Interact.Interactable,
                               dropElement:HTMLElement,
                               draggable:Interact.Interactable,
-                              dragElement:HTMLElement):boolean|AcceptFn =>
+                              dragElement:HTMLElement):boolean | AcceptFn =>
             {
                 if(isDropable)
                 {
