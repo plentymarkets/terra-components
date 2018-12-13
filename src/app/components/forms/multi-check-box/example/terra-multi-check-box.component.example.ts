@@ -20,27 +20,27 @@ export class TerraMultiCheckBoxComponentExample implements OnInit
     {
         this.values = [
             {
-                value:    '0',
+                value:    '1',
                 caption:  'Value 1',
                 selected: false
             },
             {
-                value:    '1',
+                value:    '2',
                 caption:  'Value 2',
                 selected: true
             },
             {
-                value:    '2',
+                value:    '3',
                 caption:  'Value 3',
                 selected: true
             },
             {
-                value:    '3',
+                value:    '4',
                 caption:  'Value 4',
                 selected: false
             },
             {
-                value:    '4',
+                value:    '5',
                 caption:  'Value 5',
                 selected: false
             }
