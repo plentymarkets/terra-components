@@ -3,6 +3,7 @@ import {
     EventEmitter,
     forwardRef,
     Input,
+    OnDestroy,
     OnInit,
     Output,
     ViewChild
@@ -15,6 +16,8 @@ import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import { TerraMultiCheckBoxValueInterface } from './data/terra-multi-check-box-value.interface';
+import { throttleTime } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
     selector:  'terra-multi-check-box',
@@ -28,7 +31,7 @@ import { TerraMultiCheckBoxValueInterface } from './data/terra-multi-check-box-v
         }
     ]
 })
-export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
+export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlValueAccessor
 {
     /**
      * @description If true, the multi check box will be disabled. Default false.
@@ -54,6 +57,8 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
 
     private langPrefix:string = 'terraMultiCheckBox';
 
+    private throttle:Subject<Array<TerraMultiCheckBoxValueInterface>> = new Subject<Array<TerraMultiCheckBoxValueInterface>>();
+
     constructor(public translation:TranslationService)
     {
     }
@@ -64,7 +69,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
 
         this.checkHeaderCheckboxState();
 
-        this.emitCallbacks(this.valueList, this.valueList);
+        this.throttle.next(this.valueList);
     }
 
     public registerOnChange(fn:any):void
@@ -87,19 +92,29 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
                 this.inputName = this.translation.translate(this.langPrefix + '.selectAll');
             });
         }
+
+        this.throttle.pipe(throttleTime(100)).subscribe((checkboxes:Array<TerraMultiCheckBoxValueInterface>) =>
+        {
+            this.emitCallbacks(this.valueList, checkboxes);
+        });
+    }
+
+    public ngOnDestroy():void
+    {
+        this.throttle.complete();
     }
 
     protected checkboxChanged(checkBox:TerraMultiCheckBoxValueInterface):void
     {
         this.checkHeaderCheckboxState();
-        this.emitCallbacks(this.valueList, [checkBox]);
+        this.throttle.next([checkBox]);
     }
 
     protected onHeaderCheckboxChange(isChecked:boolean):void
     {
         let changedCheckboxes:Array<TerraMultiCheckBoxValueInterface> = [];
 
-        this.valueList.forEach((value:TerraMultiCheckBoxValueInterface) =>
+        this.valueList.forEach((value:TerraMultiCheckBoxValueInterface, index:number, array:Array<TerraMultiCheckBoxValueInterface>) =>
         {
             if(value.selected !== isChecked)
             {
@@ -108,7 +123,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, ControlValueAccessor
             }
         });
 
-        this.emitCallbacks(this.valueList, changedCheckboxes);
+        this.throttle.next(changedCheckboxes);
     }
 
     protected checkHeaderCheckboxState():void
