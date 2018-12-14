@@ -42,6 +42,7 @@ describe(`TerraRadioInputComponent:`, () =>
         expect(component.label).toBeUndefined();
         expect(component.value).toBeUndefined();
         expect(component.disabled).toBe(false);
+        expect(component.isInline).toBe(false);
     });
 
     it(`should display the given #label text in the <label>`, () =>
@@ -54,6 +55,18 @@ describe(`TerraRadioInputComponent:`, () =>
         fixture.detectChanges();
 
         expect(labelElement.innerText.trim()).toBe(label.trim());
+    });
+
+    it(`should set inline style to the <label>`, () =>
+    {
+        let labelElement:DebugElement = fixture.debugElement.query(By.css('label'));
+        expect(labelElement.classes.hasOwnProperty('inline')).toBe(false);
+
+        component.isInline = true;
+
+        fixture.detectChanges();
+
+        expect(labelElement.classes['inline']).toBe(true);
     });
 
     describe(``, () =>

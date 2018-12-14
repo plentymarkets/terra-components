@@ -27,7 +27,7 @@ export class TerraRadioInputComponent
      * The input is inline if set to true
      */
     @Input()
-    public isInline:boolean;
+    public isInline:boolean = false;
 
     /**
      * The value related to this radio input
