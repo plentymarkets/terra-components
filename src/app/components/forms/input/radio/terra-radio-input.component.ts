@@ -24,6 +24,12 @@ export class TerraRadioInputComponent
     public label:string;
 
     /**
+     * The input is inline if set to true
+     */
+    @Input()
+    public isInline:boolean;
+
+    /**
      * The value related to this radio input
      */
     @Input()
