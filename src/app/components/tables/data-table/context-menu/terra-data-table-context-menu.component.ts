@@ -1,11 +1,15 @@
 import {
     Component,
+    ElementRef,
     Input,
-    OnInit
+    OnDestroy,
+    OnInit,
+    ViewChild
 } from '@angular/core';
 import { TerraDataTableContextMenuEntryInterface } from './data/terra-data-table-context-menu-entry.interface';
 import { TerraBaseData } from '../../../data/terra-base.data';
 import { TerraDataTableContextMenuService } from './terra-data-table-context-menu.service';
+import { isNullOrUndefined } from 'util';
 
 /**
  * @author mkunze
@@ -16,7 +20,7 @@ import { TerraDataTableContextMenuService } from './terra-data-table-context-men
     styles:   [require('./terra-data-table-context-menu.component.scss')],
     template: require('./terra-data-table-context-menu.component.html')
 })
-export class TerraDataTableContextMenuComponent<D extends TerraBaseData> implements OnInit
+export class TerraDataTableContextMenuComponent<D extends TerraBaseData> implements OnInit, OnDestroy
 {
     /**
      * @description list of links (buttons) to be shown in the context menu
@@ -24,26 +28,27 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     @Input()
     public links:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
 
-    protected data:D;
-    protected locationCss:any = {
-        left:       0,
-        top:        0,
-        right:      0
-    };
+    protected top:number = 0;
+    protected left:number = 0;
 
-    protected isShown:boolean = false;
-    private clickListener:(event:Event) => void;
+    @ViewChild('list')
+    private list:ElementRef;
+
+    private _isShown:boolean = false;
+    private readonly clickListener:(event:Event) => void;
+    private eventData:{ event:MouseEvent, data:D };
 
     /**
      * @description constructor
      * @param contextMenuService
+     * @param elementRef
      */
-    constructor(private contextMenuService:TerraDataTableContextMenuService<D>)
+    constructor(private contextMenuService:TerraDataTableContextMenuService<D>,
+                private elementRef:ElementRef)
     {
         this.clickListener = (event:Event):void =>
         {
-            this.clickedOutside();
-            event.stopPropagation();
+            this.clickedOutside(event);
         };
     }
 
@@ -52,61 +57,91 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
      */
     public ngOnInit():void
     {
-        this.contextMenuService.show.subscribe((e:{event:MouseEvent, data:D}):void =>
+        window.document.body.appendChild(this.elementRef.nativeElement);
+
+        this.contextMenuService.show.subscribe((eventData:{ event:MouseEvent, data:D }):void =>
         {
-            this.showMenu(e.event, e.data);
+            this.eventData = eventData;
+            this.isShown = !this.isShown;
         });
     }
 
-    private clickedOutside():void
+    public ngOnDestroy():void
     {
-        this.isShown = false;
-        document.removeEventListener('click', this.clickListener);
+        window.document.body.removeChild(this.elementRef.nativeElement);
     }
 
-    private showMenu(event:MouseEvent, data:D):void
+    private clickedOutside(event:Event):void
     {
-        this.isShown = true;
-        this.data = data;
-        this.locationCss = this.calcMenuPosition(event.clientX, event.clientY);
-
-        event.stopPropagation();
-        document.addEventListener('click', this.clickListener);
+        if(this.eventData.event.target !== event.target)
+        {
+            this.isShown = false;
+        }
     }
 
-    private calcMenuPosition(mouseLeft:number, mouseTop:number):{left:string, top:string }
+    private set isShown(value:boolean)
     {
-        // 70 (navbar) + 46 (tabbar) + 36 (breadcrumbs)
-        let offsetTop:number = 108; // 161
-        let offsetLeft:number;
-        let anchor:JQuery = $('.context-menu#menu');
-        let isMenuAtBottom:boolean;
-        let contextMenuHeight:number = anchor.height();
-        let contextMenuWidth:number = anchor.width();
-        let tableWidth:number;
-
-        let buttomTop:string = mouseTop - offsetTop - contextMenuHeight + 'px';
-        let top:string = mouseTop - offsetTop - 2 + 'px';
-
-        if(mouseTop + contextMenuHeight > innerHeight)
+        if(this._isShown !== value && value)
         {
-            isMenuAtBottom = true;
+            document.addEventListener('click', this.clickListener, true);
         }
-
-        let dataTableElement:JQuery = anchor.closest('terra-data-table');
-
-        offsetLeft = dataTableElement.offset().left;
-
-        tableWidth = dataTableElement.find('tbody').width();
-
-        if(Math.abs(mouseLeft - offsetLeft - 2) + contextMenuWidth > tableWidth)
+        else if(this._isShown !== value && !value)
         {
-            offsetLeft = offsetLeft + contextMenuWidth - 6;
+            document.removeEventListener('click', this.clickListener);
         }
+        this._isShown = value;
+        if(value)
+        {
+            let mousePosX:number = this.eventData.event.clientX; // left
+            let mousePosY:number = this.eventData.event.clientY; // top
 
-        return {
-            left:       mouseLeft - offsetLeft - 2 + 'px',
-            top:        isMenuAtBottom ? buttomTop : top
-        };
+            let contextMenuHeight:number = this.list.nativeElement.offsetHeight;
+            let contextMenuWidth:number = this.list.nativeElement.offsetWidth;
+
+            let windowHeight:number = window.innerHeight;
+            let windowWidth:number = window.innerWidth;
+
+            let isOutsideRight:boolean = mousePosX + contextMenuWidth > windowWidth;
+            let isOutsideBottom:boolean = mousePosY + contextMenuHeight > windowHeight;
+            let isOutsideRightAndBottom:boolean = isOutsideRight && isOutsideBottom;
+
+            if(isOutsideRightAndBottom)
+            {
+                this.top = mousePosY - contextMenuHeight;
+                this.left = mousePosX - contextMenuWidth;
+            }
+            else if(isOutsideBottom)
+            {
+                this.top = mousePosY - contextMenuHeight;
+                this.left = mousePosX;
+            }
+            else if(isOutsideRight)
+            {
+                this.top = mousePosY;
+                this.left = mousePosX - contextMenuWidth;
+            }
+            else
+            {
+                this.top = mousePosY;
+                this.left = mousePosX;
+            }
+
+            this.eventData.event.stopPropagation();
+        }
+    }
+
+    protected get topAsString():string
+    {
+        return this.top + 'px';
+    }
+
+    protected get leftAsString():string
+    {
+        return this.left + 'px';
+    }
+
+    protected get linksAreSet():boolean
+    {
+        return !isNullOrUndefined(this.links) && this.links.length > 0;
     }
 }

@@ -119,7 +119,7 @@ describe('TerraDataTableComponent', () =>
 
                 let pagerDE:DebugElement = fixture.debugElement.query(By.css('terra-pager'));
                 expect(service.rowList).toBeDefined();
-                expect(service.rowList.length).toBe(1);
+                expect(service.rowList.length).toBeGreaterThan(0);
                 expect(pagerDE).toBeTruthy();
             }));
 
@@ -132,7 +132,7 @@ describe('TerraDataTableComponent', () =>
 
                 let pagerDE:DebugElement = fixture.debugElement.query(By.css('terra-pager'));
                 expect(service.rowList).toBeDefined();
-                expect(service.rowList.length).toBe(1);
+                expect(service.rowList.length).toBeGreaterThan(0);
                 expect(pagerDE).toBeNull();
             });
         });
