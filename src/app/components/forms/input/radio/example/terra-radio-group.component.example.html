@@ -25,12 +25,11 @@
             Current value: {{radioValue}}
         </div>
         <div class="col-md-3">
-            With ngModel
-            <terra-radio-group name="radio4" [(ngModel)]="radioValue" [inline]="true">
+            Inline
+            <terra-radio-group name="radio4" [inline]="true">
                 <terra-radio-input [label]="'Option 1'" [value]="1"></terra-radio-input>
                 <terra-radio-input [label]="'Option 2'" [value]="2"></terra-radio-input>
             </terra-radio-group>
-            Current value: {{radioValue}}
         </div>
     </div>
 </div>
