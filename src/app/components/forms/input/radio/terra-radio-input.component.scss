@@ -22,6 +22,11 @@ input[type="radio"]
         }
     }
     
+    &:focus ~ span:not(check)
+    {
+        color: var(--color-group-active);
+    }
+    
     &:disabled + span.check
     {
         border-color: var(--color-structure-4);
