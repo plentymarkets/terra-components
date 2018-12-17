@@ -1,4 +1,4 @@
-<label for="{{label}}" [class.disabled]="disabled" [ngClass]="{'inline': isInline}">
+<label for="{{label}}" [class.disabled]="disabled" [ngClass]="{'inline': group?.inline}">
     <input type="radio" id="{{label}}" [name]="group?.name" [value]="value" [disabled]="disabled" [checked]="value === group?.value" (change)="group.value = value">
     <span class="check"></span>
     <span *ngIf="label">{{label}}</span>

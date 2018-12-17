@@ -42,7 +42,6 @@ describe(`TerraRadioInputComponent:`, () =>
         expect(component.label).toBeUndefined();
         expect(component.value).toBeUndefined();
         expect(component.disabled).toBe(false);
-        expect(component.isInline).toBe(false);
     });
 
     it(`should display the given #label text in the <label>`, () =>
@@ -62,7 +61,7 @@ describe(`TerraRadioInputComponent:`, () =>
         let labelElement:DebugElement = fixture.debugElement.query(By.css('label'));
         expect(labelElement.classes.hasOwnProperty('inline')).toBe(false);
 
-        component.isInline = true;
+        radioGroupComponent.inline = true;
 
         fixture.detectChanges();
 
