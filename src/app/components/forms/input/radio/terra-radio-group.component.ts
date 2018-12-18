@@ -1,18 +1,12 @@
 import {
-    AfterContentChecked,
     Component,
-    ContentChildren,
-    DoCheck,
     forwardRef,
-    HostListener,
     Input
 } from '@angular/core';
 import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { TerraRadioInputComponent } from './terra-radio-input.component';
-import { isNullOrUndefined } from 'util';
 
 /**
  * @author pweyrich
@@ -42,6 +36,9 @@ export class TerraRadioGroupComponent implements ControlValueAccessor
      */
     @Input()
     public legend:string;
+
+    @Input()
+    public inline:boolean = false;
 
     private _value:any;
 
@@ -80,6 +77,7 @@ export class TerraRadioGroupComponent implements ControlValueAccessor
     {
         this.changeCallback = fn;
     }
+
     /**
      * register a touched callback which is executed when one of the given radio inputs has been visited
      * TODO: To be implemented

@@ -365,6 +365,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             }
         }
 
+        event.preventDefault();
         // stop event bubbling
         event.stopPropagation();
     }
