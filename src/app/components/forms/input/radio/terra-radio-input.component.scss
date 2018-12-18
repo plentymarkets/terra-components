@@ -14,11 +14,11 @@ input[type="radio"]
     
     &:focus + span.check
     {
-        border-color: var(--color-active);
+        border-color: var(--color-group-active);
         
         &:before
         {
-            background-color: var(--color-active);
+            background-color: var(--color-group-active);
         }
     }
     
@@ -55,11 +55,11 @@ label
     &:hover
     {
         cursor: pointer;
-        color: var(--color-active);
+        color: var(--color-group-active);
         
         .check
         {
-            border-color: var(--color-active);
+            border-color: var(--color-group-active);
         }
     }
     
