@@ -1,5 +1,5 @@
 <a name="3.0.0></a>
-# 3.0.0 (XX.XX.XXXX)
+# 3.0.0 (18.12.2018)
 
 ### Breaking changes
 * **terra-tag** `inputBadge` is now deprecated. Please use `name` instead.
