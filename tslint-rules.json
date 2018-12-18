@@ -150,7 +150,7 @@
 		"component-selector": [
 			true,
 			"element",
-			"terra",
+			["terra", "tc"],
 			"kebab-case"
 		],
 		"use-input-property-decorator": true,

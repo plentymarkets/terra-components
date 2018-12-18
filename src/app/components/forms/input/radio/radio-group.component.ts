@@ -12,18 +12,18 @@ import {
  * @author pweyrich
  */
 @Component({
-    selector:  'terra-radio-group',
-    template:  require('./terra-radio-group.component.html'),
-    styles:    [require('./terra-radio-group.component.scss')],
+    selector:  'tc-radio-group',
+    template:  require('./radio-group.component.html'),
+    styles:    [require('./radio-group.component.scss')],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraRadioGroupComponent),
+            useExisting: forwardRef(() => RadioGroupComponent),
             multi:       true
         }
     ]
 })
-export class TerraRadioGroupComponent implements ControlValueAccessor
+export class RadioGroupComponent implements ControlValueAccessor
 {
     /**
      * Name of the group. This is projected to the input's name property.
