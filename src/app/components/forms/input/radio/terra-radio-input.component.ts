@@ -38,6 +38,9 @@ export class TerraRadioInputComponent
     @Input()
     public disabled:boolean = false;
 
+    /**
+     * unique identifier of this input instance
+     */
     protected readonly id:string;
 
     constructor(@Host() protected group:TerraRadioGroupComponent)
