@@ -72,7 +72,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
 
         this.checkHeaderCheckboxState();
 
-        this.throttle.next(this.valueList);
+        this.changedCheckboxes$.next(this.valueList);
     }
 
     public registerOnChange(fn:any):void
@@ -96,7 +96,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
             });
         }
 
-        this.throttle.pipe(throttleTime(100)).subscribe((checkboxes:Array<TerraMultiCheckBoxValueInterface>) =>
+        this.changedCheckboxes$.pipe(throttleTime(100)).subscribe((checkboxes:Array<TerraMultiCheckBoxValueInterface>) =>
         {
             this.emitCallbacks(this.valueList, checkboxes);
         });
@@ -104,13 +104,13 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
 
     public ngOnDestroy():void
     {
-        this.throttle.complete();
+        this.changedCheckboxes$.complete();
     }
 
     protected checkboxChanged(checkBox:TerraMultiCheckBoxValueInterface):void
     {
         this.checkHeaderCheckboxState();
-        this.throttle.next([checkBox]);
+        this.changedCheckboxes$.next([checkBox]);
     }
 
     protected onHeaderCheckboxChange(isChecked:boolean):void
@@ -126,7 +126,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
             }
         });
 
-        this.throttle.next(changedCheckboxes);
+        this.changedCheckboxes$.next(changedCheckboxes);
     }
 
     protected checkHeaderCheckboxState():void
