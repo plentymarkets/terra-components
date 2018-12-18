@@ -1,6 +1,6 @@
 input[type="radio"]
 {
-    position:absolute;
+    position: absolute;
     opacity: 0;
     
     // apply styles to the checkmark depending on the state of the input
@@ -10,6 +10,11 @@ input[type="radio"]
         {
             background-color: var(--color-structure-11);
         }
+    }
+    
+    &:hover:checked + span.check:before
+    {
+        background-color: var(--color-group-active);
     }
     
     &:focus + span.check
