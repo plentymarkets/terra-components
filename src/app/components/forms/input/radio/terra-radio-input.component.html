@@ -1,5 +1,5 @@
-<label for="{{label}}" [class.disabled]="disabled">
-    <input type="radio" id="{{label}}" [name]="group?.name" [value]="value" [disabled]="disabled" [checked]="value === group?.value" (change)="group.value = value">
+<label for="{{id}}" [class.disabled]="disabled">
+    <input type="radio" id="{{id}}" [name]="group?.name" [value]="value" [disabled]="disabled" [checked]="value === group?.value" (change)="group.value = value">
     <span class="check"></span>
     <span *ngIf="label">{{label}}</span>
 </label>

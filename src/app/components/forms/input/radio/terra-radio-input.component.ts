@@ -5,6 +5,8 @@ import {
 } from '@angular/core';
 import { TerraRadioGroupComponent } from './terra-radio-group.component';
 
+let nextId:number = 0;
+
 /**
  * @author pweyrich
  * @description This component is a wrapper for HTML5's native <input [type="radio"]> element including a corresponding <label> element.
@@ -36,6 +38,11 @@ export class TerraRadioInputComponent
     @Input()
     public disabled:boolean = false;
 
+    protected readonly id:string;
+
     constructor(@Host() protected group:TerraRadioGroupComponent)
-    {}
+    {
+        // generate the id of the input instance
+        this.id = `radio-input#${nextId++}`;
+    }
 }
