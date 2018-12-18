@@ -1,25 +1,25 @@
-import { TerraRadioInputComponent } from './terra-radio-input.component';
+import { RadioInputComponent } from './radio-input.component';
 import {
     async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { TerraRadioGroupComponent } from './terra-radio-group.component';
+import { RadioGroupComponent } from './radio-group.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-describe(`TerraRadioInputComponent:`, () =>
+describe(`RadioInputComponent:`, () =>
 {
-    let fixture:ComponentFixture<TerraRadioInputComponent>;
-    let component:TerraRadioInputComponent;
-    let radioGroupComponent:TerraRadioGroupComponent;
+    let fixture:ComponentFixture<RadioInputComponent>;
+    let component:RadioInputComponent;
+    let radioGroupComponent:RadioGroupComponent;
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [TerraRadioInputComponent],
+            declarations: [RadioInputComponent],
             providers:    [{
-                provide:  TerraRadioGroupComponent,
+                provide:  RadioGroupComponent,
                 useValue: {value: 1}
             }]
         });
@@ -27,9 +27,9 @@ describe(`TerraRadioInputComponent:`, () =>
 
     beforeEach(() =>
     {
-        fixture = TestBed.createComponent(TerraRadioInputComponent);
+        fixture = TestBed.createComponent(RadioInputComponent);
         component = fixture.componentInstance;
-        radioGroupComponent = TestBed.get(TerraRadioGroupComponent);
+        radioGroupComponent = TestBed.get(RadioGroupComponent);
     });
 
     it(`should create`, () =>
