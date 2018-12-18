@@ -11,6 +11,11 @@
 * **terra-radio-button** is now deprecated. Use `<terra-radio-input>` and `<terra-radio-group>` instead.
 * **terra-check-box** removed outline css
 
+### Bug Fixes
+* **terra-multi-check-box** 
+	- now correctly emits ngModel callbacks after a checkbox has changed
+	- add new `checkboxStateChanges` output that emits the changed checkboxes	
+
 <a name="3.0.0-beta.18"></a>
 # 3.0.0-beta.18 (06.12.2018)
 
