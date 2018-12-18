@@ -1,3 +1,6 @@
+import { PathHelper } from './path.helper';
+import { TerraFileHelper } from './terra-file.helper';
+
 export class TerraDownloadHelper
 {
     public static downloadFile(object:any, filename:string):void
@@ -15,6 +18,15 @@ export class TerraDownloadHelper
         document.body.appendChild(link);
         link.click();
 
-        // TODO: Implement method to remove unused Download a-tags
+        document.body.removeChild(link);
+    }
+
+    public static downloadImage(base64String:string, filename:string):void
+    {
+        let extension:string = PathHelper.extName(filename);
+
+        let blob:Blob = TerraFileHelper.createFile(base64String, `image/${extension}`);
+
+        this.downloadFile(blob, filename);
     }
 }
