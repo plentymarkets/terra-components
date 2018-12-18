@@ -56,7 +56,18 @@ describe(`TerraRadioInputComponent:`, () =>
         expect(labelElement.innerText.trim()).toBe(label.trim());
     });
 
-    it(`should set inline style to the <label>`, () =>
+    it(`should set [class.disabled] of the <label> depending on #disabled`, () =>
+    {
+        let labelElement:HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
+        expect(labelElement.classList.contains('disabled')).toBe(false);
+
+        component.disabled = true;
+        fixture.detectChanges();
+
+        expect(labelElement.classList.contains('disabled')).toBe(true);
+    });
+
+    it(`should set [class.inline] of the <label> depending on the group's #inline property`, () =>
     {
         let labelElement:DebugElement = fixture.debugElement.query(By.css('label'));
         expect(labelElement.classes.hasOwnProperty('inline')).toBe(false);
@@ -76,6 +87,14 @@ describe(`TerraRadioInputComponent:`, () =>
         {
             inputDebugElement = fixture.debugElement.query(By.css('input[type="radio"]'));
             inputElement = inputDebugElement.nativeElement;
+        });
+
+        it(`should set the <label>'s [for] and the <input>'s [id] attribute correctly`, () =>
+        {
+            let labelElement:HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
+            fixture.detectChanges();
+            expect(inputElement.id).toMatch(/radio-input#\d+/);
+            expect(labelElement.htmlFor).toEqual(inputElement.id);
         });
 
         it(`should set [disabled] attribute of the <input> depending on #disabled`, () =>
