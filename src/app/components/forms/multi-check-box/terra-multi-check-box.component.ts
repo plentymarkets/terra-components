@@ -117,7 +117,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
     {
         let changedCheckboxes:Array<TerraMultiCheckBoxValueInterface> = [];
 
-        this.valueList.forEach((value:TerraMultiCheckBoxValueInterface, index:number, array:Array<TerraMultiCheckBoxValueInterface>) =>
+        this.valueList.forEach((value:TerraMultiCheckBoxValueInterface) =>
         {
             if(value.selected !== isChecked)
             {
