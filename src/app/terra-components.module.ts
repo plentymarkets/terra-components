@@ -41,8 +41,6 @@ import { examples } from './components/example-collection';
 import { services } from './service/service-collection';
 import { directives } from './components/directive-collection';
 import { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
-import { TerraFrontendStorageService } from './components/file-browser/terra-frontend-storage.service';
-import { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -88,9 +86,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
             provide:    Compiler,
             useFactory: createCompiler,
             deps:       [CompilerFactory]
-        },
-        TerraFrontendStorageService,
-        TerraFileBrowserService
+        }
     ],
     bootstrap:       [
         TerraComponentsComponent
