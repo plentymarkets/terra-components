@@ -56,7 +56,7 @@ describe(`TerraRadioInputComponent:`, () =>
         expect(labelElement.innerText.trim()).toBe(label.trim());
     });
 
-    it(`should set [class.disabled] if the <label> depending on #disabled`, () =>
+    it(`should set [class.disabled] of the <label> depending on #disabled`, () =>
     {
         let labelElement:HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
         expect(labelElement.classList.contains('disabled')).toBe(false);
@@ -65,6 +65,18 @@ describe(`TerraRadioInputComponent:`, () =>
         fixture.detectChanges();
 
         expect(labelElement.classList.contains('disabled')).toBe(true);
+    });
+
+    it(`should set [class.inline] of the <label> depending on the group's #inline property`, () =>
+    {
+        let labelElement:DebugElement = fixture.debugElement.query(By.css('label'));
+        expect(labelElement.classes.hasOwnProperty('inline')).toBe(false);
+
+        radioGroupComponent.inline = true;
+
+        fixture.detectChanges();
+
+        expect(labelElement.classes['inline']).toBe(true);
     });
 
     describe(``, () =>
