@@ -40,11 +40,17 @@ input[type="radio"]
 
 label
 {
-    display: inline-block;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    display: block;
+    
+    &.inline
+    {
+        display: inline-block;
+        margin-right: .5rem;
+    }
     
     &:hover
     {
