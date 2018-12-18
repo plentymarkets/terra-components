@@ -37,6 +37,9 @@ export class TerraRadioGroupComponent implements ControlValueAccessor
     @Input()
     public legend:string;
 
+    @Input()
+    public inline:boolean = false;
+
     private _value:any;
 
     /**
@@ -74,6 +77,7 @@ export class TerraRadioGroupComponent implements ControlValueAccessor
     {
         this.changeCallback = fn;
     }
+
     /**
      * register a touched callback which is executed when one of the given radio inputs has been visited
      * TODO: To be implemented
