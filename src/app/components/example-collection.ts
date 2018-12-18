@@ -45,7 +45,7 @@ import { TerraThreeColumnContainerComponentExample } from './layouts/column-cont
 import { TerraGroupFunctionComponentExample } from './tables/group-function/example/terra-group-function.component.example';
 import { TerraInfoComponentExample } from './info/example/terra-info.component.example';
 import { TerraFormsExampleComponent } from './forms/terra-forms.example';
-import { RadioGroupComponentExample } from './forms/input/radio/example/radio-group-component-example.component';
+import { RadioGroupComponentExample } from './forms/input/radio/example/radio-group.component.example';
 
 export const examples:Array<Type<any>> = [
     TerraButtonComponentExample,

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'tc-radio-group-example',
-    template: require('./radio-group-component-example.component.html')
+    template: require('./radio-group.component.example.html')
 })
 
 export class RadioGroupComponentExample
