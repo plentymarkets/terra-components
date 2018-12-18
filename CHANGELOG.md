@@ -7,6 +7,8 @@
 * **terra-data-table** 
 	- fixed coloring of links in the table if the row is selected or active
 	- reset rowList before requesting data from the server. Show pager and header while data is loaded.
+	
+* **terra-group-function** add package for animations in firefox
 
 ### Feature
 * **terra-button-with-options** 
