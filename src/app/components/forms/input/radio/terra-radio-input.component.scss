@@ -1,6 +1,6 @@
 input[type="radio"]
 {
-    position:absolute;
+    position: absolute;
     opacity: 0;
     
     // apply styles to the checkmark depending on the state of the input
@@ -12,14 +12,24 @@ input[type="radio"]
         }
     }
     
+    &:hover:checked + span.check:before
+    {
+        background-color: var(--color-group-active);
+    }
+    
     &:focus + span.check
     {
-        border-color: var(--color-active);
+        border-color: var(--color-group-active);
         
         &:before
         {
-            background-color: var(--color-active);
+            background-color: var(--color-group-active);
         }
+    }
+    
+    &:focus ~ span:not(check)
+    {
+        color: var(--color-group-active);
     }
     
     &:disabled + span.check
@@ -50,11 +60,11 @@ label
     &:hover
     {
         cursor: pointer;
-        color: var(--color-active);
+        color: var(--color-group-active);
         
         .check
         {
-            border-color: var(--color-active);
+            border-color: var(--color-group-active);
         }
     }
     
