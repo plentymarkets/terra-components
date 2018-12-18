@@ -60,7 +60,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
 
     private langPrefix:string = 'terraMultiCheckBox';
 
-    private throttle:Subject<Array<TerraMultiCheckBoxValueInterface>> = new Subject<Array<TerraMultiCheckBoxValueInterface>>();
+    private changedCheckboxes$:Subject<Array<TerraMultiCheckBoxValueInterface>> = new Subject<Array<TerraMultiCheckBoxValueInterface>>();
 
     constructor(public translation:TranslationService)
     {
