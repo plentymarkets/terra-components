@@ -44,6 +44,8 @@ import { TerraTwoColumnContainerComponentExample } from './layouts/column-contai
 import { TerraThreeColumnContainerComponentExample } from './layouts/column-container/three-columns/example/terra-three-column-container.component.example';
 import { TerraGroupFunctionComponentExample } from './tables/group-function/example/terra-group-function.component.example';
 import { TerraInfoComponentExample } from './info/example/terra-info.component.example';
+import { TerraFormsExampleComponent } from './forms/terra-forms.example';
+import { TerraRadioGroupComponentExample } from './forms/input/radio/example/terra-radio-group.component.example';
 
 export const examples:Array<Type<any>> = [
     TerraButtonComponentExample,
@@ -90,5 +92,7 @@ export const examples:Array<Type<any>> = [
     TerraTwoColumnContainerComponentExample,
     TerraThreeColumnContainerComponentExample,
     TerraGroupFunctionComponentExample,
-    TerraInfoComponentExample
+    TerraInfoComponentExample,
+    TerraFormsExampleComponent,
+    TerraRadioGroupComponentExample
 ];

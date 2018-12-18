@@ -80,12 +80,15 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
 
     public addEntry():void
     {
-        this.data.push(
-            {
-                id:    this.data.reduce((a:number, b:TerraDataTableExampleInterface) => Math.max(a, b.id), 0) + 1,
-                value: Math.random()
-            }
-        );
+        for(let i:number = 0; i <= 50; i++)
+        {
+            this.data.push(
+                {
+                    id:    this.data.reduce((a:number, b:TerraDataTableExampleInterface) => Math.max(a, b.id), 0) + 1,
+                    value: Math.random()
+                }
+            );
+        }
     }
 
     public dataToRowMapping(entry:TerraDataTableExampleInterface):TerraDataTableRowInterface<TerraDataTableExampleInterface>

@@ -96,18 +96,65 @@ The following deprecated components have been deleted:
 * **terra-3-col** new component that displays given views next to each other in up to three columns
 * **terra-stopwatch** added new terra component terra-stopwatch. 
 * **terra-nested-picker** added showFullSelectionPath property to show if you want the entire path for a selected node
+* **TerraBreadcrumbsService** support to handle queryParams in url
+* **terra-slider** implement `ControlValueAccessor` interface to be able to use ngModel instead of `inputValue`.
+* **themes** added christmas theme
+* **themes** added full color button theme
+* **terra-data-table** fixed position and styles of context menu in FireFox
+* **terra-select-box** added key events for better handling
+* **terra-slider** 
+	- add focus highlighting for tab navigation
+	- add left and right arrow key navigation
+* **terra-radio-input** new component that wraps html's native input of type radio including it's label. It must be used within a `<terra-radio-group>` element.
+* **terra-radio-group** new component to contain and manage `<terra-radio-input>` elements. It implements the `ControlValueAccessor` interface (`ngModel`) to be able to use it in a form.
+* **terra-radio-button** is now deprecated. Use `<terra-radio-input>` and `<terra-radio-group>` instead.
+* **terra-check-box** removed outline css
 
 ### Bug Fixes
-* **terra-node-tree** avoid closing node on click while it's open.
-* **terra-2-col** adjusted styles to handle column heights correctly.
+* **terra-node-tree** 
+	- avoid closing node on click while it's open.
+	- Fixed a bug concerning the deletion of a node on the first level
+* **terra-2-col & terra-3-col** 
+	- adjusted styles to handle column heights correctly.
+	- fixed style bug in firefox
 * **terra-3-col** adjusted styles to handle column heights correctly.	 
 * **terra-date-picker** fix format of the date string emitted by `ngModelChange`
 * **terra-file-browser** fixed issue when uploading a file
+* **loading-spinner** fixed issue with light theme
+* **terra-select-box** is now focusable while navigating with tab key
+* **terra-check-box** is now focusable while navigating with tab key
+* **terra-multi-check-box** 
+	- now correctly emits ngModel callbacks after a checkbox has changed
+	- add new `checkboxStateChanges` output that emits the changed checkboxes	
 
 ### Guides
 [Table Migration Guide](https://developers.plentymarkets.com/dev-doc/data-table-migration-guide).
 
 [SplitView Migration Guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide).
+
+<a name="3.0.0-beta.18"></a>
+# 3.0.0-beta.18 (06.12.2018)
+
+### Features
+* **terra-slider** implement `ControlValueAccessor` interface to be able to use ngModel instead of `inputValue`.
+* **themes** added christmas theme
+* **themes** added full color button theme
+
+### Bug Fixes
+* **loading-spinner** fixed issue with light theme
+* **terra-select-box** is now focusable while navigating with tab key
+* **terra-check-box** is now focusable while navigating with tab key
+
+<a name="3.0.0-beta.17"></a>
+# 3.0.0-beta.17 (03.12.2018)
+
+### Feature
+* **TerraBreadcrumbsService** support to handle queryParams in url 
+
+### Bug Fixes
+* **terra-node-tree** Fixed a bug concerning the deletion of a node on the first level
+* **terra-3-col** fixed style bug in firefox
+* **terra-2-col** fixed style bug in firefox
 
 <a name="3.0.0-beta.16"></a>
 # 3.0.0-beta.16 (29.11.2018)

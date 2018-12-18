@@ -14,10 +14,12 @@
                 <div class="slider-handle"
                      [style.left.px]="handlePosition"
                      [terraDraggable]
+                     tabindex="0"
+                     (keydown)="onKeyDown($event)"
                      [terra-draggable-restrict]="'self'"
                      [terra-draggable-grid]="grid"
                      (terra-draggable-onMove)="onDrag( $event )">
-                    {{ inputValue.toFixed(inputPrecision) }}
+                    {{ value?.toFixed(inputPrecision) }}
                 </div>
                 
                 <div *ngIf="inputShowTicks" class="slider-ticks">
