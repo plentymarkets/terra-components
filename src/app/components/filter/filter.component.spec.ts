@@ -18,13 +18,11 @@ import { LocalizationModule } from 'angular-l10n';
 import { By } from '@angular/platform-browser';
 import Spy = jasmine.Spy;
 import { FilterComponent } from './filter.component';
-import {
-    TerraBaseToolbarComponent,
-    TerraButtonComponent,
-    TerraPortletComponent,
-    TerraSelectBoxComponent,
-    TerraTextInputComponent
-} from '../../..';
+import { TerraBaseToolbarComponent } from '../toolbar/base-toolbar/terra-base-toolbar.component';
+import { TerraButtonComponent } from '../buttons/button/terra-button.component';
+import { TerraPortletComponent } from '../layouts/portlet/terra-portlet.component';
+import { TerraSelectBoxComponent } from '../forms/select-box/terra-select-box.component';
+import { TerraTextInputComponent } from '../forms/input/text-input/terra-text-input.component';
 import { l10nConfig } from '../../translation/l10n.config';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraLabelTooltipDirective } from '../../helpers/terra-label-tooltip.directive';
