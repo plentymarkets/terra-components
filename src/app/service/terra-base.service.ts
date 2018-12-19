@@ -10,7 +10,6 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 import { Exception } from './data/exception.interface';
 import {
-    isArray,
     isNull,
     isNullOrUndefined,
     isObject
@@ -20,7 +19,7 @@ import { TerraLoadingSpinnerService } from '../components/loading-spinner/servic
 import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
 import { tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
-import { TerraQueryEncoder } from './data/terra-query-encoder';
+import { UrlHelper } from '../helpers/url.helper';
 
 /**
  * @author mfrank
@@ -307,40 +306,7 @@ export class TerraBaseService
      */
     protected createUrlSearchParams(params:TerraBaseParameterInterface, arrayAsArray:boolean = false):URLSearchParams
     {
-        let searchParams:URLSearchParams = new URLSearchParams('', new TerraQueryEncoder());
-
-        if(!isNullOrUndefined(params))
-        {
-            Object.keys(params).forEach((key:string) =>
-            {
-                if(!isNullOrUndefined(params[key]) && params[key] !== '')
-                {
-                    if(arrayAsArray && isArray(params[key]))
-                    {
-                        searchParams.appendAll(this.createArraySearchParams(key, params[key]));
-                    }
-                    else
-                    {
-                        searchParams.set(key, params[key]);
-                    }
-                }
-
-            });
-        }
-
-        return searchParams;
-    }
-
-    private createArraySearchParams(key:string, params:Array<string>):URLSearchParams
-    {
-        let arraySearchParams:URLSearchParams = new URLSearchParams();
-
-        params.forEach((param:string) =>
-        {
-            arraySearchParams.append(key + '[]', param);
-        });
-
-        return arraySearchParams;
+        return UrlHelper.createUrlSearchParams(params, arrayAsArray);
     }
 
     private getMissingUserPermissionAlertMessage(error:any):string
