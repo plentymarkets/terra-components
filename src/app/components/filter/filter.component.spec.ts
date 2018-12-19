@@ -46,7 +46,7 @@ export class FilterTestComponent
 {
 }
 
-fdescribe('FilterComponent:', () =>
+describe('FilterComponent:', () =>
 {
     let filterComponent:FilterComponent;
     let fixture:ComponentFixture<FilterComponent>;
