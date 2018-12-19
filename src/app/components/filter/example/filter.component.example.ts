@@ -21,7 +21,7 @@ export class FilterComponentExample implements OnInit
         {
             this.listBoxValues.push(
                 {
-                    value:   'test' + i,
+                    value:   i,
                     caption: 'Test' + i
                 }
             );

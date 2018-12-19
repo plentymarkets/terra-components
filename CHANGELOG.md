@@ -1,6 +1,6 @@
 ### Unreleased
 
-* **terra-filter** is now deprecated . Use `<tc-filter>` instead.
+* **terra-filter** is now deprecated. Use `<tc-filter>` instead.
 
 <a name="3.0.0></a>
 # 3.0.0 (18.12.2018)
