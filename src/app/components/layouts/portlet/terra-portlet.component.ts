@@ -67,6 +67,12 @@ export class TerraPortletComponent implements OnChanges
     @Input()
     public inputButtonList:Array<TerraButtonInterface> = [];
 
+    /**
+     * @description Sets a info text which is rendered in a terra-indicator
+     */
+    @Input()
+    public infoText:string;
+
     @Output()
     public inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
