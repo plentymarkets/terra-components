@@ -1,20 +1,136 @@
-# Unreleased
+<a name="3.0.0></a>
+# 3.0.0 (18.12.2018)
+
+### Breaking changes
+* **terra-tag** `inputBadge` is now deprecated. Please use `name` instead.
+
+* **terra-data-table** 
+	- Table is now sortable. Use the `sortBy` interface property to state whether a column is sortable
+	- Refactoring -> Removed deprecated interfaces and input properties
+	- New `TerraDataTableBaseService` which replaces custom directives and configs. It also stores all information needed for retrieving data from the server
+	- New `terra-group-function` component which has been extracted from the `terra-data-table` component
+	- Removed inputs for `terra-no-result-notice` and `terra-group-function` since they can now be passed to the content of the `terra-data-table` component.
+	- Added input `inputContextMenu` to be able to pass the context menu only once to the component
+* **terra-data-table-row.interface** removed `contextMenuLinkList` property since it can now be passed to the data table component using `inputContextMenu`.
+* **terra-data-table-context-menu.service** removed `init` subject and changed type of `show` subject
+* **terra-data-table-context-menu.directive**
+	- changed selector to `[hasContextMenu]`
+	- removed input `inputLinks` which was aliased with the selector before
+	- new input `rowData` which is used to pass the data of a row to the context menu component
+* **terra-data-table-context-menu.component** 
+	- added input `links`. The list of links in the context menu can be passed here.
+	- changed parameters of the `showMenu` method. It now accepts the mouse event and the data which will be passed to the `clickFunction` of the context menu link.
+* **terra-data-table-context-menu.interface** remove `data` property. Use the directive's input `rowData` instead.
+* **terra-pager.data** removed unused class
+
+* **terra-file-browser** 
+	- breadcrumbs replaced with tree for folder navigation.
+	- saving alternative text working as intended with success message.
+	- image preview now closing after delete.
+	- file list is refreshed when inputStorageService changes
+
+* **terra-regex** public access to properties
+* **terra-node.interface**
+	- removed double click function.
+	- add closeOnClick to close node on click again.
+	
+* **terra-pager.interface** added type generic to make it reusable for different types of entries. To migrate your interface which previously extended the `TerraPagerInterface`, please replace its occurrences with the new interface. Make sure to pass the type of a single entry of your interface as generic to the new interface.
+
+
+The following components/classes have been marked deprecated:
+
+* **terra-multi-split-view**
+* **terra-multi-split-view.interface**
+* **terra-multi-split-view.config**
+* **terra-multi-split-view.helper**
+* **terra-multi-split-view-breadcrumbs.service**
+* **terra-multi-split-view-module.interface**
+* **terra-multi-split-view-route.interface**
+* **terra-multi-split-view-route-data.interface**
+* **terra-multi-split-view-routes.interface**
+
+* **resolve-list-item.interface**
+* **resolved-data.interface**
+* **terra-resolved-data.helper**
+
+The following deprecated variables have been deleted:
+
+* **terra-button-with-options** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
+* **terra-button.interface** `isPrimary`, `isSecondary`, `isTertiary`,
+* **terra-button** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
+* **terra-file-chooser** `inputIsPrimary`, `inputIsSecondary`, `inputIsTertiary`
+* **terra-dynamic-module-loader** `inputParameter` (use `inputInputs` instead)
+* **terra-filter** `inputInputList` (use `ng-content` instead)
+* **terra-checkbox** `inputId`
+* **terra-double-input** `inputValue` (use `ngModel` instead)
+* **terra-number-input** `inputValue` (use `ngModel` instead)
+* **terra-input** `inputPlaceholder` (use `inputName` instead)
+* **terra-text-area-input** `inputType`, `inputValue` (use `ngModel` instead), `inputMaxCols`
+* **terra-text-input** `inputType`, `inputValue` (use `ngModel` instead)
+* **terra-select-box** `outputValueChanged` (use `ngModelChange` instead), `inputSelectedValue` (use `ngModel` instead)
+* **terra-suggestion-box** `outputValueChanged` (use `ngModelChange` instead), `resetComponentValue()` (use `ngModel` instead)
+* **terra-tag.interface** `caption` (use `name` or `names` instead), `badge` (use `name` or `names` instead)
+* **terra-multi-split-view** `inputComponentRoute`
+* **terra-data-table-cell.interface** `caption` (use `data` or `data.caption` instead), `icon` (use `data.icon` instead), `color` (use `data.color` instead), `buttonList` (use `data` instead), `href` (use `data` instead) -> `data` can be a type of `string`, `number`, `TerraDataTableTextInterface`, `TerraRefTypeInterface`, `Array<TerraButtonInterface>`or `Array<TerraTagInterface>`
+* **terra-data-table-header-cell.interface** `textAlign:string` (use `textAlign:TerraTextAlignEnum` instead)
+* **terra-data-table** `hasCheckboxes` (use `inputHasCheckboxes` instead)
+* **terra-simple-table** setter and getter of `headerList` (use `inputHeaderList`), getter and setter of `rowList` (use `inputRowList` instead)
+
+The following deprecated components have been deleted:
+
+* **terra-multi-select-box** use `terra-multi-check-box` instead
+* **terra-button-group**
+* **terra-navigator**
+* **terra-split-view** use `terra-multi-split-view` instead
+* **terra-tile-box** use `terra-card` instead
+* **terra-tree** use `terra-node-tree` instead
+* **terra-url-params-decorator** use `terra-base-service::createUrlSearchParams` instead
 
 ### Features
+* **terra-button-with-options** 
+    - New input `inputIsSmall`
+    - Added the ability to add a divider button to the `inputOptions`
+    - Fixed corresponding CSS
+* **terra-dynamic-form** new optional toggle button to display/hide deprecated plugin config entries
+* **category-detail-data** added preview url
+* **terra-3-col** new component that displays given views next to each other in up to three columns
+* **terra-stopwatch** added new terra component terra-stopwatch. 
+* **terra-nested-picker** added showFullSelectionPath property to show if you want the entire path for a selected node
+* **TerraBreadcrumbsService** support to handle queryParams in url
+* **terra-slider** implement `ControlValueAccessor` interface to be able to use ngModel instead of `inputValue`.
+* **themes** added christmas theme
+* **themes** added full color button theme
 * **terra-data-table** fixed position and styles of context menu in FireFox
 * **terra-select-box** added key events for better handling
 * **terra-slider** 
 	- add focus highlighting for tab navigation
 	- add left and right arrow key navigation
-* **terra-radio-input** new component that wraps html's native input of type radio including it's label. It must be used within a `<terra-radio-group>` element.
-* **terra-radio-group** new component to contain and manage `<terra-radio-input>` elements. It implements the `ControlValueAccessor` interface (`ngModel`) to be able to use it in a form.
-* **terra-radio-button** is now deprecated. Use `<terra-radio-input>` and `<terra-radio-group>` instead.
+* **tc-radio-input** new component that wraps html's native input of type radio including it's label. It must be used within a `<tc-radio-group>` element.
+* **tc-radio-group** new component to contain and manage `<tc-radio-input>` elements. It implements the `ControlValueAccessor` interface (`ngModel`) to be able to use it in a form.
+* **terra-radio-button** is now deprecated. Use `<tc-radio-input>` and `<tc-radio-group>` instead.
 * **terra-check-box** removed outline css
 
 ### Bug Fixes
+* **terra-node-tree** 
+	- avoid closing node on click while it's open.
+	- Fixed a bug concerning the deletion of a node on the first level
+* **terra-2-col & terra-3-col** 
+	- adjusted styles to handle column heights correctly.
+	- fixed style bug in firefox
+* **terra-3-col** adjusted styles to handle column heights correctly.	 
+* **terra-date-picker** fix format of the date string emitted by `ngModelChange`
+* **terra-file-browser** fixed issue when uploading a file
+* **loading-spinner** fixed issue with light theme
+* **terra-select-box** is now focusable while navigating with tab key
+* **terra-check-box** is now focusable while navigating with tab key
 * **terra-multi-check-box** 
 	- now correctly emits ngModel callbacks after a checkbox has changed
 	- add new `checkboxStateChanges` output that emits the changed checkboxes	
+
+### Guides
+[Table Migration Guide](https://developers.plentymarkets.com/dev-doc/data-table-migration-guide).
+
+[SplitView Migration Guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide).
 
 <a name="3.0.0-beta.18"></a>
 # 3.0.0-beta.18 (06.12.2018)
