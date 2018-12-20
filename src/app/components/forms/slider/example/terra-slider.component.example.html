@@ -42,7 +42,8 @@
             <terra-slider inputName="Float slider"
                           [inputMin]="0"
                           [inputMax]="1"
-                          [inputInterval]="0.1">
+                          [inputInterval]="0.1"
+                          [inputPrecision]="1">
             </terra-slider>
         </div>
         <div class="col-md-6">
@@ -50,6 +51,28 @@
             <terra-slider inputName="Negative slider"
                           [inputMin]="-5"
                           [inputMax]="5">
+            </terra-slider>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p>Slider with float values and 2-Way-Data-Binding via inputValue. Current value: {{sliderValue}}</p>
+            <terra-slider inputName="Float slider"
+                          [inputMin]="0"
+                          [inputMax]="1"
+                          [inputInterval]="0.1"
+                          [inputPrecision]="1"
+                          [(inputValue)]="sliderValue">
+            </terra-slider>
+        </div>
+        <div class="col-md-6">
+            <p>Slider with float values and 2-Way-Data-Binding via ngModel. Current value: {{sliderValue}}</p>
+            <terra-slider inputName="Float slider"
+                          [inputMin]="0"
+                          [inputMax]="1"
+                          [inputInterval]="0.1"
+                          [inputPrecision]="1"
+                          [(ngModel)]="sliderValue">
             </terra-slider>
         </div>
     </div>

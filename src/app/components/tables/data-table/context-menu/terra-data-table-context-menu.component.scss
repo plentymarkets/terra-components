@@ -1,11 +1,16 @@
 .context-menu
 {
-    display: block;
-    visibility: visible;
-    opacity: 1;
-    transition: var(--transition-0);
-    min-width: max-content;
-    max-width: max-content;
+    position: absolute;
+    right: auto;
+    z-index: 1030;
+    
+    &.visible
+    {
+        display: inline-block;
+        visibility: visible;
+        opacity: 1;
+        transition: var(--transition-0);
+    }
     
     a
     {

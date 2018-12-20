@@ -8,6 +8,7 @@ import { TerraDataTableExampleInterface } from './terra-data-table.interface.exa
 import { TerraHrefTypeEnum } from '../enums/terra-href-type.enum';
 import { TerraDataTableCellInterface } from '../interfaces/terra-data-table-cell.interface';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
+import { isNullOrUndefined } from 'util';
 
 @Injectable()
 export class TerraDataTableServiceExample extends TerraDataTableBaseService<TerraDataTableExampleInterface, TerraPagerParameterInterface>
@@ -36,23 +37,34 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
             lastPageNumber: lastPageNumber,
             firstOnPage:    firstOnPage + 1,
             lastOnPage:     lastOnPage,
-            entries:        this.data
         };
 
-        // apply sorting if sorting parameters are given
-        if(params && params['sortBy'] && params['sortOrder'])
+        // set default params if not given
+        if(isNullOrUndefined(params))
         {
-            this.applySorting(results.entries, params['sortBy'], params['sortOrder']);
+            params = {};
+        }
+        if(isNullOrUndefined(params['sortBy']))
+        {
+            params['sortBy'] = 'id';
+        }
+        if(isNullOrUndefined(params['sortOrder']))
+        {
+            params['sortOrder'] = TerraDataTableSortOrderEnum.descending;
         }
 
+        // apply sorting
+        let entries:Array<TerraDataTableExampleInterface> = this.applySorting(this.data, params['sortBy'], params['sortOrder']);
+
         // cut data that is not included in the requested page
-        results.entries = results.entries.slice(firstOnPage, lastOnPage);
+        results.entries = entries.slice(firstOnPage, lastOnPage);
 
         // return data
         return Observable.of(results);
     }
 
-    private applySorting(data:Array<TerraDataTableExampleInterface>, sortBy:string, sortOrder:TerraDataTableSortOrderEnum):void
+    private applySorting(data:Array<TerraDataTableExampleInterface>, sortBy:string,
+                         sortOrder:TerraDataTableSortOrderEnum):Array<TerraDataTableExampleInterface>
     {
         let comparator:(a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface) => number;
         if(sortOrder === TerraDataTableSortOrderEnum.ascending)
@@ -63,17 +75,20 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
         {
             comparator = (a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface):number => b[sortBy] - a[sortBy];
         }
-        data.sort(comparator);
+        return data.sort(comparator);
     }
 
     public addEntry():void
     {
-        this.data.push(
-            {
-                id:    this.data.reduce((a:number, b:TerraDataTableExampleInterface) => Math.max(a, b.id), 0) + 1,
-                value: Math.random()
-            }
-        );
+        for(let i:number = 0; i <= 50; i++)
+        {
+            this.data.push(
+                {
+                    id:    this.data.reduce((a:number, b:TerraDataTableExampleInterface) => Math.max(a, b.id), 0) + 1,
+                    value: Math.random()
+                }
+            );
+        }
     }
 
     public dataToRowMapping(entry:TerraDataTableExampleInterface):TerraDataTableRowInterface<TerraDataTableExampleInterface>
@@ -92,22 +107,17 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
                 }
             },
             {
-                data: [
-                    {
-                        icon:          'icon-add',
-                        clickFunction: ():void => console.log('clicked')
-                    }
-                ]
+                data: [{
+                    icon:          'icon-add',
+                    clickFunction: ():void => console.log('clicked')
+                }]
             }
         ];
 
         return {
             cellList:      cellList,
             data:          entry,
-            clickFunction: ():void =>
-                           {
-                               console.log(`Row with id ${entry.id} clicked`);
-                           }
+            clickFunction: ():void => console.log(`Row with id ${entry.id} clicked`)
         };
     }
 }

@@ -27,11 +27,11 @@ export class TerraDataTableContextMenuDirective<D extends TerraBaseData>
     @HostListener('contextmenu', ['$event'])
     public rightClicked(event:MouseEvent):void
     {
+        event.preventDefault();
+        event.stopPropagation();
         this.service.show.next({
             event: event,
             data:  this.rowData
         });
-        event.preventDefault();
-        event.stopPropagation();
     }
 }

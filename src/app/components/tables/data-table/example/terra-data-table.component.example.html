@@ -1,33 +1,41 @@
-<terra-base-toolbar>
-    <div class="btn-group" role="group">
-        <terra-button [inputIcon]="'icon-add'"
-                      [inputTooltipText]="'New entry'"
-                      (outputClicked)="addEntry()">
-        </terra-button>
-        <terra-button [inputIcon]="'icon-settings_transfer'"
-                      [inputTooltipText]="'Group function'"
-                      (outputClicked)="showGroupFunction = !showGroupFunction">
-        </terra-button>
+<terra-2-col>
+    <div left></div>
+    <div right>
+        <terra-base-toolbar>
+            <div class="btn-group" role="group">
+                <terra-button [inputIcon]="'icon-add'"
+                              [inputTooltipText]="'New entry'"
+                              (outputClicked)="addEntry()">
+                </terra-button>
+                <terra-button [inputIcon]="'icon-settings_transfer'"
+                              [inputTooltipText]="'Group function'"
+                              (outputClicked)="showGroupFunction = !showGroupFunction">
+                </terra-button>
+                <terra-button [inputIcon]="'icon-reset'"
+                              [inputTooltipText]="'Reset sorting'"
+                              (outputClicked)="resetSorting()">
+                </terra-button>
+            </div>
+        </terra-base-toolbar>
+    
+        <terra-data-table
+            #table
+            [inputService]="service"
+            [inputHasCheckboxes]="true"
+            [inputHeaderList]="headerList"
+            [inputContextMenu]="contextMenu">
+        
+            <terra-group-function [show]="showGroupFunction"
+                                  [disableExecution]="false"
+                                  (executeGroupFunction)="executeGroupFunction(table.selectedRowList)">
+                <terra-text-input [inputName]="'Text'"></terra-text-input>
+            </terra-group-function>
+        
+            <terra-no-result-notice
+                [inputButtons]="noResultButtons"
+                [inputTextPrimary]="noResultTextPrimary"
+                [inputTextSecondary]="noResultTextSecondary">
+            </terra-no-result-notice>
+        </terra-data-table>
     </div>
-</terra-base-toolbar>
-
-<terra-data-table
-    #table
-    [inputService]="service"
-    [inputHasCheckboxes]="true"
-    [inputIsSortable]="true"
-    [inputHeaderList]="headerList"
-    [inputContextMenu]="contextMenu">
-    
-    <terra-group-function [show]="showGroupFunction"
-                          [disableExecution]="false"
-                          (executeGroupFunction)="executeGroupFunction(table.selectedRowList)">
-        <terra-text-input [inputName]="'Text'"></terra-text-input>
-    </terra-group-function>
-    
-    <terra-no-result-notice
-        [inputButtons]="noResultButtons"
-        [inputTextPrimary]="noResultTextPrimary"
-        [inputTextSecondary]="noResultTextSecondary">
-    </terra-no-result-notice>
-</terra-data-table>
+</terra-2-col>
