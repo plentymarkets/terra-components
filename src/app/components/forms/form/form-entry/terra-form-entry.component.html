@@ -14,7 +14,7 @@
             <!--&gt;</terra-form-container>-->
         <!--</div>-->
         
-        <terra-portlet [inputPortletHeader]="inputFormField.options?.name">
+        <terra-portlet [inputPortletHeader]="inputFormField.options?.name" [infoText]="inputFormField.options?.description">
             <div class="form-entry-container">
                 <terra-form-container
                     [inputFormFields]="inputFormField.children"
