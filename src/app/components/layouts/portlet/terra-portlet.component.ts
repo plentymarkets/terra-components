@@ -69,6 +69,11 @@ export class TerraPortletComponent implements OnChanges
 
     @Input()
     public inputIsDisabled:boolean = false;
+    /**
+     * @description Sets an info text which is rendered in a terra-info
+     */
+    @Input()
+    public infoText:string;
 
     @Output()
     public inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
