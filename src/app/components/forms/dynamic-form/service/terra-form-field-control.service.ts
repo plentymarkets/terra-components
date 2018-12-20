@@ -1,14 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TerraFormFieldBase } from '../data/terra-form-field-base';
-import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    ValidatorFn,
-    Validators
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
-import { TerraFormFieldConditionalContainer } from '../data/terra-form-field-conditional-container';
 import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
 
 /**
@@ -67,25 +60,6 @@ export class TerraFormFieldControlService
             if(formField instanceof TerraFormFieldBaseContainer && !isNullOrUndefined(formField.containerEntries))
             {
                 toGroup[formField.key] = this.formBuilder.group(this.initFormGroupHelper(formField.containerEntries, {}, false));
-            }
-            else if(formField instanceof TerraFormFieldConditionalContainer && !isNullOrUndefined(formField.conditionalEntries))
-            {
-                // TODO extract into own component  or condition refactoring
-                // let subGroup:{ [key:string]:any } = {};
-                //
-                // subGroup[formField.key] = new FormControl(formField.value, this.generateValidators(formField));
-                //
-                // this.defaultValues[formField.key] = formField.value;
-                //
-                // for(let key in formField.conditionalEntries)
-                // {
-                //    if(formField.conditionalEntries.hasOwnProperty(key))
-                //    {
-                //        subGroup[key] = this._formBuilder.group(this.initFormGroupHelper(formField.conditionalEntries[key], {}, true));
-                //    }
-                // }
-                //
-                // toGroup[formField.key] = this._formBuilder.group(subGroup);
             }
             else
             {

@@ -14,27 +14,6 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
 })
 export class TerraButtonComponent
 {
-    /**
-     * @description If true, the button gets the primary color blue. Default false.
-     * @deprecated The button color depends on the input icon. Each icon has its own fixed color.
-     */
-    @Input()
-    public inputIsPrimary:boolean;
-
-    /**
-     * @description If true, the button gets the secondary color red. Default false.
-     * @deprecated The button color depends on the input icon. Each icon has its own fixed color.
-     */
-    @Input()
-    public inputIsSecondary:boolean;
-
-    /**
-     * @description If true, the button gets the tertiary color green. Default false.
-     * @deprecated The button color depends on the input icon. Each icon has its own fixed color.
-     */
-    @Input()
-    public inputIsTertiary:boolean;
-
     /** @description If true, the button will be small. Default false.*/
     @Input()
     public inputIsSmall:boolean;
@@ -103,6 +82,13 @@ export class TerraButtonComponent
     @Input()
     public inputIsHighlighted:boolean;
 
+    /**
+     * @description If true, the button gets full colored background (only for 'add' and 'delete' function group).
+     * Default false
+     */
+    @Input()
+    public inputIsMajor:boolean;
+
     @Output()
     public outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
 
@@ -119,8 +105,8 @@ export class TerraButtonComponent
         this.inputIsLink = false;
         this.inputIsDisabled = false;
         this.inputIsHighlighted = false;
+        this.inputIsMajor = false;
         this.currentTooltipPlacement = this.inputTooltipPlacement;
-
     }
 
     private click(event:Event):void

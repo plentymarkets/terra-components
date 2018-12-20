@@ -51,9 +51,12 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     public get inputStorageServices():Array<TerraBaseStorageService>
     {
-        return this.storageServices || [this.frontendStorageService];
+        return this.storageServices;
     }
 
+    /**
+     * @Deprecated ViewChild overlay does not exist in the template
+     */
     @ViewChild('overlay')
     public overlay:TerraOverlayComponent;
 
@@ -68,7 +71,7 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     private storageServices:Array<TerraBaseStorageService>;
 
-    constructor(private translation:TranslationService, private frontendStorageService:TerraFrontendStorageService)
+    constructor()
     {
         super(TerraRegex.MIXED);
 
@@ -89,9 +92,16 @@ export class TerraFileInputComponent extends TerraInputComponent
         }
     }
 
+    /**
+     * @Deprecated ViewChild overlay does not exist in the template
+     */
     public showFileBrowser():void
     {
-        this.overlay.showOverlay();
+        console.warn('Function showFileBrowser() is deprecated and should not called.');
+        if(!isNullOrUndefined(this.overlay))
+        {
+            this.overlay.showOverlay();
+        }
     }
 
     public getIconClass(filename:string):string

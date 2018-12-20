@@ -10,11 +10,11 @@ import {
 })
 export class TerraComponentsComponent
 {
-    private _viewContainerRef:ViewContainerRef;
+    private viewContainerRef:ViewContainerRef;
 
-    constructor(private viewContainerRef:ViewContainerRef)
+    constructor(viewContainerRef:ViewContainerRef)
     {
         // You need this small hack in order to catch application root view container ref
-        this._viewContainerRef = viewContainerRef;
+        this.viewContainerRef = viewContainerRef;
     }
 }

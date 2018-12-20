@@ -136,92 +136,21 @@ button:focus
         }
     }
     
-    &.btn-primary
+    &.highlighted:not(:hover):not(focus):not(:active)
     {
-        &:not(.highlighted)
+        background-color: var(--color-group-navigation);
+        border-bottom: var(--color-group-navigation);
+        color: var(--color-structure-0);
+        
+        @keyframes highlighted
         {
-            background-color: var(--color-active);
-            color: var(--color-structure-0);
-            &:hover,
-            &:focus
+            100%
             {
-                background-color: var(--color-active-dark);
-                color: var(--color-structure-0);
-                &:active,
-                &.active
-                {
-                    background-color: var(--color-active);
-                    color: var(--color-structure-0);
-                }
+                background-color: var(--function-group-color-highlighted, var(--color-group-active));
+                border-bottom: var(--function-group-color-highlighted, var(--color-group-active));
             }
         }
-        &.highlighted
-        {
-            @keyframes highlight-primary
-            {
-                100%
-                {
-                    background-color: var(--color-active)
-                }
-            }
-            animation: highlight-primary 1500ms ease-in-out 0ms infinite alternate;
-        }
-    }
-    &.btn-secondary
-    {
-        &:not(.highlighted)
-        {
-            color: var(--color-structure-0);
-            &:hover,
-            &:focus
-            {
-                color: var(--color-structure-0);
-                &:active,
-                &.active
-                {
-                    color: var(--color-structure-0);
-                }
-            }
-        }
-        &.highlighted
-        {
-            @keyframes highlight-secondary
-            {
-                100%
-                {
-                    background-color: var(--color-alert)
-                }
-            }
-            animation: highlight-secondary 1500ms ease-in-out 0ms infinite alternate;
-        }
-    }
-    &.btn-tertiary
-    {
-        &:not(.highlighted)
-        {
-            color: var(--color-structure-0);
-            &:hover,
-            &:focus
-            {
-                color: var(--color-structure-0);
-                &:active,
-                &.active
-                {
-                    color: var(--color-structure-0);
-                }
-            }
-        }
-        &.highlighted
-        {
-            @keyframes highlight-tertiary
-            {
-                100%
-                {
-                    background-color: var(--color-add)
-                }
-            }
-            animation: highlight-tertiary 1500ms ease-in-out 0ms infinite alternate;
-        }
+        animation: highlighted 1500ms ease-in-out 0ms infinite alternate;
     }
     
     span
@@ -364,11 +293,7 @@ fieldset[disabled] a.btn
 
 :host-context(.btn-group)
 {
-    float: left;
-    &:not(:first-child) .btn
-    {
-        border-left: 1px solid var(--color-structure-0);
-    }
+    font-size: 4px;
     
     &:first-child
     {

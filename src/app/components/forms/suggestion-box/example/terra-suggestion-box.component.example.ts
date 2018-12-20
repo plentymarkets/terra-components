@@ -61,6 +61,46 @@ export class TerraSuggestionBoxComponentExample implements OnInit
             {
                 value:   'icon-flag_blue',
                 caption: 'icon-flag_blue'
+            },
+            {
+                value:   'icon-anonymize',
+                caption: 'icon-anonymize'
+            },
+            {
+                value:   'icon-active_doc',
+                caption: 'icon-active_doc'
+            },
+            {
+                value:   'icon-active_fold_open',
+                caption: 'icon-active_fold_open'
+            },
+            {
+                value:   'icon-real',
+                caption: 'icon-real'
+            },
+            {
+                value:   'icon-plenty_base',
+                caption: 'icon-plenty_base'
+            },
+            {
+                value:   'icon-servicecenter',
+                caption: 'icon-servicecenter'
+            },
+            {
+                value:   'icon-colorpicker',
+                caption: 'icon-colorpicker'
+            },
+            {
+                value:   'icon-align_left',
+                caption: 'icon-align_left'
+            },
+            {
+                value:   'icon-device_mobile',
+                caption: 'icon-device_mobile'
+            },
+            {
+                value:   'icon-ebay',
+                caption: 'icon-ebay'
             }
         );
 

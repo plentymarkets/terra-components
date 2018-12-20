@@ -11,15 +11,14 @@
                  'disabled': inputIsDisabled}"
      (click)="click($event)">
     <button class="btn"
-            [ngClass]="{'btn-primary' : inputIsPrimary,
-                      'btn-secondary' : inputIsSecondary,
-                      'btn-tertiary': inputIsTertiary,
-                      'btn-sm' : inputIsSmall,
-                      'btn-lg' : inputIsLarge,
-                      'activated' : inputIsActive && !inputIsDivider,
-                      'highlighted' : inputIsHighlighted,
-                      'btn-divider' : inputIsDivider,
-                      'btn-link' : inputIsLink }"
+            [attr.data-icon]="inputIcon"
+            [ngClass]="{'btn-sm' : inputIsSmall,
+                        'btn-lg' : inputIsLarge,
+                        'activated' : inputIsActive && !inputIsDivider,
+                        'highlighted' : inputIsHighlighted,
+                        'btn-divider' : inputIsDivider,
+                        'btn-link' : inputIsLink ,
+                        'btn-major': inputIsMajor}"
             [hidden]="inputIsHidden"
             [type]="inputType">
         <span *ngIf="inputIcon" class="icon_dist_top" [ngClass]="inputIcon"></span>

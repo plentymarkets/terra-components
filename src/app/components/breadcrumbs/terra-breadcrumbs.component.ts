@@ -21,7 +21,9 @@ import { TerraBreadcrumbContainer } from './terra-breadcrumb-container';
 export class TerraBreadcrumbsComponent
 {
     protected mouseLeft:string = '0px';
-    protected isTooltipDisabled:boolean = false;
+
+    protected helperTooltip:string;
+    protected isHelperTooltipDisabled:boolean;
 
     constructor(public readonly breadcrumbsService:TerraBreadcrumbsService,
                 private activatedRoute:ActivatedRoute,
@@ -40,7 +42,7 @@ export class TerraBreadcrumbsComponent
         {
             for(let route of routeConfig)
             {
-                if(!isNullOrUndefined(route.data) && !isNullOrUndefined(route.data.permissions) && route === routeToFind)
+                if(route === routeToFind)
                 {
                     path = parentPath + '/' + route.path;
 
@@ -119,24 +121,5 @@ export class TerraBreadcrumbsComponent
         return !isNullOrUndefined(nextContainer) &&
                !isNullOrUndefined(nextContainer.currentSelectedBreadcrumb) &&
                !nextContainer.currentSelectedBreadcrumb.isHidden;
-    }
-
-    protected checkTooltip(el:HTMLElement):void
-    {
-        let curOverflow:string = el.style.overflow;
-
-        // 'hide' overflow to get correct scrollWidth
-        if(!curOverflow || curOverflow === 'visible')
-        {
-            el.style.overflow = 'hidden';
-        }
-
-        // check if is overflowing
-        let isOverflowing:boolean = el.clientWidth < el.scrollWidth;
-
-        // 'reset' overflow to initial state
-        el.style.overflow = curOverflow;
-
-        this.isTooltipDisabled = !isOverflowing;
     }
 }

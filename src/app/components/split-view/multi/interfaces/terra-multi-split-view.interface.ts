@@ -2,7 +2,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { TerraDynamicLoadedComponentInputInterface } from '../../../dynamic-module-loader/data/terra-dynamic-loaded-component-input.interface';
 
 /**
- * @author pweyrich
+ * @deprecated Will be removed in the next major release.
  */
 export interface TerraMultiSplitViewInterface
 {
@@ -13,11 +13,6 @@ export interface TerraMultiSplitViewInterface
     focusedWidth?:string;
     name:string;
     mainComponentName:string;
-
-    /**
-     * @deprecated Will be removed in an upcoming release.
-     */
-    parameter?:any;
     inputs?:Array<TerraDynamicLoadedComponentInputInterface>;
     id?:string;
     url?:string;

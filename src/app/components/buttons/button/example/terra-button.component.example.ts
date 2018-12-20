@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TerraPlacementEnum } from '../../../../..';
 
 
 @Component({
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
 })
 export class TerraButtonComponentExample
 {
+    protected tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
+
     private sendMailPopup():void
     {
         alert('email has been send to test@plentymarkets.com');
