@@ -110,6 +110,9 @@ The following deprecated components have been deleted:
 * **terra-radio-button** is now deprecated. Use `<tc-radio-input>` and `<tc-radio-group>` instead.
 * **terra-check-box** removed outline css
 
+### Changes
+* **file-list** change text of the delete confirmation
+
 ### Bug Fixes
 * **terra-node-tree** 
 	- avoid closing node on click while it's open.
