@@ -1,7 +1,7 @@
 # Unreleased
 
 ### Changes
-* **terra-portlet** The box-shadow property of the portlet body now could be set using the variable `--portlet-body-box-shadow`.
+* **terra-portlet** Collapsable portlets can now be disabled by setting the `inputIsDisabled`-property.
 
 <a name="3.0.0></a>
 # 3.0.0 (18.12.2018)
