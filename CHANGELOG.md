@@ -1,3 +1,8 @@
+# Unreleased
+
+### Changes
+* **terra-portlet** The box-shadow property of the portlet body now could be set using the variable `--portlet-body-box-shadow`.
+
 <a name="3.0.0></a>
 # 3.0.0 (18.12.2018)
 
