@@ -21,6 +21,14 @@ module.exports = function (config) {
         browsers: ['Chrome', 'Firefox', 'Safari'],
         singleRun: false,
         concurrency: Infinity,
+        customLaunchers: {
+            FirefoxHeadless: {
+                base: 'Firefox',
+                flags: [
+                    '--headless'
+                ]
+            }
+        },
         coverageIstanbulReporter: {
             reports: ['html'],
             dir: 'coverage',
