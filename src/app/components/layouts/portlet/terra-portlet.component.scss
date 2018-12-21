@@ -59,7 +59,21 @@
             
             &.unfolded
             {
-                background-color: transparent;
+                background-color: var(--portlet-head-unfolded-background-color, transparent);
+            }
+        }
+    
+        &.disabled
+        {
+            opacity: 0.7;
+            .portlet-head
+            {
+                cursor: not-allowed;
+                
+                span
+                {
+                    color: var(--color-structure-9);
+                }
             }
         }
     }
