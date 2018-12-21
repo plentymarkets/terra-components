@@ -3,9 +3,11 @@ import {
     forwardRef,
     Input,
     Type,
+    ViewChild,
 } from '@angular/core';
 import {
     ControlValueAccessor,
+    FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
@@ -13,6 +15,7 @@ import { TerraFormScope } from './model/terra-form-scope.data';
 import { TerraFormFieldInterface } from './model/terra-form-field.interface';
 import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { TerraFormFieldHelper } from './helper/terra-form-field.helper';
+import { TerraFormContainerComponent } from './form-container/terra-form-container.component';
 
 @Component({
     selector:  'terra-form',
@@ -60,6 +63,9 @@ export class TerraFormComponent implements ControlValueAccessor
 
     @Input()
     public inputIsDisabled:boolean = false;
+
+    @ViewChild(TerraFormContainerComponent)
+    public rootContainer:TerraFormContainerComponent;
 
     protected scope:TerraFormScope = new TerraFormScope();
 
@@ -109,6 +115,11 @@ export class TerraFormComponent implements ControlValueAccessor
     public registerOnChange(callback:any):void
     {
         this.onChangeCallback = callback;
+    }
+
+    public get formGroup():FormGroup
+    {
+        return this.rootContainer.formGroup;
     }
 
     private onTouchedCallback:() => void = ():void => undefined;

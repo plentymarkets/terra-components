@@ -1,9 +1,13 @@
 import {
     Component,
     EventEmitter,
+    forwardRef,
+    Host,
+    Inject,
     Input,
     OnChanges,
     OnInit,
+    Optional,
     Output,
     SimpleChanges,
     Type
@@ -15,6 +19,8 @@ import {
 } from 'util';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
+import { FormGroup } from '@angular/forms';
+import { TerraFormEntryComponent } from '../../../../..';
 
 @Component({
     selector: 'terra-form-container',
@@ -65,13 +71,21 @@ export class TerraFormContainerComponent implements OnInit, OnChanges
     @Input()
     public inputIsDisabled:boolean = false;
 
+   @Input()
+   public formKey:string;
+
     @Output()
     public outputFormValueChanged:EventEmitter<TerraKeyValuePairInterface<any>> = new EventEmitter<TerraKeyValuePairInterface<any>>();
+
+    public formGroup:FormGroup = new FormGroup({});
 
     protected formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
     protected formFieldVisibility:{ [key:string]:boolean } = {};
 
     private value:any = {};
+
+    constructor(@Optional() @Host() @Inject(forwardRef(() => TerraFormEntryComponent))  private formEntry:TerraFormEntryComponent)
+    { }
 
     public ngOnInit():void
     {
@@ -79,6 +93,18 @@ export class TerraFormContainerComponent implements OnInit, OnChanges
         {
             this.updateFieldVisibility();
         });
+
+        if(!isNullOrUndefined(this.formEntry))
+        {
+            if(!isNullOrUndefined(this.formEntry.formContainer))
+            {
+                this.formEntry.formContainer.formGroup.addControl(this.formKey, this.formGroup);
+            }
+            else if(!isNullOrUndefined(this.formEntry.formList))
+            {
+                this.formEntry.formList.formArray.insert(+this.formKey, this.formGroup);
+            }
+        }
     }
 
     public ngOnChanges(changes:SimpleChanges):void
