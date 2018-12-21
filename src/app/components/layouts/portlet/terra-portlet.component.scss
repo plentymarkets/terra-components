@@ -44,7 +44,7 @@
         padding: var(--portlet-body-padding, var(--space-lg));
         transition: padding var(--transition-lg);
         border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
+        box-shadow: var(--portlet-body-box-shadow, var(--box-shadow));
     }
     
     &.collapsable
