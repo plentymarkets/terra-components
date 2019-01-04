@@ -24,13 +24,14 @@ import {
     isNullOrUndefined
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
-import {
-    TerraFormContainerComponent,
-    TerraFormEntryListComponent,
-    TerraTextInputComponent
-} from '../../../../../';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
-import { FormControl } from '@angular/forms';
+import {
+    FormControl,
+    Validators
+} from '@angular/forms';
+import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
+import { TerraFormEntryListComponent } from '../form-entry-list/terra-form-entry-list.component';
+import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 
 @Component({
     selector: 'terra-form-entry',
@@ -85,21 +86,24 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
         this.formControl = new FormControl(this.inputFormValue); // TODO add validators
 
-        if(!this.hasChildren)
+        setTimeout(() => // without setTimeout there would be an ExpressionChangedAfterItHasBeenCheckedError
         {
-            if(!isNullOrUndefined(this.formContainer))
+            if(!this.hasChildren)
             {
-                this.formContainer.formGroup.addControl(this.formKey, this.formControl);
+                if(!isNullOrUndefined(this.formContainer))
+                {
+                    this.formContainer.formGroup.addControl(this.formKey, this.formControl);
+                }
+                else if(!isNullOrUndefined(this.formList))
+                {
+                    this.formList.formArray.insert(+this.formKey, this.formControl);
+                }
+                else
+                {
+                    console.error('Y no Code!!!');
+                }
             }
-            else if(!isNullOrUndefined(this.formList))
-            {
-                this.formList.formArray.insert(+this.formKey, this.formControl);
-            }
-            else
-            {
-                console.error('Y no Code!!!');
-            }
-        }
+        });
     }
 
     public ngAfterViewInit():void
@@ -153,7 +157,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         this.bindInputProperties();
         if(changes.hasOwnProperty('inputFormValue') && !isNullOrUndefined(this.formControl))
         {
-            this.formControl.patchValue(this.inputFormValue);
+            setTimeout(() => this.formControl.patchValue(this.inputFormValue));
         }
     }
 
