@@ -1,3 +1,8 @@
+# Unreleased
+
+### Changes
+* **terra-portlet** Collapsable portlets can now be disabled by setting the `inputIsDisabled`-property.
+
 <a name="3.0.0></a>
 # 3.0.0 (18.12.2018)
 
