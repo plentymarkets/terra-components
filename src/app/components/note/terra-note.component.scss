@@ -12,11 +12,11 @@ $padding-border: 16px;
     height: auto;
     overflow-x: auto;
     box-shadow: var(--box-shadow);
-
+    
     &.selected
     {
         background-color: var(--color-active);
-
+        
         .note-inner
         {
             .note-text
@@ -24,7 +24,7 @@ $padding-border: 16px;
                 color: var(--color-structure-0);
             }
         }
-
+        
         .note-footer
         {
             .note-id
@@ -33,30 +33,30 @@ $padding-border: 16px;
             }
         }
     }
-
+    
     .note-inner
     {
         display: flex;
         justify-content: space-between;
         height: calc(100% - 26px);
-
+        
         .note-text
         {
             padding-right: var(--space-lg);
             max-width: 77%;
             white-space: normal;
             color: var(--color-structure-11);
-
+            
             .note-header
             {
                 font-weight: bold;
             }
-
+            
             hr
             {
                 margin: 0;
             }
-
+            
             div
             {
                 white-space: pre-wrap;
@@ -64,13 +64,13 @@ $padding-border: 16px;
                 overflow: hidden;
             }
         }
-
+        
         .note-sidebar
         {
             display: flex;
             align-items: flex-end;
             flex-direction: column;
-
+            
             .note-id
             {
                 margin-top: auto;

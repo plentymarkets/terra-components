@@ -8,25 +8,25 @@
         overflow: visible;
         position: inherit;
         height: 100%;
-
+        
         [class*=" icon-"]
         {
             font-family: mydatepicker !important;
         }
-
+        
         .icon-cross,
         .icon-calendar
         {
             font-size: 20px;
         }
-
+        
         .selectiongroup
         {
             display: block;
             overflow: visible;
             position: inherit;
             height: 100%;
-
+            
             input
             {
                 color: var(--color-structure-10);
@@ -46,14 +46,14 @@
                 overflow: visible;
                 position: inherit;
                 display: inline-block;
-
+                
                 &:active,
                 &:focus
                 {
                     border-bottom: var(--input-wrapper-border-hover, 2px solid var(--color-active));
                 }
             }
-
+            
             .selbtngroup
             {
                 width: 54px;
@@ -65,7 +65,7 @@
                 position: absolute;
                 right: 0;
                 top: 0;
-
+                
                 .btnclear
                 {
                     background-color: transparent;
@@ -76,14 +76,14 @@
                     .icon-cross
                     {
                         line-height: 1.5em !important;
-
+                        
                         &:before
                         {
                             content: '\e910';
                         }
                     }
                 }
-
+                
                 .btnpicker
                 {
                     background-color: transparent;
@@ -93,7 +93,7 @@
                     .icon-calendar
                     {
                         line-height: 1.5em !important;
-
+                        
                         &:before
                         {
                             content: '\e925';
@@ -102,27 +102,27 @@
                 }
             }
         }
-
+        
         .selector
         {
             width: auto !important;
             border: 1px solid var(--color-structure-7);
-
+            
             &:before
             {
                 border-bottom-color: var(--color-structure-7);
             }
-
+            
             &:focus
             {
                 border-color: var(--color-structure-7);
-
+                
                 &:before
                 {
                     border-bottom-color: var(--color-structure-7);
                 }
             }
-
+            
             .header
             {
                 .icon-left
@@ -131,43 +131,43 @@
                     {
                         color: var(--color-structure-13);
                     }
-
+                    
                     &:hover
                     {
                         color: var(--color-active);
                     }
-
+                    
                     &:before
                     {
                         content: '\e912';
                     }
                 }
-
+                
                 .icon-right
                 {
                     &:focus
                     {
                         color: var(--color-structure-13);
                     }
-
+                    
                     &:hover
                     {
                         color: var(--color-active);
                     }
-
+                    
                     &:before
                     {
                         content: '\e913';
                     }
                 }
-
+                
                 .monthlabel
                 {
                     &:focus
                     {
                         color: var(--color-structure-13);
                     }
-
+                    
                     &:hover
                     {
                         color: var(--color-active);
@@ -181,17 +181,17 @@
 div.disabled .selectiongroup
 {
     background-color: var(--color-structure-2);
-
+    
     input.selection
     {
         opacity: unset !important;
         background-color: var(--color-structure-2);
     }
-
+    
     .selbtngroup
     {
         opacity: unset !important;
         background-color: var(--color-structure-2);
     }
-
+    
 }

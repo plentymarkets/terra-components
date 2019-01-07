@@ -15,7 +15,7 @@
         min-height: 150px;
         position: relative;
         flex-direction: column;
-
+        
         > span
         {
             width: 100%;
@@ -26,13 +26,13 @@
             background-position: center center;
             align-items: center;
             flex: 1;
-
+            
             > [class^="icon-"]
             {
                 display: inline-flex;
                 margin: 0 auto;
                 font-size: 7.5em;
-
+                
                 > [class^="path"]:before
                 {
                     color: var(--color-structure-9);

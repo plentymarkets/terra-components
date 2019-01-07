@@ -16,14 +16,14 @@
     padding: 0 0 0 10px;
     display: block;
     overflow-x: hidden;
-
+    
     ul
     {
         margin: 0;
         padding: 0;
         list-style: none;
         font-size: inherit;
-
+        
         li
         {
             font-size: inherit;
@@ -36,26 +36,26 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-
+            
             &.disabled
             {
                 cursor: default;
                 color: var(--color-structure-7);
             }
-
+            
             .input-control
             {
                 margin: 0 .3125rem 0 0;
                 height: 1rem;
                 line-height: .625rem;
                 min-height: 0;
-
+                
                 &.checkbox
                 {
                     line-height: 1rem;
                 }
             }
-
+            
             &.active
             {
                 > .leaf-titel
@@ -64,28 +64,28 @@
                     color: var(--color-structure-0);
                 }
             }
-
+            
             .leaf-titel
             {
                 border-bottom: 1px solid var(--color-structure-2);
                 color: inherit;
                 margin: 0;
                 padding: 4px 8px 4px 8px;
-
+                
                 .icon
                 {
                     width: 1rem;
                     height: 1rem;
                     text-align: center;
                 }
-
+                
                 &:hover
                 {
                     color: var(--color-structure-12);
                     background: var(--color-active);
                 }
             }
-
+            
             &:hover
             {
                 > .node-toggle:before
@@ -95,7 +95,7 @@
             }
         }
     }
-
+    
     .node-toggle
     {
         position: absolute;
@@ -103,7 +103,7 @@
         top: 8px;
         width: 8px;
         height: 8px;
-
+        
         &:before
         {
             position: absolute;
@@ -120,7 +120,7 @@
             transform: rotate(45deg);
         }
     }
-
+    
     .node.collapsed
     {
         > .node-toggle:before
@@ -130,7 +130,7 @@
             border-bottom-color: var(--color-structure-7);
             left: -10px;
         }
-
+        
         &:hover
         {
             > .node-toggle:before
@@ -138,7 +138,7 @@
                 border-bottom-color: var(--color-active-dark);
             }
         }
-
+        
         > ul
         {
             display: none;

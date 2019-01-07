@@ -2,14 +2,14 @@
 {
     display: inline-block;
     position: relative;
-
+    
     &:hover,
     &:active,
     &.active
     {
         color: var(--color-group-active);
     }
-
+    
     height: var(--height-md);
     line-height: var(--height-md);
     text-align: center;
@@ -29,7 +29,7 @@
 {
     cursor: not-allowed;
     color: var(--color-structure-7);
-
+    
     &:hover,
     &:active,
     &.active

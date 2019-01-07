@@ -1,11 +1,11 @@
 .input-group
 {
     margin-bottom: 12px;
-
+    
     & > .input-group-text
     {
         width: 100%;
-
+        
         .input-wrapper,
         .select-box-wrapper,
         .btn
@@ -15,13 +15,13 @@
             border-top-left-radius: var(--border-radius);
             border-bottom-left-radius: var(--border-radius);
         }
-
+        
     }
-
+    
     & > .input-group-btn
     {
         width: auto;
-
+        
         .input-wrapper,
         .select-box-wrapper,
         .btn
