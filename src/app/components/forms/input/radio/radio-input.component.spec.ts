@@ -1,25 +1,25 @@
-import { TerraRadioInputComponent } from './terra-radio-input.component';
+import { RadioInputComponent } from './radio-input.component';
 import {
     async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { TerraRadioGroupComponent } from './terra-radio-group.component';
+import { RadioGroupComponent } from './radio-group.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-describe(`TerraRadioInputComponent:`, () =>
+describe(`RadioInputComponent:`, () =>
 {
-    let fixture:ComponentFixture<TerraRadioInputComponent>;
-    let component:TerraRadioInputComponent;
-    let radioGroupComponent:TerraRadioGroupComponent;
+    let fixture:ComponentFixture<RadioInputComponent>;
+    let component:RadioInputComponent;
+    let radioGroupComponent:RadioGroupComponent;
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [TerraRadioInputComponent],
+            declarations: [RadioInputComponent],
             providers:    [{
-                provide:  TerraRadioGroupComponent,
+                provide:  RadioGroupComponent,
                 useValue: {value: 1}
             }]
         });
@@ -27,9 +27,9 @@ describe(`TerraRadioInputComponent:`, () =>
 
     beforeEach(() =>
     {
-        fixture = TestBed.createComponent(TerraRadioInputComponent);
+        fixture = TestBed.createComponent(RadioInputComponent);
         component = fixture.componentInstance;
-        radioGroupComponent = TestBed.get(TerraRadioGroupComponent);
+        radioGroupComponent = TestBed.get(RadioGroupComponent);
     });
 
     it(`should create`, () =>
@@ -56,6 +56,29 @@ describe(`TerraRadioInputComponent:`, () =>
         expect(labelElement.innerText.trim()).toBe(label.trim());
     });
 
+    it(`should set [class.disabled] of the <label> depending on #disabled`, () =>
+    {
+        let labelElement:HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
+        expect(labelElement.classList.contains('disabled')).toBe(false);
+
+        component.disabled = true;
+        fixture.detectChanges();
+
+        expect(labelElement.classList.contains('disabled')).toBe(true);
+    });
+
+    it(`should set [class.inline] of the <label> depending on the group's #inline property`, () =>
+    {
+        let labelElement:DebugElement = fixture.debugElement.query(By.css('label'));
+        expect(labelElement.classes.hasOwnProperty('inline')).toBe(false);
+
+        radioGroupComponent.inline = true;
+
+        fixture.detectChanges();
+
+        expect(labelElement.classes['inline']).toBe(true);
+    });
+
     describe(``, () =>
     {
         let inputDebugElement:DebugElement;
@@ -64,6 +87,14 @@ describe(`TerraRadioInputComponent:`, () =>
         {
             inputDebugElement = fixture.debugElement.query(By.css('input[type="radio"]'));
             inputElement = inputDebugElement.nativeElement;
+        });
+
+        it(`should set the <label>'s [for] and the <input>'s [id] attribute correctly`, () =>
+        {
+            let labelElement:HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
+            fixture.detectChanges();
+            expect(inputElement.id).toMatch(/radio-input#\d+/);
+            expect(labelElement.htmlFor).toEqual(inputElement.id);
         });
 
         it(`should set [disabled] attribute of the <input> depending on #disabled`, () =>

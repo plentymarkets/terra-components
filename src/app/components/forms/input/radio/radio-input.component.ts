@@ -3,19 +3,21 @@ import {
     Host,
     Input
 } from '@angular/core';
-import { TerraRadioGroupComponent } from './terra-radio-group.component';
+import { RadioGroupComponent } from './radio-group.component';
+
+let nextId:number = 0;
 
 /**
  * @author pweyrich
  * @description This component is a wrapper for HTML5's native <input [type="radio"]> element including a corresponding <label> element.
- * It must be used within a hosting <terra-radio-group> element!
+ * It must be used within a hosting <tc-radio-group> element!
  */
 @Component({
-    selector: 'terra-radio-input',
-    template: require('./terra-radio-input.component.html'),
-    styles:   [require('./terra-radio-input.component.scss')],
+    selector: 'tc-radio-input',
+    template: require('./radio-input.component.html'),
+    styles:   [require('./radio-input.component.scss')],
 })
-export class TerraRadioInputComponent
+export class RadioInputComponent
 {
     /**
      * The radio input's label
@@ -36,7 +38,14 @@ export class TerraRadioInputComponent
     @Input()
     public disabled:boolean = false;
 
-    constructor(@Host() protected group:TerraRadioGroupComponent)
+    /**
+     * unique identifier of this input instance
+     */
+    protected readonly id:string;
+
+    constructor(@Host() protected group:RadioGroupComponent)
     {
+        // generate the id of the input instance
+        this.id = `radio-input#${nextId++}`;
     }
 }
