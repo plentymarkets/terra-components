@@ -151,16 +151,16 @@ describe('TerraPortletComponent', () =>
         let onHeaderClick:Spy = spyOn(component, 'toggleCollapse');
 
         expect(component.inputCollapsed).toBe(false);
-        expect(debugElement.query(By.css('span.icon-collapse_down'))).toBeDefined();
-        expect(debugElement.query(By.css('span.icon-collapse_up'))).toBeDefined();
+        expect(debugElement.query(By.css('span.icon-collapse_down'))).toBeTruthy();
+        expect(debugElement.query(By.css('span.icon-collapse_up'))).toBeFalsy();
 
         debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
         fixture.detectChanges();
 
         expect(onHeaderClick).toHaveBeenCalled();
         expect(component.inputCollapsed).toBe(false);
-        expect(debugElement.query(By.css('span.icon-collapse_down'))).toBeDefined();
-        expect(debugElement.query(By.css('span.icon-collapse_up'))).toBeDefined();
+        expect(debugElement.query(By.css('span.icon-collapse_down'))).toBeTruthy();
+        expect(debugElement.query(By.css('span.icon-collapse_up'))).toBeFalsy();
     });
 
     it(`should collapse icon only of 'inputIsCollapsable' set to true`, () =>
