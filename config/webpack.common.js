@@ -30,6 +30,18 @@ module.exports = function (options) {
             rules: [
                 {
                     test: /\.ts$/,
+                    enforce: 'pre',
+                    loader: 'tslint-loader',
+                    exclude: [/node_modules/],
+                    options: {
+                        // typeCheck: true, // this really slows down compiling,
+                        emitErrors: true, // causes compilation failure if there are tslint-rule violations
+                        failOnHint: true, // interrupts the compilation on any tslint error
+                        configFile: 'tslint.json'
+                    }
+                },
+                {
+                    test: /\.ts$/,
                     loaders: [
                         'awesome-typescript-loader',
                         'angular2-template-loader'
