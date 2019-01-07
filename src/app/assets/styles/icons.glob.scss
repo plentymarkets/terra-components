@@ -622,36 +622,36 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
     box-sizing: border-box;
     background-color: var(--color-group-navigation);
     color: var(--color-structure-0);
-    
+
     // Exceptions
     &.btn-link
     {
         border: none;
     }
-    
+
     &.btn-major
     {
         background-color: var(--function-group-color);
     }
-    
+
     &.btn-major
     {
         background-color: var(--function-group-color);
     }
-    
+
     // Active: Hover, Fokus, Highlight, Aktiv
     &:hover
     {
         background-color: var(--color-group-active) !important;
         color: var(--color-structure-0) !important;
     }
-    
+
 }
 
 terra-button .btn-handler, terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
 {
     // Disabled: Deaktiviert, Nicht auswählbar
-    
+
     &.Disabled
     {
         background-color: var(--color-group-disabled) !important;
@@ -659,7 +659,7 @@ terra-button .btn-handler, terra-button .btn, div.adminActionIcon, button.adminB
         opacity: 1 !important;
         border: none;
     }
-    
+
     &.disabled .btn
     {
         background-color: var(--color-group-disabled) !important;

@@ -73,7 +73,7 @@ export class TerraFormFieldControlService
                 if(isDisabled)
                 {
                     toGroup[formField.key].disable({
-                        onlySelf: true,
+                        onlySelf:  true,
                         emitEvent: false
                     });
                 }

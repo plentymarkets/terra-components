@@ -3,7 +3,7 @@
     position: absolute;
     right: auto;
     z-index: 1030;
-    
+
     &.visible
     {
         display: inline-block;
@@ -11,7 +11,7 @@
         opacity: 1;
         transition: var(--transition-0);
     }
-    
+
     a
     {
         --context-menu-a-font-size: 12px;

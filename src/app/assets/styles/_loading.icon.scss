@@ -4,7 +4,7 @@
     height: 1em;
     position: relative;
     display: inline-block;
-    
+
     &:before, &:after
     {
         content: "";
@@ -17,11 +17,11 @@
         position: absolute;
         top: 0;
         left: 0;
-        
+
         -webkit-animation: terra-bounce 2.0s infinite ease-in-out;
         animation: terra-bounce 2.0s infinite ease-in-out;
     }
-    
+
     &:before
     {
         -webkit-animation-delay: -1.0s;

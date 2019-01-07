@@ -6,17 +6,17 @@
     height: var(--terra-breadcrumbs-height, var(--breadcrumbs-height));
     transition: height var(--transition-lg);
     display: flex;
-    
+
     &.breadcrumbs-overflow-auto
     {
         overflow-x: auto;
         overflow-y: hidden;
     }
-    
+
     .terra-breadcrumb-container
     {
         cursor: pointer;
-        
+
         .terra-breadcrumb-wrapper
         {
             text-decoration: none;
@@ -29,7 +29,7 @@
             color: var(--terra-breadcrumb-color, var(--color-structure-0));
             white-space: nowrap;
             height: var(--breadcrumbs-height);
-            
+
             .terra-breadcrumb
             {
                 font-weight: var(--font-weight-2);
@@ -41,31 +41,31 @@
                 text-decoration: none;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
-                
+
                 &.active
                 {
                     color: var(--color-active);
                     cursor: default;
                 }
-                
+
                 &:not(.active):hover
                 {
                     color: var(--color-active);
                 }
             }
-            
+
             &:hover
             {
                 color: var(--color-active);
             }
-            
+
             .icon-caret
             {
                 overflow: hidden;
                 font-size: var(--font-size-6);
                 line-height: var(--terra-breadcrumbs-icon-caret-line-height, var(--breadcrumbs-height));
                 padding-left: 8px;
-                
+
                 &:hover
                 {
                     .context-menu
@@ -77,21 +77,21 @@
                         transition-delay: var(--transition-delay-0);
                     }
                 }
-                
+
                 .context-menu
                 {
                     position: fixed;
                     width: 150px;
                     transition: all var(--transition-0);
                     transition-delay: var(--transition-delay-0);
-                    
+
                     li
                     {
                         float: none;
                         display: flex;
                         align-items: center;
                         height: var(--height-sm);
-                        
+
                         span
                         {
                             margin-right: 5px;
@@ -100,7 +100,7 @@
                 }
             }
         }
-        
+
         .icon-next
         {
             &::before
