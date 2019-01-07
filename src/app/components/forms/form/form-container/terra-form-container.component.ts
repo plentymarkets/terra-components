@@ -71,8 +71,8 @@ export class TerraFormContainerComponent implements OnInit, OnChanges
     @Input()
     public inputIsDisabled:boolean = false;
 
-   @Input()
-   public formKey:string;
+    @Input()
+    public formKey:string;
 
     @Output()
     public outputFormValueChanged:EventEmitter<TerraKeyValuePairInterface<any>> = new EventEmitter<TerraKeyValuePairInterface<any>>();
