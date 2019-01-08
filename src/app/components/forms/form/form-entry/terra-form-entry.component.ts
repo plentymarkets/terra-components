@@ -157,6 +157,10 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         this.bindInputProperties();
         if(changes.hasOwnProperty('inputFormValue') && !isNullOrUndefined(this.formControl))
         {
+            if(!isNullOrUndefined(this.componentInstance) && isFunction(this.componentInstance.writeValue))
+            {
+                this.componentInstance.writeValue(this.inputFormValue);
+            }
             setTimeout(() => this.formControl.patchValue(this.inputFormValue));
         }
     }
