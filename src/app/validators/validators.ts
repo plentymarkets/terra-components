@@ -6,6 +6,12 @@ import {
 import { ibanValidator } from './iban-validator';
 import { terraDecimalValidator } from './decimal/terra-decimal-validator';
 
+/**
+ * Provides a set of additional validators used by form controls.
+ *
+ * A validator is a function that processes a FormControl or collection of
+ * controls and returns a map of errors. A null map means that validation has passed.
+ */
 export class TerraValidators
 {
     public static decimal(maxLength:number, decimals:number):ValidatorFn

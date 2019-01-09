@@ -5,6 +5,10 @@ import {
 } from '@angular/forms';
 import * as IBAN from 'iban';
 
+/**
+ * IBAN validation for reactive FormControls
+ * @returns ValidatorFn
+ */
 export function ibanValidator():ValidatorFn
 {
     return (control:AbstractControl):ValidationErrors =>
