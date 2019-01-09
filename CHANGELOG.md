@@ -1,3 +1,11 @@
+# Unreleased
+
+### Features
+* **terra-dynamic-form** added interfaces that define the proper format of a json file which are
+	- TerraDynamicFormFields
+	- TerraDynamicFormFieldInterface
+	- TerraDynamicFormFieldOptionsInterface
+
 <a name="3.1.0"></a>
 # 3.1.0 (07.01.2019)
 
