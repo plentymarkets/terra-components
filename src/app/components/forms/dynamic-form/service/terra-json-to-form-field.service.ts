@@ -14,6 +14,8 @@ import { TerraFormFieldColorPicker } from '../data/terra-form-field-color-picker
 import { TerraFormFieldMultiCheckBox } from '../data/terra-form-field-multi-check-box';
 import { TerraFormFieldNoteEditor } from '../data/terra-form-field-note-editor';
 import { TerraFormFieldCodeEditor } from '../data/terra-form-field-code-editor';
+import { TerraDynamicFormFields } from '../interfaces/terra-dynamic-form.fields';
+import { TerraDynamicFormFieldInterface } from '../interfaces/terra-dynamic-form-field.interface';
 
 /**
  * @author mfrank
@@ -21,7 +23,7 @@ import { TerraFormFieldCodeEditor } from '../data/terra-form-field-code-editor';
  */
 export class TerraJsonToFormFieldService
 {
-    public static generateFormFields(formFieldsJSON:{ [key:string]:any }):Array<TerraFormFieldBase<any>>
+    public static generateFormFields(formFieldsJSON:TerraDynamicFormFields):Array<TerraFormFieldBase<any>>
     {
         let formFields:Array<TerraFormFieldBase<any>> = [];
 
@@ -33,7 +35,7 @@ export class TerraJsonToFormFieldService
         return formFields;
     }
 
-    private static createFormField(formFieldKey:string, formFieldData:{ [key:string]:any }):TerraFormFieldBase<any>
+    private static createFormField(formFieldKey:string, formFieldData:TerraDynamicFormFieldInterface):TerraFormFieldBase<any>
     {
         let formField:TerraFormFieldBase<any>;
 
@@ -105,7 +107,7 @@ export class TerraJsonToFormFieldService
     }
 
     private static createContainerFormField(formFieldKey:string,
-                                            formFieldData:{ [key:string]:any },
+                                            formFieldData:TerraDynamicFormFieldInterface,
                                             containerType:TerraControlTypeEnum):TerraFormFieldBaseContainer
     {
         let containerFormField:TerraFormFieldBaseContainer = new TerraFormFieldBaseContainer(formFieldKey,
