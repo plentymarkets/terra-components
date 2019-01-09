@@ -9,15 +9,12 @@ import * as IBAN from 'iban';
  * IBAN validation for reactive FormControls
  * @returns ValidatorFn
  */
-export function ibanValidator():ValidatorFn
+export function ibanValidator(control:AbstractControl):ValidationErrors
 {
-    return (control:AbstractControl):ValidationErrors =>
+    if(!IBAN.isValid(control.value))
     {
-        if(!IBAN.isValid(control.value))
-        {
-            return {iban: true};
-        }
+        return {iban: true};
+    }
 
-        return null;
-    };
+    return null;
 }

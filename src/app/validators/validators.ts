@@ -21,6 +21,6 @@ export class TerraValidators
 
     public static iban(control:AbstractControl):ValidationErrors | null
     {
-        return ibanValidator()(control);
+        return ibanValidator(control);
     }
 }
