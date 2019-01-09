@@ -4,7 +4,7 @@ import {
     ValidatorFn
 } from '@angular/forms';
 import { ibanValidator } from './iban-validator';
-import { terraDecimalValidator } from './decimal/terra-decimal-validator';
+import { terraDecimalValidator } from './terra-decimal-validator';
 
 /**
  * Provides a set of additional validators used by form controls.
