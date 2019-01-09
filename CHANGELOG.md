@@ -1,3 +1,8 @@
+# Unreleased
+
+### Features
+* **terra-portlet** added input `infoText` which is shown as `<terra-info>` element in the portlet's header
+
 <a name="3.1.0"></a>
 # 3.1.0 (07.01.2019)
 
