@@ -1,11 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
-@import './app/assets/styles/_variables.scss';
-@import './app/assets/themes/theme-core.scss';
-@import './app/assets/themes/theme-compact.scss';
-@import './app/assets/themes/theme-filled-buttons.scss';
-@import './app/assets/themes/theme-xmas.scss';
-@import './app/assets/themes/theme-dark.scss';
-@import './app/assets/themes/theme-light.scss';
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700");
 
 *
 {
@@ -163,7 +156,7 @@ a[href]
             background-color: var(--color-active);
             color: var(--color-structure-0) !important;
         }
-    
+        
         a
         {
             cursor: pointer;
@@ -179,13 +172,12 @@ a[href]
             font-weight: var(--font-weight-1);
             color: inherit;
             @include font-rendering;
-    
+            
             &:hover
             {
                 color: inherit;
             }
-        
-        
+            
             .left-icon
             {
                 padding-right: 2px;
@@ -199,7 +191,7 @@ a[href]
                 position: absolute;
                 right: 4px;
                 line-height: var(--font-size-5);
-            
+                
                 &:hover
                 {
                     color: var(--color-active);
@@ -217,7 +209,7 @@ a[href]
             }
         }
     }
-
+    
 }
 
 .tab-wrapper

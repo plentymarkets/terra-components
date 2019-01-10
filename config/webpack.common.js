@@ -46,6 +46,7 @@ module.exports = {
                 exclude: [/\.glob\.scss$/],
                 loaders: [
                     'raw-loader',
+                    'postcss-loader',
                     {
                         loader: 'sass-loader',
                         query: {
