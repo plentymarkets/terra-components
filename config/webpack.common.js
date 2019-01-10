@@ -18,12 +18,6 @@ module.exports = {
     module: {
         rules: [
             {
-                // Mark files inside `@angular/core` as using SystemJS style dynamic imports.
-                // Removing this will cause deprecation warnings to appear.
-                test: /[\/\\]@angular[\/\\]core[\/\\].+\.js$/,
-                parser: {system: true}  // enable SystemJS
-            },
-            {
                 test: /\.ts$/,
                 loaders: [
                     {
@@ -35,6 +29,12 @@ module.exports = {
                     'angular2-template-loader'
                 ],
                 exclude: [/\.(spec|e2e)\.ts$/]
+            },
+            {
+                // Mark files inside `@angular/core` as using SystemJS style dynamic imports.
+                // Removing this will cause deprecation warnings to appear.
+                test: /[\/\\]@angular[\/\\]core[\/\\].+\.js$/,
+                parser: {system: true}  // enable SystemJS
             },
             {
                 test: /\.html$/,
