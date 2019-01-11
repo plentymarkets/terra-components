@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component,
+    OnInit } from '@angular/core';
 import { TerraAlertComponent } from './terra-alert.component';
 import { TerraAlertInterface } from './data/terra-alert.interface';
+import { AlertService } from './alert.service';
+import { isNullOrUndefined } from "util";
 
 /**
  * @author mkunze
@@ -13,19 +16,29 @@ import { TerraAlertInterface } from './data/terra-alert.interface';
     ],
     template: require('./terra-alert-panel.component.html')
 })
-
-export class TerraAlertPanelComponent
+export class TerraAlertPanelComponent implements OnInit
 {
     protected alerts:Array<TerraAlertInterface>;
     private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
-    constructor()
+    constructor(private service:AlertService)
     {
         this.alerts = this.alert.alerts;
     }
 
-    private closeAlert(i:number):void
+    public ngOnInit():void
     {
-        this.alert.closeAlert(i);
+        this.service.addAlert.subscribe((alert:TerraAlertInterface) => this.addAlert(alert));
+        this.service.closeAlert.subscribe((identifier:string) => this.closeAlert(identifier));
+    }
+
+    private addAlert(alert:TerraAlertInterface):void
+    {
+        this.alert.addAlert(alert);
+    }
+
+    private closeAlert(identifier:string):void
+    {
+        this.alert.closeAlertByIdentifier(identifier);
     }
 }
