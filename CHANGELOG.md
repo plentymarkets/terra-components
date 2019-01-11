@@ -3,7 +3,13 @@
 ### Features
 * **terra-filter** is now deprecated. Use `<tc-filter>` instead.
 
-<a name="3.0.0></a>
+<a name="3.1.0"></a>
+# 3.1.0 (07.01.2019)
+
+### Features
+* **terra-portlet** Collapsable portlets can now be disabled by setting the `inputIsDisabled`-property.
+
+<a name="3.0.0"></a>
 # 3.0.0 (18.12.2018)
 
 ### Breaking changes
