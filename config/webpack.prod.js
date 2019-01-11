@@ -1,7 +1,7 @@
 const merge = require('webpack-merge');
 const commonConfig = require('./webpack.common');
 const helpers = require('./helpers');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(commonConfig, {
     mode: 'production',
@@ -13,7 +13,7 @@ module.exports = merge(commonConfig, {
     },
     optimization: {
         minimizer: [
-            new UglifyJsPlugin({
+            new TerserPlugin({
                 parallel: true
             })
         ],
