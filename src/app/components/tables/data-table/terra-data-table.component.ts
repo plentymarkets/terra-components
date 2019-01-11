@@ -63,6 +63,11 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
      */
     @Input()
     public inputHasPager:boolean = true;
+    /**
+     *
+     */
+    @Input()
+    public useContentBody:boolean = false;
 
     /**
      * @description context menu for rows

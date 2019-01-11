@@ -63,6 +63,7 @@ import { TerraGroupFunctionComponent } from './tables/group-function/terra-group
 import { TerraInfoComponent } from './info/terra-info.component';
 import { RadioInputComponent } from './forms/input/radio/radio-input.component';
 import { RadioGroupComponent } from './forms/input/radio/radio-group.component';
+import { DataRowComponent } from './tables/data-table/data-row/data-row.component';
 
 export const exportedComponents:Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -127,7 +128,8 @@ export const exportedComponents:Array<Type<any>> = [
     TerraThreeColumnsContainerComponent,
     TerraGroupFunctionComponent,
     RadioInputComponent,
-    RadioGroupComponent
+    RadioGroupComponent,
+    DataRowComponent
 ];
 
 export const components:Array<Type<any>> = [
