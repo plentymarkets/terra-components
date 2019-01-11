@@ -5,7 +5,6 @@ import {
 
 import { TerraAlertComponent } from '../terra-alert.component';
 import { TranslationService } from 'angular-l10n';
-import { AlertService } from '../alert.service';
 
 @Component({
     selector: 'terra-alert-example',
@@ -16,7 +15,7 @@ export class TerraAlertComponentExample implements OnInit
 {
     private exampleAlert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
-    constructor(private alertService:AlertService)
+    constructor(public translation:TranslationService)
     {
     }
 
@@ -25,7 +24,7 @@ export class TerraAlertComponentExample implements OnInit
         this.exampleAlert.closeAlertByIdentifier('info');
     }
 
-    protected showInformationAlert():void
+    private showInformationAlert():void
     {
         this.exampleAlert.addAlert({
             msg:              'info-Alert',
@@ -33,9 +32,10 @@ export class TerraAlertComponentExample implements OnInit
             dismissOnTimeout: 5000,
             identifier:       'info'
         });
+        this.emptyAlertArray();
     }
 
-    protected showSuccessAlert():void
+    private showSuccessAlert():void
     {
         this.exampleAlert.addAlert({
             msg:              'success-Alert',
@@ -43,19 +43,21 @@ export class TerraAlertComponentExample implements OnInit
             dismissOnTimeout: 5000,
             identifier:       'info'
         });
+        this.emptyAlertArray();
     }
 
-    protected showErrorAlert():void
+    private showErrorAlert():void
     {
         this.exampleAlert.addAlert({
             msg:              'error-Alert',
             type:             'danger',
-            dismissOnTimeout: 0,
+            dismissOnTimeout: 5000,
             identifier:       'info'
         });
+        this.emptyAlertArray();
     }
 
-    protected showWarningAlert():void
+    private showWarningAlert():void
     {
         this.exampleAlert.addAlert({
             msg:              'warning-Alert',
@@ -63,10 +65,11 @@ export class TerraAlertComponentExample implements OnInit
             dismissOnTimeout: 5000,
             identifier:       'info'
         });
+        this.emptyAlertArray();
     }
 
-    protected showAlertUsingService():void
-    {
-        this.alertService.handleInfo('You have used the service');
+    public emptyAlertArray():void
+    { // No part of the Example (Ignore that Function)
+        setTimeout(() => this.exampleAlert.closeAlertByIdentifier('info'), 5000);
     }
 }

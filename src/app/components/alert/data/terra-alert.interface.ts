@@ -1,9 +1,7 @@
-import { AlertType } from '../alert.service';
-
 export interface TerraAlertInterface
 {
     msg:string;
-    type:string | AlertType;
+    type:string;
     dismissOnTimeout:number;
     identifier?:string;
 }
