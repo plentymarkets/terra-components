@@ -3,14 +3,7 @@ import {
     Injectable
 } from '@angular/core';
 import { TerraAlertInterface } from './data/terra-alert.interface';
-
-export enum AlertType
-{
-    info = 'info',
-    warning = 'warning',
-    error = 'danger',
-    success = 'success'
-}
+import { AlertType } from './alert-type.enum';
 
 @Injectable()
 export class AlertService
