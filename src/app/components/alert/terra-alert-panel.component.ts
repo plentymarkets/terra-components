@@ -1,9 +1,10 @@
-import { Component,
-    OnInit } from '@angular/core';
+import {
+    Component,
+    OnInit
+} from '@angular/core';
 import { TerraAlertComponent } from './terra-alert.component';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { AlertService } from './alert.service';
-import { isNullOrUndefined } from "util";
 
 /**
  * @author mkunze
