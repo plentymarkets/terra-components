@@ -14,6 +14,7 @@ import {
     trigger
 } from '@angular/animations';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
+import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
     selector:   'terra-portlet',
@@ -77,6 +78,8 @@ export class TerraPortletComponent implements OnChanges
 
     @Output()
     public inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    protected readonly infoTextPlacement:TerraPlacementEnum.RIGHT;
 
     private get collapsedState():string
     {
