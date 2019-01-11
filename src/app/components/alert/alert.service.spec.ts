@@ -7,7 +7,7 @@ import {
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { Subscription } from 'rxjs';
 
-fdescribe('AlertService', () =>
+describe('AlertService', () =>
 {
     let service:AlertService;
     beforeEach(() => TestBed.configureTestingModule({
