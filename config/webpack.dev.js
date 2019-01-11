@@ -1,6 +1,6 @@
-var helpers = require('./helpers');
-var merge = require('webpack-merge');
-var commonConfig = require('./webpack.common');
+const helpers = require('./helpers');
+const merge = require('webpack-merge');
+const commonConfig = require('./webpack.common');
 
 module.exports = merge(commonConfig, {
     mode: 'development',

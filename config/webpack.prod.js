@@ -1,7 +1,7 @@
-var merge = require('webpack-merge');
-var commonConfig = require('./webpack.common');
-var helpers = require('./helpers');
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const merge = require('webpack-merge');
+const commonConfig = require('./webpack.common');
+const helpers = require('./helpers');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = merge(commonConfig, {
     mode: 'production',

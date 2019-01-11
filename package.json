@@ -67,6 +67,7 @@
 		"autoprefixer": "^9.4.4",
 		"codelyzer": "^4.5.0",
 		"copy-webpack-plugin": "^4.6.0",
+		"css-loader": "^2.1.0",
 		"del": "^3.0.0",
 		"dgeni": "^0.4.10",
 		"dgeni-packages": "^0.26.12",

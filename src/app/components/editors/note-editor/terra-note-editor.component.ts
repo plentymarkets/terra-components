@@ -10,7 +10,6 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
     selector:  'terra-note-editor',
     template:  require('./terra-note-editor.component.html'),
     styles:    [
-        require('./terra-note-editor.component.scss'),
         require('./terra-note-editor.component.glob.scss').toString()
     ],
     providers: [{

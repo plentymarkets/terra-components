@@ -1,10 +1,9 @@
-var webpack = require('webpack');
-var ProvidePlugin = require('webpack/lib/ProvidePlugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var helpers = require('./helpers');
-var ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const helpers = require('./helpers');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -56,7 +55,7 @@ module.exports = {
                     {
                         loader: 'sass-resources-loader',
                         options: {
-                            resources: helpers.root('src/app/assets/styles/_variables.scss')
+                            resources: helpers.root('src/app/styles/_variables.scss')
                         }
                     }
                 ]
@@ -65,7 +64,8 @@ module.exports = {
                 test: /\.glob\.scss$/,
                 loaders: [
                     'style-loader',
-                    'raw-loader',
+                    'css-loader',
+                    'postcss-loader',
                     'sass-loader'
                 ]
             },
