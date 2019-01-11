@@ -1,3 +1,8 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-pager** inject current language to be able to translate the texts in the template properly.
+
 <a name="3.1.0"></a>
 # 3.1.0 (07.01.2019)
 
