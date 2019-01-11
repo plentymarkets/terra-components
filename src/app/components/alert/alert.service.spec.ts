@@ -41,53 +41,53 @@ describe('AlertService', () =>
 
         it('Type: Info', () =>
         {
-            service.handleInfo(text);
+            service.info(text);
             expect(latest).toBeDefined();
             expect(latest.msg).toBe(text);
             expect(latest.type).toBe(AlertType.info);
             expect(latest.dismissOnTimeout).toBe(defaultTimeout);
             expect(latest.identifier).toBeUndefined();
 
-            service.handleInfo(text, identifier);
+            service.info(text, identifier);
             expect(latest.identifier).toEqual(identifier);
         });
 
         it('Type: Warning', () =>
         {
-            service.handleWarning(text);
+            service.warning(text);
             expect(latest).toBeDefined();
             expect(latest.msg).toBe(text);
             expect(latest.type).toBe(AlertType.warning);
             expect(latest.dismissOnTimeout).toBe(defaultTimeout);
             expect(latest.identifier).toBeUndefined();
 
-            service.handleWarning(text, identifier);
+            service.warning(text, identifier);
             expect(latest.identifier).toEqual(identifier);
         });
 
         it('Type: Success', () =>
         {
-            service.handleMessage(text);
+            service.success(text);
             expect(latest).toBeDefined();
             expect(latest.msg).toBe(text);
             expect(latest.type).toBe(AlertType.success);
             expect(latest.dismissOnTimeout).toBe(defaultTimeout);
             expect(latest.identifier).toBeUndefined();
 
-            service.handleMessage(text, identifier);
+            service.success(text, identifier);
             expect(latest.identifier).toEqual(identifier);
         });
 
         it('Type: Error', () =>
         {
-            service.handleError(text);
+            service.error(text);
             expect(latest).toBeDefined();
             expect(latest.msg).toBe(text);
             expect(latest.type).toBe(AlertType.error);
             expect(latest.dismissOnTimeout).toBe(0);
             expect(latest.identifier).toBeUndefined();
 
-            service.handleError(text, identifier);
+            service.error(text, identifier);
             expect(latest.identifier).toEqual(identifier);
         });
 

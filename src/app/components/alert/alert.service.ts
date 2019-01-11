@@ -23,22 +23,42 @@ export class AlertService
     constructor()
     {}
 
-    public handleMessage(message:string, identifier?:string):void
+    /**
+     * add a success alert
+     * @param message
+     * @param identifier
+     */
+    public success(message:string, identifier?:string):void
     {
         this.add(message, AlertType.success, identifier, this.defaultTimeout);
     }
 
-    public handleError(message:string, identifier?:string):void
+    /**
+     * add an error alert
+     * @param message
+     * @param identifier
+     */
+    public error(message:string, identifier?:string):void
     {
         this.add(message, AlertType.error, identifier, 0);
     }
 
-    public handleInfo(message:string, identifier?:string):void
+    /**
+     * add an info alert
+     * @param message
+     * @param identifier
+     */
+    public info(message:string, identifier?:string):void
     {
         this.add( message, AlertType.info, identifier, this.defaultTimeout);
     }
 
-    public handleWarning(message:string, identifier?:string):void
+    /**
+     * add a warning alert
+     * @param message
+     * @param identifier
+     */
+    public warning(message:string, identifier?:string):void
     {
         this.add( message, AlertType.warning, identifier, this.defaultTimeout);
     }

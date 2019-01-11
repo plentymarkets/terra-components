@@ -67,6 +67,6 @@ export class TerraAlertComponentExample implements OnInit
 
     protected showAlertUsingService():void
     {
-        this.alertService.handleInfo('You have used the service');
+        this.alertService.info('You have used the service');
     }
 }
