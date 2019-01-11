@@ -1,3 +1,8 @@
+# Unreleased
+
+### Features
+* **terra-alert** new alerts a now added to the top of the list
+
 <a name="3.1.0"></a>
 # 3.1.0 (07.01.2019)
 
