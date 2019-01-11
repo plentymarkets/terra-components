@@ -25,48 +25,33 @@ export class AlertService
 
     public handleMessage(message:string, identifier?:string):void
     {
-        this.add({
-            msg:              message,
-            type:             AlertType.success,
-            dismissOnTimeout: this.defaultTimeout,
-            identifier:       identifier
-        });
+        this.add(message, AlertType.success, identifier, this.defaultTimeout);
     }
 
     public handleError(message:string, identifier?:string):void
     {
-        this.add({
-            msg:              message,
-            type:             AlertType.error,
-            dismissOnTimeout: 0,
-            identifier:       identifier
-        });
+        this.add(message, AlertType.error, identifier, 0);
     }
 
     public handleInfo(message:string, identifier?:string):void
     {
-        this.add({
-            msg:              message,
-            type:             AlertType.info,
-            dismissOnTimeout: this.defaultTimeout,
-            identifier:       identifier
-        });
+        this.add( message, AlertType.info, identifier, this.defaultTimeout);
     }
 
     public handleWarning(message:string, identifier?:string):void
     {
-        this.add({
-            msg:              message,
-            type:             AlertType.warning,
-            dismissOnTimeout: this.defaultTimeout,
-            identifier:       identifier
-        });
+        this.add( message, AlertType.warning, identifier, this.defaultTimeout);
     }
 
     /** @description is used to add an alert*/
-    private add(alert:TerraAlertInterface):void
+    private add(msg:string, type:AlertType, identifier:string, timeout:number):void
     {
-        this.addAlert.emit(alert);
+        this.addAlert.emit({
+            msg:              msg,
+            type:             type,
+            identifier:       identifier,
+            dismissOnTimeout: timeout
+        });
     }
 
     // TODO: Handle this automatically
