@@ -1,4 +1,4 @@
-import { AlertType } from '../alert.service';
+import { AlertType } from '../alert-type.enum';
 
 export interface TerraAlertInterface
 {

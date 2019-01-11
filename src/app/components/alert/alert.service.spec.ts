@@ -1,11 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-    AlertService,
-    AlertType
-} from './alert.service';
+import { AlertService, } from './alert.service';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { Subscription } from 'rxjs';
+import { AlertType } from './alert-type.enum';
 
 describe('AlertService', () =>
 {
