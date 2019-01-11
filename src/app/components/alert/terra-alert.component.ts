@@ -67,7 +67,6 @@ export class TerraAlertComponent
             alert.dismissOnTimeout = 5000;
         }
 
-        // TODO: use unshift to add new alerts to the top/beginning
         this.alerts.push({
             msg:              alert.msg,
             type:             alert.type,
