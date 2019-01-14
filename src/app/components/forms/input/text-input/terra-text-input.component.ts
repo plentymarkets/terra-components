@@ -79,7 +79,7 @@ export class TerraTextInputComponent extends TerraInputComponent
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement>document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.focus();
         });
     }
@@ -88,7 +88,7 @@ export class TerraTextInputComponent extends TerraInputComponent
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement>document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.select();
         });
     }

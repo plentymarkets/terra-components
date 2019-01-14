@@ -47,19 +47,19 @@ export class Color
         {
             if(this.isHEX(color))
             {
-                this.readHEX(<string>color);
+                this.readHEX(<string> color);
                 return;
             }
 
             if(this.isRGB(color))
             {
-                this.readRGB(<ColorRGB>color);
+                this.readRGB(<ColorRGB> color);
                 return;
             }
 
             if(this.isHSL(color))
             {
-                this.readHSL(<ColorHSL>color);
+                this.readHSL(<ColorHSL> color);
                 return;
             }
         }
@@ -84,7 +84,7 @@ export class Color
      */
     private isRGB(color:string | ColorRGB | ColorHSL):boolean
     {
-        return !isUndefined((<ColorRGB>color).r);
+        return !isUndefined((<ColorRGB> color).r);
     }
 
     /**
@@ -94,7 +94,7 @@ export class Color
      */
     private isHSL(color:string | ColorRGB | ColorHSL):boolean
     {
-        return !isUndefined((<ColorHSL>color).h);
+        return !isUndefined((<ColorHSL> color).h);
     }
 
     /**

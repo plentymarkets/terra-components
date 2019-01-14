@@ -73,7 +73,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
     {
         setTimeout(():void =>
         {
-            let input:HTMLInputElement = <HTMLInputElement>document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.focus();
         });
     }
@@ -85,7 +85,7 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
     {
         setTimeout(():void =>
         {
-            let input:HTMLInputElement = <HTMLInputElement>document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
             input.select();
         });
     }
