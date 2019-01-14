@@ -3,50 +3,44 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { TerraRadioInputComponent } from './terra-radio-input.component';
-import { TerraRadioGroupComponent } from './terra-radio-group.component';
+import { RadioInputComponent } from './radio-input.component';
+import { RadioGroupComponent } from './radio-group.component';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import Spy = jasmine.Spy;
 
 
 @Component({
-    template: `<terra-radio-group name="radio">
-        <terra-radio-input [label]="'Option 1'" [value]="1"></terra-radio-input>
-        <terra-radio-input [label]="'Option 2'" [value]="2"></terra-radio-input>
-    </terra-radio-group>`
+    template: `
+                  <tc-radio-group name="radio">
+                      <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
+                      <tc-radio-input [label]="'Option 2'" [value]="2"></tc-radio-input>
+                  </tc-radio-group>`
 })
 class RadioGroupTestComponent {}
 
 
-describe(`TerraRadioGroupComponent:`, () =>
+describe(`RadioGroupComponent:`, () =>
 {
-    let component:RadioGroupTestComponent;
-    let fixture:ComponentFixture<RadioGroupTestComponent>;
-    let radioGroupComponent:TerraRadioGroupComponent;
+    let radioGroupComponent:RadioGroupComponent;
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [TerraRadioInputComponent, TerraRadioGroupComponent, RadioGroupTestComponent]
+            declarations: [RadioInputComponent, RadioGroupComponent, RadioGroupTestComponent]
         }).compileComponents();
     }));
 
-    beforeEach(() =>
-    {
-        fixture = TestBed.createComponent(RadioGroupTestComponent);
-        component = fixture.componentInstance;
-    });
-
     describe(`itself`, () =>
     {
+        let fixture:ComponentFixture<RadioGroupComponent>;
         beforeEach(() =>
         {
-            radioGroupComponent = TestBed.createComponent(TerraRadioGroupComponent).componentInstance;
+            fixture = TestBed.createComponent(RadioGroupComponent);
+            radioGroupComponent = fixture.componentInstance;
         });
 
         it(`should create`, () =>
         {
-            expect(component).toBeTruthy();
             expect(radioGroupComponent).toBeTruthy();
         });
 
@@ -56,8 +50,7 @@ describe(`TerraRadioGroupComponent:`, () =>
             expect(radioGroupComponent.legend).toBeUndefined();
         });
 
-        // TODO: make it run..
-        xit(`should display given #legend text in the <legend>-element`, () =>
+        it(`should display given #legend text in the <legend>-element`, () =>
         {
             let legendElement:HTMLLegendElement = fixture.debugElement.query(By.css('legend')).nativeElement;
             expect(legendElement.innerText).toBe('');
@@ -95,10 +88,20 @@ describe(`TerraRadioGroupComponent:`, () =>
 
     describe(`within a test host with radio inputs`, () =>
     {
+        let component:RadioGroupTestComponent;
+        let fixture:ComponentFixture<RadioGroupTestComponent>;
+
         beforeEach(() =>
         {
-            radioGroupComponent = fixture.debugElement.query(By.css('terra-radio-group')).componentInstance;
+            fixture = TestBed.createComponent(RadioGroupTestComponent);
+            component = fixture.componentInstance;
+            radioGroupComponent = fixture.debugElement.query(By.css('tc-radio-group')).componentInstance;
             fixture.detectChanges();
+        });
+
+        it(`should create the host component`, () =>
+        {
+            expect(component).toBeTruthy();
         });
 
         it(`#value should be undefined initially`, () =>
