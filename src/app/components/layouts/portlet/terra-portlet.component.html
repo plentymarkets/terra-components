@@ -3,7 +3,9 @@
          class="portlet-head"
          [class.unfolded]="!inputCollapsed"
          (click)="toggleCollapse()">
-        <span class="header-caption">{{inputPortletHeader}} <terra-info *ngIf="infoText" [text]="infoText" [textPlacement]="infoTextPlacement"></terra-info></span>
+        <span class="header-caption">{{inputPortletHeader}}
+            <terra-info *ngIf="infoText" [text]="infoText" [textPlacement]="infoTextPlacement"></terra-info>
+        </span>
         <div>
             <div class="header-buttons btn-group" (click)="$event.stopPropagation()">
                 <terra-button *ngFor="let button of inputButtonList"
