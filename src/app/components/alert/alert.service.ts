@@ -16,6 +16,14 @@ export class AlertService
      * Notifies that an alert is supposed to be closed.
      */
     public closeAlert:EventEmitter<string> = new EventEmitter<string>();
+    /**
+     * Name of the CustomEvent that is dispatched to the parent window to add an alert
+     */
+    public readonly addEvent:string = 'addAlert';
+    /**
+     * Name of the CustomEvent that is dispatched to the parent window to close an alert
+     */
+    public readonly  closeEvent:string = 'closeAlert';
 
     private readonly defaultTimeout:number = 5000;
 
@@ -65,7 +73,17 @@ export class AlertService
      */
     public close(identifier:string):void
     {
-        this.closeAlert.emit(identifier);
+        // check whether the service is used in the root window, in the test environment or in an iframe
+        if(this.isRootWindow || process.env.ENV === 'test')
+        {
+            // it is used in the root window -> use EventEmitter to notify the alert panel directly.
+            this.closeAlert.emit(identifier);
+        }
+        else
+        {
+            // it is used in an app that is hosted in an iframe -> use CustomEvent to notify the parent window.
+            this.closeAlertForPlugin(identifier);
+        }
     }
 
     private add(msg:string, type:AlertType, timeout:number, identifier?:string):void
@@ -78,9 +96,9 @@ export class AlertService
         };
 
         // check whether the service is used in the root window or in an iframe
-        if(this.isRootWindow)
+        if(this.isRootWindow || process.env.ENV === 'test')
         {
-            // it is used in the root window -> use EventEmitter to notify the alert panel.
+            // it is used in the root window -> use EventEmitter to notify the alert panel directly.
             this.addAlert.emit(alert);
         }
         else
@@ -92,11 +110,19 @@ export class AlertService
 
     private addAlertForPlugin(alert:TerraAlertInterface):void
     {
-        let event:CustomEvent<TerraAlertInterface> = new CustomEvent('addAlert', {
+        let event:CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(this.addEvent, {
             detail: alert,
             bubbles: false
         });
+        window.parent.window.dispatchEvent(event);
+    }
 
+    private closeAlertForPlugin(identifier:string):void
+    {
+        let event:CustomEvent<string> =  new CustomEvent<string>(this.closeEvent, {
+            detail: identifier,
+            bubbles: false
+        });
         window.parent.window.dispatchEvent(event);
     }
 
@@ -107,5 +133,4 @@ export class AlertService
     {
         return window === window.parent;
     }
-
 }

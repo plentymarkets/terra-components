@@ -29,9 +29,13 @@ export class TerraAlertPanelComponent implements OnInit
 
     public ngOnInit():void
     {
-        window.addEventListener('addAlert', (event:CustomEvent<TerraAlertInterface>) => this.addAlert(event.detail));
+        // listen to the EventEmitters of the service
         this.service.addAlert.subscribe((alert:TerraAlertInterface) => this.addAlert(alert));
         this.service.closeAlert.subscribe((identifier:string) => this.closeAlert(identifier));
+
+        // listen to events concerning alerts that are dispatched to the hosting window
+        window.addEventListener(this.service.addEvent, (event:CustomEvent<TerraAlertInterface>) => this.addAlert(event.detail));
+        window.addEventListener(this.service.closeEvent, (event:CustomEvent<string>) => this.closeAlert(event.detail));
     }
 
     private addAlert(alert:TerraAlertInterface):void
