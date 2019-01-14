@@ -73,6 +73,9 @@ export class TerraPortletComponent implements OnChanges
     @Input()
     public infoText:string;
 
+    @Input()
+    public inputIsDisabled:boolean = false;
+
     @Output()
     public inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -108,12 +111,15 @@ export class TerraPortletComponent implements OnChanges
      */
     public toggleCollapse():void
     {
-        if(!this.inputIsCollapsable)
+        if ( !this.inputIsDisabled )
         {
-            this.inputCollapsed = false;
-            return;
+            if(!this.inputIsCollapsable)
+            {
+                this.inputCollapsed = false;
+                return;
+            }
+            this.inputCollapsed = !this.inputCollapsed;
+            this.inputCollapsedChange.emit(this.inputCollapsed);
         }
-        this.inputCollapsed = !this.inputCollapsed;
-        this.inputCollapsedChange.emit(this.inputCollapsed);
     }
 }

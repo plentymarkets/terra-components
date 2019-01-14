@@ -1,4 +1,10 @@
-<a name="3.0.0></a>
+<a name="3.1.0"></a>
+# 3.1.0 (07.01.2019)
+
+### Features
+* **terra-portlet** Collapsable portlets can now be disabled by setting the `inputIsDisabled`-property.
+
+<a name="3.0.0"></a>
 # 3.0.0 (18.12.2018)
 
 ### Breaking changes
@@ -109,6 +115,9 @@ The following deprecated components have been deleted:
 * **tc-radio-group** new component to contain and manage `<tc-radio-input>` elements. It implements the `ControlValueAccessor` interface (`ngModel`) to be able to use it in a form.
 * **terra-radio-button** is now deprecated. Use `<tc-radio-input>` and `<tc-radio-group>` instead.
 * **terra-check-box** removed outline css
+
+### Changes
+* **file-list** change text of the delete confirmation
 
 ### Bug Fixes
 * **terra-node-tree** 

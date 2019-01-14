@@ -1,4 +1,4 @@
-<div class="portlet" [ngClass]="{ 'collapsable': inputIsCollapsable,'highlight': inputHighlightPortlet }">
+<div class="portlet" [ngClass]="{ 'collapsable': inputIsCollapsable,'highlight': inputHighlightPortlet, 'disabled': inputIsDisabled }">
     <div *ngIf="inputPortletHeader || inputIsCollapsable"
          class="portlet-head"
          [class.unfolded]="!inputCollapsed"
