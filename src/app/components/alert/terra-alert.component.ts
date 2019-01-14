@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import {
     isNull,
@@ -7,8 +6,8 @@ import {
 
 /**
  * @author mkunze
+ * @deprecated use AlertService instead
  */
-@Injectable()
 export class TerraAlertComponent
 {
     private static instance:TerraAlertComponent = null;
