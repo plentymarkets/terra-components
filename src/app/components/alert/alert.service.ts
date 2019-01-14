@@ -73,8 +73,8 @@ export class AlertService
      */
     public close(identifier:string):void
     {
-        // check whether the service is used in the root window, in the test environment or in an iframe
-        if(this.isRootWindow || process.env.ENV === 'test')
+        // check whether the service is used in the root window or in an iframe
+        if(this.isRootWindow)
         {
             // it is used in the root window -> use EventEmitter to notify the alert panel directly.
             this.closeAlert.emit(identifier);
@@ -96,7 +96,7 @@ export class AlertService
         };
 
         // check whether the service is used in the root window or in an iframe
-        if(this.isRootWindow || process.env.ENV === 'test')
+        if(this.isRootWindow)
         {
             // it is used in the root window -> use EventEmitter to notify the alert panel directly.
             this.addAlert.emit(alert);
@@ -127,10 +127,11 @@ export class AlertService
     }
 
     /**
-     * checks whether this service is used in the root window
+     * checks whether this service is used in the root window, or in the test environment
      */
     private get isRootWindow():boolean
     {
-        return window === window.parent;
+        // since tests are run in an iframe, we need to check for test environment here to make them work
+        return window === window.parent || process.env.ENV === 'test';
     }
 }
