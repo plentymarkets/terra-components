@@ -34,6 +34,7 @@ import { TerraFormContainerComponent } from '../form-container/terra-form-contai
 import { TerraFormEntryListComponent } from '../form-entry-list/terra-form-entry-list.component';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { TerraFormFieldBase } from '../../../../..';
+import { TerraValidators } from '../../../../validators/validators';
 
 @Component({
     selector: 'terra-form-entry',
@@ -294,6 +295,11 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         if(formField.options.pattern !== '')
         {
             validators.push(Validators.pattern(formField.options.pattern));
+        }
+
+        if(formField.options.isIban)
+        {
+            validators.push(TerraValidators.iban);
         }
 
         return validators;
