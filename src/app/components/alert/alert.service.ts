@@ -8,7 +8,13 @@ import { AlertType } from './alert-type.enum';
 @Injectable()
 export class AlertService
 {
+    /**
+     * Notifies that an alert is supposed to be added
+     */
     public addAlert:EventEmitter<TerraAlertInterface> = new EventEmitter<TerraAlertInterface>();
+    /**
+     * Notifies that an alert is supposed to be closed.
+     */
     public closeAlert:EventEmitter<string> = new EventEmitter<string>();
 
     private readonly defaultTimeout:number = 5000;
@@ -20,7 +26,7 @@ export class AlertService
      */
     public success(message:string, identifier?:string):void
     {
-        this.add(message, AlertType.success, identifier, this.defaultTimeout);
+        this.add(message, AlertType.success, this.defaultTimeout, identifier);
     }
 
     /**
@@ -30,7 +36,7 @@ export class AlertService
      */
     public error(message:string, identifier?:string):void
     {
-        this.add(message, AlertType.error, identifier, 0);
+        this.add(message, AlertType.error, 0, identifier);
     }
 
     /**
@@ -40,7 +46,7 @@ export class AlertService
      */
     public info(message:string, identifier?:string):void
     {
-        this.add( message, AlertType.info, identifier, this.defaultTimeout);
+        this.add(message, AlertType.info, this.defaultTimeout, identifier);
     }
 
     /**
@@ -50,17 +56,25 @@ export class AlertService
      */
     public warning(message:string, identifier?:string):void
     {
-        this.add( message, AlertType.warning, identifier, this.defaultTimeout);
+        this.add(message, AlertType.warning, this.defaultTimeout, identifier);
     }
 
-    /** @description is used to add an alert*/
-    private add(msg:string, type:AlertType, identifier:string, timeout:number):void
+    /**
+     * Close an alert by its identifier
+     * @param identifier
+     */
+    public close(identifier:string):void
+    {
+        this.closeAlert.emit(identifier);
+    }
+
+    private add(msg:string, type:AlertType, timeout:number, identifier?:string):void
     {
         this.addAlert.emit({
             msg:              msg,
             type:             type,
-            identifier:       identifier,
-            dismissOnTimeout: timeout
+            dismissOnTimeout: timeout,
+            identifier:       identifier
         });
     }
 
@@ -79,8 +93,4 @@ export class AlertService
         window.parent.window.dispatchEvent(event);
     }
 
-    public close(identifier:string):void
-    {
-        this.closeAlert.emit(identifier);
-    }
 }
