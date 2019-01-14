@@ -70,27 +70,42 @@ export class AlertService
 
     private add(msg:string, type:AlertType, timeout:number, identifier?:string):void
     {
-        this.addAlert.emit({
+        let alert:TerraAlertInterface = {
             msg:              msg,
             type:             type,
             dismissOnTimeout: timeout,
             identifier:       identifier
-        });
+        };
+
+        // check whether the service is used in the root window or in an iframe
+        if(this.isRootWindow)
+        {
+            // it is used in the root window -> use EventEmitter to notify the alert panel.
+            this.addAlert.emit(alert);
+        }
+        else
+        {
+            // it is used in an app that is hosted in an iframe -> use CustomEvent to notify the parent window.
+            this.addAlertForPlugin(alert);
+        }
     }
 
-    // TODO: Handle this automatically
     private addAlertForPlugin(alert:TerraAlertInterface):void
     {
-        let event:CustomEvent = new CustomEvent('status', {
-            detail: {
-                message:          alert.msg,
-                type:             alert.type,
-                dismissOnTimeout: alert.dismissOnTimeout,
-                identifier:       alert.identifier
-            }
+        let event:CustomEvent<TerraAlertInterface> = new CustomEvent('addAlert', {
+            detail: alert,
+            bubbles: false
         });
 
         window.parent.window.dispatchEvent(event);
+    }
+
+    /**
+     * checks whether this service is used in the root window
+     */
+    private get isRootWindow():boolean
+    {
+        return window === window.parent;
     }
 
 }
