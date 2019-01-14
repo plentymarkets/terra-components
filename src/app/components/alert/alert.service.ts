@@ -13,9 +13,6 @@ export class AlertService
 
     private readonly defaultTimeout:number = 5000;
 
-    constructor()
-    {}
-
     /**
      * add a success alert
      * @param message
