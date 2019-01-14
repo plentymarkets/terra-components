@@ -79,7 +79,7 @@ export class TerraPortletComponent implements OnChanges
     @Output()
     public inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    protected readonly infoTextPlacement:TerraPlacementEnum.RIGHT;
+    protected readonly infoTextPlacement:TerraPlacementEnum = TerraPlacementEnum.RIGHT;
 
     private get collapsedState():string
     {
