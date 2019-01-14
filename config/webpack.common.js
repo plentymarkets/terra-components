@@ -68,10 +68,6 @@ module.exports = {
                     'postcss-loader',
                     'sass-loader'
                 ]
-            },
-            {
-                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                loader: 'file-loader'
             }
         ]
     },
