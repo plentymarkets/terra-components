@@ -6,6 +6,7 @@
 * **terra-alert** is now deprecated. Use new `AlertService` instead.
 * **ibanValidator** new validator for reactive forms checking whether a text is a valid IBAN.
 * **TerraValidators** new class that provides a set of additional validators for reactive forms.
+* **webpack update** updated to latest version of webpack due to security vulnerabilities
 
 <a name="3.1.0"></a>
 # 3.1.0 (07.01.2019)
