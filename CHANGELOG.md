@@ -1,6 +1,7 @@
 # Unreleased
 
 ### Features
+* **terra-portlet** added input `infoText` which is shown as `<terra-info>` element in the portlet's header
 * **AlertService** new service providing functionality to manage alerts. Those can also be used in a plugin.
 * **terra-alert** is now deprecated. Use new `AlertService` instead.
 * **ibanValidator** new validator for reactive forms checking whether a text is a valid IBAN.
