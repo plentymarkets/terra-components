@@ -58,11 +58,6 @@
                 </td>
                 <td>
                     <terra-button *ngIf="!isEdited(index)"
-                                  (outputClicked)="startEditing(index); $event.stopPropagation()"
-                                  [inputIcon]="'icon-edit'"
-                                  [inputIsSmall]="true">
-                    </terra-button>
-                    <terra-button *ngIf="!isEdited(index)"
                                   (outputClicked)="buttonClicked(row); $event.stopPropagation()"
                                   [inputIcon]="'icon-add'"
                                   [inputIsSmall]="true">
