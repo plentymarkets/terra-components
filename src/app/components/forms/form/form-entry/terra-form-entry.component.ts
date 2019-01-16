@@ -89,6 +89,11 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
         this.formControl = new FormControl(this.inputFormValue, this.generateValidators(this.inputFormField));
 
+        this.formControl.statusChanges.subscribe((status:any) =>
+        {
+            this.componentInstance.isValid = status !== 'INVALID';
+        });
+
         setTimeout(() => // without setTimeout there would be an ExpressionChangedAfterItHasBeenCheckedError
         {
             if(!this.hasChildren)
@@ -167,7 +172,6 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
             setTimeout(() =>
             {
                 this.formControl.patchValue(this.inputFormValue);
-                this.componentInstance.isValid = this.formControl.valid;
             });
         }
     }
