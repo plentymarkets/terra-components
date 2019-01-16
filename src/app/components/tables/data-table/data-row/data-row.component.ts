@@ -8,8 +8,9 @@ import {
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
 import { TerraDataTableComponent } from '../terra-data-table.component';
 
+/* tslint:disable:component-selector */
 @Component({
-    selector:    '[tcDataRow]',
+    selector:    'tr[tcDataRow]',
     templateUrl: './data-row.component.html',
     styleUrls:   ['./data-row.component.scss']
 })
@@ -46,3 +47,4 @@ export class DataRowComponent
         this.dataTable.rowClicked(this.tcDataRow);
     }
 }
+/* tslint:enable:component-selector */
