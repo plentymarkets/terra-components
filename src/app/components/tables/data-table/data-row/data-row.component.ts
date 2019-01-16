@@ -11,8 +11,8 @@ import { TerraDataTableComponent } from '../terra-data-table.component';
 /* tslint:disable:component-selector */
 @Component({
     selector:    'tr[tcDataRow]',
-    templateUrl: './data-row.component.html',
-    styleUrls:   ['./data-row.component.scss']
+    template: require('./data-row.component.html'),
+    styles:   [require('./data-row.component.scss')]
 })
 export class DataRowComponent
 {
@@ -47,4 +47,5 @@ export class DataRowComponent
         this.dataTable.rowClicked(this.tcDataRow);
     }
 }
+
 /* tslint:enable:component-selector */

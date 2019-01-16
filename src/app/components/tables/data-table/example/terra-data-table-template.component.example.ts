@@ -14,11 +14,11 @@ import { TerraDataTableTemplateServiceExample } from './terra-data-table-templat
 
 @Component({
     selector:    'terra-data-table-template-example',
-    templateUrl: './terra-data-table-template.component.example.html',
-    styleUrls:   ['./terra-data-table-template.component.example.scss'],
-    providers: [TerraDataTableTemplateServiceExample]
+    template: require('./terra-data-table-template.component.example.html'),
+    styles:   [require('./terra-data-table-template.component.example.scss')],
+    providers:   [TerraDataTableTemplateServiceExample]
 })
-export class TerraDataTableTemplateExampleComponent implements OnInit
+export class TerraDataTableTemplateComponentExample implements OnInit
 {
     protected readonly headerList:Array<TerraDataTableHeaderCellInterface>;
     protected readonly contextMenu:Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>;
