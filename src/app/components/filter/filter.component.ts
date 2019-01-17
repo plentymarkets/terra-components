@@ -31,7 +31,7 @@ export class FilterComponent
      * @description Set the function which will be executed on click of the search button.
      */
     @Output()
-    public onSearchBtnClicked:EventEmitter<any> = new EventEmitter<any>();
+    public search:EventEmitter<void> = new EventEmitter<void>();
 
     /**
      * @description Set the function which will be executed on click of the reset button.
