@@ -2,15 +2,13 @@ import {
     Component,
     OnInit
 } from '@angular/core';
-import {
-    TerraButtonInterface,
-    TerraDataTableContextMenuEntryInterface,
-    TerraDataTableHeaderCellInterface,
-    TerraDataTableRowInterface,
-    TerraTextAlignEnum
-} from '../../../../..';
 import { TerraDataTableExampleInterface } from './terra-data-table.interface.example';
 import { TerraDataTableTemplateServiceExample } from './terra-data-table-template.service.example';
+import { TerraDataTableHeaderCellInterface } from '../interfaces/terra-data-table-header-cell.interface';
+import { TerraDataTableContextMenuEntryInterface } from '../context-menu/data/terra-data-table-context-menu-entry.interface';
+import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.interface';
+import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
+import { TerraTextAlignEnum } from '../enums/terra-text-align.enum';
 
 @Component({
     selector:    'terra-data-table-template-example',
