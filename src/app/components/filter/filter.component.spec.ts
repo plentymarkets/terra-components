@@ -80,7 +80,7 @@ describe('FilterComponent:', () =>
         expect(spy).toHaveBeenCalled();
     });
 
-    it(`should call #reset`, () =>
+    it(`should emit on #reset if reset button is clicked`, () =>
     {
         let spy:Spy = jasmine.createSpy('reset');
 
