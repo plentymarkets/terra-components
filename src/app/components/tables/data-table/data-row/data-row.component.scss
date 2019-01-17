@@ -46,7 +46,7 @@
 {
     &.selected, &.isActive
     {
-        background-color: var(--color-active);
+        background-color: var(--color-group-active);
         color: var(--color-structure-0);
         td a[href]
         {
