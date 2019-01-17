@@ -1,6 +1,7 @@
 # Unreleased
 
 ### Features
+* **tc-filter** new component which replaces `<terra-filter`.
 * **terra-filter** is now deprecated. Use `<tc-filter>` instead.
 * **TerraSplitViewComponentInterface** is now deprecated. See the [SplitView Migration Guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide) for a replacement.
 * **terra-portlet** added input `infoText` which is shown as `<terra-info>` element in the portlet's header
