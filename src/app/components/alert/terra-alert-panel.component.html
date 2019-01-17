@@ -1,6 +1,6 @@
 <alert *ngFor="let alert of alerts; let i = index"
        [type]="alert.type"
-       (close)="closeAlert(i)"
+       (close)="closeAlertByIndex(i)"
        [dismissible]="true"
        [dismissOnTimeout]="alert.dismissOnTimeout">
     <div [innerHtml]="alert.msg"></div>
