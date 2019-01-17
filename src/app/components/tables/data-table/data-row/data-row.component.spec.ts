@@ -41,7 +41,8 @@ describe('Component: DataRowComponent', () =>
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
-                {provide:     TerraDataTableComponent,
+                {
+                    provide:     TerraDataTableComponent,
                     useValue: dataTableStub
                 }
             ]
