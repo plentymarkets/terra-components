@@ -66,7 +66,7 @@ describe('FilterComponent:', () =>
         expect(filterComponent.search).toBeDefined();
     });
 
-    it(`should call #search`, () =>
+    it(`should emit on #search if search button is clicked`, () =>
     {
         let spy:Spy = jasmine.createSpy('search');
 
