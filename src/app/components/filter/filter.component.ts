@@ -6,7 +6,7 @@ import {
 
 /**
  * @author mkunze
- * @description This component replaces <terra-filter>
+ * @description This component provides the default template and functionalities to display form fields which are supposed to set filters
  */
 @Component({
     selector: 'tc-filter',
