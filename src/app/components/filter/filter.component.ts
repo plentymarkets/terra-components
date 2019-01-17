@@ -1,7 +1,6 @@
 import {
     Component,
     EventEmitter,
-    Input,
     Output
 } from '@angular/core';
 
@@ -26,14 +25,4 @@ export class FilterComponent
      */
     @Output()
     public reset:EventEmitter<void> = new EventEmitter<void>();
-
-    protected searchBtnClicked():void
-    {
-        this.search.emit(null);
-    }
-
-    protected resetBtnClicked():void
-    {
-        this.reset.emit(null);
-    }
 }

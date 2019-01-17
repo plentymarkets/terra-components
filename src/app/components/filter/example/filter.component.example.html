@@ -1,5 +1,5 @@
-<tc-filter (onSearchBtnClicked)="onSearchBtnClicked()"
-           (onResetBtnClicked)="onResetBtnClicked()">
+<tc-filter (search)="onSearchBtnClicked()"
+           (reset)="onResetBtnClicked()">
     <terra-text-input inputName="Name"
                       [(ngModel)]="name">
     </terra-text-input>
