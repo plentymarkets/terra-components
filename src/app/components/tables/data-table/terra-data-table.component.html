@@ -26,7 +26,7 @@
                     [ngStyle]="{ 'text-align': getTextAlign(header) }"
                     [class.sortable]="isSortable(header)"
                     (click)="columnHeaderClicked.emit(header)">
-                    <span class="table-span"
+                    <span
                           [container]="'body'"
                           [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                           [tooltip]="header.tooltipText"
@@ -78,9 +78,9 @@
                         </ng-container>
                         
                         <ng-container *ngSwitchCase="'TerraDataTableTextInterface'">
-                            <span class="table-span" [ngStyle]="{color: cell.data.color}">
-                                <span class="table-span" *ngIf="cell.data.icon" [ngClass]="cell.data.icon"></span>
-                                <span class="table-span"> {{cell.data.caption}} </span>
+                            <span [ngStyle]="{color: cell.data.color}">
+                                <span *ngIf="cell.data.icon" [ngClass]="cell.data.icon"></span>
+                                <span> {{cell.data.caption}} </span>
                             </span>
                         </ng-container>
                         
