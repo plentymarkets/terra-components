@@ -26,23 +26,8 @@ import { TerraTextInputComponent } from '../forms/input/text-input/terra-text-in
 import { l10nConfig } from '../../translation/l10n.config';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraLabelTooltipDirective } from '../../helpers/terra-label-tooltip.directive';
-
-@Component({
-    selector: 'tc-filter-test',
-    template: `
-                  <tc-filter (onSearchBtnClicked)="console.log('search clicked')"
-                             (onResetBtnClicked)="console.log('reset clicked')"
-                             [resetTooltip]="'test'"
-                             [searchTooltip]="'test'">
-                      <terra-text-input>
-                      </terra-text-input>
-                      <terra-select-box [inputListBoxValues]="[]">
-                      </terra-select-box>
-                  </tc-filter>`
-})
-export class FilterTestComponent
-{
-}
+import { FilterComponentExample } from './example/filter.component.example';
+import { TerraInfoComponent } from '../info/terra-info.component';
 
 describe('FilterComponent:', () =>
 {
@@ -56,9 +41,10 @@ describe('FilterComponent:', () =>
                 TerraLabelTooltipDirective,
                 TerraButtonComponent,
                 TerraBaseToolbarComponent,
+                TerraInfoComponent,
                 TerraPortletComponent,
                 FilterComponent,
-                FilterTestComponent,
+                FilterComponentExample,
                 TerraTextInputComponent,
                 TerraSelectBoxComponent
             ],
@@ -97,15 +83,15 @@ describe('FilterComponent:', () =>
 
     describe(`within a test host with inputs`, () =>
     {
-        let testComponent:FilterTestComponent;
-        let testFixture:ComponentFixture<FilterTestComponent>;
+        let testComponent:FilterComponentExample;
+        let testFixture:ComponentFixture<FilterComponentExample>;
         let testFilterComponent:FilterComponent;
         let testFilterDebug:DebugElement;
         let buttons:Array<DebugElement>;
 
         beforeEach(() =>
         {
-            testFixture = TestBed.createComponent(FilterTestComponent);
+            testFixture = TestBed.createComponent(FilterComponentExample);
             testComponent = testFixture.componentInstance;
             testFilterDebug = testFixture.debugElement.query(By.css('tc-filter'));
             testFilterComponent = testFilterDebug.componentInstance;
