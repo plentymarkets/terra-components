@@ -56,7 +56,7 @@ fdescribe('Component: DataRowComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should call data table rowClicked on click', () =>
+    it('should call data table #rowClicked() on click', () =>
     {
         const rowClicked:Spy = spyOn(component.dataTable, 'rowClicked');
         component.onClick();

@@ -16,8 +16,8 @@ import { TerraDataTableComponent } from '../terra-data-table.component';
 })
 export class DataRowComponent
 {
-    @Input()
-    public tcDataRow:TerraDataTableRowInterface<any>;
+    @Input('tcDataRow')
+    public row:TerraDataTableRowInterface<any>;
 
     constructor(@Host() public dataTable:TerraDataTableComponent<any, any>)
     {
