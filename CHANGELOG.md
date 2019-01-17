@@ -7,6 +7,9 @@
 * **ibanValidator** new validator for reactive forms checking whether a text is a valid IBAN.
 * **TerraValidators** new class that provides a set of additional validators for reactive forms.
 
+### Bug Fixes
+* **terra-pager** inject current language to be able to translate the texts in the template properly.
+
 <a name="3.1.0"></a>
 # 3.1.0 (07.01.2019)
 
