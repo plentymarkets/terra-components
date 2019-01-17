@@ -20,7 +20,7 @@ import { TerraLabelTooltipDirective } from '../../helpers/terra-label-tooltip.di
 import { TerraInfoComponent } from '../info/terra-info.component';
 import Spy = jasmine.Spy;
 
-fdescribe('FilterComponent:', () =>
+describe('FilterComponent:', () =>
 {
     let filterComponent:FilterComponent;
     let fixture:ComponentFixture<FilterComponent>;
