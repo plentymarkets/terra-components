@@ -15,7 +15,7 @@ import {
 export class FilterComponent
 {
     /**
-     * @description Set the function which will be executed on click of the search button.
+     * @description Notifies when the search button has been clicked or the enter key has been pressed.
      */
     @Output()
     public search:EventEmitter<void> = new EventEmitter<void>();
