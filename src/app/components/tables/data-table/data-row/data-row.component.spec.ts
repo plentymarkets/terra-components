@@ -6,13 +6,10 @@ import {
 import { DataRowComponent } from './data-row.component';
 import { TerraDataTableComponent } from '../terra-data-table.component';
 import { TerraCheckboxComponent } from '../../../forms/checkbox/terra-checkbox.component';
-import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../translation/l10n.config';
 import { By } from '@angular/platform-browser';
-import Spy = jasmine.Spy;
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
+import Spy = jasmine.Spy;
 
 export const dataTableStub:Partial<TerraDataTableComponent<any, any>> =
     {
@@ -23,7 +20,7 @@ export const dataTableStub:Partial<TerraDataTableComponent<any, any>> =
         inputHasCheckboxes: true
     };
 
-describe('Component: DataRowComponent', () =>
+fdescribe('Component: DataRowComponent', () =>
 {
     let component:DataRowComponent;
     let fixture:ComponentFixture<DataRowComponent>;
@@ -36,13 +33,11 @@ describe('Component: DataRowComponent', () =>
                 TerraCheckboxComponent,
             ],
             imports:      [
-                TooltipModule.forRoot(),
                 FormsModule,
-                LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
                 {
-                    provide:     TerraDataTableComponent,
+                    provide:  TerraDataTableComponent,
                     useValue: dataTableStub
                 }
             ]
