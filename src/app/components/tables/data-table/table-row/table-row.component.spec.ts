@@ -3,7 +3,7 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { DataRowComponent } from './data-row.component';
+import { TableRowComponent } from './table-row.component';
 import { TerraDataTableComponent } from '../terra-data-table.component';
 import { TerraCheckboxComponent } from '../../../forms/checkbox/terra-checkbox.component';
 import { FormsModule } from '@angular/forms';
@@ -20,16 +20,17 @@ export const dataTableStub:Partial<TerraDataTableComponent<any, any>> =
         inputHasCheckboxes: true
     };
 
-fdescribe('Component: DataRowComponent', () =>
+fdescribe('Component: TableRowComponent', () =>
 {
-    let component:DataRowComponent;
-    let fixture:ComponentFixture<DataRowComponent>;
+    let component:TableRowComponent;
+    let dataTable:TerraDataTableComponent<any, any>;
+    let fixture:ComponentFixture<TableRowComponent>;
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
-                DataRowComponent,
+                TableRowComponent,
                 TerraCheckboxComponent,
             ],
             imports:      [
@@ -46,8 +47,9 @@ fdescribe('Component: DataRowComponent', () =>
 
     beforeEach(() =>
     {
-        fixture = TestBed.createComponent(DataRowComponent);
+        fixture = TestBed.createComponent(TableRowComponent);
         component = fixture.componentInstance;
+        dataTable = TestBed.get(TerraDataTableComponent);
         fixture.detectChanges();
     });
 
@@ -58,8 +60,9 @@ fdescribe('Component: DataRowComponent', () =>
 
     it('should call data table #rowClicked() on click', () =>
     {
-        const rowClicked:Spy = spyOn(component.dataTable, 'rowClicked');
-        component.onClick();
+        const rowClicked:Spy = spyOn(dataTable, 'rowClicked');
+
+        fixture.debugElement.triggerEventHandler('click', {});
 
         expect(rowClicked).toHaveBeenCalled();
     });
@@ -72,7 +75,7 @@ fdescribe('Component: DataRowComponent', () =>
             disabled: false
         };
 
-        component.tcDataRow = rowData;
+        component.row = rowData;
 
         fixture.detectChanges();
 
@@ -86,7 +89,7 @@ fdescribe('Component: DataRowComponent', () =>
             disabled: true
         };
 
-        component.tcDataRow = rowData;
+        component.row = rowData;
 
         fixture.detectChanges();
 
@@ -99,7 +102,7 @@ fdescribe('Component: DataRowComponent', () =>
     {
         expect(fixture.debugElement.query(By.css('terra-checkbox'))).toBeTruthy();
 
-        component.dataTable.inputHasCheckboxes = false;
+        dataTable.inputHasCheckboxes = false;
 
         fixture.detectChanges();
 
