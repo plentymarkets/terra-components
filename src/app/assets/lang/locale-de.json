@@ -15,7 +15,7 @@
 		"myFiles": "Meine Dateien",
 		"createFolder": "Ordner erstellen",
 		"confirmDelete": "Datei löschen?",
-		"confirmDeleteMany": "{{ count }} Dateien löschen?",
+		"confirmDeleteMany": "{{ count }} Dateien wirklich löschen?",
 		"deleteFolder": "Ordner löschen",
 		"deleteFile": "Datei löschen",
 		"deleteSelectedFiles": "Ausgewählte Dateien löschen",
