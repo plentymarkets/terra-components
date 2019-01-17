@@ -27,7 +27,7 @@ export class TerraDataTableComponentExample implements OnInit
 
     protected showGroupFunction:boolean = false;
 
-    constructor(private service:TerraDataTableServiceExample)
+    constructor(protected service:TerraDataTableServiceExample)
     {
         this.headerList = this.createHeaderList();
         this.contextMenu = this.createContextMenu();
@@ -54,7 +54,7 @@ export class TerraDataTableComponentExample implements OnInit
             caption:       'Add',
             isHighlighted: false,
             icon:          'icon-add',
-            clickFunction: ():void => this.addEntry()
+            clickFunction: ():void => this.addEntries()
         }];
 
         this.noResultTextPrimary = 'No entries found';
@@ -98,6 +98,15 @@ export class TerraDataTableComponentExample implements OnInit
     protected addEntry():void
     {
         this.service.addEntry();
+        this.service.getResults();
+    }
+
+    protected addEntries():void
+    {
+        for(let i:number = 0; i < 50; i++)
+        {
+            this.service.addEntry();
+        }
         this.service.getResults();
     }
 

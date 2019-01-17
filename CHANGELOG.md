@@ -8,6 +8,9 @@
 * **terra-data-table** add `useContentBody` input property. If set the auto rendering of rows/cells is disabled and enable content projection.
 * **terra-data-row** added for the new `terra-data-table` content projection feature
 
+### Bug Fixes
+* **terra-pager** inject current language to be able to translate the texts in the template properly.
+
 <a name="3.1.0"></a>
 # 3.1.0 (07.01.2019)
 
