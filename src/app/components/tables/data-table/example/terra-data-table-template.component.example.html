@@ -1,76 +1,71 @@
-<terra-2-col>
-    <div left></div>
-    <div right>
-        <terra-base-toolbar>
-            <div class="btn-group" role="group">
-                <terra-button [inputIcon]="'icon-add'"
-                              [inputTooltipText]="'New entry'"
-                              (outputClicked)="addEntry()">
-                </terra-button>
-                <terra-button [inputIcon]="'icon-settings_transfer'"
-                              [inputTooltipText]="'Group function'"
-                              (outputClicked)="showGroupFunction = !showGroupFunction">
-                </terra-button>
-                <terra-button [inputIcon]="'icon-reset'"
-                              [inputTooltipText]="'Reset sorting'"
-                              (outputClicked)="resetSorting()">
-                </terra-button>
-            </div>
-        </terra-base-toolbar>
-        
-        <terra-data-table
-            [inputService]="dataTableService"
-            [inputHasCheckboxes]="true"
-            [inputHeaderList]="headerList"
-            [inputContextMenu]="contextMenu"
-            [useContentBody]="true">
-            
-            <terra-group-function [show]="showGroupFunction"
-                                  [disableExecution]="false"
-                                  (executeGroupFunction)="executeGroupFunction(table.selectedRowList)">
-                <terra-text-input [inputName]="'Text'"></terra-text-input>
-            </terra-group-function>
-            
-            <terra-no-result-notice
-                [inputButtons]="noResultButtons"
-                [inputTextPrimary]="noResultTextPrimary"
-                [inputTextSecondary]="noResultTextSecondary">
-            </terra-no-result-notice>
-            
-            <tbody>
-            <tr [tcDataRow]="row" hasContextMenu *ngFor="let row of dataTableService.rowList; let index = index" (dblclick)="startEditing(index)">
-                <td>{{ row.data.id }}</td>
-                <td>
-                    <span *ngIf="!isEdited(index)">{{ row.data.value }}</span>
-                    
-                    <form *ngIf="isEdited(index)" (submit)="stopEditing()">
-                        <terra-text-input name="value" inputName="Edit value" [(ngModel)]="row.data.value"></terra-text-input>
-                    </form>
-                </td>
-                <td>
-                    <div *ngIf="!isEdited(index)">
-                        <a [href]="'mailto:' + row.data.mail" (dblclick)="$event.stopPropagation()">{{ row.data.mail }}</a>
-                    </div>
-                    
-                    <form *ngIf="isEdited(index)" (submit)="stopEditing()">
-                        <terra-text-input name="email" inputName="Edit mail" [(ngModel)]="row.data.mail"></terra-text-input>
-                    </form>
-                </td>
-                <td>
-                    <terra-button *ngIf="!isEdited(index)"
-                                  (outputClicked)="buttonClicked(row); $event.stopPropagation()"
-                                  [inputIcon]="'icon-add'"
-                                  [inputIsSmall]="true">
-                    </terra-button>
-                    <terra-button *ngIf="isEdited(index)"
-                                  (outputClicked)="stopEditing(); $event.stopPropagation()"
-                                  [inputIcon]="'icon-save'"
-                                  [inputIsSmall]="true">
-                    </terra-button>
-                </td>
-            </tr>
-            </tbody>
-        
-        </terra-data-table>
+<terra-base-toolbar>
+    <div class="btn-group" role="group">
+        <terra-button [inputIcon]="'icon-add'"
+                      [inputTooltipText]="'New entry'"
+                      (outputClicked)="addEntry()">
+        </terra-button>
+        <terra-button [inputIcon]="'icon-settings_transfer'"
+                      [inputTooltipText]="'Group function'"
+                      (outputClicked)="showGroupFunction = !showGroupFunction">
+        </terra-button>
+        <terra-button [inputIcon]="'icon-reset'"
+                      [inputTooltipText]="'Reset sorting'"
+                      (outputClicked)="resetSorting()">
+        </terra-button>
     </div>
-</terra-2-col>
+</terra-base-toolbar>
+
+<terra-data-table
+    [inputService]="dataTableService"
+    [inputHasCheckboxes]="true"
+    [inputHeaderList]="headerList"
+    [inputContextMenu]="contextMenu"
+    [useContentBody]="true">
+    
+    <terra-group-function [show]="showGroupFunction"
+                          [disableExecution]="false"
+                          (executeGroupFunction)="executeGroupFunction(table.selectedRowList)">
+        <terra-text-input [inputName]="'Text'"></terra-text-input>
+    </terra-group-function>
+    
+    <terra-no-result-notice
+        [inputButtons]="noResultButtons"
+        [inputTextPrimary]="noResultTextPrimary"
+        [inputTextSecondary]="noResultTextSecondary">
+    </terra-no-result-notice>
+    
+    <tbody>
+    <tr [tcDataRow]="row" hasContextMenu *ngFor="let row of dataTableService.rowList; let index = index" (dblclick)="startEditing(index)">
+        <td>{{ row.data.id }}</td>
+        <td>
+            <span *ngIf="!isEdited(index)">{{ row.data.value }}</span>
+            
+            <form *ngIf="isEdited(index)" (submit)="stopEditing()">
+                <terra-text-input name="value" inputName="Edit value" [(ngModel)]="row.data.value"></terra-text-input>
+            </form>
+        </td>
+        <td>
+            <div *ngIf="!isEdited(index)">
+                <a [href]="'mailto:' + row.data.mail" (dblclick)="$event.stopPropagation()">{{ row.data.mail }}</a>
+            </div>
+            
+            <form *ngIf="isEdited(index)" (submit)="stopEditing()">
+                <terra-text-input name="email" inputName="Edit mail" [(ngModel)]="row.data.mail"></terra-text-input>
+            </form>
+        </td>
+        <td>
+            <terra-button *ngIf="!isEdited(index)"
+                          (outputClicked)="buttonClicked(row); $event.stopPropagation()"
+                          [inputIcon]="'icon-add'"
+                          [inputIsSmall]="true">
+            </terra-button>
+            <terra-button *ngIf="isEdited(index)"
+                          (outputClicked)="stopEditing(); $event.stopPropagation()"
+                          [inputIcon]="'icon-save'"
+                          [inputIsSmall]="true">
+            </terra-button>
+        </td>
+    </tr>
+    </tbody>
+
+</terra-data-table>
