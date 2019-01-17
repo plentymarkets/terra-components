@@ -21,7 +21,7 @@ export class FilterComponent
     public search:EventEmitter<void> = new EventEmitter<void>();
 
     /**
-     * @description Set the function which will be executed on click of the reset button.
+     * @description Notifies when the reset button has been clicked
      */
     @Output()
     public reset:EventEmitter<void> = new EventEmitter<void>();
