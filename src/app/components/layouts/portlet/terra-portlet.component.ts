@@ -68,12 +68,6 @@ export class TerraPortletComponent implements OnChanges
     @Input()
     public inputButtonList:Array<TerraButtonInterface> = [];
 
-    /**
-     * @description Sets a info text which is rendered in a terra-indicator
-     */
-    @Input()
-    public infoText:string;
-
     @Input()
     public inputIsDisabled:boolean = false;
     /**
