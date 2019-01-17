@@ -16,18 +16,6 @@ import {
 export class FilterComponent
 {
     /**
-     * @description Set the tooltip of the search button.
-     */
-    @Input()
-    public searchTooltip:string;
-
-    /**
-     * @description Set the tooltip of the reset button.
-     */
-    @Input()
-    public resetTooltip:string;
-
-    /**
      * @description Set the function which will be executed on click of the search button.
      */
     @Output()
@@ -41,11 +29,11 @@ export class FilterComponent
 
     protected searchBtnClicked():void
     {
-        this.onSearchBtnClicked.emit(null);
+        this.search.emit(null);
     }
 
     protected resetBtnClicked():void
     {
-        this.onResetBtnClicked.emit(null);
+        this.reset.emit(null);
     }
 }

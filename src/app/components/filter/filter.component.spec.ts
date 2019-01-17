@@ -75,10 +75,8 @@ describe('FilterComponent:', () =>
 
     it(`should initialize correctly`, () =>
     {
-        expect(filterComponent.resetTooltip).toBeUndefined();
-        expect(filterComponent.onResetBtnClicked).toBeDefined();
-        expect(filterComponent.onSearchBtnClicked).toBeDefined();
-        expect(filterComponent.searchTooltip).toBeUndefined();
+        expect(filterComponent.reset).toBeDefined();
+        expect(filterComponent.search).toBeDefined();
     });
 
     describe(`within a test host with inputs`, () =>
@@ -106,7 +104,7 @@ describe('FilterComponent:', () =>
 
         it(`should call #onSearchBtnClicked`, () =>
         {
-            let spy:Spy = spyOn(testFilterComponent.onSearchBtnClicked, 'emit');
+            let spy:Spy = spyOn(testFilterComponent.search, 'emit');
 
             buttons[0].componentInstance.outputClicked.emit();
 
@@ -115,7 +113,7 @@ describe('FilterComponent:', () =>
 
         it(`should call #onResetBtnClicked`, () =>
         {
-            let spy:Spy = spyOn(testFilterComponent.onResetBtnClicked, 'emit');
+            let spy:Spy = spyOn(testFilterComponent.reset, 'emit');
 
             buttons[1].componentInstance.outputClicked.emit();
 
@@ -124,20 +122,11 @@ describe('FilterComponent:', () =>
 
         it(`should call #onResetBtnClicked`, () =>
         {
-            let spy:Spy = spyOn(testFilterComponent.onResetBtnClicked, 'emit');
+            let spy:Spy = spyOn(testFilterComponent.reset, 'emit');
 
             buttons[1].componentInstance.outputClicked.emit();
 
             expect(spy).toHaveBeenCalled();
-        });
-
-        it(`should render buttons correctly`, () =>
-        {
-            let searchBtn:TerraButtonComponent = buttons[0].componentInstance;
-            let resetBtn:TerraButtonComponent = buttons[1].componentInstance;
-
-            expect(searchBtn.inputTooltipText).toBe(testFilterComponent.searchTooltip);
-            expect(resetBtn.inputTooltipText).toBe(testFilterComponent.resetTooltip);
         });
     });
 });

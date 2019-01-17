@@ -1,15 +1,11 @@
 <form>
     <terra-base-toolbar>
         <div class="btn-group" role="group">
-            <terra-button [inputTooltipText]="searchTooltip"
-                          [inputType]="'submit'"
-                          [inputTooltipPlacement]="'bottom'"
+            <terra-button [inputType]="'submit'"
                           [inputIcon]="'icon-search'"
                           (outputClicked)="searchBtnClicked()">
             </terra-button>
-            <terra-button [inputTooltipText]="resetTooltip"
-                          [inputTooltipPlacement]="'bottom'"
-                          [inputIcon]="'icon-reset'"
+            <terra-button [inputIcon]="'icon-reset'"
                           (outputClicked)="resetBtnClicked()">
             </terra-button>
         </div>
