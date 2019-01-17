@@ -10,14 +10,19 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
 import Spy = jasmine.Spy;
+import { DebugElement } from '@angular/core';
 
 export const dataTableStub:Partial<TerraDataTableComponent<any, any>> =
     {
-        rowClicked:         ():void =>
-                            {
-                                return;
-                            },
-        inputHasCheckboxes: true
+        rowClicked:          ():void =>
+                             {
+                                 return;
+                             },
+        onRowCheckboxChange: ():void =>
+                             {
+                                 return;
+                             },
+        inputHasCheckboxes:  true
     };
 
 fdescribe('Component: TableRowComponent', () =>
@@ -107,5 +112,28 @@ fdescribe('Component: TableRowComponent', () =>
         fixture.detectChanges();
 
         expect(fixture.debugElement.query(By.css('terra-checkbox'))).toBeFalsy();
+    });
+
+    it('should call #onRowCheckboxChange() when checkbox changes', () =>
+    {
+        let rowData:TerraDataTableRowInterface<any> = {
+            isActive: false,
+            selected: false,
+            disabled: false
+        };
+
+        const onRowCheckboxChange:Spy = spyOn(dataTable, 'onRowCheckboxChange');
+
+        component.row = rowData;
+
+        fixture.detectChanges();
+
+        let checkbox:DebugElement = fixture.debugElement.query(By.css('terra-checkbox'));
+
+        checkbox.triggerEventHandler('change', {});
+
+        fixture.detectChanges();
+
+        expect(onRowCheckboxChange).toHaveBeenCalled();
     });
 });
