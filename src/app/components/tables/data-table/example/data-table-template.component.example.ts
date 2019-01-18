@@ -6,8 +6,8 @@ import { TerraDataTableComponentExample } from './terra-data-table.component.exa
 
 @Component({
     selector:  'tc-data-table-template-example',
-    template:  require('./data-table-template-component-example.component.html'),
-    styles:    [require('./data-table-template-component-example.component.scss')],
+    template:  require('./data-table-template.component.example.html'),
+    styles:    [require('./data-table-template.component.example.scss')],
     providers: [TerraDataTableServiceExample]
 })
 export class DataTableTemplateComponentExample extends TerraDataTableComponentExample
