@@ -25,7 +25,7 @@ export const dataTableStub:Partial<TerraDataTableComponent<any, any>> =
         inputHasCheckboxes:  true
     };
 
-fdescribe('Component: TableRowComponent', () =>
+describe('Component: TableRowComponent', () =>
 {
     let component:TableRowComponent;
     let dataTable:TerraDataTableComponent<any, any>;

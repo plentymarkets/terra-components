@@ -26,8 +26,7 @@
                     [ngStyle]="{ 'text-align': getTextAlign(header) }"
                     [class.sortable]="isSortable(header)"
                     (click)="columnHeaderClicked.emit(header)">
-                    <span
-                          [container]="'body'"
+                    <span [container]="'body'"
                           [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                           [tooltip]="header.tooltipText"
                           [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
@@ -42,19 +41,7 @@
         </tr>
         </thead>
         <tbody *ngIf="!useContentBody">
-            <tr *ngFor="let row of rowList"
-                hasContextMenu
-                [ngClass]="{'selected': row.selected, 'isActive': row.isActive, 'disabled': row.disabled}"
-                [rowData]="row.data"
-                (click)="rowClicked(row)">
-                <td *ngIf="inputHasCheckboxes">
-                    <terra-checkbox type="checkbox"
-                                    [value]="row.selected"
-                                    [inputIsDisabled]="row.disabled"
-                                    (change)="onRowCheckboxChange(row)"
-                                    (click)="$event.stopPropagation()">
-                    </terra-checkbox>
-                </td>
+            <tr [tcTableRow]="row" *ngFor="let row of rowList" hasContextMenu>
                 <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
                     <ng-template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>
