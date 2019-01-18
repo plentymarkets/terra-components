@@ -5,11 +5,11 @@ import {
     EventEmitter,
     forwardRef,
     Input,
+    OnChanges,
     OnInit,
     Output,
-    ViewChild,
-    OnChanges,
-    SimpleChanges
+    SimpleChanges,
+    ViewChild
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { GridOptions } from '../../interactables/gridOptions.interface';
@@ -396,7 +396,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
             }
         }
     }
-    
+
     private changeCallback:(value:number) => void = ():void => undefined;
 
     private touchedCallback:() => void = ():void => undefined;
