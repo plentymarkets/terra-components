@@ -1,119 +1,22 @@
-import {
-    Component,
-    OnInit
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { TerraDataTableExampleInterface } from './terra-data-table.interface.example';
-import { TerraDataTableTemplateServiceExample } from './terra-data-table-template.service.example';
-import { TerraDataTableHeaderCellInterface } from '../interfaces/terra-data-table-header-cell.interface';
-import { TerraDataTableContextMenuEntryInterface } from '../context-menu/data/terra-data-table-context-menu-entry.interface';
-import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.interface';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
-import { TerraTextAlignEnum } from '../enums/terra-text-align.enum';
+import { TerraDataTableServiceExample } from './terra-data-table.service.example';
+import { TerraDataTableComponentExample } from './terra-data-table.component.example';
 
 @Component({
-    selector:    'terra-data-table-template-example',
-    template: require('./terra-data-table-template.component.example.html'),
-    styles:   [require('./terra-data-table-template.component.example.scss')],
-    providers:   [TerraDataTableTemplateServiceExample]
+    selector:  'terra-data-table-template-example',
+    template:  require('./terra-data-table-template.component.example.html'),
+    styles:    [require('./terra-data-table-template.component.example.scss')],
+    providers: [TerraDataTableServiceExample]
 })
-export class TerraDataTableTemplateComponentExample implements OnInit
+export class TerraDataTableTemplateComponentExample extends TerraDataTableComponentExample
 {
-    protected readonly headerList:Array<TerraDataTableHeaderCellInterface>;
-    protected readonly contextMenu:Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>;
-
-    protected noResultButtons:Array<TerraButtonInterface> = [];
-    protected noResultTextPrimary:string;
-    protected noResultTextSecondary:string;
-
-    protected showGroupFunction:boolean = false;
-
     protected editIndex:number;
 
-    protected selectedRows:Array<TerraDataTableRowInterface<TerraDataTableExampleInterface>>;
-
-    constructor(public dataTableService:TerraDataTableTemplateServiceExample)
+    constructor(service:TerraDataTableServiceExample)
     {
-        this.headerList = this.createHeaderList();
-        this.contextMenu = this.createContextMenu();
-    }
-
-    public ngOnInit():void
-    {
-        this.noResultButtons = [{
-            caption:       'Search',
-            isHighlighted: true,
-            icon:          'icon-search',
-            clickFunction: ():void => this.onSearchBtnClicked()
-        }];
-
-        this.noResultTextPrimary = 'No results available';
-        this.noResultTextSecondary = 'Search to refresh';
-    }
-
-    public onSearchBtnClicked():void
-    {
-        this.dataTableService.getResults(true);
-
-        this.noResultButtons = [{
-            caption:       'Add',
-            isHighlighted: false,
-            icon:          'icon-add',
-            clickFunction: ():void => this.addEntry()
-        }];
-
-        this.noResultTextPrimary = 'No entries found';
-        this.noResultTextSecondary = 'Add a new entry';
-    }
-
-
-    private createHeaderList():Array<TerraDataTableHeaderCellInterface>
-    {
-        return [
-            {
-                caption: 'ID',
-                sortBy:  'id',
-                width:   20
-            },
-            {
-                caption:   'value',
-                sortBy:    'value',
-                width:     20,
-                textAlign: TerraTextAlignEnum.LEFT
-            },
-            {
-                caption: 'email',
-                width:   20
-            },
-            {
-                caption: 'buttons',
-                width:   20
-            }
-        ];
-    }
-
-    private createContextMenu():Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>
-    {
-        return [{
-            title:         'Show alert',
-            clickFunction: (data:TerraDataTableExampleInterface):void => alert(`The rows value is ${data.value}`)
-        }];
-    }
-
-    protected addEntry():void
-    {
-        this.dataTableService.addEntry();
-        this.dataTableService.getResults();
-    }
-
-    protected resetSorting():void
-    {
-        this.dataTableService.resetSortParams();
-        this.dataTableService.getResults(true);
-    }
-
-    protected executeGroupFunction(selectedRows:Array<TerraDataTableRowInterface<TerraDataTableExampleInterface>>):void
-    {
-        console.log(selectedRows);
+        super(service);
     }
 
     protected buttonClicked(row:TerraDataTableRowInterface<TerraDataTableExampleInterface>):void

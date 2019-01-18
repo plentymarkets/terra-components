@@ -111,6 +111,8 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
             }
         ];
 
+        entry.mail = entry.value + '@test.com';
+
         return {
             cellList:      cellList,
             data:          entry,

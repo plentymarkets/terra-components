@@ -16,11 +16,12 @@
 </terra-base-toolbar>
 
 <terra-data-table
-    [inputService]="dataTableService"
+    [inputService]="service"
     [inputHasCheckboxes]="true"
     [inputHeaderList]="headerList"
     [inputContextMenu]="contextMenu"
-    [useContentBody]="true">
+    [useContentBody]="true"
+    #table>
     
     <terra-group-function [show]="showGroupFunction"
                           [disableExecution]="false"
@@ -35,7 +36,7 @@
     </terra-no-result-notice>
     
     <tbody>
-    <tr [tcTableRow]="row" hasContextMenu *ngFor="let row of dataTableService.rowList; let index = index" (dblclick)="startEditing(index)">
+    <tr [tcTableRow]="row" hasContextMenu *ngFor="let row of service.rowList; let index = index" (dblclick)="startEditing(index)">
         <td>{{ row.data.id }}</td>
         <td>
             <span *ngIf="!isEdited(index)">{{ row.data.value }}</span>
