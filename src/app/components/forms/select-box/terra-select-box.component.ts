@@ -294,11 +294,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     protected onKeyDown(event:KeyboardEvent):void
     {
         // check if one of the dedicated keys has been pressed
-        if(!(event.code === 'ArrowDown' ||
-             event.code === 'ArrowUp' ||
-             event.code === 'Enter' ||
-             event.code === 'Escape' ||
-             event.code === 'Space'))
+        if(this.isIncorrectKeyEvent(event.code))
         {
             return;
         }
@@ -368,6 +364,15 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         event.preventDefault();
         // stop event bubbling
         event.stopPropagation();
+    }
+
+    private isIncorrectKeyEvent(eventCode:string):boolean
+    {
+        return !(eventCode === 'ArrowDown' ||
+                 eventCode === 'ArrowUp' ||
+                 eventCode === 'Enter' ||
+                 eventCode === 'Escape' ||
+                 eventCode === 'Space');
     }
 
     private focusSelectedElement():void
