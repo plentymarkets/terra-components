@@ -46,7 +46,7 @@ import { TerraGroupFunctionComponentExample } from './tables/group-function/exam
 import { TerraInfoComponentExample } from './info/example/terra-info.component.example';
 import { TerraFormsExampleComponent } from './forms/terra-forms.example';
 import { RadioGroupComponentExample } from './forms/input/radio/example/radio-group.component.example';
-import { TerraDataTableTemplateComponentExample } from './tables/data-table/example/terra-data-table-template.component.example';
+import { DataTableTemplateComponentExample } from './tables/data-table/example/data-table-template-component-example.component';
 import { FilterComponentExample } from './filter/example/filter.component.example';
 
 export const examples:Array<Type<any>> = [
@@ -97,6 +97,6 @@ export const examples:Array<Type<any>> = [
     TerraInfoComponentExample,
     TerraFormsExampleComponent,
     RadioGroupComponentExample,
-    TerraDataTableTemplateComponentExample,
+    DataTableTemplateComponentExample,
     FilterComponentExample
 ];
