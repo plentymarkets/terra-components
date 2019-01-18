@@ -2,6 +2,7 @@ import { TerraMultiSplitViewInterface } from '../../split-view/multi/interfaces/
 
 /**
  * @author pweyrich
+ * @deprecated
  */
 export class TerraSplitViewComponentInterface
 {
