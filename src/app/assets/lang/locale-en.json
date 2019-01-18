@@ -15,7 +15,7 @@
 		"myFiles": "My files",
 		"createFolder": "Create folder",
 		"confirmDelete": "Delete this file?",
-		"confirmDeleteMany": "Delete {{ count }} files?",
+		"confirmDeleteMany": "Really delete {{ count }} files?",
 		"deleteFolder": "Delete folder",
 		"deleteFile": "Delete file",
 		"deleteSelectedFiles": "Delete selected files",
@@ -33,7 +33,8 @@
 		"loadingFiles": "Loading files",
 		"noFiles": "No files",
 		"downloadFile": "Download file",
-		"uploadProgress": "Uploading files: {{ filesUploaded }}/{{ filesTotal }} ({{ sizeUploaded }}/{{ sizeTotal }})"
+		"uploadProgress": "Uploading files: {{ filesUploaded }}/{{ filesTotal }} ({{ sizeUploaded }}/{{ sizeTotal }})",
+		"metadataUpdated": "Metadata updated."
 	},
 	"terraFileInput": {
 		"choose": "Select",
@@ -108,11 +109,16 @@
 	},
 	"terraDynamicForm": {
 		"addListEntry": "Add new entry",
-		"removeListEntry": "Remove entry"
+		"removeListEntry": "Remove entry",
+		"deprecated": "Toggle deprecated entries"
 	},
 	"terraStopwatch": {
 		"start": "Start",
 		"pause": "Pause",
+		"reset": "Reset"
+	},
+	"filter": {
+		"search": "Search",
 		"reset": "Reset"
 	}
 }

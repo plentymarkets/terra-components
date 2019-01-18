@@ -210,10 +210,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
         // update temp selected value
         this.tmpSelectedValue = this.selectedValue;
-
-        // execute callback functions
-        this.onTouchedCallback();
-        this.onChangeCallback(value.value);
     }
 
     private updateLastSelectedValues():void

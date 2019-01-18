@@ -12,6 +12,9 @@ describe('Component: TerraThreeColumnsContainerComponent', () =>
     let component:TerraThreeColumnsContainerComponent;
     let fixture:ComponentFixture<TerraThreeColumnsContainerComponent>;
     let columns:Array<HTMLDivElement>;
+    let leftColumn:HTMLDivElement;
+    let centerColumn:HTMLDivElement;
+    let rightColumn:HTMLDivElement;
 
     beforeEach(async(() =>
     {
@@ -30,11 +33,21 @@ describe('Component: TerraThreeColumnsContainerComponent', () =>
         fixture.detectChanges();
 
         columns = fixture.debugElement.query(By.css('.row')).children.map((de:DebugElement) => de.nativeElement);
+        leftColumn = columns[0];
+        centerColumn = columns[1];
+        rightColumn = columns[2];
     });
 
     it('should create an instance', () =>
     {
         expect(component).toBeTruthy();
+    });
+
+    it('should initialize its inputs', () =>
+    {
+        expect(component.leftColumnWidth).toEqual(4);
+        expect(component.centerColumnWidth).toEqual(4);
+        expect(component.rightColumnWidth).toEqual(4);
     });
 
     it('should initialize all columns with a width of 12 on extra small screens', () =>
@@ -55,9 +68,9 @@ describe('Component: TerraThreeColumnsContainerComponent', () =>
 
         fixture.detectChanges();
 
-        expect(columns[0].classList.contains('col-md-2')).toBeTruthy();
-        expect(columns[1].classList.contains('col-md-8')).toBeTruthy();
-        expect(columns[2].classList.contains('col-md-2')).toBeTruthy();
+        expect(leftColumn.classList.contains('col-md-2')).toBeTruthy();
+        expect(centerColumn.classList.contains('col-md-8')).toBeTruthy();
+        expect(rightColumn.classList.contains('col-md-2')).toBeTruthy();
 
         component.leftColumnWidth = 5;
         component.centerColumnWidth = 6;
@@ -65,9 +78,9 @@ describe('Component: TerraThreeColumnsContainerComponent', () =>
 
         fixture.detectChanges();
 
-        expect(columns[0].classList.contains('col-md-5')).toBeTruthy();
-        expect(columns[1].classList.contains('col-md-6')).toBeTruthy();
-        expect(columns[2].classList.contains('col-md-1')).toBeTruthy();
+        expect(leftColumn.classList.contains('col-md-5')).toBeTruthy();
+        expect(centerColumn.classList.contains('col-md-6')).toBeTruthy();
+        expect(rightColumn.classList.contains('col-md-1')).toBeTruthy();
     });
 
     it('should hide a column if its width is set to 0 or null', () =>
@@ -76,29 +89,40 @@ describe('Component: TerraThreeColumnsContainerComponent', () =>
 
         fixture.detectChanges();
 
-        expect(columns[0].attributes.getNamedItem('hidden')).toBeDefined();
-        expect(columns[0].classList.contains('overflow-auto')).toBeTruthy();
-        expect(columns[0].classList.length).toEqual(1);
+        expect(leftColumn.hidden).toBe(true);
+        expect(leftColumn.classList.contains('overflow-auto')).toBeTruthy();
+        expect(leftColumn.classList.length).toEqual(1);
 
         component.centerColumnWidth = null;
 
         fixture.detectChanges();
 
-        expect(columns[1].attributes.getNamedItem('hidden')).toBeDefined();
-        expect(columns[1].classList.contains('overflow-auto')).toBeTruthy();
-        expect(columns[1].classList.length).toEqual(1);
+        expect(centerColumn.hidden).toBe(true);
+        expect(centerColumn.classList.contains('overflow-auto')).toBeTruthy();
+        expect(centerColumn.classList.length).toEqual(1);
+
+        component.rightColumnWidth = null;
+
+        fixture.detectChanges();
+
+        expect(rightColumn.hidden).toBe(true);
+        expect(rightColumn.classList.contains('overflow-auto')).toBeTruthy();
+        expect(rightColumn.classList.length).toEqual(1);
+
     });
 
-    xit('should handle a sum of column width smaller than 12 and fill up the last column so that it fits', () =>
+    it('should handle a sum of column width smaller than 12 and fill up the last column so that it fits', () =>
     {
         component.leftColumnWidth = 2;
         component.centerColumnWidth = 4;
         component.rightColumnWidth = 4;
 
+        component.ngOnChanges();
+
         fixture.detectChanges();
 
-        expect(columns[0].classList.contains('col-md-2')).toBeTruthy();
-        expect(columns[1].classList.contains('col-md-4')).toBeTruthy();
-        expect(columns[2].classList.contains('col-md-6')).toBeTruthy(); // TODO: Find out why this fails
+        expect(leftColumn.classList.contains('col-md-2')).toBeTruthy();
+        expect(centerColumn.classList.contains('col-md-4')).toBeTruthy();
+        expect(rightColumn.classList.contains('col-md-6')).toBeTruthy();
     });
 });

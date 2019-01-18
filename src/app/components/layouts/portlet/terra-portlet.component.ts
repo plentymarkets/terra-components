@@ -13,8 +13,8 @@ import {
     transition,
     trigger
 } from '@angular/animations';
-import { isNullOrUndefined } from 'util';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
+import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
     selector:   'terra-portlet',
@@ -68,8 +68,18 @@ export class TerraPortletComponent implements OnChanges
     @Input()
     public inputButtonList:Array<TerraButtonInterface> = [];
 
+    @Input()
+    public inputIsDisabled:boolean = false;
+    /**
+     * @description Sets an info text which is rendered in a terra-info
+     */
+    @Input()
+    public infoText:string;
+
     @Output()
     public inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    protected readonly infoTextPlacement:TerraPlacementEnum = TerraPlacementEnum.RIGHT;
 
     private get collapsedState():string
     {
@@ -84,11 +94,6 @@ export class TerraPortletComponent implements OnChanges
         }
 
         return 'expanded';
-    }
-
-    constructor()
-    {
-        this.inputPortletHeader = isNullOrUndefined(this.inputPortletHeader) ? '' : this.inputPortletHeader;
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -108,13 +113,15 @@ export class TerraPortletComponent implements OnChanges
      */
     public toggleCollapse():void
     {
-        this.inputCollapsed = !this.inputCollapsed;
-
-        if(!this.inputIsCollapsable)
+        if ( !this.inputIsDisabled )
         {
-            this.inputCollapsed = false;
+            if(!this.inputIsCollapsable)
+            {
+                this.inputCollapsed = false;
+                return;
+            }
+            this.inputCollapsed = !this.inputCollapsed;
+            this.inputCollapsedChange.emit(this.inputCollapsed);
         }
-
-        this.inputCollapsedChange.emit(this.inputCollapsed);
     }
 }

@@ -136,6 +136,12 @@ export class TerraNodeTreeConfig<D>
 
             parent.children.splice(index, 1);
         }
+        else
+        {
+            let index:number = this.list.indexOf(node);
+
+            this.list.splice(index, 1);
+        }
 
         if(node === this.currentSelectedNode)
         {
@@ -168,7 +174,9 @@ export class TerraNodeTreeConfig<D>
      */
     public updateNodeById(id:string | number, newNode:TerraNodeInterface<D>):void
     {
-        if(newNode.id.toString() !== id.toString())
+        if(!isNullOrUndefined(newNode.id) &&
+           !isNullOrUndefined(id) &&
+           (newNode.id.toString() !== id.toString()))
         {
             console.warn('ID ' + id + ' is different from new node ID!');
         }
@@ -279,7 +287,6 @@ export class TerraNodeTreeConfig<D>
                 {
                     node.hasLoaded = true;
                     node.isLoading = false;
-                    node.isOpen = true;
                     this.checkVisibilityAndAssignDefault(node.children);
                 },
                 () =>
@@ -287,10 +294,6 @@ export class TerraNodeTreeConfig<D>
                     node.hasLoaded = false;
                     node.isLoading = false;
                 });
-        }
-        else
-        {
-            node.isOpen = !node.isOpen;
         }
     }
 
@@ -326,8 +329,8 @@ export class TerraNodeTreeConfig<D>
      */
     public reset():void
     {
-        this._list = [];
-        this._currentSelectedNode = null;
+        this.list = [];
+        this.currentSelectedNode = null;
     }
 
     /**

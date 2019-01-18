@@ -55,12 +55,6 @@ button.btn[data-icon="icon-search_apply"], div.adminActionIcon.icon-search_apply
     background-color: var(--button-background-color-group-add);
 }
 
-// temporary group for "+"-icon
-terra-button[ng-reflect-input-icon="icon-add"] .btn, div.adminActionIcon.icon-add, button.adminButton[data-icon="icon-add"], %icon-add
-{
-    background-color: var(--color-group-add);
-}
-
 // Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen, Problem
 button.btn[data-icon="icon-gutschrift_stornieren"], div.adminActionIcon.icon-gutschrift_stornieren, button.adminButton[data-icon="icon-gutschrift_stornieren"], %icon-gutschrift_stornieren,
 button.btn[data-icon="icon-icon-reversal_document-13"], div.adminActionIcon.icon-icon-reversal_document-13, button.adminButton[data-icon="icon-icon-reversal_document-13"], %icon-icon-reversal_document-13,
@@ -628,11 +622,16 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
     box-sizing: border-box;
     background-color: var(--color-group-navigation);
     color: var(--color-structure-0);
-
+    
     // Exceptions
     &.btn-link
     {
         border: none;
+    }
+    
+    &.btn-major
+    {
+        background-color: var(--function-group-color);
     }
     
     &.btn-major
@@ -652,7 +651,7 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
 terra-button .btn-handler, terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
 {
     // Disabled: Deaktiviert, Nicht auswählbar
-
+    
     &.Disabled
     {
         background-color: var(--color-group-disabled) !important;

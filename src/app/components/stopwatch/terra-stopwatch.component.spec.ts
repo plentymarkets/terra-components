@@ -1,23 +1,27 @@
-import { LocalizationModule } from 'angular-l10n';
 import { TerraStopwatchComponent } from './terra-stopwatch.component';
 import {
     async,
     ComponentFixture,
-    TestBed
+    discardPeriodicTasks,
+    fakeAsync,
+    TestBed,
+    tick
 } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
-import { ElementRef } from '@angular/core';
-import { MockElementRef } from '../../testing/mock-element-ref';
+import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../translation/l10n.config';
-import { TerraButtonComponent } from '../../../';
+import Spy = jasmine.Spy;
 
 describe('Component: TerraStopwatchComponent', () =>
 {
     let component:TerraStopwatchComponent;
     let fixture:ComponentFixture<TerraStopwatchComponent>;
+    const ticks:number = 2;
+    const ticksInMilliseconds:number = ticks * 1000 + 1;
 
     beforeEach(async(() =>
     {
@@ -32,12 +36,6 @@ describe('Component: TerraStopwatchComponent', () =>
                 HttpModule,
                 HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
-            ],
-            providers:    [
-                {
-                    provide:  ElementRef,
-                    useClass: MockElementRef
-                }
             ]
         }).compileComponents();
     }));
@@ -46,11 +44,6 @@ describe('Component: TerraStopwatchComponent', () =>
     {
         fixture = TestBed.createComponent(TerraStopwatchComponent);
         component = fixture.componentInstance;
-
-        component.reset();
-        component.inputIsAutoPlay = false;
-
-        fixture.detectChanges();
     });
 
     it('should create', () =>
@@ -58,50 +51,83 @@ describe('Component: TerraStopwatchComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should auto run', (done:any) =>
+    it('should initialise its inputs and outputs', () =>
     {
-        component.inputIsAutoPlay = true;
-        component.ngOnInit();
-        setTimeout(() =>
-        {
-            expect(component.getTimeInMilliseconds()).toBeGreaterThan(0);
-            done();
-        }, 100);
+        expect(component.autoPlay).toBe(false);
+        expect(component.isSmall).toBe(false);
+        expect(component.controls).toBe(false);
+        expect(component.isRunning).toBe(false);
+        expect(component.seconds).toBe(0);
     });
 
-    it('should not auto run', () =>
-    {
-        component.inputIsAutoPlay = false;
-        component.ngOnInit();
-        expect(component.getTimeInMilliseconds()).toEqual(0);
-    });
-
-    it('should start and reset', (done:any) =>
+    it('should update #isRunning when starting, stopping and resetting the watch', () =>
     {
         component.start();
-        setTimeout(() =>
-        {
-            expect(component.getTimeInMilliseconds()).toBeGreaterThan(0);
-            component.reset();
-            expect(component.getTimeInMilliseconds()).toEqual(0);
-            done();
-        }, 100);
+        expect(component.isRunning).toBe(true);
+        component.stop();
+        expect(component.isRunning).toBe(false);
+        component.start();
+        expect(component.isRunning).toBe(true);
+        component.reset();
+        expect(component.isRunning).toBe(false);
     });
 
-    it('should start and stop', (done:any) =>
+    it('should reset seconds value when calling the #reset method', () =>
+    {
+        component.seconds = 2;
+        expect(component.seconds).toBe(2);
+        component.reset();
+        expect(component.seconds).toBe(0);
+    });
+
+    it('should call the #stop method when calling #reset', () =>
+    {
+        let spy:Spy = spyOn(component, 'stop');
+        component.reset();
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('should start the watch when calling the #start method', fakeAsync(() =>
     {
         component.start();
-        let time:number;
-        setTimeout(() =>
-        {
-            expect(component.getTimeInMilliseconds()).toBeGreaterThan(0);
-            component.stop();
-            time = component.getTimeInMilliseconds();
-        }, 100);
-        setTimeout(() =>
-        {
-            expect(component.getTimeInMilliseconds()).toEqual(time);
-            done();
-        }, 200);
-    });
+        tick(ticksInMilliseconds);
+        expect(component.seconds).toBe(ticks);
+
+        discardPeriodicTasks();
+    }));
+
+    it('should start automatically if #autoPlay is true', fakeAsync(() =>
+    {
+        let spy:Spy = spyOn(component, 'start').and.callThrough();
+        component.autoPlay = true;
+        component.ngOnInit();
+
+        expect(spy).toHaveBeenCalled();
+        tick(ticksInMilliseconds);
+        expect(component.seconds).toBeGreaterThan(0);
+
+        discardPeriodicTasks();
+    }));
+
+    it('should not start automatically if #autoPlay is false', fakeAsync(() =>
+    {
+        let spy:Spy = spyOn(component, 'start').and.callThrough();
+        component.autoPlay = false;
+        component.ngOnInit();
+
+        expect(spy).not.toHaveBeenCalled();
+        tick(ticksInMilliseconds);
+        expect(component.seconds).toBe(0);
+    }));
+
+    it('should start and stop', fakeAsync(() =>
+    {
+        component.start();
+        tick(ticksInMilliseconds);
+        expect(component.seconds).toBe(ticks);
+
+        component.stop();
+        tick(ticksInMilliseconds);
+        expect(component.seconds).toEqual(ticks);
+    }));
 });

@@ -6,21 +6,18 @@
     }
 }
 
-:host-context(#tab-content .outlet-container)
+.container-fluid
 {
-    .container-fluid
+    height: 100%;
+    
+    .row
     {
         height: 100%;
+        flex-wrap: nowrap;
         
-        .row
+        .overflow-auto
         {
-            height: 100%;
-            
-            .overflow-auto
-            {
-                overflow: auto;
-            }
+            overflow: auto;
         }
     }
 }
-

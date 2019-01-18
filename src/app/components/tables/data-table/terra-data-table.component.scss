@@ -2,7 +2,7 @@
 {
     margin: var(--space-container);
     box-shadow: var(--box-shadow);
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-radius: var(--border-radius);
     width: auto;
     --no-result-margin: 0; //in case of a no-result page placed in a table to avoid doubled margins
     
@@ -31,17 +31,24 @@
             
             thead
             {
-                background: var(--color-structure-9);
-                color: var(--color-structure-0);
-                border-radius: 0 0 var(--border-radius) var(--border-radius);
+                background: var(--table-head-background-color, var(--color-structure-9));
+                color: var(--table-head-color, var(--color-structure-0));
                 tr
                 {
                     th
                     {
-                        font-variant: all-small-caps;
                         padding: var(--table-head-th-padding, var(--space-md));
                         transition: padding var(--transition-lg);
                         border: none;
+                        &.sortable
+                        {
+                            cursor: pointer;
+                        }
+                        span
+                        {
+                            font-size: var(--font-size-3);
+                            @include font-rendering;
+                        }
                     }
                 }
             }
@@ -51,26 +58,23 @@
                 tr
                 {
                     color: var(--color-structure-11);
+                    
+                    &:nth-child(odd)
+                    {
+                        background-color: var(--color-structure-1);
+                    }
                     td
                     {
                         padding: var(--table-body-td-padding, var(--space-md));
                         transition: padding var(--transition-lg);
                         vertical-align: middle;
                         border-bottom: 1px solid var(--border-color);
+                        border-top: 1px solid var(--border-color);
                         white-space: nowrap;
                         span
                         {
-                            font-size: var(--font-size-2);
-                        }
-                        a[href]
-                        {
-                            color: var(--color-active);
-                            text-decoration: none;
-                            &:hover
-                            {
-                                color: var(--color-active-dark);
-                                text-decoration: underline;
-                            }
+                            font-size: var(--font-size-3);
+                            @include font-rendering;
                         }
                     }
                     &:last-child
@@ -102,21 +106,22 @@
                 background: var(--color-structure-2);
                 cursor: pointer;
             }
-            tbody tr.selected
+            tbody
             {
-                background-color: var(--color-active);
-                color: var(--color-structure-0);
-            }
-            tbody tr.isActive
-            {
-                background-color: var(--color-active);
-                color: var(--color-structure-0);
-                td a[href]
+                tr
                 {
-                    color: var(--color-structure-0);
-                    &:hover
+                    &.selected, &.isActive
                     {
-                        color: var(--color-structure-13);
+                        background-color: var(--color-active);
+                        color: var(--color-structure-0);
+                        td a[href]
+                        {
+                            color: var(--color-structure-0);
+                            &:hover
+                            {
+                                color: var(--color-structure-13);
+                            }
+                        }
                     }
                 }
             }
@@ -124,58 +129,6 @@
     }
 }
 
-.no-margin
-{
-    margin-bottom: 0;
-    tr
-    {
-        td
-        {
-            border: none;
-        }
-    }
-}
-
-.initial-loading-warn
-{
-    text-align: center;
-    display: block;
-    padding: 8.3em .3em .3em .5em;
-    color: var(--color-structure-11);
-    text-decoration: none;
-    font-size: 1.875rem;
-    border: 0;
-    border-radius: 0;
-}
-
-.group-function
-{
-    background-color: var(--color-structure-0);
-    box-shadow: var(--box-shadow);
-    border-radius: var(--border-radius);
-    margin-bottom: var(--space-md);
-    margin: 0 var(--space-xs) var(--space-md) var(--space-xs);
-    
-    .group-function-head
-    {
-        padding: var(--space-sm);
-        
-        span
-        {
-            padding: var(--space-sm);
-            color: var(--color-structure-12);
-            font-size: var(--font-size-4);
-            font-weight: var(--font-weight-2);
-            vertical-align: middle;
-        }
-    }
-    
-    .group-function-body
-    {
-        padding: var(--space-lg);
-        transition: padding var(--transition-lg);
-    }
-}
 
 @media (max-width: 767px)
 {
@@ -194,5 +147,5 @@
 terra-pager
 {
     --toolbar-border-radius: var(--border-radius) var(--border-radius) 0 0;
-    --toolbar-margin: 0 var(--space-xs);
+    --toolbar-margin: 0 var(--space-xs) var(--space-sm) var(--space-xs);
 }

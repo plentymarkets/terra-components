@@ -46,7 +46,9 @@ export class TerraNodeTreeHelper
         {
             for(let node of nodeList)
             {
-                if(node.id.toString() === id.toString())
+                if(!isNullOrUndefined(id) &&
+                   !isNullOrUndefined(node.id) &&
+                   node.id.toString() === id.toString())
                 {
                     foundNode = node;
 

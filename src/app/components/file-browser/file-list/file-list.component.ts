@@ -4,12 +4,14 @@ import {
     ChangeDetectorRef,
     Component,
     ElementRef,
+    EventEmitter,
     forwardRef,
     Inject,
     Input,
     OnChanges,
     OnDestroy,
     OnInit,
+    Output,
     SimpleChanges,
     ViewChild
 } from '@angular/core';
@@ -24,7 +26,6 @@ import {
 } from 'angular-l10n';
 import { TerraUploadProgress } from '../model/terra-upload-progress';
 import {
-    isNull,
     isNullOrUndefined,
     isNumber
 } from 'util';
@@ -48,8 +49,20 @@ import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/te
 })
 export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
 {
+    // @TODO rename to storageService:TerraBaseStorageService
     @Input()
     public inputStorageServices:Array<TerraBaseStorageService> = null;
+
+    @Output()
+    public showImagePreview:EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    @Output()
+    public hideImagePreview:EventEmitter<void> = new EventEmitter<void>();
+
+    @Output()
+    public selectNode:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
+
+    public imagePreviewObject:TerraStorageObject;
 
     protected translationPrefix:string = 'terraFileBrowser';
 
@@ -106,7 +119,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             if(this.imagePreviewObject)
             {
                 this.imagePreviewObject = null;
-                this.parentFileBrowser.splitConfig.hideImagePreview();
+                this.showImagePreview.emit(this.activeStorageService.isImagePreviewEnabled);
             }
             this.renderFileList();
             this.storageSubscription = this.activeStorageService.getStorageList().subscribe((storageList:TerraStorageObjectList):void =>
@@ -127,6 +140,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                     if(isNumber(this.progress.sizeTotal))
                     {
                         this.progress.sizeTotal = PathHelper.sizeString(this.progress.sizeTotal);
+                    }
+
+                    if(progress.filesTotal === progress.filesUploaded)
+                    {
+                        this.selectNode.emit(this.currentStorageRoot);
                     }
                 }
                 this.changeDetector.detectChanges();
@@ -151,8 +169,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private imagePreviewTimeout:number;
 
-    private imagePreviewObject:TerraStorageObject;
-
     public get currentStorageRoot():TerraStorageObject
     {
         if(!isNullOrUndefined(this._currentStorageRoot))
@@ -175,7 +191,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             if(this.imagePreviewObject && storageObject !== this.imagePreviewObject)
             {
                 this.imagePreviewObject = null;
-                this.parentFileBrowser.splitConfig.hideImagePreview();
+                this.hideImagePreview.emit();
             }
 
             this._currentStorageRoot = storageObject;
@@ -274,7 +290,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                     if(FileTypeHelper.isWebImage(object.key))
                     {
                         this.imagePreviewObject = object;
-                        this.parentFileBrowser.splitConfig.showImagePreview(object, this.activeStorageService);
+                        this.showImagePreview.emit(this.activeStorageService.isImagePreviewEnabled);
                     }
                     this.fileTableComponent.inputHighlightedRow = this.fileTableRowList.find(
                         (r:TerraSimpleTableRowInterface<TerraStorageObject>):boolean => r.value === object);
@@ -290,7 +306,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes.hasOwnProperty('inputStorageServices') && isNull(changes['inputStorageServices'].previousValue))
+        if(changes.hasOwnProperty('inputStorageServices'))
         {
             this.activeStorageService = this.inputStorageServices[0];
         }
@@ -320,7 +336,10 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         );
         this.showNewDirectoryPrompt = false;
         this._newDirectoryName = null;
-        this.activeStorageService.createDirectory(path);
+        this.activeStorageService.createDirectory(path).subscribe((response:any) =>
+        {
+            this.selectNode.emit(this.currentStorageRoot);
+        });
     }
 
     protected deleteObjects():void
@@ -338,13 +357,17 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             });
         };
         extractKeys(this.objectsToDelete);
-        this.activeStorageService.deleteFiles(keyList);
-        this.objectsToDelete = [];
-        if(!isNullOrUndefined(this.imagePreviewObject) && keyList.indexOf(this.imagePreviewObject.key))
+        this.activeStorageService.deleteFiles(keyList).subscribe(() =>
         {
-            this.imagePreviewObject = null;
-            this.parentFileBrowser.splitConfig.hideImagePreview();
-        }
+            this.objectsToDelete = [];
+
+            if(!isNullOrUndefined(this.imagePreviewObject) && keyList.indexOf(this.imagePreviewObject.key) >= 0)
+            {
+                this.imagePreviewObject = null;
+                this.hideImagePreview.emit();
+            }
+            this.selectNode.emit(this.currentStorageRoot);
+        });
     }
 
     private renderFileList():void
@@ -503,11 +526,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             },
             {
                 caption: this.translationService.translate(this.translationPrefix + '.fileURL'),
-                width:   '50%'
+                width:   '40%'
             },
             {
                 caption: '',
-                width:   '1'
+                width:   '5%'
             },
             {
                 caption: this.translationService.translate(this.translationPrefix + '.fileSize'),
@@ -519,7 +542,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             },
             {
                 caption: '',
-                width:   '1'
+                width:   '5%'
             }
         ];
     }
@@ -529,7 +552,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this.fileTableHeaderList = [
             {
                 caption: this.translationService.translate(this.translationPrefix + '.fileName'),
-                width:   '80%'
+                width:   '70%'
             },
             {
                 caption: this.translationService.translate(this.translationPrefix + '.fileSize'),
@@ -541,11 +564,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             },
             {
                 caption: '',
-                width:   '1'
+                width:   '5%'
             },
             {
                 caption: '',
-                width:   '1'
+                width:   '5%'
             }
         ];
     }
@@ -562,25 +585,46 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                || PathHelper.isDirectory(filename);
     }
 
+    protected onRowClick(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
+    {
+        let storageObject:TerraStorageObject = row.value;
+        if(storageObject.isDirectory)
+        {
+            this.currentStorageRoot = storageObject;
+            this.selectNode.emit(storageObject);
+        }
+    }
+
+    private showOrHideImagePreview(storageObject:TerraStorageObject):void
+    {
+        if(!isNullOrUndefined(storageObject) && FileTypeHelper.isWebImage(storageObject.key))
+        {
+            this.showImagePreview.emit(this.activeStorageService.isImagePreviewEnabled);
+        }
+        else
+        {
+            this.hideImagePreview.emit();
+        }
+    }
+
     protected onActiveRowChange(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
     {
+        let storageObject:TerraStorageObject = row.value;
+        this.showOrHideImagePreview(storageObject);
         if(isNullOrUndefined(this.imagePreviewTimeout))
         {
             clearTimeout(this.imagePreviewTimeout);
         }
         let debounceFn:Function = ():void =>
         {
-            let storageObject:TerraStorageObject = row.value;
 
             if(!isNullOrUndefined(storageObject) && FileTypeHelper.isWebImage(storageObject.key))
             {
                 this.imagePreviewObject = storageObject;
-                this.parentFileBrowser.splitConfig.showImagePreview(storageObject, this.activeStorageService);
             }
             else
             {
                 this.imagePreviewObject = null;
-                this.parentFileBrowser.splitConfig.hideImagePreview();
             }
 
             this.parentFileBrowser.outputSelectedChange.emit(storageObject);
