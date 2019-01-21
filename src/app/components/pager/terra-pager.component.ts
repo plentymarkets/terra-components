@@ -9,6 +9,7 @@ import { TerraPagerInterface } from './data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-select-box.interface';
 import { Subject } from 'rxjs/Subject';
 import { terraPagerDefaultPagingSizes } from './data/terra-pager-default-paging-sizes';
+import { Language } from 'angular-l10n';
 
 @Component({
     selector: 'terra-pager',
@@ -31,6 +32,9 @@ export class TerraPagerComponent implements OnInit
 
     @Output()
     public outputDoPaging:EventEmitter<TerraPagerInterface<any>> = new EventEmitter<TerraPagerInterface<any>>();
+
+    @Language()
+    protected lang:string;
 
     private pagingClicks:Subject<TerraPagerInterface<any>> = new Subject<TerraPagerInterface<any>>();
 

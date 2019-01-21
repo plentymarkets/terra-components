@@ -19,6 +19,7 @@ import { buttonList } from '../../../testing/mock-buttons';
 import { TerraPortletComponent } from './terra-portlet.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
+import { TerraInfoComponent } from '../../info/terra-info.component';
 
 describe('TerraPortletComponent', () =>
 {
@@ -34,7 +35,8 @@ describe('TerraPortletComponent', () =>
             declarations: [
                 TerraPortletComponent,
                 TerraButtonComponent,
-                TerraLabelTooltipDirective
+                TerraLabelTooltipDirective,
+                TerraInfoComponent
             ],
             imports:      [
                 TooltipModule.forRoot(),
@@ -67,6 +69,7 @@ describe('TerraPortletComponent', () =>
         expect(component.inputCollapsed).toBe(false);
         expect(component.inputIsDisabled).toBe(false);
         expect(component.inputButtonList).toEqual([]);
+        expect(component.infoText).toBeUndefined();
     });
 
     it(`should set classes accordingly to 'inputIsCollapsable', 'inputHighlightPortlet' and 'inputIsDisabled'`, () =>
@@ -264,6 +267,22 @@ describe('TerraPortletComponent', () =>
             testButton(button.componentInstance, buttonList[index]);
             testButtonClickFunction(button.componentInstance, buttonList[index]);
         });
+    });
+
+    it(`should render the info component if 'infoText' is set`, () =>
+    {
+        let infoElement:DebugElement;
+        component.inputPortletHeader = 'Test header';
+        fixture.detectChanges();
+
+        infoElement = debugElement.query(By.css('terra-info'));
+        expect(infoElement).toBeFalsy();
+
+        component.infoText = 'info text';
+        fixture.detectChanges();
+
+        infoElement = debugElement.query(By.css('terra-info'));
+        expect(infoElement).toBeTruthy();
     });
 
     function testButton(button:TerraButtonComponent, buttonInterface:TerraButtonInterface):void
