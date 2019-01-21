@@ -116,5 +116,9 @@
 		"start": "Start",
 		"pause": "Pause",
 		"reset": "Zurücksetzen"
+	},
+	"filter": {
+		"search": "Suchen",
+		"reset": "Zurücksetzen"
 	}
 }

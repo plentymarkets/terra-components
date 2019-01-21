@@ -1,12 +1,19 @@
 # Unreleased
 
 ### Features
+* **webpack update** updated to latest version of webpack due to security vulnerabilities
+* **tc-filter** new component which replaces `<terra-filter`.
+* **terra-filter** is now deprecated. Use `<tc-filter>` instead.
+* **TerraSplitViewComponentInterface** is now deprecated. See the [SplitView Migration Guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide) for a replacement.
 * **terra-portlet** added input `infoText` which is shown as `<terra-info>` element in the portlet's header
 * **AlertService** new service providing functionality to manage alerts. Those can also be used in a plugin.
 * **terra-alert** is now deprecated. Use new `AlertService` instead.
 * **ibanValidator** new validator for reactive forms checking whether a text is a valid IBAN.
 * **TerraValidators** new class that provides a set of additional validators for reactive forms.
-* **webpack update** updated to latest version of webpack due to security vulnerabilities
+* **terra-select-box** `inputSelectedValue` and `inputSelectedValueChange` are now deprecated. Please use `ngModel`-binding and the `ngModelChange`-callback instead.
+
+### Bug Fixes
+* **terra-pager** inject current language to be able to translate the texts in the template properly.
 
 <a name="3.1.0"></a>
 # 3.1.0 (07.01.2019)
