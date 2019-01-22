@@ -41,7 +41,7 @@
         </tr>
         </thead>
         <tbody *ngIf="!useContentBody">
-            <tr [tcTableRow]="row" *ngFor="let row of rowList" hasContextMenu>
+            <tr *ngFor="let row of rowList" [tcTableRow]="row" hasContextMenu [rowData]="row.data">
                 <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
                     <ng-template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>
