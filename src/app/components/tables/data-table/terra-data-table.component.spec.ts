@@ -29,6 +29,7 @@ import { DebugElement } from '@angular/core';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { By } from '@angular/platform-browser';
 import Spy = jasmine.Spy;
+import { TableRowComponent } from './table-row/table-row.component';
 
 describe('TerraDataTableComponent', () =>
 {
@@ -51,6 +52,7 @@ describe('TerraDataTableComponent', () =>
                 TerraBaseToolbarComponent,
                 TerraNumberInputComponent,
                 TerraSelectBoxComponent,
+                TableRowComponent,
                 TerraLabelTooltipDirective
             ],
             imports:      [
