@@ -1,6 +1,7 @@
 # Unreleased
 
 ### Features
+* **terra-alert** new alerts are now added to the top of the list
 * **tc-filter** new component which replaces `<terra-filter`.
 * **terra-filter** is now deprecated. Use `<tc-filter>` instead.
 * **TerraSplitViewComponentInterface** is now deprecated. See the [SplitView Migration Guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide) for a replacement.
