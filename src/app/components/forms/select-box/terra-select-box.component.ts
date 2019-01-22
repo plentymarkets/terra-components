@@ -57,6 +57,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input()
     public inputListBoxValues:Array<TerraSelectBoxValueInterface>;
 
+    /**
+     * @deprecated use ngModelChange instead
+     */
     @Output()
     public inputSelectedValueChange:EventEmitter<TerraSelectBoxValueInterface> = new EventEmitter<TerraSelectBoxValueInterface>();
 
@@ -77,6 +80,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @ViewChildren('renderedListBoxValues')
     private renderedListBoxValues:QueryList<ElementRef>;
 
+    /**
+     * @deprecated use ngModel instead
+     */
     public get inputSelectedValue():number | string
     {
         return this.selectedValue.value;
