@@ -134,6 +134,6 @@ describe('Component: TableRowComponent', () =>
 
         fixture.detectChanges();
 
-        expect(onRowCheckboxChange).toHaveBeenCalled();
+        expect(onRowCheckboxChange).toHaveBeenCalledWith(rowData);
     });
 });
