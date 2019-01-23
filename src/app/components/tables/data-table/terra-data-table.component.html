@@ -40,20 +40,8 @@
             </ng-template>
         </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let row of rowList"
-                hasContextMenu
-                [ngClass]="{'selected': row.selected, 'isActive': row.isActive, 'disabled': row.disabled}"
-                [rowData]="row.data"
-                (click)="rowClicked(row)">
-                <td *ngIf="inputHasCheckboxes">
-                    <terra-checkbox type="checkbox"
-                                    [value]="row.selected"
-                                    [inputIsDisabled]="row.disabled"
-                                    (change)="onRowCheckboxChange(row)"
-                                    (click)="$event.stopPropagation()">
-                    </terra-checkbox>
-                </td>
+        <tbody *ngIf="!useContentBody">
+            <tr *ngFor="let row of rowList" [tcTableRow]="row" hasContextMenu [rowData]="row.data">
                 <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
                     <ng-template #tdTooltip>
                         <div [innerHTML]="cell.tooltipText"></div>
@@ -122,6 +110,8 @@
                 </ng-template>
             </tr>
         </tbody>
+        
+        <ng-content select="tbody" *ngIf="useContentBody"></ng-content>
     </table>
     
     <ng-content *ngIf="!dataAvailableOrRequestPending" select="terra-no-result-notice"></ng-content>

@@ -1,4 +1,5 @@
-# Unreleased
+<a name="3.2.0"></a>
+# 3.2.0 (23.01.2019)
 
 ### Features
 * **terra-alert** new alerts are now added to the top of the list
@@ -10,6 +11,8 @@
 * **terra-alert** is now deprecated. Use new `AlertService` instead.
 * **ibanValidator** new validator for reactive forms checking whether a text is a valid IBAN.
 * **TerraValidators** new class that provides a set of additional validators for reactive forms.
+* **terra-data-table** add `useContentBody` input property. If set the auto rendering of rows/cells is disabled and content projection is enabled.
+* **table-row** added for the new `terra-data-table` content projection feature
 * **terra-select-box** `inputSelectedValue` and `inputSelectedValueChange` are now deprecated. Please use `ngModel`-binding and the `ngModelChange`-callback instead.
 
 ### Bug Fixes
