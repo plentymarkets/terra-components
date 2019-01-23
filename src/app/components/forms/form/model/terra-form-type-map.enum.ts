@@ -24,15 +24,55 @@ export class TerraFormTypeMap
         },
         component: TerraCheckboxComponent
     };
-    public readonly date:Type<TerraDatePickerComponent> = TerraDatePickerComponent;
-    public readonly file:Type<TerraFileInputComponent> = TerraFileInputComponent;
-    public readonly text:Type<TerraTextInputComponent> = TerraTextInputComponent;
-    public readonly textarea:Type<TerraTextAreaInputComponent> = TerraTextAreaInputComponent;
-    public readonly number:Type<TerraNumberInputComponent> = TerraNumberInputComponent;
-    public readonly double:Type<TerraDoubleInputComponent> = TerraDoubleInputComponent;
-    public readonly select:Type<TerraSelectBoxComponent> = TerraSelectBoxComponent;
+    public readonly date:TerraFormTypeInterface = {
+        inputMap: {
+            required: 'inputIsRequired'
+        },
+        component: TerraDatePickerComponent
+    };
+    public readonly file:TerraFormTypeInterface = {
+        inputMap: {
+            required: 'inputIsRequired'
+        },
+        component: TerraFileInputComponent
+    };
+    public readonly text:TerraFormTypeInterface = {
+        inputMap: {
+            required: 'inputIsRequired'
+        },
+        component: TerraTextInputComponent
+    } ;
+    public readonly textarea:TerraFormTypeInterface = {
+        inputMap: {
+            required: 'inputIsRequired'
+        },
+        component: TerraTextAreaInputComponent
+    };
+    public readonly number:TerraFormTypeInterface = {
+        inputMap: {
+            required: 'inputIsRequired'
+        },
+        component: TerraNumberInputComponent
+    };
+    public readonly double:TerraFormTypeInterface = {
+        inputMap: {
+            required: 'inputIsRequired'
+        },
+        component: TerraDoubleInputComponent
+    };
+    public readonly select:TerraFormTypeInterface = {
+        inputMap: {
+            required: 'inputIsRequired'
+        },
+        component: TerraSelectBoxComponent
+    };
     public readonly category:Type<TerraCategoryPickerComponent> = TerraCategoryPickerComponent;
-    public readonly color:Type<TerraColorPickerComponent> = TerraColorPickerComponent;
+    public readonly color:TerraFormTypeInterface = {
+        inputMap: {
+            required: 'inputIsRequired'
+        },
+        component: TerraColorPickerComponent
+    };
     public readonly checkboxGroup:Type<TerraMultiCheckBoxComponent> = TerraMultiCheckBoxComponent;
     public readonly noteEditor:TerraFormTypeInterface = {
         inputMap:  {

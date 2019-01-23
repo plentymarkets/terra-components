@@ -5,7 +5,7 @@ import { TerraDataTableCellInterface } from './terra-data-table-cell.interface';
  */
 export interface TerraDataTableRowInterface<D>
 {
-    cellList:Array<TerraDataTableCellInterface>;
+    cellList?:Array<TerraDataTableCellInterface>;
     data?:D;
     clickFunction?:() => void;
     isActive?:boolean;

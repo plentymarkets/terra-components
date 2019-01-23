@@ -67,7 +67,7 @@ export class TerraAlertComponent
             alert.dismissOnTimeout = 5000;
         }
 
-        this.alerts.push({
+        this.alerts.unshift({
             msg:              alert.msg,
             type:             alert.type,
             dismissOnTimeout: alert.dismissOnTimeout,
