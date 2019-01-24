@@ -25,15 +25,10 @@ import {
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
-import {
-    FormControl,
-    ValidatorFn,
-    Validators
-} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
 import { TerraFormEntryListComponent } from '../form-entry-list/terra-form-entry-list.component';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
-import { TerraValidators } from '../../../../validators/validators';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 
 @Component({
