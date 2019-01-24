@@ -137,7 +137,7 @@ export class TerraDropzoneDirective implements OnChanges
                               dropzone:Interact.Interactable,
                               dropElement:HTMLElement,
                               draggable:Interact.Interactable,
-                              dragElement:HTMLElement):boolean|AcceptFn =>
+                              dragElement:HTMLElement):boolean | AcceptFn =>
             {
                 if(isDropable)
                 {

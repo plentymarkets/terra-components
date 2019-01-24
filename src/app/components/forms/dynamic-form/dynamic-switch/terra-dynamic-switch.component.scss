@@ -3,13 +3,14 @@
     form.horizontalGroupForm
     {
         display: flex;
-        
-        > * {
+
+        > *
+        {
             flex-grow: 1;
             flex-basis: 0;
             align-self: center;
         }
-    
+
         > :not(:last-child)
         {
             margin-right: 5px;
@@ -20,13 +21,13 @@
 .horizontalGroup
 {
     padding: var(--space-sm) 0;
-    
+
     .horizontalGroupLabel
     {
         display: block;
         font-weight: bold;
     }
-    
+
     .horizontalGroupEntry
     {
         width: 100%;
@@ -37,22 +38,22 @@
 {
     padding: var(--space-sm) 0;
     width: 100%;
-    
+
     .subSwitch
     {
         width: 100%;
     }
-    
+
     .verticalGroupLabel
     {
         font-weight: bold;
     }
-    
+
     .verticalGroupEntry
     {
         width: 100%;
     }
-    
+
     &:not(:last-child)
     {
         margin-right: 0;

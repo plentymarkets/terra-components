@@ -4,7 +4,7 @@ import { HTMLHint } from 'htmlhint';
 
 export class HtmlLinter
 {
-    private rules:{[key:string]:boolean} = {};
+    private rules:{ [key:string]:boolean } = {};
 
     constructor(rules:Array<string>)
     {
@@ -21,7 +21,7 @@ export class HtmlLinter
         {
             return {
                 line: message.line,
-                col: message.col,
+                col:  message.col,
                 rule: message.rule.id
             };
         });

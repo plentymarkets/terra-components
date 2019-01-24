@@ -5,7 +5,7 @@
     position: relative;
     width: 30px;
     height: 16px;
-    
+
     .slider
     {
         border-radius: 20px;
@@ -17,6 +17,7 @@
         bottom: 0;
         background-color: var(--color-structure-0);
         transition: all var(--transition-md);
+
         &:before
         {
             border-radius: 50%;
@@ -30,7 +31,7 @@
             transition: all var(--transition-md);
         }
     }
-    
+
     &.active
     {
         .slider
@@ -44,7 +45,7 @@
             }
         }
     }
-    
+
     &.disabled
     {
         .slider
@@ -55,12 +56,13 @@
             }
         }
     }
-    
+
     &.sm
     {
         top: 3px;
         width: 26px;
         height: 14px;
+
         &.active
         {
             .slider
@@ -73,6 +75,7 @@
                 }
             }
         }
+
         .slider
         {
             &:before
@@ -83,12 +86,13 @@
             }
         }
     }
-    
+
     &.lg
     {
         top: 7px;
         width: 44px;
         height: 26px;
+
         &.active
         {
             .slider
@@ -101,6 +105,7 @@
                 }
             }
         }
+
         .slider
         {
             &:before
@@ -111,7 +116,7 @@
             }
         }
     }
-    
+
     &:not(:only-child)
     {
         margin: 0 0 0 2px;

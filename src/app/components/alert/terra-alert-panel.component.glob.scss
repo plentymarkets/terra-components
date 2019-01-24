@@ -10,6 +10,7 @@ terra-alert-panel
     min-width: 250px;
     overflow-y: auto;
     z-index: 1030;
+    
     .alert
     {
         position: relative;
@@ -34,6 +35,7 @@ terra-alert-panel
             top: .4em;
             left: .7em;
         }
+        
         &.alert-danger
         {
             border: 2px solid var(--color-alert);
@@ -45,6 +47,7 @@ terra-alert-panel
                 color: var(--color-alert-dark);
             }
         }
+        
         &.alert-success
         {
             border: 2px solid var(--color-add);
@@ -56,6 +59,7 @@ terra-alert-panel
                 color: var(--color-add-dark);
             }
         }
+        
         &.alert-warning
         {
             border: 2px solid var(--color-accent);
@@ -67,6 +71,7 @@ terra-alert-panel
                 color: var(--color-accent-dark);
             }
         }
+        
         &.alert-info
         {
             border: 2px solid var(--color-active);
@@ -78,6 +83,7 @@ terra-alert-panel
                 color: var(--color-active-dark);
             }
         }
+        
         button.close
         {
             padding: 0;
