@@ -7,6 +7,7 @@ import { of } from 'rxjs/observable/of';
 export class MockTranslationService// implements ITranslationService
 {
     private lang:string = 'de';
+
     public translationChanged():Observable<string>
     {
         return of(this.lang);

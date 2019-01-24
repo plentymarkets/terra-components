@@ -2,11 +2,11 @@ import { TerraButtonInterface } from '../..';
 
 export const mockButtonOne:TerraButtonInterface =
     {
-        caption:          'Mock button one',
-        clickFunction:    ():void =>
-                          {
-                              console.log('mock button one clicked');
-                          }
+        caption:       'Mock button one',
+        clickFunction: ():void =>
+                       {
+                           console.log('mock button one clicked');
+                       }
     };
 
 export const mockButtonTwo:TerraButtonInterface =

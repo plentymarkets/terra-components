@@ -135,7 +135,7 @@ export class TerraButtonWithOptionsComponent implements OnInit
 
     private toggleOptions(event?:Event):void
     {
-        if (!isNullOrUndefined(event))
+        if(!isNullOrUndefined(event))
         {
             event.stopPropagation();
         }

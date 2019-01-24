@@ -3,10 +3,10 @@ import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 import { TerraButtonInterface } from '../../../../../';
 
 @Component({
-               selector: 'terra-info-box-example',
-               styles:   [require('./terra-info-box.component.example.scss')],
-               template: require('./terra-info-box.component.example.html')
-           })
+    selector: 'terra-info-box-example',
+    styles:   [require('./terra-info-box.component.example.scss')],
+    template: require('./terra-info-box.component.example.html')
+})
 export class TerraInfoboxComponentExample
 {
     public tagList:Array<TerraTagInterface> = [];
@@ -16,11 +16,11 @@ export class TerraInfoboxComponentExample
     {
         this.tagList.push(
             {
-                name: 'Terra',
+                name:  'Terra',
                 color: 'green'
             },
             {
-                name: 'Plenty',
+                name:  'Plenty',
                 color: 'red'
             });
         this.buttonList.push(

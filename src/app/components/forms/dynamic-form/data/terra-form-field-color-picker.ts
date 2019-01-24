@@ -16,7 +16,7 @@ export class TerraFormFieldColorPicker extends TerraFormFieldBase<number>
 {
     public type:string;
 
-    constructor(key:string, label:string, required:boolean,  options:TerraFormFieldColorPickerOptions = {})
+    constructor(key:string, label:string, required:boolean, options:TerraFormFieldColorPickerOptions = {})
     {
         super(key, TerraControlTypeEnum.COLOR_PICKER, label, required, options);
 

@@ -12,6 +12,7 @@ button:focus
 {
     display: inline-block;
     position: relative;
+    
     &.disabled
     {
         %disabled-state
@@ -21,10 +22,13 @@ button:focus
             cursor: not-allowed;
             pointer-events: none;
         }
+        
         cursor: not-allowed;
+        
         .btn
         {
             @extend %disabled-state;
+            
             &:hover,
             &:active,
             &:focus,
@@ -32,6 +36,7 @@ button:focus
             {
                 @extend %disabled-state;
             }
+            
             &.btn-link
             {
                 background-color: transparent;
@@ -42,6 +47,7 @@ button:focus
                 {
                     background-color: transparent;
                     color: var(--color-structure-4);
+                    
                     &:active,
                     &.active
                     {
@@ -52,6 +58,7 @@ button:focus
             }
         }
     }
+    
     .flag
     {
         position: absolute;
@@ -84,6 +91,7 @@ button:focus
             cursor: pointer;
             background: var(--color-accent);
             border-top: 10px solid var(--color-accent);
+            
             &.disabled
             {
                 background: var(--color-accent-light);
@@ -127,6 +135,7 @@ button:focus
     {
         background-color: var(--color-structure-11);
         background-clip: padding-box;
+        
         &:active,
         &.active
         {
@@ -158,6 +167,7 @@ button:focus
         font-size: 20px;
         position: relative;
         top: 4.0px;
+        
         &.icon_dist_top
         {
             line-height: 0;
@@ -171,6 +181,7 @@ button:focus
         line-height: var(--height-lg);
         padding: var(--btn-lg-padding, (0 var(--space-md)));
         font-size: var(--font-size-5);
+        
         span
         {
             top: 4px;
@@ -185,6 +196,7 @@ button:focus
         line-height: var(--height-sm);
         padding: var(--btn-sm-padding, (0 var(--space-md)));
         font-size: var(--font-size-1);
+        
         span
         {
             top: 3px;
@@ -209,6 +221,7 @@ button:focus
         {
             background-color: transparent;
             color: var(--color-active);
+            
             &:active,
             &.active
             {
@@ -216,15 +229,18 @@ button:focus
                 color: var(--color-structure-9);
             }
         }
+        
         &.btn-primary
         {
             background-color: transparent;
             color: var(--color-active);
+            
             &:hover,
             &:focus
             {
                 background-color: transparent;
                 color: var(--color-active-dark);
+                
                 &:active,
                 &.active
                 {
@@ -233,15 +249,18 @@ button:focus
                 }
             }
         }
+        
         &.btn-secondary
         {
             background-color: transparent;
             color: var(--color-alert);
+            
             &:hover,
             &:focus
             {
                 background-color: transparent;
                 color: var(--color-alert-dark);
+                
                 &:active,
                 &.active
                 {
@@ -250,15 +269,18 @@ button:focus
                 }
             }
         }
+        
         &.btn-tertiary
         {
             background-color: transparent;
             color: var(--color-add);
+            
             &:hover,
             &:focus
             {
                 background-color: transparent;
                 color: var(--color-add-dark);
+                
                 &:active,
                 &.active
                 {
@@ -298,6 +320,7 @@ fieldset[disabled] a.btn
     &:first-child
     {
         margin-left: 0;
+        
         &:not(:last-child) > .btn-handler > .btn,
         &:not(:last-child) > .btn-handler > .flag
         {
@@ -314,6 +337,7 @@ fieldset[disabled] a.btn
     &:last-child
     {
         margin-left: 0;
+        
         &:not(:first-child) > .btn-handler > .btn,
         &:not(:first-child) > .btn-handler > .flag
         {
@@ -356,6 +380,7 @@ fieldset[disabled] a.btn
         width: 100%;
         text-align: left;
     }
+    
     &:first-child:not(:last-child) .btn
     {
         border-radius: var(--border-radius) var(--border-radius) 0 0;
@@ -417,6 +442,7 @@ fieldset[disabled] a.btn
         cursor: default;
         height: 1px;
     }
+    
     &:first-child:not(:last-child),
     .btn-handler:first-child:not(:last-child)
     {

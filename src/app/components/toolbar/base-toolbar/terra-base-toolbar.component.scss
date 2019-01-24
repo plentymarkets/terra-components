@@ -9,7 +9,7 @@
     position: relative;
     z-index: var(--toolbar-z-index);
     --select-box-wrapper-margin-bottom: 0;
-    
+
     &.terra-breadcrumbs-wrapper
     {
         background-color: var(--terra-breadcrumbs-wrapper-background-color, var(--color-structure-9));

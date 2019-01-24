@@ -39,12 +39,12 @@ export class TerraStorageObject
 
     public get size():number
     {
-        return parseInt( this.s3Object.size + '', 10 );
+        return parseInt(this.s3Object.size + '', 10);
     }
 
     public get sizeString():string
     {
-        if( isNaN(this.size) )
+        if(isNaN(this.size))
         {
             return '0B';
         }

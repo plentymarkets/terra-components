@@ -1,7 +1,8 @@
 <terra-base-toolbar *ngIf="inputShowBreadcrumbs" [inputIsBreadcrumbs]="true" class="main-breadcrumbs">
     <ul class="terra-breadcrumbs">
         <ng-template ngFor let-module [ngForOf]="modules" let-index="index">
-            <li class="module{{index}}" *ngIf="!isNullOrUndefined(module.currentSelectedView.url) && this.inputHasRouting; else falsyTemplate"
+            <li class="module{{index}}"
+                *ngIf="!isNullOrUndefined(module.currentSelectedView.url) && this.inputHasRouting; else falsyTemplate"
                 [routerLink]="componentRoute + module.currentSelectedView.url">
                 <div class="{{ module.identifier }}"
                      [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">

@@ -14,9 +14,9 @@ import {
     TerraControlTypeEnum,
     TerraFormFieldBase,
     TerraFormFieldInputText,
+    TerraFormFieldInterface,
     TerraFormFieldSelectBox,
-    TerraJsonToFormFieldService,
-    TerraFormFieldInterface
+    TerraJsonToFormFieldService
 } from '../../../../../';
 
 export class TerraFormFieldHelper
