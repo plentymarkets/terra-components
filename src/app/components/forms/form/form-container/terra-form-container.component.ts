@@ -20,7 +20,7 @@ import {
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
 import { FormGroup } from '@angular/forms';
-import { TerraFormEntryComponent } from '../../../../..';
+import { TerraFormEntryComponent } from '../form-entry/terra-form-entry.component';
 
 @Component({
     selector: 'terra-form-container',
