@@ -15,7 +15,7 @@ import {
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { FormArray } from '@angular/forms';
-import { TerraFormContainerComponent } from '../../../../..';
+import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
 
 @Component({
     selector: 'terra-form-entry-list',
