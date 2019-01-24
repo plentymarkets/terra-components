@@ -33,8 +33,8 @@ import {
 import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
 import { TerraFormEntryListComponent } from '../form-entry-list/terra-form-entry-list.component';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
-import { TerraFormFieldBase } from '../../../../..';
 import { TerraValidators } from '../../../../validators/validators';
+import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 
 @Component({
     selector: 'terra-form-entry',
@@ -87,7 +87,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         }
         this.containerClass = 'form-entry-' + this.inputFormField.type;
 
-        this.formControl = new FormControl(this.inputFormValue, this.generateValidators(this.inputFormField));
+        this.formControl = new FormControl(this.inputFormValue, TerraFormFieldHelper.generateValidators(this.inputFormField));
 
         this.formControl.statusChanges.subscribe((status:any) =>
         {
@@ -260,52 +260,5 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
     private transformInputPropertyName(propertyName:string):string
     {
         return 'input' + propertyName.charAt(0).toUpperCase() + propertyName.substr(1);
-    }
-
-    private generateValidators(formField:TerraFormFieldInterface):Array<ValidatorFn>
-    {
-        let validators:Array<ValidatorFn> = [];
-
-        if(isNullOrUndefined(formField.options))
-        {
-            return validators;
-        }
-
-        if(formField.options.required)
-        {
-            validators.push(Validators.required);
-        }
-
-        if(formField.options.minLength >= 0)
-        {
-            validators.push(Validators.minLength(formField.options.minLength));
-        }
-
-        if(formField.options.maxLength >= 0)
-        {
-            validators.push(Validators.maxLength(formField.options.maxLength));
-        }
-
-        if(!isNullOrUndefined(formField.options.minValue))
-        {
-           validators.push(Validators.min(formField.options.minValue));
-        }
-
-        if(!isNullOrUndefined(formField.options.maxValue))
-        {
-           validators.push(Validators.max(formField.options.maxValue));
-        }
-
-        if(formField.options.pattern !== '')
-        {
-            validators.push(Validators.pattern(formField.options.pattern));
-        }
-
-        if(formField.options.isIban)
-        {
-            validators.push(TerraValidators.iban);
-        }
-
-        return validators;
     }
 }

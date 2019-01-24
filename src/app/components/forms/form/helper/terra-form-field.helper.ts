@@ -18,6 +18,11 @@ import {
     TerraJsonToFormFieldService,
     TerraFormFieldInterface
 } from '../../../../../';
+import {
+    ValidatorFn,
+    Validators
+} from '@angular/forms';
+import { TerraValidators } from '../../../../validators/validators';
 
 export class TerraFormFieldHelper
 {
@@ -38,6 +43,53 @@ export class TerraFormFieldHelper
         noteEditor:           'noteEditor',
         codeEditor:           'codeEditor'
     };
+
+    public static generateValidators(formField:TerraFormFieldInterface):Array<ValidatorFn>
+    {
+        let validators:Array<ValidatorFn> = [];
+
+        if(isNullOrUndefined(formField.options))
+        {
+            return validators;
+        }
+
+        if(formField.options.required)
+        {
+            validators.push(Validators.required);
+        }
+
+        if(formField.options.minLength >= 0)
+        {
+            validators.push(Validators.minLength(formField.options.minLength));
+        }
+
+        if(formField.options.maxLength >= 0)
+        {
+            validators.push(Validators.maxLength(formField.options.maxLength));
+        }
+
+        if(!isNullOrUndefined(formField.options.minValue))
+        {
+            validators.push(Validators.min(formField.options.minValue));
+        }
+
+        if(!isNullOrUndefined(formField.options.maxValue))
+        {
+            validators.push(Validators.max(formField.options.maxValue));
+        }
+
+        if(formField.options.pattern !== '')
+        {
+            validators.push(Validators.pattern(formField.options.pattern));
+        }
+
+        if(formField.options.isIban)
+        {
+            validators.push(TerraValidators.iban);
+        }
+
+        return validators;
+    }
 
     public static extractFormFields(formModel:any):{ [key:string]:TerraFormFieldInterface }
     {
