@@ -4,6 +4,10 @@
 ### Features 
 * **webpack update** updated to latest version of webpack due to security vulnerabilities
 
+### Bug Fixes
+
+* **terra-category-picker** REST calls will now be triggered once.
+
 <a name="3.2.0"></a>
 # 3.2.0 (23.01.2019)
 
