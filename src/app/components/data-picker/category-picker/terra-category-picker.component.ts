@@ -236,7 +236,8 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                     // If the category has children the lazy-loading method will be added to the parent node
                     if(categoryData.hasChildren)
                     {
-                        childNode.onLazyLoad = ():Observable<any> => this.getCategoriesByParentId(childNode.id);
+                        childNode.onLazyLoad = ():Observable<TerraPagerInterface<CategoryDataInterface>> =>
+                            this.getCategoriesByParentId(childNode.id);
                     }
 
                     // The finished node is added to the node tree
