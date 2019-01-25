@@ -44,7 +44,7 @@ export class TerraLoadingSpinnerService
             this._isLoading = false;
 
             // to send no change detection run the setTimeout outside of angular
-            this.zone.runOutsideAngular(this.runOutsideAngular);
+            this.zone.runOutsideAngular(() => this.runOutsideAngular());
         }
     }
 
