@@ -171,7 +171,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
     {
         let obs:Observable<TerraPagerInterface<CategoryDataInterface>> = this.inputCategoryService.requestCategoryData(parentId);
 
-        obs.subscribe((data:TerraPagerInterface<CategoryDataInterface>) =>
+        obs.map((data:TerraPagerInterface<CategoryDataInterface>) =>
         {
             this.addNodes(data, parentId);
         });
