@@ -62,7 +62,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 
     private modules:Array<TerraMultiSplitViewModuleInterface> = [];
 
-    private resizeTimeout:number;
+    private resizeTimeout:any;
 
     private splitViewId:number;
 

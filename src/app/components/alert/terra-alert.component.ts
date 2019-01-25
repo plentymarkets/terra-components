@@ -58,6 +58,7 @@ export class TerraAlertComponent
 
         window.parent.window.dispatchEvent(event);
     }
+
     /** @description is used to add an alert*/
     public addAlert(alert:TerraAlertInterface):void
     {
@@ -66,7 +67,7 @@ export class TerraAlertComponent
             alert.dismissOnTimeout = 5000;
         }
 
-        this.alerts.push({
+        this.alerts.unshift({
             msg:              alert.msg,
             type:             alert.type,
             dismissOnTimeout: alert.dismissOnTimeout,

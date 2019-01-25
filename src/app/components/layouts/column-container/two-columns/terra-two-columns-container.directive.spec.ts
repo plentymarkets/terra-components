@@ -25,7 +25,9 @@ import { MockActivatedRoute } from '../../../../testing/mock-activated-route';
         <span right>Right</span>
     </terra-2-col>`
 })
-class TwoColumnsContainerDirectiveTestComponent {}
+class TwoColumnsContainerDirectiveTestComponent
+{
+}
 
 describe('TerraTwoColumnsContainerDirective', () =>
 {
@@ -44,8 +46,12 @@ describe('TerraTwoColumnsContainerDirective', () =>
                 TwoColumnsContainerDirectiveTestComponent
             ],
             providers:    [
-                { provide: Router, useValue: router },
-                { provide: ActivatedRoute, useClass: MockActivatedRoute }
+                {provide:     Router,
+                    useValue: router
+                },
+                {provide:     ActivatedRoute,
+                    useClass: MockActivatedRoute
+                }
             ]
         }).compileComponents();
     }));

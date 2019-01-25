@@ -24,6 +24,7 @@ $padding-border: 16px;
                 color: var(--color-structure-0);
             }
         }
+        
         .note-footer
         {
             .note-id
@@ -32,6 +33,7 @@ $padding-border: 16px;
             }
         }
     }
+    
     .note-inner
     {
         display: flex;
@@ -44,14 +46,17 @@ $padding-border: 16px;
             max-width: 77%;
             white-space: normal;
             color: var(--color-structure-11);
+            
             .note-header
             {
                 font-weight: bold;
             }
+            
             hr
             {
                 margin: 0;
             }
+            
             div
             {
                 white-space: pre-wrap;
@@ -59,11 +64,13 @@ $padding-border: 16px;
                 overflow: hidden;
             }
         }
+        
         .note-sidebar
         {
             display: flex;
             align-items: flex-end;
             flex-direction: column;
+            
             .note-id
             {
                 margin-top: auto;

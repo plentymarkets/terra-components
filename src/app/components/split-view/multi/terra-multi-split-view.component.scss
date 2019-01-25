@@ -6,12 +6,13 @@
     height: var(--terra-breadcrumbs-height, var(--breadcrumbs-height));
     transition: height var(--transition-lg);
     display: flex;
-    
+
     li
     {
         float: left;
         cursor: pointer;
         outline: none;
+
         div
         {
             text-decoration: none;
@@ -23,7 +24,7 @@
             float: left;
             color: var(--terra-breadcrumb-color, var(--color-structure-0));
             white-space: nowrap;
-    
+
             span
             {
                 font-weight: var(--font-weight-2);
@@ -31,23 +32,26 @@
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
             }
-            
+
             &:hover
             {
                 color: var(--color-active);
                 //text-shadow: 0 1px 4px var(--color-structure-11);
             }
+
             &.active
             {
                 color: var(--color-active);
                 //text-shadow: 0 1px 4px var(--color-structure-11);
                 cursor: default;
             }
+
             &:not(.active):hover
             {
                 color: var(--color-active);
                 //text-shadow: 0 1px 4px var(--color-structure-11);
             }
+
             .icon-caret
             {
                 overflow: hidden;
@@ -65,9 +69,11 @@
                         transition-delay: var(--transition-delay-sm);
                     }
                 }
+
                 .context-menu
                 {
                     top: var(--terra-breadcrumbs-context-menu-top, (calc(var(--breadcrumbs-height) / 2 + var(--space-lg))));
+
                     li
                     {
                         float: none;
@@ -77,6 +83,7 @@
                 }
             }
         }
+
         &:last-child
         {
             .icon-next
@@ -84,10 +91,12 @@
                 display: none;
             }
         }
+
         &:first-child div
         {
             padding-left: 10px;
         }
+
         .icon-next
         {
             &::before
@@ -109,15 +118,17 @@
     height: 100%;
     white-space: nowrap;
     font-size: 0;
+
     &.offset
     {
         height: var(--split-view-side-scroller-offset-height, (calc(100% - var(--breadcrumbs-height))));
     }
+
     > *
     {
         display: inline-block;
     }
-    
+
     .view
     {
         font-size: var(--font-size-3);
@@ -135,13 +146,13 @@
             position: relative;
         }
     }
-    
+
     .fadeIn
     {
         animation-name: fadeInAnimation;
         animation-duration: 0.25s;
     }
-    
+
     @keyframes fadeInAnimation
     {
         from

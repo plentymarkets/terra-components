@@ -1,4 +1,5 @@
-@import '../../../assets/styles/variables';
+@import "~quill/dist/quill.snow.css";
+@import "~quill/dist/quill.bubble.css";
 
 quill-editor
 {
@@ -6,6 +7,7 @@ quill-editor
     {
         background-color: var(--color-structure-0);
     }
+
     .ql-snow.ql-toolbar
     {
         button:hover, button:focus, button.ql-active
@@ -16,6 +18,7 @@ quill-editor
             {
                 stroke: var(--color-active);
             }
+
             .ql-fill
             {
                 fill: var(--color-active);
@@ -29,11 +32,13 @@ quill-editor
                 color: var(--color-active);
             }
         }
+
         .ql-picker-label
         {
             &.ql-active, &:hover
             {
                 color: var(--color-active);
+
                 .ql-stroke
                 {
                     stroke: var(--color-active);

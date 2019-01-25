@@ -3,6 +3,7 @@
     .multiselect-element
     {
         margin-bottom: 8px;
+        
         .multiselect
         {
             display: flex;
@@ -55,6 +56,7 @@
                 }
             }
         }
+        
         &.error
         {
             .multiselect
@@ -65,6 +67,7 @@
                 }
             }
         }
+        
         &.disabled
         {
             .multiselect
@@ -74,6 +77,7 @@
                     background: var(--color-structure-5);
                     cursor: not-allowed;
                 }
+                
                 .option-list
                 {
                     .input-group
@@ -83,12 +87,14 @@
                         {
                             color: var(--color-structure-5);
                             cursor: not-allowed;
+                            
                             &:hover
                             {
                                 cursor: not-allowed;
                                 background: var(--color-structure-0);
                             }
                         }
+                        
                         &:hover
                         {
                             cursor: not-allowed;

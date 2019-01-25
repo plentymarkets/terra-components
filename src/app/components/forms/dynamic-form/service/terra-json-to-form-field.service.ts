@@ -37,7 +37,7 @@ export class TerraJsonToFormFieldService
     {
         let formField:TerraFormFieldBase<any>;
 
-        switch (formFieldData.type)
+        switch(formFieldData.type)
         {
             case TerraControlTypeEnum.INPUT_TEXT:
                 formField = new TerraFormFieldInputText(formFieldKey, formFieldData.label, formFieldData.required, formFieldData.options);
