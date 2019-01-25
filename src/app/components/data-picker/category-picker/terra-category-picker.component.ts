@@ -90,7 +90,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
             this.inputName = this.translation.translate('terraCategoryPicker.category');
         }
         this.nestedTreeConfig.list = this.list;
-        this.getCategoriesByParent(null);
+        this.getCategoriesByParent();
     }
 
     public getCompleteCategoryObject():CategoryValueInterface
@@ -163,9 +163,9 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         this.completeCategory.tooltipPlacement = category.tooltipPlacement;
     }
 
-    private getCategoriesByParentId(parentId:number | string):Observable<TerraPagerInterface<CategoryDataInterface>>
+    private getCategoriesByParentId(parentId:number | string, level:number):Observable<TerraPagerInterface<CategoryDataInterface>>
     {
-        return this.inputCategoryService.requestCategoryData(parentId).pipe(tap((data:TerraPagerInterface<CategoryDataInterface>) =>
+        return this.inputCategoryService.requestCategoryData(parentId, level).pipe(tap((data:TerraPagerInterface<CategoryDataInterface>) =>
         {
             this.addNodes(data, parentId);
         }));
@@ -232,7 +232,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                     if(categoryData.hasChildren)
                     {
                         childNode.onLazyLoad = ():Observable<TerraPagerInterface<CategoryDataInterface>> =>
-                            this.getCategoriesByParentId(childNode.id);
+                            this.getCategoriesByParentId(categoryData.id, categoryData.level + 1);
                     }
 
                     // The finished node is added to the node tree
@@ -244,25 +244,11 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         this.list = this.nestedTreeConfig.list;
     }
 
-    private getCategoriesByParent(parentNode:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>):void
+    private getCategoriesByParent():void
     {
-        let id:number | string = null;
-
-        if(!isNullOrUndefined(parentNode))
+        this.inputCategoryService.requestCategoryData(null, 1).subscribe((data:TerraPagerInterface<CategoryDataInterface>) =>
         {
-            id = parentNode.id;
-        }
-
-        this.inputCategoryService.requestCategoryData(id).subscribe((data:TerraPagerInterface<CategoryDataInterface>) =>
-        {
-            if(isNullOrUndefined(parentNode))
-            {
-                this.addNodes(data, id);
-            }
-            else
-            {
-                this.addNodes(data, parentNode.id);
-            }
+            this.addNodes(data, null);
         });
     }
 }
