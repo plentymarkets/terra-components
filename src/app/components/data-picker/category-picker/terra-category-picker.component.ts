@@ -19,6 +19,7 @@ import { NestedDataTreeConfig } from '../nested-data-picker/config/nested-data-t
 import { NestedDataInterface } from '../nested-data-picker/data/nested-data.interface';
 import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraNodeTreeConfig } from '../../tree/node-tree/data/terra-node-tree.config';
+import { tap } from 'rxjs/operators';
 
 @Component({
     selector:  'terra-category-picker',
@@ -162,21 +163,17 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         this.completeCategory.tooltipPlacement = category.tooltipPlacement;
     }
 
-    private getCategoriesByParentId(parentId:number | string):() => Observable<any>
+    private getCategoriesByParentId(parentId:number | string):Observable<TerraPagerInterface<CategoryDataInterface>>
     {
-        return ():Observable<TerraPagerInterface<CategoryDataInterface>> => this.getCategories(parentId);
+        return this.getCategories(parentId);
     }
 
     private getCategories(parentId:number | string):Observable<TerraPagerInterface<CategoryDataInterface>>
     {
-        let obs:Observable<TerraPagerInterface<CategoryDataInterface>> = this.inputCategoryService.requestCategoryData(parentId);
-
-        obs.map((data:TerraPagerInterface<CategoryDataInterface>) =>
+        return this.inputCategoryService.requestCategoryData(parentId).pipe(tap((data:TerraPagerInterface<CategoryDataInterface>) =>
         {
             this.addNodes(data, parentId);
-        });
-
-        return obs;
+        }));
     }
 
     public addNodes(data:any, parentNodeId:number | string):void
@@ -239,7 +236,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                     // If the category has children the lazy-loading method will be added to the parent node
                     if(categoryData.hasChildren)
                     {
-                        childNode.onLazyLoad = this.getCategoriesByParentId(childNode.id);
+                        childNode.onLazyLoad = ():Observable<any> => this.getCategoriesByParentId(childNode.id);
                     }
 
                     // The finished node is added to the node tree
