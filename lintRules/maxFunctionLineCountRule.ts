@@ -44,7 +44,6 @@ class MaxFunctionLineCountRule extends Lint.AbstractWalker<MaxFunctionLineCountO
 
         if(lines > this.options.maxLines)
         {
-            // this.addFailureAtNode(node, this.getFailureString(lines, this.options.maxLines));
             this.addFailure(node.getStart(this.sourceFile), node.getWidth(), this.getFailureString(lines, this.options.maxLines));
         }
     }
