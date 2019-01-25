@@ -165,11 +165,6 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
 
     private getCategoriesByParentId(parentId:number | string):Observable<TerraPagerInterface<CategoryDataInterface>>
     {
-        return this.getCategories(parentId);
-    }
-
-    private getCategories(parentId:number | string):Observable<TerraPagerInterface<CategoryDataInterface>>
-    {
         return this.inputCategoryService.requestCategoryData(parentId).pipe(tap((data:TerraPagerInterface<CategoryDataInterface>) =>
         {
             this.addNodes(data, parentId);
