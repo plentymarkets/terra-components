@@ -36,7 +36,8 @@ export class TerraFormFieldHelper
         categoryPicker:       'category',
         multiCheckBox:        'checkboxGroup',
         noteEditor:           'noteEditor',
-        codeEditor:           'codeEditor'
+        codeEditor:           'codeEditor',
+        slider:               'slider'
     };
 
     public static extractFormFields(formModel:any):{ [key:string]:TerraFormFieldInterface }
