@@ -3,7 +3,7 @@
 
 ### Features 
 * **webpack update** updated to latest version of webpack due to security vulnerabilities
-
+* **terra-slider** added to **terra-form**
 <a name="3.2.0"></a>
 # 3.2.0 (23.01.2019)
 
