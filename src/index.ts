@@ -7,6 +7,7 @@ export * from './app/components/buttons/file-chooser/terra-file-chooser.componen
 export * from './app/components/data/terra-base.data';
 export * from './app/components/filter/terra-filter.component';
 export * from './app/components/forms/checkbox/terra-checkbox.component';
+export * from './app/components/forms/checkbox-group/terra-checkbox-group.component';
 export * from './app/components/forms/radio-button/terra-radio-button.component';
 export * from './app/components/forms/input/terra-input.component';
 export * from './app/components/forms/input/double-input/terra-double-input.component';
