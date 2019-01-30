@@ -10,9 +10,9 @@ import {
 import { TerraMultiCheckBoxValueInterface } from '../../forms/multi-check-box/data/terra-multi-check-box-value.interface';
 
 @Component({
-    selector: 'tc-checkbox-group',
-    template: require('./checkbox-group.component.html'),
-    styles: [require('./checkbox-group.component.scss')],
+    selector:  'tc-checkbox-group',
+    template:  require('./checkbox-group.component.html'),
+    styles:    [require('./checkbox-group.component.scss')],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
@@ -39,7 +39,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor
      * @description List of available checkboxes of the group
      */
     @Input()
-    public checkboxValues:Array<{caption:string, value:any}> = [];
+    public checkboxValues:Array<{ caption:string, value:any }> = [];
 
     protected values:Array<any> = [];
 
@@ -67,16 +67,16 @@ export class CheckboxGroupComponent implements ControlValueAccessor
 
     protected onMultiCheckboxChanged(multicheckboxValues:Array<TerraMultiCheckBoxValueInterface>):void
     {
-        (multicheckboxValues || []) .forEach((changedValue:TerraMultiCheckBoxValueInterface) =>
+        (multicheckboxValues || []).forEach((changedValue:TerraMultiCheckBoxValueInterface) =>
         {
-            if ( changedValue.selected )
+            if(changedValue.selected)
             {
                 this.values.push(changedValue.value);
             }
             else
             {
                 let idx:number = this.values.indexOf(changedValue.value);
-                if ( idx >= 0 )
+                if(idx >= 0)
                 {
                     this.values.splice(idx, 1);
                 }
@@ -89,11 +89,11 @@ export class CheckboxGroupComponent implements ControlValueAccessor
 
     private updateMultiCheckboxValues():void
     {
-        this.multiCheckboxValues = this.checkboxValues.map((checkbox:{caption:string, value:any}) =>
+        this.multiCheckboxValues = this.checkboxValues.map((checkbox:{ caption:string, value:any }) =>
         {
             return {
-                caption: checkbox.caption,
-                value: checkbox.value,
+                caption:  checkbox.caption,
+                value:    checkbox.value,
                 selected: (this.values || []).indexOf(checkbox.value) >= 0
             };
         });
