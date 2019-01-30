@@ -8,8 +8,8 @@ import {
 } from '@angular/core/testing';
 import { TerraDraggableDirective } from '../../interactables/draggable.directive';
 import { By } from '@angular/platform-browser';
-import Spy = jasmine.Spy;
 import { DebugElement } from '@angular/core';
+import Spy = jasmine.Spy;
 
 describe(`TerraSliderComponent:`, () =>
 {

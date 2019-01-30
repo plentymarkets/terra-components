@@ -16,7 +16,7 @@ export class TerraFormFieldNoteEditor extends TerraFormFieldBase<number>
 {
     public type:string;
 
-    constructor(key:string, label:string, required:boolean,  options:TerraFormFieldNoteEditorOptions = {})
+    constructor(key:string, label:string, required:boolean, options:TerraFormFieldNoteEditorOptions = {})
     {
         super(key, TerraControlTypeEnum.NOTE_EDITOR, label, required, options);
 

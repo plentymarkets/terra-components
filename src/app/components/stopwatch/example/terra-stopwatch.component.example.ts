@@ -1,8 +1,4 @@
-import {
-    Component,
-    ViewChild
-} from '@angular/core';
-import { TerraStopwatchComponent } from '../terra-stopwatch.component';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'terra-stopwatch-example',

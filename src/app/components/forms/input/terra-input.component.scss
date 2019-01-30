@@ -84,10 +84,12 @@ input[type="search"]::-webkit-search-decoration
             color: var(--color-alert);
             border-bottom: 2px solid var(--color-alert);
         }
+        
         label
         {
             color: var(--color-alert);
         }
+        
         i
         {
             background-color: var(--color-alert);
@@ -104,10 +106,12 @@ input[type="search"]::-webkit-search-decoration
             color: var(--color-active);
             border-bottom: 2px solid var(--color-active);
         }
+        
         label
         {
             color: var(--color-active);
         }
+        
         i
         {
             background-color: var(--color-active);
@@ -124,10 +128,12 @@ input[type="search"]::-webkit-search-decoration
             color: var(--color-add);
             border-bottom: 2px solid var(--color-add);
         }
+        
         label
         {
             color: var(--color-add);
         }
+        
         i
         {
             background-color: var(--color-add);
@@ -148,7 +154,6 @@ input[type="search"]::-webkit-search-decoration
         }
     }
     
-    
     input[readonly]
     {
         color: var(--color-structure-6);
@@ -168,6 +173,7 @@ input[type="search"]::-webkit-search-decoration
             transition: width var(--transition-md);
             bottom: 0;
         }
+        
         &::before
         {
             content: "";
@@ -181,6 +187,7 @@ input[type="search"]::-webkit-search-decoration
             bottom: 0;
         }
     }
+    
     &:not(.error):not(.valid):not(.success):not(.disabled):hover
     {
         &::after,
@@ -216,11 +223,13 @@ textarea
     &:focus
     {
         border-bottom: var(--input-wrapper-border-hover, (2px solid var(--color-active)));
+        
         + label
         {
             color: var(--color-active);
         }
     }
+    
     &:hover
     {
         + label
@@ -326,7 +335,7 @@ label
 {
     height: initial;
     line-height: 0;
-
+    
     textarea
     {
         -webkit-appearance: textarea;
