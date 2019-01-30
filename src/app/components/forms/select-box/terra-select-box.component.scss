@@ -23,10 +23,12 @@
     {
         height: var(--height-sm);
         line-height: var(--height-sm);
+        
         .select-box
         {
             background-position: var(--select-box-isSmall-background-position, var(--select-box-isSmall-background-position-default));
             padding: var(--space-sm) var(--space-sm) var(--space-sm) 30%;
+            
             &.labeled
             {
                 padding: var(--select-box-labeled-isSmall-padding, var(--select-box-labeled-isSmall-padding-default));
@@ -69,10 +71,12 @@
             height: 100%;
             line-height: 100%;
         }
+        
         &.labeled
         {
             padding: var(--select-box-labeled-padding, var(--select-box-labeled-padding-default));
             transition: padding var(--transition-lg);
+            
             span
             {
                 line-height: calc(var(--height-md) - var(--space-lg));
@@ -94,6 +98,7 @@
             transition: width var(--transition-md);
             bottom: 0;
         }
+        
         &::before
         {
             content: "";
@@ -106,6 +111,7 @@
             transition: width var(--transition-md);
             bottom: 0;
         }
+        
         &:hover,
         &:focus
         {
@@ -114,6 +120,7 @@
                 color: var(--color-active);
                 transition: color var(--transition-sm);
             }
+            
             &::after,
             &::before
             {
@@ -141,7 +148,7 @@
         {
             padding-left: var(--space-md);
         }
-
+        
         .select-box-dropdown
         {
             display: none !important;
@@ -200,21 +207,25 @@
             line-height: 18px;
             min-height: 24px;
             cursor: pointer;
+            
             &:hover,
             &.selected
             {
                 background: var(--color-structure-3);
             }
+            
             &.active
             {
                 background: var(--color-active);
                 color: var(--color-structure-0);
             }
+            
             &.highlight
             {
                 font-weight: bolder;
                 color: var(--color-add);
             }
+            
             &.deep
             {
                 font-style: italic;

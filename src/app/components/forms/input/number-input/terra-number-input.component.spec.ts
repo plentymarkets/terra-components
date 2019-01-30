@@ -1,6 +1,4 @@
 import { DebugElement } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
 import {
     FormControl,
     FormsModule,

@@ -48,7 +48,7 @@ input[type="checkbox"]
         {
             border-color: var(--color-active);
         }
-    
+        
         input[type="checkbox"]:indeterminate ~ .check:after
         {
             background-color: var(--color-active);
@@ -70,7 +70,7 @@ input[type="checkbox"]
             {
                 border-color: var(--color-active);
             }
-    
+            
             &:indeterminate ~ .check:after
             {
                 background-color: var(--color-active);
