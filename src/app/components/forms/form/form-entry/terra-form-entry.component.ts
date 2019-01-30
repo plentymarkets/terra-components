@@ -136,19 +136,20 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                     {
                         this.componentInstance[inputMap[optionKey]] = this.inputFormField.options[optionKey];
                     }
+                    else if(Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, optionKey))
+                    {
+                        this.componentInstance[optionKey] = this.inputFormField.options[optionKey];
+                    }
                     else
                     {
-                        if(this.componentInstance.hasOwnProperty(optionKey))
+                        let prefixedOptionKey:string = this.transformInputPropertyName(optionKey);
+                        if(Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, prefixedOptionKey))
                         {
-                            this.componentInstance[optionKey] = this.inputFormField.options[optionKey];
+                            this.componentInstance[prefixedOptionKey] = this.inputFormField.options[optionKey];
                         }
                         else
                         {
-                            let prefixedPropertyName:string = this.transformInputPropertyName(optionKey);
-                            if(this.componentInstance.hasOwnProperty(prefixedPropertyName))
-                            {
-                                this.componentInstance[prefixedPropertyName] = this.inputFormField.options[optionKey];
-                            }
+                            console.warn('Cannot assign property ' + optionKey + ' on ' + this.componentInstance.constructor.name );
                         }
                     }
                 });
