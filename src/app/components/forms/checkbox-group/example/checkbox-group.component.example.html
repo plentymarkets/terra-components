@@ -1,0 +1,16 @@
+<tc-checkbox-group
+    [(ngModel)]="values"
+    [name]="name"
+    [checkboxValues]="checkboxes"
+    [isDisabled]="isDisabled">
+    
+</tc-checkbox-group>
+
+<p>
+    Value: <br/>
+    <ul>
+        <li *ngFor="value of values">{{ value }}</li>
+    </ul>
+
+    <terra-checkbox [(ngModel)]="isDisabled" inputCaption="Disable"></terra-checkbox>
+</p>

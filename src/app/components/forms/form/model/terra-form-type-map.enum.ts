@@ -15,7 +15,7 @@ import {
 } from '../../../../../';
 import { Type } from '@angular/core';
 import { TerraFormTypeInterface } from './terra-form-type.interface';
-import { TerraCheckboxGroupComponent } from '../../checkbox-group/terra-checkbox-group.component';
+import { CheckboxGroupComponent } from '../../checkbox-group/checkbox-group.component';
 
 export class TerraFormTypeMap
 {
@@ -74,7 +74,7 @@ export class TerraFormTypeMap
         },
         component: TerraColorPickerComponent
     };
-    public readonly checkboxGroup:Type<TerraCheckboxGroupComponent> = TerraCheckboxGroupComponent;
+    public readonly checkboxGroup:Type<CheckboxGroupComponent> = CheckboxGroupComponent;
     public readonly noteEditor:TerraFormTypeInterface = {
         inputMap:  {
             name: 'inputHeaderLabel'

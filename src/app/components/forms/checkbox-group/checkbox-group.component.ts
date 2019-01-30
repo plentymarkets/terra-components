@@ -10,33 +10,36 @@ import {
 import { TerraMultiCheckBoxValueInterface } from '../../forms/multi-check-box/data/terra-multi-check-box-value.interface';
 
 @Component({
-    selector: 'terra-checkbox-group',
-    template: require('./terra-checkbox-group.component.html'),
-    styles: [require('./terra-checkbox-group.component.scss')],
+    selector: 'tc-checkbox-group',
+    template: require('./checkbox-group.component.html'),
+    styles: [require('./checkbox-group.component.scss')],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraCheckboxGroupComponent),
+            useExisting: forwardRef(() => CheckboxGroupComponent),
             multi:       true
         }
     ]
 })
-export class TerraCheckboxGroupComponent implements ControlValueAccessor
+export class CheckboxGroupComponent implements ControlValueAccessor
 {
     /**
-     * @description If true, the multi check box will be disabled. Default false.
-     * */
+     * @description If true, the checkbox group will be disabled. Default false.
+     **/
     @Input()
-    public inputIsDisabled:boolean;
+    public isDisabled:boolean;
 
     /**
-     * @description If true, the multi check box will be disabled. Default false.
-     * */
+     * @description The caption of the checkbox group
+     **/
     @Input()
-    public inputName:string;
+    public name:string;
 
+    /**
+     * @description List of available checkboxes of the group
+     */
     @Input()
-    public inputCheckboxValues:Array<{caption:string, value:any}> = [];
+    public checkboxValues:Array<{caption:string, value:any}> = [];
 
     protected values:Array<any> = [];
 
@@ -64,7 +67,7 @@ export class TerraCheckboxGroupComponent implements ControlValueAccessor
 
     protected onMultiCheckboxChanged(multicheckboxValues:Array<TerraMultiCheckBoxValueInterface>):void
     {
-        multicheckboxValues.forEach((changedValue:TerraMultiCheckBoxValueInterface) =>
+        (multicheckboxValues || []) .forEach((changedValue:TerraMultiCheckBoxValueInterface) =>
         {
             if ( changedValue.selected )
             {
@@ -86,7 +89,7 @@ export class TerraCheckboxGroupComponent implements ControlValueAccessor
 
     private updateMultiCheckboxValues():void
     {
-        this.multiCheckboxValues = this.inputCheckboxValues.map((checkbox:{caption:string, value:any}) =>
+        this.multiCheckboxValues = this.checkboxValues.map((checkbox:{caption:string, value:any}) =>
         {
             return {
                 caption: checkbox.caption,
