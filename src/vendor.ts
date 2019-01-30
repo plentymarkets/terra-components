@@ -5,11 +5,7 @@ import '@angular/common';
 import '@angular/http';
 import '@angular/router';
 
-// RxJS
 import 'rxjs';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
 
 import 'jquery';
-
-import './app/assets/styles/icons.glob.scss';
+import 'bootstrap';

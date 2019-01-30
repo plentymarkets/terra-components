@@ -17,21 +17,21 @@ export class TerraTaglistComponentExample
                 name: 'Terra'
             },
             {
-                name: 'Terra',
+                name:  'Terra',
                 color: 'red'
             },
             {
-                name: 'Terra',
-                color:'#f3f3f3'
+                name:  'Terra',
+                color: '#f3f3f3'
             },
             {
-                name: 'Terra',
+                name:       'Terra',
                 isTaggable: true
             },
             {
-                name: 'Terra',
+                name:       'Terra',
                 isTaggable: true,
-                isTagged: true
+                isTagged:   true
             }
         );
     }

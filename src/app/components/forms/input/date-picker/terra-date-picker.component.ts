@@ -148,7 +148,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 
     public set value(value:IMyDateModel)
     {
-        if(!isNullOrUndefined(value) && typeof(value) === 'object')
+        if(!isNullOrUndefined(value) && typeof (value) === 'object')
         {
             this._value = value;
 

@@ -21,7 +21,8 @@ import {
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
     isFunction,
-    isNullOrUndefined
+    isNullOrUndefined,
+    isUndefined
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
@@ -76,10 +77,6 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
     public ngOnInit():void
     {
-        if(isNullOrUndefined(this.inputFormValue))
-        {
-            this.inputFormValue = this.inputFormField.defaultValue || null;
-        }
         this.containerClass = 'form-entry-' + this.inputFormField.type;
 
         this.formControl = new FormControl(this.inputFormValue, TerraFormFieldHelper.generateValidators(this.inputFormField));
@@ -138,6 +135,10 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
                 if(isFunction(this.componentInstance.registerOnChange) && isFunction(this.componentInstance.writeValue))
                 {
+                    if(isUndefined(this.inputFormValue) && !isNullOrUndefined(this.inputFormField.defaultValue))
+                    {
+                        this.onValueChanged(this.inputFormField.defaultValue);
+                    }
                     this.componentInstance.registerOnChange((value:any):void =>
                     {
                         this.onValueChanged(value);
