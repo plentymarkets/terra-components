@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const helpers = require('./helpers');
 
+const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
+
 module.exports = {
     mode: 'production',
     devtool: 'inline-source-map',
@@ -10,12 +12,6 @@ module.exports = {
     },
     module: {
         rules: [
-            {
-                enforce: 'pre',
-                test: /\.ts$/,
-                loader: 'tslint-loader',
-                exclude: [helpers.root('node_modules')]
-            },
             {
                 enforce: 'pre',
                 test: /\.js$/,
@@ -102,6 +98,13 @@ module.exports = {
             helpers.root('./src'),
             {}
         ),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'ENV': JSON.stringify(ENV),
+                'NODE_ENV': JSON.stringify(ENV),
+                'HMR': false,
+            }
+        }),
         new ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
