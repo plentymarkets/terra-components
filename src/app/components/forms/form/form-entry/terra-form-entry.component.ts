@@ -16,7 +16,8 @@ import {
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
     isFunction,
-    isNullOrUndefined
+    isNullOrUndefined,
+    isUndefined
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraTextInputComponent } from '../../../../../';
@@ -60,10 +61,6 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
     public ngOnInit():void
     {
-        if(isNullOrUndefined(this.inputFormValue))
-        {
-            this.inputFormValue = this.inputFormField.defaultValue || null;
-        }
         this.containerClass = 'form-entry-' + this.inputFormField.type;
     }
 
@@ -96,6 +93,10 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
                 if(isFunction(this.componentInstance.registerOnChange) && isFunction(this.componentInstance.writeValue))
                 {
+                    if(isUndefined(this.inputFormValue) && !isNullOrUndefined(this.inputFormField.defaultValue))
+                    {
+                        this.onValueChanged(this.inputFormField.defaultValue);
+                    }
                     this.componentInstance.registerOnChange((value:any):void =>
                     {
                         this.onValueChanged(value);
@@ -132,7 +133,8 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
             {
                 Object.keys(this.inputFormField.options).forEach((optionKey:string) =>
                 {
-                    if(inputMap.hasOwnProperty(optionKey))
+                    if(inputMap.hasOwnProperty(optionKey)
+                       && Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, inputMap[optionKey]))
                     {
                         this.componentInstance[inputMap[optionKey]] = this.inputFormField.options[optionKey];
                     }
