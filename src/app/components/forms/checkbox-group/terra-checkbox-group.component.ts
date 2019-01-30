@@ -10,9 +10,9 @@ import {
 import { TerraMultiCheckBoxValueInterface } from '../../forms/multi-check-box/data/terra-multi-check-box-value.interface';
 
 @Component({
-    selector: 'terra-checkbox-group',
-    template: require('./terra-checkbox-group.component.html'),
-    styles: [require('./terra-checkbox-group.component.scss')],
+    selector:  'terra-checkbox-group',
+    template:  require('./terra-checkbox-group.component.html'),
+    styles:    [require('./terra-checkbox-group.component.scss')],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
@@ -36,7 +36,7 @@ export class TerraCheckboxGroupComponent implements ControlValueAccessor
     public inputName:string;
 
     @Input()
-    public inputCheckboxValues:Array<{caption:string, value:any}> = [];
+    public inputCheckboxValues:Array<{ caption:string, value:any }> = [];
 
     protected values:Array<any> = [];
 
@@ -66,14 +66,14 @@ export class TerraCheckboxGroupComponent implements ControlValueAccessor
     {
         multicheckboxValues.forEach((changedValue:TerraMultiCheckBoxValueInterface) =>
         {
-            if ( changedValue.selected )
+            if(changedValue.selected)
             {
                 this.values.push(changedValue.value);
             }
             else
             {
                 let idx:number = this.values.indexOf(changedValue.value);
-                if ( idx >= 0 )
+                if(idx >= 0)
                 {
                     this.values.splice(idx, 1);
                 }
@@ -86,11 +86,11 @@ export class TerraCheckboxGroupComponent implements ControlValueAccessor
 
     private updateMultiCheckboxValues():void
     {
-        this.multiCheckboxValues = this.inputCheckboxValues.map((checkbox:{caption:string, value:any}) =>
+        this.multiCheckboxValues = this.inputCheckboxValues.map((checkbox:{ caption:string, value:any }) =>
         {
             return {
-                caption: checkbox.caption,
-                value: checkbox.value,
+                caption:  checkbox.caption,
+                value:    checkbox.value,
                 selected: this.values.indexOf(checkbox.value) >= 0
             };
         });
