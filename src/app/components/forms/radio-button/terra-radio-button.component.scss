@@ -71,10 +71,12 @@
         border-color: var(--color-structure-4);
         cursor: not-allowed;
     }
+    
     .check.disabled:before
     {
         border-color: var(--color-structure-0);
     }
+    
     .check.disabled.active:before
     {
         border-color: var(--color-structure-4);

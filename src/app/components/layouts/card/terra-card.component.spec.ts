@@ -25,7 +25,9 @@ import { By } from '@angular/platform-browser';
                   </terra-card>
               `
 })
-class CardTestComponent{}
+class CardTestComponent
+{
+}
 
 describe(`TerraCardComponent:`, () =>
 {

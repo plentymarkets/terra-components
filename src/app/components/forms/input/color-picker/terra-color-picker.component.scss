@@ -13,11 +13,13 @@
         width: var(--height-md);
         height: var(--height-md);
         z-index: var(--zIndex-1);
+        
         &:hover
         {
             cursor: pointer;
         }
     }
+    
     .color-picker
     {
         border: 1px solid var(--border-color);

@@ -64,8 +64,8 @@ describe('Helper / Class: Color', () =>
 
         expect(color.getGrayscale()).toEqual(jasmine.any(Number));
         let grayScaleColor:string = '#' + round(color.getGrayscale(), 0).toString()
-                                             + round(color.getGrayscale(), 0).toString()
-                                             + round(color.getGrayscale(), 0).toString();
+                                    + round(color.getGrayscale(), 0).toString()
+                                    + round(color.getGrayscale(), 0).toString();
         let expectedColor:Color = new Color(grayScaleColor);
         expect(expectedColor.toRGB()).not.toEqual(color.toRGB());
     });

@@ -1,7 +1,6 @@
 import {
     Component,
-    forwardRef,
-    Input
+    forwardRef
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';

@@ -19,9 +19,9 @@ import { TerraSuggestionBoxComponent } from './terra-suggestion-box.component';
 import { MockElementRef } from '../../../testing/mock-element-ref';
 import { By } from '@angular/platform-browser';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
-import Spy = jasmine.Spy;
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { TerraTextInputComponent } from '../input/text-input/terra-text-input.component';
+import Spy = jasmine.Spy;
 
 describe('TerraSuggestionBoxComponent', () =>
 {
