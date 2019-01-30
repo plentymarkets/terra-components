@@ -94,7 +94,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor
             return {
                 caption: checkbox.caption,
                 value: checkbox.value,
-                selected: this.values.indexOf(checkbox.value) >= 0
+                selected: (this.values || []).indexOf(checkbox.value) >= 0
             };
         });
     }
