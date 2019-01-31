@@ -47,7 +47,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor
 
     private onTouchedCallback:() => void = ():void => undefined;
 
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
+    private onChangeCallback:(_:Array<any>) => void = (_:Array<any>):void => undefined;
 
     public registerOnChange(fn:any):void
     {
