@@ -4,6 +4,9 @@
 ### Features 
 * **webpack update** updated to latest version of webpack due to security vulnerabilities
 
+### Bug Fixes
+* **terra-form-entry** fixed initialization with defaultValue
+
 <a name="3.2.0"></a>
 # 3.2.0 (23.01.2019)
 
