@@ -21,6 +21,7 @@ import { TerraJsonToFormFieldService } from '../../dynamic-form/service/terra-js
 import { TerraControlTypeEnum } from '../../dynamic-form/enum/terra-control-type.enum';
 import { TerraFormFieldInputText } from '../../dynamic-form/data/terra-form-field-input-text';
 import { TerraFormFieldSelectBox } from '../../dynamic-form/data/terra-form-field-select-box';
+import { StringHelper } from '../../../../helpers/string.helper';
 
 export class TerraFormFieldHelper
 {
@@ -76,9 +77,14 @@ export class TerraFormFieldHelper
             validators.push(Validators.max(formField.options.maxValue));
         }
 
-        if(formField.options.pattern !== '')
+        if(StringHelper.isNullUndefinedOrEmpty(formField.options.pattern) || formField.options.pattern instanceof RegExp)
         {
             validators.push(Validators.pattern(formField.options.pattern));
+        }
+
+        if(formField.options.email)
+        {
+            validators.push(Validators.email);
         }
 
         if(formField.options.isIban)
