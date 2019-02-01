@@ -3,6 +3,8 @@
 
 ### Features 
 * **webpack update** updated to latest version of webpack due to security vulnerabilities
+* **terra-checkbox-group** new component which wraps `<terra-multi-check-box>` to separate available checkbox definition from ngModel
+* **terra-form** added support for `<terra-checkbox-group>`
 
 ### Bug Fixes
 * **terra-form-entry** fixed initialization with defaultValue
