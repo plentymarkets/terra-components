@@ -141,6 +141,7 @@ export * from './app/components/forms/form/helper/terra-form-field.helper';
 export * from './app/components/forms/form/model/terra-form-field.interface';
 export * from './app/components/forms/form/model/terra-form-scope.data';
 export * from './app/components/forms/form/model/terra-form-type-map.enum';
+export * from './app/components/forms/form/model/form-type-map';
 export * from './app/components/forms/form/model/terra-form-property.decorator';
 export * from './app/components/breadcrumbs/terra-breadcrumbs.component';
 export * from './app/components/breadcrumbs/terra-breadcrumb';
