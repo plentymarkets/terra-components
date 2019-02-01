@@ -10,6 +10,7 @@ import {
     TerraNoteEditorComponent,
     TerraNumberInputComponent,
     TerraSelectBoxComponent,
+    TerraSliderComponent,
     TerraTextAreaInputComponent,
     TerraTextInputComponent
 } from '../../../../../';
@@ -78,6 +79,7 @@ export class TerraFormTypeMap
         component: TerraColorPickerComponent
     };
     public readonly checkboxGroup:Type<TerraMultiCheckBoxComponent> = TerraMultiCheckBoxComponent;
+    public readonly slider:Type<TerraSliderComponent> = TerraSliderComponent;
     public readonly noteEditor:TerraFormTypeInterface = {
         inputMap:  {
             name: 'inputHeaderLabel'
