@@ -3,7 +3,7 @@
 
 ### Features 
 * **webpack update** updated to latest version of webpack due to security vulnerabilities
-* **terra-form** added support for ´<terra-slider>`
+* **terra-form** added support for `<terra-slider>`
 
 ### Bug Fixes
 * **terra-form-entry** fixed initialization with defaultValue
