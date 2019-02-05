@@ -1,6 +1,7 @@
 ###Unreleased
 
-* **terra-base.service** change key param typedef from caching methods
+### Features
+* **terra-base.service** change typdef of `dataId` parameter in caching methods
 
 <a name="3.3.0"></a>
 # 3.3.0 (04.02.2019)
