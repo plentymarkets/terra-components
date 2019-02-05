@@ -1,3 +1,9 @@
+<a name="3.X.X"></a>
+# 3.X.X (XX.XX.XXXX)
+
+### Bug Fixes
+* **terra-card** fixed vertical alignment of multiple cards
+
 <a name="3.3.0"></a>
 # 3.3.0 (04.02.2019)
 
