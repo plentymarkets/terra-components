@@ -1,8 +1,15 @@
-<a name="3.X.X"></a>
-# 3.X.X (XX.XX.2019)
+<a name="3.3.0"></a>
+# 3.3.0 (04.02.2019)
 
 ### Features 
 * **webpack update** updated to latest version of webpack due to security vulnerabilities
+* **terra-checkbox-group** new component which wraps `<terra-multi-check-box>` to separate available checkbox definition from ngModel
+* **terra-form** added support for `<terra-checkbox-group>`
+* **terra-form** added support for `<terra-slider>`
+
+### Bug Fixes
+* **terra-form-entry** fixed initialization with defaultValue
+* **terra-form-entry** check if component property is decorated before assigning value dynamically
 
 <a name="3.2.0"></a>
 # 3.2.0 (23.01.2019)
