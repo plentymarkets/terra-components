@@ -1,5 +1,5 @@
-<a name="3.X.X"></a>
-# 3.X.X (XX.XX.2019)
+<a name="3.3.0"></a>
+# 3.3.0 (04.02.2019)
 
 ### Features 
 * **webpack update** updated to latest version of webpack due to security vulnerabilities
