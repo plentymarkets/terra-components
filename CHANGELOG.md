@@ -1,9 +1,14 @@
+# Unreleased
+
+### Bug Fixes
+* **tc-checkbox-group** `null` can now be written to the input and `null` will also be returned if there is nothing selected
+
 <a name="3.3.0"></a>
 # 3.3.0 (04.02.2019)
 
 ### Features 
 * **webpack update** updated to latest version of webpack due to security vulnerabilities
-* **terra-checkbox-group** new component which wraps `<terra-multi-check-box>` to separate available checkbox definition from ngModel
+* **tc-checkbox-group** new component which wraps `<terra-multi-check-box>` to separate available checkbox definition from ngModel
 * **terra-form** added support for `<terra-checkbox-group>`
 * **terra-form** added support for `<terra-slider>`
 
