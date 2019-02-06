@@ -65,23 +65,19 @@ export class CheckboxGroupComponent implements ControlValueAccessor
         this.updateMultiCheckboxValues();
     }
 
-    protected onMultiCheckboxChanged(multicheckboxValues:Array<TerraMultiCheckBoxValueInterface>):void
+    protected onMultiCheckboxChanged(checkboxValues:Array<TerraMultiCheckBoxValueInterface>):void
     {
-        (multicheckboxValues || []).forEach((changedValue:TerraMultiCheckBoxValueInterface) =>
+        let filteredValues:Array<TerraMultiCheckBoxValueInterface> = (checkboxValues || []).filter(
+            (changedValue:TerraMultiCheckBoxValueInterface) => changedValue.selected
+        );
+        if(filteredValues.length > 0)
         {
-            if(changedValue.selected)
-            {
-                this.values.push(changedValue.value);
-            }
-            else
-            {
-                let idx:number = this.values.indexOf(changedValue.value);
-                if(idx >= 0)
-                {
-                    this.values.splice(idx, 1);
-                }
-            }
-        });
+            this.values = filteredValues.map((changedValue:TerraMultiCheckBoxValueInterface) => changedValue.value);
+        }
+        else
+        {
+            this.values = null;
+        }
 
         this.onChangeCallback(this.values);
         this.updateMultiCheckboxValues();

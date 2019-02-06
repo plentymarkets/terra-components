@@ -1,5 +1,5 @@
 <terra-multi-check-box [inputIsDisabled]="isDisabled"
                        [inputName]="name"
                        [ngModel]="multiCheckboxValues"
-                       (checkboxStateChanges)="onMultiCheckboxChanged($event)">
+                       (ngModelChange)="onMultiCheckboxChanged($event)">
 </terra-multi-check-box>
