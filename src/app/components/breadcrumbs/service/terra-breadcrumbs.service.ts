@@ -95,6 +95,9 @@ export class TerraBreadcrumbsService
             this._containers.push(container);
         }
 
+        // set container hidden if data is not available
+        container.isHidden = isNullOrUndefined(route.data);
+
         // search for existing breadcrumb
         let breadcrumb:TerraBreadcrumb = container.breadcrumbList.find((bc:TerraBreadcrumb) =>
         {
