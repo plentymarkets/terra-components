@@ -11,6 +11,10 @@
 * **terra-form-entry** fixed initialization with defaultValue
 * **terra-form-entry** check if component property is decorated before assigning value dynamically
 
+### Bug Fixes
+
+* **terra-category-picker** REST calls will no longer be triggered twice.
+
 <a name="3.2.0"></a>
 # 3.2.0 (23.01.2019)
 
