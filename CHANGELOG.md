@@ -2,6 +2,7 @@
 
 ### Bug Fixes
 * **terra-category-picker** REST calls will no longer be triggered twice.
+* **terra-breadcrumbs** hide breadcrumb container if it contains only breadcrumbs without labels.
 
 <a name="3.3.0"></a>
 # 3.3.0 (04.02.2019)
