@@ -1,7 +1,7 @@
 <terra-base-toolbar [inputIsBreadcrumbs]="true" class="main-breadcrumbs">
     <ul class="terra-breadcrumbs breadcrumbs-overflow-auto">
         <ng-container *ngFor="let container of breadcrumbContainers; let i = index">
-            <li class="terra-breadcrumb-container" *ngIf="container.visibleBreadcrumbsCount > 0" #breadcrumbContainer>
+            <li class="terra-breadcrumb-container" *ngIf="container.visibleBreadcrumbsCount > 0 && !container.isHidden" #breadcrumbContainer>
                 <div class="terra-breadcrumb-wrapper">
                     <a class="terra-breadcrumb"
                        [routerLink]="container.currentSelectedBreadcrumb.routerLink"
@@ -34,7 +34,7 @@
                     </a>
                 </div>
             </li>
-            <li class="terra-breadcrumb-container" *ngIf="checkLastBreadcrumbContainer(i)">
+            <li class="terra-breadcrumb-container" *ngIf="checkLastBreadcrumbContainer(i) && !container.isHidden">
                 <a class="terra-breadcrumb icon-next"></a>
             </li>
         </ng-container>
