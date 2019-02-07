@@ -1,9 +1,8 @@
-# unreleased
+# Unreleased
 
 ### Bug Fixes
-
 * **terra-category-picker** REST calls will no longer be triggered twice.
-* **terra-breadcrumbs** breadcrumb container is hidden if route data is not avavilable.
+* **terra-breadcrumbs** breadcrumb container is hidden if route data is not available.
 
 <a name="3.3.0"></a>
 # 3.3.0 (04.02.2019)
