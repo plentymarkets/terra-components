@@ -119,8 +119,13 @@ export class TerraBreadcrumbsService
                 breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url);
             }
 
+            breadcrumb.hasRouteData = !isNullOrUndefined(route.data);
+
             container.breadcrumbList.push(breadcrumb);
         }
+
+        // set container hidden if data is not available
+        container.isHidden = container.breadcrumbList.every((bc:TerraBreadcrumb) => !bc.hasRouteData);
 
         // select breadcrumb and update visibilities
         container.currentSelectedBreadcrumb = breadcrumb;
