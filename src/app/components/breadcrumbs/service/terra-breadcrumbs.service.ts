@@ -125,7 +125,7 @@ export class TerraBreadcrumbsService
         }
 
         // set container hidden if data is not available
-        container.isHidden = !container.breadcrumbList.some((bc:TerraBreadcrumb) => bc.hasRouteData);
+        container.isHidden = container.breadcrumbList.some((bc:TerraBreadcrumb) => !bc.hasRouteData);
 
         // select breadcrumb and update visibilities
         container.currentSelectedBreadcrumb = breadcrumb;
