@@ -1,8 +1,6 @@
+# Unreleased
 
-# unreleased
-
- ### Bug Fixes
-
+### Bug Fixes
 * **terra-category-picker** REST calls will no longer be triggered twice.
 
 <a name="3.3.0"></a>
