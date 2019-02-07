@@ -95,9 +95,6 @@ export class TerraBreadcrumbsService
             this._containers.push(container);
         }
 
-        // set container hidden if data is not available
-        container.isHidden = isNullOrUndefined(route.data);
-
         // search for existing breadcrumb
         let breadcrumb:TerraBreadcrumb = container.breadcrumbList.find((bc:TerraBreadcrumb) =>
         {
@@ -122,8 +119,13 @@ export class TerraBreadcrumbsService
                 breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url);
             }
 
+            breadcrumb.hasRouteData = !isNullOrUndefined(route.data);
+
             container.breadcrumbList.push(breadcrumb);
         }
+
+        // set container hidden if data is not available
+        container.isHidden = !container.breadcrumbList.some((bc:TerraBreadcrumb) => bc.hasRouteData);
 
         // select breadcrumb and update visibilities
         container.currentSelectedBreadcrumb = breadcrumb;
