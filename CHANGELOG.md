@@ -1,19 +1,21 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-category-picker** REST calls will no longer be triggered twice.
+* **terra-breadcrumbs** hide breadcrumb container if it contains only breadcrumbs without labels.
+
 <a name="3.3.0"></a>
 # 3.3.0 (04.02.2019)
 
 ### Features 
 * **webpack update** updated to latest version of webpack due to security vulnerabilities
-* **terra-checkbox-group** new component which wraps `<terra-multi-check-box>` to separate available checkbox definition from ngModel
+* **tc-checkbox-group** new component which wraps `<terra-multi-check-box>` to separate available checkbox definition from ngModel
 * **terra-form** added support for `<terra-checkbox-group>`
 * **terra-form** added support for `<terra-slider>`
 
 ### Bug Fixes
 * **terra-form-entry** fixed initialization with defaultValue
 * **terra-form-entry** check if component property is decorated before assigning value dynamically
-
-### Bug Fixes
-
-* **terra-category-picker** REST calls will no longer be triggered twice.
 
 <a name="3.2.0"></a>
 # 3.2.0 (23.01.2019)
