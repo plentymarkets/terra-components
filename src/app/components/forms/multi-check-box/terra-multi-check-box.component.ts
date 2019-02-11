@@ -45,18 +45,18 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
     @Input()
     public inputName:string;
 
+    /**
+     * @description Set the function which will be executed when checkbox state changes.
+     */
+    @Output()
+    public checkboxStateChanges:EventEmitter<Array<TerraMultiCheckBoxValueInterface>> = new EventEmitter<Array<TerraMultiCheckBoxValueInterface>>();
+
     protected valueList:Array<TerraMultiCheckBoxValueInterface> = [];
 
     @ViewChild('viewChildHeaderCheckbox')
     protected viewChildHeaderCheckbox:TerraCheckboxComponent;
 
     protected headerCheckboxValue:boolean;
-
-    /**
-     * @description Set the function which will be executed when checkbox state changes.
-     */
-    @Output()
-    public checkboxStateChanges:EventEmitter<Array<TerraMultiCheckBoxValueInterface>> = new EventEmitter<Array<TerraMultiCheckBoxValueInterface>>();
 
     private langPrefix:string = 'terraMultiCheckBox';
 
