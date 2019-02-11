@@ -109,7 +109,7 @@ export class TerraButtonComponent
         this.currentTooltipPlacement = this.inputTooltipPlacement;
     }
 
-    private click(event:Event):void
+    protected click(event:Event):void
     {
         if(isNullOrUndefined(this.inputIsDisabled) || this.inputIsDisabled === false)
         {
@@ -117,7 +117,7 @@ export class TerraButtonComponent
         }
     }
 
-    private setTooltipPlacement(event:MouseEvent):void
+    protected setTooltipPlacement(event:MouseEvent):void
     {
         if(isNullOrUndefined(this.inputTooltipText))
         {

@@ -10,6 +10,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
+import { TerraPlacementEnum } from '../../../..';
 
 let nextId:number = 0;
 
@@ -45,6 +46,14 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     @Input()
     public inputIcon:string;
 
+    /** @description Set the tooltip.*/
+    @Input()
+    public inputTooltipText:string;
+
+    /** @description Set the tooltip placement (bottom, top, left, right). Default top.*/
+    @Input()
+    public inputTooltipPlacement:TerraPlacementEnum;
+
     @Output()
     public valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -55,6 +64,8 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      */
     protected id:string;
 
+    protected helperTooltip:string;
+
     // The internal data model
     private innerValue:boolean = false;
     private _isIndeterminate:boolean = false;
@@ -63,6 +74,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     {
         // generate the id of the input instance
         this.id = `checkbox_#${nextId++}`;
+        this.inputTooltipPlacement = TerraPlacementEnum.TOP;
     }
 
     // get accessor
