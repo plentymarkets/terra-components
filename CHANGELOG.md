@@ -1,5 +1,8 @@
 # Unreleased
 
+### Features 
+* **terra-checkbox** added support for tooltips
+
 ### Bug Fixes
 * **terra-category-picker** REST calls will no longer be triggered twice.
 * **terra-breadcrumbs** hide breadcrumb container if it contains only breadcrumbs without labels.
