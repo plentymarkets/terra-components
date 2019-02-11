@@ -1,10 +1,10 @@
-<div [ngClass]="{'disabled-chk': inputIsDisabled}"
+<div class="checkbox-container"
+     [ngClass]="{'disabled-chk': inputIsDisabled}"
      terraLabelTooltip
      [nameOfInput]="inputTooltipText"
      [(tooltipText)]="helperTooltip"
      [placement]="inputTooltipPlacement"
      [tooltip]="helperTooltip">
-     
     <label class="input-control checkbox small-check">
         <input type="checkbox"
                [(ngModel)]="value"
