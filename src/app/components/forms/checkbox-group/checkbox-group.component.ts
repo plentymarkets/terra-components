@@ -42,7 +42,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor
     @Input()
     public checkboxValues:Array<{ caption:string, value:any }> = [];
 
-    protected values:Array<any> = [];
+    protected values:Array<any>;
 
     protected multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> = [];
 
