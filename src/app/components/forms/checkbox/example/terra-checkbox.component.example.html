@@ -2,6 +2,7 @@
     <p>Simple Checkbox</p>
     <div>
         <terra-checkbox inputCaption="Test"
+                        [inputTooltipText]="'This is a tooltip'"
                         #viewChildTestCb>
         </terra-checkbox>
         <terra-button (outputClicked)="setCheckboxValue()"
