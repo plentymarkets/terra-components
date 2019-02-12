@@ -64,8 +64,6 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      */
     protected id:string;
 
-    protected helperTooltip:string;
-
     // The internal data model
     private innerValue:boolean = false;
     private _isIndeterminate:boolean = false;
