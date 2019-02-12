@@ -1,4 +1,5 @@
-# Unreleased
+<a name="3.4.0"></a>
+# 3.4.0 (12.02.2019)
 
 ### Features 
 * **terra-checkbox** added support for tooltips
