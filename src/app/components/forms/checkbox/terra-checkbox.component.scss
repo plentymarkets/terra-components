@@ -4,6 +4,11 @@ input[type="checkbox"]
     margin-right: 0.3em;
 }
 
+.checkbox-container
+{
+    width: fit-content;
+}
+
 .disabled-chk
 {
     cursor: not-allowed;
