@@ -1,4 +1,8 @@
-<div [ngClass]="{'disabled-chk': inputIsDisabled}">
+<div class="checkbox-container"
+     [ngClass]="{'disabled-chk': inputIsDisabled}"
+     [placement]="tooltipPlacement"
+     [tooltip]="tooltipText"
+     [container]="'body'">
     <label class="input-control checkbox small-check">
         <input type="checkbox"
                [(ngModel)]="value"
