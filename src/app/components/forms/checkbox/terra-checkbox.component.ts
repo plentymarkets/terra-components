@@ -48,11 +48,11 @@ export class TerraCheckboxComponent implements ControlValueAccessor
 
     /** @description Set the tooltip.*/
     @Input()
-    public inputTooltipText:string;
+    public tooltipText:string;
 
     /** @description Set the tooltip placement (bottom, top, left, right). Default top.*/
     @Input()
-    public inputTooltipPlacement:TerraPlacementEnum;
+    public tooltipPlacement:TerraPlacementEnum;
 
     @Output()
     public valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -74,7 +74,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     {
         // generate the id of the input instance
         this.id = `checkbox_#${nextId++}`;
-        this.inputTooltipPlacement = TerraPlacementEnum.TOP;
+        this.tooltipPlacement = TerraPlacementEnum.TOP;
     }
 
     // get accessor
