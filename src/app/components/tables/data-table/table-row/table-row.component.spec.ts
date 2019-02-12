@@ -9,8 +9,9 @@ import { TerraCheckboxComponent } from '../../../forms/checkbox/terra-checkbox.c
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
-import Spy = jasmine.Spy;
 import { DebugElement } from '@angular/core';
+import { TooltipModule } from 'ngx-bootstrap';
+import Spy = jasmine.Spy;
 
 export const dataTableStub:Partial<TerraDataTableComponent<any, any>> =
     {
@@ -40,6 +41,7 @@ describe('Component: TableRowComponent', () =>
             ],
             imports:      [
                 FormsModule,
+                TooltipModule.forRoot()
             ],
             providers:    [
                 {
