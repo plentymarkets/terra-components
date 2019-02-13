@@ -8,6 +8,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { TerraMultiCheckBoxValueInterface } from '../../forms/multi-check-box/data/terra-multi-check-box-value.interface';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector:  'tc-checkbox-group',
@@ -41,7 +42,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor
     @Input()
     public checkboxValues:Array<{ caption:string, value:any }> = [];
 
-    protected values:Array<any> = [];
+    protected values:Array<any>;
 
     protected multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> = [];
 
@@ -65,12 +66,17 @@ export class CheckboxGroupComponent implements ControlValueAccessor
         this.updateMultiCheckboxValues();
     }
 
-    protected onMultiCheckboxChanged(multicheckboxValues:Array<TerraMultiCheckBoxValueInterface>):void
+    protected onMultiCheckboxChanged(checkboxValues:Array<TerraMultiCheckBoxValueInterface>):void
     {
-        (multicheckboxValues || []).forEach((changedValue:TerraMultiCheckBoxValueInterface) =>
+        (checkboxValues || []).forEach((changedValue:TerraMultiCheckBoxValueInterface) =>
         {
             if(changedValue.selected)
             {
+                // if the value is null or undefined, initialize the array to be able to add selected values
+                if(isNullOrUndefined(this.values))
+                {
+                    this.values = [];
+                }
                 this.values.push(changedValue.value);
             }
             else
@@ -79,6 +85,12 @@ export class CheckboxGroupComponent implements ControlValueAccessor
                 if(idx >= 0)
                 {
                     this.values.splice(idx, 1);
+                }
+
+                // if nothing is selected, the value should be null
+                if(this.values.length === 0)
+                {
+                    this.values = null;
                 }
             }
         });
