@@ -1,11 +1,14 @@
+<a name="3.5.0"></a>
+# 3.5.0 (XX.XX.XXXX)
+
+### Features
+* **terra-base.service** change typdef of `dataId` parameter in caching methods
+
 <a name="3.4.0"></a>
 # 3.4.0 (12.02.2019)
 
 ### Features 
 * **terra-checkbox** added support for tooltips
-
-### Features
-* **terra-base.service** change typdef of `dataId` parameter in caching methods
 
 ### Bug Fixes
 * **terra-category-picker** REST calls will no longer be triggered twice.
