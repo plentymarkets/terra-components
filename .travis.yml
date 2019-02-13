@@ -1,6 +1,7 @@
 language: node_js
+os: osx
 before_install:
 - npm i -g npm@latest
-before_script:
-- npm install -g gulp-cli
-script: gulp
+install:
+- npm ci
+cache: npm
