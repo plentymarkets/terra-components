@@ -1,3 +1,8 @@
+# Unreleased
+
+### Features
+* **terra-card** updated styling
+
 <a name="3.4.0"></a>
 # 3.4.0 (12.02.2019)
 
