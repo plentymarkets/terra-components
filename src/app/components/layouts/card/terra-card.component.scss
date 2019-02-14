@@ -5,7 +5,7 @@
         border-radius: var(--border-radius);
         border: none;
         box-shadow: var(--box-shadow);
-        margin: var(--space-xs) var(--space-xs) var(--space-md) var(--space-xs);
+        margin: var(--space-md);
         display: inline-block;
         width: 200px;
         transition: margin var(--transition-md);
@@ -14,12 +14,21 @@
         {
             border: 2px solid var(--color-active);
         }
+        
+        &:hover
+        {
+            &:not(.selected)
+            {
+                outline: 2px solid var(--color-active);
+                border-radius: 0;
+            }
+        }
     }
 
     .card-img-top
     {
-        height: 150px;
-        margin: 2px;
+        min-height: calc(var(--space-xl) * 5);
+        margin: var(--space-md);
         border-radius: 0;
 
         &.terra-card-image
@@ -38,7 +47,7 @@
     
     .card-header
     {
-        height: calc(var(--space-xl) * 2.5);
+        min-height: calc(var(--space-xl) * 3);
         background-color: var(--color-structure-0);
         padding: var(--space-md);
         display: flex;
@@ -53,7 +62,7 @@
 
     .card-footer
     {
-        height: calc(var(--space-xl) * 1.5);
+        min-height: calc(var(--space-xl) * 1.5);
         padding: var(--space-md);
         background-color: var(--color-structure-0);
         transition: padding var(--transition-md);
