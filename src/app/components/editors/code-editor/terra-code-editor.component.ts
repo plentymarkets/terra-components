@@ -2,7 +2,8 @@ import {
     Component,
     ElementRef,
     OnInit,
-    ViewChild
+    ViewChild,
+    Input
 } from '@angular/core';
 import { TranslationService } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -32,6 +33,12 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
     public showCodeView:boolean = false;
     public editorContent:string = '';
     public rawContent:string = '';
+
+    /**
+     * @description If false, switching from code view to editor view is disabled while the input code is not valid. Default true.
+     */
+    @Input()
+    public switchFromCode:boolean = true;
 
     @ViewChild('viewConfirmationOverlay')
     public overlay:TerraOverlayComponent;
@@ -181,7 +188,10 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
                 if(hasChanges && !forceClose)
                 {
                     // editor has changed the content
-                    this.overlay.showOverlay();
+                    if(this.switchFromCode)
+                    {
+                        this.overlay.showOverlay();
+                    }
                 }
                 else
                 {
