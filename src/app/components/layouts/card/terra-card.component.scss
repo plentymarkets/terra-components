@@ -16,12 +16,6 @@
         }
     }
 
-    .card-header
-    {
-        background-color: var(--color-structure-0);
-        padding: var(--space-md);
-    }
-
     .card-img-top
     {
         height: 150px;
@@ -41,15 +35,25 @@
             color: var(--color-structure-7);
         }
     }
+    
+    .card-header
+    {
+        height: calc(var(--space-xl) * 2.5);
+        background-color: var(--color-structure-0);
+        padding: var(--space-md);
+        display: flex;
+        align-items: center;
+    }
 
     .card-block
     {
-        padding: 0 var(--space-md) 0 var(--space-md);
+        padding: var(--space-md);
         transition: padding var(--transition-md);
     }
 
     .card-footer
     {
+        height: calc(var(--space-xl) * 1.5);
         padding: var(--space-md);
         background-color: var(--color-structure-0);
         transition: padding var(--transition-md);
