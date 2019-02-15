@@ -3,6 +3,7 @@
 
 ### Features 
 * **terra-checkbox** added support for tooltips
+* **icon font** added new icons: icon-content_check_out, icon-content_my_account, icon-new_order, icon-reply_all, icon-reply
 
 ### Bug Fixes
 * **terra-category-picker** REST calls will no longer be triggered twice.
