@@ -66,6 +66,7 @@ import { RadioGroupComponent } from './forms/input/radio/radio-group.component';
 import { TableRowComponent } from './tables/data-table/table-row/table-row.component';
 import { FilterComponent } from './filter/filter.component';
 import { CheckboxGroupComponent } from './forms/checkbox-group/checkbox-group.component';
+import { ExpandableTextComponent } from './layouts/expandable-text/expandable-text.component';
 
 export const exportedComponents:Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -133,7 +134,8 @@ export const exportedComponents:Array<Type<any>> = [
     RadioInputComponent,
     RadioGroupComponent,
     TableRowComponent,
-    FilterComponent
+    FilterComponent,
+    ExpandableTextComponent
 ];
 
 export const components:Array<Type<any>> = [
