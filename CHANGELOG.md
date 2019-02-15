@@ -2,7 +2,7 @@
 # 3.4.1 (XX.XX.2019)
 
 ### Bug Fixes
-* **terra-card** fixed issue where multiple cards were not aligned properly if one card uses an icon and another uses an image.
+* **terra-card** vertical alignment of multiple cards if one card uses an icon and another uses an image.
 
 <a name="3.4.0"></a>
 # 3.4.0 (12.02.2019)
