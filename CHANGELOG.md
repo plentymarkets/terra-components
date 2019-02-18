@@ -1,6 +1,11 @@
 <a name="3.5.0"></a>
 # 3.5.0 (XX.XX.XXXX)
 
+# Unreleased changes
+
+### Bug Fixes
+* **terra-toggle-button** removed function groups for toggle buttons
+
 ### Features
 * **terra-base.service** change typdef of `dataId` parameter in caching methods
 
