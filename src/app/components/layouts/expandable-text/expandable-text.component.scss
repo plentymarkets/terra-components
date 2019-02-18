@@ -7,14 +7,13 @@
 
 .expandable-text
 {
-    width: calc(100% - var(--space-xl) * 3);
+    width: 100%;
     display: inline-block;
 }
 
 .collapse-wrapper
 {
     width: 100%;
-    padding: 10px;
 }
 
 /* styles for '...' */

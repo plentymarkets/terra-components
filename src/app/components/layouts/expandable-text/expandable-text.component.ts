@@ -15,7 +15,7 @@ import { TranslationService } from 'angular-l10n';
 export class ExpandableTextComponent implements OnInit
 {
     @Input()
-    public collapsed:boolean = false;
+    public collapsed:boolean = true;
 
     @Input()
     public text:string;
