@@ -1,3 +1,8 @@
+# Unreleased changes
+
+### Bug Fixes
+* **terra-toggle-button** removed function groups for toggle buttons
+
 <a name="3.4.0"></a>
 # 3.4.0 (12.02.2019)
 
