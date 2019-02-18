@@ -577,6 +577,11 @@ $icon-vcard: "\eaa2";
 $icon-visibility_private: "\eaa3";
 $icon-warning: "\eaa4";
 $icon-zoom: "\eaa5";
+$icon-content_check_out: "\eb19";
+$icon-content_my_account: "\eb25";
+$icon-new_order: "\eb26";
+$icon-reply_all: "\eb27";
+$icon-reply: "\eb28";
 
 .icon-table_sort
 {
@@ -4957,3 +4962,44 @@ $icon-zoom: "\eaa5";
         content: $icon-zoom;
     }
 }
+
+.icon-content_check_out
+{
+    &:before
+    {
+        content: $icon-content_check_out;
+    }
+}
+
+.icon-content_my_account
+{
+    &:before
+    {
+        content: $icon-content_my_account;
+    }
+}
+
+.icon-new_order
+{
+    &:before
+    {
+        content: $icon-new_order;
+    }
+}
+
+.icon-reply_all
+{
+    &:before
+    {
+        content: $icon-reply_all;
+    }
+}
+
+.icon-reply
+{
+    &:before
+    {
+        content: $icon-reply;
+    }
+}
+
