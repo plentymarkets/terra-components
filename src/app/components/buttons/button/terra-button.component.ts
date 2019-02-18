@@ -46,10 +46,6 @@ export class TerraButtonComponent
     @Input()
     public inputIsHidden:boolean;
 
-    /** @description If true, the button will get the class btn-toggle. Default false.*/
-    @Input()
-    public inputIsToggle:boolean;
-
     /** @description Set the tooltip.*/
     @Input()
     public inputTooltipText:string;

@@ -624,15 +624,9 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
     color: var(--color-structure-0);
     
     // Exceptions
-    &.btn-link,
-    &.btn-toggle
+    &.btn-link
     {
         border: none;
-    }
-    
-    &.btn-major
-    {
-        background-color: var(--function-group-color);
     }
     
     &.btn-major
