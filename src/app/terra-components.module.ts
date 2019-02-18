@@ -42,6 +42,7 @@ import { services } from './service/service-collection';
 import { directives } from './components/directive-collection';
 import { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
 import { AlertService } from './components/alert/alert.service';
+import { NgxTextOverflowClampModule } from 'ngx-text-overflow-clamp/dist';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -78,7 +79,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         AceEditorModule,
         TerraInteractModule,
         QuillModule,
-        RouterModule
+        RouterModule,
+        NgxTextOverflowClampModule
     ],
     providers:       [
         TerraLoadingSpinnerService,

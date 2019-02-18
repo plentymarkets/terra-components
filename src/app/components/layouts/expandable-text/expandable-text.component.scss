@@ -4,39 +4,3 @@
     cursor: pointer;
     user-select: none;
 }
-
-.expandable-text
-{
-    width: 100%;
-    display: inline-block;
-}
-
-.collapse-wrapper
-{
-    width: 100%;
-}
-
-/* styles for '...' */
-.collapsed-text {
-    /* hide text if it more than N lines  */
-    overflow: hidden;
-    /* for set '...' in absolute position */
-    position: relative;
-    /* use this value to count block height */
-    line-height: 1.2rem;
-    /* fix problem when last visible word doesn't adjoin right side  */
-    text-align: justify;
-    
-    /* */
-    margin-right: -1em;
-    padding-right: 1em;
-}
-.collapsed-text:before {
-    /* points in the end */
-    content: '...';
-    /* absolute position */
-    position: absolute;
-    /* set position to right bottom corner of block */
-    right: 0;
-    bottom: 0;
-}
