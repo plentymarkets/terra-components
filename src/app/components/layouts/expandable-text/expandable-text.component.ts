@@ -5,6 +5,7 @@ import {
     OnInit,
     Output,
 } from '@angular/core';
+import { TranslationService } from 'angular-l10n';
 
 @Component({
     selector: 'tc-expandable-text',
@@ -22,12 +23,16 @@ export class ExpandableTextComponent implements OnInit
     @Input()
     public visibleLines:number = 1;
 
-    protected readMoreText:string = 'More'; // TODO
-    protected lessText:string = 'Less'; // TODO
+    protected readMoreText:string = this.translation.translate('expandable.showMore');
+    protected lessText:string = this.translation.translate('expandable.showMore');
     protected maxHeight:string;
 
     @Output()
     public collapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    constructor(private translation:TranslationService)
+    {
+    }
 
     protected toggleCollapse():void
     {

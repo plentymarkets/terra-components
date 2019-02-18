@@ -1,5 +1,7 @@
 <div class="collapse-wrapper"
      [ngClass]="{'collapsed': collapsed}">
     <div [innerHtml]="text" class="expandable-text" [ngClass]="{'collapsed-text': collapsed}" [style.max-height]="maxHeight"></div>
-    <div class="read-more" (click)="toggleCollapse()">{{collapseText}}</div>
+    <div>
+        <span class="read-more" (click)="toggleCollapse()">{{collapseText}}</span>
+    </div>
 </div>

@@ -1,3 +1,9 @@
+#Unreleased
+
+###Features
+* **tc-expandable-text** new component to display text in an expandable container.
+
+
 <a name="3.4.0"></a>
 # 3.4.0 (12.02.2019)
 
