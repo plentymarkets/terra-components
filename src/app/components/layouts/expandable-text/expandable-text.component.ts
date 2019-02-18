@@ -24,7 +24,7 @@ export class ExpandableTextComponent implements OnInit
     public visibleLines:number = 1;
 
     protected readMoreText:string = this.translation.translate('expandable.showMore');
-    protected lessText:string = this.translation.translate('expandable.showMore');
+    protected lessText:string = this.translation.translate('expandable.showLess');
     protected maxHeight:string;
 
     @Output()
