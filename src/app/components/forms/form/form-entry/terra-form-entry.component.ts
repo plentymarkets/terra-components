@@ -170,7 +170,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
     protected onValueChanged(value:any):void
     {
-        if(value !== this.inputFormValue)
+        if(value !== this.inputFormValue || Array.isArray(value))
         {
             this.inputFormValue = value;
             this.outputFormValueChanged.next(value);
