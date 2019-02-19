@@ -205,6 +205,12 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                         {
                             return foundDetail.lang === this.inputLanguage;
                         });
+
+                        // No details found with the given language so just use the first language instead
+                        if(isNullOrUndefined(categoryDetail))
+                        {
+                            categoryDetail = categoryData.details[0];
+                        }
                     }
                     else // Downwardcompatability
                     {
