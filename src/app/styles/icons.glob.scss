@@ -166,11 +166,11 @@ button.btn[data-icon="icon-box_plus_disabled"], div.adminActionIcon.icon-box_plu
 }
 
 // Warning: Warnung, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
-terra-button[ng-reflect-input-icon="icon-warning"] .btn, div.adminActionIcon.icon-warning, button.adminButton[data-icon="icon-warning"], %icon-warning,
-terra-button[ng-reflect-input-icon="icon-order_not_possible"] .btn, div.adminActionIcon.icon-order_not_possible, button.adminButton[data-icon="icon-order_not_possible"], %icon-order_not_possible,
-terra-button[ng-reflect-input-icon="icon-box_minus_disabled"] .btn, div.adminActionIcon.icon-box_minus_disabled, button.adminButton[data-icon="icon-box_minus_disabled"], %icon-box_minus_disabled,
-terra-button[ng-reflect-input-icon="icon-reset"] .btn, div.adminActionIcon.icon-reset, button.adminButton[data-icon="icon-reset"], %icon-reset,
-terra-button[ng-reflect-input-icon="icon-reset_32"] .btn, div.adminActionIcon.icon-reset_32, button.adminButton[data-icon="icon-reset_32"], %icon-reset_32
+button.btn[data-icon="icon-warning"], div.adminActionIcon.icon-warning, button.adminButton[data-icon="icon-warning"], %icon-warning,
+button.btn[data-icon="icon-order_not_possible"], div.adminActionIcon.icon-order_not_possible, button.adminButton[data-icon="icon-order_not_possible"], %icon-order_not_possible,
+button.btn[data-icon="icon-box_minus_disabled"], div.adminActionIcon.icon-box_minus_disabled, button.adminButton[data-icon="icon-box_minus_disabled"], %icon-box_minus_disabled,
+button.btn[data-icon="icon-reset"], div.adminActionIcon.icon-reset, button.adminButton[data-icon="icon-reset"], %icon-reset,
+button.btn[data-icon="icon-reset_32"], div.adminActionIcon.icon-reset_32, button.adminButton[data-icon="icon-reset_32"], %icon-reset_32
 {
     --function-group-color: var(--color-group-warning);
     --function-group-color-highlighted: var(--color-group-warning);
@@ -627,11 +627,6 @@ terra-button .btn, div.adminActionIcon, button.adminButton, div.terraIcon
     &.btn-link
     {
         border: none;
-    }
-    
-    &.btn-major
-    {
-        background-color: var(--function-group-color);
     }
     
     &.btn-major
