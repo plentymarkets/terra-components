@@ -1,3 +1,9 @@
+<a name="3.X.X"></a>
+# 3.X.X (XX.XX.2019)
+
+### Bug Fixes
+* **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
+
 <a name="3.5.0"></a>
 # 3.5.0 (18.02.2019)
 
@@ -6,7 +12,6 @@
 
 ### Bug Fixes
 * **terra-toggle-button** removed function groups for toggle buttons
-* **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
 
 <a name="3.4.0"></a>
 # 3.4.0 (12.02.2019)
