@@ -31,6 +31,7 @@ import { TerraFormContainerComponent } from '../form-container/terra-form-contai
 import { TerraFormEntryListComponent } from '../form-entry-list/terra-form-entry-list.component';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
+import { TerraDatePickerComponent } from '../../input/date-picker/terra-date-picker.component';
 
 @Component({
     selector: 'terra-form-entry',
@@ -163,7 +164,18 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         {
             if(!isNullOrUndefined(this.componentInstance) && isFunction(this.componentInstance.writeValue))
             {
-                this.componentInstance.writeValue(this.inputFormValue);
+                if(this.componentInstance instanceof TerraDatePickerComponent)
+                {
+                    if(this.componentInstance.isValidDate(this.inputFormValue))
+                    {
+                        this.formContainer.formGroup.patchValue(this.inputFormValue);
+                    }
+                }
+                else
+                {
+
+                    this.componentInstance.writeValue(this.inputFormValue);
+                }
             }
             setTimeout(() =>
             {
@@ -224,7 +236,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                         }
                         else
                         {
-                            console.warn('Cannot assign property ' + optionKey + ' on ' + this.componentInstance.constructor.name );
+                            console.warn('Cannot assign property ' + optionKey + ' on ' + this.componentInstance.constructor.name);
                         }
                     }
                 });

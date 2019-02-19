@@ -120,7 +120,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 
     public writeValue(value:any):void
     {
-        if(!isNullOrUndefined(value) && typeof (value) === 'string' && isNaN(Date.parse(value)) === false)
+        if(this.isValidDate(value))
         {
             let newDate:Date = new Date(value);
 
@@ -139,6 +139,11 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         {
             this.clearDate();
         }
+    }
+
+    public isValidDate(value:any):boolean
+    {
+        return !isNullOrUndefined(value) && typeof (value) === 'string' && isNaN(Date.parse(value)) === false;
     }
 
     public get value():IMyDateModel
