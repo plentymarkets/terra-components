@@ -6,8 +6,6 @@
 
 ### Bug Fixes
 * **terra-toggle-button** removed function groups for toggle buttons
-
-### Features
 * **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
 
 <a name="3.4.0"></a>
