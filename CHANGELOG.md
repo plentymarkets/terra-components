@@ -1,4 +1,5 @@
-#Unreleased
+<a name="3.6.0"></a>
+# 3.6.0 (XX.XX.XXXX)
 
 ###Features
 * **tc-expandable-text** new component to display text in an expandable container.
