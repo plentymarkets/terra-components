@@ -1,4 +1,10 @@
 <a name="3.5.0"></a>
+# 3.6.0 (18.02.2019)
+
+### Bug Fixes
+* **terra-form-entry** fix date-picker when used in form
+
+<a name="3.5.0"></a>
 # 3.5.0 (18.02.2019)
 
 ### Features 
