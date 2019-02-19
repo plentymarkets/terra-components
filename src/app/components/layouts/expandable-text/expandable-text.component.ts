@@ -5,7 +5,10 @@ import {
     Input,
     Output,
 } from '@angular/core';
-import { TranslationService } from 'angular-l10n';
+import {
+    Language,
+    TranslationService
+} from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 
 
@@ -39,10 +42,10 @@ export class ExpandableTextComponent implements AfterViewInit
     protected id:string;
     protected showExpandedButton:boolean = true;
 
-    private readonly readMoreText:string = this.translation.translate('expandable.showMore');
-    private readonly readLessText:string = this.translation.translate('expandable.showLess');
+    @Language()
+    private lang:string;
 
-    constructor(private translation:TranslationService)
+    constructor()
     {
         // generate the id of the input instance
         this.id = `tc-expandable-text_#${nextId++}`;
@@ -56,16 +59,6 @@ export class ExpandableTextComponent implements AfterViewInit
     private isEllipsisActive(element:HTMLElement):boolean
     {
         return (element.offsetWidth < element.scrollWidth);
-    }
-
-    protected get collapseText():string
-    {
-        if(this.expanded)
-        {
-            return this.readLessText;
-        }
-
-        return this.readMoreText;
     }
 
     private checkElementChildToShowButton():void
