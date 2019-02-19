@@ -1,0 +1,14 @@
+<div id="{{id}}" *ngIf="!expanded; else expandedTemplate" [clamp]="lines">
+    <ng-content *ngTemplateOutlet="expandedTemplate">
+    </ng-content>
+</div>
+<ng-template #expandedTemplate>
+    <ng-content>
+    </ng-content>
+</ng-template>
+
+<div>
+    <span *ngIf="showExpandedButton" class="read-more" (click)="toggleCollapse()">
+        {{ (expanded ? 'expandable.showLess' : 'expandable.showMore') | translate:lang }}
+    </span>
+</div>

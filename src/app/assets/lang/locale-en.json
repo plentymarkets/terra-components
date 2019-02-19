@@ -120,5 +120,9 @@
 	"filter": {
 		"search": "Search",
 		"reset": "Reset"
+	},
+	"expandable": {
+		"showMore": "Show more",
+		"showLess": "Show less"
 	}
 }
