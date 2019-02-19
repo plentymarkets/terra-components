@@ -1,8 +1,20 @@
 <a name="3.4.1"></a>
-# 3.4.1 (XX.XX.2019)
+# 3.6.0 (XX.XX.2019)
+
+### Features
+* **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
 
 ### Bug Fixes
 * **terra-card** vertical alignment of multiple cards if one card uses an icon and another uses an image.
+
+<a name="3.5.0"></a>
+# 3.5.0 (18.02.2019)
+
+### Features 
+* **icon font** added new icons: icon-content_check_out, icon-content_my_account, icon-new_order, icon-reply_all, icon-reply
+
+### Bug Fixes
+* **terra-toggle-button** removed function groups for toggle buttons
 
 <a name="3.4.0"></a>
 # 3.4.0 (12.02.2019)
