@@ -1,6 +1,6 @@
-<div id="{{id}}" *ngIf="!expanded; else expandedTemplate" [clamp]="lines">
-    <ng-content *ngTemplateOutlet="expandedTemplate">
-    </ng-content>
+<div #templateWrapper *ngIf="!expanded; else expandedTemplate" [clamp]="lines">
+    <ng-template *ngTemplateOutlet="expandedTemplate">
+    </ng-template>
 </div>
 <ng-template #expandedTemplate>
     <ng-content>

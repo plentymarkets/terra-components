@@ -1,7 +1,9 @@
 import {
     AfterViewInit,
     Component,
+    ElementRef,
     Input,
+    ViewChild,
 } from '@angular/core';
 import { Language } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
@@ -23,28 +25,18 @@ export class ExpandableTextComponent implements AfterViewInit
     public expanded:boolean = false;
 
     /**
-     * @description The displayed text.
-     */
-    @Input()
-    public text:string;
-
-    /**
      * @description The visible lines when the text is not expanded.
      */
     @Input()
     public lines:number = 1;
 
-    protected id:string;
-    protected showExpandedButton:boolean = true;
+    protected showExpandedButton:boolean = false;
 
     @Language()
     private lang:string;
 
-    constructor()
-    {
-        // generate the id of the input instance
-        this.id = `tc-expandable-text_#${nextId++}`;
-    }
+    @ViewChild('templateWrapper')
+    private expandable:ElementRef;
 
     protected toggleCollapse():void
     {
@@ -58,9 +50,7 @@ export class ExpandableTextComponent implements AfterViewInit
 
     private checkElementChildToShowButton():void
     {
-        let expandable:HTMLDivElement = document.getElementById(this.id) as HTMLDivElement;
-
-        let lastSpan:HTMLElement = expandable.lastElementChild as HTMLElement;
+        let lastSpan:HTMLElement = this.expandable.nativeElement.lastElementChild as HTMLElement;
 
         this.showExpandedButton = !isNullOrUndefined(lastSpan) && this.isEllipsisActive(lastSpan);
     }
