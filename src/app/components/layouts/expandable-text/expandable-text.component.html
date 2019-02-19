@@ -1,5 +1,7 @@
-<div [style.width]="'100%'">
-    <div *ngIf="collapsed" [clamp]="visibleLines" [innerHtml]="text"></div>
+<div>
+    <div id="{{id}}" *ngIf="collapsed" [clamp]="visibleLines" [innerHtml]="text"></div>
     <div *ngIf="!collapsed" [innerHtml]="text"></div>
 </div>
-<span class="read-more" (click)="toggleCollapse()">{{collapseText}}</span>
+<div>
+    <span *ngIf="showCollapseButton" class="read-more" (click)="toggleCollapse()">{{collapseText}}</span>
+</div>
