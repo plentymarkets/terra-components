@@ -18,26 +18,29 @@ let nextId:number = 0;
 })
 export class ExpandableTextComponent implements AfterViewInit
 {
+    /**
+     * @description Handle the expanded state.
+     */
     @Input()
-    public collapsed:boolean = true;
+    public expanded:boolean = false;
 
+    /**
+     * @description The displayed text.
+     */
     @Input()
     public text:string;
 
-    @Input()
-    public visibleLines:number = 1;
-
     /**
-     * @description a unique string identifier for the specific input instance.
+     * @description The visible lines when the text is not expanded.
      */
+    @Input()
+    public lines:number = 1;
+
     protected id:string;
-    protected showCollapseButton:boolean = true;
+    protected showExpandedButton:boolean = true;
 
-    private readMoreText:string = this.translation.translate('expandable.showMore');
-    private lessText:string = this.translation.translate('expandable.showLess');
-
-    @Output()
-    public collapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+    private readonly readMoreText:string = this.translation.translate('expandable.showMore');
+    private readonly readLessText:string = this.translation.translate('expandable.showLess');
 
     constructor(private translation:TranslationService)
     {
@@ -47,7 +50,7 @@ export class ExpandableTextComponent implements AfterViewInit
 
     protected toggleCollapse():void
     {
-        this.collapsed = !this.collapsed;
+        this.expanded = !this.expanded;
     }
 
     private isEllipsisActive(element:HTMLElement):boolean
@@ -57,12 +60,12 @@ export class ExpandableTextComponent implements AfterViewInit
 
     protected get collapseText():string
     {
-        if(this.collapsed)
+        if(this.expanded)
         {
-            return this.readMoreText;
+            return this.readLessText;
         }
 
-        return this.lessText;
+        return this.readMoreText;
     }
 
     private checkElementChildToShowButton():void
@@ -71,7 +74,7 @@ export class ExpandableTextComponent implements AfterViewInit
 
         let lastSpan:HTMLElement = expandable.lastElementChild as HTMLElement;
 
-        this.showCollapseButton = !isNullOrUndefined(lastSpan) && this.isEllipsisActive(lastSpan);
+        this.showExpandedButton = !isNullOrUndefined(lastSpan) && this.isEllipsisActive(lastSpan);
     }
 
     public ngAfterViewInit():void

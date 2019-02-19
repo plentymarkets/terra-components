@@ -1,7 +1,7 @@
 <div>
-    <div id="{{id}}" *ngIf="collapsed" [clamp]="visibleLines" [innerHtml]="text"></div>
-    <div *ngIf="!collapsed" [innerHtml]="text"></div>
+    <div id="{{id}}" *ngIf="!expanded" [clamp]="lines" [innerHtml]="text"></div>
+    <div *ngIf="expanded" [innerHtml]="text"></div>
 </div>
 <div>
-    <span *ngIf="showCollapseButton" class="read-more" (click)="toggleCollapse()">{{collapseText}}</span>
+    <span *ngIf="showExpandedButton" class="read-more" (click)="toggleCollapse()">{{collapseText}}</span>
 </div>
