@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 * **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
+* **terra-form** now emits changes on array or object values correctly
 
 <a name="3.5.0"></a>
 # 3.5.0 (18.02.2019)
