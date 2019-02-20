@@ -8,9 +8,6 @@ import {
 import { Language } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 
-
-let nextId:number = 0;
-
 @Component({
     selector: 'tc-expandable-text',
     styles:   [require('./expandable-text.component.scss')],
