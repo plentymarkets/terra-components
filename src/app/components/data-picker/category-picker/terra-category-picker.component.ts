@@ -44,6 +44,12 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
     @Input()
     public inputCategoryService:TerraCategoryPickerBaseService;
 
+    /**
+     * @description Language in which the categories shall be displayed
+     */
+    @Input()
+    public inputLanguage:string;
+
     private completeCategory:CategoryValueInterface;
 
     private categoryName:string;
@@ -193,7 +199,23 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                 // If the node hasn't already been added the routine will be started
                 if(isNullOrUndefined(this.nestedTreeConfig.findNodeById(categoryData.id)) && categoryData.details.length > 0)
                 {
-                    categoryDetail = categoryData.details[0];
+                    if(!isNullOrUndefined(this.inputLanguage))
+                    {
+                        categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
+                        {
+                            return foundDetail.lang === this.inputLanguage;
+                        });
+
+                        // No details found with the given language so just use the first language instead
+                        if(isNullOrUndefined(categoryDetail))
+                        {
+                            categoryDetail = categoryData.details[0];
+                        }
+                    }
+                    else // Downwardcompatability
+                    {
+                        categoryDetail = categoryData.details[0];
+                    }
 
                     // Create Node to add to tree later
                     let childNode:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>> = {
