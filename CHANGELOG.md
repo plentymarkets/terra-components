@@ -1,6 +1,9 @@
 <a name="3.X.X"></a>
 # 3.X.X (XX.XX.2019)
 
+### Features
+* **terra-code-editor** added input `switchFromCode`, if true the switch from code to note editor view gets disabled.
+
 ### Bug Fixes
 * **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
 
