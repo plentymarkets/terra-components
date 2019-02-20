@@ -1,9 +1,36 @@
+<a name="3.X.X"></a>
+# 3.X.X (XX.XX.2019)
+
+### Bug Fixes
+* **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
+
+<a name="3.5.0"></a>
+# 3.5.0 (18.02.2019)
+
+### Features 
+* **icon font** added new icons: icon-content_check_out, icon-content_my_account, icon-new_order, icon-reply_all, icon-reply
+
+### Bug Fixes
+* **terra-toggle-button** removed function groups for toggle buttons
+
+<a name="3.4.0"></a>
+# 3.4.0 (12.02.2019)
+
+### Features 
+* **terra-checkbox** added support for tooltips
+
+### Bug Fixes
+* **terra-category-picker** REST calls will no longer be triggered twice.
+* **terra-breadcrumbs** hide breadcrumb container if it contains only breadcrumbs without labels.
+* **tc-checkbox-group** `null` can now be written to the input and `null` will also be returned if there is nothing selected
+* **terra-info** Tooltip will be shown correctly in a scrollable view.
+
 <a name="3.3.0"></a>
 # 3.3.0 (04.02.2019)
 
 ### Features 
 * **webpack update** updated to latest version of webpack due to security vulnerabilities
-* **terra-checkbox-group** new component which wraps `<terra-multi-check-box>` to separate available checkbox definition from ngModel
+* **tc-checkbox-group** new component which wraps `<terra-multi-check-box>` to separate available checkbox definition from ngModel
 * **terra-form** added support for `<terra-checkbox-group>`
 * **terra-form** added support for `<terra-slider>`
 
