@@ -5,7 +5,7 @@ import { MockElementRef } from '../../../testing/mock-element-ref';
 import { MockTranslationService } from '../../../testing/mock-translation-service';
 import { TerraCodeEditorComponent } from './terra-code-editor.component';
 
-fdescribe(`TerraCodeEditorComponent:`, () =>
+describe(`TerraCodeEditorComponent:`, () =>
 {
     let component:TerraCodeEditorComponent;
 
