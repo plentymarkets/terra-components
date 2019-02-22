@@ -49,6 +49,11 @@
                 background: var(--color-structure-0);
                 overflow: auto;
                 max-height: 156px;
+                
+                &.collapsed
+                {
+                    display: none;
+                }
                 .input-group
                 {
                     margin-bottom: 0px;
