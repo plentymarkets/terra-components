@@ -1,3 +1,10 @@
+<a name="3.6.0"></a>
+# 3.6.0 (XX.XX.XXXX)
+
+### Features
+* **tc-checkbox-group** added new input `collapsible` which - if set to true - collapses the component to its header initially.
+* **terra-multi-check-box** added new input `collapsible` which - if set to true - collapses the component to its header initially if set to true.
+
 <a name="3.5.1"></a>
 # 3.5.1 (20.02.2019)
 
