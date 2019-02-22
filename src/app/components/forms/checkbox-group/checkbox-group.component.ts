@@ -42,6 +42,13 @@ export class CheckboxGroupComponent implements ControlValueAccessor
     @Input()
     public checkboxValues:Array<{ caption:string, value:any }> = [];
 
+    /**
+     * @description en-/disable collapse functionality. If enabled, only the header is shown initially.
+     * @default false
+     */
+    @Input()
+    public collapsible:boolean = false;
+
     protected values:Array<any>;
 
     protected multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> = [];
