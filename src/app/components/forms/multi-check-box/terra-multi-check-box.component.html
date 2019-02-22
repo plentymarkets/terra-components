@@ -1,8 +1,8 @@
 <div class="multiselect-container">
     <div class="multiselect-element" [ngClass]="{'disabled': inputIsDisabled}">
         <div class="multiselect">
-            <div class="multiselect-header"
                  (click)="collapsed = !collapsed">
+            <div class="multiselect-header" [class.roundedBottomBorder]="collapsed">
                 <div class="checkbox-container">
                     <terra-checkbox #viewChildHeaderCheckbox
                                     type="checkbox"
