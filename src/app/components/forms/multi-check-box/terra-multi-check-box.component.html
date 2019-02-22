@@ -2,7 +2,7 @@
     <div class="multiselect-element" [ngClass]="{'disabled': inputIsDisabled}">
         <div class="multiselect">
             <div class="multiselect-header"
-                 [class.roundedBottomBorder]="collapsed"
+                 [class.roundedBottomBorder]="collapsible && collapsed"
                  (click)="collapsed = !collapsed">
                 <div class="checkbox-container">
                     <terra-checkbox #viewChildHeaderCheckbox
@@ -18,7 +18,7 @@
                       [ngClass]="{'icon-collapse_down': collapsed, 'icon-collapse_up': !collapsed}">
                 </span>
             </div>
-            <div class="option-list" [hidden]="collapsed">
+            <div class="option-list" [hidden]="collapsible && collapsed">
                 <div *ngFor="let listEntry of valueList;">
                     <div class="input-group">
                         <div class="input-group-addon">
