@@ -62,6 +62,8 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
 
     protected headerCheckboxValue:boolean;
 
+    protected collapsed:boolean = true;
+
     private langPrefix:string = 'terraMultiCheckBox';
 
     private changedCheckboxes$:Subject<Array<TerraMultiCheckBoxValueInterface>> = new Subject<Array<TerraMultiCheckBoxValueInterface>>();

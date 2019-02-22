@@ -9,8 +9,12 @@
                                     [(ngModel)]="headerCheckboxValue"
                                     (ngModelChange)="onHeaderCheckboxChange($event)">
                     </terra-checkbox>
+                    <label class="header-label">{{ inputName }}</label>
                 </div>
-                <label class="header-label">{{ inputName }}</label>
+                <span *ngIf="collapsible"
+                      [ngClass]="{'icon-collapse_down': !collapsed, 'icon-collapse_up': collapsed}"
+                      (click)="collapsed = !collapsed">
+                </span>
             </div>
             <div class="option-list">
                 <div *ngFor="let listEntry of valueList;">
