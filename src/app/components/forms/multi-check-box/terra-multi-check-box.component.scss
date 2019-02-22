@@ -17,6 +17,7 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                color: var(--color-structure-0);
                 background-color: var(--color-structure-11);
                 border-top-left-radius: var(--border-radius);
                 border-top-right-radius: var(--border-radius);
@@ -32,7 +33,6 @@
                     display: inherit;
                     margin: 0;
                     padding: 6px 9px;
-                    color: var(--color-structure-0);
                     
                     .header-label
                     {
@@ -45,7 +45,6 @@
                     padding: var(--space-sm);
                     transition: all var(--transition-xs);
                     justify-content: flex-end;
-                    color: var(--color-structure-0);
                     font-size: larger;
                 }
             }
