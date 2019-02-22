@@ -16,7 +16,7 @@
                       [ngClass]="{'icon-collapse_down': collapsed, 'icon-collapse_up': !collapsed}">
                 </span>
             </div>
-            <div class="option-list" [class.collapsed]="collapsed">
+            <div class="option-list" [hidden]="collapsed">
                 <div *ngFor="let listEntry of valueList;">
                     <div class="input-group">
                         <div class="input-group-addon">
