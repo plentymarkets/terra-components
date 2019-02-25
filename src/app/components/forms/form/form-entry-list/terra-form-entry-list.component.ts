@@ -1,11 +1,16 @@
 import {
+    AfterContentInit,
+    AfterViewInit,
     Component,
+    ContentChildren,
     EventEmitter,
     Host,
     Input,
     OnInit,
     Output,
-    Type
+    QueryList,
+    Type,
+    ViewChildren
 } from '@angular/core';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
@@ -15,14 +20,17 @@ import {
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { FormArray } from '@angular/forms';
-import { TerraFormContainerComponent } from '../../../../..';
+import {
+    TerraFormContainerComponent,
+    TerraFormEntryComponent
+} from '../../../../..';
 
 @Component({
     selector: 'terra-form-entry-list',
     template: require('./terra-form-entry-list.component.html'),
     styles:   [require('./terra-form-entry-list.component.scss')]
 })
-export class TerraFormEntryListComponent implements OnInit
+export class TerraFormEntryListComponent implements OnInit, AfterViewInit
 {
     private static itemCount:number = 0;
 
@@ -87,13 +95,16 @@ export class TerraFormEntryListComponent implements OnInit
     protected min:number;
     protected max:number;
 
+    @ViewChildren(TerraFormEntryComponent)
+    private formEntries:QueryList<TerraFormEntryComponent>;
+
     private value:Array<{ key:number, value:any }> = [];
 
     private itemScopes:Array<TerraFormScope> = [];
 
-    constructor(@Host() public formContainer:TerraFormContainerComponent)
-    {
-    }
+    // constructor(@Host() public formContainer:TerraFormContainerComponent)
+    // {
+    // }
 
     public ngOnInit():void
     {
@@ -115,7 +126,12 @@ export class TerraFormEntryListComponent implements OnInit
 
         this.formArray = new FormArray([]);
 
-        this.formContainer.formGroup.addControl(this.inputFormFieldKey, this.formArray);
+        // this.formContainer.formGroup.addControl(this.inputFormFieldKey, this.formArray);
+    }
+
+    public ngAfterViewInit():void
+    {
+        this.formEntries.forEach((entry:TerraFormEntryComponent) => this.formArray.push(entry.formGroup ? entry.formGroup : entry.formControl));
     }
 
     protected get canAddElement():boolean

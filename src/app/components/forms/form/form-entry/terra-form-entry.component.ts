@@ -1,8 +1,10 @@
 import {
+    AfterContentInit,
     AfterViewInit,
     Component,
     ComponentFactoryResolver,
     ComponentRef,
+    ContentChild,
     EventEmitter,
     forwardRef,
     Host,
@@ -26,7 +28,10 @@ import {
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
-import { FormControl } from '@angular/forms';
+import {
+    FormControl,
+    FormGroup
+} from '@angular/forms';
 import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
 import { TerraFormEntryListComponent } from '../form-entry-list/terra-form-entry-list.component';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
@@ -62,16 +67,22 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
     public formControl:FormControl;
 
+    public formGroup:FormGroup;
+
     protected containerClass:string;
 
     @ViewChild('formEntryContainer', {read: ViewContainerRef})
     private container:ViewContainerRef;
 
+    @ViewChild(TerraFormContainerComponent)
+    private formContainer:TerraFormContainerComponent;
+
     private componentInstance:any;
 
     public constructor(private componentFactory:ComponentFactoryResolver,
-                       @Optional() @Host() public formContainer:TerraFormContainerComponent,
-                       @Optional() @Host() @Inject(forwardRef(() => TerraFormEntryListComponent)) public formList:TerraFormEntryListComponent)
+                       // @Optional() @Host() public formContainer:TerraFormContainerComponent,
+                       // @Optional() @Host() @Inject(forwardRef(() => TerraFormEntryListComponent)) public formList:TerraFormEntryListComponent
+    )
     {
     }
 
@@ -79,31 +90,25 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
     {
         this.containerClass = 'form-entry-' + this.inputFormField.type;
 
-        this.formControl = new FormControl(this.inputFormValue, TerraFormFieldHelper.generateValidators(this.inputFormField));
-
-        this.formControl.statusChanges.subscribe((status:any) =>
-        {
-            this.componentInstance.isValid = status !== 'INVALID';
-        });
-
-        setTimeout(() => // without setTimeout there would be an ExpressionChangedAfterItHasBeenCheckedError
-        {
-            if(!this.hasChildren)
-            {
-                if(!isNullOrUndefined(this.formContainer))
-                {
-                    this.formContainer.formGroup.addControl(this.formKey, this.formControl);
-                }
-                else if(!isNullOrUndefined(this.formList))
-                {
-                    this.formList.formArray.insert(+this.formKey, this.formControl);
-                }
-                else
-                {
-                    console.error('Y no Code!!!');
-                }
-            }
-        });
+        // setTimeout(() => // without setTimeout there would be an ExpressionChangedAfterItHasBeenCheckedError
+        // {
+        //     if(!this.hasChildren)
+        //     {
+        //
+        //         // if(!isNullOrUndefined(this.formContainer))
+        //         // {
+        //         //     this.formContainer.formGroup.addControl(this.formKey, this.formControl);
+        //         // }
+        //         // else if(!isNullOrUndefined(this.formList))
+        //         // {
+        //         //     this.formList.formArray.insert(+this.formKey, this.formControl);
+        //         // }
+        //         // else
+        //         // {
+        //         //     console.error('Y no Code!!!');
+        //         // }
+        //     }
+        // });
     }
 
     public ngAfterViewInit():void
@@ -154,7 +159,23 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                 }
             }
         });
+
+        this.formControl = new FormControl(this.inputFormValue, TerraFormFieldHelper.generateValidators(this.inputFormField));
+
+        this.formControl.statusChanges.subscribe((status:any) =>
+        {
+            if(this.componentInstance)
+            {
+                this.componentInstance.isValid = status !== 'INVALID';
+            }
+        });
+
+        if(this.formContainer)
+        {
+            this.formGroup = this.formContainer.formGroup;
+        }
     }
+
 
     public ngOnChanges(changes:SimpleChanges):void
     {
@@ -165,31 +186,31 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
             {
                 this.componentInstance.writeValue(this.inputFormValue);
             }
-            setTimeout(() =>
-            {
+            // setTimeout(() =>
+            // {
                 this.formControl.patchValue(this.inputFormValue);
-            });
+            // });
         }
     }
 
     // TODO has to be implemented in container and entry list as well
     public ngOnDestroy():void
     {
-        if(!this.hasChildren)
-        {
-            if(!isNullOrUndefined(this.formContainer))
-            {
-                this.formContainer.formGroup.removeControl(this.formKey);
-            }
-            else if(!isNullOrUndefined(this.formList))
-            {
-                this.formList.formArray.removeAt(+this.formKey);
-            }
-            else
-            {
-                console.error('Y no Code!!!');
-            }
-        }
+        // if(!this.hasChildren)
+        // {
+        //     // if(!isNullOrUndefined(this.formContainer))
+        //     // {
+        //     //     this.formContainer.formGroup.removeControl(this.formKey);
+        //     // }
+        //     // else if(!isNullOrUndefined(this.formList))
+        //     // {
+        //     //     this.formList.formArray.removeAt(+this.formKey);
+        //     // }
+        //     // else
+        //     // {
+        //     //     console.error('Y no Code!!!');
+        //     // }
+        // }
     }
 
     protected bindInputProperties():void

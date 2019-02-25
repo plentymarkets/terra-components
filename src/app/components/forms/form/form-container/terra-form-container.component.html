@@ -2,6 +2,7 @@
     <ng-template ngFor let-field [ngForOf]="formFields">
         <div class="form-entry" *ngIf="formFieldVisibility[field.key]">
             <terra-form-entry
+                #child
                 *ngIf="!field.value.isList"
                 [inputFormField]="field.value"
                 [inputFormValue]="inputValue[field.key]"
@@ -13,6 +14,7 @@
             ></terra-form-entry>
             
             <terra-form-entry-list
+                #child
                 *ngIf="field.value.isList"
                 [inputFormFieldKey]="field.key"
                 [inputFormField]="field.value"

@@ -1,5 +1,8 @@
 import {
+    AfterContentInit,
+    AfterViewInit,
     Component,
+    ContentChildren,
     EventEmitter,
     forwardRef,
     Host,
@@ -9,8 +12,10 @@ import {
     OnInit,
     Optional,
     Output,
+    QueryList,
     SimpleChanges,
-    Type
+    Type,
+    ViewChildren
 } from '@angular/core';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import {
@@ -20,14 +25,17 @@ import {
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
 import { FormGroup } from '@angular/forms';
-import { TerraFormEntryComponent } from '../../../../..';
+import {
+    TerraFormEntryComponent,
+    TerraFormEntryListComponent
+} from '../../../../..';
 
 @Component({
     selector: 'terra-form-container',
     template: require('./terra-form-container.component.html'),
     styles:   [require('./terra-form-container.component.scss')]
 })
-export class TerraFormContainerComponent implements OnInit, OnChanges
+export class TerraFormContainerComponent implements OnInit, OnChanges, AfterViewInit
 {
     @Input()
     public inputScope:TerraFormScope;
@@ -84,8 +92,11 @@ export class TerraFormContainerComponent implements OnInit, OnChanges
 
     private value:any = {};
 
-    constructor(@Optional() @Host() @Inject(forwardRef(() => TerraFormEntryComponent))  private formEntry:TerraFormEntryComponent)
-    { }
+    // constructor(@Optional() @Host() @Inject(forwardRef(() => TerraFormEntryComponent))  private formEntry:TerraFormEntryComponent)
+    // { }
+
+    @ViewChildren('child')
+    private childEntries:QueryList<TerraFormEntryComponent | TerraFormEntryListComponent>;
 
     public ngOnInit():void
     {
@@ -94,17 +105,37 @@ export class TerraFormContainerComponent implements OnInit, OnChanges
             this.updateFieldVisibility();
         });
 
-        if(!isNullOrUndefined(this.formEntry))
+        // if(!isNullOrUndefined(this.formEntry))
+        // {
+        //     if(!isNullOrUndefined(this.formEntry.formContainer))
+        //     {
+        //         this.formEntry.formContainer.formGroup.addControl(this.inputFormFieldKey, this.formGroup);
+        //     }
+        //     else if(!isNullOrUndefined(this.formEntry.formList))
+        //     {
+        //         this.formEntry.formList.formArray.insert(+this.inputFormFieldKey, this.formGroup);
+        //     }
+        // }
+    }
+
+    public ngAfterViewInit():void
+    {
+        this.childEntries.forEach((entry:TerraFormEntryComponent | TerraFormEntryListComponent) =>
         {
-            if(!isNullOrUndefined(this.formEntry.formContainer))
+            if(entry instanceof TerraFormEntryComponent)
             {
-                this.formEntry.formContainer.formGroup.addControl(this.formKey, this.formGroup);
+                this.formGroup.addControl(entry.formKey, entry.formGroup ?  entry.formGroup : entry.formControl);
             }
-            else if(!isNullOrUndefined(this.formEntry.formList))
+            else if(entry instanceof TerraFormEntryListComponent)
             {
-                this.formEntry.formList.formArray.insert(+this.formKey, this.formGroup);
+                this.formGroup.addControl(entry.inputFormFieldKey, entry.formArray);
             }
-        }
+        });
+
+        this.childEntries.changes.subscribe((changes:any) =>
+        {
+            console.log(changes);
+        });
     }
 
     public ngOnChanges(changes:SimpleChanges):void
