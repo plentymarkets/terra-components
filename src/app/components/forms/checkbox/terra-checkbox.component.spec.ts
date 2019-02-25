@@ -1,12 +1,30 @@
 import { TerraCheckboxComponent } from './terra-checkbox.component';
+import {
+    ComponentFixture,
+    TestBed
+} from '@angular/core/testing';
+import { TooltipModule } from 'ngx-bootstrap';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import Spy = jasmine.Spy;
 
 fdescribe('Component: TerraCheckboxComponent', () =>
 {
     let component:TerraCheckboxComponent;
+    let fixture:ComponentFixture<TerraCheckboxComponent>;
+
     beforeEach(() =>
     {
-        component = new TerraCheckboxComponent();
+        TestBed.configureTestingModule({
+            declarations: [TerraCheckboxComponent],
+            imports: [TooltipModule.forRoot(), FormsModule]
+        }).compileComponents();
+    });
+    beforeEach(() =>
+    {
+        fixture = TestBed.createComponent(TerraCheckboxComponent);
+        component = fixture.componentInstance;
     });
 
     it('should create an instance', () =>
@@ -23,12 +41,13 @@ fdescribe('Component: TerraCheckboxComponent', () =>
         expect(onChangeSpy).not.toHaveBeenCalled();
     });
 
-    it('should call change callback if the value changes by clicking the checkbox', () =>
+    xit('should call change callback if the value changes by clicking the checkbox', () =>
     {
         let onChangeSpy:Spy = jasmine.createSpy('onChange');
         component.registerOnChange(onChangeSpy);
 
-        component.writeValue(!component.value); // toggle value
-        expect(onChangeSpy).toHaveBeenCalled();
+        let inputElement:DebugElement = fixture.debugElement.query(By.css('input'));
+        inputElement.triggerEventHandler('input', true);
+        expect(onChangeSpy).toHaveBeenCalledWith(true);
     });
 });
