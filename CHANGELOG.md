@@ -1,3 +1,14 @@
+<a name="3.6.0"></a>
+# 3.6.0 (XX.XX.XXXX)
+
+### Changes
+* **terra-checkbox**
+	- set/get `value` is now deprecated. Use ngModel instead.
+	- `valueChange` is now deprecated. Use ngModelChange-Callback instead.
+	
+### Bug Fixes
+* **terra-checkbox** change callback is not executed anymore when a value is set via `writeValue()` or `value` set accessor
+
 <a name="3.5.1"></a>
 # 3.5.1 (20.02.2019)
 
