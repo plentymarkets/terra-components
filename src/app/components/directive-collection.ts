@@ -3,10 +3,12 @@ import { Type } from '@angular/core';
 import { TerraTwoColumnsContainerDirective } from './layouts/column-container/two-columns/terra-two-columns-container.directive';
 import { FixedHeaderDirective } from './tables/fixed-header/fixed-header.directive';
 import { TerraLabelTooltipDirective } from '../helpers/terra-label-tooltip.directive';
+import { TerraFormEntryContainerDirective } from './forms/form/form-entry/terra-form-entry-container.directive';
 
 export const directives:Array<Type<any>> = [
     TerraDataTableContextMenuDirective,
     TerraTwoColumnsContainerDirective,
     FixedHeaderDirective,
-    TerraLabelTooltipDirective
+    TerraLabelTooltipDirective,
+    TerraFormEntryContainerDirective
 ];

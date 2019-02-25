@@ -1,5 +1,5 @@
 <div [class]="containerClass">
-    <div #formEntryContainer *ngIf="!hasChildren"></div>
+    <div #formEntryContainer></div>
     
     <div class="form-entry-inner" *ngIf="hasChildren">
         <span class="form-entry-label" *ngIf="inputFormField.options?.name">{{ inputFormField.options?.name }}</span>

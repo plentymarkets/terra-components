@@ -2,6 +2,7 @@ import {
     AfterContentInit,
     AfterViewInit,
     Component,
+    ComponentFactory,
     ComponentFactoryResolver,
     ComponentRef,
     ContentChild,
@@ -36,6 +37,8 @@ import { TerraFormContainerComponent } from '../form-container/terra-form-contai
 import { TerraFormEntryListComponent } from '../form-entry-list/terra-form-entry-list.component';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
+import { NgTemplateOutlet } from '@angular/common';
+import { TerraFormEntryContainerDirective } from './terra-form-entry-container.directive';
 
 @Component({
     selector: 'terra-form-entry',
@@ -71,8 +74,9 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
     protected containerClass:string;
 
-    @ViewChild('formEntryContainer', {read: ViewContainerRef})
-    private container:ViewContainerRef;
+    // @ViewChild('formEntryContainer', {read: ViewContainerRef})
+    @ViewChild(TerraFormEntryContainerDirective)
+    private container:TerraFormEntryContainerDirective;
 
     @ViewChild(TerraFormContainerComponent)
     private formContainer:TerraFormContainerComponent;
@@ -89,6 +93,8 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
     public ngOnInit():void
     {
         this.containerClass = 'form-entry-' + this.inputFormField.type;
+
+        this.initComponent();
 
         // setTimeout(() => // without setTimeout there would be an ExpressionChangedAfterItHasBeenCheckedError
         // {
@@ -113,53 +119,6 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
     public ngAfterViewInit():void
     {
-        setTimeout(() =>
-        {
-            if(!isNullOrUndefined(this.container))
-            {
-                let controlType:Type<any> = TerraTextInputComponent;
-                if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
-                {
-                    if(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)
-                    {
-                        controlType = <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
-                    }
-                    else
-                    {
-                        controlType = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
-                    }
-                }
-
-                let component:ComponentRef<any> = this.container.createComponent(
-                    this.componentFactory.resolveComponentFactory(controlType)
-                );
-
-                this.componentInstance = component.instance;
-
-                this.bindInputProperties();
-
-                if(isFunction(this.componentInstance.registerOnChange) && isFunction(this.componentInstance.writeValue))
-                {
-                    if(isUndefined(this.inputFormValue) && !isNullOrUndefined(this.inputFormField.defaultValue))
-                    {
-                        this.onValueChanged(this.inputFormField.defaultValue);
-                    }
-                    this.componentInstance.registerOnChange((value:any):void =>
-                    {
-                        this.onValueChanged(value);
-                    });
-                    this.componentInstance.writeValue(this.inputFormValue);
-                }
-                else
-                {
-                    console.error(
-                        'Cannot bind component ' + controlType.name + ' to dynamic form. ' +
-                        'Bound components needs to implement the ControlValueAccessor interface.'
-                    );
-                }
-            }
-        });
-
         this.formControl = new FormControl(this.inputFormValue, TerraFormFieldHelper.generateValidators(this.inputFormField));
 
         this.formControl.statusChanges.subscribe((status:any) =>
@@ -173,6 +132,53 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         if(this.formContainer)
         {
             this.formGroup = this.formContainer.formGroup;
+        }
+    }
+
+    public initComponent():void
+    {
+        if(!this.hasChildren)
+        {
+            let controlType:Type<any> = TerraTextInputComponent;
+            if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
+            {
+                if(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)
+                {
+                    controlType = <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
+                }
+                else
+                {
+                    controlType = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
+                }
+            }
+
+            let component:ComponentRef<any> = this.container.viewContainerRef.createComponent(
+                this.componentFactory.resolveComponentFactory(controlType)
+            );
+
+            this.componentInstance = component.instance;
+
+            this.bindInputProperties();
+
+            if(isFunction(this.componentInstance.registerOnChange) && isFunction(this.componentInstance.writeValue))
+            {
+                if(isUndefined(this.inputFormValue) && !isNullOrUndefined(this.inputFormField.defaultValue))
+                {
+                    this.onValueChanged(this.inputFormField.defaultValue);
+                }
+                this.componentInstance.registerOnChange((value:any):void =>
+                {
+                    this.onValueChanged(value);
+                });
+                this.componentInstance.writeValue(this.inputFormValue);
+            }
+            else
+            {
+                console.error(
+                    'Cannot bind component ' + controlType.name + ' to dynamic form. ' +
+                    'Bound components needs to implement the ControlValueAccessor interface.'
+                );
+            }
         }
     }
 
