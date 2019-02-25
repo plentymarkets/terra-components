@@ -72,7 +72,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
 
         this.checkHeaderCheckboxState();
 
-        this.changedCheckboxes$.next(this.valueList);
+        //this.changedCheckboxes$.next(this.valueList);
     }
 
     public registerOnChange(fn:any):void

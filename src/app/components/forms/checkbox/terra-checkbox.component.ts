@@ -52,8 +52,26 @@ export class TerraCheckboxComponent implements ControlValueAccessor
 
     /** @description Set the tooltip placement (bottom, top, left, right). Default top.*/
     @Input()
-    public tooltipPlacement:TerraPlacementEnum;
+    public tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
 
+    /**
+     * @description set accessor for the current value of the check box.
+     * @param v
+     */
+    @Input()
+    public set value(v:boolean)
+    {
+        if(!isNullOrUndefined(v) && v !== this.innerValue)
+        {
+            this._isIndeterminate = false;
+            this.innerValue = v;
+        }
+    }
+
+    /**
+     * @description Emits the current value when it has changed.
+     * @deprecated use ngModelChange instead.
+     */
     @Output()
     public valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -72,48 +90,33 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     {
         // generate the id of the input instance
         this.id = `checkbox_#${nextId++}`;
-        this.tooltipPlacement = TerraPlacementEnum.TOP;
     }
 
-    // get accessor
+    /**
+     * @description get accessor for the current value of the check box
+     * @deprecated use ngModel instead
+     */
     public get value():boolean
     {
         return this.innerValue;
     }
 
-    // set accessor including call the onchange callback
-    @Input()
-    public set value(v:boolean)
+    public onChange(value:boolean):void
     {
-        if(!isNullOrUndefined(v) && v !== this.innerValue)
-        {
-            this._isIndeterminate = false;
-            this.innerValue = v;
-            this.onChangeCallback(v);
-        }
+        this.onChangeCallback(value);
+        this.valueChange.emit(value);
     }
 
-    public onChange(event:boolean):void
-    {
-        this.valueChange.emit(event);
-    }
-
-    // From ControlValueAccessor interface
     public writeValue(value:boolean):void
     {
-        if(value !== this.innerValue)
-        {
-            this.value = value;
-        }
+        this.value = value;
     }
 
-    // From ControlValueAccessor interface
     public registerOnChange(fn:(_:any) => void):void
     {
         this.onChangeCallback = fn;
     }
 
-    // From ControlValueAccessor interface
     public registerOnTouched(fn:() => void):void
     {
         this.onTouchedCallback = fn;
