@@ -56,16 +56,13 @@ export class TerraCheckboxComponent implements ControlValueAccessor
 
     /**
      * @description set accessor for the current value of the check box.
+     * @deprecated use ngModel instead.
      * @param v
      */
     @Input()
     public set value(v:boolean)
     {
-        if(!isNullOrUndefined(v) && v !== this.innerValue)
-        {
-            this._isIndeterminate = false;
-            this.innerValue = v;
-        }
+        this.writeValue(v);
     }
 
     /**
@@ -109,7 +106,11 @@ export class TerraCheckboxComponent implements ControlValueAccessor
 
     public writeValue(value:boolean):void
     {
-        this.value = value;
+        if(!isNullOrUndefined(value) && value !== this.innerValue)
+        {
+            this._isIndeterminate = false;
+            this.innerValue = value;
+        }
     }
 
     public registerOnChange(fn:(_:any) => void):void
