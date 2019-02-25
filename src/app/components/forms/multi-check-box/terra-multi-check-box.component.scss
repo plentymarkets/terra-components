@@ -21,6 +21,7 @@
                 background-color: var(--color-structure-11);
                 border-top-left-radius: var(--border-radius);
                 border-top-right-radius: var(--border-radius);
+                cursor: pointer;
                 
                 &.roundedBottomBorder
                 {
@@ -30,14 +31,7 @@
                 
                 .checkbox-container
                 {
-                    display: inherit;
-                    margin: 0;
                     padding: 6px 9px;
-                    
-                    .header-label
-                    {
-                        font-variant: all-small-caps;
-                    }
                     
                 }
                 [class^="icon-"]
