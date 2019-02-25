@@ -44,11 +44,11 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
     @Input()
     public inputName:string;
     /**
-     * @description en-/disable collapse functionality. If enabled, only the header is shown initially.
+     * @description set the initial collapsed state.
      * @default false
      */
     @Input()
-    public collapsible:boolean = false;
+    public collapsed:boolean = false;
     /**
      * @description Set the function which will be executed when checkbox state changes.
      */
@@ -61,8 +61,6 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
     protected viewChildHeaderCheckbox:TerraCheckboxComponent;
 
     protected headerCheckboxValue:boolean;
-
-    protected collapsed:boolean = true;
 
     private langPrefix:string = 'terraMultiCheckBox';
 

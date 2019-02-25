@@ -43,11 +43,11 @@ export class CheckboxGroupComponent implements ControlValueAccessor
     public checkboxValues:Array<{ caption:string, value:any }> = [];
 
     /**
-     * @description en-/disable collapse functionality. If enabled, only the header is shown initially.
+     * @description set the initial collapsed state.
      * @default false
      */
     @Input()
-    public collapsible:boolean = false;
+    public collapsed:boolean = false;
 
     protected values:Array<any>;
 
