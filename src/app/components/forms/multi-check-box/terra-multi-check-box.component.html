@@ -9,10 +9,11 @@
                                     type="checkbox"
                                     (click)="$event.stopPropagation()"
                                     [inputIsDisabled]="inputIsDisabled"
+                                    [inputCaption]="inputName.toUpperCase()"
                                     [(ngModel)]="headerCheckboxValue"
                                     (ngModelChange)="onHeaderCheckboxChange($event)">
                     </terra-checkbox>
-                    <label class="header-label">{{ inputName }}</label>
+                    <!--<label class="header-label">{{ inputName }}</label>-->
                 </div>
                 <span [ngClass]="{'icon-collapse_down': collapsed, 'icon-collapse_up': !collapsed}">
                 </span>
