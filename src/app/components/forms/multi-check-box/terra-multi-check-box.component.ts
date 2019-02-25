@@ -146,6 +146,14 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
         }
     }
 
+    protected toggleCollapsed():void
+    {
+        if(!this.inputIsDisabled)
+        {
+            this.collapsed = !this.collapsed;
+        }
+    }
+
     private emitCallbacks(value:Array<TerraMultiCheckBoxValueInterface>, changedCheckboxes:Array<TerraMultiCheckBoxValueInterface>):void
     {
         this.onTouchedCallback();

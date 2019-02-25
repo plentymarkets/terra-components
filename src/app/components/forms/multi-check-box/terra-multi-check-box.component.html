@@ -3,7 +3,7 @@
         <div class="multiselect">
             <div class="multiselect-header"
                  [class.roundedBottomBorder]="collapsed"
-                 (click)="collapsed = !collapsed">
+                 (click)="toggleCollapsed()">
                 <div class="checkbox-container">
                     <terra-checkbox #viewChildHeaderCheckbox
                                     type="checkbox"
