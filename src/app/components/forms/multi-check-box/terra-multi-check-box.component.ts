@@ -37,7 +37,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
      * @description If true, the multi check box will be disabled. Default false.
      * */
     @Input()
-    public inputIsDisabled:boolean;
+    public inputIsDisabled:boolean = false;
     /**
      * @description If true, the multi check box will be disabled. Default false.
      * */
