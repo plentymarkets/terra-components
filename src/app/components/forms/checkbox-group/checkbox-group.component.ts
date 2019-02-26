@@ -28,7 +28,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor
      * @description If true, the checkbox group will be disabled. Default false.
      **/
     @Input()
-    public isDisabled:boolean;
+    public isDisabled:boolean = false;
 
     /**
      * @description The caption of the checkbox group
