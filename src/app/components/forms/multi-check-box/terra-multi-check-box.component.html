@@ -3,9 +3,9 @@
         <div class="multiselect">
             <div class="multiselect-header">
                 <div class="checkbox-container">
-                    <terra-checkbox #viewChildHeaderCheckbox
-                                    type="checkbox"
+                    <terra-checkbox type="checkbox"
                                     [inputIsDisabled]="inputIsDisabled"
+                                    [isIndeterminate]="headerCheckboxIndeterminate"
                                     [(ngModel)]="headerCheckboxValue"
                                     (ngModelChange)="onHeaderCheckboxChange($event)">
                     </terra-checkbox>
