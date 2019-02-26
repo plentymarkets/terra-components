@@ -1,3 +1,9 @@
+<a name="3.5.2"></a>
+# 3.5.2 (XX.XX.XXXX)
+
+### Bug Fixes
+* **terra-multi-check-box** does not call change callbacks on `writeValue()` anymore.
+
 <a name="3.5.1"></a>
 # 3.5.1 (20.02.2019)
 
