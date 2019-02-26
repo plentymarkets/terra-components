@@ -20,8 +20,10 @@ import {
 } from '@angular/core';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
+    isArray,
     isFunction,
     isNullOrUndefined,
+    isObject,
     isUndefined
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
@@ -243,7 +245,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
     protected onValueChanged(value:any):void
     {
-        if(value !== this.inputFormValue)
+        if(value !== this.inputFormValue || isArray(value) || isObject(value))
         {
             this.inputFormValue = value;
             this.outputFormValueChanged.next(value);
