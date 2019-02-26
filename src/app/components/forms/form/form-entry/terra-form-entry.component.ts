@@ -194,7 +194,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
             }
             // setTimeout(() =>
             // {
-                this.formControl.patchValue(this.inputFormValue);
+            //    this.formControl.patchValue(this.inputFormValue);
             // });
         }
     }
