@@ -5,8 +5,7 @@ import {
     Input,
     OnDestroy,
     OnInit,
-    Output,
-    ViewChild
+    Output
 } from '@angular/core';
 import {
     ControlValueAccessor,
@@ -14,7 +13,6 @@ import {
 } from '@angular/forms';
 import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
-import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import { TerraMultiCheckBoxValueInterface } from './data/terra-multi-check-box-value.interface';
 import { throttleTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
