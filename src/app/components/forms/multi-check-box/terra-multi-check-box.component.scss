@@ -13,17 +13,32 @@
             .multiselect-header
             {
                 display: flex;
+                display: -webkit-flex; /* Safari */
+                justify-content: space-between;
+                user-select: none;
+                align-items: center;
+                color: var(--color-structure-0);
                 background-color: var(--color-structure-11);
                 border-top-left-radius: var(--border-radius);
                 border-top-right-radius: var(--border-radius);
+                cursor: pointer;
                 
-                .checkbox-container,
-                .header-label
+                &.roundedBottomBorder
                 {
-                    margin: 0px;
-                    font-variant: all-small-caps;
+                    border-bottom-left-radius: var(--border-radius);
+                    border-bottom-right-radius: var(--border-radius);
+                }
+                
+                .checkbox-container
+                {
                     padding: 6px 9px;
-                    color: var(--color-structure-0);
+                    
+                }
+                [class^="icon-"]
+                {
+                    padding: var(--space-sm);
+                    transition: all var(--transition-xs);
+                    font-size: larger;
                 }
             }
             
@@ -32,6 +47,7 @@
                 background: var(--color-structure-0);
                 overflow: auto;
                 max-height: 156px;
+                
                 .input-group
                 {
                     margin-bottom: 0px;
