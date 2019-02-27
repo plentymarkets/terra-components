@@ -81,4 +81,16 @@ fdescribe('TerraMultiCheckBoxComponent:', () =>
         fixture.detectChanges();
         expect(optionListDE.nativeElement.hidden).toBe(true);
     });
+
+    it('should show the proper icon depending on #collapsed', () =>
+    {
+        let icon:DebugElement = fixture.debugElement.query(By.css('.icon-collapse_up'));
+        expect(icon).toBeTruthy();
+
+        component.collapsed = true;
+        fixture.detectChanges();
+
+        icon = fixture.debugElement.query(By.css('.icon-collapse_down'));
+        expect(icon).toBeTruthy();
+    });
 });
