@@ -16,7 +16,7 @@ import {
     EventEmitter
 } from '@angular/core';
 
-fdescribe('TerraMultiCheckBoxComponent:', () =>
+describe('TerraMultiCheckBoxComponent:', () =>
 {
     let component:TerraMultiCheckBoxComponent;
     let fixture:ComponentFixture<TerraMultiCheckBoxComponent>;
