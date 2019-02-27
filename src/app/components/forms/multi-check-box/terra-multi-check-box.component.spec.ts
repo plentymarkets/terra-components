@@ -65,11 +65,20 @@ fdescribe('TerraMultiCheckBoxComponent:', () =>
         expect(component.collapsed).toBe(false);
     });
 
-    it('should toggle #collapsed if the component is not disabled (#inputDisabled is false)', () =>
+    it('should toggle #collapsed if the component #inputDisabled is false', () =>
     {
         let headerDE:DebugElement = fixture.debugElement.query(By.css('.multiselect-header'));
         headerDE.nativeElement.click();
 
         expect(component.collapsed).toBe(true);
+    });
+
+    it('should display the option list depending on #collapsed', () =>
+    {
+        let optionListDE:DebugElement = fixture.debugElement.query(By.css('.option-list'));
+        expect(optionListDE.nativeElement.hidden).toBe(false);
+        component.collapsed = true;
+        fixture.detectChanges();
+        expect(optionListDE.nativeElement.hidden).toBe(true);
     });
 });
