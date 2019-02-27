@@ -75,35 +75,34 @@ export class CheckboxGroupComponent implements ControlValueAccessor
 
     protected onMultiCheckboxChanged(checkboxValues:Array<TerraMultiCheckBoxValueInterface>):void
     {
+        // if the value is null or undefined, initialize the array to be able to add selected values
+        if(isNullOrUndefined(this.values))
+        {
+            this.values = [];
+        }
+
+        // go through the changed checkboxes
         (checkboxValues || []).forEach((changedValue:TerraMultiCheckBoxValueInterface) =>
         {
             if(changedValue.selected)
             {
-                // if the value is null or undefined, initialize the array to be able to add selected values
-                if(isNullOrUndefined(this.values))
-                {
-                    this.values = [];
-                }
                 this.values.push(changedValue.value);
             }
             else
             {
-                if(!isNullOrUndefined(this.values))
+                let idx:number = this.values.indexOf(changedValue.value);
+                if(idx >= 0)
                 {
-                    let idx:number = this.values.indexOf(changedValue.value);
-                    if(idx >= 0)
-                    {
-                        this.values.splice(idx, 1);
-                    }
-
-                    // if nothing is selected, the value should be null
-                    if(this.values.length === 0)
-                    {
-                        this.values = null;
-                    }
+                    this.values.splice(idx, 1);
                 }
             }
         });
+
+        // if nothing is selected, the value should be null
+        if(this.values.length === 0)
+        {
+            this.values = null;
+        }
 
         this.onChangeCallback(this.values);
         this.updateMultiCheckboxValues();
