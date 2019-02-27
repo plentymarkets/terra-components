@@ -1,7 +1,17 @@
 <tc-checkbox-group
     [(ngModel)]="values"
-    [name]="name"
+    [name]="'name'"
     [checkboxValues]="checkboxes"
     [isDisabled]="isDisabled">
     
 </tc-checkbox-group>
+
+<tc-checkbox-group
+    [(ngModel)]="values2"
+    [name]="'name'"
+    [collapsed]="true"
+    [checkboxValues]="checkboxes"
+    [isDisabled]="isDisabled">
+
+</tc-checkbox-group>
+
