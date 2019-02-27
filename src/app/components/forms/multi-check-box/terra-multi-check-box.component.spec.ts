@@ -10,8 +10,10 @@ import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../translation/l10n.config';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
-describe('Component: TerraMultiCheckBoxComponent', () =>
+fdescribe('TerraMultiCheckBoxComponent:', () =>
 {
     let component:TerraMultiCheckBoxComponent;
     let fixture:ComponentFixture<TerraMultiCheckBoxComponent>;
@@ -20,9 +22,11 @@ describe('Component: TerraMultiCheckBoxComponent', () =>
     {
         TestBed.configureTestingModule(
             {
-                declarations: [CheckboxGroupComponent,
-                               TerraCheckboxComponent,
-                               TerraMultiCheckBoxComponent],
+                declarations: [
+                    CheckboxGroupComponent,
+                    TerraCheckboxComponent,
+                    TerraMultiCheckBoxComponent
+                ],
                 imports:      [
                     HttpClientModule,
                     TooltipModule.forRoot(),
@@ -49,5 +53,23 @@ describe('Component: TerraMultiCheckBoxComponent', () =>
     {
         expect(component.collapsed).toBe(false);
         expect(component.inputIsDisabled).toBe(false);
+        expect(component.inputName).toBe('terraMultiCheckBox.selectAll');
+    });
+
+    it('should not toggle #collapsed if #inputIsDisabled is true', () =>
+    {
+        component.inputIsDisabled = true;
+        let headerDE:DebugElement = fixture.debugElement.query(By.css('.multiselect-header'));
+        headerDE.nativeElement.click();
+
+        expect(component.collapsed).toBe(false);
+    });
+
+    it('should toggle #collapsed if the component is not disabled (#inputDisabled is false)', () =>
+    {
+        let headerDE:DebugElement = fixture.debugElement.query(By.css('.multiselect-header'));
+        headerDE.nativeElement.click();
+
+        expect(component.collapsed).toBe(true);
     });
 });
