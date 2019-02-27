@@ -6,7 +6,7 @@ const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 
 module.exports = {
     mode: 'production',
-    devtool: 'inline-source-map',
+    devtool: 'inline-cheap-module-source-map',
     resolve: {
         extensions: ['.ts', '.js', '.html']
     },
