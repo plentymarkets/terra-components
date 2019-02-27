@@ -1,7 +1,9 @@
 import {
     Component,
     forwardRef,
-    Input
+    Input,
+    OnChanges,
+    SimpleChanges
 } from '@angular/core';
 import {
     ControlValueAccessor,
@@ -22,7 +24,7 @@ import { isNullOrUndefined } from 'util';
         }
     ]
 })
-export class CheckboxGroupComponent implements ControlValueAccessor
+export class CheckboxGroupComponent implements ControlValueAccessor, OnChanges
 {
     /**
      * @description If true, the checkbox group will be disabled. Default false.
@@ -49,6 +51,21 @@ export class CheckboxGroupComponent implements ControlValueAccessor
     private onTouchedCallback:() => void = ():void => undefined;
 
     private onChangeCallback:(_:Array<any>) => void = (_:Array<any>):void => undefined;
+
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes.hasOwnProperty('checkboxValues'))
+        {
+            this.multiCheckboxValues = this.checkboxValues.map((box:{caption:any, value:any}) =>
+            {
+                return {
+                    caption: box.caption,
+                    value: box.value,
+                    selected: false
+                };
+            });
+        }
+    }
 
     public registerOnChange(fn:any):void
     {
@@ -96,18 +113,20 @@ export class CheckboxGroupComponent implements ControlValueAccessor
         });
 
         this.onChangeCallback(this.values);
-        this.updateMultiCheckboxValues();
     }
 
     private updateMultiCheckboxValues():void
     {
-        this.multiCheckboxValues = this.checkboxValues.map((checkbox:{ caption:string, value:any }) =>
+        if(!isNullOrUndefined(this.values))
         {
-            return {
-                caption:  checkbox.caption,
-                value:    checkbox.value,
-                selected: (this.values || []).indexOf(checkbox.value) >= 0
-            };
-        });
+            this.values.forEach((value:any) =>
+            {
+                let checkbox:TerraMultiCheckBoxValueInterface = this.multiCheckboxValues.find((box:TerraMultiCheckBoxValueInterface) =>
+                {
+                    return box.value === value;
+                });
+                checkbox.selected = true;
+            });
+        }
     }
 }
