@@ -88,16 +88,19 @@ export class CheckboxGroupComponent implements ControlValueAccessor
             }
             else
             {
-                let idx:number = this.values.indexOf(changedValue.value);
-                if(idx >= 0)
+                if(!isNullOrUndefined(this.values))
                 {
-                    this.values.splice(idx, 1);
-                }
+                    let idx:number = this.values.indexOf(changedValue.value);
+                    if(idx >= 0)
+                    {
+                        this.values.splice(idx, 1);
+                    }
 
-                // if nothing is selected, the value should be null
-                if(this.values.length === 0)
-                {
-                    this.values = null;
+                    // if nothing is selected, the value should be null
+                    if(this.values.length === 0)
+                    {
+                        this.values = null;
+                    }
                 }
             }
         });
