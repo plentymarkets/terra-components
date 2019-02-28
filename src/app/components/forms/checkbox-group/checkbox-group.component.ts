@@ -28,7 +28,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor
      * @description If true, the checkbox group will be disabled. Default false.
      **/
     @Input()
-    public isDisabled:boolean;
+    public isDisabled:boolean = false;
 
     /**
      * @description The caption of the checkbox group
@@ -41,6 +41,13 @@ export class CheckboxGroupComponent implements ControlValueAccessor
      */
     @Input()
     public checkboxValues:Array<{ caption:string, value:any }> = [];
+
+    /**
+     * @description set the initial collapsed state.
+     * @default false
+     */
+    @Input()
+    public collapsed:boolean = false;
 
     protected values:Array<any>;
 
@@ -68,15 +75,17 @@ export class CheckboxGroupComponent implements ControlValueAccessor
 
     protected onMultiCheckboxChanged(checkboxValues:Array<TerraMultiCheckBoxValueInterface>):void
     {
+        // if the value is null or undefined, initialize the array to be able to add selected values
+        if(isNullOrUndefined(this.values))
+        {
+            this.values = [];
+        }
+
+        // go through the changed checkboxes
         (checkboxValues || []).forEach((changedValue:TerraMultiCheckBoxValueInterface) =>
         {
             if(changedValue.selected)
             {
-                // if the value is null or undefined, initialize the array to be able to add selected values
-                if(isNullOrUndefined(this.values))
-                {
-                    this.values = [];
-                }
                 this.values.push(changedValue.value);
             }
             else
@@ -86,14 +95,14 @@ export class CheckboxGroupComponent implements ControlValueAccessor
                 {
                     this.values.splice(idx, 1);
                 }
-
-                // if nothing is selected, the value should be null
-                if(this.values.length === 0)
-                {
-                    this.values = null;
-                }
             }
         });
+
+        // if nothing is selected, the value should be null
+        if(this.values.length === 0)
+        {
+            this.values = null;
+        }
 
         this.onChangeCallback(this.values);
         this.updateMultiCheckboxValues();
