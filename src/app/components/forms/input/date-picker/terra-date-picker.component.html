@@ -5,7 +5,7 @@
                     id="{{id}}"
                     class="date-picker"
                     [(ngModel)]="value"
-                    (ngModelChange)="onChangeCallback($event)"
+                    (ngModelChange)="onChange($event)"
                     [locale]="currentLocale"
                     [options]="datePickerOptions">
     </my-date-picker>

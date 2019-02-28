@@ -124,7 +124,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         {
             let newDate:Date = new Date(value);
 
-            this._value = {
+            this.value = {
                 date:      {
                     year:  newDate.getFullYear(),
                     month: newDate.getMonth() + 1,
@@ -161,6 +161,14 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     public clearDate():void
     {
         this.viewChildMyDatePicker.clearDate();
+    }
+
+    protected onChange(value:IMyDateModel):void
+    {
+        if(!isNullOrUndefined(value))
+        {
+            this.onChangeCallback(moment(value.jsdate).format());
+        }
     }
 
     private updateDatePickerOptions():void
