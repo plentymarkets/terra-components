@@ -1,25 +1,18 @@
 import {
-    AfterContentInit,
     AfterViewInit,
     Component,
-    ComponentFactory,
     ComponentFactoryResolver,
     ComponentRef,
-    ContentChild,
     EventEmitter,
     forwardRef,
-    Host,
-    Inject,
     Input,
     OnChanges,
     OnDestroy,
     OnInit,
-    Optional,
     Output,
     SimpleChanges,
     Type,
-    ViewChild,
-    ViewContainerRef
+    ViewChild
 } from '@angular/core';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
@@ -30,22 +23,29 @@ import {
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 import {
+    ControlValueAccessor,
     FormControl,
-    FormGroup
+    FormGroup,
+    NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
-import { TerraFormEntryListComponent } from '../form-entry-list/terra-form-entry-list.component';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
-import { NgTemplateOutlet } from '@angular/common';
 import { TerraFormEntryContainerDirective } from './terra-form-entry-container.directive';
 
 @Component({
     selector: 'terra-form-entry',
     template: require('./terra-form-entry.component.html'),
-    styles:   [require('./terra-form-entry.component.scss')]
+    styles:   [require('./terra-form-entry.component.scss')],
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraFormEntryComponent),
+            multi:       true
+        }
+    ]
 })
-export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
+export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy, ControlValueAccessor
 {
     @Input()
     public inputFormField:TerraFormFieldInterface;
@@ -95,6 +95,8 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         this.containerClass = 'form-entry-' + this.inputFormField.type;
 
         this.initComponent();
+
+        this.writeValue(this.inputFormValue);
 
         // setTimeout(() => // without setTimeout there would be an ExpressionChangedAfterItHasBeenCheckedError
         // {
@@ -164,13 +166,17 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
             {
                 if(isUndefined(this.inputFormValue) && !isNullOrUndefined(this.inputFormField.defaultValue))
                 {
-                    this.onValueChanged(this.inputFormField.defaultValue);
+                    // this.onValueChanged(this.inputFormField.defaultValue);
+                    this.onChangeCallback(this.inputFormField.defaultValue);
                 }
                 this.componentInstance.registerOnChange((value:any):void =>
                 {
-                    this.onValueChanged(value);
+                    // this.onValueChanged(value);
+                    this.onChangeCallback(value);
+                    this.onTouchedCallback();
                 });
-                this.componentInstance.writeValue(this.inputFormValue);
+                this.writeValue(this.inputFormValue);
+                // this.componentInstance.writeValue(this.inputFormValue);
             }
             else
             {
@@ -190,7 +196,8 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         {
             if(!isNullOrUndefined(this.componentInstance) && isFunction(this.componentInstance.writeValue))
             {
-                this.componentInstance.writeValue(this.inputFormValue);
+                // this.componentInstance.writeValue(this.inputFormValue);
+                this.writeValue(this.inputFormValue);
             }
             // setTimeout(() =>
             // {
@@ -251,7 +258,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                         }
                         else
                         {
-                            console.warn('Cannot assign property ' + optionKey + ' on ' + this.componentInstance.constructor.name );
+                            console.warn('Cannot assign property ' + optionKey + ' on ' + this.componentInstance.constructor.name);
                         }
                     }
                 });
@@ -295,5 +302,25 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
     private transformInputPropertyName(propertyName:string):string
     {
         return 'input' + propertyName.charAt(0).toUpperCase() + propertyName.substr(1);
+    }
+
+    private onTouchedCallback:() => void = ():void => undefined;
+
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
+
+    public registerOnChange(fn:any):void
+    {
+        this.onChangeCallback = fn;
+    }
+
+    public registerOnTouched(fn:any):void
+    {
+        this.onTouchedCallback = fn;
+    }
+
+    public writeValue(values:any):void
+    {
+        this.inputFormValue = values;
+        this.componentInstance.writeValue(this.inputFormValue);
     }
 }

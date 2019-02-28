@@ -1,8 +1,9 @@
 <div class="form">
     <ng-template ngFor let-field [ngForOf]="formFields">
-        <div class="form-entry" *ngIf="formFieldVisibility[field.key]">
+        <div class="form-entry" *ngIf="formFieldVisibility[field.key]" [formGroup]="formGroup">
             <terra-form-entry
                 #child
+                [formControlName]="field.key"
                 *ngIf="!field.value.isList"
                 [inputFormField]="field.value"
                 [inputFormValue]="inputValue[field.key]"

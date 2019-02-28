@@ -1,16 +1,11 @@
 import {
-    AfterContentInit,
     AfterViewInit,
     Component,
-    ContentChildren,
     EventEmitter,
     forwardRef,
-    Host,
-    Inject,
     Input,
     OnChanges,
     OnInit,
-    Optional,
     Output,
     QueryList,
     SimpleChanges,
@@ -24,7 +19,11 @@ import {
 } from 'util';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
-import { FormGroup } from '@angular/forms';
+import {
+    FormControl,
+    FormGroup,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
 import {
     TerraFormEntryComponent,
     TerraFormEntryListComponent
@@ -105,6 +104,10 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, AfterView
             this.updateFieldVisibility();
         });
 
+        this.formFields.forEach((test:TerraKeyValuePairInterface<TerraFormFieldInterface>) => {
+            this.formGroup.addControl(test.key, new FormControl(this.inputValue[test.key]));
+        });
+
         // if(!isNullOrUndefined(this.formEntry))
         // {
         //     if(!isNullOrUndefined(this.formEntry.formContainer))
@@ -124,7 +127,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, AfterView
         {
             if(entry instanceof TerraFormEntryComponent)
             {
-                this.formGroup.addControl(entry.formKey, entry.formGroup ?  entry.formGroup : entry.formControl);
+                // this.formGroup.addControl(entry.formKey, entry.formGroup ? entry.formGroup : entry.formControl);
             }
             else if(entry instanceof TerraFormEntryListComponent)
             {
