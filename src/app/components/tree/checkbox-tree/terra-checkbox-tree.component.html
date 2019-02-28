@@ -10,11 +10,11 @@
                     </terra-checkbox>
                     <span class="leafTitle"> {{leaf.caption}}</span>
                 </div>
-                <span class="node-toggle" *ngIf="leaf.subLeafList" (click)="toggleOpen(leaf)"></span>
+                <span class="node-toggle" *ngIf="leaf.subLeafList && leaf.subLeafList.length > 0" (click)="toggleOpen(leaf)"></span>
                 <terra-checkbox-tree
-                    *ngIf="leaf.subLeafList"
+                    *ngIf="leaf.subLeafList && leaf.subLeafList.length > 0"
                     [inputLeafList]="leaf.subLeafList"
-                    [inputParentLeafList]="leafList"
+                    [inputParentLeafList]="inputLeafList"
                     (valueChange)="valueChange.emit($event)"
                     [inputCompleteLeafList]="inputCompleteLeafList">
                 </terra-checkbox-tree>
