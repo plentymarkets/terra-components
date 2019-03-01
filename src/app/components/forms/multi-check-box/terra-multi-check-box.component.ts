@@ -37,14 +37,18 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
      * @description If true, the multi check box will be disabled. Default false.
      * */
     @Input()
-    public inputIsDisabled:boolean;
-
+    public inputIsDisabled:boolean = false;
     /**
      * @description If true, the multi check box will be disabled. Default false.
      * */
     @Input()
     public inputName:string;
-
+    /**
+     * @description set the initial collapsed state.
+     * @default false
+     */
+    @Input()
+    public collapsed:boolean = false;
     /**
      * @description Set the function which will be executed when checkbox state changes.
      */
@@ -139,6 +143,14 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
             });
 
             this.changeHeaderCheckboxState(filteredValues.length);
+        }
+    }
+
+    protected toggleCollapsed():void
+    {
+        if(!this.inputIsDisabled)
+        {
+            this.collapsed = !this.collapsed;
         }
     }
 
