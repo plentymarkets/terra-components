@@ -163,6 +163,10 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.viewChildMyDatePicker.clearDate();
     }
 
+    /**
+     * be triggered on `ngModelChange` and execute `onChangeCallBack`
+     * @param value
+     */
     protected onChange(value:IMyDateModel):void
     {
         if(!isNullOrUndefined(value))
