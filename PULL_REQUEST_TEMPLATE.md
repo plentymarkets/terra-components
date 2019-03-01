@@ -17,3 +17,6 @@ Browser-Support
 - [ ] Chrome
 - [ ] Firefox
 - [ ] Safari
+
+Terra Basic Plugin
+- [ ] Adapt changes
