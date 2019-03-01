@@ -63,11 +63,11 @@ export class CheckboxGroupComponent implements ControlValueAccessor, OnChanges
     {
         if(changes.hasOwnProperty('checkboxValues'))
         {
-            this.multiCheckboxValues = this.checkboxValues.map((box:{caption:any, value:any}) =>
+            this.multiCheckboxValues = this.checkboxValues.map((box:{ caption:any, value:any }) =>
             {
                 return {
-                    caption: box.caption,
-                    value: box.value,
+                    caption:  box.caption,
+                    value:    box.value,
                     selected: false
                 };
             });
