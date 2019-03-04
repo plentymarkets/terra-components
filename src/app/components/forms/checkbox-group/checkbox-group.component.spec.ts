@@ -25,15 +25,15 @@ describe('Component: CheckboxGroupComponent', () =>
     const checkboxValues:Array<TerraMultiCheckBoxValueInterface> = [
         {
             caption: 'A',
-            value: 0
+            value:   0
         },
         {
             caption: 'B',
-            value: 1
+            value:   1
         },
         {
             caption: 'C',
-            value: 2
+            value:   2
         }
     ];
 
@@ -67,14 +67,23 @@ describe('Component: CheckboxGroupComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should pass properties "isDisabled" and "name" to terra-multi-check-box component', () =>
+    it(`should init its inputs`, () =>
+    {
+        expect(component.isDisabled).toBe(false);
+        expect(component.checkboxValues).toEqual([]);
+        expect(component.collapsed).toBe(false);
+    });
+
+    it('should pass properties "isDisabled", "name" and "collapsed" to terra-multi-check-box component', () =>
     {
         component.isDisabled = true;
         component.name = 'Custom name';
+        component.collapsed = true;
         fixture.detectChanges();
 
         expect(multicheckboxComponent.inputIsDisabled).toEqual(component.isDisabled);
         expect(multicheckboxComponent.inputName).toEqual(component.name);
+        expect(multicheckboxComponent.collapsed).toEqual(true);
     });
 
     it('should check all checkboxes included in value list', (done:() => void) =>
@@ -88,18 +97,18 @@ describe('Component: CheckboxGroupComponent', () =>
         {
             expect(writeValueSpy).toHaveBeenCalledWith([
                 {
-                    caption: 'A',
-                    value: 0,
+                    caption:  'A',
+                    value:    0,
                     selected: true
                 },
                 {
-                    caption: 'B',
-                    value: 1,
+                    caption:  'B',
+                    value:    1,
                     selected: false
                 },
                 {
-                    caption: 'C',
-                    value: 2,
+                    caption:  'C',
+                    value:    2,
                     selected: true
                 }
             ]);
@@ -121,8 +130,8 @@ describe('Component: CheckboxGroupComponent', () =>
 
         // perform action -> change checkbox state
         multicheckboxComponent.checkboxStateChanges.emit([{
-            caption: checkboxValues[1].caption,
-            value: checkboxValues[1].value,
+            caption:  checkboxValues[1].caption,
+            value:    checkboxValues[1].value,
             selected: true
         }]);
         expect(onChangeSpy).toHaveBeenCalledWith([1]);
@@ -141,8 +150,8 @@ describe('Component: CheckboxGroupComponent', () =>
 
         // perform action -> change checkbox state
         multicheckboxComponent.checkboxStateChanges.emit([{
-            caption: checkboxValues[1].caption,
-            value: checkboxValues[1].value,
+            caption:  checkboxValues[1].caption,
+            value:    checkboxValues[1].value,
             selected: false
         }]);
         expect(onChangeSpy).toHaveBeenCalledWith(null);
