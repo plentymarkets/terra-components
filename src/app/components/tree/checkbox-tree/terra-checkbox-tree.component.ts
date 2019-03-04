@@ -49,7 +49,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
      * @param event
      * @param leaf
      */
-    private onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
+    protected onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
     {
         leaf.checkboxChecked = event;
         this.resetIndeterminateLeafState(leaf);
