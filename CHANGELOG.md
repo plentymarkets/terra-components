@@ -1,10 +1,11 @@
 <a name="3.6.0"></a>
 # 3.6.0 (XX.XX.XXXX)
 
-* **tc-checkbox-group** fix flickering of checkboxes when clicked
-
 ### Features
 * **tc-checkbox-group** & **terra-multi-check-box** are now collapsible. Added new input `collapsed` which - if set to true - collapses the component to its header initially.
+
+### Bug Fixes
+* **tc-checkbox-group** fix flickering of checkboxes when clicked
 
 <a name="3.5.1"></a>
 # 3.5.1 (20.02.2019)
