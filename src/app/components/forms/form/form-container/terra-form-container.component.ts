@@ -123,22 +123,22 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, AfterView
 
     public ngAfterViewInit():void
     {
-        this.childEntries.forEach((entry:TerraFormEntryComponent | TerraFormEntryListComponent) =>
-        {
-            if(entry instanceof TerraFormEntryComponent)
-            {
-                // this.formGroup.addControl(entry.formKey, entry.formGroup ? entry.formGroup : entry.formControl);
-            }
-            else if(entry instanceof TerraFormEntryListComponent)
-            {
-                this.formGroup.addControl(entry.inputFormFieldKey, entry.formArray);
-            }
-        });
-
-        this.childEntries.changes.subscribe((changes:any) =>
-        {
-            console.log(changes);
-        });
+        // this.childEntries.forEach((entry:TerraFormEntryComponent | TerraFormEntryListComponent) =>
+        // {
+        //     if(entry instanceof TerraFormEntryComponent)
+        //     {
+        //         // this.formGroup.addControl(entry.formKey, entry.formGroup ? entry.formGroup : entry.formControl);
+        //     }
+        //     else if(entry instanceof TerraFormEntryListComponent)
+        //     {
+        //         this.formGroup.addControl(entry.inputFormFieldKey, entry.formArray);
+        //     }
+        // });
+        //
+        // this.childEntries.changes.subscribe((changes:any) =>
+        // {
+        //     console.log(changes);
+        // });
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -146,6 +146,11 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, AfterView
         if(changes.hasOwnProperty('inputScope'))
         {
             this.updateFieldVisibility();
+        }
+        if(changes.hasOwnProperty('inputValue'))
+        {
+            console.log(changes['inputValue'].currentValue);
+            this.formGroup.patchValue(changes['inputValue'].currentValue);
         }
     }
 

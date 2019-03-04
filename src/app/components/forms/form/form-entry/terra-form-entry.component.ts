@@ -173,7 +173,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                 }
                 this.componentInstance.registerOnChange((value:any):void =>
                 {
-                    // this.onValueChanged(value);
+                    this.onValueChanged(value);
                     this.onChangeCallback(value);
                     this.onTouchedCallback();
                 });
@@ -199,7 +199,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
             if(!isNullOrUndefined(this.componentInstance) && isFunction(this.componentInstance.writeValue))
             {
                 // this.componentInstance.writeValue(this.inputFormValue);
-                this.writeValue(this.inputFormValue);
+                // this.writeValue(this.inputFormValue);
             }
             // setTimeout(() =>
             // {
