@@ -180,7 +180,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         }
     }
 
-    protected onFocusBlur(event:IMyInputFocusBlur):void
+    protected onFocusOrBlur(event:IMyInputFocusBlur):void
     {
         if(event.reason === 2) // blur
         {

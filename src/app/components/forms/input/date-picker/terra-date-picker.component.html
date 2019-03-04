@@ -8,7 +8,7 @@
                     (ngModelChange)="onChange($event)"
                     [locale]="currentLocale"
                     [options]="datePickerOptions"
-                    (inputFocusBlur)="onFocusBlur($event)">
+                    (inputFocusBlur)="onFocusOrBlur($event)">
     </my-date-picker>
     <label terraLabelTooltip
            [nameOfInput]="inputName"
