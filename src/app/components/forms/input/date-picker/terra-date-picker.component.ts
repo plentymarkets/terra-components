@@ -12,7 +12,8 @@ import {
 import {
     IMyDateModel,
     IMyOptions,
-    MyDatePicker
+    MyDatePicker,
+    IMyInputFocusBlur
 } from 'mydatepicker';
 import { isNullOrUndefined } from 'util';
 import moment = require('moment');
@@ -176,6 +177,14 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         else
         {
             this.onChangeCallback(null);
+        }
+    }
+
+    protected onFocusBlur(event:IMyInputFocusBlur):void
+    {
+        if(event.reason === 2) // blur
+        {
+            this.onTouchedCallback();
         }
     }
 
