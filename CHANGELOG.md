@@ -1,11 +1,19 @@
-<a name="3.4.1"></a>
-# 3.6.0 (XX.XX.2019)
-
-### Features
-* **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
+<a name="3.6.0"></a>
+# 3.6.0 (XX.XX.XXXX)
 
 ### Bug Fixes
+* **terra-date-picker** fixed issue with early dates
 * **terra-card** vertical alignment of multiple cards if one card uses an icon and another uses an image.
+
+### Features
+* **tc-checkbox-group** & **terra-multi-check-box** are now collapsible. Added new input `collapsed` which - if set to true - collapses the component to its header initially.
+
+<a name="3.5.1"></a>
+# 3.5.1 (20.02.2019)
+
+### Bug Fixes
+* **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
+* **terra-form** now emits changes on array or object values correctly
 
 <a name="3.5.0"></a>
 # 3.5.0 (18.02.2019)
