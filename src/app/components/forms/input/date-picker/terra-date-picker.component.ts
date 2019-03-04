@@ -171,10 +171,12 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     {
         if(!isNullOrUndefined(value))
         {
+            this.onTouchedCallback();
             this.onChangeCallback(moment(value.jsdate).format());
         }
         else
         {
+            this.onTouchedCallback();
             this.onChangeCallback(null);
         }
     }
