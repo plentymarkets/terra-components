@@ -8,6 +8,10 @@
 	
 ### Bug Fixes
 * **terra-checkbox** change callback is not executed anymore when a value is set via `writeValue()` or `value` set accessor
+* **terra-date-picker** fixed issue with early dates
+
+### Features
+* **tc-checkbox-group** & **terra-multi-check-box** are now collapsible. Added new input `collapsed` which - if set to true - collapses the component to its header initially.
 
 <a name="3.5.1"></a>
 # 3.5.1 (20.02.2019)
