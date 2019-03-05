@@ -158,7 +158,8 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
             }
 
             this.componentRef = this.container.viewContainerRef.createComponent(
-                this.componentFactory.resolveComponentFactory(controlType) // TODO: this has access to the inputs/outputs.. maybe use this for property binding purposes
+                this.componentFactory.resolveComponentFactory(controlType)
+                // TODO: this has access to the inputs/outputs.. maybe use this for property binding purposes
             );
 
             this.componentInstance = this.componentRef.instance;
@@ -176,9 +177,10 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                 {
                     this.onValueChanged(value);
                     this.onChangeCallback(value);
-                    this.onTouchedCallback();
                 });
-                // TODO componentInsance registerOnTouch
+
+                this.componentInstance.registerOnTouched(():void => this.onTouchedCallback());
+
                 this.writeValue(this.inputFormValue);
                 // this.componentInstance.writeValue(this.inputFormValue);
             }
@@ -229,6 +231,22 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         //     // }
         // }
         this.componentRef.destroy();
+    }
+
+    public registerOnChange(fn:any):void
+    {
+        this.onChangeCallback = fn;
+    }
+
+    public registerOnTouched(fn:any):void
+    {
+        this.onTouchedCallback = fn;
+    }
+
+    public writeValue(values:any):void
+    {
+        this.inputFormValue = values;
+        this.componentInstance.writeValue(this.inputFormValue);
     }
 
     protected bindInputProperties():void
@@ -312,20 +330,4 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
     private onTouchedCallback:() => void = ():void => undefined;
 
     private onChangeCallback:(_:any) => void = (_:any):void => undefined;
-
-    public registerOnChange(fn:any):void
-    {
-        this.onChangeCallback = fn;
-    }
-
-    public registerOnTouched(fn:any):void
-    {
-        this.onTouchedCallback = fn;
-    }
-
-    public writeValue(values:any):void
-    {
-        this.inputFormValue = values;
-        this.componentInstance.writeValue(this.inputFormValue);
-    }
 }
