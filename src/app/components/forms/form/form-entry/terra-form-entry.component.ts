@@ -83,6 +83,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
     @ViewChild(TerraFormContainerComponent)
     private formContainer:TerraFormContainerComponent;
 
+    private componentRef:ComponentRef<any>;
     private componentInstance:any;
 
     public constructor(private componentFactory:ComponentFactoryResolver,
@@ -98,7 +99,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
         this.initComponent();
 
-        this.writeValue(this.inputFormValue);
+        // this.writeValue(this.inputFormValue);
 
         // setTimeout(() => // without setTimeout there would be an ExpressionChangedAfterItHasBeenCheckedError
         // {
@@ -156,11 +157,11 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                 }
             }
 
-            let component:ComponentRef<any> = this.container.viewContainerRef.createComponent(
-                this.componentFactory.resolveComponentFactory(controlType)
+            this.componentRef = this.container.viewContainerRef.createComponent(
+                this.componentFactory.resolveComponentFactory(controlType) // TODO: this has access to the inputs/outputs.. maybe use this for property binding purposes
             );
 
-            this.componentInstance = component.instance;
+            this.componentInstance = this.componentRef.instance;
 
             this.bindInputProperties();
 
@@ -177,6 +178,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                     this.onChangeCallback(value);
                     this.onTouchedCallback();
                 });
+                // TODO componentInsance registerOnTouch
                 this.writeValue(this.inputFormValue);
                 // this.componentInstance.writeValue(this.inputFormValue);
             }
@@ -194,18 +196,18 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
     public ngOnChanges(changes:SimpleChanges):void
     {
         this.bindInputProperties();
-        if(changes.hasOwnProperty('inputFormValue') && !isNullOrUndefined(this.formControl))
-        {
-            if(!isNullOrUndefined(this.componentInstance) && isFunction(this.componentInstance.writeValue))
-            {
-                // this.componentInstance.writeValue(this.inputFormValue);
-                // this.writeValue(this.inputFormValue);
-            }
-            // setTimeout(() =>
-            // {
-            //    this.formControl.patchValue(this.inputFormValue);
-            // });
-        }
+        // if(changes.hasOwnProperty('inputFormValue') && !isNullOrUndefined(this.formControl))
+        // {
+        //     if(!isNullOrUndefined(this.componentInstance) && isFunction(this.componentInstance.writeValue))
+        //     {
+        //         // this.componentInstance.writeValue(this.inputFormValue);
+        //         // this.writeValue(this.inputFormValue);
+        //     }
+        //     // setTimeout(() =>
+        //     // {
+        //     //    this.formControl.patchValue(this.inputFormValue);
+        //     // });
+        // }
     }
 
     // TODO has to be implemented in container and entry list as well
@@ -226,6 +228,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         //     //     console.error('Y no Code!!!');
         //     // }
         // }
+        this.componentRef.destroy();
     }
 
     protected bindInputProperties():void

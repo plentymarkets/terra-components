@@ -105,7 +105,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, AfterView
         });
 
         this.formFields.forEach((test:TerraKeyValuePairInterface<TerraFormFieldInterface>) => {
-            this.formGroup.addControl(test.key, new FormControl(this.inputValue[test.key]));
+            this.formGroup.addControl(test.key, new FormControl(this.inputValue[test.key])); // TODO: add support for formGroup and formArrays
         });
 
         // if(!isNullOrUndefined(this.formEntry))
