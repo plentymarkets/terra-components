@@ -3,7 +3,7 @@
     &.terra-card
     {
         border-radius: var(--border-radius);
-        border: none;
+        border: 2px solid transparent;
         box-shadow: var(--box-shadow);
         margin: var(--space-md);
         display: inline-block;
@@ -19,8 +19,7 @@
         {
             &:not(.selected)
             {
-                outline: 2px solid var(--color-active);
-                border-radius: 0;
+                border: 2px solid var(--color-active);
             }
         }
     }
