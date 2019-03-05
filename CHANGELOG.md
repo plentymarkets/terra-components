@@ -6,6 +6,7 @@
 
 ### Features
 * **tc-checkbox-group** & **terra-multi-check-box** are now collapsible. Added new input `collapsed` which - if set to true - collapses the component to its header initially.
+* **terra-data-table** `<terra-input>`, `<terra-select-box>` and `<terra-multi-check-box>` that will be inserted into a table cell have now adjusted styles to fit into the layout.
 
 <a name="3.5.1"></a>
 # 3.5.1 (20.02.2019)
