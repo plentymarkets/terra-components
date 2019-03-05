@@ -38,15 +38,21 @@
 
         &.terra-card-placeholder
         {
-            font-size: 150px;
-            text-align: center;
-            color: var(--color-structure-7);
+            font-size: 6rem;
+            display: flex;
+            align-items: center;
+            color: var(--color-structure-7)
+            
+            &:before
+            {
+                margin: 0 auto;
+            }
         }
     }
     
     .card-header
     {
-        min-height: calc(var(--space-xl) * 3);
+        min-height: calc(var(--space-xl) * 2.5);
         background-color: var(--color-structure-0);
         padding: var(--space-md);
         display: flex;
