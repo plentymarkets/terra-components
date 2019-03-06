@@ -2,9 +2,9 @@
     <ng-template ngFor let-field [ngForOf]="formFields">
         <div class="form-entry" *ngIf="formFieldVisibility[field.key]" [formGroup]="formGroup">
             <terra-form-entry
-                #child
-                [formControlName]="field.key"
                 *ngIf="!field.value.isList"
+                [formControlName]="field.key"
+                [inputFormGroup]="formGroup"
                 [inputFormField]="field.value"
                 [inputFormValue]="inputValue[field.key]"
                 [inputIsDisabled]="inputIsDisabled"
@@ -15,8 +15,8 @@
             ></terra-form-entry>
             
             <terra-form-entry-list
-                #child
                 *ngIf="field.value.isList"
+                [formControlName]="field.key"
                 [inputFormFieldKey]="field.key"
                 [inputFormField]="field.value"
                 [inputFormValue]="inputValue[field.key]"

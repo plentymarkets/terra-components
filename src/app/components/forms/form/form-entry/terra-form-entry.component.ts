@@ -72,7 +72,8 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
     public formControl:FormControl;
 
-    public formGroup:FormGroup;
+    @Input()
+    public inputFormGroup:FormGroup;
 
     protected containerClass:string;
 
@@ -133,11 +134,6 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                 this.componentInstance.isValid = status !== 'INVALID';
             }
         });
-
-        if(this.formContainer)
-        {
-            this.formGroup = this.formContainer.formGroup;
-        }
     }
 
     public initComponent():void
@@ -230,7 +226,10 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         //     //     console.error('Y no Code!!!');
         //     // }
         // }
-        this.componentRef.destroy();
+        if(!isNullOrUndefined(this.componentRef))
+        {
+            this.componentRef.destroy();
+        }
     }
 
     public registerOnChange(fn:any):void
@@ -246,7 +245,10 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
     public writeValue(values:any):void
     {
         this.inputFormValue = values;
-        this.componentInstance.writeValue(this.inputFormValue);
+        if(!this.hasChildren)
+        {
+            this.componentInstance.writeValue(this.inputFormValue);
+        }
     }
 
     protected bindInputProperties():void
@@ -309,7 +311,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
     protected onChildValueChanged(key:string, value:any):void
     {
-        if(isNullOrUndefined(this.inputFormValue))
+        if(isNullOrUndefined(this.inputFormValue) || !isObject(this.inputFormValue))
         {
             this.inputFormValue = {};
         }

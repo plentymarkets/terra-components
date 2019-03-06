@@ -7,34 +7,37 @@ import {
     OnChanges,
     OnInit,
     Output,
-    QueryList,
     SimpleChanges,
-    Type,
-    ViewChildren
+    Type
 } from '@angular/core';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import {
     isNullOrUndefined,
+    isObject,
     isString
 } from 'util';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
 import {
+    ControlValueAccessor,
     FormControl,
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import {
-    TerraFormEntryComponent,
-    TerraFormEntryListComponent
-} from '../../../../..';
 
 @Component({
     selector: 'terra-form-container',
     template: require('./terra-form-container.component.html'),
-    styles:   [require('./terra-form-container.component.scss')]
+    styles:   [require('./terra-form-container.component.scss')],
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraFormContainerComponent),
+            multi:       true
+        }
+    ]
 })
-export class TerraFormContainerComponent implements OnInit, OnChanges, AfterViewInit
+export class TerraFormContainerComponent implements OnInit, OnChanges, ControlValueAccessor
 {
     @Input()
     public inputScope:TerraFormScope;
@@ -63,14 +66,13 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, AfterView
     @Input()
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
     {
-        this.formFields = Object.keys(fields)
-                                .map((key:string) =>
-                                {
-                                    return {
-                                        key:   key,
-                                        value: fields[key]
-                                    };
-                                });
+        this.formFields = Object.keys(fields).map((key:string) =>
+        {
+            return {
+                key:   key,
+                value: fields[key]
+            };
+        });
 
         this.updateFieldVisibility();
     }
@@ -91,11 +93,11 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, AfterView
 
     private value:any = {};
 
+    private onChangeCallback:(value:any) => void = (value:any):void => undefined;
+    private onTouchedCallback:() => void = ():void => undefined;
+
     // constructor(@Optional() @Host() @Inject(forwardRef(() => TerraFormEntryComponent))  private formEntry:TerraFormEntryComponent)
     // { }
-
-    @ViewChildren('child')
-    private childEntries:QueryList<TerraFormEntryComponent | TerraFormEntryListComponent>;
 
     public ngOnInit():void
     {
@@ -104,41 +106,12 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, AfterView
             this.updateFieldVisibility();
         });
 
-        this.formFields.forEach((test:TerraKeyValuePairInterface<TerraFormFieldInterface>) => {
+        this.formFields.forEach((test:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
+        {
             this.formGroup.addControl(test.key, new FormControl(this.inputValue[test.key])); // TODO: add support for formGroup and formArrays
         });
 
-        // if(!isNullOrUndefined(this.formEntry))
-        // {
-        //     if(!isNullOrUndefined(this.formEntry.formContainer))
-        //     {
-        //         this.formEntry.formContainer.formGroup.addControl(this.inputFormFieldKey, this.formGroup);
-        //     }
-        //     else if(!isNullOrUndefined(this.formEntry.formList))
-        //     {
-        //         this.formEntry.formList.formArray.insert(+this.inputFormFieldKey, this.formGroup);
-        //     }
-        // }
-    }
-
-    public ngAfterViewInit():void
-    {
-        // this.childEntries.forEach((entry:TerraFormEntryComponent | TerraFormEntryListComponent) =>
-        // {
-        //     if(entry instanceof TerraFormEntryComponent)
-        //     {
-        //         // this.formGroup.addControl(entry.formKey, entry.formGroup ? entry.formGroup : entry.formControl);
-        //     }
-        //     else if(entry instanceof TerraFormEntryListComponent)
-        //     {
-        //         this.formGroup.addControl(entry.inputFormFieldKey, entry.formArray);
-        //     }
-        // });
-        //
-        // this.childEntries.changes.subscribe((changes:any) =>
-        // {
-        //     console.log(changes);
-        // });
+        this.formGroup.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -156,6 +129,10 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, AfterView
 
     protected onFormValueChanged(key:string, value:any):void
     {
+        if(!isObject(this.value))
+        {
+            this.value = {};
+        }
         this.value[key] = value;
         this.updateFieldVisibility();
         this.outputFormValueChanged.next({
@@ -166,17 +143,35 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, AfterView
 
     private updateFieldVisibility():void
     {
-        this.formFields
-            .forEach((field:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
+        this.formFields.forEach((field:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
+        {
+            if(isString(field.value.isVisible))
             {
-                if(isString(field.value.isVisible))
-                {
-                    this.formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible);
-                }
-                else
-                {
-                    this.formFieldVisibility[field.key] = isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
-                }
-            });
+                this.formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible);
+            }
+            else
+            {
+                this.formFieldVisibility[field.key] = isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
+            }
+        });
+    }
+
+    public registerOnChange(fn:(value:any) => void):void
+    {
+        this.onChangeCallback = fn;
+    }
+
+    public registerOnTouched(fn:() => void):void
+    {
+        this.onTouchedCallback = fn;
+    }
+
+    public setDisabledState(isDisabled:boolean):void
+    {
+    }
+
+    public writeValue(value:any):void
+    {
+        this.formGroup.patchValue(value);
     }
 }

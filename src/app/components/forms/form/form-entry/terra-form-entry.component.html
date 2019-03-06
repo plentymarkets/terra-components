@@ -3,14 +3,15 @@
     
     <div class="form-entry-inner" *ngIf="hasChildren">
         <span class="form-entry-label" *ngIf="inputFormField.options?.name">{{ inputFormField.options?.name }}</span>
-        <div class="form-entry-container">
+        <div class="form-entry-container" [formGroup]="inputFormGroup">
             <terra-form-container
+                [formControlName]="formKey"
                 [inputFormFields]="inputFormField.children"
                 [inputScope]="inputScope"
                 [inputValue]="inputFormValue"
                 [inputControlTypeMap]="inputControlTypeMap"
                 [inputIsDisabled]="inputIsDisabled"
-                [formKey]="field.key"
+                [formKey]="formKey"
                 (outputFormValueChanged)="onChildValueChanged($event.key, $event.value)"
             ></terra-form-container>
         </div>
