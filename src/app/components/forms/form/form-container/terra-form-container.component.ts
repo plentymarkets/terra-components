@@ -108,7 +108,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
 
         this.formFields.forEach((test:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
         {
-            this.formGroup.addControl(test.key, new FormControl(this.inputValue[test.key])); // TODO: add support for formGroup and formArrays
+            this.formGroup.addControl(test.key, new FormControl(this.inputValue[test.key], TerraFormFieldHelper.generateValidators(test.value))); // TODO: add support for formGroup and formArrays
         });
 
         this.formGroup.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
