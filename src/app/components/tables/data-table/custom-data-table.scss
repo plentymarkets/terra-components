@@ -48,8 +48,18 @@ tbody
         {
             --table-body-td-padding: var(--space-sm);
         }
+    
+        &.selected,
+        &.isActive
+        {
+            td
+            {
+                --color-active: var(--color-structure-11);
+                --color-group-active: var(--color-structure-11);
+            }
+        }
         
-        // Inputs
+        // inputs
         --input-wrapper-border: 1px solid transparent;
         --input-wrapper-border-hover: 1px solid transparent;
         --input-wrapper-margin-bottom: 0;
@@ -69,17 +79,7 @@ tbody
             --input-background-color: var(--color-structure-0);
         }
         
-        &.selected,
-        &.isActive
-        {
-            td
-            {
-                --color-active: var(--color-structure-11);
-                --color-group-active: var(--color-structure-11);
-            }
-        }
-        
-        // Selectboxes
+        // select-boxes
         --select-box-border-bottom: 1px solid transparent;
         --select-box-wrapper-margin-bottom: 0;
         --select-box-labeled-padding-left: var(--space-md);
