@@ -242,9 +242,9 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         this.onTouchedCallback = fn;
     }
 
-    public writeValue(values:any):void
+    public writeValue(value:any):void
     {
-        this.inputFormValue = values;
+        this.inputFormValue = value;
         if(!this.hasChildren)
         {
             this.componentInstance.writeValue(this.inputFormValue);
