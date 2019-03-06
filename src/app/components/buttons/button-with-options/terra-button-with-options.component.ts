@@ -68,6 +68,12 @@ export class TerraButtonWithOptionsComponent implements OnInit
     @Input()
     public inputOptionsAlignment:TerraTextAlignEnum;
 
+    /**
+     * @description If true, the button will appear as a link which changes to blue on hover. Default false.
+     */
+    @Input()
+    public isLink:boolean = false;
+
     protected optionsToggle:boolean;
     protected alignRight:boolean;
 

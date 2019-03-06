@@ -6,6 +6,7 @@
 
 ### Features
 * **tc-checkbox-group** & **terra-multi-check-box** are now collapsible. Added new input `collapsed` which - if set to true - collapses the component to its header initially.
+* **terra-button-with-options** add input to use inputIsLink of extends `terra-button`
 
 <a name="3.5.1"></a>
 # 3.5.1 (20.02.2019)
