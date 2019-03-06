@@ -1,5 +1,8 @@
 <terra-portlet>
     <terra-date-picker
-        inputName="Date-Picker">
+        inputName="Date-Picker"
+        [(ngModel)]="date"
+        (ngModelChange)="onChange($event)">
     </terra-date-picker>
 </terra-portlet>
+{{date | date}}
