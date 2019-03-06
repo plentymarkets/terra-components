@@ -24,6 +24,7 @@ import {
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
+import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 
 @Component({
     selector: 'terra-form-container',
