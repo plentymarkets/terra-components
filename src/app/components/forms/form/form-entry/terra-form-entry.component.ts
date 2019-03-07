@@ -22,6 +22,7 @@ import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 import {
     ControlValueAccessor,
+    FormControl,
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
@@ -57,19 +58,21 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     @Input()
     public formKey:string;
 
-    @Output()
-    public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
-
     @Input()
     public inputFormGroup:FormGroup;
 
-    protected containerClass:string;
+    @Output()
+    public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
 
-    @ViewChild(TerraFormEntryContainerDirective)
-    private container:TerraFormEntryContainerDirective;
+    protected containerClass:string;
 
     private componentRef:ComponentRef<any>;
     private componentInstance:any;
+
+    private formControl:FormControl;
+
+    @ViewChild(TerraFormEntryContainerDirective)
+    private container:TerraFormEntryContainerDirective;
 
     constructor(private componentFactory:ComponentFactoryResolver)
     {}
@@ -79,6 +82,16 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         this.containerClass = 'form-entry-' + this.inputFormField.type;
 
         this.initComponent();
+
+        this.formControl = this.inputFormGroup.get(this.formKey) as FormControl;
+        this.formControl.statusChanges.subscribe((status:string) =>
+        {
+            if(this.componentInstance)
+            {
+                this.componentInstance.isValid = status !== 'INVALID';
+            }
+        });
+
     }
 
     public initComponent():void
