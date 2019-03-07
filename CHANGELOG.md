@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 * **terra-date-picker** fixed issue with early dates
+* **terra-card** vertical alignment of multiple cards if one card uses an icon and another uses an image.
 
 ### Features
 * **tc-checkbox-group** & **terra-multi-check-box** are now collapsible. Added new input `collapsed` which - if set to true - collapses the component to its header initially.
