@@ -103,6 +103,7 @@ export class TerraFormComponent implements ControlValueAccessor, AfterViewInit
             this.values = defaultValues;
             this.scope.data = defaultValues;
             this.formGroup.patchValue(defaultValues);
+            this.formGroup.markAsUntouched();
         }
         else if(this.scope.data !== values)
         {
