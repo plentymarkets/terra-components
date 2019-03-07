@@ -1,5 +1,4 @@
 import {
-    AfterViewInit,
     Component,
     EventEmitter,
     forwardRef,
@@ -13,7 +12,6 @@ import {
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import {
     isNullOrUndefined,
-    isObject,
     isString
 } from 'util';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
@@ -69,9 +67,6 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     @Output()
     public outputFormValueChanged:EventEmitter<TerraKeyValuePairInterface<any>> = new EventEmitter<TerraKeyValuePairInterface<any>>();
 
-    // @Input()
-    // public inputFormGroup:FormGroup;
-
     public formGroup:FormGroup = new FormGroup({});
 
     protected formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
@@ -79,9 +74,6 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
 
     private onChangeCallback:(value:any) => void = (value:any):void => undefined;
     private onTouchedCallback:() => void = ():void => undefined;
-
-    // constructor(@Optional() @Host() @Inject(forwardRef(() => TerraFormEntryComponent))  private formEntry:TerraFormEntryComponent)
-    // { }
 
     public ngOnInit():void
     {
@@ -92,15 +84,10 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
 
         this.formFields.forEach((test:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
         {
-            this.formGroup.addControl(test.key, new FormControl('', TerraFormFieldHelper.generateValidators(test.value))); // TODO: add support for formGroup and formArrays
+            this.formGroup.addControl(test.key, new FormControl('', TerraFormFieldHelper.generateValidators(test.value)));
         });
 
         this.formGroup.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
-
-        // if(this.inputFormGroup)
-        // {
-        //     this.inputFormGroup.setControl(this.formKey, this.formGroup);
-        // }
     }
 
     public ngOnChanges(changes:SimpleChanges):void

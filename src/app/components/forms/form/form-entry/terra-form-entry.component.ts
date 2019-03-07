@@ -60,8 +60,6 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     @Output()
     public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
 
-    // public formControl:FormControl;
-
     @Input()
     public inputFormGroup:FormGroup;
 

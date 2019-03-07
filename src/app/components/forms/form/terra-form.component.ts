@@ -3,8 +3,6 @@ import {
     Component,
     forwardRef,
     Input,
-    SimpleChange,
-    SimpleChanges,
     Type,
     ViewChild,
 } from '@angular/core';
