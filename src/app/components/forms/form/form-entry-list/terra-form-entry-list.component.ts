@@ -1,16 +1,11 @@
 import {
-    AfterContentInit,
-    AfterViewInit,
     Component,
-    ContentChildren,
     EventEmitter,
-    Host,
+    forwardRef,
     Input,
     OnInit,
     Output,
-    QueryList,
-    Type,
-    ViewChildren
+    Type
 } from '@angular/core';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
@@ -19,19 +14,29 @@ import {
     isString
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
-import { FormArray } from '@angular/forms';
 import {
-    TerraFormContainerComponent,
-    TerraFormEntryComponent
-} from '../../../../..';
+    ControlValueAccessor,
+    FormArray,
+    FormControl,
+    FormGroup,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
 import { Language } from 'angular-l10n';
+import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 
 @Component({
     selector: 'terra-form-entry-list',
     template: require('./terra-form-entry-list.component.html'),
-    styles:   [require('./terra-form-entry-list.component.scss')]
+    styles:   [require('./terra-form-entry-list.component.scss')],
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraFormEntryListComponent),
+            multi:       true
+        }
+    ]
 })
-export class TerraFormEntryListComponent implements OnInit, AfterViewInit
+export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
 {
     private static itemCount:number = 0;
 
@@ -42,16 +47,19 @@ export class TerraFormEntryListComponent implements OnInit, AfterViewInit
     public inputFormFieldKey:string;
 
     @Input()
+    public inputFormGroup:FormGroup;
+
+    @Input()
     public set inputFormValue(valueList:Array<any>)
     {
         if(isNullOrUndefined(valueList) || !isArray(valueList))
         {
             this.value = [];
             this.itemScopes = [];
-            setTimeout(() =>
-            {
-                this.emitValue();
-            });
+            // setTimeout(() =>
+            // {
+            //     this.emitValue();
+            // });
         }
         else
         {
@@ -99,16 +107,12 @@ export class TerraFormEntryListComponent implements OnInit, AfterViewInit
     protected min:number;
     protected max:number;
 
-    @ViewChildren(TerraFormEntryComponent)
-    private formEntries:QueryList<TerraFormEntryComponent>;
-
     private value:Array<{ key:number, value:any }> = [];
 
     private itemScopes:Array<TerraFormScope> = [];
 
-    // constructor(@Host() public formContainer:TerraFormContainerComponent)
-    // {
-    // }
+    private onChangeCallback:(value:any) => void = () => undefined;
+    private onTouchedCallback:() => void = () => undefined;
 
     public ngOnInit():void
     {
@@ -130,12 +134,14 @@ export class TerraFormEntryListComponent implements OnInit, AfterViewInit
 
         this.formArray = new FormArray([]);
 
-        // this.formContainer.formGroup.addControl(this.inputFormFieldKey, this.formArray);
-    }
+        this.value.forEach((value:any) =>
+        {
+            this.formArray.push(new FormControl('', TerraFormFieldHelper.generateValidators(this.inputFormField)));
+        });
 
-    public ngAfterViewInit():void
-    {
-        // this.formEntries.forEach((entry:TerraFormEntryComponent) => this.formArray.push(entry.formGroup ? entry.formGroup : entry.formControl)); // TODO: add this to the formContainer
+        this.inputFormGroup.setControl(this.inputFormFieldKey, this.formArray);
+
+        this.formArray.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
     }
 
     protected get canAddElement():boolean
@@ -158,6 +164,7 @@ export class TerraFormEntryListComponent implements OnInit, AfterViewInit
                 )
             );
             this.emitValue();
+            this.formArray.push(new FormControl('', TerraFormFieldHelper.generateValidators(this.inputFormField)));
         }
     }
 
@@ -251,6 +258,34 @@ export class TerraFormEntryListComponent implements OnInit, AfterViewInit
         childData[loopKey] = value;
 
         return childData;
+    }
+
+    public registerOnChange(fn:(value:any) => void):void
+    {
+        this.onChangeCallback = fn;
+    }
+
+    public registerOnTouched(fn:() => void):void
+    {
+        this.onTouchedCallback = fn;
+    }
+
+    public setDisabledState(isDisabled:boolean):void
+    {
+        // TODO
+    }
+
+    public writeValue(value:Array<any>):void
+    {
+        this.inputFormValue = value;
+        if(isNullOrUndefined(value) || !isArray(value))
+        {
+            this.formArray.setValue([]);
+        }
+        else
+        {
+            this.formArray.patchValue(value);
+        }
     }
 
 }

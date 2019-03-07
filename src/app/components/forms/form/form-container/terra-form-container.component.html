@@ -4,7 +4,7 @@
             <terra-form-entry
                 *ngIf="!field.value.isList"
                 [formControlName]="field.key"
-                [inputFormGroup]="formGroup"
+                [inputForm]="formGroup"
                 [inputFormField]="field.value"
                 [inputIsDisabled]="inputIsDisabled"
                 [inputScope]="inputScope"
@@ -15,14 +15,13 @@
             <terra-form-entry-list
                 *ngIf="field.value.isList"
                 [formControlName]="field.key"
+                [inputFormGroup]="formGroup"
                 [inputFormFieldKey]="field.key"
                 [inputFormField]="field.value"
-                [inputFormValue]="inputValue[field.key]"
                 [inputListRange]="field.value.isList"
                 [inputIsDisabled]="inputIsDisabled"
                 [inputScope]="inputScope"
                 [inputControlTypeMap]="inputControlTypeMap"
-                (outputFormValueChanged)="onFormValueChanged(field.key, $event)"
             ></terra-form-entry-list>
         </div>
     </ng-template>

@@ -22,6 +22,7 @@ import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 import {
     ControlValueAccessor,
+    FormArray,
     FormControl,
     FormGroup,
     NG_VALUE_ACCESSOR
@@ -56,10 +57,10 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     public inputIsDisabled:boolean = false;
 
     @Input()
-    public formKey:string;
+    public formKey:string | number;
 
     @Input()
-    public inputFormGroup:FormGroup;
+    public inputForm:FormGroup | FormArray;
 
     @Output()
     public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
@@ -83,7 +84,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
 
         this.initComponent();
 
-        this.formControl = this.inputFormGroup.get(this.formKey) as FormControl;
+        this.formControl = this.inputForm.get(this.formKey.toString()) as FormControl;
         this.formControl.statusChanges.subscribe((status:string) =>
         {
             if(this.componentInstance)

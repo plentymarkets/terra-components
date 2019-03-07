@@ -3,7 +3,7 @@
     
     <div class="form-entry-inner" *ngIf="hasChildren">
         <span class="form-entry-label" *ngIf="inputFormField.options?.name">{{ inputFormField.options?.name }}</span>
-        <div class="form-entry-container" [formGroup]="inputFormGroup">
+        <div class="form-entry-container" [formGroup]="inputForm">
             <terra-form-container
                 [formControlName]="formKey"
                 [inputFormFields]="inputFormField.children"
