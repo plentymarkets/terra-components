@@ -5,8 +5,10 @@
                     id="{{id}}"
                     class="date-picker"
                     [(ngModel)]="value"
+                    (ngModelChange)="onChange($event)"
                     [locale]="currentLocale"
-                    [options]="datePickerOptions">
+                    [options]="datePickerOptions"
+                    (inputFocusBlur)="onFocusOrBlur($event)">
     </my-date-picker>
     <label terraLabelTooltip
            [nameOfInput]="inputName"
