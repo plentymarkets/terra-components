@@ -24,6 +24,7 @@ import {
     TerraFormContainerComponent,
     TerraFormEntryComponent
 } from '../../../../..';
+import { Language } from 'angular-l10n';
 
 @Component({
     selector: 'terra-form-entry-list',
@@ -91,6 +92,9 @@ export class TerraFormEntryListComponent implements OnInit, AfterViewInit
     public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
 
     public formArray:FormArray;
+
+    @Language()
+    protected lang:string;
 
     protected min:number;
     protected max:number;

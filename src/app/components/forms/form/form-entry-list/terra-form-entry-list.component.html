@@ -6,17 +6,20 @@
             [inputScope]="itemScopes[i]"
             [inputControlTypeMap]="inputControlTypeMap"
             [inputIsDisabled]="inputIsDisabled"
-            (outputFormValueChanged)="onElementValueChanged(entry.key, $event)"></terra-form-entry>
+            (outputFormValueChanged)="onElementValueChanged(entry.key, $event)">
+        </terra-form-entry>
         
         <terra-button
             inputIcon="icon-delete"
             (outputClicked)="removeElement(entry.key)"
             [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate:lang"
-            [inputIsDisabled]="!canRemoveElement"></terra-button>
+            [inputIsDisabled]="!canRemoveElement">
+        </terra-button>
     </div>
     <terra-button
         inputIcon="icon-add"
         (outputClicked)="addElement()"
         [inputTooltipText]="'terraDynamicForm.addListEntry' | translate:lang"
-        [inputIsDisabled]="!canAddElement"></terra-button>
+        [inputIsDisabled]="!canAddElement">
+    </terra-button>
 </div>
