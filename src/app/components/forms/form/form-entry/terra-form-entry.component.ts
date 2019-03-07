@@ -88,7 +88,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         {
             if(this.componentInstance)
             {
-                this.componentInstance.isValid = status !== 'INVALID';
+                this.componentInstance.isValid = status === 'VALID';
             }
         });
 
