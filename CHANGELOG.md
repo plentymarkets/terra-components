@@ -1,6 +1,9 @@
 <a name="3.6.0"></a>
 # 3.6.0 (XX.XX.XXXX)
 
+### Bug Fixes
+* **terra-date-picker** fixed issue with early dates
+
 ### Features
 * **tc-checkbox-group** & **terra-multi-check-box** are now collapsible. Added new input `collapsed` which - if set to true - collapses the component to its header initially.
 
