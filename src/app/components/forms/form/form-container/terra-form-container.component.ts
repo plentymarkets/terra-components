@@ -47,24 +47,6 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     public inputControlTypeMap:{ [key:string]:Type<any> } = {};
 
     @Input()
-    public set inputValue(value:any)
-    {
-        if(isNullOrUndefined(value))
-        {
-            this.value = {};
-        }
-        else
-        {
-            this.value = value;
-        }
-    }
-
-    public get inputValue():any
-    {
-        return this.value;
-    }
-
-    @Input()
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
     {
         this.formFields = Object.keys(fields).map((key:string) =>
@@ -87,12 +69,13 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     @Output()
     public outputFormValueChanged:EventEmitter<TerraKeyValuePairInterface<any>> = new EventEmitter<TerraKeyValuePairInterface<any>>();
 
+    // @Input()
+    // public inputFormGroup:FormGroup;
+
     public formGroup:FormGroup = new FormGroup({});
 
     protected formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
     protected formFieldVisibility:{ [key:string]:boolean } = {};
-
-    private value:any = {};
 
     private onChangeCallback:(value:any) => void = (value:any):void => undefined;
     private onTouchedCallback:() => void = ():void => undefined;
@@ -109,10 +92,15 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
 
         this.formFields.forEach((test:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
         {
-            this.formGroup.addControl(test.key, new FormControl(this.inputValue[test.key], TerraFormFieldHelper.generateValidators(test.value))); // TODO: add support for formGroup and formArrays
+            this.formGroup.addControl(test.key, new FormControl('', TerraFormFieldHelper.generateValidators(test.value))); // TODO: add support for formGroup and formArrays
         });
 
         this.formGroup.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
+
+        // if(this.inputFormGroup)
+        // {
+        //     this.inputFormGroup.setControl(this.formKey, this.formGroup);
+        // }
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -121,25 +109,6 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         {
             this.updateFieldVisibility();
         }
-        if(changes.hasOwnProperty('inputValue'))
-        {
-            console.log(changes['inputValue'].currentValue);
-            this.formGroup.patchValue(changes['inputValue'].currentValue);
-        }
-    }
-
-    protected onFormValueChanged(key:string, value:any):void
-    {
-        if(!isObject(this.value))
-        {
-            this.value = {};
-        }
-        this.value[key] = value;
-        this.updateFieldVisibility();
-        this.outputFormValueChanged.next({
-            key:   key,
-            value: value
-        });
     }
 
     private updateFieldVisibility():void
@@ -173,6 +142,13 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
 
     public writeValue(value:any):void
     {
-        this.formGroup.patchValue(value);
+        if(isNullOrUndefined(value))
+        {
+            this.formGroup.setValue({});
+        }
+        else
+        {
+            this.formGroup.patchValue(value);
+        }
     }
 }

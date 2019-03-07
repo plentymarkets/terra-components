@@ -8,11 +8,9 @@
                 [formControlName]="formKey"
                 [inputFormFields]="inputFormField.children"
                 [inputScope]="inputScope"
-                [inputValue]="inputFormValue"
                 [inputControlTypeMap]="inputControlTypeMap"
                 [inputIsDisabled]="inputIsDisabled"
                 [formKey]="formKey"
-                (outputFormValueChanged)="onChildValueChanged($event.key, $event.value)"
             ></terra-form-container>
         </div>
     </div>

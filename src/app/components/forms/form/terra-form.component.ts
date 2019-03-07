@@ -1,7 +1,10 @@
 import {
+    AfterViewInit,
     Component,
     forwardRef,
     Input,
+    SimpleChange,
+    SimpleChanges,
     Type,
     ViewChild,
 } from '@angular/core';
@@ -16,6 +19,7 @@ import { TerraFormFieldInterface } from './model/terra-form-field.interface';
 import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { TerraFormFieldHelper } from './helper/terra-form-field.helper';
 import { TerraFormContainerComponent } from './form-container/terra-form-container.component';
+import { Data } from '@angular/router';
 
 @Component({
     selector:  'terra-form',
@@ -29,7 +33,7 @@ import { TerraFormContainerComponent } from './form-container/terra-form-contain
         }
     ]
 })
-export class TerraFormComponent implements ControlValueAccessor
+export class TerraFormComponent implements ControlValueAccessor, AfterViewInit
 {
     @Input()
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
@@ -80,11 +84,10 @@ export class TerraFormComponent implements ControlValueAccessor
         if(!isNullOrUndefined(field.children))
         {
             let result:any = {};
-            Object.keys(field.children)
-                  .forEach((fKey:string) =>
-                  {
-                      result[fKey] = this.parseFormField(field.children[fKey]);
-                  });
+            Object.keys(field.children).forEach((fKey:string) =>
+            {
+                result[fKey] = this.parseFormField(field.children[fKey]);
+            });
             return result;
         }
         return field.defaultValue || null;
@@ -95,18 +98,19 @@ export class TerraFormComponent implements ControlValueAccessor
         if(isNullOrUndefined(values))
         {
             let defaultValues:any = {};
-            Object.keys(this.inputFormFields)
-                  .forEach((key:string) =>
-                  {
-                      defaultValues[key] = this.parseFormField(this.inputFormFields[key]);
-                  });
+            Object.keys(this.inputFormFields).forEach((key:string) =>
+            {
+                defaultValues[key] = this.parseFormField(this.inputFormFields[key]);
+            });
             this.values = defaultValues;
             this.scope.data = defaultValues;
+            this.formGroup.patchValue(defaultValues);
         }
         else if(this.scope.data !== values)
         {
             this.values = values;
             this.scope.data = values;
+            this.formGroup.patchValue(values);
         }
     }
 
@@ -129,12 +133,17 @@ export class TerraFormComponent implements ControlValueAccessor
         this.onTouchedCallback = callback;
     }
 
-    protected onValueChanged(key:string, value:any):void
+    public ngAfterViewInit():void
     {
-        this.values[key] = value;
-        this.scope.data[key] = value;
-        this.scope.onDataChanged.next(this.scope.data);
-        this.onChangeCallback(this.values);
+        this.formGroup.valueChanges.subscribe((changes:Data) =>
+        {
+            Object.keys(changes).forEach((key:string) =>
+            {
+                this.values[key] = changes[key];
+            });
+            this.scope.data = this.values;
+            this.onChangeCallback(this.values);
+        });
     }
 
 }

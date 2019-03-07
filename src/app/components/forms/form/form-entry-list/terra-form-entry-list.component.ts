@@ -131,7 +131,7 @@ export class TerraFormEntryListComponent implements OnInit, AfterViewInit
 
     public ngAfterViewInit():void
     {
-        this.formEntries.forEach((entry:TerraFormEntryComponent) => this.formArray.push(entry.formGroup ? entry.formGroup : entry.formControl)); // TODO: add this to the formContainer
+        // this.formEntries.forEach((entry:TerraFormEntryComponent) => this.formArray.push(entry.formGroup ? entry.formGroup : entry.formControl)); // TODO: add this to the formContainer
     }
 
     protected get canAddElement():boolean

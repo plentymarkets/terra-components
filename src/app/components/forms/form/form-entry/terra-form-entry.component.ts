@@ -1,5 +1,4 @@
 import {
-    AfterViewInit,
     Component,
     ComponentFactoryResolver,
     ComponentRef,
@@ -16,29 +15,23 @@ import {
 } from '@angular/core';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
-    isArray,
     isFunction,
-    isNullOrUndefined,
-    isObject,
-    isUndefined
+    isNullOrUndefined
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 import {
     ControlValueAccessor,
-    FormControl,
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
-import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 import { TerraFormEntryContainerDirective } from './terra-form-entry-container.directive';
 
 @Component({
-    selector: 'terra-form-entry',
-    template: require('./terra-form-entry.component.html'),
-    styles:   [require('./terra-form-entry.component.scss')],
+    selector:  'terra-form-entry',
+    template:  require('./terra-form-entry.component.html'),
+    styles:    [require('./terra-form-entry.component.scss')],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
@@ -47,13 +40,10 @@ import { TerraFormEntryContainerDirective } from './terra-form-entry-container.d
         }
     ]
 })
-export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy, ControlValueAccessor
+export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, ControlValueAccessor
 {
     @Input()
     public inputFormField:TerraFormFieldInterface;
-
-    @Input()
-    public inputFormValue:any;
 
     @Input()
     public inputScope:TerraFormScope;
@@ -70,70 +60,27 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
     @Output()
     public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
 
-    public formControl:FormControl;
+    // public formControl:FormControl;
 
     @Input()
     public inputFormGroup:FormGroup;
 
     protected containerClass:string;
 
-    // @ViewChild('formEntryContainer', {read: ViewContainerRef})
     @ViewChild(TerraFormEntryContainerDirective)
     private container:TerraFormEntryContainerDirective;
-
-    @ViewChild(TerraFormContainerComponent)
-    private formContainer:TerraFormContainerComponent;
 
     private componentRef:ComponentRef<any>;
     private componentInstance:any;
 
-    public constructor(private componentFactory:ComponentFactoryResolver,
-                       // @Optional() @Host() public formContainer:TerraFormContainerComponent,
-                       // @Optional() @Host() @Inject(forwardRef(() => TerraFormEntryListComponent)) public formList:TerraFormEntryListComponent
-    )
-    {
-    }
+    constructor(private componentFactory:ComponentFactoryResolver)
+    {}
 
     public ngOnInit():void
     {
         this.containerClass = 'form-entry-' + this.inputFormField.type;
 
         this.initComponent();
-
-        // this.writeValue(this.inputFormValue);
-
-        // setTimeout(() => // without setTimeout there would be an ExpressionChangedAfterItHasBeenCheckedError
-        // {
-        //     if(!this.hasChildren)
-        //     {
-        //
-        //         // if(!isNullOrUndefined(this.formContainer))
-        //         // {
-        //         //     this.formContainer.formGroup.addControl(this.formKey, this.formControl);
-        //         // }
-        //         // else if(!isNullOrUndefined(this.formList))
-        //         // {
-        //         //     this.formList.formArray.insert(+this.formKey, this.formControl);
-        //         // }
-        //         // else
-        //         // {
-        //         //     console.error('Y no Code!!!');
-        //         // }
-        //     }
-        // });
-    }
-
-    public ngAfterViewInit():void
-    {
-        this.formControl = new FormControl(this.inputFormValue, TerraFormFieldHelper.generateValidators(this.inputFormField));
-
-        this.formControl.statusChanges.subscribe((status:any) =>
-        {
-            if(this.componentInstance)
-            {
-                this.componentInstance.isValid = status !== 'INVALID';
-            }
-        });
     }
 
     public initComponent():void
@@ -162,23 +109,11 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
             this.bindInputProperties();
 
-            if(isFunction(this.componentInstance.registerOnChange) && isFunction(this.componentInstance.writeValue))
+            if(isFunction(this.componentInstance.registerOnChange) &&
+               isFunction(this.componentInstance.registerOnTouched))
             {
-                if(isUndefined(this.inputFormValue) && !isNullOrUndefined(this.inputFormField.defaultValue))
-                {
-                    // this.onValueChanged(this.inputFormField.defaultValue);
-                    this.onChangeCallback(this.inputFormField.defaultValue);
-                }
-                this.componentInstance.registerOnChange((value:any):void =>
-                {
-                    this.onValueChanged(value);
-                    this.onChangeCallback(value);
-                });
-
+                this.componentInstance.registerOnChange((value:any):void => this.onChangeCallback(value));
                 this.componentInstance.registerOnTouched(():void => this.onTouchedCallback());
-
-                this.writeValue(this.inputFormValue);
-                // this.componentInstance.writeValue(this.inputFormValue);
             }
             else
             {
@@ -190,42 +125,13 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         }
     }
 
-
     public ngOnChanges(changes:SimpleChanges):void
     {
         this.bindInputProperties();
-        // if(changes.hasOwnProperty('inputFormValue') && !isNullOrUndefined(this.formControl))
-        // {
-        //     if(!isNullOrUndefined(this.componentInstance) && isFunction(this.componentInstance.writeValue))
-        //     {
-        //         // this.componentInstance.writeValue(this.inputFormValue);
-        //         // this.writeValue(this.inputFormValue);
-        //     }
-        //     // setTimeout(() =>
-        //     // {
-        //     //    this.formControl.patchValue(this.inputFormValue);
-        //     // });
-        // }
     }
 
-    // TODO has to be implemented in container and entry list as well
     public ngOnDestroy():void
     {
-        // if(!this.hasChildren)
-        // {
-        //     // if(!isNullOrUndefined(this.formContainer))
-        //     // {
-        //     //     this.formContainer.formGroup.removeControl(this.formKey);
-        //     // }
-        //     // else if(!isNullOrUndefined(this.formList))
-        //     // {
-        //     //     this.formList.formArray.removeAt(+this.formKey);
-        //     // }
-        //     // else
-        //     // {
-        //     //     console.error('Y no Code!!!');
-        //     // }
-        // }
         if(!isNullOrUndefined(this.componentRef))
         {
             this.componentRef.destroy();
@@ -244,10 +150,9 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
     public writeValue(value:any):void
     {
-        this.inputFormValue = value;
-        if(!this.hasChildren)
+        if(this.componentInstance)
         {
-            this.componentInstance.writeValue(this.inputFormValue);
+            this.componentInstance.writeValue(value);
         }
     }
 
@@ -298,25 +203,6 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                 this.componentInstance['inputIsDisabled'] = this.inputIsDisabled;
             }
         }
-    }
-
-    protected onValueChanged(value:any):void
-    {
-        if(value !== this.inputFormValue || isArray(value) || isObject(value))
-        {
-            this.inputFormValue = value;
-            this.outputFormValueChanged.next(value);
-        }
-    }
-
-    protected onChildValueChanged(key:string, value:any):void
-    {
-        if(isNullOrUndefined(this.inputFormValue) || !isObject(this.inputFormValue))
-        {
-            this.inputFormValue = {};
-        }
-        this.inputFormValue[key] = value;
-        this.outputFormValueChanged.next(this.inputFormValue);
     }
 
     protected get hasChildren():boolean

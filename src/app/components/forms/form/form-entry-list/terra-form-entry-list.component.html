@@ -3,7 +3,6 @@
     <div class="form-list-entry" *ngFor="let entry of value; index as i; trackBy: trackByFn">
         <terra-form-entry
             [inputFormField]="inputFormField"
-            [inputFormValue]="entry.value"
             [inputScope]="itemScopes[i]"
             [inputControlTypeMap]="inputControlTypeMap"
             [inputIsDisabled]="inputIsDisabled"
