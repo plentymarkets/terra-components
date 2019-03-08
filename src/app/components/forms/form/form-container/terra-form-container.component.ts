@@ -64,6 +64,9 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     @Input()
     public formKey:string;
 
+    @Input()
+    public inputFormGroup:FormGroup;
+
     @Output()
     public outputFormValueChanged:EventEmitter<TerraKeyValuePairInterface<any>> = new EventEmitter<TerraKeyValuePairInterface<any>>();
 
@@ -87,7 +90,11 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
             this.formGroup.addControl(test.key, new FormControl('', TerraFormFieldHelper.generateValidators(test.value)));
         });
 
-        this.formGroup.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
+        if(this.inputFormGroup)
+        {
+            this.inputFormGroup.setControl(this.formKey, this.formGroup);
+        }
+        // this.formGroup.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
     }
 
     public ngOnChanges(changes:SimpleChanges):void
