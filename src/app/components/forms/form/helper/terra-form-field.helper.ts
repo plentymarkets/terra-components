@@ -9,15 +9,13 @@ import { TerraFormFieldCodeEditorOptions } from '../../dynamic-form/data/terra-f
 import { TerraFormFieldInputDouble } from '../../dynamic-form/data/terra-form-field-input-double';
 import { TerraFormFieldInputFile } from '../../dynamic-form/data/terra-form-field-input-file';
 import { TerraFormFieldMultiCheckBox } from '../../dynamic-form/data/terra-form-field-multi-check-box';
-import {
-    TERRA_FORM_PROPERTY_METADATA_KEY,
-    TerraControlTypeEnum,
-    TerraFormFieldBase,
-    TerraFormFieldInputText,
-    TerraFormFieldInterface,
-    TerraFormFieldSelectBox,
-    TerraJsonToFormFieldService
-} from '../../../../../';
+import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
+import { TERRA_FORM_PROPERTY_METADATA_KEY } from '../model/terra-form-property.decorator';
+import { TerraFormFieldBase } from '../../dynamic-form/data/terra-form-field-base';
+import { TerraJsonToFormFieldService } from '../../dynamic-form/service/terra-json-to-form-field.service';
+import { TerraControlTypeEnum } from '../../dynamic-form/enum/terra-control-type.enum';
+import { TerraFormFieldInputText } from '../../dynamic-form/data/terra-form-field-input-text';
+import { TerraFormFieldSelectBox } from '../../dynamic-form/data/terra-form-field-select-box';
 
 export class TerraFormFieldHelper
 {

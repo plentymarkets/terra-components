@@ -1,4 +1,4 @@
-import { TerraButtonInterface } from '../..';
+import { TerraButtonInterface } from '../components/buttons/button/data/terra-button.interface';
 
 export const mockButtonOne:TerraButtonInterface =
     {

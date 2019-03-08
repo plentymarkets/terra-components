@@ -10,7 +10,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
-import { TerraPlacementEnum } from '../../../..';
+import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 let nextId:number = 0;
 
