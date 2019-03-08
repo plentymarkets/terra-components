@@ -1,10 +1,8 @@
 import {
     Component,
-    EventEmitter,
     forwardRef,
     Input,
     OnInit,
-    Output,
     Type
 } from '@angular/core';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
@@ -38,8 +36,6 @@ import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 })
 export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
 {
-    private static itemCount:number = 0;
-
     @Input()
     public inputFormField:TerraFormFieldInterface;
 
@@ -48,41 +44,6 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
 
     @Input()
     public inputFormGroup:FormGroup;
-
-    @Input()
-    public set inputFormValue(valueList:Array<any>)
-    {
-        if(isNullOrUndefined(valueList) || !isArray(valueList))
-        {
-            this.value = [];
-            this.itemScopes = [];
-            // setTimeout(() =>
-            // {
-            //     this.emitValue();
-            // });
-        }
-        else
-        {
-            if(!this.compareValues(valueList))
-            {
-                this.value = valueList.map((value:any) =>
-                {
-                    return {
-                        key:   TerraFormEntryListComponent.itemCount++,
-                        value: value
-                    };
-                });
-
-                this.itemScopes = this.value.map((entry:{ key:number, value:any }) =>
-                {
-                    return this.inputScope.createChildScope(
-                        this.createChildScopeData(entry.value)
-                    );
-                });
-            }
-        }
-        this.fillRange();
-    }
 
     @Input()
     public inputListRange:boolean | string;
@@ -96,10 +57,7 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
     @Input()
     public inputIsDisabled:boolean = false;
 
-    @Output()
-    public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
-
-    public formArray:FormArray;
+    public formArray:FormArray = new FormArray([]);
 
     @Language()
     protected lang:string;
@@ -107,7 +65,7 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
     protected min:number;
     protected max:number;
 
-    private value:Array<{ key:number, value:any }> = [];
+    private value:Array<any> = [];
 
     private itemScopes:Array<TerraFormScope> = [];
 
@@ -132,16 +90,9 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
             this.fillRange();
         }
 
-        this.formArray = new FormArray([]);
-
-        this.value.forEach((value:any) =>
-        {
-            this.formArray.push(new FormControl('', TerraFormFieldHelper.generateValidators(this.inputFormField)));
-        });
-
         this.inputFormGroup.setControl(this.inputFormFieldKey, this.formArray);
 
-        this.formArray.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
+        // this.formArray.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
     }
 
     protected get canAddElement():boolean
@@ -154,16 +105,12 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
         if(this.canAddElement)
         {
             let defaultValue:any = isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue;
-            this.value.push({
-                key:   TerraFormEntryListComponent.itemCount++,
-                value: defaultValue
-            });
+            this.value.push(defaultValue);
             this.itemScopes.push(
                 this.inputScope.createChildScope(
                     this.createChildScopeData(defaultValue)
                 )
             );
-            this.emitValue();
             this.formArray.push(new FormControl('', TerraFormFieldHelper.generateValidators(this.inputFormField)));
         }
     }
@@ -173,9 +120,8 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
         return isNaN(this.min) || this.value.length > this.min;
     }
 
-    protected removeElement(key:number):void
+    protected removeElement(index:number):void
     {
-        let index:number = this.value.findIndex((entry:{ key:number, value:any }) => entry.key === key);
         if(index < 0 || index > this.value.length)
         {
             return;
@@ -186,26 +132,18 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
             this.value.splice(index, 1);
             this.itemScopes.splice(index, 1);
             this.formArray.removeAt(index);
-            this.emitValue();
         }
     }
 
     protected fillRange():void
     {
-        let defaultValue:any = !isNullOrUndefined(this.inputFormField) ? this.inputFormField.defaultValue : null;
         while(!isNaN(this.min) && this.min > this.value.length)
         {
-            this.value.push({
-                key:   TerraFormEntryListComponent.itemCount++,
-                value: defaultValue
-            });
-            this.itemScopes.push(
-                this.inputScope.createChildScope(this.createChildScopeData(defaultValue))
-            );
+            this.addElement();
         }
         while(!isNaN(this.max) && this.max < this.value.length)
         {
-            this.value.pop();
+            this.removeElement(this.value.length - 1);
         }
     }
 
@@ -216,20 +154,12 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
         {
             this.value[idx].value = value;
             this.itemScopes[idx].data = this.createChildScopeData(value);
-            this.emitValue();
         }
     }
 
-    protected trackByFn(index:number, item:{ key:number, value:any }):number
+    protected trackByFn(index:number):number
     {
-        return item.key;
-    }
-
-    private emitValue():void
-    {
-        this.outputFormValueChanged.next(
-            this.value.map((entry:{ key:number, value:any }) => entry.value)
-        );
+        return index;
     }
 
     private compareValues(values:Array<any>):boolean
@@ -277,15 +207,46 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
 
     public writeValue(value:Array<any>):void
     {
-        this.inputFormValue = value;
         if(isNullOrUndefined(value) || !isArray(value))
         {
+            this.formArray = new FormArray([]);
             this.formArray.setValue([]);
+            this.value = [];
+            this.itemScopes = [];
         }
         else
         {
+            if(this.value.length > this.formArray.length)
+            {
+                this.value.forEach((val:any, index:number) =>
+                {
+                    if(!this.formArray.at(index))
+                    {
+                        this.formArray.insert(index, new FormControl(val, TerraFormFieldHelper.generateValidators(this.inputFormField)));
+                    }
+                });
+            }
+            else if(this.value.length < this.formArray.length)
+            {
+                this.formArray.controls.forEach((control:FormControl, index:number) =>
+                {
+                    if(!this.value[index])
+                    {
+                        this.formArray.removeAt(index);
+                    }
+                });
+            }
+
             this.formArray.patchValue(value);
+            this.value = value;
+
+            this.itemScopes = this.value.map((val:any) =>
+            {
+                return this.inputScope.createChildScope(this.createChildScopeData(val));
+            });
+
         }
+        this.fillRange();
     }
 
 }

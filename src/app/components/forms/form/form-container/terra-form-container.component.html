@@ -14,7 +14,7 @@
             
             <terra-form-entry-list
                 *ngIf="field.value.isList"
-                [formControlName]="field.key"
+                [formArrayName]="field.key"
                 [inputFormGroup]="formGroup"
                 [inputFormFieldKey]="field.key"
                 [inputFormField]="field.value"
