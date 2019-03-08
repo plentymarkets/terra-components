@@ -29,6 +29,7 @@ import {
 } from '@angular/forms';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { TerraFormEntryContainerDirective } from './terra-form-entry-container.directive';
+import { VALID } from '@angular/forms/src/model';
 
 @Component({
     selector:  'terra-form-entry',
@@ -89,7 +90,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         {
             if(this.componentInstance)
             {
-                this.componentInstance.isValid = status === 'VALID';
+                this.componentInstance.isValid = status === VALID;
             }
         });
 
