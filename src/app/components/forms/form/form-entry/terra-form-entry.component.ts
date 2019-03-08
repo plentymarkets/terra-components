@@ -22,8 +22,8 @@ import {
     isUndefined
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
-import { TerraTextInputComponent } from '../../../../../';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
+import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 
 @Component({
     selector: 'terra-form-entry',
