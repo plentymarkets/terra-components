@@ -64,6 +64,12 @@ export class TerraFormComponent implements ControlValueAccessor
     @Input()
     public inputIsDisabled:boolean = false;
 
+    @Input()
+    public set inputScope(scope:TerraFormScope)
+    {
+        this.scope = scope;
+    }
+
     @ViewChild(TerraFormContainerComponent)
     public rootContainer:TerraFormContainerComponent;
 
@@ -136,5 +142,4 @@ export class TerraFormComponent implements ControlValueAccessor
         this.scope.onDataChanged.next(this.scope.data);
         this.onChangeCallback(this.values);
     }
-
 }
