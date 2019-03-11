@@ -2,6 +2,7 @@
 # 3.6.0 (XX.XX.XXXX)
 
 ### Bug Fixes
+* **alerts** added `AlertService` to index.ts to be able to import it from _@plentymarkets/terra-components_
 * **terra-date-picker** fixed issue with early dates
 * **terra-card** vertical alignment of multiple cards if one card uses an icon and another uses an image.
 
