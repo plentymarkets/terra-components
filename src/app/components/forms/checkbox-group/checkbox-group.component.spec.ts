@@ -4,17 +4,15 @@ import {
     TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import {
-    TerraCheckboxComponent,
-    TerraMultiCheckBoxComponent,
-    TerraMultiCheckBoxValueInterface
-} from '../../../..';
 import { HttpClientModule } from '@angular/common/http';
 import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../translation/l10n.config';
 import Spy = jasmine.Spy;
+import { TerraMultiCheckBoxComponent } from '../multi-check-box/terra-multi-check-box.component';
+import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-multi-check-box-value.interface';
+import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 
 describe('Component: CheckboxGroupComponent', () =>
 {
