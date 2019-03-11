@@ -1,8 +1,3 @@
-# Unreleased changes
-
-### Features
-* **terra-base.service** change typdef of `dataId` parameter in caching methods
-
 <a name="3.6.0"></a>
 # 3.6.0 (XX.XX.XXXX)
 
@@ -11,6 +6,7 @@
 * **terra-card** vertical alignment of multiple cards if one card uses an icon and another uses an image.
 
 ### Features
+* **terra-base.service** change typdef of `dataId` parameter in caching methods
 * **tc-checkbox-group** & **terra-multi-check-box** are now collapsible. Added new input `collapsed` which - if set to true - collapses the component to its header initially.
 
 <a name="3.5.1"></a>
