@@ -6,7 +6,7 @@
 * **terra-card** vertical alignment of multiple cards if one card uses an icon and another uses an image.
 
 ### Features
-* **terra-base.service** change typdef of `dataId` parameter in caching methods
+* **terra-base.service** extended typedef of `dataId` parameter in caching methods. Strings may now be used as index as well.
 * **tc-checkbox-group** & **terra-multi-check-box** are now collapsible. Added new input `collapsed` which - if set to true - collapses the component to its header initially.
 
 <a name="3.5.1"></a>
