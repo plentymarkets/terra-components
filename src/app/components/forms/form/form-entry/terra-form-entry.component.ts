@@ -57,7 +57,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
     public inputIsDisabled:boolean = false;
 
     @Input()
-    public formKey:string;
+    public inputFormFieldKey:string;
 
     @Output()
     public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
@@ -94,11 +94,11 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
             {
                 if(!isNullOrUndefined(this.formContainer))
                 {
-                    this.formContainer.formGroup.addControl(this.formKey, this.formControl);
+                    this.formContainer.formGroup.addControl(this.inputFormFieldKey, this.formControl);
                 }
                 else if(!isNullOrUndefined(this.formList))
                 {
-                    this.formList.formArray.insert(+this.formKey, this.formControl);
+                    this.formList.formArray.insert(+this.inputFormFieldKey, this.formControl);
                 }
                 else
                 {
@@ -181,11 +181,11 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
         {
             if(!isNullOrUndefined(this.formContainer))
             {
-                this.formContainer.formGroup.removeControl(this.formKey);
+                this.formContainer.formGroup.removeControl(this.inputFormFieldKey);
             }
             else if(!isNullOrUndefined(this.formList))
             {
-                this.formList.formArray.removeAt(+this.formKey);
+                this.formList.formArray.removeAt(+this.inputFormFieldKey);
             }
             else
             {
