@@ -45,8 +45,7 @@ describe('TerraSuggestionBoxComponent', () =>
                 FormsModule,
                 HttpModule,
                 HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig),
-                TooltipModule.forRoot()
+                LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
                 {
