@@ -1,6 +1,6 @@
 import { isNullOrUndefined } from 'util';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { TerraKeyValueInterface } from '../../../../../';
+import { TerraKeyValueInterface } from '../../../../models/terra-key-value.interface';
 
 export class TerraFormScope
 {
