@@ -117,15 +117,18 @@ describe(`TerraCardComponent:`, () =>
         });
     });
 
-    describe('in block content section', () =>
+    describe('in body content section', () =>
     {
-        it(`should show <div> for content if content is given`, () =>
+        it(`should show <div> for body if content is given`, () =>
         {
-            let contentElement:DebugElement = debugElement.query(By.css('div.card-block'));
-            let ngContentElement:DebugElement = contentElement.query(By.css('p'));
-            let blockContentElement:HTMLElement = ngContentElement.nativeElement;
-            expect(contentElement).toBeTruthy();
-            expect(blockContentElement.innerHTML).toEqual('card content');
+            let bodyElement:DebugElement = debugElement.query(By.css('div.card-block'));
+            let ngContentElement:DebugElement = bodyElement.query(By.css('p'));
+            let bodyContentElement:HTMLElement = ngContentElement.nativeElement;
+            expect(bodyElement).toBeTruthy();
+            expect(cardComponent.viewChildHeader).toBeTruthy();
+            expect(cardComponent.viewChildHeader.nativeElement.children.length).toBeGreaterThan(0);
+            expect(bodyContentElement.innerHTML).toEqual('card content');
+            expect(bodyElement.nativeElement.hidden).toBe(false);
         });
     });
 
