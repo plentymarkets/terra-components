@@ -3,7 +3,7 @@
 .select-box-wrapper
 {
     position: relative;
-    background-color: var(--color-structure-0);
+    background-color: var(--select-box-wrapper-background-color, (var(--color-structure-0)));
     margin: var(--select-box-wrapper-margin, 0);
     margin-bottom: var(--select-box-wrapper-margin-bottom, 3px);
     cursor: pointer;
@@ -51,7 +51,7 @@
         color: var(--color-structure-13);
         height: 100%;
         line-height: 100%;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: var(--select-box-border-bottom, (1px solid var(--border-color)));
         border-radius: var(--border-radius) var(--border-radius) 0 0;
         
         &.error
@@ -75,6 +75,7 @@
         &.labeled
         {
             padding: var(--select-box-labeled-padding, var(--select-box-labeled-padding-default));
+            padding-left: var(--select-box-labeled-padding-left, initial);
             transition: padding var(--transition-lg);
             
             span
@@ -207,6 +208,7 @@
             line-height: 18px;
             min-height: 24px;
             cursor: pointer;
+            color: var(--color-structure-11);
             
             &:hover,
             &.selected

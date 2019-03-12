@@ -2,7 +2,7 @@
 {
     .multiselect-element
     {
-        margin-bottom: 8px;
+        margin-bottom: var(--select-box-border-bottom, (var(--space-md)));
         
         .multiselect
         {
