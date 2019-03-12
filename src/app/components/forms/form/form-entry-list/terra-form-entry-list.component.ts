@@ -158,7 +158,6 @@ export class TerraFormEntryListComponent implements OnInit
         {
             this.value.splice(index, 1);
             this.itemScopes.splice(index, 1);
-            this.formArray.removeAt(index);
             this.emitValue();
         }
     }
