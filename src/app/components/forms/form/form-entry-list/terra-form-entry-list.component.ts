@@ -1,6 +1,7 @@
 import {
     Component,
     EventEmitter,
+    Host,
     Input,
     OnInit,
     Output,
@@ -13,6 +14,8 @@ import {
     isString
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
+import { FormArray } from '@angular/forms';
+import { TerraFormContainerComponent } from '../../../../..';
 
 @Component({
     selector: 'terra-form-entry-list',
@@ -79,12 +82,18 @@ export class TerraFormEntryListComponent implements OnInit
     @Output()
     public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
 
+    public formArray:FormArray;
+
     protected min:number;
     protected max:number;
 
     private value:Array<{ key:number, value:any }> = [];
 
     private itemScopes:Array<TerraFormScope> = [];
+
+    constructor(@Host() public formContainer:TerraFormContainerComponent)
+    {
+    }
 
     public ngOnInit():void
     {
@@ -103,6 +112,10 @@ export class TerraFormEntryListComponent implements OnInit
             }
             this.fillRange();
         }
+
+        this.formArray = new FormArray([]);
+
+        this.formContainer.formGroup.addControl(this.inputFormFieldKey, this.formArray);
     }
 
     protected get canAddElement():boolean
