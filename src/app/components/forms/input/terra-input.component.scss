@@ -67,8 +67,9 @@ input[type="search"]::-webkit-search-decoration
     height: var(--input-wrapper-height, var(--input-wrapper-height-default));
     line-height: var(--input-wrapper-line-height, 100%);
     transition: height var(--transition-lg), line-height var(--transition-lg);
-    background-color: var(--color-structure-0);
+    background-color: var(--input-background-color, var(--color-structure-0));
     border-radius: var(--border-radius) var(--border-radius) 0 0;
+    padding-left: var(--input-wrapper-padding-left, initial);
     
     &.isSmall
     {
@@ -145,12 +146,12 @@ input[type="search"]::-webkit-search-decoration
     {
         color: var(--color-structure-5);
         background-color: var(--color-structure-2);
-        padding-left: var(--space-md);
+        padding-left: var(--input-wrapper-padding-left, var(--space-md));
         
         + label
         {
             cursor: not-allowed;
-            padding-left: var(--space-md);
+            padding-left: var(--input-wrapper-padding-left, var(--space-md));
         }
     }
     
@@ -308,6 +309,7 @@ label
     text-overflow: ellipsis;
     white-space: nowrap;
     padding: var(--label-padding, var(--label-padding-default));
+    padding-left: var(--input-wrapper-padding-left, initial);
     margin-bottom: 0;
     color: var(--label-color, var(--color-structure-8));
     
