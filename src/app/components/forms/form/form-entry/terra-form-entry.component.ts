@@ -85,7 +85,10 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
         this.formControl.statusChanges.subscribe((status:any) =>
         {
-            this.componentInstance.isValid = status !== 'INVALID';
+            if(!isNullOrUndefined(this.componentInstance))
+            {
+                this.componentInstance.isValid = status !== 'INVALID';
+            }
         });
 
         setTimeout(() => // without setTimeout there would be an ExpressionChangedAfterItHasBeenCheckedError
