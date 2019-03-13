@@ -1,5 +1,5 @@
-<a name="3.7.0-beta"></a>
-# 3.7.0-beta (13.03.2019)
+<a name="3.7.0-beta.0"></a>
+# 3.7.0-beta.0 (13.03.2019)
 
 ### Features
 * **terra-form** preliminary support for validation using reactive forms. Implementation may change in a following release.
