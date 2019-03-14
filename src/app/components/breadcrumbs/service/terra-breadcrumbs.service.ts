@@ -14,6 +14,7 @@ import { TranslationService } from 'angular-l10n';
 import { TerraBreadcrumbContainer } from '../terra-breadcrumb-container';
 import { UrlHelper } from '../../../helpers/url.helper';
 import { StringHelper } from '../../../helpers/string.helper';
+import { ActivatedRouteHelper } from '../../../helpers/activated-route.helper';
 
 @Injectable()
 export class TerraBreadcrumbsService
@@ -62,11 +63,22 @@ export class TerraBreadcrumbsService
         });
     }
 
+    /**
+     * @deprecated use set accessor for activatedRoute instead.
+     * @param value
+     */
     public set initialPath(value:string)
     {
         this._containers = [];
         this._initialPath = value;
         this.initialRoute = this.findRoute(value, this.router.config);
+    }
+
+    public set activatedRoute(activatedRoute:ActivatedRouteSnapshot)
+    {
+        this._containers = [];
+        this._initialPath = ActivatedRouteHelper.getBasePathForActivatedRoute(activatedRoute);
+        this.initialRoute = activatedRoute.routeConfig;
     }
 
     public get containers():Array<TerraBreadcrumbContainer>
