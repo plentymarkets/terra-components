@@ -37,8 +37,7 @@ export class TerraBreadcrumbsService
         {
             if(!isNullOrUndefined(this.initialRoute.children))
             {
-                let cleanEventUrl:string = UrlHelper.getCleanUrl(event.urlAfterRedirects);
-
+                let cleanEventUrl:string = UrlHelper.removeFragment(UrlHelper.removeQueryParams(event.urlAfterRedirects));
                 let shortUrl:string = cleanEventUrl.replace(this._initialPath, '');
 
                 let urlParts:Array<string> = shortUrl.split('/');
