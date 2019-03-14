@@ -1,3 +1,9 @@
+<a name="3.7.0-beta.2"></a>
+# 3.7.0-beta.2 (14.03.2019)
+
+### Bug Fixes
+* **terra-breadcrumbs.service** fixed issue with leading slashes on the `initialPath`
+
 <a name="3.7.0-beta.1"></a>
 # 3.7.0-beta.1 (14.03.2019)
 
