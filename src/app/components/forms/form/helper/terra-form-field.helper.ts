@@ -77,7 +77,7 @@ export class TerraFormFieldHelper
             validators.push(Validators.max(formField.options.maxValue));
         }
 
-        if(StringHelper.isNullUndefinedOrEmpty(formField.options.pattern) || formField.options.pattern instanceof RegExp)
+        if(!StringHelper.isNullUndefinedOrEmpty(formField.options.pattern) || formField.options.pattern instanceof RegExp)
         {
             validators.push(Validators.pattern(formField.options.pattern));
         }

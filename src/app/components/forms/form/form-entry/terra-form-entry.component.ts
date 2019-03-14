@@ -29,6 +29,9 @@ import {
 } from '@angular/forms';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { TerraFormEntryContainerDirective } from './terra-form-entry-container.directive';
+import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
+import { TerraFormEntryListComponent } from '../form-entry-list/terra-form-entry-list.component';
+import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 
 @Component({
     selector:  'terra-form-entry',
@@ -57,7 +60,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     public inputIsDisabled:boolean = false;
 
     @Input()
-    public formKey:string | number;
+    public inputFormFieldKey:string | number;
 
     @Input()
     public inputForm:FormGroup | FormArray;
@@ -84,7 +87,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
 
         this.initComponent();
 
-        this.formControl = this.inputForm.get(this.formKey.toString()) as FormControl;
+        this.formControl = this.inputForm.get(this.inputFormFieldKey.toString()) as FormControl;
         this.formControl.statusChanges.subscribe((status:string) =>
         {
             if(this.componentInstance)

@@ -62,7 +62,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     public inputIsDisabled:boolean = false;
 
     @Input()
-    public formKey:string;
+    public inputFormFieldKey:string;
 
     @Input()
     public inputFormGroup:FormGroup;
@@ -92,7 +92,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
 
         if(this.inputFormGroup)
         {
-            this.inputFormGroup.setControl(this.formKey, this.formGroup);
+            this.inputFormGroup.setControl(this.inputFormFieldKey, this.formGroup);
         }
         // this.formGroup.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
     }

@@ -66,16 +66,16 @@ export class TerraFormComponent implements ControlValueAccessor, AfterViewInit
     @Input()
     public inputIsDisabled:boolean = false;
 
-    @ViewChild(TerraFormContainerComponent)
-    public rootContainer:TerraFormContainerComponent;
-
-    protected scope:TerraFormScope = new TerraFormScope();
+    public readonly scope:TerraFormScope = new TerraFormScope();
 
     protected values:any = {};
 
     protected controlTypeMap:{ [key:string]:Type<any> };
 
     private formFields:{ [key:string]:TerraFormFieldInterface };
+
+    @ViewChild(TerraFormContainerComponent)
+    private rootContainer:TerraFormContainerComponent;
 
     private parseFormField(field:TerraFormFieldInterface):any
     {
@@ -144,5 +144,4 @@ export class TerraFormComponent implements ControlValueAccessor, AfterViewInit
             this.onChangeCallback(this.values);
         });
     }
-
 }

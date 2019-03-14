@@ -1,5 +1,11 @@
+<a name="3.7.0-beta.0"></a>
+# 3.7.0-beta.0 (13.03.2019)
+
+### Features
+* **terra-form** preliminary support for validation using reactive forms. Implementation may change in a following release.
+
 <a name="3.6.0"></a>
-# 3.6.0 (XX.XX.XXXX)
+# 3.6.0 (13.03.2019)
 
 ### Bug Fixes
 * **alerts** added `AlertService` to index.ts to be able to import it from _@plentymarkets/terra-components_
@@ -9,6 +15,7 @@
 ### Features
 * **terra-base.service** extended typedef of `dataId` parameter in caching methods. Strings may now be used as index as well.
 * **tc-checkbox-group** & **terra-multi-check-box** are now collapsible. Added new input `collapsed` which - if set to true - collapses the component to its header initially.
+* **terra-data-table** `<terra-input>`, `<terra-select-box>` and `<terra-multi-check-box>` that will be inserted into a table cell have now adjusted styles to fit into the layout.
 
 <a name="3.5.1"></a>
 # 3.5.1 (20.02.2019)
