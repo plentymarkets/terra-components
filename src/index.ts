@@ -155,3 +155,4 @@ export * from './app/components/tables/group-function/terra-group-function.compo
 export * from './app/components/tables/data-table/terra-data-table-base.service';
 export * from './app/components/tables/data-table/table-row/table-row.component';
 export * from './app/components/alert/alert.service';
+export * from './app/helpers/activated-route.helper';
