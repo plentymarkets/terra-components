@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
-import { TerraButtonInterface } from '../../../../../';
+import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.interface';
 
 @Component({
     selector: 'terra-info-box-example',

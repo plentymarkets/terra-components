@@ -16,10 +16,10 @@ import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { TerraTextAreaInputComponent } from './terra-text-area-input.component';
-import { TerraRegex } from '../../../../..';
 import { By } from '@angular/platform-browser';
 import { MockElementRef } from '../../../../testing/mock-element-ref';
 import Spy = jasmine.Spy;
+import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 
 describe('TerraTextAreaInputComponent', () =>
 {
