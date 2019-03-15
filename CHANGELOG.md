@@ -1,3 +1,21 @@
+<a name="3.7.0-beta.2"></a>
+# 3.7.0-beta.2 (14.03.2019)
+
+### Bug Fixes
+* **terra-breadcrumbs.service** fixed issue with leading slashes on the `initialPath`
+
+<a name="3.7.0-beta.1"></a>
+# 3.7.0-beta.1 (14.03.2019)
+
+### Features
+* **terra-breadcrumbs.service**
+	- new set accessor to pass the activated route to the service. This is used to evaluate the `initialPath` and the `initialRoute`.
+	- set accessor for initialPath is now deprecated. Use set accessor for activatedRoute instead.
+* **activated-route.helper** new helper for ActivatedRoute related functionality.
+
+### Bug Fixes
+* **terra-breadcrumbs** fix issue where the initial path was not evaluated properly
+
 <a name="3.7.0-beta.0"></a>
 # 3.7.0-beta.0 (13.03.2019)
 

@@ -5,7 +5,7 @@
         <span class="form-entry-label" *ngIf="inputFormField.options?.name">{{ inputFormField.options?.name }}</span>
         <div class="form-entry-container" [formGroup]="inputForm">
             <terra-form-container
-                [formGroupName]="formKey"
+                [formGroupName]="inputFormFieldKey"
                 [inputFormFields]="inputFormField.children"
                 [inputFormGroup]="inputForm"
                 [inputScope]="inputScope"
