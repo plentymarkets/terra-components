@@ -18,6 +18,7 @@ import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
 import {
     ControlValueAccessor,
+    FormArray,
     FormControl,
     FormGroup,
     NG_VALUE_ACCESSOR
@@ -87,7 +88,14 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
 
         this.formFields.forEach((test:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
         {
-            this.formGroup.addControl(test.key, new FormControl('', TerraFormFieldHelper.generateValidators(test.value)));
+            if(test.value.isList)
+            {
+                this.formGroup.addControl(test.key, new FormArray([new FormControl(''), new FormControl('')]));
+            }
+            else
+            {
+                this.formGroup.addControl(test.key, new FormControl('', TerraFormFieldHelper.generateValidators(test.value)));
+            }
         });
 
         if(this.inputFormGroup)

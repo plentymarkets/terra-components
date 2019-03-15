@@ -1,7 +1,7 @@
 <!-- TODO: add reactive forms support -->
 <div [formGroup]="inputFormGroup">
     <div class="form-list clearfix" [formArrayName]="inputFormFieldKey">
-        <div class="form-list-entry" *ngFor="let entry of value; index as i; trackBy: trackByFn">
+        <div class="form-list-entry" *ngFor="let control of formArray.controls; index as i; trackBy: trackByFn">
             <terra-form-entry
                 [formControlName]="i"
                 [inputForm]="formArray"
