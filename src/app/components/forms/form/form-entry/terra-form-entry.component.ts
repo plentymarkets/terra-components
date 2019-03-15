@@ -16,7 +16,9 @@ import {
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
     isFunction,
-    isNullOrUndefined
+    isNullOrUndefined,
+    isNumber,
+    isString
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
@@ -84,7 +86,19 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
 
         this.initComponent();
 
-        this.formControl = this.inputForm.get(this.inputFormFieldKey.toString()) as FormControl;
+        if(this.inputForm instanceof FormGroup && isString(this.inputFormFieldKey))
+        {
+            this.formControl = this.inputForm.get(this.inputFormFieldKey) as FormControl;
+        }
+        else if(this.inputForm instanceof FormArray && isNumber(this.inputFormFieldKey))
+        {
+            this.formControl = this.inputForm.at(this.inputFormFieldKey) as FormControl;
+        }
+        else
+        {
+            console.error(this.inputForm, this.inputFormFieldKey);
+        }
+
         this.formControl.statusChanges.subscribe((status:string) =>
         {
             if(!isNullOrUndefined(this.componentInstance))
