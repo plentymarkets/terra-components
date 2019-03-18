@@ -1,9 +1,12 @@
 import {
     Component,
     EventEmitter,
+    forwardRef,
     Host,
+    Inject,
     Input,
     OnInit,
+    Optional,
     Output,
     Type
 } from '@angular/core';
@@ -91,7 +94,7 @@ export class TerraFormEntryListComponent implements OnInit
 
     private itemScopes:Array<TerraFormScope> = [];
 
-    constructor(@Host() public formContainer:TerraFormContainerComponent)
+    constructor(@Host() @Optional() @Inject(forwardRef(() => TerraFormContainerComponent)) public formContainer:TerraFormContainerComponent)
     {
     }
 

@@ -72,7 +72,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
     private componentInstance:any;
 
     public constructor(private componentFactory:ComponentFactoryResolver,
-                       @Optional() @Host() public formContainer:TerraFormContainerComponent,
+                       @Optional() @Host() @Inject(forwardRef(() => TerraFormContainerComponent)) public formContainer:TerraFormContainerComponent,
                        @Optional() @Host() @Inject(forwardRef(() => TerraFormEntryListComponent)) public formList:TerraFormEntryListComponent)
     {
     }
