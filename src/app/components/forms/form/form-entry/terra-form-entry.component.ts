@@ -67,8 +67,6 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     @Output()
     public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
 
-    protected containerClass:string;
-
     private componentRef:ComponentRef<any>;
     private componentInstance:any;
 
@@ -82,8 +80,6 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
 
     public ngOnInit():void
     {
-        this.containerClass = 'form-entry-' + this.inputFormField.type;
-
         this.initComponent();
 
         if(this.inputForm instanceof FormGroup && isString(this.inputFormFieldKey))
