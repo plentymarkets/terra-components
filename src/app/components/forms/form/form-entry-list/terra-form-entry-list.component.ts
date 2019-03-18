@@ -62,10 +62,10 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
     @Language()
     protected lang:string;
 
-    protected min:number;
-    protected max:number;
+    protected childScopes:Array<TerraFormScope> = [];
 
-    protected itemScopes:Array<TerraFormScope> = [];
+    private min:number;
+    private max:number;
 
     private onChangeCallback:(value:any) => void = () => undefined;
     private onTouchedCallback:() => void = () => undefined;
@@ -89,8 +89,6 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
         }
 
         this.formArray = this.inputFormGroup.get(this.inputFormFieldKey) as FormArray;
-
-        // this.formArray.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
     }
 
     protected get canAddElement():boolean
@@ -103,11 +101,7 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
         if(this.canAddElement)
         {
             let defaultValue:any = isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue;
-            this.itemScopes.push(
-                this.inputScope.createChildScope(
-                    this.createChildScopeData(defaultValue)
-                )
-            );
+            this.childScopes.push(this.inputScope.createChildScope(this.createChildScopeData(defaultValue)));
             this.formArray.push(new FormControl('', TerraFormFieldHelper.generateValidators(this.inputFormField)));
         }
     }
@@ -126,7 +120,7 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
 
         if(this.canRemoveElement)
         {
-            this.itemScopes.splice(index, 1);
+            this.childScopes.splice(index, 1);
             this.formArray.removeAt(index);
         }
     }
@@ -179,13 +173,13 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
         {
             this.formArray = new FormArray([]);
             this.formArray.setValue([]);
-            this.itemScopes = [];
+            this.childScopes = [];
         }
         else
         {
             this.formArray.patchValue(value);
 
-            this.itemScopes = this.formArray.controls.map((control:FormControl) =>
+            this.childScopes = this.formArray.controls.map((control:FormControl) =>
             {
                 return this.inputScope.createChildScope(this.createChildScopeData(control.value));
             });
