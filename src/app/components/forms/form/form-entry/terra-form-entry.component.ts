@@ -46,7 +46,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     public inputFormField:TerraFormFieldInterface;
 
     /**
-     * @description Corresponding formControl to the formField.
+     * @description Corresponding formControl to the given formField.
      */
     @Input()
     public inputFormControl:FormControl;
