@@ -14,6 +14,7 @@ import { TranslationService } from 'angular-l10n';
 import { TerraBreadcrumbContainer } from '../terra-breadcrumb-container';
 import { UrlHelper } from '../../../helpers/url.helper';
 import { StringHelper } from '../../../helpers/string.helper';
+import { ActivatedRouteHelper } from '../../../helpers/activated-route.helper';
 
 @Injectable()
 export class TerraBreadcrumbsService
@@ -31,20 +32,19 @@ export class TerraBreadcrumbsService
         {
             return event instanceof NavigationEnd // navigation is done
                    && !isNullOrUndefined(this._initialPath) // initialPath is set
-                   && event.urlAfterRedirects.startsWith('/' + this._initialPath); // url starts with the initial path
+                   && event.urlAfterRedirects.startsWith(this._initialPath); // url starts with the initial path
         }).subscribe((event:NavigationEnd) =>
         {
             if(!isNullOrUndefined(this.initialRoute.children))
             {
-                let cleanEventUrl:string = UrlHelper.getCleanUrl(event.urlAfterRedirects);
-
+                let cleanEventUrl:string = UrlHelper.removeFragment(UrlHelper.removeQueryParams(event.urlAfterRedirects));
                 let shortUrl:string = cleanEventUrl.replace(this._initialPath, '');
 
                 let urlParts:Array<string> = shortUrl.split('/');
                 let urls:Array<string> = urlParts.map((urlPart:string, index:number) => urlParts.slice(0, index + 1).join('/'));
                 urls.forEach((url:string) =>
                 {
-                    this.handleBreadcrumbForUrl(url, '/' + this._initialPath + url, '/' + cleanEventUrl);
+                    this.handleBreadcrumbForUrl(url, this._initialPath + url, '/' + cleanEventUrl);
                 });
 
                 // update breadcrumb visibility for containers that have not been checked since the url is to short
@@ -62,11 +62,22 @@ export class TerraBreadcrumbsService
         });
     }
 
+    /**
+     * @deprecated use set accessor for activatedRoute instead.
+     * @param value
+     */
     public set initialPath(value:string)
     {
         this._containers = [];
         this._initialPath = value;
         this.initialRoute = this.findRoute(value, this.router.config);
+    }
+
+    public set activatedRoute(activatedRoute:ActivatedRouteSnapshot)
+    {
+        this._containers = [];
+        this._initialPath = ActivatedRouteHelper.getBasePathForActivatedRoute(activatedRoute);
+        this.initialRoute = activatedRoute.routeConfig;
     }
 
     public get containers():Array<TerraBreadcrumbContainer>
@@ -312,7 +323,7 @@ export class TerraBreadcrumbsService
     {
         let container:TerraBreadcrumbContainer = this.findBreadcrumbContainerByUrl(url);
 
-        let routerLink:string = '/' + this._initialPath + url;
+        let routerLink:string = this._initialPath + url;
 
         if(!isNullOrUndefined(container) &&
            !isNullOrUndefined(container.currentSelectedBreadcrumb) &&
