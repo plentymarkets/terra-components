@@ -15,10 +15,7 @@ import {
     FormControl,
     FormGroup,
     ValidatorFn,
-    Validators,
-    FormGroup,
-    FormControl,
-    FormArray
+    Validators
 } from '@angular/forms';
 import { TerraValidators } from '../../../../validators/validators';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
