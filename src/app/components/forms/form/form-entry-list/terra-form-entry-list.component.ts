@@ -90,7 +90,6 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
             this.fillRange();
         }
 
-        // this.inputFormGroup.setControl(this.inputFormFieldKey, this.formArray);
         this.formArray = this.inputFormGroup.get(this.inputFormFieldKey) as FormArray;
 
         // this.formArray.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
