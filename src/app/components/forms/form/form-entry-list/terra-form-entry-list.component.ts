@@ -84,8 +84,8 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
             }
             else
             {
-                this.min = 1 / 0;   // NaN
-                this.max = 1 / 0;   // NaN
+                this.min = NaN;
+                this.max = NaN;
             }
             this.fillRange();
         }
