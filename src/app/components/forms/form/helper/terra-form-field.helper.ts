@@ -11,7 +11,10 @@ import { TerraFormFieldInputFile } from '../../dynamic-form/data/terra-form-fiel
 import { TerraFormFieldMultiCheckBox } from '../../dynamic-form/data/terra-form-field-multi-check-box';
 import {
     ValidatorFn,
-    Validators
+    Validators,
+    FormGroup,
+    FormControl,
+    FormArray
 } from '@angular/forms';
 import { TerraValidators } from '../../../../validators/validators';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
@@ -93,6 +96,28 @@ export class TerraFormFieldHelper
         }
 
         return validators;
+    }
+
+    public static parseReactiveForm(formFields:{ [key:string]:TerraFormFieldInterface}):FormGroup
+    {
+        let controls:{[key:string]:FormControl | FormGroup | FormArray} = {};
+        Object.keys(formFields).forEach((formFieldKey:string) =>
+        {
+            let formField:TerraFormFieldInterface = formFields[formFieldKey];
+            if(!isNullOrUndefined(formField.children))
+            {
+                controls[formFieldKey] = this.parseReactiveForm(formField.children);
+            }
+            else if(formField.isList)
+            {
+                controls[formFieldKey] = new FormArray([]);
+            }
+            else
+            {
+                controls[formFieldKey] = new FormControl(formField.defaultValue, this.generateValidators(formField));
+            }
+        });
+        return new FormGroup(controls);
     }
 
     public static extractFormFields(formModel:any):{ [key:string]:TerraFormFieldInterface }

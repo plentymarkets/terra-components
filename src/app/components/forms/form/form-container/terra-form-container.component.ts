@@ -66,12 +66,15 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     public inputFormFieldKey:string;
 
     @Input()
-    public inputFormGroup:FormGroup;
+    public set inputFormGroup(formGroup:FormGroup)
+    {
+        this.formGroup = formGroup;
+    }
 
     @Output()
     public outputFormValueChanged:EventEmitter<TerraKeyValuePairInterface<any>> = new EventEmitter<TerraKeyValuePairInterface<any>>();
 
-    public formGroup:FormGroup = new FormGroup({});
+    protected formGroup:FormGroup;
 
     protected formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
     protected formFieldVisibility:{ [key:string]:boolean } = {};
@@ -85,23 +88,6 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         {
             this.updateFieldVisibility();
         });
-
-        this.formFields.forEach((test:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
-        {
-            if(test.value.isList)
-            {
-                this.formGroup.addControl(test.key, new FormArray([new FormControl(''), new FormControl('')]));
-            }
-            else
-            {
-                this.formGroup.addControl(test.key, new FormControl('', TerraFormFieldHelper.generateValidators(test.value)));
-            }
-        });
-
-        if(this.inputFormGroup)
-        {
-            this.inputFormGroup.setControl(this.inputFormFieldKey, this.formGroup);
-        }
         // this.formGroup.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
     }
 

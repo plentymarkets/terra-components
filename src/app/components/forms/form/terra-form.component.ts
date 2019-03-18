@@ -37,6 +37,7 @@ export class TerraFormComponent implements ControlValueAccessor, AfterViewInit
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
     {
         this.formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
+        this._formGroup = TerraFormFieldHelper.parseReactiveForm(fields);
     }
 
     public get inputFormFields():{ [key:string]:TerraFormFieldInterface }
@@ -73,9 +74,7 @@ export class TerraFormComponent implements ControlValueAccessor, AfterViewInit
     protected controlTypeMap:{ [key:string]:Type<any> };
 
     private formFields:{ [key:string]:TerraFormFieldInterface };
-
-    @ViewChild(TerraFormContainerComponent)
-    private rootContainer:TerraFormContainerComponent;
+    private _formGroup:FormGroup = new FormGroup({});
 
     private parseFormField(field:TerraFormFieldInterface):any
     {
@@ -122,7 +121,7 @@ export class TerraFormComponent implements ControlValueAccessor, AfterViewInit
 
     public get formGroup():FormGroup
     {
-        return this.rootContainer.formGroup;
+        return this._formGroup;
     }
 
     private onTouchedCallback:() => void = ():void => undefined;
