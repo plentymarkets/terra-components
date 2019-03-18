@@ -149,11 +149,6 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
         // this.itemScopes[idx].data = this.createChildScopeData(value);
     }
 
-    protected trackByFn(index:number):number
-    {
-        return index;
-    }
-
     private createChildScopeData(value:any):any
     {
         let loopKey:string = '$' + this.inputFormFieldKey;
