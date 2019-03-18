@@ -303,7 +303,7 @@ export class TerraFormFieldHelper
         return result;
     }
 
-    public static updateFormArrays(form:FormGroup, values:{}):void
+    public static updateFormArrays(form:FormGroup | FormArray, values:any):void
     {
         Object.keys(form.controls).forEach((formControlKey:string) =>
         {
@@ -313,7 +313,20 @@ export class TerraFormFieldHelper
             if(control instanceof FormArray)
             {
                 control.controls = [];
-                controlValues.forEach((value:any) => (control as FormArray).push(new FormControl(value)));
+                if(controlValues instanceof Array)
+                {
+                    controlValues.forEach((value:any) =>
+                    {
+                        if(value instanceof Array || value instanceof Object)
+                        {
+                            this.updateFormArrays(control as FormArray | FormGroup, value);
+                        }
+                        else
+                        {
+                            (control as FormArray).push(new FormControl(value));
+                        }
+                    });
+                }
             }
             else if(control instanceof FormGroup)
             {
