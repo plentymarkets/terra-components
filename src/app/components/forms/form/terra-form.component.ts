@@ -109,7 +109,6 @@ export class TerraFormComponent implements ControlValueAccessor, AfterViewInit
         {
             this.values = values;
             this.scope.data = values;
-
             this.formGroup.patchValue(values);
         }
     }
