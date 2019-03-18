@@ -7,12 +7,11 @@
             <terra-form-entry
                 *ngIf="!field.value.isList && !field.value.children"
                 [formControlName]="field.key"
-                [inputForm]="formGroup"
+                [inputFormControl]="formGroup.get(field.key)"
                 [inputFormField]="field.value"
                 [inputIsDisabled]="inputIsDisabled"
                 [inputScope]="inputScope"
                 [inputControlTypeMap]="inputControlTypeMap"
-                [inputFormFieldKey]="field.key"
             ></terra-form-entry>
             
             <div class="form-entry-inner"

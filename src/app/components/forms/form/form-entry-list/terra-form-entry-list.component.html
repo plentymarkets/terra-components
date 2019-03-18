@@ -3,12 +3,11 @@
         <div class="form-list-entry" *ngFor="let control of formArray.controls; index as i;">
             <terra-form-entry
                 [formControlName]="i"
-                [inputForm]="formArray"
+                [inputFormControl]="control"
                 [inputFormField]="inputFormField"
                 [inputScope]="itemScopes[i]"
                 [inputControlTypeMap]="inputControlTypeMap"
-                [inputIsDisabled]="inputIsDisabled"
-                [inputFormFieldKey]="i">
+                [inputIsDisabled]="inputIsDisabled">
             </terra-form-entry>
             
             <terra-button

@@ -16,17 +16,13 @@ import {
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
     isFunction,
-    isNullOrUndefined,
-    isNumber,
-    isString
+    isNullOrUndefined
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 import {
     ControlValueAccessor,
-    FormArray,
     FormControl,
-    FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
@@ -49,6 +45,12 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     @Input()
     public inputFormField:TerraFormFieldInterface;
 
+    /**
+     * @description Corresponding formControl to the formField.
+     */
+    @Input()
+    public inputFormControl:FormControl;
+
     @Input()
     public inputScope:TerraFormScope;
 
@@ -58,19 +60,8 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     @Input()
     public inputIsDisabled:boolean = false;
 
-    @Input()
-    public inputFormFieldKey:string | number;
-
-    @Input()
-    public inputForm:FormGroup | FormArray;
-
-    @Output()
-    public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
-
     private componentRef:ComponentRef<any>;
     private componentInstance:any;
-
-    private formControl:FormControl;
 
     @ViewChild(TerraFormEntryContainerDirective)
     private container:TerraFormEntryContainerDirective;
@@ -82,20 +73,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     {
         this.initComponent();
 
-        if(this.inputForm instanceof FormGroup && isString(this.inputFormFieldKey))
-        {
-            this.formControl = this.inputForm.get(this.inputFormFieldKey) as FormControl;
-        }
-        else if(this.inputForm instanceof FormArray && isNumber(this.inputFormFieldKey))
-        {
-            this.formControl = this.inputForm.at(this.inputFormFieldKey) as FormControl;
-        }
-        else
-        {
-            console.error(this.inputForm, this.inputFormFieldKey);
-        }
-
-        this.formControl.statusChanges.subscribe((status:string) =>
+        this.inputFormControl.statusChanges.subscribe((status:string) =>
         {
             if(!isNullOrUndefined(this.componentInstance))
             {

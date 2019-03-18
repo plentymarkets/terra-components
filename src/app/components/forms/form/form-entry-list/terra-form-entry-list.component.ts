@@ -65,7 +65,7 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
     protected min:number;
     protected max:number;
 
-    private itemScopes:Array<TerraFormScope> = [];
+    protected itemScopes:Array<TerraFormScope> = [];
 
     private onChangeCallback:(value:any) => void = () => undefined;
     private onTouchedCallback:() => void = () => undefined;
