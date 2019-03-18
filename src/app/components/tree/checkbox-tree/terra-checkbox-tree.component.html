@@ -1,9 +1,10 @@
 <div class="terra-tree">
     <ul>
         <ng-template ngFor let-leaf [ngForOf]="inputLeafList">
-            <li class="node leaf" [ngClass]="{'collapsed': !leaf.isOpen, 'active': leaf.isActive}">
+            <li class="node leaf" [ngClass]="{'collapsed': !leaf.isOpen, 'active': leaf.isActive, 'disabled': leaf.isDisabled}">
                 <div class="leaf-titel flex-container" (click)="onLeafClick(leaf)">
                     <terra-checkbox
+                        [inputIsDisabled]="leaf.isDisabled"
                         [inputCaption]="leaf.caption"
                         (ngModelChange)="onCheckboxValueChange($event, leaf)"
                         [(ngModel)]="leaf.checkboxChecked"
