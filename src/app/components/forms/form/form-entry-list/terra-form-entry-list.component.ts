@@ -2,7 +2,9 @@ import {
     Component,
     forwardRef,
     Input,
+    OnChanges,
     OnInit,
+    SimpleChanges,
     Type
 } from '@angular/core';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
@@ -34,7 +36,7 @@ import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
         }
     ]
 })
-export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
+export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor, OnChanges
 {
     @Input()
     public inputFormField:TerraFormFieldInterface;
@@ -56,6 +58,9 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
 
     @Input()
     public inputIsDisabled:boolean = false;
+
+    @Input()
+    public inputValues:any = {};
 
     public formArray:FormArray;
 
@@ -94,6 +99,22 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
         this.formArray = this.inputFormGroup.get(this.inputFormFieldKey) as FormArray;
 
         // this.formArray.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
+    }
+
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        console.log(changes);
+        if(changes.hasOwnProperty('inputValues') && !isNullOrUndefined(this.formArray))
+        {
+            let values:Array<any> = changes.inputValues.currentValue;
+
+            if(this.formArray.controls.length !== values.length)
+            {
+                this.formArray.controls = [];
+
+                values.forEach((value:any) => this.formArray.push(new FormControl(value)));
+            }
+        }
     }
 
     protected get canAddElement():boolean

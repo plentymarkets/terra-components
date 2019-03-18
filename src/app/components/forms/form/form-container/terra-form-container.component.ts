@@ -68,6 +68,9 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     @Input()
     public inputFormGroup:FormGroup;
 
+    @Input()
+    public inputValues:any = {};
+
     @Output()
     public outputFormValueChanged:EventEmitter<TerraKeyValuePairInterface<any>> = new EventEmitter<TerraKeyValuePairInterface<any>>();
 
@@ -90,7 +93,8 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         {
             if(test.value.isList)
             {
-                this.formGroup.addControl(test.key, new FormArray([new FormControl(''), new FormControl('')]));
+                // this.formGroup.addControl(test.key, new FormArray([new FormControl(''), new FormControl('')]));
+                this.formGroup.addControl(test.key, new FormArray([]));
             }
             else
             {
@@ -111,6 +115,8 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         {
             this.updateFieldVisibility();
         }
+
+        console.log(changes);
     }
 
     private updateFieldVisibility():void
