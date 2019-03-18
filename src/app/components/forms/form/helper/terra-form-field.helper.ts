@@ -10,6 +10,10 @@ import { TerraFormFieldInputDouble } from '../../dynamic-form/data/terra-form-fi
 import { TerraFormFieldInputFile } from '../../dynamic-form/data/terra-form-field-input-file';
 import { TerraFormFieldMultiCheckBox } from '../../dynamic-form/data/terra-form-field-multi-check-box';
 import {
+    AbstractControl,
+    FormArray,
+    FormControl,
+    FormGroup,
     ValidatorFn,
     Validators,
     FormGroup,
@@ -300,5 +304,24 @@ export class TerraFormFieldHelper
     {
         result.options.listBoxValues = field.selectBoxValues;
         return result;
+    }
+
+    public static updateFormArrays(form:FormGroup, values:{}):void
+    {
+        Object.keys(form.controls).forEach((formControlKey:string) =>
+        {
+            let control:AbstractControl = form.get(formControlKey);
+            let controlValues:any = values[formControlKey];
+
+            if(control instanceof FormArray)
+            {
+                control.controls = [];
+                controlValues.forEach((value:any) => (control as FormArray).push(new FormControl(value)));
+            }
+            else if(control instanceof FormGroup)
+            {
+                this.updateFormArrays(control, controlValues);
+            }
+        });
     }
 }
