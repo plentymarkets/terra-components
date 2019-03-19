@@ -87,7 +87,7 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
                 this.min = NaN;
                 this.max = NaN;
             }
-            this.fillRange();
+            this.fillRange(); // TODO: this throws an ExpressionChangedAfterItHasBeenCheckedError
         }
     }
 
