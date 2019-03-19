@@ -1,5 +1,6 @@
 import {
     Component,
+    ComponentFactory,
     ComponentFactoryResolver,
     ComponentRef,
     forwardRef,
@@ -58,13 +59,14 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     @Input()
     public inputIsDisabled:boolean = false;
 
+    private componentFactory:ComponentFactory<any>; // TODO: this has access to the inputs/outputs.. maybe use this for property binding purposes
     private componentRef:ComponentRef<any>;
     private componentInstance:any;
 
     @ViewChild(TerraFormEntryContainerDirective)
     private container:TerraFormEntryContainerDirective;
 
-    constructor(private componentFactory:ComponentFactoryResolver)
+    constructor(private componentFactoryResolver:ComponentFactoryResolver)
     {}
 
     public ngOnInit():void
@@ -97,10 +99,8 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
                 }
             }
 
-            this.componentRef = this.container.viewContainerRef.createComponent(
-                this.componentFactory.resolveComponentFactory(controlType)
-                // TODO: this has access to the inputs/outputs.. maybe use this for property binding purposes
-            );
+            this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(controlType);
+            this.componentRef = this.container.viewContainerRef.createComponent(this.componentFactory);
 
             this.componentInstance = this.componentRef.instance;
 
