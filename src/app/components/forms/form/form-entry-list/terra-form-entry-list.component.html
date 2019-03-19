@@ -2,6 +2,7 @@
     <div class="form-list clearfix" [formArrayName]="inputFormFieldKey">
         <div class="form-list-entry" *ngFor="let control of formArray.controls; index as i;">
             <terra-form-entry
+                *ngIf="!inputFormField.children"
                 [formControlName]="i"
                 [inputFormControl]="control"
                 [inputFormField]="inputFormField"
@@ -9,6 +10,16 @@
                 [inputControlTypeMap]="inputControlTypeMap"
                 [inputIsDisabled]="inputIsDisabled">
             </terra-form-entry>
+    
+            <terra-form-container
+                *ngIf="inputFormField.children"
+                [formGroupName]="i"
+                [inputFormFields]="inputFormField.children"
+                [inputFormGroup]="control"
+                [inputScope]="childScopes[i]"
+                [inputControlTypeMap]="inputControlTypeMap"
+                [inputIsDisabled]="inputIsDisabled"
+            ></terra-form-container>
             
             <terra-button
                 [inputIcon]="'icon-delete'"
