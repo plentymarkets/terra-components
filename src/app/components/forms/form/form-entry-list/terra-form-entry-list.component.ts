@@ -13,6 +13,7 @@ import {
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import {
+    AbstractControl,
     ControlValueAccessor,
     FormArray,
     FormControl,
@@ -21,6 +22,7 @@ import {
 } from '@angular/forms';
 import { Language } from 'angular-l10n';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
+import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
 
 @Component({
     selector: 'terra-form-entry-list',
@@ -62,6 +64,8 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
     @Language()
     protected lang:string;
 
+    protected formFieldVisibility:{ [key:string]:boolean } = {};
+
     protected childScopes:Array<TerraFormScope> = [];
 
     private min:number;
@@ -89,6 +93,19 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
         }
 
         this.formArray = this.inputFormGroup.get(this.inputFormFieldKey) as FormArray;
+
+        this.formArray.controls.forEach((control:AbstractControl) =>
+        {
+            this.childScopes.push(this.inputScope.createChildScope(this.createChildScopeData(control.value)));
+        });
+
+        this.formArray.valueChanges.subscribe((values:Array<any>) =>
+        {
+            values.forEach((value:any, index:number) =>
+            {
+                this.onElementValueChanged(index, value);
+            });
+        });
     }
 
     protected get canAddElement():boolean
@@ -140,10 +157,14 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
         }
     }
 
-    protected onElementValueChanged(key:number, value:any):void
+    protected onElementValueChanged(idx:number, value:any):void
     {
         // TODO: implement
-        // this.itemScopes[idx].data = this.createChildScopeData(value);
+        if(!isNullOrUndefined(this.childScopes[idx]))
+        {
+            // this.childScopes.push(this.inputScope.createChildScope(this.createChildScopeData(defaultValue)));
+            this.childScopes[idx].data = this.createChildScopeData(value);
+        }
     }
 
     private createChildScopeData(value:any):any
