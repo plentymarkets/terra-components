@@ -2,13 +2,11 @@ import {
     Component,
     ComponentFactoryResolver,
     ComponentRef,
-    EventEmitter,
     forwardRef,
     Input,
     OnChanges,
     OnDestroy,
     OnInit,
-    Output,
     SimpleChanges,
     Type,
     ViewChild
