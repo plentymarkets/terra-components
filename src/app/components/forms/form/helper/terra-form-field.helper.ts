@@ -312,9 +312,9 @@ export class TerraFormFieldHelper
         return result;
     }
 
-    public static updateFormArrays(form:FormGroup | FormArray, formFields:{[key:string]:TerraFormFieldInterface}, values:any):void
+    public static updateFormArrays(form:FormGroup, formFields:{[key:string]:TerraFormFieldInterface}, values:any):void
     {
-        if(form instanceof FormGroup && !isObject(values) || form instanceof FormArray && !isArray(values))
+        if(form instanceof FormGroup && !isObject(values))
         {
             return;
         }
@@ -327,18 +327,15 @@ export class TerraFormFieldHelper
 
             if(formField.isList && control instanceof FormArray && isArray(controlValues))
             {
-                let formArray:FormArray = control;
-                formArray.controls = [];
-                controlValues.forEach((value:any) =>
+                control.controls = controlValues.map((value:any) =>
                 {
                     if(isObject(value) && !isNullOrUndefined(formField.children))
                     {
-                        let group:FormGroup = this.parseReactiveForm(formField.children, value);
-                        formArray.push(group);
+                        return this.parseReactiveForm(formField.children, value);
                     }
                     else if(!isObject(value) && isNullOrUndefined(formField.children))
                     {
-                        formArray.push(new FormControl(value));
+                        return new FormControl(value);
                     }
                 });
             }
