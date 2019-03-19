@@ -2,7 +2,9 @@ import 'reflect-metadata';
 import {
     isArray,
     isFunction,
-    isNullOrUndefined
+    isNull,
+    isNullOrUndefined,
+    isObject
 } from 'util';
 import { TerraFormFieldBaseContainer } from '../../dynamic-form/data/terra-form-field-base-container';
 import { TerraFormFieldCodeEditorOptions } from '../../dynamic-form/data/terra-form-field-code-editor';
@@ -99,23 +101,30 @@ export class TerraFormFieldHelper
         return validators;
     }
 
-    public static parseReactiveForm(formFields:{ [key:string]:TerraFormFieldInterface}):FormGroup
+    public static parseReactiveForm(formFields:{ [key:string]:TerraFormFieldInterface}, values?:{}):FormGroup
     {
         let controls:{[key:string]:FormControl | FormGroup | FormArray} = {};
         Object.keys(formFields).forEach((formFieldKey:string) =>
         {
             let formField:TerraFormFieldInterface = formFields[formFieldKey];
-            if(!isNullOrUndefined(formField.children))
+            if(formField.isList)
             {
-                controls[formFieldKey] = this.parseReactiveForm(formField.children);
+                controls[formFieldKey] = new FormArray(!isNullOrUndefined(values) && isArray(values) ? values.map((value:any) =>
+                {
+                    if(!isNullOrUndefined(formField.children))
+                    {
+                        return this.parseReactiveForm(formField.children, value);
+                    }
+                    return new FormControl(value || formField.defaultValue, this.generateValidators(formField));
+                }) : []);
             }
-            else if(formField.isList)
+            else if(!isNullOrUndefined(formField.children))
             {
-                controls[formFieldKey] = new FormArray([]);
+                controls[formFieldKey] = this.parseReactiveForm(formField.children, !isNullOrUndefined(values) ? values[formFieldKey] : undefined);
             }
             else
             {
-                controls[formFieldKey] = new FormControl(formField.defaultValue, this.generateValidators(formField));
+                controls[formFieldKey] = new FormControl(!isNullOrUndefined(values) ? values[formFieldKey] : formField.defaultValue, this.generateValidators(formField));
             }
         });
         return new FormGroup(controls);
@@ -303,34 +312,36 @@ export class TerraFormFieldHelper
         return result;
     }
 
-    public static updateFormArrays(form:FormGroup | FormArray, values:any):void
+    public static updateFormArrays(form:FormGroup, formFields:{[key:string]:TerraFormFieldInterface}, values:any):void
     {
+        if(form instanceof FormGroup && !isObject(values))
+        {
+            return;
+        }
+
         Object.keys(form.controls).forEach((formControlKey:string) =>
         {
             let control:AbstractControl = form.get(formControlKey);
             let controlValues:any = values[formControlKey];
+            let formField:TerraFormFieldInterface = formFields[formControlKey];
 
-            if(control instanceof FormArray)
+            if(formField.isList && control instanceof FormArray && isArray(controlValues))
             {
-                control.controls = [];
-                if(controlValues instanceof Array)
+                control.controls = controlValues.map((value:any) =>
                 {
-                    controlValues.forEach((value:any) =>
+                    if(isObject(value) && !isNullOrUndefined(formField.children))
                     {
-                        if(value instanceof Array || value instanceof Object)
-                        {
-                            this.updateFormArrays(control as FormArray | FormGroup, value);
-                        }
-                        else
-                        {
-                            (control as FormArray).push(new FormControl(value));
-                        }
-                    });
-                }
+                        return this.parseReactiveForm(formField.children, value);
+                    }
+                    else if(!isObject(value) && isNullOrUndefined(formField.children))
+                    {
+                        return new FormControl(value);
+                    }
+                });
             }
-            else if(control instanceof FormGroup)
+            else if(!isNullOrUndefined(formField.children) && control instanceof FormGroup && isObject(controlValues))
             {
-                this.updateFormArrays(control, controlValues);
+                this.updateFormArrays(control, formField.children, controlValues);
             }
         });
     }

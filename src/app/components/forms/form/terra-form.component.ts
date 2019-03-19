@@ -78,6 +78,11 @@ export class TerraFormComponent implements ControlValueAccessor, AfterViewInit
 
     private parseFormField(field:TerraFormFieldInterface):any
     {
+        if(field.isList)
+        {
+            return field.defaultValue || [];
+        }
+
         if(!isNullOrUndefined(field.children))
         {
             let result:any = {};
@@ -108,7 +113,7 @@ export class TerraFormComponent implements ControlValueAccessor, AfterViewInit
         {
             this.values = values;
             this.scope.data = values;
-            TerraFormFieldHelper.updateFormArrays(this.formGroup, values);
+            TerraFormFieldHelper.updateFormArrays(this.formGroup, this.formFields, values);
             this.formGroup.patchValue(values);
         }
     }
