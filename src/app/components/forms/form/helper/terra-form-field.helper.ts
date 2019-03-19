@@ -109,14 +109,19 @@ export class TerraFormFieldHelper
             let formField:TerraFormFieldInterface = formFields[formFieldKey];
             if(formField.isList)
             {
-                controls[formFieldKey] = new FormArray(!isNullOrUndefined(values) && isArray(values) ? values.map((value:any) =>
+                let formControls:Array<AbstractControl> = [];
+                if(!isNullOrUndefined(values) && isArray(values))
                 {
-                    if(!isNullOrUndefined(formField.children))
+                    formControls = values.map((value:any) =>
                     {
-                        return this.parseReactiveForm(formField.children, value);
-                    }
-                    return new FormControl(value || formField.defaultValue, this.generateValidators(formField));
-                }) : []);
+                        if(!isNullOrUndefined(formField.children))
+                        {
+                            return this.parseReactiveForm(formField.children, value);
+                        }
+                        return new FormControl(value || formField.defaultValue, this.generateValidators(formField));
+                    });
+                }
+                controls[formFieldKey] = new FormArray(formControls);
             }
             else if(!isNullOrUndefined(formField.children))
             {
@@ -124,7 +129,8 @@ export class TerraFormFieldHelper
             }
             else
             {
-                controls[formFieldKey] = new FormControl(!isNullOrUndefined(values) ? values[formFieldKey] : formField.defaultValue, this.generateValidators(formField));
+                let value:any = !isNullOrUndefined(values) ? values[formFieldKey] : formField.defaultValue;
+                controls[formFieldKey] = new FormControl(value, this.generateValidators(formField));
             }
         });
         return new FormGroup(controls);
