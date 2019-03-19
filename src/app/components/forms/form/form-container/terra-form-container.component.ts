@@ -63,9 +63,6 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     public inputIsDisabled:boolean = false;
 
     @Input()
-    public inputFormFieldKey:string;
-
-    @Input()
     public set inputFormGroup(formGroup:FormGroup)
     {
         this.formGroup = formGroup;
