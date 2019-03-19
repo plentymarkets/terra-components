@@ -45,6 +45,7 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
     @Input()
     public inputFormGroup:FormGroup;
 
+    // TODO: can be replaced by a hook in the ngOnChanges life cycle
     @Input()
     public inputListRange:boolean | string;
 
@@ -72,6 +73,7 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
 
     public ngOnInit():void
     {
+        this.formArray = this.inputFormGroup.get(this.inputFormFieldKey) as FormArray;
         if(isString(this.inputListRange))
         {
             let match:RegExpExecArray = /^\[(\d*),(\d*)]$/.exec(this.inputListRange);
@@ -87,8 +89,6 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
             }
             this.fillRange();
         }
-
-        this.formArray = this.inputFormGroup.get(this.inputFormFieldKey) as FormArray;
     }
 
     protected get canAddElement():boolean
