@@ -102,7 +102,10 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
         {
             let defaultValue:any = isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue;
             this.childScopes.push(this.inputScope.createChildScope(this.createChildScopeData(defaultValue)));
-            this.formArray.push(this.inputFormField.children ? TerraFormFieldHelper.parseReactiveForm(this.inputFormField.children) : new FormControl('', TerraFormFieldHelper.generateValidators(this.inputFormField)));
+            let newControl:FormControl | FormGroup = isNullOrUndefined(this.inputFormField.children) ?
+                new FormControl('', TerraFormFieldHelper.generateValidators(this.inputFormField)) :
+                TerraFormFieldHelper.parseReactiveForm(this.inputFormField.children);
+            this.formArray.push(newControl);
         }
     }
 
