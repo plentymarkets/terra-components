@@ -1,3 +1,9 @@
+<a name="Unreleased Changes"></a>
+# Unreleased Changes
+
+### Bug Fixes
+* **tooltips** tooltip color in light theme is now dark for better contrast
+
 <a name="3.7.0-beta.2"></a>
 # 3.7.0-beta.2 (14.03.2019)
 
