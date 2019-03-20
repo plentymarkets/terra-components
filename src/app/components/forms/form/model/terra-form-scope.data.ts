@@ -44,7 +44,6 @@ export class TerraFormScope
             {
                 console.error(e);
             }
-            
             return null;
         }
     }

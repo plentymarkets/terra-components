@@ -2,9 +2,9 @@ import 'reflect-metadata';
 import {
     isArray,
     isFunction,
-    isNull,
     isNullOrUndefined,
-    isObject
+    isObject,
+    isString
 } from 'util';
 import { TerraFormFieldBaseContainer } from '../../dynamic-form/data/terra-form-field-base-container';
 import { TerraFormFieldCodeEditorOptions } from '../../dynamic-form/data/terra-form-field-code-editor';
@@ -103,7 +103,7 @@ export class TerraFormFieldHelper
 
     public static parseReactiveForm(formFields:{ [key:string]:TerraFormFieldInterface}, values?:{}):FormGroup
     {
-        let controls:{[key:string]:FormControl | FormGroup | FormArray} = {};
+        let controls:{[key:string]:AbstractControl} = {};
         Object.keys(formFields).forEach((formFieldKey:string) =>
         {
             let formField:TerraFormFieldInterface = formFields[formFieldKey];
@@ -114,12 +114,12 @@ export class TerraFormFieldHelper
                 {
                     formControls = values.map((value:any) =>
                     {
-                        if(!isNullOrUndefined(formField.children))
-                        {
-                            return this.parseReactiveForm(formField.children, value);
-                        }
-                        return new FormControl(value || formField.defaultValue, this.generateValidators(formField));
+                        return this.createNewControl(value || formField.defaultValue, formField);
                     });
+                }
+                if(isString(formField.isList))
+                {
+                    this.fitControlsToRange(formField, formControls);
                 }
                 controls[formFieldKey] = new FormArray(formControls);
             }
@@ -333,12 +333,15 @@ export class TerraFormFieldHelper
 
             if(formField.isList && control instanceof FormArray && isArray(controlValues))
             {
-                while(control.length > controlValues.length)
+                let range:[number, number] = this.getListRange(formField.isList);
+                let min:number = range[0];
+                let max:number = range[1];
+                while(control.length > Math.max(controlValues.length, min))
                 {
                     control.removeAt(control.length - 1);
                 }
 
-                while(control.length < controlValues.length)
+                while(control.length < Math.min(controlValues.length, max))
                 {
                     control.push(this.createNewControl(controlValues[control.length], formField));
                 }
@@ -356,9 +359,51 @@ export class TerraFormFieldHelper
         {
             return this.parseReactiveForm(formField.children, value);
         }
-        else (!isObject(value) && isNullOrUndefined(formField.children))
+        else if(!isObject(value) && isNullOrUndefined(formField.children))
         {
-            return new FormControl(value);
+            return new FormControl(value, this.generateValidators(formField));
+        }
+    }
+
+    public static getListRange(range:boolean | string):[number, number]
+    {
+        let min:number = 0;
+        let max:number = Infinity;
+
+        if(isString(range))
+        {
+            let match:RegExpExecArray = /^\[(\d*),(\d*)]$/.exec(range);
+            if(match !== null)
+            {
+                min = parseInt(match[1], 10);
+                max = parseInt(match[2], 10);
+            }
+        }
+
+        return [min, max];
+    }
+
+    private static fitControlsToRange(formField:TerraFormFieldInterface, controls:Array<AbstractControl>):void
+    {
+        if(isNullOrUndefined(controls) || isNullOrUndefined(formField))
+        {
+            return;
+        }
+
+        let range:[number, number] = this.getListRange(formField.isList);
+        let min:number = range[0];
+        let max:number = range[1];
+
+        while(!isNaN(min) && min > controls.length)
+        {
+            let control:FormControl | FormGroup = isNullOrUndefined(formField.children) ?
+                new FormControl('', TerraFormFieldHelper.generateValidators(formField)) :
+                TerraFormFieldHelper.parseReactiveForm(formField.children);
+            controls.push(control);
+        }
+        while(!isNaN(max) && max < controls.length)
+        {
+            controls.pop();
         }
     }
 }
