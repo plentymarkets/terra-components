@@ -4,7 +4,6 @@ import {
     forwardRef,
     Input,
     Type,
-    ViewChild,
 } from '@angular/core';
 import {
     ControlValueAccessor,
@@ -16,7 +15,6 @@ import { TerraFormScope } from './model/terra-form-scope.data';
 import { TerraFormFieldInterface } from './model/terra-form-field.interface';
 import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { TerraFormFieldHelper } from './helper/terra-form-field.helper';
-import { TerraFormContainerComponent } from './form-container/terra-form-container.component';
 import { Data } from '@angular/router';
 
 @Component({
@@ -31,13 +29,22 @@ import { Data } from '@angular/router';
         }
     ]
 })
-export class TerraFormComponent implements ControlValueAccessor, AfterViewInit
+export class TerraFormComponent implements ControlValueAccessor
 {
     @Input()
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
     {
         this.formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
         this._formGroup = TerraFormFieldHelper.parseReactiveForm(fields);
+        this._formGroup.valueChanges.subscribe((changes:Data) =>
+        {
+            Object.keys(changes).forEach((key:string) =>
+            {
+                this.values[key] = changes[key];
+            });
+            this.scope.data = this.values;
+            this.onChangeCallback(this.values);
+        });
     }
 
     public get inputFormFields():{ [key:string]:TerraFormFieldInterface }
@@ -135,18 +142,5 @@ export class TerraFormComponent implements ControlValueAccessor, AfterViewInit
     public registerOnTouched(callback:any):void
     {
         this.onTouchedCallback = callback;
-    }
-
-    public ngAfterViewInit():void
-    {
-        this.formGroup.valueChanges.subscribe((changes:Data) =>
-        {
-            Object.keys(changes).forEach((key:string) =>
-            {
-                this.values[key] = changes[key];
-            });
-            this.scope.data = this.values;
-            this.onChangeCallback(this.values);
-        });
     }
 }
