@@ -333,22 +333,32 @@ export class TerraFormFieldHelper
 
             if(formField.isList && control instanceof FormArray && isArray(controlValues))
             {
-                control.controls = controlValues.map((value:any) =>
+                while(control.length > controlValues.length)
                 {
-                    if(isObject(value) && !isNullOrUndefined(formField.children))
-                    {
-                        return this.parseReactiveForm(formField.children, value);
-                    }
-                    else if(!isObject(value) && isNullOrUndefined(formField.children))
-                    {
-                        return new FormControl(value);
-                    }
-                });
+                    control.removeAt(control.length - 1);
+                }
+
+                while(control.length < controlValues.length)
+                {
+                    control.push(this.createNewControl(controlValues[control.length], formField));
+                }
             }
             else if(!isNullOrUndefined(formField.children) && control instanceof FormGroup && isObject(controlValues))
             {
                 this.updateFormArrays(control, formField.children, controlValues);
             }
         });
+    }
+
+    private static createNewControl(value:any, formField:TerraFormFieldInterface):AbstractControl
+    {
+        if(isObject(value) && !isNullOrUndefined(formField.children))
+        {
+            return this.parseReactiveForm(formField.children, value);
+        }
+        else (!isObject(value) && isNullOrUndefined(formField.children))
+        {
+            return new FormControl(value);
+        }
     }
 }

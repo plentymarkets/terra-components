@@ -65,7 +65,7 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
     @Language()
     protected lang:string;
 
-    protected formFieldVisibility:{ [key:string]:boolean } = {};
+    // protected formFieldVisibility:{ [key:string]:boolean } = {};
 
     protected childScopes:Array<TerraFormScope> = [];
 
@@ -93,8 +93,6 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
             }
             this.fillRange(); // TODO: this throws an ExpressionChangedAfterItHasBeenCheckedError
         }
-
-        this.formArray = this.inputFormGroup.get(this.inputFormFieldKey) as FormArray;
 
         this.formArray.controls.forEach((control:AbstractControl) =>
         {
@@ -166,6 +164,10 @@ export class TerraFormEntryListComponent implements OnInit, ControlValueAccessor
         {
             // this.childScopes.push(this.inputScope.createChildScope(this.createChildScopeData(defaultValue)));
             this.childScopes[idx].data = this.createChildScopeData(value);
+        }
+        else
+        {
+            this.childScopes[idx] = this.inputScope.createChildScope(this.createChildScopeData(value));
         }
     }
 
