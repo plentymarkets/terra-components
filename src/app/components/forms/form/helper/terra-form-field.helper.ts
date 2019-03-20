@@ -2,7 +2,6 @@ import 'reflect-metadata';
 import {
     isArray,
     isFunction,
-    isNull,
     isNullOrUndefined,
     isObject
 } from 'util';
@@ -101,9 +100,9 @@ export class TerraFormFieldHelper
         return validators;
     }
 
-    public static parseReactiveForm(formFields:{ [key:string]:TerraFormFieldInterface}, values?:{}):FormGroup
+    public static parseReactiveForm(formFields:{ [key:string]:TerraFormFieldInterface }, values?:{}):FormGroup
     {
-        let controls:{[key:string]:FormControl | FormGroup | FormArray} = {};
+        let controls:{ [key:string]:FormControl | FormGroup | FormArray } = {};
         Object.keys(formFields).forEach((formFieldKey:string) =>
         {
             let formField:TerraFormFieldInterface = formFields[formFieldKey];
@@ -159,7 +158,6 @@ export class TerraFormFieldHelper
                       }
                   });
         }
-        console.log(formFields);
         return formFields;
     }
 
@@ -318,7 +316,7 @@ export class TerraFormFieldHelper
         return result;
     }
 
-    public static updateFormArrays(form:FormGroup, formFields:{[key:string]:TerraFormFieldInterface}, values:any):void
+    public static updateFormArrays(form:FormGroup, formFields:{ [key:string]:TerraFormFieldInterface }, values:any):void
     {
         if(form instanceof FormGroup && !isObject(values))
         {
@@ -356,7 +354,7 @@ export class TerraFormFieldHelper
         {
             return this.parseReactiveForm(formField.children, value);
         }
-        else (!isObject(value) && isNullOrUndefined(formField.children))
+        else
         {
             return new FormControl(value);
         }

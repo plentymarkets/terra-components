@@ -18,17 +18,14 @@ import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
 import {
     ControlValueAccessor,
-    FormArray,
-    FormControl,
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 
 @Component({
-    selector: 'terra-form-container',
-    template: require('./terra-form-container.component.html'),
-    styles:   [require('./terra-form-container.component.scss')],
+    selector:  'terra-form-container',
+    template:  require('./terra-form-container.component.html'),
+    styles:    [require('./terra-form-container.component.scss')],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
@@ -81,11 +78,10 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
 
     public ngOnInit():void
     {
-        this.inputScope.onDataChanged.subscribe((data:any) =>
+        this.inputScope.onDataChanged.subscribe(() =>
         {
             this.updateFieldVisibility();
         });
-        // this.formGroup.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
     }
 
     public ngOnChanges(changes:SimpleChanges):void

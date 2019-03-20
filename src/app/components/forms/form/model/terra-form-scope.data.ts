@@ -44,7 +44,7 @@ export class TerraFormScope
             {
                 console.error(e);
             }
-            
+
             return null;
         }
     }
@@ -52,7 +52,7 @@ export class TerraFormScope
     public createChildScope(data:any = {}):TerraFormScope
     {
         let scope:TerraFormScope = new TerraFormScope(data, this);
-        this.onDataChanged.subscribe((value:any) =>
+        this.onDataChanged.subscribe(() =>
         {
             scope.onDataChanged.next(scope.data);
         });
