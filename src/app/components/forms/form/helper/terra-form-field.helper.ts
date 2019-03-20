@@ -396,10 +396,7 @@ export class TerraFormFieldHelper
 
         while(!isNaN(min) && min > controls.length)
         {
-            let control:FormControl | FormGroup = isNullOrUndefined(formField.children) ?
-                new FormControl('', TerraFormFieldHelper.generateValidators(formField)) :
-                TerraFormFieldHelper.parseReactiveForm(formField.children);
-            controls.push(control);
+            controls.push(this.createNewControl(formField.defaultValue, formField));
         }
         while(!isNaN(max) && max < controls.length)
         {
