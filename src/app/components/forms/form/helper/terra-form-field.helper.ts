@@ -352,7 +352,7 @@ export class TerraFormFieldHelper
         });
     }
 
-    private static createNewControl(value:any, formField:TerraFormFieldInterface):AbstractControl
+    public static createNewControl(value:any, formField:TerraFormFieldInterface):AbstractControl
     {
         if(isObject(value) && !isNullOrUndefined(formField.children))
         {

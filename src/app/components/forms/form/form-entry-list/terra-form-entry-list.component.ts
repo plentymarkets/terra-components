@@ -106,10 +106,7 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
         {
             let defaultValue:any = isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue;
             this.childScopes.push(this.inputScope.createChildScope(this.createChildScopeData(defaultValue)));
-            let newControl:FormControl | FormGroup = isNullOrUndefined(this.inputFormField.children) ?
-                new FormControl('', TerraFormFieldHelper.generateValidators(this.inputFormField)) :
-                TerraFormFieldHelper.parseReactiveForm(this.inputFormField.children);
-            this.formArray.push(newControl);
+            this.formArray.push(TerraFormFieldHelper.createNewControl(this.inputFormField.defaultValue, this.inputFormField));
         }
     }
 
