@@ -342,7 +342,8 @@ export class TerraFormFieldHelper
 
                 while(control.length < Math.min(controlValues.length, max))
                 {
-                    control.push(this.createNewControl(controlValues[control.length], formField));
+                    // silently push the new control. Do not use control.push() since it makes the valueChanges observable emit a value..
+                    control.controls.push(this.createNewControl(controlValues[control.length], formField));
                 }
             }
             else if(!isNullOrUndefined(formField.children) && control instanceof FormGroup && isObject(controlValues))
@@ -366,8 +367,8 @@ export class TerraFormFieldHelper
 
     public static getListRange(range:boolean | string):[number, number]
     {
-        let min:number = 0;
-        let max:number = Infinity;
+        let min:number;
+        let max:number;
 
         if(isString(range))
         {
@@ -379,7 +380,7 @@ export class TerraFormFieldHelper
             }
         }
 
-        return [min, max];
+        return [min || 0, max || Infinity];
     }
 
     private static fitControlsToRange(formField:TerraFormFieldInterface, controls:Array<AbstractControl>):void
