@@ -1,6 +1,9 @@
 <a name="Unreleased Changes"></a>
 # Unreleased Changes
 
+### Features
+* **terra-code-editor** added input `tooltipText` and `tooltipPlacement` to display tooltips, default placement is `top`
+
 ### Bug Fixes
 * **tooltips** tooltip color in light theme is now dark for better contrast
 
@@ -43,9 +46,6 @@
 
 <a name="3.5.1"></a>
 # 3.5.1 (20.02.2019)
-
-### Features
-* **terra-code-editor** added input `tooltipText` and `tooltipPlacement` to display tooltips, default placement is `top`
 
 ### Bug Fixes
 * **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
