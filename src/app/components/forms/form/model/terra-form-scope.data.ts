@@ -40,10 +40,6 @@ export class TerraFormScope
         }
         catch(e)
         {
-            if(process.env.ENV === 'development')
-            {
-                console.error(e);
-            }
             return null;
         }
     }
