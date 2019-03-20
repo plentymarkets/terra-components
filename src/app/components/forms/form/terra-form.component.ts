@@ -99,7 +99,7 @@ export class TerraFormComponent implements ControlValueAccessor
             });
             return result;
         }
-        return field.defaultValue || null;
+        return isNullOrUndefined(field.defaultValue) ? null : field.defaultValue;
     }
 
     public writeValue(values:any):void
