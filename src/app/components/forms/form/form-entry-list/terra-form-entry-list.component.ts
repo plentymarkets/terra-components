@@ -24,9 +24,9 @@ import { Language } from 'angular-l10n';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 
 @Component({
-    selector: 'terra-form-entry-list',
-    template: require('./terra-form-entry-list.component.html'),
-    styles:   [require('./terra-form-entry-list.component.scss')],
+    selector:  'terra-form-entry-list',
+    template:  require('./terra-form-entry-list.component.html'),
+    styles:    [require('./terra-form-entry-list.component.scss')],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
@@ -59,8 +59,6 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
 
     @Language()
     protected lang:string;
-
-    // protected formFieldVisibility:{ [key:string]:boolean } = {};
 
     protected childScopes:Array<TerraFormScope> = [];
 
@@ -139,7 +137,6 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
         // TODO: implement
         if(!isNullOrUndefined(this.childScopes[idx]))
         {
-            // this.childScopes.push(this.inputScope.createChildScope(this.createChildScopeData(defaultValue)));
             this.childScopes[idx].data = this.createChildScopeData(value);
         }
         else
