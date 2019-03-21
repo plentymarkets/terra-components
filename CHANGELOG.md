@@ -4,6 +4,10 @@
 ### Bug Fixes
 * **tooltips** tooltip color in light theme is now dark for better contrast
 
+### Features
+
+* **terra-note-editor** add new input for auto focus and set focus on editor if auto focus is true 
+
 <a name="3.7.0-beta.2"></a>
 # 3.7.0-beta.2 (14.03.2019)
 
