@@ -1,8 +1,11 @@
 import {
+    AfterViewInit,
     Component,
     ElementRef,
     Input,
-    OnInit
+    OnChanges,
+    OnInit,
+    SimpleChanges
 } from '@angular/core';
 import { TranslationService } from 'angular-l10n';
 import {
@@ -24,7 +27,7 @@ import { isNullOrUndefined } from 'util';
         multi:       true
     }]
 })
-export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
+export class TerraBaseEditorComponent implements OnInit, AfterViewInit, ControlValueAccessor
 {
     @Input()
     public inputHeaderLabel:string;
@@ -37,6 +40,9 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
 
     @Input()
     public inputMinHeight:string;
+
+    @Input()
+    public autoFocus:boolean;
 
     protected placeholder:string;
     protected value:string;
@@ -64,6 +70,14 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
         if(this.inputPlaceholder)
         {
             this.placeholder = this.inputPlaceholder;
+        }
+    }
+
+    public ngAfterViewInit():void
+    {
+        if(this.autoFocus === true)
+        {
+            this.myElement.nativeElement.querySelector('.ql-editor').focus();
         }
     }
 
