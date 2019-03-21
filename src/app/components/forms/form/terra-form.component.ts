@@ -1,8 +1,9 @@
 import {
-    AfterViewInit,
     Component,
     forwardRef,
     Input,
+    OnChanges,
+    SimpleChanges,
     Type,
 } from '@angular/core';
 import {
@@ -29,8 +30,12 @@ import { Data } from '@angular/router';
         }
     ]
 })
-export class TerraFormComponent implements ControlValueAccessor
+export class TerraFormComponent implements ControlValueAccessor, OnChanges
 {
+    /**
+     * @description Set accessor for the form fields. Creates a representative reactive FormGroup instance by parsing the given form fields.
+     * @param fields
+     */
     @Input()
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
     {
@@ -47,6 +52,9 @@ export class TerraFormComponent implements ControlValueAccessor
         });
     }
 
+    /**
+     * @description Get accessor for the form fields. Returns the previously set form fields.
+     */
     public get inputFormFields():{ [key:string]:TerraFormFieldInterface }
     {
         if(isNullOrUndefined(this.formFields))
@@ -56,32 +64,45 @@ export class TerraFormComponent implements ControlValueAccessor
         return this.formFields || {};
     }
 
+    /**
+     * @description Provide a custom control type map.
+     */
     @Input()
-    public set inputControlTypeMap(map:any)
-    {
-        this.controlTypeMap = map;
-    }
+    public inputControlTypeMap:any;
 
-    public get inputControlTypeMap():any
-    {
-        if(isNullOrUndefined(this.controlTypeMap))
-        {
-            return new TerraFormTypeMap();
-        }
-        return this.controlTypeMap;
-    }
-
+    /**
+     * @description If true, disables the whole form - and all its containing controls/form fields
+     */
     @Input()
     public inputIsDisabled:boolean = false;
 
+    /**
+     * @description Scope of the form. It is used to evaluate the visibility of the form fields.
+     * @readonly
+     */
     public readonly scope:TerraFormScope = new TerraFormScope();
 
     protected values:any = {};
 
-    protected controlTypeMap:{ [key:string]:Type<any> };
+    private controlTypeMap:{ [key:string]:Type<any> };
 
     private formFields:{ [key:string]:TerraFormFieldInterface };
     private _formGroup:FormGroup = new FormGroup({});
+
+    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
+    private onTouchedCallback:() => void = ():void => undefined;
+
+    /**
+     * @description Implementation of the OnChanges life cycle hook. Reacts on changes on the bound inputs.
+     * @param changes
+     */
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes.hasOwnProperty('inputControlTypeMap'))
+        {
+            this.controlTypeMap = this.inputControlTypeMap || new TerraFormTypeMap();
+        }
+    }
 
     private parseFormField(field:TerraFormFieldInterface):any
     {
@@ -102,6 +123,11 @@ export class TerraFormComponent implements ControlValueAccessor
         return isNullOrUndefined(field.defaultValue) ? null : field.defaultValue;
     }
 
+    /**
+     * Part of the implementation of the ControlValueAccessor interface.
+     * @description Patches the passed value to the underlying FormGroup instance which updates the values of each affected form field.
+     * @param values
+     */
     public writeValue(values:any):void
     {
         if(isNullOrUndefined(values))
@@ -125,22 +151,34 @@ export class TerraFormComponent implements ControlValueAccessor
         }
     }
 
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
-
-    public registerOnChange(callback:any):void
+    /**
+     * Part of the implementation of the ControlValueAccessor interface.
+     * @description Registers a given callback method which will be called whenever a value of any form field/control changes
+     * @param callback
+     */
+    public registerOnChange(callback:(value:any) => void):void
     {
         this.onChangeCallback = callback;
     }
 
+    /**
+     * Part of the implementation of the ControlValueAccessor interface.
+     * @description Registers a given callback method which will be called whenever the form is marked as touched.
+     * This typically happens whenever a form control/field was focused and blurred.
+     * @param callback
+     */
+    public registerOnTouched(callback:() => void):void
+    {
+        this.onTouchedCallback = callback;
+    }
+
+    /**
+     * @description Get accessor for the reactive FormGroup instance that is created out of the given form fields.
+     * Can be used for validation and value patching purposes.
+     * @readonly
+     */
     public get formGroup():FormGroup
     {
         return this._formGroup;
-    }
-
-    private onTouchedCallback:() => void = ():void => undefined;
-
-    public registerOnTouched(callback:any):void
-    {
-        this.onTouchedCallback = callback;
     }
 }
