@@ -40,7 +40,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
     {
         this.formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
-        this._formGroup = TerraFormFieldHelper.parseReactiveForm(fields);
+        this._formGroup = TerraFormFieldHelper.parseReactiveForm(fields, this.values);
         this._formGroup.valueChanges.subscribe((changes:Data) =>
         {
             Object.keys(changes).forEach((key:string) =>
