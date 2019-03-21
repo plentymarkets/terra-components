@@ -77,7 +77,7 @@ export class TerraBaseEditorComponent implements OnInit, AfterViewInit, ControlV
     {
         if(this.autoFocus === true)
         {
-            this.myElement.nativeElement.querySelector('.ql-editor').focus();
+            this.focus();
         }
     }
 
