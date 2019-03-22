@@ -1,11 +1,9 @@
 import {
     Component,
-    EventEmitter,
     forwardRef,
     Input,
     OnChanges,
     OnInit,
-    Output,
     SimpleChanges,
     Type
 } from '@angular/core';
@@ -64,9 +62,6 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     {
         this.formGroup = formGroup;
     }
-
-    @Output()
-    public outputFormValueChanged:EventEmitter<TerraKeyValuePairInterface<any>> = new EventEmitter<TerraKeyValuePairInterface<any>>();
 
     protected formGroup:FormGroup;
 
