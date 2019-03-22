@@ -40,18 +40,32 @@ import { FormEntryContainerDirective } from './form-entry-container.directive';
 })
 export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, ControlValueAccessor
 {
+    /**
+     * @description Specification of the formField that should be displayed
+     */
     @Input()
     public inputFormField:TerraFormFieldInterface;
 
     /**
-     * @description Corresponding formControl to the given formField.
+     * @description FormControl instance corresponding to the given formField.
      */
     @Input()
     public inputFormControl:FormControl;
 
+    /**
+     * @description Map of supported control types. If the given formField's type is not supported a TerraTextInputComponent instance is
+     *     rendered by default.
+     *     Please note: All of the control types contained in this map have to implement the ControlValueAccessor interface.
+     * @default {} - an empty map. Hence, not a single control type is supported and the default type TerraTextInputComponent will be
+     *     rendered as well.
+     */
     @Input()
     public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
 
+    /**
+     * @description May be used to disable/enable the form field
+     * @default false
+     */
     @Input()
     public inputIsDisabled:boolean = false;
 
@@ -65,6 +79,12 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     constructor(private componentFactoryResolver:ComponentFactoryResolver)
     {}
 
+    /**
+     * Implementation of the OnInit life cycle hook.
+     * @description Dynamically creates a component that will be bound to the given FormControl instance based on the specification of the
+     *     `inputFormField`. Also starts listening to status changes of the FormControl instance to highlight the formField if it is
+     *     invalid.
+     */
     public ngOnInit():void
     {
         this.initComponent();
@@ -78,7 +98,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         });
     }
 
-    public initComponent():void
+    private initComponent():void
     {
         if(!this.hasChildren)
         {
@@ -117,11 +137,20 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         }
     }
 
+    /**
+     * Implementation of the OnChanges life cycle hook.
+     * @description updates the input bindings of the dynamically created component instance.
+     * @param changes
+     */
     public ngOnChanges(changes:SimpleChanges):void
     {
         this.bindInputProperties();
     }
 
+    /**
+     * Implementation of the OnDestroy life cycle hook.
+     * @description destroys the component that has been created dynamically.
+     */
     public ngOnDestroy():void
     {
         if(!isNullOrUndefined(this.componentRef))
@@ -130,16 +159,33 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         }
     }
 
-    public registerOnChange(fn:any):void
+    /**
+     * Part of the implementation of the ControlValueAccessor interface
+     * @description Registers a given callback method that will be called whenever the form field represented by the dynamically created
+     *     component changes its value
+     * @param changeCallback
+     */
+    public registerOnChange(changeCallback:(value:any) => void):void
     {
-        this.onChangeCallback = fn;
+        this.onChangeCallback = changeCallback;
     }
 
-    public registerOnTouched(fn:any):void
+    /**
+     * Part of the implementation of the ControlValueAccessor interface
+     * @description Registers a given callback method that will be called when the form field represented by the dynamically created
+     *     component has been touched.
+     * @param touchedCallback
+     */
+    public registerOnTouched(touchedCallback:() => void):void
     {
-        this.onTouchedCallback = fn;
+        this.onTouchedCallback = touchedCallback;
     }
 
+    /**
+     * Part of the implementation of the ControlValueAccessor interface
+     * @description Writes a given value to the form field using the writeValue method of the dynamically created component instance.
+     * @param value
+     */
     public writeValue(value:any):void
     {
         if(this.componentInstance)
@@ -148,7 +194,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         }
     }
 
-    protected bindInputProperties():void
+    private bindInputProperties():void
     {
         if(!isNullOrUndefined(this.componentInstance))
         {
