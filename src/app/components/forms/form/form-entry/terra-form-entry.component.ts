@@ -25,6 +25,7 @@ import {
 } from '@angular/forms';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { FormEntryContainerDirective } from './form-entry-container.directive';
+import { noop } from 'rxjs/util/noop';
 
 @Component({
     selector:  'terra-form-entry',
@@ -72,6 +73,9 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     private componentFactory:ComponentFactory<any>; // TODO: this has access to the inputs/outputs.. maybe use this for property binding purposes
     private componentRef:ComponentRef<any>;
     private componentInstance:any;
+
+    private onChangeCallback:(_:any) => void = noop;
+    private onTouchedCallback:() => void = noop;
 
     @ViewChild(FormEntryContainerDirective)
     private container:FormEntryContainerDirective;
@@ -188,7 +192,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
      */
     public writeValue(value:any):void
     {
-        if(this.componentInstance)
+        if(this.componentInstance && isFunction(this.componentInstance.writeValue))
         {
             this.componentInstance.writeValue(value);
         }
@@ -252,8 +256,4 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     {
         return 'input' + propertyName.charAt(0).toUpperCase() + propertyName.substr(1);
     }
-
-    private onTouchedCallback:() => void = ():void => undefined;
-
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 }
