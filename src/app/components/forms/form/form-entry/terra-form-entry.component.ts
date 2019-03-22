@@ -17,7 +17,6 @@ import {
     isFunction,
     isNullOrUndefined
 } from 'util';
-import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 import {
     ControlValueAccessor,
@@ -49,9 +48,6 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
      */
     @Input()
     public inputFormControl:FormControl;
-
-    @Input()
-    public inputScope:TerraFormScope;
 
     @Input()
     public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
