@@ -65,7 +65,9 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
     }
 
     /**
-     * @description Provide a custom control type map.
+     * @description A custom map of supported control types may be provided here.
+     *     Please note: All of the control types contained in this map have to implement the ControlValueAccessor interface.
+     * @default an instance of the TerraFormTypeMap
      */
     @Input()
     public inputControlTypeMap:any;
@@ -93,7 +95,8 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
     private onTouchedCallback:() => void = ():void => undefined;
 
     /**
-     * @description Implementation of the OnChanges life cycle hook. Reacts on changes on the bound inputs.
+     * Implementation of the OnChanges life cycle hook.
+     * @description Updates the local controlTypeMap if a custom one is passed through the input `inputControlTypeMap`.
      * @param changes
      */
     public ngOnChanges(changes:SimpleChanges):void
