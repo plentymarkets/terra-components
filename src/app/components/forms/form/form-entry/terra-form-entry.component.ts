@@ -25,7 +25,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
-import { TerraFormEntryContainerDirective } from './terra-form-entry-container.directive';
+import { FormEntryContainerDirective } from './form-entry-container.directive';
 
 @Component({
     selector:  'terra-form-entry',
@@ -63,8 +63,8 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     private componentRef:ComponentRef<any>;
     private componentInstance:any;
 
-    @ViewChild(TerraFormEntryContainerDirective)
-    private container:TerraFormEntryContainerDirective;
+    @ViewChild(FormEntryContainerDirective)
+    private container:FormEntryContainerDirective;
 
     constructor(private componentFactoryResolver:ComponentFactoryResolver)
     {}
