@@ -117,11 +117,6 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         this.onTouchedCallback = fn;
     }
 
-    public setDisabledState(isDisabled:boolean):void
-    {
-        // TODO
-    }
-
     public writeValue(value:any):void
     {
         if(isNullOrUndefined(value))
