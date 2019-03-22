@@ -49,6 +49,10 @@ export class TerraFormFieldHelper
         codeEditor:           'codeEditor'
     };
 
+    /**
+     * @description Generates a list of validators based on the given formField's options that may be attached to a FormControl instance
+     * @param formField
+     */
     public static generateValidators(formField:TerraFormFieldInterface):Array<ValidatorFn>
     {
         let validators:Array<ValidatorFn> = [];
@@ -101,6 +105,12 @@ export class TerraFormFieldHelper
         return validators;
     }
 
+    /**
+     * @description parses a set/map/key-value-list of formFields (TerraFormFieldInterface) and creates a representative FormGroup instance.
+     * This FormGroup instance may be initialized by passing a set of values.
+     * @param formFields
+     * @param values
+     */
     public static parseReactiveForm(formFields:{ [key:string]:TerraFormFieldInterface }, values?:{}):FormGroup
     {
         let controls:{ [key:string]:AbstractControl } = {};
@@ -317,6 +327,13 @@ export class TerraFormFieldHelper
         return result;
     }
 
+    /**
+     * @description scans the given form for FormArray instances recursively and adapts the amount of controls of those FormArrays to the
+     *     amount of values that will be patched to them.
+     * @param form
+     * @param formFields
+     * @param values
+     */
     public static updateFormArrays(form:FormGroup, formFields:{ [key:string]:TerraFormFieldInterface }, values:any):void
     {
         if(form instanceof FormGroup && !isObject(values))
@@ -353,7 +370,13 @@ export class TerraFormFieldHelper
         });
     }
 
-    public static createNewControl(value:any, formField:TerraFormFieldInterface):AbstractControl
+    /**
+     * @description creates a new FormControl or FormGroup instance depending on whether the given formField has children or not.
+     * The given value is used to initialize the control's value.
+     * @param value
+     * @param formField
+     */
+    public static createNewControl(value:any, formField:TerraFormFieldInterface):FormControl | FormGroup
     {
         if(isObject(value) && !isNullOrUndefined(formField.children))
         {
@@ -365,6 +388,10 @@ export class TerraFormFieldHelper
         }
     }
 
+    /**
+     * @description evaluates the upper and lower limit of form fields for a FormArray/FormEntryList based on a given string.
+     * @param range
+     */
     public static getListRange(range:boolean | string):[number, number]
     {
         let min:number;
@@ -383,6 +410,11 @@ export class TerraFormFieldHelper
         return [min || 0, max || Infinity];
     }
 
+    /**
+     * @description Fits the given list of controls into the range of the given formField by adding/removing controls.
+     * @param formField
+     * @param controls
+     */
     private static fitControlsToRange(formField:TerraFormFieldInterface, controls:Array<AbstractControl>):void
     {
         if(isNullOrUndefined(controls) || isNullOrUndefined(formField))
