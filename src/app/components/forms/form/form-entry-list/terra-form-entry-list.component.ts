@@ -22,6 +22,7 @@ import {
 } from '@angular/forms';
 import { Language } from 'angular-l10n';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
+import { noop } from 'rxjs/util/noop';
 
 @Component({
     selector:  'terra-form-entry-list',
@@ -65,8 +66,8 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
     private min:number;
     private max:number;
 
-    private onChangeCallback:(value:any) => void = () => undefined;
-    private onTouchedCallback:() => void = () => undefined;
+    private onChangeCallback:(value:any) => void = noop;
+    private onTouchedCallback:() => void = noop;
 
     public ngOnChanges(changes:SimpleChanges):void
     {

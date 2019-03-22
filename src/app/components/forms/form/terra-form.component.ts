@@ -17,6 +17,7 @@ import { TerraFormFieldInterface } from './model/terra-form-field.interface';
 import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { TerraFormFieldHelper } from './helper/terra-form-field.helper';
 import { Data } from '@angular/router';
+import { noop } from 'rxjs/util/noop';
 
 @Component({
     selector:  'terra-form',
@@ -91,8 +92,8 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
     private formFields:{ [key:string]:TerraFormFieldInterface };
     private _formGroup:FormGroup = new FormGroup({});
 
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
-    private onTouchedCallback:() => void = ():void => undefined;
+    private onChangeCallback:(value:any) => void = noop;
+    private onTouchedCallback:() => void = noop;
 
     /**
      * Implementation of the OnChanges life cycle hook.

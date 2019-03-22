@@ -19,6 +19,7 @@ import {
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
+import { noop } from 'rxjs/util/noop';
 
 @Component({
     selector:  'terra-form-container',
@@ -68,8 +69,8 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     protected formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
     protected formFieldVisibility:{ [key:string]:boolean } = {};
 
-    private onChangeCallback:(value:any) => void = (value:any):void => undefined;
-    private onTouchedCallback:() => void = ():void => undefined;
+    private onChangeCallback:(value:any) => void = noop;
+    private onTouchedCallback:() => void = noop;
 
     public ngOnInit():void
     {
