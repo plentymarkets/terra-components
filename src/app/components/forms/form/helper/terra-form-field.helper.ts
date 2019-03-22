@@ -106,7 +106,7 @@ export class TerraFormFieldHelper
     }
 
     /**
-     * @description parses a set/map/key-value-list of formFields (TerraFormFieldInterface) and creates a representative FormGroup instance.
+     * @description parses a set of formFields (TerraFormFieldInterface) and creates a representative FormGroup instance.
      * This FormGroup instance may be initialized by passing a set of values.
      * @param formFields
      * @param values
