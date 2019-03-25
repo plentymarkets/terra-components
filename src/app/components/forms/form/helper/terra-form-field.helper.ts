@@ -31,7 +31,7 @@ import { StringHelper } from '../../../../helpers/string.helper';
 
 export class TerraFormFieldHelper
 {
-    private static readonly CONTROL_TYPE_MAP:{ [key:string]:string } = {
+    private static readonly legacyControlTypeMap:{ [key:string]:string } = {
         checkBox:             'checkbox',
         conditionalContainer: 'vertical',
         datePicker:           'date',
@@ -226,7 +226,7 @@ export class TerraFormFieldHelper
             key:   field.key,
             field: null
         };
-        let type:string = this.CONTROL_TYPE_MAP[field.controlType];
+        let type:string = this.legacyControlTypeMap[field.controlType];
 
         result.field = {
             type:    type,
