@@ -18,6 +18,7 @@ import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { TerraFormFieldHelper } from './helper/terra-form-field.helper';
 import { Data } from '@angular/router';
 import { noop } from 'rxjs/util/noop';
+import { TerraFormHelper } from './helper/terra-form.helper';
 
 @Component({
     selector:  'terra-form',
@@ -41,7 +42,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
     {
         this.formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
-        this._formGroup = TerraFormFieldHelper.parseReactiveForm(fields, this.values);
+        this._formGroup = TerraFormHelper.parseReactiveForm(fields, this.values);
         this._formGroup.valueChanges.subscribe((changes:Data) =>
         {
             Object.keys(changes).forEach((key:string) =>
@@ -149,7 +150,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
         {
             this.values = values;
             this.scope.data = values;
-            TerraFormFieldHelper.updateFormArrays(this.formGroup, this.formFields, values);
+            TerraFormHelper.updateFormArrays(this.formGroup, this.formFields, values);
             this.formGroup.patchValue(values);
         }
     }

@@ -23,6 +23,7 @@ import {
 import { Language } from 'angular-l10n';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 import { noop } from 'rxjs/util/noop';
+import { TerraFormHelper } from '../helper/terra-form.helper';
 
 @Component({
     selector:  'terra-form-entry-list',
@@ -107,7 +108,7 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
         {
             let defaultValue:any = isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue;
             this.childScopes.push(this.inputScope.createChildScope(this.createChildScopeData(defaultValue)));
-            this.formArray.push(TerraFormFieldHelper.createNewControl(this.inputFormField.defaultValue, this.inputFormField));
+            this.formArray.push(TerraFormHelper.createNewControl(this.inputFormField.defaultValue, this.inputFormField));
         }
     }
 
