@@ -130,6 +130,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
     /**
      * Part of the implementation of the ControlValueAccessor interface.
      * @description Patches the passed value to the underlying FormGroup instance which updates the values of each affected form field.
+     * If null or undefined is passed, the form is reset to default values.
      * @param values
      */
     public writeValue(values:any):void
