@@ -85,10 +85,9 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
      */
     public readonly scope:TerraFormScope = new TerraFormScope();
 
-    protected values:any = {};
+    private values:any = {};
 
     private controlTypeMap:{ [key:string]:Type<any> };
-
     private formFields:{ [key:string]:TerraFormFieldInterface };
     private _formGroup:FormGroup = new FormGroup({});
 
