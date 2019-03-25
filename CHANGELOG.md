@@ -1,8 +1,19 @@
-<a name="Unreleased Changes"></a>
-# Unreleased Changes
+<a name="3.7.0"></a>
+# 3.7.0 (XX.XX.XXXX)
+
+### Features
+* **terra-form** 
+	- reworked internal implementation using reactive forms which resulted in full reactive forms support.
+	- added `formGroup` getter for a reactive FormGroup instance which represents the form created out of the `inputFormFields` specification.
+* **terra-breadcrumbs.service**
+	- new set accessor to pass the activated route to the service. This is used to evaluate the `initialPath` and the `initialRoute`.
+	- set accessor for initialPath is now deprecated. Use set accessor for activatedRoute instead.
+* **activated-route.helper** new helper for ActivatedRoute related functionality.
 
 ### Bug Fixes
+* **terra-breadcrumbs** fix issue where the initial path was not evaluated properly
 * **tooltips** tooltip color in light theme is now dark for better contrast
+
 
 <a name="3.7.0-beta.2"></a>
 # 3.7.0-beta.2 (14.03.2019)
