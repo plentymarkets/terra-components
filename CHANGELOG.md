@@ -14,7 +14,6 @@
 * **terra-breadcrumbs** fix issue where the initial path was not evaluated properly
 * **tooltips** tooltip color in light theme is now dark for better contrast
 
-
 <a name="3.7.0-beta.2"></a>
 # 3.7.0-beta.2 (14.03.2019)
 
