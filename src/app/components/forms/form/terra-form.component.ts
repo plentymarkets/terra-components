@@ -17,6 +17,7 @@ import { TerraFormFieldInterface } from './model/terra-form-field.interface';
 import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { TerraFormFieldHelper } from './helper/terra-form-field.helper';
 import { Data } from '@angular/router';
+import { TerraFormFieldBase } from '../dynamic-form/data/terra-form-field-base';
 
 @Component({
     selector:  'terra-form',
@@ -37,7 +38,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
      * @param fields
      */
     @Input()
-    public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
+    public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface } | Array<TerraFormFieldBase<any>>)
     {
         this.formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
         this._formGroup = TerraFormFieldHelper.parseReactiveForm(fields, this.values);
@@ -55,7 +56,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
     /**
      * @description Get accessor for the form fields. Returns the previously set form fields.
      */
-    public get inputFormFields():{ [key:string]:TerraFormFieldInterface }
+    public get inputFormFields():{ [key:string]:TerraFormFieldInterface } | Array<TerraFormFieldBase<any>>
     {
         if(isNullOrUndefined(this.formFields))
         {
