@@ -144,8 +144,6 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
             this.values = defaultValues;
             this.scope.data = defaultValues;
             this.formGroup.reset(defaultValues);
-            // this.formGroup.patchValue(defaultValues);
-            // this.formGroup.markAsUntouched();
         }
         else if(this.scope.data !== values)
         {
