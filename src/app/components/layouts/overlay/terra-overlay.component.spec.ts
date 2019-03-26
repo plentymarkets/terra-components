@@ -6,7 +6,6 @@ import {
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TerraOverlayComponent } from './terra-overlay.component';
-import Spy = jasmine.Spy;
 import {
     ModalDirective,
     ModalModule,
@@ -17,6 +16,7 @@ import {
     mockButtonOne,
     mockButtonTwo
 } from '../../../testing/mock-buttons';
+import Spy = jasmine.Spy;
 
 describe('TerraOverlayComponent', () =>
 {

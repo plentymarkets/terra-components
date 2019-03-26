@@ -7,6 +7,7 @@ import {
 
 /**
  * @author mscharf
+ * @deprecated This component will be deleted in the next major release. Use `<tc-filter>` instead.
  */
 @Component({
     selector: 'terra-filter',

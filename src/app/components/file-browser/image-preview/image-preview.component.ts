@@ -4,9 +4,7 @@ import {
     Input
 } from '@angular/core';
 import { TerraStorageObject } from '../model/terra-storage-object';
-import {
-    TerraBaseStorageService
-} from '../terra-base-storage.interface';
+import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraImageMetadata } from '../model/terra-image-metadata.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraBaseMetadataStorageService } from '../terra-base-metadata-storage.interface';

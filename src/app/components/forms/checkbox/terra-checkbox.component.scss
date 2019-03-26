@@ -4,6 +4,11 @@ input[type="checkbox"]
     margin-right: 0.3em;
 }
 
+.checkbox-container
+{
+    width: fit-content;
+}
+
 .disabled-chk
 {
     cursor: not-allowed;
@@ -48,7 +53,7 @@ input[type="checkbox"]
         {
             border-color: var(--color-active);
         }
-    
+        
         input[type="checkbox"]:indeterminate ~ .check:after
         {
             background-color: var(--color-active);
@@ -70,7 +75,7 @@ input[type="checkbox"]
             {
                 border-color: var(--color-active);
             }
-    
+            
             &:indeterminate ~ .check:after
             {
                 background-color: var(--color-active);

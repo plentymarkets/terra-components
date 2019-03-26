@@ -12,7 +12,8 @@ import {
 import {
     IMyDateModel,
     IMyOptions,
-    MyDatePicker
+    MyDatePicker,
+    IMyInputFocusBlur
 } from 'mydatepicker';
 import { isNullOrUndefined } from 'util';
 import moment = require('moment');
@@ -148,25 +149,47 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 
     public set value(value:IMyDateModel)
     {
-        if(!isNullOrUndefined(value) && typeof(value) === 'object')
+        if(!isNullOrUndefined(value) && typeof (value) === 'object')
         {
             this._value = value;
-
-            this.onTouchedCallback();
-            this.onChangeCallback(moment(value.jsdate).format());
         }
         else
         {
             this._value = null;
-
-            this.onTouchedCallback();
-            this.onChangeCallback(null);
         }
     }
 
     public clearDate():void
     {
         this.viewChildMyDatePicker.clearDate();
+    }
+
+    /**
+     * Is triggered on `ngModelChange` and executes `onChangeCallBack`
+     * @param value
+     */
+    protected onChange(value:IMyDateModel):void
+    {
+        if(!isNullOrUndefined(value))
+        {
+            this.onChangeCallback(moment(value.jsdate).format());
+        }
+        else
+        {
+            this.onChangeCallback(null);
+        }
+    }
+
+    /**
+     * Is triggered on `inputFocusBlur` and executes `onTouchedCallback` if a blur event is emitted
+     * @param event
+     */
+    protected onFocusOrBlur(event:IMyInputFocusBlur):void
+    {
+        if(event.reason === 2) // blur
+        {
+            this.onTouchedCallback();
+        }
     }
 
     private updateDatePickerOptions():void

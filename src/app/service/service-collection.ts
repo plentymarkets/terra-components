@@ -9,7 +9,8 @@ import { TerraJsonToFormFieldService } from '../components/forms/dynamic-form/se
 import { TerraMultiSplitViewBreadcrumbsService } from '../components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
 import { TerraFormFieldControlService } from '../components/forms/dynamic-form/service/terra-form-field-control.service';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
-import { TerraFileBrowserService } from '../..';
+import { AlertService } from '../components/alert/alert.service';
+import { TerraFileBrowserService } from '../components/file-browser/terra-file-browser.service';
 
 export const services:Array<Provider> = [
     TerraFileBrowserService,
@@ -22,5 +23,6 @@ export const services:Array<Provider> = [
     TerraFormFieldControlService,
     TerraJsonToFormFieldService,
     TerraMultiSplitViewBreadcrumbsService,
-    TerraBreadcrumbsService
+    TerraBreadcrumbsService,
+    AlertService
 ];

@@ -1,4 +1,122 @@
-<a name="3.0.0></a>
+<a name="3.X.X"></a>
+# 3.X.X (XX.XX.2019)
+
+### Bug Fixes
+* **terra-multi-check-box** does not call change callbacks on `writeValue()` anymore.
+
+<a name="3.7.0-beta.3"></a>
+# 3.7.0-beta.3 (26.03.2019)
+
+### Bug Fixes
+* **tooltips** tooltip color in light theme is now dark for better contrast
+* **terra-select-box** fixed padding on compact mode
+
+<a name="3.7.0-beta.2"></a>
+# 3.7.0-beta.2 (14.03.2019)
+
+### Bug Fixes
+* **terra-breadcrumbs.service** fixed issue with leading slashes on the `initialPath`
+
+<a name="3.7.0-beta.1"></a>
+# 3.7.0-beta.1 (14.03.2019)
+
+### Features
+* **terra-breadcrumbs.service**
+	- new set accessor to pass the activated route to the service. This is used to evaluate the `initialPath` and the `initialRoute`.
+	- set accessor for initialPath is now deprecated. Use set accessor for activatedRoute instead.
+* **activated-route.helper** new helper for ActivatedRoute related functionality.
+
+### Bug Fixes
+* **terra-breadcrumbs** fix issue where the initial path was not evaluated properly
+
+<a name="3.7.0-beta.0"></a>
+# 3.7.0-beta.0 (13.03.2019)
+
+### Features
+* **terra-form** preliminary support for validation using reactive forms. Implementation may change in a following release.
+
+<a name="3.6.0"></a>
+# 3.6.0 (13.03.2019)
+
+### Bug Fixes
+* **alerts** added `AlertService` to index.ts to be able to import it from _@plentymarkets/terra-components_
+* **terra-date-picker** fixed issue with early dates
+* **terra-card** vertical alignment of multiple cards if one card uses an icon and another uses an image.
+
+### Features
+* **terra-base.service** extended typedef of `dataId` parameter in caching methods. Strings may now be used as index as well.
+* **tc-checkbox-group** & **terra-multi-check-box** are now collapsible. Added new input `collapsed` which - if set to true - collapses the component to its header initially.
+* **terra-data-table** `<terra-input>`, `<terra-select-box>` and `<terra-multi-check-box>` that will be inserted into a table cell have now adjusted styles to fit into the layout.
+
+<a name="3.5.1"></a>
+# 3.5.1 (20.02.2019)
+
+### Bug Fixes
+* **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
+* **terra-form** now emits changes on array or object values correctly
+
+<a name="3.5.0"></a>
+# 3.5.0 (18.02.2019)
+
+### Features 
+* **icon font** added new icons: icon-content_check_out, icon-content_my_account, icon-new_order, icon-reply_all, icon-reply
+
+### Bug Fixes
+* **terra-toggle-button** removed function groups for toggle buttons
+
+<a name="3.4.0"></a>
+# 3.4.0 (12.02.2019)
+
+### Features 
+* **terra-checkbox** added support for tooltips
+
+### Bug Fixes
+* **terra-category-picker** REST calls will no longer be triggered twice.
+* **terra-breadcrumbs** hide breadcrumb container if it contains only breadcrumbs without labels.
+* **tc-checkbox-group** `null` can now be written to the input and `null` will also be returned if there is nothing selected
+* **terra-info** Tooltip will be shown correctly in a scrollable view.
+
+<a name="3.3.0"></a>
+# 3.3.0 (04.02.2019)
+
+### Features 
+* **webpack update** updated to latest version of webpack due to security vulnerabilities
+* **tc-checkbox-group** new component which wraps `<terra-multi-check-box>` to separate available checkbox definition from ngModel
+* **terra-form** added support for `<terra-checkbox-group>`
+* **terra-form** added support for `<terra-slider>`
+
+### Bug Fixes
+* **terra-form-entry** fixed initialization with defaultValue
+* **terra-form-entry** check if component property is decorated before assigning value dynamically
+
+<a name="3.2.0"></a>
+# 3.2.0 (23.01.2019)
+
+### Features
+* **terra-alert** new alerts are now added to the top of the list
+* **tc-filter** new component which replaces `<terra-filter`.
+* **terra-filter** is now deprecated. Use `<tc-filter>` instead.
+* **TerraSplitViewComponentInterface** is now deprecated. See the [SplitView Migration Guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide) for a replacement.
+* **terra-portlet** added input `infoText` which is shown as `<terra-info>` element in the portlet's header
+* **AlertService** new service providing functionality to manage alerts. Those can also be used in a plugin.
+* **terra-alert** is now deprecated. Use new `AlertService` instead.
+* **ibanValidator** new validator for reactive forms checking whether a text is a valid IBAN.
+* **TerraValidators** new class that provides a set of additional validators for reactive forms.
+* **terra-data-table** add `useContentBody` input property. If set the auto rendering of rows/cells is disabled and content projection is enabled.
+* **table-row** added for the new `terra-data-table` content projection feature
+* **terra-select-box** `inputSelectedValue` and `inputSelectedValueChange` are now deprecated. Please use `ngModel`-binding and the `ngModelChange`-callback instead.
+
+### Bug Fixes
+* **terra-pager** inject current language to be able to translate the texts in the template properly.
+* **terra-form** correctly distinguish required inputs by adding an asterisk to the end of their names
+
+<a name="3.1.0"></a>
+# 3.1.0 (07.01.2019)
+
+### Features
+* **terra-portlet** Collapsable portlets can now be disabled by setting the `inputIsDisabled`-property.
+
+<a name="3.0.0"></a>
 # 3.0.0 (18.12.2018)
 
 ### Breaking changes
@@ -109,6 +227,9 @@ The following deprecated components have been deleted:
 * **tc-radio-group** new component to contain and manage `<tc-radio-input>` elements. It implements the `ControlValueAccessor` interface (`ngModel`) to be able to use it in a form.
 * **terra-radio-button** is now deprecated. Use `<tc-radio-input>` and `<tc-radio-group>` instead.
 * **terra-check-box** removed outline css
+
+### Changes
+* **file-list** change text of the delete confirmation
 
 ### Bug Fixes
 * **terra-node-tree** 

@@ -1,10 +1,8 @@
 import {
     Component,
     ElementRef,
-    EventEmitter,
     Input,
-    OnInit,
-    Output
+    OnInit
 } from '@angular/core';
 import { TranslationService } from 'angular-l10n';
 import {
@@ -18,9 +16,7 @@ import { isNullOrUndefined } from 'util';
     template:  require('./terra-base-editor.component.html'),
     styles:    [
         require('./terra-base-editor.component.scss'),
-        require('quill/dist/quill.bubble.css'),
-        require('quill/dist/quill.snow.css'),
-        require('./terra-base-editor.component.glob.scss').toString()
+        require('./terra-base-editor.component.glob.scss')
     ],
     providers: [{
         provide:     NG_VALUE_ACCESSOR,

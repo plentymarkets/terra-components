@@ -19,6 +19,7 @@ import { buttonList } from '../../../testing/mock-buttons';
 import { TerraPortletComponent } from './terra-portlet.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
+import { TerraInfoComponent } from '../../info/terra-info.component';
 
 describe('TerraPortletComponent', () =>
 {
@@ -34,7 +35,8 @@ describe('TerraPortletComponent', () =>
             declarations: [
                 TerraPortletComponent,
                 TerraButtonComponent,
-                TerraLabelTooltipDirective
+                TerraLabelTooltipDirective,
+                TerraInfoComponent
             ],
             imports:      [
                 TooltipModule.forRoot(),
@@ -65,10 +67,12 @@ describe('TerraPortletComponent', () =>
         expect(component.inputPortletHeader).toBeUndefined();
         expect(component.inputIsCollapsable).toBe(false);
         expect(component.inputCollapsed).toBe(false);
+        expect(component.inputIsDisabled).toBe(false);
         expect(component.inputButtonList).toEqual([]);
+        expect(component.infoText).toBeUndefined();
     });
 
-    it(`should set classes accordingly to 'inputIsCollapsable' and 'inputHighlightPortlet'`, () =>
+    it(`should set classes accordingly to 'inputIsCollapsable', 'inputHighlightPortlet' and 'inputIsDisabled'`, () =>
     {
         const portletDiv:DebugElement = debugElement.query(By.css('div.portlet'));
 
@@ -79,6 +83,10 @@ describe('TerraPortletComponent', () =>
         component.inputHighlightPortlet = true;
         fixture.detectChanges();
         expect(portletDiv.classes['highlight']).toBe(true);
+
+        component.inputIsDisabled = true;
+        fixture.detectChanges();
+        expect(portletDiv.classes['disabled']).toBe(true);
     });
 
     it(`should have a visible header after 'inputPortletHeader' is set`, () =>
@@ -134,6 +142,28 @@ describe('TerraPortletComponent', () =>
 
         expect(debugElement.query(By.css('span.icon-collapse_down'))).toBeFalsy();
         expect(debugElement.query(By.css('span.icon-collapse_up'))).toBeTruthy();
+    });
+
+    it(`should keep the collapse state when disabled`, () =>
+    {
+        component.inputPortletHeader = portletHeader;
+        component.inputIsCollapsable = true;
+        component.inputIsDisabled = true;
+        fixture.detectChanges();
+
+        let onHeaderClick:Spy = spyOn(component, 'toggleCollapse');
+
+        expect(component.inputCollapsed).toBe(false);
+        expect(debugElement.query(By.css('span.icon-collapse_down'))).toBeTruthy();
+        expect(debugElement.query(By.css('span.icon-collapse_up'))).toBeFalsy();
+
+        debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
+        fixture.detectChanges();
+
+        expect(onHeaderClick).toHaveBeenCalled();
+        expect(component.inputCollapsed).toBe(false);
+        expect(debugElement.query(By.css('span.icon-collapse_down'))).toBeTruthy();
+        expect(debugElement.query(By.css('span.icon-collapse_up'))).toBeFalsy();
     });
 
     it(`should collapse icon only of 'inputIsCollapsable' set to true`, () =>
@@ -237,6 +267,22 @@ describe('TerraPortletComponent', () =>
             testButton(button.componentInstance, buttonList[index]);
             testButtonClickFunction(button.componentInstance, buttonList[index]);
         });
+    });
+
+    it(`should render the info component if 'infoText' is set`, () =>
+    {
+        let infoElement:DebugElement;
+        component.inputPortletHeader = 'Test header';
+        fixture.detectChanges();
+
+        infoElement = debugElement.query(By.css('terra-info'));
+        expect(infoElement).toBeFalsy();
+
+        component.infoText = 'info text';
+        fixture.detectChanges();
+
+        infoElement = debugElement.query(By.css('terra-info'));
+        expect(infoElement).toBeTruthy();
     });
 
     function testButton(button:TerraButtonComponent, buttonInterface:TerraButtonInterface):void
