@@ -1,5 +1,5 @@
-<a name="Unreleased Changes"></a>
-# Unreleased Changes
+<a name="3.7.0-beta.3"></a>
+# 3.7.0-beta.3 (26.03.2019)
 
 ### Features
 * **terra-code-editor** added input `tooltipText` and `tooltipPlacement` to display tooltips, default placement is `top`
