@@ -1,17 +1,17 @@
 <a name="3.X.X"></a>
 # 3.X.X (XX.XX.2019)
 
+### Changes
+* **terra-checkbox**
+	- set/get `value` is now deprecated. Use ngModel instead.
+	- `valueChange` is now deprecated. Use ngModelChange-Callback instead.
+
 ### Bug Fixes
 * **terra-multi-check-box** does not call change callbacks on `writeValue()` anymore.
 * **terra-checkbox** change callback is not executed anymore when a value is set via `writeValue()` or `value` set accessor
 
 <a name="3.7.0-beta.3"></a>
 # 3.7.0-beta.3 (26.03.2019)
-
-### Changes
-* **terra-checkbox**
-	- set/get `value` is now deprecated. Use ngModel instead.
-	- `valueChange` is now deprecated. Use ngModelChange-Callback instead.
 
 ### Bug Fixes
 * **tooltips** tooltip color in light theme is now dark for better contrast
