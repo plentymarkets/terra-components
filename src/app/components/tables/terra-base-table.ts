@@ -41,7 +41,7 @@ export class TerraBaseTable<T>
         return this.rowList.filter((row:TerraDataTableRowInterface<T>) => row.selected);
     }
 
-    protected rowClicked(row:TerraDataTableRowInterface<T>):void
+    public rowClicked(row:TerraDataTableRowInterface<T>):void
     {
         if(!row.disabled)
         {
@@ -51,8 +51,24 @@ export class TerraBaseTable<T>
             });
 
             row.isActive = true;
-            row.clickFunction();
+
+            if(!isNullOrUndefined(row.clickFunction))
+            {
+                row.clickFunction();
+            }
         }
+    }
+
+    public onRowCheckboxChange(row:TerraDataTableRowInterface<T>):void
+    {
+        // notify component user
+        this.outputRowCheckBoxChanged.emit(row);
+
+        // update row selection
+        row.selected = !row.selected;
+
+        // update header checkbox state
+        this.updateHeaderCheckboxState();
     }
 
     protected onHeaderCheckboxChange():void
@@ -65,18 +81,6 @@ export class TerraBaseTable<T>
         {
             this.selectAllRows();
         }
-    }
-
-    protected onRowCheckboxChange(row:TerraDataTableRowInterface<T>):void
-    {
-        // notify component user
-        this.outputRowCheckBoxChanged.emit(row);
-
-        // update row selection
-        row.selected = !row.selected;
-
-        // update header checkbox state
-        this.updateHeaderCheckboxState();
     }
 
     private checkHeaderCheckbox():void

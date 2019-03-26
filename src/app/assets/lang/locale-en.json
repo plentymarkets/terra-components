@@ -15,7 +15,7 @@
 		"myFiles": "My files",
 		"createFolder": "Create folder",
 		"confirmDelete": "Delete this file?",
-		"confirmDeleteMany": "Delete {{ count }} files?",
+		"confirmDeleteMany": "Really delete {{ count }} files?",
 		"deleteFolder": "Delete folder",
 		"deleteFile": "Delete file",
 		"deleteSelectedFiles": "Delete selected files",
@@ -115,6 +115,10 @@
 	"terraStopwatch": {
 		"start": "Start",
 		"pause": "Pause",
+		"reset": "Reset"
+	},
+	"filter": {
+		"search": "Search",
 		"reset": "Reset"
 	}
 }

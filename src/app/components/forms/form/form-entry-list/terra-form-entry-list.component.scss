@@ -4,7 +4,7 @@
     {
         float: right;
     }
-    
+
     margin-bottom: var(--space-sm);
 }
 
@@ -12,7 +12,7 @@
 {
     padding-right: calc(var(--height-md) + var(--space-sm));
     position: relative;
-    
+
     > terra-button
     {
         position: absolute;

@@ -18,6 +18,9 @@ export class TerraCardComponent implements AfterContentChecked
     @ViewChild('header')
     public viewChildHeader:ElementRef;
 
+    @ViewChild('body')
+    public viewChildBody:ElementRef;
+
     @ViewChild('footer')
     public viewChildFooter:ElementRef;
 
@@ -40,17 +43,20 @@ export class TerraCardComponent implements AfterContentChecked
     public inputIsSelected:boolean = false;
 
     private showHeader:boolean;
+    private showBody:boolean;
     private showFooter:boolean;
 
     constructor()
     {
         this.showHeader = false;
+        this.showBody = false;
         this.showFooter = false;
     }
 
     public ngAfterContentChecked():void
     {
         this.showHeader = this.viewChildHeader.nativeElement.children.length > 0;
+        this.showBody = this.viewChildBody.nativeElement.children.length > 0;
         this.showFooter = this.viewChildFooter.nativeElement.children.length > 0;
     }
 

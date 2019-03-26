@@ -41,6 +41,7 @@ import { examples } from './components/example-collection';
 import { services } from './service/service-collection';
 import { directives } from './components/directive-collection';
 import { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
+import { AlertService } from './components/alert/alert.service';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -48,9 +49,18 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
 }
 
 @NgModule({
-    declarations:    [TerraComponentsComponent, ...components, ...directives, ...examples],
+    declarations:    [
+        TerraComponentsComponent,
+        ...components,
+        ...directives,
+        ...examples
+    ],
     entryComponents: exportedComponents,
-    exports:         [...exportedComponents, ...directives, ...examples],
+    exports:         [
+        ...exportedComponents,
+        ...directives,
+        ...examples
+    ],
     imports:         [
         BrowserModule,
         BrowserAnimationsModule,
@@ -72,6 +82,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
     ],
     providers:       [
         TerraLoadingSpinnerService,
+        AlertService,
         {
             provide:  COMPILER_OPTIONS,
             useValue: {},

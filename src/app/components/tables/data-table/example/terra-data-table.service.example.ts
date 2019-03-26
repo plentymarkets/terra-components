@@ -80,15 +80,12 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
 
     public addEntry():void
     {
-        for(let i:number = 0; i <= 50; i++)
-        {
-            this.data.push(
-                {
-                    id:    this.data.reduce((a:number, b:TerraDataTableExampleInterface) => Math.max(a, b.id), 0) + 1,
-                    value: Math.random()
-                }
-            );
-        }
+        this.data.push(
+            {
+                id:    this.data.reduce((a:number, b:TerraDataTableExampleInterface) => Math.max(a, b.id), 0) + 1,
+                value: Math.random()
+            }
+        );
     }
 
     public dataToRowMapping(entry:TerraDataTableExampleInterface):TerraDataTableRowInterface<TerraDataTableExampleInterface>
@@ -113,6 +110,8 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
                 }]
             }
         ];
+
+        entry.mail = entry.value + '@test.com';
 
         return {
             cellList:      cellList,

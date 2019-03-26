@@ -10,14 +10,18 @@ import { TerraFormFieldInputDouble } from '../../dynamic-form/data/terra-form-fi
 import { TerraFormFieldInputFile } from '../../dynamic-form/data/terra-form-field-input-file';
 import { TerraFormFieldMultiCheckBox } from '../../dynamic-form/data/terra-form-field-multi-check-box';
 import {
-    TERRA_FORM_PROPERTY_METADATA_KEY,
-    TerraControlTypeEnum,
-    TerraFormFieldBase,
-    TerraFormFieldInputText,
-    TerraFormFieldSelectBox,
-    TerraJsonToFormFieldService,
-    TerraFormFieldInterface
-} from '../../../../../';
+    ValidatorFn,
+    Validators
+} from '@angular/forms';
+import { TerraValidators } from '../../../../validators/validators';
+import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
+import { TERRA_FORM_PROPERTY_METADATA_KEY } from '../model/terra-form-property.decorator';
+import { TerraFormFieldBase } from '../../dynamic-form/data/terra-form-field-base';
+import { TerraJsonToFormFieldService } from '../../dynamic-form/service/terra-json-to-form-field.service';
+import { TerraControlTypeEnum } from '../../dynamic-form/enum/terra-control-type.enum';
+import { TerraFormFieldInputText } from '../../dynamic-form/data/terra-form-field-input-text';
+import { TerraFormFieldSelectBox } from '../../dynamic-form/data/terra-form-field-select-box';
+import { StringHelper } from '../../../../helpers/string.helper';
 
 export class TerraFormFieldHelper
 {
@@ -38,6 +42,58 @@ export class TerraFormFieldHelper
         noteEditor:           'noteEditor',
         codeEditor:           'codeEditor'
     };
+
+    public static generateValidators(formField:TerraFormFieldInterface):Array<ValidatorFn>
+    {
+        let validators:Array<ValidatorFn> = [];
+
+        if(isNullOrUndefined(formField.options))
+        {
+            return validators;
+        }
+
+        if(formField.options.required)
+        {
+            validators.push(Validators.required);
+        }
+
+        if(formField.options.minLength >= 0)
+        {
+            validators.push(Validators.minLength(formField.options.minLength));
+        }
+
+        if(formField.options.maxLength >= 0)
+        {
+            validators.push(Validators.maxLength(formField.options.maxLength));
+        }
+
+        if(!isNullOrUndefined(formField.options.minValue))
+        {
+            validators.push(Validators.min(formField.options.minValue));
+        }
+
+        if(!isNullOrUndefined(formField.options.maxValue))
+        {
+            validators.push(Validators.max(formField.options.maxValue));
+        }
+
+        if(!StringHelper.isNullUndefinedOrEmpty(formField.options.pattern) || formField.options.pattern instanceof RegExp)
+        {
+            validators.push(Validators.pattern(formField.options.pattern));
+        }
+
+        if(formField.options.email)
+        {
+            validators.push(Validators.email);
+        }
+
+        if(formField.options.isIban)
+        {
+            validators.push(TerraValidators.iban);
+        }
+
+        return validators;
+    }
 
     public static extractFormFields(formModel:any):{ [key:string]:TerraFormFieldInterface }
     {

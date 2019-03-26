@@ -14,9 +14,9 @@ import {
 import { Language } from 'angular-l10n';
 
 @Component({
-    selector: 'terra-group-function',
-    template: require('./terra-group-function.component.html'),
-    styles: [require('./terra-group-function.component.scss')],
+    selector:   'terra-group-function',
+    template:   require('./terra-group-function.component.html'),
+    styles:     [require('./terra-group-function.component.scss')],
     animations: [
         trigger('collapsedState', [
             state('hidden', style({

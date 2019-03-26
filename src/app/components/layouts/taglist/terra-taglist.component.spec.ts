@@ -19,8 +19,9 @@ describe('TerraTaglistComponent', () =>
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [TerraTagComponent, TerraTaglistComponent],
-            imports: [MockTranslationModule]
+            declarations: [TerraTagComponent,
+                           TerraTaglistComponent],
+            imports:      [MockTranslationModule]
         }).compileComponents();
     }));
 

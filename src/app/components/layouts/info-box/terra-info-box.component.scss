@@ -9,11 +9,11 @@
     margin: var(--space-container);
     height: var(--input-info-box-height, 150px);
     box-shadow: var(--box-shadow);
-    
+
     &.selected
     {
         background-color: var(--color-active);
-        
+
         .info-box-inner
         {
             .info-box-text
@@ -21,6 +21,7 @@
                 color: var(--color-structure-0);
             }
         }
+
         .info-box-footer
         {
             .info-box-id
@@ -29,23 +30,25 @@
             }
         }
     }
+
     &.empty
     {
         background: var(--color-structure-4);
         justify-content: center;
         line-height: 8rem;
     }
+
     .info-box-inner
     {
         display: flex;
         justify-content: space-between;
         max-height: 100%;
-        
+
         &.has-footer
         {
             height: calc(100% - 26px);
         }
-        
+
         .info-box-text
         {
             padding-bottom: 0.4rem;
@@ -56,20 +59,24 @@
             text-overflow: ellipsis;
             overflow-y: auto;
         }
+
         .has-buttons
         {
             max-width: 85%;
             padding-right: 0.8rem;
         }
+
         .no-word-break
         {
             white-space: normal;
         }
     }
+
     .info-box-footer
     {
         display: flex;
         justify-content: space-between;
+
         .info-box-id
         {
             margin: 7px 4px 0 0;

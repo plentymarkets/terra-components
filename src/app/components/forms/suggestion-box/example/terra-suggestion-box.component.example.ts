@@ -18,7 +18,7 @@ export class TerraSuggestionBoxComponentExample implements OnInit
     protected contacts:Array<any> = [
         {
             name: 'Max',
-            age: 26
+            age:  26
         },
         {
             name: 'Max Mustermann',

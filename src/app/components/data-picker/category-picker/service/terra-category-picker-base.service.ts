@@ -13,9 +13,10 @@ export abstract class TerraCategoryPickerBaseService
     /**
      * @description Placeholder for the specific data-retrieval method. In General the specific rest call is given here.
      * @param {string | number} categoryId
+     * @param {number} level
      * @returns {Observable<TerraPagerInterface<CategoryDataInterface>>}
      */
-    public abstract requestCategoryData(categoryId:string | number):Observable<TerraPagerInterface<CategoryDataInterface>>;
+    public abstract requestCategoryData(categoryId:string | number, level:number):Observable<TerraPagerInterface<CategoryDataInterface>>;
 
     public abstract requestCategoryDataById(id:number):Observable<TerraPagerInterface<CategoryDataInterface>>;
 }

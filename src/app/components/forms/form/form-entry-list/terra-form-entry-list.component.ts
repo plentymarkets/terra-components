@@ -1,6 +1,7 @@
 import {
     Component,
     EventEmitter,
+    Host,
     Input,
     OnInit,
     Output,
@@ -13,7 +14,8 @@ import {
     isString
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
-import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
+import { FormArray } from '@angular/forms';
+import { TerraFormContainerComponent } from '../../../../..';
 
 @Component({
     selector: 'terra-form-entry-list',
@@ -57,7 +59,7 @@ export class TerraFormEntryListComponent implements OnInit
                 this.itemScopes = this.value.map((entry:{ key:number, value:any }) =>
                 {
                     return this.inputScope.createChildScope(
-                        this.createChildScopeData( entry.value )
+                        this.createChildScopeData(entry.value)
                     );
                 });
             }
@@ -80,12 +82,18 @@ export class TerraFormEntryListComponent implements OnInit
     @Output()
     public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
 
+    public formArray:FormArray;
+
     protected min:number;
     protected max:number;
 
     private value:Array<{ key:number, value:any }> = [];
 
     private itemScopes:Array<TerraFormScope> = [];
+
+    constructor(@Host() public formContainer:TerraFormContainerComponent)
+    {
+    }
 
     public ngOnInit():void
     {
@@ -104,6 +112,10 @@ export class TerraFormEntryListComponent implements OnInit
             }
             this.fillRange();
         }
+
+        this.formArray = new FormArray([]);
+
+        this.formContainer.formGroup.addControl(this.inputFormFieldKey, this.formArray);
     }
 
     protected get canAddElement():boolean
