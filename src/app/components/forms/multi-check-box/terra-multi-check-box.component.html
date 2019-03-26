@@ -5,7 +5,8 @@
                  [class.roundedBottomBorder]="collapsed"
                  (click)="toggleCollapsed()">
                 <div class="checkbox-container">
-                    <terra-checkbox (click)="$event.stopPropagation()"
+                    <terra-checkbox type="checkbox"
+                                    (click)="$event.stopPropagation()"
                                     [inputIsDisabled]="inputIsDisabled"
                                     [isIndeterminate]="headerCheckboxIndeterminate"
                                     [inputCaption]="inputName.toUpperCase()"
