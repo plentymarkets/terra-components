@@ -205,11 +205,12 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                 // If the node hasn't already been added the routine will be started
                 if(isNullOrUndefined(this.nestedTreeConfig.findNodeById(categoryData.id)) && categoryData.details.length > 0)
                 {
-                    if(!isNullOrUndefined(this.inputLanguage) && this.inputPlentyId > 0)
+                    if(!isNullOrUndefined(this.inputLanguage))
                     {
                         categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
                         {
-                            return foundDetail.lang === this.inputLanguage && foundDetail.plentyId === this.inputPlentyId;
+                            return foundDetail.lang === this.inputLanguage && (foundDetail.plentyId === this.inputPlentyId ||
+                                                                               isNullOrUndefined(this.inputPlentyId));
                         });
 
                         // Check if there is a detail only for the language
@@ -226,7 +227,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                         {
                             categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
                             {
-                                return foundDetail.plentyId === this.inputPlentyId;
+                                return foundDetail.plentyId === this.inputPlentyId || isNullOrUndefined(this.inputPlentyId);
                             });
                         }
 
