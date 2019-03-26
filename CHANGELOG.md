@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 * **tooltips** tooltip color in light theme is now dark for better contrast
+* **terra-category-picker** added webstore id input to pass the current store and display the cetegories accordingly
 
 <a name="3.7.0-beta.2"></a>
 # 3.7.0-beta.2 (14.03.2019)
