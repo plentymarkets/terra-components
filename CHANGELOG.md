@@ -1,3 +1,8 @@
+# Unreleased
+
+### Feature
+* **terra-category-picker** added webstore id input to pass the current store and display the cetegories accordingly
+
 <a name="3.X.X"></a>
 # 3.X.X (XX.XX.2019)
 
@@ -10,9 +15,6 @@
 ### Bug Fixes
 * **tooltips** tooltip color in light theme is now dark for better contrast
 * **terra-select-box** fixed padding on compact mode
-
-### Feature
-* **terra-category-picker** added webstore id input to pass the current store and display the cetegories accordingly
 
 <a name="3.7.0-beta.2"></a>
 # 3.7.0-beta.2 (14.03.2019)
