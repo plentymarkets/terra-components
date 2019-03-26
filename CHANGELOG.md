@@ -1,5 +1,12 @@
-<a name="Unreleased Changes"></a>
-# Unreleased Changes
+<a name="3.X.X"></a>
+# 3.X.X (XX.XX.2019)
+
+### Bug Fixes
+* **terra-multi-check-box** does not call change callbacks on `writeValue()` anymore.
+* **terra-checkbox** change callback is not executed anymore when a value is set via `writeValue()` or `value` set accessor
+
+<a name="3.7.0-beta.3"></a>
+# 3.7.0-beta.3 (26.03.2019)
 
 ### Changes
 * **terra-checkbox**
@@ -8,7 +15,7 @@
 
 ### Bug Fixes
 * **tooltips** tooltip color in light theme is now dark for better contrast
-* **terra-checkbox** change callback is not executed anymore when a value is set via `writeValue()` or `value` set accessor
+* **terra-select-box** fixed padding on compact mode
 
 <a name="3.7.0-beta.2"></a>
 # 3.7.0-beta.2 (14.03.2019)
