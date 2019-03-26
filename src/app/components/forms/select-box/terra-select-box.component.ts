@@ -169,9 +169,10 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 
         if(!isNullOrUndefined(value))
         {
-            let valueToSelect:any = this.inputListBoxValues.find((item:TerraSelectBoxValueInterface) => item.value === value);
-
-
+            let valueToSelect:TerraSelectBoxValueInterface = this.inputListBoxValues.find((item:TerraSelectBoxValueInterface) =>
+            {
+                return item.value === value;
+            });
             if(!isNullOrUndefined(valueToSelect))
             {
                 this.selectedValue = valueToSelect;
