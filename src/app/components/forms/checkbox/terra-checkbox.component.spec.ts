@@ -1,9 +1,7 @@
 import { TerraCheckboxComponent } from './terra-checkbox.component';
 import {
     ComponentFixture,
-    fakeAsync,
-    TestBed,
-    tick
+    TestBed
 } from '@angular/core/testing';
 import { TooltipModule } from 'ngx-bootstrap';
 import { By } from '@angular/platform-browser';
