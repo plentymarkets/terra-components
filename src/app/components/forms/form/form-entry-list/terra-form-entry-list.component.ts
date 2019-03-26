@@ -163,11 +163,6 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
         this.onTouchedCallback = fn;
     }
 
-    public setDisabledState(isDisabled:boolean):void
-    {
-        // TODO
-    }
-
     public writeValue(value:Array<any>):void
     {
         if(isNullOrUndefined(value) || !isArray(value))
