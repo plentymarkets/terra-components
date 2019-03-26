@@ -46,7 +46,7 @@ label
     line-height: 1em !important;
     font-variant: all-small-caps;
     width: auto;
-    max-width:var(--label-width);
+    max-width:var(--label-width, var(--label-width-default);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
