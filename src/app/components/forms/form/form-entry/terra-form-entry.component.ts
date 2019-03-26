@@ -4,9 +4,14 @@ import {
     ComponentFactoryResolver,
     ComponentRef,
     EventEmitter,
+    forwardRef,
+    Host,
+    Inject,
     Input,
     OnChanges,
+    OnDestroy,
     OnInit,
+    Optional,
     Output,
     SimpleChanges,
     Type,
@@ -22,15 +27,19 @@ import {
     isUndefined
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
-import { TerraTextInputComponent } from '../../../../../';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
+import { FormControl } from '@angular/forms';
+import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
+import { TerraFormEntryListComponent } from '../form-entry-list/terra-form-entry-list.component';
+import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
+import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 
 @Component({
     selector: 'terra-form-entry',
     template: require('./terra-form-entry.component.html'),
     styles:   [require('./terra-form-entry.component.scss')]
 })
-export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
+export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
 {
     @Input()
     public inputFormField:TerraFormFieldInterface;
@@ -47,8 +56,13 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
     @Input()
     public inputIsDisabled:boolean = false;
 
+    @Input()
+    public inputFormFieldKey:string;
+
     @Output()
     public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
+
+    public formControl:FormControl;
 
     protected containerClass:string;
 
@@ -57,13 +71,44 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
 
     private componentInstance:any;
 
-    public constructor(private componentFactory:ComponentFactoryResolver)
+    public constructor(private componentFactory:ComponentFactoryResolver,
+                       @Optional() @Host() public formContainer:TerraFormContainerComponent,
+                       @Optional() @Host() @Inject(forwardRef(() => TerraFormEntryListComponent)) public formList:TerraFormEntryListComponent)
     {
     }
 
     public ngOnInit():void
     {
         this.containerClass = 'form-entry-' + this.inputFormField.type;
+
+        this.formControl = new FormControl(this.inputFormValue, TerraFormFieldHelper.generateValidators(this.inputFormField));
+
+        this.formControl.statusChanges.subscribe((status:any) =>
+        {
+            if(!isNullOrUndefined(this.componentInstance))
+            {
+                this.componentInstance.isValid = status !== 'INVALID';
+            }
+        });
+
+        setTimeout(() => // without setTimeout there would be an ExpressionChangedAfterItHasBeenCheckedError
+        {
+            if(!this.hasChildren)
+            {
+                if(!isNullOrUndefined(this.formContainer))
+                {
+                    this.formContainer.formGroup.addControl(this.inputFormFieldKey, this.formControl);
+                }
+                else if(!isNullOrUndefined(this.formList))
+                {
+                    this.formList.formArray.insert(+this.inputFormFieldKey, this.formControl);
+                }
+                else
+                {
+                    console.error('Y no Code!!!');
+                }
+            }
+        });
     }
 
     public ngAfterViewInit():void
@@ -119,6 +164,37 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
     public ngOnChanges(changes:SimpleChanges):void
     {
         this.bindInputProperties();
+        if(changes.hasOwnProperty('inputFormValue') && !isNullOrUndefined(this.formControl))
+        {
+            if(!isNullOrUndefined(this.componentInstance) && isFunction(this.componentInstance.writeValue))
+            {
+                this.componentInstance.writeValue(this.inputFormValue);
+            }
+            setTimeout(() =>
+            {
+                this.formControl.patchValue(this.inputFormValue);
+            });
+        }
+    }
+
+    // TODO has to be implemented in container and entry list as well
+    public ngOnDestroy():void
+    {
+        if(!this.hasChildren)
+        {
+            if(!isNullOrUndefined(this.formContainer))
+            {
+                this.formContainer.formGroup.removeControl(this.inputFormFieldKey);
+            }
+            else if(!isNullOrUndefined(this.formList))
+            {
+                this.formList.formArray.removeAt(+this.inputFormFieldKey);
+            }
+            else
+            {
+                console.error('Y no Code!!!');
+            }
+        }
     }
 
     protected bindInputProperties():void

@@ -2,10 +2,8 @@ import {
     TerraFormFieldBase,
     TerraFormFieldBaseOptions
 } from './terra-form-field-base';
-import {
-    TerraControlTypeEnum,
-    TerraMultiCheckBoxValueInterface
-} from '../../../../..';
+import { TerraMultiCheckBoxValueInterface } from '../../multi-check-box/data/terra-multi-check-box-value.interface';
+import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 export interface TerraFormFieldMultiCheckBoxOptions extends TerraFormFieldBaseOptions<any>
 {

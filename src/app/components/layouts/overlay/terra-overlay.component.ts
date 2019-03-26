@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
 import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interface';
-import { TerraPlacementEnum } from '../../../..';
+import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 /**
  * @author mfrank
