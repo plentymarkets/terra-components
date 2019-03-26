@@ -11,8 +11,15 @@
 * **activated-route.helper** new helper for ActivatedRoute related functionality.
 
 ### Bug Fixes
+* **terra-multi-check-box** does not call change callbacks on `writeValue()` anymore.
 * **terra-breadcrumbs** fix issue where the initial path was not evaluated properly
+
+<a name="3.7.0-beta.3"></a>
+# 3.7.0-beta.3 (26.03.2019)
+
+### Bug Fixes
 * **tooltips** tooltip color in light theme is now dark for better contrast
+* **terra-select-box** fixed padding on compact mode
 
 <a name="3.7.0-beta.2"></a>
 # 3.7.0-beta.2 (14.03.2019)
