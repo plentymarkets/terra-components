@@ -1,6 +1,11 @@
 <a name="Unreleased Changes"></a>
 # Unreleased Changes
 
+### Changes
+* **terra-checkbox**
+	- set/get `value` is now deprecated. Use ngModel instead.
+	- `valueChange` is now deprecated. Use ngModelChange-Callback instead.
+
 ### Bug Fixes
 * **tooltips** tooltip color in light theme is now dark for better contrast
 * **terra-checkbox** change callback is not executed anymore when a value is set via `writeValue()` or `value` set accessor
@@ -31,11 +36,6 @@
 
 <a name="3.6.0"></a>
 # 3.6.0 (13.03.2019)
-
-### Changes
-* **terra-checkbox**
-	- set/get `value` is now deprecated. Use ngModel instead.
-	- `valueChange` is now deprecated. Use ngModelChange-Callback instead.
 	
 ### Bug Fixes
 * **alerts** added `AlertService` to index.ts to be able to import it from _@plentymarkets/terra-components_
