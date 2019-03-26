@@ -108,7 +108,9 @@ export class TerraFormHelper
             }
             else if(!isNullOrUndefined(formField.children))
             {
-                controls[formFieldKey] = this.parseReactiveForm(formField.children, !isNullOrUndefined(values) ? values[formFieldKey] : undefined);
+                let value:Object = !isNullOrUndefined(values) && isObject(values[formFieldKey]) ?
+                    values[formFieldKey] : formField.defaultValue || null;
+                controls[formFieldKey] = this.parseReactiveForm(formField.children, value);
             }
             else
             {
@@ -170,7 +172,7 @@ export class TerraFormHelper
      */
     public static createNewControl(value:any, formField:TerraFormFieldInterface):FormControl | FormGroup
     {
-        if(isObject(value) && !isNullOrUndefined(formField.children))
+        if(!isNullOrUndefined(formField.children))
         {
             return this.parseReactiveForm(formField.children, value);
         }
