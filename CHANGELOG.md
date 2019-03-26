@@ -43,7 +43,7 @@
 
 <a name="3.6.0"></a>
 # 3.6.0 (13.03.2019)
-	
+
 ### Bug Fixes
 * **alerts** added `AlertService` to index.ts to be able to import it from _@plentymarkets/terra-components_
 * **terra-date-picker** fixed issue with early dates
