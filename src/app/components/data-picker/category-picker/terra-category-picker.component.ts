@@ -212,6 +212,15 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                             return foundDetail.lang === this.inputLanguage && foundDetail.plentyId === this.inputPlentyId;
                         });
 
+                        // Check if there is a detail only for the language
+                        if(isNullOrUndefined(categoryDetail))
+                        {
+                            categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
+                            {
+                                return foundDetail.lang === this.inputLanguage;
+                            });
+                        }
+
                         // Check if there is a detail only for the plentyId
                         if(isNullOrUndefined(categoryDetail))
                         {
