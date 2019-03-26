@@ -42,7 +42,7 @@ import { noop } from 'rxjs/util/noop';
 export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, ControlValueAccessor
 {
     /**
-     * @description Specification of the formField that should be displayed
+     * @description Specification of the formField that should be displayed.
      */
     @Input()
     public inputFormField:TerraFormFieldInterface;
@@ -54,7 +54,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     public inputFormControl:FormControl;
 
     /**
-     * @description Map of supported control types. If the given formField's type is not supported a TerraTextInputComponent instance is
+     * @description Map of supported control types. If the given formField's type is not supported, a TerraTextInputComponent instance is
      *     rendered by default.
      *     Please note: All of the control types contained in this map have to implement the ControlValueAccessor interface.
      * @default {} - an empty map. Hence, not a single control type is supported and the default type TerraTextInputComponent will be
@@ -64,7 +64,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
 
     /**
-     * @description May be used to disable/enable the form field
+     * @description May be used to disable/enable the form field.
      * @default false
      */
     @Input()
@@ -143,7 +143,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
 
     /**
      * Implementation of the OnChanges life cycle hook.
-     * @description updates the input bindings of the dynamically created component instance.
+     * @description Updates the input bindings of the dynamically created component instance.
      * @param changes
      */
     public ngOnChanges(changes:SimpleChanges):void
@@ -153,7 +153,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
 
     /**
      * Implementation of the OnDestroy life cycle hook.
-     * @description destroys the component that has been created dynamically.
+     * @description Destroys the component that has been created dynamically.
      */
     public ngOnDestroy():void
     {
@@ -166,7 +166,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     /**
      * Part of the implementation of the ControlValueAccessor interface
      * @description Registers a given callback method that will be called whenever the form field represented by the dynamically created
-     *     component changes its value
+     *     component changes its value.
      * @param changeCallback
      */
     public registerOnChange(changeCallback:(value:any) => void):void

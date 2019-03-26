@@ -75,7 +75,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
     public inputControlTypeMap:any;
 
     /**
-     * @description If true, disables the whole form - and all its containing controls/form fields
+     * @description If true, disables the whole form - and all its containing controls/form fields.
      */
     @Input()
     public inputIsDisabled:boolean = false;
@@ -129,7 +129,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
 
     /**
      * Part of the implementation of the ControlValueAccessor interface.
-     * @description Patches the passed value to the underlying FormGroup instance which updates the values of each affected form field.
+     * @description Patches the passed value to the underlying FormGroup instance, which updates the values of each affected form field.
      * If null or undefined is passed, the form is reset to default values.
      * @param values
      */
@@ -157,7 +157,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
 
     /**
      * Part of the implementation of the ControlValueAccessor interface.
-     * @description Registers a given callback method which will be called whenever a value of any form field/control changes
+     * @description Registers a given callback method, which will be called whenever a value of any form field/control changes.
      * @param callback
      */
     public registerOnChange(callback:(value:any) => void):void
@@ -167,7 +167,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
 
     /**
      * Part of the implementation of the ControlValueAccessor interface.
-     * @description Registers a given callback method which will be called whenever the form is marked as touched.
+     * @description Registers a given callback method, which will be called whenever the form is marked as touched.
      * This typically happens whenever a form control/field was focused and blurred.
      * @param callback
      */

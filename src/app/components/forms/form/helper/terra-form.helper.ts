@@ -23,7 +23,7 @@ import { TerraFormFieldHelper } from './terra-form-field.helper';
 export class TerraFormHelper
 {
     /**
-     * @description Generates a list of validators based on the given formField's options that may be attached to a FormControl instance
+     * @description Generates a list of validators based on the given formField's options that may be attached to a FormControl instance.
      * @param formField
      */
     public static generateValidators(formField:TerraFormFieldInterface):Array<ValidatorFn>
@@ -79,7 +79,7 @@ export class TerraFormHelper
     }
 
     /**
-     * @description parses a set of formFields (TerraFormFieldInterface) and creates a representative FormGroup instance.
+     * @description Parses a set of formFields (TerraFormFieldInterface) and creates a representative FormGroup instance.
      * This FormGroup instance may be initialized by passing a set of values.
      * @param formFields
      * @param values
@@ -122,7 +122,7 @@ export class TerraFormHelper
     }
 
     /**
-     * @description scans the given form for FormArray instances recursively and adapts the amount of controls of those FormArrays to the
+     * @description Recursively scans the given form for FormArray instances and adapts the amount of controls of those FormArrays to the
      *     amount of values that will be patched to them.
      * @param form
      * @param formFields
@@ -165,7 +165,7 @@ export class TerraFormHelper
     }
 
     /**
-     * @description creates a new FormControl or FormGroup instance depending on whether the given formField has children or not.
+     * @description Creates a new FormControl or FormGroup instance depending on whether the given formField has children or not.
      * The given value is used to initialize the control's value.
      * @param value
      * @param formField

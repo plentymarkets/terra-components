@@ -220,8 +220,8 @@ export class TerraFormFieldHelper
     }
 
     /**
-     * @description parses the upper and lower limit of form fields for a FormArray/FormEntryList based on a given string.
-     * If no lower limit is given 0 is returned. If no upper limit is given, Infinity is returned.
+     * @description Parses the upper and lower limit of form fields for a FormArray/FormEntryList based on a given string.
+     * If no lower limit is given, 0 is returned. If no upper limit is given, Infinity is returned.
      * @param range
      */
     public static getListRange(range:boolean | string):[number, number]
