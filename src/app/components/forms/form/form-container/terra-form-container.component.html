@@ -1,28 +1,44 @@
 <div class="form">
     <ng-template ngFor let-field [ngForOf]="formFields">
-        <div class="form-entry" *ngIf="formFieldVisibility[field.key]">
+        <div *ngIf="formFieldVisibility[field.key]"
+             [ngClass]="['form-entry', 'form-entry-' + field.value.type]"
+             [formGroup]="formGroup">
+            
             <terra-form-entry
-                *ngIf="!field.value.isList"
+                *ngIf="!field.value.isList && !field.value.children"
+                [formControlName]="field.key"
+                [inputFormControl]="formGroup.get(field.key)"
                 [inputFormField]="field.value"
-                [inputFormValue]="inputValue[field.key]"
                 [inputIsDisabled]="inputIsDisabled"
-                [inputScope]="inputScope"
-                [inputControlTypeMap]="inputControlTypeMap"
-                [inputFormFieldKey]="field.key"
-                (outputFormValueChanged)="onFormValueChanged(field.key, $event)"
-            ></terra-form-entry>
+                [inputControlTypeMap]="inputControlTypeMap">
+            </terra-form-entry>
+            
+            <div class="form-entry-inner"
+                 *ngIf="!field.value.isList && field.value.children">
+                <span class="form-entry-label" *ngIf="field.value.options?.name">{{ field.value.options?.name }}</span>
+                <div class="form-entry-container">
+                    <terra-form-container
+                        [formGroupName]="field.key"
+                        [inputFormFields]="field.value.children"
+                        [inputFormGroup]="formGroup.get(field.key)"
+                        [inputScope]="inputScope"
+                        [inputControlTypeMap]="inputControlTypeMap"
+                        [inputIsDisabled]="inputIsDisabled">
+                    </terra-form-container>
+                
+                </div>
+            </div>
             
             <terra-form-entry-list
                 *ngIf="field.value.isList"
+                [formArrayName]="field.key"
+                [inputFormGroup]="formGroup"
                 [inputFormFieldKey]="field.key"
                 [inputFormField]="field.value"
-                [inputFormValue]="inputValue[field.key]"
-                [inputListRange]="field.value.isList"
                 [inputIsDisabled]="inputIsDisabled"
                 [inputScope]="inputScope"
-                [inputControlTypeMap]="inputControlTypeMap"
-                (outputFormValueChanged)="onFormValueChanged(field.key, $event)"
-            ></terra-form-entry-list>
+                [inputControlTypeMap]="inputControlTypeMap">
+            </terra-form-entry-list>
         </div>
     </ng-template>
 </div>

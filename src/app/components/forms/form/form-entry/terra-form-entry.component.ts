@@ -1,203 +1,204 @@
 import {
-    AfterViewInit,
     Component,
+    ComponentFactory,
     ComponentFactoryResolver,
     ComponentRef,
-    EventEmitter,
     forwardRef,
-    Host,
-    Inject,
     Input,
     OnChanges,
     OnDestroy,
     OnInit,
-    Optional,
-    Output,
     SimpleChanges,
     Type,
-    ViewChild,
-    ViewContainerRef
+    ViewChild
 } from '@angular/core';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
-    isArray,
     isFunction,
-    isNullOrUndefined,
-    isObject,
-    isUndefined
+    isNullOrUndefined
 } from 'util';
-import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
-import { FormControl } from '@angular/forms';
-import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
-import { TerraFormEntryListComponent } from '../form-entry-list/terra-form-entry-list.component';
+import {
+    ControlValueAccessor,
+    FormControl,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
-import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
+import { FormEntryContainerDirective } from './form-entry-container.directive';
+import { noop } from 'rxjs/util/noop';
 
 @Component({
-    selector: 'terra-form-entry',
-    template: require('./terra-form-entry.component.html'),
-    styles:   [require('./terra-form-entry.component.scss')]
+    selector:  'terra-form-entry',
+    template:  require('./terra-form-entry.component.html'),
+    styles:    [require('./terra-form-entry.component.scss')],
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraFormEntryComponent),
+            multi:       true
+        }
+    ]
 })
-export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
+export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, ControlValueAccessor
 {
+    /**
+     * @description Specification of the formField that should be displayed.
+     */
     @Input()
     public inputFormField:TerraFormFieldInterface;
 
+    /**
+     * @description FormControl instance corresponding to the given formField.
+     */
     @Input()
-    public inputFormValue:any;
+    public inputFormControl:FormControl;
 
-    @Input()
-    public inputScope:TerraFormScope;
-
+    /**
+     * @description Map of supported control types. If the given formField's type is not supported, a TerraTextInputComponent instance is
+     *     rendered by default.
+     *     Please note: All of the control types contained in this map have to implement the ControlValueAccessor interface.
+     * @default {} - an empty map. Hence, not a single control type is supported and the default type TerraTextInputComponent will be
+     *     rendered as well.
+     */
     @Input()
     public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
 
+    /**
+     * @description May be used to disable/enable the form field.
+     * @default false
+     */
     @Input()
     public inputIsDisabled:boolean = false;
 
-    @Input()
-    public inputFormFieldKey:string;
-
-    @Output()
-    public outputFormValueChanged:EventEmitter<any> = new EventEmitter<any>();
-
-    public formControl:FormControl;
-
-    protected containerClass:string;
-
-    @ViewChild('formEntryContainer', {read: ViewContainerRef})
-    private container:ViewContainerRef;
-
+    private componentFactory:ComponentFactory<any>; // TODO: this has access to the inputs/outputs.. maybe use this for property binding purposes
+    private componentRef:ComponentRef<any>;
     private componentInstance:any;
 
-    public constructor(private componentFactory:ComponentFactoryResolver,
-                       @Optional() @Host() public formContainer:TerraFormContainerComponent,
-                       @Optional() @Host() @Inject(forwardRef(() => TerraFormEntryListComponent)) public formList:TerraFormEntryListComponent)
-    {
-    }
+    private onChangeCallback:(_:any) => void = noop;
+    private onTouchedCallback:() => void = noop;
 
+    @ViewChild(FormEntryContainerDirective)
+    private container:FormEntryContainerDirective;
+
+    constructor(private componentFactoryResolver:ComponentFactoryResolver)
+    {}
+
+    /**
+     * Implementation of the OnInit life cycle hook.
+     * @description Dynamically creates a component that will be bound to the given FormControl instance based on the specification of the
+     *     `inputFormField`. Also starts listening to status changes of the FormControl instance to highlight the formField if it is
+     *     invalid.
+     */
     public ngOnInit():void
     {
-        this.containerClass = 'form-entry-' + this.inputFormField.type;
+        this.initComponent();
 
-        this.formControl = new FormControl(this.inputFormValue, TerraFormFieldHelper.generateValidators(this.inputFormField));
-
-        this.formControl.statusChanges.subscribe((status:any) =>
+        this.inputFormControl.statusChanges.subscribe((status:string) =>
         {
             if(!isNullOrUndefined(this.componentInstance))
             {
-                this.componentInstance.isValid = status !== 'INVALID';
-            }
-        });
-
-        setTimeout(() => // without setTimeout there would be an ExpressionChangedAfterItHasBeenCheckedError
-        {
-            if(!this.hasChildren)
-            {
-                if(!isNullOrUndefined(this.formContainer))
-                {
-                    this.formContainer.formGroup.addControl(this.inputFormFieldKey, this.formControl);
-                }
-                else if(!isNullOrUndefined(this.formList))
-                {
-                    this.formList.formArray.insert(+this.inputFormFieldKey, this.formControl);
-                }
-                else
-                {
-                    console.error('Y no Code!!!');
-                }
+                this.componentInstance.isValid = status === 'VALID';
             }
         });
     }
 
-    public ngAfterViewInit():void
-    {
-        setTimeout(() =>
-        {
-            if(!isNullOrUndefined(this.container))
-            {
-                let controlType:Type<any> = TerraTextInputComponent;
-                if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
-                {
-                    if(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)
-                    {
-                        controlType = <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
-                    }
-                    else
-                    {
-                        controlType = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
-                    }
-                }
-
-                let component:ComponentRef<any> = this.container.createComponent(
-                    this.componentFactory.resolveComponentFactory(controlType)
-                );
-
-                this.componentInstance = component.instance;
-
-                this.bindInputProperties();
-
-                if(isFunction(this.componentInstance.registerOnChange) && isFunction(this.componentInstance.writeValue))
-                {
-                    if(isUndefined(this.inputFormValue) && !isNullOrUndefined(this.inputFormField.defaultValue))
-                    {
-                        this.onValueChanged(this.inputFormField.defaultValue);
-                    }
-                    this.componentInstance.registerOnChange((value:any):void =>
-                    {
-                        this.onValueChanged(value);
-                    });
-                    this.componentInstance.writeValue(this.inputFormValue);
-                }
-                else
-                {
-                    console.error(
-                        'Cannot bind component ' + controlType.name + ' to dynamic form. ' +
-                        'Bound components needs to implement the ControlValueAccessor interface.'
-                    );
-                }
-            }
-        });
-    }
-
-    public ngOnChanges(changes:SimpleChanges):void
-    {
-        this.bindInputProperties();
-        if(changes.hasOwnProperty('inputFormValue') && !isNullOrUndefined(this.formControl))
-        {
-            if(!isNullOrUndefined(this.componentInstance) && isFunction(this.componentInstance.writeValue))
-            {
-                this.componentInstance.writeValue(this.inputFormValue);
-            }
-            setTimeout(() =>
-            {
-                this.formControl.patchValue(this.inputFormValue);
-            });
-        }
-    }
-
-    // TODO has to be implemented in container and entry list as well
-    public ngOnDestroy():void
+    private initComponent():void
     {
         if(!this.hasChildren)
         {
-            if(!isNullOrUndefined(this.formContainer))
+            let controlType:Type<any> = TerraTextInputComponent;
+            if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
             {
-                this.formContainer.formGroup.removeControl(this.inputFormFieldKey);
+                if(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)
+                {
+                    controlType = <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
+                }
+                else
+                {
+                    controlType = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
+                }
             }
-            else if(!isNullOrUndefined(this.formList))
+
+            this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(controlType);
+            this.componentRef = this.container.viewContainerRef.createComponent(this.componentFactory);
+            this.componentInstance = this.componentRef.instance;
+
+            this.bindInputProperties();
+
+            if(isFunction(this.componentInstance.registerOnChange) &&
+               isFunction(this.componentInstance.registerOnTouched))
             {
-                this.formList.formArray.removeAt(+this.inputFormFieldKey);
+                this.componentInstance.registerOnChange((value:any):void => this.onChangeCallback(value));
+                this.componentInstance.registerOnTouched(():void => this.onTouchedCallback());
             }
             else
             {
-                console.error('Y no Code!!!');
+                console.error(
+                    'Cannot bind component ' + controlType.name + ' to dynamic form. ' +
+                    'Bound components needs to implement the ControlValueAccessor interface.'
+                );
             }
         }
     }
 
-    protected bindInputProperties():void
+    /**
+     * Implementation of the OnChanges life cycle hook.
+     * @description Updates the input bindings of the dynamically created component instance.
+     * @param changes
+     */
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        this.bindInputProperties();
+    }
+
+    /**
+     * Implementation of the OnDestroy life cycle hook.
+     * @description Destroys the component that has been created dynamically.
+     */
+    public ngOnDestroy():void
+    {
+        if(!isNullOrUndefined(this.componentRef))
+        {
+            this.componentRef.destroy();
+        }
+    }
+
+    /**
+     * Part of the implementation of the ControlValueAccessor interface
+     * @description Registers a given callback method that will be called whenever the form field represented by the dynamically created
+     *     component changes its value.
+     * @param changeCallback
+     */
+    public registerOnChange(changeCallback:(value:any) => void):void
+    {
+        this.onChangeCallback = changeCallback;
+    }
+
+    /**
+     * Part of the implementation of the ControlValueAccessor interface
+     * @description Registers a given callback method that will be called when the form field represented by the dynamically created
+     *     component has been touched.
+     * @param touchedCallback
+     */
+    public registerOnTouched(touchedCallback:() => void):void
+    {
+        this.onTouchedCallback = touchedCallback;
+    }
+
+    /**
+     * Part of the implementation of the ControlValueAccessor interface
+     * @description Writes a given value to the form field using the writeValue method of the dynamically created component instance.
+     * @param value
+     */
+    public writeValue(value:any):void
+    {
+        if(this.componentInstance && isFunction(this.componentInstance.writeValue))
+        {
+            this.componentInstance.writeValue(value);
+        }
+    }
+
+    private bindInputProperties():void
     {
         if(!isNullOrUndefined(this.componentInstance))
         {
@@ -229,7 +230,7 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                         }
                         else
                         {
-                            console.warn('Cannot assign property ' + optionKey + ' on ' + this.componentInstance.constructor.name );
+                            console.warn('Cannot assign property ' + optionKey + ' on ' + this.componentInstance.constructor.name);
                         }
                     }
                 });
@@ -244,25 +245,6 @@ export class TerraFormEntryComponent implements OnInit, AfterViewInit, OnChanges
                 this.componentInstance['inputIsDisabled'] = this.inputIsDisabled;
             }
         }
-    }
-
-    protected onValueChanged(value:any):void
-    {
-        if(value !== this.inputFormValue || isArray(value) || isObject(value))
-        {
-            this.inputFormValue = value;
-            this.outputFormValueChanged.next(value);
-        }
-    }
-
-    protected onChildValueChanged(key:string, value:any):void
-    {
-        if(isNullOrUndefined(this.inputFormValue))
-        {
-            this.inputFormValue = {};
-        }
-        this.inputFormValue[key] = value;
-        this.outputFormValueChanged.next(this.inputFormValue);
     }
 
     protected get hasChildren():boolean
