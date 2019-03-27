@@ -1,3 +1,4 @@
+import { TerraPlacementEnum } from './../../../helpers/enums/terra-placement.enum';
 import {
     Component,
     ElementRef,
@@ -38,6 +39,14 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     @Input()
     public inputMinHeight:string;
 
+    /** @description Set the tooltip.*/
+    @Input()
+    public tooltipText:string;
+
+    /** @description Set the tooltip placement (bottom, top, left, right). Default top.*/
+    @Input()
+    public tooltipPlacement:TerraPlacementEnum;
+
     protected placeholder:string;
     protected value:string;
     protected modules:{ [index:string]:Object };
@@ -59,6 +68,7 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
 
     public ngOnInit():void
     {
+        this.tooltipPlacement = isNullOrUndefined(this.tooltipPlacement) ? TerraPlacementEnum.TOP : this.tooltipPlacement;
         this.inputMinHeight = isNullOrUndefined(this.inputMinHeight) ? '100px' : this.inputMinHeight;
         // overwrite default placeholder if input is defined
         if(this.inputPlaceholder)
