@@ -1,11 +1,9 @@
 import {
     Component,
-    EventEmitter,
     forwardRef,
     Input,
     OnChanges,
     OnInit,
-    Output,
     SimpleChanges,
     Type
 } from '@angular/core';
@@ -18,17 +16,15 @@ import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
 import {
     ControlValueAccessor,
-    FormArray,
-    FormControl,
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
+import { noop } from 'rxjs/util/noop';
 
 @Component({
-    selector: 'terra-form-container',
-    template: require('./terra-form-container.component.html'),
-    styles:   [require('./terra-form-container.component.scss')],
+    selector:  'terra-form-container',
+    template:  require('./terra-form-container.component.html'),
+    styles:    [require('./terra-form-container.component.scss')],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
@@ -59,50 +55,32 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         this.updateFieldVisibility();
     }
 
+    /**
+     * @description If true, the button will be disabled. Default false.
+     */
     @Input()
     public inputIsDisabled:boolean = false;
 
     @Input()
-    public inputFormFieldKey:string;
+    public set inputFormGroup(formGroup:FormGroup)
+    {
+        this.formGroup = formGroup;
+    }
 
-    @Input()
-    public inputFormGroup:FormGroup;
-
-    @Output()
-    public outputFormValueChanged:EventEmitter<TerraKeyValuePairInterface<any>> = new EventEmitter<TerraKeyValuePairInterface<any>>();
-
-    public formGroup:FormGroup = new FormGroup({});
+    protected formGroup:FormGroup;
 
     protected formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
     protected formFieldVisibility:{ [key:string]:boolean } = {};
 
-    private onChangeCallback:(value:any) => void = (value:any):void => undefined;
-    private onTouchedCallback:() => void = ():void => undefined;
+    private onChangeCallback:(value:any) => void = noop;
+    private onTouchedCallback:() => void = noop;
 
     public ngOnInit():void
     {
-        this.inputScope.onDataChanged.subscribe((data:any) =>
+        this.inputScope.onDataChanged.subscribe(() =>
         {
             this.updateFieldVisibility();
         });
-
-        this.formFields.forEach((test:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
-        {
-            if(test.value.isList)
-            {
-                this.formGroup.addControl(test.key, new FormArray([new FormControl(''), new FormControl('')]));
-            }
-            else
-            {
-                this.formGroup.addControl(test.key, new FormControl('', TerraFormFieldHelper.generateValidators(test.value)));
-            }
-        });
-
-        if(this.inputFormGroup)
-        {
-            this.inputFormGroup.setControl(this.inputFormFieldKey, this.formGroup);
-        }
-        // this.formGroup.valueChanges.subscribe((value:any) => this.onChangeCallback(value));
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -110,6 +88,28 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         if(changes.hasOwnProperty('inputScope'))
         {
             this.updateFieldVisibility();
+        }
+    }
+
+    public registerOnChange(fn:(value:any) => void):void
+    {
+        this.onChangeCallback = fn;
+    }
+
+    public registerOnTouched(fn:() => void):void
+    {
+        this.onTouchedCallback = fn;
+    }
+
+    public writeValue(value:any):void
+    {
+        if(isNullOrUndefined(value))
+        {
+            this.formGroup.setValue({});
+        }
+        else
+        {
+            this.formGroup.patchValue(value);
         }
     }
 
@@ -126,32 +126,5 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
                 this.formFieldVisibility[field.key] = isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
             }
         });
-    }
-
-    public registerOnChange(fn:(value:any) => void):void
-    {
-        this.onChangeCallback = fn;
-    }
-
-    public registerOnTouched(fn:() => void):void
-    {
-        this.onTouchedCallback = fn;
-    }
-
-    public setDisabledState(isDisabled:boolean):void
-    {
-        // TODO
-    }
-
-    public writeValue(value:any):void
-    {
-        if(isNullOrUndefined(value))
-        {
-            this.formGroup.setValue({});
-        }
-        else
-        {
-            this.formGroup.patchValue(value);
-        }
     }
 }

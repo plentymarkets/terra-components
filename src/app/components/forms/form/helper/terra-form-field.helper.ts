@@ -2,18 +2,14 @@ import 'reflect-metadata';
 import {
     isArray,
     isFunction,
-    isNullOrUndefined
+    isNullOrUndefined,
+    isString
 } from 'util';
 import { TerraFormFieldBaseContainer } from '../../dynamic-form/data/terra-form-field-base-container';
 import { TerraFormFieldCodeEditorOptions } from '../../dynamic-form/data/terra-form-field-code-editor';
 import { TerraFormFieldInputDouble } from '../../dynamic-form/data/terra-form-field-input-double';
 import { TerraFormFieldInputFile } from '../../dynamic-form/data/terra-form-field-input-file';
 import { TerraFormFieldMultiCheckBox } from '../../dynamic-form/data/terra-form-field-multi-check-box';
-import {
-    ValidatorFn,
-    Validators
-} from '@angular/forms';
-import { TerraValidators } from '../../../../validators/validators';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TERRA_FORM_PROPERTY_METADATA_KEY } from '../model/terra-form-property.decorator';
 import { TerraFormFieldBase } from '../../dynamic-form/data/terra-form-field-base';
@@ -21,11 +17,10 @@ import { TerraJsonToFormFieldService } from '../../dynamic-form/service/terra-js
 import { TerraControlTypeEnum } from '../../dynamic-form/enum/terra-control-type.enum';
 import { TerraFormFieldInputText } from '../../dynamic-form/data/terra-form-field-input-text';
 import { TerraFormFieldSelectBox } from '../../dynamic-form/data/terra-form-field-select-box';
-import { StringHelper } from '../../../../helpers/string.helper';
 
 export class TerraFormFieldHelper
 {
-    private static readonly CONTROL_TYPE_MAP:{ [key:string]:string } = {
+    private static readonly legacyControlTypeMap:{ [key:string]:string } = {
         checkBox:             'checkbox',
         conditionalContainer: 'vertical',
         datePicker:           'date',
@@ -42,58 +37,6 @@ export class TerraFormFieldHelper
         noteEditor:           'noteEditor',
         codeEditor:           'codeEditor'
     };
-
-    public static generateValidators(formField:TerraFormFieldInterface):Array<ValidatorFn>
-    {
-        let validators:Array<ValidatorFn> = [];
-
-        if(isNullOrUndefined(formField.options))
-        {
-            return validators;
-        }
-
-        if(formField.options.required)
-        {
-            validators.push(Validators.required);
-        }
-
-        if(formField.options.minLength >= 0)
-        {
-            validators.push(Validators.minLength(formField.options.minLength));
-        }
-
-        if(formField.options.maxLength >= 0)
-        {
-            validators.push(Validators.maxLength(formField.options.maxLength));
-        }
-
-        if(!isNullOrUndefined(formField.options.minValue))
-        {
-            validators.push(Validators.min(formField.options.minValue));
-        }
-
-        if(!isNullOrUndefined(formField.options.maxValue))
-        {
-            validators.push(Validators.max(formField.options.maxValue));
-        }
-
-        if(!StringHelper.isNullUndefinedOrEmpty(formField.options.pattern) || formField.options.pattern instanceof RegExp)
-        {
-            validators.push(Validators.pattern(formField.options.pattern));
-        }
-
-        if(formField.options.email)
-        {
-            validators.push(Validators.email);
-        }
-
-        if(formField.options.isIban)
-        {
-            validators.push(TerraValidators.iban);
-        }
-
-        return validators;
-    }
 
     public static extractFormFields(formModel:any):{ [key:string]:TerraFormFieldInterface }
     {
@@ -118,7 +61,6 @@ export class TerraFormFieldHelper
                       }
                   });
         }
-        console.log(formFields);
         return formFields;
     }
 
@@ -176,7 +118,7 @@ export class TerraFormFieldHelper
             key:   field.key,
             field: null
         };
-        let type:string = this.CONTROL_TYPE_MAP[field.controlType];
+        let type:string = this.legacyControlTypeMap[field.controlType];
 
         result.field = {
             type:    type,
@@ -275,5 +217,28 @@ export class TerraFormFieldHelper
     {
         result.options.listBoxValues = field.selectBoxValues;
         return result;
+    }
+
+    /**
+     * @description Parses the upper and lower limit of form fields for a FormArray/FormEntryList based on a given string.
+     * If no lower limit is given, 0 is returned. If no upper limit is given, Infinity is returned.
+     * @param range
+     */
+    public static getListRange(range:boolean | string):[number, number]
+    {
+        let min:number;
+        let max:number;
+
+        if(isString(range))
+        {
+            let match:RegExpExecArray = /^\[(\d*),(\d*)]$/.exec(range);
+            if(match !== null)
+            {
+                min = parseInt(match[1], 10);
+                max = parseInt(match[2], 10);
+            }
+        }
+
+        return [min || 0, max || Infinity];
     }
 }
