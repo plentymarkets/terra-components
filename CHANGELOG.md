@@ -1,10 +1,16 @@
 <a name="3.X.X"></a>
 # 3.X.X (XX.XX.2019)
 
+### Changes
+* **terra-checkbox**
+	- set/get `value` is now deprecated. Use ngModel instead.
+	- `valueChange` is now deprecated. Use ngModelChange-Callback instead.
+
 ### Feature
 * **terra-category-picker** added webstore id input to pass the current store and display the cetegories accordingly
 
 ### Bug Fixes
+* **terra-checkbox** change callback is not executed anymore when a value is set via `writeValue()` or `value` set accessor
 * **terra-multi-check-box** 
 	- does not call change callbacks on `writeValue()` anymore.
 	- resolve performance issue with large valueLists
