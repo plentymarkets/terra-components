@@ -55,6 +55,9 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         this.updateFieldVisibility();
     }
 
+    /**
+     * @description If true, the button will be disabled. Default false.
+     */
     @Input()
     public inputIsDisabled:boolean = false;
 
