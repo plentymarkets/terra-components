@@ -7,7 +7,10 @@
 # 3.X.X (XX.XX.2019)
 
 ### Bug Fixes
-* **terra-multi-check-box** does not call change callbacks on `writeValue()` anymore.
+* **terra-multi-check-box** 
+	- does not call change callbacks on `writeValue()` anymore.
+	- resolve performance issue with large valueLists
+
 
 <a name="3.7.0-beta.3"></a>
 # 3.7.0-beta.3 (26.03.2019)
