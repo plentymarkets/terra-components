@@ -18,7 +18,7 @@
                 </span>
             </div>
             <div class="option-list" [hidden]="collapsed">
-                <div *ngFor="let listEntry of valueList;">
+                <div *ngFor="let listEntry of valueList; trackBy: trackByValue">
                     <div class="input-group">
                         <div class="input-group-addon">
                             <terra-checkbox type="checkbox"

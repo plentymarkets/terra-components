@@ -146,6 +146,11 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
         }
     }
 
+    protected trackByValue(index:number, entry:TerraMultiCheckBoxValueInterface):any
+    {
+        return entry.value;
+    }
+
     private emitCallbacks(value:Array<TerraMultiCheckBoxValueInterface>, changedCheckboxes:Array<TerraMultiCheckBoxValueInterface>):void
     {
         this.onTouchedCallback();
