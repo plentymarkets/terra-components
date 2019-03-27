@@ -169,20 +169,22 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 
         if(!isNullOrUndefined(value))
         {
-            this.inputListBoxValues
-                .forEach((item:TerraSelectBoxValueInterface) =>
-                {
-                    if(item.value === value)
-                    {
-                        this.selectedValue = item;
-                    }
-                });
+            let valueToSelect:TerraSelectBoxValueInterface = this.inputListBoxValues.find((item:TerraSelectBoxValueInterface) =>
+            {
+                return item.value === value;
+            });
+            if(!isNullOrUndefined(valueToSelect))
+            {
+                this.selectedValue = valueToSelect;
+            }
+            else if(!isNullOrUndefined(this.inputListBoxValues[0]))
+            {
+                this.selectFallbackValue();
+            }
         }
         else if(!isNullOrUndefined(this.inputListBoxValues[0]))
         {
-            this.selectedValue = this.inputListBoxValues[0];
-            this.onTouchedCallback();
-            this.onChangeCallback(this.inputListBoxValues[0].value);
+            this.selectFallbackValue();
         }
     }
 
@@ -392,6 +394,13 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             // scroll to the selected element
             spanElement.parentElement.scrollTop = spanElement.offsetTop - spanElement.parentElement.offsetTop;
         }
+    }
+
+    private selectFallbackValue():void
+    {
+        this.selectedValue = this.inputListBoxValues[0];
+        this.onTouchedCallback();
+        this.onChangeCallback(this.inputListBoxValues[0].value);
     }
 
     protected onBlur():void
