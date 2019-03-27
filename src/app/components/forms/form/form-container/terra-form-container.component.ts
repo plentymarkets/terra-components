@@ -91,21 +91,6 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         }
     }
 
-    private updateFieldVisibility():void
-    {
-        this.formFields.forEach((field:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
-        {
-            if(isString(field.value.isVisible))
-            {
-                this.formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible);
-            }
-            else
-            {
-                this.formFieldVisibility[field.key] = isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
-            }
-        });
-    }
-
     public registerOnChange(fn:(value:any) => void):void
     {
         this.onChangeCallback = fn;
@@ -126,5 +111,20 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         {
             this.formGroup.patchValue(value);
         }
+    }
+
+    private updateFieldVisibility():void
+    {
+        this.formFields.forEach((field:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
+        {
+            if(isString(field.value.isVisible))
+            {
+                this.formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible);
+            }
+            else
+            {
+                this.formFieldVisibility[field.key] = isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
+            }
+        });
     }
 }
