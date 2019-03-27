@@ -1,3 +1,8 @@
+# Unreleased
+
+### Feature
+* **terra-category-picker** added webstore id input to pass the current store and display the cetegories accordingly
+
 <a name="3.X.X"></a>
 # 3.X.X (XX.XX.2019)
 
