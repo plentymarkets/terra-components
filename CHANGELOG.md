@@ -14,6 +14,7 @@
 * **terra-multi-check-box** 
 	- does not call change callbacks on `writeValue()` anymore.
 	- resolve performance issue with large valueLists
+* **terra-select-box** now selects the first entry of `inputListBoxValues` if an unknown value is passed via ngModel
 
 <a name="3.7.0-beta.3"></a>
 # 3.7.0-beta.3 (26.03.2019)
