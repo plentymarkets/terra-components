@@ -232,12 +232,12 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                         }
 
                         // No details found with the given language and the given plentyId so just use the first language instead
-                        if(isNullOrUndefined(categoryDetail))
+                        if(isNullOrUndefined(categoryDetail) && categoryData.details.length > 0)
                         {
                             categoryDetail = categoryData.details[0];
                         }
                     }
-                    else // Downwardcompatability
+                    else if(categoryData.details.length > 0) // Downwardcompatability
                     {
                         categoryDetail = categoryData.details[0];
                     }
