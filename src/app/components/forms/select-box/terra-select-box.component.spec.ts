@@ -13,7 +13,7 @@ import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface'
 /**
  * @author mfrank
  */
-fdescribe('TerraSelectBoxComponent:', () =>
+describe('TerraSelectBoxComponent:', () =>
 {
     let component:TerraSelectBoxComponent;
     let fixture:ComponentFixture<TerraSelectBoxComponent>;
