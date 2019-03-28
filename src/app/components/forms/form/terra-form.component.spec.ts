@@ -86,13 +86,9 @@ describe(`TerraFormComponent:`, () =>
 
         it('should call a registered callback on change', () =>
         {
+            let mockValues:any = {control1: 'one'};
             let spy:Spy = jasmine.createSpy('spy');
             component.registerOnChange(spy);
-
-            let mockValues:any = {
-                control1: 'one'
-            };
-
             component.formGroup.patchValue(mockValues);
             expect(spy).toHaveBeenCalled();
         });
