@@ -15,6 +15,10 @@ import { TerraNoteEditorComponent } from '../../../editors/note-editor/terra-not
 import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-code-editor.component';
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
 
+/**
+ * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
+ * Please note: All of the control types contained in this map have to implement the ControlValueAccessor interface.
+ */
 export class FormTypeMap
 {
     public readonly checkbox:TerraFormTypeInterface = {
@@ -24,50 +28,50 @@ export class FormTypeMap
         component: TerraCheckboxComponent
     };
     public readonly date:TerraFormTypeInterface = {
-        inputMap: {
+        inputMap:  {
             required: 'inputIsRequired'
         },
         component: TerraDatePickerComponent
     };
     public readonly file:TerraFormTypeInterface = {
-        inputMap: {
+        inputMap:  {
             required: 'inputIsRequired'
         },
         component: TerraFileInputComponent
     };
     public readonly text:TerraFormTypeInterface = {
-        inputMap: {
+        inputMap:  {
             required: 'inputIsRequired'
         },
         component: TerraTextInputComponent
-    } ;
+    };
     public readonly textarea:TerraFormTypeInterface = {
-        inputMap: {
+        inputMap:  {
             required: 'inputIsRequired'
         },
         component: TerraTextAreaInputComponent
     };
     public readonly number:TerraFormTypeInterface = {
-        inputMap: {
+        inputMap:  {
             required: 'inputIsRequired'
         },
         component: TerraNumberInputComponent
     };
     public readonly double:TerraFormTypeInterface = {
-        inputMap: {
+        inputMap:  {
             required: 'inputIsRequired'
         },
         component: TerraDoubleInputComponent
     };
     public readonly select:TerraFormTypeInterface = {
-        inputMap: {
+        inputMap:  {
             required: 'inputIsRequired'
         },
         component: TerraSelectBoxComponent
     };
     public readonly category:Type<TerraCategoryPickerComponent> = TerraCategoryPickerComponent;
     public readonly color:TerraFormTypeInterface = {
-        inputMap: {
+        inputMap:  {
             required: 'inputIsRequired'
         },
         component: TerraColorPickerComponent
