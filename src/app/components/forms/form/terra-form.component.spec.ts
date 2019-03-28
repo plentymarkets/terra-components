@@ -34,7 +34,7 @@ describe(`TerraFormComponent:`, () =>
 
     it('should use a TerraFormTypeMap instance as fallback internally if no custom map is given via #inputControlTypeMap', () =>
     {
-        spyOn(console, 'warn'); // disable console warning outputs
+        spyOn(console, 'warn'); // disable console outputs to prevent deprecation warnings to be printed in the terminal
         component.ngOnChanges({});
         component.ngOnInit();
         expect(component['controlTypeMap']).toEqual(new TerraFormTypeMap());
