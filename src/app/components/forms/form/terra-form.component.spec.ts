@@ -52,6 +52,12 @@ describe(`TerraFormComponent:`, () =>
     {
         beforeEach(() => component.inputFormFields = formFields);
 
+        it('setting #inputFormFields creates a reactive #formGroup instance containing all the given form fields', () =>
+        {
+            expect(component.formGroup).toBeDefined();
+            Object.keys(formFields).forEach((formFieldKey:string) => expect(component.formGroup.contains(formFieldKey)));
+        });
+
         it('writing values to the model via #writeValue should patchValues in #formGroup and change scope-data', () =>
         {
             let mockValues:any = {control1: 'one', control2: 'two'};
