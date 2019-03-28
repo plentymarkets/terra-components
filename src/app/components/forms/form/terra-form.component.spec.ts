@@ -7,7 +7,7 @@ import Spy = jasmine.Spy;
 import { FormTypeMap } from './model/form-type-map';
 import { SimpleChange } from '@angular/core';
 
-describe(`TerraCardComponent:`, () =>
+describe(`TerraFormComponent:`, () =>
 {
     let component:TerraFormComponent;
     const formFields:{ [key:string]:TerraFormFieldInterface } = {
