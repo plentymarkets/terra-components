@@ -18,6 +18,8 @@ import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { TerraFormFieldHelper } from './helper/terra-form-field.helper';
 import { Data } from '@angular/router';
 import { TerraFormFieldBase } from '../dynamic-form/data/terra-form-field-base';
+import { noop } from 'rxjs/util/noop';
+import { TerraFormHelper } from './helper/terra-form.helper';
 
 @Component({
     selector:  'terra-form',
@@ -41,7 +43,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface } | Array<TerraFormFieldBase<any>>)
     {
         this.formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
-        this._formGroup = TerraFormFieldHelper.parseReactiveForm(fields, this.values);
+        this._formGroup = TerraFormHelper.parseReactiveForm(fields, this.values);
         this._formGroup.valueChanges.subscribe((changes:Data) =>
         {
             Object.keys(changes).forEach((key:string) =>
@@ -74,7 +76,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
     public inputControlTypeMap:any;
 
     /**
-     * @description If true, disables the whole form - and all its containing controls/form fields
+     * @description If true, disables the whole form - and all its containing controls/form fields.
      */
     @Input()
     public inputIsDisabled:boolean = false;
@@ -85,15 +87,14 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
      */
     public readonly scope:TerraFormScope = new TerraFormScope();
 
-    protected values:any = {};
+    private values:any = {};
 
     private controlTypeMap:{ [key:string]:Type<any> };
-
     private formFields:{ [key:string]:TerraFormFieldInterface };
     private _formGroup:FormGroup = new FormGroup({});
 
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
-    private onTouchedCallback:() => void = ():void => undefined;
+    private onChangeCallback:(value:any) => void = noop;
+    private onTouchedCallback:() => void = noop;
 
     /**
      * Implementation of the OnChanges life cycle hook.
@@ -129,7 +130,8 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
 
     /**
      * Part of the implementation of the ControlValueAccessor interface.
-     * @description Patches the passed value to the underlying FormGroup instance which updates the values of each affected form field.
+     * @description Patches the passed value to the underlying FormGroup instance, which updates the values of each affected form field.
+     * If null or undefined is passed, the form is reset to default values.
      * @param values
      */
     public writeValue(values:any):void
@@ -143,21 +145,20 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
             });
             this.values = defaultValues;
             this.scope.data = defaultValues;
-            this.formGroup.patchValue(defaultValues);
-            this.formGroup.markAsUntouched();
+            this.formGroup.reset(defaultValues);
         }
         else if(this.scope.data !== values)
         {
             this.values = values;
             this.scope.data = values;
-            TerraFormFieldHelper.updateFormArrays(this.formGroup, this.formFields, values);
+            TerraFormHelper.updateFormArrays(this.formGroup, this.formFields, values);
             this.formGroup.patchValue(values);
         }
     }
 
     /**
      * Part of the implementation of the ControlValueAccessor interface.
-     * @description Registers a given callback method which will be called whenever a value of any form field/control changes
+     * @description Registers a given callback method, which will be called whenever a value of any form field/control changes.
      * @param callback
      */
     public registerOnChange(callback:(value:any) => void):void
@@ -167,7 +168,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
 
     /**
      * Part of the implementation of the ControlValueAccessor interface.
-     * @description Registers a given callback method which will be called whenever the form is marked as touched.
+     * @description Registers a given callback method, which will be called whenever the form is marked as touched.
      * This typically happens whenever a form control/field was focused and blurred.
      * @param callback
      */
