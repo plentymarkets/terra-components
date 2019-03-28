@@ -1,14 +1,19 @@
 import { TerraFormComponent } from './terra-form.component';
-import { FormControl } from '@angular/forms';
 import { TerraControlTypeEnum } from '../dynamic-form/enum/terra-control-type.enum';
 import { TerraFormFieldInterface } from './model/terra-form-field.interface';
-import Spy = jasmine.Spy;
 import { TerraFormFieldBase } from '../dynamic-form/data/terra-form-field-base';
+import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
+import Spy = jasmine.Spy;
+import { FormTypeMap } from './model/form-type-map';
+import { SimpleChange } from '@angular/core';
 
-fdescribe(`TerraCardComponent:`, () =>
+describe(`TerraCardComponent:`, () =>
 {
     let component:TerraFormComponent;
-
+    const formFields:{ [key:string]:TerraFormFieldInterface } = {
+        control1: {type: 'text', defaultValue: 'one'},
+        control2: {type: 'text', defaultValue: 'two'}
+    };
 
     beforeEach(() =>
     {
@@ -24,54 +29,65 @@ fdescribe(`TerraCardComponent:`, () =>
     {
         expect(component.inputIsDisabled).toBe(false);
         expect(component.inputFormFields).toEqual({});
+        expect(component.inputControlTypeMap).toBeUndefined();
     });
 
-    it('writingValues should patchValues in formGroup, change scope-data and leave formGroup untouched', () =>
+    it('should use a TerraFormTypeMap instance as fallback internally if no custom map is given via #inputControlTypeMap', () =>
     {
-        let mockValues:any = {
-            control1: 'one',
-            control2: 'two'
-        };
-
-        let formFields:{ [key:string]:TerraFormFieldInterface } = {
-            control1:{type:'text'},
-            control2:{type:'text'}
-        };
-
-        component.inputFormFields = formFields;
-
-        let spyPatchValue:Spy = spyOn(component.formGroup, 'patchValue');
-
-        component.writeValue(mockValues);
-
-        expect(spyPatchValue).toHaveBeenCalledWith(mockValues);
-
-        expect(component.scope.data).toEqual(mockValues);
-
-        component.writeValue(null);
-
-        expect(component.formGroup.untouched).toEqual(true);
+        component.ngOnChanges({});
+        component.ngOnInit();
+        expect(component['controlTypeMap']).toEqual(new TerraFormTypeMap());
     });
 
-    it('should call callback on change', () =>
+    it('should use a custom map if given via #inputControlTypeMap', () =>
     {
-        let spy:Spy = jasmine.createSpy('spy');
+        const typeMap:FormTypeMap = new FormTypeMap();
+        component.inputControlTypeMap = typeMap;
+        component.ngOnChanges({inputControlTypeMap: new SimpleChange(null, typeMap, false)});
+        component.ngOnInit();
+        expect(component['controlTypeMap']).toBe(typeMap);
+    });
 
-        component.registerOnChange(spy);
+    describe('with formFields', () =>
+    {
+        beforeEach(() => component.inputFormFields = formFields);
 
-        let legacyFormField:TerraFormFieldBase<string> = new TerraFormFieldBase<string>('test', TerraControlTypeEnum.INPUT_TEXT, '', true, {});
+        it('writing values to the model via #writeValue should patchValues in #formGroup and change scope-data', () =>
+        {
+            let mockValues:any = {control1: 'one', control2: 'two'};
+            spyOn(component.formGroup, 'patchValue').and.callThrough();
 
-        component.inputFormFields = [legacyFormField];
+            component.writeValue(mockValues);
 
-        component.formGroup.addControl('control1', new FormControl());
+            expect(component.scope.data).toBe(mockValues);
+            expect(component.formGroup.patchValue).toHaveBeenCalledWith(mockValues);
+            expect(component.formGroup.value).toEqual(mockValues);
+        });
 
-        let mockValues:any = {
-            control1: 'one'
-        };
+        it('writing `null` to the model via #writeValue resets the #formGroup to the default values of the given formFields', () =>
+        {
+            const defaultValues:any = {control1: 'one', control2: 'two'};
+            spyOn(component.formGroup, 'reset').and.callThrough();
 
-        component.formGroup.patchValue(mockValues);
+            component.writeValue(null);
 
-        expect(spy).toHaveBeenCalled();
+            expect(component.formGroup.untouched).toBe(true);
+            expect(component.formGroup.value).toEqual(defaultValues);
+            expect(component.formGroup.reset).toHaveBeenCalledWith(defaultValues);
+        });
+
+        it('should call a registered callback on change', () =>
+        {
+            let spy:Spy = jasmine.createSpy('spy');
+            component.registerOnChange(spy);
+
+            let mockValues:any = {
+                control1: 'one'
+            };
+
+            component.formGroup.patchValue(mockValues);
+            expect(spy).toHaveBeenCalled();
+        });
     });
 
     it('should transform legacy formfields', () =>
