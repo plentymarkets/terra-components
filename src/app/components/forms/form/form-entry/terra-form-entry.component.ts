@@ -207,6 +207,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
                 console.error(`Control type '${this.inputFormField.type}' not supported. Please provide a control type map which supports it.`);
                 return;
             }
+
             let inputMap:{ [key:string]:string } = {};
             if(!(this.inputControlTypeMap[this.inputFormField.type] instanceof Type))
             {
