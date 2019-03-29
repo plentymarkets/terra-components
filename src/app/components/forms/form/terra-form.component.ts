@@ -90,9 +90,10 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      */
     public readonly scope:TerraFormScope = new TerraFormScope();
 
+    protected controlTypeMap:FormTypeMapInterface | TerraFormTypeMap | FormTypeMap = {};
+
     private values:any = {};
 
-    private controlTypeMap:FormTypeMapInterface | TerraFormTypeMap | FormTypeMap = {};
     private formFields:{ [key:string]:TerraFormFieldInterface };
     private _formGroup:FormGroup = new FormGroup({});
 
