@@ -238,11 +238,11 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
 
             if(inputMap.hasOwnProperty('isDisabled'))
             {
-                this.componentInstance[inputMap['isDisabled']] = this.inputIsDisabled;
+                this.componentInstance[inputMap['isDisabled']] = this.inputIsDisabled || this.inputFormField.options['isDisabled'];
             }
             else
             {
-                this.componentInstance['inputIsDisabled'] = this.inputIsDisabled;
+                this.componentInstance['inputIsDisabled'] = this.inputIsDisabled || this.inputFormField.options['isDisabled'];
             }
         }
     }
