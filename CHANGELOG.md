@@ -1,3 +1,9 @@
+<a name="3.8.0"></a>
+# 3.8.0 (XX.XX.XXXX)
+
+### Features
+* **terra-form** you are now able to disable a single form field.
+
 <a name="3.7.0"></a>
 # 3.7.0 (27.03.2019)
 
