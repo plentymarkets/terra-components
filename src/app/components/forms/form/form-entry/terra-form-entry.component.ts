@@ -200,7 +200,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
 
     private bindInputProperties():void
     {
-        if(!isNullOrUndefined(this.componentInstance))
+        if(!isNullOrUndefined(this.componentInstance) && !isNullOrUndefined(this.componentFactory))
         {
             if(isNullOrUndefined(this.inputControlTypeMap) || isNullOrUndefined(this.inputControlTypeMap[this.inputFormField.type]))
             {
@@ -218,19 +218,15 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
             {
                 Object.keys(this.inputFormField.options).forEach((optionKey:string) =>
                 {
-                    if(inputMap.hasOwnProperty(optionKey)
-                       && Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, inputMap[optionKey]))
+                    let option:string = inputMap.hasOwnProperty(optionKey) ? inputMap[optionKey] : optionKey;
+                    if(this.componentFactory.inputs.find((input:{propName:string, templateName:string}) => input.propName === option))
                     {
-                        this.componentInstance[inputMap[optionKey]] = this.inputFormField.options[optionKey];
-                    }
-                    else if(Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, optionKey))
-                    {
-                        this.componentInstance[optionKey] = this.inputFormField.options[optionKey];
+                        this.componentInstance[option] = this.inputFormField.options[option];
                     }
                     else
                     {
                         let prefixedOptionKey:string = this.transformInputPropertyName(optionKey);
-                        if(Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, prefixedOptionKey))
+                        if(this.componentFactory.inputs.find((input:{propName:string, templateName:string}) => input.propName === option))
                         {
                             this.componentInstance[prefixedOptionKey] = this.inputFormField.options[optionKey];
                         }
