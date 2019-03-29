@@ -1,5 +1,5 @@
 <a name="3.7.0"></a>
-# 3.7.0 (XX.XX.XXXX)
+# 3.7.0 (27.03.2019)
 
 ### Changes
 * **terra-checkbox**
