@@ -60,7 +60,9 @@
 
             &.unfolded
             {
-                background-color: var(--portlet-head-unfolded-background-color, transparent);
+                background-color: var(--collapsable-portlet-head-unfolded-background-color, transparent);
+                padding: var(--collapsable-portlet-head-unfolded-padding, (var(--space-sm) var(--space-md)));
+                box-shadow: var(--collapsable-portlet-head-unfolded-box-shadow, var(--box-shadow));
             }
         }
     
