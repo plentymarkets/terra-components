@@ -63,13 +63,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     @Input()
     public set value(value:boolean)
     {
-        // when you remove this method, the checkbox tree must be fixed or completely refactored!!!!
-        if(!isNullOrUndefined(value) && value !== this.innerValue)
-        {
-            this._isIndeterminate = false;
-            this.innerValue = value;
-            this.onChangeCallback(value);
-        }
+        this.writeValue(value);
     }
 
     /**
@@ -148,9 +142,11 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      */
     public writeValue(value:boolean):void
     {
-        if(value !== this.innerValue)
+        if(!isNullOrUndefined(value) && value !== this.innerValue)
         {
-            this.value = value;
+            this._isIndeterminate = false;
+            this.innerValue = value;
+            this.onChangeCallback(value);
         }
     }
 
