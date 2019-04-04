@@ -1,3 +1,9 @@
+<a name="3.X.X"></a>
+# 3.X.X (DD.MM.YYY)
+
+## Changes
+* **terra-select-box** removed `position` from `TerraSelectBoxValueInterface` because it is not used anymore
+
 <a name="3.7.0"></a>
 # 3.7.0 (27.03.2019)
 
