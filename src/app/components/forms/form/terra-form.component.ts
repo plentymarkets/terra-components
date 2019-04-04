@@ -3,6 +3,7 @@ import {
     forwardRef,
     Input,
     OnChanges,
+    OnInit,
     SimpleChanges,
     Type,
 } from '@angular/core';
@@ -17,8 +18,11 @@ import { TerraFormFieldInterface } from './model/terra-form-field.interface';
 import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { TerraFormFieldHelper } from './helper/terra-form-field.helper';
 import { Data } from '@angular/router';
+import { TerraFormFieldBase } from '../dynamic-form/data/terra-form-field-base';
 import { noop } from 'rxjs/util/noop';
 import { TerraFormHelper } from './helper/terra-form.helper';
+import { FormTypeMapInterface } from './model/form-type-map.interface';
+import { FormTypeMap } from './model/form-type-map';
 
 @Component({
     selector:  'terra-form',
@@ -32,17 +36,17 @@ import { TerraFormHelper } from './helper/terra-form.helper';
         }
     ]
 })
-export class TerraFormComponent implements ControlValueAccessor, OnChanges
+export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnInit
 {
     /**
      * @description Set accessor for the form fields. Creates a representative reactive FormGroup instance by parsing the given form fields.
      * @param fields
      */
     @Input()
-    public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
+    public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface } | Array<TerraFormFieldBase<any>>)
     {
         this.formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
-        this._formGroup = TerraFormHelper.parseReactiveForm(fields, this.values);
+        this._formGroup = TerraFormHelper.parseReactiveForm(this.formFields, this.values);
         this._formGroup.valueChanges.subscribe((changes:Data) =>
         {
             Object.keys(changes).forEach((key:string) =>
@@ -57,7 +61,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
     /**
      * @description Get accessor for the form fields. Returns the previously set form fields.
      */
-    public get inputFormFields():{ [key:string]:TerraFormFieldInterface }
+    public get inputFormFields():{ [key:string]:TerraFormFieldInterface } | Array<TerraFormFieldBase<any>>
     {
         if(isNullOrUndefined(this.formFields))
         {
@@ -69,10 +73,10 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
     /**
      * @description A custom map of supported control types may be provided here.
      *     Please note: All of the control types contained in this map have to implement the ControlValueAccessor interface.
-     * @default an instance of the TerraFormTypeMap
+     * @default undefined - an instance of the TerraFormTypeMap will serve as fallback to support a default set of control types.
      */
     @Input()
-    public inputControlTypeMap:any;
+    public inputControlTypeMap:FormTypeMapInterface | TerraFormTypeMap | FormTypeMap;
 
     /**
      * @description If true, disables the whole form - and all its containing controls/form fields.
@@ -86,14 +90,27 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
      */
     public readonly scope:TerraFormScope = new TerraFormScope();
 
+    protected controlTypeMap:FormTypeMapInterface | TerraFormTypeMap | FormTypeMap = {};
+
     private values:any = {};
 
-    private controlTypeMap:{ [key:string]:Type<any> };
     private formFields:{ [key:string]:TerraFormFieldInterface };
     private _formGroup:FormGroup = new FormGroup({});
 
     private onChangeCallback:(value:any) => void = noop;
     private onTouchedCallback:() => void = noop;
+
+    /**
+     * Implementation of the OnInit life cycle hook.
+     * @description Initializes the controlTypeMap with its default value if `inputControlTypeMap` is not given.
+     */
+    public ngOnInit():void
+    {
+        if(isNullOrUndefined(this.inputControlTypeMap))
+        {
+            this.controlTypeMap = new TerraFormTypeMap();
+        }
+    }
 
     /**
      * Implementation of the OnChanges life cycle hook.
@@ -102,9 +119,9 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges
      */
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes.hasOwnProperty('inputControlTypeMap'))
+        if(changes.hasOwnProperty('inputControlTypeMap') && !isNullOrUndefined(this.inputControlTypeMap))
         {
-            this.controlTypeMap = this.inputControlTypeMap || new TerraFormTypeMap();
+            this.controlTypeMap = this.inputControlTypeMap;
         }
     }
 
