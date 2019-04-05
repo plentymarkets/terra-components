@@ -8,6 +8,7 @@
                         [inputCaption]="leaf.caption"
                         (ngModelChange)="onCheckboxValueChange($event, leaf)"
                         [(ngModel)]="leaf.checkboxChecked"
+                        [notifyOnChanges]="true"
                         [isIndeterminate]="leaf.isIndeterminate">
                     </terra-checkbox>
                 </div>
