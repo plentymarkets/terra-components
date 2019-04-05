@@ -55,6 +55,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     @Input()
     public tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
 
+    /** @deprecated Temporarily for {@see TerraCheckboxTreeComponent}*/
     @Input()
     public notifyOnChanges:boolean;
 
