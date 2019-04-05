@@ -1,3 +1,10 @@
+<a name="x.x.x"></a>
+#unreleased
+* **terra-checkbox** temporarily added `notifyOnChanges` to be notified on leaf change
+* **terra-checkbox-tree** 
+	- CSS changes
+	- added functionality for disabled leaf
+
 <a name="3.7.0"></a>
 # 3.7.0 (27.03.2019)
 
