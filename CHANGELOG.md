@@ -2,7 +2,7 @@
 # 3.7.1 (DD.04.2019)
 
 ### Bug Fixes
-* **terra-node-tree** fix export of component
+* **terra-node-tree** small fix to add node logic
 
 <a name="3.7.0"></a>
 # 3.7.0 (27.03.2019)
