@@ -1,12 +1,19 @@
 import {
     Component,
     forwardRef,
-    Input
+    Input,
+    OnChanges,
+    OnInit,
+    SimpleChanges
 } from '@angular/core';
 import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
+import { isNullOrUndefined } from 'util';
+import { StringHelper } from '../../../../helpers/string.helper';
+
+let nextId:number = 0;
 
 /**
  * @author pweyrich
@@ -23,7 +30,7 @@ import {
         }
     ]
 })
-export class RadioGroupComponent implements ControlValueAccessor
+export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChanges
 {
     /**
      * Name of the group. This is projected to the input's name property.
@@ -41,6 +48,28 @@ export class RadioGroupComponent implements ControlValueAccessor
     public inline:boolean = false;
 
     private _value:any;
+    private readonly id:string;
+
+    constructor()
+    {
+        this.id = `radio-group#${nextId++}`;
+    }
+
+    public ngOnInit():void
+    {
+        if(StringHelper.isNullUndefinedOrEmpty(this.name))
+        {
+            this.name = this.id;
+        }
+    }
+
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes.hasOwnProperty('name') && StringHelper.isNullUndefinedOrEmpty(this.name))
+        {
+            this.name = this.id;
+        }
+    }
 
     /**
      * set the value of the radio group
