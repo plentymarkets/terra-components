@@ -6,9 +6,11 @@ import {
 import { RadioInputComponent } from './radio-input.component';
 import { RadioGroupComponent } from './radio-group.component';
 import { By } from '@angular/platform-browser';
-import { Component } from '@angular/core';
+import {
+    Component,
+    SimpleChange
+} from '@angular/core';
 import Spy = jasmine.Spy;
-
 
 @Component({
     template: `
@@ -17,7 +19,9 @@ import Spy = jasmine.Spy;
                       <tc-radio-input [label]="'Option 2'" [value]="2"></tc-radio-input>
                   </tc-radio-group>`
 })
-class RadioGroupTestComponent {}
+class RadioGroupTestComponent
+{
+}
 
 
 describe(`RadioGroupComponent:`, () =>
@@ -26,7 +30,9 @@ describe(`RadioGroupComponent:`, () =>
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [RadioInputComponent, RadioGroupComponent, RadioGroupTestComponent]
+            declarations: [RadioInputComponent,
+                           RadioGroupComponent,
+                           RadioGroupTestComponent]
         }).compileComponents();
     }));
 
@@ -67,6 +73,15 @@ describe(`RadioGroupComponent:`, () =>
             const testValue:any = {test: true};
             radioGroupComponent.value = testValue;
             expect(radioGroupComponent.value).toBe(testValue);
+        });
+
+        it(`setting the #name as empty (or null) should have #id as value`, () =>
+        {
+            radioGroupComponent.name = 'test';
+            radioGroupComponent.ngOnChanges({name: new SimpleChange(null, '', true)});
+            fixture.detectChanges();
+
+            expect(radioGroupComponent.name).toBe(radioGroupComponent['id']);
         });
 
         it(`#writeValue should update the #value of the radio group`, () =>

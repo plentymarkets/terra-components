@@ -1,3 +1,6 @@
+###unreleased
+* **tc-radio-group** generating name for inputs if not set initially.
+
 <a name="3.7.0"></a>
 # 3.7.0 (27.03.2019)
 

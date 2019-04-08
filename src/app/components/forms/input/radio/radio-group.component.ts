@@ -65,7 +65,7 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes.hasOwnProperty('name') && StringHelper.isNullUndefinedOrEmpty(this.name))
+        if(changes.hasOwnProperty('name') && StringHelper.isNullUndefinedOrEmpty(changes['name'].currentValue))
         {
             this.name = this.id;
         }
