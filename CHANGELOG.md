@@ -74,6 +74,9 @@
 <a name="3.5.1"></a>
 # 3.5.1 (20.02.2019)
 
+### Features
+* **terra-code-editor** added input `switchFromCode`, if false the switch from code to note editor view gets disabled, default true.
+
 ### Bug Fixes
 * **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
 * **terra-form** now emits changes on array or object values correctly
