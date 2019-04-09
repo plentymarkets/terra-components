@@ -1,3 +1,9 @@
+<a name="3.7.1"></a>
+# 3.8.0 (NOT RELEASED)
+
+### Bug Fixes
+* **terra-form** set empty array as default value for list controls.
+
 <a name="3.7.0"></a>
 # 3.7.0 (27.03.2019)
 
