@@ -1,5 +1,5 @@
 <a name="3.8.0"></a>
-# 3.8.0 (NOT RELEASED)
+# 3.8.0 (09.04.2019)
 
 ### Features
 * **terra-form** set empty array as default value for list controls.
