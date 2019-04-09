@@ -5,7 +5,7 @@
 * **terra-form** set empty array as default value for list controls.
 
 ### Bug Fixes
-* **terra-node-tree** small fix to add node logic
+* **terra-node-tree** fixed issues occuring when adding a new node whilst an existing node had been selected
 
 <a name="3.7.0"></a>
 # 3.7.0 (27.03.2019)
