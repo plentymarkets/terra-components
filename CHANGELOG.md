@@ -3,6 +3,7 @@
 
 ### Features
 * **terra-form** set empty array as default value for list controls.
+* **tc-radio-group** allow the radio group to accept more elements than only the tc-radio-input. It helps to create more structured combinations of Elements.  
 
 <a name="3.7.0"></a>
 # 3.7.0 (27.03.2019)
