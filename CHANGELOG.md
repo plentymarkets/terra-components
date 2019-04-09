@@ -1,4 +1,10 @@
-###unreleased
+<a name="3.8.0"></a>
+# 3.8.0 (NOT RELEASED)
+
+### Features
+* **terra-form** set empty array as default value for list controls.
+
+### Bug Fixes
 * **tc-radio-group** generating name for inputs if not set initially.
 
 <a name="3.7.0"></a>
