@@ -55,6 +55,10 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
         this.id = `radio-group#${nextId++}`;
     }
 
+    /**
+     * Implementation of the OnInit life cycle hook
+     * @description Provides a generated id as default name if no name is given via the input.
+     */
     public ngOnInit():void
     {
         if(StringHelper.isNullUndefinedOrEmpty(this.name))
@@ -63,6 +67,11 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
         }
     }
 
+    /**
+     * Implementation of the OnChanges life cycle hook
+     * @description Ensures that the name property is defined by using a generated id as a fallback value if no name is given.
+     * @param changes
+     */
     public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes.hasOwnProperty('name') && StringHelper.isNullUndefinedOrEmpty(changes['name'].currentValue))
