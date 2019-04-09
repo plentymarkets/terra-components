@@ -1,5 +1,8 @@
-<a name="3.7.1"></a>
-# 3.7.1 (DD.04.2019)
+<a name="3.8.0"></a>
+# 3.8.0 (NOT RELEASED)
+
+### Features
+* **terra-form** set empty array as default value for list controls.
 
 ### Bug Fixes
 * **terra-node-tree** small fix to add node logic
