@@ -1,8 +1,12 @@
-<a name="3.8.0"></a>
-# 3.8.0 (DD.04.2019)
+<a name="3.8.1"></a>
+# 3.8.1 (Unreleased)
 
 ### Bug Fixes
+* **terra-node-tree** fixed issues occuring when adding a new node whilst an existing node had been selected
 * **terra-info** fix export of component
+
+<a name="3.8.0"></a>
+# 3.8.0 (09.04.2019)
 
 ### Features
 * **terra-form** set empty array as default value for list controls.
