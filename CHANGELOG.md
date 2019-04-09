@@ -1,6 +1,9 @@
 <a name="3.8.1"></a>
 # 3.8.1 (Unreleased)
 
+### Features
+* **terra-form.helper** instead of the usual required validator, the requiredTrue validator is now added for controls of type checkbox.
+
 ### Bug Fixes
 * **terra-node-tree** fixed issues occuring when adding a new node whilst an existing node had been selected
 
