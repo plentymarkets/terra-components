@@ -165,9 +165,9 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
         }
         else if(this.scope.data !== values)
         {
+            values = TerraFormHelper.updateFormArrays(this.formGroup, this.formFields, values);
             this.values = values;
             this.scope.data = values;
-            TerraFormHelper.updateFormArrays(this.formGroup, this.formFields, values);
             this.formGroup.patchValue(values);
         }
     }

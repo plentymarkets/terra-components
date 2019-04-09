@@ -1,8 +1,11 @@
-<a name="3.7.1"></a>
-# 3.7.1 (DD.04.2019)
+<a name="3.8.0"></a>
+# 3.8.0 (DD.04.2019)
 
 ### Bug Fixes
 * **terra-info** fix export of component
+
+### Features
+* **terra-form** set empty array as default value for list controls.
 
 <a name="3.7.0"></a>
 # 3.7.0 (27.03.2019)
