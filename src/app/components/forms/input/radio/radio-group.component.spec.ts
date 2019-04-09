@@ -30,9 +30,11 @@ describe(`RadioGroupComponent:`, () =>
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [RadioInputComponent,
-                           RadioGroupComponent,
-                           RadioGroupTestComponent]
+            declarations: [
+                RadioInputComponent,
+                RadioGroupComponent,
+                RadioGroupTestComponent
+            ]
         }).compileComponents();
     }));
 

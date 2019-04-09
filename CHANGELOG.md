@@ -3,9 +3,7 @@
 
 ### Features
 * **terra-form** set empty array as default value for list controls.
-
-### Bug Fixes
-* **tc-radio-group** generating name for inputs if not set initially.
+* **tc-radio-group** now uses a generated name if it is not set via input.
 
 <a name="3.7.0"></a>
 # 3.7.0 (27.03.2019)
