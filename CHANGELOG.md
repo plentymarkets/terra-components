@@ -1,5 +1,8 @@
-<a name="x.x.x"></a>
-#unreleased
+<a name="3.8.0"></a>
+# 3.8.0 (NOT RELEASED)
+
+### Features
+* **terra-form** set empty array as default value for list controls.
 * **terra-checkbox** temporarily added `notifyOnChanges` to be notified on leaf change
 * **terra-checkbox-tree** 
 	- CSS changes
