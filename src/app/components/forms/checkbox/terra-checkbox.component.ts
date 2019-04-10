@@ -55,6 +55,10 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     @Input()
     public tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
 
+    /** @deprecated Temporarily for {@see TerraCheckboxTreeComponent}*/
+    @Input()
+    public notifyOnChanges:boolean;
+
     /**
      * @description set accessor for the current value of the check box.
      * @deprecated use ngModel instead.
@@ -146,6 +150,11 @@ export class TerraCheckboxComponent implements ControlValueAccessor
         {
             this._isIndeterminate = false;
             this.innerValue = value;
+
+            if(this.notifyOnChanges)
+            {
+                this.onChangeCallback(value);
+            }
         }
     }
 
