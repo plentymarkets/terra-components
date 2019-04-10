@@ -133,12 +133,12 @@ export const exportedComponents:Array<Type<any>> = [
     RadioInputComponent,
     RadioGroupComponent,
     TableRowComponent,
-    FilterComponent
+    FilterComponent,
+    TerraInfoComponent
 ];
 
 export const components:Array<Type<any>> = [
     ...exportedComponents,
     TerraFileListComponent,
-    TerraImagePreviewComponent,
-    TerraInfoComponent
+    TerraImagePreviewComponent
 ];
