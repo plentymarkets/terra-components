@@ -8,7 +8,7 @@ export interface TerraLeafInterface
     avoidOpenOnClick?:boolean;
     icon?:string;
     iconColor?:string;
-    id?:number;
+    id?:number | string;
     isActive?:boolean;
     clickFunction?:() => void;
     onOpenFunction?:() => void;
