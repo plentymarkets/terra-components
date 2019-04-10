@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 * **terra-node-tree** fixed issues occuring when adding a new node whilst an existing node had been selected
+* **terra-info** fix export of component
 
 <a name="3.8.0"></a>
 # 3.8.0 (09.04.2019)
