@@ -37,7 +37,14 @@ export class TerraFormHelper
 
         if(formField.options.required)
         {
-            validators.push(Validators.required);
+            if(formField.type === 'checkbox')
+            {
+                validators.push(Validators.requiredTrue);
+            }
+            else
+            {
+                validators.push(Validators.required);
+            }
         }
 
         if(formField.options.minLength >= 0)
