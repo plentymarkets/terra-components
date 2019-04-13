@@ -1,8 +1,11 @@
-<a name="3.9.0"></a>
-# 3.9.0 (10.04.2019)
+<a name="3.10.0"></a>
+# 3.10.0 (Unreleased)
 
 ### Features
 * **terra-form.helper** instead of the usual required validator, the requiredTrue validator is now added for controls of type checkbox.
+
+<a name="3.9.0"></a>
+# 3.9.0 (10.04.2019)
 
 ### Bug Fixes
 * **terra-node-tree** fixed issues occuring when adding a new node whilst an existing node had been selected
