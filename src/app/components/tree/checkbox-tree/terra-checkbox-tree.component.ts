@@ -49,9 +49,16 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
      * @param event
      * @param leaf
      */
-    private onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
+    protected onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
     {
-        leaf.checkboxChecked = event;
+        if(leaf.isIndeterminate)
+        {
+            leaf.checkboxChecked = false;
+        }
+        else
+        {
+            leaf.checkboxChecked = event;
+        }
         this.resetIndeterminateLeafState(leaf);
         this.recursiveUpdateChildLeafs(leaf);
         this.recursiveUpdateParentLeafs(leaf);
@@ -100,7 +107,10 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         {
             for(let subLeaf of leaf.subLeafList)
             {
-                subLeaf.checkboxChecked = leaf.checkboxChecked;
+                if(!subLeaf.isDisabled)
+                {
+                    subLeaf.checkboxChecked = leaf.checkboxChecked;
+                }
 
                 if(subLeaf.subLeafList)
                 {
