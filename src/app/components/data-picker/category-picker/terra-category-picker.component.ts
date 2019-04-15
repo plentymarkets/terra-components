@@ -207,35 +207,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                 {
                     if(!isNullOrUndefined(this.inputLanguage))
                     {
-                        categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
-                        {
-                            return foundDetail.lang === this.inputLanguage && (foundDetail.plentyId === this.inputPlentyId ||
-                                                                               isNullOrUndefined(this.inputPlentyId));
-                        });
-
-                        // Check if there is a detail only for the language
-                        if(isNullOrUndefined(categoryDetail))
-                        {
-                            categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
-                            {
-                                return foundDetail.lang === this.inputLanguage;
-                            });
-                        }
-
-                        // Check if there is a detail only for the plentyId
-                        if(isNullOrUndefined(categoryDetail))
-                        {
-                            categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
-                            {
-                                return foundDetail.plentyId === this.inputPlentyId || isNullOrUndefined(this.inputPlentyId);
-                            });
-                        }
-
-                        // No details found with the given language and the given plentyId so just use the first language instead
-                        if(isNullOrUndefined(categoryDetail) && categoryData.details.length > 0)
-                        {
-                            categoryDetail = categoryData.details[0];
-                        }
+                        categoryDetail = this.findCategoryDetails(categoryData);
                     }
                     else if(categoryData.details.length > 0) // Downwardcompatability
                     {
@@ -283,6 +255,44 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         // Current List is updated
         this.list = this.nestedTreeConfig.list;
     }
+
+    private findCategoryDetails(categoryData:CategoryDataInterface):CategoryDetailDataInterface
+    {
+        let categoryDetail:CategoryDetailDataInterface;
+
+        categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
+        {
+            return foundDetail.lang === this.inputLanguage && (foundDetail.plentyId === this.inputPlentyId ||
+                                                               isNullOrUndefined(this.inputPlentyId));
+        });
+
+        // Check if there is a detail only for the language
+        if(isNullOrUndefined(categoryDetail))
+        {
+            categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
+            {
+                return foundDetail.lang === this.inputLanguage;
+            });
+        }
+
+        // Check if there is a detail only for the plentyId
+        if(isNullOrUndefined(categoryDetail))
+        {
+            categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
+            {
+                return foundDetail.plentyId === this.inputPlentyId || isNullOrUndefined(this.inputPlentyId);
+            });
+        }
+
+        // No details found with the given language and the given plentyId so just use the first language instead
+        if(isNullOrUndefined(categoryDetail) && categoryData.details.length > 0)
+        {
+            categoryDetail = categoryData.details[0];
+        }
+
+        return categoryDetail;
+    }
+
 
     private getCategoriesByParent():void
     {
