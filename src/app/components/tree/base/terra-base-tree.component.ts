@@ -3,7 +3,10 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
-import { isNull } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 
 /**
  * @author mkunze
@@ -71,14 +74,14 @@ export class TerraBaseTreeComponent implements OnInit
         }
     }
 
-    private onLeafClick(clickedLeaf:TerraLeafInterface):void
+    protected onLeafClick(clickedLeaf:TerraLeafInterface):void
     {
-        if(!isNull(clickedLeaf.subLeafList) && !clickedLeaf.avoidOpenOnClick)
+        if(!isNullOrUndefined(clickedLeaf.subLeafList) && !clickedLeaf.avoidOpenOnClick)
         {
             this.toggleOpen(clickedLeaf);
         }
 
-        if(!isNull(clickedLeaf.clickFunction) && !clickedLeaf.isActive)
+        if(!isNullOrUndefined(clickedLeaf.clickFunction) && !clickedLeaf.isActive)
         {
             clickedLeaf.clickFunction();
         }
@@ -120,17 +123,6 @@ export class TerraBaseTreeComponent implements OnInit
         clickedLeaf.isOpen = !clickedLeaf.isOpen;
     }
 
-    private onArrowClick(clickedLeaf:TerraLeafInterface):void
-    {
-        if(!isNull(clickedLeaf.onOpenFunction) && !clickedLeaf.isOnOpenFunctionCalled)
-        {
-            clickedLeaf.onOpenFunction();
-            clickedLeaf.isOnOpenFunctionCalled = true;
-        }
-
-        this.toggleOpen(clickedLeaf);
-    }
-
     private recursiveSearchActiveLeaf(leafListToSearch:Array<TerraLeafInterface>):TerraLeafInterface
     {
         let foundLeaf:TerraLeafInterface;
@@ -147,7 +139,7 @@ export class TerraBaseTreeComponent implements OnInit
             {
                 foundLeaf = this.recursiveSearchActiveLeaf(leaf.subLeafList);
 
-                if(!isNull(foundLeaf))
+                if(!isNullOrUndefined(foundLeaf))
                 {
                     break;
                 }
@@ -160,10 +152,5 @@ export class TerraBaseTreeComponent implements OnInit
     public getSelectedLeaf():TerraLeafInterface
     {
         return this.recursiveSearchActiveLeaf(this.inputLeafList);
-    }
-
-    private checkIfArrowNeeded(clickedLeaf:TerraLeafInterface):boolean
-    {
-        return !isNull(clickedLeaf.subLeafList) || !isNull(clickedLeaf.onOpenFunction);
     }
 }

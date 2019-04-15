@@ -453,7 +453,7 @@ export class TerraBaseService
     }
 
     // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelGet(getRequest$:Observable<Response>, dataId:number):Observable<any>
+    protected handleLocalDataModelGet(getRequest$:Observable<Response>, dataId:number|string):Observable<any>
     {
         if(!isNullOrUndefined(this.dataModel[dataId]))
         {
@@ -468,7 +468,7 @@ export class TerraBaseService
     }
 
     // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelPost(postRequest$:Observable<Response>, dataId:number):Observable<any>
+    protected handleLocalDataModelPost(postRequest$:Observable<Response>, dataId:number|string):Observable<any>
     {
         this.setAuthorization();
 
@@ -485,7 +485,7 @@ export class TerraBaseService
     }
 
     // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelPut(putRequest$:Observable<Response>, dataId:number):Observable<any>
+    protected handleLocalDataModelPut(putRequest$:Observable<Response>, dataId:number|string):Observable<any>
     {
         this.setAuthorization();
 
@@ -516,7 +516,7 @@ export class TerraBaseService
     }
 
     // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelDelete(deleteRequest$:Observable<Response>, dataId:number):Observable<void>
+    protected handleLocalDataModelDelete(deleteRequest$:Observable<Response>, dataId:number|string):Observable<void>
     {
         this.setAuthorization();
 

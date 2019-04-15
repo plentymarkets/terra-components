@@ -10,4 +10,5 @@ export interface TerraCheckboxLeafInterface extends TerraLeafInterface
     leafParent?:TerraCheckboxLeafInterface;
     subLeafList?:Array<TerraCheckboxLeafInterface>;
     parentLeafList?:Array<TerraCheckboxLeafInterface>;
+    isDisabled?:boolean;
 }

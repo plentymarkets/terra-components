@@ -10,7 +10,7 @@
              *ngIf="!inputImagePath || inputImagePath.length == 0"
              [ngClass]="inputPlaceholderIcon"></div>
     </div>
-    <div class="card-block">
+    <div #body class="card-block" [hidden]="!showBody">
         <ng-content select="[terra-card-content]"></ng-content>
     </div>
     <div #footer class="card-footer" [hidden]="!showFooter" [ngClass]="{'selected': inputIsSelected}">
