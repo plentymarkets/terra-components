@@ -1,6 +1,9 @@
 <a name="3.10.0"></a>
 # 3.10.0 (Unreleased)
 
+### Bug Fixes
+* **terra-form** no longer validates hidden form fields
+
 ### Features
 * **terra-form.helper** instead of the usual required validator, the requiredTrue validator is now added for controls of type checkbox.
 * **tc-radio-group** allow the radio group to accept more elements than only the tc-radio-input. It helps to create more structured combinations of Elements.  
