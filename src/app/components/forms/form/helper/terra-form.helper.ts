@@ -41,6 +41,7 @@ export class TerraFormHelper
             {
                 case 'checkbox':
                 case 'toggle':
+                    // TODO terra-toggle is not a native html element and not known to terra-form -> find a way for custom validation
                     validators.push(Validators.requiredTrue);
                     break;
                 default:
