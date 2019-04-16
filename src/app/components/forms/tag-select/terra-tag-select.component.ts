@@ -94,7 +94,10 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
      */
     protected addSelectedTag(selectedTag:TerraTagInterface):void
     {
-        if(!this.isReadOnly && !isNullOrUndefined(selectedTag) && !this.selectedTags.find((tag:TerraTagInterface) => tag === selectedTag))
+        if(!this.isReadOnly &&
+           !isNullOrUndefined(selectedTag) &&
+           !this.selectedTags.find((tag:TerraTagInterface) => tag.id === selectedTag.id)
+        )
         {
             this.writeValue(this.selectedTags.concat(selectedTag));
         }
