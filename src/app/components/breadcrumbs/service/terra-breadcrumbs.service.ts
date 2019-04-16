@@ -44,7 +44,11 @@ export class TerraBreadcrumbsService
                 let urls:Array<string> = urlParts.map((urlPart:string, index:number) => urlParts.slice(0, index + 1).join('/'));
                 urls.forEach((url:string) =>
                 {
-                    this.handleBreadcrumbForUrl(url, this._initialPath + url, '/' + cleanEventUrl);
+                    if ( cleanEventUrl.charAt(0) !== '/' )
+                    {
+                        cleanEventUrl = '/' + cleanEventUrl;
+                    }
+                    this.handleBreadcrumbForUrl(url, this._initialPath + url, cleanEventUrl);
                 });
 
                 // update breadcrumb visibility for containers that have not been checked since the url is to short
