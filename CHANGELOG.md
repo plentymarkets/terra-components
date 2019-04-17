@@ -1,5 +1,5 @@
 <a name="3.10.0"></a>
-# 3.10.0 (Unreleased)
+# 3.10.0 (17.04.2019)
 
 ### Bug Fixes
 * **terra-form** no longer validates hidden form fields
