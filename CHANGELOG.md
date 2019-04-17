@@ -5,6 +5,7 @@
 * **terra-form** no longer validates hidden form fields
 
 ### Features
+* **terra-card** added possibility to overwrite the background color of the footer
 * **terra-form.helper** instead of the usual required validator, the requiredTrue validator is now added for controls of type checkbox and toggle.
 
 <a name="3.9.0"></a>
