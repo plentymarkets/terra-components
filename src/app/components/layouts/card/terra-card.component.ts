@@ -42,6 +42,12 @@ export class TerraCardComponent implements AfterContentChecked
     @Input()
     public inputIsSelected:boolean = false;
 
+    /**
+     * @description set a progress value to add a colour to the footer -- true for done and false for in progress
+     */
+    @Input()
+    public progressDone:boolean;
+
     private showHeader:boolean;
     private showBody:boolean;
     private showFooter:boolean;

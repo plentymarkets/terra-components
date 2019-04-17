@@ -80,6 +80,11 @@
             border-radius: 0;
             transition: all var(--transition-md);
         }
+        
+        &.progress-done
+        {
+            background-color: var(--color-group-add);
+        }
     }
 }
 
