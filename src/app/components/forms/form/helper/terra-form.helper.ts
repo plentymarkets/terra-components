@@ -37,13 +37,15 @@ export class TerraFormHelper
 
         if(formField.options.required)
         {
-            if(formField.type === 'checkbox')
+            switch(formField.type)
             {
-                validators.push(Validators.requiredTrue);
-            }
-            else
-            {
-                validators.push(Validators.required);
+                case 'checkbox':
+                case 'toggle':
+                    // TODO terra-toggle is not a native html element and not known to terra-form -> find a way for custom validation
+                    validators.push(Validators.requiredTrue);
+                    break;
+                default:
+                    validators.push(Validators.required);
             }
         }
 
@@ -146,7 +148,7 @@ export class TerraFormHelper
         {
             let formField:TerraFormFieldInterface = formFields[formControlKey];
             let control:AbstractControl = form.get(formControlKey);
-            if (formField.isList && isNullOrUndefined(values[formControlKey]))
+            if(formField.isList && isNullOrUndefined(values[formControlKey]))
             {
                 values[formControlKey] = [];
             }

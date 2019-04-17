@@ -5,7 +5,7 @@
 * **terra-form** no longer validates hidden form fields
 
 ### Features
-* **terra-form.helper** instead of the usual required validator, the requiredTrue validator is now added for controls of type checkbox.
+* **terra-form.helper** instead of the usual required validator, the requiredTrue validator is now added for controls of type checkbox and toggle.
 
 <a name="3.9.0"></a>
 # 3.9.0 (10.04.2019)
