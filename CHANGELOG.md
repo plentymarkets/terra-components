@@ -6,7 +6,7 @@
 
 ### Features
 * **terra-form.helper** instead of the usual required validator, the requiredTrue validator is now added for controls of type checkbox.
-* **terra-card** there is now a possibility to add a status bar to a terra-card if you add the input progress with the value true
+* **terra-card** added possibility to overwrite the background color of the footer
 
 <a name="3.9.0"></a>
 # 3.9.0 (10.04.2019)
