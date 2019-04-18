@@ -1,5 +1,5 @@
-<a name="3.1x.x"></a>
-# 3.1x.x (xx.xx.xxxx)
+<a name="3.11.x"></a>
+# 3.11.x (xx.xx.xxxx)
 
 ### Features
 * **terra-multi-check-box** added invalid state indication
