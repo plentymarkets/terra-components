@@ -193,4 +193,36 @@ export abstract class TerraDataTableBaseService<T, P>
      * @returns {TerraDataTableRowInterface<T>}
      */
     public abstract dataToRowMapping(res:T):TerraDataTableRowInterface<T>;
+
+    /**
+     * @description Fake the pagination to use the `TerraDataTableComponent` with `inputHasPager` set to `false`.
+     * @param {Observable<Array<T>>} restCall
+     * @returns {Observable<TerraPagerInterface<T>>}
+     */
+    protected fakePagination(restCall:Observable<Array<T>>):Observable<TerraPagerInterface<T>>
+    {
+        return restCall.map((response:Array<T>) =>
+        {
+            return {
+                entries:        this.mapEntriesForFakePagination(response),
+                page:           0,
+                totalsCount:    0,
+                isLastPage:     true,
+                lastPageNumber: 0,
+                firstOnPage:    0,
+                lastOnPage:     0,
+                itemsPerPage:   0
+            };
+        });
+    }
+
+    /**
+     * @description Override this method to map the entries.
+     * @param {Array<T>} entries
+     * @returns {Array<T>}
+     */
+    protected mapEntriesForFakePagination(entries:Array<T>):Array<T>
+    {
+        return entries;
+    }
 }
