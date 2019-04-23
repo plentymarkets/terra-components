@@ -1,8 +1,38 @@
-<a name="3.8.0"></a>
-# 3.8.0 (XX.XX.XXXX)
+<a name="3.11.0"></a>
+# 3.11.0 (Unreleased)
 
 ### Features
 * **terra-form** you are now able to disable a single form field.
+
+<a name="3.10.0"></a>
+# 3.10.0 (17.04.2019)
+
+### Bug Fixes
+* **terra-form** no longer validates hidden form fields
+
+### Features
+* **terra-card** added possibility to overwrite the background color of the footer
+* **terra-form.helper** instead of the usual required validator, the requiredTrue validator is now added for controls of type checkbox and toggle.
+
+<a name="3.9.0"></a>
+# 3.9.0 (10.04.2019)
+
+### Bug Fixes
+* **terra-node-tree** fixed issues occuring when adding a new node whilst an existing node had been selected
+* **terra-info** fix export of component
+
+### Features
+* **tc-radio-group** now uses a generated name if it is not set via input.
+* **terra-checkbox-tree** 
+	- CSS changes
+	- added functionality for disabled leaf
+* **terra-checkbox** temporarily added `notifyOnChanges` to be notified on leaf change
+
+<a name="3.8.0"></a>
+# 3.8.0 (09.04.2019)
+
+### Features
+* **terra-form** set empty array as default value for list controls.
 
 <a name="3.7.0"></a>
 # 3.7.0 (27.03.2019)
@@ -79,6 +109,9 @@
 
 <a name="3.5.1"></a>
 # 3.5.1 (20.02.2019)
+
+### Features
+* **terra-code-editor** added input `switchFromCode`, if false the switch from code to note editor view gets disabled, default true.
 
 ### Bug Fixes
 * **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed

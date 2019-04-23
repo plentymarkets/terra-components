@@ -39,14 +39,12 @@ export class TerraNodeTreeConfig<D>
             }
 
             // add to first level if no parent nor current selected node is given
-            if(isNullOrUndefined(this.currentSelectedNode) && isNullOrUndefined(parent))
+            if(isNullOrUndefined(parent))
             {
-
                 this._list.push(nodeToAdd);
             }
             else
             {
-
                 // set parent
                 nodeToAdd.parent = !isNullOrUndefined(parent) ? parent : this.currentSelectedNode;
 
