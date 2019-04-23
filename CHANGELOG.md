@@ -1,3 +1,9 @@
+<a name="3.11.x"></a>
+# 3.11.x (xx.xx.xxxx)
+
+### Features
+* **terra-multi-check-box** added invalid state indication
+
 <a name="3.10.0"></a>
 # 3.10.0 (17.04.2019)
 
