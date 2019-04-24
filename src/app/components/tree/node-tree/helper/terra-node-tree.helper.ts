@@ -1,4 +1,4 @@
-import { TerraNodeInterface } from '../../../../..';
+import { TerraNodeInterface } from '../data/terra-node.interface';
 import {
     isNull,
     isNullOrUndefined
