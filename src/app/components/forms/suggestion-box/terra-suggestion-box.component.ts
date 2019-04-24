@@ -85,8 +85,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     private renderedListBoxValues:QueryList<ElementRef>;
 
     constructor(private elementRef:ElementRef)
-    {
-    }
+    {}
 
     public ngOnInit():void
     {
@@ -95,14 +94,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             this.clickedOutside(event);
         };
 
-        this.inputTooltipPlacement = TerraPlacementEnum.TOP;
-        this.tmpSelectedValue = null;
-
-        this.isValid = true;
-        this._toggleOpen = false;
         this.hasLabel = !isNull(this.inputName);
-        this.lastSelectedValues = [];
-        this.listBoxHeadingKey = '';
         this.noEntriesTextKey = this.inputWithRecentlyUsed ? 'terraSuggestionBox.noRecentlyUsed' : 'terraSuggestionBox.noSuggestions';
 
         if(!this.inputWithRecentlyUsed)
@@ -365,7 +357,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             }
         }
 
-        // stop event bubbling
         event.stopPropagation();
     }
 
@@ -377,8 +368,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             return value.nativeElement.classList.contains('selected');
         });
 
-        // check if the element has been found
-        if(selectedElementRef)
+        if(!isNullOrUndefined(selectedElementRef))
         {
             const spanElement:HTMLSpanElement = selectedElementRef.nativeElement;
 

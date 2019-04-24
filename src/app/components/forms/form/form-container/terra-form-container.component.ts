@@ -129,25 +129,30 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
 
             if(!isNullOrUndefined(this.formGroup))
             {
-                let control:AbstractControl = this.formGroup.get(field.key);
-                if(!isNullOrUndefined(control))
-                {
-                    if(this.formFieldVisibility[field.key])
-                    {
-                        if(control.disabled)
-                        {
-                            control.enable({onlySelf:true});
-                        }
-                    }
-                    else
-                    {
-                        if(control.enabled)
-                        {
-                            control.disable({onlySelf:true});
-                        }
-                    }
-                }
+                this.updateFormControlVisibility(field.key);
             }
         });
+    }
+
+    private updateFormControlVisibility(fieldKey:string):void
+    {
+        let control:AbstractControl = this.formGroup.get(fieldKey);
+        if(!isNullOrUndefined(control))
+        {
+            if(this.formFieldVisibility[fieldKey])
+            {
+                if(control.disabled)
+                {
+                    control.enable({onlySelf:true});
+                }
+            }
+            else
+            {
+                if(control.enabled)
+                {
+                    control.disable({onlySelf:true});
+                }
+            }
+        }
     }
 }
