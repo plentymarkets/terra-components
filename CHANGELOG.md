@@ -2,6 +2,9 @@
 # 3.11.0 (Unreleased)
 
 ### Features
+* **ts-lint** added new linting rules 'max-function-line-count' and 'max-file-line-count' 
+* **ts-lint** decreased 'max-depth' limit to 5
+* **terra-multi-check-box** added invalid state indication
 * **terra-form** you are now able to disable a single form field.
 
 <a name="3.10.0"></a>
