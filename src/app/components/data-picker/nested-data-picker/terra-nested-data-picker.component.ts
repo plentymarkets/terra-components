@@ -297,14 +297,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
                     // If the parentNode is still null it is tried to create the parent node out of the given id
                     if(isNullOrUndefined(parentNode))
                     {
-                        if(isNullOrUndefined(parentId))
-                        {
-                            parentNode = null;
-                        }
-                        else
-                        {
-                            parentNode = this.nestedTreeConfig.findNodeById(parentId);
-                        }
+                        parentNode = this.nestedTreeConfig.findNodeById(parentId);
                     }
                     // If the category has children the lazy-loading method will be added to the parent node
                     if(nestData.hasChildren)
@@ -320,5 +313,4 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
         // Current List is updated
         this.nestedList = this.nestedTreeConfig.list;
     }
-
 }

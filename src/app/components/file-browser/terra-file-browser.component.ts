@@ -134,12 +134,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                     if(isNullOrUndefined(node.onClick))
                     {
                         // only one root folder is existing
-                        node.onClick = ():void =>
-                        {
-                            // TODO maybe change to inputs
-                            this.fileListComponent.activeStorageService = service;
-                            this.fileListComponent.currentStorageRoot = root;
-                        };
+                        this.addDefaultClickEventToNode(node, service, root);
                     }
 
                     this.getSortedList(root.children).forEach((child:TerraStorageObject) =>
@@ -168,6 +163,18 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
     {
         this.centerColumnWidth = 10;
         this.rightColumnWidth = 0;
+    }
+
+    private addDefaultClickEventToNode(node:TerraNodeInterface<{}>,
+                                       service:TerraBaseStorageService,
+                                       root:TerraStorageObject):void
+    {
+        node.onClick = ():void =>
+        {
+            // TODO maybe change to inputs
+            this.fileListComponent.activeStorageService = service;
+            this.fileListComponent.currentStorageRoot = root;
+        };
     }
 
     private recursiveCreateNode(storage:TerraStorageObject,
