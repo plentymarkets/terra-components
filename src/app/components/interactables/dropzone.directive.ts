@@ -67,52 +67,13 @@ export class TerraDropzoneDirective implements OnChanges
 
     private init():void
     {
-        let createDropEvent:any = (event:DropEvent):DropEvent =>
+        let createDropEvent:(event:DropEvent) => DropEvent = (event:DropEvent):DropEvent =>
         {
             event.dropData = (<any> event.relatedTarget).IA_DRAG_DATA;
             return event;
         };
 
-        let config:any = {
-            enabled:          !this.disabled,
-            ondropactivate:   (event:DropEvent):void =>
-                              {
-                                  this.onDropActivate.emit(
-                                      createDropEvent(event)
-                                  );
-                              },
-            ondropdeactivate: (event:DropEvent):void =>
-                              {
-                                  this.onDropDeactivate.emit(
-                                      createDropEvent(event)
-                                  );
-                              },
-            ondragenter:      (event:DropEvent):void =>
-                              {
-                                  this.onDragEnter.emit(
-                                      createDropEvent(event)
-                                  );
-                              },
-            ondragleave:      (event:DropEvent):void =>
-                              {
-                                  this.onDragLeave.emit(
-                                      createDropEvent(event)
-                                  );
-                              },
-            ondropmove:       (event:DropEvent):void =>
-                              {
-                                  this.onDropMove.emit(
-                                      createDropEvent(event)
-                                  );
-                              },
-            ondrop:           (event:DropEvent):void =>
-                              {
-                                  this.onDrop.emit(
-                                      createDropEvent(event)
-                                  );
-                              }
-
-        };
+        let config:any = this.initConfigObject(createDropEvent);
 
         if(typeof this.overlap === 'string'
            && parseFloat(this.overlap) >= 0
@@ -162,5 +123,49 @@ export class TerraDropzoneDirective implements OnChanges
             this.interactable = Interact(this.el.nativeElement);
         }
         this.interactable.dropzone(config);
+    }
+
+    private initConfigObject(createDropEvent:(event:DropEvent) => DropEvent):any
+    {
+        return {
+            enabled:          !this.disabled,
+            ondropactivate:   (event:DropEvent):void =>
+                              {
+                                  this.onDropActivate.emit(
+                                      createDropEvent(event)
+                                  );
+                              },
+            ondropdeactivate: (event:DropEvent):void =>
+                              {
+                                  this.onDropDeactivate.emit(
+                                      createDropEvent(event)
+                                  );
+                              },
+            ondragenter:      (event:DropEvent):void =>
+                              {
+                                  this.onDragEnter.emit(
+                                      createDropEvent(event)
+                                  );
+                              },
+            ondragleave:      (event:DropEvent):void =>
+                              {
+                                  this.onDragLeave.emit(
+                                      createDropEvent(event)
+                                  );
+                              },
+            ondropmove:       (event:DropEvent):void =>
+                              {
+                                  this.onDropMove.emit(
+                                      createDropEvent(event)
+                                  );
+                              },
+            ondrop:           (event:DropEvent):void =>
+                              {
+                                  this.onDrop.emit(
+                                      createDropEvent(event)
+                                  );
+                              }
+
+        };
     }
 }

@@ -37,7 +37,16 @@ export class TerraFormHelper
 
         if(formField.options.required)
         {
-            validators.push(Validators.required);
+            switch(formField.type)
+            {
+                case 'checkbox':
+                case 'toggle':
+                    // TODO terra-toggle is not a native html element and not known to terra-form -> find a way for custom validation
+                    validators.push(Validators.requiredTrue);
+                    break;
+                default:
+                    validators.push(Validators.required);
+            }
         }
 
         if(formField.options.minLength >= 0)
@@ -128,7 +137,7 @@ export class TerraFormHelper
      * @param formFields
      * @param values
      */
-    public static updateFormArrays(form:FormGroup, formFields:{ [key:string]:TerraFormFieldInterface }, values:any):void
+    public static updateFormArrays(form:FormGroup, formFields:{ [key:string]:TerraFormFieldInterface }, values:any):any
     {
         if(form instanceof FormGroup && !isObject(values))
         {
@@ -137,11 +146,15 @@ export class TerraFormHelper
 
         Object.keys(form.controls).forEach((formControlKey:string) =>
         {
-            let control:AbstractControl = form.get(formControlKey);
-            let controlValues:any = values[formControlKey];
             let formField:TerraFormFieldInterface = formFields[formControlKey];
+            let control:AbstractControl = form.get(formControlKey);
+            if(formField.isList && isNullOrUndefined(values[formControlKey]))
+            {
+                values[formControlKey] = [];
+            }
 
-            if(formField.isList && control instanceof FormArray && isArray(controlValues))
+            let controlValues:any = values[formControlKey];
+            if(formField.isList && control instanceof FormArray && Array.isArray(controlValues))
             {
                 let range:[number, number] = TerraFormFieldHelper.getListRange(formField.isList);
                 let min:number = range[0];
@@ -159,9 +172,11 @@ export class TerraFormHelper
             }
             else if(!isNullOrUndefined(formField.children) && control instanceof FormGroup && isObject(controlValues))
             {
-                this.updateFormArrays(control, formField.children, controlValues);
+                values[formControlKey] = this.updateFormArrays(control, formField.children, controlValues);
             }
         });
+
+        return values;
     }
 
     /**

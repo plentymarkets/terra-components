@@ -212,27 +212,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
             {
                 Object.keys(this.inputFormField.options).forEach((optionKey:string) =>
                 {
-                    if(inputMap.hasOwnProperty(optionKey)
-                       && Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, inputMap[optionKey]))
-                    {
-                        this.componentInstance[inputMap[optionKey]] = this.inputFormField.options[optionKey];
-                    }
-                    else if(Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, optionKey))
-                    {
-                        this.componentInstance[optionKey] = this.inputFormField.options[optionKey];
-                    }
-                    else
-                    {
-                        let prefixedOptionKey:string = this.transformInputPropertyName(optionKey);
-                        if(Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, prefixedOptionKey))
-                        {
-                            this.componentInstance[prefixedOptionKey] = this.inputFormField.options[optionKey];
-                        }
-                        else
-                        {
-                            console.warn('Cannot assign property ' + optionKey + ' on ' + this.componentInstance.constructor.name);
-                        }
-                    }
+                    this.performInputBindings(inputMap, optionKey);
                 });
             }
 
@@ -250,6 +230,31 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     protected get hasChildren():boolean
     {
         return !isNullOrUndefined(this.inputFormField.children);
+    }
+
+    private performInputBindings(inputMap:{ [key:string]:string }, optionKey:string):void
+    {
+        if(inputMap.hasOwnProperty(optionKey)
+           && Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, inputMap[optionKey]))
+        {
+            this.componentInstance[inputMap[optionKey]] = this.inputFormField.options[optionKey];
+        }
+        else if(Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, optionKey))
+        {
+            this.componentInstance[optionKey] = this.inputFormField.options[optionKey];
+        }
+        else
+        {
+            let prefixedOptionKey:string = this.transformInputPropertyName(optionKey);
+            if(Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, prefixedOptionKey))
+            {
+                this.componentInstance[prefixedOptionKey] = this.inputFormField.options[optionKey];
+            }
+            else
+            {
+                console.warn('Cannot assign property ' + optionKey + ' on ' + this.componentInstance.constructor.name);
+            }
+        }
     }
 
     private transformInputPropertyName(propertyName:string):string

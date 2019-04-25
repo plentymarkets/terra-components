@@ -69,7 +69,7 @@
     {
         min-height: calc(var(--space-xl) * 1.5);
         padding: var(--space-md);
-        background-color: var(--color-structure-0);
+        background-color: var(--card-footer-background-color, var(--color-structure-0));;
         transition: padding var(--transition-md);
 
         &.selected
