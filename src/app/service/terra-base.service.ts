@@ -1,4 +1,4 @@
-/* tslint:disable:restrict-leading-underscore */
+/* tslint:disable:restrict-leading-underscore max-file-line-count */
 import { Injectable } from '@angular/core';
 import {
     Headers,

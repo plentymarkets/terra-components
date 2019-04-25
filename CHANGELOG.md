@@ -2,6 +2,8 @@
 # 3.11.x (xx.xx.xxxx)
 
 ### Features
+* **ts-lint** added new linting rules 'max-function-line-count' and 'max-file-line-count' 
+* **ts-lint** decreased 'max-depth' limit to 5
 * **terra-multi-check-box** added invalid state indication
 
 <a name="3.10.0"></a>
