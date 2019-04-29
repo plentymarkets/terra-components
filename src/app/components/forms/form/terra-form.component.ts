@@ -12,7 +12,11 @@ import {
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
+import {
+    isArray,
+    isNullOrUndefined,
+    isObject
+} from 'util';
 import { TerraFormScope } from './model/terra-form-scope.data';
 import { TerraFormFieldInterface } from './model/terra-form-field.interface';
 import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
@@ -23,6 +27,7 @@ import { noop } from 'rxjs/util/noop';
 import { TerraFormHelper } from './helper/terra-form.helper';
 import { FormTypeMapInterface } from './model/form-type-map.interface';
 import { FormTypeMap } from './model/form-type-map';
+import * as _ from 'lodash';
 
 @Component({
     selector:  'terra-form',
@@ -141,7 +146,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
             });
             return result;
         }
-        return isNullOrUndefined(field.defaultValue) ? null : field.defaultValue;
+        return isNullOrUndefined(field.defaultValue) ? null : this.cloneDefaultValue(field.defaultValue);
     }
 
     /**
@@ -201,5 +206,15 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     public get formGroup():FormGroup
     {
         return this._formGroup;
+    }
+
+    private cloneDefaultValue(value:any):any
+    {
+        if(isObject(value) || isArray(value))
+        {
+            return _.cloneDeep((value));
+        }
+
+        return value;
     }
 }
