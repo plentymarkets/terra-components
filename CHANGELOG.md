@@ -6,6 +6,9 @@
 * **ts-lint** decreased 'max-depth' limit to 5
 * **terra-multi-check-box** added invalid state indication
 
+### Bug Fixes
+* **tc-radio-group** change callback is not executed anymore when a value is set via `writeValue()`
+
 <a name="3.10.0"></a>
 # 3.10.0 (17.04.2019)
 
