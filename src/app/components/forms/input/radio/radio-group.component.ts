@@ -104,7 +104,7 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
      */
     public writeValue(value:any):void
     {
-        this.value = value;
+        this._value = value;
     }
 
     /**
