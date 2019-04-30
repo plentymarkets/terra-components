@@ -138,7 +138,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
             let defaultValues:any = {};
             Object.keys(this.inputFormFields).forEach((key:string) =>
             {
-                defaultValues[key] = TerraFormFieldHelper.parseDefaultValueFromFormField(this.inputFormFields[key]);
+                defaultValues[key] = TerraFormFieldHelper.parseDefaultValue(this.inputFormFields[key]);
             });
             this.values = defaultValues;
             this.scope.data = defaultValues;
