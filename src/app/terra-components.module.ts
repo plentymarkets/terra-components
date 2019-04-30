@@ -44,6 +44,7 @@ import { TerraLoadingSpinnerService } from './components/loading-spinner/service
 import { AlertService } from './components/alert/alert.service';
 import {
     MatInputModule,
+    MatSlideToggleModule,
     MatTabsModule
 } from '@angular/material';
 
@@ -84,7 +85,8 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         QuillModule,
         RouterModule,
         MatTabsModule,
-        MatInputModule
+        MatInputModule,
+        MatSlideToggleModule
     ],
     providers:       [
         TerraLoadingSpinnerService,
