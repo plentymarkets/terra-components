@@ -215,7 +215,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     {
         if(isObject(value) || isArray(value))
         {
-            return _.cloneDeep((value));
+            return _.cloneDeep(value);
         }
         return value;
     }
