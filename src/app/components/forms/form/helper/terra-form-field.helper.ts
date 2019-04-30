@@ -260,7 +260,7 @@ export class TerraFormFieldHelper
             let result:any = {};
             Object.keys(field.children).forEach((fKey:string) =>
             {
-                result[fKey] = this.parseDefaultValueFromFormField(field.children[fKey]);
+                result[fKey] = this.parseDefaultValue(field.children[fKey]);
             });
             return result;
         }
