@@ -245,7 +245,7 @@ export class TerraFormFieldHelper
     }
 
     /**
-     * Parses recursively all defaultValues from a formField and it's children.
+     * Recursively parses the defaultValue of a formField and it's children.
      * @param field
      */
     public static parseDefaultValueFromFormField(field:TerraFormFieldInterface):any
