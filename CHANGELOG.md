@@ -1,8 +1,21 @@
-<a name="3.10.0"></a>
-# 3.10.0 (Unreleased)
+<a name="3.11.x"></a>
+# 3.11.x (xx.xx.xxxx)
 
 ### Features
-* **terra-form.helper** instead of the usual required validator, the requiredTrue validator is now added for controls of type checkbox.
+* **ts-lint** added new linting rules 'max-function-line-count' and 'max-file-line-count' 
+* **ts-lint** decreased 'max-depth' limit to 5
+* **terra-multi-check-box** added invalid state indication
+* **terra-card** added more scss variables
+
+<a name="3.10.0"></a>
+# 3.10.0 (17.04.2019)
+
+### Bug Fixes
+* **terra-form** no longer validates hidden form fields
+
+### Features
+* **terra-card** added possibility to overwrite the background color of the footer
+* **terra-form.helper** instead of the usual required validator, the requiredTrue validator is now added for controls of type checkbox and toggle.
 
 <a name="3.9.0"></a>
 # 3.9.0 (10.04.2019)

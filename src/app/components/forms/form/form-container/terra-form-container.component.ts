@@ -15,6 +15,7 @@ import {
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
 import {
+    AbstractControl,
     ControlValueAccessor,
     FormGroup,
     NG_VALUE_ACCESSOR
@@ -125,6 +126,33 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
             {
                 this.formFieldVisibility[field.key] = isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
             }
+
+            if(!isNullOrUndefined(this.formGroup))
+            {
+                this.updateFormControlVisibility(field.key);
+            }
         });
+    }
+
+    private updateFormControlVisibility(fieldKey:string):void
+    {
+        let control:AbstractControl = this.formGroup.get(fieldKey);
+        if(!isNullOrUndefined(control))
+        {
+            if(this.formFieldVisibility[fieldKey])
+            {
+                if(control.disabled)
+                {
+                    control.enable({onlySelf:true});
+                }
+            }
+            else
+            {
+                if(control.enabled)
+                {
+                    control.disable({onlySelf:true});
+                }
+            }
+        }
     }
 }
