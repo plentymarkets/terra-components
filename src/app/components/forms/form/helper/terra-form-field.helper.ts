@@ -252,7 +252,7 @@ export class TerraFormFieldHelper
     {
         if(field.isList)
         {
-            return field.defaultValue || [];
+            return this.cloneDefaultValue(field.defaultValue) || [];
         }
 
         if(!isNullOrUndefined(field.children))
