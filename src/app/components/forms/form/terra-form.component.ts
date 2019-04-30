@@ -183,20 +183,4 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     {
         return this._formGroup;
     }
-<<<<<<< Updated upstream
-
-    /**
-     * Clone objects or arrays to prevent instance clash.
-     * @param value to clone if isObject or isArray.
-     */
-    private cloneDefaultValue(value:any):any
-    {
-        if(isObject(value) || isArray(value))
-        {
-            return _.cloneDeep(value);
-        }
-        return value;
-    }
-=======
->>>>>>> Stashed changes
 }
