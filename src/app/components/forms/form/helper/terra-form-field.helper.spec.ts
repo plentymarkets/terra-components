@@ -46,7 +46,7 @@ describe(`TerraFormFieldHelper:`, () =>
         // Has the object the expected properties?
         expect(childrenValues.hasOwnProperty('child1')).toBe(true);
         expect(childrenValues.hasOwnProperty('child2')).toBe(true);
-        expect(Object.keys(childrenValues).length).toBe(2);
+        expect(Object.keys(childrenValues).length).toBe(Object.keys(formFields.controlWithChildren).length);
 
         // Check the values of the properties
         expect(childrenValues.child1).toBe(child1.defaultValue);
