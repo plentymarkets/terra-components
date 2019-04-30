@@ -9,6 +9,7 @@
 
 ### Bug Fixes
 * **tc-radio-group** change callback is not executed anymore when a value is set via `writeValue()`
+* **terra-form** fix instance clash with objects and arrays as default value
 
 <a name="3.10.0"></a>
 # 3.10.0 (17.04.2019)
