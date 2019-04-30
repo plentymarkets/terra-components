@@ -20,7 +20,7 @@ describe(`TerraFormFieldHelper:`, () =>
     {
         const value:any = TerraFormFieldHelper.parseDefaultValue(formFields.control1);
 
-        expect(value).toBe('one');
+        expect(value).toBe(formFields.control1.defaultValue);
     });
 
     it('should create a new instance of an array or object', () =>
