@@ -1,7 +1,7 @@
 import { TerraFormFieldHelper } from './terra-form-field.helper';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 
-fdescribe(`TerraFormFieldHelper:`, () =>
+describe(`TerraFormFieldHelper:`, () =>
 {
     const child1:TerraFormFieldInterface = {type: 'text', defaultValue: 'one'};
     const child2:TerraFormFieldInterface = {type: 'text', defaultValue: [1, 2]};
@@ -18,15 +18,15 @@ fdescribe(`TerraFormFieldHelper:`, () =>
 
     it('should parses the default value correctly', () =>
     {
-        const value:any = TerraFormFieldHelper.parseDefaultValueFromFormField(formFields.control1);
+        const value:any = TerraFormFieldHelper.parseDefaultValue(formFields.control1);
 
         expect(value).toBe('one');
     });
 
     it('should create a new instance of an array or object', () =>
     {
-        const arrayValue:any = TerraFormFieldHelper.parseDefaultValueFromFormField(formFields.controlWithArray);
-        const objectValue:any = TerraFormFieldHelper.parseDefaultValueFromFormField(formFields.controlWithObject);
+        const arrayValue:any = TerraFormFieldHelper.parseDefaultValue(formFields.controlWithArray);
+        const objectValue:any = TerraFormFieldHelper.parseDefaultValue(formFields.controlWithObject);
 
         // Check if the values are new instances, but with the same 'content'
         expect(arrayValue).not.toBe(formFields.controlWithArray.defaultValue);
@@ -38,7 +38,7 @@ fdescribe(`TerraFormFieldHelper:`, () =>
 
     it('should parses child "defaultValue" as well', () =>
     {
-        const childrenValues:any = TerraFormFieldHelper.parseDefaultValueFromFormField(formFields.controlWithChildren);
+        const childrenValues:any = TerraFormFieldHelper.parseDefaultValue(formFields.controlWithChildren);
 
         // Did we get an object back?
         expect(childrenValues.constructor).toBe(Object);
@@ -57,14 +57,14 @@ fdescribe(`TerraFormFieldHelper:`, () =>
 
     it('should return an empty array if it "isList" and has no "defaultValue"', () =>
     {
-        const isList:any = TerraFormFieldHelper.parseDefaultValueFromFormField(formFields.controlListWithoutDefaultValue);
+        const isList:any = TerraFormFieldHelper.parseDefaultValue(formFields.controlListWithoutDefaultValue);
 
         expect(isList).toEqual([]);
     });
 
     it('should return an new array of "defaultValue" if it "isList"', () =>
     {
-        const isList:any = TerraFormFieldHelper.parseDefaultValueFromFormField(formFields.controlList);
+        const isList:any = TerraFormFieldHelper.parseDefaultValue(formFields.controlList);
 
         expect(isList).not.toBe(formFields.controlList);
         expect(isList).toEqual(formFields.controlList.defaultValue);
