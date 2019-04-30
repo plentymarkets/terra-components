@@ -1,9 +1,6 @@
 <a name="3.11.x"></a>
 # 3.11.x (xx.xx.xxxx)
 
-### Bug Fixes
-* **terra-form** fix instance clash with objects and arrays as default value
-
 ### Features
 * **ts-lint** added new linting rules 'max-function-line-count' and 'max-file-line-count' 
 * **ts-lint** decreased 'max-depth' limit to 5
@@ -12,6 +9,7 @@
 
 ### Bug Fixes
 * **tc-radio-group** change callback is not executed anymore when a value is set via `writeValue()`
+* **terra-form** fix instance clash with objects and arrays as default value
 
 <a name="3.10.0"></a>
 # 3.10.0 (17.04.2019)
