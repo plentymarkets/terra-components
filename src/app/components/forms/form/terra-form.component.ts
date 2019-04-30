@@ -11,11 +11,7 @@ import {
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import {
-    isArray,
-    isNullOrUndefined,
-    isObject
-} from 'util';
+import { isNullOrUndefined, } from 'util';
 import { TerraFormScope } from './model/terra-form-scope.data';
 import { TerraFormFieldInterface } from './model/terra-form-field.interface';
 import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
@@ -26,7 +22,7 @@ import { noop } from 'rxjs/util/noop';
 import { TerraFormHelper } from './helper/terra-form.helper';
 import { FormTypeMapInterface } from './model/form-type-map.interface';
 import { FormTypeMap } from './model/form-type-map';
-import * as _ from 'lodash';
+
 
 @Component({
     selector:  'terra-form',
@@ -129,25 +125,6 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
         }
     }
 
-    private parseFormField(field:TerraFormFieldInterface):any
-    {
-        if(field.isList)
-        {
-            return field.defaultValue || [];
-        }
-
-        if(!isNullOrUndefined(field.children))
-        {
-            let result:any = {};
-            Object.keys(field.children).forEach((fKey:string) =>
-            {
-                result[fKey] = this.parseFormField(field.children[fKey]);
-            });
-            return result;
-        }
-        return isNullOrUndefined(field.defaultValue) ? null : this.cloneDefaultValue(field.defaultValue);
-    }
-
     /**
      * Part of the implementation of the ControlValueAccessor interface.
      * @description Patches the passed value to the underlying FormGroup instance, which updates the values of each affected form field.
@@ -161,7 +138,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
             let defaultValues:any = {};
             Object.keys(this.inputFormFields).forEach((key:string) =>
             {
-                defaultValues[key] = this.parseFormField(this.inputFormFields[key]);
+                defaultValues[key] = TerraFormFieldHelper.parseDefaultValueFromFormField(this.inputFormFields[key]);
             });
             this.values = defaultValues;
             this.scope.data = defaultValues;
@@ -206,6 +183,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     {
         return this._formGroup;
     }
+<<<<<<< Updated upstream
 
     /**
      * Clone objects or arrays to prevent instance clash.
@@ -219,4 +197,6 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
         }
         return value;
     }
+=======
+>>>>>>> Stashed changes
 }

@@ -3,6 +3,7 @@ import {
     isArray,
     isFunction,
     isNullOrUndefined,
+    isObject,
     isString
 } from 'util';
 import { TerraFormFieldBaseContainer } from '../../dynamic-form/data/terra-form-field-base-container';
@@ -17,6 +18,7 @@ import { TerraJsonToFormFieldService } from '../../dynamic-form/service/terra-js
 import { TerraControlTypeEnum } from '../../dynamic-form/enum/terra-control-type.enum';
 import { TerraFormFieldInputText } from '../../dynamic-form/data/terra-form-field-input-text';
 import { TerraFormFieldSelectBox } from '../../dynamic-form/data/terra-form-field-select-box';
+import * as _ from 'lodash';
 
 export class TerraFormFieldHelper
 {
@@ -240,5 +242,41 @@ export class TerraFormFieldHelper
         }
 
         return [min || 0, max || Infinity];
+    }
+
+    /**
+     * Parses recursively all defaultValues from a formField and it's children.
+     * @param field
+     */
+    public static parseDefaultValueFromFormField(field:TerraFormFieldInterface):any
+    {
+        if(field.isList)
+        {
+            return field.defaultValue || [];
+        }
+
+        if(!isNullOrUndefined(field.children))
+        {
+            let result:any = {};
+            Object.keys(field.children).forEach((fKey:string) =>
+            {
+                result[fKey] = this.parseDefaultValueFromFormField(field.children[fKey]);
+            });
+            return result;
+        }
+        return isNullOrUndefined(field.defaultValue) ? null : this.cloneDefaultValue(field.defaultValue);
+    }
+
+    /**
+     * Clone objects or arrays to prevent instance clash.
+     * @param value to clone if isObject or isArray.
+     */
+    private static cloneDefaultValue(value:any):any
+    {
+        if(isObject(value) || isArray(value))
+        {
+            return _.cloneDeep((value));
+        }
+        return value;
     }
 }
