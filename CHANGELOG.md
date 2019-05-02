@@ -1,5 +1,5 @@
-<a name="3.11.x"></a>
-# 3.11.x (xx.xx.xxxx)
+<a name="3.11.0"></a>
+# 3.11.0 (02.05.2019)
 
 ### Features
 * **ts-lint** added new linting rules 'max-function-line-count' and 'max-file-line-count' 
