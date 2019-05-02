@@ -1,3 +1,9 @@
+<a name="3.11.1"></a>
+# 3.11.1 (02.05.2019)
+
+### Bug Fixes
+* Reduce interactjs version to prevent issues with the current imports
+
 <a name="3.11.0"></a>
 # 3.11.0 (02.05.2019)
 
