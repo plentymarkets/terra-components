@@ -1,5 +1,5 @@
-<a name="3.11.1"></a>
-# 3.11.1 (02.05.2019)
+<a name="3.11.2"></a>
+# 3.11.2 (02.05.2019)
 
 ### Bug Fixes
 * Reduce interactjs version to prevent issues with the current imports
