@@ -1,3 +1,5 @@
+/* tslint:disable:max-function-line-count max-file-line-count max-depth */
+// Adding disable only because of the deprecated state of the component!
 import {
     Component,
     HostListener,

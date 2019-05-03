@@ -1,3 +1,22 @@
+<a name="3.11.2"></a>
+# 3.11.2 (02.05.2019)
+
+### Bug Fixes
+* Reduce interactjs version to prevent issues with the current imports
+
+<a name="3.11.0"></a>
+# 3.11.0 (02.05.2019)
+
+### Features
+* **ts-lint** added new linting rules 'max-function-line-count' and 'max-file-line-count' 
+* **ts-lint** decreased 'max-depth' limit to 5
+* **terra-multi-check-box** added invalid state indication
+* **terra-card** added more scss variables
+
+### Bug Fixes
+* **tc-radio-group** change callback is not executed anymore when a value is set via `writeValue()`
+* **terra-form** fix instance clash with objects and arrays as default value
+
 <a name="3.10.0"></a>
 # 3.10.0 (17.04.2019)
 

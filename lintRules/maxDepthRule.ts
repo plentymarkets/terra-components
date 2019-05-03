@@ -1,10 +1,10 @@
-/* tslint:disabble:max-classes-per-file */
+/* tslint:disable:max-classes-per-file */
 import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
 export class Rule extends Lint.Rules.AbstractRule
 {
-    public apply(sourceFile:ts.SourceFile):Lint.RuleFailure[]
+    public apply(sourceFile:ts.SourceFile):Array<Lint.RuleFailure>
     {
         return this.applyWithWalker(new MaxDepthWalker(sourceFile, this.getOptions()));
     }
@@ -50,4 +50,5 @@ class MaxDepthWalker extends Lint.RuleWalker
         this.currentDepth--;
     }
 }
+
 /* tslint:enable:max-classes-per-file */
