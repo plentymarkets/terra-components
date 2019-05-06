@@ -1,3 +1,9 @@
+<a name="3.12.0"></a>
+# 3.12.0 (Unreleased)
+
+### Features
+* **tc-radio-group** allow the radio group to accept more elements than only the `tc-radio-input`.
+
 <a name="3.11.2"></a>
 # 3.11.2 (02.05.2019)
 
@@ -24,7 +30,6 @@
 * **terra-form** no longer validates hidden form fields
 
 ### Features
-* **tc-radio-group** allow the radio group to accept more elements than only the tc-radio-input. It helps to create more structured combinations of Elements.  
 * **terra-card** added possibility to overwrite the background color of the footer
 * **terra-form.helper** instead of the usual required validator, the requiredTrue validator is now added for controls of type checkbox and toggle.
 
