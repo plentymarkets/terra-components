@@ -39,6 +39,9 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     @Input()
     public inputMinHeight:string;
 
+    @Input()
+    public inputIsRequired:boolean;
+
     /** @description Set the tooltip.*/
     @Input()
     public tooltipText:string;

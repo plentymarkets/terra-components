@@ -80,13 +80,15 @@ export class FormTypeMap
     public readonly slider:Type<TerraSliderComponent> = TerraSliderComponent;
     public readonly noteEditor:TerraFormTypeInterface = {
         inputMap:  {
-            name: 'inputHeaderLabel'
+            name: 'inputHeaderLabel',
+            required: 'inputIsRequired'
         },
         component: TerraNoteEditorComponent
     };
     public readonly codeEditor:TerraFormTypeInterface = {
         inputMap:  {
-            name: 'inputHeaderLabel'
+            name: 'inputHeaderLabel',
+            required: 'inputIsRequired'
         },
         component: TerraCodeEditorComponent
     };
