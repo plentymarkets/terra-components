@@ -1,3 +1,58 @@
+<a name="3.12.0"></a>
+# 3.12.0 (Unreleased)
+
+### Features
+* **tc-radio-group** allow the radio group to accept more elements than only the `tc-radio-input`.
+
+<a name="3.11.2"></a>
+# 3.11.2 (02.05.2019)
+
+### Bug Fixes
+* Reduce interactjs version to prevent issues with the current imports
+
+<a name="3.11.0"></a>
+# 3.11.0 (02.05.2019)
+
+### Features
+* **ts-lint** added new linting rules 'max-function-line-count' and 'max-file-line-count' 
+* **ts-lint** decreased 'max-depth' limit to 5
+* **terra-multi-check-box** added invalid state indication
+* **terra-card** added more scss variables
+
+### Bug Fixes
+* **tc-radio-group** change callback is not executed anymore when a value is set via `writeValue()`
+* **terra-form** fix instance clash with objects and arrays as default value
+
+<a name="3.10.0"></a>
+# 3.10.0 (17.04.2019)
+
+### Bug Fixes
+* **terra-form** no longer validates hidden form fields
+
+### Features
+* **terra-card** added possibility to overwrite the background color of the footer
+* **terra-form.helper** instead of the usual required validator, the requiredTrue validator is now added for controls of type checkbox and toggle.
+
+<a name="3.9.0"></a>
+# 3.9.0 (10.04.2019)
+
+### Bug Fixes
+* **terra-node-tree** fixed issues occuring when adding a new node whilst an existing node had been selected
+* **terra-info** fix export of component
+
+### Features
+* **tc-radio-group** now uses a generated name if it is not set via input.
+* **terra-checkbox-tree** 
+	- CSS changes
+	- added functionality for disabled leaf
+* **terra-checkbox** temporarily added `notifyOnChanges` to be notified on leaf change
+
+<a name="3.8.0"></a>
+# 3.8.0 (09.04.2019)
+
+### Features
+* **terra-form** set empty array as default value for list controls.
+
 <a name="3.7.0"></a>
 # 3.7.0 (27.03.2019)
 
@@ -73,6 +128,9 @@
 
 <a name="3.5.1"></a>
 # 3.5.1 (20.02.2019)
+
+### Features
+* **terra-code-editor** added input `switchFromCode`, if false the switch from code to note editor view gets disabled, default true.
 
 ### Bug Fixes
 * **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
