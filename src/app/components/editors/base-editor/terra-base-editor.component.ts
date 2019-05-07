@@ -11,6 +11,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
+import { noop } from 'rxjs/util/noop';
 
 @Component({
     selector:  'terra-base-editor',
@@ -53,6 +54,9 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     protected placeholder:string;
     protected value:string;
     protected modules:{ [index:string]:Object };
+
+    protected onChangeCallback:(_:any) => void = noop;
+    protected onTouchedCallback:(_:any) => void = noop;
 
     constructor(protected translation:TranslationService,
                 protected myElement:ElementRef)
@@ -99,7 +103,4 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     {
         this.myElement.nativeElement.querySelector('.ql-editor').focus();
     }
-
-    protected onChangeCallback:(_:any) => void = ():void => undefined;
-    protected onTouchedCallback:(_:any) => void = ():void => undefined;
 }

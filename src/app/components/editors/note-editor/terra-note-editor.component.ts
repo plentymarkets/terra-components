@@ -20,11 +20,6 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 })
 export class TerraNoteEditorComponent extends TerraBaseEditorComponent
 {
-    // public onChangeCallback:(_:any) => void = noop;
-    // public onTouchedCallback:() => void = noop;
-
-    protected editorContent:string;
-
     constructor(protected translation:TranslationService, protected myElement:ElementRef)
     {
         super(translation, myElement);
@@ -58,26 +53,4 @@ export class TerraNoteEditorComponent extends TerraBaseEditorComponent
             ]
         };
     }
-
-    public writeValue(value:string):void
-    {
-        this.value = value;
-        // this.editorContent = value;
-    }
-
-    public registerOnChange(fn:(_:any) => void):void
-    {
-        this.onChangeCallback = fn;
-    }
-
-    public registerOnTouched(fn:() => void):void
-    {
-        this.onTouchedCallback = fn;
-    }
-
-    // protected emitChanges():void
-    // {
-    //     this.value = this.editorContent;
-    //     this.onChangeCallback(this.value);
-    // }
 }
