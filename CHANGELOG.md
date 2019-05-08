@@ -3,6 +3,11 @@
 
 ### Features
 * **tc-radio-group** allow the radio group to accept more elements than only the `tc-radio-input`.
+* **terra-base-editor**, **terra-note-editor**, **terra-code-editor** 
+	- added `required` input that activates validation if set.
+	- added styles for the representation of an invalid state.
+	- updated [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quil) dependency to the latest version
+	- activated sanitization using the `quill-editor`'s `sanitize` input.
 
 <a name="3.11.2"></a>
 # 3.11.2 (02.05.2019)
