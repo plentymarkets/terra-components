@@ -2,7 +2,7 @@
     <quill-editor [placeholder]="placeholder"
                   [(ngModel)]="value"
                   (ngModelChange)="onChangeCallback($event)"
-                  [required]="inputIsRequired"
+                  [required]="required"
                   [sanitize]="true"
                   [styles]="{minHeight:inputMinHeight ,height:inputFixedHeight}"
                   [modules]="modules">

@@ -40,8 +40,9 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     @Input()
     public inputMinHeight:string;
 
+    /** @description add validation as a required field.*/
     @Input()
-    public inputIsRequired:boolean;
+    public required:boolean;
 
     /** @description Set the tooltip.*/
     @Input()

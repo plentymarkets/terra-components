@@ -46,4 +46,20 @@ quill-editor
             }
         }
     }
+    
+    &.ng-invalid
+    {
+        .ql-toolbar
+        {
+            border-top-color: var(--color-group-alert);
+            border-left-color: var(--color-group-alert);
+            border-right-color: var(--color-group-alert);
+        }
+        .ql-container
+        {
+            border-color: var(--color-group-alert);
+        }
+    }
+    
+    
 }
