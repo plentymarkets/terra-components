@@ -5,7 +5,7 @@
     <quill-editor [placeholder]="placeholder"
                   [(ngModel)]="editorContent"
                   (ngModelChange)="emitChanges(true)"
-                  [styles]="{minHeight:inputMinHeight ,height:inputFixedHeight}"
+                  [styles]="{minHeight:inputMinHeight, height:inputFixedHeight}"
                   [sanitize]="true"
                   [required]="required"
                   [modules]="modules">
