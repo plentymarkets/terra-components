@@ -3,8 +3,9 @@
 
 ### Features
 * **tc-radio-group** allow the radio group to accept more elements than only the `tc-radio-input`.
-* **terra-button** added new `--terra-button-btn-handler-display` css variables to modify display value
-* **terra-button** added new `--terra-button-btn-handler-margin` css variables to modify margin of the button
+* **terra-button** 
+	- added new `--terra-button-btn-handler-display` css variables to modify display value
+	- added new `--terra-button-btn-handler-margin` css variables to modify margin of the button
 * **terra-card** added new `--terra-card-footer-min-height` css variable to be able to redefine the footer's min-height
 
 <a name="3.11.2"></a>
