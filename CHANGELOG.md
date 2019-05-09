@@ -3,6 +3,7 @@
 
 ### Features
 * **tc-radio-group** allow the radio group to accept more elements than only the `tc-radio-input`.
+* **terra-button** added variable to modify margin & display values
 
 <a name="3.11.2"></a>
 # 3.11.2 (02.05.2019)
