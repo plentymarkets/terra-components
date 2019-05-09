@@ -1,5 +1,5 @@
 <a name="3.12.0"></a>
-# 3.12.0 (Unreleased)
+# 3.12.0 (09.05.2019)
 
 ### Features
 * **tc-radio-group** allow the radio group to accept more elements than only the `tc-radio-input`.
