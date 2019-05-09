@@ -3,6 +3,7 @@
 
 ### Features
 * **tc-radio-group** allow the radio group to accept more elements than only the `tc-radio-input`.
+* **terra-card** added new `--terra-card-footer-min-height` css variable to be able to redefine the footer's min-height
 
 <a name="3.11.2"></a>
 # 3.11.2 (02.05.2019)
