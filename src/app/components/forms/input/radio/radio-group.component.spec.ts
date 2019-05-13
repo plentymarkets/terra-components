@@ -101,6 +101,14 @@ describe(`RadioGroupComponent:`, () =>
             radioGroupComponent.value = testValue;
             expect(spy).toHaveBeenCalledWith(testValue);
         });
+
+        it(`#writeValue should not call a registered #changeCallback`, () =>
+        {
+            let spy:Spy = jasmine.createSpy('spy');
+            radioGroupComponent.registerOnChange(spy);
+            radioGroupComponent.writeValue('test');
+            expect(spy).toHaveBeenCalledTimes(0);
+        });
     });
 
     describe(`within a test host with radio inputs`, () =>

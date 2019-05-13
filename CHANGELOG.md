@@ -1,11 +1,41 @@
-<a name="3.11.x"></a>
-# 3.11.x (xx.xx.xxxx)
+<a name="3.13.0"></a>
+# 3.13.0 (Unreleased)
+
+### Features
+* **terra-base-editor**, **terra-note-editor**, **terra-code-editor** 
+	- added `required` input that activates validation if set.
+	- added styles for the representation of an invalid state.
+	- updated [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quil) dependency to the latest version
+	- activated sanitization using the `quill-editor`'s `sanitize` input.
+
+<a name="3.12.0"></a>
+# 3.12.0 (09.05.2019)
+
+### Features
+* **tc-radio-group** allow the radio group to accept more elements than only the `tc-radio-input`.
+* **terra-button** 
+	- added new `--terra-button-btn-handler-display` css variables to modify display value
+	- added new `--terra-button-btn-handler-margin` css variables to modify margin of the button
+* **terra-card** added new `--terra-card-footer-min-height` css variable to be able to redefine the footer's min-height
+
+<a name="3.11.2"></a>
+# 3.11.2 (02.05.2019)
+
+### Bug Fixes
+* Reduce interactjs version to prevent issues with the current imports
+
+<a name="3.11.0"></a>
+# 3.11.0 (02.05.2019)
 
 ### Features
 * **ts-lint** added new linting rules 'max-function-line-count' and 'max-file-line-count' 
 * **ts-lint** decreased 'max-depth' limit to 5
 * **terra-multi-check-box** added invalid state indication
 * **terra-card** added more scss variables
+
+### Bug Fixes
+* **tc-radio-group** change callback is not executed anymore when a value is set via `writeValue()`
+* **terra-form** fix instance clash with objects and arrays as default value
 
 <a name="3.10.0"></a>
 # 3.10.0 (17.04.2019)

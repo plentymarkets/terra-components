@@ -81,7 +81,7 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
     }
 
     /**
-     * set the value of the radio group
+     * set the value of the radio group and update model binding by executing a registered #changeCallback
      * @param value
      */
     public set value(value:any)
@@ -104,7 +104,7 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
      */
     public writeValue(value:any):void
     {
-        this.value = value;
+        this._value = value;
     }
 
     /**
