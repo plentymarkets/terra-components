@@ -61,6 +61,31 @@ export class TerraDataTableComponentExample implements OnInit
         this.noResultTextSecondary = 'Add a new entry';
     }
 
+    protected addEntry():void
+    {
+        this.service.addEntry();
+        this.service.getResults();
+    }
+
+    protected addEntries():void
+    {
+        for(let i:number = 0; i < 50; i++)
+        {
+            this.service.addEntry();
+        }
+        this.service.getResults();
+    }
+
+    protected resetSorting():void
+    {
+        this.service.resetSortParams();
+        this.service.getResults(true);
+    }
+
+    protected executeGroupFunction(selectedRows:Array<TerraDataTableRowInterface<TerraDataTableExampleInterface>>):void
+    {
+        console.log(selectedRows);
+    }
 
     private createHeaderList():Array<TerraDataTableHeaderCellInterface>
     {
@@ -94,31 +119,4 @@ export class TerraDataTableComponentExample implements OnInit
             clickFunction: (data:TerraDataTableExampleInterface):void => alert(`The rows value is ${data.value}`)
         }];
     }
-
-    protected addEntry():void
-    {
-        this.service.addEntry();
-        this.service.getResults();
-    }
-
-    protected addEntries():void
-    {
-        for(let i:number = 0; i < 50; i++)
-        {
-            this.service.addEntry();
-        }
-        this.service.getResults();
-    }
-
-    protected resetSorting():void
-    {
-        this.service.resetSortParams();
-        this.service.getResults(true);
-    }
-
-    protected executeGroupFunction(selectedRows:Array<TerraDataTableRowInterface<TerraDataTableExampleInterface>>):void
-    {
-        console.log(selectedRows);
-    }
-
 }
