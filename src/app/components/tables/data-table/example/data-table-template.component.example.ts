@@ -19,11 +19,6 @@ export class DataTableTemplateComponentExample extends TerraDataTableComponentEx
         super(service);
     }
 
-    protected buttonClicked(row:TerraDataTableRowInterface<TerraDataTableExampleInterface>):void
-    {
-        console.log(row.data.id + ' button clicked');
-    }
-
     protected isEdited(index:number):boolean
     {
         return index === this.editIndex;
@@ -34,8 +29,10 @@ export class DataTableTemplateComponentExample extends TerraDataTableComponentEx
         this.editIndex = index;
     }
 
-    protected stopEditing():void
+    protected stopEditing(value:any):void
     {
         this.editIndex = undefined;
+
+        alert('A saving event should be called now instead of an alert.');
     }
 }

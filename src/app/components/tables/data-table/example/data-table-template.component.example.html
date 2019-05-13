@@ -39,30 +39,15 @@
     <tr [tcTableRow]="row" hasContextMenu [rowData]="row.data" *ngFor="let row of service.rowList; let index = index" (dblclick)="startEditing(index)">
         <td>{{ row.data.id }}</td>
         <td>
-            <span *ngIf="!isEdited(index)">{{ row.data.value }}</span>
             
-            <form *ngIf="isEdited(index)" (submit)="stopEditing()">
+            <form (submit)="stopEditing(row.data)" (focusout)="stopEditing($event)">
                 <terra-text-input name="value" inputName="Edit value" [(ngModel)]="row.data.value"></terra-text-input>
             </form>
         </td>
         <td>
-            <div *ngIf="!isEdited(index)">
-                <a [href]="'mailto:' + row.data.mail" (dblclick)="$event.stopPropagation()">{{ row.data.mail }}</a>
-            </div>
-            
-            <form *ngIf="isEdited(index)" (submit)="stopEditing()">
+            <form (submit)="stopEditing(row.data)" (focusout)="stopEditing($event)">
                 <terra-text-input name="email" inputName="Edit mail" [(ngModel)]="row.data.mail"></terra-text-input>
             </form>
-        </td>
-        <td>
-            <terra-button *ngIf="!isEdited(index)"
-                          (outputClicked)="buttonClicked(row); $event.stopPropagation()"
-                          [inputIcon]="'icon-add'">
-            </terra-button>
-            <terra-button *ngIf="isEdited(index)"
-                          (outputClicked)="stopEditing(); $event.stopPropagation()"
-                          [inputIcon]="'icon-save'">
-            </terra-button>
         </td>
     </tr>
     </tbody>
