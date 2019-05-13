@@ -134,6 +134,64 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this.updateHeaderCheckboxState();
     }
 
+    protected onCheckboxClick(event:Event):void
+    {
+        // do not emit 'outputRowClicked' when toggling checkbox
+        event.stopPropagation();
+    }
+
+    protected onRowClick(row:TerraSimpleTableRowInterface<D>):void
+    {
+        if(this.inputUseHighlighting && !row.disabled)
+        {
+            this.inputHighlightedRow = row;
+            this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
+        }
+        this.outputRowClicked.emit(row);
+    }
+
+    protected onKeydown(event:KeyboardEvent):void
+    {
+        if(this.inputEnableHotkeys && this.inputUseHighlighting && this.inputHighlightedRow)
+        {
+            if(event.which === Key.DownArrow || event.which === Key.UpArrow)
+            {
+                this.highlightSiblingRow(event.which === Key.DownArrow);
+            }
+
+            if(event.which === Key.Space && this.inputHasCheckboxes)
+            {
+                if(event.ctrlKey || event.metaKey)
+                {
+                    this.headerCheckbox.checked = !this.headerCheckbox.checked;
+                }
+                else
+                {
+                    this.onRowCheckboxChange(this.inputHighlightedRow);
+                }
+            }
+
+            if(event.which === Key.Enter)
+            {
+                this.outputRowClicked.emit(this.inputHighlightedRow);
+            }
+
+            event.preventDefault();
+        }
+    }
+
+    protected getTextAlign(item:TerraSimpleTableHeaderCellInterface):string
+    {
+        if(!isNullOrUndefined(item.textAlign))
+        {
+            return item.textAlign;
+        }
+        else
+        {
+            return 'left';
+        }
+    }
+
     private triggerOutputSelectedRowsChange():void
     {
         this.outputSelectedRowsChange.emit(this.selectedRowList);
@@ -204,52 +262,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this.triggerOutputSelectedRowsChange();
     }
 
-    protected onCheckboxClick(event:Event):void
-    {
-        // do not emit 'outputRowClicked' when toggling checkbox
-        event.stopPropagation();
-    }
-
-    protected onRowClick(row:TerraSimpleTableRowInterface<D>):void
-    {
-        if(this.inputUseHighlighting && !row.disabled)
-        {
-            this.inputHighlightedRow = row;
-            this.outputHighlightedRowChange.emit(this.inputHighlightedRow);
-        }
-        this.outputRowClicked.emit(row);
-    }
-
-    protected onKeydown(event:KeyboardEvent):void
-    {
-        if(this.inputEnableHotkeys && this.inputUseHighlighting && this.inputHighlightedRow)
-        {
-            if(event.which === Key.DownArrow || event.which === Key.UpArrow)
-            {
-                this.highlightSiblingRow(event.which === Key.DownArrow);
-            }
-
-            if(event.which === Key.Space && this.inputHasCheckboxes)
-            {
-                if(event.ctrlKey || event.metaKey)
-                {
-                    this.headerCheckbox.checked = !this.headerCheckbox.checked;
-                }
-                else
-                {
-                    this.onRowCheckboxChange(this.inputHighlightedRow);
-                }
-            }
-
-            if(event.which === Key.Enter)
-            {
-                this.outputRowClicked.emit(this.inputHighlightedRow);
-            }
-
-            event.preventDefault();
-        }
-    }
-
     private highlightSiblingRow(nextSibling:boolean):void
     {
         if(this.inputHighlightedRow)
@@ -283,18 +295,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
                     this.scrollContainer.nativeElement.scrollTop -= (viewport.top - activeRowPosition.top);
                 }
             }
-        }
-    }
-
-    protected getTextAlign(item:TerraSimpleTableHeaderCellInterface):string
-    {
-        if(!isNullOrUndefined(item.textAlign))
-        {
-            return item.textAlign;
-        }
-        else
-        {
-            return 'left';
         }
     }
 }
