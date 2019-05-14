@@ -12,27 +12,13 @@ import { TerraDataTableComponentExample } from './terra-data-table.component.exa
 })
 export class DataTableTemplateComponentExample extends TerraDataTableComponentExample
 {
-    protected editIndex:number;
-
     constructor(service:TerraDataTableServiceExample)
     {
         super(service);
     }
 
-    protected isEdited(index:number):boolean
+    protected saveData(value:any):void
     {
-        return index === this.editIndex;
-    }
-
-    protected startEditing(index:number):void
-    {
-        this.editIndex = index;
-    }
-
-    protected stopEditing(value:any):void
-    {
-        this.editIndex = undefined;
-
         alert('A saving event should be called now instead of an alert.');
     }
 }
