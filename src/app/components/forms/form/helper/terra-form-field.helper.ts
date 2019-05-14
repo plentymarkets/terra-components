@@ -19,6 +19,7 @@ import { TerraControlTypeEnum } from '../../dynamic-form/enum/terra-control-type
 import { TerraFormFieldInputText } from '../../dynamic-form/data/terra-form-field-input-text';
 import { TerraFormFieldSelectBox } from '../../dynamic-form/data/terra-form-field-select-box';
 import * as _ from 'lodash';
+import { TerraKeyValueInterface } from '../../../../models/terra-key-value.interface';
 
 export class TerraFormFieldHelper
 {
@@ -265,6 +266,58 @@ export class TerraFormFieldHelper
             return result;
         }
         return isNullOrUndefined(field.defaultValue) ? null : this.cloneDefaultValue(field.defaultValue);
+    }
+
+    /**
+     * @description Determines the default values for a set of #formFields.
+     * @param formFields
+     */
+    public static parseDefaultValues(formFields:TerraKeyValueInterface<TerraFormFieldInterface>):any
+    {
+        if(isNullOrUndefined(formFields))
+        {
+            return;
+        }
+        let values:TerraKeyValueInterface<any> = {};
+        Object.keys(formFields).forEach((formFieldKey:string) =>
+        {
+            let formField:TerraFormFieldInterface = formFields[formFieldKey];
+            let defaultValue:any = this.parseSingleDefaultValue(formField);
+            if(formField.isList)
+            {
+                let range:[number, number] = this.getListRange(formField.isList);
+                let min:number = range[0];
+                values[formFieldKey] = [].fill(defaultValue, 0, min);
+            }
+            else
+            {
+                values[formFieldKey] = defaultValue;
+            }
+        });
+        return values;
+    }
+
+    /**
+     * @description Determines the default value of a single #formField. Also considers children of a #formField if no defaultValue is given.
+     * @param formField
+     */
+    private static parseSingleDefaultValue(formField:TerraFormFieldInterface):any
+    {
+        // TODO: maybe reverse the conditions.. check for a defined defaultValue first!?
+        // check if formField has children
+        if(!isNullOrUndefined(formField.children))
+        {
+            if(formField.defaultValue)
+            {
+                // short cut - do not evaluate default value of its children. Use the defaultValue that is given for the group..
+                return this.cloneDefaultValue(formField.defaultValue);
+            }
+            return this.parseDefaultValues(formField.children);
+        }
+        else
+        {
+            return isNullOrUndefined(formField.defaultValue) ? null : this.cloneDefaultValue(formField.defaultValue); // null as fallback??
+        }
     }
 
     /**
