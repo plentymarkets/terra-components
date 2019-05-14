@@ -32,7 +32,7 @@ export const select:TerraFormFieldInterface = {
 };
 
 export const listWithChildren:TerraFormFieldInterface = {
-    type:     'vertical',
+    type:     'horizontal',
     isList:   '[2,]',
     defaultValue: {
         childSelect: select.options.listBoxValues[0].value,
