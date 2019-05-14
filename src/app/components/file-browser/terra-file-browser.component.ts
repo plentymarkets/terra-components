@@ -100,6 +100,41 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         }
     }
 
+    public selectNode(storage:TerraStorageObject):void
+    {
+        let foundNode:TerraNodeInterface<{}> = this.nodeTreeConfig.findNodeById(storage.key);
+
+        if(!isNullOrUndefined(foundNode))
+        {
+            foundNode.isOpen = true;
+            this.nodeTreeConfig.currentSelectedNode = foundNode;
+        }
+    }
+
+    public selectUrl(publicUrl:string):void
+    {
+        this.onSelectedUrlChange.emit(publicUrl);
+    }
+
+    protected showImagePreview(isPreviewEnabled:boolean):void
+    {
+        if(isPreviewEnabled)
+        {
+            this.centerColumnWidth = 8;
+            this.rightColumnWidth = 2;
+        }
+        else
+        {
+            this.hideImagePreview();
+        }
+    }
+
+    protected hideImagePreview():void
+    {
+        this.centerColumnWidth = 10;
+        this.rightColumnWidth = 0;
+    }
+
     private renderTree(services:Array<TerraBaseStorageService>):void
     {
         if(isNullOrUndefined(services))
@@ -144,25 +179,6 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                 }
             });
         });
-    }
-
-    protected showImagePreview(isPreviewEnabled:boolean):void
-    {
-        if(isPreviewEnabled)
-        {
-            this.centerColumnWidth = 8;
-            this.rightColumnWidth = 2;
-        }
-        else
-        {
-            this.hideImagePreview();
-        }
-    }
-
-    protected hideImagePreview():void
-    {
-        this.centerColumnWidth = 10;
-        this.rightColumnWidth = 0;
     }
 
     private addDefaultClickEventToNode(node:TerraNodeInterface<{}>,
@@ -223,21 +239,5 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                 return objectA.name.localeCompare(objectB.name);
             }
         );
-    }
-
-    public selectNode(storage:TerraStorageObject):void
-    {
-        let foundNode:TerraNodeInterface<{}> = this.nodeTreeConfig.findNodeById(storage.key);
-
-        if(!isNullOrUndefined(foundNode))
-        {
-            foundNode.isOpen = true;
-            this.nodeTreeConfig.currentSelectedNode = foundNode;
-        }
-    }
-
-    public selectUrl(publicUrl:string):void
-    {
-        this.onSelectedUrlChange.emit(publicUrl);
     }
 }
