@@ -37,14 +37,14 @@ export class TerraBreadcrumbsService
         {
             if(!isNullOrUndefined(this.initialRoute.children))
             {
-                let cleanEventUrl:string = UrlHelper.getCleanUrl(event.urlAfterRedirects);
+                let cleanEventUrl:string = '/' + UrlHelper.getCleanUrl(event.urlAfterRedirects);
                 let shortUrl:string = cleanEventUrl.replace(this._initialPath, '');
 
                 let urlParts:Array<string> = shortUrl.split('/');
                 let urls:Array<string> = urlParts.map((urlPart:string, index:number) => urlParts.slice(0, index + 1).join('/'));
                 urls.forEach((url:string) =>
                 {
-                    this.handleBreadcrumbForUrl(url, this._initialPath + url, '/' + cleanEventUrl);
+                    this.handleBreadcrumbForUrl(url, this._initialPath + url, cleanEventUrl);
                 });
 
                 // update breadcrumb visibility for containers that have not been checked since the url is to short
@@ -121,7 +121,7 @@ export class TerraBreadcrumbsService
             let previousContainer:TerraBreadcrumbContainer = this._containers[currentContainerIndex - 1];
             let parentBreadcrumb:TerraBreadcrumb = isNullOrUndefined(previousContainer) ? undefined : previousContainer.currentSelectedBreadcrumb;
 
-            if(cleanEventUrl === url)
+            if(UrlHelper.getCleanUrl(cleanEventUrl) === UrlHelper.getCleanUrl(url))
             {
                 breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url, activatedSnapshot.queryParams);
             }
