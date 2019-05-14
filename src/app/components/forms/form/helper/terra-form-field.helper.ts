@@ -273,7 +273,7 @@ export class TerraFormFieldHelper
      */
     private static cloneDefaultValue(value:any):any
     {
-        if(isObject(value) || isArray(value))
+        if(isObject(value) || Array.isArray(value))
         {
             return _.cloneDeep((value));
         }
