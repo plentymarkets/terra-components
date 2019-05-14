@@ -291,22 +291,26 @@ export class TerraFormFieldHelper
     /**
      * @description Determines the default value of a single #formField. Also considers children of a #formField if no defaultValue is given.
      * @param formField
-     * @param skipListCheck - optional parameter that skips the list check and returns the defaultValue of the formField, not a list.
+     * @param skipListCheck - optional parameter that skips the list check and returns the defaultValue of the single formField, not a list.
      */
     public static parseSingleDefaultValue(formField:TerraFormFieldInterface, skipListCheck?:boolean):any
     {
-        // if this formField is a list, and list-check is active, return a list of the default Value
-        if(formField.isList && !skipListCheck)
+        // check if a default value is given.. Use this one unless it is a list and no list is given as default value
+        if(!isNullOrUndefined(formField.defaultValue))
         {
+            if(!formField.isList || formField.isList && !skipListCheck && Array.isArray(formField.defaultValue))
+            {
+                return this.cloneDefaultValue(formField.defaultValue); // return the given default value - cloned if necessary
+            }
+        }
+
+        // if this formField is a list and list-check is active, return a list.
+        if(formField.isList && !skipListCheck && !Array.isArray(formField.defaultValue))
+        {
+            // If the default value is not a list, create a list out of the default value of a single entry.
             let range:[number, number] = this.getListRange(formField.isList);
             let min:number = range[0];
             return [].fill(this.parseSingleDefaultValue(formField, true), 0, min);
-        }
-
-        // check if a default value is given.. Use this one, also if there are children.
-        if(!isNullOrUndefined(formField.defaultValue))
-        {
-            return this.cloneDefaultValue(formField.defaultValue);
         }
 
         // if no default value is given, try to parse the children
