@@ -32,25 +32,25 @@ export const select:TerraFormFieldInterface = {
 };
 
 export const listWithChildren:TerraFormFieldInterface = {
-    type:     'horizontal',
-    isList:   '[2,]',
+    type:         'horizontal',
+    isList:       '[2,]',
     defaultValue: {
         childSelect: select.options.listBoxValues[0].value,
-        childText: 'Placeholder',
+        childText:   'Placeholder',
         childNumber: 123456789
     },
-    options:  {
+    options:      {
         name: 'Vertical'
     },
-    children: {
+    children:     {
         childSelect: select,
-        childText:          {
+        childText:   {
             type:         'text',
             isVisible:    '$listWithChildren.childSelect === "option2"',
             defaultValue: '',
             options:      {
-                name:        'Text',
-                required:    false
+                name:     'Text',
+                required: false
             }
         },
         childNumber: numberControl,

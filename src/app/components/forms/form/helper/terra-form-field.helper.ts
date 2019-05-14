@@ -246,7 +246,8 @@ export class TerraFormFieldHelper
     }
 
     /**
-     * Recursively parses the defaultValue of a formField and it's children.
+     * @description Recursively parses the defaultValue of a formField and it's children.
+     * @deprecated use `parseSingleDefaultValue()` instead
      * @param field
      */
     public static parseDefaultValue(field:TerraFormFieldInterface):any
@@ -282,17 +283,7 @@ export class TerraFormFieldHelper
         Object.keys(formFields).forEach((formFieldKey:string) =>
         {
             let formField:TerraFormFieldInterface = formFields[formFieldKey];
-            let defaultValue:any = this.parseSingleDefaultValue(formField);
-            if(formField.isList)
-            {
-                let range:[number, number] = this.getListRange(formField.isList);
-                let min:number = range[0];
-                values[formFieldKey] = [].fill(defaultValue, 0, min);
-            }
-            else
-            {
-                values[formFieldKey] = defaultValue;
-            }
+            values[formFieldKey] = this.parseSingleDefaultValue(formField);
         });
         return values;
     }
@@ -300,24 +291,31 @@ export class TerraFormFieldHelper
     /**
      * @description Determines the default value of a single #formField. Also considers children of a #formField if no defaultValue is given.
      * @param formField
+     * @param skipListCheck - optional parameter that skips the list check and returns the defaultValue of the formField, not a list.
      */
-    private static parseSingleDefaultValue(formField:TerraFormFieldInterface):any
+    public static parseSingleDefaultValue(formField:TerraFormFieldInterface, skipListCheck?:boolean):any
     {
-        // TODO: maybe reverse the conditions.. check for a defined defaultValue first!?
-        // check if formField has children
+        // if this formField is a list, and list-check is active, return a list of the default Value
+        if(formField.isList && !skipListCheck)
+        {
+            let range:[number, number] = this.getListRange(formField.isList);
+            let min:number = range[0];
+            return [].fill(this.parseSingleDefaultValue(formField, true), 0, min);
+        }
+
+        // check if a default value is given.. Use this one, also if there are children.
+        if(!isNullOrUndefined(formField.defaultValue))
+        {
+            return this.cloneDefaultValue(formField.defaultValue);
+        }
+
+        // if no default value is given, try to parse the children
         if(!isNullOrUndefined(formField.children))
         {
-            if(formField.defaultValue)
-            {
-                // short cut - do not evaluate default value of its children. Use the defaultValue that is given for the group..
-                return this.cloneDefaultValue(formField.defaultValue);
-            }
             return this.parseDefaultValues(formField.children);
         }
-        else
-        {
-            return isNullOrUndefined(formField.defaultValue) ? null : this.cloneDefaultValue(formField.defaultValue); // null as fallback??
-        }
+
+        return null; // TODO: null as fallback??
     }
 
     /**
