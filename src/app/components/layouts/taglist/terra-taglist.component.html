@@ -9,7 +9,7 @@
                    [inputColor]="tag.color"
                    [isClosable]="tag.isClosable && !isReadOnly"
                    [names]="tag.names"
-                   (onCloseTag)="onCloseTag.emit($event)">
+                   (closeTag)="onCloseTag.emit($event); closeTag.emit($event);">
         </terra-tag>
     </ng-template>
 </div>
