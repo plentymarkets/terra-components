@@ -270,11 +270,11 @@ export class TerraFormFieldHelper
         {
             if(!isNullOrUndefined(formField.defaultValue))
             {
-                console.error(`Since the formField's 'isList' property is set, a defaultValue of type array was expected. Given value: `, formField.defaultValue);
+                console.error(`Since the formField's 'isList' property is set, a defaultValue of type array was expected.`, formField.defaultValue, `was given instead.`);
             }
             // create a list out of the default value of a single entry.
             let min:number = this.getListRange(formField.isList)[0];
-            return [].fill(this.parseDefaultValue(formField, true), 0, min);
+            return Array(min).fill(this.parseDefaultValue(formField, true));
         }
 
         // No list expected. Try to parse the children to compose a default value
@@ -282,7 +282,7 @@ export class TerraFormFieldHelper
         {
             if(!isNullOrUndefined(formField.defaultValue))
             {
-                console.error(`Since the formField has children, a defaultValue of type Object was expected. Given value: `, formField.defaultValue);
+                console.error(`Since the formField has children, a defaultValue of type Object was expected.`, formField.defaultValue, `was given instead.`);
             }
             return this.parseDefaultValues(formField.children);
         }
