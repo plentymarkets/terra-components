@@ -76,7 +76,7 @@ fdescribe(`TerraFormFieldHelper.`, () =>
             // formField with children and isList and a given object default value
             const defaultValue:any = TerraFormFieldHelper.parseDefaultValue(formField);
             const min:number = TerraFormFieldHelper.getListRange(formField.isList)[0];
-            expect(defaultValue).toEqual([].fill(formField.defaultValue, 0, min));
+            expect(defaultValue).toEqual(Array(min).fill(formField.defaultValue));
 
             // formField with children and isList and a given array default value
             formField.defaultValue = [];
@@ -85,8 +85,9 @@ fdescribe(`TerraFormFieldHelper.`, () =>
 
             // formField with children and isList but no default value
             delete formField.defaultValue;
+            const composedArrayDefault:Array<any> = TerraFormFieldHelper.parseDefaultValue(formField);
             const groupDefaultValue:TerraKeyValueInterface<any> = TerraFormFieldHelper.parseDefaultValue(formField, true);
-            expect(defaultValue).toEqual([].fill(groupDefaultValue, 0, min));
+            expect(composedArrayDefault).toEqual(Array(min).fill(groupDefaultValue));
         });
 
         it(`must not return a list at any time if #skipList is set`, () =>
