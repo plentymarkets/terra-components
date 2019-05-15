@@ -12,15 +12,9 @@ import { formFields } from './form-fields';
     templateUrl: './terra-form.component.example.html',
     styleUrls:   ['./terra-form.component.example.scss']
 })
-export class TerraFormComponentExample implements OnInit
+export class TerraFormComponentExample
 {
     protected formFields:TerraKeyValueInterface<TerraFormFieldInterface> = formFields;
     protected formTypeMap:FormTypeMap = new FormTypeMap();
-
-    constructor()
-    {}
-
-    ngOnInit()
-    {
-    }
+    protected formValue:any;
 }
