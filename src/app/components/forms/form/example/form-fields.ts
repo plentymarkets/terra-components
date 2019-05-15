@@ -39,6 +39,7 @@ export const listWithChildren:TerraFormFieldInterface = {
         childText:   'Placeholder',
         childNumber: 123456789
     },
+    // defaultValue: [{childSelect: 'option1', childNumber: 3}, {childSelect: 'option2', childText: 'Hallo'}],
     options:      {
         name: 'Vertical'
     },
