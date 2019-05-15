@@ -1,5 +1,8 @@
 <a name="3.13.0"></a>
 # 3.13.0 (Unreleased)
+	
+### Bug Fixes
+* **terra-breadcrumbs** fix handling leading slashes on breadcrumb urls.
 
 ### Features
 * **terra-base-editor**, **terra-note-editor**, **terra-code-editor** 
