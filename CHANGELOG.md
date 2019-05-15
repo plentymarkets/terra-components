@@ -7,6 +7,9 @@
 	- added styles for the representation of an invalid state.
 	- updated [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quil) dependency to the latest version
 	- activated sanitization using the `quill-editor`'s `sanitize` input.
+	
+### Bug Fixes
+* **terra-form-container** removed flex style on form-entry
 
 <a name="3.12.0"></a>
 # 3.12.0 (09.05.2019)
