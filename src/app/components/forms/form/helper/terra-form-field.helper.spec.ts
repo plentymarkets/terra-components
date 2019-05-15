@@ -19,19 +19,21 @@ fdescribe(`TerraFormFieldHelper.`, () =>
         controlListWithoutDefaultValue: {type: 'number', isList: true}
     };
 
-    describe(`parseSingleDefaultValue() `, () =>
+    describe(`parseDefaultValue() `, () =>
     {
+        beforeEach(() => spyOn(console, 'error')); // disable console output
+
         it('should parses the default value correctly', () =>
         {
-            const value:any = TerraFormFieldHelper.parseSingleDefaultValue(formFields.control1);
+            const value:any = TerraFormFieldHelper.parseDefaultValue(formFields.control1);
 
             expect(value).toBe(formFields.control1.defaultValue);
         });
 
         it('should create a new instance of an array or object', () =>
         {
-            const arrayValue:any = TerraFormFieldHelper.parseSingleDefaultValue(formFields.controlWithArray);
-            const objectValue:any = TerraFormFieldHelper.parseSingleDefaultValue(formFields.controlWithObject);
+            const arrayValue:any = TerraFormFieldHelper.parseDefaultValue(formFields.controlWithArray);
+            const objectValue:any = TerraFormFieldHelper.parseDefaultValue(formFields.controlWithObject);
 
             // Check if the values are new instances, but with the same 'content'
             expect(arrayValue).not.toBe(formFields.controlWithArray.defaultValue);
@@ -43,7 +45,7 @@ fdescribe(`TerraFormFieldHelper.`, () =>
 
         it('should parses child "defaultValue" as well', () =>
         {
-            const childrenValues:any = TerraFormFieldHelper.parseSingleDefaultValue(formFields.controlWithChildren);
+            const childrenValues:any = TerraFormFieldHelper.parseDefaultValue(formFields.controlWithChildren);
 
             // Did we get an object back?
             expect(childrenValues.constructor).toBe(Object);
@@ -62,24 +64,55 @@ fdescribe(`TerraFormFieldHelper.`, () =>
 
         it('should return an empty array if it "isList" and has no "defaultValue"', () =>
         {
-            const isList:any = TerraFormFieldHelper.parseSingleDefaultValue(formFields.controlListWithoutDefaultValue);
+            const isList:any = TerraFormFieldHelper.parseDefaultValue(formFields.controlListWithoutDefaultValue);
 
             expect(isList).toEqual([]);
         });
 
         it(`should parse a formField's #defaultValue, even if #isList is set and it has #children - nested default values`, () =>
         {
-            const formField:TerraFormFieldInterface = listWithChildren;
+            const formField:TerraFormFieldInterface = {...listWithChildren};
 
-            // formField with children and isList and a given default value
-            const defaultValue:any = TerraFormFieldHelper.parseSingleDefaultValue(formField);
+            // formField with children and isList and a given object default value
+            const defaultValue:any = TerraFormFieldHelper.parseDefaultValue(formField);
             const min:number = TerraFormFieldHelper.getListRange(formField.isList)[0];
             expect(defaultValue).toEqual([].fill(formField.defaultValue, 0, min));
 
+            // formField with children and isList and a given array default value
+            formField.defaultValue = [];
+            const arrayDefaultValue:Array<any> = TerraFormFieldHelper.parseDefaultValue(formField);
+            expect(arrayDefaultValue).toEqual(formField.defaultValue);
+
             // formField with children and isList but no default value
             delete formField.defaultValue;
-            let groupDefaultValue:TerraKeyValueInterface<any> = TerraFormFieldHelper.parseSingleDefaultValue(formField, true);
+            const groupDefaultValue:TerraKeyValueInterface<any> = TerraFormFieldHelper.parseDefaultValue(formField, true);
             expect(defaultValue).toEqual([].fill(groupDefaultValue, 0, min));
+        });
+
+        it(`must not return a list at any time if #skipList is set`, () =>
+        {
+            const formField:TerraFormFieldInterface = {...listWithChildren};
+            let defaultValue:any = TerraFormFieldHelper.parseDefaultValue(formField, true);
+
+            expect(Array.isArray(defaultValue)).toBe(false);
+            expect(defaultValue).toEqual(formField.defaultValue);
+
+            let defaultValuesOfChildren:{} = {}; // TODO: Maybe use `parseDefaultValues()` here
+            Object.keys(formField.children).forEach((fKey:string) =>
+            {
+                let child:TerraFormFieldInterface = formField.children[fKey];
+                defaultValuesOfChildren[fKey] = child.defaultValue;
+            });
+
+            formField.defaultValue = [];
+            defaultValue = TerraFormFieldHelper.parseDefaultValue(formField, true);
+            expect(Array.isArray(defaultValue)).toBe(false);
+            expect(defaultValue).toEqual(defaultValuesOfChildren);
+
+            delete formField.defaultValue;
+            defaultValue = TerraFormFieldHelper.parseDefaultValue(formField, true);
+            expect(Array.isArray(defaultValue)).toBe(false);
+            expect(defaultValue).toEqual(defaultValuesOfChildren);
         });
     });
 });
