@@ -79,10 +79,6 @@ export class TerraDataTableComponentExample implements OnInit
             {
                 caption: 'email',
                 width:   20
-            },
-            {
-                caption: 'buttons',
-                width:   20
             }
         ];
     }
