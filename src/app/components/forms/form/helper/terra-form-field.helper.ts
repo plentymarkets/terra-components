@@ -273,8 +273,7 @@ export class TerraFormFieldHelper
                 console.error(`Since the formField's 'isList' property is set, a defaultValue of type array was expected. Given value: `, formField.defaultValue);
             }
             // create a list out of the default value of a single entry.
-            let range:[number, number] = this.getListRange(formField.isList);
-            let min:number = range[0];
+            let min:number = this.getListRange(formField.isList)[0];
             return [].fill(this.parseDefaultValue(formField, true), 0, min);
         }
 
