@@ -250,7 +250,7 @@ export class TerraFormFieldHelper
      * @param formField
      * @param skipList - optional parameter that skips the list check and returns the defaultValue of the single entry, not a list.
      */
-    public static parseDefaultValue(formField:TerraFormFieldInterface, skipList?:boolean):any
+    public static parseDefaultValue(formField:TerraFormFieldInterface, skipList:boolean = false):any
     {
         // check if a default value is given and can be returned
         if(!isNullOrUndefined(formField.defaultValue))
