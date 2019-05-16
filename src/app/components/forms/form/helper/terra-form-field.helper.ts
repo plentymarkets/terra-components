@@ -257,7 +257,8 @@ export class TerraFormFieldHelper
         {
             if((formField.isList && skipList && !Array.isArray(formField.defaultValue)) || // list should be skipped. Default value is not a list.
                (formField.isList && !skipList && Array.isArray(formField.defaultValue)) || // list expected. List given.
-               (!formField.isList && !isNullOrUndefined(formField.children) && isObject(formField.defaultValue) && !Array.isArray(formField.defaultValue)) || // object expected. Object given. No Array!
+               (!formField.isList && !isNullOrUndefined(formField.children) &&
+                isObject(formField.defaultValue) && !Array.isArray(formField.defaultValue)) || // object expected. Object given. No Array!
                (!formField.isList && isNullOrUndefined(formField.children))) // anything else.. No further constraints given.
             {
                 return this.cloneDefaultValue(formField.defaultValue); // return the given default value - cloned if necessary
@@ -270,7 +271,11 @@ export class TerraFormFieldHelper
         {
             if(!isNullOrUndefined(formField.defaultValue))
             {
-                console.error(`Since the formField's 'isList' property is set, a defaultValue of type array was expected.`, formField.defaultValue, `was given instead.`);
+                console.error(
+                    `Since the formField's 'isList' property is set, a defaultValue of type array was expected.`,
+                    formField.defaultValue,
+                    `was given instead.`
+                );
             }
             // create a list out of the default value of a single entry.
             let min:number = this.getListRange(formField.isList)[0];
@@ -282,7 +287,11 @@ export class TerraFormFieldHelper
         {
             if(!isNullOrUndefined(formField.defaultValue))
             {
-                console.error(`Since the formField has children, a defaultValue of type Object was expected.`, formField.defaultValue, `was given instead.`);
+                console.error(
+                    `Since the formField has children, a defaultValue of type Object was expected.`,
+                    formField.defaultValue,
+                    `was given instead.`
+                );
             }
             return this.parseDefaultValues(formField.children);
         }
