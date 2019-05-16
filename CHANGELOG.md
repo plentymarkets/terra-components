@@ -1,5 +1,5 @@
 <a name="3.13.0"></a>
-# 3.13.0 (Unreleased)
+# 3.13.0 (16.05.2019)
 	
 ### Bug Fixes
 * **terra-breadcrumbs** fix handling leading slashes on breadcrumb urls.
@@ -11,9 +11,6 @@
 	- added styles for the representation of an invalid state.
 	- updated [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quil) dependency to the latest version
 	- activated sanitization using the `quill-editor`'s `sanitize` input.
-	
-### Bug Fixes
-* **terra-form** fix instance clash with objects and arrays as default value
 
 <a name="3.12.0"></a>
 # 3.12.0 (09.05.2019)
@@ -42,6 +39,7 @@
 
 ### Bug Fixes
 * **tc-radio-group** change callback is not executed anymore when a value is set via `writeValue()`
+* **terra-form** fix instance clash with objects and arrays as default value
 
 <a name="3.10.0"></a>
 # 3.10.0 (17.04.2019)
