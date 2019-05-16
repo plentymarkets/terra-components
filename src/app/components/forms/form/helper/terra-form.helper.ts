@@ -99,14 +99,15 @@ export class TerraFormHelper
         Object.keys(formFields).forEach((formFieldKey:string) =>
         {
             let formField:TerraFormFieldInterface = formFields[formFieldKey];
+            let defaultValue:any = TerraFormFieldHelper.parseDefaultValue(formField);
             if(formField.isList)
             {
                 let formControls:Array<AbstractControl> = [];
                 if(!isNullOrUndefined(values) && isArray(values))
                 {
-                    formControls = values.map((value:any) =>
+                    formControls = values.map((value:any, index:number) =>
                     {
-                        return this.createNewControl(value || formField.defaultValue, formField);
+                        return this.createNewControl(value || defaultValue[index], formField);
                     });
                 }
                 if(isString(formField.isList))
@@ -118,12 +119,12 @@ export class TerraFormHelper
             else if(!isNullOrUndefined(formField.children))
             {
                 let value:Object = !isNullOrUndefined(values) && isObject(values[formFieldKey]) ?
-                    values[formFieldKey] : formField.defaultValue || null;
+                    values[formFieldKey] : defaultValue || null;
                 controls[formFieldKey] = this.parseReactiveForm(formField.children, value);
             }
             else
             {
-                let value:any = !isNullOrUndefined(values) ? values[formFieldKey] : formField.defaultValue;
+                let value:any = !isNullOrUndefined(values) ? values[formFieldKey] : defaultValue;
                 controls[formFieldKey] = new FormControl(value, this.generateValidators(formField));
             }
         });
