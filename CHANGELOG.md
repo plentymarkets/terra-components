@@ -1,4 +1,197 @@
-# Unreleased
+<a name="3.13.0"></a>
+# 3.13.0 (Unreleased)
+	
+### Bug Fixes
+* **terra-breadcrumbs** fix handling leading slashes on breadcrumb urls.
+
+### Features
+* **terra-base-editor**, **terra-note-editor**, **terra-code-editor** 
+	- added `required` input that activates validation if set.
+	- added styles for the representation of an invalid state.
+	- updated [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quil) dependency to the latest version
+	- activated sanitization using the `quill-editor`'s `sanitize` input.
+	
+### Bug Fixes
+* **terra-form-container** removed flex style on form-entry
+
+<a name="3.12.0"></a>
+# 3.12.0 (09.05.2019)
+
+### Features
+* **tc-radio-group** allow the radio group to accept more elements than only the `tc-radio-input`.
+* **terra-button** 
+	- added new `--terra-button-btn-handler-display` css variables to modify display value
+	- added new `--terra-button-btn-handler-margin` css variables to modify margin of the button
+* **terra-card** added new `--terra-card-footer-min-height` css variable to be able to redefine the footer's min-height
+
+<a name="3.11.2"></a>
+# 3.11.2 (02.05.2019)
+
+### Bug Fixes
+* Reduce interactjs version to prevent issues with the current imports
+
+<a name="3.11.0"></a>
+# 3.11.0 (02.05.2019)
+
+### Features
+* **ts-lint** added new linting rules 'max-function-line-count' and 'max-file-line-count' 
+* **ts-lint** decreased 'max-depth' limit to 5
+* **terra-multi-check-box** added invalid state indication
+* **terra-card** added more scss variables
+
+### Bug Fixes
+* **tc-radio-group** change callback is not executed anymore when a value is set via `writeValue()`
+* **terra-form** fix instance clash with objects and arrays as default value
+
+<a name="3.10.0"></a>
+# 3.10.0 (17.04.2019)
+
+### Bug Fixes
+* **terra-form** no longer validates hidden form fields
+
+### Features
+* **terra-card** added possibility to overwrite the background color of the footer
+* **terra-form.helper** instead of the usual required validator, the requiredTrue validator is now added for controls of type checkbox and toggle.
+
+<a name="3.9.0"></a>
+# 3.9.0 (10.04.2019)
+
+### Bug Fixes
+* **terra-node-tree** fixed issues occuring when adding a new node whilst an existing node had been selected
+* **terra-info** fix export of component
+
+### Features
+* **tc-radio-group** now uses a generated name if it is not set via input.
+* **terra-checkbox-tree** 
+	- CSS changes
+	- added functionality for disabled leaf
+* **terra-checkbox** temporarily added `notifyOnChanges` to be notified on leaf change
+
+<a name="3.8.0"></a>
+# 3.8.0 (09.04.2019)
+
+### Features
+* **terra-form** set empty array as default value for list controls.
+
+<a name="3.7.0"></a>
+# 3.7.0 (27.03.2019)
+
+### Changes
+* **terra-checkbox**
+	- set/get `value` is now deprecated. Use ngModel instead.
+	- `valueChange` is now deprecated. Use ngModelChange-Callback instead.
+	
+### Features
+* **terra-form** 
+	- reworked internal implementation using reactive forms which resulted in full reactive forms support.
+	- added `formGroup` getter for a reactive FormGroup instance which represents the form created out of the `inputFormFields` specification.
+* **terra-breadcrumbs.service**
+	- new set accessor to pass the activated route to the service. This is used to evaluate the `initialPath` and the `initialRoute`.
+	- set accessor for initialPath is now deprecated. Use set accessor for activatedRoute instead.
+* **activated-route.helper** new helper for ActivatedRoute related functionality.
+* **terra-category-picker** added webstore id input to pass the current store and display the cetegories accordingly
+
+### Bug Fixes
+* **terra-checkbox** change callback is not executed anymore when a value is set via `writeValue()` or `value` set accessor
+* **terra-multi-check-box** 
+	- does not call change callbacks on `writeValue()` anymore.
+	- resolve performance issue with large valueLists
+* **terra-select-box** now selects the first entry of `inputListBoxValues` if an unknown value is passed via ngModel
+* **terra-breadcrumbs** fix issue where the initial path was not evaluated properly
+
+<a name="3.7.0-beta.3"></a>
+# 3.7.0-beta.3 (26.03.2019)
+
+### Features
+* **terra-code-editor** added input `tooltipText` and `tooltipPlacement` to display tooltips, default placement is `top`
+
+### Bug Fixes
+* **tooltips** tooltip color in light theme is now dark for better contrast
+* **terra-select-box** fixed padding on compact mode
+
+<a name="3.7.0-beta.2"></a>
+# 3.7.0-beta.2 (14.03.2019)
+
+### Bug Fixes
+* **terra-breadcrumbs.service** fixed issue with leading slashes on the `initialPath`
+
+<a name="3.7.0-beta.1"></a>
+# 3.7.0-beta.1 (14.03.2019)
+
+### Features
+* **terra-breadcrumbs.service**
+	- new set accessor to pass the activated route to the service. This is used to evaluate the `initialPath` and the `initialRoute`.
+	- set accessor for initialPath is now deprecated. Use set accessor for activatedRoute instead.
+* **activated-route.helper** new helper for ActivatedRoute related functionality.
+
+### Bug Fixes
+* **terra-breadcrumbs** fix issue where the initial path was not evaluated properly
+
+<a name="3.7.0-beta.0"></a>
+# 3.7.0-beta.0 (13.03.2019)
+
+### Features
+* **terra-form** preliminary support for validation using reactive forms. Implementation may change in a following release.
+
+<a name="3.6.0"></a>
+# 3.6.0 (13.03.2019)
+
+### Bug Fixes
+* **alerts** added `AlertService` to index.ts to be able to import it from _@plentymarkets/terra-components_
+* **terra-date-picker** fixed issue with early dates
+* **terra-card** vertical alignment of multiple cards if one card uses an icon and another uses an image.
+
+### Features
+* **terra-base.service** extended typedef of `dataId` parameter in caching methods. Strings may now be used as index as well.
+* **tc-checkbox-group** & **terra-multi-check-box** are now collapsible. Added new input `collapsed` which - if set to true - collapses the component to its header initially.
+* **terra-data-table** `<terra-input>`, `<terra-select-box>` and `<terra-multi-check-box>` that will be inserted into a table cell have now adjusted styles to fit into the layout.
+
+<a name="3.5.1"></a>
+# 3.5.1 (20.02.2019)
+
+### Features
+* **terra-code-editor** added input `switchFromCode`, if false the switch from code to note editor view gets disabled, default true.
+
+### Bug Fixes
+* **terra-categroy-picker** added possibility to pass a language in which the categories shall be displayed
+* **terra-form** now emits changes on array or object values correctly
+
+<a name="3.5.0"></a>
+# 3.5.0 (18.02.2019)
+
+### Features 
+* **icon font** added new icons: icon-content_check_out, icon-content_my_account, icon-new_order, icon-reply_all, icon-reply
+
+### Bug Fixes
+* **terra-toggle-button** removed function groups for toggle buttons
+
+<a name="3.4.0"></a>
+# 3.4.0 (12.02.2019)
+
+### Features 
+* **terra-checkbox** added support for tooltips
+
+### Bug Fixes
+* **terra-category-picker** REST calls will no longer be triggered twice.
+* **terra-breadcrumbs** hide breadcrumb container if it contains only breadcrumbs without labels.
+* **tc-checkbox-group** `null` can now be written to the input and `null` will also be returned if there is nothing selected
+* **terra-info** Tooltip will be shown correctly in a scrollable view.
+
+<a name="3.3.0"></a>
+# 3.3.0 (04.02.2019)
+
+### Features 
+* **webpack update** updated to latest version of webpack due to security vulnerabilities
+* **tc-checkbox-group** new component which wraps `<terra-multi-check-box>` to separate available checkbox definition from ngModel
+* **terra-form** added support for `<terra-checkbox-group>`
+* **terra-form** added support for `<terra-slider>`
+
+### Bug Fixes
+* **terra-form-entry** fixed initialization with defaultValue
+* **terra-form-entry** check if component property is decorated before assigning value dynamically
+
+<a name="3.2.0"></a>
+# 3.2.0 (23.01.2019)
 
 ### Features
 * **terra-alert** new alerts are now added to the top of the list
@@ -10,6 +203,8 @@
 * **terra-alert** is now deprecated. Use new `AlertService` instead.
 * **ibanValidator** new validator for reactive forms checking whether a text is a valid IBAN.
 * **TerraValidators** new class that provides a set of additional validators for reactive forms.
+* **terra-data-table** add `useContentBody` input property. If set the auto rendering of rows/cells is disabled and content projection is enabled.
+* **table-row** added for the new `terra-data-table` content projection feature
 * **terra-select-box** `inputSelectedValue` and `inputSelectedValueChange` are now deprecated. Please use `ngModel`-binding and the `ngModelChange`-callback instead.
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 import { isNullOrUndefined } from 'util';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { TerraKeyValueInterface } from '../../../../../';
+import { TerraKeyValueInterface } from '../../../../models/terra-key-value.interface';
 
 export class TerraFormScope
 {
@@ -46,8 +46,8 @@ export class TerraFormScope
 
     public createChildScope(data:any = {}):TerraFormScope
     {
-        let scope:TerraFormScope = new TerraFormScope( data, this );
-        this.onDataChanged.subscribe((value:any) =>
+        let scope:TerraFormScope = new TerraFormScope(data, this);
+        this.onDataChanged.subscribe(() =>
         {
             scope.onDataChanged.next(scope.data);
         });
@@ -58,12 +58,12 @@ export class TerraFormScope
     {
         let result:TerraKeyValueInterface<any> = {};
 
-        if ( !isNullOrUndefined(this.parent) )
+        if(!isNullOrUndefined(this.parent))
         {
             result = this.parent.getEvaluationData();
         }
 
-        Object.keys( this._data ).forEach((key:string) =>
+        Object.keys(this._data).forEach((key:string) =>
         {
             result[key] = this._data[key] || null;
         });

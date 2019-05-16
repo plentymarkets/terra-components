@@ -1,18 +1,5 @@
-body
-{
-    font-family: var(--font-family);
-    font-size: 0.875rem !important;
-    line-height: 1.5 !important;
-    color: var(--color-structure-12) !important;
-    background-color: var(--color-structure-0) !important;
-    position: absolute !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    margin: 0 !important;
-    border: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    direction: ltr !important;
-}
+@import "~bootstrap/scss/bootstrap";
+@import "styles/styles";
+@import "styles/icons.glob";
+@import "styles/variables";
+@import "styles/themes/theme-loader";

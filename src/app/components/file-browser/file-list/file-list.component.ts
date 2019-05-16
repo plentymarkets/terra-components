@@ -1,3 +1,4 @@
+/* tslint:disable:max-file-line-count */
 import {
     AfterViewInit,
     ChangeDetectorRef,
@@ -166,7 +167,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private _currentStorageRoot:TerraStorageObject;
 
-    private imagePreviewTimeout:number;
+    private imagePreviewTimeout:any;
 
     public get currentStorageRoot():TerraStorageObject
     {

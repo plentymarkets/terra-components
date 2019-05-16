@@ -46,7 +46,9 @@ import { TerraGroupFunctionComponentExample } from './tables/group-function/exam
 import { TerraInfoComponentExample } from './info/example/terra-info.component.example';
 import { TerraFormsExampleComponent } from './forms/terra-forms.example';
 import { RadioGroupComponentExample } from './forms/input/radio/example/radio-group.component.example';
+import { DataTableTemplateComponentExample } from './tables/data-table/example/data-table-template.component.example';
 import { FilterComponentExample } from './filter/example/filter.component.example';
+import { CheckboxGroupComponentExample } from './forms/checkbox-group/example/checkbox-group.component.example';
 
 export const examples:Array<Type<any>> = [
     TerraButtonComponentExample,
@@ -96,5 +98,7 @@ export const examples:Array<Type<any>> = [
     TerraInfoComponentExample,
     TerraFormsExampleComponent,
     RadioGroupComponentExample,
-    FilterComponentExample
+    DataTableTemplateComponentExample,
+    FilterComponentExample,
+    CheckboxGroupComponentExample
 ];

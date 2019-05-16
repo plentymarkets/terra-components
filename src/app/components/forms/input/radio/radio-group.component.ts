@@ -1,12 +1,19 @@
 import {
     Component,
     forwardRef,
-    Input
+    Input,
+    OnChanges,
+    OnInit,
+    SimpleChanges
 } from '@angular/core';
 import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
+import { isNullOrUndefined } from 'util';
+import { StringHelper } from '../../../../helpers/string.helper';
+
+let nextId:number = 0;
 
 /**
  * @author pweyrich
@@ -23,7 +30,7 @@ import {
         }
     ]
 })
-export class RadioGroupComponent implements ControlValueAccessor
+export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChanges
 {
     /**
      * Name of the group. This is projected to the input's name property.
@@ -41,9 +48,40 @@ export class RadioGroupComponent implements ControlValueAccessor
     public inline:boolean = false;
 
     private _value:any;
+    private readonly id:string;
+
+    constructor()
+    {
+        this.id = `radio-group#${nextId++}`;
+    }
 
     /**
-     * set the value of the radio group
+     * Implementation of the OnInit life cycle hook
+     * @description Provides a generated id as default name if no name is given via the input.
+     */
+    public ngOnInit():void
+    {
+        if(StringHelper.isNullUndefinedOrEmpty(this.name))
+        {
+            this.name = this.id;
+        }
+    }
+
+    /**
+     * Implementation of the OnChanges life cycle hook
+     * @description Ensures that the name property is defined by using a generated id as a fallback value if no name is given.
+     * @param changes
+     */
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes.hasOwnProperty('name') && StringHelper.isNullUndefinedOrEmpty(changes['name'].currentValue))
+        {
+            this.name = this.id;
+        }
+    }
+
+    /**
+     * set the value of the radio group and update model binding by executing a registered #changeCallback
      * @param value
      */
     public set value(value:any)
@@ -66,7 +104,7 @@ export class RadioGroupComponent implements ControlValueAccessor
      */
     public writeValue(value:any):void
     {
-        this.value = value;
+        this._value = value;
     }
 
     /**

@@ -7,6 +7,7 @@ export * from './app/components/buttons/file-chooser/terra-file-chooser.componen
 export * from './app/components/data/terra-base.data';
 export * from './app/components/filter/terra-filter.component';
 export * from './app/components/forms/checkbox/terra-checkbox.component';
+export * from './app/components/forms/checkbox-group/checkbox-group.component';
 export * from './app/components/forms/radio-button/terra-radio-button.component';
 export * from './app/components/forms/input/terra-input.component';
 export * from './app/components/forms/input/double-input/terra-double-input.component';
@@ -140,6 +141,7 @@ export * from './app/components/forms/form/helper/terra-form-field.helper';
 export * from './app/components/forms/form/model/terra-form-field.interface';
 export * from './app/components/forms/form/model/terra-form-scope.data';
 export * from './app/components/forms/form/model/terra-form-type-map.enum';
+export * from './app/components/forms/form/model/form-type-map';
 export * from './app/components/forms/form/model/terra-form-property.decorator';
 export * from './app/components/breadcrumbs/terra-breadcrumbs.component';
 export * from './app/components/breadcrumbs/terra-breadcrumb';
@@ -151,3 +153,6 @@ export * from './app/components/layouts/column-container/three-columns/terra-thr
 export * from './app/components/tables/data-table/enums/terra-href-type.enum';
 export * from './app/components/tables/group-function/terra-group-function.component';
 export * from './app/components/tables/data-table/terra-data-table-base.service';
+export * from './app/components/tables/data-table/table-row/table-row.component';
+export * from './app/components/alert/alert.service';
+export * from './app/helpers/activated-route.helper';

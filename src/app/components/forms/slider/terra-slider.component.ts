@@ -5,11 +5,11 @@ import {
     EventEmitter,
     forwardRef,
     Input,
+    OnChanges,
     OnInit,
     Output,
-    ViewChild,
-    OnChanges,
-    SimpleChanges
+    SimpleChanges,
+    ViewChild
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { GridOptions } from '../../interactables/gridOptions.interface';
@@ -211,30 +211,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
                     current += stepSize;
                 }
 
-                this.inputPrecision = Math.max(
-                    ...steps.map((step:number):number =>
-                    {
-                        let parts:Array<string> = ('' + step).split('.');
-
-                        if(!parts[1])
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            let match:RegExpExecArray = /[1-9]/g.exec(parts[1].substr(0, 3));
-
-                            if(match)
-                            {
-                                return match.index;
-                            }
-                            else
-                            {
-                                return 0;
-                            }
-                        }
-                    })
-                );
+                this.inputPrecision = Math.max(...steps.map(this.mapSteps));
             }
             else
             {
@@ -395,6 +372,29 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     private calculateNumberOfSteps():number
     {
         return this.calculateRangeOfSlider() / this.inputInterval;
+    }
+
+    private mapSteps(step:number):number
+    {
+        let parts:Array<string> = ('' + step).split('.');
+
+        if(!parts[1])
+        {
+            return 0;
+        }
+        else
+        {
+            let match:RegExpExecArray = /[1-9]/g.exec(parts[1].substr(0, 3));
+
+            if(match)
+            {
+                return match.index;
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 
     private changeCallback:(value:number) => void = ():void => undefined;

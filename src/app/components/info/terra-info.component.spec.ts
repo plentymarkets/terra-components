@@ -7,7 +7,7 @@ import {
 import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../translation/l10n.config';
-import { TerraPlacementEnum } from '../../..';
+import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 
 describe('TerraInfoComponent:', () =>
 {

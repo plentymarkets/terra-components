@@ -67,13 +67,67 @@ export class TerraDropzoneDirective implements OnChanges
 
     private init():void
     {
-        let createDropEvent:any = (event:DropEvent):DropEvent =>
+        let createDropEvent:(event:DropEvent) => DropEvent = (event:DropEvent):DropEvent =>
         {
             event.dropData = (<any> event.relatedTarget).IA_DRAG_DATA;
             return event;
         };
 
-        let config:any = {
+        let config:any = this.initConfigObject(createDropEvent);
+
+        if(typeof this.overlap === 'string'
+           && parseFloat(this.overlap) >= 0
+           && parseFloat(this.overlap) <= 1)
+        {
+            config.overlap = parseFloat(this.overlap);
+        }
+        else
+        {
+            config.overlap = this.overlap;
+        }
+
+        if(typeof this.accept === 'string' && this.accept.length > 0)
+        {
+            config.accept = this.accept;
+        }
+        else if(this.accept instanceof Function)
+        {
+            config.checker = (interactEvent:Interact.InteractEvent,
+                              event:MouseEvent,
+                              isDropable:boolean,
+                              dropzone:Interact.Interactable,
+                              dropElement:HTMLElement,
+                              draggable:Interact.Interactable,
+                              dragElement:HTMLElement):boolean | AcceptFn =>
+            {
+                if(isDropable)
+                {
+                    return (this.accept as AcceptFn)({
+                        interactEvent:    interactEvent,
+                        event:            event,
+                        isDropable:       isDropable,
+                        dropzone:         dropzone,
+                        dropzoneElement:  dropElement,
+                        draggable:        draggable,
+                        draggableElement: dragElement,
+                        dragData:         interactEvent.target.IA_DRAG_DATA
+                    });
+                }
+
+                return false;
+            };
+        }
+
+        if(!this.interactable)
+        {
+            this.interactable = Interact(this.el.nativeElement);
+        }
+        this.interactable.dropzone(config);
+    }
+
+    private initConfigObject(createDropEvent:(event:DropEvent) => DropEvent):any
+    {
+        return {
             enabled:          !this.disabled,
             ondropactivate:   (event:DropEvent):void =>
                               {
@@ -113,54 +167,5 @@ export class TerraDropzoneDirective implements OnChanges
                               }
 
         };
-
-        if(typeof this.overlap === 'string'
-           && parseFloat(this.overlap) >= 0
-           && parseFloat(this.overlap) <= 1)
-        {
-            config.overlap = parseFloat(this.overlap);
-        }
-        else
-        {
-            config.overlap = this.overlap;
-        }
-
-        if(typeof this.accept === 'string' && this.accept.length > 0)
-        {
-            config.accept = this.accept;
-        }
-        else if(this.accept instanceof Function)
-        {
-            config.checker = (interactEvent:Interact.InteractEvent,
-                              event:MouseEvent,
-                              isDropable:boolean,
-                              dropzone:Interact.Interactable,
-                              dropElement:HTMLElement,
-                              draggable:Interact.Interactable,
-                              dragElement:HTMLElement):boolean|AcceptFn =>
-            {
-                if(isDropable)
-                {
-                    return (this.accept as AcceptFn)({
-                        interactEvent:    interactEvent,
-                        event:            event,
-                        isDropable:       isDropable,
-                        dropzone:         dropzone,
-                        dropzoneElement:  dropElement,
-                        draggable:        draggable,
-                        draggableElement: dragElement,
-                        dragData:         interactEvent.target.IA_DRAG_DATA
-                    });
-                }
-
-                return false;
-            };
-        }
-
-        if(!this.interactable)
-        {
-            this.interactable = Interact(this.el.nativeElement);
-        }
-        this.interactable.dropzone(config);
     }
 }

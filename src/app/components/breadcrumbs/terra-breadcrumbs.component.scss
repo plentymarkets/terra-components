@@ -16,7 +16,7 @@
     .terra-breadcrumb-container
     {
         cursor: pointer;
-    
+        
         .terra-breadcrumb-wrapper
         {
             text-decoration: none;
@@ -41,13 +41,13 @@
                 text-decoration: none;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
-    
+                
                 &.active
                 {
                     color: var(--color-active);
                     cursor: default;
                 }
-    
+                
                 &:not(.active):hover
                 {
                     color: var(--color-active);
@@ -58,6 +58,7 @@
             {
                 color: var(--color-active);
             }
+            
             .icon-caret
             {
                 overflow: hidden;
@@ -76,6 +77,7 @@
                         transition-delay: var(--transition-delay-0);
                     }
                 }
+                
                 .context-menu
                 {
                     position: fixed;
@@ -98,6 +100,7 @@
                 }
             }
         }
+        
         .icon-next
         {
             &::before

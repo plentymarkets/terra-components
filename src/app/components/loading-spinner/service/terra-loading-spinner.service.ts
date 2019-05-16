@@ -44,27 +44,28 @@ export class TerraLoadingSpinnerService
             this._isLoading = false;
 
             // to send no change detection run the setTimeout outside of angular
-            this.zone.runOutsideAngular(() =>
-                {
-                    // set timeout to stop the loading-spinner from blinking because of sequential started events
-                    setTimeout(() =>
-                    {
-                        if(!this._isLoading)
-                        {
-                            // run inside angular zone to detect changes from isLoading to false
-                            this.zone.run(() =>
-                            {
-                                this.subscriber.next(this._isLoading);
-                            });
-                        }
-                    }, 100);
-                }
-            );
+            this.zone.runOutsideAngular(() => this.runOutsideAngular());
         }
     }
 
     public get isLoading():boolean
     {
         return this._isLoading;
+    }
+
+    private runOutsideAngular():void
+    {
+        // set timeout to stop the loading-spinner from blinking because of sequential started events
+        setTimeout(() =>
+        {
+            if(!this._isLoading)
+            {
+                // run inside angular zone to detect changes from isLoading to false
+                this.zone.run(() =>
+                {
+                    this.subscriber.next(this._isLoading);
+                });
+            }
+        }, 100);
     }
 }

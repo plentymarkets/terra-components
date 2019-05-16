@@ -52,7 +52,8 @@ export class TerraStopwatchComponent implements OnInit
     }
 
     /**
-     * @description notification if the current value of the stopwatch changes. If the stopwatch is running it emits a new value every single second.
+     * @description notification if the current value of the stopwatch changes. If the stopwatch is running it emits a new value every
+     *     single second.
      */
     @Output()
     public secondsChange:EventEmitter<number> = new EventEmitter<number>();

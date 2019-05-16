@@ -1,8 +1,18 @@
+// Invalid handling for appearance in a terra-form, tc-checkbox-group or as terra-multi-check-box
+:host-context(terra-form-entry.ng-invalid, tc-checkbox-group.ng-invalid, terra-multi-check-box.ng-invalid)
+{
+    .multiselect-container .multiselect-element .multiselect .multiselect-header
+    {
+        background-color: var(--color-alert);
+    }
+}
+
 .multiselect-container
 {
     .multiselect-element
     {
-        margin-bottom: 8px;
+        margin-bottom: var(--select-box-border-bottom, (var(--space-md)));
+        
         .multiselect
         {
             display: flex;
@@ -12,17 +22,32 @@
             .multiselect-header
             {
                 display: flex;
+                display: -webkit-flex; /* Safari */
+                justify-content: space-between;
+                user-select: none;
+                align-items: center;
+                color: var(--color-structure-0);
                 background-color: var(--color-structure-11);
                 border-top-left-radius: var(--border-radius);
                 border-top-right-radius: var(--border-radius);
+                cursor: pointer;
                 
-                .checkbox-container,
-                .header-label
+                &.roundedBottomBorder
                 {
-                    margin: 0px;
-                    font-variant: all-small-caps;
+                    border-bottom-left-radius: var(--border-radius);
+                    border-bottom-right-radius: var(--border-radius);
+                }
+                
+                .checkbox-container
+                {
                     padding: 6px 9px;
-                    color: var(--color-structure-0);
+                    
+                }
+                [class^="icon-"]
+                {
+                    padding: var(--space-sm);
+                    transition: all var(--transition-xs);
+                    font-size: larger;
                 }
             }
             
@@ -31,6 +56,7 @@
                 background: var(--color-structure-0);
                 overflow: auto;
                 max-height: 156px;
+                
                 .input-group
                 {
                     margin-bottom: 0px;
@@ -55,6 +81,7 @@
                 }
             }
         }
+        
         &.error
         {
             .multiselect
@@ -65,6 +92,7 @@
                 }
             }
         }
+        
         &.disabled
         {
             .multiselect
@@ -74,6 +102,7 @@
                     background: var(--color-structure-5);
                     cursor: not-allowed;
                 }
+                
                 .option-list
                 {
                     .input-group
@@ -83,12 +112,14 @@
                         {
                             color: var(--color-structure-5);
                             cursor: not-allowed;
+                            
                             &:hover
                             {
                                 cursor: not-allowed;
                                 background: var(--color-structure-0);
                             }
                         }
+                        
                         &:hover
                         {
                             cursor: not-allowed;
@@ -100,3 +131,4 @@
         }
     }
 }
+

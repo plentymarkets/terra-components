@@ -4,7 +4,8 @@ import {
     Input,
     OnChanges,
     OnInit,
-    Output, SimpleChanges,
+    Output,
+    SimpleChanges,
 } from '@angular/core';
 import { TerraBaseTreeComponent } from '../base/terra-base-tree.component';
 import { TerraCheckboxLeafInterface } from '../leaf/terra-checkbox-leaf.interface';
@@ -48,9 +49,16 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
      * @param event
      * @param leaf
      */
-    private onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
+    protected onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
     {
-        leaf.checkboxChecked = event;
+        if(leaf.isIndeterminate)
+        {
+            leaf.checkboxChecked = false;
+        }
+        else
+        {
+            leaf.checkboxChecked = event;
+        }
         this.resetIndeterminateLeafState(leaf);
         this.recursiveUpdateChildLeafs(leaf);
         this.recursiveUpdateParentLeafs(leaf);
@@ -99,7 +107,10 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         {
             for(let subLeaf of leaf.subLeafList)
             {
-                subLeaf.checkboxChecked = leaf.checkboxChecked;
+                if(!subLeaf.isDisabled)
+                {
+                    subLeaf.checkboxChecked = leaf.checkboxChecked;
+                }
 
                 if(subLeaf.subLeafList)
                 {
@@ -197,7 +208,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if (changes['inputLeafList'])
+        if(changes['inputLeafList'])
         {
             this.appendParentsToLeafList(this.inputLeafList);
         }

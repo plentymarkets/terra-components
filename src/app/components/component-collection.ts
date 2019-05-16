@@ -63,7 +63,9 @@ import { TerraGroupFunctionComponent } from './tables/group-function/terra-group
 import { TerraInfoComponent } from './info/terra-info.component';
 import { RadioInputComponent } from './forms/input/radio/radio-input.component';
 import { RadioGroupComponent } from './forms/input/radio/radio-group.component';
+import { TableRowComponent } from './tables/data-table/table-row/table-row.component';
 import { FilterComponent } from './filter/filter.component';
+import { CheckboxGroupComponent } from './forms/checkbox-group/checkbox-group.component';
 
 export const exportedComponents:Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -73,6 +75,7 @@ export const exportedComponents:Array<Type<any>> = [
     TerraButtonComponent,
     TerraCheckboxTreeComponent,
     TerraCheckboxComponent,
+    CheckboxGroupComponent,
     TerraRadioButtonComponent,
     TerraSelectBoxComponent,
     TerraBaseToolbarComponent,
@@ -129,12 +132,13 @@ export const exportedComponents:Array<Type<any>> = [
     TerraGroupFunctionComponent,
     RadioInputComponent,
     RadioGroupComponent,
-    FilterComponent
+    TableRowComponent,
+    FilterComponent,
+    TerraInfoComponent
 ];
 
 export const components:Array<Type<any>> = [
     ...exportedComponents,
     TerraFileListComponent,
-    TerraImagePreviewComponent,
-    TerraInfoComponent
+    TerraImagePreviewComponent
 ];

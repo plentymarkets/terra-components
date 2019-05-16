@@ -1,7 +1,4 @@
-import {
-    TerraFormFieldBase,
-    TerraFormFieldBaseOptions
-} from './terra-form-field-base';
+import { TerraFormFieldBase } from './terra-form-field-base';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 import {
     TerraFormFieldBaseContainer,

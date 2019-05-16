@@ -12,10 +12,9 @@
 
 .terra-tree
 {
-    margin: 0;
-    padding: 0 0 0 10px;
     display: block;
     overflow-x: hidden;
+    padding-left: 10px;
     
     ul
     {
@@ -23,11 +22,12 @@
         padding: 0;
         list-style: none;
         font-size: inherit;
+        
         li
         {
             font-size: inherit;
             cursor: pointer;
-            padding-left: 10px;
+            padding-left: 5px;
             position: relative;
             color: var(--color-structure-11);
             vertical-align: middle;
@@ -35,48 +35,44 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            
             &.disabled
             {
-                cursor: default;
                 color: var(--color-structure-7);
             }
-            .input-control
-            {
-                margin: 0 .3125rem 0 0;
-                height: 1rem;
-                line-height: .625rem;
-                min-height: 0;
-                &.checkbox
-                {
-                    line-height: 1rem;
-                }
-            }
+            
             &.active
             {
                 > .leaf-titel
                 {
+                    --input-control-checkbox-hover-color: var(--color-structure-0);
                     background: var(--color-active-dark);
                     color: var(--color-structure-0);
                 }
             }
+            
             .leaf-titel
             {
                 border-bottom: 1px solid var(--color-structure-2);
                 color: inherit;
                 margin: 0;
-                padding: 4px 8px 4px 8px;
+                padding: 4px 8px 4px 4px;
+                
                 .icon
                 {
                     width: 1rem;
                     height: 1rem;
                     text-align: center;
                 }
+                
                 &:hover
                 {
-                    color: var(--color-structure-12);
+                    --input-control-checkbox-hover-color: var(--color-structure-0);
+                    color: var(--color-structure-0);
                     background: var(--color-active);
                 }
             }
+            
             &:hover
             {
                 > .node-toggle:before
@@ -94,11 +90,12 @@
         top: 8px;
         width: 8px;
         height: 8px;
+        
         &:before
         {
             position: absolute;
             display: block;
-            top: -3px;
+            top: -6px;
             height: 0;
             content: '';
             width: 0;
@@ -110,6 +107,7 @@
             transform: rotate(45deg);
         }
     }
+    
     .node.collapsed
     {
         > .node-toggle:before
@@ -118,7 +116,9 @@
             transform: rotate(-45deg);
             border-bottom-color: var(--color-structure-7);
             left: -10px;
+            top: -3px;
         }
+        
         &:hover
         {
             > .node-toggle:before
@@ -127,7 +127,7 @@
             }
         }
         
-        > ul
+        > terra-checkbox-tree
         {
             display: none;
         }

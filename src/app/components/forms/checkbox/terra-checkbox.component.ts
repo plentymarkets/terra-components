@@ -10,6 +10,8 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
+import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
+import { noop } from 'rxjs/util/noop';
 
 let nextId:number = 0;
 
@@ -45,6 +47,64 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     @Input()
     public inputIcon:string;
 
+    /** @description Set the tooltip.*/
+    @Input()
+    public tooltipText:string;
+
+    /** @description Set the tooltip placement (bottom, top, left, right). Default top.*/
+    @Input()
+    public tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
+
+    /** @deprecated Temporarily for {@see TerraCheckboxTreeComponent}*/
+    @Input()
+    public notifyOnChanges:boolean;
+
+    /**
+     * @description set accessor for the current value of the check box.
+     * @deprecated use ngModel instead.
+     * @param value
+     */
+    @Input()
+    public set value(value:boolean)
+    {
+        this.writeValue(value);
+    }
+
+    /**
+     * @description get accessor for the current value of the check box
+     * @deprecated use ngModel instead
+     */
+    public get value():boolean
+    {
+        return this.innerValue;
+    }
+
+    /**
+     * @description Set accessor for the indeterminate state of the checkbox
+     * @param value
+     */
+    @Input()
+    public set isIndeterminate(value:boolean)
+    {
+        if(value)
+        {
+            this.innerValue = null;
+        }
+        this._isIndeterminate = value;
+    }
+
+    /**
+     * @description get accessor for indeterminate state of the checkbox
+     */
+    public get isIndeterminate():boolean
+    {
+        return this._isIndeterminate;
+    }
+
+    /**
+     * @description Emits the current value when it has changed.
+     * @deprecated use ngModelChange instead.
+     */
     @Output()
     public valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -59,72 +119,62 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     private innerValue:boolean = false;
     private _isIndeterminate:boolean = false;
 
+    private onTouchedCallback:() => void = noop;
+    private onChangeCallback:(value:any) => void = noop;
+
     constructor()
     {
         // generate the id of the input instance
         this.id = `checkbox_#${nextId++}`;
     }
 
-    // get accessor
-    public get value():boolean
+    /**
+     * @description Notifies a consumer via `ngModelChange` and `valueChange` with the given value.
+     * Is called whenever the value of the checkbox changes.
+     * @param value
+     */
+    public onChange(value:boolean):void
     {
-        return this.innerValue;
+        this.onChangeCallback(value);
+        this.valueChange.emit(value);
     }
 
-    // set accessor including call the onchange callback
-    @Input()
-    public set value(v:boolean)
-    {
-        if(!isNullOrUndefined(v) && v !== this.innerValue)
-        {
-            this._isIndeterminate = false;
-            this.innerValue = v;
-            this.onChangeCallback(v);
-        }
-    }
-
-    public onChange(event:boolean):void
-    {
-        this.valueChange.emit(event);
-    }
-
-    // From ControlValueAccessor interface
+    /**
+     * Part of the implementation of the ControlValueAccessor interface
+     * @description Updates the innerValue of the checkbox based on the given value.
+     * @param value
+     */
     public writeValue(value:boolean):void
     {
-        if(value !== this.innerValue)
+        if(!isNullOrUndefined(value) && value !== this.innerValue)
         {
-            this.value = value;
+            this._isIndeterminate = false;
+            this.innerValue = value;
+
+            if(this.notifyOnChanges)
+            {
+                this.onChangeCallback(value);
+            }
         }
     }
 
-    // From ControlValueAccessor interface
-    public registerOnChange(fn:(_:any) => void):void
+    /**
+     * Part of the implementation of the ControlValueAccessor interface
+     * @description Registers a given callback method, which will be called whenever the value of the checkbox changes.
+     * @param fn
+     */
+    public registerOnChange(fn:(value:any) => void):void
     {
         this.onChangeCallback = fn;
     }
 
-    // From ControlValueAccessor interface
+    /**
+     * Part of the implementation of the ControlValueAccessor interface
+     * @description Registers a given callback method, which will be called whenever the checkbox has been touched.
+     * @param fn
+     */
     public registerOnTouched(fn:() => void):void
     {
         this.onTouchedCallback = fn;
     }
-
-    public get isIndeterminate():boolean
-    {
-        return this._isIndeterminate;
-    }
-
-    @Input()
-    public set isIndeterminate(value:boolean)
-    {
-        if(value)
-        {
-            this.innerValue = null;
-        }
-        this._isIndeterminate = value;
-    }
-
-    private onTouchedCallback:() => void = ():void => undefined;
-
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 }

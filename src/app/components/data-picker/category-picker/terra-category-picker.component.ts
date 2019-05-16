@@ -19,6 +19,7 @@ import { NestedDataTreeConfig } from '../nested-data-picker/config/nested-data-t
 import { NestedDataInterface } from '../nested-data-picker/data/nested-data.interface';
 import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraNodeTreeConfig } from '../../tree/node-tree/data/terra-node-tree.config';
+import { tap } from 'rxjs/operators';
 
 @Component({
     selector:  'terra-category-picker',
@@ -42,6 +43,18 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
      */
     @Input()
     public inputCategoryService:TerraCategoryPickerBaseService;
+
+    /**
+     * @description Language in which the categories shall be displayed
+     */
+    @Input()
+    public inputLanguage:string;
+
+    /**
+     * @description PlentyId of the shop that is currently being worked on
+     */
+    @Input()
+    public inputPlentyId:number;
 
     private completeCategory:CategoryValueInterface;
 
@@ -89,7 +102,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
             this.inputName = this.translation.translate('terraCategoryPicker.category');
         }
         this.nestedTreeConfig.list = this.list;
-        this.getCategoriesByParent(null);
+        this.getCategoriesByParent();
     }
 
     public getCompleteCategoryObject():CategoryValueInterface
@@ -162,21 +175,12 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         this.completeCategory.tooltipPlacement = category.tooltipPlacement;
     }
 
-    private getCategoriesByParentId(parentId:number | string):() => Observable<any>
+    private getCategoriesByParentId(parentId:number | string, level:number):Observable<TerraPagerInterface<CategoryDataInterface>>
     {
-        return ():Observable<TerraPagerInterface<CategoryDataInterface>> => this.getCategories(parentId);
-    }
-
-    private getCategories(parentId:number | string):Observable<TerraPagerInterface<CategoryDataInterface>>
-    {
-        let obs:Observable<TerraPagerInterface<CategoryDataInterface>> = this.inputCategoryService.requestCategoryData(parentId);
-
-        obs.subscribe((data:TerraPagerInterface<CategoryDataInterface>) =>
+        return this.inputCategoryService.requestCategoryData(parentId, level).pipe(tap((data:TerraPagerInterface<CategoryDataInterface>) =>
         {
             this.addNodes(data, parentId);
-        });
-
-        return obs;
+        }));
     }
 
     public addNodes(data:any, parentNodeId:number | string):void
@@ -201,7 +205,14 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                 // If the node hasn't already been added the routine will be started
                 if(isNullOrUndefined(this.nestedTreeConfig.findNodeById(categoryData.id)) && categoryData.details.length > 0)
                 {
-                    categoryDetail = categoryData.details[0];
+                    if(!isNullOrUndefined(this.inputLanguage))
+                    {
+                        categoryDetail = this.findCategoryDetails(categoryData);
+                    }
+                    else if(categoryData.details.length > 0) // Downwardcompatability
+                    {
+                        categoryDetail = categoryData.details[0];
+                    }
 
                     // Create Node to add to tree later
                     let childNode:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>> = {
@@ -226,20 +237,14 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                     // If the parentNode is still null it is tried to create the parent node out of the given id
                     if(isNullOrUndefined(parentNode))
                     {
-                        if(isNullOrUndefined(parentNodeId))
-                        {
-                            parentNode = null;
-                        }
-                        else
-                        {
-                            parentNode = this.nestedTreeConfig.findNodeById(parentNodeId);
-                        }
+                        parentNode = this.nestedTreeConfig.findNodeById(parentNodeId);
                     }
 
                     // If the category has children the lazy-loading method will be added to the parent node
                     if(categoryData.hasChildren)
                     {
-                        childNode.onLazyLoad = this.getCategoriesByParentId(childNode.id);
+                        childNode.onLazyLoad = ():Observable<TerraPagerInterface<CategoryDataInterface>> =>
+                            this.getCategoriesByParentId(categoryData.id, categoryData.level + 1);
                     }
 
                     // The finished node is added to the node tree
@@ -251,25 +256,49 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         this.list = this.nestedTreeConfig.list;
     }
 
-    private getCategoriesByParent(parentNode:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>):void
+    private findCategoryDetails(categoryData:CategoryDataInterface):CategoryDetailDataInterface
     {
-        let id:number | string = null;
+        let categoryDetail:CategoryDetailDataInterface;
 
-        if(!isNullOrUndefined(parentNode))
+        categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
         {
-            id = parentNode.id;
+            return foundDetail.lang === this.inputLanguage && (foundDetail.plentyId === this.inputPlentyId ||
+                                                               isNullOrUndefined(this.inputPlentyId));
+        });
+
+        // Check if there is a detail only for the language
+        if(isNullOrUndefined(categoryDetail))
+        {
+            categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
+            {
+                return foundDetail.lang === this.inputLanguage;
+            });
         }
 
-        this.inputCategoryService.requestCategoryData(id).subscribe((data:TerraPagerInterface<CategoryDataInterface>) =>
+        // Check if there is a detail only for the plentyId
+        if(isNullOrUndefined(categoryDetail))
         {
-            if(isNullOrUndefined(parentNode))
+            categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
             {
-                this.addNodes(data, id);
-            }
-            else
-            {
-                this.addNodes(data, parentNode.id);
-            }
+                return foundDetail.plentyId === this.inputPlentyId || isNullOrUndefined(this.inputPlentyId);
+            });
+        }
+
+        // No details found with the given language and the given plentyId so just use the first language instead
+        if(isNullOrUndefined(categoryDetail) && categoryData.details.length > 0)
+        {
+            categoryDetail = categoryData.details[0];
+        }
+
+        return categoryDetail;
+    }
+
+
+    private getCategoriesByParent():void
+    {
+        this.inputCategoryService.requestCategoryData(null, 1).subscribe((data:TerraPagerInterface<CategoryDataInterface>) =>
+        {
+            this.addNodes(data, null);
         });
     }
 }

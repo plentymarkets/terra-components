@@ -4,6 +4,11 @@ input[type="checkbox"]
     margin-right: 0.3em;
 }
 
+.checkbox-container
+{
+    width: fit-content;
+}
+
 .disabled-chk
 {
     cursor: not-allowed;
@@ -41,14 +46,14 @@ input[type="checkbox"]
     
     &:hover
     {
-        color: var(--color-active);
+        color: var(--input-control-checkbox-hover-color, (var(--color-active)));
         
         span.check,
         input[type="checkbox"]:checked ~ .check:before
         {
             border-color: var(--color-active);
         }
-    
+        
         input[type="checkbox"]:indeterminate ~ .check:after
         {
             background-color: var(--color-active);
@@ -61,7 +66,7 @@ input[type="checkbox"]
         {
             + span.check + span
             {
-                color: var(--color-active);
+                color: var(--input-control-checkbox-hover-color, (var(--color-active)));
             }
             
             &:checked ~ .check:before,
@@ -70,7 +75,7 @@ input[type="checkbox"]
             {
                 border-color: var(--color-active);
             }
-    
+            
             &:indeterminate ~ .check:after
             {
                 background-color: var(--color-active);

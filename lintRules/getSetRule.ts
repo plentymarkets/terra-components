@@ -4,7 +4,7 @@ import * as Lint from 'tslint';
 
 export class Rule extends Lint.Rules.AbstractRule
 {
-    public apply(sourceFile:ts.SourceFile):Lint.RuleFailure[]
+    public apply(sourceFile:ts.SourceFile):Array<Lint.RuleFailure>
     {
         return this.applyWithWalker(new GetSetRule(sourceFile, this.getOptions()));
     }
