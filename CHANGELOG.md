@@ -12,7 +12,7 @@
 	- activated sanitization using the `quill-editor`'s `sanitize` input.
 	
 ### Bug Fixes
-* **terra-form-container** removed flex style on form-entry
+* **terra-form** fix instance clash with objects and arrays as default value
 
 <a name="3.12.0"></a>
 # 3.12.0 (09.05.2019)
