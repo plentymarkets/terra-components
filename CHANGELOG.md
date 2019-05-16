@@ -1,5 +1,5 @@
 <a name="3.13.0"></a>
-# 3.13.0 (Unreleased)
+# 3.13.0 (16.05.2019)
 	
 ### Bug Fixes
 * **terra-breadcrumbs** fix handling leading slashes on breadcrumb urls.
