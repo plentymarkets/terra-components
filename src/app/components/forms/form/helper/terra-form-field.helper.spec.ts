@@ -3,7 +3,7 @@ import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { listWithChildren } from '../example/form-fields';
 import { TerraKeyValueInterface } from '../../../../..';
 
-describe(`TerraFormFieldHelper.`, () =>
+describe(`TerraFormFieldHelper:`, () =>
 {
     const child1:TerraFormFieldInterface = {type: 'text', defaultValue: 'one'};
     const child2:TerraFormFieldInterface = {type: 'text', defaultValue: [1, 2]};
