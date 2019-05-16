@@ -3,6 +3,7 @@
 	
 ### Bug Fixes
 * **terra-breadcrumbs** fix handling leading slashes on breadcrumb urls.
+* **terra-form** fix handling of default values
 
 ### Features
 * **terra-base-editor**, **terra-note-editor**, **terra-code-editor** 
