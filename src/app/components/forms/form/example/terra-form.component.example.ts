@@ -9,8 +9,8 @@ import { formFields } from './form-fields';
 
 @Component({
     selector:    'terra-form-example',
-    templateUrl: './terra-form.component.example.html',
-    styleUrls:   ['./terra-form.component.example.scss']
+    template: require('./terra-form.component.example.html'),
+    styles:   [require('./terra-form.component.example.scss')]
 })
 export class TerraFormComponentExample
 {
