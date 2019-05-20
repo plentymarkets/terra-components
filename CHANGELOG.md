@@ -1,3 +1,9 @@
+<a name="3.13.1"></a>
+# 3.13.1 (Unreleased)
+
+### Bug Fixes
+* **terra-form-entry** fix handling of unsupported control types.
+
 <a name="3.13.0"></a>
 # 3.13.0 (16.05.2019)
 	
