@@ -24,94 +24,94 @@ import interact = require('interactjs');
 export class TerraResizableDirective implements OnInit, OnChanges
 {
     @Input()
-    public resizableOptions:ResizeOptions = null;
+    public options:ResizeOptions = null;
 
     @Input()
-    public resizableDisabled:boolean = false;
+    public disabled:boolean = false;
 
     @Input()
-    public resizableGrid:false | GridOptions = false;
+    public grid:false | GridOptions = false;
 
     @Input()
-    public resizableRestrict:RestrictOptions = null;
+    public restrict:RestrictOptions = null;
 
     @Input()
-    public resizableInertia:boolean | InertiaOptions = false;
+    public inertia:boolean | InertiaOptions = false;
 
     @Output()
-    public resizableStart:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+    public start:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     @Output()
-    public resizableMove:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+    public move:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     @Output()
-    public resizableEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+    public end:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     /* tslint:disable:no-output-on-prefix no-input-rename no-output-rename */
     /**
-     * @deprecated use resizableOptions instead
+     * @deprecated use options instead
      */
     @Input('terra-resizable')
-    public set options(value:ResizeOptions)
+    public set terraOptions(value:ResizeOptions)
     {
-        console.warn('`terra-resizable` is deprecated. Please use `resizableOptions` instead.');
-        this.resizableOptions = value;
+        console.warn('`terra-resizable` is deprecated. Please use `options` instead.');
+        this.options = value;
     }
 
     /**
-     * @deprecated use resizableDisabled instead
+     * @deprecated use disabled instead
      */
     @Input('terra-resizable-disabled')
-    public set disabled(value:boolean)
+    public set terraDisabled(value:boolean)
     {
-        console.warn('`terra-resizable-disabled` is deprecated. Please use `resizableDisabled` instead.');
-        this.resizableDisabled = value;
+        console.warn('`terra-resizable-disabled` is deprecated. Please use `disabled` instead.');
+        this.disabled = value;
     }
 
     /**
-     * @deprecated use resizableGrid instead
+     * @deprecated use grid instead
      */
     @Input('terra-resizable-grid')
-    public set grid(value:false | GridOptions)
+    public set terraGrid(value:false | GridOptions)
     {
-        console.warn('`terra-resizable-grid` is deprecated. Please use `resizableGrid` instead.');
-        this.resizableGrid = value;
+        console.warn('`terra-resizable-grid` is deprecated. Please use `grid` instead.');
+        this.grid = value;
     }
 
     /**
-     * @deprecated use resizableRestrict instead
+     * @deprecated use restrict instead
      */
     @Input('terra-resizable-restrict')
-    public set restrict(value:RestrictOptions)
+    public set terraRestrict(value:RestrictOptions)
     {
-        console.warn('`terra-resizable-restrict` is deprecated. Please use `resizableRestrict` instead.');
-        this.resizableRestrict = value;
+        console.warn('`terra-resizable-restrict` is deprecated. Please use `restrict` instead.');
+        this.restrict = value;
     }
 
     /**
-     * @deprecated use resizableInertia instead
+     * @deprecated use inertia instead
      */
     @Input('terra-resizable-inertia')
-    public set inertia(value:boolean | InertiaOptions)
+    public set terraInertia(value:boolean | InertiaOptions)
     {
-        console.warn('`terra-resizable-inertia` is deprecated. Please use `resizableInertia` instead.');
-        this.resizableInertia = value;
+        console.warn('`terra-resizable-inertia` is deprecated. Please use `inertia` instead.');
+        this.inertia = value;
     }
 
     /**
-     * @deprecated use resizableStart instead
+     * @deprecated use start instead
      */
     @Output('terra-resizable-onStart')
     public onStart:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     /**
-     * @deprecated use resizableMove instead
+     * @deprecated use move instead
      */
     @Output('terra-resizable-onMove')
     public onMove:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     /**
-     * @deprecated use resizableEnd instead
+     * @deprecated use end instead
      */
     @Output('terra-resizable-onEnd')
     public onEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
@@ -128,17 +128,17 @@ export class TerraResizableDirective implements OnInit, OnChanges
     {
         if(this.onStart.observers.length > 0)
         {
-            console.warn('`terra-resizable-onStart` is deprecated. Please use `resizableStart` instead.');
+            console.warn('`terra-resizable-onStart` is deprecated. Please use `start` instead.');
         }
 
         if(this.onMove.observers.length > 0)
         {
-            console.warn('`terra-resizable-onMove` is deprecated. Please use `resizableMove` instead.');
+            console.warn('`terra-resizable-onMove` is deprecated. Please use `move` instead.');
         }
 
         if(this.onEnd.observers.length > 0)
         {
-            console.warn('`terra-resizable-onEnd` is deprecated. Please use `resizableEnd` instead.');
+            console.warn('`terra-resizable-onEnd` is deprecated. Please use `end` instead.');
         }
     }
 
@@ -203,30 +203,30 @@ export class TerraResizableDirective implements OnInit, OnChanges
     private init():void
     {
         let resizableConfig:any = {
-            edges:               this.resizableOptions.edges,
-            invert:              this.resizableOptions.invert || 'none',
-            squareResize:        !!this.resizableOptions.squareResize,
-            preserveAspectRatio: !!this.resizableOptions.preserveAspectRatio,
-            inertia:             this.resizableInertia,
-            enabled:             !this.resizableDisabled,
+            edges:               this.options.edges,
+            invert:              this.options.invert || 'none',
+            squareResize:        !!this.options.squareResize,
+            preserveAspectRatio: !!this.options.preserveAspectRatio,
+            inertia:             this.inertia,
+            enabled:             !this.disabled,
             onstart:             (event:InteractEvent):void =>
                                  {
                                      this.onStart.emit(event);
-                                     this.resizableStart.emit(event);
+                                     this.start.emit(event);
                                  },
             onmove:              (event:InteractEvent):void =>
                                  {
                                      this.onMove.emit(event);
-                                     this.resizableMove.emit(event);
+                                     this.move.emit(event);
                                  },
             onend:               (event:InteractEvent):void =>
                                  {
                                      this.onEnd.emit(event);
-                                     this.resizableEnd.emit(event);
+                                     this.end.emit(event);
                                  },
         };
 
-        if(this.resizableGrid)
+        if(this.grid)
         {
             resizableConfig.snap = {
                 targets:        [
@@ -235,14 +235,14 @@ export class TerraResizableDirective implements OnInit, OnChanges
                         return this.handleSnap(x, y);
                     }
                 ],
-                endOnly:        this.resizableGrid && this.resizableGrid.endOnly,
-                relativePoints: this.resizableGrid.relativePoints
+                endOnly:        this.grid && this.grid.endOnly,
+                relativePoints: this.grid.relativePoints
             };
         }
 
-        if(this.resizableRestrict)
+        if(this.restrict)
         {
-            resizableConfig.resizableRestrict = this.resizableRestrict;
+            resizableConfig.restrict = this.restrict;
         }
 
         if(!this.interactable)
@@ -255,22 +255,22 @@ export class TerraResizableDirective implements OnInit, OnChanges
 
     private handleSnap(x:number, y:number):{ x:number, y:number, range:number }
     {
-        if(this.resizableGrid)
+        if(this.grid)
         {
             let offset:{ x:number, y:number } = {
                 x: 0,
                 y: 0
             };
 
-            if(this.resizableGrid.offset)
+            if(this.grid.offset)
             {
-                offset = this.resizableGrid.offset;
+                offset = this.grid.offset;
             }
 
             return {
-                x:     Math.round((x - offset.x) / this.resizableGrid.x) * this.resizableGrid.x,
-                y:     Math.round((y - offset.y) / this.resizableGrid.y) * this.resizableGrid.y,
-                range: (this.resizableGrid.range || Infinity)
+                x:     Math.round((x - offset.x) / this.grid.x) * this.grid.x,
+                y:     Math.round((y - offset.y) / this.grid.y) * this.grid.y,
+                range: (this.grid.range || Infinity)
             };
         }
         else
