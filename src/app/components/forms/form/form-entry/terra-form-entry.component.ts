@@ -26,6 +26,7 @@ import {
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { FormEntryContainerDirective } from './form-entry-container.directive';
 import { noop } from 'rxjs/util/noop';
+import { TerraKeyValueInterface } from '../../../../models/terra-key-value.interface';
 
 @Component({
     selector:  'terra-form-entry',
@@ -74,6 +75,9 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     private componentRef:ComponentRef<any>;
     private componentInstance:any;
 
+    private controlType:Type<any>;
+    private inputMap:TerraKeyValueInterface<string>;
+
     private onChangeCallback:(_:any) => void = noop;
     private onTouchedCallback:() => void = noop;
 
@@ -106,9 +110,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     {
         if(!this.hasChildren)
         {
-            let controlType:Type<any> = this.controlType;
-
-            this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(controlType);
+            this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.controlType);
             this.componentRef = this.container.viewContainerRef.createComponent(this.componentFactory);
             this.componentInstance = this.componentRef.instance;
 
@@ -123,7 +125,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
             else
             {
                 console.error(
-                    'Cannot bind component ' + controlType.name + ' to dynamic form. ' +
+                    'Cannot bind component ' + this.controlType.name + ' to dynamic form. ' +
                     'Bound components needs to implement the ControlValueAccessor interface.'
                 );
             }
@@ -137,6 +139,12 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
      */
     public ngOnChanges(changes:SimpleChanges):void
     {
+        if(changes.hasOwnProperty('inputFormField') || changes.hasOwnProperty('inputControlTypeMap'))
+        {
+            this.controlType = this.getControlType(this.inputControlTypeMap, this.inputFormField.type);
+            this.inputMap = this.getInputMap(this.inputControlTypeMap, this.inputFormField.type);
+        }
+
         this.bindInputProperties();
     }
 
@@ -192,23 +200,17 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         let controlType:Type<any> | TerraFormTypeInterface = this.inputControlTypeMap[this.inputFormField.type];
         if(!isNullOrUndefined(this.componentInstance) && !isNullOrUndefined(controlType))
         {
-            let inputMap:{ [key:string]:string } = {};
-            if(!(controlType instanceof Type))
-            {
-                inputMap = (<TerraFormTypeInterface> controlType).inputMap;
-            }
-
             if(!isNullOrUndefined(this.inputFormField.options))
             {
                 Object.keys(this.inputFormField.options).forEach((optionKey:string) =>
                 {
-                    this.performInputBindings(inputMap, optionKey);
+                    this.performInputBindings(this.inputMap, optionKey);
                 });
             }
 
-            if(inputMap.hasOwnProperty('isDisabled'))
+            if(this.inputMap.hasOwnProperty('isDisabled'))
             {
-                this.componentInstance[inputMap['isDisabled']] = this.inputIsDisabled;
+                this.componentInstance[this.inputMap['isDisabled']] = this.inputIsDisabled;
             }
             else
             {
@@ -248,14 +250,17 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     }
 
     /**
-     * @description Evaluates the control type (the actual component) of the given #inputFormField.
+     * @description Evaluates the control type (the actual component) of the given #inputFormField based on the #inputControlTypeMap.
      * If an unsupported type is given, TerraTextInputComponent is returned.
+     * @param controlTypeMap
+     * @param type
      */
-    private get controlType():Type<any>
+    private getControlType(controlTypeMap:TerraKeyValueInterface<TerraFormTypeInterface | Type<any>>, type:string):Type<any>
     {
-        let controlType:Type<any> | TerraFormTypeInterface = this.inputControlTypeMap[this.inputFormField.type];
-        if(!this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type) || isNullOrUndefined(controlType))
+        let controlType:Type<any> | TerraFormTypeInterface = controlTypeMap[type];
+        if(!this.isSupportedType(controlTypeMap, type))
         {
+            console.warn(`Type ${type} not supported.`);
             return TerraTextInputComponent;
         }
 
@@ -267,6 +272,31 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         {
             return (<TerraFormTypeInterface> controlType).component;
         }
+    }
+
+    /**
+     * @description Evaluates whether an input mapping should be applied to a certain type. Returns the map if given.
+     * @param controlTypeMap
+     * @param type
+     */
+    private getInputMap(controlTypeMap:TerraKeyValueInterface<TerraFormTypeInterface | Type<any>>, type:string):TerraKeyValueInterface<string>
+    {
+        let controlType:TerraFormTypeInterface | Type<any> = controlTypeMap[type];
+        if(!isNullOrUndefined(controlType) && !(controlType instanceof Type))
+        {
+            return (<TerraFormTypeInterface> controlType).inputMap;
+        }
+        return {};
+    }
+
+    /**
+     * @description Determines whether a given #type is supported by a certain #controlTypeMap
+     * @param controlTypeMap
+     * @param type
+     */
+    private isSupportedType(controlTypeMap:TerraKeyValueInterface<TerraFormTypeInterface | Type<any>>, type:string):boolean
+    {
+        return controlTypeMap.hasOwnProperty(type) && !isNullOrUndefined(controlTypeMap[type]);
     }
 
     private transformInputPropertyName(propertyName:string):string
