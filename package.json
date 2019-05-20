@@ -1,6 +1,6 @@
 {
 	"name": "@plentymarkets/terra-components",
-	"version": "3.13.0",
+	"version": "3.13.1-bootstrap.1",
 	"homepage": "https://github.com/plentymarkets/terra-components#readme",
 	"author": "plentymarkets",
 	"description": "plentymarkets terra components",
@@ -49,7 +49,7 @@
 		"moment": "^2.23.0",
 		"mydatepicker": "^2.6.6",
 		"ng2-ace-editor": "^0.3.8",
-		"ngx-bootstrap": "^4.1.1",
+		"ngx-bootstrap": "2.0.3",
 		"ngx-quill": "^5.1.0",
 		"path": "^0.12.7",
 		"popper.js": "^1.15.0",
