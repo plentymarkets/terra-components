@@ -151,7 +151,7 @@ export class TerraFormHelper
             let control:AbstractControl = form.get(formControlKey);
             if(formField.isList && isNullOrUndefined(values[formControlKey]))
             {
-                values[formControlKey] = [];
+                values[formControlKey] = TerraFormFieldHelper.parseDefaultValue(formField);
             }
 
             let controlValues:any = values[formControlKey];

@@ -278,8 +278,10 @@ export class TerraFormFieldHelper
                 );
             }
             // create a list out of the default value of a single entry.
-            let min:number = this.getListRange(formField.isList)[0];
-            return Array(min).fill(this.parseDefaultValue(formField, true));
+            const min:number = this.getListRange(formField.isList)[0];
+            const defaultValue:any = this.parseDefaultValue(formField, true);
+
+            return Array(min).fill(defaultValue);
         }
 
         // No list expected. Try to parse the children to compose a default value
