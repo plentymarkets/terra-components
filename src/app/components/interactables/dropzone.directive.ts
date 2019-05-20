@@ -4,6 +4,7 @@ import {
     EventEmitter,
     Input,
     OnChanges,
+    OnInit,
     Output,
     SimpleChanges
 } from '@angular/core';
@@ -24,40 +25,142 @@ export type AcceptFn = (args:{
 @Directive({
     selector: '[terraDropzone]'
 })
-export class TerraDropzoneDirective implements OnChanges
+export class TerraDropzoneDirective implements OnInit, OnChanges
 {
-    @Input('terra-dropzone-accept')
+    @Input()
     public accept:AcceptFn | string = '';
 
-    @Input('terra-dropzone-overlap')
+    @Input()
     public overlap:'pointer' | 'center' | number = 'pointer';
 
-    @Input('terra-dropzone-disabled')
+    @Input()
     public disabled:boolean = false;
 
+    @Output()
+    public dropActivate:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
+
+    @Output()
+    public dropDeactivate:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
+
+    @Output()
+    public dragEnter:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
+
+    @Output()
+    public dragLeave:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
+
+    @Output()
+    public dropMove:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
+
+    @Output()
+    public drop:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
+
+
+    /* tslint:disable:no-output-on-prefix no-input-rename no-output-rename */
+    /**
+     * @deprecated use accept instead
+     */
+    @Input('terra-dropzone-accept')
+    public set dropzoneAccept(value:AcceptFn | string)
+    {
+        console.warn('`terra-dropzone-accept` is deprecated. Please use `accept` instead.');
+        this.accept = value;
+    }
+
+    /**
+     * @deprecated use overlap instead
+     */
+    @Input('terra-dropzone-overlap')
+    public set dropzoneOverlap(value:'pointer' | 'center' | number)
+    {
+        console.warn('`terra-dropzone-overlap` is deprecated. Please use `overlap` instead.');
+        this.overlap = value;
+    }
+
+    /**
+     * @deprecated use disabled instead
+     */
+    @Input('terra-dropzone-disabled')
+    public set dropzoneDisabled(value:boolean)
+    {
+        console.warn('`terra-dropzone-disabled` is deprecated. Please use `disabled` instead.');
+        this.disabled = value;
+    }
+
+    /**
+     * @deprecated use dropActivate instead
+     */
     @Output('terra-dropzone-onDropActivate')
     public onDropActivate:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
+    /**
+     * @deprecated use dropDeactivate instead
+     */
     @Output('terra-dropzone-onDropDeactivate')
     public onDropDeactivate:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
+    /**
+     * @deprecated use dragEnter instead
+     */
     @Output('terra-dropzone-onDragEnter')
     public onDragEnter:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
+    /**
+     * @deprecated use dragLeave instead
+     */
     @Output('terra-dropzone-onDragLeave')
     public onDragLeave:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
+    /**
+     * @deprecated use dropMove instead
+     */
     @Output('terra-dropzone-onDropMove')
     public onDropMove:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
+    /**
+     * @deprecated use drop instead
+     */
     @Output('terra-dropzone-onDrop')
     public onDrop:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
+    /* tslint:enable:no-output-on-prefix no-input-rename no-output-rename */
 
     private interactable:Interact.Interactable = null;
 
     constructor(private el:ElementRef)
     {
         this.init();
+    }
+
+    public ngOnInit():void
+    {
+        if(this.onDropActivate.observers.length > 0)
+        {
+            console.warn('`onDropActivate` is deprecated. Please use `dropActivate` instead.');
+        }
+
+        if(this.onDropDeactivate.observers.length > 0)
+        {
+            console.warn('`onDropDeactivate` is deprecated. Please use `dropDeactivate` instead.');
+        }
+
+        if(this.onDragEnter.observers.length > 0)
+        {
+            console.warn('`onDragEnter` is deprecated. Please use `dragEnter` instead.');
+        }
+
+        if(this.onDragLeave.observers.length > 0)
+        {
+            console.warn('`onDragLeave` is deprecated. Please use `dragLeave` instead.');
+        }
+
+        if(this.onDropMove.observers.length > 0)
+        {
+            console.warn('`onDropMove` is deprecated. Please use `dropMove` instead.');
+        }
+
+        if(this.onDrop.observers.length > 0)
+        {
+            console.warn('`onDrop` is deprecated. Please use `drop` instead.');
+        }
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -134,10 +237,16 @@ export class TerraDropzoneDirective implements OnChanges
                                   this.onDropActivate.emit(
                                       createDropEvent(event)
                                   );
+                                  this.dropActivate.emit(
+                                      createDropEvent(event)
+                                  );
                               },
             ondropdeactivate: (event:DropEvent):void =>
                               {
                                   this.onDropDeactivate.emit(
+                                      createDropEvent(event)
+                                  );
+                                  this.dropDeactivate.emit(
                                       createDropEvent(event)
                                   );
                               },
@@ -146,10 +255,16 @@ export class TerraDropzoneDirective implements OnChanges
                                   this.onDragEnter.emit(
                                       createDropEvent(event)
                                   );
+                                  this.dragEnter.emit(
+                                      createDropEvent(event)
+                                  );
                               },
             ondragleave:      (event:DropEvent):void =>
                               {
                                   this.onDragLeave.emit(
+                                      createDropEvent(event)
+                                  );
+                                  this.dragLeave.emit(
                                       createDropEvent(event)
                                   );
                               },
@@ -158,10 +273,16 @@ export class TerraDropzoneDirective implements OnChanges
                                   this.onDropMove.emit(
                                       createDropEvent(event)
                                   );
+                                  this.dropMove.emit(
+                                      createDropEvent(event)
+                                  );
                               },
             ondrop:           (event:DropEvent):void =>
                               {
                                   this.onDrop.emit(
+                                      createDropEvent(event)
+                                  );
+                                  this.drop.emit(
                                       createDropEvent(event)
                                   );
                               }
