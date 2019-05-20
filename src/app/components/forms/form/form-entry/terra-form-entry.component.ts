@@ -106,18 +106,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     {
         if(!this.hasChildren)
         {
-            let controlType:Type<any> = TerraTextInputComponent;
-            if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
-            {
-                if(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)
-                {
-                    controlType = <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
-                }
-                else
-                {
-                    controlType = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
-                }
-            }
+            let controlType:Type<any> = this.controlType;
 
             this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(controlType);
             this.componentRef = this.container.viewContainerRef.createComponent(this.componentFactory);
@@ -200,12 +189,13 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
 
     private bindInputProperties():void
     {
-        if(!isNullOrUndefined(this.componentInstance))
+        let controlType:Type<any> | TerraFormTypeInterface = this.inputControlTypeMap[this.inputFormField.type];
+        if(!isNullOrUndefined(this.componentInstance) && !isNullOrUndefined(controlType))
         {
             let inputMap:{ [key:string]:string } = {};
-            if(!(this.inputControlTypeMap[this.inputFormField.type] instanceof Type))
+            if(!(controlType instanceof Type))
             {
-                inputMap = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).inputMap;
+                inputMap = (<TerraFormTypeInterface> controlType).inputMap;
             }
 
             if(!isNullOrUndefined(this.inputFormField.options))
@@ -254,6 +244,28 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
             {
                 console.warn('Cannot assign property ' + optionKey + ' on ' + this.componentInstance.constructor.name);
             }
+        }
+    }
+
+    /**
+     * @description Evaluates the control type (the actual component) of the given #inputFormField.
+     * If an unsupported type is given, TerraTextInputComponent is returned.
+     */
+    private get controlType():Type<any>
+    {
+        let controlType:Type<any> | TerraFormTypeInterface = this.inputControlTypeMap[this.inputFormField.type];
+        if(!this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type) || isNullOrUndefined(controlType))
+        {
+            return TerraTextInputComponent;
+        }
+
+        if(controlType instanceof Type)
+        {
+            return controlType as Type<any>;
+        }
+        else
+        {
+            return (<TerraFormTypeInterface> controlType).component;
         }
     }
 
