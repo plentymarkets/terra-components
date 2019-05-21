@@ -2,6 +2,7 @@
 # 3.13.1 (Unreleased)
 
 ### Bug Fixes
+* **terra-form** fix handling of default values
 * **terra-form-entry** fix handling of unsupported control types.
 
 <a name="3.13.0"></a>
