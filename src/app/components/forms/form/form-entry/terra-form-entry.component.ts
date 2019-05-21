@@ -210,8 +210,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
 
     private bindInputProperties():void
     {
-        let controlType:Type<any> | TerraFormTypeInterface = this.inputControlTypeMap[this.inputFormField.type];
-        if(!isNullOrUndefined(this.componentInstance) && !isNullOrUndefined(controlType))
+        if(!isNullOrUndefined(this.componentInstance))
         {
             if(!isNullOrUndefined(this.inputFormField.options))
             {
