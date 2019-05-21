@@ -21,7 +21,7 @@ import Spy = jasmine.Spy;
 })
 class EntryComponentsModule {}
 
-fdescribe(`TerraFormEntryComponent:`, () =>
+describe(`TerraFormEntryComponent:`, () =>
 {
     let fixture:ComponentFixture<TerraFormEntryComponent>;
     let component:TerraFormEntryComponent;
