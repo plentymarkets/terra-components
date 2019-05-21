@@ -92,13 +92,12 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
 
     /**
      * Implementation of the OnInit life cycle hook.
-     * @description Dynamically creates a component that will be bound to the given FormControl instance based on the specification of the
-     *     `inputFormField`. Also starts listening to status changes of the FormControl instance to highlight the formField if it is
-     *     invalid.
+     * @description Creates the component specified by the #inputFormField. Also starts listening to status changes of the FormControl instance to
+     * highlight the formField if it is invalid.
      */
     public ngOnInit():void
     {
-        this.initComponent();
+        this.createComponent(this.controlType);
 
         this.inputFormControl.statusChanges.subscribe((status:string) =>
         {
@@ -109,11 +108,15 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         });
     }
 
-    private initComponent():void
+    /**
+     * @description Dynamically creates a component given by its control type that will be bound to the given FormControl instance.
+     * @param controlType
+     */
+    private createComponent(controlType:Type<any>):void
     {
         if(!this.hasChildren)
         {
-            this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.controlType);
+            this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(controlType);
             this.componentRef = this.container.viewContainerRef.createComponent(this.componentFactory);
             this.componentInstance = this.componentRef.instance;
 
@@ -128,7 +131,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
             else
             {
                 console.error(
-                    'Cannot bind component ' + this.controlType.name + ' to dynamic form. ' +
+                    'Cannot bind component ' + controlType.name + ' to dynamic form. ' +
                     'Bound components needs to implement the ControlValueAccessor interface.'
                 );
             }
