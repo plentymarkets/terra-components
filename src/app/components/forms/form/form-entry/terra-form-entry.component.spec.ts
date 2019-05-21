@@ -54,6 +54,7 @@ fdescribe(`TerraFormEntryComponent:`, () =>
             type: type
         };
         fixture.detectChanges();
+        expect(component['controlType']).toBe(TerraTextInputComponent);
         expect(component['componentInstance'] instanceof TerraTextInputComponent).toBe(true);
         expect(consoleSpy).toHaveBeenCalledTimes(1);
         expect(consoleSpy).toHaveBeenCalledWith(`Type ${type} not supported.`);
