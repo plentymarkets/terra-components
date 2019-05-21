@@ -167,8 +167,7 @@ export class TerraFormHelper
 
                 while(control.length < Math.min(controlValues.length, max))
                 {
-                    // silently push the new control. Do not use control.push() since it makes the valueChanges observable emit a value..
-                    control.controls.push(this.createNewControl(controlValues[control.length], formField));
+                    control.push(this.createNewControl(controlValues[control.length], formField));
                 }
             }
             else if(!isNullOrUndefined(formField.children) && control instanceof FormGroup && isObject(controlValues))
