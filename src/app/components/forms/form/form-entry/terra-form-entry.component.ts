@@ -28,6 +28,8 @@ import { FormEntryContainerDirective } from './form-entry-container.directive';
 import { noop } from 'rxjs/util/noop';
 import { TerraKeyValueInterface } from '../../../../models/terra-key-value.interface';
 import { Subscription } from 'rxjs';
+import { TerraInfoComponent } from '../../../../..';
+import { TestComponent } from './terra-form-entry.component.spec';
 
 @Component({
     selector:  'terra-form-entry',
@@ -76,7 +78,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     private componentRef:ComponentRef<any>;
     private componentInstance:any;
 
-    private controlType:Type<any>;
+    // private controlType:Type<any>;
     private inputMap:TerraKeyValueInterface<string>;
 
     private onChangeCallback:(_:any) => void = noop;
@@ -97,26 +99,31 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
      */
     public ngOnInit():void
     {
-        this.createComponent(this.controlType);
+        let controlType:Type<any> = this.getControlType(this.inputControlTypeMap, this.inputFormField.type);
+        this.createComponent(controlType);
 
-        this.inputFormControl.statusChanges.subscribe((status:string) =>
+        if(!isNullOrUndefined(this.inputFormControl))
         {
-            if(!isNullOrUndefined(this.componentInstance))
+            this.inputFormControl.statusChanges.subscribe((status:string) =>
             {
-                this.componentInstance.isValid = status === 'VALID';
-            }
-        });
+                if(!isNullOrUndefined(this.componentInstance))
+                {
+                    this.componentInstance.isValid = status === 'VALID';
+                }
+            });
+        }
     }
 
     /**
-     * @description Dynamically creates a component given by its control type that will be bound to the given FormControl instance.
-     * @param controlType
+     * @description Dynamically creates a component given by its type and binds it to a given FormControl instance.
+     * @param component
      */
-    private createComponent(controlType:Type<any>):void
+    private createComponent(component:Type<any>):void
     {
+        console.log(component);
         if(!this.hasChildren)
         {
-            this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(controlType);
+            this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
             this.componentRef = this.container.viewContainerRef.createComponent(this.componentFactory);
             this.componentInstance = this.componentRef.instance;
 
@@ -131,7 +138,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
             else
             {
                 console.error(
-                    'Cannot bind component ' + controlType.name + ' to dynamic form. ' +
+                    'Cannot bind component ' + component.name + ' to dynamic form. ' +
                     'Bound components needs to implement the ControlValueAccessor interface.'
                 );
             }
@@ -147,7 +154,6 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     {
         if(changes.hasOwnProperty('inputFormField') || changes.hasOwnProperty('inputControlTypeMap'))
         {
-            this.controlType = this.getControlType(this.inputControlTypeMap, this.inputFormField.type);
             this.inputMap = this.getInputMap(this.inputControlTypeMap, this.inputFormField.type);
         }
 
@@ -271,7 +277,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         if(!this.isSupportedType(controlTypeMap, type))
         {
             console.warn(`Type ${type} not supported.`);
-            return TerraTextInputComponent;
+            return TestComponent;
         }
 
         if(controlType instanceof Type)

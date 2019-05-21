@@ -5,8 +5,31 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
+import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
+import {
+    Component,
+    NgModule
+} from '@angular/core';
+import { TooltipModule } from 'ngx-bootstrap';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
+import { MockTranslationModule } from '../../../../testing/mock-translation-module';
+import Spy = jasmine.Spy;
+import { TerraInfoComponent } from '../../../info/terra-info.component';
 
-describe(`TerraFormEntryComponent:`, () =>
+
+@Component({selector: 'my-test-component', template: ''})
+export class TestComponent {}
+
+@NgModule({
+    imports: [CommonModule, FormsModule, TooltipModule],
+    declarations: [TestComponent],
+    entryComponents: [TestComponent],
+})
+class EntryComponentsModule {}
+
+fdescribe(`TerraFormEntryComponent:`, () =>
 {
     let fixture:ComponentFixture<TerraFormEntryComponent>;
     let component:TerraFormEntryComponent;
@@ -14,7 +37,8 @@ describe(`TerraFormEntryComponent:`, () =>
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [FormEntryContainerDirective, TerraFormEntryComponent]
+            declarations: [FormEntryContainerDirective, TerraFormEntryComponent],
+            imports: [EntryComponentsModule]
         }).compileComponents();
     }));
 
@@ -27,5 +51,18 @@ describe(`TerraFormEntryComponent:`, () =>
     it(`should create`, () =>
     {
         expect(component).toBeDefined();
+    });
+
+    it(`should display a warning in the console when a given #inputFormField's type is not supported by the given #inputControlTypeMap`, () =>
+    {
+        let consoleSpy:Spy = spyOn(console, 'warn');
+        const type:string = 'bla';
+        component.inputControlTypeMap = {};
+        component.inputFormField = {
+            type: type
+        };
+        fixture.detectChanges();
+        expect(consoleSpy).toHaveBeenCalledTimes(1);
+        expect(consoleSpy).toHaveBeenCalledWith(`Type ${type} not supported.`);
     });
 });
