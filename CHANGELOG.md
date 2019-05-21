@@ -2,6 +2,7 @@
 # 3.13.1 (Unreleased)
 
 ### Bug Fixes
+* **terra-form** fix change detection in lists beyond default list length
 * **terra-form** fix handling of default values
 * **terra-form-entry** fix handling of unsupported control types.
 
