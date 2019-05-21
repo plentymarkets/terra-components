@@ -27,7 +27,7 @@ import { FormEntryContainerDirective } from './form-entry-container.directive';
 import { noop } from 'rxjs/util/noop';
 import { TerraKeyValueInterface } from '../../../../models/terra-key-value.interface';
 import { Subscription } from 'rxjs';
-import { TerraInfoComponent } from '../../../../..';
+import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 
 @Component({
     selector:  'terra-form-entry',
@@ -118,7 +118,6 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
      */
     private createComponent(component:Type<any>):void
     {
-        console.log(component);
         if(!this.hasChildren)
         {
             this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
@@ -275,7 +274,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         if(!this.isSupportedType(controlTypeMap, type))
         {
             console.warn(`Type ${type} not supported.`);
-            return TerraInfoComponent;
+            return TerraTextInputComponent;
         }
 
         if(controlType instanceof Type)

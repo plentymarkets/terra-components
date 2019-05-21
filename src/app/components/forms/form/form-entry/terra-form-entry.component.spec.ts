@@ -6,22 +6,18 @@ import {
     TestBed
 } from '@angular/core/testing';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
-import {
-    Component,
-    NgModule
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { TooltipModule } from 'ngx-bootstrap';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { MockTranslationModule } from '../../../../testing/mock-translation-module';
 import Spy = jasmine.Spy;
-import { TerraInfoComponent } from '../../../info/terra-info.component';
 
 @NgModule({
-    imports: [CommonModule, FormsModule, TooltipModule.forRoot()],
-    declarations: [TerraInfoComponent],
-    entryComponents: [TerraInfoComponent],
+    imports: [CommonModule, FormsModule, TooltipModule.forRoot(), MockTranslationModule],
+    declarations: [TerraLabelTooltipDirective, TerraTextInputComponent],
+    entryComponents: [TerraTextInputComponent],
 })
 class EntryComponentsModule {}
 
