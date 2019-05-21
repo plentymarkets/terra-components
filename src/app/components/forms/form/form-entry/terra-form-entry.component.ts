@@ -23,13 +23,11 @@ import {
     FormControl,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { FormEntryContainerDirective } from './form-entry-container.directive';
 import { noop } from 'rxjs/util/noop';
 import { TerraKeyValueInterface } from '../../../../models/terra-key-value.interface';
 import { Subscription } from 'rxjs';
 import { TerraInfoComponent } from '../../../../..';
-import { TestComponent } from './terra-form-entry.component.spec';
 
 @Component({
     selector:  'terra-form-entry',
@@ -277,7 +275,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         if(!this.isSupportedType(controlTypeMap, type))
         {
             console.warn(`Type ${type} not supported.`);
-            return TestComponent;
+            return TerraInfoComponent;
         }
 
         if(controlType instanceof Type)

@@ -18,14 +18,10 @@ import { MockTranslationModule } from '../../../../testing/mock-translation-modu
 import Spy = jasmine.Spy;
 import { TerraInfoComponent } from '../../../info/terra-info.component';
 
-
-@Component({selector: 'my-test-component', template: ''})
-export class TestComponent {}
-
 @NgModule({
-    imports: [CommonModule, FormsModule, TooltipModule],
-    declarations: [TestComponent],
-    entryComponents: [TestComponent],
+    imports: [CommonModule, FormsModule, TooltipModule.forRoot()],
+    declarations: [TerraInfoComponent],
+    entryComponents: [TerraInfoComponent],
 })
 class EntryComponentsModule {}
 
