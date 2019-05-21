@@ -2,6 +2,7 @@
 # 3.14.0 (Unreleased)
 
 ### Bug Fixes
+* **terra-form** fix change detection in lists beyond default list length
 * **terra-form** fix handling of default values
 
 ### Features
