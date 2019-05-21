@@ -49,7 +49,7 @@ export class TerraResizableDirective implements OnInit, OnChanges
 
     /* tslint:disable:no-output-on-prefix no-input-rename no-output-rename */
     /**
-     * @deprecated use options instead
+     * @deprecated since 3.x.x. Use options instead
      */
     @Input('terra-resizable')
     public set terraOptions(value:ResizeOptions)
@@ -59,7 +59,7 @@ export class TerraResizableDirective implements OnInit, OnChanges
     }
 
     /**
-     * @deprecated use disabled instead
+     * @deprecated since 3.x.x. Use disabled instead
      */
     @Input('terra-resizable-disabled')
     public set terraDisabled(value:boolean)
@@ -69,7 +69,7 @@ export class TerraResizableDirective implements OnInit, OnChanges
     }
 
     /**
-     * @deprecated use grid instead
+     * @deprecated since 3.x.x. Use grid instead
      */
     @Input('terra-resizable-grid')
     public set terraGrid(value:false | GridOptions)
@@ -79,7 +79,7 @@ export class TerraResizableDirective implements OnInit, OnChanges
     }
 
     /**
-     * @deprecated use restrict instead
+     * @deprecated since 3.x.x. Use restrict instead
      */
     @Input('terra-resizable-restrict')
     public set terraRestrict(value:RestrictOptions)
@@ -89,7 +89,7 @@ export class TerraResizableDirective implements OnInit, OnChanges
     }
 
     /**
-     * @deprecated use inertia instead
+     * @deprecated since 3.x.x. Use inertia instead
      */
     @Input('terra-resizable-inertia')
     public set terraInertia(value:boolean | InertiaOptions)
@@ -99,19 +99,19 @@ export class TerraResizableDirective implements OnInit, OnChanges
     }
 
     /**
-     * @deprecated use start instead
+     * @deprecated since 3.x.x. Use start instead
      */
     @Output('terra-resizable-onStart')
     public onStart:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     /**
-     * @deprecated use move instead
+     * @deprecated since 3.x.x. Use move instead
      */
     @Output('terra-resizable-onMove')
     public onMove:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     /**
-     * @deprecated use end instead
+     * @deprecated since 3.x.x. Use end instead
      */
     @Output('terra-resizable-onEnd')
     public onEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();

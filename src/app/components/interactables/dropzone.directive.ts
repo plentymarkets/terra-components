@@ -57,7 +57,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
 
     /* tslint:disable:no-output-on-prefix no-input-rename no-output-rename */
     /**
-     * @deprecated use accept instead
+     * @deprecated since 3.x.x. Use accept instead
      */
     @Input('terra-dropzone-accept')
     public set dropzoneAccept(value:AcceptFn | string)
@@ -67,7 +67,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
     }
 
     /**
-     * @deprecated use overlap instead
+     * @deprecated since 3.x.x. Use overlap instead
      */
     @Input('terra-dropzone-overlap')
     public set dropzoneOverlap(value:'pointer' | 'center' | number)
@@ -77,7 +77,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
     }
 
     /**
-     * @deprecated use disabled instead
+     * @deprecated since 3.x.x. Use disabled instead
      */
     @Input('terra-dropzone-disabled')
     public set dropzoneDisabled(value:boolean)
@@ -87,37 +87,37 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
     }
 
     /**
-     * @deprecated use dropActivate instead
+     * @deprecated since 3.x.x. Use dropActivate instead
      */
     @Output('terra-dropzone-onDropActivate')
     public onDropActivate:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
     /**
-     * @deprecated use dropDeactivate instead
+     * @deprecated since 3.x.x. Use dropDeactivate instead
      */
     @Output('terra-dropzone-onDropDeactivate')
     public onDropDeactivate:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
     /**
-     * @deprecated use dragEnter instead
+     * @deprecated since 3.x.x. Use dragEnter instead
      */
     @Output('terra-dropzone-onDragEnter')
     public onDragEnter:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
     /**
-     * @deprecated use dragLeave instead
+     * @deprecated since 3.x.x. Use dragLeave instead
      */
     @Output('terra-dropzone-onDragLeave')
     public onDragLeave:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
     /**
-     * @deprecated use dropMove instead
+     * @deprecated since 3.x.x. Use dropMove instead
      */
     @Output('terra-dropzone-onDropMove')
     public onDropMove:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
     /**
-     * @deprecated use drop instead
+     * @deprecated since 3.x.x. Use drop instead
      */
     @Output('terra-dropzone-onDrop')
     public onDrop:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
@@ -134,32 +134,32 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
     {
         if(this.onDropActivate.observers.length > 0)
         {
-            console.warn('`onDropActivate` is deprecated. Please use `dropActivate` instead.');
+            console.warn('`terra-dropzone-onDropActivate` is deprecated. Please use `dropActivate` instead.');
         }
 
         if(this.onDropDeactivate.observers.length > 0)
         {
-            console.warn('`onDropDeactivate` is deprecated. Please use `dropDeactivate` instead.');
+            console.warn('`terra-dropzone-onDropDeactivate` is deprecated. Please use `dropDeactivate` instead.');
         }
 
         if(this.onDragEnter.observers.length > 0)
         {
-            console.warn('`onDragEnter` is deprecated. Please use `dragEnter` instead.');
+            console.warn('`terra-dropzone-onDragEnter` is deprecated. Please use `dragEnter` instead.');
         }
 
         if(this.onDragLeave.observers.length > 0)
         {
-            console.warn('`onDragLeave` is deprecated. Please use `dragLeave` instead.');
+            console.warn('`terra-dropzone-onDragLeave` is deprecated. Please use `dragLeave` instead.');
         }
 
         if(this.onDropMove.observers.length > 0)
         {
-            console.warn('`onDropMove` is deprecated. Please use `dropMove` instead.');
+            console.warn('`terra-dropzone-onDropMove` is deprecated. Please use `dropMove` instead.');
         }
 
         if(this.onDrop.observers.length > 0)
         {
-            console.warn('`onDrop` is deprecated. Please use `drop` instead.');
+            console.warn('`terra-dropzone-onDrop` is deprecated. Please use `drop` instead.');
         }
     }
 
