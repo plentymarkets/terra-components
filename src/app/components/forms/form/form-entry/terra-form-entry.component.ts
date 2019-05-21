@@ -76,7 +76,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
     private componentRef:ComponentRef<any>;
     private componentInstance:any;
 
-    // private controlType:Type<any>;
+    private controlType:Type<any>;
     private inputMap:TerraKeyValueInterface<string>;
 
     private onChangeCallback:(_:any) => void = noop;
@@ -97,8 +97,9 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
      */
     public ngOnInit():void
     {
-        let controlType:Type<any> = this.getControlType(this.inputControlTypeMap, this.inputFormField.type);
-        this.createComponent(controlType);
+        this.controlType = this.getControlType(this.inputControlTypeMap, this.inputFormField.type);
+        this.inputMap = this.getInputMap(this.inputControlTypeMap, this.inputFormField.type);
+        this.createComponent(this.controlType);
 
         if(!isNullOrUndefined(this.inputFormControl))
         {
@@ -149,11 +150,6 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
      */
     public ngOnChanges(changes:SimpleChanges):void
     {
-        if(changes.hasOwnProperty('inputFormField') || changes.hasOwnProperty('inputControlTypeMap'))
-        {
-            this.inputMap = this.getInputMap(this.inputControlTypeMap, this.inputFormField.type);
-        }
-
         this.bindInputProperties();
     }
 
