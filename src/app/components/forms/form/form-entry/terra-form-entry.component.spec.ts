@@ -19,7 +19,7 @@ import Spy = jasmine.Spy;
     declarations: [TerraLabelTooltipDirective, TerraTextInputComponent],
     entryComponents: [TerraTextInputComponent],
 })
-class EntryComponentsModule {}
+class EntryComponentsModule {} // This is needed since TestBed.configureTestingModule() does not support entryComponents.
 
 describe(`TerraFormEntryComponent:`, () =>
 {
