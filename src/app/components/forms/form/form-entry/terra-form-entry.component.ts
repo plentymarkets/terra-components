@@ -118,7 +118,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
      */
     private createComponent(component:Type<any>):void
     {
-        if(!this.hasChildren)
+        if(!isNullOrUndefined(component) && !this.hasChildren)
         {
             this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
             this.componentRef = this.container.viewContainerRef.createComponent(this.componentFactory);
