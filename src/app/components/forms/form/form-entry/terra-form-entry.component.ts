@@ -103,7 +103,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
 
         if(!isNullOrUndefined(this.inputFormControl))
         {
-            this.inputFormControl.statusChanges.subscribe((status:string) =>
+            this.statusChangeSub = this.inputFormControl.statusChanges.subscribe((status:string) =>
             {
                 if(!isNullOrUndefined(this.componentInstance))
                 {
