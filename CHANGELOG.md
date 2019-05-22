@@ -1,5 +1,5 @@
 <a name="3.13.1"></a>
-# 3.13.1 (Unreleased)
+# 3.13.1 (22.05.2019)
 
 ### Bug Fixes
 * **terra-form** fix change detection in lists beyond default list length
