@@ -1,12 +1,15 @@
-<a name="3.13.1"></a>
+<a name="Unreleased"></a>
 # 3.14.0 (Unreleased)
+
+### Features
+* **tslint** add new linting rules
+
+<a name="3.13.1"></a>
+# 3.13.1 (22.05.2019)
 
 ### Bug Fixes
 * **terra-form** fix change detection in lists beyond default list length
 * **terra-form** fix handling of default values
-
-### Features
-* **tslint** add new linting rules
 
 <a name="3.13.0"></a>
 # 3.13.0 (16.05.2019)
