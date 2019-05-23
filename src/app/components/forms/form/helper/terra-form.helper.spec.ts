@@ -2,8 +2,10 @@ import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraFormHelper } from './terra-form.helper';
 import {
     AbstractControl,
-    FormControl
+    FormControl,
+    FormGroup
 } from '@angular/forms';
+import Spy = jasmine.Spy;
 
 describe(`TerraFormHelper:`, () =>
 {
@@ -29,6 +31,45 @@ describe(`TerraFormHelper:`, () =>
     it('should', () =>
     {
 
+    });
+
+    describe(`createNewControl()`, () =>
+    {
+        it(`should create a new FormControl instance for a primitive #formField type`, () =>
+        {
+            const control:AbstractControl = TerraFormHelper.createNewControl(null, child1);
+            expect(control instanceof FormControl).toBe(true);
+        });
+
+        it(`should set the new control's value to the passed #value`, () =>
+        {
+            const value:string = 'value';
+            const control:AbstractControl =  TerraFormHelper.createNewControl(value, child1);
+            expect(control.value).toEqual(value);
+        });
+
+        it(`should add validators to the control`, () =>
+        {
+            const spy:Spy = spyOn(TerraFormHelper, 'generateValidators').and.callThrough();
+            const formField:TerraFormFieldInterface = child1;
+            formField.options = {
+                required: true
+            };
+            const control:FormControl = TerraFormHelper.createNewControl(null, formField) as FormControl;
+            expect(control.validator).not.toBeNull();
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenCalledWith(formField);
+        });
+
+        it(`should create a new FormGroup instance if a #formField has children`, () =>
+        {
+            const spy:Spy = spyOn(TerraFormHelper, 'parseReactiveForm').and.callThrough();
+            const formField:TerraFormFieldInterface = formFields.controlWithChildren;
+            const control:AbstractControl = TerraFormHelper.createNewControl(null, formField);
+            expect(control instanceof FormGroup).toBe(true);
+            expect(Object.values((control as FormGroup).controls).length).toBe(Object.values(formField.children).length);
+            expect(spy).toHaveBeenCalledWith(formField.children, null);
+        });
     });
 
     describe(`fitControlsToRange()`, () =>
