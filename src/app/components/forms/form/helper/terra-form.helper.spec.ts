@@ -4,21 +4,77 @@ import {
     AbstractControl,
     ValidatorFn,
     Validators,
+    FormArray,
     FormControl,
     FormGroup
 } from '@angular/forms';
 import Spy = jasmine.Spy;
+import { listWithChildren } from '../example/form-fields';
 
 describe(`TerraFormHelper:`, () =>
 {
-    const control1:TerraFormFieldInterface = {type: 'text', defaultValue: 'one'};
-    const control2:TerraFormFieldInterface = {type: 'text', defaultValue: 'two'};
-    const controlWithArray:TerraFormFieldInterface = {type: 'checkboxGroup', defaultValue: [1, 2]};
-    const controlWithObject:TerraFormFieldInterface = {type: 'text', defaultValue: {foo: 'bar'}};
-    const controlWithChildren:TerraFormFieldInterface = {type: 'horizontal', children: {child1: control1, child2: controlWithArray}};
-    const controlList:TerraFormFieldInterface = {type: 'number', isList: true, defaultValue: 5};
-    const min:number = 3; const max:number = 5;
-    const controlListWithRange:TerraFormFieldInterface = {type: 'text', isList: `[${min},${max}]`};
+    const control1:TerraFormFieldInterface = {
+        type:         'text',
+        defaultValue: 'one'
+    };
+    const control2:TerraFormFieldInterface = {
+        type:         'text',
+        defaultValue: 'two'
+    };
+    const controlWithArray:TerraFormFieldInterface = {
+        type:         'checkboxGroup',
+        defaultValue: [1,
+                       2]
+    };
+    const controlWithChildren:TerraFormFieldInterface = {
+        type:     'horizontal',
+        children: {
+            child1: control1,
+            child2: controlWithArray
+        }
+    };
+    const controlListWithChildren:TerraFormFieldInterface = {
+        type:         'horizontal',
+        children:     {
+            child1: control1,
+            child2: controlWithArray
+        },
+        isList:       '[1,]',
+        defaultValue: 5
+    };
+    const min:number = 3;
+    const max:number = 5;
+    const controlListWithRange:TerraFormFieldInterface = {
+        type:   'text',
+        isList: `[${min},${max}]`
+    };
+    const child1:TerraFormFieldInterface = {
+        type:         'text',
+        defaultValue: 'one',
+        options:      {
+            required:  true,
+            email:     true,
+            minLength: 3,
+            maxLength: 10,
+            minValue:  3,
+            maxValue:  10,
+            pattern:   '[a-zA-Z ]',
+            iban:      true
+        }
+    };
+    const child3:TerraFormFieldInterface = {
+        type:         'text',
+        defaultValue: '',
+        options:      {
+            required: true,
+            isIban:   true
+        }
+    };
+    const child2:TerraFormFieldInterface = {
+        type:         'text',
+        defaultValue: [1,
+                       2]
+    };
 
     describe(`createNewControl()`, () =>
     {
@@ -57,7 +113,12 @@ describe(`TerraFormHelper:`, () =>
             const control:FormControl = TerraFormHelper.createNewControl(value, control1) as FormControl;
             expect(control.value).toEqual(value);
 
-            const objectValue:Object = {child1: 'bla', child2: [3, 4, 5]};
+            const objectValue:Object = {
+                child1: 'bla',
+                child2: [3,
+                         4,
+                         5]
+            };
             const group:FormGroup = TerraFormHelper.createNewControl(objectValue, controlWithChildren) as FormGroup;
             expect(group.value).toEqual(objectValue);
         });
@@ -91,171 +152,161 @@ describe(`TerraFormHelper:`, () =>
     });
 
 
-    describe(`TerraFormHelper:`, () =>
+    describe(`#generateValidators()`, () =>
     {
-        const child1:TerraFormFieldInterface = {
-            type:         'text',
-            defaultValue: 'one',
-            options:      {
-                required:  true,
-                email:     true,
-                minLength: 3,
-                maxLength: 10,
-                minValue:  3,
-                maxValue:  10,
-                pattern:   '[a-zA-Z ]',
-                iban:      true
-            }
-        };
-
-        const child3:TerraFormFieldInterface = {
-            type:         'text',
-            defaultValue: '',
-            options:      {
-                required: true,
-                isIban:   true
-            }
-        }
-
-        const child2:TerraFormFieldInterface = {
-            type:         'text',
-            defaultValue: [1,
-                           2]
-        };
-
-        const formFields:{ [key:string]:TerraFormFieldInterface } = {
-            control1:                       {
-                type:         'text',
-                defaultValue: 'one'
-            },
-            control2:                       {
-                type:         'text',
-                defaultValue: 'two'
-            },
-            controlWithArray:               {
-                type:         'text',
-                defaultValue: [1,
-                               2]
-            },
-            controlWithObject:              {
-                type:         'text',
-                defaultValue: {foo: 'bar'}
-            },
-            controlWithChildren:            {
-                type:     'horizontal',
-                children: {
-                    child1: child1,
-                    child2: child2
-                }
-            },
-            controlList:                    {
-                type:         'number',
-                isList:       true,
-                defaultValue: 5
-            },
-            controlListWithoutDefaultValue: {
-                type:   'number',
-                isList: true
-            }
-        };
-
-
-        describe(`#generateValidators()`, () =>
+        it('should return empty array if formFields do not have options', () =>
         {
-            it('should return empty array if formFields do not have options', () =>
-            {
-                const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child2);
+            const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child2);
 
-                expect(validators.length).toBe(0);
-            });
+            expect(validators.length).toBe(0);
+        });
 
-            it('should return empty array if formFields is undefined', () =>
-            {
-                const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(undefined);
+        it('should return empty array if formFields is undefined', () =>
+        {
+            const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(undefined);
 
-                expect(validators.length).toBe(0);
-            });
+            expect(validators.length).toBe(0);
+        });
 
-            it('should return a required validator if required is set in the options', () =>
-            {
-                const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
+        it('should return a required validator if required is set in the options', () =>
+        {
+            const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
 
-                expect(validators).toContain(Validators.required);
-            });
+            expect(validators).toContain(Validators.required);
+        });
 
-            it('should return an email validator if email is in the options', () =>
-            {
-                const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
+        it('should return an email validator if email is in the options', () =>
+        {
+            const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
 
-                expect(validators.indexOf(Validators.email)).not.toBe(-1);
-            });
+            expect(validators.indexOf(Validators.email)).not.toBe(-1);
+        });
 
-            it('should return a minLength validator with value 1 because it is set in the options', () =>
-            {
-                const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
-                const control:FormControl = new FormControl('', validators);
+        it('should return a minLength validator with value 1 because it is set in the options', () =>
+        {
+            const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
+            const control:FormControl = new FormControl('', validators);
 
-                control.patchValue('0');
+            control.patchValue('0');
 
-                expect(control.valid).toBe(false);
-                expect(Object.keys(control.errors)).toContain('minlength');
-            });
+            expect(control.valid).toBe(false);
+            expect(Object.keys(control.errors)).toContain('minlength');
+        });
 
-            it('should return a maxLength validator with value 10 because it is set in the options', () =>
-            {
-                const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
-                const control:FormControl = new FormControl('', validators);
+        it('should return a maxLength validator with value 10 because it is set in the options', () =>
+        {
+            const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
+            const control:FormControl = new FormControl('', validators);
 
-                control.patchValue('01234567890');
+            control.patchValue('01234567890');
 
-                expect(control.valid).toBe(false);
-                expect(Object.keys(control.errors)).toContain('maxlength');
-            });
+            expect(control.valid).toBe(false);
+            expect(Object.keys(control.errors)).toContain('maxlength');
+        });
 
-            it('should return an error and a false validation because the minValue is 3', () =>
-            {
-                const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
-                const control:FormControl = new FormControl('', validators);
+        it('should return an error and a false validation because the minValue is 3', () =>
+        {
+            const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
+            const control:FormControl = new FormControl('', validators);
 
-                control.patchValue(0);
+            control.patchValue(0);
 
-                expect(control.valid).toBe(false);
-                expect(Object.keys(control.errors)).toContain('min');
-            });
+            expect(control.valid).toBe(false);
+            expect(Object.keys(control.errors)).toContain('min');
+        });
 
-            it('should return an error and a false validation because the minValue is 10', () =>
-            {
-                const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
-                const control:FormControl = new FormControl('', validators);
+        it('should return an error and a false validation because the minValue is 10', () =>
+        {
+            const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
+            const control:FormControl = new FormControl('', validators);
 
-                control.patchValue(5555);
+            control.patchValue(5555);
 
-                expect(control.valid).toBe(false);
-                expect(Object.keys(control.errors)).toContain('max');
-            });
+            expect(control.valid).toBe(false);
+            expect(Object.keys(control.errors)).toContain('max');
+        });
 
-            it('should return false if the entered form is not a pattern and should have an error in the form for patterns', () =>
-            {
-                const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
-                const control:FormControl = new FormControl('', validators);
+        it('should return false if the entered form is not a pattern and should have an error in the form for patterns', () =>
+        {
+            const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child1);
+            const control:FormControl = new FormControl('', validators);
 
-                control.patchValue('äöü12345678');
+            control.patchValue('äöü12345678');
 
-                expect(control.valid).toBe(false);
-                expect(Object.keys(control.errors)).toContain('pattern');
-            });
+            expect(control.valid).toBe(false);
+            expect(Object.keys(control.errors)).toContain('pattern');
+        });
 
-            it('should return false if the entered value is not an iban', () =>
-            {
-                const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child3);
-                const control:FormControl = new FormControl('', validators);
+        it('should return false if the entered value is not an iban', () =>
+        {
+            const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(child3);
+            const control:FormControl = new FormControl('', validators);
 
-                control.patchValue('This is not an iban');
+            control.patchValue('This is not an iban');
 
-                expect(control.valid).toBe(false);
-                expect(Object.keys(control.errors)).toContain('iban');
-            });
+            expect(control.valid).toBe(false);
+            expect(Object.keys(control.errors)).toContain('iban');
         });
     });
-}
 
+
+    describe(`parseReactiveForm() `, () =>
+    {
+        it('return empty formgroup instance formfields is not an object', () =>
+        {
+            let value:any = TerraFormHelper.parseReactiveForm('');
+
+            expect(value instanceof FormGroup).toBeTruthy();
+        });
+
+        it('return empty formgroup instance formfields is undefined', () =>
+        {
+            let value:any = TerraFormHelper.parseReactiveForm(undefined);
+
+            expect(value instanceof FormGroup).toBeTruthy();
+        });
+
+        it('return empty formGroup instance when formFields is emptyObject', () =>
+        {
+            let value:any = TerraFormHelper.parseReactiveForm({});
+
+            expect(value instanceof FormGroup).toBeTruthy();
+        });
+
+        it('return formgroup of n formcontrols when given primitive type formfields', () =>
+        {
+            const formFields:{ [key:string]:TerraFormFieldInterface } = {
+                formField1: control1,
+                formField2: control2
+            };
+
+            let value:FormGroup = TerraFormHelper.parseReactiveForm(formFields);
+
+            expect(Object.keys(value.controls).length).toBe(2);
+        });
+
+        it('return nested formgroup with children as formcontrols when given container with children', () =>
+        {
+            let value:FormGroup = TerraFormHelper.parseReactiveForm({containerwithChildren: controlWithChildren});
+
+            expect(Object.keys(value.controls['containerwithChildren'] instanceof FormGroup)).toBeTruthy();
+            expect(Object.keys(value.controls['containerwithChildren'].controls).length).toBe(2);
+        });
+
+        it('return formgroup with n controls when given list with n controls', () =>
+        {
+            let value:FormGroup = TerraFormHelper.parseReactiveForm({list: listWithChildren});
+
+            expect(Object.keys(value.controls).length).toBe(1);
+        });
+
+        it('return formgroup including nested formarray with formgroup children when given list with children', () =>
+        {
+            let value:FormGroup = TerraFormHelper.parseReactiveForm({listWithChildren: controlListWithChildren});
+
+            console.log(value.controls['listWithChildren']);
+            expect(value.controls['listWithChildren'] instanceof FormArray).toBeTruthy();
+            expect((value.controls['listWithChildren'].controls).length).toEqual(1);
+        });
+    });
+});
