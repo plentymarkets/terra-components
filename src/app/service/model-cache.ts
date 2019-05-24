@@ -7,7 +7,7 @@ import { TerraBaseParameterInterface } from '../components/data/terra-base-param
 
 /**
  * @experimental
- * @description This class provides basic functionality to cache data accessible on a server
+ * @description This class provides basic functionality to cache data for a model accessible on a server
  */
 // TODO: use Generic <T> to be able to pass a type def for everything
 export class ModelCache
