@@ -3,11 +3,10 @@ import {
     HttpEvent,
     HttpHandler,
     HttpInterceptor,
-    HttpRequest,
-    HttpResponse
+    HttpRequest
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { AlertService } from '../components/alert/alert.service';
 import { TranslationService } from 'angular-l10n';
 import { Injectable } from '@angular/core';
@@ -21,15 +20,14 @@ export class ErrorInterceptor implements HttpInterceptor
     public intercept(req:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>>
     {
         return next.handle(req).pipe(
-            tap((response:HttpResponse<any>) =>
+            catchError((error:HttpErrorResponse) =>
             {
-                if(response instanceof HttpErrorResponse)
+                if(error.status === 403)
                 {
-                    if(response.status === 403)
-                    {
-                        this.alertService.error(this.translation.translate('Unauthorized'));
-                    }
+                    this.alertService.error(this.translation.translate('Unauthorized'));
                 }
+
+                return Observable.throw(error);
             })
         );
     }
