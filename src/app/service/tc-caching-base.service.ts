@@ -14,6 +14,11 @@ export class CachingBaseService
 {
     protected dataModel:TerraKeyValueInterface<any> = {};
 
+    /**
+     * @description Handles the retrieval of a list. When the list has already been loaded from the server, it will be retrieved from the cache.
+     * @param getRequest$
+     * @param params
+     */
     protected handleLocalDataModelGetList(getRequest$:Observable<Array<any>>, params?:TerraBaseParameterInterface):Observable<Array<any>>
     {
         if(Object.keys(this.dataModel).length > 0 && this.hasAllParamsLoaded(params))
@@ -31,21 +36,11 @@ export class CachingBaseService
         );
     }
 
-    private hasAllParamsLoaded(params:TerraBaseParameterInterface):boolean
-    {
-        if(!isNullOrUndefined(params) && !isNullOrUndefined(params['with']))
-        {
-            return Object.values(this.dataModel).every((value:any) =>
-            {
-                return params['with'].every((param:string) => value.hasOwnProperty(param));
-            });
-        }
-        else
-        {
-            return true;
-        }
-    }
-
+    /**
+     * @description Handles the retrieval of a single entity. If it has been loaded from the server before, it will be retrieved from the cache.
+     * @param getRequest$
+     * @param dataId
+     */
     protected handleLocalDataModelGet(getRequest$:Observable<any>, dataId:number | string):Observable<any>
     {
         if(!isNullOrUndefined(this.dataModel[dataId]))
@@ -58,6 +53,11 @@ export class CachingBaseService
         );
     }
 
+    /**
+     * @description Handles the creation of a single entity. If the creation is successful, the response is stored in the cache.
+     * @param postRequest$
+     * @param dataId
+     */
     protected handleLocalDataModelPost(postRequest$:Observable<any>, dataId:number | string):Observable<any>
     {
         return postRequest$.pipe(
@@ -72,6 +72,11 @@ export class CachingBaseService
         );
     }
 
+    /**
+     * @description Handles the modification of a single entity. If it has been updated successfully, the cache is updated with the response object.
+     * @param putRequest$
+     * @param dataId
+     */
     protected handleLocalDataModelPut(putRequest$:Observable<any>, dataId:number | string):Observable<any>
     {
         return putRequest$.pipe(
@@ -100,6 +105,11 @@ export class CachingBaseService
         );
     }
 
+    /**
+     * @description Handles the deletion of a single entity. If the deletion was successful, the entity is removed from the cache as well.
+     * @param deleteRequest$
+     * @param dataId
+     */
     protected handleLocalDataModelDelete(deleteRequest$:Observable<void>, dataId:number | string):Observable<void>
     {
         return deleteRequest$.pipe(
@@ -116,4 +126,20 @@ export class CachingBaseService
             })
         );
     }
+
+    private hasAllParamsLoaded(params:TerraBaseParameterInterface):boolean
+    {
+        if(!isNullOrUndefined(params) && !isNullOrUndefined(params['with']))
+        {
+            return Object.values(this.dataModel).every((value:any) =>
+            {
+                return params['with'].every((param:string) => value.hasOwnProperty(param));
+            });
+        }
+        else
+        {
+            return true;
+        }
+    }
+
 }
