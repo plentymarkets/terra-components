@@ -14,14 +14,10 @@ import { Data } from '@angular/router';
 import { AlertService } from '../components/alert/alert.service';
 import { MockTranslationModule } from '../testing/mock-translation-module';
 import Spy = jasmine.Spy;
+import { TranslationService } from 'angular-l10n';
 
 describe('ErrorInterceptor', () =>
 {
-    it('should create an instance', () =>
-    {
-        expect(new ErrorInterceptor()).toBeTruthy();
-    });
-
     let httpClient:HttpClient;
     let httpTestingController:HttpTestingController;
     let alertService:AlertService;
@@ -42,6 +38,12 @@ describe('ErrorInterceptor', () =>
         alertService = TestBed.get(AlertService);
     });
 
+    it('should create an instance', () =>
+    {
+        let translationService:TranslationService = TestBed.get(TranslationService);
+        expect(new ErrorInterceptor(alertService, translationService)).toBeTruthy();
+    });
+
     it(`should catch error status 403 - Unauthorized`, () =>
     {
         const errorMsg:string = 'Unauthorized';
@@ -59,7 +61,7 @@ describe('ErrorInterceptor', () =>
         );
 
         const request:TestRequest = httpTestingController.expectOne(url);
-        request.flush(errorMsg, {status: 403});
+        request.flush(errorMsg, {status: 403, statusText: 'Error'});
     });
 
     it(`should catch error status 401 - Unauthenticated`, () =>
@@ -73,6 +75,11 @@ describe('ErrorInterceptor', () =>
     });
 
     it(`should pass on error response to be handled by the developer himself`, () =>
+    {
+        pending();
+    });
+
+    it(`should not touch response if request is successful - status 2XX`, () =>
     {
         pending();
     });
