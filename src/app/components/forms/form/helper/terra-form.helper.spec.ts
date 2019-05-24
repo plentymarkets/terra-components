@@ -26,13 +26,6 @@ describe(`TerraFormHelper:`, () =>
             expect(control instanceof FormControl).toBe(true);
         });
 
-        it(`should set the new control's value to the passed #value`, () =>
-        {
-            const value:string = 'value';
-            const control:AbstractControl =  TerraFormHelper.createNewControl(value, control1);
-            expect(control.value).toEqual(value);
-        });
-
         it(`should add validators to the control`, () =>
         {
             const spy:Spy = spyOn(TerraFormHelper, 'generateValidators').and.callThrough();
@@ -54,6 +47,17 @@ describe(`TerraFormHelper:`, () =>
             expect(control instanceof FormGroup).toBe(true);
             expect(Object.values((control as FormGroup).controls).length).toBe(Object.values(formField.children).length);
             expect(spy).toHaveBeenCalledWith(formField.children, null);
+        });
+
+        it(`should set the new control's value to the passed #value`, () =>
+        {
+            const value:string = 'value';
+            const control:FormControl = TerraFormHelper.createNewControl(value, control1) as FormControl;
+            expect(control.value).toEqual(value);
+
+            const objectValue:Object = {child1: 'bla', child2: [3, 4, 5]};
+            const group:FormGroup = TerraFormHelper.createNewControl(objectValue, controlWithChildren) as FormGroup;
+            expect(group.value).toEqual(objectValue);
         });
     });
 
