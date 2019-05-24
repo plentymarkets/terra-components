@@ -38,12 +38,19 @@ describe(`AuthInterceptor:`, () =>
         const accessToken:string = 'IAmAnAccessToken';
         localStorage.setItem('accessToken', accessToken);
 
-        httpClient.get<Data>('').subscribe((data:Data) => expect(data).toBe(testData));
+        // Make an HTTP GET request
+        httpClient.get<Data>('').subscribe((data:Data) =>
+            // When observable resolves, result should match test data
+            expect(data).toBe(testData)
+        );
 
+        // Expect one request with a proper authorization header
         const request:TestRequest = httpTestingController.expectOne(
             (req:HttpRequest<any>) => req.headers.has('Authorization') && req.headers.get('Authorization') === `Bearer ${accessToken}`
         );
 
+        // Respond with mock data, causing Observable to resolve.
+        // Subscribe callback asserts that correct data was returned.
         request.flush(testData);
     });
 
