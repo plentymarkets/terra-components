@@ -1,16 +1,16 @@
 import { Observable } from 'rxjs';
-import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
 import { of } from 'rxjs/observable/of';
 import { isNullOrUndefined } from 'util';
 import { tap } from 'rxjs/operators';
 import { TerraKeyValueInterface } from '../models/terra-key-value.interface';
+import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
 
 /**
  * @experimental
  * @description This class provides basic functionality to cache data accessible on a server
  */
 // TODO: use Generic <T> to be able to pass a type def for everything
-export class CachingBaseService
+export class ModelCache
 {
     protected dataModel:TerraKeyValueInterface<any> = {};
 
