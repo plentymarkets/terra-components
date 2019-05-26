@@ -25,6 +25,7 @@
                 
                 <terra-button *ngIf="inputSecondaryButtonInterface"
                               [inputIsAlignRight]="false"
+                              [inputIcon]="inputSecondaryButtonInterface.icon"
                               [inputCaption]="inputSecondaryButtonInterface.caption"
                               [inputTooltipText]="inputSecondaryButtonInterface.tooltipText"
                               [inputTooltipPlacement]="tooltipPlacement"
@@ -35,6 +36,7 @@
                 
                 <terra-button *ngIf="inputPrimaryButtonInterface"
                               [inputIsAlignRight]="false"
+                              [inputIcon]="inputSecondaryButtonInterface.icon"
                               [inputCaption]="inputPrimaryButtonInterface.caption"
                               [inputTooltipText]="inputPrimaryButtonInterface.tooltipText"
                               [inputTooltipPlacement]="tooltipPlacement"
