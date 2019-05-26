@@ -120,5 +120,9 @@
 	"filter": {
 		"search": "Suchen",
 		"reset": "Zurücksetzen"
+	},
+	"errorInterceptor": {
+		"unauthorized": "401 - Unauthorized",
+		"unauthenticated": "403 - Unauthenticated"
 	}
 }

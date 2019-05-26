@@ -21,6 +21,7 @@ import { TerraBaseParameterInterface } from '../components/data/terra-base-param
 import { tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { TerraQueryEncoder } from './data/terra-query-encoder';
+import { DispatchHelper } from '../helpers/dispatch.helper';
 
 /**
  * @author mfrank
@@ -117,9 +118,9 @@ export class TerraBaseService
 
                 routeToLoginEvent.initCustomEvent('routeToLogin', true, true, {});
 
-                this.dispatchEvent(routeToLoginEvent);
+                DispatchHelper.dispatchEvent(routeToLoginEvent);
             }
-            else if(error.status === 403) // unauthorized
+            else if(error.status === 403) // Unauthenticated
             {
                 let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage(error);
 
@@ -141,35 +142,15 @@ export class TerraBaseService
                 }
             }
             // END Very unclean workaround!
-            else if(error.status === 401) // unauthenticated
+            else if(error.status === 401) // Unauthorized
             {
                 let loginEvent:CustomEvent = new CustomEvent('login');
                 // Workaround for plugins in Angular (loaded via iFrame)
-                this.dispatchEvent(loginEvent);
+                DispatchHelper.dispatchEvent(loginEvent);
             }
 
             return Observable.throw(error);
         }).finally(() => this.terraLoadingSpinnerService.stop());
-    }
-
-    private dispatchEvent(eventToDispatch:Event | CustomEvent):void
-    {
-        if(!isNullOrUndefined(window.parent))
-        {
-            // workaround for plugins in GWT (loaded via iFrame)
-            if(!isNullOrUndefined(window.parent.window.parent))
-            {
-                window.parent.window.parent.window.dispatchEvent(eventToDispatch);
-            }
-            else
-            {
-                window.parent.window.dispatchEvent(eventToDispatch);
-            }
-        }
-        else
-        {
-            window.dispatchEvent(eventToDispatch);
-        }
     }
 
     // TODO use a meaningful error type

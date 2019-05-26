@@ -10,6 +10,7 @@ import { catchError } from 'rxjs/operators';
 import { AlertService } from '../components/alert/alert.service';
 import { TranslationService } from 'angular-l10n';
 import { Injectable } from '@angular/core';
+import { DispatchHelper } from '../helpers/dispatch.helper';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor
@@ -22,9 +23,25 @@ export class ErrorInterceptor implements HttpInterceptor
         return next.handle(req).pipe(
             catchError((error:HttpErrorResponse) =>
             {
-                if(error.status === 403)
+                // http status 401 Unauthorized
+                if(error.status === 401)
                 {
                     this.alertService.error(this.translation.translate('Unauthorized'));
+                }
+
+                // http status 403 Forbidden / Unauthenticated
+                if(error.status === 403)
+                {
+                    this.alertService.error(this.translation.translate('Unauthenticated'));
+
+                    if((<any>error).class)
+                    {
+                        let routeToLoginEvent:CustomEvent = new CustomEvent('CustomEvent');
+
+                        routeToLoginEvent.initCustomEvent('routeToLogin', true, true, {});
+
+                        DispatchHelper.dispatchEvent(routeToLoginEvent);
+                    }
                 }
 
                 return Observable.throw(error);
