@@ -9,10 +9,16 @@
     }
 }
 
+
 .btn-toolbar
 {
-   > *:not(:last-child)
+   > *
    {
-       margin-right: 4px;
+       font-size: 0;
+       vertical-align: middle;
+       &:not(:last-child)
+       {
+           margin-right: 4px;
+       }
    }
 }
