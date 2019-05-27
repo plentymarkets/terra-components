@@ -92,7 +92,7 @@ describe(`TerraFormHelper:`, () =>
         {
             const validators:Array<ValidatorFn> = TerraFormHelper.generateValidators(controlWithValidators);
 
-            expect(validators.indexOf(Validators.email)).not.toBe(-1);
+            expect(validators).toContain(Validators.email);
         });
 
         it('should return a minLength validator with value 1 because it is set in the options', () =>
