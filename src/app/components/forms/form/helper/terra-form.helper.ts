@@ -30,7 +30,7 @@ export class TerraFormHelper
     {
         let validators:Array<ValidatorFn> = [];
 
-        if(isNullOrUndefined(formField.options))
+        if(isNullOrUndefined(formField) || isNullOrUndefined(formField.options))
         {
             return validators;
         }
@@ -79,7 +79,7 @@ export class TerraFormHelper
             validators.push(Validators.email);
         }
 
-        if(formField.options.isIban)
+        if(formField.options.isIban || formField.options.iban)
         {
             validators.push(TerraValidators.iban);
         }
@@ -96,6 +96,11 @@ export class TerraFormHelper
     public static parseReactiveForm(formFields:{ [key:string]:TerraFormFieldInterface }, values?:{}):FormGroup
     {
         let controls:{ [key:string]:AbstractControl } = {};
+        if(isNullOrUndefined(formFields))
+        {
+            return new FormGroup(controls);
+        }
+
         Object.keys(formFields).forEach((formFieldKey:string) =>
         {
             let formField:TerraFormFieldInterface = formFields[formFieldKey];
@@ -128,6 +133,7 @@ export class TerraFormHelper
                 controls[formFieldKey] = new FormControl(value, this.generateValidators(formField));
             }
         });
+
         return new FormGroup(controls);
     }
 
