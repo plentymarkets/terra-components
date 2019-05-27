@@ -194,11 +194,14 @@ describe(`TerraFormHelper:`, () =>
             expect(Object.keys((containerWithChildren as FormGroup).controls).length).toBe(2);
         });
 
-        it('should return a FormGroup with n controls when a list with n controls is given', () =>
+        it('should return a FormGroup including a nested FormArray with a minimum of controls given by the #isList property', () =>
         {
-            let formGroup:FormGroup = TerraFormHelper.parseReactiveForm({list: controlListWithChildren});
+            let formGroup:FormGroup = TerraFormHelper.parseReactiveForm({list: controlListWithRange});
+            const list:AbstractControl = formGroup.get('list');
 
-            expect(Object.keys(formGroup.controls).length).toBe(1);
+            expect(list instanceof FormArray).toBeTruthy();
+            expect((list as FormArray).length).toEqual(min);
+            expect((list as FormArray).controls.every((control:AbstractControl) => control instanceof FormControl)).toBe(true);
         });
 
         it('should return a FormGroup including nested FormArray with FormGroup children when a list with children is given', () =>
@@ -208,6 +211,7 @@ describe(`TerraFormHelper:`, () =>
 
             expect(listWithChildren instanceof FormArray).toBeTruthy();
             expect((listWithChildren as FormArray).length).toEqual(2);
+            expect((listWithChildren as FormArray).controls.every((control:AbstractControl) => control instanceof FormGroup)).toBe(true);
         });
 
         describe(`createNewControl()`, () =>
