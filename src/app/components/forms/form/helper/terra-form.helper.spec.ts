@@ -37,8 +37,7 @@ describe(`TerraFormHelper:`, () =>
             child1: control1,
             child2: controlWithArray
         },
-        isList:       '[2,]',
-        defaultValue: 5
+        isList:       '[2,]'
     };
     const min:number = 3;
     const max:number = 5;
