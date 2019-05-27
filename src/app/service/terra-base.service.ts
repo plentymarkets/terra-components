@@ -417,6 +417,9 @@ export class TerraBaseService
         return missingRights;
     }
 
+    /**
+     * @deprecated use ModelCache instead
+     */
     // TODO remove generic if the BaseService get a generic itself
     protected handleLocalDataModelGetList(getRequest$:Observable<Response>, params?:TerraBaseParameterInterface):Observable<Array<any>>
     {
@@ -452,6 +455,9 @@ export class TerraBaseService
         }
     }
 
+    /**
+     * @deprecated use ModelCache instead
+     */
     // TODO remove generic if the BaseService get a generic itself
     protected handleLocalDataModelGet(getRequest$:Observable<Response>, dataId:number|string):Observable<any>
     {
@@ -467,6 +473,9 @@ export class TerraBaseService
         );
     }
 
+    /**
+     * @deprecated use ModelCache instead
+     */
     // TODO remove generic if the BaseService get a generic itself
     protected handleLocalDataModelPost(postRequest$:Observable<Response>, dataId:number|string):Observable<any>
     {
@@ -484,6 +493,9 @@ export class TerraBaseService
         );
     }
 
+    /**
+     * @deprecated use ModelCache instead
+     */
     // TODO remove generic if the BaseService get a generic itself
     protected handleLocalDataModelPut(putRequest$:Observable<Response>, dataId:number|string):Observable<any>
     {
@@ -515,6 +527,9 @@ export class TerraBaseService
         );
     }
 
+    /**
+     * @deprecated use ModelCache instead
+     */
     // TODO remove generic if the BaseService get a generic itself
     protected handleLocalDataModelDelete(deleteRequest$:Observable<Response>, dataId:number|string):Observable<void>
     {
