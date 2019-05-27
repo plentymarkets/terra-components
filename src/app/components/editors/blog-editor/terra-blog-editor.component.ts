@@ -9,7 +9,6 @@ import * as Quill from 'quill';
 import ImageResize from 'quill-image-resize-module';
 Quill.register('modules/imageResize', ImageResize);
 
-
 function imageHandler() {
     var range = this.quill.getSelection();
     var value = prompt('What is the image URL');
@@ -32,10 +31,12 @@ function imageHandler() {
 })
 export class TerraBlogEditorComponent extends TerraBaseEditorComponent
 {
+    public showCodeView:boolean = false;
     constructor(protected translation:TranslationService, protected myElement:ElementRef)
     {
         super(translation, myElement);
 
+        const self:TerraBlogEditorComponent = this;
         this.modules = {
             imageResize: {
                 // ...
@@ -68,10 +69,16 @@ export class TerraBlogEditorComponent extends TerraBaseEditorComponent
                                    false]
                     }],
                     // link and image, video
-                    ['link', 'image', 'video']
+                    ['link', 'image', 'video'],
+                    ['code-block']
                 ],
                 handlers: {
-                    image: imageHandler
+                    image: imageHandler,
+                    'code-block': function():void
+                                  {
+                                      // 'this' points to the toolbar instance of the quill editor.
+                                      self.showCodeView = !self.showCodeView;
+                                  }
                 }
             },
         };

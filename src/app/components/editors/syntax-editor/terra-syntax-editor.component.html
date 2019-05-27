@@ -1,4 +1,6 @@
-<ace-editor #aceEditor [(text)]="inputText"
+<ace-editor #aceEditor
+            [(text)]="inputText"
+            (textChange)="onModelChange($event)"
             [theme]="'chrome'"
             [mode]="inputEditorMode"
             [readOnly]="inputReadOnly"

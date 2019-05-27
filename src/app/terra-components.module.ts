@@ -77,7 +77,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         MyDatePickerModule,
         AceEditorModule,
         TerraInteractModule,
-        QuillModule.forRoot(),
+        QuillModule,
         RouterModule
     ],
     providers:       [

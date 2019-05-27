@@ -15,11 +15,7 @@
               [(ngModel)]="rawContent"
               (ngModelChange)="emitChanges(false)">
     </textarea>
-    <terra-button [class.visible]="showCodeView && isValidMarkup"
-                  class="close-button"
-                  inputIcon="icon-close"
-                  (outputClicked)="closeCodeView()">
-    </terra-button>
+    
     <terra-button [class.visible]="showCodeView && !isValidMarkup"
                   class="error-button"
                   inputIcon="icon-warning"

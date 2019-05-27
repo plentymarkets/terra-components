@@ -19,12 +19,22 @@ import 'brace/mode/php';
 import 'brace/mode/text';
 import 'brace/ext/error_marker';
 import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
+import {
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
+import { noop } from 'rxjs/util/noop';
 
 @Component({
     selector: 'terra-syntax-editor',
-    template: require('./terra-syntax-editor.component.html')
+    template: require('./terra-syntax-editor.component.html'),
+    providers:[{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: TerraSyntaxEditorComponent,
+        multi: true
+    }]
 })
-export class TerraSyntaxEditorComponent implements AfterViewInit
+export class TerraSyntaxEditorComponent implements AfterViewInit, ControlValueAccessor
 {
     @ViewChild('aceEditor')
     public editor:AceEditorComponent;
@@ -34,6 +44,10 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
 
     @Input()
     public inputOptions:Object;
+
+    protected onModelChange:(value:any) => void = noop;
+    protected onTouched:() => void = noop;
+
     private _inputEditorMode:string;
     private _inputText:string;
 
@@ -73,5 +87,20 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
     public get inputText():string
     {
         return this._inputText;
+    }
+
+    public registerOnChange(fn:any):void
+    {
+        this.onModelChange = fn;
+    }
+
+    public registerOnTouched(fn:any):void
+    {
+        this.onTouched = fn;
+    }
+
+    public writeValue(text:string):void
+    {
+        this._inputText = text;
     }
 }
