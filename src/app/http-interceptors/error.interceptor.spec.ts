@@ -85,7 +85,32 @@ describe('ErrorInterceptor', () =>
     });
 
 
-    it(`should log errors to the console in dev mode and if a support user is logged in`, () =>
+    it(`should log errors to the console in dev mode`, () =>
+    {
+        const errorMsg:string = 'Unauthenticated';
+        const url:string = '';
+
+        process.env.ENV = 'production';
+        let spy:Spy = spyOn(console, 'log');
+
+        httpClient.get<Data>(url).subscribe(
+            () => fail('should have failed with the 403 error'),
+            (error:HttpErrorResponse) =>
+            {
+                expect(error.status).toEqual(403);
+                expect(error.error).toEqual(errorMsg);
+                expect(spy).toHaveBeenCalledWith('status = '+403+ '\n' +
+                                                 'error = '+errorMsg);
+            }
+        );
+
+        const request:TestRequest = httpTestingController.expectOne(url);
+        request.flush(errorMsg, {status: 403, statusText: 'Error'});
+
+
+    });
+
+    it(`should log errors to the console if a support user is logged in`, () =>
     {
         pending();
     });
