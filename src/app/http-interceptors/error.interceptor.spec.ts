@@ -64,9 +64,9 @@ describe('ErrorInterceptor', () =>
         request.flush(errorMsg, {status: 401, statusText: 'Error'});
     });
 
-    it(`should catch error status 403 - Unauthenticated`, () =>
+    it(`should catch error status 403 - Forbidden`, () =>
     {
-        const errorMsg:string = 'Unauthenticated';
+        const errorMsg:string = 'Forbidden';
         const url:string = '';
         let spy:Spy = spyOn(alertService, 'error');
 

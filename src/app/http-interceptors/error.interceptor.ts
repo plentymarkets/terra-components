@@ -26,13 +26,13 @@ export class ErrorInterceptor implements HttpInterceptor
                 // http status 401 Unauthorized
                 if(error.status === 401)
                 {
-                    this.alertService.error(this.translation.translate('Unauthorized'));
+                    this.alertService.error(this.translation.translate('errorInterceptor.unauthorized'));
                 }
 
                 // http status 403 Forbidden / Unauthenticated
                 if(error.status === 403)
                 {
-                    this.alertService.error(this.translation.translate('Unauthenticated'));
+                    this.alertService.error(this.translation.translate('errorInterceptor.forbidden'));
 
                     if((<any>error).class)
                     {
