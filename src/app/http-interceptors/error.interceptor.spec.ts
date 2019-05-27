@@ -92,7 +92,20 @@ describe('ErrorInterceptor', () =>
 
     it(`should pass on error response to be handled by the developer himself`, () =>
     {
-        pending();
+        const errorMsg:string = 'Internal Server Error';
+        const url:string = '';
+
+        httpClient.get<Data>(url).subscribe(
+            () => fail('should have failed with the 500 error'),
+            (error:HttpErrorResponse) =>
+            {
+                expect(error.status).toEqual(500);
+                expect(error.error).toEqual(errorMsg);
+            }
+        );
+
+        const request:TestRequest = httpTestingController.expectOne(url);
+        request.flush(errorMsg, {status: 500, statusText: 'Error'});
     });
 
     it(`should not touch response if request is successful - status 2XX`, () =>
