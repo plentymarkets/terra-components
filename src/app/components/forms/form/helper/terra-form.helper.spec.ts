@@ -9,7 +9,6 @@ import {
     FormGroup
 } from '@angular/forms';
 import Spy = jasmine.Spy;
-import { listWithChildren } from '../example/form-fields';
 
 describe(`TerraFormHelper:`, () =>
 {
@@ -56,7 +55,7 @@ describe(`TerraFormHelper:`, () =>
             child1: controlWithValidators,
             child2: controlWithArray
         },
-        isList:       '[1,]',
+        isList:       '[2,]',
         defaultValue: 5
     };
     const min:number = 3;
@@ -166,61 +165,62 @@ describe(`TerraFormHelper:`, () =>
 
     describe(`parseReactiveForm() `, () =>
     {
-        it('return empty formgroup instance when formfields is not an object', () =>
+        it('should return an empty FormGroup instance when #formFields is not an object', () =>
         {
-            let value:any = TerraFormHelper.parseReactiveForm('');
+            let form:any = TerraFormHelper.parseReactiveForm('');
 
-            expect(value instanceof FormGroup).toBeTruthy();
+            expect(form instanceof FormGroup).toBeTruthy();
         });
 
-        it('return empty formgroup instance formfields is undefined', () =>
+        it('should return an empty FormGroup instance when formFields is undefined', () =>
         {
-            let value:any = TerraFormHelper.parseReactiveForm(undefined);
+            let form:any = TerraFormHelper.parseReactiveForm(undefined);
 
-            expect(value instanceof FormGroup).toBeTruthy();
+            expect(form instanceof FormGroup).toBeTruthy();
         });
 
-        it('return empty formGroup instance when formFields is emptyObject', () =>
+        it('should return an empty FormGroup instance when formFields is an empty Object', () =>
         {
-            let value:any = TerraFormHelper.parseReactiveForm({});
+            let form:any = TerraFormHelper.parseReactiveForm({});
 
-            expect(value instanceof FormGroup).toBeTruthy();
+            expect(form instanceof FormGroup).toBeTruthy();
         });
 
-        it('return formgroup of n formcontrols when given primitive type formfields', () =>
+        it('should return a FormGroup instance with n FormControls when n primitive type formFields are given', () =>
         {
             const formFields:{ [key:string]:TerraFormFieldInterface } = {
                 formField1: controlWithValidators,
                 formField2: controlText
             };
 
-            let value:FormGroup = TerraFormHelper.parseReactiveForm(formFields);
+            let formGroup:FormGroup = TerraFormHelper.parseReactiveForm(formFields);
 
-            expect(Object.keys(value.controls).length).toBe(2);
+            expect(Object.keys(formGroup.controls).length).toBe(2);
         });
 
-        it('return nested formgroup with children as formcontrols when given container with children', () =>
+        it('should return a nested FormGroup with children as FormControls when a container with children is given', () =>
         {
-            let value:FormGroup = TerraFormHelper.parseReactiveForm({containerwithChildren: controlWithChildren});
+            let formGroup:FormGroup = TerraFormHelper.parseReactiveForm({containerWithChildren: controlWithChildren});
+            const containerWithChildren:AbstractControl = formGroup.get('containerWithChildren');
 
-            expect(Object.keys(value.controls['containerwithChildren'] instanceof FormGroup)).toBeTruthy();
-            expect(Object.keys(value.controls['containerwithChildren'].controls).length).toBe(2);
+            expect(Object.keys(containerWithChildren instanceof FormGroup)).toBeTruthy();
+            expect(Object.keys((containerWithChildren as FormGroup).controls).length).toBe(2);
         });
 
-        it('return formgroup with n controls when given list with n controls', () =>
+        it('should return a FormGroup with n controls when a list with n controls is given', () =>
         {
-            let value:FormGroup = TerraFormHelper.parseReactiveForm({list: listWithChildren});
+            let formGroup:FormGroup = TerraFormHelper.parseReactiveForm({list: controlListWithChildren});
 
-            expect(Object.keys(value.controls).length).toBe(1);
+            expect(Object.keys(formGroup.controls).length).toBe(1);
         });
 
-        it('return formgroup including nested formarray with formgroup children when given list with children', () =>
+        it('should return a FormGroup including nested FormArray with FormGroup children when a list with children is given', () =>
         {
-            let value:FormGroup = TerraFormHelper.parseReactiveForm({listWithChildren: controlListWithChildren});
+            let formGroup:FormGroup = TerraFormHelper.parseReactiveForm({listWithChildren: controlListWithChildren});
+            const listWithChildren:AbstractControl = formGroup.get('listWithChildren');
 
-            console.log(value.controls['listWithChildren']);
-            expect(value.controls['listWithChildren'] instanceof FormArray).toBeTruthy();
-            expect((value.controls['listWithChildren'].controls).length).toEqual(1);
+            expect(listWithChildren instanceof FormArray).toBeTruthy();
+            expect((listWithChildren as FormArray).length).toEqual(2);
         });
 
         describe(`createNewControl()`, () =>
