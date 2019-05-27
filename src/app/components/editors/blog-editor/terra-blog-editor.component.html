@@ -1,0 +1,11 @@
+<div>
+    <quill-editor [placeholder]="placeholder"
+                  [(ngModel)]="value"
+                  (ngModelChange)="onChangeCallback($event)"
+                  [format]="'html'"
+                  [required]="required"
+                  [sanitize]="true"
+                  [styles]="{minHeight:inputMinHeight, height:inputFixedHeight}"
+                  [modules]="modules">
+    </quill-editor>
+</div>

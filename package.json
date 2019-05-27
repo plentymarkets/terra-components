@@ -56,7 +56,8 @@
 		"reflect-metadata": "^0.1.12",
 		"rxjs": "5.5.12",
 		"ts-keycode-enum": "^1.0.6",
-		"zone.js": "^0.8.27"
+		"zone.js": "^0.8.27",
+		"quill-image-resize-module": "latest"
 	},
 	"devDependencies": {
 		"@angular/cli": "^7.1.3",
