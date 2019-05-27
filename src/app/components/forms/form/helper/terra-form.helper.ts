@@ -79,7 +79,7 @@ export class TerraFormHelper
             validators.push(Validators.email);
         }
 
-        if(formField.options.isIban)
+        if(formField.options.isIban || formField.options.iban)
         {
             validators.push(TerraValidators.iban);
         }
