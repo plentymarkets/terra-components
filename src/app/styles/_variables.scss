@@ -17,3 +17,9 @@ $grid-breakpoints: (
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.btn-group,
+.btn-group-vertical
+{
+    display: inline-block;
+}
