@@ -30,61 +30,58 @@ export class TerraFormHelper
     {
         let validators:Array<ValidatorFn> = [];
 
-        if(typeof formField !== 'undefined')
+        if(isNullOrUndefined(formField) || isNullOrUndefined(formField.options))
         {
-            if(isNullOrUndefined(formField.options))
-            {
-                return validators;
-            }
+            return validators;
+        }
 
-            if(formField.options.required)
+        if(formField.options.required)
+        {
+            switch(formField.type)
             {
-                switch(formField.type)
-                {
-                    case 'checkbox':
-                    case 'toggle':
-                        // TODO terra-toggle is not a native html element and not known to terra-form -> find a way for custom validation
-                        validators.push(Validators.requiredTrue);
-                        break;
-                    default:
-                        validators.push(Validators.required);
-                }
+                case 'checkbox':
+                case 'toggle':
+                    // TODO terra-toggle is not a native html element and not known to terra-form -> find a way for custom validation
+                    validators.push(Validators.requiredTrue);
+                    break;
+                default:
+                    validators.push(Validators.required);
             }
+        }
 
-            if(formField.options.minLength >= 0)
-            {
-                validators.push(Validators.minLength(formField.options.minLength));
-            }
+        if(formField.options.minLength >= 0)
+        {
+            validators.push(Validators.minLength(formField.options.minLength));
+        }
 
-            if(formField.options.maxLength >= 0)
-            {
-                validators.push(Validators.maxLength(formField.options.maxLength));
-            }
+        if(formField.options.maxLength >= 0)
+        {
+            validators.push(Validators.maxLength(formField.options.maxLength));
+        }
 
-            if(!isNullOrUndefined(formField.options.minValue))
-            {
-                validators.push(Validators.min(formField.options.minValue));
-            }
+        if(!isNullOrUndefined(formField.options.minValue))
+        {
+            validators.push(Validators.min(formField.options.minValue));
+        }
 
-            if(!isNullOrUndefined(formField.options.maxValue))
-            {
-                validators.push(Validators.max(formField.options.maxValue));
-            }
+        if(!isNullOrUndefined(formField.options.maxValue))
+        {
+            validators.push(Validators.max(formField.options.maxValue));
+        }
 
-            if(!StringHelper.isNullUndefinedOrEmpty(formField.options.pattern) || formField.options.pattern instanceof RegExp)
-            {
-                validators.push(Validators.pattern(formField.options.pattern));
-            }
+        if(!StringHelper.isNullUndefinedOrEmpty(formField.options.pattern) || formField.options.pattern instanceof RegExp)
+        {
+            validators.push(Validators.pattern(formField.options.pattern));
+        }
 
-            if(formField.options.email)
-            {
-                validators.push(Validators.email);
-            }
+        if(formField.options.email)
+        {
+            validators.push(Validators.email);
+        }
 
-            if(formField.options.isIban)
-            {
-                validators.push(TerraValidators.iban);
-            }
+        if(formField.options.isIban)
+        {
+            validators.push(TerraValidators.iban);
         }
 
         return validators;
@@ -99,41 +96,44 @@ export class TerraFormHelper
     public static parseReactiveForm(formFields:{ [key:string]:TerraFormFieldInterface }, values?:{}):FormGroup
     {
         let controls:{ [key:string]:AbstractControl } = {};
-        if(typeof formFields !== 'undefined')
+        if(isNullOrUndefined(formFields))
         {
-            Object.keys(formFields).forEach((formFieldKey:string) =>
-            {
-                let formField:TerraFormFieldInterface = formFields[formFieldKey];
-                let defaultValue:any = TerraFormFieldHelper.parseDefaultValue(formField);
-                if(formField.isList)
-                {
-                    let formControls:Array<AbstractControl> = [];
-                    if(!isNullOrUndefined(values) && isArray(values))
-                    {
-                        formControls = values.map((value:any, index:number) =>
-                        {
-                            return this.createNewControl(value || defaultValue[index], formField);
-                        });
-                    }
-                    if(isString(formField.isList))
-                    {
-                        this.fitControlsToRange(formField, formControls);
-                    }
-                    controls[formFieldKey] = new FormArray(formControls);
-                }
-                else if(!isNullOrUndefined(formField.children))
-                {
-                    let value:Object = !isNullOrUndefined(values) && isObject(values[formFieldKey]) ?
-                        values[formFieldKey] : defaultValue || null;
-                    controls[formFieldKey] = this.parseReactiveForm(formField.children, value);
-                }
-                else
-                {
-                    let value:any = !isNullOrUndefined(values) ? values[formFieldKey] : defaultValue;
-                    controls[formFieldKey] = new FormControl(value, this.generateValidators(formField));
-                }
-            });
+            return new FormGroup(controls);
         }
+
+        Object.keys(formFields).forEach((formFieldKey:string) =>
+        {
+            let formField:TerraFormFieldInterface = formFields[formFieldKey];
+            let defaultValue:any = TerraFormFieldHelper.parseDefaultValue(formField);
+            if(formField.isList)
+            {
+                let formControls:Array<AbstractControl> = [];
+                if(!isNullOrUndefined(values) && isArray(values))
+                {
+                    formControls = values.map((value:any, index:number) =>
+                    {
+                        return this.createNewControl(value || defaultValue[index], formField);
+                    });
+                }
+                if(isString(formField.isList))
+                {
+                    this.fitControlsToRange(formField, formControls);
+                }
+                controls[formFieldKey] = new FormArray(formControls);
+            }
+            else if(!isNullOrUndefined(formField.children))
+            {
+                let value:Object = !isNullOrUndefined(values) && isObject(values[formFieldKey]) ?
+                    values[formFieldKey] : defaultValue || null;
+                controls[formFieldKey] = this.parseReactiveForm(formField.children, value);
+            }
+            else
+            {
+                let value:any = !isNullOrUndefined(values) ? values[formFieldKey] : defaultValue;
+                controls[formFieldKey] = new FormControl(value, this.generateValidators(formField));
+            }
+        });
+
         return new FormGroup(controls);
     }
 
