@@ -165,13 +165,6 @@ describe(`TerraFormHelper:`, () =>
 
     describe(`parseReactiveForm() `, () =>
     {
-        it('should return an empty FormGroup instance when #formFields is not an object', () =>
-        {
-            let form:any = TerraFormHelper.parseReactiveForm('');
-
-            expect(form instanceof FormGroup).toBeTruthy();
-        });
-
         it('should return an empty FormGroup instance when formFields is undefined', () =>
         {
             let form:any = TerraFormHelper.parseReactiveForm(undefined);
