@@ -13,7 +13,7 @@ terra-multi-split-view
             {
                 padding-left: 0;
 
-                &:last-child, &[class="col-xs-12"] //col-xs-12 is only class
+                &:last-child, &[class="col-12"] //col-12 is only class
                 {
                     padding-right: 0;
                 }
