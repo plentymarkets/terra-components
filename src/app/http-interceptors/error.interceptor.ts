@@ -25,14 +25,17 @@ export class ErrorInterceptor implements HttpInterceptor
             {
                 if(process.env.ENV === 'production')
                 {
-                    console.error('status = '+error.status+ '\n' +
-                                'error = '+error.error);
+                    console.error('status = ' + error.status + '\n' +
+                                  'error = ' + error.error);
                 }
 
                 // http status 401 Unauthorized
                 if(error.status === 401)
                 {
                     this.alertService.error(this.translation.translate('errorInterceptor.unauthorized'));
+
+                    let loginEvent:CustomEvent = new CustomEvent('login');
+                    DispatchHelper.dispatchEvent(loginEvent);
                 }
 
                 // http status 403 Forbidden / Unauthenticated
@@ -40,7 +43,7 @@ export class ErrorInterceptor implements HttpInterceptor
                 {
                     this.alertService.error(this.translation.translate('errorInterceptor.unauthenticated'));
 
-                    if((<any>error).class)
+                    if((<any>error).class && (<any>error).class === 'UIHashExpiredException')
                     {
                         let routeToLoginEvent:CustomEvent = new CustomEvent('CustomEvent');
 
