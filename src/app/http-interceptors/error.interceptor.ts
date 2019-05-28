@@ -38,7 +38,7 @@ export class ErrorInterceptor implements HttpInterceptor
                 // http status 403 Forbidden / Unauthenticated
                 if(error.status === 403)
                 {
-                    this.alertService.error(this.translation.translate('errorInterceptor.forbidden'));
+                    this.alertService.error(this.translation.translate('errorInterceptor.unauthenticated'));
 
                     if((<any>error).class)
                     {

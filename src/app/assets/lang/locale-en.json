@@ -123,6 +123,6 @@
 	},
 	"errorInterceptor": {
 		"unauthorized": "401 - Unauthorized",
-		"forbidden": "403 - Forbidden"
+		"unauthenticated": "403 - Unauthenticated"
 	}
 }
