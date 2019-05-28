@@ -7,6 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
+import { finalize } from 'rxjs/operators';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor
@@ -17,6 +18,6 @@ export class LoadingInterceptor implements HttpInterceptor
     public intercept(req:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>>
     {
         this.loadingSpinner.start();
-        return next.handle(req);
+        return next.handle(req).pipe(finalize(() => this.loadingSpinner.stop()));
     }
 }
