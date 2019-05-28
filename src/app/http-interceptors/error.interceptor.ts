@@ -33,23 +33,39 @@ export class ErrorInterceptor implements HttpInterceptor
                 {
                     this.alertService.error(this.translation.translate('errorInterceptor.unauthorized'));
 
-                    let loginEvent:CustomEvent = new CustomEvent('login');
-                    DispatchHelper.dispatchEvent(loginEvent);
+                    DispatchHelper.dispatchEvent(new CustomEvent('routeToLogin'));
                 }
 
-                // http status 403 Forbidden / Unauthenticated
+                // http status 403 Forbidden
                 if(error.status === 403)
                 {
-                    this.alertService.error(this.translation.translate('errorInterceptor.unauthenticated'));
+                    let errorMessage:string = this.translation.translate('errorInterceptor.forbidden');
 
-                    if((<any>error).class && (<any>error).class === 'UIHashExpiredException')
+                    let missingPermissions:{ [key:string]:{ [key:string]:string } } = error['missing_permissions'];
+
+                    let permissionTranslations:Array<{ [key:string]:string }> = [];
+
+                    Object.keys(missingPermissions).forEach((key:string) =>
                     {
-                        let routeToLoginEvent:CustomEvent = new CustomEvent('CustomEvent');
+                        if(missingPermissions.hasOwnProperty(key))
+                        {
+                            permissionTranslations.push(missingPermissions[key]);
+                        }
+                    });
 
-                        routeToLoginEvent.initCustomEvent('routeToLogin', true, true, {});
+                    let errorCollection:Array<string> = [];
 
-                        DispatchHelper.dispatchEvent(routeToLoginEvent);
-                    }
+                    permissionTranslations.forEach((translations:{ [key:string]:string }) =>
+                    {
+                        Object.keys(translations).forEach((key:string) =>
+                        {
+                            errorCollection.push(translations[key]);
+                        });
+                    });
+
+                    errorMessage += errorCollection.reverse().join('<br/> • ');
+
+                    this.alertService.error(this.translation.translate(errorMessage));
                 }
 
                 return Observable.throw(error);
