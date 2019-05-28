@@ -25,7 +25,7 @@ export class ErrorInterceptor implements HttpInterceptor
             {
                 if(process.env.ENV === 'production')
                 {
-                    console.log('status = '+error.status+ '\n' +
+                    console.error('status = '+error.status+ '\n' +
                                 'error = '+error.error);
                 }
 
