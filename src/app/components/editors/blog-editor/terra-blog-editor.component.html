@@ -19,9 +19,11 @@
             </button>
         </span>
     </div>
-    <terra-syntax-editor
-        [hidden]="!showCodeView"
-        [(ngModel)]="value"
-        (ngModelChange)="onChangeCallback($event)">
-    </terra-syntax-editor>
+    <ace-editor #aceEditor
+                [(text)]="value"
+                (textChange)="onChangeCallback($event)"
+                [theme]="'chrome'"
+                [options]="{maxLines: 10000}"
+                style="width: auto; overflow: auto;">
+    </ace-editor>
 </div>
