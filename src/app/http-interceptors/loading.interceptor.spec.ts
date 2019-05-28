@@ -12,7 +12,6 @@ import { TestBed } from '@angular/core/testing';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 import { Data } from '@angular/router';
 import Spy = jasmine.Spy;
-import { noop } from 'rxjs/util/noop';
 
 describe('LoadingInterceptor:', () =>
 {
@@ -62,7 +61,7 @@ describe('LoadingInterceptor:', () =>
 
         httpClient.get(url).subscribe(
             () => expect(spy).not.toHaveBeenCalled(),
-            () => noop(),
+            () => fail('No error expected'),
             () => expect(spy).toHaveBeenCalledTimes(1)
         );
 
@@ -76,8 +75,8 @@ describe('LoadingInterceptor:', () =>
         const spy:Spy = spyOn(loadingSpinner, 'stop');
 
         httpClient.get(url).subscribe(
+            () => fail('Error expected'),
             () => expect(spy).not.toHaveBeenCalled(),
-            () => noop(),
             () => expect(spy).toHaveBeenCalledTimes(1)
         );
 
@@ -92,18 +91,16 @@ describe('LoadingInterceptor:', () =>
         window.addEventListener('loadingStatus', spy);
 
         httpClient.get(url).subscribe(
-            () =>
-            {
-                expect(spy).toHaveBeenCalledTimes(1);
-                expect(spy).toHaveBeenCalledWith(new CustomEvent('loadingStatus', {detail: {isLoading: true}}));
-            },
-            () => noop(),
+            (responseData:Data) => expect(responseData).toBe(data),
+            () => fail('No error expected'),
             () =>
             {
                 expect(spy).toHaveBeenCalledTimes(2);
                 expect(spy).toHaveBeenCalledWith(new CustomEvent('loadingStatus', {detail: {isLoading: false}}));
             },
         );
+        expect(spy).toHaveBeenCalledTimes(1);
+        expect(spy).toHaveBeenCalledWith(new CustomEvent('loadingStatus', {detail: {isLoading: true}}));
 
         let request:TestRequest = httpTestingController.expectOne(url);
         request.flush(data);
