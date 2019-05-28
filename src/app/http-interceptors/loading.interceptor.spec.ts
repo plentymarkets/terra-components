@@ -1,7 +1,8 @@
 import { LoadingInterceptor } from './loading.interceptor';
 import {
     HTTP_INTERCEPTORS,
-    HttpClient
+    HttpClient,
+    HttpInterceptor
 } from '@angular/common/http';
 import {
     HttpClientTestingModule,
@@ -25,11 +26,14 @@ describe('LoadingInterceptor:', () =>
     {
         TestBed.configureTestingModule({
             imports:   [HttpClientTestingModule],
-            providers: [{
-                provide:  HTTP_INTERCEPTORS,
-                useClass: LoadingInterceptor,
-                multi:    true
-            }, TerraLoadingSpinnerService]
+            providers: [
+                TerraLoadingSpinnerService,
+                {
+                    provide:  HTTP_INTERCEPTORS,
+                    useClass: LoadingInterceptor,
+                    multi:    true
+                }
+            ]
         });
 
         httpClient = TestBed.get(HttpClient);
@@ -39,8 +43,8 @@ describe('LoadingInterceptor:', () =>
 
     it(`should create`, () =>
     {
-        const loadingInterceptor:LoadingInterceptor = TestBed.get(LoadingInterceptor);
-        expect(loadingInterceptor).toBeTruthy();
+        const interceptors:Array<HttpInterceptor> = TestBed.get(HTTP_INTERCEPTORS);
+        expect(interceptors.find((interceptor:HttpInterceptor) => interceptor instanceof LoadingInterceptor)).toBeTruthy();
     });
 
     it(`should start the loading spinner when a request is started`, () =>
