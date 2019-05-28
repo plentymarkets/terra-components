@@ -48,15 +48,19 @@ describe('ErrorInterceptor', () =>
     {
         const errorMsg:string = 'Unauthorized';
         const url:string = '';
-        let spy:Spy = spyOn(alertService, 'error');
+        let spyAlert:Spy = spyOn(alertService, 'error');
+        let spyDispatch:Spy = spyOn(window.parent, 'dispatchEvent')
 
         httpClient.get<Data>(url).subscribe(
             () => fail('should have failed with the 401 error'),
             (error:HttpErrorResponse) =>
             {
+                let routeToLoginEvent:CustomEvent = new CustomEvent('routeToLogin');
+
                 expect(error.status).toEqual(401);
                 expect(error.error).toEqual(errorMsg);
-                expect(spy).toHaveBeenCalled();
+                expect(spyAlert).toHaveBeenCalled();
+                expect(spyDispatch).toHaveBeenCalledWith(routeToLoginEvent);
             }
         );
 
@@ -134,15 +138,15 @@ describe('ErrorInterceptor', () =>
         const url:string = '';
 
         httpClient.get<Data>(url).subscribe(
-            (respone:Response) =>
+            (response:Response) =>
             {
-                expect(respone).toBeTruthy();
+                expect(response).toEqual('testContent');
             },
             () => fail('should not failed with the 200 status code')
         );
 
         const request:TestRequest = httpTestingController.expectOne(url);
-        request.flush({}, {status: 200, statusText: 'success'});
+        request.flush('testContent', {status: 200, statusText: 'success'});
     });
 
     afterEach(() =>
