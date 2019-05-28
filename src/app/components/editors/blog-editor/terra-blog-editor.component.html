@@ -19,8 +19,7 @@
             </button>
         </span>
     </div>
-    <ace-editor #aceEditor
-                [(text)]="value"
+    <ace-editor [(text)]="value"
                 (textChange)="onChangeCallback($event)"
                 [theme]="'chrome'"
                 [options]="{maxLines: 10000}"
