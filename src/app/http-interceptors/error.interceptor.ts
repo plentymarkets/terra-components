@@ -23,10 +23,9 @@ export class ErrorInterceptor implements HttpInterceptor
         return next.handle(req).pipe(
             catchError((error:HttpErrorResponse) =>
             {
-                if(process.env.ENV === 'production')
+                if(process.env.ENV === 'development')
                 {
-                    console.error('status = ' + error.status + '\n' +
-                                  'error = ' + error.error);
+                    console.error('status = ' + error.status, 'error = ' + error.error);
                 }
 
                 // http status 401 Unauthorized
