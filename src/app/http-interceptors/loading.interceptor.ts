@@ -9,6 +9,9 @@ import { Observable } from 'rxjs';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 import { finalize } from 'rxjs/operators';
 
+/**
+ * @description HttpInterceptor that triggers the loading spinner in terra. It starts and also stops it.
+ */
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor
 {
