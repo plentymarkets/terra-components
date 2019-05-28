@@ -6,6 +6,7 @@
 * **http interceptor** [HttpInterceptor](https://angular.io/api/common/http/HttpInterceptor)
 	- **auth-interceptor** new class to add the accessToken stored in the `localStorage` to every requests header. 
 	- **error-interceptor** new class to handle error handling on every http request. 
+	- **loading-interceptor** new clas sto trigger the `TerraLoadingSpinnerService`'s `start()` and `stop()` method.
 
 <a name="3.13.1"></a>
 # 3.13.1 (22.05.2019)
