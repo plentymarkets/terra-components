@@ -1,5 +1,5 @@
 <a name="3.14.0"></a>
-# 3.14.0 (Unreleased)
+# 3.14.0 (29.05.2019)
 
 ### Features
 * **model-cache** new class providing functionality to handle caching of a model available on a server. It replaces the functionality from the TerraBaseService. For now, it is in an experimental state wherefore it can change at any time or may also be deleted.
