@@ -1,3 +1,21 @@
+<a name="3.14.0"></a>
+# 3.14.0 (29.05.2019)
+
+### Features
+* **model-cache** new class providing functionality to handle caching of a model available on a server. It replaces the functionality from the TerraBaseService. For now, it is in an experimental state wherefore it can change at any time or may also be deleted.
+* **http-interceptors** implementing [HttpInterceptor](https://angular.io/api/common/http/HttpInterceptor)
+	- **auth-interceptor** new class to add the accessToken stored in the `localStorage` to every requests header. 
+	- **error-interceptor** new class to handle error handling on every http request. 
+	- **loading-interceptor** new class to trigger the `TerraLoadingSpinnerService`'s `start()` and `stop()` method.
+* **terra-base.service** is deprecated now. Use angular's [HttpClient](https://angular.io/guide/http) instead.
+
+<a name="3.13.1"></a>
+# 3.13.1 (22.05.2019)
+
+### Bug Fixes
+* **terra-form** fix change detection in lists beyond default list length
+* **terra-form** fix handling of default values
+
 <a name="3.13.0"></a>
 # 3.13.0 (16.05.2019)
 	
