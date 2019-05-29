@@ -123,6 +123,7 @@
 	},
 	"errorInterceptor": {
 		"unauthorized": "Unauthorized",
-		"forbidden": "Missing permissions for: <br/> • "
+		"missingPermission": "Missing permissions for: <br/> • ",
+		"forbidden": "Keine Berechtigung"
 	}
 }
