@@ -112,15 +112,7 @@ export class TerraBaseService
                 this.handleException(error);
             }
 
-            if(error.status === 403 && this.getErrorClass(error) === 'UIHashExpiredException')
-            {
-                let routeToLoginEvent:CustomEvent = new CustomEvent('CustomEvent');
-
-                routeToLoginEvent.initCustomEvent('routeToLogin', true, true, {});
-
-                DispatchHelper.dispatchEvent(routeToLoginEvent);
-            }
-            else if(error.status === 403) // Unauthenticated
+            if(error.status === 403) // Forbidden
             {
                 let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage(error);
 
@@ -144,9 +136,7 @@ export class TerraBaseService
             // END Very unclean workaround!
             else if(error.status === 401) // Unauthorized
             {
-                let loginEvent:CustomEvent = new CustomEvent('login');
-                // Workaround for plugins in Angular (loaded via iFrame)
-                DispatchHelper.dispatchEvent(loginEvent);
+                DispatchHelper.dispatchEvent(new CustomEvent('routeToLogin'));
             }
 
             return Observable.throw(error);
