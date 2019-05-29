@@ -1,4 +1,4 @@
-import { TerraSelectBoxValueInterface } from '../../../..';
+import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 
 export const terraPagerDefaultPagingSizes:Array<TerraSelectBoxValueInterface> = [
     {

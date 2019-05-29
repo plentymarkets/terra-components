@@ -1,5 +1,5 @@
 import { TerraInfoBoxComponent } from './terra-info-box.component';
-import { TerraTagInterface } from '../../../../';
+import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 
 describe('TerraInfoBoxComponent:', () =>
 {

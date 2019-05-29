@@ -3,57 +3,75 @@
     &.terra-card
     {
         border-radius: var(--border-radius);
-        border: none;
+        border: 2px solid transparent;
         box-shadow: var(--box-shadow);
-        margin: var(--space-xs) var(--space-xs) var(--space-md) var(--space-xs);
+        margin: var(--space-md);
         display: inline-block;
-        width: 200px;
+        width: var(--terra-card-width, 200px);
         transition: margin var(--transition-md);
-
+        
         &.selected
         {
             border: 2px solid var(--color-active);
         }
+        
+        &:hover
+        {
+            &:not(.selected)
+            {
+                border: 2px solid var(--color-active);
+            }
+        }
     }
-
-    .card-header
-    {
-        background-color: var(--color-structure-0);
-        padding: var(--space-md);
-    }
-
+    
     .card-img-top
     {
-        height: 150px;
-        margin: 2px;
+        min-height: var(--terra-card-img-top-min-height, (calc(var(--space-xl) * 5)));
+        margin: var(--space-md);
         border-radius: 0;
-
+        
         &.terra-card-image
         {
             background: no-repeat center;
             background-size: var(--terra-card-image-background-size, contain);
         }
-
+        
         &.terra-card-placeholder
         {
-            font-size: 150px;
-            text-align: center;
+            font-size: var(--terra-card-img-top-placeholder-font-size, 6rem);
+            display: flex;
+            align-items: center;
             color: var(--color-structure-7);
+            
+            &:before
+            {
+                margin: 0 auto;
+            }
         }
     }
-
+    
+    .card-header
+    {
+        min-height: var(--terra-card-header-min-height, (calc(var(--space-xl) * 2.5)));
+        background-color: var(--color-structure-0);
+        padding: var(--space-md);
+        display: flex;
+        align-items: center;
+    }
+    
     .card-block
     {
-        padding: 0 var(--space-md) 0 var(--space-md);
+        padding: var(--space-md);
         transition: padding var(--transition-md);
     }
-
+    
     .card-footer
     {
+        min-height: var(--terra-card-footer-min-height, (calc(var(--space-xl) * 1.5)));
         padding: var(--space-md);
-        background-color: var(--color-structure-0);
+        background-color: var(--card-footer-background-color, var(--color-structure-0));;
         transition: padding var(--transition-md);
-
+        
         &.selected
         {
             border-top: 1px solid var(--color-active);
@@ -64,7 +82,3 @@
         }
     }
 }
-
-
-
-

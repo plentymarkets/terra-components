@@ -1,3 +1,4 @@
+import { TerraPlacementEnum } from './../../../helpers/enums/terra-placement.enum';
 import {
     Component,
     ElementRef,
@@ -10,6 +11,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
+import { noop } from 'rxjs/util/noop';
 
 @Component({
     selector:  'terra-base-editor',
@@ -38,9 +40,24 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     @Input()
     public inputMinHeight:string;
 
+    /** @description add validation as a required field.*/
+    @Input()
+    public required:boolean;
+
+    /** @description Set the tooltip.*/
+    @Input()
+    public tooltipText:string;
+
+    /** @description Set the tooltip placement (bottom, top, left, right). Default top.*/
+    @Input()
+    public tooltipPlacement:TerraPlacementEnum;
+
     protected placeholder:string;
     protected value:string;
     protected modules:{ [index:string]:Object };
+
+    protected onChangeCallback:(_:any) => void = noop;
+    protected onTouchedCallback:(_:any) => void = noop;
 
     constructor(protected translation:TranslationService,
                 protected myElement:ElementRef)
@@ -59,6 +76,7 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
 
     public ngOnInit():void
     {
+        this.tooltipPlacement = isNullOrUndefined(this.tooltipPlacement) ? TerraPlacementEnum.TOP : this.tooltipPlacement;
         this.inputMinHeight = isNullOrUndefined(this.inputMinHeight) ? '100px' : this.inputMinHeight;
         // overwrite default placeholder if input is defined
         if(this.inputPlaceholder)
@@ -86,7 +104,4 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     {
         this.myElement.nativeElement.querySelector('.ql-editor').focus();
     }
-
-    protected onChangeCallback:(_:any) => void = ():void => undefined;
-    protected onTouchedCallback:(_:any) => void = ():void => undefined;
 }

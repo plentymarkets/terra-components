@@ -44,6 +44,18 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
     @Input()
     public inputCategoryService:TerraCategoryPickerBaseService;
 
+    /**
+     * @description Language in which the categories shall be displayed
+     */
+    @Input()
+    public inputLanguage:string;
+
+    /**
+     * @description PlentyId of the shop that is currently being worked on
+     */
+    @Input()
+    public inputPlentyId:number;
+
     private completeCategory:CategoryValueInterface;
 
     private categoryName:string;
@@ -193,7 +205,14 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                 // If the node hasn't already been added the routine will be started
                 if(isNullOrUndefined(this.nestedTreeConfig.findNodeById(categoryData.id)) && categoryData.details.length > 0)
                 {
-                    categoryDetail = categoryData.details[0];
+                    if(!isNullOrUndefined(this.inputLanguage))
+                    {
+                        categoryDetail = this.findCategoryDetails(categoryData);
+                    }
+                    else if(categoryData.details.length > 0) // Downwardcompatability
+                    {
+                        categoryDetail = categoryData.details[0];
+                    }
 
                     // Create Node to add to tree later
                     let childNode:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>> = {
@@ -218,14 +237,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                     // If the parentNode is still null it is tried to create the parent node out of the given id
                     if(isNullOrUndefined(parentNode))
                     {
-                        if(isNullOrUndefined(parentNodeId))
-                        {
-                            parentNode = null;
-                        }
-                        else
-                        {
-                            parentNode = this.nestedTreeConfig.findNodeById(parentNodeId);
-                        }
+                        parentNode = this.nestedTreeConfig.findNodeById(parentNodeId);
                     }
 
                     // If the category has children the lazy-loading method will be added to the parent node
@@ -243,6 +255,44 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         // Current List is updated
         this.list = this.nestedTreeConfig.list;
     }
+
+    private findCategoryDetails(categoryData:CategoryDataInterface):CategoryDetailDataInterface
+    {
+        let categoryDetail:CategoryDetailDataInterface;
+
+        categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
+        {
+            return foundDetail.lang === this.inputLanguage && (foundDetail.plentyId === this.inputPlentyId ||
+                                                               isNullOrUndefined(this.inputPlentyId));
+        });
+
+        // Check if there is a detail only for the language
+        if(isNullOrUndefined(categoryDetail))
+        {
+            categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
+            {
+                return foundDetail.lang === this.inputLanguage;
+            });
+        }
+
+        // Check if there is a detail only for the plentyId
+        if(isNullOrUndefined(categoryDetail))
+        {
+            categoryDetail = categoryData.details.find((foundDetail:CategoryDetailDataInterface) =>
+            {
+                return foundDetail.plentyId === this.inputPlentyId || isNullOrUndefined(this.inputPlentyId);
+            });
+        }
+
+        // No details found with the given language and the given plentyId so just use the first language instead
+        if(isNullOrUndefined(categoryDetail) && categoryData.details.length > 0)
+        {
+            categoryDetail = categoryData.details[0];
+        }
+
+        return categoryDetail;
+    }
+
 
     private getCategoriesByParent():void
     {

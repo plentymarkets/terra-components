@@ -1,0 +1,8 @@
+<terra-portlet>
+    <terra-form
+        [inputControlTypeMap]="formTypeMap"
+        [inputFormFields]="formFields"
+        [(ngModel)]="formValue">
+    </terra-form>
+</terra-portlet>
+{{ formValue | json }}

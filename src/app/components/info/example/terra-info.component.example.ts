@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TerraPlacementEnum } from '../../../..';
+import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
     selector: 'terra-info-example',

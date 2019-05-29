@@ -1,8 +1,7 @@
 <terra-form-container
-    [inputFormFields]="inputFormFields"
+    [inputFormFields]="formFields"
     [inputIsDisabled]="inputIsDisabled"
     [inputScope]="scope"
-    [inputValue]="values"
-    [inputControlTypeMap]="inputControlTypeMap"
-    (outputFormValueChanged)="onValueChanged($event.key, $event.value)">
+    [inputFormGroup]="formGroup"
+    [inputControlTypeMap]="controlTypeMap">
 </terra-form-container>
