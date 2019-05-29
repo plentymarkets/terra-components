@@ -25,6 +25,7 @@ import { DispatchHelper } from '../helpers/dispatch.helper';
 
 /**
  * @author mfrank
+ * @deprecated use angular's [HttpClient](https://angular.io/guide/http) instead.
  */
 @Injectable()
 // Please keep the todo comments until TerraBaseService refactoring
