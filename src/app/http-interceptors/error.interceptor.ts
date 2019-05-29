@@ -42,22 +42,34 @@ export class ErrorInterceptor implements HttpInterceptor
                 // http status 403 Forbidden
                 if(error.status === 403)
                 {
-                    let errorMessage:string = this.translation.translate('errorInterceptor.forbidden');
-                    let missingPermissions:{ [key:string]:{ [lang:string]:string } } = error.error['error']['missing_permissions'];
-                    let translations:Array<string> = this.getMissingPermissionTranslations(missingPermissions, this.locale.getCurrentLanguage());
+                    if(error.error && error.error['error'])
+                    {
+                        let errorMessage:string = this.translation.translate('errorInterceptor.missingPermissions');
+                        let missingPermissions:{ [key:string]:{ [lang:string]:string } } = error.error['error']['missing_permissions'];
+                        let translations:Array<string> = this.getMissingPermissionTranslations(missingPermissions, this.locale.getCurrentLanguage());
+                        errorMessage += translations.reverse().join('<br/> • ');
+                        this.alertService.error(this.translation.translate(errorMessage));
+                    }
+                    else
+                    {
+                        this.alertService.error(this.translation.translate('errorInterceptor.forbidden'));
+                    }
 
-                    errorMessage += translations.reverse().join('<br/> • ');
-
-                    this.alertService.error(this.translation.translate(errorMessage));
                 }
 
+                // re-throw the error so that developers are able handle it in their UIs as well
                 return Observable.throw(error);
             })
         );
     }
 
-    private getMissingPermissionTranslations(missingPermissions:{[key:string]:{[lang:string]:string}}, lang:string):Array<string>
+    private getMissingPermissionTranslations(missingPermissions:{[key:string]:{[lang:string]:string}}, lang:string = 'en'):Array<string>
     {
-        return Object.values(missingPermissions).map((missingPermission:{lang:string}) => missingPermission[lang]);
+        if(missingPermissions)
+        {
+            return Object.values(missingPermissions).map((missingPermission:{lang:string}) => missingPermission[lang]);
+        }
+
+        return [];
     }
 }
