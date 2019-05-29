@@ -21,9 +21,11 @@ import { TerraBaseParameterInterface } from '../components/data/terra-base-param
 import { tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { TerraQueryEncoder } from './data/terra-query-encoder';
+import { DispatchHelper } from '../helpers/dispatch.helper';
 
 /**
  * @author mfrank
+ * @deprecated use angular's [HttpClient](https://angular.io/guide/http) instead.
  */
 @Injectable()
 // Please keep the todo comments until TerraBaseService refactoring
@@ -111,15 +113,7 @@ export class TerraBaseService
                 this.handleException(error);
             }
 
-            if(error.status === 403 && this.getErrorClass(error) === 'UIHashExpiredException')
-            {
-                let routeToLoginEvent:CustomEvent = new CustomEvent('CustomEvent');
-
-                routeToLoginEvent.initCustomEvent('routeToLogin', true, true, {});
-
-                this.dispatchEvent(routeToLoginEvent);
-            }
-            else if(error.status === 403) // unauthorized
+            if(error.status === 403) // Forbidden
             {
                 let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage(error);
 
@@ -141,11 +135,9 @@ export class TerraBaseService
                 }
             }
             // END Very unclean workaround!
-            else if(error.status === 401) // unauthenticated
+            else if(error.status === 401) // Unauthorized
             {
-                let loginEvent:CustomEvent = new CustomEvent('login');
-                // Workaround for plugins in Angular (loaded via iFrame)
-                this.dispatchEvent(loginEvent);
+                DispatchHelper.dispatchEvent(new CustomEvent('routeToLogin'));
             }
 
             return Observable.throw(error);
@@ -204,6 +196,9 @@ export class TerraBaseService
         return searchParams;
     }
 
+    /**
+     * @deprecated use ModelCache instead
+     */
     // TODO remove generic if the BaseService get a generic itself
     protected handleLocalDataModelGetList(getRequest$:Observable<Response>, params?:TerraBaseParameterInterface):Observable<Array<any>>
     {
@@ -224,6 +219,9 @@ export class TerraBaseService
         );
     }
 
+    /**
+     * @deprecated use ModelCache instead
+     */
     // TODO remove generic if the BaseService get a generic itself
     protected handleLocalDataModelGet(getRequest$:Observable<Response>, dataId:number|string):Observable<any>
     {
@@ -239,6 +237,9 @@ export class TerraBaseService
         );
     }
 
+    /**
+     * @deprecated use ModelCache instead
+     */
     // TODO remove generic if the BaseService get a generic itself
     protected handleLocalDataModelPost(postRequest$:Observable<Response>, dataId:number|string):Observable<any>
     {
@@ -256,6 +257,9 @@ export class TerraBaseService
         );
     }
 
+    /**
+     * @deprecated use ModelCache instead
+     */
     // TODO remove generic if the BaseService get a generic itself
     protected handleLocalDataModelPut(putRequest$:Observable<Response>, dataId:number|string):Observable<any>
     {
@@ -287,6 +291,9 @@ export class TerraBaseService
         );
     }
 
+    /**
+     * @deprecated use ModelCache instead
+     */
     // TODO remove generic if the BaseService get a generic itself
     protected handleLocalDataModelDelete(deleteRequest$:Observable<Response>, dataId:number|string):Observable<void>
     {
