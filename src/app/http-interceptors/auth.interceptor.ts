@@ -23,11 +23,16 @@ export class AuthInterceptor implements HttpInterceptor
         // Get the token from local storage.
         const accessToken:string = localStorage.getItem('accessToken');
 
-        // Clone the request and replace the original headers with
-        // cloned headers, updated with the authorization.
-        const authReq:HttpRequest<any> = req.clone({setHeaders: {Authorization: 'Bearer ' + accessToken}});
+        // check if access token is available
+        if(accessToken)
+        {
+            // Clone the request and replace the original headers with
+            // cloned headers, updated with the authorization.
+            // send cloned request with header to the next handler.
+            return next.handle(req.clone({setHeaders: {Authorization: 'Bearer ' + accessToken}}));
+        }
 
-        // send cloned request with header to the next handler.
-        return next.handle(authReq);
+        // if no accessToken is available, pass on the untouched request.
+        return next.handle(req);
     }
 }
