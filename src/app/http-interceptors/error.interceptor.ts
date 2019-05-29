@@ -15,6 +15,10 @@ import {
 import { Injectable } from '@angular/core';
 import { DispatchHelper } from '../helpers/dispatch.helper';
 
+/**
+ * @description HttpInterceptor that handles some specific errors that may occur when requesting data from a plentymarkets system. It also logs
+ *     errors to the console when serving in development mode.
+ */
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor
 {
