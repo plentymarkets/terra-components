@@ -22,7 +22,7 @@
     <ace-editor [(text)]="value"
                 (textChange)="onChangeCallback($event)"
                 [theme]="'chrome'"
-                [options]="{maxLines: 10000}"
+                [options]="aceOptions"
                 style="width: auto; overflow: auto;">
     </ace-editor>
 </div>

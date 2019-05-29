@@ -2,6 +2,8 @@ import {
     AfterViewInit,
     Component,
     Input,
+    OnChanges,
+    SimpleChanges,
     ViewChild
 } from '@angular/core';
 import { AceEditorComponent } from 'ng2-ace-editor';
@@ -24,6 +26,8 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { noop } from 'rxjs/util/noop';
+import { AceEditorConfig } from '../config/ace-editor.config';
+import { AceEditorOptionsInterface } from '../config/ace-editor-options.interface';
 
 @Component({
     selector: 'terra-syntax-editor',
@@ -34,7 +38,7 @@ import { noop } from 'rxjs/util/noop';
         multi: true
     }]
 })
-export class TerraSyntaxEditorComponent implements AfterViewInit, ControlValueAccessor
+export class TerraSyntaxEditorComponent implements AfterViewInit, OnChanges, ControlValueAccessor
 {
     @ViewChild('aceEditor')
     public editor:AceEditorComponent;
@@ -43,7 +47,7 @@ export class TerraSyntaxEditorComponent implements AfterViewInit, ControlValueAc
     public inputReadOnly:boolean;
 
     @Input()
-    public inputOptions:Object;
+    public inputOptions:AceEditorOptionsInterface = AceEditorConfig.options;
 
     protected onModelChange:(value:any) => void = noop;
     protected onTouched:() => void = noop;
@@ -51,18 +55,20 @@ export class TerraSyntaxEditorComponent implements AfterViewInit, ControlValueAc
     private _inputEditorMode:string;
     private _inputText:string;
 
-    constructor()
-    {
-        this.inputOptions = {
-            maxLines: 10000
-        };
-    }
-
     public ngAfterViewInit():void
     {
         this.editor.getEditor().clearSelection();
         this.editor.getEditor().$blockScrolling = Infinity;
         this.editor.getEditor().setShowPrintMargin(false);
+    }
+
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes.hasOwnProperty('inputOptions'))
+        {
+            // Be sure that the default font size is applied again. Otherwise the cursor calculation of ace editor doesn't work properly.
+            this.inputOptions.fontSize = AceEditorConfig.options.fontSize;
+        }
     }
 
     public setAnnotationList(list:Array<TerraSyntaxEditorData>):void
