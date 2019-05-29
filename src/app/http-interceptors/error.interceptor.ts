@@ -42,12 +42,14 @@ export class ErrorInterceptor implements HttpInterceptor
                 // http status 403 Forbidden
                 if(error.status === 403)
                 {
-                    if(error.error && error.error['error'])
+                    const missingPermissionsKey:string = 'missing_permissions';
+                    if(error.error && error.error['error'] && error.error['error'][missingPermissionsKey])
                     {
                         let errorMessage:string = this.translation.translate('errorInterceptor.missingPermissions');
-                        let missingPermissions:{ [key:string]:{ [lang:string]:string } } = error.error['error']['missing_permissions'];
+                        let missingPermissions:{ [key:string]:{ [lang:string]:string } } = error.error['error'][missingPermissionsKey];
                         let translations:Array<string> = this.getMissingPermissionTranslations(missingPermissions, this.locale.getCurrentLanguage());
-                        errorMessage += translations.reverse().join('<br/> • ');
+                        const separator:string = '<br/> • ';
+                        errorMessage += separator + translations.reverse().join('<br/> • ');
                         this.alertService.error(this.translation.translate(errorMessage));
                     }
                     else
@@ -63,13 +65,8 @@ export class ErrorInterceptor implements HttpInterceptor
         );
     }
 
-    private getMissingPermissionTranslations(missingPermissions:{[key:string]:{[lang:string]:string}}, lang:string = 'en'):Array<string>
+    private getMissingPermissionTranslations(missingPermissions:{ [key:string]:{ [lang:string]:string } }, lang:string = 'en'):Array<string>
     {
-        if(missingPermissions)
-        {
-            return Object.values(missingPermissions).map((missingPermission:{lang:string}) => missingPermission[lang]);
-        }
-
-        return [];
+        return Object.values(missingPermissions).map((missingPermission:{ lang:string }) => missingPermission[lang]);
     }
 }

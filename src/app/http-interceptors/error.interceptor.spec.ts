@@ -56,23 +56,23 @@ describe('ErrorInterceptor', () =>
 
     it('should create an instance', () =>
     {
-        let translationService:TranslationService = TestBed.get(TranslationService);
-        let localeService:LocaleService = TestBed.get(LocaleService);
+        const translationService:TranslationService = TestBed.get(TranslationService);
+        const localeService:LocaleService = TestBed.get(LocaleService);
         expect(new ErrorInterceptor(alertService, translationService, localeService)).toBeTruthy();
     });
 
-    it(`should catch error status 401 - Unauthorized`, () =>
+    it(`should show an alert and dispatch a 'routeToLogin' event when 401 - Unauthorized error is received`, () =>
     {
         const errorMsg:string = 'Unauthorized';
         const status:number = 401;
-        let spyAlert:Spy = spyOn(alertService, 'error');
-        let spyDispatch:Spy = spyOn(window.parent, 'dispatchEvent');
+        const spyAlert:Spy = spyOn(alertService, 'error');
+        const spyDispatch:Spy = spyOn(window.parent, 'dispatchEvent');
 
         httpClient.get<Data>(url).subscribe(
             () => fail(`should have failed with the ${status} error`),
             (error:HttpErrorResponse) =>
             {
-                let routeToLoginEvent:CustomEvent = new CustomEvent('routeToLogin');
+                const routeToLoginEvent:CustomEvent = new CustomEvent('routeToLogin');
 
                 expect(error.status).toEqual(status);
                 expect(error.error).toEqual(errorMsg);
@@ -85,11 +85,12 @@ describe('ErrorInterceptor', () =>
         request.flush(errorMsg, {status: status, statusText: 'Error'});
     });
 
-    it(`should catch error status 403 - Forbidden`, () =>
+    it(`should show an alert when 403 - Forbidden is received`, () =>
     {
         const errorMsg:string = 'Forbidden';
         const status:number = 403;
-        let spy:Spy = spyOn(alertService, 'error');
+        const spy:Spy = spyOn(alertService, 'error');
+        const translationService:TranslationService = TestBed.get(TranslationService);
 
         httpClient.get<Data>(url).subscribe(
             () => fail(`should have failed with the ${status} error`),
@@ -98,11 +99,35 @@ describe('ErrorInterceptor', () =>
                 expect(error.status).toEqual(status);
                 expect(error.error).toEqual(errorMsg);
                 expect(spy).toHaveBeenCalled();
+                expect(spy).toHaveBeenCalledWith(translationService.translate('errorInterceptor.forbidden'));
             }
         );
 
         const request:TestRequest = httpTestingController.expectOne(url);
         request.flush(errorMsg, {status: status, statusText: 'Error'});
+    });
+
+    it(`should show an alert with the missing permissions when 403 - Forbidden with missing permissions is received`, () =>
+    {
+        const errorBody:{} = {error: {'missing_permissions': {test: {de: 'test'}}}};
+        const status:number = 403;
+        const alertSpy:Spy = spyOn(alertService, 'error');
+        const translationService:TranslationService = TestBed.get(TranslationService);
+        const translationSpy:Spy = spyOn(translationService, 'translate');
+
+        httpClient.get<Data>(url).subscribe(
+            () => fail(`should have failed with the ${status} error`),
+            (error:HttpErrorResponse) =>
+            {
+                expect(error.status).toEqual(status);
+                expect(error.error).toEqual(errorBody);
+                expect(alertSpy).toHaveBeenCalled();
+                expect(translationSpy).toHaveBeenCalledWith('errorInterceptor.missingPermissions');
+            }
+        );
+
+        const request:TestRequest = httpTestingController.expectOne(url);
+        request.flush(errorBody, {status: status, statusText: 'Error'});
     });
 
 
@@ -112,7 +137,7 @@ describe('ErrorInterceptor', () =>
         const errorMsg:string = 'Unauthenticated';
         const status:number = 403;
 
-        let spy:Spy = spyOn(console, 'error');
+        const spy:Spy = spyOn(console, 'error');
 
         httpClient.get<Data>(url).subscribe(
             () => fail(`should have failed with the ${status} error`),
