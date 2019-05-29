@@ -8,14 +8,17 @@ import {
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AlertService } from '../components/alert/alert.service';
-import { TranslationService } from 'angular-l10n';
+import {
+    LocaleService,
+    TranslationService
+} from 'angular-l10n';
 import { Injectable } from '@angular/core';
 import { DispatchHelper } from '../helpers/dispatch.helper';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor
 {
-    constructor(private alertService:AlertService, private translation:TranslationService)
+    constructor(private alertService:AlertService, private translation:TranslationService, private locale:LocaleService)
     {}
 
     public intercept(req:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>>
@@ -40,30 +43,10 @@ export class ErrorInterceptor implements HttpInterceptor
                 if(error.status === 403)
                 {
                     let errorMessage:string = this.translation.translate('errorInterceptor.forbidden');
+                    let missingPermissions:{ [key:string]:{ [lang:string]:string } } = error.error['error']['missing_permissions'];
+                    let translations:Array<string> = this.getMissingPermissionTranslations(missingPermissions, this.locale.getCurrentLanguage());
 
-                    let missingPermissions:{ [key:string]:{ [key:string]:string } } = error['missing_permissions'];
-
-                    let permissionTranslations:Array<{ [key:string]:string }> = [];
-
-                    Object.keys(missingPermissions).forEach((key:string) =>
-                    {
-                        if(missingPermissions.hasOwnProperty(key))
-                        {
-                            permissionTranslations.push(missingPermissions[key]);
-                        }
-                    });
-
-                    let errorCollection:Array<string> = [];
-
-                    permissionTranslations.forEach((translations:{ [key:string]:string }) =>
-                    {
-                        Object.keys(translations).forEach((key:string) =>
-                        {
-                            errorCollection.push(translations[key]);
-                        });
-                    });
-
-                    errorMessage += errorCollection.reverse().join('<br/> • ');
+                    errorMessage += translations.reverse().join('<br/> • ');
 
                     this.alertService.error(this.translation.translate(errorMessage));
                 }
@@ -71,5 +54,10 @@ export class ErrorInterceptor implements HttpInterceptor
                 return Observable.throw(error);
             })
         );
+    }
+
+    private getMissingPermissionTranslations(missingPermissions:{[key:string]:{[lang:string]:string}}, lang:string):Array<string>
+    {
+        return Object.values(missingPermissions).map((missingPermission:{lang:string}) => missingPermission[lang]);
     }
 }

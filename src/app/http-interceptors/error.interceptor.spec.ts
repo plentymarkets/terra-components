@@ -13,7 +13,11 @@ import {
 import { Data } from '@angular/router';
 import { AlertService } from '../components/alert/alert.service';
 import { MockTranslationModule } from '../testing/mock-translation-module';
-import { TranslationService } from 'angular-l10n';
+import {
+    LocaleService,
+    LocalizationModule,
+    TranslationService
+} from 'angular-l10n';
 import Spy = jasmine.Spy;
 
 describe('ErrorInterceptor', () =>
@@ -25,7 +29,7 @@ describe('ErrorInterceptor', () =>
     beforeEach(() =>
     {
         TestBed.configureTestingModule({
-            imports:   [HttpClientTestingModule, MockTranslationModule],
+            imports:   [HttpClientTestingModule, LocalizationModule],
             providers: [{
                 provide:  HTTP_INTERCEPTORS,
                 useClass: ErrorInterceptor,
@@ -41,7 +45,8 @@ describe('ErrorInterceptor', () =>
     it('should create an instance', () =>
     {
         let translationService:TranslationService = TestBed.get(TranslationService);
-        expect(new ErrorInterceptor(alertService, translationService)).toBeTruthy();
+        let localeService:LocaleService = TestBed.get(LocaleService);
+        expect(new ErrorInterceptor(alertService, translationService, localeService)).toBeTruthy();
     });
 
     it(`should catch error status 401 - Unauthorized`, () =>
@@ -137,8 +142,8 @@ describe('ErrorInterceptor', () =>
     {
         const url:string = '';
 
-        httpClient.get<Data>(url).subscribe(
-            (response:Response) =>
+        httpClient.get<string>(url).subscribe(
+            (response:string) =>
             {
                 expect(response).toEqual('testContent');
             },
