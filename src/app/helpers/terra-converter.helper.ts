@@ -1,14 +1,14 @@
-import { L10nDecimalPipe } from 'angular-l10n';
+import { LocaleService } from 'angular-l10n';
 
 export class TerraConverterHelper
 {
     /**
      * Automatically change the byte size to the corresponding range with the appropriate unit
      * @param {number} byteSize
-     * @param {string} defaultLocale
+     * @param localeService
      * @returns {string}
      */
-    public static convertAndFormatSize(byteSize:number, defaultLocale:string):string
+    public static convertAndFormatSize(byteSize:number, localeService:LocaleService):string
     {
         let GB_CONVERSION_FACTOR:number = 1073741824;
         let MB_CONVERSION_FACTOR:number = 1048576;
@@ -16,30 +16,29 @@ export class TerraConverterHelper
 
         if(byteSize >= GB_CONVERSION_FACTOR)
         {
-            return this.getLocaleDecimalValue(byteSize / GB_CONVERSION_FACTOR, defaultLocale) + ' GB';
+            return this.getLocaleDecimalValue(byteSize / GB_CONVERSION_FACTOR, localeService) + ' GB';
         }
         else if(byteSize >= MB_CONVERSION_FACTOR)
         {
-            return this.getLocaleDecimalValue(byteSize / MB_CONVERSION_FACTOR, defaultLocale) + ' MB';
+            return this.getLocaleDecimalValue(byteSize / MB_CONVERSION_FACTOR, localeService) + ' MB';
         }
         else if(byteSize >= KB_CONVERSION_FACTOR)
         {
-            return this.getLocaleDecimalValue(byteSize / KB_CONVERSION_FACTOR, defaultLocale) + ' KB';
+            return this.getLocaleDecimalValue(byteSize / KB_CONVERSION_FACTOR, localeService) + ' KB';
         }
         else
         {
-            return this.getLocaleDecimalValue(byteSize, defaultLocale) + ' B';
+            return this.getLocaleDecimalValue(byteSize, localeService) + ' B';
         }
     }
 
     /**
      * @param {number} value
-     * @param {string} defaultLocale
+     * @param localeService
      * @returns {string}
      */
-    public static getLocaleDecimalValue(value:number, defaultLocale:string):string
+    public static getLocaleDecimalValue(value:number, localeService:LocaleService):string
     {
-        let pipe:L10nDecimalPipe = new L10nDecimalPipe();
-        return pipe.transform(value, defaultLocale, '1.0-2'); // max 2 digits after the comma
+        return localeService.formatDecimal(value, '1.0-2'); // max 2 digits after the comma
     }
 }

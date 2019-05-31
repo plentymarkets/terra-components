@@ -3,15 +3,17 @@ import { TerraUploadItem } from './model/terra-upload-item';
 import { TerraUploadQueue } from './model/terra-upload-queue';
 import { Http } from '@angular/http';
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
-import { Observable } from 'rxjs/Observable';
 import { createS3StorageObject } from './model/s3-storage-object.interface';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
 import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseMetadataStorageService } from './terra-base-metadata-storage.interface';
 import { tap } from 'rxjs/operators';
+import {
+    BehaviorSubject,
+    Observable
+} from 'rxjs';
 
 @Injectable()
 export class TerraFrontendStorageService extends TerraBaseMetadataStorageService

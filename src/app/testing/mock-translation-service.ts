@@ -1,6 +1,7 @@
-import { Observable } from 'rxjs';
-import { of } from 'rxjs/observable/of';
-import { TranslationService } from 'angular-l10n';
+import {
+    Observable,
+    of
+} from 'rxjs';
 
 /**
  * based on https://github.com/robisim74/angular-l10n/blob/angular_v5/src/services/translation.service.ts

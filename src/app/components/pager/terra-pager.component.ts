@@ -7,9 +7,10 @@ import {
 } from '@angular/core';
 import { TerraPagerInterface } from './data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-select-box.interface';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { terraPagerDefaultPagingSizes } from './data/terra-pager-default-paging-sizes';
 import { Language } from 'angular-l10n';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
     selector: 'terra-pager',
@@ -40,7 +41,7 @@ export class TerraPagerComponent implements OnInit
 
     public ngOnInit():void
     {
-        this.pagingClicks.debounceTime(400).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
+        this.pagingClicks.pipe(debounceTime(400)).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
 
         if(!this.inputDefaultPagingSize)
         {
