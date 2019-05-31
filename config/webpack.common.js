@@ -91,7 +91,6 @@ module.exports = {
             jQuery: "jquery",
             "window.jQuery": "jquery",
             "window.Tether": 'tether',
-            'window.Quill': 'quill',
             Alert: "exports-loader?Alert!bootstrap/js/dist/alert",
             Button: "exports-loader?Button!bootstrap/js/dist/button",
             Carousel: "exports-loader?Carousel!bootstrap/js/dist/carousel",

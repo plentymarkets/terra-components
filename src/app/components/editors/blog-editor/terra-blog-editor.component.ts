@@ -5,11 +5,8 @@ import {
 import { TranslationService } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
-import * as Quill from 'quill';
-import ImageResize from 'quill-image-resize-module';
 import { AceEditorConfig } from '../config/ace-editor.config';
 import { AceEditorOptionsInterface } from '../config/ace-editor-options.interface';
-Quill.register('modules/imageResize', ImageResize);
 
 function imageHandler() {
     var range = this.quill.getSelection();
@@ -42,15 +39,6 @@ export class TerraBlogEditorComponent extends TerraBaseEditorComponent
 
         const self:TerraBlogEditorComponent = this;
         this.modules = {
-            imageResize: {
-                // ...
-                displayStyles: {
-                    backgroundColor: 'black',
-                    border: 'none',
-                    color: 'white'
-                    // other camelCase styles for size display
-                }
-            },
             toolbar: {
                 container: [
                     ['bold',
