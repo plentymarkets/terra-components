@@ -8,14 +8,6 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 import { AceEditorConfig } from '../config/ace-editor.config';
 import { AceEditorOptionsInterface } from '../config/ace-editor-options.interface';
 
-function imageHandler() {
-    var range = this.quill.getSelection();
-    var value = prompt('What is the image URL');
-    if(value){
-        this.quill.insertEmbed(range.index, 'image', value, 'user');
-    }
-}
-
 @Component({
     selector:  'terra-blog-editor',
     template:  require('./terra-blog-editor.component.html'),
@@ -38,6 +30,23 @@ export class TerraBlogEditorComponent extends TerraBaseEditorComponent
         super(translation, myElement);
 
         const self:TerraBlogEditorComponent = this;
+
+        function codeHandler():void
+        {
+            // 'this' points to the toolbar instance of the quill editor.
+            self.showCodeView = !self.showCodeView;
+        }
+
+        function imageHandler():void
+        {
+            let range:any = this.quill.getSelection();
+            let value:string = prompt('Enter the image URL');
+            if(value)
+            {
+                this.quill.insertEmbed(range.index, 'image', value, 'user');
+            }
+        }
+
         this.modules = {
             toolbar: {
                 container: [
@@ -52,13 +61,7 @@ export class TerraBlogEditorComponent extends TerraBaseEditorComponent
                      {'script': 'super'}],
                     // superscript/subscript
                     [{
-                        'header': [1,
-                                   2,
-                                   3,
-                                   4,
-                                   5,
-                                   6,
-                                   false]
+                        'header': [1, 2, 3, 4, 5, 6, false]
                     }],
                     // link and image, video
                     ['link', 'image', 'video'],
@@ -66,11 +69,7 @@ export class TerraBlogEditorComponent extends TerraBaseEditorComponent
                 ],
                 handlers: {
                     image: imageHandler,
-                    'code-block': function():void
-                                  {
-                                      // 'this' points to the toolbar instance of the quill editor.
-                                      self.showCodeView = !self.showCodeView;
-                                  }
+                    'code-block': codeHandler
                 }
             },
         };
