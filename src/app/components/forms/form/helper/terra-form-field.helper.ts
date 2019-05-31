@@ -19,6 +19,7 @@ import { TerraControlTypeEnum } from '../../dynamic-form/enum/terra-control-type
 import { TerraFormFieldInputText } from '../../dynamic-form/data/terra-form-field-input-text';
 import { TerraFormFieldSelectBox } from '../../dynamic-form/data/terra-form-field-select-box';
 import * as _ from 'lodash';
+import { TerraKeyValueInterface } from '../../../../models/terra-key-value.interface';
 
 export class TerraFormFieldHelper
 {
@@ -245,26 +246,78 @@ export class TerraFormFieldHelper
     }
 
     /**
-     * Recursively parses the defaultValue of a formField and it's children.
-     * @param field
+     * @description Determines the default value of a single #formField. Also considers children of a #formField if no defaultValue is given.
+     * @param formField
+     * @param skipList - optional parameter that skips the list check and returns the defaultValue of the single entry, not a list.
      */
-    public static parseDefaultValue(field:TerraFormFieldInterface):any
+    public static parseDefaultValue(formField:TerraFormFieldInterface, skipList:boolean = false):any
     {
-        if(field.isList)
+        // check if a default value is given and can be returned
+        if(!isNullOrUndefined(formField.defaultValue))
         {
-            return this.cloneDefaultValue(field.defaultValue) || [];
+            if((formField.isList && skipList && !Array.isArray(formField.defaultValue)) || // list should be skipped. Default value is not a list.
+               (formField.isList && !skipList && Array.isArray(formField.defaultValue)) || // list expected. List given.
+               (!formField.isList && !isNullOrUndefined(formField.children) &&
+                isObject(formField.defaultValue) && !Array.isArray(formField.defaultValue)) || // object expected. Object given. No Array!
+               (!formField.isList && isNullOrUndefined(formField.children))) // anything else.. No further constraints given.
+            {
+                return this.cloneDefaultValue(formField.defaultValue); // return the given default value - cloned if necessary
+            }
         }
 
-        if(!isNullOrUndefined(field.children))
+        // -> default value cannot be used. It violates the constraints above. Try to compose it out of other given information.
+        // if a list was expected and a list may be returned, create a list.
+        if(formField.isList && !skipList)
         {
-            let result:any = {};
-            Object.keys(field.children).forEach((fKey:string) =>
+            if(!isNullOrUndefined(formField.defaultValue))
             {
-                result[fKey] = this.parseDefaultValue(field.children[fKey]);
-            });
-            return result;
+                console.error(
+                    `Since the formField's 'isList' property is set, a defaultValue of type array was expected.`,
+                    formField.defaultValue,
+                    `was given instead.`
+                );
+            }
+            // create a list out of the default value of a single entry.
+            const min:number = this.getListRange(formField.isList)[0];
+            const defaultValue:any = this.parseDefaultValue(formField, true);
+
+            return Array(min).fill(defaultValue);
         }
-        return isNullOrUndefined(field.defaultValue) ? null : this.cloneDefaultValue(field.defaultValue);
+
+        // No list expected. Try to parse the children to compose a default value
+        if(!isNullOrUndefined(formField.children))
+        {
+            if(!isNullOrUndefined(formField.defaultValue))
+            {
+                console.error(
+                    `Since the formField has children, a defaultValue of type Object was expected.`,
+                    formField.defaultValue,
+                    `was given instead.`
+                );
+            }
+            return this.parseDefaultValues(formField.children);
+        }
+
+        return null; // TODO: null as fallback??
+    }
+
+    /**
+     * @description Determines the default values for a set of #formFields.
+     * @param formFields
+     */
+    public static parseDefaultValues(formFields:TerraKeyValueInterface<TerraFormFieldInterface>):any
+    {
+        if(isNullOrUndefined(formFields))
+        {
+            return;
+        }
+        let values:TerraKeyValueInterface<any> = {};
+        Object.keys(formFields).forEach((formFieldKey:string) =>
+        {
+            let formField:TerraFormFieldInterface = formFields[formFieldKey];
+            values[formFieldKey] = this.parseDefaultValue(formField);
+        });
+        return values;
     }
 
     /**
@@ -273,7 +326,7 @@ export class TerraFormFieldHelper
      */
     private static cloneDefaultValue(value:any):any
     {
-        if(isObject(value) || isArray(value))
+        if(isObject(value) || Array.isArray(value))
         {
             return _.cloneDeep((value));
         }
