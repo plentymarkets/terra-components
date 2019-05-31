@@ -1,3 +1,9 @@
+<a name="3.14.1"></a>
+# 3.14.1 (Unreleased)
+
+### Bug Fixes
+* **http-interceptors** fix logging errors to console. 
+
 <a name="3.14.0"></a>
 # 3.14.0 (29.05.2019)
 

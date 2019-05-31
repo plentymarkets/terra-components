@@ -32,7 +32,7 @@ export class ErrorInterceptor implements HttpInterceptor
             {
                 if(process.env.ENV === 'development')
                 {
-                    console.error('status = ' + error.status, 'error = ' + error.error);
+                    console.error(error);
                 }
 
                 // http status 401 Unauthorized
