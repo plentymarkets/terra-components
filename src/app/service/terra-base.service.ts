@@ -6,7 +6,6 @@ import {
     Response,
     URLSearchParams
 } from '@angular/http';
-import 'rxjs/add/operator/map';
 import {
     Observable,
     of,
