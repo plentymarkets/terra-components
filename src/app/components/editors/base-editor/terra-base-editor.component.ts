@@ -11,7 +11,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
-import { noop } from 'rxjs/util/noop';
+import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-base-editor',

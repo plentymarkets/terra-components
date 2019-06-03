@@ -22,8 +22,8 @@ import {
 } from '@angular/forms';
 import { Language } from 'angular-l10n';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
-import { noop } from 'rxjs/util/noop';
 import { TerraFormHelper } from '../helper/terra-form.helper';
+import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-form-entry-list',
