@@ -1,8 +1,11 @@
-<a name="Unreleased"></a>
-# 3.15.X (Unreleased)
+<a name="3.15.0"></a>
+# 3.15.0 (Unreleased)
 
 ### Features
 * **tslint** add new linting rules
+
+### Bug Fixes
+* **http-interceptors** fix logging errors to console. 
 
 <a name="3.14.0"></a>
 # 3.14.0 (29.05.2019)
