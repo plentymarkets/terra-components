@@ -328,6 +328,35 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     }
 
+    public onSelectionChange(rows:Array<TerraSimpleTableRowInterface<TerraStorageObject>>):void
+    {
+        this.selectedStorageObjects = rows.map((row:TerraSimpleTableRowInterface<TerraStorageObject>) =>
+        {
+            return row.value;
+        });
+    }
+
+    public onFileSelect(event:Event):void
+    {
+        let target:any = event.target || event.srcElement;
+
+        if(!isNullOrUndefined(target) && !isNullOrUndefined(target.files))
+        {
+            this.uploadFiles(target.files);
+
+            // unset value of file input to allow selecting same file again
+            (<HTMLInputElement> event.target).value = '';
+        }
+    }
+
+    public onFileDrop(event:DragEvent):void
+    {
+        if(!isNullOrUndefined(event.dataTransfer.files))
+        {
+            this.uploadFiles(event.dataTransfer.files);
+        }
+    }
+
     protected createDirectory():void
     {
         let path:string = PathHelper.join(
@@ -368,6 +397,41 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             }
             this.selectNode.emit(this.currentStorageRoot);
         });
+    }
+
+    protected onRowClick(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
+    {
+        let storageObject:TerraStorageObject = row.value;
+        if(storageObject.isDirectory)
+        {
+            this.currentStorageRoot = storageObject;
+            this.selectNode.emit(storageObject);
+        }
+    }
+
+    protected onActiveRowChange(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
+    {
+        let storageObject:TerraStorageObject = row.value;
+        this.showOrHideImagePreview(storageObject);
+        if(isNullOrUndefined(this.imagePreviewTimeout))
+        {
+            clearTimeout(this.imagePreviewTimeout);
+        }
+        let debounceFn:Function = ():void =>
+        {
+
+            if(!isNullOrUndefined(storageObject) && FileTypeHelper.isWebImage(storageObject.key))
+            {
+                this.imagePreviewObject = storageObject;
+            }
+            else
+            {
+                this.imagePreviewObject = null;
+            }
+
+            this.parentFileBrowser.outputSelectedChange.emit(storageObject);
+        };
+        this.imagePreviewTimeout = setTimeout(debounceFn.bind(this), 500);
     }
 
     private renderFileList():void
@@ -585,16 +649,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                || PathHelper.isDirectory(filename);
     }
 
-    protected onRowClick(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
-    {
-        let storageObject:TerraStorageObject = row.value;
-        if(storageObject.isDirectory)
-        {
-            this.currentStorageRoot = storageObject;
-            this.selectNode.emit(storageObject);
-        }
-    }
-
     private showOrHideImagePreview(storageObject:TerraStorageObject):void
     {
         if(!isNullOrUndefined(storageObject) && FileTypeHelper.isWebImage(storageObject.key))
@@ -607,60 +661,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         }
     }
 
-    protected onActiveRowChange(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
-    {
-        let storageObject:TerraStorageObject = row.value;
-        this.showOrHideImagePreview(storageObject);
-        if(isNullOrUndefined(this.imagePreviewTimeout))
-        {
-            clearTimeout(this.imagePreviewTimeout);
-        }
-        let debounceFn:Function = ():void =>
-        {
-
-            if(!isNullOrUndefined(storageObject) && FileTypeHelper.isWebImage(storageObject.key))
-            {
-                this.imagePreviewObject = storageObject;
-            }
-            else
-            {
-                this.imagePreviewObject = null;
-            }
-
-            this.parentFileBrowser.outputSelectedChange.emit(storageObject);
-        };
-        this.imagePreviewTimeout = setTimeout(debounceFn.bind(this), 500);
-    }
-
-    public onSelectionChange(rows:Array<TerraSimpleTableRowInterface<TerraStorageObject>>):void
-    {
-        this.selectedStorageObjects = rows.map((row:TerraSimpleTableRowInterface<TerraStorageObject>) =>
-        {
-            return row.value;
-        });
-    }
-
-    public onFileSelect(event:Event):void
-    {
-        let target:any = event.target || event.srcElement;
-
-        if(!isNullOrUndefined(target) && !isNullOrUndefined(target.files))
-        {
-            this.uploadFiles(target.files);
-
-            // unset value of file input to allow selecting same file again
-            (<HTMLInputElement> event.target).value = '';
-        }
-    }
-
-    public onFileDrop(event:DragEvent):void
-    {
-        if(!isNullOrUndefined(event.dataTransfer.files))
-        {
-            this.uploadFiles(event.dataTransfer.files);
-        }
-    }
-
     private uploadFiles(fileList:FileList | Array<File>):void
     {
         let uploadPrefix:string = this.currentStorageRoot ? this.currentStorageRoot.key : '/';
@@ -670,5 +670,4 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 uploadPrefix
             );
     }
-
 }

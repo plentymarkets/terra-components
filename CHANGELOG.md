@@ -1,5 +1,8 @@
-<a name="3.14.1"></a>
-# 3.14.1 (Unreleased)
+<a name="3.15.0"></a>
+# 3.15.0 (Unreleased)
+
+### Features
+* **tslint** add new linting rules
 
 ### Bug Fixes
 * **http-interceptors** fix logging errors to console. 

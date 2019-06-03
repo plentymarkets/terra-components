@@ -16,6 +16,7 @@ import { TerraDataTableComponent } from '../terra-data-table.component';
 })
 export class TableRowComponent
 {
+    /* tslint:disable-next-line:no-input-rename */
     @Input('tcTableRow')
     public row:TerraDataTableRowInterface<any>;
 
