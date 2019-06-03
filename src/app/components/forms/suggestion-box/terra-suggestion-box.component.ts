@@ -22,6 +22,7 @@ import {
 } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraBaseData } from '../../data/terra-base.data';
+import { noop } from 'rxjs/util/noop';
 
 const MAX_LASTLY_USED_ENTRIES:number = 5;
 
@@ -84,6 +85,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     @ViewChildren('renderedListBoxValues')
     private renderedListBoxValues:QueryList<ElementRef>;
 
+    private onTouchedCallback:() => void = noop;
+
+    private onChangeCallback:(_:any) => void = noop;
+
     constructor(private elementRef:ElementRef)
     {}
 
@@ -129,10 +134,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         this.onTouchedCallback = fn;
     }
 
-    private onTouchedCallback:() => void = ():void => undefined;
-
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
-
     public writeValue(value:any):void
     {
         this.value = value;
@@ -157,12 +158,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         this.tmpSelectedValue = this.selectedValue;
     }
 
-    protected onClick(evt:Event):void
-    {
-        evt.stopPropagation(); // prevents the click listener on the document to be fired right after
-        this.toggleOpen = !this.toggleOpen;
-    }
-
     public set toggleOpen(value:boolean)
     {
         if(this._toggleOpen !== value && value === true)
@@ -181,63 +176,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     public get toggleOpen():boolean
     {
         return this._toggleOpen;
-    }
-
-    private clickedOutside(event:Event):void
-    {
-        if(!this.elementRef.nativeElement.contains(event.target))
-        {
-            this.toggleOpen = false;
-        }
-    }
-
-    private select(value:TerraSuggestionBoxValueInterface):void
-    {
-        // check if value is available
-        if(!this.displayListBoxValues.find((elem:TerraSuggestionBoxValueInterface):boolean => elem === value))
-        {
-            return;
-        }
-
-        // update selected value
-        this.selectedValue = value;
-
-        // update last selected values
-        if(this.inputWithRecentlyUsed)
-        {
-            this.updateLastSelectedValues();
-        }
-
-        // update temp selected value
-        this.tmpSelectedValue = this.selectedValue;
-    }
-
-    private updateLastSelectedValues():void
-    {
-        // check if newly selected value has been selected lastly
-        let valueSelected:TerraSuggestionBoxValueInterface =
-            this.lastSelectedValues.find((value:TerraSuggestionBoxValueInterface) =>
-                value.caption === this.selectedValue.caption &&
-                value.value === this.selectedValue.value
-            );
-
-        // add value to the last selected values, if it is not already added
-        if(isNullOrUndefined(valueSelected))
-        {
-            let length:number = this.lastSelectedValues.unshift(
-                {
-                    caption: this.selectedValue.caption,
-                    value:   this.selectedValue.value
-                }
-            );
-
-            // check if length of the array exceeds the maximum amount of "lastly used" entries
-            if(length > MAX_LASTLY_USED_ENTRIES)
-            {
-                // remove last element of the array
-                this.lastSelectedValues.pop();
-            }
-        }
     }
 
     public onChange():void
@@ -282,6 +220,22 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
         // update selected value
         this.setSelectedValue(this.displayListBoxValues.find((val:TerraSuggestionBoxValueInterface) => val.caption === searchString), true);
+    }
+
+    public set selectedValue(value:TerraSuggestionBoxValueInterface)
+    {
+        this.setSelectedValue(value);
+    }
+
+    public get selectedValue():TerraSuggestionBoxValueInterface
+    {
+        return this._selectedValue;
+    }
+
+    protected onClick(evt:Event):void
+    {
+        evt.stopPropagation(); // prevents the click listener on the document to be fired right after
+        this.toggleOpen = !this.toggleOpen;
     }
 
     protected onKeyDown(event:KeyboardEvent):void
@@ -360,23 +314,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         event.stopPropagation();
     }
 
-    private focusSelectedElement():void
-    {
-        // get the temporary selected DOM element
-        const selectedElementRef:ElementRef = this.renderedListBoxValues.find((value:ElementRef) =>
-        {
-            return value.nativeElement.classList.contains('selected');
-        });
-
-        if(!isNullOrUndefined(selectedElementRef))
-        {
-            const spanElement:HTMLSpanElement = selectedElementRef.nativeElement;
-
-            // scroll to the selected element
-            spanElement.parentElement.scrollTop = spanElement.offsetTop - spanElement.parentElement.offsetTop;
-        }
-    }
-
     /**
      * workaround to prevent calling the select() method on the label click
      * @param event
@@ -407,9 +344,78 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         this._textInputValue = value;
     }
 
-    public set selectedValue(value:TerraSuggestionBoxValueInterface)
+    private clickedOutside(event:Event):void
     {
-        this.setSelectedValue(value);
+        if(!this.elementRef.nativeElement.contains(event.target))
+        {
+            this.toggleOpen = false;
+        }
+    }
+
+    private select(value:TerraSuggestionBoxValueInterface):void
+    {
+        // check if value is available
+        if(!this.displayListBoxValues.find((elem:TerraSuggestionBoxValueInterface):boolean => elem === value))
+        {
+            return;
+        }
+
+        // update selected value
+        this.selectedValue = value;
+
+        // update last selected values
+        if(this.inputWithRecentlyUsed)
+        {
+            this.updateLastSelectedValues();
+        }
+
+        // update temp selected value
+        this.tmpSelectedValue = this.selectedValue;
+    }
+
+    private updateLastSelectedValues():void
+    {
+        // check if newly selected value has been selected lastly
+        let valueSelected:TerraSuggestionBoxValueInterface =
+            this.lastSelectedValues.find((value:TerraSuggestionBoxValueInterface) =>
+                value.caption === this.selectedValue.caption &&
+                value.value === this.selectedValue.value
+            );
+
+        // add value to the last selected values, if it is not already added
+        if(isNullOrUndefined(valueSelected))
+        {
+            let length:number = this.lastSelectedValues.unshift(
+                {
+                    caption: this.selectedValue.caption,
+                    value:   this.selectedValue.value
+                }
+            );
+
+            // check if length of the array exceeds the maximum amount of "lastly used" entries
+            if(length > MAX_LASTLY_USED_ENTRIES)
+            {
+                // remove last element of the array
+                this.lastSelectedValues.pop();
+            }
+        }
+    }
+
+    private focusSelectedElement():void
+    {
+        // get the temporary selected DOM element
+        const selectedElementRef:ElementRef = this.renderedListBoxValues.find((value:ElementRef) =>
+        {
+            return value.nativeElement.classList.contains('selected');
+        });
+
+        if(!isNullOrUndefined(selectedElementRef))
+        {
+            const spanElement:HTMLSpanElement = selectedElementRef.nativeElement;
+
+            // scroll to the selected element
+            spanElement.parentElement.scrollTop = spanElement.offsetTop - spanElement.parentElement.offsetTop;
+        }
     }
 
     private setSelectedValue(value:TerraSuggestionBoxValueInterface, onChange?:boolean):void
@@ -436,10 +442,5 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
                 this.textInputValue = !isNullOrUndefined(this._selectedValue) ? this._selectedValue.caption : '';
             }
         }
-    }
-
-    public get selectedValue():TerraSuggestionBoxValueInterface
-    {
-        return this._selectedValue;
     }
 }
