@@ -21,7 +21,7 @@ import { TerraFileBrowserComponent } from '../terra-file-browser.component';
 import { TerraFileBrowserService } from '../terra-file-browser.service';
 import {
     DefaultLocale,
-    L10nDatePipe,
+    Language,
     LocaleService,
     TranslationService
 } from 'angular-l10n';
@@ -50,6 +50,9 @@ import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/te
 })
 export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
 {
+    @Language()
+    public lang:string;
+
     // @TODO rename to storageService:TerraBaseStorageService
     @Input()
     public inputStorageServices:Array<TerraBaseStorageService> = null;

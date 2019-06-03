@@ -15,6 +15,7 @@ import { TerraStorageObject } from '../../../file-browser/model/terra-storage-ob
 import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.component';
 import { TerraOverlayButtonInterface } from '../../../layouts/overlay/data/terra-overlay-button.interface';
 import { StringHelper } from '../../../../helpers/string.helper';
+import { Language } from 'angular-l10n';
 
 let nextId:number = 0;
 
@@ -32,6 +33,9 @@ let nextId:number = 0;
 })
 export class TerraFileInputComponent extends TerraInputComponent
 {
+    @Language()
+    public lang:string;
+
     @Input()
     public inputShowPreview:boolean = false;
 

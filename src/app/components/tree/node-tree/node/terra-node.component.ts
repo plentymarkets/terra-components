@@ -6,6 +6,7 @@ import {
 import { TerraNodeInterface } from '../data/terra-node.interface';
 import { TerraNodeTreeConfig } from '../data/terra-node-tree.config';
 import { isNullOrUndefined } from 'util';
+import { Language } from 'angular-l10n';
 
 @Component({
     selector: 'terra-node',
@@ -14,6 +15,9 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraNodeComponent<D> implements OnInit
 {
+    @Language()
+    public lang:string;
+
     /**
      * @description The node interface.
      */
