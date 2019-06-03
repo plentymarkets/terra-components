@@ -19,7 +19,7 @@ import {
 } from 'ngx-bootstrap';
 import {
     L10nLoader,
-    TranslationModule
+    LocalizationModule
 } from 'angular-l10n';
 import { QuillModule } from 'ngx-quill';
 import { TerraComponentsComponent } from './terra-components.component';
@@ -67,13 +67,13 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        ModalModule.forRoot(),
         HttpModule,
         HttpClientModule,
+        LocalizationModule.forRoot(l10nConfig),
+        ModalModule.forRoot(),
         TooltipModule.forRoot(),
         AlertModule.forRoot(),
         ButtonsModule.forRoot(),
-        TranslationModule.forRoot(l10nConfig),
         MyDatePickerModule,
         AceEditorModule,
         TerraInteractModule,
