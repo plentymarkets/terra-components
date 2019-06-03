@@ -12,7 +12,8 @@ import { TerraBaseMetadataStorageService } from './terra-base-metadata-storage.i
 import { tap } from 'rxjs/operators';
 import {
     BehaviorSubject,
-    Observable
+    Observable,
+    from
 } from 'rxjs';
 
 @Injectable()
@@ -159,7 +160,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
     {
         if(this.metadataCache.hasOwnProperty(key))
         {
-            return Observable.from([this.metadataCache[key]]);
+            return from([this.metadataCache[key]]);
         }
 
         this.setAuthorization();
