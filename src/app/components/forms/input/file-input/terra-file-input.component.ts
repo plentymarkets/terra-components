@@ -33,9 +33,6 @@ let nextId:number = 0;
 })
 export class TerraFileInputComponent extends TerraInputComponent
 {
-    @Language()
-    public lang:string;
-
     @Input()
     public inputShowPreview:boolean = false;
 
@@ -67,6 +64,9 @@ export class TerraFileInputComponent extends TerraInputComponent
 
     public primaryOverlayButton:TerraOverlayButtonInterface;
     public secondaryOverlayButton:TerraOverlayButtonInterface;
+
+    @Language()
+    protected lang:string;
 
     protected id:string;
     protected translationPrefix:string = 'terraFileInput';

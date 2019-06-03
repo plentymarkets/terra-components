@@ -50,9 +50,6 @@ import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/te
 })
 export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
 {
-    @Language()
-    public lang:string;
-
     // @TODO rename to storageService:TerraBaseStorageService
     @Input()
     public inputStorageServices:Array<TerraBaseStorageService> = null;
@@ -67,6 +64,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     public selectNode:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
     public imagePreviewObject:TerraStorageObject;
+
+    @Language()
+    protected lang:string;
 
     protected translationPrefix:string = 'terraFileBrowser';
 

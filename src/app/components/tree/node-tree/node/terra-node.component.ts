@@ -15,9 +15,6 @@ import { Language } from 'angular-l10n';
 })
 export class TerraNodeComponent<D> implements OnInit
 {
-    @Language()
-    public lang:string;
-
     /**
      * @description The node interface.
      */
@@ -29,6 +26,9 @@ export class TerraNodeComponent<D> implements OnInit
      */
     @Input()
     public inputConfig:TerraNodeTreeConfig<D>;
+
+    @Language()
+    protected lang:string;
 
     protected tooltip:string;
     protected tooltipPlacement:string = 'right';
