@@ -22,6 +22,7 @@ import { noop } from 'rxjs/util/noop';
 import { TerraFormHelper } from './helper/terra-form.helper';
 import { FormTypeMapInterface } from './model/form-type-map.interface';
 import { FormTypeMap } from './model/form-type-map';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -45,9 +46,13 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     @Input()
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface } | Array<TerraFormFieldBase<any>>)
     {
+        if(!isNullOrUndefined(this.valueChangesSubscription))
+        {
+            this.valueChangesSubscription.unsubscribe();
+        }
         this.formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
         this._formGroup = TerraFormHelper.parseReactiveForm(this.formFields, this.values);
-        this._formGroup.valueChanges.subscribe((changes:Data) =>
+        this.valueChangesSubscription = this._formGroup.valueChanges.subscribe((changes:Data) =>
         {
             Object.keys(changes).forEach((key:string) =>
             {
@@ -96,6 +101,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
 
     private formFields:{ [key:string]:TerraFormFieldInterface };
     private _formGroup:FormGroup = new FormGroup({});
+    private valueChangesSubscription:Subscription;
 
     private onChangeCallback:(value:any) => void = noop;
     private onTouchedCallback:() => void = noop;
@@ -135,11 +141,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     {
         if(isNullOrUndefined(values))
         {
-            let defaultValues:any = {};
-            Object.keys(this.inputFormFields).forEach((key:string) =>
-            {
-                defaultValues[key] = TerraFormFieldHelper.parseDefaultValue(this.inputFormFields[key]);
-            });
+            let defaultValues:any = TerraFormFieldHelper.parseDefaultValues(this.formFields);
             this.values = defaultValues;
             this.scope.data = defaultValues;
             this.formGroup.reset(defaultValues);

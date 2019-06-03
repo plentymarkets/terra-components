@@ -1,4 +1,4 @@
-/* tslint:disable:max-function-line-count max-file-line-count max-depth */
+/* tslint:disable:max-function-line-count max-file-line-count max-depth member-ordering*/
 // Adding disable only because of the deprecated state of the component!
 import {
     Component,

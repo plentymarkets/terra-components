@@ -41,6 +41,7 @@ describe('TerraTaglistComponent', () =>
         expect(component.inputTagList).toBeUndefined();
         expect(component.isReadOnly).toBeFalsy();
         expect(component.onCloseTag).toBeDefined();
+        expect(component.closeTag).toBeDefined();
     });
 
     describe(`with tags`, () =>
@@ -104,13 +105,19 @@ describe('TerraTaglistComponent', () =>
 
         it(`should emit on #onCloseTag if a tag component emits on its #onCloseTag-Emitter`, () =>
         {
+            let tagToCloseDeprecated:number = 0;
             let tagToClose:number = 0;
-            component.onCloseTag.subscribe((tagId:number) => tagToClose = tagId);
+            component.onCloseTag.subscribe((tagId:number) => tagToCloseDeprecated = tagId);
+            component.closeTag.subscribe((tagId:number) => tagToClose = tagId);
 
             let tags:Array<TerraTagComponent> = tagDebugElements.map((debugElement:DebugElement) => debugElement.componentInstance);
+            let tagDeprecated:TerraTagComponent = tags[0];
             let tag:TerraTagComponent = tags[0];
-            tag.onCloseTag.emit(tag.tagId);
+            tagDeprecated.onCloseTag.emit(tagDeprecated.tagId);
+            tag.closeTag.emit(tag.tagId);
 
+            expect(tagToCloseDeprecated).not.toBe(0);
+            expect(tagToCloseDeprecated).toBe(tagDeprecated.tagId);
             expect(tagToClose).not.toBe(0);
             expect(tagToClose).toBe(tag.tagId);
         });
