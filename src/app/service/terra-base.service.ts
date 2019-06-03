@@ -21,9 +21,11 @@ import { TerraBaseParameterInterface } from '../components/data/terra-base-param
 import { tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { TerraQueryEncoder } from './data/terra-query-encoder';
+import { DispatchHelper } from '../helpers/dispatch.helper';
 
 /**
  * @author mfrank
+ * @deprecated use angular's [HttpClient](https://angular.io/guide/http) instead.
  */
 @Injectable()
 // Please keep the todo comments until TerraBaseService refactoring
@@ -111,15 +113,7 @@ export class TerraBaseService
                 this.handleException(error);
             }
 
-            if(error.status === 403 && this.getErrorClass(error) === 'UIHashExpiredException')
-            {
-                let routeToLoginEvent:CustomEvent = new CustomEvent('CustomEvent');
-
-                routeToLoginEvent.initCustomEvent('routeToLogin', true, true, {});
-
-                this.dispatchEvent(routeToLoginEvent);
-            }
-            else if(error.status === 403) // unauthorized
+            if(error.status === 403) // Forbidden
             {
                 let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage(error);
 
@@ -141,69 +135,13 @@ export class TerraBaseService
                 }
             }
             // END Very unclean workaround!
-            else if(error.status === 401) // unauthenticated
+            else if(error.status === 401) // Unauthorized
             {
-                let loginEvent:CustomEvent = new CustomEvent('login');
-                // Workaround for plugins in Angular (loaded via iFrame)
-                this.dispatchEvent(loginEvent);
+                DispatchHelper.dispatchEvent(new CustomEvent('routeToLogin'));
             }
 
             return Observable.throw(error);
         }).finally(() => this.terraLoadingSpinnerService.stop());
-    }
-
-    private dispatchEvent(eventToDispatch:Event | CustomEvent):void
-    {
-        if(!isNullOrUndefined(window.parent))
-        {
-            // workaround for plugins in GWT (loaded via iFrame)
-            if(!isNullOrUndefined(window.parent.window.parent))
-            {
-                window.parent.window.parent.window.dispatchEvent(eventToDispatch);
-            }
-            else
-            {
-                window.parent.window.dispatchEvent(eventToDispatch);
-            }
-        }
-        else
-        {
-            window.dispatchEvent(eventToDispatch);
-        }
-    }
-
-    // TODO use a meaningful error type
-    private getErrorMessage(error:any):string
-    {
-        try
-        {
-            let errorMessage:string;
-
-            if(!isNullOrUndefined(error.json().error))
-            {
-                errorMessage = error.json().error.message;
-            }
-
-            return errorMessage;
-        }
-        catch(e)
-        {
-            return null;
-        }
-    }
-
-    // TODO use a meaningful error type
-    private getErrorClass(error:any):string
-    {
-        try
-        {
-            let errorClass:string = error.json().class;
-            return errorClass;
-        }
-        catch(e)
-        {
-            return null;
-        }
     }
 
     /**
@@ -224,79 +162,6 @@ export class TerraBaseService
                 return 'Error';
             default:
                 return 'Error';
-        }
-    }
-
-    /**
-     * Handles exceptions that are returned from the server on a failed rest call
-     * @param exception
-     */
-    // TODO rename exception to error and use a meaningful type
-    private handleException(exception:any):void
-    {
-        if(!isObject(exception._body))
-        {
-            this._alert.addAlert({
-                msg:              this.getErrorString() + ': ' + exception._body,
-                type:             'danger',
-                dismissOnTimeout: 0
-            });
-            return;
-        }
-
-        // parse response object
-        let response:any = JSON.parse(exception._body);
-
-        // check which exception type has been received
-        if(!isNullOrUndefined(response.error) && !isNullOrUndefined(response.message))
-        {
-            if(this.isPlugin)
-            {
-                this._alert.addAlertForPlugin({
-                    msg:              this.getErrorString() + ': ' + response.message,
-                    type:             'danger',
-                    dismissOnTimeout: 0
-                });
-            }
-            else
-            {
-                this._alert.addAlert({
-                    msg:              this.getErrorString() + ': ' + response.message,
-                    type:             'danger',
-                    dismissOnTimeout: 0
-                });
-            }
-        }
-        // return if error code is null
-        else if(isNullOrUndefined(response.error) || isNull(response.error.code))
-        {
-            return;
-        }
-        // default exception type
-        else
-        {
-            // parse exception string
-            let error:Exception = response.error;
-
-            // get error code
-            let errorCode:string = error.code ? ' ' + error.code : '';
-
-            if(this.isPlugin)
-            {
-                this._alert.addAlertForPlugin({
-                    msg:              this.getErrorString() + errorCode + ': ' + error.message,
-                    type:             'danger',
-                    dismissOnTimeout: 0
-                });
-            }
-            else
-            {
-                this._alert.addAlert({
-                    msg:              this.getErrorString() + errorCode + ': ' + error.message,
-                    type:             'danger',
-                    dismissOnTimeout: 0
-                });
-            }
         }
     }
 
@@ -331,92 +196,6 @@ export class TerraBaseService
         return searchParams;
     }
 
-    private createArraySearchParams(key:string, params:Array<string>):URLSearchParams
-    {
-        let arraySearchParams:URLSearchParams = new URLSearchParams();
-
-        params.forEach((param:string) =>
-        {
-            arraySearchParams.append(key + '[]', param);
-        });
-
-        return arraySearchParams;
-    }
-
-    private getMissingUserPermissionAlertMessage(error:any):string
-    {
-        let missingRights:string = '';
-        let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
-        let isGerman:boolean = langInLocalStorage === 'de';
-
-
-        if(isGerman)
-        {
-            missingRights = 'Fehlende Berechtigungen für: <br/> • ';
-        }
-        else
-        {
-            missingRights = 'Missing permissions for: <br/> • ';
-        }
-
-        let body:{} = JSON.parse(error['_body']);
-
-        if(!isNullOrUndefined(body))
-        {
-            let errorFromBody:{} = body['error'];
-
-            if(!isNullOrUndefined(errorFromBody))
-            {
-                let missingPermissions:{ [key:string]:{ [key:string]:string } } = errorFromBody['missing_permissions'];
-
-                let permissionTranslations:Array<{ [key:string]:string }> = [];
-
-                Object.keys(missingPermissions).forEach((key:string) =>
-                {
-                    if(missingPermissions.hasOwnProperty(key))
-                    {
-                        permissionTranslations.push(missingPermissions[key]);
-                    }
-                });
-
-                let english:Array<string> = [];
-                let german:Array<string> = [];
-
-                permissionTranslations.forEach((translations:{ [key:string]:string }) =>
-                {
-                    Object.keys(translations).forEach((key:string) =>
-                    {
-                        switch(key)
-                        {
-                            case 'de':
-                                german.push(translations[key]);
-                                break;
-                            case 'en':
-                                english.push(translations[key]);
-                                break;
-                        }
-                    });
-                });
-
-                let concatedPermissions:string;
-
-                if(isGerman)
-                {
-                    concatedPermissions = german.reverse().join('<br/> • ');
-                }
-                else
-                {
-                    concatedPermissions = english.reverse().join('<br/> • ');
-                }
-
-                missingRights += concatedPermissions;
-            }
-        }
-
-
-        return missingRights;
-    }
-
     /**
      * @deprecated use ModelCache instead
      */
@@ -438,21 +217,6 @@ export class TerraBaseService
                 })
             )
         );
-    }
-
-    private hasAllParamsLoaded(params:TerraBaseParameterInterface):boolean
-    {
-        if(!isNullOrUndefined(params) && !isNullOrUndefined(params['with']))
-        {
-            return Object.values(this.dataModel).every((value:any) =>
-            {
-                return params['with'].every((param:string) => value.hasOwnProperty(param));
-            });
-        }
-        else
-        {
-            return true;
-        }
     }
 
     /**
@@ -548,5 +312,233 @@ export class TerraBaseService
                 });
             })
         );
+    }
+
+    private dispatchEvent(eventToDispatch:Event | CustomEvent):void
+    {
+        if(!isNullOrUndefined(window.parent))
+        {
+            // workaround for plugins in GWT (loaded via iFrame)
+            if(!isNullOrUndefined(window.parent.window.parent))
+            {
+                window.parent.window.parent.window.dispatchEvent(eventToDispatch);
+            }
+            else
+            {
+                window.parent.window.dispatchEvent(eventToDispatch);
+            }
+        }
+        else
+        {
+            window.dispatchEvent(eventToDispatch);
+        }
+    }
+
+    // TODO use a meaningful error type
+    private getErrorMessage(error:any):string
+    {
+        try
+        {
+            let errorMessage:string;
+
+            if(!isNullOrUndefined(error.json().error))
+            {
+                errorMessage = error.json().error.message;
+            }
+
+            return errorMessage;
+        }
+        catch(e)
+        {
+            return null;
+        }
+    }
+
+    // TODO use a meaningful error type
+    private getErrorClass(error:any):string
+    {
+        try
+        {
+            let errorClass:string = error.json().class;
+            return errorClass;
+        }
+        catch(e)
+        {
+            return null;
+        }
+    }
+
+    /**
+     * Handles exceptions that are returned from the server on a failed rest call
+     * @param exception
+     */
+    // TODO rename exception to error and use a meaningful type
+    private handleException(exception:any):void
+    {
+        if(!isObject(exception._body))
+        {
+            this._alert.addAlert({
+                msg:              this.getErrorString() + ': ' + exception._body,
+                type:             'danger',
+                dismissOnTimeout: 0
+            });
+            return;
+        }
+
+        // parse response object
+        let response:any = JSON.parse(exception._body);
+
+        // check which exception type has been received
+        if(!isNullOrUndefined(response.error) && !isNullOrUndefined(response.message))
+        {
+            if(this.isPlugin)
+            {
+                this._alert.addAlertForPlugin({
+                    msg:              this.getErrorString() + ': ' + response.message,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                });
+            }
+            else
+            {
+                this._alert.addAlert({
+                    msg:              this.getErrorString() + ': ' + response.message,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                });
+            }
+        }
+        // return if error code is null
+        else if(isNullOrUndefined(response.error) || isNull(response.error.code))
+        {
+            return;
+        }
+        // default exception type
+        else
+        {
+            // parse exception string
+            let error:Exception = response.error;
+
+            // get error code
+            let errorCode:string = error.code ? ' ' + error.code : '';
+
+            if(this.isPlugin)
+            {
+                this._alert.addAlertForPlugin({
+                    msg:              this.getErrorString() + errorCode + ': ' + error.message,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                });
+            }
+            else
+            {
+                this._alert.addAlert({
+                    msg:              this.getErrorString() + errorCode + ': ' + error.message,
+                    type:             'danger',
+                    dismissOnTimeout: 0
+                });
+            }
+        }
+    }
+
+    private createArraySearchParams(key:string, params:Array<string>):URLSearchParams
+    {
+        let arraySearchParams:URLSearchParams = new URLSearchParams();
+
+        params.forEach((param:string) =>
+        {
+            arraySearchParams.append(key + '[]', param);
+        });
+
+        return arraySearchParams;
+    }
+
+    private getMissingUserPermissionAlertMessage(error:any):string
+    {
+        let missingRights:string = '';
+        let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
+        let isGerman:boolean = langInLocalStorage === 'de';
+
+
+        if(isGerman)
+        {
+            missingRights = 'Fehlende Berechtigungen für: <br/> • ';
+        }
+        else
+        {
+            missingRights = 'Missing permissions for: <br/> • ';
+        }
+
+        let body:{} = JSON.parse(error['_body']);
+
+        if(!isNullOrUndefined(body))
+        {
+            let errorFromBody:{} = body['error'];
+
+            if(!isNullOrUndefined(errorFromBody))
+            {
+                let missingPermissions:{ [key:string]:{ [key:string]:string } } = errorFromBody['missing_permissions'];
+
+                let permissionTranslations:Array<{ [key:string]:string }> = [];
+
+                Object.keys(missingPermissions).forEach((key:string) =>
+                {
+                    if(missingPermissions.hasOwnProperty(key))
+                    {
+                        permissionTranslations.push(missingPermissions[key]);
+                    }
+                });
+
+                let english:Array<string> = [];
+                let german:Array<string> = [];
+
+                permissionTranslations.forEach((translations:{ [key:string]:string }) =>
+                {
+                    Object.keys(translations).forEach((key:string) =>
+                    {
+                        switch(key)
+                        {
+                            case 'de':
+                                german.push(translations[key]);
+                                break;
+                            case 'en':
+                                english.push(translations[key]);
+                                break;
+                        }
+                    });
+                });
+
+                let concatedPermissions:string;
+
+                if(isGerman)
+                {
+                    concatedPermissions = german.reverse().join('<br/> • ');
+                }
+                else
+                {
+                    concatedPermissions = english.reverse().join('<br/> • ');
+                }
+
+                missingRights += concatedPermissions;
+            }
+        }
+
+
+        return missingRights;
+    }
+
+    private hasAllParamsLoaded(params:TerraBaseParameterInterface):boolean
+    {
+        if(!isNullOrUndefined(params) && !isNullOrUndefined(params['with']))
+        {
+            return Object.values(this.dataModel).every((value:any) =>
+            {
+                return params['with'].every((param:string) => value.hasOwnProperty(param));
+            });
+        }
+        else
+        {
+            return true;
+        }
     }
 }

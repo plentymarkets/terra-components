@@ -2,7 +2,8 @@ import { AuthInterceptor } from './auth.interceptor';
 import {
     HTTP_INTERCEPTORS,
     HttpClient,
-    HttpRequest
+    HttpRequest,
+    HttpResponse
 } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import {
@@ -16,6 +17,8 @@ describe(`AuthInterceptor:`, () =>
 {
     let httpClient:HttpClient;
     let httpTestingController:HttpTestingController;
+
+    const url:string = '';
 
     beforeEach(() =>
     {
@@ -39,7 +42,7 @@ describe(`AuthInterceptor:`, () =>
         localStorage.setItem('accessToken', accessToken);
 
         // Make an HTTP GET request
-        httpClient.get<Data>('').subscribe((data:Data) =>
+        httpClient.get<Data>(url).subscribe((data:Data) =>
             // When observable resolves, result should match test data
             expect(data).toBe(testData)
         );
@@ -48,6 +51,25 @@ describe(`AuthInterceptor:`, () =>
         const request:TestRequest = httpTestingController.expectOne(
             (req:HttpRequest<any>) => req.headers.has('Authorization') && req.headers.get('Authorization') === `Bearer ${accessToken}`
         );
+
+        // Respond with mock data, causing Observable to resolve.
+        // Subscribe callback asserts that correct data was returned.
+        request.flush(testData);
+    });
+
+    it(`should not add Authorization to the headers of a request, if accessToken is not available`, () =>
+    {
+        const testData:Data = {};
+        localStorage.clear(); // clear localStorage to make sure that the accessToken is not set
+
+        // Make an HTTP GET request
+        httpClient.get<Data>(url, {observe: 'response'}).subscribe((res:HttpResponse<Data>) =>
+            // When observable resolves, result should match test data
+            expect(res.body).toBe(testData)
+        );
+
+        // Expect one request with no authorization header
+        const request:TestRequest = httpTestingController.expectOne((req:HttpRequest<any>) => !req.headers.has('Authorization'));
 
         // Respond with mock data, causing Observable to resolve.
         // Subscribe callback asserts that correct data was returned.
