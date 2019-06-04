@@ -111,7 +111,7 @@ export class TerraComponentsModule
         this.l10nLoader.load();
     }
 
-    public static forRoot():ModuleWithProviders
+    public static forRoot():ModuleWithProviders<any>
     {
         return {
             ngModule:  TerraComponentsModule,

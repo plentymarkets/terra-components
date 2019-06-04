@@ -5,7 +5,7 @@ import { ModuleWithProviders } from '@angular/core';
  */
 export interface TerraMultiSplitViewRouteDataInterface
 {
-    module:ModuleWithProviders;
+    module:ModuleWithProviders<any>;
     name:Function | string;
     defaultWidth:string;
     focusedWidth?:string;

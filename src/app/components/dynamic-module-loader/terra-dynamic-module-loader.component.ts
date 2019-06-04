@@ -38,7 +38,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
 
     @Input()
     public inputView:TerraMultiSplitViewInterface;
-    private resolvedData:ModuleWithProviders;
+    private resolvedData:ModuleWithProviders<any>;
 
     private cmpRef:ComponentRef<any>;
 
