@@ -35,7 +35,7 @@
 * **terra-base-editor**, **terra-note-editor**, **terra-code-editor** 
 	- added `required` input that activates validation if set.
 	- added styles for the representation of an invalid state.
-	- updated [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quil) dependency to the latest version
+	- updated [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quill) dependency to the latest version
 	- activated sanitization using the `quill-editor`'s `sanitize` input.
 
 <a name="3.12.0"></a>
