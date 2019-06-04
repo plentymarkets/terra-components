@@ -1,9 +1,11 @@
-<a name="3.15.0"></a>
-# 3.15.0 (Unreleased)
+<a name="4.0.0"></a>
+# 4.0.0 (Unreleased)
+
+### Breaking Changes
+* **bootstrap** updated from 4.0.0-alpha.4 to 4.3.1
 
 ### Features
 * **tslint** add new linting rules
-* **bootstrap** updated from 4.0.0-alpha.4 to 4.3.1
 
 ### Bug Fixes
 * **http-interceptors** fix logging errors to console. 
