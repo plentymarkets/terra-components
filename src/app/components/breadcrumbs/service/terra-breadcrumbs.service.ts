@@ -15,6 +15,7 @@ import { TerraBreadcrumbContainer } from '../terra-breadcrumb-container';
 import { UrlHelper } from '../../../helpers/url.helper';
 import { StringHelper } from '../../../helpers/string.helper';
 import { ActivatedRouteHelper } from '../../../helpers/activated-route.helper';
+import { filter } from 'rxjs/operators';
 
 @Injectable()
 export class TerraBreadcrumbsService
@@ -28,12 +29,12 @@ export class TerraBreadcrumbsService
                 private translation:TranslationService,
                 private urlSerializer:UrlSerializer)
     {
-        this.router.events.filter((event:RouterEvent) =>
+        this.router.events.pipe(filter((event:RouterEvent) =>
         {
             return event instanceof NavigationEnd // navigation is done
                    && !isNullOrUndefined(this._initialPath) // initialPath is set
                    && event.urlAfterRedirects.startsWith(this._initialPath); // url starts with the initial path
-        }).subscribe((event:NavigationEnd) =>
+        })).subscribe((event:NavigationEnd) =>
         {
             if(!isNullOrUndefined(this.initialRoute.children))
             {

@@ -20,6 +20,7 @@ import {
     Observable,
     Subscription
 } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Directive({
     selector: 'terra-2-col[mobileRouting]'
@@ -39,10 +40,10 @@ export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
 
     public ngOnInit():void
     {
-        let navigationEndEvents$:Observable<Event> = this.router.events.filter((event:RouterEvent) =>
+        let navigationEndEvents$:Observable<Event> = this.router.events.pipe(filter((event:RouterEvent) =>
         {
             return event instanceof NavigationEnd && event.urlAfterRedirects === this.basePath;
-        });
+        }));
 
         this.eventsSub = navigationEndEvents$.subscribe((event:NavigationEnd) =>
         {
