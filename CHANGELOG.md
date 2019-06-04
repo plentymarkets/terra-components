@@ -1,5 +1,8 @@
-<a name="3.14.1"></a>
-# 3.14.1 (Unreleased)
+<a name="4.0.0"></a>
+# 4.0.0 (Unreleased)
+
+### Breaking Changes
+* **TerraConverterHelper** instead of a `defaultLocale` you now need to pass an instance of the [angular-l10n](https://github.com/robisim74/angular-l10n)'s `LocaleService` as argument to `convertAndFormatSize()` and `getLocaleDecimalValue()`
 
 ### Bug Fixes
 * **http-interceptors** fix logging errors to console. 
