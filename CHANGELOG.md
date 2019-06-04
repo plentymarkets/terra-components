@@ -3,6 +3,7 @@
 
 ### Features
 * **tslint** add new linting rules
+* **bootstrap** updated from 4.0.0-alpha.4 to 4.3.1
 
 ### Bug Fixes
 * **http-interceptors** fix logging errors to console. 
