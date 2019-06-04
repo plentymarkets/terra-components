@@ -125,30 +125,6 @@ export class TerraNodeTreeConfig<D>
         }
     }
 
-    // removes a given node
-    private internalRemoveNode(node:TerraNodeInterface<D>):void
-    {
-        let parent:TerraNodeInterface<D> = node.parent;
-
-        if(!isNullOrUndefined(parent))
-        {
-            let index:number = parent.children.indexOf(node);
-
-            parent.children.splice(index, 1);
-        }
-        else
-        {
-            let index:number = this.list.indexOf(node);
-
-            this.list.splice(index, 1);
-        }
-
-        if(node === this.currentSelectedNode)
-        {
-            this._currentSelectedNode = null;
-        }
-    }
-
     /**
      * @description Removes a node by ID.
      * @param id The ID of the node to be removed.
@@ -411,5 +387,29 @@ export class TerraNodeTreeConfig<D>
                 this.checkDefaultAndAssignVisibility(node.children);
             }
         });
+    }
+
+    // removes a given node
+    private internalRemoveNode(node:TerraNodeInterface<D>):void
+    {
+        let parent:TerraNodeInterface<D> = node.parent;
+
+        if(!isNullOrUndefined(parent))
+        {
+            let index:number = parent.children.indexOf(node);
+
+            parent.children.splice(index, 1);
+        }
+        else
+        {
+            let index:number = this.list.indexOf(node);
+
+            this.list.splice(index, 1);
+        }
+
+        if(node === this.currentSelectedNode)
+        {
+            this._currentSelectedNode = null;
+        }
     }
 }

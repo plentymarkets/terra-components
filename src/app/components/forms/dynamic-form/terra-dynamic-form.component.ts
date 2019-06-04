@@ -136,6 +136,12 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         this.formFieldControlService.resetForm();
     }
 
+    protected onToggleClick():void
+    {
+        this.inputShowDeprecatedEntries = !this.inputShowDeprecatedEntries;
+        this.inputShowDeprecatedEntriesChange.emit(this.inputShowDeprecatedEntries);
+    }
+
     private registerValueChange():void
     {
         if(!isNullOrUndefined(this.inputFormFunctions.onValueChangedCallback))
@@ -156,11 +162,5 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
                 this.inputFormFunctions.onValueChangedCallback(value);
             });
         }
-    }
-
-    protected onToggleClick():void
-    {
-        this.inputShowDeprecatedEntries = !this.inputShowDeprecatedEntries;
-        this.inputShowDeprecatedEntriesChange.emit(this.inputShowDeprecatedEntries);
     }
 }
