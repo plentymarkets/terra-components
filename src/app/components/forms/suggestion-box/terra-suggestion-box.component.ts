@@ -22,7 +22,7 @@ import {
 } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraBaseData } from '../../data/terra-base.data';
-import { noop } from 'rxjs/util/noop';
+import { noop } from 'rxjs';
 
 const MAX_LASTLY_USED_ENTRIES:number = 5;
 
