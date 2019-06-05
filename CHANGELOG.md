@@ -2,6 +2,7 @@
 # 4.0.0 (Unreleased)
 
 ### Breaking Changes
+* **bootstrap** updated from 4.0.0-alpha.4 to 4.3.1
 * **TerraConverterHelper** instead of a `defaultLocale` you now need to pass an instance of the [angular-l10n](https://github.com/robisim74/angular-l10n)'s `LocaleService` as argument to `convertAndFormatSize()` and `getLocaleDecimalValue()`
 
 ### Features

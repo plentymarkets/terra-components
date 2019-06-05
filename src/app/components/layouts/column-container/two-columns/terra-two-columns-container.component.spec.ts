@@ -214,7 +214,9 @@ describe('TerraTwoColumnsContainerComponent', () =>
 
 function checkColumnClass(className:string, columnClasses:{ [key:string]:boolean; }):void
 {
-    let count:number = Object.keys(columnClasses).filter((key:string) => key.startsWith(className) && columnClasses[key]).length;
+    let count:number = Object.keys(columnClasses).filter(
+        (key:string) => key.startsWith(className) && !isNaN(+key.replace(className, '')) && columnClasses[key]
+    ).length;
 
     expect(count).toBe(1);
 }

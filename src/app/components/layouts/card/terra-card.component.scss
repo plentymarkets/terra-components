@@ -21,19 +21,29 @@
             {
                 border: 2px solid var(--color-active);
             }
+    
+            .card-footer
+            {
+                &:last-child
+                {
+                    border-radius: 0;
+                }
+            }
         }
     }
     
     .card-img-top
     {
         min-height: var(--terra-card-img-top-min-height, (calc(var(--space-xl) * 5)));
-        margin: var(--space-md);
+        margin: var(--space-md) calc(var(--space-xl) * 2);
         border-radius: 0;
+        width: initial;
         
         &.terra-card-image
         {
             background: no-repeat center;
             background-size: var(--terra-card-image-background-size, contain);
+            margin: 2px;
         }
         
         &.terra-card-placeholder
@@ -71,6 +81,11 @@
         padding: var(--space-md);
         background-color: var(--card-footer-background-color, var(--color-structure-0));;
         transition: padding var(--transition-md);
+    
+        &:last-child
+        {
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
         
         &.selected
         {
