@@ -38,10 +38,10 @@
 		"@angular/platform-browser": "7.x",
 		"@angular/platform-browser-dynamic": "7.x",
 		"@angular/router": "7.x",
+		"angular-l10n": "7.x",
 		"rxjs": "6.x"
 	},
 	"dependencies": {
-		"angular-l10n": "7.2.0",
 		"bootstrap": "^4.3.1",
 		"flatted": "^2.0.0",
 		"htmlhint": "^0.11.0",
@@ -72,6 +72,7 @@
 		"@angular/platform-browser-dynamic": "~7.2.15",
 		"@angular/router": "~7.2.15",
 		"@angular/cli": "^7.3.9",
+		"angular-l10n": "7.2.0",
 		"rxjs": "^6.5.2",
 		"@types/jasmine": "^3.3.13",
 		"@types/jquery": "^3.3.29",
