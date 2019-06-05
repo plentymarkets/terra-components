@@ -43,6 +43,7 @@
 	},
 	"dependencies": {
 		"bootstrap": "^4.3.1",
+		"ckeditor4-angular": "^1.0.0-beta",
 		"flatted": "^2.0.0",
 		"htmlhint": "^0.10.1",
 		"iban": "0.0.11",
