@@ -1,4 +1,5 @@
 import {
+    APP_INITIALIZER,
     Compiler,
     COMPILER_OPTIONS,
     CompilerFactory,
@@ -48,6 +49,11 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
     return compilerFactory.createCompiler();
 }
 
+function initL10n(l10nLoader:L10nLoader):Function
+{
+    return ():Promise<void> => l10nLoader.load();
+}
+
 @NgModule({
     declarations:    [
         TerraComponentsComponent,
@@ -94,6 +100,13 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
             deps:     [COMPILER_OPTIONS]
         },
         {
+            provide:    APP_INITIALIZER, // APP_INITIALIZER will execute the function when the app is initialized and delay what
+                                         // it provides.
+            useFactory: initL10n,
+            deps:       [L10nLoader],
+            multi:      true
+        },
+        {
             provide:    Compiler,
             useFactory: createCompiler,
             deps:       [CompilerFactory]
@@ -106,11 +119,6 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
 
 export class TerraComponentsModule
 {
-    constructor(public l10nLoader:L10nLoader)
-    {
-        this.l10nLoader.load();
-    }
-
     public static forRoot():ModuleWithProviders<any>
     {
         return {
