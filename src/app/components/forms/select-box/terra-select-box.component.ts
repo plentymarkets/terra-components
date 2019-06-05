@@ -18,7 +18,7 @@ import {
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
-import { noop } from 'rxjs/util/noop';
+import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-select-box',
@@ -86,7 +86,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      * Two way data binding by ngModel
      */
     private onTouchedCallback:() => void = noop;
-
     private onChangeCallback:(_:any) => void = noop;
 
     /**
