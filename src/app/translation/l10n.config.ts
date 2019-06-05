@@ -35,17 +35,7 @@ function getL10nConfig():L10nConfig
 
     let currency:string = lang === 'de' ? 'EUR' : 'GBP';
 
-    let prefix:string = null;
-
-    // Definitions for i18n
-    if(process.env.ENV === 'production')
-    {
-        prefix = 'app/assets/lang/locale-';
-    }
-    else
-    {
-        prefix = 'src/app/assets/lang/locale-';
-    }
+    let prefix:string = process.env.ENV === 'production' ? 'app/assets/lang/locale-' : 'src/app/assets/lang/locale-';
 
     return {
         logger: {
