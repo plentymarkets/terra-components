@@ -29,11 +29,6 @@ export class TerraFilterComponentExample implements OnInit
         }
     }
 
-    private onSearchBtnClicked():void
-    {
-        alert('filtered for ' + this.selectedListBoxValue);
-    }
-
     protected onResetBtnClicked():void
     {
         return;
@@ -42,5 +37,10 @@ export class TerraFilterComponentExample implements OnInit
     protected onSubmit():void
     {
         this.onSearchBtnClicked();
+    }
+
+    private onSearchBtnClicked():void
+    {
+        alert('filtered for ' + this.selectedListBoxValue);
     }
 }

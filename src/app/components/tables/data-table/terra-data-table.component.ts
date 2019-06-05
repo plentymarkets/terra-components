@@ -222,6 +222,42 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         return typeof data;
     }
 
+    protected getTextAlign(item:TerraDataTableHeaderCellInterface):TerraTextAlignEnum // TODO: Pipe?
+    {
+        if(!isNullOrUndefined(item) && !isNullOrUndefined(item.textAlign))
+        {
+            return item.textAlign;
+        }
+        else
+        {
+            return TerraTextAlignEnum.LEFT;
+        }
+    }
+
+    protected isSortable(header:TerraDataTableHeaderCellInterface):boolean
+    {
+        if(isNullOrUndefined(header))
+        {
+            return false;
+        }
+        return !isNullOrUndefined(header.sortBy);
+    }
+
+    protected isUnsorted(header:TerraDataTableHeaderCellInterface):boolean
+    {
+        return this.isSortable(header) && header.sortBy !== this.inputService.sortBy;
+    }
+
+    protected isSortedAsc(header:TerraDataTableHeaderCellInterface):boolean
+    {
+        return this.isSorted(header, TerraDataTableSortOrderEnum.ascending);
+    }
+
+    protected isSortedDesc(header:TerraDataTableHeaderCellInterface):boolean
+    {
+        return this.isSorted(header, TerraDataTableSortOrderEnum.descending);
+    }
+
     private changeSortingColumn(header:TerraDataTableHeaderCellInterface):void
     {
         if(isNullOrUndefined(this.inputService))
@@ -257,44 +293,8 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         }
     }
 
-    protected getTextAlign(item:TerraDataTableHeaderCellInterface):TerraTextAlignEnum // TODO: Pipe?
-    {
-        if(!isNullOrUndefined(item) && !isNullOrUndefined(item.textAlign))
-        {
-            return item.textAlign;
-        }
-        else
-        {
-            return TerraTextAlignEnum.LEFT;
-        }
-    }
-
-    protected isSortable(header:TerraDataTableHeaderCellInterface):boolean
-    {
-        if(isNullOrUndefined(header))
-        {
-            return false;
-        }
-        return !isNullOrUndefined(header.sortBy);
-    }
-
-    protected isUnsorted(header:TerraDataTableHeaderCellInterface):boolean
-    {
-        return this.isSortable(header) && header.sortBy !== this.inputService.sortBy;
-    }
-
     private isSorted(header:TerraDataTableHeaderCellInterface, sortOrder:TerraDataTableSortOrderEnum):boolean
     {
         return this.isSortable(header) && header.sortBy === this.inputService.sortBy && this.inputService.sortOrder === sortOrder;
-    }
-
-    protected isSortedAsc(header:TerraDataTableHeaderCellInterface):boolean
-    {
-        return this.isSorted(header, TerraDataTableSortOrderEnum.ascending);
-    }
-
-    protected isSortedDesc(header:TerraDataTableHeaderCellInterface):boolean
-    {
-        return this.isSorted(header, TerraDataTableSortOrderEnum.descending);
     }
 }

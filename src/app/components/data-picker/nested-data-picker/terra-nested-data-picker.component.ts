@@ -16,7 +16,10 @@ import { TerraNestedDataPickerBaseService } from './service/terra-nested-data-pi
 import { TerraNodeTreeConfig } from '../../tree/node-tree/data/terra-node-tree.config';
 import { NestedDetailDataInterface } from './data/nested-detail-data.interface';
 import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
-import { Observable } from 'rxjs';
+import {
+    noop,
+    Observable
+} from 'rxjs';
 
 @Component({
     selector:  'terra-nested-data-picker',
@@ -63,6 +66,10 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     public toggleTree:boolean = false;
     public isNotInitialCall:boolean;
     public value:number | string;
+
+    public onTouchedCallback:() => void = noop;
+    public onChangeCallback:(_:any) => void = noop;
+
     private completeNestedData:NestedValueInterface;
     private nestedDataName:string;
     private nestedList:Array<TerraNodeInterface<NestedDataInterface<{}>>>;
@@ -172,17 +179,6 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
         this.onChangeCallback(this.value);
     }
 
-    private updateCompleteNestedData(nested:TerraNodeInterface<NestedDataInterface<{}>>):void
-    {
-        this.completeNestedData.id = +nested.id;
-        this.completeNestedData.isActive = nested.isActive;
-        this.completeNestedData.isOpen = nested.isOpen;
-        this.completeNestedData.isVisible = nested.isVisible;
-        this.completeNestedData.name = nested.name;
-        this.completeNestedData.tooltip = nested.tooltip;
-        this.completeNestedData.tooltipPlacement = nested.tooltipPlacement;
-    }
-
     // Set touched on blur
     public onBlur():void
     {
@@ -205,49 +201,6 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     {
         this.toggleTree = !this.toggleTree;
     }
-
-    private getNestedData(parentId:number | string):Observable<TerraPagerInterface<{}>>
-    {
-        let obs:Observable<TerraPagerInterface<{}>> = this.inputNestedService.requestNestedData(parentId);
-
-        obs.subscribe((data:TerraPagerInterface<{}>) =>
-        {
-            this.addNodes(data, parentId);
-        });
-
-        return obs;
-    }
-
-    private getNestedDataByParent(parentNode:NestedDataInterface<{}>):void
-    {
-        let id:number | string = null;
-
-        if(!isNullOrUndefined(parentNode))
-        {
-            id = parentNode.id;
-        }
-
-        this.inputNestedService.requestNestedData(id).subscribe((data:TerraPagerInterface<{}>) =>
-        {
-            if(isNullOrUndefined(parentNode))
-            {
-                this.addNodes(data, id);
-            }
-            else
-            {
-                this.addNodes(data, parentNode.id);
-            }
-        });
-    }
-
-    private getNestedDataByParentId(parentId:number | string):() => Observable<TerraPagerInterface<{}>>
-    {
-        return ():Observable<TerraPagerInterface<{}>> => this.getNestedData(parentId);
-    }
-
-    public onTouchedCallback:() => void = () => undefined;
-
-    public onChangeCallback:(_:any) => void = () => undefined;
 
     public addNodes(nestedData:TerraPagerInterface<{}>, parentId:number | string):void
     {
@@ -312,5 +265,55 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
         }
         // Current List is updated
         this.nestedList = this.nestedTreeConfig.list;
+    }
+
+    private updateCompleteNestedData(nested:TerraNodeInterface<NestedDataInterface<{}>>):void
+    {
+        this.completeNestedData.id = +nested.id;
+        this.completeNestedData.isActive = nested.isActive;
+        this.completeNestedData.isOpen = nested.isOpen;
+        this.completeNestedData.isVisible = nested.isVisible;
+        this.completeNestedData.name = nested.name;
+        this.completeNestedData.tooltip = nested.tooltip;
+        this.completeNestedData.tooltipPlacement = nested.tooltipPlacement;
+    }
+
+    private getNestedData(parentId:number | string):Observable<TerraPagerInterface<{}>>
+    {
+        let obs:Observable<TerraPagerInterface<{}>> = this.inputNestedService.requestNestedData(parentId);
+
+        obs.subscribe((data:TerraPagerInterface<{}>) =>
+        {
+            this.addNodes(data, parentId);
+        });
+
+        return obs;
+    }
+
+    private getNestedDataByParent(parentNode:NestedDataInterface<{}>):void
+    {
+        let id:number | string = null;
+
+        if(!isNullOrUndefined(parentNode))
+        {
+            id = parentNode.id;
+        }
+
+        this.inputNestedService.requestNestedData(id).subscribe((data:TerraPagerInterface<{}>) =>
+        {
+            if(isNullOrUndefined(parentNode))
+            {
+                this.addNodes(data, id);
+            }
+            else
+            {
+                this.addNodes(data, parentNode.id);
+            }
+        });
+    }
+
+    private getNestedDataByParentId(parentId:number | string):() => Observable<TerraPagerInterface<{}>>
+    {
+        return ():Observable<TerraPagerInterface<{}>> => this.getNestedData(parentId);
     }
 }

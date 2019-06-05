@@ -4,6 +4,9 @@
 ### Breaking Changes
 * **TerraConverterHelper** instead of a `defaultLocale` you now need to pass an instance of the [angular-l10n](https://github.com/robisim74/angular-l10n)'s `LocaleService` as argument to `convertAndFormatSize()` and `getLocaleDecimalValue()`
 
+### Features
+* **tslint** add new linting rules
+
 ### Bug Fixes
 * **http-interceptors** fix logging errors to console. 
 

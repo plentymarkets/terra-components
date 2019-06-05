@@ -71,6 +71,15 @@ export class TerraNodeComponent<D> implements OnInit
         }
     }
 
+    protected handleIconClick(event:Event):void
+    {
+        event.stopPropagation();
+
+        this.handleOpenNode(true);
+
+        this.inputConfig.handleLazyLoading(this.inputNode);
+    }
+
     private handleOpenNode(isIconClick:boolean):void
     {
         if(isIconClick || this.inputNode.closeOnClick)
@@ -81,14 +90,5 @@ export class TerraNodeComponent<D> implements OnInit
         {
             this.inputNode.isOpen = true;
         }
-    }
-
-    protected handleIconClick(event:Event):void
-    {
-        event.stopPropagation();
-
-        this.handleOpenNode(true);
-
-        this.inputConfig.handleLazyLoading(this.inputNode);
     }
 }

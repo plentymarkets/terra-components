@@ -107,55 +107,6 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         return uploadItems;
     }
 
-    private uploadFile(file:File, path:string = '/'):TerraUploadItem
-    {
-        if(isNullOrUndefined(file))
-        {
-            return TerraUploadItem.DONE;
-        }
-
-        let item:TerraUploadItem = new TerraUploadItem(file, path, this);
-        item.beforeUpload(() =>
-        {
-            this.storageListSubject.next(
-                this._storageList.insertObject(createS3StorageObject(item.pathname))
-            );
-        });
-
-        item.onSuccess((response:string) =>
-        {
-            let s3Data:any = JSON.parse(response);
-            this.storageListSubject.next(
-                this._storageList.insertObject({
-                    eTag:         s3Data.eTag,
-                    key:          s3Data.key,
-                    lastModified: (new Date()).toISOString(),
-                    size:         file.size,
-                    publicUrl:    s3Data.publicUrl,
-                    storageClass: 'STANDARD'
-                })
-            );
-        });
-
-        item.onError(() =>
-        {
-            this._storageList.root.removeChild(item.pathname);
-            this.storageListSubject.next(this._storageList);
-        });
-
-        item.onCancel(() =>
-        {
-            this._storageList.root.removeChild(item.pathname);
-            this.storageListSubject.next(this._storageList);
-        });
-
-        this.queue.add(item);
-
-        this.queue.startUpload();
-
-        return item;
-    }
-
     public getMetadata(key:string):Observable<TerraImageMetadata>
     {
         if(this.metadataCache.hasOwnProperty(key))
@@ -228,6 +179,55 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
                 this.storageListSubject.next(null);
             }
         ));
+    }
+
+    private uploadFile(file:File, path:string = '/'):TerraUploadItem
+    {
+        if(isNullOrUndefined(file))
+        {
+            return TerraUploadItem.DONE;
+        }
+
+        let item:TerraUploadItem = new TerraUploadItem(file, path, this);
+        item.beforeUpload(() =>
+        {
+            this.storageListSubject.next(
+                this._storageList.insertObject(createS3StorageObject(item.pathname))
+            );
+        });
+
+        item.onSuccess((response:string) =>
+        {
+            let s3Data:any = JSON.parse(response);
+            this.storageListSubject.next(
+                this._storageList.insertObject({
+                    eTag:         s3Data.eTag,
+                    key:          s3Data.key,
+                    lastModified: (new Date()).toISOString(),
+                    size:         file.size,
+                    publicUrl:    s3Data.publicUrl,
+                    storageClass: 'STANDARD'
+                })
+            );
+        });
+
+        item.onError(() =>
+        {
+            this._storageList.root.removeChild(item.pathname);
+            this.storageListSubject.next(this._storageList);
+        });
+
+        item.onCancel(() =>
+        {
+            this._storageList.root.removeChild(item.pathname);
+            this.storageListSubject.next(this._storageList);
+        });
+
+        this.queue.add(item);
+
+        this.queue.startUpload();
+
+        return item;
     }
 
     private initStorageList(continuationToken?:string):void
