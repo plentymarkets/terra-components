@@ -38,10 +38,10 @@ export class TerraComponentsComponent
                 },
                 {
                     name:   'paragraph',
-                    groups: ['list',
+                    groups: ['align',
+                             'list',
                              'indent',
                              'blocks',
-                             'align',
                              'bidi',
                              'paragraph']
                 },
@@ -51,6 +51,12 @@ export class TerraComponentsComponent
                              'undo']
                 },
                 {
+                    name:   'document',
+                    groups: ['mode',
+                             'document',
+                             'doctools']
+                },
+                {
                     name:   'editing',
                     groups: ['find',
                              'selection',
@@ -58,18 +64,12 @@ export class TerraComponentsComponent
                              'editing']
                 },
                 {
-                    name:   'links',
-                    groups: ['links']
-                },
-                {
-                    name:   'document',
-                    groups: ['mode',
-                             'document',
-                             'doctools']
-                },
-                {
                     name:   'forms',
                     groups: ['forms']
+                },
+                {
+                    name:   'links',
+                    groups: ['links']
                 },
                 {
                     name:   'insert',
@@ -87,7 +87,8 @@ export class TerraComponentsComponent
                     name:   'about',
                     groups: ['about']
                 }
-            ]
+            ],
+            removeButtons: 'CopyFormatting,Subscript,Superscript,Outdent,Indent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Cut,Copy,PasteText,Paste,Save,Preview,Print,SelectAll,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Flash,Smiley,PageBreak,Iframe'
         };
     }
 }
