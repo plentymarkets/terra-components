@@ -1,55 +1,45 @@
-.modal-dialog
+.modal
 {
-    margin: 0;
-    position: relative;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
-    min-width: 300px;
-
-    .modal-content
+    opacity: 1;
+    background-color: rgba(0,0,0,0.5);
+    
+    .modal-dialog
     {
-        border-radius: var(--border-radius);
-
-        .modal-header
+        min-width: 300px;
+        
+        .modal-content
         {
-            padding: var(--space-md) var(--space-lg);
-            border-bottom: 1px solid var(--border-color);
-            --btn-padding: 0;
-
-            .modal-title
+            border-radius: var(--border-radius);
+            
+            .modal-header
             {
-                line-height: var(--height-md);
-                font-weight: var(--font-weight-3);
+                padding: var(--space-md) var(--space-lg);
+                border-bottom: 1px solid var(--border-color);
+                --btn-padding: 0;
+                
+                .modal-title
+                {
+                    line-height: var(--height-md);
+                    font-weight: var(--font-weight-3);
+                }
+            }
+            
+            .modal-body
+            {
+                max-height: var(--modal-body-max-height, 525px);
+                height: var(--modal-body-height, initial);
+                overflow-y: auto;
+                padding: var(--space-lg) var(--space-lg);
+                background-color: var(--modal-body-background-color, var(--color-structure-2))
+            }
+            
+            .modal-footer
+            {
+                padding: var(--space-md) var(--space-lg);
+                border-top: 1px solid var(--border-color);
             }
         }
-
-        .modal-body
-        {
-            max-height: var(--modal-body-max-height, 525px);
-            height: var(--modal-body-height, initial);
-            overflow-y: auto;
-            padding: var(--space-lg) var(--space-lg);
-            background-color: var(--modal-body-background-color, var(--color-structure-2))
-        }
-
-        .modal-footer
-        {
-            padding: var(--space-md) var(--space-lg);
-            border-top: 1px solid var(--border-color);
-        }
     }
-}
-
-.modal.fade .modal-dialog
-{
-    transform: translate(-50%, -100%);
-    transition: transform var(--transition-md), -webkit-transform var(--transition-md);
-}
-
-.modal.in .modal-dialog
-{
-    transform: translate(-50%, -50%);
 }
 
 @media(min-width: 544px)
