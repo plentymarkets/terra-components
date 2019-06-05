@@ -211,6 +211,29 @@ export class TerraBaseService
      * @deprecated use ModelCache instead
      */
     // TODO remove generic if the BaseService get a generic itself
+    protected handleLocalDataModelGetList(getRequest$:Observable<Response>, params?:TerraBaseParameterInterface):Observable<Array<any>>
+    {
+        if(Object.keys(this.dataModel).length > 0 && this.hasAllParamsLoaded(params))
+        {
+            return of(Object.values(this.dataModel));
+        }
+
+        this.setAuthorization();
+
+        return this.mapRequest(getRequest$).pipe(
+            tap((dataList:Array<any>) =>
+                dataList.forEach((data:any) =>
+                {
+                    this.dataModel[data.id] = Object.assign(data, this.dataModel[data.id]);
+                })
+            )
+        );
+    }
+
+    /**
+     * @deprecated use ModelCache instead
+     */
+    // TODO remove generic if the BaseService get a generic itself
     protected handleLocalDataModelGet(getRequest$:Observable<Response>, dataId:number|string):Observable<any>
     {
         if(!isNullOrUndefined(this.dataModel[dataId]))
