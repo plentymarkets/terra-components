@@ -2,6 +2,7 @@ import {
     Component,
     EventEmitter,
     Input,
+    OnDestroy,
     OnInit,
     Output
 } from '@angular/core';
@@ -17,7 +18,7 @@ import { debounceTime } from 'rxjs/operators';
     styles:   [require('./terra-pager.component.scss')],
     template: require('./terra-pager.component.html')
 })
-export class TerraPagerComponent implements OnInit
+export class TerraPagerComponent implements OnInit, OnDestroy
 {
     @Input()
     public inputPagingData:TerraPagerInterface<any>;
@@ -66,6 +67,11 @@ export class TerraPagerComponent implements OnInit
                 isLastPage:     false
             };
         }
+    }
+
+    public ngOnDestroy():void
+    {
+        // empty and needed for l10n
     }
 
     public onFirstPage():void

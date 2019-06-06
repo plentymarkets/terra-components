@@ -1,9 +1,20 @@
-<a name="4.0.0"></a>
-# 4.0.0 (Unreleased)
+<a name="4.0.0-beta.1"></a>
+# 4.0.0-beta.1 (Unreleased)
+
+### Breaking Changes
+* Updated [angular](https://github.com/angular/angular) to v7, [rxjs](https://github.com/ReactiveX/rxjs) to v6 and [angular-l10n](https://github.com/robisim74/angular-l10n) to v7 and made them peer dependencies.
+* Updated several other dependencies including
+	- [ngx-bootstrap](https://github.com/valor-software/ngx-bootstrap)
+	- [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quill)
+	- [TypeScript](https://github.com/microsoft/TypeScript)
+	- ...
+* **TerraConverterHelper** instead of a `defaultLocale` you now need to pass an instance of the [angular-l10n](https://github.com/robisim74/angular-l10n)'s `LocaleService` as argument to `convertAndFormatSize()` and `getLocaleDecimalValue()`
+
+<a name="4.0.0-beta.0"></a>
+# 4.0.0-beta.0 (06.06.2019)
 
 ### Breaking Changes
 * **bootstrap** updated from 4.0.0-alpha.4 to 4.3.1
-* **TerraConverterHelper** instead of a `defaultLocale` you now need to pass an instance of the [angular-l10n](https://github.com/robisim74/angular-l10n)'s `LocaleService` as argument to `convertAndFormatSize()` and `getLocaleDecimalValue()`
 
 ### Features
 * **tslint** add new linting rules

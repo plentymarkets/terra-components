@@ -6,6 +6,7 @@ import {
     forwardRef,
     Input,
     OnChanges,
+    OnDestroy,
     OnInit,
     SimpleChanges
 } from '@angular/core';
@@ -31,7 +32,7 @@ import { Language } from 'angular-l10n';
         }
     ]
 })
-export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, OnChanges
+export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy
 {
     @Language()
     public lang:string;
@@ -57,6 +58,11 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
     public ngOnInit():void
     {
         this.generateSuggestionValues(this.tagList);
+    }
+
+    public ngOnDestroy():void
+    {
+        // empty and needed for l10n
     }
 
     public ngOnChanges(changes:SimpleChanges):void
