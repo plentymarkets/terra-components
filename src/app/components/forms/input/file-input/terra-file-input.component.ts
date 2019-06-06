@@ -2,6 +2,7 @@ import {
     Component,
     forwardRef,
     Input,
+    OnDestroy,
     OnInit,
     ViewChild
 } from '@angular/core';
@@ -32,7 +33,7 @@ let nextId:number = 0;
         }
     ]
 })
-export class TerraFileInputComponent extends TerraInputComponent implements OnInit
+export class TerraFileInputComponent extends TerraInputComponent implements OnInit, OnDestroy
 {
     @Input()
     public inputShowPreview:boolean = false;
@@ -85,6 +86,11 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     public ngOnInit():void
     {
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
+    }
+
+    public ngOnDestroy():void
+    {
+        // empty and needed for l10n
     }
 
     public onObjectSelected(selectedObject:TerraStorageObject):void

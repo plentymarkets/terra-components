@@ -1,6 +1,7 @@
 import {
     Component,
     Input,
+    OnDestroy,
     OnInit
 } from '@angular/core';
 import { TerraNodeInterface } from '../data/terra-node.interface';
@@ -13,7 +14,7 @@ import { Language } from 'angular-l10n';
     styles:   [require('./terra-node.component.scss')],
     template: require('./terra-node.component.html')
 })
-export class TerraNodeComponent<D> implements OnInit
+export class TerraNodeComponent<D> implements OnInit, OnDestroy
 {
     /**
      * @description The node interface.
@@ -47,7 +48,11 @@ export class TerraNodeComponent<D> implements OnInit
         {
             this.tooltipPlacement = this.inputNode.tooltipPlacement;
         }
+    }
 
+    public ngOnDestroy():void
+    {
+        // empty and needed for l10n
     }
 
     // handle the node click

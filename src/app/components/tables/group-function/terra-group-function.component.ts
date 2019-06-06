@@ -2,6 +2,7 @@ import {
     Component,
     EventEmitter,
     Input,
+    OnDestroy,
     OnInit,
     Output
 } from '@angular/core';
@@ -36,7 +37,7 @@ import { Language } from 'angular-l10n';
         ])
     ]
 })
-export class TerraGroupFunctionComponent implements OnInit
+export class TerraGroupFunctionComponent implements OnInit, OnDestroy
 {
     /**
      * @description shows group functions container if set to true
@@ -66,6 +67,11 @@ export class TerraGroupFunctionComponent implements OnInit
     public ngOnInit():void
     {
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
+    }
+
+    public ngOnDestroy():void
+    {
+        // empty and needed for l10n
     }
 
     protected get collapsedState():string

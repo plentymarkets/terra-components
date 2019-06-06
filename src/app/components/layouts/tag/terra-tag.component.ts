@@ -3,6 +3,7 @@ import {
     EventEmitter,
     Input,
     OnChanges,
+    OnDestroy,
     OnInit,
     Output,
     SimpleChanges
@@ -17,7 +18,7 @@ import { Language } from 'angular-l10n';
     styles:   [require('./terra-tag.component.scss')],
     template: require('./terra-tag.component.html')
 })
-export class TerraTagComponent implements OnInit, OnChanges
+export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
 {
     /**
      * If no translation is given for the current language, this will be used as caption for the tag
@@ -103,6 +104,11 @@ export class TerraTagComponent implements OnInit, OnChanges
         {
             console.warn('`onCloseTag` is deprecated. Please use `closeTag` instead.');
         }
+    }
+
+    public ngOnDestroy():void
+    {
+        // empty and needed for l10n
     }
 
     /**

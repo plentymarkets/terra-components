@@ -3,6 +3,7 @@ import {
     forwardRef,
     Input,
     OnChanges,
+    OnDestroy,
     OnInit,
     SimpleChanges,
     Type
@@ -38,7 +39,7 @@ import { noop } from 'rxjs';
         }
     ]
 })
-export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlValueAccessor
+export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlValueAccessor, OnDestroy
 {
     @Input()
     public inputFormField:TerraFormFieldInterface;
@@ -74,6 +75,11 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
     public ngOnInit():void
     {
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
+    }
+
+    public ngOnDestroy():void
+    {
+        // empty and needed for l10n
     }
 
     public ngOnChanges(changes:SimpleChanges):void
