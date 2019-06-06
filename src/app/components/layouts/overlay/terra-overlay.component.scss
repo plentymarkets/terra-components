@@ -1,7 +1,21 @@
 .modal
 {
-    opacity: 1;
-    background-color: rgba(0,0,0,0.5);
+    //Fixes firefox bug where doesn't get the class .show
+    background-color: rgba(0, 0, 0, 0.5);
+    &.fade:not(.in)
+    {
+        opacity: 0;
+    }
+    &.fade.in
+    {
+        opacity: 1;
+        
+        .modal-dialog
+        {
+            -webkit-transform: none;
+            transform: none;
+        }
+    }
     
     .modal-dialog
     {
@@ -47,17 +61,17 @@
     .modal-dialog
     {
         max-width: 600px;
-
+        
         &.modal-sm
         {
             max-width: 300px;
         }
-
+        
         &.modal-lg
         {
             max-width: 900px;
         }
-
+        
         &.modal-xl
         {
             max-width: 1200px;
