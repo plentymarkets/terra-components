@@ -1,5 +1,5 @@
-<a name="4.0.0"></a>
-# 4.0.0 (Unreleased)
+<a name="4.0.0-beta.0"></a>
+# 4.0.0-beta.0 (06.06.2019)
 
 ### Breaking Changes
 * **bootstrap** updated from 4.0.0-alpha.4 to 4.3.1
