@@ -39,7 +39,8 @@
 		"@angular/platform-browser-dynamic": "7.x",
 		"@angular/router": "7.x",
 		"angular-l10n": "7.x",
-		"rxjs": "6.x"
+		"rxjs": "6.x",
+		"ckeditor4-angular": "^1.0.0-beta"
 	},
 	"dependencies": {
 		"bootstrap": "^4.3.1",
