@@ -6,6 +6,7 @@
 * Updated several other dependencies including
 	- [ngx-bootstrap](https://github.com/valor-software/ngx-bootstrap)
 	- [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quill)
+	- [TypeScript](https://github.com/microsoft/TypeScript)
 	- ...
 * **TerraConverterHelper** instead of a `defaultLocale` you now need to pass an instance of the [angular-l10n](https://github.com/robisim74/angular-l10n)'s `LocaleService` as argument to `convertAndFormatSize()` and `getLocaleDecimalValue()`
 
