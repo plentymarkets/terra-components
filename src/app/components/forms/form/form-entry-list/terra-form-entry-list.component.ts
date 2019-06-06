@@ -3,6 +3,7 @@ import {
     forwardRef,
     Input,
     OnChanges,
+    OnInit,
     SimpleChanges,
     Type
 } from '@angular/core';
@@ -37,7 +38,7 @@ import { noop } from 'rxjs';
         }
     ]
 })
-export class TerraFormEntryListComponent implements OnChanges, ControlValueAccessor
+export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlValueAccessor
 {
     @Input()
     public inputFormField:TerraFormFieldInterface;
@@ -69,6 +70,11 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
 
     private onChangeCallback:(value:any) => void = noop;
     private onTouchedCallback:() => void = noop;
+
+    public ngOnInit():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
+    }
 
     public ngOnChanges(changes:SimpleChanges):void
     {
