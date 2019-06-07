@@ -25,8 +25,8 @@ let nextId:number = 0;
  */
 @Component({
     selector:  'terra-date-picker',
-    styleUrls:    ['./terra-date-picker.component.scss', './terra-date-picker.component.glob.scss'],
     templateUrl:  './terra-date-picker.component.html',
+    styleUrls:    ['./terra-date-picker.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

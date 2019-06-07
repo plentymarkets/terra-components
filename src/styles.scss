@@ -1,2 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "styles/themes/theme-loader";
+
+// global component styles
+@import "~src/app/components/forms/input/date-picker/terra-date-picker.component.glob";
+@import "~src/app/components/file-browser/terra-file-browser.component.glob";

@@ -43,6 +43,8 @@ import { services } from './service/service-collection';
 import { directives } from './components/directive-collection';
 import { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
 import { AlertService } from './components/alert/alert.service';
+import { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
+import { TerraFrontendStorageService } from './components/file-browser/terra-frontend-storage.service';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -89,6 +91,8 @@ function initL10n(l10nLoader:L10nLoader):Function
     providers:       [
         TerraLoadingSpinnerService,
         AlertService,
+        TerraFileBrowserService,
+        TerraFrontendStorageService,
         {
             provide:  COMPILER_OPTIONS,
             useValue: {},
