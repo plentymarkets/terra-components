@@ -50,6 +50,7 @@ import { DataTableTemplateComponentExample } from './tables/data-table/example/d
 import { FilterComponentExample } from './filter/example/filter.component.example';
 import { CheckboxGroupComponentExample } from './forms/checkbox-group/example/checkbox-group.component.example';
 import { TerraFormComponentExample } from './forms/form/example/terra-form.component.example';
+import { CkEditorFullDirectiveExample } from './editors/ck-editor/example/ck-editor-full.directive.example';
 
 export const examples:Array<Type<any>> = [
     TerraButtonComponentExample,
@@ -102,5 +103,6 @@ export const examples:Array<Type<any>> = [
     DataTableTemplateComponentExample,
     FilterComponentExample,
     CheckboxGroupComponentExample,
-    TerraFormComponentExample
+    TerraFormComponentExample,
+    CkEditorFullDirectiveExample
 ];
