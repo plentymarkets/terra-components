@@ -24,4 +24,9 @@ export class MockTranslationService// implements ITranslationService
     {
         return key;
     }
+
+    public latestTranslation():Observable<string>
+    {
+        return of(this.lang);
+    }
 }

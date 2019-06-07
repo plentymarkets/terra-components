@@ -71,7 +71,7 @@ export class TerraGroupFunctionComponent implements OnInit, OnDestroy
 
     public ngOnDestroy():void
     {
-        // empty and needed for l10n
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     protected get collapsedState():string

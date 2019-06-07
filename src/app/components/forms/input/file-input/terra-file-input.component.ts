@@ -90,7 +90,7 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
 
     public ngOnDestroy():void
     {
-        // empty and needed for l10n
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public onObjectSelected(selectedObject:TerraStorageObject):void
