@@ -4,11 +4,13 @@ import { TerraTwoColumnsContainerDirective } from './layouts/column-container/tw
 import { FixedHeaderDirective } from './tables/fixed-header/fixed-header.directive';
 import { TerraLabelTooltipDirective } from '../helpers/terra-label-tooltip.directive';
 import { FormEntryContainerDirective } from './forms/form/form-entry/form-entry-container.directive';
+import { CKEditorFullDirective } from './editors/ck-editor/ck-editor-full.directive';
 
 export const directives:Array<Type<any>> = [
     TerraDataTableContextMenuDirective,
     TerraTwoColumnsContainerDirective,
     FixedHeaderDirective,
     TerraLabelTooltipDirective,
-    FormEntryContainerDirective
+    FormEntryContainerDirective,
+    CKEditorFullDirective
 ];

@@ -44,7 +44,6 @@ import { directives } from './components/directive-collection';
 import { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
 import { AlertService } from './components/alert/alert.service';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { CkFullDirective } from './directives/ck-full.directive';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -61,8 +60,7 @@ function initL10n(l10nLoader:L10nLoader):Function
         TerraComponentsComponent,
         ...components,
         ...directives,
-        ...examples,
-        CkFullDirective
+        ...examples
     ],
     entryComponents: exportedComponents,
     exports:         [

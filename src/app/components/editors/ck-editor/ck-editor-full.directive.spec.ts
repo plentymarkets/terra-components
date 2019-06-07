@@ -1,8 +1,8 @@
-import { CkFullDirective } from './ck-full.directive';
+import { CKEditorFullDirective } from './ck-editor-full.directive';
 
 describe('CkFullDirective', () => {
   it('should create an instance', () => {
-    const directive = new CkFullDirective();
+    const directive = new CKEditorFullDirective();
     expect(directive).toBeTruthy();
   });
 });
