@@ -15,11 +15,9 @@ let nextId:number = 0;
 
 @Component({
     selector:  'terra-text-input',
-    styles:    [
-        require('./terra-text-input.component.scss'),
-        require('../terra-input.component.glob.scss').toString()
+    styleUrls:    ['./terra-text-input.component.scss', '../terra-input.component.glob.scss'
     ],
-    template:  require('./terra-text-input.component.html'),
+    templateUrl:  './terra-text-input.component.html',
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

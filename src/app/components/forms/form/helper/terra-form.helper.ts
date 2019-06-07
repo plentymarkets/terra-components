@@ -110,7 +110,7 @@ export class TerraFormHelper
                 let formControls:Array<AbstractControl> = [];
                 if(!isNullOrUndefined(values) && isArray(values))
                 {
-                    formControls = values.map((value:any, index:number) =>
+                    formControls = (values as Array<any>).map((value:any, index:number) =>
                     {
                         return this.createNewControl(value || defaultValue[index], formField);
                     });

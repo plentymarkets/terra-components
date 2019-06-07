@@ -9,8 +9,8 @@ import { TerraAlertComponent } from '../../../alert/terra-alert.component';
 
 
 @Component({
-    selector: 'terra-overlay-example',
-    template: require('./terra-overlay.component.example.html')
+    selector:    'terra-overlay-example',
+    templateUrl: './terra-overlay.component.example.html'
 })
 export class TerraOverlayComponentExample implements OnInit
 {

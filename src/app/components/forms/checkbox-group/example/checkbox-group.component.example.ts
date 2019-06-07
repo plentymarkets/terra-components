@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'tc-checkbox-group-example',
-    template: require('./checkbox-group.component.example.html'),
-    styles: [require('./checkbox-group.component.example.scss')]
+    templateUrl: './checkbox-group.component.example.html',
+    styleUrls: [ './checkbox-group.component.example.scss']
 })
 export class CheckboxGroupComponentExample
 {

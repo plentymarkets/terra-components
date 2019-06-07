@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
  * @author mfrank
  */
 @Component({
-    selector: 'terra-tag-select-example',
-    template: require('./terra-tag-select.component.example.html')
+    selector:    'terra-tag-select-example',
+    templateUrl: './terra-tag-select.component.example.html'
 })
 export class TerraTagSelectComponentExample
 {

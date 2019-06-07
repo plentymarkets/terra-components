@@ -4,7 +4,7 @@ import { TerraMultiCheckBoxValueInterface } from './multi-check-box/data/terra-m
 
 @Component({
     selector: 'terra-forms-example',
-    template: require('./terra-forms.example.html')
+    templateUrl: './terra-forms.example.html'
 })
 
 export class TerraFormsExampleComponent

@@ -13,11 +13,11 @@ import { Subscription } from 'rxjs';
  */
 @Component({
     selector: 'terra-alert-panel',
-    styles:   [
-        require('./terra-alert-panel.component.scss'),
-        require('./terra-alert-panel.component.glob.scss').toString()
+    templateUrl: './terra-alert-panel.component.html',
+    styleUrls:   [
+        './terra-alert-panel.component.scss',
+        './terra-alert-panel.component.glob.scss'
     ],
-    template: require('./terra-alert-panel.component.html')
 })
 export class TerraAlertPanelComponent implements OnInit, OnDestroy
 {

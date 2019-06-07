@@ -23,8 +23,8 @@ let nextId:number = 0;
 
 @Component({
     selector:  'terra-file-input',
-    template:  require('./terra-file-input.component.html'),
-    styles:    [require('./terra-file-input.component.scss')],
+    templateUrl: './terra-file-input.component.html',
+    styleUrls: ['./terra-file-input.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

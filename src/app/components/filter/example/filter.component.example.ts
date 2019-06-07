@@ -6,7 +6,7 @@ import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-
 
 @Component({
     selector: 'tc-filter-example',
-    template: require('./filter.component.example.html'),
+    templateUrl: './filter.component.example.html',
 })
 export class FilterComponentExample implements OnInit
 {

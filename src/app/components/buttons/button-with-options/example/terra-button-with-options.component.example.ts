@@ -4,8 +4,8 @@ import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 
 @Component({
     selector: 'terra-button-with-options-example',
-    styles:   [require('./terra-button-with-options.component.example.scss')],
-    template: require('./terra-button-with-options.component.example.html'),
+    styleUrls: [ './terra-button-with-options.component.example.scss'],
+    templateUrl: './terra-button-with-options.component.example.html',
 })
 export class TerraButtonWithOptionsComponentExample
 {

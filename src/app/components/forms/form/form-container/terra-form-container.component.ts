@@ -24,8 +24,8 @@ import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-form-container',
-    template:  require('./terra-form-container.component.html'),
-    styles:    [require('./terra-form-container.component.scss')],
+    templateUrl: './terra-form-container.component.html',
+    styleUrls: ['./terra-form-container.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
@@ -120,7 +120,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         {
             if(isString(field.value.isVisible))
             {
-                this.formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible);
+                this.formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible as string);
             }
             else
             {

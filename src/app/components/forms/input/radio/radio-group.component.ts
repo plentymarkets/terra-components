@@ -10,7 +10,6 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../../helpers/string.helper';
 
 let nextId:number = 0;
@@ -19,10 +18,10 @@ let nextId:number = 0;
  * @author pweyrich
  */
 @Component({
-    selector:  'tc-radio-group',
-    template:  require('./radio-group.component.html'),
-    styles:    [require('./radio-group.component.scss')],
-    providers: [
+    selector:    'tc-radio-group',
+    templateUrl: './radio-group.component.html',
+    styleUrls:   ['./radio-group.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => RadioGroupComponent),

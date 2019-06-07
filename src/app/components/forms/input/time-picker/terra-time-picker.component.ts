@@ -17,10 +17,8 @@ import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-time-picker',
-    styles:    [
-        require('./terra-time-picker.component.scss'),
-    ],
-    template:  require('./terra-time-picker.component.html'),
+    styleUrls:    ['./terra-time-picker.component.scss'],
+    templateUrl: './terra-time-picker.component.html',
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

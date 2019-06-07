@@ -234,7 +234,7 @@ export class TerraFormFieldHelper
 
         if(isString(range))
         {
-            let match:RegExpExecArray = /^\[(\d*),(\d*)]$/.exec(range);
+            let match:RegExpExecArray = /^\[(\d*),(\d*)]$/.exec(range as string);
             if(match !== null)
             {
                 min = parseInt(match[1], 10);

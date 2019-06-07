@@ -10,9 +10,9 @@ import { isNullOrUndefined } from 'util';
 import { Language } from 'angular-l10n';
 
 @Component({
-    selector: 'terra-node',
-    styles:   [require('./terra-node.component.scss')],
-    template: require('./terra-node.component.html')
+    selector:    'terra-node',
+    styleUrls:   ['./terra-node.component.scss'],
+    templateUrl: './terra-node.component.html'
 })
 export class TerraNodeComponent<D> implements OnInit, OnDestroy
 {

@@ -6,8 +6,8 @@ import { TerraMultiCheckBoxValueInterface } from '../data/terra-multi-check-box-
 
 @Component({
     selector: 'terra-multi-check-box-example',
-    styles:   [require('./terra-multi-check-box.component.example.scss')],
-    template: require('./terra-multi-check-box.component.example.html'),
+    styleUrls: [ './terra-multi-check-box.component.example.scss'],
+    templateUrl: './terra-multi-check-box.component.example.html',
 })
 export class TerraMultiCheckBoxComponentExample implements OnInit
 {

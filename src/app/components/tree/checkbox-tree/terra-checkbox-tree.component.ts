@@ -13,8 +13,8 @@ import { TerraCheckboxTreeLeafState } from './data/terra-checkbox-tree-leaf-stat
 
 @Component({
     selector: 'terra-checkbox-tree',
-    styles:   [require('./terra-checkbox-tree.component.scss')],
-    template: require('./terra-checkbox-tree.component.html')
+    styleUrls: [ './terra-checkbox-tree.component.scss'],
+    templateUrl: './terra-checkbox-tree.component.html'
 })
 export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implements OnInit, OnChanges
 {

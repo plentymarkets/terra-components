@@ -33,10 +33,10 @@ import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/ter
 
 
 @Component({
-    selector:  'terra-data-table',
-    template:  require('./terra-data-table.component.html'),
-    styles:    [require('./terra-data-table.component.scss')],
-    providers: [TerraDataTableContextMenuService],
+    selector:    'terra-data-table',
+    templateUrl: './terra-data-table.component.html',
+    styleUrls:   ['./terra-data-table.component.scss'],
+    providers:   [TerraDataTableContextMenuService],
 })
 export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges
 {

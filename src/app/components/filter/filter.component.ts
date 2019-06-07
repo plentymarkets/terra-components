@@ -6,11 +6,11 @@ import {
 
 /**
  * @author mkunze
- * @description This component provides the default template and functionalities to display form fields which are supposed to set filters
+ * @description This component provides the default template and functionality to display form fields which are supposed to set filters
  */
 @Component({
     selector: 'tc-filter',
-    template: require('./filter.component.html')
+    templateUrl: './filter.component.html'
 })
 export class FilterComponent
 {

@@ -14,9 +14,9 @@ import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 import { Language } from 'angular-l10n';
 
 @Component({
-    selector: 'terra-tag',
-    styles:   [require('./terra-tag.component.scss')],
-    template: require('./terra-tag.component.html')
+    selector:    'terra-tag',
+    styleUrls:   ['./terra-tag.component.scss'],
+    templateUrl: './terra-tag.component.html'
 })
 export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
 {
@@ -173,7 +173,7 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
     {
         if(!isNullOrUndefined(this.inputColor))
         {
-            return (new Color(this.inputColor)).isDark() ? '#ffffff' : '#000000';
+            return (new Color(this.inputColor)).isDark() ? '#FFFFFF' : '#000000';
         }
         return null;
     }

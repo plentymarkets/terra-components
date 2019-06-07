@@ -5,9 +5,9 @@ import {
 import { TerraSuggestionBoxValueInterface } from '../data/terra-suggestion-box.interface';
 
 @Component({
-    selector: 'terra-suggestion-box-example',
-    styles:   [require('./terra-suggestion-box.component.example.scss')],
-    template: require('./terra-suggestion-box.component.example.html'),
+    selector:    'terra-suggestion-box-example',
+    styleUrls:   ['./terra-suggestion-box.component.example.scss'],
+    templateUrl: './terra-suggestion-box.component.example.html'
 })
 export class TerraSuggestionBoxComponentExample implements OnInit
 {

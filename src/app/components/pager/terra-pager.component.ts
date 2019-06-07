@@ -14,9 +14,9 @@ import { Language } from 'angular-l10n';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
-    selector: 'terra-pager',
-    styles:   [require('./terra-pager.component.scss')],
-    template: require('./terra-pager.component.html')
+    selector:    'terra-pager',
+    styleUrls:   ['./terra-pager.component.scss'],
+    templateUrl: './terra-pager.component.html'
 })
 export class TerraPagerComponent implements OnInit, OnDestroy
 {

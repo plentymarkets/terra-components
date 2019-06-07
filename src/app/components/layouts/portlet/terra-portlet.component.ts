@@ -18,8 +18,8 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
 
 @Component({
     selector:   'terra-portlet',
-    styles:     [require('./terra-portlet.component.scss')],
-    template:   require('./terra-portlet.component.html'),
+    styleUrls: ['./terra-portlet.component.scss'],
+    templateUrl: './terra-portlet.component.html',
     animations: [
         trigger('collapsedState', [
             state('inputCollapsed', style({

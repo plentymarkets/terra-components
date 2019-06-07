@@ -29,8 +29,8 @@ import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-form-entry-list',
-    template:  require('./terra-form-entry-list.component.html'),
-    styles:    [require('./terra-form-entry-list.component.scss')],
+    templateUrl: './terra-form-entry-list.component.html',
+    styleUrls: ['./terra-form-entry-list.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

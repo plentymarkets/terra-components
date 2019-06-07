@@ -20,13 +20,10 @@ import { TerraFileListComponent } from './file-list/file-list.component';
 import { StringHelper } from '../../helpers/string.helper';
 
 @Component({
-    selector:  'terra-file-browser',
-    template:  require('./terra-file-browser.component.html'),
-    providers: [TerraNodeTreeConfig],
-    styles:    [
-        require('./terra-file-browser.component.scss'),
-        require('./terra-file-browser.component.glob.scss').toString()
-    ]
+    selector:    'terra-file-browser',
+    templateUrl: './terra-file-browser.component.html',
+    providers:   [TerraNodeTreeConfig],
+    styleUrls:   ['./terra-file-browser.component.scss', './terra-file-browser.component.glob.scss']
 })
 export class TerraFileBrowserComponent implements OnChanges, OnInit
 {

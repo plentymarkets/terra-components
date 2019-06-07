@@ -10,8 +10,8 @@ import { StringHelper } from '../../../helpers/string.helper';
 
 @Component({
     selector: 'terra-card',
-    styles:   [require('./terra-card.component.scss')],
-    template: require('./terra-card.component.html')
+    styleUrls: [ './terra-card.component.scss'],
+    templateUrl: './terra-card.component.html'
 })
 export class TerraCardComponent implements AfterContentChecked
 {

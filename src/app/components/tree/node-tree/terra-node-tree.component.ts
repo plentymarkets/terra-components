@@ -16,9 +16,9 @@ import {
 import { StringHelper } from '../../../helpers/string.helper';
 
 @Component({
-    selector: 'terra-node-tree',
-    styles:   [require('./terra-node-tree.component.scss')],
-    template: require('./terra-node-tree.component.html')
+    selector:    'terra-node-tree',
+    styleUrls:   ['./terra-node-tree.component.scss'],
+    templateUrl: './terra-node-tree.component.html'
 })
 export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 {

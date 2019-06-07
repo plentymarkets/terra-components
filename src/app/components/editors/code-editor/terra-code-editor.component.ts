@@ -17,10 +17,10 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 
 @Component({
     selector:  'terra-code-editor',
-    template:  require('./terra-code-editor.component.html'),
-    styles:    [
-        require('./terra-code-editor.component.scss'),
-        require('./terra-code-editor.component.glob.scss').toString()
+    templateUrl: './terra-code-editor.component.html',
+    styleUrls:    [
+        './terra-code-editor.component.scss',
+        './terra-code-editor.component.glob.scss'
     ],
     providers: [{
         provide:     NG_VALUE_ACCESSOR,

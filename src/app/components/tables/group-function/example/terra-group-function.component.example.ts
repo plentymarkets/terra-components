@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'terra-group-function-example',
-    template: require('./terra-group-function.component.example.html')
+    templateUrl: './terra-group-function.component.example.html'
 })
 
 export class TerraGroupFunctionComponentExample

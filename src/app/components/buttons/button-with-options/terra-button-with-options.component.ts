@@ -12,9 +12,9 @@ import { TerraTextAlignEnum } from '../../tables/data-table/enums/terra-text-ali
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
-    selector: 'terra-button-with-options',
-    template: require('./terra-button-with-options.component.html'),
-    styles:   [require('./terra-button-with-options.component.scss')]
+    selector:    'terra-button-with-options',
+    templateUrl: './terra-button-with-options.component.html',
+    styleUrls:   ['./terra-button-with-options.component.scss']
 })
 export class TerraButtonWithOptionsComponent implements OnInit
 {

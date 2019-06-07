@@ -22,8 +22,8 @@ import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-select-box',
-    styles:    [require('./terra-select-box.component.scss')],
-    template:  require('./terra-select-box.component.html'),
+    styleUrls:    ['./terra-select-box.component.scss'],
+    templateUrl:  './terra-select-box.component.html',
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

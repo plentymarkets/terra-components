@@ -21,10 +21,10 @@ import { TerraTagNameInterface } from '../../layouts/tag/data/terra-tag-name.int
 import { Language } from 'angular-l10n';
 
 @Component({
-    selector:  'terra-tag-select',
-    styles:    [require('./terra-tag-select.component.scss')],
-    template:  require('./terra-tag-select.component.html'),
-    providers: [
+    selector:    'terra-tag-select',
+    styleUrls:   ['./terra-tag-select.component.scss'],
+    templateUrl: './terra-tag-select.component.html',
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => TerraTagSelectComponent),

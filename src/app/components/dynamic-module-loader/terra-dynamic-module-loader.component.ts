@@ -19,8 +19,8 @@ import { TerraDynamicLoadedComponentInputInterface } from './data/terra-dynamic-
 
 @Component({
     selector: 'terra-dynamic-module-loader',
-    template: require('./terra-dynamic-module-loader.component.html'),
-    styles:   [require('./terra-dynamic-module-loader.component.scss')]
+    templateUrl: './terra-dynamic-module-loader.component.html',
+    styleUrls: [ './terra-dynamic-module-loader.component.scss']
 })
 export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChanges, OnDestroy
 {

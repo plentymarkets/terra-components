@@ -14,8 +14,8 @@ let nextId:number = 0;
  */
 @Component({
     selector: 'tc-radio-input',
-    template: require('./radio-input.component.html'),
-    styles:   [require('./radio-input.component.scss')],
+    templateUrl: './radio-input.component.html',
+    styleUrls: [ './radio-input.component.scss'],
 })
 export class RadioInputComponent
 {

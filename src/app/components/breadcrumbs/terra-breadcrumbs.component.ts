@@ -5,14 +5,12 @@ import { isNullOrUndefined } from 'util';
 import { TerraBreadcrumb } from './terra-breadcrumb';
 import { TerraBreadcrumbContainer } from './terra-breadcrumb-container';
 
-@Component(
-    {
-        selector:  'terra-breadcrumbs',
-        styles:    [require('./terra-breadcrumbs.component.scss')],
-        template:  require('./terra-breadcrumbs.component.html'),
-        providers: [TerraBreadcrumbsService]
-    }
-)
+@Component({
+    selector:    'terra-breadcrumbs',
+    styleUrls:   ['./terra-breadcrumbs.component.scss'],
+    templateUrl: './terra-breadcrumbs.component.html',
+    providers:   [TerraBreadcrumbsService]
+})
 export class TerraBreadcrumbsComponent
 {
     protected mouseLeft:string = '0px';

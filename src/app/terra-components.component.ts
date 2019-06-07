@@ -6,8 +6,8 @@ import {
 
 @Component({
     selector:      'terra-app-root',
-    template:      require('./terra-components.component.html'),
-    styles:        [require('./terra-components.component.scss')],
+    templateUrl:   './terra-components.component.html',
+    styleUrls:     ['./terra-components.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class TerraComponentsComponent

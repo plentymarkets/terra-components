@@ -11,8 +11,8 @@ import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
  */
 @Component({
     selector: 'terra-dynamic-switch',
-    template: require('./terra-dynamic-switch.component.html'),
-    styles:   [require('./terra-dynamic-switch.component.scss')]
+    templateUrl: './terra-dynamic-switch.component.html',
+    styleUrls: [ './terra-dynamic-switch.component.scss']
 })
 export class TerraDynamicSwitchComponent
 {

@@ -9,9 +9,9 @@ import { ColumnContainerConfig } from '../column-container.config';
  * @author mfrank
  */
 @Component({
-    selector: 'terra-2-col',
-    styles:   [require('./terra-two-columns-container.component.scss')],
-    template: require('./terra-two-columns-container.component.html')
+    selector:    'terra-2-col',
+    styleUrls:   ['./terra-two-columns-container.component.scss'],
+    templateUrl: './terra-two-columns-container.component.html'
 })
 /**
  * @experimental TerraTwoColumnsContainerComponent is experimental and might be subject to drastic changes in the near future.

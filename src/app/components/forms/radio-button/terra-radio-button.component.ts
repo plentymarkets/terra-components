@@ -15,8 +15,8 @@ import {
  */
 @Component({
     selector:  'terra-radio-button',
-    template:  require('./terra-radio-button.component.html'),
-    styles:    [require('./terra-radio-button.component.scss')],
+    templateUrl:  './terra-radio-button.component.html',
+    styleUrls: ['./terra-radio-button.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

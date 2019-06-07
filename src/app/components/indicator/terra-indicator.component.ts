@@ -5,9 +5,9 @@ import {
 import { TerraIndicatorLabelTypeEnum } from '../../helpers/enums/indicator-label-type.enum';
 
 @Component({
-    selector: 'terra-indicator',
-    styles:   [require('./terra-indicator.component.scss')],
-    template: require('./terra-indicator.component.html')
+    selector:    'terra-indicator',
+    styleUrls:   ['./terra-indicator.component.scss'],
+    templateUrl: './terra-indicator.component.html'
 })
 export class TerraIndicatorComponent
 {

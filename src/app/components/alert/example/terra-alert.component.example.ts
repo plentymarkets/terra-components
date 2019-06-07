@@ -4,13 +4,12 @@ import {
 } from '@angular/core';
 
 import { TerraAlertComponent } from '../terra-alert.component';
-import { TranslationService } from 'angular-l10n';
 import { AlertService } from '../alert.service';
 
 @Component({
     selector: 'terra-alert-example',
-    styles:   [require('./terra-alert.component.example.scss')],
-    template: require('./terra-alert.component.example.html')
+    styleUrls: [ './terra-alert.component.example.scss'],
+    templateUrl: './terra-alert.component.example.html'
 })
 export class TerraAlertComponentExample implements OnInit
 {

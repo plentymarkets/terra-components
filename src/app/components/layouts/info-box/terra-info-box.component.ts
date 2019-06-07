@@ -8,9 +8,9 @@ import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 
 @Component({
-    selector: 'terra-info-box',
-    styles:   [require('./terra-info-box.component.scss')],
-    template: require('./terra-info-box.component.html')
+    selector:    'terra-info-box',
+    styleUrls:   ['./terra-info-box.component.scss'],
+    templateUrl: './terra-info-box.component.html'
 })
 export class TerraInfoBoxComponent
 {

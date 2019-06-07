@@ -6,8 +6,8 @@ import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-
 
 @Component({
     selector: 'terra-filter-example',
-    styles:   [require('./terra-filter.component.example.scss')],
-    template: require('./terra-filter.component.example.html'),
+    styleUrls: [ './terra-filter.component.example.scss'],
+    templateUrl: './terra-filter.component.example.html',
 })
 export class TerraFilterComponentExample implements OnInit
 {

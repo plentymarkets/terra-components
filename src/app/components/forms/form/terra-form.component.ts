@@ -29,8 +29,8 @@ import {
 
 @Component({
     selector:  'terra-form',
-    template:  require('./terra-form.component.html'),
-    styles:    [require('./terra-form.component.scss')],
+    templateUrl:  './terra-form.component.html',
+    styleUrls:    ['./terra-form.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

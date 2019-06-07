@@ -15,8 +15,8 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
  */
 @Component({
     selector: 'terra-overlay',
-    template: require('./terra-overlay.component.html'),
-    styles:   [require('./terra-overlay.component.scss')]
+    templateUrl: './terra-overlay.component.html',
+    styleUrls: [ './terra-overlay.component.scss']
 })
 export class TerraOverlayComponent implements AfterViewInit
 {

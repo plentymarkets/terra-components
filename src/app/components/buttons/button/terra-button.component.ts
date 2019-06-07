@@ -8,9 +8,9 @@ import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
-    selector: 'terra-button',
-    styles:   [require('./terra-button.component.scss')],
-    template: require('./terra-button.component.html')
+    selector:    'terra-button',
+    styleUrls:   ['./terra-button.component.scss'],
+    templateUrl: './terra-button.component.html'
 })
 export class TerraButtonComponent
 {

@@ -6,8 +6,8 @@ import { TerraLeafInterface } from '../../leaf/terra-leaf.interface';
 
 @Component({
     selector: 'terra-checkbox-tree-example',
-    template: require('./terra-checkbox-tree.component.example.html'),
-    styles:   [require('./terra-checkbox-tree.component.example.scss')]
+    templateUrl: './terra-checkbox-tree.component.example.html',
+    styleUrls: [ './terra-checkbox-tree.component.example.scss']
 })
 
 export class TerraCheckboxTreeComponentExample implements OnInit

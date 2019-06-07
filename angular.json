@@ -17,7 +17,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-						"outputPath": "dist/cli-project",
+						"outputPath": "dist/terra-components",
 						"index": "src/index.html",
 						"main": "src/main.ts",
 						"polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"options": {
-						"browserTarget": "cli-project:build"
+						"browserTarget": "terra-components:build"
 					},
 					"configurations": {
 						"production": {
-							"browserTarget": "cli-project:build:production"
+							"browserTarget": "terra-components:build:production"
 						}
 					}
 				},
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
 					"options": {
-						"browserTarget": "cli-project:build"
+						"browserTarget": "terra-components:build"
 					}
 				},
 				"test": {
@@ -107,7 +107,7 @@
 				}
 			}
 		},
-		"cli-project-e2e": {
+		"terra-components-e2e": {
 			"root": "e2e/",
 			"projectType": "application",
 			"prefix": "",
@@ -116,11 +116,11 @@
 					"builder": "@angular-devkit/build-angular:protractor",
 					"options": {
 						"protractorConfig": "e2e/protractor.conf.js",
-						"devServerTarget": "cli-project:serve"
+						"devServerTarget": "terra-components:serve"
 					},
 					"configurations": {
 						"production": {
-							"devServerTarget": "cli-project:serve:production"
+							"devServerTarget": "terra-components:serve:production"
 						}
 					}
 				},

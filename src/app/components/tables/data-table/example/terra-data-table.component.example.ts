@@ -12,8 +12,8 @@ import { TerraDataTableContextMenuEntryInterface } from '../context-menu/data/te
 
 @Component({
     selector:  'terra-data-table-example',
-    template:  require('./terra-data-table.component.example.html'),
-    styles:    [require('./terra-data-table.component.example.scss')],
+    template:  './terra-data-table.component.example.html',
+    styleUrls: ['./terra-data-table.component.example.scss'],
     providers: [TerraDataTableServiceExample]
 })
 export class TerraDataTableComponentExample implements OnInit

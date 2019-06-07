@@ -16,7 +16,7 @@ import {
     Interactable,
     InteractEvent
 } from 'interactjs';
-import interact = require('interactjs');
+import * as interact from 'interactjs';
 
 @Directive({
     selector: '[terraResizable]'

@@ -12,8 +12,8 @@ export interface ExampleTreeData
 
 @Component({
     selector:  'terra-node-tree-example',
-    template:  require('./terra-node-tree.component.example.html'),
-    styles:    [require('./terra-node-tree.component.example.scss')],
+    templateUrl:  './terra-node-tree.component.example.html',
+    styleUrls:    ['./terra-node-tree.component.example.scss'],
     providers: [TerraNodeTreeConfig]
 })
 export class TerraNodeTreeComponentExample implements OnInit

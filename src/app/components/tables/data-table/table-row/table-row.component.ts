@@ -11,8 +11,8 @@ import { TerraDataTableComponent } from '../terra-data-table.component';
 /* tslint:disable:component-selector */
 @Component({
     selector:    'tr[tcTableRow]',
-    template: require('./table-row.component.html'),
-    styles:   [require('./table-row.component.scss')]
+    templateUrl: './table-row.component.html',
+    styleUrls: [ './table-row.component.scss']
 })
 export class TableRowComponent
 {

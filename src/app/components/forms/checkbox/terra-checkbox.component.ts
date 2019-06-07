@@ -17,8 +17,8 @@ let nextId:number = 0;
 
 @Component({
     selector:  'terra-checkbox',
-    styles:    [require('./terra-checkbox.component.scss')],
-    template:  require('./terra-checkbox.component.html'),
+    styleUrls: ['./terra-checkbox.component.scss'],
+    templateUrl: './terra-checkbox.component.html',
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,

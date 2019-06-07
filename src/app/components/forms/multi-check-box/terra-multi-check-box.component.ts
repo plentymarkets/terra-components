@@ -19,8 +19,8 @@ import { Subject } from 'rxjs';
 
 @Component({
     selector:  'terra-multi-check-box',
-    styles:    [require('./terra-multi-check-box.component.scss')],
-    template:  require('./terra-multi-check-box.component.html'),
+    styleUrls: ['./terra-multi-check-box.component.scss'],
+    templateUrl: './terra-multi-check-box.component.html',
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
