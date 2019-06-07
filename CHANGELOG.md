@@ -1,3 +1,10 @@
+<a name="4.0.0-beta.X"></a>
+# 4.0.0-beta.X (Unreleased)
+
+### Features
+* **tcCkFull** New directive to provide a full config for the ckeditor4.
+* **ck-editor-presets** Preset configs for the ckeditor4.
+
 <a name="4.0.0-beta.1"></a>
 # 4.0.0-beta.1 (Unreleased)
 
