@@ -12,7 +12,7 @@ import { TerraFormFieldControlService } from './service/terra-form-field-control
 import { TerraFormFieldBase } from './data/terra-form-field-base';
 import { TerraDynamicFormFunctionsHandler } from './handler/terra-dynamic-form-functions.handler';
 import { TerraDynamicFormService } from './service/terra-dynamic-form.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 export enum TerraHtmlMethods
@@ -77,7 +77,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
 
     constructor(protected formFieldControlService:TerraFormFieldControlService)
     {
-        this.inputPortletStyle = 'col-xs-12 col-md-8 col-lg-5';
+        this.inputPortletStyle = 'col-12 col-md-8 col-lg-5';
         this.inputRequestParams = {
             route:      '',
             htmlMethod: null,
@@ -136,6 +136,12 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
         this.formFieldControlService.resetForm();
     }
 
+    protected onToggleClick():void
+    {
+        this.inputShowDeprecatedEntries = !this.inputShowDeprecatedEntries;
+        this.inputShowDeprecatedEntriesChange.emit(this.inputShowDeprecatedEntries);
+    }
+
     private registerValueChange():void
     {
         if(!isNullOrUndefined(this.inputFormFunctions.onValueChangedCallback))
@@ -156,11 +162,5 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
                 this.inputFormFunctions.onValueChangedCallback(value);
             });
         }
-    }
-
-    protected onToggleClick():void
-    {
-        this.inputShowDeprecatedEntries = !this.inputShowDeprecatedEntries;
-        this.inputShowDeprecatedEntriesChange.emit(this.inputShowDeprecatedEntries);
     }
 }

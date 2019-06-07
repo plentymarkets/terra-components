@@ -2,8 +2,8 @@ import {
     Injectable,
     NgZone
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { isNullOrUndefined } from 'util';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class TerraFileBrowserService

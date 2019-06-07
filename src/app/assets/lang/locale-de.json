@@ -39,6 +39,7 @@
 	"terraFileInput": {
 		"choose": "Wählen",
 		"cancel": "Abbrechen",
+		"reset": "Zurücksetzen",
 		"chooseFile": "Datei wählen"
 	},
 	"terraSuggestionBox": {

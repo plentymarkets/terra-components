@@ -6,6 +6,7 @@ import {
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
+import { noop } from 'rxjs';
 
 export class TerraInputComponent implements ControlValueAccessor
 {
@@ -86,6 +87,11 @@ export class TerraInputComponent implements ControlValueAccessor
 
     private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
+    // Placeholders for the callbacks which are later provided
+    // by the Control Value Accessor
+    private onTouchedCallback:() => void = noop;
+    private onChangeCallback:(_:any) => void = noop;
+
     constructor(private inputRegex:string)
     {
         this.regex = inputRegex;
@@ -146,12 +152,6 @@ export class TerraInputComponent implements ControlValueAccessor
     {
         this.onTouchedCallback = fn;
     }
-
-    // Placeholders for the callbacks which are later provided
-    // by the Control Value Accessor
-    private onTouchedCallback:() => void = ():void => undefined;
-
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 
     public validate(formControl:FormControl):void
     {

@@ -40,7 +40,7 @@
         <terra-text-input [inputName]="translationPrefix + '.folderName' | translate:lang"
                           [(ngModel)]="newDirectoryName">
         </terra-text-input>
-        <div class="pull-lg-right">
+        <div class="float-lg-right">
             <terra-button [inputIcon]="'icon-close'"
                           [inputCaption]="translationPrefix + '.cancel' | translate:lang"
                           [inputIsSmall]="true"
@@ -61,7 +61,7 @@
         <span class="prompt-title">
             {{ translationPrefix + '.confirmDeleteMany' | translate:lang:{count: _deleteCount} }}
         </span>
-        <div class="pull-lg-right">
+        <div class="float-lg-right">
             <terra-button [inputIcon]="'icon-close'"
                           [inputCaption]="translationPrefix + '.cancel' | translate:lang"
                           [inputIsSmall]="true"

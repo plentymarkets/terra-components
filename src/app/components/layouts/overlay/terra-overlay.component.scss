@@ -1,55 +1,59 @@
-.modal-dialog
+.modal
 {
-    margin: 0;
-    position: relative;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
-    min-width: 300px;
-
-    .modal-content
+    //Fixes firefox bug where doesn't get the class .show
+    background-color: rgba(0, 0, 0, 0.5);
+    &.fade:not(.in)
     {
-        border-radius: var(--border-radius);
-
-        .modal-header
+        opacity: 0;
+    }
+    &.fade.in
+    {
+        opacity: 1;
+        
+        .modal-dialog
         {
-            padding: var(--space-md) var(--space-lg);
-            border-bottom: 1px solid var(--border-color);
-            --btn-padding: 0;
-
-            .modal-title
-            {
-                line-height: var(--height-md);
-                font-weight: var(--font-weight-3);
-            }
-        }
-
-        .modal-body
-        {
-            max-height: var(--modal-body-max-height, 525px);
-            height: var(--modal-body-height, initial);
-            overflow-y: auto;
-            padding: var(--space-lg) var(--space-lg);
-            background-color: var(--modal-body-background-color, var(--color-structure-2))
-        }
-
-        .modal-footer
-        {
-            padding: var(--space-md) var(--space-lg);
-            border-top: 1px solid var(--border-color);
+            -webkit-transform: none;
+            transform: none;
         }
     }
-}
-
-.modal.fade .modal-dialog
-{
-    transform: translate(-50%, -100%);
-    transition: transform var(--transition-md), -webkit-transform var(--transition-md);
-}
-
-.modal.in .modal-dialog
-{
-    transform: translate(-50%, -50%);
+    
+    .modal-dialog
+    {
+        min-width: 300px;
+        
+        .modal-content
+        {
+            border-radius: var(--border-radius);
+            
+            .modal-header
+            {
+                padding: var(--space-md) var(--space-lg);
+                border-bottom: 1px solid var(--border-color);
+                --btn-padding: 0;
+                
+                .modal-title
+                {
+                    line-height: var(--height-md);
+                    font-weight: var(--font-weight-3);
+                }
+            }
+            
+            .modal-body
+            {
+                max-height: var(--modal-body-max-height, 525px);
+                height: var(--modal-body-height, initial);
+                overflow-y: auto;
+                padding: var(--space-lg) var(--space-lg);
+                background-color: var(--modal-body-background-color, var(--color-structure-2))
+            }
+            
+            .modal-footer
+            {
+                padding: var(--space-md) var(--space-lg);
+                border-top: 1px solid var(--border-color);
+            }
+        }
+    }
 }
 
 @media(min-width: 544px)
@@ -57,17 +61,17 @@
     .modal-dialog
     {
         max-width: 600px;
-
+        
         &.modal-sm
         {
             max-width: 300px;
         }
-
+        
         &.modal-lg
         {
             max-width: 900px;
         }
-
+        
         &.modal-xl
         {
             max-width: 1200px;

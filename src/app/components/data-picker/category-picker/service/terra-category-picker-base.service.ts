@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { CategoryDataInterface } from '../data/category-data.interface';
 import { TerraPagerInterface } from '../../../pager/data/terra-pager.interface';

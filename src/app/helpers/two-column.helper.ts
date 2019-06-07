@@ -2,7 +2,7 @@ import { ColumnContainerConfig } from '../components/layouts/column-container/co
 
 export class TwoColumnHelper
 {
-    public static colXS:string = 'col-xs-12';
+    public static colXS:string = 'col-12';
     public static colMD:string = 'col-md-';
     public static colLG:string = 'col-lg-';
     public static spacer:string = ' ';

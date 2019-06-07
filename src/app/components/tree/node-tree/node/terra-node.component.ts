@@ -1,18 +1,20 @@
 import {
     Component,
     Input,
+    OnDestroy,
     OnInit
 } from '@angular/core';
 import { TerraNodeInterface } from '../data/terra-node.interface';
 import { TerraNodeTreeConfig } from '../data/terra-node-tree.config';
 import { isNullOrUndefined } from 'util';
+import { Language } from 'angular-l10n';
 
 @Component({
     selector: 'terra-node',
     styles:   [require('./terra-node.component.scss')],
     template: require('./terra-node.component.html')
 })
-export class TerraNodeComponent<D> implements OnInit
+export class TerraNodeComponent<D> implements OnInit, OnDestroy
 {
     /**
      * @description The node interface.
@@ -25,6 +27,9 @@ export class TerraNodeComponent<D> implements OnInit
      */
     @Input()
     public inputConfig:TerraNodeTreeConfig<D>;
+
+    @Language()
+    protected lang:string;
 
     protected tooltip:string;
     protected tooltipPlacement:string = 'right';
@@ -43,7 +48,11 @@ export class TerraNodeComponent<D> implements OnInit
         {
             this.tooltipPlacement = this.inputNode.tooltipPlacement;
         }
+    }
 
+    public ngOnDestroy():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     // handle the node click
@@ -67,6 +76,15 @@ export class TerraNodeComponent<D> implements OnInit
         }
     }
 
+    protected handleIconClick(event:Event):void
+    {
+        event.stopPropagation();
+
+        this.handleOpenNode(true);
+
+        this.inputConfig.handleLazyLoading(this.inputNode);
+    }
+
     private handleOpenNode(isIconClick:boolean):void
     {
         if(isIconClick || this.inputNode.closeOnClick)
@@ -77,14 +95,5 @@ export class TerraNodeComponent<D> implements OnInit
         {
             this.inputNode.isOpen = true;
         }
-    }
-
-    protected handleIconClick(event:Event):void
-    {
-        event.stopPropagation();
-
-        this.handleOpenNode(true);
-
-        this.inputConfig.handleLazyLoading(this.inputNode);
     }
 }

@@ -2,6 +2,7 @@ import {
     Component,
     EventEmitter,
     Input,
+    OnDestroy,
     OnInit,
     Output
 } from '@angular/core';
@@ -13,7 +14,7 @@ import { isNullOrUndefined } from 'util';
     styles:   [require('./terra-stopwatch.component.scss')],
     template: require('./terra-stopwatch.component.html'),
 })
-export class TerraStopwatchComponent implements OnInit
+export class TerraStopwatchComponent implements OnInit, OnDestroy
 {
     /**
      * @description If true, the start, pause and reset control will show
@@ -75,6 +76,11 @@ export class TerraStopwatchComponent implements OnInit
         {
             this.start();
         }
+    }
+
+    public ngOnDestroy():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     /**

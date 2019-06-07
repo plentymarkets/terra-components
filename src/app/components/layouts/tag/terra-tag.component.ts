@@ -3,6 +3,8 @@ import {
     EventEmitter,
     Input,
     OnChanges,
+    OnDestroy,
+    OnInit,
     Output,
     SimpleChanges
 } from '@angular/core';
@@ -16,7 +18,7 @@ import { Language } from 'angular-l10n';
     styles:   [require('./terra-tag.component.scss')],
     template: require('./terra-tag.component.html')
 })
-export class TerraTagComponent implements OnChanges
+export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
 {
     /**
      * If no translation is given for the current language, this will be used as caption for the tag
@@ -77,16 +79,37 @@ export class TerraTagComponent implements OnChanges
     @Input()
     public names:Array<TerraTagNameInterface> = [];
 
+    /* tslint:disable:no-output-on-prefix */
+    /**
+     * @deprecated use closeTag instead
+     */
+    @Output()
+    public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
+    /* tslint:enable:no-output-on-prefix */
+
     /**
      * Notifies when the user clicks on the close icon.
      */
     @Output()
-    public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
+    public closeTag:EventEmitter<number> = new EventEmitter<number>();
 
     @Language()
     protected lang:string;
 
     protected tagName:string;
+
+    public ngOnInit():void
+    {
+        if(this.onCloseTag.observers.length > 0)
+        {
+            console.warn('`onCloseTag` is deprecated. Please use `closeTag` instead.');
+        }
+    }
+
+    public ngOnDestroy():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
+    }
 
     /**
      * Change detection routine. Updates the 'tagName' depending on the inputs 'inputBadge', 'name' and 'names'.
@@ -103,6 +126,7 @@ export class TerraTagComponent implements OnChanges
     protected close():void
     {
         this.onCloseTag.emit(this.tagId);
+        this.closeTag.emit(this.tagId);
     }
 
     private getTagName():string

@@ -1,4 +1,5 @@
 import {
+    APP_INITIALIZER,
     Compiler,
     COMPILER_OPTIONS,
     CompilerFactory,
@@ -19,7 +20,7 @@ import {
 } from 'ngx-bootstrap';
 import {
     L10nLoader,
-    TranslationModule
+    LocalizationModule
 } from 'angular-l10n';
 import { QuillModule } from 'ngx-quill';
 import { TerraComponentsComponent } from './terra-components.component';
@@ -48,6 +49,11 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
     return compilerFactory.createCompiler();
 }
 
+function initL10n(l10nLoader:L10nLoader):Function
+{
+    return ():Promise<void> => l10nLoader.load();
+}
+
 @NgModule({
     declarations:    [
         TerraComponentsComponent,
@@ -67,13 +73,13 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        ModalModule.forRoot(),
         HttpModule,
         HttpClientModule,
+        LocalizationModule.forRoot(l10nConfig),
+        ModalModule.forRoot(),
         TooltipModule.forRoot(),
         AlertModule.forRoot(),
         ButtonsModule.forRoot(),
-        TranslationModule.forRoot(l10nConfig),
         MyDatePickerModule,
         AceEditorModule,
         TerraInteractModule,
@@ -94,6 +100,13 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
             deps:     [COMPILER_OPTIONS]
         },
         {
+            provide:    APP_INITIALIZER, // APP_INITIALIZER will execute the function when the app is initialized and delay what
+                                         // it provides.
+            useFactory: initL10n,
+            deps:       [L10nLoader],
+            multi:      true
+        },
+        {
             provide:    Compiler,
             useFactory: createCompiler,
             deps:       [CompilerFactory]
@@ -106,12 +119,7 @@ function createCompiler(compilerFactory:CompilerFactory):Compiler
 
 export class TerraComponentsModule
 {
-    constructor(public l10nLoader:L10nLoader)
-    {
-        this.l10nLoader.load();
-    }
-
-    public static forRoot():ModuleWithProviders
+    public static forRoot():ModuleWithProviders<any>
     {
         return {
             ngModule:  TerraComponentsModule,

@@ -13,6 +13,7 @@ import {
 } from '@angular/forms';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 import { isNullOrUndefined } from 'util';
+import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-time-picker',
@@ -39,6 +40,8 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
     public valuesMinutes:Array<TerraSelectBoxValueInterface>;
     private value:Date;
 
+    private onTouchedCallback:() => void = noop;
+    private onChangeCallback:(_:any) => void = noop;
 
     constructor()
     {
@@ -79,10 +82,6 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor
         }
 
     }
-
-    private onTouchedCallback:() => void = ():void => undefined;
-
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 
     public registerOnChange(fn:any):void
     {

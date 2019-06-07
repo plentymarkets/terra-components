@@ -10,6 +10,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
+import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-toggle',
@@ -60,27 +61,12 @@ export class TerraToggleComponent implements ControlValueAccessor
 
     protected isActive:boolean = false;
 
+    private onTouchedCallback:() => void = noop;
+    private onChangeCallback:(_:any) => void = noop;
+
     constructor()
     {
         this.inputTooltipPlacement = TerraPlacementEnum.TOP;
-    }
-
-    protected toggle():void
-    {
-        if(!this.inputIsDisabled)
-        {
-            this.isActive = !this.isActive;
-            this.toggled.emit(this.isActive);
-            this.onChangeCallback(this.isActive);
-            if(this.isActive)
-            {
-                this.activated.emit();
-            }
-            else
-            {
-                this.deactivated.emit();
-            }
-        }
     }
 
     // From ControlValueAccessor interface
@@ -104,7 +90,21 @@ export class TerraToggleComponent implements ControlValueAccessor
         this.onTouchedCallback = fn;
     }
 
-    private onTouchedCallback:() => void = ():void => undefined;
-
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
+    protected toggle():void
+    {
+        if(!this.inputIsDisabled)
+        {
+            this.isActive = !this.isActive;
+            this.toggled.emit(this.isActive);
+            this.onChangeCallback(this.isActive);
+            if(this.isActive)
+            {
+                this.activated.emit();
+            }
+            else
+            {
+                this.deactivated.emit();
+            }
+        }
+    }
 }

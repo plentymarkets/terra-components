@@ -8,3 +8,17 @@
         padding-right: 0;
     }
 }
+
+
+.btn-toolbar
+{
+   > *
+   {
+       font-size: 0;
+       vertical-align: middle;
+       &:not(:last-child)
+       {
+           margin-right: 4px;
+       }
+   }
+}

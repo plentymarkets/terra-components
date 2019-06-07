@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { TerraDataTableBaseService } from '../terra-data-table-base.service';
 import { TerraPagerParameterInterface } from '../../../pager/data/terra-pager.parameter.interface';
-import { Observable } from 'rxjs/Observable';
+import {
+    Observable,
+    of
+} from 'rxjs';
 import { TerraPagerInterface } from '../../../pager/data/terra-pager.interface';
 import { TerraDataTableSortOrderEnum } from '../enums/terra-data-table-sort-order.enum';
 import { TerraDataTableExampleInterface } from './terra-data-table.interface.example';
@@ -60,22 +63,7 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
         results.entries = entries.slice(firstOnPage, lastOnPage);
 
         // return data
-        return Observable.of(results);
-    }
-
-    private applySorting(data:Array<TerraDataTableExampleInterface>, sortBy:string,
-                         sortOrder:TerraDataTableSortOrderEnum):Array<TerraDataTableExampleInterface>
-    {
-        let comparator:(a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface) => number;
-        if(sortOrder === TerraDataTableSortOrderEnum.ascending)
-        {
-            comparator = (a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface):number => a[sortBy] - b[sortBy];
-        }
-        else
-        {
-            comparator = (a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface):number => b[sortBy] - a[sortBy];
-        }
-        return data.sort(comparator);
+        return of(results);
     }
 
     public addEntry():void
@@ -118,5 +106,20 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
             data:          entry,
             clickFunction: ():void => console.log(`Row with id ${entry.id} clicked`)
         };
+    }
+
+    private applySorting(data:Array<TerraDataTableExampleInterface>, sortBy:string,
+                         sortOrder:TerraDataTableSortOrderEnum):Array<TerraDataTableExampleInterface>
+    {
+        let comparator:(a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface) => number;
+        if(sortOrder === TerraDataTableSortOrderEnum.ascending)
+        {
+            comparator = (a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface):number => a[sortBy] - b[sortBy];
+        }
+        else
+        {
+            comparator = (a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface):number => b[sortBy] - a[sortBy];
+        }
+        return data.sort(comparator);
     }
 }

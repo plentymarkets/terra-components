@@ -1,5 +1,5 @@
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { TerraBaseStorageService } from './terra-base-storage.interface';
 
 export abstract class TerraBaseMetadataStorageService extends TerraBaseStorageService

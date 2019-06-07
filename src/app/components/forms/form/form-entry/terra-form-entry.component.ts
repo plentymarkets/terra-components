@@ -25,7 +25,7 @@ import {
 } from '@angular/forms';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { FormEntryContainerDirective } from './form-entry-container.directive';
-import { noop } from 'rxjs/util/noop';
+import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-form-entry',
@@ -102,45 +102,6 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         });
     }
 
-    private initComponent():void
-    {
-        if(!this.hasChildren)
-        {
-            let controlType:Type<any> = TerraTextInputComponent;
-            if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
-            {
-                if(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)
-                {
-                    controlType = <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
-                }
-                else
-                {
-                    controlType = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
-                }
-            }
-
-            this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(controlType);
-            this.componentRef = this.container.viewContainerRef.createComponent(this.componentFactory);
-            this.componentInstance = this.componentRef.instance;
-
-            this.bindInputProperties();
-
-            if(isFunction(this.componentInstance.registerOnChange) &&
-               isFunction(this.componentInstance.registerOnTouched))
-            {
-                this.componentInstance.registerOnChange((value:any):void => this.onChangeCallback(value));
-                this.componentInstance.registerOnTouched(():void => this.onTouchedCallback());
-            }
-            else
-            {
-                console.error(
-                    'Cannot bind component ' + controlType.name + ' to dynamic form. ' +
-                    'Bound components needs to implement the ControlValueAccessor interface.'
-                );
-            }
-        }
-    }
-
     /**
      * Implementation of the OnChanges life cycle hook.
      * @description Updates the input bindings of the dynamically created component instance.
@@ -195,6 +156,45 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         if(this.componentInstance && isFunction(this.componentInstance.writeValue))
         {
             this.componentInstance.writeValue(value);
+        }
+    }
+
+    private initComponent():void
+    {
+        if(!this.hasChildren)
+        {
+            let controlType:Type<any> = TerraTextInputComponent;
+            if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
+            {
+                if(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)
+                {
+                    controlType = <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
+                }
+                else
+                {
+                    controlType = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
+                }
+            }
+
+            this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(controlType);
+            this.componentRef = this.container.viewContainerRef.createComponent(this.componentFactory);
+            this.componentInstance = this.componentRef.instance;
+
+            this.bindInputProperties();
+
+            if(isFunction(this.componentInstance.registerOnChange) &&
+               isFunction(this.componentInstance.registerOnTouched))
+            {
+                this.componentInstance.registerOnChange((value:any):void => this.onChangeCallback(value));
+                this.componentInstance.registerOnTouched(():void => this.onTouchedCallback());
+            }
+            else
+            {
+                console.error(
+                    'Cannot bind component ' + controlType.name + ' to dynamic form. ' +
+                    'Bound components needs to implement the ControlValueAccessor interface.'
+                );
+            }
         }
     }
 
