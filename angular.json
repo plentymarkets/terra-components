@@ -23,12 +23,17 @@
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "src/tsconfig.app.json",
 						"assets": [
-							"src/favicon.ico",
 							"src/assets"
 						],
 						"styles": [
-							"src/styles.scss"
+							"src/styles.scss",
+							"node_modules/bootstrap/scss/bootstrap.scss"
 						],
+						"stylePreprocessorOptions": {
+							"includePaths": [
+								"src/styles"
+							]
+						},
 						"scripts": [],
 						"es5BrowserSupport": true
 					},

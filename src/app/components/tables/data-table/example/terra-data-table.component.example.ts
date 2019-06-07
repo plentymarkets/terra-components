@@ -12,7 +12,7 @@ import { TerraDataTableContextMenuEntryInterface } from '../context-menu/data/te
 
 @Component({
     selector:  'terra-data-table-example',
-    template:  './terra-data-table.component.example.html',
+    templateUrl:  './terra-data-table.component.example.html',
     styleUrls: ['./terra-data-table.component.example.scss'],
     providers: [TerraDataTableServiceExample]
 })
