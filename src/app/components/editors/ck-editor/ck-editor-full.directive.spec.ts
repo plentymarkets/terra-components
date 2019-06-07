@@ -5,23 +5,20 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import {
-    Component,
-    DebugElement
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 @Component({
     template: `<ckeditor tcCkFull></ckeditor>`
 })
-class CkEditorFullDirectiveSpec
+class CkEditorTestHostComponent
 {
 }
 
 fdescribe('CkFullDirective', () =>
 {
-    let component:CkEditorFullDirectiveSpec;
-    let fixture:ComponentFixture<CkEditorFullDirectiveSpec>;
+    let component:CkEditorTestHostComponent;
+    let fixture:ComponentFixture<CkEditorTestHostComponent>;
     let directive:CKEditorFullDirective;
     let ckComponent:CKEditorComponent;
 
@@ -32,7 +29,7 @@ fdescribe('CkFullDirective', () =>
         TestBed.configureTestingModule({
             declarations: [
                 CKEditorFullDirective,
-                CkEditorFullDirectiveSpec,
+                CkEditorTestHostComponent,
                 CKEditorComponent
             ]
         }).compileComponents();
@@ -40,7 +37,7 @@ fdescribe('CkFullDirective', () =>
 
     beforeEach(() =>
     {
-        fixture = TestBed.createComponent(CkEditorFullDirectiveSpec);
+        fixture = TestBed.createComponent(CkEditorTestHostComponent);
         component = fixture.componentInstance;
 
         directive = fixture.debugElement.query(By.directive(CKEditorFullDirective)).injector.get(CKEditorFullDirective);
