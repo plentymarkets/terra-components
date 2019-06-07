@@ -13,7 +13,7 @@ import {
 } from '@angular/forms';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 import { isNullOrUndefined } from 'util';
-import { noop } from 'rxjs/util/noop';
+import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-time-picker',

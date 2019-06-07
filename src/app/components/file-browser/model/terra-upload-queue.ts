@@ -1,9 +1,11 @@
 import { TerraUploadItem } from './terra-upload-item';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
 import { isNullOrUndefined } from 'util';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TerraUploadProgress } from './terra-upload-progress';
+import {
+    BehaviorSubject,
+    Observable,
+    Observer
+} from 'rxjs';
 
 export type UploadQueueUrlFactory = (storageKey:string) => string;
 

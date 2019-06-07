@@ -1,3 +1,15 @@
+<a name="4.0.0-beta.1"></a>
+# 4.0.0-beta.1 (Unreleased)
+
+### Breaking Changes
+* Updated [angular](https://github.com/angular/angular) to v7, [rxjs](https://github.com/ReactiveX/rxjs) to v6 and [angular-l10n](https://github.com/robisim74/angular-l10n) to v7 and made them peer dependencies.
+* Updated several other dependencies including
+	- [ngx-bootstrap](https://github.com/valor-software/ngx-bootstrap)
+	- [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quill)
+	- [TypeScript](https://github.com/microsoft/TypeScript)
+	- ...
+* **TerraConverterHelper** instead of a `defaultLocale` you now need to pass an instance of the [angular-l10n](https://github.com/robisim74/angular-l10n)'s `LocaleService` as argument to `convertAndFormatSize()` and `getLocaleDecimalValue()`
+
 <a name="4.0.0-beta.0"></a>
 # 4.0.0-beta.0 (06.06.2019)
 
@@ -38,7 +50,7 @@
 * **terra-base-editor**, **terra-note-editor**, **terra-code-editor** 
 	- added `required` input that activates validation if set.
 	- added styles for the representation of an invalid state.
-	- updated [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quil) dependency to the latest version
+	- updated [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quill) dependency to the latest version
 	- activated sanitization using the `quill-editor`'s `sanitize` input.
 
 <a name="3.12.0"></a>

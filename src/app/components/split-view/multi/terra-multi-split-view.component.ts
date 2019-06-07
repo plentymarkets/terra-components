@@ -23,6 +23,7 @@ import { Route } from '@angular/router/src/config';
 import { UrlHelper } from '../../../helpers/url.helper';
 import { TerraMultiSplitViewRoutes } from './interfaces/terra-multi-split-view-routes';
 import { TerraMultiSplitViewBreadcrumbsService } from './injectables/terra-multi-split-view-breadcrumbs.service';
+import { filter } from 'rxjs/operators';
 
 let nextSplitViewId:number = 0;
 
@@ -116,9 +117,9 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
             {
                 if(this.inputHasRouting)
                 {
-                    this.router.events.filter((event:AngularRouter.Event) =>
+                    this.router.events.pipe(filter((event:AngularRouter.Event) =>
                         event instanceof NavigationEnd && event.url.startsWith(this._componentRoute)
-                    ).subscribe((event:NavigationEnd) =>
+                    )).subscribe((event:NavigationEnd) =>
                     {
                         if(this.inputConfig.currentSelectedView && (this._componentRoute + this.inputConfig.currentSelectedView.url === event.url))
                         {
@@ -134,9 +135,9 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
                 }
                 else
                 {
-                    this.router.events.filter((event:AngularRouter.Event) =>
+                    this.router.events.pipe(filter((event:AngularRouter.Event) =>
                         event instanceof NavigationStart && event.url === this._componentRoute
-                    ).subscribe((path:NavigationStart) =>
+                    )).subscribe((path:NavigationStart) =>
                     {
                         this.updateViewport(this.inputConfig.currentSelectedView, true);
                     });

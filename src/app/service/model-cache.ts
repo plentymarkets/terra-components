@@ -1,5 +1,7 @@
-import { Observable } from 'rxjs';
-import { of } from 'rxjs/observable/of';
+import {
+    Observable,
+    of
+} from 'rxjs';
 import { isNullOrUndefined } from 'util';
 import { tap } from 'rxjs/operators';
 import { TerraKeyValueInterface } from '../models/terra-key-value.interface';
@@ -45,7 +47,7 @@ export class ModelCache
     {
         if(!isNullOrUndefined(this.dataModel[dataId]))
         {
-            return Observable.of(this.dataModel[dataId]);
+            return of(this.dataModel[dataId]);
         }
 
         return getRequest$.pipe(

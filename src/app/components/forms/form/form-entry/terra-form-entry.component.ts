@@ -25,7 +25,7 @@ import {
 } from '@angular/forms';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { FormEntryContainerDirective } from './form-entry-container.directive';
-import { noop } from 'rxjs/util/noop';
+import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-form-entry',

@@ -15,13 +15,14 @@ import {
     SimpleChanges,
     ViewChild
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
 import { TerraFileBrowserService } from '../terra-file-browser.service';
 import {
     DefaultLocale,
-    L10nDatePipe,
+    Language,
+    LocaleService,
     TranslationService
 } from 'angular-l10n';
 import { TerraUploadProgress } from '../model/terra-upload-progress';
@@ -63,6 +64,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     public selectNode:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
     public imagePreviewObject:TerraStorageObject;
+
+    @Language()
+    protected lang:string;
 
     protected translationPrefix:string = 'terraFileBrowser';
 
@@ -248,14 +252,13 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                    }, 0);
     }
 
-    private datePipe:L10nDatePipe = new L10nDatePipe();
-
     @DefaultLocale()
     private defaultLocale:string;
 
     constructor(private changeDetector:ChangeDetectorRef,
                 private fileBrowserService:TerraFileBrowserService,
                 private translationService:TranslationService,
+                private localeService:LocaleService,
                 @Inject(forwardRef(() => TerraFileBrowserComponent)) protected parentFileBrowser:TerraFileBrowserComponent)
     {
     }
@@ -497,7 +500,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 caption: storageObject.isFile ? storageObject.sizeString : ''
             },
             {
-                caption: storageObject.isFile ? this.datePipe.transform(storageObject.lastModified, this.defaultLocale, 'medium') : ''
+                caption: storageObject.isFile ? this.localeService.formatDate(storageObject.lastModified, 'medium', this.defaultLocale) : ''
             }
         );
 

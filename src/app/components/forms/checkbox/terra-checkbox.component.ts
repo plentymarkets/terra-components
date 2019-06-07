@@ -11,7 +11,7 @@ import {
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
-import { noop } from 'rxjs/util/noop';
+import { noop } from 'rxjs';
 
 let nextId:number = 0;
 

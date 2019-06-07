@@ -8,7 +8,7 @@ export interface TerraMultiSplitViewInterface
 {
     parent?:TerraMultiSplitViewInterface;
     children?:Array<TerraMultiSplitViewInterface>;
-    module:ModuleWithProviders;
+    module:ModuleWithProviders<any>;
     defaultWidth:string;
     focusedWidth?:string;
     name:string;

@@ -5,7 +5,10 @@ import {
     HttpInterceptor,
     HttpRequest
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {
+    Observable,
+    throwError
+} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AlertService } from '../components/alert/alert.service';
 import {
@@ -64,7 +67,7 @@ export class ErrorInterceptor implements HttpInterceptor
                 }
 
                 // re-throw the error so that developers are able handle it in their UIs as well
-                return Observable.throw(error);
+                return throwError(error);
             })
         );
     }

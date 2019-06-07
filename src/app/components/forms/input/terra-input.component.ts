@@ -6,7 +6,7 @@ import {
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
-import { noop } from 'rxjs/util/noop';
+import { noop } from 'rxjs';
 
 export class TerraInputComponent implements ControlValueAccessor
 {
@@ -90,7 +90,6 @@ export class TerraInputComponent implements ControlValueAccessor
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
     private onTouchedCallback:() => void = noop;
-
     private onChangeCallback:(_:any) => void = noop;
 
     constructor(private inputRegex:string)
