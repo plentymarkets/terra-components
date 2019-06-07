@@ -1,3 +1,11 @@
+/**
+ * Provided configs for the ckeditor. You can create your own config. See more
+ * {@link https://ckeditor.com/latest/samples/toolbarconfigurator/index.html#basic}
+ */
+
+/**
+ * A complex config.
+ */
 export const ckEditorFullConfig:{} =
     {
         toolbarGroups: [
@@ -72,6 +80,9 @@ export const ckEditorFullConfig:{} =
                        'Flash,Smiley,PageBreak,Iframe'
     };
 
+/**
+ * A minimal config.
+ */
 export const ckEditorMinimumConfig:{} =
     {
         toolbarGroups: [
