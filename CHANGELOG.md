@@ -1,5 +1,5 @@
 <a name="4.0.0-beta.1"></a>
-# 4.0.0-beta.1 (Unreleased)
+# 4.0.0-beta.1 (07.06.2019)
 
 ### Breaking Changes
 * Updated [angular](https://github.com/angular/angular) to v7, [rxjs](https://github.com/ReactiveX/rxjs) to v6 and [angular-l10n](https://github.com/robisim74/angular-l10n) to v7 and made them peer dependencies.
