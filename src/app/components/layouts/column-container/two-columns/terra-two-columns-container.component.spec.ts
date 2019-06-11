@@ -16,7 +16,7 @@ describe('TerraTwoColumnsContainerComponent', () =>
     let left:DebugElement;
     let right:DebugElement;
 
-    const colXs:string = 'col-';
+    const colXs:string = 'col-xs-';
     const colMd:string = 'col-md-';
     const colLg:string = 'col-lg-';
 
@@ -47,14 +47,14 @@ describe('TerraTwoColumnsContainerComponent', () =>
             expect(component).toBeTruthy();
         });
 
-        it(`should have a default left column definition of 'col-12 col-md-3 col-lg-2'`, () =>
+        it(`should have a default left column definition of 'col-xs-12 col-md-3 col-lg-2'`, () =>
         {
             expect(left.classes[colXs + 12]).toBe(true);
             expect(left.classes[colMd + 3]).toBe(true);
             expect(left.classes[colLg + 2]).toBe(true);
         });
 
-        it(`should have a default right column definition of 'col-12 col-md-9 col-lg-10'`, () =>
+        it(`should have a default right column definition of 'col-xs-12 col-md-9 col-lg-10'`, () =>
         {
             expect(right.classes[colXs + 12]).toBe(true);
             expect(right.classes[colMd + 9]).toBe(true);
@@ -70,7 +70,7 @@ describe('TerraTwoColumnsContainerComponent', () =>
             fixture.detectChanges();
         });
 
-        it(`should have a left column width of 'col-12'`, () =>
+        it(`should have a left column width of 'col-xs-12'`, () =>
         {
             checkColumnClass(colXs, left.classes);
             expect(left.classes[colXs + 12]).toBe(true);
@@ -88,7 +88,7 @@ describe('TerraTwoColumnsContainerComponent', () =>
             expect(left.classes[colLg + 6]).toBe(true);
         });
 
-        it(`should have a right column width of 'col-12'`, () =>
+        it(`should have a right column width of 'col-xs-12'`, () =>
         {
             checkColumnClass(colXs, right.classes);
             expect(right.classes[colXs + 12]).toBe(true);
@@ -122,7 +122,7 @@ describe('TerraTwoColumnsContainerComponent', () =>
             expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
         });
 
-        it(`should have a left column width of 'col-12'`, () =>
+        it(`should have a left column width of 'col-xs-12'`, () =>
         {
             checkColumnClass(colXs, left.classes);
             expect(left.classes[colXs + 12]).toBe(true);
@@ -140,7 +140,7 @@ describe('TerraTwoColumnsContainerComponent', () =>
             expect(left.classes[colLg + 11]).toBe(true);
         });
 
-        it(`should have a right column width of 'col-12'`, () =>
+        it(`should have a right column width of 'col-xs-12'`, () =>
         {
             checkColumnClass(colXs, right.classes);
             expect(right.classes[colXs + 12]).toBe(true);
@@ -174,7 +174,7 @@ describe('TerraTwoColumnsContainerComponent', () =>
             expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
         });
 
-        it(`should have a left column width of 'col-12'`, () =>
+        it(`should have a left column width of 'col-xs-12'`, () =>
         {
             checkColumnClass(colXs, left.classes);
             expect(left.classes[colXs + 12]).toBe(true);
@@ -192,7 +192,7 @@ describe('TerraTwoColumnsContainerComponent', () =>
             expect(left.classes[colLg + 1]).toBe(true);
         });
 
-        it(`should have a right column width of 'col-12'`, () =>
+        it(`should have a right column width of 'col-xs-12'`, () =>
         {
             checkColumnClass(colXs, right.classes);
             expect(right.classes[colXs + 12]).toBe(true);
@@ -214,9 +214,7 @@ describe('TerraTwoColumnsContainerComponent', () =>
 
 function checkColumnClass(className:string, columnClasses:{ [key:string]:boolean; }):void
 {
-    let count:number = Object.keys(columnClasses).filter(
-        (key:string) => key.startsWith(className) && !isNaN(+key.replace(className, '')) && columnClasses[key]
-    ).length;
+    let count:number = Object.keys(columnClasses).filter((key:string) => key.startsWith(className) && columnClasses[key]).length;
 
     expect(count).toBe(1);
 }

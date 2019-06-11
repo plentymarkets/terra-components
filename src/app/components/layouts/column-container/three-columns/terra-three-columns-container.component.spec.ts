@@ -52,7 +52,7 @@ describe('Component: TerraThreeColumnsContainerComponent', () =>
 
     it('should initialize all columns with a width of 12 on extra small screens', () =>
     {
-        expect(columns.every((column:HTMLDivElement) => column.classList.contains('col-12'))).toBeTruthy();
+        expect(columns.every((column:HTMLDivElement) => column.classList.contains('col-xs-12'))).toBeTruthy();
     });
 
     it('should initialize all columns with a width of 4 on medium screens', () =>

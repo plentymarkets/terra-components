@@ -6,7 +6,6 @@ button, html [type="button"], [type="reset"], [type="submit"]
 button:focus
 {
     outline: none !important;
-    box-shadow: none;
 }
 
 .btn-handler
@@ -317,6 +316,8 @@ fieldset[disabled] a.btn
 
 :host-context(.btn-group)
 {
+    font-size: 4px;
+    
     &:first-child
     {
         margin-left: 0;
@@ -343,11 +344,6 @@ fieldset[disabled] a.btn
         {
             border-radius: 0 var(--border-radius) var(--border-radius) 0;
         }
-    }
-    
-    &:not(:last-child) .btn-handler
-    {
-        margin-right: 1px;
     }
 }
 

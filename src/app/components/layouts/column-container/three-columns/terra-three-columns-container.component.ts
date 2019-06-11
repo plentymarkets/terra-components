@@ -76,7 +76,7 @@ export class TerraThreeColumnsContainerComponent implements OnChanges
     {
         if(columnWidth)
         {
-            return `col-12 col-md-${columnWidth}`;
+            return `col-xs-12 col-md-${columnWidth}`;
         }
 
         return null;
