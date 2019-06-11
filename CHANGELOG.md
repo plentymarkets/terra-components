@@ -1,5 +1,5 @@
 <a name="4.0.0-beta.2"></a>
-# 4.0.0-beta.2 (Unreleased)
+# 4.0.0-beta.2 (11.06.2019)
 * **bootstrap** revert bootstrap update
 
 <a name="4.0.0-beta.1"></a>
