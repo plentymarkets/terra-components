@@ -1,21 +1,26 @@
 import {
     ChangeDetectorRef,
     Component,
-    Input
+    Input,
+    OnDestroy,
+    OnInit
 } from '@angular/core';
 import { TerraStorageObject } from '../model/terra-storage-object';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraImageMetadata } from '../model/terra-image-metadata.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraBaseMetadataStorageService } from '../terra-base-metadata-storage.interface';
-import { TranslationService } from 'angular-l10n';
+import {
+    Language,
+    TranslationService
+} from 'angular-l10n';
 
 @Component({
     selector: 'terra-image-preview',
     template: require('./image-preview.component.html'),
     styles:   [require('./image-preview.component.scss')]
 })
-export class TerraImagePreviewComponent
+export class TerraImagePreviewComponent implements OnInit, OnDestroy
 {
     @Input()
     public inputStorageService:TerraBaseStorageService;
@@ -54,6 +59,9 @@ export class TerraImagePreviewComponent
         return this._inputStorageObject;
     }
 
+    @Language()
+    protected lang:string;
+
     protected get _canHandleMetadata():boolean
     {
         return this.inputStorageService instanceof TerraBaseMetadataStorageService;
@@ -62,6 +70,16 @@ export class TerraImagePreviewComponent
     constructor(private changeDetector:ChangeDetectorRef,
                 private translation:TranslationService)
     {
+    }
+
+    public ngOnInit():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
+    }
+
+    public ngOnDestroy():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     protected updateMetadata():void

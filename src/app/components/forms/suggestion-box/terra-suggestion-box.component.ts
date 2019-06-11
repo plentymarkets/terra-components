@@ -5,6 +5,7 @@ import {
     forwardRef,
     Input,
     OnChanges,
+    OnDestroy,
     OnInit,
     Output,
     QueryList,
@@ -23,6 +24,7 @@ import {
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraBaseData } from '../../data/terra-base.data';
 import { noop } from 'rxjs';
+import { Language } from 'angular-l10n';
 
 const MAX_LASTLY_USED_ENTRIES:number = 5;
 
@@ -38,7 +40,7 @@ const MAX_LASTLY_USED_ENTRIES:number = 5;
         }
     ]
 })
-export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlValueAccessor
+export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlValueAccessor, OnDestroy
 {
     @Input()
     public inputName:string;
@@ -68,6 +70,9 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     public textInputValueChange:EventEmitter<string> = new EventEmitter<string>();
 
     public isValid:boolean = true;
+
+    @Language()
+    protected lang:string;
 
     protected displayListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
     protected lastSelectedValues:Array<TerraSuggestionBoxValueInterface> = [];
@@ -122,6 +127,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
                 this.selectedValue = null;
             }
         }
+    }
+
+    public ngOnDestroy():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public registerOnChange(fn:(_:any) => void):void
