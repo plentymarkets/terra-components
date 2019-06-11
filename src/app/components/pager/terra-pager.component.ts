@@ -2,21 +2,23 @@ import {
     Component,
     EventEmitter,
     Input,
+    OnDestroy,
     OnInit,
     Output
 } from '@angular/core';
 import { TerraPagerInterface } from './data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-select-box.interface';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { terraPagerDefaultPagingSizes } from './data/terra-pager-default-paging-sizes';
 import { Language } from 'angular-l10n';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
     selector: 'terra-pager',
     styles:   [require('./terra-pager.component.scss')],
     template: require('./terra-pager.component.html')
 })
-export class TerraPagerComponent implements OnInit
+export class TerraPagerComponent implements OnInit, OnDestroy
 {
     @Input()
     public inputPagingData:TerraPagerInterface<any>;
@@ -40,7 +42,7 @@ export class TerraPagerComponent implements OnInit
 
     public ngOnInit():void
     {
-        this.pagingClicks.debounceTime(400).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
+        this.pagingClicks.pipe(debounceTime(400)).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
 
         if(!this.inputDefaultPagingSize)
         {
@@ -65,6 +67,11 @@ export class TerraPagerComponent implements OnInit
                 isLastPage:     false
             };
         }
+    }
+
+    public ngOnDestroy():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public onFirstPage():void

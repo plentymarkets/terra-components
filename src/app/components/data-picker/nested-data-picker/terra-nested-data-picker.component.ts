@@ -14,10 +14,12 @@ import { isNullOrUndefined } from 'util';
 import { NestedValueInterface } from './data/nested-value.interface';
 import { TerraNestedDataPickerBaseService } from './service/terra-nested-data-picker-base.service';
 import { TerraNodeTreeConfig } from '../../tree/node-tree/data/terra-node-tree.config';
-import { Observable } from 'rxjs/Observable';
 import { NestedDetailDataInterface } from './data/nested-detail-data.interface';
 import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
-import { noop } from 'rxjs/util/noop';
+import {
+    noop,
+    Observable
+} from 'rxjs';
 
 @Component({
     selector:  'terra-nested-data-picker',

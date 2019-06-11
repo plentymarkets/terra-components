@@ -2,6 +2,8 @@ import {
     Component,
     forwardRef,
     Input,
+    OnDestroy,
+    OnInit,
     ViewChild
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
@@ -15,6 +17,7 @@ import { TerraStorageObject } from '../../../file-browser/model/terra-storage-ob
 import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.component';
 import { TerraOverlayButtonInterface } from '../../../layouts/overlay/data/terra-overlay-button.interface';
 import { StringHelper } from '../../../../helpers/string.helper';
+import { Language } from 'angular-l10n';
 
 let nextId:number = 0;
 
@@ -30,7 +33,7 @@ let nextId:number = 0;
         }
     ]
 })
-export class TerraFileInputComponent extends TerraInputComponent
+export class TerraFileInputComponent extends TerraInputComponent implements OnInit, OnDestroy
 {
     @Input()
     public inputShowPreview:boolean = false;
@@ -64,6 +67,9 @@ export class TerraFileInputComponent extends TerraInputComponent
     public primaryOverlayButton:TerraOverlayButtonInterface;
     public secondaryOverlayButton:TerraOverlayButtonInterface;
 
+    @Language()
+    protected lang:string;
+
     protected id:string;
     protected translationPrefix:string = 'terraFileInput';
 
@@ -75,6 +81,16 @@ export class TerraFileInputComponent extends TerraInputComponent
 
         // generate the id of the input instance
         this.id = `file-input_#${nextId++}`;
+    }
+
+    public ngOnInit():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
+    }
+
+    public ngOnDestroy():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public onObjectSelected(selectedObject:TerraStorageObject):void

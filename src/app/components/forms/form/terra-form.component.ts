@@ -18,11 +18,13 @@ import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { TerraFormFieldHelper } from './helper/terra-form-field.helper';
 import { Data } from '@angular/router';
 import { TerraFormFieldBase } from '../dynamic-form/data/terra-form-field-base';
-import { noop } from 'rxjs/util/noop';
 import { TerraFormHelper } from './helper/terra-form.helper';
 import { FormTypeMapInterface } from './model/form-type-map.interface';
 import { FormTypeMap } from './model/form-type-map';
-import { Subscription } from 'rxjs';
+import {
+    noop,
+    Subscription
+} from 'rxjs';
 
 
 @Component({

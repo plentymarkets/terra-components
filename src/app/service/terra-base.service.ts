@@ -6,8 +6,11 @@ import {
     Response,
     URLSearchParams
 } from '@angular/http';
-import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs';
+import {
+    Observable,
+    of,
+    throwError
+} from 'rxjs';
 import { Exception } from './data/exception.interface';
 import {
     isArray,
@@ -18,14 +21,18 @@ import {
 import { TerraAlertComponent } from '../components/alert/terra-alert.component';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
-import { tap } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
+import {
+    catchError,
+    finalize,
+    map,
+    tap
+} from 'rxjs/operators';
 import { TerraQueryEncoder } from './data/terra-query-encoder';
 import { DispatchHelper } from '../helpers/dispatch.helper';
 
 /**
  * @author mfrank
- * @deprecated use angular's [HttpClient](https://angular.io/guide/http) instead.
+ * @deprecated since v3.14.0. Use angular's [HttpClient](https://angular.io/guide/http) instead.
  */
 @Injectable()
 // Please keep the todo comments until TerraBaseService refactoring
@@ -88,60 +95,64 @@ export class TerraBaseService
     {
         this.terraLoadingSpinnerService.start();
 
-        return request.map((response:Response) =>
-        {
-            if(response.status === 204)
+        return request.pipe(
+            map((response:Response) =>
             {
-                return response.text();
-            }
-            else if(isRaw)
-            {
-                return response;
-            }
-            else
-            {
-                return response.text() === '' ? {} : response.json();
-            }
-        }).catch((error:any) =>
-        {
-            if(err)
-            {
-                err(error);
-            }
-            else
-            {
-                this.handleException(error);
-            }
-
-            if(error.status === 403) // Forbidden
-            {
-                let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage(error);
-
-                if(this.isPlugin)
+                if(response.status === 204)
                 {
-                    this._alert.addAlertForPlugin({
-                        msg:              missingUserPermissionAlertMessage,
-                        type:             'danger',
-                        dismissOnTimeout: 0
-                    });
+                    return response.text();
+                }
+                else if(isRaw)
+                {
+                    return response;
                 }
                 else
                 {
-                    this._alert.addAlert({
-                        msg:              missingUserPermissionAlertMessage,
-                        type:             'danger',
-                        dismissOnTimeout: 0
-                    });
+                    return response.text() === '' ? {} : response.json();
                 }
-            }
-            // END Very unclean workaround!
-            else if(error.status === 401) // Unauthorized
+            }),
+            catchError((error:any) =>
             {
-                DispatchHelper.dispatchEvent(new CustomEvent('routeToLogin'));
-            }
+                if(err)
+                {
+                    err(error);
+                }
+                else
+                {
+                    this.handleException(error);
+                }
 
-            return Observable.throw(error);
-        }).finally(() => this.terraLoadingSpinnerService.stop());
+                if(error.status === 403) // Forbidden
+                {
+                    let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage(error);
+
+                    if(this.isPlugin)
+                    {
+                        this._alert.addAlertForPlugin({
+                            msg:              missingUserPermissionAlertMessage,
+                            type:             'danger',
+                            dismissOnTimeout: 0
+                        });
+                    }
+                    else
+                    {
+                        this._alert.addAlert({
+                            msg:              missingUserPermissionAlertMessage,
+                            type:             'danger',
+                            dismissOnTimeout: 0
+                        });
+                    }
+                }
+                // END Very unclean workaround!
+                else if(error.status === 401) // Unauthorized
+                {
+                    DispatchHelper.dispatchEvent(new CustomEvent('routeToLogin'));
+                }
+
+                return throwError(error);
+            }),
+            finalize(() => this.terraLoadingSpinnerService.stop())
+        );
     }
 
     /**
@@ -227,7 +238,7 @@ export class TerraBaseService
     {
         if(!isNullOrUndefined(this.dataModel[dataId]))
         {
-            return Observable.of(this.dataModel[dataId]);
+            return of(this.dataModel[dataId]);
         }
 
         this.setAuthorization();

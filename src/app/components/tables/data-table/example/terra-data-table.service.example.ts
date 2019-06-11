@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { TerraDataTableBaseService } from '../terra-data-table-base.service';
 import { TerraPagerParameterInterface } from '../../../pager/data/terra-pager.parameter.interface';
-import { Observable } from 'rxjs/Observable';
+import {
+    Observable,
+    of
+} from 'rxjs';
 import { TerraPagerInterface } from '../../../pager/data/terra-pager.interface';
 import { TerraDataTableSortOrderEnum } from '../enums/terra-data-table-sort-order.enum';
 import { TerraDataTableExampleInterface } from './terra-data-table.interface.example';
@@ -60,7 +63,7 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
         results.entries = entries.slice(firstOnPage, lastOnPage);
 
         // return data
-        return Observable.of(results);
+        return of(results);
     }
 
     public addEntry():void

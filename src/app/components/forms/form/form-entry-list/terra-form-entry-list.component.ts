@@ -3,6 +3,8 @@ import {
     forwardRef,
     Input,
     OnChanges,
+    OnDestroy,
+    OnInit,
     SimpleChanges,
     Type
 } from '@angular/core';
@@ -22,8 +24,8 @@ import {
 } from '@angular/forms';
 import { Language } from 'angular-l10n';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
-import { noop } from 'rxjs/util/noop';
 import { TerraFormHelper } from '../helper/terra-form.helper';
+import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-form-entry-list',
@@ -37,7 +39,7 @@ import { TerraFormHelper } from '../helper/terra-form.helper';
         }
     ]
 })
-export class TerraFormEntryListComponent implements OnChanges, ControlValueAccessor
+export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlValueAccessor, OnDestroy
 {
     @Input()
     public inputFormField:TerraFormFieldInterface;
@@ -69,6 +71,16 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
 
     private onChangeCallback:(value:any) => void = noop;
     private onTouchedCallback:() => void = noop;
+
+    public ngOnInit():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
+    }
+
+    public ngOnDestroy():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
+    }
 
     public ngOnChanges(changes:SimpleChanges):void
     {

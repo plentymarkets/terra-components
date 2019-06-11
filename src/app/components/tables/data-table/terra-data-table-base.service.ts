@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs/Observable';
 import { TerraPagerParameterInterface } from '../../pager/data/terra-pager.parameter.interface';
 import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
@@ -11,6 +10,7 @@ import {
 } from 'rxjs/operators';
 import { StringHelper } from '../../../helpers/string.helper';
 import { terraPagerDefaultPagingSizes } from '../../pager/data/terra-pager-default-paging-sizes';
+import { Observable } from 'rxjs';
 
 /**
  * @author pweyrich

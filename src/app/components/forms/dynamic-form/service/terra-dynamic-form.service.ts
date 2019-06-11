@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { TerraBaseService } from '../../../../service/terra-base.service';
 import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/terra-loading-spinner.service';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import {
+    Observable,
+    of
+} from 'rxjs';
 
 /**
  * @author mfrank
@@ -23,7 +26,7 @@ export class TerraDynamicFormService extends TerraBaseService
      */
     public create(data:any, url:string, params:any):Observable<any>
     {
-        return Observable.of(data);
+        return of(data);
     }
 
     /**
@@ -33,7 +36,7 @@ export class TerraDynamicFormService extends TerraBaseService
      */
     public update(data:any, url:string, params:any):Observable<any>
     {
-        return Observable.of(data);
+        return of(data);
     }
 
     /**
@@ -43,6 +46,6 @@ export class TerraDynamicFormService extends TerraBaseService
      */
     public delete(data:any, url:string):Observable<any>
     {
-        return Observable.of(true);
+        return of(true);
     }
 }
