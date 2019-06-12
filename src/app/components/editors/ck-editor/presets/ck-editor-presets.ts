@@ -77,7 +77,7 @@ export const ckEditorFullConfig:{} =
         extraPlugins:  [],
         removeButtons: 'CopyFormatting,Subscript,Superscript,Outdent,Indent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Cut,Copy,PasteText,' +
                        'Paste,Save,Preview,Print,SelectAll,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,' +
-                       'Flash,Smiley,PageBreak,Iframe'
+                       'Flash,Smiley,PageBreak'
     };
 
 /**
