@@ -201,7 +201,7 @@ describe('TerraOverlayComponent', () =>
         fixture.detectChanges();
 
         let header:DebugElement = fixture.debugElement.query(By.css('div.modal-header'));
-        let button:DebugElement = header.children[1];
+        let button:DebugElement = header.children[0];
 
         let hideOverlaySpy:Spy = spyOn(component, 'hideOverlay');
 

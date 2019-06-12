@@ -5,6 +5,17 @@
 * **tcCkFull** New directive to provide a full config for the ckeditor4.
 * **ck-editor-presets** Preset configs for the ckeditor4.
 
+<a name="4.0.0-beta.3"></a>
+# 4.0.0-beta.3 (12.06.2019)
+
+### Bug Fixes
+* **button-group** fixed spacing between buttons in a button group
+* **angular-l10n** added missing `OnInit` and `OnDestroy` LifeCycle-Hooks to Components using angular-l10n's `Language` decorator
+
+<a name="4.0.0-beta.2"></a>
+# 4.0.0-beta.2 (11.06.2019)
+* **bootstrap** revert bootstrap update
+
 <a name="4.0.0-beta.1"></a>
 # 4.0.0-beta.1 (07.06.2019)
 

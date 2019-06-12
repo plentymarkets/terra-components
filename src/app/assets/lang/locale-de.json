@@ -118,7 +118,7 @@
 		"pause": "Pause",
 		"reset": "Zurücksetzen"
 	},
-	"filter": {
+	"tcFilter": {
 		"search": "Suchen",
 		"reset": "Zurücksetzen"
 	},
