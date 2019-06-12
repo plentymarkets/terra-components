@@ -32,13 +32,11 @@ const MAX_LASTLY_USED_ENTRIES:number = 5;
     selector:  'terra-suggestion-box',
     styles:    [require('./terra-suggestion-box.component.scss')],
     template:  require('./terra-suggestion-box.component.html'),
-    providers: [
-        {
-            provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraSuggestionBoxComponent),
-            multi:       true
-        }
-    ]
+    providers: [{
+        provide:     NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => TerraSuggestionBoxComponent),
+        multi:       true
+    }]
 })
 export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlValueAccessor, OnDestroy
 {
@@ -82,17 +80,14 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     protected tmpSelectedValue:TerraSuggestionBoxValueInterface = null;
     protected _textInputValue:string = '';
     protected _toggleOpen:boolean = false;
-
     private hasLabel:boolean;
-
     private clickListener:(event:Event) => void;
+
+    private onTouchedCallback:() => void = noop;
+    private onChangeCallback:(_:any) => void = noop;
 
     @ViewChildren('renderedListBoxValues')
     private renderedListBoxValues:QueryList<ElementRef>;
-
-    private onTouchedCallback:() => void = noop;
-
-    private onChangeCallback:(_:any) => void = noop;
 
     constructor(private elementRef:ElementRef)
     {}
@@ -179,7 +174,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         {
             document.removeEventListener('click', this.clickListener);
         }
-
         this._toggleOpen = value;
     }
 
@@ -320,7 +314,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
                 this.tmpSelectedValue = this.displayListBoxValues[0];
             }
         }
-
         event.stopPropagation();
     }
 
