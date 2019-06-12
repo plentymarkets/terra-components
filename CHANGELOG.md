@@ -1,5 +1,5 @@
 <a name="4.0.0-beta.3"></a>
-# 4.0.0-beta.3 (Unreleased)
+# 4.0.0-beta.3 (12.06.2019)
 
 ### Bug Fixes
 * **button-group** fixed spacing between buttons in a button group
