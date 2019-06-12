@@ -25,6 +25,9 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
     @Input()
     public inputStorageService:TerraBaseStorageService;
 
+    @Language()
+    protected lang:string;
+
     protected translationPrefix:string = 'terraFileBrowser';
 
     protected metadata:TerraImageMetadata = {};
@@ -58,9 +61,6 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
     {
         return this._inputStorageObject;
     }
-
-    @Language()
-    protected lang:string;
 
     protected get _canHandleMetadata():boolean
     {
