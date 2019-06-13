@@ -66,6 +66,7 @@ import { RadioGroupComponent } from './forms/input/radio/radio-group.component';
 import { TableRowComponent } from './tables/data-table/table-row/table-row.component';
 import { FilterComponent } from './filter/filter.component';
 import { CheckboxGroupComponent } from './forms/checkbox-group/checkbox-group.component';
+import { TerraBaseEditorComponent } from './editors/base-editor/terra-base-editor.component';
 
 export const exportedComponents:Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -140,5 +141,6 @@ export const exportedComponents:Array<Type<any>> = [
 export const components:Array<Type<any>> = [
     ...exportedComponents,
     TerraFileListComponent,
-    TerraImagePreviewComponent
+    TerraImagePreviewComponent,
+    TerraBaseEditorComponent
 ];

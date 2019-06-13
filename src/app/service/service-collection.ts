@@ -16,7 +16,6 @@ export const services:Array<Provider> = [
     TerraFileBrowserService,
     TerraLoadingSpinnerService,
     TerraDataTableContextMenuService,
-    TerraBaseService,
     TerraFrontendStorageService,
     TerraAlertComponent,
     TerraDynamicFormService,
