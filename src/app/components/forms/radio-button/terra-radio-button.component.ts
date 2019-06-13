@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     HostListener,
     Input
 } from '@angular/core';
@@ -20,7 +19,7 @@ import {
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraRadioButtonComponent),
+            useExisting: TerraRadioButtonComponent,
             multi:       true
         }
     ]

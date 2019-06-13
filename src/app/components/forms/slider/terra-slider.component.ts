@@ -3,7 +3,6 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    forwardRef,
     Input,
     OnChanges,
     OnInit,
@@ -27,7 +26,7 @@ import {
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraSliderComponent),
+            useExisting: TerraSliderComponent,
             multi:       true
         }
     ]

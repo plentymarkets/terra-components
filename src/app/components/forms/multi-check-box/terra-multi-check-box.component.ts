@@ -1,7 +1,6 @@
 import {
     Component,
     EventEmitter,
-    forwardRef,
     Input,
     OnDestroy,
     OnInit,
@@ -24,7 +23,7 @@ import { Subject } from 'rxjs';
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraMultiCheckBoxComponent),
+            useExisting: TerraMultiCheckBoxComponent,
             multi:       true
         }
     ]

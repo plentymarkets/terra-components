@@ -3,7 +3,6 @@ import {
     ComponentFactory,
     ComponentFactoryResolver,
     ComponentRef,
-    forwardRef,
     Input,
     OnChanges,
     OnDestroy,
@@ -34,7 +33,7 @@ import { noop } from 'rxjs';
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraFormEntryComponent),
+            useExisting: TerraFormEntryComponent,
             multi:       true
         }
     ]

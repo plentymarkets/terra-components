@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input
 } from '@angular/core';
 import {
@@ -18,7 +17,7 @@ import { noop } from 'rxjs';
     providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => CheckboxGroupComponent),
+            useExisting: CheckboxGroupComponent,
             multi:       true
         }
     ]

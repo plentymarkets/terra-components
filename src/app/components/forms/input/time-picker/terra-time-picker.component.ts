@@ -3,7 +3,6 @@
  */
 import {
     Component,
-    forwardRef,
     Input,
     OnDestroy,
     OnInit,
@@ -24,7 +23,7 @@ import { Language } from 'angular-l10n';
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraTimePickerComponent),
+            useExisting: TerraTimePickerComponent,
             multi:       true
         }
     ]

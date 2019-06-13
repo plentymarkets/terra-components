@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input,
     OnChanges,
     OnInit,
@@ -34,7 +33,7 @@ import {
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraFormComponent),
+            useExisting: TerraFormComponent,
             multi:       true
         }
     ]

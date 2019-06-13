@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input,
     OnChanges,
     OnInit,
@@ -24,7 +23,7 @@ let nextId:number = 0;
     providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => RadioGroupComponent),
+            useExisting: RadioGroupComponent,
             multi:       true
         }
     ]

@@ -1,7 +1,4 @@
-import {
-    Component,
-    forwardRef
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
 import { Color } from './color.helper';
@@ -14,7 +11,7 @@ import { TerraRegex } from '../../../../helpers/regex/terra-regex';
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraColorPickerComponent),
+            useExisting: TerraColorPickerComponent,
             multi:       true
         }
     ]

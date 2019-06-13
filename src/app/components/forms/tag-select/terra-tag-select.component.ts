@@ -3,7 +3,6 @@
  */
 import {
     Component,
-    forwardRef,
     Input,
     OnChanges,
     OnDestroy,
@@ -27,7 +26,7 @@ import { Language } from 'angular-l10n';
     providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraTagSelectComponent),
+            useExisting: TerraTagSelectComponent,
             multi:       true
         }
     ]

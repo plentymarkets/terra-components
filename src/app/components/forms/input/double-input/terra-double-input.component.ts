@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input,
     OnInit
 } from '@angular/core';
@@ -18,7 +17,7 @@ let nextId:number = 0;
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraDoubleInputComponent),
+            useExisting: TerraDoubleInputComponent,
             multi:       true
         }
     ]

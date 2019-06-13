@@ -1,7 +1,4 @@
-import {
-    Component,
-    forwardRef
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
@@ -15,7 +12,7 @@ let nextId:number = 0;
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraNumberInputComponent),
+            useExisting: TerraNumberInputComponent,
             multi:       true
         }
     ]

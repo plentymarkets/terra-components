@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input,
     OnChanges,
     ViewChild
@@ -11,9 +10,9 @@ import {
 } from '@angular/forms';
 import {
     IMyDateModel,
+    IMyInputFocusBlur,
     IMyOptions,
-    MyDatePicker,
-    IMyInputFocusBlur
+    MyDatePicker
 } from 'mydatepicker';
 import { isNullOrUndefined } from 'util';
 import * as moment from 'moment';
@@ -30,7 +29,7 @@ let nextId:number = 0;
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraDatePickerComponent),
+            useExisting: TerraDatePickerComponent,
             multi:       true
         }
     ]

@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input,
     OnChanges,
     SimpleChanges
@@ -19,7 +18,7 @@ let nextId:number = 0;
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraTextAreaInputComponent),
+            useExisting: TerraTextAreaInputComponent,
             multi:       true
         }
     ]

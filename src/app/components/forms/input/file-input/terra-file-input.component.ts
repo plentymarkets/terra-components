@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input,
     OnDestroy,
     OnInit,
@@ -28,7 +27,7 @@ let nextId:number = 0;
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraFileInputComponent),
+            useExisting: TerraFileInputComponent,
             multi:       true
         }
     ]

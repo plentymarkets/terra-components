@@ -1,7 +1,6 @@
 import {
     AfterContentChecked,
     Component,
-    forwardRef,
     Input,
     OnDestroy,
     OnInit
@@ -32,7 +31,7 @@ import {
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraNestedDataPickerComponent),
+            useExisting: TerraNestedDataPickerComponent,
             multi:       true
         },
         NestedDataTreeConfig,

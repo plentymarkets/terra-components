@@ -1,7 +1,6 @@
 import {
     Component,
     EventEmitter,
-    forwardRef,
     Input,
     Output
 } from '@angular/core';
@@ -19,7 +18,7 @@ import { noop } from 'rxjs';
     providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraToggleComponent),
+            useExisting: TerraToggleComponent,
             multi:       true
         }
     ]

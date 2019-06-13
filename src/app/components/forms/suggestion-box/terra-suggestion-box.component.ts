@@ -2,7 +2,6 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    forwardRef,
     Input,
     OnChanges,
     OnDestroy,
@@ -35,7 +34,7 @@ const MAX_LASTLY_USED_ENTRIES:number = 5;
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraSuggestionBoxComponent),
+            useExisting: TerraSuggestionBoxComponent,
             multi:       true
         }
     ]

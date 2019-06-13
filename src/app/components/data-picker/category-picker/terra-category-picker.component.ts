@@ -1,7 +1,6 @@
 import {
     AfterContentChecked,
     Component,
-    forwardRef,
     Input,
     OnInit
 } from '@angular/core';
@@ -28,7 +27,7 @@ import { Observable } from 'rxjs';
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraCategoryPickerComponent),
+            useExisting: TerraCategoryPickerComponent,
             multi:       true
         },
         TerraNodeTreeConfig,

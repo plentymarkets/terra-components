@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input,
     OnChanges,
     OnInit,
@@ -29,7 +28,7 @@ import { noop } from 'rxjs';
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraFormContainerComponent),
+            useExisting: TerraFormContainerComponent,
             multi:       true
         }
     ]
