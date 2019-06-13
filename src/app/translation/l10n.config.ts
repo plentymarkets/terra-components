@@ -4,72 +4,75 @@ import {
     ProviderType,
     StorageStrategy
 } from 'angular-l10n';
-import { DefaultLocale } from 'angular-l10n/src/models/types';
 import { environment } from '../../environments/environment';
 
-export const l10nConfig:L10nConfig = getL10nConfig();
-
-function getL10nConfig():L10nConfig
-{
-    let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
-    let lang:string = null;
-
-    if(langInLocalStorage !== null)
-    {
-        lang = langInLocalStorage;
+const prodL10nConfig:L10nConfig = {
+    logger: {
+        level: LogLevel.Off
+    },
+    locale:      {
+        languages: [
+            {
+                code: 'en',
+                dir:  'ltr'
+            },
+            {
+                code: 'de',
+                dir:  'ltr'
+            }
+        ],
+        language:      'en',
+        defaultLocale: { languageCode: 'en', countryCode: 'GB' },
+        currency:      'GBR',
+        storage:       StorageStrategy.Local,
+        storageNames: { defaultLocale: 'plentymarkets_lang_' }
+    },
+    translation: {
+        providers:            [
+            {
+                type:   ProviderType.Static,
+                prefix: 'assets/lang/locale-'
+            }
+        ],
+        caching:              true,
+        composedKeySeparator: '.',
+        i18nPlural:           false
     }
-    else
-    {
-        lang = navigator.language.slice(0, 2).toLocaleLowerCase();
+};
 
-        if(lang !== 'de' && lang !== 'en')
-        {
-            lang = 'en';
-        }
-
-        localStorage.setItem('plentymarkets_lang_', lang);
+const devL10nConfig:L10nConfig = {
+    logger: {
+        level: LogLevel.Warn
+    },
+    locale:      {
+        languages: [
+            {
+                code: 'en',
+                dir:  'ltr'
+            },
+            {
+                code: 'de',
+                dir:  'ltr'
+            }
+        ],
+        language:      'en',
+        defaultLocale: { languageCode: 'en', countryCode: 'GB' },
+        currency:      'GBR',
+        storage:       StorageStrategy.Local,
+        storageNames: { defaultLocale: 'plentymarkets_lang_' }
+    },
+    translation: {
+        providers:            [
+            {
+                type:   ProviderType.Static,
+                prefix: 'assets/lang/locale-'
+            }
+        ],
+        caching:              true,
+        composedKeySeparator: '.',
+        i18nPlural:           false
     }
+};
 
-    let defaultLocale:DefaultLocale = lang === 'de' ?
-        { languageCode: 'de', countryCode: 'DE' } :
-        { languageCode: 'en', countryCode: 'GB' };
+export const l10nConfig:L10nConfig = environment.production ? prodL10nConfig : devL10nConfig;
 
-    let currency:string = lang === 'de' ? 'EUR' : 'GBP';
-
-    let prefix:string = environment.production ? 'assets/lang/locale-' : 'assets/lang/locale-';
-    let logLevel:LogLevel = environment.production ? LogLevel.Off : LogLevel.Warn;
-
-    return {
-        logger: {
-            level: logLevel
-        },
-        locale:      {
-            languages: [
-                {
-                    code: 'en',
-                    dir:  'ltr'
-                },
-                {
-                    code: 'de',
-                    dir:  'ltr'
-                }
-            ],
-            language:      lang,
-            defaultLocale: defaultLocale,
-            currency:      currency,
-            storage:       StorageStrategy.Local,
-            storageNames: { defaultLocale: 'plentymarkets_lang_' }
-        },
-        translation: {
-            providers:            [
-                {
-                    type:   ProviderType.Static,
-                    prefix: prefix
-                }
-            ],
-            caching:              true,
-            composedKeySeparator: '.',
-            i18nPlural:           false
-        }
-    };
-}

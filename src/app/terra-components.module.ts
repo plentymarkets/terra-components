@@ -46,14 +46,35 @@ import { AlertService } from './components/alert/alert.service';
 import { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
 import { TerraFrontendStorageService } from './components/file-browser/terra-frontend-storage.service';
 
-function createCompiler(compilerFactory:CompilerFactory):Compiler
+export function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
     return compilerFactory.createCompiler();
 }
 
-function initL10n(l10nLoader:L10nLoader):Function
+export function initL10n(l10nLoader:L10nLoader):Function
 {
-    return ():Promise<void> => l10nLoader.load();
+    return ():Promise<void> =>
+    {
+        let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
+        let lang:string = null;
+
+        if(langInLocalStorage !== null)
+        {
+            lang = langInLocalStorage;
+        }
+        else
+        {
+            lang = navigator.language.slice(0, 2).toLocaleLowerCase();
+
+            if(lang !== 'de' && lang !== 'en')
+            {
+                lang = 'en';
+            }
+
+            localStorage.setItem('plentymarkets_lang_', lang);
+        }
+        return l10nLoader.load();
+    };
 }
 
 @NgModule({
