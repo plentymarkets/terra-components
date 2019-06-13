@@ -13,6 +13,9 @@ Testing
 - [ ] Person 1
 - [ ] Person 2
 
+Information transfer
+- [ ] Inform Ceres about changes in `TerraFormComponent`
+
 Browser-Support
 - [ ] Chrome
 - [ ] Firefox

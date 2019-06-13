@@ -120,5 +120,10 @@
 	"filter": {
 		"search": "Search",
 		"reset": "Reset"
+	},
+	"errorInterceptor": {
+		"unauthorized": "Unauthorized",
+		"missingPermission": "Missing permissions for:",
+		"forbidden": "Forbidden"
 	}
 }
