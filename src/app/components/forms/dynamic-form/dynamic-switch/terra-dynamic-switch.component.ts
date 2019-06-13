@@ -1,10 +1,13 @@
 import {
     Component,
-    Input
+    Input,
+    OnDestroy,
+    OnInit
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { TerraFormFieldBase } from '../data/terra-form-field-base';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
+import { Language } from 'angular-l10n';
 
 /**
  * @author mfrank
@@ -14,7 +17,7 @@ import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
     templateUrl: './terra-dynamic-switch.component.html',
     styleUrls: [ './terra-dynamic-switch.component.scss']
 })
-export class TerraDynamicSwitchComponent
+export class TerraDynamicSwitchComponent implements OnInit, OnDestroy
 {
     // Auf TerraFormFieldConditionalBean umbauen
     // private readonly DELAY_FOR_CHANGE_DETECTION:number = 1;
@@ -37,6 +40,9 @@ export class TerraDynamicSwitchComponent
     @Input()
     public inputUsePortlet:boolean;
 
+    @Language()
+    protected lang:string;
+
     // Necessary for using enum in html
     protected controlTypeEnum:any = TerraControlTypeEnum;
 
@@ -46,5 +52,15 @@ export class TerraDynamicSwitchComponent
     constructor()
     {
         this.inputSubSwitch = false;
+    }
+
+    public ngOnInit():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
+    }
+
+    public ngOnDestroy():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 }

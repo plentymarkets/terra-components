@@ -1,8 +1,5 @@
 .btn-toolbar
 {
-    display: block;
-    flex-wrap: initial;
-    justify-content: initial;
     background-color: var(--toolbar-background-color, var(--color-structure-0));
     padding: var(--toolbar-padding, var(--space-sm));
     margin: var(--toolbar-margin, var(--space-container));

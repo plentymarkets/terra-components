@@ -3,9 +3,13 @@ import {
     Component,
     forwardRef,
     Input,
+    OnDestroy,
     OnInit
 } from '@angular/core';
-import { TranslationService } from 'angular-l10n';
+import {
+    Language,
+    TranslationService
+} from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NestedDataTreeConfig } from './config/nested-data-tree.config';
 import { NestedDataInterface } from './data/nested-data.interface';
@@ -35,7 +39,7 @@ import {
         TerraNodeTreeConfig
     ]
 })
-export class TerraNestedDataPickerComponent implements OnInit, AfterContentChecked
+export class TerraNestedDataPickerComponent implements OnInit, AfterContentChecked, OnDestroy
 {
     /**
      * @description Service, that is used to request the nested data from the server
@@ -69,6 +73,9 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
     public onTouchedCallback:() => void = noop;
     public onChangeCallback:(_:any) => void = noop;
+
+    @Language()
+    protected lang:string;
 
     private completeNestedData:NestedValueInterface;
     private nestedDataName:string;
@@ -108,6 +115,11 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
         }
         this.nestedTreeConfig.list = this.nestedList;
         this.getNestedDataByParent(null);
+    }
+
+    public ngOnDestroy():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     // From ControlValueAccessor interface

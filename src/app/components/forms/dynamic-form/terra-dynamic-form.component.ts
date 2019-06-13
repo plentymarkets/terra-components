@@ -3,6 +3,7 @@ import {
     EventEmitter,
     Input,
     OnChanges,
+    OnDestroy,
     OnInit,
     Output,
     SimpleChanges
@@ -14,6 +15,7 @@ import { TerraDynamicFormFunctionsHandler } from './handler/terra-dynamic-form-f
 import { TerraDynamicFormService } from './service/terra-dynamic-form.service';
 import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { Language } from 'angular-l10n';
 
 export enum TerraHtmlMethods
 {
@@ -39,7 +41,7 @@ export interface TerraDynamicFormRequestParams
     styleUrls: ['./terra-dynamic-form.component.scss'],
     providers: [TerraDynamicFormService]
 })
-export class TerraDynamicFormComponent implements OnInit, OnChanges
+export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
 {
     @Input()
     public inputFormFunctions:TerraDynamicFormFunctionsHandler<any>;
@@ -74,10 +76,12 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
     @Output()
     public inputShowDeprecatedEntriesChange:EventEmitter<boolean> = new EventEmitter();
 
+    @Language()
+    protected lang:string;
 
     constructor(protected formFieldControlService:TerraFormFieldControlService)
     {
-        this.inputPortletStyle = 'col-12 col-md-8 col-lg-5';
+        this.inputPortletStyle = 'col-xs-12 col-md-8 col-lg-5';
         this.inputRequestParams = {
             route:      '',
             htmlMethod: null,
@@ -116,6 +120,11 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges
             this.formFieldControlService.createFormGroup(this.inputFormFields);
             this.registerValueChange();
         }
+    }
+
+    public ngOnDestroy():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     protected validate():void
