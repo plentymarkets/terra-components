@@ -15,7 +15,7 @@ class CkEditorTestHostComponent
 {
 }
 
-fdescribe('CkFullDirective', () =>
+describe('CkFullDirective', () =>
 {
     let component:CkEditorTestHostComponent;
     let fixture:ComponentFixture<CkEditorTestHostComponent>;
