@@ -6,6 +6,11 @@ quill-editor
     .ql-container
     {
         background-color: var(--color-structure-0);
+
+        .ql-editor p
+        {
+            margin-bottom: 1rem;
+        }
     }
 
     .ql-snow.ql-toolbar
