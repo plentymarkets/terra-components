@@ -1,4 +1,4 @@
-<a name="4.0.0-beta.X"></a>
+<a name="4.0.0-beta.4"></a>
 # 4.0.0-beta.4 (Unreleased)
 
 ### Features
