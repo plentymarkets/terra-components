@@ -31,13 +31,11 @@ const MAX_LASTLY_USED_ENTRIES:number = 5;
     selector:  'terra-suggestion-box',
     styleUrls: ['./terra-suggestion-box.component.scss'],
     templateUrl:  './terra-suggestion-box.component.html',
-    providers: [
-        {
-            provide:     NG_VALUE_ACCESSOR,
-            useExisting: TerraSuggestionBoxComponent,
-            multi:       true
-        }
-    ]
+    providers: [{
+        provide:     NG_VALUE_ACCESSOR,
+        useExisting: TerraSuggestionBoxComponent,
+        multi:       true
+    }]
 })
 export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlValueAccessor, OnDestroy
 {
