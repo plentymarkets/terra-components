@@ -141,7 +141,6 @@ export function initL10n(l10nLoader:L10nLoader):Function
         TerraComponentsComponent
     ]
 })
-
 export class TerraComponentsModule
 {
     public static forRoot():ModuleWithProviders<any>
