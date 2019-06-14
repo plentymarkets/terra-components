@@ -43,7 +43,6 @@
 		"ckeditor4-angular": "^1.0.0-beta"
 	},
 	"dependencies": {
-		"ckeditor4-angular": "^1.0.0-beta",
 		"bootstrap": "4.0.0-alpha.4",
 		"flatted": "^2.0.0",
 		"htmlhint": "^0.11.0",
@@ -80,6 +79,7 @@
 		"@types/node": "^12.0.4",
 		"angular2-template-loader": "^0.6.2",
 		"autoprefixer": "^9.6.0",
+		"ckeditor4-angular": "^1.0.0-beta",
 		"codelyzer": "^5.1.0",
 		"copy-webpack-plugin": "^5.0.3",
 		"css-loader": "^2.1.1",
