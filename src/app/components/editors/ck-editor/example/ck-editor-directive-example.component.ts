@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import {
-    ckEditorFullConfig,
-    ckEditorMinimumConfig
-} from '../presets/ck-editor-presets';
+import { ckEditorMinimumConfig } from '../presets/ck-editor-minimum-preset';
+import { ckEditorFullConfig } from '../presets/ck-editor-full-preset';
 
 @Component({
     selector: 'tc-full-directive-example',
