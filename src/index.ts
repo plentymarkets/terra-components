@@ -159,4 +159,4 @@ export * from './app/helpers/activated-route.helper';
 export * from './app/service/model-cache';
 export * from './app/http-interceptors';
 export * from './app/components/editors/ck-editor/presets/ck-editor-presets';
-export * from './app/components/editors/ck-editor/ck-editor-full.directive';
+export * from './app/components/editors/ck-editor/ck-editor.directive';

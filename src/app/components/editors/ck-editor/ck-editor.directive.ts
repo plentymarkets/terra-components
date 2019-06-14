@@ -2,9 +2,9 @@ import { Directive } from '@angular/core';
 import { CKEditorComponent } from 'ckeditor4-angular';
 
 @Directive({
-    selector: '[tcCkFull]'
+    selector: '[tcCkEditor]'
 })
-export class CKEditorFullDirective
+export class CKEditorDirective
 {
     constructor(private ckEditor:CKEditorComponent)
     {

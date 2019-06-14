@@ -1,4 +1,4 @@
-import { CKEditorFullDirective } from './ck-editor-full.directive';
+import { CKEditorDirective } from './ck-editor.directive';
 import { CKEditorComponent } from 'ckeditor4-angular';
 import {
     async,
@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 @Component({
-    template: `<ckeditor tcCkFull></ckeditor>`
+    template: `<ckeditor tcCkEditor></ckeditor>`
 })
 class CkEditorTestHostComponent
 {
@@ -19,7 +19,7 @@ describe('CkFullDirective', () =>
 {
     let component:CkEditorTestHostComponent;
     let fixture:ComponentFixture<CkEditorTestHostComponent>;
-    let directive:CKEditorFullDirective;
+    let directive:CKEditorDirective;
     let ckComponent:CKEditorComponent;
 
     const ckurl:string = 'https://cdn.ckeditor.com/4.11.4/full-all/ckeditor.js';
@@ -28,7 +28,7 @@ describe('CkFullDirective', () =>
     {
         TestBed.configureTestingModule({
             declarations: [
-                CKEditorFullDirective,
+                CKEditorDirective,
                 CkEditorTestHostComponent,
                 CKEditorComponent
             ]
@@ -40,8 +40,8 @@ describe('CkFullDirective', () =>
         fixture = TestBed.createComponent(CkEditorTestHostComponent);
         component = fixture.componentInstance;
 
-        directive = fixture.debugElement.query(By.directive(CKEditorFullDirective)).injector.get(CKEditorFullDirective);
-        ckComponent = fixture.debugElement.query(By.directive(CKEditorFullDirective)).injector.get(CKEditorComponent);
+        directive = fixture.debugElement.query(By.directive(CKEditorDirective)).injector.get(CKEditorDirective);
+        ckComponent = fixture.debugElement.query(By.directive(CKEditorDirective)).injector.get(CKEditorComponent);
     });
 
     it('should create an instance', () =>
