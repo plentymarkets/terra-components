@@ -71,7 +71,7 @@ export class PathHelper
 
     public static join(...paths:Array<string>):string
     {
-        return paths.map((path:string) =>
+        let completePath:string = paths.map((path:string) =>
         {
             if(path.charAt(0) === this.DELIMITER)
             {
@@ -84,6 +84,7 @@ export class PathHelper
 
             return path;
         }).join(this.DELIMITER);
+        return completePath;
     }
 
     public static sizeString(size:number):string

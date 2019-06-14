@@ -8,6 +8,7 @@
 		"baseUrl": "./",
 		"outDir": "./dist/out-tsc",
 		"sourceMap": true,
+		"strictMetaDataEmit": false,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"lib": [
