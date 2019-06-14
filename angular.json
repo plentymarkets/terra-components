@@ -24,7 +24,8 @@
 						"tsConfig": "src/tsconfig.app.json",
 						"assets": [
 							"src/assets",
-							{ "glob": "tslint-rules.json", "input": "./", "output": "/" }
+							{ "glob": "tslint-rules.json", "input": "./", "output": "/" },
+							{ "glob": "*", "input": "./lintRules", "output": "/" }
 						],
 						"styles": [
 							"src/styles.scss",
