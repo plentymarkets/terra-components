@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { AlertType } from './alert-type.enum';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AlertService
@@ -132,6 +133,6 @@ export class AlertService
     private get isRootWindow():boolean
     {
         // since tests are run in an iframe, we need to check for test environment here to make them work
-        return window === window.parent || process.env.ENV === 'test';
+        return window === window.parent || environment.test;
     }
 }
