@@ -41,7 +41,7 @@ describe('CkFullDirective', () =>
         component = fixture.componentInstance;
 
         directive = fixture.debugElement.query(By.directive(CKEditorDirective)).injector.get(CKEditorDirective);
-        ckComponent = fixture.debugElement.query(By.directive(CKEditorDirective)).injector.get(CKEditorComponent);
+        ckComponent = fixture.debugElement.query(By.directive(CKEditorDirective)).componentInstance;
     });
 
     it('should create an instance', () =>
