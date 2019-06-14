@@ -6,9 +6,9 @@ import {
 
 @Component({
     selector: 'tc-full-directive-example',
-    template: require('./ck-editor-full.directive.example.html')
+    template: require('./ck-editor-directive-example.component.html')
 })
-export class CkEditorFullDirectiveExample
+export class CkEditorDirectiveExample
 {
     protected config:{} = ckEditorFullConfig;
     protected tiny:{} = ckEditorMinimumConfig;
