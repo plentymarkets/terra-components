@@ -1,7 +1,4 @@
-import {
-    Component,
-    OnInit
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { FormTypeMap } from '../model/form-type-map';
 import { TerraKeyValueInterface } from '../../../../models/terra-key-value.interface';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';

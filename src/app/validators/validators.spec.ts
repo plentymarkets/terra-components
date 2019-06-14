@@ -1,7 +1,7 @@
 import { TerraValidators } from './validators';
 import { FormControl } from '@angular/forms';
-import Spy = jasmine.Spy;
 import { ibanValidator } from './iban-validator';
+import Spy = jasmine.Spy;
 
 describe('TerraValidators', () =>
 {

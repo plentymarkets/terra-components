@@ -3,9 +3,9 @@ import { TerraControlTypeEnum } from '../dynamic-form/enum/terra-control-type.en
 import { TerraFormFieldInterface } from './model/terra-form-field.interface';
 import { TerraFormFieldBase } from '../dynamic-form/data/terra-form-field-base';
 import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
-import Spy = jasmine.Spy;
 import { FormTypeMap } from './model/form-type-map';
 import { SimpleChange } from '@angular/core';
+import Spy = jasmine.Spy;
 
 describe(`TerraFormComponent:`, () =>
 {

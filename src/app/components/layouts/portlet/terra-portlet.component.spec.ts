@@ -14,12 +14,12 @@ import {
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import Spy = jasmine.Spy;
 import { buttonList } from '../../../testing/mock-buttons';
 import { TerraPortletComponent } from './terra-portlet.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraInfoComponent } from '../../info/terra-info.component';
+import Spy = jasmine.Spy;
 
 describe('TerraPortletComponent', () =>
 {

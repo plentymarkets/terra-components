@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { TerraDataTableExampleInterface } from './terra-data-table.interface.example';
-import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
 import { TerraDataTableServiceExample } from './terra-data-table.service.example';
 import { TerraDataTableComponentExample } from './terra-data-table.component.example';
 
