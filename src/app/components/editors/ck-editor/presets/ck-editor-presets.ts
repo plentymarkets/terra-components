@@ -81,7 +81,7 @@ export const ckEditorFullConfig:{} =
     };
 
 /**
- * A minimal config.
+ * @description A minimal config.
  */
 export const ckEditorMinimumConfig:{} =
     {
