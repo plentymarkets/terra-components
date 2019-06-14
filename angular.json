@@ -45,6 +45,7 @@
 									"with": "src/environments/environment.prod.ts"
 								}
 							],
+							"deleteOutputPath": true,
 							"optimization": true,
 							"outputHashing": "all",
 							"sourceMap": false,
@@ -52,7 +53,7 @@
 							"namedChunks": false,
 							"aot": false,
 							"extractLicenses": true,
-							"vendorChunk": false,
+							"vendorChunk": true,
 							"buildOptimizer": false,
 							"budgets": [
 								{
