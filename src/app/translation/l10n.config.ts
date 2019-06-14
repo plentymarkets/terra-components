@@ -6,9 +6,9 @@ import {
 } from 'angular-l10n';
 import { environment } from '../../environments/environment';
 
-const prodL10nConfig:L10nConfig = {
+export const l10nConfig:L10nConfig =  {
     logger: {
-        level: LogLevel.Off
+        level: environment.production ? LogLevel.Off : LogLevel.Warn
     },
     locale:      {
         languages: [
@@ -31,7 +31,7 @@ const prodL10nConfig:L10nConfig = {
         providers:            [
             {
                 type:   ProviderType.Static,
-                prefix: 'assets/lang/locale-'
+                prefix: environment.l10nPrefix
             }
         ],
         caching:              true,
@@ -40,39 +40,4 @@ const prodL10nConfig:L10nConfig = {
     }
 };
 
-const devL10nConfig:L10nConfig = {
-    logger: {
-        level: LogLevel.Warn
-    },
-    locale:      {
-        languages: [
-            {
-                code: 'en',
-                dir:  'ltr'
-            },
-            {
-                code: 'de',
-                dir:  'ltr'
-            }
-        ],
-        language:      'en',
-        defaultLocale: { languageCode: 'en', countryCode: 'GB' },
-        currency:      'GBR',
-        storage:       StorageStrategy.Local,
-        storageNames: { defaultLocale: 'plentymarkets_lang_' }
-    },
-    translation: {
-        providers:            [
-            {
-                type:   ProviderType.Static,
-                prefix: 'assets/lang/locale-'
-            }
-        ],
-        caching:              true,
-        composedKeySeparator: '.',
-        i18nPlural:           false
-    }
-};
-
-export const l10nConfig:L10nConfig = environment.production ? prodL10nConfig : devL10nConfig;
 

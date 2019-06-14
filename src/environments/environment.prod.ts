@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  l10nPrefix: 'assets/lang/locale-'
 };
