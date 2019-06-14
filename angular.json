@@ -25,7 +25,7 @@
 						"assets": [
 							"src/assets",
 							{ "glob": "tslint-rules.json", "input": "./", "output": "/" },
-							{ "glob": "*", "input": "./lintRules", "output": "/" }
+							{ "glob": "*.js", "input": "./lintRules", "output": "/" }
 						],
 						"styles": [
 							"src/styles.scss",
