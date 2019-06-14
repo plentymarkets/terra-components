@@ -17,7 +17,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-						"outputPath": "dist/terra-components",
+						"outputPath": "dist",
 						"index": "src/index.html",
 						"main": "src/main.ts",
 						"polyfills": "src/polyfills.ts",
@@ -89,8 +89,14 @@
 						"tsConfig": "src/tsconfig.spec.json",
 						"karmaConfig": "src/karma.conf.js",
 						"styles": [
-							"src/styles.scss"
+							"src/styles.scss",
+							"node_modules/bootstrap/scss/bootstrap.scss"
 						],
+						"stylePreprocessorOptions": {
+							"includePaths": [
+								"src/styles"
+							]
+						},
 						"scripts": [],
 						"assets": [
 							"src/favicon.ico",
