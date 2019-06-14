@@ -26,7 +26,7 @@
 		"test": "karma start",
 		"test-once": "karma start --single-run --browsers Chrome,Firefox,Safari",
 		"test-headless": "karma start --single-run --browsers ChromeHeadless,FirefoxHeadless",
-		"lint": "NODE_OPTIONS='-r ts-node/register' tslint -p tsconfig.json -c tslint.json -e 'src/**/*.d.ts' -e 'src/**/*.spec.ts' 'src/**/*.ts'",
+		"lint": "tslint -p tsconfig.json -c tslint.json -e 'src/**/*.d.ts' -e 'src/**/*.spec.ts' -e 'src/environments/**' -e 'src/test.ts' 'src/**/*.ts'",
 		"reinstall": "rm -rf node_modules/ && npm i"
 	},
 	"peerDependencies": {
@@ -89,7 +89,6 @@
 		"karma-jasmine": "^2.0.1",
 		"karma-jasmine-html-reporter": "^1.4.2",
 		"rxjs": "^6.5.2",
-		"ts-node": "^8.2.0",
 		"tslint": "^5.17.0",
 		"tslint-eslint-rules": "^5.4.0",
 		"typescript": "~3.2.4",
