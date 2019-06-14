@@ -1,5 +1,5 @@
 <a name="4.0.0-beta.X"></a>
-# 4.0.0-beta.X (Unreleased)
+# 4.0.0-beta.4 (Unreleased)
 
 ### Features
 * **tcCkFull** New directive to provide a full config for the ckeditor4.
