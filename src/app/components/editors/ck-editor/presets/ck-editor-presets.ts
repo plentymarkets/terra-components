@@ -4,7 +4,7 @@
  */
 
 /**
- * A complex config.
+ * @description A complex config.
  */
 export const ckEditorFullConfig:{} =
     {
