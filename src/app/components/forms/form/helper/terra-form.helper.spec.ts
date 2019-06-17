@@ -2,11 +2,11 @@ import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraFormHelper } from './terra-form.helper';
 import {
     AbstractControl,
-    ValidatorFn,
-    Validators,
     FormArray,
     FormControl,
-    FormGroup
+    FormGroup,
+    ValidatorFn,
+    Validators
 } from '@angular/forms';
 import Spy = jasmine.Spy;
 

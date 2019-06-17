@@ -28,8 +28,8 @@ import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-
 import { DebugElement } from '@angular/core';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { By } from '@angular/platform-browser';
-import Spy = jasmine.Spy;
 import { TableRowComponent } from './table-row/table-row.component';
+import Spy = jasmine.Spy;
 
 describe('TerraDataTableComponent', () =>
 {

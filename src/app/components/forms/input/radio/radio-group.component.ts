@@ -10,7 +10,6 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../../helpers/string.helper';
 
 let nextId:number = 0;
