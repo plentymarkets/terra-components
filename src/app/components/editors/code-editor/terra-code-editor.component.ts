@@ -1,10 +1,10 @@
 import {
     Component,
     ElementRef,
-    OnInit,
-    ViewChild,
     Input,
-    OnDestroy
+    OnDestroy,
+    OnInit,
+    ViewChild
 } from '@angular/core';
 import {
     Language,

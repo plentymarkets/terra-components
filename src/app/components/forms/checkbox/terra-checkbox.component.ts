@@ -9,7 +9,6 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 
@@ -146,8 +145,13 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      */
     public writeValue(value:boolean):void
     {
-        if(!isNullOrUndefined(value) && value !== this.innerValue)
+        if(value !== this.innerValue)
         {
+            if(value === null || value === undefined)
+            {
+                value = false;
+            }
+
             this._isIndeterminate = false;
             this.innerValue = value;
 
