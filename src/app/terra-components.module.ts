@@ -41,8 +41,6 @@ import {
 import { examples } from './components/example-collection';
 import { directives } from './components/directive-collection';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
-import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -99,8 +97,7 @@ function initL10n(l10nLoader:L10nLoader):Function
             deps:     [COMPILER_OPTIONS]
         },
         {
-            provide:    APP_INITIALIZER, // APP_INITIALIZER will execute the function when the app is initialized and delay what
-                                         // it provides.
+            provide:    APP_INITIALIZER, // APP_INITIALIZER will execute the function when the app is initialized and delay what it provides.
             useFactory: initL10n,
             deps:       [L10nLoader],
             multi:      true
@@ -117,16 +114,4 @@ function initL10n(l10nLoader:L10nLoader):Function
 })
 
 export class TerraComponentsModule
-{
-    public static forRoot():ModuleWithProviders<any>
-    {
-        return {
-            ngModule:  TerraComponentsModule
-        };
-    }
-
-    public static forChild():Type<any>
-    {
-        return TerraComponentsModule;
-    }
-}
+{}
