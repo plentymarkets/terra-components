@@ -9,7 +9,8 @@ module.exports = {
     entry: {
         'polyfills': './src/polyfills.ts',
         'vendor': './src/vendor.ts',
-        'app': './src/main.ts'
+        'app': './src/main.ts',
+        'fonts': './src/fonts.ts'
     },
     resolve: {
         extensions: ['.ts', '.js', '.html']
@@ -68,6 +69,15 @@ module.exports = {
                     'postcss-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(ttf|eot|woff|woff2|svg)$/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        name: "ronny.[name].[ext]",
+                    }
+                }
             }
         ]
     },
