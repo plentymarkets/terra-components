@@ -1,6 +1,9 @@
 <a name="4.0.0-beta.4"></a>
 # 4.0.0-beta.4 (Unreleased)
 
+### Breaking Changes
+* **TerraComponentsModule** removed `forRoot()` and `forChild()` methods since all services use tree-shakable providers now.
+
 ### Features
 * **tcCkFull** New directive to provide a full config for the ckeditor4.
 * **ck-editor-presets** Config presets for the ckeditor4.
