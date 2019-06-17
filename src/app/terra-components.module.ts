@@ -3,7 +3,6 @@ import {
     Compiler,
     COMPILER_OPTIONS,
     CompilerFactory,
-    ModuleWithProviders,
     NgModule
 } from '@angular/core';
 import {
@@ -33,7 +32,6 @@ import { TerraInteractModule } from './components/interactables/interact.module'
 import { l10nConfig } from './translation/l10n.config';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { Type } from '@angular/core/src/type';
 import {
     components,
     exportedComponents
@@ -85,6 +83,7 @@ function initL10n(l10nLoader:L10nLoader):Function
         QuillModule,
         RouterModule
     ],
+    // TODO: Those providers are also available in terra. Find a way they are not, since their only purpose is to be able to start the sandbox app.
     providers:       [
         {
             provide:  COMPILER_OPTIONS,
