@@ -1,6 +1,5 @@
 import { Provider } from '@angular/core';
 import { TerraFrontendStorageService } from '../components/file-browser/terra-frontend-storage.service';
-import { TerraAlertComponent } from '../components/alert/terra-alert.component';
 import { TerraDynamicFormService } from '../components/forms/dynamic-form/service/terra-dynamic-form.service';
 import { TerraDataTableContextMenuService } from '../components/tables/data-table/context-menu/terra-data-table-context-menu.service';
 import { TerraBreadcrumbsService } from '../components/breadcrumbs/service/terra-breadcrumbs.service';
@@ -13,7 +12,6 @@ export const services:Array<Provider> = [
     TerraFileBrowserService,
     TerraDataTableContextMenuService,
     TerraFrontendStorageService,
-    TerraAlertComponent,
     TerraDynamicFormService,
     TerraFormFieldControlService,
     TerraJsonToFormFieldService,
