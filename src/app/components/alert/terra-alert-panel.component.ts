@@ -1,7 +1,9 @@
 import {
     Component,
+    EventEmitter,
     OnDestroy,
-    OnInit
+    OnInit,
+    Output
 } from '@angular/core';
 import { TerraAlertComponent } from './terra-alert.component';
 import { TerraAlertInterface } from './data/terra-alert.interface';
@@ -21,6 +23,9 @@ import { Subscription } from 'rxjs';
 })
 export class TerraAlertPanelComponent implements OnInit, OnDestroy
 {
+    @Output()
+    public closed:EventEmitter<string> = new EventEmitter<string>();
+
     protected alerts:Array<TerraAlertInterface>;
     private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
@@ -61,8 +66,9 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy
         window.removeEventListener(this.service.closeEvent, this.closeAlertListener);
     }
 
-    protected closeAlertByIndex(index:number):void
+    protected closeAlertByIndex(index:number, identifier:string):void
     {
+        this.closed.emit(identifier);
         this.alert.closeAlert(index);
     }
 
@@ -73,6 +79,7 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy
 
     private closeAlert(identifier:string):void
     {
+        this.closed.emit(identifier);
         this.alert.closeAlertByIdentifier(identifier);
     }
 }

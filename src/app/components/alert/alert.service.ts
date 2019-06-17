@@ -31,44 +31,40 @@ export class AlertService
      * add a success alert
      * @param message
      * @param identifier
-     * @param onClose
      */
-    public success(message:string, identifier?:string, onClose?:() => void):void
+    public success(message:string, identifier?:string):void
     {
-        this.add(message, AlertType.success, this.defaultTimeout, identifier, onClose);
+        this.add(message, AlertType.success, this.defaultTimeout, identifier);
     }
 
     /**
      * add an error alert
      * @param message
      * @param identifier
-     * @param onClose
      */
-    public error(message:string, identifier?:string, onClose?:() => void):void
+    public error(message:string, identifier?:string):void
     {
-        this.add(message, AlertType.error, 0, identifier, onClose);
+        this.add(message, AlertType.error, 0, identifier);
     }
 
     /**
      * add an info alert
      * @param message
      * @param identifier
-     * @param onClose
      */
-    public info(message:string, identifier?:string, onClose?:() => void):void
+    public info(message:string, identifier?:string):void
     {
-        this.add(message, AlertType.info, this.defaultTimeout, identifier, onClose);
+        this.add(message, AlertType.info, this.defaultTimeout, identifier);
     }
 
     /**
      * add a warning alert
      * @param message
      * @param identifier
-     * @param onClose
      */
-    public warning(message:string, identifier?:string, onClose?:() => void):void
+    public warning(message:string, identifier?:string):void
     {
-        this.add(message, AlertType.warning, this.defaultTimeout, identifier, onClose);
+        this.add(message, AlertType.warning, this.defaultTimeout, identifier);
     }
 
     /**
@@ -90,14 +86,13 @@ export class AlertService
         }
     }
 
-    private add(msg:string, type:AlertType, timeout:number, identifier?:string, onClose?:() => void):void
+    private add(msg:string, type:AlertType, timeout:number, identifier?:string):void
     {
         let alert:TerraAlertInterface = {
             msg:              msg,
             type:             type,
             dismissOnTimeout: timeout,
-            identifier:       identifier,
-            onClose:          onClose
+            identifier:       identifier
         };
 
         // check whether the service is used in the root window or in an iframe

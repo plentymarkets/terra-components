@@ -6,5 +6,4 @@ export interface TerraAlertInterface
     type:string | AlertType;
     dismissOnTimeout:number;
     identifier?:string;
-    onClose?:() => void;
 }
