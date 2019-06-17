@@ -3,6 +3,8 @@
 
 ### Features
 * **tslint** add new linting rules
+* **terra-category-picker** allow to accept 'Null' values
+* **terra-cacheckbox** allow to accept 'Null' values
 
 ### Bug Fixes
 * **http-interceptors** fix logging errors to console. 
