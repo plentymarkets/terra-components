@@ -41,7 +41,6 @@ import {
 import { examples } from './components/example-collection';
 import { directives } from './components/directive-collection';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
 import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
 import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
 import { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
@@ -126,7 +125,6 @@ export class TerraComponentsModule
             ngModule:  TerraComponentsModule,
             providers: [
                 TerraFileBrowserService,
-                TerraDynamicFormService,
                 TerraFormFieldControlService,
                 TerraMultiSplitViewBreadcrumbsService
             ]
