@@ -123,8 +123,8 @@ export class TerraComponentsModule
     {
         return {
             ngModule:  TerraComponentsModule,
-            providers: [
                 TerraFileBrowserService,
+            providers: [  // TODO: Actually, no service should be provided here. Add {providedIn: 'root'} to the @Injectable-decorator instead.
                 TerraFormFieldControlService,
                 TerraMultiSplitViewBreadcrumbsService
             ]
