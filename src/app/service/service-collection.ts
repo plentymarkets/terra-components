@@ -10,6 +10,5 @@ export const services:Array<Provider> = [
     TerraDynamicFormService,
     TerraFormFieldControlService,
     TerraJsonToFormFieldService,
-    TerraMultiSplitViewBreadcrumbsService,
     TerraMultiSplitViewBreadcrumbsService
 ];
