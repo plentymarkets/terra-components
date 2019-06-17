@@ -1,5 +1,4 @@
 /* tslint:disable:restrict-leading-underscore max-file-line-count */
-import { Injectable } from '@angular/core';
 import {
     Headers,
     Http,
@@ -34,7 +33,6 @@ import { DispatchHelper } from '../helpers/dispatch.helper';
  * @author mfrank
  * @deprecated since v3.14.0. Use angular's [HttpClient](https://angular.io/guide/http) instead.
  */
-@Injectable()
 // Please keep the todo comments until TerraBaseService refactoring
 // TODO TerraBaseService<D> or maybe TerraBaseService<D extends BaseData>
 export class TerraBaseService
