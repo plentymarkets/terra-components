@@ -43,6 +43,7 @@ import { services } from './service/service-collection';
 import { directives } from './components/directive-collection';
 import { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
 import { AlertService } from './components/alert/alert.service';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -76,6 +77,7 @@ function initL10n(l10nLoader:L10nLoader):Function
         HttpModule,
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
+        CKEditorModule,
         ModalModule.forRoot(),
         TooltipModule.forRoot(),
         AlertModule.forRoot(),
