@@ -39,11 +39,12 @@ import {
     exportedComponents
 } from './components/component-collection';
 import { examples } from './components/example-collection';
-import { services } from './service/service-collection';
 import { directives } from './components/directive-collection';
-import { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
-import { AlertService } from './components/alert/alert.service';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
+import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
+import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
+import { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -89,8 +90,6 @@ function initL10n(l10nLoader:L10nLoader):Function
         RouterModule
     ],
     providers:       [
-        TerraLoadingSpinnerService,
-        AlertService,
         {
             provide:  COMPILER_OPTIONS,
             useValue: {},
@@ -125,7 +124,12 @@ export class TerraComponentsModule
     {
         return {
             ngModule:  TerraComponentsModule,
-            providers: services
+            providers: [
+                TerraFileBrowserService,
+                TerraDynamicFormService,
+                TerraFormFieldControlService,
+                TerraMultiSplitViewBreadcrumbsService
+            ]
         };
     }
 
