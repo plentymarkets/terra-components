@@ -13,7 +13,9 @@ import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-conta
 /**
  * @author mfrank
  */
-@Injectable()
+@Injectable({
+    providedIn: 'root' // TODO: this may be provided in TerraDynamicFormComponent
+})
 export class TerraFormFieldControlService
 {
     public dynamicFormGroup:FormGroup;

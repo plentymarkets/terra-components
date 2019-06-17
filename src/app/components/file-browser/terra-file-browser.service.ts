@@ -5,7 +5,9 @@ import {
 import { isNullOrUndefined } from 'util';
 import { BehaviorSubject } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root' // TODO: this may be provided in the TerraFileListComponent?
+})
 export class TerraFileBrowserService
 {
     public isDragActive:BehaviorSubject<boolean> = new BehaviorSubject(false);

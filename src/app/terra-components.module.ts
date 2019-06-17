@@ -43,7 +43,6 @@ import { directives } from './components/directive-collection';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
 import { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
-import { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -122,12 +121,7 @@ export class TerraComponentsModule
     public static forRoot():ModuleWithProviders<any>
     {
         return {
-            ngModule:  TerraComponentsModule,
-                TerraFileBrowserService,
-            providers: [  // TODO: Actually, no service should be provided here. Add {providedIn: 'root'} to the @Injectable-decorator instead.
-                TerraFormFieldControlService,
-                TerraMultiSplitViewBreadcrumbsService
-            ]
+            ngModule:  TerraComponentsModule
         };
     }
 
