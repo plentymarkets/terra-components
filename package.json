@@ -43,7 +43,7 @@
 		"ckeditor4-angular": "^1.0.0-beta"
 	},
 	"dependencies": {
-		"bootstrap": "4.0.0-alpha.4",
+		"bootstrap": "^4.3.1",
 		"flatted": "^2.0.0",
 		"htmlhint": "^0.11.0",
 		"iban": "^0.0.12",
@@ -53,7 +53,7 @@
 		"moment": "^2.24.0",
 		"mydatepicker": "^2.6.6",
 		"ng2-ace-editor": "^0.3.9",
-		"ngx-bootstrap": "^4.2.0",
+		"ngx-bootstrap": "^4.3.0",
 		"ngx-quill": "^5.2.0",
 		"path": "^0.12.7",
 		"popper.js": "^1.15.0",
