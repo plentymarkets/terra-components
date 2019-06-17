@@ -23,7 +23,7 @@ export class AlertService
     /**
      * Name of the CustomEvent that is dispatched to the parent window to close an alert
      */
-    public readonly  closeEvent:string = 'closeAlert';
+    public readonly closeEvent:string = 'closeAlert';
 
     private readonly defaultTimeout:number = 5000;
 
@@ -31,40 +31,44 @@ export class AlertService
      * add a success alert
      * @param message
      * @param identifier
+     * @param onClose
      */
-    public success(message:string, identifier?:string):void
+    public success(message:string, identifier?:string, onClose?:() => void):void
     {
-        this.add(message, AlertType.success, this.defaultTimeout, identifier);
+        this.add(message, AlertType.success, this.defaultTimeout, identifier, onClose);
     }
 
     /**
      * add an error alert
      * @param message
      * @param identifier
+     * @param onClose
      */
-    public error(message:string, identifier?:string):void
+    public error(message:string, identifier?:string, onClose?:() => void):void
     {
-        this.add(message, AlertType.error, 0, identifier);
+        this.add(message, AlertType.error, 0, identifier, onClose);
     }
 
     /**
      * add an info alert
      * @param message
      * @param identifier
+     * @param onClose
      */
-    public info(message:string, identifier?:string):void
+    public info(message:string, identifier?:string, onClose?:() => void):void
     {
-        this.add(message, AlertType.info, this.defaultTimeout, identifier);
+        this.add(message, AlertType.info, this.defaultTimeout, identifier, onClose);
     }
 
     /**
      * add a warning alert
      * @param message
      * @param identifier
+     * @param onClose
      */
-    public warning(message:string, identifier?:string):void
+    public warning(message:string, identifier?:string, onClose?:() => void):void
     {
-        this.add(message, AlertType.warning, this.defaultTimeout, identifier);
+        this.add(message, AlertType.warning, this.defaultTimeout, identifier, onClose);
     }
 
     /**
@@ -86,13 +90,14 @@ export class AlertService
         }
     }
 
-    private add(msg:string, type:AlertType, timeout:number, identifier?:string):void
+    private add(msg:string, type:AlertType, timeout:number, identifier?:string, onClose?:() => void):void
     {
         let alert:TerraAlertInterface = {
             msg:              msg,
             type:             type,
             dismissOnTimeout: timeout,
-            identifier:       identifier
+            identifier:       identifier,
+            onClose:          onClose
         };
 
         // check whether the service is used in the root window or in an iframe
@@ -111,7 +116,7 @@ export class AlertService
     private addAlertForPlugin(alert:TerraAlertInterface):void
     {
         let event:CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(this.addEvent, {
-            detail: alert,
+            detail:  alert,
             bubbles: false
         });
         window.parent.window.dispatchEvent(event);
@@ -119,8 +124,8 @@ export class AlertService
 
     private closeAlertForPlugin(identifier:string):void
     {
-        let event:CustomEvent<string> =  new CustomEvent<string>(this.closeEvent, {
-            detail: identifier,
+        let event:CustomEvent<string> = new CustomEvent<string>(this.closeEvent, {
+            detail:  identifier,
             bubbles: false
         });
         window.parent.window.dispatchEvent(event);

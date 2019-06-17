@@ -52,7 +52,8 @@ export class TerraAlertComponent
                 message:          alert.msg,
                 type:             alert.type,
                 dismissOnTimeout: alert.dismissOnTimeout,
-                identifier:       alert.identifier
+                identifier:       alert.identifier,
+                onClose:          alert.onClose
             }
         });
 
@@ -71,7 +72,8 @@ export class TerraAlertComponent
             msg:              alert.msg,
             type:             alert.type,
             dismissOnTimeout: alert.dismissOnTimeout,
-            identifier:       alert.identifier
+            identifier:       alert.identifier,
+            onClose:          alert.onClose
         });
     }
 
