@@ -1,5 +1,4 @@
 import { Provider } from '@angular/core';
-import { TerraFrontendStorageService } from '../components/file-browser/terra-frontend-storage.service';
 import { TerraDynamicFormService } from '../components/forms/dynamic-form/service/terra-dynamic-form.service';
 import { TerraJsonToFormFieldService } from '../components/forms/dynamic-form/service/terra-json-to-form-field.service';
 import { TerraMultiSplitViewBreadcrumbsService } from '../components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
@@ -8,7 +7,6 @@ import { TerraFileBrowserService } from '../components/file-browser/terra-file-b
 
 export const services:Array<Provider> = [
     TerraFileBrowserService,
-    TerraFrontendStorageService,
     TerraDynamicFormService,
     TerraFormFieldControlService,
     TerraJsonToFormFieldService,
