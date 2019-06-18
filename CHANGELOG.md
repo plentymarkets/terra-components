@@ -4,6 +4,8 @@
 ### Features
 * **tslint** add new linting rules
 * **terra-card** updated icon size and hover outline
+* **terra-category-picker** allow to accept 'Null' values
+* **terra-cacheckbox** allow to accept 'Null' values
 
 ### Bug Fixes
 * **http-interceptors** fix logging errors to console. 
