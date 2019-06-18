@@ -75,7 +75,7 @@ module.exports = {
                 use: {
                     loader: "file-loader",
                     options: {
-                        name: "ronny.[name].[ext]",
+                        name: "[name].[hash].[ext]"
                     }
                 }
             }
