@@ -111,6 +111,7 @@ describe('AlertService', () =>
 
         it('should emit on closeAlert', () =>
         {
+            console.log('Testing ci');
             service.close(identifier);
             expect(latest).toEqual(identifier);
         });
