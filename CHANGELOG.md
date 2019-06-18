@@ -3,6 +3,7 @@
 
 ### Features
 * **tslint** add new linting rules
+* **terra-card** updated icon size and hover outline
 
 ### Bug Fixes
 * **http-interceptors** fix logging errors to console. 
