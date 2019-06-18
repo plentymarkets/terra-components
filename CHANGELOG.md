@@ -4,7 +4,7 @@
 ### Features
 * **tcCkFull** New directive to provide a full config for the ckeditor4.
 * **ck-editor-presets** Config presets for the ckeditor4.
-* **alert.service.ts** Added functionality to call functions on closing an alert.
+* **alert.service.ts** Added an EventEmitter to handle onClosed.
 
 <a name="4.0.0-beta.3"></a>
 # 4.0.0-beta.3 (12.06.2019)
