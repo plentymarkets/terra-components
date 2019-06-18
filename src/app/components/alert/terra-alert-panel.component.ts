@@ -23,6 +23,9 @@ import { Subscription } from 'rxjs';
 })
 export class TerraAlertPanelComponent implements OnInit, OnDestroy
 {
+    /**
+     * @description Notifies whenever an alert is closed.
+     */
     @Output()
     public closed:EventEmitter<string> = new EventEmitter<string>();
 
@@ -66,8 +69,10 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy
         window.removeEventListener(this.service.closeEvent, this.closeAlertListener);
     }
 
-    protected closeAlertByIndex(index:number, identifier:string):void
+    protected closeAlertByIndex(index:number):void
     {
+        const identifier:string = this.alerts[index].identifier;
+
         this.closed.emit(identifier);
         this.alert.closeAlert(index);
     }
