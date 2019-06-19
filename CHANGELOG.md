@@ -1,9 +1,15 @@
 <a name="4.0.0-beta.4"></a>
 # 4.0.0-beta.4 (Unreleased)
 
+### Breaking Changes
+* **bootstrap** updated from 4.0.0-alpha.4 to 4.3.1
+
 ### Features
 * **tcCkFull** New directive to provide a full config for the ckeditor4.
 * **ck-editor-presets** Config presets for the ckeditor4.
+* **refactoring** restructured style files
+* **terra-cards** restyling
+* **fonts** plentyicon-font moved to aws S3
 
 <a name="4.0.0-beta.3"></a>
 # 4.0.0-beta.3 (12.06.2019)
