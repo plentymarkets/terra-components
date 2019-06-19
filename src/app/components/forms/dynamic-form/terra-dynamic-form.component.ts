@@ -81,7 +81,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
 
     constructor(protected formFieldControlService:TerraFormFieldControlService)
     {
-        this.inputPortletStyle = 'col-xs-12 col-md-8 col-lg-5';
+        this.inputPortletStyle = 'col-12 col-md-8 col-lg-5';
         this.inputRequestParams = {
             route:      '',
             htmlMethod: null,

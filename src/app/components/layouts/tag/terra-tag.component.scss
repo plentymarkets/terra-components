@@ -12,6 +12,9 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    font-size: var(--font-size-1);
+    line-height: 1;
+    color: var(--color-structure-0);
 
     span
     {
