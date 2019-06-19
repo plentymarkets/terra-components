@@ -7,4 +7,4 @@ if(process.env.ENV === 'production')
     enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(TerraComponentsModule);
+platformBrowserDynamic().bootstrapModule(TerraComponentsModule).catch((err:any) => console.log(err));

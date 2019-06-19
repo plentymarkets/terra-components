@@ -9,8 +9,7 @@ module.exports = {
     entry: {
         'polyfills': './src/polyfills.ts',
         'vendor': './src/vendor.ts',
-        'app': './src/main.ts',
-        'fonts': './src/fonts.ts'
+        'app': './src/main.ts'
     },
     resolve: {
         extensions: ['.ts', '.js', '.html']
