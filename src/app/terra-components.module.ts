@@ -62,7 +62,10 @@ function initL10n(l10nLoader:L10nLoader):Function
         ...directives,
         ...examples
     ],
-    entryComponents: exportedComponents,
+    entryComponents: [
+        ...exportedComponents,
+        ...examples
+    ],
     exports:         [
         ...exportedComponents,
         ...directives,

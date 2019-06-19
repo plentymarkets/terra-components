@@ -1,8 +1,9 @@
 import {
     Component,
-    ViewContainerRef,
+    Type,
     ViewEncapsulation
 } from '@angular/core';
+import { examples } from './components/example-collection';
 
 @Component({
     selector:      'terra-app-root',
@@ -12,11 +13,5 @@ import {
 })
 export class TerraComponentsComponent
 {
-    private viewContainerRef:ViewContainerRef;
-
-    constructor(viewContainerRef:ViewContainerRef)
-    {
-        // You need this small hack in order to catch application root view container ref
-        this.viewContainerRef = viewContainerRef;
-    }
+    protected readonly examples:Array<Type<any>> = examples;
 }
