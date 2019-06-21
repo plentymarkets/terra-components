@@ -13,12 +13,12 @@
                 
                 <div class="slider-handle"
                      [style.left.px]="handlePosition"
-                     [terraDraggable]
+                     terraDraggable
                      tabindex="0"
                      (keydown)="onKeyDown($event)"
-                     [terra-draggable-restrict]="'self'"
-                     [terra-draggable-grid]="grid"
-                     (terra-draggable-onMove)="onDrag( $event )">
+                     [restrict]="'self'"
+                     [grid]="grid"
+                     (move)="onDrag( $event )">
                     {{ value?.toFixed(inputPrecision) }}
                 </div>
                 
