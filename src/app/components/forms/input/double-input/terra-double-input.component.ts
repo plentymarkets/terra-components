@@ -2,6 +2,7 @@ import {
     Component,
     forwardRef,
     Input,
+    OnDestroy,
     OnInit
 } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
@@ -23,7 +24,7 @@ let nextId:number = 0;
         }
     ]
 })
-export class TerraDoubleInputComponent extends TerraInputComponent implements OnInit
+export class TerraDoubleInputComponent extends TerraInputComponent implements OnInit, OnDestroy
 {
     /**
      * @description If true, the value will be right-aligned.
@@ -60,6 +61,11 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     {
         this.regex = TerraRegex.getDouble(this.inputDecimalCount);
         this.step = 1 / (Math.pow(10, this.inputDecimalCount));
+    }
+
+    public ngOnDestroy():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     /**
