@@ -1,10 +1,9 @@
 module.exports = function () {
 
     var fileSelectors = {
-        allTs: './src/**/!(*.d).ts',
+        allTs: './src/lib/**/!(*.d).ts',
         allCSS: './src/**/*.css',
         allFonts: './src/app/assets/fonts/**/*',
-        allImages: './src/app/assets/images/**/*',
         allSCSS: './src/**/*.scss',
         allHTML: './src/**/*.html',
         allLang: './src/app/assets/lang/**/*'
