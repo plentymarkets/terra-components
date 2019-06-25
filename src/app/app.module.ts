@@ -15,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { l10nConfig } from './translation/l10n.config';
 import { examples } from '../lib/components/example-collection';
-import { TerraComponentsModule } from '../lib/terra-components.module';
+import { TerraComponentsModule } from '../lib';
 import { AppComponent } from './app.component';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
