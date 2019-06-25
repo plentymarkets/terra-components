@@ -5,8 +5,8 @@ module.exports = function () {
         allCSS: './src/lib/**/*.css',
         allSCSS: './src/lib/**/*.scss',
         allHTML: './src/lib/**/*.html',
-        allFonts: './src/app/assets/fonts/**/*',
-        allLang: './src/app/assets/lang/**/*'
+        allFonts: './src/assets/fonts/**/*',
+        allLang: './src/assets/lang/**/*'
     };
 
     var sources = {
@@ -18,8 +18,8 @@ module.exports = function () {
     var terraComponentsDocPath = '../terra-components-doc/node_modules/@plentymarkets/terra-components/';
     var destinations = {
         tsOutputPath: './dist/',
-        fontsOutputPath: './dist/app/assets/fonts/',
-        langOutputPath: './dist/app/assets/lang/',
+        fontsOutputPath: './dist/assets/fonts/',
+        langOutputPath: './dist/assets/lang/',
 
         terra: '../terra/node_modules/@plentymarkets/terra-components/',
         terraComponentsDoc: terraComponentsDocPath,

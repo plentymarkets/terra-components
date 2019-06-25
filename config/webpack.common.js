@@ -102,7 +102,7 @@ module.exports = {
             "window.Tether": 'tether'
         }),
         new CopyWebpackPlugin([
-            {from: 'src/app/assets', to: 'assets'}
+            {from: 'src/assets', to: 'assets'}
         ]),
         new ForkTsCheckerWebpackPlugin()
     ]
