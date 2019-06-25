@@ -2,10 +2,10 @@ module.exports = function () {
 
     var fileSelectors = {
         allTs: './src/lib/**/!(*.d).ts',
-        allCSS: './src/**/*.css',
+        allCSS: './src/lib/**/*.css',
+        allSCSS: './src/lib/**/*.scss',
+        allHTML: './src/lib/**/*.html',
         allFonts: './src/app/assets/fonts/**/*',
-        allSCSS: './src/**/*.scss',
-        allHTML: './src/**/*.html',
         allLang: './src/app/assets/lang/**/*'
     };
 
@@ -19,7 +19,6 @@ module.exports = function () {
     var destinations = {
         tsOutputPath: './dist/',
         fontsOutputPath: './dist/app/assets/fonts/',
-        imagesOutputPath: './dist/app/assets/images/',
         langOutputPath: './dist/app/assets/lang/',
 
         terra: '../terra/node_modules/@plentymarkets/terra-components/',
