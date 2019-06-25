@@ -7,4 +7,4 @@
                       [ngClass]="{'hidden': isReadOnly}"></terra-suggestion-box>
 <terra-taglist [inputTagList]="selectedTags"
                [isReadOnly]="isReadOnly || isDisabled"
-               (onCloseTag)="closeTag($event)"></terra-taglist>
+               (closeTag)="closeTag($event)"></terra-taglist>

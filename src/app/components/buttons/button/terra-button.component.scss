@@ -6,6 +6,7 @@ button, html [type="button"], [type="reset"], [type="submit"]
 button:focus
 {
     outline: none !important;
+    box-shadow: none;
 }
 
 .btn-handler

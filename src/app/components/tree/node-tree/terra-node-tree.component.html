@@ -7,7 +7,7 @@
 </div>
 <ul class="terra-node-tree">
     <div *ngIf="isTreeDisabled" class="isDisabled"></div>
-    <ng-container *ngFor="let node of inputConfig.list">
+    <ng-container *ngFor="let node of inputConfig?.list">
         <terra-node *ngIf="node.isVisible" [inputNode]="node" [inputConfig]="inputConfig">
         </terra-node>
     </ng-container>

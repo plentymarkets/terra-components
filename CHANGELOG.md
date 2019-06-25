@@ -1,5 +1,8 @@
 <a name="4.0.0-beta.4"></a>
-# 4.0.0-beta.4 (Unreleased)
+# 4.0.0-beta.4 (24.06.2019)
+
+### Breaking Changes
+* **bootstrap** updated from 4.0.0-alpha.4 to 4.3.1
 
 ### Breaking Changes
 * **TerraComponentsModule** removed `forRoot()` and `forChild()` methods since all services use tree-shakable providers now.
@@ -7,6 +10,9 @@
 ### Features
 * **tcCkFull** New directive to provide a full config for the ckeditor4.
 * **ck-editor-presets** Config presets for the ckeditor4.
+* **refactoring** restructured style files
+* **terra-cards** restyling
+* **fonts** plentyicon-font moved to aws S3
 
 <a name="4.0.0-beta.3"></a>
 # 4.0.0-beta.3 (12.06.2019)
