@@ -1,0 +1,70 @@
+import {
+    APP_INITIALIZER,
+    Compiler,
+    COMPILER_OPTIONS,
+    CompilerFactory,
+    NgModule
+} from '@angular/core';
+import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
+import {
+    L10nLoader,
+    LocalizationModule
+} from 'angular-l10n';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { l10nConfig } from './translation/l10n.config';
+import { examples } from '../lib/components/example-collection';
+import { TerraComponentsModule } from '../lib/terra-components.module';
+import { AppComponent } from './app.component';
+
+function createCompiler(compilerFactory:CompilerFactory):Compiler
+{
+    return compilerFactory.createCompiler();
+}
+
+function initL10n(l10nLoader:L10nLoader):Function
+{
+    return ():Promise<void> => l10nLoader.load();
+}
+
+@NgModule({
+    imports:   [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        LocalizationModule.forRoot(l10nConfig),
+        TerraComponentsModule.forRoot()
+    ],
+    declarations: [AppComponent],
+    entryComponents: [
+        ...examples
+    ],
+    providers: [
+        {
+            provide:  COMPILER_OPTIONS,
+            useValue: {},
+            multi:    true
+        },
+        {
+            provide:  CompilerFactory,
+            useClass: JitCompilerFactory,
+            deps:     [COMPILER_OPTIONS]
+        },
+        {
+            provide:    APP_INITIALIZER, // APP_INITIALIZER will execute the function when the app is initialized and delay what it provides.
+            useFactory: initL10n,
+            deps:       [L10nLoader],
+            multi:      true
+        },
+        {
+            provide:    Compiler,
+            useFactory: createCompiler,
+            deps:       [CompilerFactory]
+        }
+    ],
+    bootstrap: [AppComponent]
+})
+export class AppModule
+{
+}
