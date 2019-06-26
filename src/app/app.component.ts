@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector:      'terra-app-root',
+    selector:      'tc-sandbox-app',
     template:      require('./app.component.html'),
     styles:        [require('./app.component.scss')],
     encapsulation: ViewEncapsulation.None
