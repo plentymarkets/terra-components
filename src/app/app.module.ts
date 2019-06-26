@@ -34,7 +34,7 @@ function initL10n(l10nLoader:L10nLoader):Function
         BrowserAnimationsModule,
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
-        TerraComponentsModule.forRoot()
+        TerraComponentsModule
     ],
     declarations: [AppComponent],
     entryComponents: [
