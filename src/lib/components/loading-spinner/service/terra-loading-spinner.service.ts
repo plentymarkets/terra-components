@@ -10,7 +10,9 @@ import {
 /**
  * @author mscharf
  */
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class TerraLoadingSpinnerService
 {
     public observable:Observable<boolean>;

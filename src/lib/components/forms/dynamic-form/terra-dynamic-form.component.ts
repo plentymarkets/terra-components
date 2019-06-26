@@ -39,7 +39,7 @@ export interface TerraDynamicFormRequestParams
     selector:  'terra-dynamic-form',
     template:  require('./terra-dynamic-form.component.html'),
     styles:    [require('./terra-dynamic-form.component.scss')],
-    providers: [TerraDynamicFormService]
+    providers: [TerraFormFieldControlService]
 })
 export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
 {

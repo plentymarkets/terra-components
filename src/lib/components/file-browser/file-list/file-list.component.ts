@@ -44,9 +44,10 @@ import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/te
 
 
 @Component({
-    selector: 'terra-file-list',
-    template: require('./file-list.component.html'),
-    styles:   [require('./file-list.component.scss')]
+    selector:  'terra-file-list',
+    template:  require('./file-list.component.html'),
+    styles:    [require('./file-list.component.scss')],
+    providers: [TerraFileBrowserService]
 })
 export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
 {

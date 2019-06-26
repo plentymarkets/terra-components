@@ -1,14 +1,9 @@
-import {
-    ModuleWithProviders,
-    NgModule
-} from '@angular/core';
-import { Type } from '@angular/core/src/type';
+import { NgModule } from '@angular/core';
 import {
     components,
     exportedComponents
 } from './components/component-collection';
 import { examples } from './components/example-collection';
-import { services } from './service/service-collection';
 import { directives } from './components/directive-collection';
 import {
     AlertModule,
@@ -62,17 +57,4 @@ import { HttpModule } from '@angular/http';
 })
 
 export class TerraComponentsModule
-{
-    public static forRoot():ModuleWithProviders<any>
-    {
-        return {
-            ngModule:  TerraComponentsModule,
-            providers: services
-        };
-    }
-
-    public static forChild():Type<any>
-    {
-        return TerraComponentsModule;
-    }
-}
+{}

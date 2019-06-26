@@ -2,7 +2,8 @@
 # 4.0.0-beta.5 (Unreleased)
 
 ### Breaking Changes
-* **build** removed app folder. Content has been moved to its root. Imports from `@plentymarkets/terra-components/app/**` need to be changed to `@plentymarkets/terra-components/**`
+* **TerraComponentsModule** removed `forRoot()` and `forChild()` methods since all services use tree-shakable providers now.
+* **build** removed app folder. Content has been moved to its root. Imports from `@plentymarkets/terra-components/app/**` need to be changed to `@plentymarkets/terra-components/**`.
 
 <a name="4.0.0-beta.4"></a>
 # 4.0.0-beta.4 (24.06.2019)
