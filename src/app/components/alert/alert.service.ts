@@ -5,7 +5,9 @@ import {
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { AlertType } from './alert-type.enum';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class AlertService
 {
     /**

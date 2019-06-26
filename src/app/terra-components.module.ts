@@ -3,7 +3,6 @@ import {
     Compiler,
     COMPILER_OPTIONS,
     CompilerFactory,
-    ModuleWithProviders,
     NgModule
 } from '@angular/core';
 import {
@@ -33,16 +32,12 @@ import { TerraInteractModule } from './components/interactables/interact.module'
 import { l10nConfig } from './translation/l10n.config';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { Type } from '@angular/core/src/type';
 import {
     components,
     exportedComponents
 } from './components/component-collection';
 import { examples } from './components/example-collection';
-import { services } from './service/service-collection';
 import { directives } from './components/directive-collection';
-import { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
-import { AlertService } from './components/alert/alert.service';
 import { CKEditorModule } from 'ckeditor4-angular';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
@@ -91,9 +86,8 @@ function initL10n(l10nLoader:L10nLoader):Function
         QuillModule,
         RouterModule
     ],
+    // TODO: Those providers are also available in terra. Find a way they are not, since their only purpose is to be able to start the sandbox app.
     providers:       [
-        TerraLoadingSpinnerService,
-        AlertService,
         {
             provide:  COMPILER_OPTIONS,
             useValue: {},
@@ -105,8 +99,7 @@ function initL10n(l10nLoader:L10nLoader):Function
             deps:     [COMPILER_OPTIONS]
         },
         {
-            provide:    APP_INITIALIZER, // APP_INITIALIZER will execute the function when the app is initialized and delay what
-                                         // it provides.
+            provide:    APP_INITIALIZER, // APP_INITIALIZER will execute the function when the app is initialized and delay what it provides.
             useFactory: initL10n,
             deps:       [L10nLoader],
             multi:      true
@@ -123,17 +116,4 @@ function initL10n(l10nLoader:L10nLoader):Function
 })
 
 export class TerraComponentsModule
-{
-    public static forRoot():ModuleWithProviders<any>
-    {
-        return {
-            ngModule:  TerraComponentsModule,
-            providers: services
-        };
-    }
-
-    public static forChild():Type<any>
-    {
-        return TerraComponentsModule;
-    }
-}
+{}

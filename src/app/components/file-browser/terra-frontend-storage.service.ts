@@ -16,7 +16,9 @@ import {
     Observable
 } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 {
     public isImagePreviewEnabled:boolean = true;
