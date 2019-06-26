@@ -1,9 +1,7 @@
 import {
     Component,
-    Type,
     ViewEncapsulation
 } from '@angular/core';
-import { examples } from '../lib/components/example-collection';
 
 @Component({
     selector:      'terra-app-root',
@@ -12,6 +10,4 @@ import { examples } from '../lib/components/example-collection';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent
-{
-    protected readonly examples:Array<Type<any>> = examples;
-}
+{}
