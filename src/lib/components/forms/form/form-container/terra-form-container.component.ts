@@ -13,7 +13,7 @@ import {
     isString
 } from 'util';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
-import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
+import { TerraKeyValuePairInterface } from '../../../../models';
 import {
     AbstractControl,
     ControlValueAccessor,

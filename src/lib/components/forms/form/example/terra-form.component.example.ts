@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormTypeMap } from '../model/form-type-map';
-import { TerraKeyValueInterface } from '../../../../models/terra-key-value.interface';
+import { TerraKeyValueInterface } from '../../../../models';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { formFields } from './form-fields';
 

@@ -19,7 +19,7 @@ import { TerraControlTypeEnum } from '../../dynamic-form/enum/terra-control-type
 import { TerraFormFieldInputText } from '../../dynamic-form/data/terra-form-field-input-text';
 import { TerraFormFieldSelectBox } from '../../dynamic-form/data/terra-form-field-select-box';
 import * as _ from 'lodash';
-import { TerraKeyValueInterface } from '../../../../models/terra-key-value.interface';
+import { TerraKeyValueInterface } from '../../../../models';
 
 export class TerraFormFieldHelper
 {

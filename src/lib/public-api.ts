@@ -151,3 +151,4 @@ export * from './components/editors/ck-editor/ck-editor.directive';
 export * from './helpers';
 export * from './components/forms/input/radio/radio-group.component';
 export * from './components/forms/input/radio/radio-input.component';
+export * from './models';

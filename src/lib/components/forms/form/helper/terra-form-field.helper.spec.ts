@@ -1,7 +1,7 @@
 import { TerraFormFieldHelper } from './terra-form-field.helper';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { listWithChildren } from '../example/form-fields';
-import { TerraKeyValueInterface } from '../../../../models/terra-key-value.interface';
+import { TerraKeyValueInterface } from '../../../../models';
 
 describe(`TerraFormFieldHelper:`, () =>
 {

@@ -4,7 +4,7 @@ import {
 } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 import { tap } from 'rxjs/operators';
-import { TerraKeyValueInterface } from '../models/terra-key-value.interface';
+import { TerraKeyValueInterface } from '../models';
 import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
 
 /**
