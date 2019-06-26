@@ -4,6 +4,9 @@ import {
 } from '@angular/core';
 import { examples } from '../../lib/components/example-collection';
 
+/**
+ * @description This component showcases all the examples provided by the TerraComponents library.
+ */
 @Component({
     selector:    'tc-showcase',
     templateUrl: './showcase.component.html',

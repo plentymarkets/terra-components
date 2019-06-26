@@ -29,6 +29,11 @@ function initL10n(l10nLoader:L10nLoader):Function
     return ():Promise<void> => l10nLoader.load();
 }
 
+/**
+ * @description This is the sandbox app's corresponding NgModule.
+ *
+ * NOTE: It is not publicly accessible either.
+ */
 @NgModule({
     imports:   [
         BrowserModule,
