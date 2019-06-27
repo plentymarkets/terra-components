@@ -27,6 +27,7 @@
                     [class.sortable]="isSortable(header)"
                     (click)="columnHeaderClicked.emit(header)">
                     <span [container]="'body'"
+                          [adaptivePosition]="false"
                           [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                           [tooltip]="header.tooltipText"
                           [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
@@ -53,6 +54,7 @@
                     [ngStyle]="{ 'text-align': getTextAlign(inputHeaderList[i]) }"
                     [tooltip]="tdTooltip"
                     [container]="'body'"
+                    [adaptivePosition]="false"
                     [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
                     [placement]="checkTooltipPlacement(cell.tooltipPlacement)">
                     

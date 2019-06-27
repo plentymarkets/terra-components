@@ -4,6 +4,7 @@
              [ngClass]="{'activated' : inputNode.isActive, 'isLoading' : inputNode.isLoading && inputNode.onLazyLoad}"
              (click)="onNodeClick($event)"
              container="body"
+             [adaptivePosition]="false"
              [tooltip]="tooltip | translate:lang"
              [placement]="tooltipPlacement">
             <span *ngIf="!inputNode.icon" class="icon_dist_top icon-placeholder"></span>

@@ -7,7 +7,8 @@
     [inputIsSmall]="inputIsSmall"
     [inputIsLarge]="inputIsLarge"
     (click)="toggle()"
-    container="body">
+    container="body"
+    [adaptivePosition]="false">
     
     <div btn-inner class="toggle-wrapper"
          [ngClass]="{'active':isActive,
