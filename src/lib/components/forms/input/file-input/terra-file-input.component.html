@@ -19,7 +19,8 @@
                  tooltip="{{inputTooltipText}}"
                  [isDisabled]="isTooltipDisabled"
                  [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
-                 container="body">
+                 container="body"
+                 [adaptivePosition]="false">
                 
                 <input #valueInput
                        id="{{id}}"
@@ -45,6 +46,7 @@
                    [tooltip]="helperTooltip"
                    [isDisabled]="isHelperTooltipDisabled"
                    [container]="'body'"
+                   [adaptivePosition]="false"
                    htmlFor="{{id}}">{{inputName}}
                 <span *ngIf="inputIsRequired">*</span>
             </label>

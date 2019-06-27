@@ -5,6 +5,10 @@
 * **TerraComponentsModule** removed `forRoot()` and `forChild()` methods since all services use tree-shakable providers now.
 * **build** removed app folder. Content has been moved to its root. Imports from `@plentymarkets/terra-components/app/**` need to be changed to `@plentymarkets/terra-components/**`.
 
+### Bug Fixes
+* **Tooltip** fixed tooltip position when `container="'body'"`.
+* **terra-portlet** fixed orientation of the collapsed icon.
+
 <a name="4.0.0-beta.4"></a>
 # 4.0.0-beta.4 (24.06.2019)
 
