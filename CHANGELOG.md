@@ -1,6 +1,9 @@
 <a name="4.0.0-beta.5"></a>
 # 4.0.0-beta.5 (Unreleased)
 
+### Bug Fixes
+* **Tooltip** fixed tooltip position when `container="'body'"`.
+
 ### Breaking Changes
 * **TerraComponentsModule** removed `forRoot()` and `forChild()` methods since all services use tree-shakable providers now.
 

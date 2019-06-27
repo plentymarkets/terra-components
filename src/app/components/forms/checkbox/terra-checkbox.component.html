@@ -2,7 +2,8 @@
      [ngClass]="{'disabled-chk': inputIsDisabled}"
      [placement]="tooltipPlacement"
      [tooltip]="tooltipText"
-     [container]="'body'">
+     [container]="'body'"
+     [adaptivePosition]="false">
     <label class="input-control checkbox small-check">
         <input type="checkbox"
                [(ngModel)]="innerValue"
