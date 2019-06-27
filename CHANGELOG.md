@@ -7,6 +7,9 @@
 ### Breaking Changes
 * **TerraComponentsModule** removed `forRoot()` and `forChild()` methods since all services use tree-shakable providers now.
 
+### Bug Fixes
+* **terra-portlet** fixed orientation of the collapsed icon.
+
 <a name="4.0.0-beta.4"></a>
 # 4.0.0-beta.4 (24.06.2019)
 
