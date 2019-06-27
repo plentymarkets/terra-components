@@ -13,6 +13,7 @@
             <th *ngFor="let header of inputHeaderList"
                 width="{{header.width}}"
                 [container]="'body'"
+                [adaptivePosition]="false"
                 [placement]="checkTooltipPlacement(header.tooltipPlacement)"
                 [tooltip]="header.tooltipText"
                 [isDisabled]="!header.tooltipText || header.tooltipText.length == 0"
@@ -39,6 +40,7 @@
                     <div [innerHTML]="cell.tooltipText"></div>
                 </ng-template>
                 <td [container]="'body'"
+                    [adaptivePosition]="false"
                     width="{{ inputHeaderList[i].width }}"
                     [placement]="checkTooltipPlacement(cell.tooltipPlacement)"
                     [tooltip]="tdTooltip"

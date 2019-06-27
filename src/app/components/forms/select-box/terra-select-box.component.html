@@ -11,6 +11,7 @@
                 }"
      (click)="onClick($event)"
      container="body"
+     [adaptivePosition]="false"
      tabindex="0"
      (keydown)="onKeyDown($event)"
      (blur)="onBlur()">
@@ -25,6 +26,7 @@
            [tooltip]="helperTooltip"
            [isDisabled]="isHelperTooltipDisabled"
            [container]="'body'"
+           [adaptivePosition]="false"
            htmlFor="{{inputName}}">
         {{inputName}}
         <span *ngIf="inputIsRequired">*</span>

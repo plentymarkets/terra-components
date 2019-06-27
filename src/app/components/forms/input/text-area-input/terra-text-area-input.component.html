@@ -3,7 +3,8 @@
      tooltip="{{inputTooltipText}}"
      [isDisabled]="!inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': inputIsDisabled}"
-     container="body">
+     container="body"
+     [adaptivePosition]="false">
     <textarea id="{{id}}"
               [(ngModel)]="value"
               name="{{inputName}}"
