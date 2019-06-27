@@ -25,8 +25,7 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
             state('collapsed', style({
                 height:           0,
                 'padding-top':    0,
-                'padding-bottom': 0,
-                overflow:         'hidden'
+                'padding-bottom': 0
             })),
             state('expanded', style({
                 height: '*'
