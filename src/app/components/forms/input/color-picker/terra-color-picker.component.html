@@ -3,7 +3,8 @@
     tooltip="{{inputTooltipText}}"
     [isDisabled]="isTooltipDisabled"
     [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
-     container="body">
+     container="body"
+     [adaptivePosition]="false">
     
     <input type="text"
         [(ngModel)]="color"
@@ -22,6 +23,7 @@
         [placement]="inputTooltipPlacement"
         [tooltip]="helperTooltip"
         [container]="'body'"
+        [adaptivePosition]="false"
         [isDisabled]="isHelperTooltipDisabled">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     

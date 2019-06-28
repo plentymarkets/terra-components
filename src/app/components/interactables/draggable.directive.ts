@@ -227,16 +227,19 @@ export class TerraDraggableDirective implements OnInit, OnChanges
             onstart:      (event:InteractEvent):void =>
                           {
                               this.onStart.emit(event);
+                              this.start.emit(event);
                               event.target.IA_DRAG_DATA = this.dragData;
                           },
             onmove:       (event:InteractEvent):void =>
                           {
                               this.onMove.emit(event);
+                              this.move.emit(event);
                               event.target.IA_DRAG_DATA = this.dragData;
                           },
             onend:        (event:InteractEvent):void =>
                           {
                               this.onEnd.emit(event);
+                              this.end.emit(event);
                               event.target.IA_DRAG_DATA = null;
                           },
         };

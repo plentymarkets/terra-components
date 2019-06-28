@@ -4,6 +4,10 @@
 ### Breaking Changes
 * **TerraComponentsModule** removed `forRoot()` and `forChild()` methods since all services use tree-shakable providers now.
 
+### Bug Fixes
+* **Tooltip** fixed tooltip position when `container="'body'"`.
+* **terra-portlet** fixed orientation of the collapsed icon.
+
 <a name="4.0.0-beta.4"></a>
 # 4.0.0-beta.4 (24.06.2019)
 
@@ -11,7 +15,7 @@
 * **bootstrap** updated from 4.0.0-alpha.4 to 4.3.1
 
 ### Features
-* **tcCkFull** New directive to provide a full config for the ckeditor4.
+* **tcCkEditor** New directive to provide a full config for the ckeditor4.
 * **ck-editor-presets** Config presets for the ckeditor4.
 * **refactoring** restructured style files
 * **terra-cards** restyling

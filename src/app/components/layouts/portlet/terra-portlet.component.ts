@@ -22,7 +22,7 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
     template:   require('./terra-portlet.component.html'),
     animations: [
         trigger('collapsedState', [
-            state('inputCollapsed', style({
+            state('collapsed', style({
                 height:           0,
                 'padding-top':    0,
                 'padding-bottom': 0
@@ -30,7 +30,7 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
             state('expanded', style({
                 height: '*'
             })),
-            transition('inputCollapsed <=> expanded', [
+            transition('collapsed <=> expanded', [
                 animate(100)
             ])
         ])
@@ -90,7 +90,7 @@ export class TerraPortletComponent implements OnChanges
 
         if(this.inputCollapsed)
         {
-            return 'inputCollapsed';
+            return 'collapsed';
         }
 
         return 'expanded';
