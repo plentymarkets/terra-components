@@ -1,5 +1,5 @@
 <a name="4.0.0-beta.5"></a>
-# 4.0.0-beta.5 (Unreleased)
+# 4.0.0-beta.5 (28.06.2019)
 
 ### Breaking Changes
 * **TerraComponentsModule** removed `forRoot()` and `forChild()` methods since all services use tree-shakable providers now.
