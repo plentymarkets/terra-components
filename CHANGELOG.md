@@ -1,3 +1,8 @@
+# UNRELEASED 
+
+* **terra-button** added styles to swap icons on a labeled button (icon on the right side)
+* **terra-portlet** adjusted paddings
+
 <a name="4.0.0-beta.5"></a>
 # 4.0.0-beta.5 (28.06.2019)
 

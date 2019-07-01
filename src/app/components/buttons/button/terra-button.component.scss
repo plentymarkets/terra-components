@@ -106,13 +106,16 @@ button:focus
 
 .btn
 {
+    flex-direction: var(--terra-button-btn-handler-btn-flex-direction, inherit);
+    align-items: var(--terra-button-btn-handler-btn-align-items, inherit);
+    display: var(--terra-button-btn-handler-btn-display, inline-block);
+    
     height: var(--btn-height, var(--height-md));
     line-height: var(--btn-line-height, var(--height-md));
     padding: var(--btn-padding, (0 var(--space-md)));
     background-color: var(--color-structure-9);
     color: var(--color-structure-0);
     font-size: var(--font-size-3);
-    display: inline-block;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
