@@ -23,7 +23,7 @@ module.exports = function () {
         imagesOutputPath: './dist/app/assets/images/',
         langOutputPath: './dist/app/assets/lang/',
 
-        terra: '../plugin-terra-basic/node_modules/@plentymarkets/terra-components/',
+        terra: '../terra/node_modules/@plentymarkets/terra-components/',
         terraComponentsDoc: terraComponentsDocPath,
         terraComponentsDocComponents: terraComponentsDocPath + 'app/components',
         terraComponentsDocBuild: terraComponentsDocPath + 'component-documentation/build'
