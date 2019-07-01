@@ -23,7 +23,8 @@ import interact = require('interactjs');
 })
 export class TerraDraggableDirective implements OnInit, OnChanges
 {
-    @Input()
+    /* tslint:disable-next-line:no-input-rename */
+    @Input('terraDraggable')
     public options?:DraggableOptions = null;
 
     @Input()
@@ -51,16 +52,6 @@ export class TerraDraggableDirective implements OnInit, OnChanges
     public end:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     /* tslint:disable:no-output-on-prefix no-input-rename no-output-rename */
-    /**
-     * @deprecated since 3.x.x. Use options instead.
-     */
-    @Input('terraDraggable')
-    public set draggableOptions(value:DraggableOptions)
-    {
-        console.warn('`terraDraggable` is deprecated. Please use `options` instead.');
-        this.options = value;
-    }
-
     /**
      * @deprecated since 3.x.x. Use disabled instead.
      */

@@ -1,5 +1,5 @@
 <a name="4.0.0-beta.5"></a>
-# 4.0.0-beta.5 (Unreleased)
+# 4.0.0-beta.5 (28.06.2019)
 
 ### Breaking Changes
 * **TerraComponentsModule** removed `forRoot()` and `forChild()` methods since all services use tree-shakable providers now.
@@ -16,7 +16,7 @@
 * **bootstrap** updated from 4.0.0-alpha.4 to 4.3.1
 
 ### Features
-* **tcCkFull** New directive to provide a full config for the ckeditor4.
+* **tcCkEditor** New directive to provide a full config for the ckeditor4.
 * **ck-editor-presets** Config presets for the ckeditor4.
 * **refactoring** restructured style files
 * **terra-cards** restyling
@@ -58,6 +58,7 @@
 
 ### Bug Fixes
 * **http-interceptors** fix logging errors to console. 
+* **draggable** allow `terraDraggable` input to be aliased.
 
 <a name="3.14.0"></a>
 # 3.14.0 (29.05.2019)
