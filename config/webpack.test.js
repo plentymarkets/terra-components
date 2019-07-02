@@ -58,12 +58,6 @@ module.exports = {
                         query: {
                             sourceMap: true
                         }
-                    },
-                    {
-                        loader: 'sass-resources-loader',
-                        options: {
-                            resources: helpers.root('src/app/styles/variables.scss')
-                        }
                     }
                 ]
             },
