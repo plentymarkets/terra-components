@@ -1,7 +1,6 @@
 <div class="select-box-wrapper"
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
-     [isDisabled]="isTooltipDisabled"
      [ngClass]="{
                   'error': !isValid,
                   'disabled': inputIsDisabled,
@@ -10,8 +9,6 @@
                   'isEmpty': emptyValueSelected
                 }"
      (click)="onClick($event)"
-     container="body"
-     [adaptivePosition]="false"
      tabindex="0"
      (keydown)="onKeyDown($event)"
      (blur)="onBlur()">
@@ -24,9 +21,6 @@
            [(tooltipDisabled)]="isHelperTooltipDisabled"
            [placement]="inputTooltipPlacement"
            [tooltip]="helperTooltip"
-           [isDisabled]="isHelperTooltipDisabled"
-           [container]="'body'"
-           [adaptivePosition]="false"
            htmlFor="{{inputName}}">
         {{inputName}}
         <span *ngIf="inputIsRequired">*</span>

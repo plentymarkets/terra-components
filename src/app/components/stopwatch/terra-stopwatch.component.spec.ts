@@ -8,13 +8,13 @@ import {
     tick
 } from '@angular/core/testing';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
-import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../translation/l10n.config';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../tooltip/tooltip.directive';
 
 describe('Component: TerraStopwatchComponent', () =>
 {
@@ -28,10 +28,10 @@ describe('Component: TerraStopwatchComponent', () =>
         TestBed.configureTestingModule({
             declarations: [
                 TerraStopwatchComponent,
-                TerraButtonComponent
+                TerraButtonComponent,
+                TooltipDirective
             ],
             imports:      [
-                TooltipModule.forRoot(),
                 FormsModule,
                 HttpModule,
                 HttpClientModule,

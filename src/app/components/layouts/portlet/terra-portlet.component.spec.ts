@@ -3,7 +3,6 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../translation/l10n.config';
@@ -20,6 +19,7 @@ import { TerraButtonComponent } from '../../buttons/button/terra-button.componen
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraInfoComponent } from '../../info/terra-info.component';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
 
 describe('TerraPortletComponent', () =>
 {
@@ -32,14 +32,13 @@ describe('TerraPortletComponent', () =>
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [
-                TerraPortletComponent,
-                TerraButtonComponent,
-                TerraLabelTooltipDirective,
-                TerraInfoComponent
+            declarations: [TooltipDirective,
+                           TerraPortletComponent,
+                           TerraButtonComponent,
+                           TerraLabelTooltipDirective,
+                           TerraInfoComponent
             ],
             imports:      [
-                TooltipModule.forRoot(),
                 FormsModule,
                 BrowserAnimationsModule,
                 LocalizationModule.forRoot(l10nConfig)

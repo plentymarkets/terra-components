@@ -16,9 +16,6 @@
            [(tooltipDisabled)]="isHelperTooltipDisabled"
            [placement]="'top'"
            [tooltip]="helperTooltip"
-           [isDisabled]="isHelperTooltipDisabled"
-           [container]="'body'"
-           [adaptivePosition]="false"
            htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>

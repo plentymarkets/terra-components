@@ -6,7 +6,6 @@ import {
 } from '@angular/core/testing';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../translation/l10n.config';
-import { TooltipModule } from 'ngx-bootstrap';
 import { HttpModule } from '@angular/http';
 import { TerraPagerComponent } from '../../pager/terra-pager.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
@@ -30,6 +29,7 @@ import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip
 import { By } from '@angular/platform-browser';
 import { TableRowComponent } from './table-row/table-row.component';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
 
 describe('TerraDataTableComponent', () =>
 {
@@ -39,24 +39,23 @@ describe('TerraDataTableComponent', () =>
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [
-                TerraDataTableComponent,
-                TerraButtonComponent,
-                TerraPagerComponent,
-                TerraCheckboxComponent,
-                TerraDataTableContextMenuComponent,
-                TerraDataTableContextMenuDirective,
-                TerraNoResultNoticeComponent,
-                TerraTaglistComponent,
-                TerraTagComponent,
-                TerraBaseToolbarComponent,
-                TerraNumberInputComponent,
-                TerraSelectBoxComponent,
-                TableRowComponent,
-                TerraLabelTooltipDirective
+            declarations: [TooltipDirective,
+                           TerraDataTableComponent,
+                           TerraButtonComponent,
+                           TerraPagerComponent,
+                           TerraCheckboxComponent,
+                           TerraDataTableContextMenuComponent,
+                           TerraDataTableContextMenuDirective,
+                           TerraNoResultNoticeComponent,
+                           TerraTaglistComponent,
+                           TerraTagComponent,
+                           TerraBaseToolbarComponent,
+                           TerraNumberInputComponent,
+                           TerraSelectBoxComponent,
+                           TableRowComponent,
+                           TerraLabelTooltipDirective
             ],
             imports:      [
-                TooltipModule.forRoot(),
                 CommonModule,
                 FormsModule,
                 HttpModule,

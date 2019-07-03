@@ -26,13 +26,9 @@
                     [ngStyle]="{ 'text-align': getTextAlign(header) }"
                     [class.sortable]="isSortable(header)"
                     (click)="columnHeaderClicked.emit(header)">
-                    <span [container]="'body'"
-                          [adaptivePosition]="false"
-                          [placement]="checkTooltipPlacement(header.tooltipPlacement)"
-                          [tooltip]="header.tooltipText"
-                          [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
+                    <span [placement]="header.tooltipPlacement"
+                          [tooltip]="header.tooltipText">
                           {{header.caption}}
-                        
                         <span
                             [ngClass]="{'icon-table_sort': isUnsorted(header),'icon-sort_asc': isSortedAsc(header),'icon-sort_desc': isSortedDesc(header)}">
                         </span>
@@ -45,18 +41,11 @@
         <tbody *ngIf="!useContentBody">
         <tr *ngFor="let row of rowList" [tcTableRow]="row" hasContextMenu [rowData]="row.data">
             <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
-                <ng-template #tdTooltip>
-                    <div [innerHTML]="cell.tooltipText"></div>
-                </ng-template>
-                
                 <td *ngIf="!cell.isHidden"
                     [ngSwitch]="getCellDataType(cell.data)"
                     [ngStyle]="{ 'text-align': getTextAlign(inputHeaderList[i]) }"
-                    [tooltip]="tdTooltip"
-                    [container]="'body'"
-                    [adaptivePosition]="false"
-                    [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
-                    [placement]="checkTooltipPlacement(cell.tooltipPlacement)">
+                    [tooltip]="cell.tooltipText"
+                    [placement]="cell.tooltipPlacement">
                     
                     <ng-container *ngSwitchCase="'string'">
                         <span>{{cell.data}}</span>
@@ -97,7 +86,7 @@
                                           [inputIcon]="button.icon"
                                           [inputIsActive]="button.isActive"
                                           [inputIsDisabled]="button.isDisabled"
-                                          [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
+                                          [inputTooltipPlacement]="button.tooltipPlacement"
                                           [inputCaption]="button.caption"
                                           [inputIsSmall]="true"
                                           [inputTooltipText]="button.tooltipText"

@@ -6,7 +6,6 @@ import {
 import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.component';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../translation/l10n.config';
@@ -15,6 +14,7 @@ import {
     DebugElement,
     EventEmitter
 } from '@angular/core';
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
 
 describe('TerraMultiCheckBoxComponent:', () =>
 {
@@ -25,14 +25,13 @@ describe('TerraMultiCheckBoxComponent:', () =>
     {
         TestBed.configureTestingModule(
             {
-                declarations: [
-                    CheckboxGroupComponent,
-                    TerraCheckboxComponent,
-                    TerraMultiCheckBoxComponent
+                declarations: [TooltipDirective,
+                               CheckboxGroupComponent,
+                               TerraCheckboxComponent,
+                               TerraMultiCheckBoxComponent
                 ],
                 imports:      [
                     HttpClientModule,
-                    TooltipModule.forRoot(),
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)
                 ]

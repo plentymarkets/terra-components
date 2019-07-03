@@ -1,16 +1,13 @@
 <div class="select-box-wrapper"
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
-     [isDisabled]="!inputTooltipText"
      [ngClass]="{
                   'error': !isValid,
                   'disabled': inputIsDisabled,
                   'open': _toggleOpen
                 }"
      (click)="onClick($event)"
-     (keydown)="onKeyDown($event)"
-     container="body"
-     [adaptivePosition]="false">
+     (keydown)="onKeyDown($event)">
     
     <terra-text-input [inputIsDisabled]="inputIsDisabled"
                       [inputName]="inputName"

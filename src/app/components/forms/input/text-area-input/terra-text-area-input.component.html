@@ -1,10 +1,7 @@
 <div class="input-wrapper textarea-wrapper"
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
-     [isDisabled]="!inputTooltipText"
-     [ngClass]="{'error': !isValid, 'disabled': inputIsDisabled}"
-     container="body"
-     [adaptivePosition]="false">
+     [ngClass]="{'error': !isValid, 'disabled': inputIsDisabled}">
     <textarea id="{{id}}"
               [(ngModel)]="value"
               name="{{inputName}}"

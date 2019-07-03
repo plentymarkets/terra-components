@@ -77,7 +77,6 @@ function initL10n(l10nLoader:L10nLoader):Function
         LocalizationModule.forRoot(l10nConfig),
         CKEditorModule,
         ModalModule.forRoot(),
-        TooltipModule.forRoot(),
         AlertModule.forRoot(),
         ButtonsModule.forRoot(),
         MyDatePickerModule,

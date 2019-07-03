@@ -17,10 +17,7 @@
             <div class="input-wrapper"
                  placement="{{inputTooltipPlacement}}"
                  tooltip="{{inputTooltipText}}"
-                 [isDisabled]="isTooltipDisabled"
-                 [ngClass]="{'error': !isValid, 'disabled': isDisabled}"
-                 container="body"
-                 [adaptivePosition]="false">
+                 [ngClass]="{'error': !isValid, 'disabled': isDisabled}">
                 
                 <input #valueInput
                        id="{{id}}"
@@ -44,9 +41,6 @@
                    [(tooltipDisabled)]="isHelperTooltipDisabled"
                    [placement]="inputTooltipPlacement"
                    [tooltip]="helperTooltip"
-                   [isDisabled]="isHelperTooltipDisabled"
-                   [container]="'body'"
-                   [adaptivePosition]="false"
                    htmlFor="{{id}}">{{inputName}}
                 <span *ngIf="inputIsRequired">*</span>
             </label>

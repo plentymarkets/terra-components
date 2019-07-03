@@ -1,10 +1,7 @@
 <div class="input-wrapper"
      placement="{{inputTooltipPlacement}}"
      tooltip="{{inputTooltipText}}"
-     [isDisabled]="isTooltipDisabled"
-     [ngClass]="{'error': !isValid, 'isSmall': inputIsSmall}"
-     container="body"
-     [adaptivePosition]="false">
+     [ngClass]="{'error': !isValid, 'isSmall': inputIsSmall}">
     
     <input id="{{id}}"
            [type]="inputIsPassword?'password':'text'"
@@ -29,9 +26,6 @@
            [(tooltipDisabled)]="isHelperTooltipDisabled"
            [placement]="inputTooltipPlacement"
            [tooltip]="helperTooltip"
-           [isDisabled]="isHelperTooltipDisabled"
-           [container]="'body'"
-           [adaptivePosition]="false"
            *ngIf="(innerValue || innerValue === 0) && inputName" htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>

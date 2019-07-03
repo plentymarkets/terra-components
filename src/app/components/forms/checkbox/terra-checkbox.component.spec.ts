@@ -3,11 +3,12 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { TooltipModule } from 'ngx-bootstrap';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.component';
 
 describe('Component: TerraCheckboxComponent', () =>
 {
@@ -17,8 +18,9 @@ describe('Component: TerraCheckboxComponent', () =>
     beforeEach(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [TerraCheckboxComponent],
-            imports: [TooltipModule.forRoot(), FormsModule]
+            declarations: [TooltipDirective,
+                           TerraCheckboxComponent],
+            imports: [FormsModule]
         }).compileComponents();
     });
 

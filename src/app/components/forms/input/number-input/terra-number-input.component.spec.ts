@@ -11,7 +11,6 @@ import {
     flush,
     TestBed
 } from '@angular/core/testing';
-import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
@@ -20,6 +19,7 @@ import { By } from '@angular/platform-browser';
 import { TerraButtonComponent } from '../../../buttons/button/terra-button.component';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 
 describe('TerraNumberInputComponent', () =>
 {
@@ -32,13 +32,12 @@ describe('TerraNumberInputComponent', () =>
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [
-                TerraNumberInputComponent,
-                TerraButtonComponent,
-                TerraLabelTooltipDirective
+            declarations: [TooltipDirective,
+                           TerraNumberInputComponent,
+                           TerraButtonComponent,
+                           TerraLabelTooltipDirective
             ],
             imports:      [
-                TooltipModule.forRoot(),
                 FormsModule,
                 LocalizationModule.forRoot(l10nConfig)
             ]
