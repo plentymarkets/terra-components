@@ -1,8 +1,6 @@
 import { HtmlLinterMessageInterface } from './html-linter-message.interface';
 import { HtmlLinterRule } from './html-linter-rule.enum';
-
-// tslint:disable-next-line
-const HTMLHint = require('htmlhint').default;
+import { HTMLHint } from 'htmlhint';
 
 export class HtmlLinter
 {
