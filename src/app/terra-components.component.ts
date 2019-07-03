@@ -13,5 +13,5 @@ import { examples } from './components/example-collection';
 })
 export class TerraComponentsComponent
 {
-    protected readonly examples:Array<Type<any>> = examples;
+    protected readonly examples:Array<Type<unknown>> = examples;
 }
