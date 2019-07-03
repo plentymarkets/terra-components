@@ -1,1 +1,4 @@
-
+<div *ngFor="let example of examples" style="margin-bottom: var(--space-xl)">
+    <h1>{{example.name}}</h1>
+    <ng-container *ngComponentOutlet="example"></ng-container>
+</div>

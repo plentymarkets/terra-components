@@ -113,7 +113,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
     // From ControlValueAccessor interface
     public writeValue(value:any):void
     {
-        if(!isNullOrUndefined(value))
+        if(!isNullOrUndefined(value) && value !== {} && value !== 0)
         {
             this.inputCategoryService.requestCategoryDataById(value).subscribe((data:any) =>
             {
@@ -132,7 +132,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
 
                 this.value = value;
 
-                if(this.isNotInitialCall)
+                if(this.isNotInitialCall && nodeToSelect)
                 {
                     this.updateCompleteCategory(nodeToSelect);
                     this.onTouchedCallback();
@@ -140,6 +140,13 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                 }
             });
         }
+        else
+        {
+            this.nestedTreeConfig.currentSelectedNode = null;
+            this.categoryName = '';
+            this.value = null;
+        }
+
     }
 
     public onSelectNode():void

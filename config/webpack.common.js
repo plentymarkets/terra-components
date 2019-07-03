@@ -68,6 +68,15 @@ module.exports = {
                     'postcss-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(ttf|eot|woff|woff2|svg)$/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        name: "[name].[hash].[ext]"
+                    }
+                }
             }
         ]
     },
@@ -93,7 +102,7 @@ module.exports = {
             "window.Tether": 'tether'
         }),
         new CopyWebpackPlugin([
-            {from: 'src/app/assets', to: 'assets'}
+            {from: 'src/app/assets/lang', to: 'assets/lang'}
         ]),
         new ForkTsCheckerWebpackPlugin()
     ]

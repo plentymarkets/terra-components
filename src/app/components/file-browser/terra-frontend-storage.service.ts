@@ -12,11 +12,13 @@ import { TerraBaseMetadataStorageService } from './terra-base-metadata-storage.i
 import { tap } from 'rxjs/operators';
 import {
     BehaviorSubject,
-    Observable,
-    from
+    from,
+    Observable
 } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 {
     public isImagePreviewEnabled:boolean = true;

@@ -1,11 +1,15 @@
 import {
     Component,
     ElementRef,
+    Input,
+    OnDestroy,
     OnInit,
-    ViewChild,
-    Input
+    ViewChild
 } from '@angular/core';
-import { TranslationService } from 'angular-l10n';
+import {
+    Language,
+    TranslationService
+} from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
@@ -28,7 +32,7 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
         multi:       true
     }]
 })
-export class TerraCodeEditorComponent extends TerraBaseEditorComponent implements OnInit
+export class TerraCodeEditorComponent extends TerraBaseEditorComponent implements OnInit, OnDestroy
 {
     public showCodeView:boolean = false;
     public editorContent:string = '';
@@ -42,6 +46,9 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     @ViewChild('viewConfirmationOverlay')
     public overlay:TerraOverlayComponent;
+
+    @Language()
+    protected lang:string;
 
     protected viewConfirmation:{ primaryButton:TerraButtonInterface, secondaryButton:TerraButtonInterface };
 
@@ -155,6 +162,11 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
                                }
             }
         };
+    }
+
+    public ngOnDestroy():void
+    {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     protected emitChanges(isEditorContent:boolean = true):void

@@ -7,7 +7,10 @@ import {
 import { TerraNodeTreeConfig } from './data/terra-node-tree.config';
 import { isNullOrUndefined } from 'util';
 import { TerraNodeInterface } from './data/terra-node.interface';
-import { TranslationService } from 'angular-l10n';
+import {
+    Language,
+    TranslationService
+} from 'angular-l10n';
 import { FormControl } from '@angular/forms';
 import {
     debounceTime,
@@ -39,6 +42,9 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
      */
     @Input()
     public isTreeDisabled:boolean;
+
+    @Language()
+    protected lang:string;
 
     protected formControl:FormControl = new FormControl();
 

@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 
 import { TerraAlertComponent } from '../terra-alert.component';
-import { TranslationService } from 'angular-l10n';
 import { AlertService } from '../alert.service';
 
 @Component({

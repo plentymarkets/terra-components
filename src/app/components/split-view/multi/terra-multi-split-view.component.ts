@@ -37,6 +37,7 @@ let nextSplitViewId:number = 0;
         require('./terra-multi-split-view.component.scss'),
         require('./terra-multi-split-view.component.glob.scss').toString()
     ],
+    providers: [TerraMultiSplitViewBreadcrumbsService]
 })
 export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
 {

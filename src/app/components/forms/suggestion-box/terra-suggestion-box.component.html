@@ -9,7 +9,8 @@
                 }"
      (click)="onClick($event)"
      (keydown)="onKeyDown($event)"
-     container="body">
+     container="body"
+     [adaptivePosition]="false">
     
     <terra-text-input [inputIsDisabled]="inputIsDisabled"
                       [inputName]="inputName"

@@ -39,8 +39,8 @@ import { TerraBaseToolbarComponent } from '../../../toolbar/base-toolbar/terra-b
 import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/terra-loading-spinner.service';
 import { TerraFileBrowserService } from '../../../file-browser/terra-file-browser.service';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
-import Spy = jasmine.Spy;
 import { TerraInfoComponent } from '../../../info/terra-info.component';
+import Spy = jasmine.Spy;
 
 describe('TerraFileInputComponent', () =>
 {

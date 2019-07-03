@@ -10,7 +10,9 @@ import {
 /**
  * @author mfrank
  */
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class TerraDynamicFormService extends TerraBaseService
 {
     constructor(private spinnerService:TerraLoadingSpinnerService,

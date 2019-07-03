@@ -5,6 +5,7 @@
      class="btn-handler"
      [tooltip]="tooltipTemplate"
      [placement]="currentTooltipPlacement"
+     [adaptivePosition]="false"
      [container]="'body'"
      (mouseenter)="setTooltipPlacement($event)"
      [ngClass]="{'float-right': inputIsAlignRight,

@@ -11,9 +11,9 @@ import {
 } from '@angular/forms';
 import {
     IMyDateModel,
+    IMyInputFocusBlur,
     IMyOptions,
-    MyDatePicker,
-    IMyInputFocusBlur
+    MyDatePicker
 } from 'mydatepicker';
 import { isNullOrUndefined } from 'util';
 import moment = require('moment');
