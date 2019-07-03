@@ -35,7 +35,7 @@ function getL10nConfig():L10nConfig
 
     let currency:string = lang === 'de' ? 'EUR' : 'GBP';
 
-    let prefix:string = process.env.ENV = 'assets/lang/locale-';
+    let prefix:string = 'assets/lang/locale-';
     let logLevel:LogLevel = process.env.ENV === 'production' || process.env.ENV === 'test' ? LogLevel.Off : LogLevel.Warn;
 
     return {
