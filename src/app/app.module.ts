@@ -58,7 +58,7 @@ function initL10n(l10nLoader:L10nLoader):Function
             deps:     [COMPILER_OPTIONS]
         },
         {
-            provide:    APP_INITIALIZER, // APP_INITIALIZER will execute the function when the app is initialized and delay what it provides.
+            provide:    APP_INITIALIZER,
             useFactory: initL10n,
             deps:       [L10nLoader],
             multi:      true
