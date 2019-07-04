@@ -53,12 +53,6 @@ gulp.task('copy-fonts', function () {
         .pipe(gulp.dest(config.destinations.fontsOutputPath));
 });
 
-//copy images to dist
-gulp.task('copy-images', function () {
-    return gulp.src(config.fileSelectors.allImages)
-        .pipe(gulp.dest(config.destinations.imagesOutputPath));
-});
-
 //copy lang to dist
 gulp.task('copy-lang', function () {
     return gulp.src(config.fileSelectors.allLang)
@@ -89,7 +83,6 @@ gulp.task('build',
         'compile-ts',
         'copy-files',
         'copy-fonts',
-        'copy-images',
         'copy-lang',
         'copy-tslint-rules',
         'copy-to-terra'
@@ -162,7 +155,6 @@ gulp.task('npm-publish', function () {
             'compile-ts',
             'copy-files',
             'copy-fonts',
-            'copy-images',
             'copy-lang',
             'copy-tslint-rules',
             'publish'
@@ -184,17 +176,17 @@ gulp.task('copy-api-to-terra-doc', function () {
 
 //copy components from dist to terra-component-doc
 gulp.task('copy-components-to-doc', function () {
-    return gulp.src('src/app/components/**/**/example/*.ts')
+    return gulp.src('src/lib/components/**/**/example/*.ts')
         .pipe(gulp.dest(config.destinations.terraComponentsDocComponents));
 });
 
 gulp.task('copy-markdown-to-doc', function () {
-    return gulp.src('src/app/components/**/example/*.md')
+    return gulp.src('src/lib/components/**/example/*.md')
         .pipe(gulp.dest(config.destinations.terraComponentsDocComponents));
 });
 
 gulp.task('copy-icon-description-json', function () {
-    return gulp.src('src/app/assets/styles/iconDescription.json')
+    return gulp.src('src/lib/styles/iconDescription.json')
         .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
 });
 gulp.task('copy-documentation-changelog', function () {

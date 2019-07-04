@@ -62,7 +62,7 @@ module.exports = {
                     {
                         loader: 'sass-resources-loader',
                         options: {
-                            resources: helpers.root('src/app/styles/_mixins.scss')
+                            resources: helpers.root('src/lib/styles/_mixins.scss')
                         }
                     }
                 ]
@@ -84,9 +84,9 @@ module.exports = {
                 exclude: [
                     /\.(e2e|spec)\.ts$/,
                     helpers.root('node_modules'),
-                    helpers.root('src/app/assets'),
-                    helpers.root('src/app/models'),
-                    helpers.root('src/app/testing'),
+                    helpers.root('src/assets'),
+                    helpers.root('src/lib/models'),
+                    helpers.root('src/lib/testing'),
                     helpers.root('src/app/translation')
                 ]
             }
