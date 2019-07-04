@@ -1,6 +1,7 @@
 const helpers = require('./helpers');
 const merge = require('webpack-merge');
 const commonConfig = require('./webpack.common');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(commonConfig, {
     mode: 'development',
@@ -14,5 +15,10 @@ module.exports = merge(commonConfig, {
     devServer: {
         port: 3001,
         historyApiFallback: true
-    }
+    },
+    plugins:[
+        new CopyWebpackPlugin([
+            {from: 'src/assets', to: 'assets'}
+        ])
+    ]
 });

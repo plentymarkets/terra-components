@@ -1,0 +1,71 @@
+<div class="select-box-wrapper"
+     placement="{{inputTooltipPlacement}}"
+     tooltip="{{inputTooltipText}}"
+     [isDisabled]="isTooltipDisabled"
+     [ngClass]="{
+                  'error': !isValid,
+                  'disabled': inputIsDisabled,
+                  'open': _toggleOpen,
+                  'isSmall': inputIsSmall,
+                  'isEmpty': emptyValueSelected
+                }"
+     (click)="onClick($event)"
+     container="body"
+     [adaptivePosition]="false"
+     tabindex="0"
+     (keydown)="onKeyDown($event)"
+     (blur)="onBlur()">
+    
+    <label terraLabelTooltip
+           [nameOfInput]="inputName"
+           [tooltipTextOfInput]="inputTooltipText"
+           [(tooltipOfInputDisabled)]="isTooltipDisabled"
+           [(tooltipText)]="helperTooltip"
+           [(tooltipDisabled)]="isHelperTooltipDisabled"
+           [placement]="inputTooltipPlacement"
+           [tooltip]="helperTooltip"
+           [isDisabled]="isHelperTooltipDisabled"
+           [container]="'body'"
+           [adaptivePosition]="false"
+           htmlFor="{{inputName}}">
+        {{inputName}}
+        <span *ngIf="inputIsRequired">*</span>
+    </label>
+    
+    <div class="select-box" [ngClass]="{'error': !isValid, 'labeled': hasLabel}">
+        <span *ngIf="selectedValue; then selectedValueTemplate else firstInListTemplate"></span>
+        <ng-template #selectedValueTemplate>
+            <span class="{{selectedValue?.icon}}" *ngIf="selectedValue?.icon"></span>
+            <span [innerHtml]="selectedValue?.caption"></span>
+        </ng-template>
+        <ng-template #firstInListTemplate>
+            <span class="{{inputListBoxValues[0]?.icon}}" *ngIf="inputListBoxValues[0]?.icon"></span>
+            <span [innerHtml]="inputListBoxValues[0]?.caption"></span>
+        </ng-template>
+    
+    </div>
+    
+    <div class="select-box-dropdown" [ngClass]="{'isSmall': inputIsSmall, 'openOnTop': inputOpenOnTop}">
+        <span *ngIf="selectedValue; then selectedValueActiveTemplate else firstInListActiveTemplate"></span>
+        
+        <ng-template #selectedValueActiveTemplate>
+            <span *ngFor="let item of inputListBoxValues; let index=index;"
+                  (click)="select(item)"
+                  [ngClass]="{active: item.value === selectedValue?.value, selected: item.value === tmpSelectedValue?.value}">
+                <span class="{{item.icon}}" *ngIf="item.icon"></span>
+                <span [innerHtml]="item.caption"></span>
+            </span>
+        </ng-template>
+        
+        <ng-template #firstInListActiveTemplate>
+            <span *ngFor="let item of inputListBoxValues; let index=index;"
+                  #renderedListBoxValues
+                  (click)="select(item)"
+                  [ngClass]="{active: item.value === inputListBoxValues[0]?.value, selected: item.value === tmpSelectedValue?.value}">
+                <span class="{{item.icon}}" *ngIf="item.icon"></span>
+                <span [innerHtml]="item.caption"></span>
+            </span>
+        </ng-template>
+    
+    </div>
+</div>

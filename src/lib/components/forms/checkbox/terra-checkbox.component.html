@@ -1,0 +1,18 @@
+<div class="checkbox-container"
+     [ngClass]="{'disabled-chk': inputIsDisabled}"
+     [placement]="tooltipPlacement"
+     [tooltip]="tooltipText"
+     [container]="'body'"
+     [adaptivePosition]="false">
+    <label class="input-control checkbox small-check">
+        <input type="checkbox"
+               [(ngModel)]="innerValue"
+               (ngModelChange)="onChange($event)"
+               [disabled]="inputIsDisabled"
+               [indeterminate]="_isIndeterminate"
+               id="{{id}}">
+        <span class="check" [ngClass]="{ 'invalid': !isValid }"></span>
+        <span *ngIf="inputIcon" class="checkbox-icon" [ngClass]="inputIcon"></span>
+        <span *ngIf="inputCaption" [ngClass]="{'disabled-chk': inputIsDisabled}">{{inputCaption}}</span>
+    </label>
+</div>

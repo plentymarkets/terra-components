@@ -1,0 +1,126 @@
+<terra-base-toolbar>
+    <div class="btn-group" role="group">
+        <terra-button inputIcon="icon-upload"
+                      [inputTooltipText]="translationPrefix + '.uploadFile' | translate:lang"
+                      inputTooltipPlacement="right"
+                      (outputClicked)="fileChooser.click()">
+        </terra-button>
+        <terra-button inputIcon="icon-folder_add"
+                      *ngIf="parentFileBrowser.inputAllowFolders"
+                      [inputTooltipText]="translationPrefix + '.createFolder' | translate:lang"
+                      inputTooltipPlacement="right"
+                      (outputClicked)="showNewDirectoryPrompt = true">
+        </terra-button>
+    </div>
+    
+    <div class="btn-group" role="group">
+        <terra-button inputIcon="icon-delete"
+                      [inputIsDisabled]="selectedStorageObjects.length <= 0"
+                      [inputTooltipText]="translationPrefix + '.deleteSelectedFiles' | translate:lang"
+                      inputTooltipPlacement="right"
+                      (outputClicked)="objectsToDelete = selectedStorageObjects">
+        </terra-button>
+    </div>
+    
+    <label style="width:0; height: 0; visibility: hidden;" #fileChooser>
+        <input type="file" (change)="onFileSelect($event)" multiple="multiple">
+    </label>
+    
+    <!-- TODO is this needed???? -->
+    <!--<div class="loading-placeholder" *ngIf="!storageList">-->
+    <!--<p>{{ translationPrefix + '.loadingFiles' | translate:lang }}</p>-->
+    <!--<span class="icon-loading"></span>-->
+    <!--</div>-->
+
+</terra-base-toolbar>
+
+<div class="file-list-container" [class.empty]="fileTableRowList.length <= 0">
+    <div [hidden]="!showNewDirectoryPrompt" class="prompt" [class.in]="showNewDirectoryPrompt">
+        <span class="prompt-title">{{ translationPrefix + '.createFolder' | translate:lang }}</span>
+        <terra-text-input [inputName]="translationPrefix + '.folderName' | translate:lang"
+                          [(ngModel)]="newDirectoryName">
+        </terra-text-input>
+        <div class="float-lg-right">
+            <terra-button [inputIcon]="'icon-close'"
+                          [inputCaption]="translationPrefix + '.cancel' | translate:lang"
+                          [inputIsSmall]="true"
+                          (outputClicked)="showNewDirectoryPrompt = false"></terra-button>
+            
+            <terra-button [inputIcon]="'icon-folder_add'"
+                          [inputCaption]="translationPrefix + '.create' | translate:lang"
+                          [inputIsSmall]="true"
+                          [inputIsDisabled]="!newDirectoryName"
+                          (outputClicked)="createDirectory()"></terra-button>
+        </div>
+    </div>
+    
+    <div [hidden]="objectsToDelete.length === 0" class="prompt" [class.in]="objectsToDelete.length > 0">
+        <span class="prompt-title">
+            {{ translationPrefix + '.confirmDelete' | translate:lang }}
+        </span>
+        <span class="prompt-title">
+            {{ translationPrefix + '.confirmDeleteMany' | translate:lang:{count: _deleteCount} }}
+        </span>
+        <div class="float-lg-right">
+            <terra-button [inputIcon]="'icon-close'"
+                          [inputCaption]="translationPrefix + '.cancel' | translate:lang"
+                          [inputIsSmall]="true"
+                          (outputClicked)="objectsToDelete = []">
+            </terra-button>
+            
+            <terra-button [inputIcon]="'icon-delete'"
+                          [inputCaption]="translationPrefix + '.delete' | translate:lang"
+                          [inputIsSmall]="true"
+                          (outputClicked)="deleteObjects()">
+            </terra-button>
+        </div>
+    </div>
+    
+    <terra-simple-table *ngIf="fileTableRowList.length > 0" [hidden]="isDragActive"
+                        [inputHeaderList]="fileTableHeaderList"
+                        [inputRowList]="fileTableRowList"
+                        [inputIsStriped]="true"
+                        [inputUseHighlighting]="true"
+                        [inputHasCheckboxes]="true"
+                        [inputEnableHotkeys]="true"
+                        (outputRowClicked)="onRowClick($event)"
+                        (outputHighlightedRowChange)="onActiveRowChange($event)"
+                        (outputSelectedRowsChange)="onSelectionChange($event)">
+    </terra-simple-table>
+    
+    <div *ngIf="fileTableRowList.length <= 0" class="empty-directory">
+        <div>
+            <p>{{ translationPrefix + '.noFiles' | translate:lang }}</p>
+            
+            <div>
+                <terra-button inputIcon="icon-upload"
+                              [inputCaption]="translationPrefix + '.uploadFile' | translate:lang"
+                              (outputClicked)="fileChooser.click()">
+                </terra-button>
+                
+                <terra-button inputIcon="icon-folder_add"
+                              *ngIf="parentFileBrowser.inputAllowFolders"
+                              [inputCaption]="translationPrefix + '.createFolder' | translate:lang"
+                              (outputClicked)="showNewDirectoryPrompt = true">
+                </terra-button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="file-drop" #fileDropzone
+         [class.in]="isDragActive"
+         (drop)="onFileDrop($event)">
+        <div>
+            <span class="icon-upload"></span>
+            {{ translationPrefix + '.uploadFile' | translate:lang }}
+        </div>
+    
+    </div>
+    
+    <div class="upload-progress-container" *ngIf="progress">
+        <div class="upload-progress">
+            <div [style.width.%]="progress.progress"></div>
+        </div>
+        <span>{{ translationPrefix + '.uploadProgress' | translate:lang:progress }}</span>
+    </div>
+</div>

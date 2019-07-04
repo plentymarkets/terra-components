@@ -1,3 +1,76 @@
+<a name="4.0.0-beta.7"></a>
+# 4.0.0-beta.7 (Unreleased)
+
+### Breaking Changes
+* **build** removed app folder. Content has been moved to its root. Imports from `@plentymarkets/terra-components/app/**` need to be changed to `@plentymarkets/terra-components/**`.
+
+<a name="4.0.0-beta.6"></a>
+# 4.0.0-beta.6 (03.07.2019)
+
+### Bug fixes
+* **dependencies** downgrade `hmtlhint` to v0.10.3 since it resolves an issue regarding its import in the `HtmlLinterHelper`.
+
+<a name="4.0.0-beta.5"></a>
+# 4.0.0-beta.5 (28.06.2019)
+
+### Breaking Changes
+* **TerraComponentsModule** removed `forRoot()` and `forChild()` methods since all services use tree-shakable providers now.
+
+### Bug Fixes
+* **Tooltip** fixed tooltip position when `container="'body'"`.
+* **terra-portlet** fixed orientation of the collapsed icon.
+
+<a name="4.0.0-beta.4"></a>
+# 4.0.0-beta.4 (24.06.2019)
+
+### Breaking Changes
+* **bootstrap** updated from 4.0.0-alpha.4 to 4.3.1
+
+### Features
+* **tcCkEditor** New directive to provide a full config for the ckeditor4.
+* **ck-editor-presets** Config presets for the ckeditor4.
+* **refactoring** restructured style files
+* **terra-cards** restyling
+* **fonts** plentyicon-font moved to aws S3
+
+<a name="4.0.0-beta.3"></a>
+# 4.0.0-beta.3 (12.06.2019)
+
+### Bug Fixes
+* **button-group** fixed spacing between buttons in a button group
+* **angular-l10n** added missing `OnInit` and `OnDestroy` LifeCycle-Hooks to Components using angular-l10n's `Language` decorator
+
+<a name="4.0.0-beta.2"></a>
+# 4.0.0-beta.2 (11.06.2019)
+* **bootstrap** revert bootstrap update
+
+<a name="4.0.0-beta.1"></a>
+# 4.0.0-beta.1 (07.06.2019)
+
+### Breaking Changes
+* Updated [angular](https://github.com/angular/angular) to v7, [rxjs](https://github.com/ReactiveX/rxjs) to v6 and [angular-l10n](https://github.com/robisim74/angular-l10n) to v7 and made them peer dependencies.
+* Updated several other dependencies including
+	- [ngx-bootstrap](https://github.com/valor-software/ngx-bootstrap)
+	- [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quill)
+	- [TypeScript](https://github.com/microsoft/TypeScript)
+	- ...
+* **TerraConverterHelper** instead of a `defaultLocale` you now need to pass an instance of the [angular-l10n](https://github.com/robisim74/angular-l10n)'s `LocaleService` as argument to `convertAndFormatSize()` and `getLocaleDecimalValue()`
+
+<a name="4.0.0-beta.0"></a>
+# 4.0.0-beta.0 (06.06.2019)
+
+### Breaking Changes
+* **bootstrap** updated from 4.0.0-alpha.4 to 4.3.1
+
+### Features
+* **tslint** add new linting rules
+* **terra-category-picker** allow to accept 'Null' values
+* **terra-cacheckbox** allow to accept 'Null' values
+
+### Bug Fixes
+* **http-interceptors** fix logging errors to console. 
+* **draggable** allow `terraDraggable` input to be aliased.
+
 <a name="3.14.0"></a>
 # 3.14.0 (29.05.2019)
 
@@ -26,7 +99,7 @@
 * **terra-base-editor**, **terra-note-editor**, **terra-code-editor** 
 	- added `required` input that activates validation if set.
 	- added styles for the representation of an invalid state.
-	- updated [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quil) dependency to the latest version
+	- updated [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quill) dependency to the latest version
 	- activated sanitization using the `quill-editor`'s `sanitize` input.
 
 <a name="3.12.0"></a>
