@@ -3,7 +3,6 @@ import {
     components,
     exportedComponents
 } from './components/component-collection';
-import { examples } from './components/example-collection';
 import { directives } from './components/directive-collection';
 import {
     AlertModule,
@@ -43,18 +42,15 @@ import { HttpModule } from '@angular/http';
     ],
     declarations:    [
         ...components,
-        ...directives,
-        ...examples
+        ...directives
     ],
     entryComponents: [
         ...exportedComponents
     ],
     exports:         [
         ...exportedComponents,
-        ...directives,
-        ...examples
+        ...directives
     ]
 })
-
 export class TerraComponentsModule
 {}
