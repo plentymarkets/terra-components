@@ -1,0 +1,33 @@
+@font-face
+{
+    font-family: 'plentyicons';
+    src: url('/src/assets/fonts/plentyicons.eot?z8douy');
+    src: url('/src/assets/fonts/plentyicons.eot?z8douy#iefix') format('embedded-opentype'),
+    url('/src/assets/fonts/plentyicons.ttf?z8douy') format('truetype'),
+    url('/src/assets/fonts/plentyicons.woff?z8douy') format('woff'),
+    url('/src/assets/fonts/plentyicons.svg?z8douy#plentyicons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"]
+{
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'plentyicons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@import "~bootstrap/scss/bootstrap";
+@import "../lib/styles/styles";
+@import "../lib/styles/icons";
+@import "../lib/styles/mixins";
+@import "../lib/styles/themes/theme-loader";
