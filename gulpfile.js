@@ -72,6 +72,12 @@ gulp.task('copy-to-terra', function () {
         .pipe(gulp.dest(config.destinations.terra));
 });
 
+//copy files from dist to plugin-terra-basic
+gulp.task('copy-to-plugin-terra-basic', function () {
+    return gulp.src(config.sources.dist)
+        .pipe(gulp.dest(config.destinations.terraBasePlugin));
+});
+
 /**
  *
  * usage: 'npm run build' for local build
@@ -85,7 +91,8 @@ gulp.task('build',
         'copy-fonts',
         'copy-lang',
         'copy-tslint-rules',
-        'copy-to-terra'
+        'copy-to-terra',
+        'copy-to-plugin-terra-basic'
     )
 );
 
