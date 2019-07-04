@@ -28,7 +28,7 @@ export class TooltipDirective implements OnInit, OnDestroy
     public ngOnInit():void
     {
         this.tooltipEl = new Tooltip(this.elementRef.nativeElement, {
-            placement: this.placement,
+            placement: this._placement,
             title:     this.tooltip,
             html:      true,
             container: document.body,
@@ -36,14 +36,14 @@ export class TooltipDirective implements OnInit, OnDestroy
         });
     }
 
-    @HostListener('mouseleave')
-    public onMouseLeave():void
+    @HostListener('mouseout')
+    public onMouseOut():void
     {
         this.tooltipEl.dispose();
     }
 
-    @HostListener('mouseenter')
-    public onMouseEnter():void
+    @HostListener('mouseover')
+    public onMouseOver():void
     {
         this.tooltipEl.show();
     }
@@ -70,10 +70,5 @@ export class TooltipDirective implements OnInit, OnDestroy
         {
             this._placement = 'top';
         }
-    }
-
-    public get placement():Placement
-    {
-        return this._placement;
     }
 }
