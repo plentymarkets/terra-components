@@ -1,4 +1,5 @@
 export { TerraComponentsModule } from './terra-components.module';
+export { TerraComponentsExamplesModule } from './terra-components-examples.module';
 export * from './components/alert/terra-alert-panel.component';
 export * from './components/alert/terra-alert.component';
 export * from './components/buttons/button/data/terra-button.interface';
