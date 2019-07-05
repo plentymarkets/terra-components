@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import Tooltip from 'tooltip.js';
 import { Placement } from 'popper.js';
+import { isNullOrUndefined } from 'util';
 
 
 @Directive({
@@ -18,6 +19,26 @@ export class TooltipDirective implements OnInit, OnDestroy
     @Input()
     public tooltip:string;
 
+    @Input()
+    public set placement(placement:Placement)
+    {
+        // TODO maybe add automatic positioning
+        if(placement !== null && placement !== undefined && placement.length !== 0)
+        {
+            if(this._placement !== placement && this.tooltipEl !== null && this.tooltipEl !== undefined)
+            {
+                this.tooltipEl.dispose();
+                this.createTooltip(placement);
+            }
+
+            this._placement = placement;
+        }
+        else
+        {
+            this._placement = 'top';
+        }
+    }
+
     private tooltipEl:Tooltip;
     private _placement:Placement;
 
@@ -27,13 +48,7 @@ export class TooltipDirective implements OnInit, OnDestroy
 
     public ngOnInit():void
     {
-        this.tooltipEl = new Tooltip(this.elementRef.nativeElement, {
-            placement: this._placement,
-            title:     this.tooltip,
-            html:      true,
-            container: document.body,
-            trigger:   'manual'
-        });
+        this.createTooltip(this._placement);
     }
 
     @HostListener('mouseout')
@@ -59,16 +74,14 @@ export class TooltipDirective implements OnInit, OnDestroy
         this.tooltipEl.dispose();
     }
 
-    @Input()
-    public set placement(placement:Placement)
+    private createTooltip(placement:Placement):void
     {
-        if(placement !== null && placement !== undefined && placement.length !== 0)
-        {
-            this._placement = placement;
-        }
-        else
-        {
-            this._placement = 'top';
-        }
+        this.tooltipEl = new Tooltip(this.elementRef.nativeElement, {
+            placement: placement,
+            title:     this.tooltip,
+            html:      true,
+            container: document.body,
+            trigger:   'manual'
+        });
     }
 }
