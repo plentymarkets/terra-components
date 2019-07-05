@@ -22,6 +22,7 @@ module.exports = function () {
         langOutputPath: './dist/assets/lang/',
 
         terra: '../terra/node_modules/@plentymarkets/terra-components/',
+        terraBasePlugin: '../plugin-terra-basic/node_modules/@plentymarkets/terra-components/',
         terraComponentsDoc: terraComponentsDocPath,
         terraComponentsDocComponents: terraComponentsDocPath + 'app/components',
         terraComponentsDocBuild: terraComponentsDocPath + 'component-documentation/build'
