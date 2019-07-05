@@ -30,8 +30,9 @@
             input
             {
                 color: var(--color-structure-10);
-                border-bottom: 1px solid var(--border-color);
+                border-bottom: var(--input-wrapper-border, (1px solid var(--border-color)));
                 border-radius: var(--border-radius) var(--border-radius) 0 0;
+                background-color: var(--input-background-color, var(--color-structure-0));
                 box-shadow: none;
                 padding: var(--input-padding, var(--input-padding-default));
                 width: 100%;

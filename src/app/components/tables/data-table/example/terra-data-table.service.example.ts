@@ -63,21 +63,6 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
         return Observable.of(results);
     }
 
-    private applySorting(data:Array<TerraDataTableExampleInterface>, sortBy:string,
-                         sortOrder:TerraDataTableSortOrderEnum):Array<TerraDataTableExampleInterface>
-    {
-        let comparator:(a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface) => number;
-        if(sortOrder === TerraDataTableSortOrderEnum.ascending)
-        {
-            comparator = (a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface):number => a[sortBy] - b[sortBy];
-        }
-        else
-        {
-            comparator = (a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface):number => b[sortBy] - a[sortBy];
-        }
-        return data.sort(comparator);
-    }
-
     public addEntry():void
     {
         this.data.push(
@@ -118,5 +103,20 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
             data:          entry,
             clickFunction: ():void => console.log(`Row with id ${entry.id} clicked`)
         };
+    }
+
+    private applySorting(data:Array<TerraDataTableExampleInterface>, sortBy:string,
+                         sortOrder:TerraDataTableSortOrderEnum):Array<TerraDataTableExampleInterface>
+    {
+        let comparator:(a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface) => number;
+        if(sortOrder === TerraDataTableSortOrderEnum.ascending)
+        {
+            comparator = (a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface):number => a[sortBy] - b[sortBy];
+        }
+        else
+        {
+            comparator = (a:TerraDataTableExampleInterface, b:TerraDataTableExampleInterface):number => b[sortBy] - a[sortBy];
+        }
+        return data.sort(comparator);
     }
 }

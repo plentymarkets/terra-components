@@ -1,10 +1,9 @@
 import {
     Component,
-    EventEmitter,
+    forwardRef,
     Input,
     OnChanges,
     OnInit,
-    Output,
     SimpleChanges,
     Type
 } from '@angular/core';
@@ -15,13 +14,27 @@ import {
 } from 'util';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraKeyValuePairInterface } from '../../../../models/terra-key-value-pair.interface';
+import {
+    AbstractControl,
+    ControlValueAccessor,
+    FormGroup,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
+import { noop } from 'rxjs/util/noop';
 
 @Component({
-    selector: 'terra-form-container',
-    template: require('./terra-form-container.component.html'),
-    styles:   [require('./terra-form-container.component.scss')]
+    selector:  'terra-form-container',
+    template:  require('./terra-form-container.component.html'),
+    styles:    [require('./terra-form-container.component.scss')],
+    providers: [
+        {
+            provide:     NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TerraFormContainerComponent),
+            multi:       true
+        }
+    ]
 })
-export class TerraFormContainerComponent implements OnInit, OnChanges
+export class TerraFormContainerComponent implements OnInit, OnChanges, ControlValueAccessor
 {
     @Input()
     public inputScope:TerraFormScope;
@@ -30,52 +43,42 @@ export class TerraFormContainerComponent implements OnInit, OnChanges
     public inputControlTypeMap:{ [key:string]:Type<any> } = {};
 
     @Input()
-    public set inputValue(value:any)
-    {
-        if(isNullOrUndefined(value))
-        {
-            this.value = {};
-        }
-        else
-        {
-            this.value = value;
-        }
-    }
-
-    public get inputValue():any
-    {
-        return this.value;
-    }
-
-    @Input()
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
     {
-        this.formFields = Object.keys(fields)
-                                .map((key:string) =>
-                                {
-                                    return {
-                                        key:   key,
-                                        value: fields[key]
-                                    };
-                                });
+        this.formFields = Object.keys(fields).map((key:string) =>
+        {
+            return {
+                key:   key,
+                value: fields[key]
+            };
+        });
 
         this.updateFieldVisibility();
     }
 
+    /**
+     * @description If true, the button will be disabled. Default false.
+     */
     @Input()
     public inputIsDisabled:boolean = false;
 
-    @Output()
-    public outputFormValueChanged:EventEmitter<TerraKeyValuePairInterface<any>> = new EventEmitter<TerraKeyValuePairInterface<any>>();
+    @Input()
+    public set inputFormGroup(formGroup:FormGroup)
+    {
+        this.formGroup = formGroup;
+    }
+
+    protected formGroup:FormGroup;
 
     protected formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
     protected formFieldVisibility:{ [key:string]:boolean } = {};
 
-    private value:any = {};
+    private onChangeCallback:(value:any) => void = noop;
+    private onTouchedCallback:() => void = noop;
 
     public ngOnInit():void
     {
-        this.inputScope.onDataChanged.subscribe((data:any) =>
+        this.inputScope.onDataChanged.subscribe(() =>
         {
             this.updateFieldVisibility();
         });
@@ -89,29 +92,67 @@ export class TerraFormContainerComponent implements OnInit, OnChanges
         }
     }
 
-    protected onFormValueChanged(key:string, value:any):void
+    public registerOnChange(fn:(value:any) => void):void
     {
-        this.value[key] = value;
-        this.updateFieldVisibility();
-        this.outputFormValueChanged.next({
-            key:   key,
-            value: value
-        });
+        this.onChangeCallback = fn;
+    }
+
+    public registerOnTouched(fn:() => void):void
+    {
+        this.onTouchedCallback = fn;
+    }
+
+    public writeValue(value:any):void
+    {
+        if(isNullOrUndefined(value))
+        {
+            this.formGroup.setValue({});
+        }
+        else
+        {
+            this.formGroup.patchValue(value);
+        }
     }
 
     private updateFieldVisibility():void
     {
-        this.formFields
-            .forEach((field:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
+        this.formFields.forEach((field:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
+        {
+            if(isString(field.value.isVisible))
             {
-                if(isString(field.value.isVisible))
+                this.formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible);
+            }
+            else
+            {
+                this.formFieldVisibility[field.key] = isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
+            }
+
+            if(!isNullOrUndefined(this.formGroup))
+            {
+                this.updateFormControlVisibility(field.key);
+            }
+        });
+    }
+
+    private updateFormControlVisibility(fieldKey:string):void
+    {
+        let control:AbstractControl = this.formGroup.get(fieldKey);
+        if(!isNullOrUndefined(control))
+        {
+            if(this.formFieldVisibility[fieldKey])
+            {
+                if(control.disabled)
                 {
-                    this.formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible);
+                    control.enable({onlySelf:true});
                 }
-                else
+            }
+            else
+            {
+                if(control.enabled)
                 {
-                    this.formFieldVisibility[field.key] = isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
+                    control.disable({onlySelf:true});
                 }
-            });
+            }
+        }
     }
 }

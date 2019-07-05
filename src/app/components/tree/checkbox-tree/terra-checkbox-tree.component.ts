@@ -44,14 +44,35 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
 
     public selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
 
+    public ngOnInit():void
+    {
+        super.ngOnInit();
+        this.appendParentsToLeafList(this.inputLeafList);
+    }
+
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes['inputLeafList'])
+        {
+            this.appendParentsToLeafList(this.inputLeafList);
+        }
+    }
+
     /**
      * @description event which is triggered when any checkbox is clicked
      * @param event
      * @param leaf
      */
-    private onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
+    protected onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
     {
-        leaf.checkboxChecked = event;
+        if(leaf.isIndeterminate)
+        {
+            leaf.checkboxChecked = false;
+        }
+        else
+        {
+            leaf.checkboxChecked = event;
+        }
         this.resetIndeterminateLeafState(leaf);
         this.recursiveUpdateChildLeafs(leaf);
         this.recursiveUpdateParentLeafs(leaf);
@@ -100,7 +121,10 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         {
             for(let subLeaf of leaf.subLeafList)
             {
-                subLeaf.checkboxChecked = leaf.checkboxChecked;
+                if(!subLeaf.isDisabled)
+                {
+                    subLeaf.checkboxChecked = leaf.checkboxChecked;
+                }
 
                 if(subLeaf.subLeafList)
                 {
@@ -187,20 +211,6 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
                 subLeaf.leafParent = leaf;
                 this.recursiveAppendParentToSubLeafs(subLeaf);
             }
-        }
-    }
-
-    public ngOnInit():void
-    {
-        super.ngOnInit();
-        this.appendParentsToLeafList(this.inputLeafList);
-    }
-
-    public ngOnChanges(changes:SimpleChanges):void
-    {
-        if(changes['inputLeafList'])
-        {
-            this.appendParentsToLeafList(this.inputLeafList);
         }
     }
 

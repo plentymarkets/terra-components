@@ -3,7 +3,10 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
-import { isNull } from 'util';
+import {
+    isNull,
+    isNullOrUndefined
+} from 'util';
 
 /**
  * @author mkunze
@@ -37,34 +40,23 @@ export class TerraBaseTreeComponent implements OnInit
 
         if(this.inputParentLeafList)
         {
-            for(let parentLeaf of this.inputParentLeafList)
-            {
-                if(parentLeaf.subLeafList)
-                {
-                    for(let subLeaf of parentLeaf.subLeafList)
-                    {
-                        for(let leaf of this.inputLeafList)
-                        {
-                            if(leaf === subLeaf)
-                            {
-                                leaf.parentLeafList = this.inputParentLeafList;
-                            }
-                        }
-                    }
-                }
-            }
+            this.iterateOverParents(this.inputParentLeafList);
         }
     }
 
-
-    private onLeafClick(clickedLeaf:TerraLeafInterface):void
+    public getSelectedLeaf():TerraLeafInterface
     {
-        if(!isNull(clickedLeaf.subLeafList) && !clickedLeaf.avoidOpenOnClick)
+        return this.recursiveSearchActiveLeaf(this.inputLeafList);
+    }
+
+    protected onLeafClick(clickedLeaf:TerraLeafInterface):void
+    {
+        if(!isNullOrUndefined(clickedLeaf.subLeafList) && !clickedLeaf.avoidOpenOnClick)
         {
             this.toggleOpen(clickedLeaf);
         }
 
-        if(!isNull(clickedLeaf.clickFunction) && !clickedLeaf.isActive)
+        if(!isNullOrUndefined(clickedLeaf.clickFunction) && !clickedLeaf.isActive)
         {
             clickedLeaf.clickFunction();
         }
@@ -73,6 +65,36 @@ export class TerraBaseTreeComponent implements OnInit
         {
             this.recursiveLeafListInactive(this.inputCompleteLeafList);
             clickedLeaf.isActive = true;
+        }
+    }
+
+    private iterateOverParents(parents:Array<TerraLeafInterface>):void
+    {
+        for(let parentLeaf of parents)
+        {
+            if(parentLeaf.subLeafList)
+            {
+                this.iterateOverSiblings(parentLeaf.subLeafList);
+            }
+        }
+    }
+
+    private iterateOverSiblings(siblings:Array<TerraLeafInterface>):void
+    {
+        for(let subLeaf of siblings)
+        {
+            this.iterateOverChildren(subLeaf);
+        }
+    }
+
+    private iterateOverChildren(parentOfChild:TerraLeafInterface):void
+    {
+        for(let leaf of this.inputLeafList)
+        {
+            if(leaf === parentOfChild)
+            {
+                leaf.parentLeafList = this.inputParentLeafList;
+            }
         }
     }
 
@@ -106,17 +128,6 @@ export class TerraBaseTreeComponent implements OnInit
         clickedLeaf.isOpen = !clickedLeaf.isOpen;
     }
 
-    private onArrowClick(clickedLeaf:TerraLeafInterface):void
-    {
-        if(!isNull(clickedLeaf.onOpenFunction) && !clickedLeaf.isOnOpenFunctionCalled)
-        {
-            clickedLeaf.onOpenFunction();
-            clickedLeaf.isOnOpenFunctionCalled = true;
-        }
-
-        this.toggleOpen(clickedLeaf);
-    }
-
     private recursiveSearchActiveLeaf(leafListToSearch:Array<TerraLeafInterface>):TerraLeafInterface
     {
         let foundLeaf:TerraLeafInterface;
@@ -133,7 +144,7 @@ export class TerraBaseTreeComponent implements OnInit
             {
                 foundLeaf = this.recursiveSearchActiveLeaf(leaf.subLeafList);
 
-                if(!isNull(foundLeaf))
+                if(!isNullOrUndefined(foundLeaf))
                 {
                     break;
                 }
@@ -141,15 +152,5 @@ export class TerraBaseTreeComponent implements OnInit
         }
 
         return foundLeaf;
-    }
-
-    public getSelectedLeaf():TerraLeafInterface
-    {
-        return this.recursiveSearchActiveLeaf(this.inputLeafList);
-    }
-
-    private checkIfArrowNeeded(clickedLeaf:TerraLeafInterface):boolean
-    {
-        return !isNull(clickedLeaf.subLeafList) || !isNull(clickedLeaf.onOpenFunction);
     }
 }

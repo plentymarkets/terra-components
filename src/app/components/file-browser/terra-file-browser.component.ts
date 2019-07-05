@@ -100,6 +100,41 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         }
     }
 
+    public selectNode(storage:TerraStorageObject):void
+    {
+        let foundNode:TerraNodeInterface<{}> = this.nodeTreeConfig.findNodeById(storage.key);
+
+        if(!isNullOrUndefined(foundNode))
+        {
+            foundNode.isOpen = true;
+            this.nodeTreeConfig.currentSelectedNode = foundNode;
+        }
+    }
+
+    public selectUrl(publicUrl:string):void
+    {
+        this.onSelectedUrlChange.emit(publicUrl);
+    }
+
+    protected showImagePreview(isPreviewEnabled:boolean):void
+    {
+        if(isPreviewEnabled)
+        {
+            this.centerColumnWidth = 8;
+            this.rightColumnWidth = 2;
+        }
+        else
+        {
+            this.hideImagePreview();
+        }
+    }
+
+    protected hideImagePreview():void
+    {
+        this.centerColumnWidth = 10;
+        this.rightColumnWidth = 0;
+    }
+
     private renderTree(services:Array<TerraBaseStorageService>):void
     {
         if(isNullOrUndefined(services))
@@ -134,12 +169,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                     if(isNullOrUndefined(node.onClick))
                     {
                         // only one root folder is existing
-                        node.onClick = ():void =>
-                        {
-                            // TODO maybe change to inputs
-                            this.fileListComponent.activeStorageService = service;
-                            this.fileListComponent.currentStorageRoot = root;
-                        };
+                        this.addDefaultClickEventToNode(node, service, root);
                     }
 
                     this.getSortedList(root.children).forEach((child:TerraStorageObject) =>
@@ -151,23 +181,16 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         });
     }
 
-    protected showImagePreview(isPreviewEnabled:boolean):void
+    private addDefaultClickEventToNode(node:TerraNodeInterface<{}>,
+                                       service:TerraBaseStorageService,
+                                       root:TerraStorageObject):void
     {
-        if(isPreviewEnabled)
+        node.onClick = ():void =>
         {
-            this.centerColumnWidth = 8;
-            this.rightColumnWidth = 2;
-        }
-        else
-        {
-            this.hideImagePreview();
-        }
-    }
-
-    protected hideImagePreview():void
-    {
-        this.centerColumnWidth = 10;
-        this.rightColumnWidth = 0;
+            // TODO maybe change to inputs
+            this.fileListComponent.activeStorageService = service;
+            this.fileListComponent.currentStorageRoot = root;
+        };
     }
 
     private recursiveCreateNode(storage:TerraStorageObject,
@@ -216,21 +239,5 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                 return objectA.name.localeCompare(objectB.name);
             }
         );
-    }
-
-    public selectNode(storage:TerraStorageObject):void
-    {
-        let foundNode:TerraNodeInterface<{}> = this.nodeTreeConfig.findNodeById(storage.key);
-
-        if(!isNullOrUndefined(foundNode))
-        {
-            foundNode.isOpen = true;
-            this.nodeTreeConfig.currentSelectedNode = foundNode;
-        }
-    }
-
-    public selectUrl(publicUrl:string):void
-    {
-        this.onSelectedUrlChange.emit(publicUrl);
     }
 }

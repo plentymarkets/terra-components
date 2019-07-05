@@ -1,4 +1,4 @@
-/* tslint:disable:restrict-leading-underscore */
+/* tslint:disable:restrict-leading-underscore max-file-line-count */
 import { Injectable } from '@angular/core';
 import {
     Headers,
@@ -21,9 +21,11 @@ import { TerraBaseParameterInterface } from '../components/data/terra-base-param
 import { tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { TerraQueryEncoder } from './data/terra-query-encoder';
+import { DispatchHelper } from '../helpers/dispatch.helper';
 
 /**
  * @author mfrank
+ * @deprecated since v3.14.0. Use angular's [HttpClient](https://angular.io/guide/http) instead.
  */
 @Injectable()
 // Please keep the todo comments until TerraBaseService refactoring
@@ -111,15 +113,7 @@ export class TerraBaseService
                 this.handleException(error);
             }
 
-            if(error.status === 403 && this.getErrorClass(error) === 'UIHashExpiredException')
-            {
-                let routeToLoginEvent:CustomEvent = new CustomEvent('CustomEvent');
-
-                routeToLoginEvent.initCustomEvent('routeToLogin', true, true, {});
-
-                this.dispatchEvent(routeToLoginEvent);
-            }
-            else if(error.status === 403) // unauthorized
+            if(error.status === 403) // Forbidden
             {
                 let missingUserPermissionAlertMessage:string = this.getMissingUserPermissionAlertMessage(error);
 
@@ -141,15 +135,183 @@ export class TerraBaseService
                 }
             }
             // END Very unclean workaround!
-            else if(error.status === 401) // unauthenticated
+            else if(error.status === 401) // Unauthorized
             {
-                let loginEvent:CustomEvent = new CustomEvent('login');
-                // Workaround for plugins in Angular (loaded via iFrame)
-                this.dispatchEvent(loginEvent);
+                DispatchHelper.dispatchEvent(new CustomEvent('routeToLogin'));
             }
 
             return Observable.throw(error);
         }).finally(() => this.terraLoadingSpinnerService.stop());
+    }
+
+    /**
+     * Workaround to prevent the injection of the TranslationService in every Service, that extends TerraBaseService
+     * @returns {string}
+     */
+    protected getErrorString():string
+    {
+        // get language from localStorage
+        let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
+
+        // translate error string
+        switch(langInLocalStorage)
+        {
+            case 'de':
+                return 'Fehler';
+            case 'en':
+                return 'Error';
+            default:
+                return 'Error';
+        }
+    }
+
+    /**
+     * @param {TerraBaseParameterInterface} params
+     * @param {boolean} arrayAsArray - Defines if an array search param should interpret and parsed as an array or not. Default is false.
+     * @returns {URLSearchParams}
+     */
+    protected createUrlSearchParams(params:TerraBaseParameterInterface, arrayAsArray:boolean = false):URLSearchParams
+    {
+        let searchParams:URLSearchParams = new URLSearchParams('', new TerraQueryEncoder());
+
+        if(!isNullOrUndefined(params))
+        {
+            Object.keys(params).forEach((key:string) =>
+            {
+                if(!isNullOrUndefined(params[key]) && params[key] !== '')
+                {
+                    if(arrayAsArray && isArray(params[key]))
+                    {
+                        searchParams.appendAll(this.createArraySearchParams(key, params[key]));
+                    }
+                    else
+                    {
+                        searchParams.set(key, params[key]);
+                    }
+                }
+
+            });
+        }
+
+        return searchParams;
+    }
+
+    /**
+     * @deprecated use ModelCache instead
+     */
+    // TODO remove generic if the BaseService get a generic itself
+    protected handleLocalDataModelGetList(getRequest$:Observable<Response>, params?:TerraBaseParameterInterface):Observable<Array<any>>
+    {
+        if(Object.keys(this.dataModel).length > 0 && this.hasAllParamsLoaded(params))
+        {
+            return of(Object.values(this.dataModel));
+        }
+
+        this.setAuthorization();
+
+        return this.mapRequest(getRequest$).pipe(
+            tap((dataList:Array<any>) =>
+                dataList.forEach((data:any) =>
+                {
+                    this.dataModel[data.id] = Object.assign(data, this.dataModel[data.id]);
+                })
+            )
+        );
+    }
+
+    /**
+     * @deprecated use ModelCache instead
+     */
+    // TODO remove generic if the BaseService get a generic itself
+    protected handleLocalDataModelGet(getRequest$:Observable<Response>, dataId:number|string):Observable<any>
+    {
+        if(!isNullOrUndefined(this.dataModel[dataId]))
+        {
+            return Observable.of(this.dataModel[dataId]);
+        }
+
+        this.setAuthorization();
+
+        return this.mapRequest(getRequest$).pipe(
+            tap((data:any) => this.dataModel[dataId] = data)
+        );
+    }
+
+    /**
+     * @deprecated use ModelCache instead
+     */
+    // TODO remove generic if the BaseService get a generic itself
+    protected handleLocalDataModelPost(postRequest$:Observable<Response>, dataId:number|string):Observable<any>
+    {
+        this.setAuthorization();
+
+        return this.mapRequest(postRequest$).pipe(
+            tap((data:any) =>
+            {
+                if(isNullOrUndefined(this.dataModel[dataId]))
+                {
+                    this.dataModel[dataId] = [];
+                }
+                this.dataModel[dataId].push(data);
+            })
+        );
+    }
+
+    /**
+     * @deprecated use ModelCache instead
+     */
+    // TODO remove generic if the BaseService get a generic itself
+    protected handleLocalDataModelPut(putRequest$:Observable<Response>, dataId:number|string):Observable<any>
+    {
+        this.setAuthorization();
+
+        return this.mapRequest(putRequest$).pipe(
+            tap((data:any) =>
+            {
+                let dataToUpdate:any;
+
+                if(!isNullOrUndefined(this.dataModel[dataId]))
+                {
+                    dataToUpdate = this.dataModel[dataId].find((dataItem:any) => dataItem.id === data.id);
+                }
+
+                if(!isNullOrUndefined(dataToUpdate))
+                {
+                    dataToUpdate = data;
+                }
+                else
+                {
+                    if(isNullOrUndefined(this.dataModel[dataId]))
+                    {
+                        this.dataModel[dataId] = [];
+                    }
+                    this.dataModel[dataId].push(data);
+                }
+            })
+        );
+    }
+
+    /**
+     * @deprecated use ModelCache instead
+     */
+    // TODO remove generic if the BaseService get a generic itself
+    protected handleLocalDataModelDelete(deleteRequest$:Observable<Response>, dataId:number|string):Observable<void>
+    {
+        this.setAuthorization();
+
+        return this.mapRequest(deleteRequest$).pipe(
+            tap(() =>
+            {
+                Object.keys(this.dataModel).forEach((comparisonId:string) =>
+                {
+                    let dataIndex:number = this.dataModel[comparisonId].findIndex((data:any) => data.id === dataId);
+                    if(dataIndex >= 0)
+                    {
+                        this.dataModel[comparisonId].splice(dataIndex, 1);
+                    }
+                });
+            })
+        );
     }
 
     private dispatchEvent(eventToDispatch:Event | CustomEvent):void
@@ -203,27 +365,6 @@ export class TerraBaseService
         catch(e)
         {
             return null;
-        }
-    }
-
-    /**
-     * Workaround to prevent the injection of the TranslationService in every Service, that extends TerraBaseService
-     * @returns {string}
-     */
-    protected getErrorString():string
-    {
-        // get language from localStorage
-        let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
-
-        // translate error string
-        switch(langInLocalStorage)
-        {
-            case 'de':
-                return 'Fehler';
-            case 'en':
-                return 'Error';
-            default:
-                return 'Error';
         }
     }
 
@@ -298,37 +439,6 @@ export class TerraBaseService
                 });
             }
         }
-    }
-
-    /**
-     * @param {TerraBaseParameterInterface} params
-     * @param {boolean} arrayAsArray - Defines if an array search param should interpret and parsed as an array or not. Default is false.
-     * @returns {URLSearchParams}
-     */
-    protected createUrlSearchParams(params:TerraBaseParameterInterface, arrayAsArray:boolean = false):URLSearchParams
-    {
-        let searchParams:URLSearchParams = new URLSearchParams('', new TerraQueryEncoder());
-
-        if(!isNullOrUndefined(params))
-        {
-            Object.keys(params).forEach((key:string) =>
-            {
-                if(!isNullOrUndefined(params[key]) && params[key] !== '')
-                {
-                    if(arrayAsArray && isArray(params[key]))
-                    {
-                        searchParams.appendAll(this.createArraySearchParams(key, params[key]));
-                    }
-                    else
-                    {
-                        searchParams.set(key, params[key]);
-                    }
-                }
-
-            });
-        }
-
-        return searchParams;
     }
 
     private createArraySearchParams(key:string, params:Array<string>):URLSearchParams
@@ -417,26 +527,6 @@ export class TerraBaseService
         return missingRights;
     }
 
-    // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelGetList(getRequest$:Observable<Response>, params?:TerraBaseParameterInterface):Observable<Array<any>>
-    {
-        if(Object.keys(this.dataModel).length > 0 && this.hasAllParamsLoaded(params))
-        {
-            return of(Object.values(this.dataModel));
-        }
-
-        this.setAuthorization();
-
-        return this.mapRequest(getRequest$).pipe(
-            tap((dataList:Array<any>) =>
-                dataList.forEach((data:any) =>
-                {
-                    this.dataModel[data.id] = Object.assign(data, this.dataModel[data.id]);
-                })
-            )
-        );
-    }
-
     private hasAllParamsLoaded(params:TerraBaseParameterInterface):boolean
     {
         if(!isNullOrUndefined(params) && !isNullOrUndefined(params['with']))
@@ -450,88 +540,5 @@ export class TerraBaseService
         {
             return true;
         }
-    }
-
-    // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelGet(getRequest$:Observable<Response>, dataId:number|string):Observable<any>
-    {
-        if(!isNullOrUndefined(this.dataModel[dataId]))
-        {
-            return Observable.of(this.dataModel[dataId]);
-        }
-
-        this.setAuthorization();
-
-        return this.mapRequest(getRequest$).pipe(
-            tap((data:any) => this.dataModel[dataId] = data)
-        );
-    }
-
-    // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelPost(postRequest$:Observable<Response>, dataId:number|string):Observable<any>
-    {
-        this.setAuthorization();
-
-        return this.mapRequest(postRequest$).pipe(
-            tap((data:any) =>
-            {
-                if(isNullOrUndefined(this.dataModel[dataId]))
-                {
-                    this.dataModel[dataId] = [];
-                }
-                this.dataModel[dataId].push(data);
-            })
-        );
-    }
-
-    // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelPut(putRequest$:Observable<Response>, dataId:number|string):Observable<any>
-    {
-        this.setAuthorization();
-
-        return this.mapRequest(putRequest$).pipe(
-            tap((data:any) =>
-            {
-                let dataToUpdate:any;
-
-                if(!isNullOrUndefined(this.dataModel[dataId]))
-                {
-                    dataToUpdate = this.dataModel[dataId].find((dataItem:any) => dataItem.id === data.id);
-                }
-
-                if(!isNullOrUndefined(dataToUpdate))
-                {
-                    dataToUpdate = data;
-                }
-                else
-                {
-                    if(isNullOrUndefined(this.dataModel[dataId]))
-                    {
-                        this.dataModel[dataId] = [];
-                    }
-                    this.dataModel[dataId].push(data);
-                }
-            })
-        );
-    }
-
-    // TODO remove generic if the BaseService get a generic itself
-    protected handleLocalDataModelDelete(deleteRequest$:Observable<Response>, dataId:number|string):Observable<void>
-    {
-        this.setAuthorization();
-
-        return this.mapRequest(deleteRequest$).pipe(
-            tap(() =>
-            {
-                Object.keys(this.dataModel).forEach((comparisonId:string) =>
-                {
-                    let dataIndex:number = this.dataModel[comparisonId].findIndex((data:any) => data.id === dataId);
-                    if(dataIndex >= 0)
-                    {
-                        this.dataModel[comparisonId].splice(dataIndex, 1);
-                    }
-                });
-            })
-        );
     }
 }

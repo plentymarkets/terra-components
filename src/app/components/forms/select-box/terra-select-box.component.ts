@@ -18,6 +18,7 @@ import {
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
+import { noop } from 'rxjs/util/noop';
 
 @Component({
     selector:  'terra-select-box',
@@ -81,6 +82,14 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     private renderedListBoxValues:QueryList<ElementRef>;
 
     /**
+     *
+     * Two way data binding by ngModel
+     */
+    private onTouchedCallback:() => void = noop;
+
+    private onChangeCallback:(_:any) => void = noop;
+
+    /**
      * @deprecated use ngModel instead
      */
     public get inputSelectedValue():number | string
@@ -138,14 +147,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this.onTouchedCallback = fn;
     }
 
-    /**
-     *
-     * Two way data binding by ngModel
-     */
-    private onTouchedCallback:() => void = ():void => undefined;
-
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
-
     public writeValue(value:any):void
     {
         this.value = value;
@@ -169,73 +170,23 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 
         if(!isNullOrUndefined(value))
         {
-            this.inputListBoxValues
-                .forEach((item:TerraSelectBoxValueInterface) =>
-                {
-                    if(item.value === value)
-                    {
-                        this.selectedValue = item;
-                    }
-                });
+            let valueToSelect:TerraSelectBoxValueInterface = this.inputListBoxValues.find((item:TerraSelectBoxValueInterface) =>
+            {
+                return item.value === value;
+            });
+            if(!isNullOrUndefined(valueToSelect))
+            {
+                this.selectedValue = valueToSelect;
+            }
+            else if(!isNullOrUndefined(this.inputListBoxValues[0]))
+            {
+                this.selectFallbackValue();
+            }
         }
         else if(!isNullOrUndefined(this.inputListBoxValues[0]))
         {
-            this.selectedValue = this.inputListBoxValues[0];
-            this.onTouchedCallback();
-            this.onChangeCallback(this.inputListBoxValues[0].value);
+            this.selectFallbackValue();
         }
-    }
-
-    private set toggleOpen(value:boolean)
-    {
-        if(this._toggleOpen !== value && value === true)
-        {
-            document.addEventListener('click', this.clickListener, true);
-        }
-        else if(this._toggleOpen !== value && value === false)
-        {
-            document.removeEventListener('click', this.clickListener);
-        }
-
-        this._toggleOpen = value;
-    }
-
-    private get toggleOpen():boolean
-    {
-        return this._toggleOpen;
-    }
-
-    /**
-     *
-     * @param event
-     */
-    private clickedOutside(event:Event):void
-    {
-        if(!this.elementRef.nativeElement.contains(event.target))
-        {
-            this.toggleOpen = false;
-        }
-    }
-
-    protected onClick(evt:Event):void
-    {
-        evt.stopPropagation(); // prevents the click listener on the document to be fired right after
-        this.toggleOpen = !this.toggleOpen;
-    }
-
-    /**
-     *
-     * @param value
-     */
-    private select(value:TerraSelectBoxValueInterface):void
-    {
-        if(isNullOrUndefined(this.selectedValue) || this.selectedValue.value !== value.value)
-        {
-            this.onChangeCallback(value.value);
-        }
-
-        this.selectedValue = value;
-        this.onTouchedCallback();
     }
 
     public validate(formControl:FormControl):void
@@ -297,14 +248,16 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         }
     }
 
+    protected onClick(evt:Event):void
+    {
+        evt.stopPropagation(); // prevents the click listener on the document to be fired right after
+        this.toggleOpen = !this.toggleOpen;
+    }
+
     protected onKeyDown(event:KeyboardEvent):void
     {
         // check if one of the dedicated keys has been pressed
-        if(!(event.code === 'ArrowDown' ||
-             event.code === 'ArrowUp' ||
-             event.code === 'Enter' ||
-             event.code === 'Escape' ||
-             event.code === 'Space'))
+        if(this.isIncorrectKeyEvent(event.code))
         {
             return;
         }
@@ -376,6 +329,66 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         event.stopPropagation();
     }
 
+    protected onBlur():void
+    {
+        this.toggleOpen = false;
+    }
+
+    /**
+     *
+     * @param event
+     */
+    private clickedOutside(event:Event):void
+    {
+        if(!this.elementRef.nativeElement.contains(event.target))
+        {
+            this.toggleOpen = false;
+        }
+    }
+
+    private set toggleOpen(value:boolean)
+    {
+        if(this._toggleOpen !== value && value === true)
+        {
+            document.addEventListener('click', this.clickListener, true);
+        }
+        else if(this._toggleOpen !== value && value === false)
+        {
+            document.removeEventListener('click', this.clickListener);
+        }
+
+        this._toggleOpen = value;
+    }
+
+    private get toggleOpen():boolean
+    {
+        return this._toggleOpen;
+    }
+
+    /**
+     *
+     * @param value
+     */
+    private select(value:TerraSelectBoxValueInterface):void
+    {
+        if(isNullOrUndefined(this.selectedValue) || this.selectedValue.value !== value.value)
+        {
+            this.onChangeCallback(value.value);
+        }
+
+        this.selectedValue = value;
+        this.onTouchedCallback();
+    }
+
+    private isIncorrectKeyEvent(eventCode:string):boolean
+    {
+        return !(eventCode === 'ArrowDown' ||
+                 eventCode === 'ArrowUp' ||
+                 eventCode === 'Enter' ||
+                 eventCode === 'Escape' ||
+                 eventCode === 'Space');
+    }
+
     private focusSelectedElement():void
     {
         // get the temporary selected DOM element
@@ -394,8 +407,10 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         }
     }
 
-    protected onBlur():void
+    private selectFallbackValue():void
     {
-        this.toggleOpen = false;
+        this.selectedValue = this.inputListBoxValues[0];
+        this.onTouchedCallback();
+        this.onChangeCallback(this.inputListBoxValues[0].value);
     }
 }
