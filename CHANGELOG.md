@@ -1,7 +1,7 @@
 <a name="4.0.0-beta.7"></a>
 # 4.0.0-beta.7 (Unreleased)
 ### Bug Fixes
-* **terra-form** Using `isEqual()` from `lodash` to compare values in `writeValue()`.
+* **terra-form** Emit events are not called when `writeValue` is called.
 
 ### Breaking Changes
 * **build** removed app folder. Content has been moved to its root. Imports from `@plentymarkets/terra-components/app/**` need to be changed to `@plentymarkets/terra-components/**`.
