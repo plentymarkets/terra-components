@@ -5,7 +5,7 @@
 
     .portlet-head
     {
-        padding: var(--space-sm) var(--space-md);
+        padding: var(--space-sm) 0;
         background: transparent;
 
         display: -webkit-flex; /* Safari */
@@ -52,6 +52,7 @@
     {
         .portlet-head
         {
+            padding: var(--space-sm) var(--space-md);
             cursor: pointer;
             background-color: var(--collapsable-portlet-head-background-color, var(--color-structure-0));
             border-radius: var(--border-radius);
@@ -60,7 +61,9 @@
 
             &.unfolded
             {
-                background-color: var(--portlet-head-unfolded-background-color, transparent);
+                background-color: var(--collapsable-portlet-head-unfolded-background-color, transparent);
+                padding: var(--collapsable-portlet-head-unfolded-padding, (var(--space-sm) var(--space-md)));
+                box-shadow: var(--collapsable-portlet-head-unfolded-box-shadow, var(--box-shadow));
             }
         }
     
