@@ -9,7 +9,6 @@ Documentation
 
 Testing
 - [ ] Unit Test (updated or created)
-- [ ] Unit Test successful
 - [ ] Person 1
 - [ ] Person 2
 
