@@ -26,7 +26,6 @@ import {
     Subscription
 } from 'rxjs';
 
-import * as _ from 'lodash';
 
 @Component({
     selector:  'terra-form',
@@ -149,12 +148,12 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
             this.scope.data = defaultValues;
             this.formGroup.reset(defaultValues);
         }
-        else if(_.isEqual(this.scope.data, values))
+        else if(this.scope.data !== values)
         {
             values = TerraFormHelper.updateFormArrays(this.formGroup, this.formFields, values);
             this.values = values;
             this.scope.data = values;
-            this.formGroup.patchValue(values);
+            this.formGroup.patchValue(values, {emitEvent: false});
         }
     }
 

@@ -68,7 +68,7 @@ describe(`TerraFormComponent:`, () =>
             component.writeValue(mockValues);
 
             expect(component.scope.data).toBe(mockValues);
-            expect(component.formGroup.patchValue).toHaveBeenCalledWith(mockValues);
+            expect(component.formGroup.patchValue).toHaveBeenCalledWith(mockValues, {emitEvent: false});
             expect(component.formGroup.value).toEqual(mockValues);
         });
 
