@@ -12,7 +12,6 @@
 
 ### Bug fixes
 * **dependencies** downgrade `hmtlhint` to v0.10.3 since it resolves an issue regarding its import in the `HtmlLinterHelper`.
->>>>>>> 4.X.X
 
 <a name="4.0.0-beta.5"></a>
 # 4.0.0-beta.5 (28.06.2019)
