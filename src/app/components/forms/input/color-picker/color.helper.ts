@@ -66,6 +66,116 @@ export class Color
     }
 
     /**
+     * Converts this color to a hexadecimal string.
+     * @returns string
+     */
+    public toHEX():string
+    {
+        return '#' +
+               ((this.r < 16) ? '0' : '') + this.r.toString(16) +
+               ((this.g < 16) ? '0' : '') + this.g.toString(16) +
+               ((this.b < 16) ? '0' : '') + this.b.toString(16);
+    }
+
+    /**
+     * Converts this color to a RGB formatted representation.
+     * @returns ColorRGB
+     */
+    public toRGB():ColorRGB
+    {
+        return {
+            r: this.r,
+            g: this.g,
+            b: this.b
+        };
+    }
+
+    /**
+     * Converts this color to a HSL formatted representation.
+     * @returns ColorHSL
+     */
+    public toHSL():ColorHSL
+    {
+        let r:number = this.r / 255;
+        let g:number = this.g / 255;
+        let b:number = this.b / 255;
+        let max:number = Math.max(r, g, b);
+        let min:number = Math.min(r, g, b);
+
+        let h:number = (max + min) / 2;
+        let s:number = (max + min) / 2;
+        let l:number = (max + min) / 2;
+
+        if(max === min)
+        {
+            h = 0;
+            s = 0;
+        }
+        else
+        {
+            let diff:number = max - min;
+            if(l > 0.5)
+            {
+                s = diff / (2 - max - min);
+            }
+            else
+            {
+                s = diff / (max + min);
+            }
+
+            switch(max)
+            {
+                case r:
+                    h = (g - b) / diff + (g < b ? 6 : 0);
+                    break;
+                case g:
+                    h = (b - r) / diff + 2;
+                    break;
+                case b:
+                    h = (r - g) / diff + 4;
+                    break;
+                default:
+                    throw new Error('This should never be reached!');
+            }
+
+            h = h / 6;
+        }
+
+        return {
+            h,
+            s,
+            l
+        };
+    }
+
+    /**
+     * Calculate the grayscale of this color.
+     * @returns number
+     */
+    public getGrayscale():number
+    {
+        return (this.r * 0.299) + (this.g * 0.587) + (this.b * 0.114);
+    }
+
+    /**
+     * Decide if this color is dark enough so white text could be read.
+     * @returns boolean
+     */
+    public isDark():boolean
+    {
+        return this.getGrayscale() < 186;
+    }
+
+    /**
+     * Decide if this color is light enough so black text could be read.
+     * @returns boolean
+     */
+    public isLight():boolean
+    {
+        return this.getGrayscale() >= 186;
+    }
+
+    /**
      * Checks if a given color is formatted as a string containing a hexadecimal
      * representation of a color
      * @param color string|ColorRGB|ColorHSL The color
@@ -182,115 +292,5 @@ export class Color
             return p + (q - p) * ((2 / 3) - t) * 6;
         }
         return p;
-    }
-
-    /**
-     * Converts this color to a hexadecimal string.
-     * @returns string
-     */
-    public toHEX():string
-    {
-        return '#' +
-               ((this.r < 16) ? '0' : '') + this.r.toString(16) +
-               ((this.g < 16) ? '0' : '') + this.g.toString(16) +
-               ((this.b < 16) ? '0' : '') + this.b.toString(16);
-    }
-
-    /**
-     * Converts this color to a RGB formatted representation.
-     * @returns ColorRGB
-     */
-    public toRGB():ColorRGB
-    {
-        return {
-            r: this.r,
-            g: this.g,
-            b: this.b
-        };
-    }
-
-    /**
-     * Converts this color to a HSL formatted representation.
-     * @returns ColorHSL
-     */
-    public toHSL():ColorHSL
-    {
-        let r:number = this.r / 255;
-        let g:number = this.g / 255;
-        let b:number = this.b / 255;
-        let max:number = Math.max(r, g, b);
-        let min:number = Math.min(r, g, b);
-
-        let h:number = (max + min) / 2;
-        let s:number = (max + min) / 2;
-        let l:number = (max + min) / 2;
-
-        if(max === min)
-        {
-            h = 0;
-            s = 0;
-        }
-        else
-        {
-            let diff:number = max - min;
-            if(l > 0.5)
-            {
-                s = diff / (2 - max - min);
-            }
-            else
-            {
-                s = diff / (max + min);
-            }
-
-            switch(max)
-            {
-                case r:
-                    h = (g - b) / diff + (g < b ? 6 : 0);
-                    break;
-                case g:
-                    h = (b - r) / diff + 2;
-                    break;
-                case b:
-                    h = (r - g) / diff + 4;
-                    break;
-                default:
-                    throw new Error('This should never be reached!');
-            }
-
-            h = h / 6;
-        }
-
-        return {
-            h,
-            s,
-            l
-        };
-    }
-
-    /**
-     * Calculate the grayscale of this color.
-     * @returns number
-     */
-    public getGrayscale():number
-    {
-        return (this.r * 0.299) + (this.g * 0.587) + (this.b * 0.114);
-    }
-
-    /**
-     * Decide if this color is dark enough so white text could be read.
-     * @returns boolean
-     */
-    public isDark():boolean
-    {
-        return this.getGrayscale() < 186;
-    }
-
-    /**
-     * Decide if this color is light enough so black text could be read.
-     * @returns boolean
-     */
-    public isLight():boolean
-    {
-        return this.getGrayscale() >= 186;
     }
 }

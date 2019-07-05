@@ -83,6 +83,21 @@ export class TerraBaseTable<T>
         }
     }
 
+    protected resetSelectedRows():void
+    {
+        // reset selected rows which are not disabled
+        this.rowList.forEach((row:TerraDataTableRowInterface<T>) =>
+        {
+            if(!row.disabled)
+            {
+                row.selected = false;
+            }
+        });
+
+        // evaluate new header checkbox state
+        this.updateHeaderCheckboxState();
+    }
+
     private checkHeaderCheckbox():void
     {
         this.headerCheckbox.checked = true;
@@ -126,21 +141,6 @@ export class TerraBaseTable<T>
             if(!row.disabled)
             {
                 row.selected = true;
-            }
-        });
-
-        // evaluate new header checkbox state
-        this.updateHeaderCheckboxState();
-    }
-
-    protected resetSelectedRows():void
-    {
-        // reset selected rows which are not disabled
-        this.rowList.forEach((row:TerraDataTableRowInterface<T>) =>
-        {
-            if(!row.disabled)
-            {
-                row.selected = false;
             }
         });
 

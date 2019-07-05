@@ -97,6 +97,36 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
         }
     }
 
+    public registerOnChange(fn:(value:any) => void):void
+    {
+        this.onChangeCallback = fn;
+    }
+
+    public registerOnTouched(fn:() => void):void
+    {
+        this.onTouchedCallback = fn;
+    }
+
+    public writeValue(value:Array<any>):void
+    {
+        if(isNullOrUndefined(value) || !isArray(value))
+        {
+            this.formArray = new FormArray([]);
+            this.formArray.setValue([]);
+            this.childScopes = [];
+        }
+        else
+        {
+            this.formArray.patchValue(value);
+
+            this.childScopes = this.formArray.controls.map((control:FormControl) =>
+            {
+                return this.inputScope.createChildScope(this.createChildScopeData(control.value));
+            });
+
+        }
+    }
+
     protected get canAddElement():boolean
     {
         return isNaN(this.max) || this.formArray.length < this.max;
@@ -151,35 +181,5 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
         childData[loopKey] = value;
 
         return childData;
-    }
-
-    public registerOnChange(fn:(value:any) => void):void
-    {
-        this.onChangeCallback = fn;
-    }
-
-    public registerOnTouched(fn:() => void):void
-    {
-        this.onTouchedCallback = fn;
-    }
-
-    public writeValue(value:Array<any>):void
-    {
-        if(isNullOrUndefined(value) || !isArray(value))
-        {
-            this.formArray = new FormArray([]);
-            this.formArray.setValue([]);
-            this.childScopes = [];
-        }
-        else
-        {
-            this.formArray.patchValue(value);
-
-            this.childScopes = this.formArray.controls.map((control:FormControl) =>
-            {
-                return this.inputScope.createChildScope(this.createChildScopeData(control.value));
-            });
-
-        }
     }
 }

@@ -44,6 +44,20 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
 
     public selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
 
+    public ngOnInit():void
+    {
+        super.ngOnInit();
+        this.appendParentsToLeafList(this.inputLeafList);
+    }
+
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes['inputLeafList'])
+        {
+            this.appendParentsToLeafList(this.inputLeafList);
+        }
+    }
+
     /**
      * @description event which is triggered when any checkbox is clicked
      * @param event
@@ -197,20 +211,6 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
                 subLeaf.leafParent = leaf;
                 this.recursiveAppendParentToSubLeafs(subLeaf);
             }
-        }
-    }
-
-    public ngOnInit():void
-    {
-        super.ngOnInit();
-        this.appendParentsToLeafList(this.inputLeafList);
-    }
-
-    public ngOnChanges(changes:SimpleChanges):void
-    {
-        if(changes['inputLeafList'])
-        {
-            this.appendParentsToLeafList(this.inputLeafList);
         }
     }
 
