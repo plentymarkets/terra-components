@@ -30,7 +30,7 @@ export class TerraFormHelper
     {
         let validators:Array<ValidatorFn> = [];
 
-        if(isNullOrUndefined(formField.options))
+        if(isNullOrUndefined(formField) || isNullOrUndefined(formField.options))
         {
             return validators;
         }
@@ -79,7 +79,7 @@ export class TerraFormHelper
             validators.push(Validators.email);
         }
 
-        if(formField.options.isIban)
+        if(formField.options.isIban || formField.options.iban)
         {
             validators.push(TerraValidators.iban);
         }
@@ -96,17 +96,23 @@ export class TerraFormHelper
     public static parseReactiveForm(formFields:{ [key:string]:TerraFormFieldInterface }, values?:{}):FormGroup
     {
         let controls:{ [key:string]:AbstractControl } = {};
+        if(isNullOrUndefined(formFields))
+        {
+            return new FormGroup(controls);
+        }
+
         Object.keys(formFields).forEach((formFieldKey:string) =>
         {
             let formField:TerraFormFieldInterface = formFields[formFieldKey];
+            let defaultValue:any = TerraFormFieldHelper.parseDefaultValue(formField);
             if(formField.isList)
             {
                 let formControls:Array<AbstractControl> = [];
                 if(!isNullOrUndefined(values) && isArray(values))
                 {
-                    formControls = values.map((value:any) =>
+                    formControls = values.map((value:any, index:number) =>
                     {
-                        return this.createNewControl(value || formField.defaultValue, formField);
+                        return this.createNewControl(value || defaultValue[index], formField);
                     });
                 }
                 if(isString(formField.isList))
@@ -118,15 +124,16 @@ export class TerraFormHelper
             else if(!isNullOrUndefined(formField.children))
             {
                 let value:Object = !isNullOrUndefined(values) && isObject(values[formFieldKey]) ?
-                    values[formFieldKey] : formField.defaultValue || null;
+                    values[formFieldKey] : defaultValue || null;
                 controls[formFieldKey] = this.parseReactiveForm(formField.children, value);
             }
             else
             {
-                let value:any = !isNullOrUndefined(values) ? values[formFieldKey] : formField.defaultValue;
+                let value:any = !isNullOrUndefined(values) ? values[formFieldKey] : defaultValue;
                 controls[formFieldKey] = new FormControl(value, this.generateValidators(formField));
             }
         });
+
         return new FormGroup(controls);
     }
 
@@ -150,7 +157,7 @@ export class TerraFormHelper
             let control:AbstractControl = form.get(formControlKey);
             if(formField.isList && isNullOrUndefined(values[formControlKey]))
             {
-                values[formControlKey] = [];
+                values[formControlKey] = TerraFormFieldHelper.parseDefaultValue(formField);
             }
 
             let controlValues:any = values[formControlKey];
@@ -166,8 +173,7 @@ export class TerraFormHelper
 
                 while(control.length < Math.min(controlValues.length, max))
                 {
-                    // silently push the new control. Do not use control.push() since it makes the valueChanges observable emit a value..
-                    control.controls.push(this.createNewControl(controlValues[control.length], formField));
+                    control.push(this.createNewControl(controlValues[control.length], formField));
                 }
             }
             else if(!isNullOrUndefined(formField.children) && control instanceof FormGroup && isObject(controlValues))

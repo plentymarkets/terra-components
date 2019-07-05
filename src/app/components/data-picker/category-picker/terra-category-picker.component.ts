@@ -113,7 +113,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
     // From ControlValueAccessor interface
     public writeValue(value:any):void
     {
-        if(!isNullOrUndefined(value))
+        if(!isNullOrUndefined(value) && value !== {} && value !== 0)
         {
             this.inputCategoryService.requestCategoryDataById(value).subscribe((data:any) =>
             {
@@ -132,7 +132,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
 
                 this.value = value;
 
-                if(this.isNotInitialCall)
+                if(this.isNotInitialCall && nodeToSelect)
                 {
                     this.updateCompleteCategory(nodeToSelect);
                     this.onTouchedCallback();
@@ -140,6 +140,13 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                 }
             });
         }
+        else
+        {
+            this.nestedTreeConfig.currentSelectedNode = null;
+            this.categoryName = '';
+            this.value = null;
+        }
+
     }
 
     public onSelectNode():void
@@ -162,25 +169,6 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
 
         this.onTouchedCallback();
         this.onChangeCallback(this.value);
-    }
-
-    private updateCompleteCategory(category:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>):void
-    {
-        this.completeCategory.id = +category.id;
-        this.completeCategory.isActive = category.isActive;
-        this.completeCategory.isOpen = category.isOpen;
-        this.completeCategory.isVisible = category.isVisible;
-        this.completeCategory.name = category.name;
-        this.completeCategory.tooltip = category.tooltip;
-        this.completeCategory.tooltipPlacement = category.tooltipPlacement;
-    }
-
-    private getCategoriesByParentId(parentId:number | string, level:number):Observable<TerraPagerInterface<CategoryDataInterface>>
-    {
-        return this.inputCategoryService.requestCategoryData(parentId, level).pipe(tap((data:TerraPagerInterface<CategoryDataInterface>) =>
-        {
-            this.addNodes(data, parentId);
-        }));
     }
 
     public addNodes(data:any, parentNodeId:number | string):void
@@ -254,6 +242,25 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         }
         // Current List is updated
         this.list = this.nestedTreeConfig.list;
+    }
+
+    private updateCompleteCategory(category:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>):void
+    {
+        this.completeCategory.id = +category.id;
+        this.completeCategory.isActive = category.isActive;
+        this.completeCategory.isOpen = category.isOpen;
+        this.completeCategory.isVisible = category.isVisible;
+        this.completeCategory.name = category.name;
+        this.completeCategory.tooltip = category.tooltip;
+        this.completeCategory.tooltipPlacement = category.tooltipPlacement;
+    }
+
+    private getCategoriesByParentId(parentId:number | string, level:number):Observable<TerraPagerInterface<CategoryDataInterface>>
+    {
+        return this.inputCategoryService.requestCategoryData(parentId, level).pipe(tap((data:TerraPagerInterface<CategoryDataInterface>) =>
+        {
+            this.addNodes(data, parentId);
+        }));
     }
 
     private findCategoryDetails(categoryData:CategoryDataInterface):CategoryDetailDataInterface

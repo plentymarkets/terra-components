@@ -5,7 +5,6 @@ import {
     OnChanges,
     OnInit,
     SimpleChanges,
-    Type,
 } from '@angular/core';
 import {
     ControlValueAccessor,
@@ -23,6 +22,8 @@ import { noop } from 'rxjs/util/noop';
 import { TerraFormHelper } from './helper/terra-form.helper';
 import { FormTypeMapInterface } from './model/form-type-map.interface';
 import { FormTypeMap } from './model/form-type-map';
+import { Subscription } from 'rxjs';
+
 
 @Component({
     selector:  'terra-form',
@@ -45,9 +46,13 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     @Input()
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface } | Array<TerraFormFieldBase<any>>)
     {
+        if(!isNullOrUndefined(this.valueChangesSubscription))
+        {
+            this.valueChangesSubscription.unsubscribe();
+        }
         this.formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
         this._formGroup = TerraFormHelper.parseReactiveForm(this.formFields, this.values);
-        this._formGroup.valueChanges.subscribe((changes:Data) =>
+        this.valueChangesSubscription = this._formGroup.valueChanges.subscribe((changes:Data) =>
         {
             Object.keys(changes).forEach((key:string) =>
             {
@@ -96,6 +101,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
 
     private formFields:{ [key:string]:TerraFormFieldInterface };
     private _formGroup:FormGroup = new FormGroup({});
+    private valueChangesSubscription:Subscription;
 
     private onChangeCallback:(value:any) => void = noop;
     private onTouchedCallback:() => void = noop;
@@ -125,25 +131,6 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
         }
     }
 
-    private parseFormField(field:TerraFormFieldInterface):any
-    {
-        if(field.isList)
-        {
-            return field.defaultValue || [];
-        }
-
-        if(!isNullOrUndefined(field.children))
-        {
-            let result:any = {};
-            Object.keys(field.children).forEach((fKey:string) =>
-            {
-                result[fKey] = this.parseFormField(field.children[fKey]);
-            });
-            return result;
-        }
-        return isNullOrUndefined(field.defaultValue) ? null : field.defaultValue;
-    }
-
     /**
      * Part of the implementation of the ControlValueAccessor interface.
      * @description Patches the passed value to the underlying FormGroup instance, which updates the values of each affected form field.
@@ -154,11 +141,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     {
         if(isNullOrUndefined(values))
         {
-            let defaultValues:any = {};
-            Object.keys(this.inputFormFields).forEach((key:string) =>
-            {
-                defaultValues[key] = this.parseFormField(this.inputFormFields[key]);
-            });
+            let defaultValues:any = TerraFormFieldHelper.parseDefaultValues(this.formFields);
             this.values = defaultValues;
             this.scope.data = defaultValues;
             this.formGroup.reset(defaultValues);

@@ -4,6 +4,7 @@ import {
     EventEmitter,
     Input,
     OnChanges,
+    OnInit,
     Output,
     SimpleChanges
 } from '@angular/core';
@@ -20,37 +21,125 @@ import interact = require('interactjs');
 @Directive({
     selector: '[terraResizable]'
 })
-export class TerraResizableDirective implements OnChanges
+export class TerraResizableDirective implements OnInit, OnChanges
 {
-    @Input('terra-resizable')
+    @Input()
     public options:ResizeOptions = null;
 
-    @Input('terra-resizable-disabled')
+    @Input()
     public disabled:boolean = false;
 
-    @Input('terra-resizable-grid')
+    @Input()
     public grid:false | GridOptions = false;
 
-    @Input('terra-resizable-restrict')
+    @Input()
     public restrict:RestrictOptions = null;
 
-    @Input('terra-resizable-inertia')
+    @Input()
     public inertia:boolean | InertiaOptions = false;
 
+    @Output()
+    public start:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+
+    @Output()
+    public move:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+
+    @Output()
+    public end:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+
+    /* tslint:disable:no-output-on-prefix no-input-rename no-output-rename */
+    /**
+     * @deprecated since 3.x.x. Use options instead
+     */
+    @Input('terra-resizable')
+    public set terraOptions(value:ResizeOptions)
+    {
+        console.warn('`terra-resizable` is deprecated. Please use `options` instead.');
+        this.options = value;
+    }
+
+    /**
+     * @deprecated since 3.x.x. Use disabled instead
+     */
+    @Input('terra-resizable-disabled')
+    public set terraDisabled(value:boolean)
+    {
+        console.warn('`terra-resizable-disabled` is deprecated. Please use `disabled` instead.');
+        this.disabled = value;
+    }
+
+    /**
+     * @deprecated since 3.x.x. Use grid instead
+     */
+    @Input('terra-resizable-grid')
+    public set terraGrid(value:false | GridOptions)
+    {
+        console.warn('`terra-resizable-grid` is deprecated. Please use `grid` instead.');
+        this.grid = value;
+    }
+
+    /**
+     * @deprecated since 3.x.x. Use restrict instead
+     */
+    @Input('terra-resizable-restrict')
+    public set terraRestrict(value:RestrictOptions)
+    {
+        console.warn('`terra-resizable-restrict` is deprecated. Please use `restrict` instead.');
+        this.restrict = value;
+    }
+
+    /**
+     * @deprecated since 3.x.x. Use inertia instead
+     */
+    @Input('terra-resizable-inertia')
+    public set terraInertia(value:boolean | InertiaOptions)
+    {
+        console.warn('`terra-resizable-inertia` is deprecated. Please use `inertia` instead.');
+        this.inertia = value;
+    }
+
+    /**
+     * @deprecated since 3.x.x. Use start instead
+     */
     @Output('terra-resizable-onStart')
     public onStart:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
+    /**
+     * @deprecated since 3.x.x. Use move instead
+     */
     @Output('terra-resizable-onMove')
     public onMove:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
+    /**
+     * @deprecated since 3.x.x. Use end instead
+     */
     @Output('terra-resizable-onEnd')
     public onEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+    /* tslint:enable:no-output-on-prefix no-input-rename no-output-rename */
 
     private interactable:Interactable;
 
     constructor(private el:ElementRef)
     {
         this.init();
+    }
+
+    public ngOnInit():void
+    {
+        if(this.onStart.observers.length > 0)
+        {
+            console.warn('`terra-resizable-onStart` is deprecated. Please use `start` instead.');
+        }
+
+        if(this.onMove.observers.length > 0)
+        {
+            console.warn('`terra-resizable-onMove` is deprecated. Please use `move` instead.');
+        }
+
+        if(this.onEnd.observers.length > 0)
+        {
+            console.warn('`terra-resizable-onEnd` is deprecated. Please use `end` instead.');
+        }
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -123,14 +212,17 @@ export class TerraResizableDirective implements OnChanges
             onstart:             (event:InteractEvent):void =>
                                  {
                                      this.onStart.emit(event);
+                                     this.start.emit(event);
                                  },
             onmove:              (event:InteractEvent):void =>
                                  {
                                      this.onMove.emit(event);
+                                     this.move.emit(event);
                                  },
             onend:               (event:InteractEvent):void =>
                                  {
                                      this.onEnd.emit(event);
+                                     this.end.emit(event);
                                  },
         };
 
