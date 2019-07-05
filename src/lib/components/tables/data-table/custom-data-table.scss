@@ -125,3 +125,17 @@ tbody
         }
     }
 }
+
+@media (max-width: 767px)
+{
+    table, td, tr, th, thead, tbody
+    {
+        display: block;
+    }
+    th, td
+    {
+        border: 0 !important;
+        width: 100% !important;
+        padding: 4px 9px !important;
+    }
+}
