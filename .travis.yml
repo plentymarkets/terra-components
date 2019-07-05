@@ -19,6 +19,11 @@ cache:
 install:
   - npm run reinstall
 
-script:
-  - karma start --single-run --browsers ChromeHeadless,FirefoxHeadless
-  - npm run lint
+jobs:
+  include:
+    - stage: "Unit Tests"
+      name: "Unit Tests"
+      script: karma start --single-run --browsers ChromeHeadless,FirefoxHeadless
+    - stage: "Lint"
+      name: "Lint"
+      script: npm run lint
