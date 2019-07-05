@@ -1,5 +1,6 @@
 const helpers = require('./helpers');
 const merge = require('webpack-merge');
+const webpack = require('webpack');
 const commonConfig = require('./webpack.common');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
