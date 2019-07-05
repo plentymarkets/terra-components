@@ -1,5 +1,5 @@
 <a name="4.0.0-beta.7"></a>
-# 4.0.0-beta.7 (Unreleased)
+# 4.0.0-beta.7 (05.07.2019)
 
 ### Bug Fixes
 * **terra-button** added styles to swap icons on a labeled button (icon on the right side)
