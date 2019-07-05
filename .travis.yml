@@ -21,3 +21,4 @@ install:
 
 script:
   - karma start --single-run --browsers ChromeHeadless,FirefoxHeadless
+  - npm run lint
