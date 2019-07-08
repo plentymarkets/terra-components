@@ -6,8 +6,7 @@ import {
 import { directives } from './components/directive-collection';
 import {
     AlertModule,
-    ModalModule,
-    TooltipModule
+    ModalModule
 } from 'ngx-bootstrap';
 import { CommonModule } from '@angular/common';
 import {
@@ -32,7 +31,6 @@ import { HttpModule } from '@angular/http';
         HttpModule,
         LocalizationModule,
         AlertModule.forRoot(),
-        TooltipModule.forRoot(),
         ModalModule.forRoot(),
         MyDatePickerModule,
         AceEditorModule,
