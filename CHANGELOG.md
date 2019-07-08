@@ -1,3 +1,19 @@
+<a name="4.0.0-beta.7"></a>
+# 4.0.0-beta.7 (05.07.2019)
+
+### Bug Fixes
+* **terra-button** added styles to swap icons on a labeled button (icon on the right side)
+* **terra-portlet** adjusted paddings
+
+### Breaking Changes
+* **build** removed app folder. Content has been moved to its root. Imports from `@plentymarkets/terra-components/app/**` need to be changed to `@plentymarkets/terra-components/**`.
+
+<a name="4.0.0-beta.6"></a>
+# 4.0.0-beta.6 (03.07.2019)
+
+### Bug fixes
+* **dependencies** downgrade `hmtlhint` to v0.10.3 since it resolves an issue regarding its import in the `HtmlLinterHelper`.
+
 <a name="4.0.0-beta.5"></a>
 # 4.0.0-beta.5 (28.06.2019)
 
