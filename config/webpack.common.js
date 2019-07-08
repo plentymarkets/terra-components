@@ -55,7 +55,7 @@ module.exports = {
                     {
                         loader: 'sass-resources-loader',
                         options: {
-                            resources: helpers.root('src/app/styles/_variables.scss')
+                            resources: helpers.root('src/lib/styles/_variables.scss')
                         }
                     }
                 ]
@@ -102,7 +102,7 @@ module.exports = {
             "window.Tether": 'tether'
         }),
         new CopyWebpackPlugin([
-            {from: 'src/app/assets/lang', to: 'assets/lang'}
+            {from: 'src/assets/lang', to: 'assets/lang'}
         ]),
         new ForkTsCheckerWebpackPlugin()
     ]
