@@ -13,7 +13,7 @@ Testing
 - [ ] Person 2 (mandatory)
 
 Information transfer
-- [ ] Inform Ceres about changes in `TerraFormComponent`
+- [ ] Inform Ceres about changes in `TerraFormComponent` (optional: relevant for changes in this component)
 
 Browser-Support (relevant for changes in scss / appearance of components and jQuery)
 - [ ] Chrome
