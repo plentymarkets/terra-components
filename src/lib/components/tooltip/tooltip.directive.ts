@@ -19,7 +19,7 @@ export class TooltipDirective implements OnInit, OnDestroy
     public tooltip:string;
 
     /**
-     * @deprecated
+     * @deprecated since the placement is calculated automatically now
      * @param placement
      */
     @Input()
