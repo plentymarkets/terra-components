@@ -153,3 +153,4 @@ export * from './helpers';
 export * from './components/forms/input/radio/radio-group.component';
 export * from './components/forms/input/radio/radio-input.component';
 export * from './models';
+export { TooltipDirective } from './components/tooltip/tooltip.directive';

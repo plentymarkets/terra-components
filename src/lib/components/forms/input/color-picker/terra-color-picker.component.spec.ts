@@ -10,7 +10,7 @@ import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tool
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
-import { TooltipDirective } from '../../../../../app/components/tooltip/tooltip.directive';
+import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 
 describe('Component: TerraColorPickerComponent', () =>
 {

@@ -8,8 +8,6 @@ import {
 } from '@angular/core';
 import Tooltip from 'tooltip.js';
 import { Placement } from 'popper.js';
-import { isNullOrUndefined } from 'util';
-
 
 @Directive({
     selector: '[tooltip]'

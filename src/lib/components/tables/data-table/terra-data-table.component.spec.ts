@@ -29,7 +29,7 @@ import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip
 import { By } from '@angular/platform-browser';
 import { TableRowComponent } from './table-row/table-row.component';
 import Spy = jasmine.Spy;
-import { TooltipDirective } from '../../../../app/components/tooltip/tooltip.directive';
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
 
 describe('TerraDataTableComponent', () =>
 {
