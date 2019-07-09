@@ -3,7 +3,7 @@
         <div class="node btn"
              [ngClass]="{'activated' : inputNode.isActive, 'isLoading' : inputNode.isLoading && inputNode.onLazyLoad}"
              (click)="onNodeClick($event)"
-             [tooltip]="tooltip | translate:lang">
+             [tooltip]="inputNode.tooltip | translate:lang">
             <span *ngIf="!inputNode.icon" class="icon_dist_top icon-placeholder"></span>
             <span *ngIf="inputNode.icon" class="icon_dist_top" [ngClass]="inputNode.icon"></span>
             <div class="buttonText">{{inputNode.name | translate:lang }}</div>

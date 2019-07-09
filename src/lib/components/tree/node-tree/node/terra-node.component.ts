@@ -31,18 +31,9 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
     @Language()
     protected lang:string;
 
-    protected tooltip:string;
-
     public ngOnInit():void
     {
-        if(!this.inputNode.tooltip)
-        {
-            this.tooltip = this.inputNode.name;
-        }
-        else
-        {
-            this.tooltip = this.inputNode.tooltip;
-        }
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public ngOnDestroy():void
