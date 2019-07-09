@@ -50,7 +50,10 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     @Input()
     public tooltipText:string;
 
-    /** @description Set the tooltip placement (bottom, top, left, right). Default top.*/
+    /**
+     * @deprecated not used anymore since the new tooltip directive exists.
+     * @description Set the tooltip placement (bottom, top, left, right). Default top.
+     * */
     @Input()
     public tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
 

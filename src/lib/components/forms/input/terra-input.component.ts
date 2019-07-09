@@ -41,6 +41,7 @@ export class TerraInputComponent implements ControlValueAccessor
     public inputIsDisabled:boolean;
 
     /**
+     * @deprecated not used anymore since the new tooltip directive exists.
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      */
     @Input()
@@ -96,7 +97,6 @@ export class TerraInputComponent implements ControlValueAccessor
     {
         this.regex = inputRegex;
         this.isValid = true;
-        this.inputTooltipPlacement = TerraPlacementEnum.TOP;
         this.inputIsSmall = false;
     }
 

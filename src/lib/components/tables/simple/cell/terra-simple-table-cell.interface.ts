@@ -9,6 +9,9 @@ export interface TerraSimpleTableCellInterface
     icon?:string;
     buttonList?:Array<TerraButtonInterface>;
     tooltipText?:string;
+    /**
+     * @deprecated not used anymore since the new tooltip directive exists.
+     */
     tooltipPlacement?:string;
     buttonListAlignRight?:boolean;
 }

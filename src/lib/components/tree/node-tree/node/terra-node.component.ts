@@ -32,7 +32,6 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
     protected lang:string;
 
     protected tooltip:string;
-    protected tooltipPlacement:string = 'right';
 
     public ngOnInit():void
     {
@@ -43,10 +42,6 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
         else
         {
             this.tooltip = this.inputNode.tooltip;
-        }
-        if(this.inputNode.tooltipPlacement)
-        {
-            this.tooltipPlacement = this.inputNode.tooltipPlacement;
         }
     }
 

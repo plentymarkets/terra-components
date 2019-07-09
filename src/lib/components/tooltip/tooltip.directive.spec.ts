@@ -12,7 +12,7 @@ import { TooltipDirective } from './tooltip.directive';
 
 @Component({
     template: `
-                  <button [tooltip]="'Test'" [placement]="'left'"></button>`
+                  <button [tooltip]="'Test'"></button>`
 })
 class TooltipDirectiveHostComponent
 {
@@ -51,14 +51,13 @@ fdescribe('TooltipDirective', () =>
 
     it('hover', () =>
     {
-        directive.ngOnInit();
         fixture.detectChanges();
         inputEl.triggerEventHandler('mouseover', null);
         fixture.detectChanges();
-        expect(document.body.getElementsByClassName('tooltip').length).toEqual(1);
+        expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(1);
 
         inputEl.triggerEventHandler('mouseout', null);
         fixture.detectChanges();
-        expect(document.body.getElementsByClassName('tooltip').length).toEqual(0);
+        expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(0);
     });
 });

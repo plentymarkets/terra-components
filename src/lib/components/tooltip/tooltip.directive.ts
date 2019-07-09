@@ -6,8 +6,9 @@ import {
     OnDestroy,
     OnInit
 } from '@angular/core';
-import Tooltip from 'tooltip.js';
-import { Placement } from 'popper.js';
+
+import tippy from 'tippy.js';
+import { isNullOrUndefined } from 'util';
 
 @Directive({
     selector: '[tooltip]'
@@ -17,28 +18,17 @@ export class TooltipDirective implements OnInit, OnDestroy
     @Input()
     public tooltip:string;
 
+    /**
+     * @deprecated
+     * @param placement
+     */
     @Input()
-    public set placement(placement:Placement)
+    public set placement(placement:string)
     {
-        // TODO maybe add automatic positioning
-        if(placement !== null && placement !== undefined && placement.length !== 0)
-        {
-            if(this._placement !== placement && this.tooltipEl !== null && this.tooltipEl !== undefined)
-            {
-                this.tooltipEl.dispose();
-                this.createTooltip(placement);
-            }
-
-            this._placement = placement;
-        }
-        else
-        {
-            this._placement = 'top';
-        }
+        // is not used anymore
     }
 
-    private tooltipEl:Tooltip;
-    private _placement:Placement;
+    private tooltipEl:any;
 
     constructor(private elementRef:ElementRef)
     {
@@ -46,40 +36,41 @@ export class TooltipDirective implements OnInit, OnDestroy
 
     public ngOnInit():void
     {
-        this.createTooltip(this._placement);
+        this.tooltipEl = tippy(this.elementRef.nativeElement, {
+            content: this.tooltip,
+            trigger: 'manual',
+            arrow:   true
+        });
+
+        if(isNullOrUndefined(this.tooltip) || this.tooltip.length === 0)
+        {
+            this.tooltipEl.disable();
+        }
     }
 
     @HostListener('mouseout')
     public onMouseOut():void
     {
-        this.tooltipEl.dispose();
+        if(!isNullOrUndefined(this.tooltipEl))
+        {
+            this.tooltipEl.hide(0);
+        }
     }
 
     @HostListener('mouseover')
     public onMouseOver():void
     {
-        this.tooltipEl.show();
-    }
-
-    @HostListener('mouseup')
-    public onMouseUp():void
-    {
-        this.tooltipEl.dispose();
+        if(!isNullOrUndefined(this.tooltipEl))
+        {
+            this.tooltipEl.show(0);
+        }
     }
 
     public ngOnDestroy():void
     {
-        this.tooltipEl.dispose();
-    }
-
-    private createTooltip(placement:Placement):void
-    {
-        this.tooltipEl = new Tooltip(this.elementRef.nativeElement, {
-            placement: placement,
-            title:     this.tooltip,
-            html:      true,
-            container: document.body,
-            trigger:   'manual'
-        });
+        if(!isNullOrUndefined(this.tooltipEl))
+        {
+            this.tooltipEl.destroy();
+        }
     }
 }

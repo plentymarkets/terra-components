@@ -26,8 +26,7 @@
                     [ngStyle]="{ 'text-align': getTextAlign(header) }"
                     [class.sortable]="isSortable(header)"
                     (click)="columnHeaderClicked.emit(header)">
-                    <span [placement]="header.tooltipPlacement"
-                          [tooltip]="header.tooltipText">
+                    <span [tooltip]="header.tooltipText">
                           {{header.caption}}
                         <span
                             [ngClass]="{'icon-table_sort': isUnsorted(header),'icon-sort_asc': isSortedAsc(header),'icon-sort_desc': isSortedDesc(header)}">
@@ -44,8 +43,7 @@
                 <td *ngIf="!cell.isHidden"
                     [ngSwitch]="getCellDataType(cell.data)"
                     [ngStyle]="{ 'text-align': getTextAlign(inputHeaderList[i]) }"
-                    [tooltip]="cell.tooltipText"
-                    [placement]="cell.tooltipPlacement">
+                    [tooltip]="cell.tooltipText">
                     
                     <ng-container *ngSwitchCase="'string'">
                         <span>{{cell.data}}</span>
