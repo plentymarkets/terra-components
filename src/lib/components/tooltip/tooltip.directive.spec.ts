@@ -18,7 +18,7 @@ class TooltipDirectiveHostComponent
 {
 }
 
-fdescribe('TooltipDirective', () =>
+describe('TooltipDirective', () =>
 {
     let component:TooltipDirectiveHostComponent;
     let fixture:ComponentFixture<TooltipDirectiveHostComponent>;
