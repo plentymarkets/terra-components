@@ -70,18 +70,20 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
         }
     }
 
-    @HostListener('mouseout')
-    public onMouseOut():void
+    @HostListener('mouseout', ['$event'])
+    public onMouseOut(event:Event):void
     {
+        event.stopPropagation();
         if(!isNullOrUndefined(this.tooltipEl))
         {
             this.tooltipEl.hide(0);
         }
     }
 
-    @HostListener('mouseover')
-    public onMouseOver():void
+    @HostListener('mouseover', ['$event'])
+    public onMouseOver(event:Event):void
     {
+        event.stopPropagation();
         if(!isNullOrUndefined(this.tooltipEl))
         {
             this.tooltipEl.show(0);
