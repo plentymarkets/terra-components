@@ -3,8 +3,10 @@ import {
     ElementRef,
     HostListener,
     Input,
+    OnChanges,
     OnDestroy,
-    OnInit
+    OnInit,
+    SimpleChanges
 } from '@angular/core';
 
 import tippy from 'tippy.js';
@@ -13,7 +15,7 @@ import { isNullOrUndefined } from 'util';
 @Directive({
     selector: '[tooltip]'
 })
-export class TooltipDirective implements OnInit, OnDestroy
+export class TooltipDirective implements OnInit, OnDestroy, OnChanges
 {
     @Input()
     public tooltip:string;
@@ -28,6 +30,16 @@ export class TooltipDirective implements OnInit, OnDestroy
         // is not used anymore
     }
 
+    /**
+     * @param disabled
+     */
+    @Input()
+    public set isDisabled(disabled:boolean)
+    {
+        this._disabled = disabled;
+    }
+
+    private _disabled:boolean;
     private tooltipEl:any;
 
     constructor(private elementRef:ElementRef)
@@ -44,7 +56,17 @@ export class TooltipDirective implements OnInit, OnDestroy
 
         if(isNullOrUndefined(this.tooltip) || this.tooltip.length === 0)
         {
-            this.tooltipEl.disable();
+            this.isDisabled = true;
+
+            this.handleTooltipState();
+        }
+    }
+
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        if(changes.hasOwnProperty('isDisabled'))
+        {
+            this.handleTooltipState();
         }
     }
 
@@ -71,6 +93,21 @@ export class TooltipDirective implements OnInit, OnDestroy
         if(!isNullOrUndefined(this.tooltipEl))
         {
             this.tooltipEl.destroy();
+        }
+    }
+
+    private handleTooltipState():void
+    {
+        if(!isNullOrUndefined(this.tooltipEl))
+        {
+            if(this._disabled)
+            {
+                this.tooltipEl.disable();
+            }
+            else
+            {
+                this.tooltipEl.enable();
+            }
         }
     }
 }
