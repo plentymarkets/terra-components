@@ -51,7 +51,8 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
         this.tooltipEl = tippy(this.elementRef.nativeElement, {
             content: this.tooltip,
             trigger: 'manual',
-            arrow:   true
+            arrow:   true,
+            boundary: 'window'
         });
 
         if(isNullOrUndefined(this.tooltip) || this.tooltip.length === 0)
