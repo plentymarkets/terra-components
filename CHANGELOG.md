@@ -1,6 +1,9 @@
-# Unreleased Changes
+<a name="4.X.X"></a>
+# 4.X.X (XX.07.2019)
+
 ### Bug Fixes
 * **checkbox** added missing paddings to checkboxes and radioboxes
+* **global styles** refactored global style handling to support all editors
 
 <a name="4.0.0-beta.7"></a>
 # 4.0.0-beta.7 (05.07.2019)
