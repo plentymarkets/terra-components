@@ -18,3 +18,5 @@ export { TerraPlacementEnum } from './enums/terra-placement.enum';
 
 // misc
 export { TerraRegex } from './regex/terra-regex';
+
+export { isNullOrUndefined } from './null-checker';
