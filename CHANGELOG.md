@@ -1,4 +1,7 @@
 # Unreleased Changes
+### Changes
+*  replacing the deprecated method `isNullOrUndefined()` from module util with the own same-named method
+
 ### Bug Fixes
 * **checkbox** added missing paddings to checkboxes and radioboxes
 
