@@ -5,10 +5,8 @@ import {
 
 @Component({
     selector: 'terra-base-toolbar',
-    styles:   [
-        require('./terra-base-toolbar.component.scss')
-    ],
-    template: require('./terra-base-toolbar.component.html')
+    template: require('./terra-base-toolbar.component.html'),
+    styles:   [require('./terra-base-toolbar.component.scss')]
 })
 export class TerraBaseToolbarComponent
 {

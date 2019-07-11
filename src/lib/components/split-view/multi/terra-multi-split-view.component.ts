@@ -31,11 +31,9 @@ let nextSplitViewId:number = 0;
  * @deprecated Will be removed in the next major release.
  */
 @Component({
-    selector: 'terra-multi-split-view',
-    template: require('./terra-multi-split-view.component.html'),
-    styles:   [
-        require('./terra-multi-split-view.component.scss')
-    ],
+    selector:  'terra-multi-split-view',
+    template:  require('./terra-multi-split-view.component.html'),
+    styles:    [require('./terra-multi-split-view.component.scss')],
     providers: [TerraMultiSplitViewBreadcrumbsService]
 })
 export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
