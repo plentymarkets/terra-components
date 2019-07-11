@@ -10,8 +10,8 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector:  'terra-base-editor',

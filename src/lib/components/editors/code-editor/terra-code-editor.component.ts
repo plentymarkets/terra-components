@@ -13,11 +13,11 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
-import { isNullOrUndefined } from 'util';
 import { HtmlLinter } from './helper/html-linter.helper';
 import { HtmlLinterRule } from './helper/html-linter-rule.enum';
 import { HtmlLinterMessageInterface } from './helper/html-linter-message.interface';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector:  'terra-code-editor',

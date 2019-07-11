@@ -27,7 +27,6 @@ import {
 } from 'angular-l10n';
 import { TerraUploadProgress } from '../model/terra-upload-progress';
 import {
-    isNullOrUndefined,
     isNumber
 } from 'util';
 import { TerraBasePrivateStorageService } from '../terra-base-private-storage.interface';
@@ -41,6 +40,7 @@ import { ClipboardHelper } from '../../../helpers/clipboard.helper';
 import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-simple-table-cell.interface';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
+import { isNullOrUndefined } from '../../../public-api';
 
 
 @Component({

@@ -5,7 +5,6 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraNodeTreeConfig } from './data/terra-node-tree.config';
-import { isNullOrUndefined } from 'util';
 import { TerraNodeInterface } from './data/terra-node.interface';
 import {
     Language,
@@ -17,6 +16,7 @@ import {
     distinctUntilChanged
 } from 'rxjs/operators';
 import { StringHelper } from '../../../helpers/string.helper';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector: 'terra-node-tree',

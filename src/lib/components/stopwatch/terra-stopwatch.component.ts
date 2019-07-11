@@ -7,7 +7,7 @@ import {
     Output
 } from '@angular/core';
 import { Language } from 'angular-l10n';
-import { isNullOrUndefined } from 'util';
+import { isNullOrUndefined } from '../../public-api';
 
 @Component({
     selector: 'terra-stopwatch',

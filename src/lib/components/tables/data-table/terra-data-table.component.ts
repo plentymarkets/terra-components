@@ -15,7 +15,6 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 import { TerraHrefTypeInterface } from './interfaces/terra-href-type.interface';
 import {
     isArray,
-    isNullOrUndefined
 } from 'util';
 import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
 import { StringHelper } from '../../../helpers/string.helper';
@@ -30,6 +29,7 @@ import { TerraBaseTable } from '../terra-base-table';
 import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
+import { isNullOrUndefined } from '../../../public-api';
 
 
 @Component({

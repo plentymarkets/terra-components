@@ -6,8 +6,8 @@ import {
 } from '@angular/core';
 import { TerraNodeInterface } from '../data/terra-node.interface';
 import { TerraNodeTreeConfig } from '../data/terra-node-tree.config';
-import { isNullOrUndefined } from 'util';
 import { Language } from 'angular-l10n';
+import { isNullOrUndefined } from '../../../../public-api';
 
 @Component({
     selector: 'terra-node',

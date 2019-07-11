@@ -6,7 +6,6 @@ import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { createS3StorageObject } from './model/s3-storage-object.interface';
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
 import { TranslationService } from 'angular-l10n';
-import { isNullOrUndefined } from 'util';
 import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseMetadataStorageService } from './terra-base-metadata-storage.interface';
 import { tap } from 'rxjs/operators';
@@ -15,6 +14,7 @@ import {
     from,
     Observable
 } from 'rxjs';
+import { isNullOrUndefined } from '../../public-api';
 
 @Injectable({
     providedIn: 'root'

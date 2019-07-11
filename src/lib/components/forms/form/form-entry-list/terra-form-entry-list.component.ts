@@ -11,7 +11,6 @@ import {
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
     isArray,
-    isNullOrUndefined
 } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import {
@@ -26,6 +25,7 @@ import { Language } from 'angular-l10n';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 import { TerraFormHelper } from '../helper/terra-form.helper';
 import { noop } from 'rxjs';
+import { isNullOrUndefined } from '../../../../public-api';
 
 @Component({
     selector:  'terra-form-entry-list',

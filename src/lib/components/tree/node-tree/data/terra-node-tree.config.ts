@@ -1,9 +1,9 @@
 import { TerraNodeInterface } from './terra-node.interface';
-import { isNullOrUndefined } from 'util';
 import { TranslationService } from 'angular-l10n';
 import { Injectable } from '@angular/core';
 import { TerraNodeTreeHelper } from '../helper/terra-node-tree.helper';
 import { ObjectHelper } from '../../../../helpers/object.helper';
+import { isNullOrUndefined } from '../../../../public-api';
 
 @Injectable()
 export class TerraNodeTreeConfig<D>

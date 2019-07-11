@@ -8,8 +8,8 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-multi-check-box-value.interface';
-import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector:  'tc-checkbox-group',

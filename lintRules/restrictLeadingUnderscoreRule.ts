@@ -1,8 +1,6 @@
 /* tslint:disable:max-classes-per-file */
 import * as ts from 'typescript';
 import * as Lint from 'tslint';
-import { isNullOrUndefined } from 'util';
-import set = Reflect.set;
 
 export class Rule extends Lint.Rules.AbstractRule
 {

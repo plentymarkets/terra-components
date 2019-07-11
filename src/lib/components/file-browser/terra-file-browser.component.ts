@@ -12,12 +12,12 @@ import {
 import { TerraFrontendStorageService } from './terra-frontend-storage.service';
 import { TerraStorageObject } from './model/terra-storage-object';
 import { TerraBaseStorageService } from './terra-base-storage.interface';
-import { isNullOrUndefined } from 'util';
 import { TerraNodeTreeConfig } from '../tree/node-tree/data/terra-node-tree.config';
 import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { TerraFileListComponent } from './file-list/file-list.component';
 import { StringHelper } from '../../helpers/string.helper';
+import { isNullOrUndefined } from '../../public-api';
 
 @Component({
     selector:  'terra-file-browser',

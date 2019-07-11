@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { isNullOrUndefined } from 'util';
 import { NestedDataInterface } from '../../data/nested-data.interface';
 import { TerraNestedDataPickerBaseService } from '../../service/terra-nested-data-picker-base.service';
 import { TerraPagerInterface } from '../../../../pager/data/terra-pager.interface';
@@ -7,6 +6,7 @@ import {
     Observable,
     of
 } from 'rxjs';
+import { isNullOrUndefined } from '../../../../../public-api';
 
 @Injectable()
 export class NestedPickerExampleService extends TerraNestedDataPickerBaseService<{}>

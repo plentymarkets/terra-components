@@ -9,7 +9,7 @@ import {
 import { TerraDataTableContextMenuEntryInterface } from './data/terra-data-table-context-menu-entry.interface';
 import { TerraBaseData } from '../../../data/terra-base.data';
 import { TerraDataTableContextMenuService } from './terra-data-table-context-menu.service';
-import { isNullOrUndefined } from 'util';
+import { isNullOrUndefined } from '../../../../public-api';
 
 /**
  * @author mkunze

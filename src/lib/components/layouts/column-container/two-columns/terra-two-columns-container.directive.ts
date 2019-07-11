@@ -15,12 +15,12 @@ import {
 import { Event } from '@angular/router/src/events';
 import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
 import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';
-import { isNullOrUndefined } from 'util';
 import {
     Observable,
     Subscription
 } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { isNullOrUndefined } from '../../../../public-api';
 
 @Directive({
     selector: 'terra-2-col[mobileRouting]'

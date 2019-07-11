@@ -8,10 +8,10 @@ import {
     Output,
     SimpleChanges
 } from '@angular/core';
-import { isNullOrUndefined } from 'util';
 import { Color } from '../../forms/input/color-picker/color.helper';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 import { Language } from 'angular-l10n';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector: 'terra-tag',

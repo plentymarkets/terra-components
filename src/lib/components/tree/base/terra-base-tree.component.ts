@@ -3,7 +3,7 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
-import { isNullOrUndefined } from 'util';
+import { isNullOrUndefined } from '../../../public-api';
 
 /**
  * @author mkunze

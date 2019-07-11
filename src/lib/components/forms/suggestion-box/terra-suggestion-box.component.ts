@@ -19,12 +19,12 @@ import {
 } from '@angular/forms';
 import {
     isNull,
-    isNullOrUndefined
 } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraBaseData } from '../../data/terra-base.data';
 import { noop } from 'rxjs';
 import { Language } from 'angular-l10n';
+import { isNullOrUndefined } from '../../../public-api';
 
 const MAX_LASTLY_USED_ENTRIES:number = 5;
 

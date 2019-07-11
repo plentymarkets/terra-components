@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import {
-    isNullOrUndefined,
     isString
 } from 'util';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
@@ -21,6 +20,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { noop } from 'rxjs';
+import { isNullOrUndefined } from '../../../../public-api';
 
 @Component({
     selector:  'terra-form-container',

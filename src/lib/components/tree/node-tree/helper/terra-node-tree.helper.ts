@@ -1,8 +1,8 @@
 import { TerraNodeInterface } from '../data/terra-node.interface';
 import {
     isNull,
-    isNullOrUndefined
 } from 'util';
+import { isNullOrUndefined } from '../../../../public-api';
 
 /**
  * @author mfrank

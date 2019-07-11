@@ -11,7 +11,6 @@ import {
     SimpleChanges,
     ViewChild
 } from '@angular/core';
-import { isNullOrUndefined } from 'util';
 import { GridOptions } from '../../interactables/gridOptions.interface';
 import { TerraSliderTick } from './data/terra-slider-tick';
 import { InteractEvent } from 'interactjs';
@@ -19,6 +18,7 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector:  'terra-slider',

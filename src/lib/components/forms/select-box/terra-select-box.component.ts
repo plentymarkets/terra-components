@@ -16,9 +16,9 @@ import {
     FormControl,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
 import { noop } from 'rxjs';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector:  'terra-select-box',

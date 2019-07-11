@@ -5,8 +5,8 @@ import {
     Input,
     ViewChild
 } from '@angular/core';
-import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector: 'terra-card',

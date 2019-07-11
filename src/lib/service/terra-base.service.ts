@@ -14,7 +14,6 @@ import { Exception } from './data/exception.interface';
 import {
     isArray,
     isNull,
-    isNullOrUndefined,
     isObject
 } from 'util';
 import { TerraAlertComponent } from '../components/alert/terra-alert.component';
@@ -28,6 +27,7 @@ import {
 } from 'rxjs/operators';
 import { TerraQueryEncoder } from './data/terra-query-encoder';
 import { DispatchHelper } from '../helpers/dispatch.helper';
+import { isNullOrUndefined } from '../public-api';
 
 /**
  * @author mfrank

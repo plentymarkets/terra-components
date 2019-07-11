@@ -15,8 +15,8 @@ import {
     IMyOptions,
     MyDatePicker
 } from 'mydatepicker';
-import { isNullOrUndefined } from 'util';
 import moment = require('moment');
+import { isNullOrUndefined } from '../../../../public-api';
 
 let nextId:number = 0;
 

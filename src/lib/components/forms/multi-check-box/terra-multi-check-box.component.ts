@@ -12,10 +12,10 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { TranslationService } from 'angular-l10n';
-import { isNullOrUndefined } from 'util';
 import { TerraMultiCheckBoxValueInterface } from './data/terra-multi-check-box-value.interface';
 import { throttleTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector:  'terra-multi-check-box',

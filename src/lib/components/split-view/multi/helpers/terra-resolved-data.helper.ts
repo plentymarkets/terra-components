@@ -1,5 +1,5 @@
 import { ResolvedDataInterface } from '../interfaces/resolved-data.interface';
-import { isNullOrUndefined } from 'util';
+import { isNullOrUndefined } from '../../../../public-api';
 import { TerraDynamicLoadedComponentInputInterface } from '../../../dynamic-module-loader/data/terra-dynamic-loaded-component-input.interface';
 import { ResolverListItemInterface } from '../interfaces/resolve-list-item.interface';
 

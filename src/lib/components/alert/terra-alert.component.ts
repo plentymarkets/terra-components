@@ -1,8 +1,8 @@
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import {
     isNull,
-    isNullOrUndefined
 } from 'util';
+import { isNullOrUndefined } from '../../public-api';
 
 /**
  * @author mkunze

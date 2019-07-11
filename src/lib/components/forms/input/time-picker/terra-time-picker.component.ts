@@ -13,9 +13,9 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
-import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
 import { Language } from 'angular-l10n';
+import { isNullOrUndefined } from '../../../../public-api';
 
 @Component({
     selector:  'terra-time-picker',

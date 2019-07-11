@@ -2,7 +2,6 @@ import 'reflect-metadata';
 import {
     isArray,
     isFunction,
-    isNullOrUndefined,
     isObject,
     isString
 } from 'util';
@@ -20,6 +19,7 @@ import { TerraFormFieldInputText } from '../../dynamic-form/data/terra-form-fiel
 import { TerraFormFieldSelectBox } from '../../dynamic-form/data/terra-form-field-select-box';
 import * as _ from 'lodash';
 import { TerraKeyValueInterface } from '../../../../models';
+import { isNullOrUndefined } from '../../../../public-api';
 
 export class TerraFormFieldHelper
 {

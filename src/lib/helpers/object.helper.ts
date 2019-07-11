@@ -1,5 +1,5 @@
-import { isNullOrUndefined } from 'util';
 import * as _ from 'lodash';
+import { isNullOrUndefined } from '../public-api';
 
 export class ObjectHelper
 {

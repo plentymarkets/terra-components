@@ -14,7 +14,6 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NestedDataTreeConfig } from './config/nested-data-tree.config';
 import { NestedDataInterface } from './data/nested-data.interface';
 import { TerraNodeInterface } from '../../tree/node-tree/data/terra-node.interface';
-import { isNullOrUndefined } from 'util';
 import { NestedValueInterface } from './data/nested-value.interface';
 import { TerraNestedDataPickerBaseService } from './service/terra-nested-data-picker-base.service';
 import { TerraNodeTreeConfig } from '../../tree/node-tree/data/terra-node-tree.config';
@@ -24,6 +23,7 @@ import {
     noop,
     Observable
 } from 'rxjs';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector:  'terra-nested-data-picker',

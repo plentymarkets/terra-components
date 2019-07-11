@@ -11,7 +11,6 @@ import { TerraCategoryPickerBaseService } from './service/terra-category-picker-
 import { TerraNodeInterface } from '../../tree/node-tree/data/terra-node.interface';
 import { CategoryDataInterface } from './data/category-data.interface';
 import { CategoryDetailDataInterface } from './data/category-detail-data.interface';
-import { isNullOrUndefined } from 'util';
 import { CategoryValueInterface } from './data/category-value.interface';
 import { TerraNestedDataPickerComponent } from '../nested-data-picker/terra-nested-data-picker.component';
 import { NestedDataTreeConfig } from '../nested-data-picker/config/nested-data-tree.config';
@@ -20,6 +19,7 @@ import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraNodeTreeConfig } from '../../tree/node-tree/data/terra-node-tree.config';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector:  'terra-category-picker',

@@ -3,7 +3,7 @@ import {
     EventEmitter,
     Output
 } from '@angular/core';
-import { isNullOrUndefined } from 'util';
+import { isNullOrUndefined } from '../../public-api';
 
 export class TerraBaseTable<T>
 {

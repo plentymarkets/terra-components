@@ -3,9 +3,9 @@ import {
     Input,
     ViewChild
 } from '@angular/core';
-import { isNullOrUndefined } from 'util';
 import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector: 'terra-info-box',

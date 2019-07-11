@@ -14,8 +14,8 @@ import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.comp
 import { Key } from 'ts-keycode-enum';
 import {
     isNull,
-    isNullOrUndefined
 } from 'util';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector: 'terra-simple-table',

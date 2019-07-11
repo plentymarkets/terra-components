@@ -11,7 +11,7 @@ import { TerraDataTableExampleInterface } from './terra-data-table.interface.exa
 import { TerraHrefTypeEnum } from '../enums/terra-href-type.enum';
 import { TerraDataTableCellInterface } from '../interfaces/terra-data-table-cell.interface';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
-import { isNullOrUndefined } from 'util';
+import { isNullOrUndefined } from '../../../../public-api';
 
 @Injectable()
 export class TerraDataTableServiceExample extends TerraDataTableBaseService<TerraDataTableExampleInterface, TerraPagerParameterInterface>

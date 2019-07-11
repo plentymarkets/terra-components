@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { TerraBreadcrumbsService } from './service/terra-breadcrumbs.service';
 import { ActivatedRoute } from '@angular/router';
-import { isNullOrUndefined } from 'util';
 import { TerraBreadcrumb } from './terra-breadcrumb';
 import { TerraBreadcrumbContainer } from './terra-breadcrumb-container';
+import { isNullOrUndefined } from '../../public-api';
 
 @Component({
     selector:  'terra-breadcrumbs',

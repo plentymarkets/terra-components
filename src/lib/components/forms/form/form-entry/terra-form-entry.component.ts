@@ -15,7 +15,6 @@ import {
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
     isFunction,
-    isNullOrUndefined
 } from 'util';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 import {
@@ -26,6 +25,7 @@ import {
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { FormEntryContainerDirective } from './form-entry-container.directive';
 import { noop } from 'rxjs';
+import { isNullOrUndefined } from '../../../../public-api';
 
 @Component({
     selector:  'terra-form-entry',

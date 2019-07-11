@@ -6,7 +6,6 @@ import {
     OnInit,
     ViewChild
 } from '@angular/core';
-import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
 import { PathHelper } from '../../../../helpers/path.helper';
@@ -18,6 +17,7 @@ import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.co
 import { TerraOverlayButtonInterface } from '../../../layouts/overlay/data/terra-overlay-button.interface';
 import { StringHelper } from '../../../../helpers/string.helper';
 import { Language } from 'angular-l10n';
+import { isNullOrUndefined } from '../../../../public-api';
 
 let nextId:number = 0;
 

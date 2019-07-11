@@ -4,8 +4,8 @@ import {
     Input,
     Output
 } from '@angular/core';
-import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector: 'terra-button',

@@ -4,9 +4,9 @@ import {
     FormControl
 } from '@angular/forms';
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
-import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
+import { isNullOrUndefined } from '../../../public-api';
 
 export class TerraInputComponent implements ControlValueAccessor
 {

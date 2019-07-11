@@ -16,9 +16,9 @@ import {
 } from '@angular/forms';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraSuggestionBoxValueInterface } from '../suggestion-box/data/terra-suggestion-box.interface';
-import { isNullOrUndefined } from 'util';
 import { TerraTagNameInterface } from '../../layouts/tag/data/terra-tag-name.interface';
 import { Language } from 'angular-l10n';
+import { isNullOrUndefined } from '../../../public-api';
 
 @Component({
     selector:  'terra-tag-select',
