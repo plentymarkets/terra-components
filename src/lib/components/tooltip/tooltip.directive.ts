@@ -71,7 +71,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     }
 
     @HostListener('mouseout', ['$event'])
-    public onMouseOut(event:Event):void
+    public onMouseOut(event:MouseEvent):void
     {
         event.stopPropagation();
         if(!isNullOrUndefined(this.tooltipEl))
@@ -81,7 +81,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     }
 
     @HostListener('mouseover', ['$event'])
-    public onMouseOver(event:Event):void
+    public onMouseOver(event:MouseEvent):void
     {
         event.stopPropagation();
         if(!isNullOrUndefined(this.tooltipEl))

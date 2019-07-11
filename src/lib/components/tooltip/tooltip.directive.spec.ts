@@ -5,14 +5,14 @@ import {
 } from '@angular/core/testing';
 import {
     Component,
-    DebugElement
+    DebugElement,
+    SimpleChange
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TooltipDirective } from './tooltip.directive';
 
 @Component({
-    template: `
-                  <button [tooltip]="'Test'"></button>`
+    template: `<label [tooltip]="'Test'">test</label>`
 })
 class TooltipDirectiveHostComponent
 {
@@ -41,7 +41,7 @@ describe('TooltipDirective', () =>
         component = fixture.componentInstance;
         directive = fixture.debugElement.query(By.directive(TooltipDirective)).injector.get(TooltipDirective);
 
-        inputEl = fixture.debugElement.query(By.css('button'));
+        inputEl = fixture.debugElement.query(By.css('label'));
     });
 
     it('should create an instance', () =>
@@ -49,14 +49,26 @@ describe('TooltipDirective', () =>
         expect(component).toBeTruthy();
     });
 
-    it('hover', () =>
+    it('should trigger the tooltip on `mouseover` and hide it on `mouseout`', () =>
     {
         fixture.detectChanges();
-        inputEl.triggerEventHandler('mouseover', null);
+        inputEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
         fixture.detectChanges();
         expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(1);
 
-        inputEl.triggerEventHandler('mouseout', null);
+        inputEl.triggerEventHandler('mouseout', new Event('MouseEvent'));
+        fixture.detectChanges();
+        expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(0);
+    });
+
+    it('should not trigger the tooltip when `isDisabled`', () =>
+    {
+        directive.isDisabled = true;
+        directive.ngOnChanges({
+            isDisabled: new SimpleChange(null, true, true)
+        });
+
+        inputEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
         fixture.detectChanges();
         expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(0);
     });
