@@ -5,10 +5,10 @@
                  [class.roundedBottomBorder]="collapsed"
                  (click)="toggleCollapsed()">
                 <div class="checkbox-container">
-                    <terra-checkbox type="checkbox"
+                    <terra-checkbox #headerCheckbox
+                                    type="checkbox"
                                     (click)="$event.stopPropagation()"
                                     [inputIsDisabled]="inputIsDisabled"
-                                    [isIndeterminate]="headerCheckboxIndeterminate"
                                     [inputCaption]="inputName.toUpperCase()"
                                     [(ngModel)]="headerCheckboxValue"
                                     (ngModelChange)="onHeaderCheckboxChange($event)">

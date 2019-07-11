@@ -1,7 +1,8 @@
 import {
     Component,
     forwardRef,
-    Input
+    Input,
+    OnInit
 } from '@angular/core';
 import {
     ControlValueAccessor,
@@ -23,7 +24,7 @@ import { noop } from 'rxjs';
         }
     ]
 })
-export class CheckboxGroupComponent implements ControlValueAccessor
+export class CheckboxGroupComponent implements ControlValueAccessor, OnInit
 {
     /**
      * @description If true, the checkbox group will be disabled. Default false.
@@ -58,6 +59,11 @@ export class CheckboxGroupComponent implements ControlValueAccessor
 
     private onChangeCallback:(_:Array<any>) => void = noop;
 
+    public ngOnInit():void
+    {
+        this.updateMultiCheckboxValues();
+    }
+
     public registerOnChange(fn:any):void
     {
         this.onChangeCallback = fn;
@@ -71,7 +77,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor
     public writeValue(values:Array<any>):void
     {
         this.values = values;
-        this.updateMultiCheckboxValues();
     }
 
     protected onMultiCheckboxChanged(checkboxValues:Array<TerraMultiCheckBoxValueInterface>):void
@@ -106,7 +111,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor
         }
 
         this.onChangeCallback(this.values);
-        this.updateMultiCheckboxValues();
     }
 
     private updateMultiCheckboxValues():void

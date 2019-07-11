@@ -5,7 +5,8 @@ import {
     Input,
     OnDestroy,
     OnInit,
-    Output
+    Output,
+    ViewChild
 } from '@angular/core';
 import {
     ControlValueAccessor,
@@ -16,6 +17,7 @@ import { isNullOrUndefined } from 'util';
 import { TerraMultiCheckBoxValueInterface } from './data/terra-multi-check-box-value.interface';
 import { throttleTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { TerraCheckboxComponent } from '../../..';
 
 @Component({
     selector:  'terra-multi-check-box',
@@ -52,6 +54,9 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
      */
     @Output()
     public checkboxStateChanges:EventEmitter<Array<TerraMultiCheckBoxValueInterface>> = new EventEmitter<Array<TerraMultiCheckBoxValueInterface>>();
+
+    @ViewChild('headerCheckbox')
+    public headerCheckbox:TerraCheckboxComponent;
 
     protected valueList:Array<TerraMultiCheckBoxValueInterface> = [];
 
@@ -96,6 +101,8 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
         {
             this.emitCallbacks(this.valueList, checkboxes);
         });
+
+        this.checkHeaderCheckboxState();
     }
 
     public ngOnDestroy():void
@@ -162,16 +169,16 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
     {
         if(filteredLength === 0)
         {
-            this.headerCheckboxValue = false;
+            this.headerCheckbox.writeValue(false);
         }
         else if(filteredLength === this.valueList.length)
         {
-            this.headerCheckboxValue = true;
+            this.headerCheckbox.writeValue(true);
         }
         else
         {
-            this.headerCheckboxValue = undefined;
-            this.headerCheckboxIndeterminate = true;
+            this.headerCheckbox.writeValue(false);
+            this.headerCheckbox.isIndeterminate = true;
         }
     }
 
