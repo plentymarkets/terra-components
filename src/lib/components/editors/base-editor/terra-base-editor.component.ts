@@ -17,8 +17,7 @@ import { noop } from 'rxjs';
     selector:  'terra-base-editor',
     template:  require('./terra-base-editor.component.html'),
     styles:    [
-        require('./terra-base-editor.component.scss'),
-        require('./terra-base-editor.component.glob.scss')
+        require('./terra-base-editor.component.scss')
     ],
     providers: [{
         provide:     NG_VALUE_ACCESSOR,

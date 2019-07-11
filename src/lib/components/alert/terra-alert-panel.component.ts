@@ -14,8 +14,7 @@ import { Subscription } from 'rxjs';
 @Component({
     selector: 'terra-alert-panel',
     styles:   [
-        require('./terra-alert-panel.component.scss'),
-        require('./terra-alert-panel.component.glob.scss').toString()
+        require('./terra-alert-panel.component.scss')
     ],
     template: require('./terra-alert-panel.component.html')
 })

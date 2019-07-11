@@ -6,8 +6,7 @@ import {
 @Component({
     selector: 'terra-base-toolbar',
     styles:   [
-        require('./terra-base-toolbar.component.scss'),
-        require('./terra-base-toolbar.component.glob.scss').toString()
+        require('./terra-base-toolbar.component.scss')
     ],
     template: require('./terra-base-toolbar.component.html')
 })

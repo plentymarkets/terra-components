@@ -24,8 +24,7 @@ import { StringHelper } from '../../helpers/string.helper';
     template:  require('./terra-file-browser.component.html'),
     providers: [TerraNodeTreeConfig],
     styles:    [
-        require('./terra-file-browser.component.scss'),
-        require('./terra-file-browser.component.glob.scss').toString()
+        require('./terra-file-browser.component.scss')
     ]
 })
 export class TerraFileBrowserComponent implements OnChanges, OnInit

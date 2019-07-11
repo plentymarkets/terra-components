@@ -23,8 +23,7 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
     selector:  'terra-code-editor',
     template:  require('./terra-code-editor.component.html'),
     styles:    [
-        require('./terra-code-editor.component.scss'),
-        require('./terra-code-editor.component.glob.scss').toString()
+        require('./terra-code-editor.component.scss')
     ],
     providers: [{
         provide:     NG_VALUE_ACCESSOR,

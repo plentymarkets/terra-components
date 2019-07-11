@@ -34,8 +34,7 @@ let nextSplitViewId:number = 0;
     selector: 'terra-multi-split-view',
     template: require('./terra-multi-split-view.component.html'),
     styles:   [
-        require('./terra-multi-split-view.component.scss'),
-        require('./terra-multi-split-view.component.glob.scss').toString()
+        require('./terra-multi-split-view.component.scss')
     ],
     providers: [TerraMultiSplitViewBreadcrumbsService]
 })
