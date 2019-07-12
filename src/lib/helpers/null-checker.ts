@@ -1,4 +1,4 @@
-export function isNullOrUndefined(object:Object):boolean
+export function isNullOrUndefined(value:unknown):boolean
 {
-    return object === null || object === undefined;
+    return value === null || value === undefined;
 }
