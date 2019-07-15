@@ -57,8 +57,6 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
      */
     public ngOnInit():void
     {
-        window.document.body.appendChild(this.elementRef.nativeElement);
-
         this.contextMenuService.show.subscribe((eventData:{ event:MouseEvent, data:D }):void =>
         {
             this.eventData = eventData;
@@ -68,7 +66,10 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
 
     public ngOnDestroy():void
     {
-        window.document.body.removeChild(this.elementRef.nativeElement);
+        if(this._isShown)
+        {
+            window.document.body.removeChild(this.elementRef.nativeElement);
+        }
     }
 
     private clickedOutside(event:Event):void
@@ -83,10 +84,12 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     {
         if(this._isShown !== value && value)
         {
+            window.document.body.appendChild(this.elementRef.nativeElement);
             document.addEventListener('click', this.clickListener, true);
         }
         else if(this._isShown !== value && !value)
         {
+            window.document.body.removeChild(this.elementRef.nativeElement);
             document.removeEventListener('click', this.clickListener);
         }
         this._isShown = value;
