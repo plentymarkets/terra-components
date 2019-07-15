@@ -1,4 +1,5 @@
 import {
+    AfterViewInit,
     Component,
     EventEmitter,
     forwardRef,
@@ -31,7 +32,7 @@ import { TerraCheckboxComponent } from '../../..';
         }
     ]
 })
-export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlValueAccessor
+export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlValueAccessor, AfterViewInit
 {
     /**
      * @description If true, the multi check box will be disabled. Default false.
@@ -101,8 +102,16 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
         {
             this.emitCallbacks(this.valueList, checkboxes);
         });
+    }
 
-        this.checkHeaderCheckboxState();
+    public ngAfterViewInit():void
+    {
+        let values:any = this.valueList.find((value:TerraMultiCheckBoxValueInterface) => value.value === true);
+
+        if(isNullOrUndefined(values))
+        {
+            this.headerCheckbox.isIndeterminate = true;
+        }
     }
 
     public ngOnDestroy():void
