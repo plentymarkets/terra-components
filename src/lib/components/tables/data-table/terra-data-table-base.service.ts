@@ -11,6 +11,7 @@ import {
 import { StringHelper } from '../../../helpers/string.helper';
 import { terraPagerDefaultPagingSizes } from '../../pager/data/terra-pager-default-paging-sizes';
 import { Observable } from 'rxjs';
+import { ChangeDetectorRef } from '@angular/core';
 
 /**
  * @author pweyrich
@@ -20,6 +21,7 @@ export abstract class TerraDataTableBaseService<T, P>
     public filterParameter:P;
     public sortBy:string;
     public sortOrder:TerraDataTableSortOrderEnum;
+    public cd:ChangeDetectorRef;
 
     private _rowList:Array<TerraDataTableRowInterface<T>> = [];
     private _requestPending:boolean;
@@ -176,7 +178,11 @@ export abstract class TerraDataTableBaseService<T, P>
             tap((res:TerraPagerInterface<T>) => this.updatePagingData(res)),
             map((res:TerraPagerInterface<T>) => res.entries.map((entry:T) => this.dataToRowMapping(entry))),
             finalize(() => this._requestPending = false)
-        ).subscribe((rowList:Array<TerraDataTableRowInterface<T>>) => this._rowList = rowList);
+        ).subscribe((rowList:Array<TerraDataTableRowInterface<T>>) =>
+        {
+            this._rowList = rowList;
+            this.cd.detectChanges();
+        });
     }
 
     /**
