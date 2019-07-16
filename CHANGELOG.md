@@ -1,8 +1,8 @@
 # Unreleased Changes
 ### Bug Fixes
 * **checkbox** added missing paddings to checkboxes and radioboxes
-* **inputs** fixed color and paddings in disabled inputs
-* **buttons** fixed missing spaces for multiple inputs next to each other
+* **input** fixed color and paddings in disabled inputs
+* **button** fixed missing spaces for multiple buttons next to each other
 
 <a name="4.0.0-beta.7"></a>
 # 4.0.0-beta.7 (05.07.2019)
