@@ -316,6 +316,22 @@ fieldset[disabled] a.btn
     }
 }
 
+// space between multiple buttons
+:host-context(*)
+{
+    &:not(:last-child) .btn-handler
+    {
+        margin-right: 4px;
+    }
+}
+:host-context(.btn-toolbar)
+{
+    &:not(:last-child) .btn-handler
+    {
+        margin-right: 0;
+    }
+}
+
 ////////////// Button Group (Horizontal) //////////////
 
 :host-context(.btn-group)
@@ -387,6 +403,7 @@ fieldset[disabled] a.btn
         max-width: 100%;
         width: 100%;
         text-align: left;
+        margin-right: 0;
     }
     
     &:first-child:not(:last-child) .btn
