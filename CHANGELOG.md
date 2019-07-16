@@ -1,6 +1,7 @@
 # Unreleased Changes
 ### Bug Fixes
 * **checkbox** added missing paddings to checkboxes and radioboxes
+* **select-box** added default blank space for input name to prevent wrong positioning of selected entry
 
 <a name="4.0.0-beta.7"></a>
 # 4.0.0-beta.7 (05.07.2019)
