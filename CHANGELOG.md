@@ -1,16 +1,22 @@
-# Unreleased Changes
+# Unreleased
 ### Bug Fixes
-* **checkbox** added missing paddings to checkboxes and radioboxes
 * **select-box** added default blank space for input name to prevent wrong positioning of selected entry
-* **input** fixed color and paddings in disabled inputs
-* **button** fixed missing spaces for multiple buttons next to each other
+
+<a name="4.0.0-beta.8"></a>
+# 4.0.0-beta.8 (17.07.2019)
+
+### Bug Fixes
+* **theme-core** removed border-radius to improve performance.
+* **checkbox** added missing paddings to checkboxes and radioboxes.
+* **input** fixed color and paddings in disabled inputs.
+* **button** fixed missing spaces for multiple buttons next to each other.
 
 <a name="4.0.0-beta.7"></a>
 # 4.0.0-beta.7 (05.07.2019)
 
 ### Bug Fixes
-* **terra-button** added styles to swap icons on a labeled button (icon on the right side)
-* **terra-portlet** adjusted paddings
+* **terra-button** added styles to swap icons on a labeled button (icon on the right side).
+* **terra-portlet** adjusted paddings.
 
 ### Breaking Changes
 * **build** removed app folder. Content has been moved to its root. Imports from `@plentymarkets/terra-components/app/**` need to be changed to `@plentymarkets/terra-components/**`.
