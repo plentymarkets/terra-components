@@ -25,11 +25,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraDataTableServiceExample } from './example/terra-data-table.service.example';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
-import { DebugElement } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    DebugElement,
+} from '@angular/core';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { TableRowComponent } from './table-row/table-row.component';
 import Spy = jasmine.Spy;
+import { MockChangeDetectorRef } from '../../../testing/mock-change-detector-ref';
+import { TerraDataTableContextMenuService } from './context-menu/terra-data-table-context-menu.service';
 
 describe('TerraDataTableComponent', () =>
 {
@@ -66,8 +73,16 @@ describe('TerraDataTableComponent', () =>
             ],
             providers:    [
                 TerraDataTableServiceExample,
-                TerraLoadingSpinnerService
+                TerraLoadingSpinnerService,
+                {
+                    provide:  ChangeDetectorRef,
+                    useClass: MockChangeDetectorRef
+                }
             ]
+        }).overrideComponent(TerraDataTableComponent, {
+            set: new Component({
+                changeDetection: ChangeDetectionStrategy.Default
+            })
         }).compileComponents();
     }));
 
@@ -90,6 +105,7 @@ describe('TerraDataTableComponent', () =>
         beforeEach(() =>
         {
             service = TestBed.get(TerraDataTableServiceExample);
+            service.cd = new MockChangeDetectorRef();
             component.inputService = service;
         });
 
