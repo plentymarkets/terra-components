@@ -1,4 +1,6 @@
-# Unreleased Changes
+<a name="4.0.0-beta.8"></a>
+# 4.0.0-beta.8 (17.07.2019)
+
 ### Bug Fixes
 * **theme-core** removed border-radius to improve performance.
 * **checkbox** added missing paddings to checkboxes and radioboxes.
