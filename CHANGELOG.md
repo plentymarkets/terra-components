@@ -1,3 +1,7 @@
+# Unreleased
+### Bug Fixes
+* **select-box** added default blank space for input name to prevent wrong positioning of selected entry
+
 <a name="4.0.0-beta.8"></a>
 # 4.0.0-beta.8 (17.07.2019)
 

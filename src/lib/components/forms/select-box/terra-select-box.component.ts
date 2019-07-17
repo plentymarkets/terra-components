@@ -35,7 +35,7 @@ import { noop } from 'rxjs';
 export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
     @Input()
-    public inputName:string;
+    public inputName:string = ' ';
 
     @Input()
     public inputIsRequired:boolean;
