@@ -9,7 +9,8 @@ module.exports = {
     entry: {
         'polyfills': './src/polyfills.ts',
         'vendor': './src/vendor.ts',
-        'app': './src/main.ts'
+        'app': './src/main.ts',
+        'style': './node_modules/@angular/material/prebuilt-themes/indigo-pink.css'
     },
     resolve: {
         extensions: ['.ts', '.js', '.html']
@@ -39,6 +40,13 @@ module.exports = {
                 test: /\.html$/,
                 loader: 'html-loader',
                 exclude: [helpers.root('src/index.html')]
+            },
+            {
+                test: /\.css$/,
+                loaders: [
+                    'style-loader',
+                    'css-loader'
+                ]
             },
             {
                 test: /\.scss$/,
