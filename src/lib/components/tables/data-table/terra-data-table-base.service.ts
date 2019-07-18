@@ -181,7 +181,7 @@ export abstract class TerraDataTableBaseService<T, P>
         ).subscribe((rowList:Array<TerraDataTableRowInterface<T>>) =>
         {
             this._rowList = rowList;
-            this.cd.detectChanges();
+            this.cd.markForCheck();
         });
     }
 

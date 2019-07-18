@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {
+    Component
+} from '@angular/core';
 import { TerraDataTableServiceExample } from './terra-data-table.service.example';
 import { TerraDataTableComponentExample } from './terra-data-table.component.example';
 

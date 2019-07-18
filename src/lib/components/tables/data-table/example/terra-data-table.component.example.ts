@@ -98,12 +98,12 @@ export class TerraDataTableComponentExample implements OnInit
             {
                 caption:   'value',
                 sortBy:    'value',
-                width:     20,
+                width:     200,
                 textAlign: TerraTextAlignEnum.LEFT
             },
             {
                 caption: 'email',
-                width:   20
+                width:   200
             }
         ];
     }
