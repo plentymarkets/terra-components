@@ -34,5 +34,95 @@
 
 body
 {
-    padding: 48px;
+    mat-form-field
+    {
+        &.mat-focused
+        {
+            .mat-form-field-wrapper
+            {
+                .mat-form-field-flex
+                {
+                    .mat-form-field-infix
+                    {
+                        mat-select
+                        {
+                            .mat-select-trigger
+                            {
+                                .mat-select-arrow-wrapper
+                                {
+                                    .mat-select-arrow
+                                    {
+                                        color: var(--color-active);
+                                    }
+                                }
+                            }
+                        }
+                        
+                        .mat-form-field-label-wrapper
+                        {
+                            .mat-form-field-label
+                            {
+                                color: var(--color-active);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    
+        .mat-form-field-wrapper
+        {
+            .mat-form-field-flex
+            {
+                .mat-form-field-infix
+                {
+                    mat-select
+                    {
+                        .mat-select-trigger
+                        {
+                            .mat-select-value
+                            {
+                                .mat-select-value-text
+                                {
+                                    color: var(--color-structure-12);
+                                    font-weight: var(--font-weight-2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        .mat-form-field-wrapper
+        {
+            .mat-form-field-underline
+            {
+                border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
+                
+                .mat-form-field-ripple
+                {
+                    background-color: var(--color-active);
+                }
+            }
+        }
+    }
+    
+    .mat-select-panel
+    {
+        &.mat-primary
+        {
+            mat-option
+            {
+                &.mat-selected
+                {
+                    &:not(.mat-option-disabled)
+                    {
+                        color: var(--color-structure-0);
+                        background-color: var(--color-active);
+                    }
+                }
+            }
+        }
+    }
 }

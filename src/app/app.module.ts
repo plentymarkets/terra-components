@@ -22,6 +22,7 @@ import {
     FormsModule,
     ReactiveFormsModule
 } from '@angular/forms';
+import { TerraComponentsModule } from '../lib';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -44,6 +45,7 @@ function initL10n(l10nLoader:L10nLoader):Function
         BrowserAnimationsModule,
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
+        TerraComponentsModule,
         TerraComponentsExamplesModule,
         MatSelectModule,
         FormsModule,
