@@ -1,13 +1,16 @@
 <mat-form-field>
     <mat-label>Two way data binding</mat-label>
     <mat-select required [(value)]="selected">
+        <mat-select-trigger>
+            <span [ngClass]="selected?.icon">{{selected?.name}}</span>
+        </mat-select-trigger>
         <mat-option [value]="null"></mat-option>
-        <mat-option *ngFor="let animal of animals" [value]="animal">
-            {{animal}}
+        <mat-option *ngFor="let animal of animals" [value]="animal" [ngClass]="animal.icon">
+            {{animal.name}}
         </mat-option>
     </mat-select>
 </mat-form-field>
-<p>You selected: {{selected}}</p>
+<p>You selected: {{selected?.name}}</p>
 <mat-form-field>
     <mat-label>Disabled</mat-label>
     <mat-select disabled>
