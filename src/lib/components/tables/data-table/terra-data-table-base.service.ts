@@ -174,15 +174,16 @@ export abstract class TerraDataTableBaseService<T, P>
         // request table data from the server
         this._requestPending = true;
         this._rowList = [];
+        this.cd.markForCheck();
         this.requestTableData(params).pipe(
             tap((res:TerraPagerInterface<T>) => this.updatePagingData(res)),
             map((res:TerraPagerInterface<T>) => res.entries.map((entry:T) => this.dataToRowMapping(entry))),
-            finalize(() => this._requestPending = false)
-        ).subscribe((rowList:Array<TerraDataTableRowInterface<T>>) =>
-        {
-            this._rowList = rowList;
-            this.cd.markForCheck();
-        });
+            tap((rowList:Array<TerraDataTableRowInterface<T>>) => this._rowList = rowList),
+            finalize(() => {
+                this._requestPending = false;
+                this.cd.markForCheck();
+            })
+        ).subscribe();
     }
 
     /**
