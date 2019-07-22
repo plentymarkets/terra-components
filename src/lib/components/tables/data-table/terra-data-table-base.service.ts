@@ -179,7 +179,8 @@ export abstract class TerraDataTableBaseService<T, P>
             tap((res:TerraPagerInterface<T>) => this.updatePagingData(res)),
             map((res:TerraPagerInterface<T>) => res.entries.map((entry:T) => this.dataToRowMapping(entry))),
             tap((rowList:Array<TerraDataTableRowInterface<T>>) => this._rowList = rowList),
-            finalize(() => {
+            finalize(() =>
+            {
                 this._requestPending = false;
                 this.cd.markForCheck();
             })
