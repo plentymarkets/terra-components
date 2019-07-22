@@ -17,6 +17,11 @@ import { l10nConfig } from './translation/l10n.config';
 import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
+import { MatSelectModule } from '@angular/material';
+import {
+    FormsModule,
+    ReactiveFormsModule
+} from '@angular/forms';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -39,7 +44,10 @@ function initL10n(l10nLoader:L10nLoader):Function
         BrowserAnimationsModule,
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
-        TerraComponentsExamplesModule
+        TerraComponentsExamplesModule,
+        MatSelectModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [AppComponent, ShowcaseComponent],
     providers: [
