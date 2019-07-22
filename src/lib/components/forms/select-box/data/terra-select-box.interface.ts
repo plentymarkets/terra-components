@@ -4,4 +4,5 @@ export interface TerraSelectBoxValueInterface
     caption:string | number;
     icon?:string;
     position?:number;
+    color?:string;
 }
