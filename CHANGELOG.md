@@ -1,4 +1,9 @@
-# Unreleased
+<a name="4.0.0-beta.9"></a>
+# 4.0.0-beta.9 (XX.XX.2019)
+
+### Feature
+* **data-table** changed `ChangeDetectionStrategy` from `default` to `onPush`
+
 ### Bug Fixes
 * **select-box** added default blank space for input name to prevent wrong positioning of selected entry
 
