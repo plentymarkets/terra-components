@@ -70,7 +70,7 @@ describe('TerraDataTableComponent', () =>
             ],
             providers:    [
                 TerraDataTableServiceExample,
-                TerraLoadingSpinnerService,
+                TerraLoadingSpinnerService
             ]
         }).overrideComponent(TerraDataTableComponent, {
             set: new Component({
