@@ -33,8 +33,9 @@ body
         //Inputs & Select-Boxes//
         --input-padding-default: 0 var(--space-md) 0 30%;
         --input-isEmpty-padding-default: 0;
+        --input-disabled-padding-default: 0 var(--space-md) 0 30%;
         --label-width-default: 30%;
-        --label-padding-default: var(--space-lg) 0;
+        --label-disabled-padding-default: var(--space-lg) 0 var(--space-lg) var(--space-md);
         --select-box-labeled-padding-default: var(--space-md) var(--space-md) var(--space-md) 30%;
         --select-box-labeled-isSmall-padding-default: var(--space-md) var(--space-md) var(--space-md) 30%;
         --select-box-isSmall-background-position-default: calc(100% - var(--space-lg)) var(--space-lg);
