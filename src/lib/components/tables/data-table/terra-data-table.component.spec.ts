@@ -38,7 +38,7 @@ import Spy = jasmine.Spy;
 import { MockChangeDetectorRef } from '../../../testing/mock-change-detector-ref';
 import { TerraDataTableContextMenuService } from './context-menu/terra-data-table-context-menu.service';
 
-describe('TerraDataTableComponent', () =>
+fdescribe('TerraDataTableComponent', () =>
 {
     let component:TerraDataTableComponent<any, any>;
     let fixture:ComponentFixture<TerraDataTableComponent<any, any>>;
@@ -74,10 +74,6 @@ describe('TerraDataTableComponent', () =>
             providers:    [
                 TerraDataTableServiceExample,
                 TerraLoadingSpinnerService,
-                {
-                    provide:  ChangeDetectorRef,
-                    useClass: MockChangeDetectorRef
-                }
             ]
         }).overrideComponent(TerraDataTableComponent, {
             set: new Component({
@@ -126,7 +122,7 @@ describe('TerraDataTableComponent', () =>
                 let pagerDE:DebugElement = fixture.nativeElement.querySelector('terra-pager');
                 expect(service.rowList).toBeDefined();
                 expect(service.rowList.length).toEqual(0);
-                expect(pagerDE).toBeNull();
+                expect(pagerDE.attributes.hasOwnProperty('hidden')).toBe(true);
             });
 
             it('should show the pager if #inputHasPager is set and data is available', async(() =>
@@ -138,7 +134,7 @@ describe('TerraDataTableComponent', () =>
                 let pagerDE:DebugElement = fixture.debugElement.query(By.css('terra-pager'));
                 expect(service.rowList).toBeDefined();
                 expect(service.rowList.length).toBeGreaterThan(0);
-                expect(pagerDE).toBeTruthy();
+                expect(pagerDE.attributes.hasOwnProperty('hidden')).toBe(false);
             }));
 
             it(`should hide the pager if #inputHasPager is not set`, () =>
