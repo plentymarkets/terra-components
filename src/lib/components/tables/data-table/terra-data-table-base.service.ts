@@ -12,6 +12,7 @@ import { StringHelper } from '../../../helpers/string.helper';
 import { terraPagerDefaultPagingSizes } from '../../pager/data/terra-pager-default-paging-sizes';
 import { Observable } from 'rxjs';
 import { ChangeDetectorRef } from '@angular/core';
+import { isNullOrUndefined } from 'util';
 
 /**
  * @author pweyrich
@@ -21,7 +22,7 @@ export abstract class TerraDataTableBaseService<T, P>
     public filterParameter:P;
     public sortBy:string;
     public sortOrder:TerraDataTableSortOrderEnum;
-    public cd:ChangeDetectorRef;
+    public cdr:ChangeDetectorRef;
 
     private _rowList:Array<TerraDataTableRowInterface<T>> = [];
     private _requestPending:boolean;
@@ -174,7 +175,7 @@ export abstract class TerraDataTableBaseService<T, P>
         // request table data from the server
         this._requestPending = true;
         this._rowList = [];
-        this.cd.markForCheck();
+        this.markForCheck();
         this.requestTableData(params).pipe(
             tap((res:TerraPagerInterface<T>) => this.updatePagingData(res)),
             map((res:TerraPagerInterface<T>) => res.entries.map((entry:T) => this.dataToRowMapping(entry))),
@@ -182,7 +183,7 @@ export abstract class TerraDataTableBaseService<T, P>
             finalize(() =>
             {
                 this._requestPending = false;
-                this.cd.markForCheck();
+                this.markForCheck();
             })
         ).subscribe();
     }
@@ -201,4 +202,12 @@ export abstract class TerraDataTableBaseService<T, P>
      * @returns {TerraDataTableRowInterface<T>}
      */
     public abstract dataToRowMapping(res:T):TerraDataTableRowInterface<T>;
+
+    private markForCheck():void
+    {
+        if(!isNullOrUndefined(this.cdr))
+        {
+            this.cdr.markForCheck();
+        }
+    }
 }

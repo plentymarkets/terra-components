@@ -83,7 +83,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     protected readonly refType:{} = TerraHrefTypeEnum;
     protected readonly checkboxColumnWidth:number = 25;
 
-    constructor(private cd:ChangeDetectorRef)
+    constructor(private cdr:ChangeDetectorRef)
     {
         super();
     }
@@ -114,7 +114,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
             debounceTime(400)
         ).subscribe(() => this.getResults());
 
-        this.inputService.cd = this.cd;
+        this.inputService.cdr = this.cdr;
     }
 
     /**

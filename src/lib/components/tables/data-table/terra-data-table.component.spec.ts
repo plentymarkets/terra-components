@@ -27,7 +27,6 @@ import { TerraDataTableServiceExample } from './example/terra-data-table.service
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     DebugElement,
 } from '@angular/core';
@@ -35,10 +34,8 @@ import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip
 import { By } from '@angular/platform-browser';
 import { TableRowComponent } from './table-row/table-row.component';
 import Spy = jasmine.Spy;
-import { MockChangeDetectorRef } from '../../../testing/mock-change-detector-ref';
-import { TerraDataTableContextMenuService } from './context-menu/terra-data-table-context-menu.service';
 
-fdescribe('TerraDataTableComponent', () =>
+describe('TerraDataTableComponent', () =>
 {
     let component:TerraDataTableComponent<any, any>;
     let fixture:ComponentFixture<TerraDataTableComponent<any, any>>;
@@ -101,7 +98,6 @@ fdescribe('TerraDataTableComponent', () =>
         beforeEach(() =>
         {
             service = TestBed.get(TerraDataTableServiceExample);
-            service.cd = new MockChangeDetectorRef();
             component.inputService = service;
         });
 
