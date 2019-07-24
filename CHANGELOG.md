@@ -6,7 +6,7 @@
 
 ### Bug Fixes
 * **select-box** added default blank space for input name to prevent wrong positioning of selected entry
-* **global styles** refactored global style handling to support all editors
+* **global styles** refactored global style handling. They are now included in the `styles.scss`.
 
 <a name="4.0.0-beta.8"></a>
 # 4.0.0-beta.8 (17.07.2019)
