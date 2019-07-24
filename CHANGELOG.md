@@ -1,5 +1,5 @@
 <a name="4.0.0-beta.9"></a>
-# 4.0.0-beta.9 (XX.XX.2019)
+# 4.0.0-beta.9 (24.07.2019)
 
 ### Feature
 * **data-table** changed `ChangeDetectionStrategy` from `default` to `onPush`
