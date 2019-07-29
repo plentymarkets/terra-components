@@ -3,6 +3,7 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraSelectBoxValueInterface } from '../data/terra-select-box.interface';
+import { AllowedColors } from '../data/allowed.colors.enum';
 
 @Component({
     selector: 'terra-select-box-example',
@@ -36,7 +37,7 @@ export class TerraSelectBoxComponentExample implements OnInit
             {
                 value: true,
                 caption: 'webshop 2',
-                color: 'var(--color-add)'
+                color: AllowedColors.add
             }
         );
     }

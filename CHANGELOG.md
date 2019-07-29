@@ -1,3 +1,9 @@
+<a>unreleased</a>
+# unreleased
+
+### Feature 
+* **select-box** added option to set a color for select-box items.
+
 <a name="4.0.0-beta.9"></a>
 # 4.0.0-beta.9 (24.07.2019)
 
