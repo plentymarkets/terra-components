@@ -115,7 +115,6 @@ export const exportedComponents:Array<Type<any>> = [
     TerraNoteComponent,
     TerraNodeTreeComponent,
     TerraNodeComponent,
-    TerraCategoryPickerComponent,
     TerraDynamicFormComponent,
     TerraDynamicSwitchComponent,
     TerraNestedDataPickerComponent,
