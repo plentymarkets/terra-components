@@ -66,7 +66,7 @@ export class PathHelper
             filename = '';
         }
         let splittedFilename:Array<string> = filename.split('.');
-        return splittedFilename.pop();
+        return splittedFilename.pop().toLowerCase();
     }
 
     public static join(...paths:Array<string>):string
