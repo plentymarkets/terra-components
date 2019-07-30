@@ -1,6 +1,14 @@
 <div [formGroup]="inputFormGroup">
     <div class="form-list clearfix" [formArrayName]="inputFormFieldKey">
         <div class="form-list-entry" *ngFor="let control of formArray?.controls; index as i;">
+            <div class="form-list-sort">
+                <terra-button
+                    [inputIcon]="'icon-collapse_up'">
+                </terra-button><!--
+                --><terra-button
+                    [inputIcon]="'icon-collapse_down'">
+                </terra-button>
+            </div>
             <terra-form-entry
                 *ngIf="!inputFormField.children"
                 [formControlName]="i"
