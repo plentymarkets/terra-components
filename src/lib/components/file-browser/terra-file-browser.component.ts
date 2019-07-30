@@ -22,11 +22,8 @@ import { isNullOrUndefined } from '../../public-api';
 @Component({
     selector:  'terra-file-browser',
     template:  require('./terra-file-browser.component.html'),
-    providers: [TerraNodeTreeConfig],
-    styles:    [
-        require('./terra-file-browser.component.scss'),
-        require('./terra-file-browser.component.glob.scss').toString()
-    ]
+    styles:    [require('./terra-file-browser.component.scss')],
+    providers: [TerraNodeTreeConfig]
 })
 export class TerraFileBrowserComponent implements OnChanges, OnInit
 {

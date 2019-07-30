@@ -22,10 +22,7 @@ import { isNullOrUndefined } from '../../../public-api';
 @Component({
     selector:  'terra-code-editor',
     template:  require('./terra-code-editor.component.html'),
-    styles:    [
-        require('./terra-code-editor.component.scss'),
-        require('./terra-code-editor.component.glob.scss').toString()
-    ],
+    styles:    [require('./terra-code-editor.component.scss')],
     providers: [{
         provide:     NG_VALUE_ACCESSOR,
         useExisting: TerraCodeEditorComponent,
