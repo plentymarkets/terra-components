@@ -4,6 +4,9 @@
 ### Feature 
 * **select-box** added option to set a color for select-box items.
 
+### Bug Fixes
+* **Path helper** File extensions are converted to lowercase for easier comparison.
+
 <a name="4.0.0-beta.9"></a>
 # 4.0.0-beta.9 (24.07.2019)
 
