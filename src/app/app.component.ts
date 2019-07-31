@@ -2,10 +2,6 @@ import {
     Component,
     ViewEncapsulation
 } from '@angular/core';
-import {
-    FormControl,
-    Validators
-} from '@angular/forms';
 
 /**
  * @description This is a sandbox app which can be used to test out functionality from the TerraComponents library.
