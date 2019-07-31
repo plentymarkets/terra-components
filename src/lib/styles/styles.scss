@@ -1,5 +1,14 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700");
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
 @import 'variables';
+@import '../components/alert/terra-alert-panel.component.glob';
+@import '../components/editors/base-editor/terra-base-editor.component.glob';
+@import '../components/split-view/multi/terra-multi-split-view.component.glob';
+@import '../components/toolbar/base-toolbar/terra-base-toolbar.component.glob';
+@import '../components/editors/code-editor/terra-code-editor.component.glob';
+@import '../components/forms/input/date-picker/terra-date-picker.component.glob';
+@import '../components/file-browser/terra-file-browser.component.glob';
+@import '../components/forms/input/terra-input.component.glob';
+@import '../components/editors/note-editor/terra-note-editor.component.glob';
 
 *
 {

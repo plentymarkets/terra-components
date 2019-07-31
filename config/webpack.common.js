@@ -50,7 +50,6 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                exclude: [/\.glob\.scss$/],
                 loaders: [
                     'raw-loader',
                     'postcss-loader',
@@ -66,15 +65,6 @@ module.exports = {
                             resources: helpers.root('src/lib/styles/_variables.scss')
                         }
                     }
-                ]
-            },
-            {
-                test: /\.glob\.scss$/,
-                loaders: [
-                    'style-loader',
-                    'css-loader',
-                    'postcss-loader',
-                    'sass-loader'
                 ]
             },
             {
