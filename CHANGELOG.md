@@ -1,5 +1,6 @@
 <a>unreleased</a>
 # unreleased
+* **mat-select** added angular-material select component
 
 ### Feature 
 * **select-box** added option to set a color for select-box items.

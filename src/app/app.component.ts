@@ -21,16 +21,4 @@ import {
 })
 export class AppComponent
 {
-    protected animals:Array<any> = [
-        {name: 'Dog', icon: 'icon-burger'},
-        {name: 'Cat', icon: 'icon-navigate_back'},
-        {name: 'Cow', icon: 'icon-save'},
-        {name: 'Fox', icon: 'icon-delete'}
-    ];
-    protected selected:any = this.animals[1];
-
-    protected selectFormControl:FormControl = new FormControl('valid', [
-        Validators.required,
-        Validators.pattern('valid'),
-    ]);
 }
