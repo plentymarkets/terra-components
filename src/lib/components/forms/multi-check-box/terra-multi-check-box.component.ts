@@ -55,8 +55,8 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
 
     protected valueList:Array<TerraMultiCheckBoxValueInterface> = [];
 
-    protected headerCheckboxValue:boolean;
-    protected headerCheckboxIndeterminate:boolean;
+    protected headerCheckboxValue:boolean = false;
+    protected headerCheckboxIndeterminate:boolean = false;
 
     private changedCheckboxes$:Subject<Array<TerraMultiCheckBoxValueInterface>> = new Subject<Array<TerraMultiCheckBoxValueInterface>>();
     private readonly langPrefix:string = 'terraMultiCheckBox';
@@ -170,7 +170,6 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
         }
         else
         {
-            this.headerCheckboxValue = undefined;
             this.headerCheckboxIndeterminate = true;
         }
     }
