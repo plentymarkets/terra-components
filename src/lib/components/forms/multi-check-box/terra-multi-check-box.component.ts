@@ -170,7 +170,6 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
         }
         else
         {
-            this.headerCheckboxValue = undefined;
             this.headerCheckboxIndeterminate = true;
         }
     }
