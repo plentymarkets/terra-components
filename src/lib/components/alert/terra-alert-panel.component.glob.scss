@@ -9,7 +9,7 @@ terra-alert-panel
     max-width: 350px;
     min-width: 250px;
     overflow-y: auto;
-    z-index: 1051;
+    z-index: var(--zIndex-10);
     
     .alert
     {
