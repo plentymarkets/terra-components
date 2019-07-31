@@ -38,31 +38,34 @@ body
     {
         &.mat-focused
         {
-            .mat-form-field-wrapper
+            &.mat-form-field-appearance-legacy
             {
-                .mat-form-field-flex
+                .mat-form-field-wrapper
                 {
-                    .mat-form-field-infix
+                    .mat-form-field-flex
                     {
-                        mat-select
+                        .mat-form-field-infix
                         {
-                            .mat-select-trigger
+                            mat-select
                             {
-                                .mat-select-arrow-wrapper
+                                .mat-select-trigger
                                 {
-                                    .mat-select-arrow
+                                    .mat-select-arrow-wrapper
                                     {
-                                        color: var(--color-active);
+                                        .mat-select-arrow
+                                        {
+                                            color: var(--color-active);
+                                        }
                                     }
                                 }
                             }
-                        }
-                        
-                        .mat-form-field-label-wrapper
-                        {
-                            .mat-form-field-label
+                
+                            .mat-form-field-label-wrapper
                             {
-                                color: var(--color-active);
+                                .mat-form-field-label
+                                {
+                                    color: var(--color-active);
+                                }
                             }
                         }
                     }
@@ -70,39 +73,59 @@ body
             }
         }
     
-        .mat-form-field-wrapper
+        &.mat-form-field-appearance-legacy
         {
-            .mat-form-field-flex
+            &.ng-valid,
+            &.ng-invalid
             {
-                .mat-form-field-infix
+                .mat-form-field-wrapper
                 {
-                    mat-select
+                    padding-bottom: .75em;
+                    
+                    .mat-form-field-underline
                     {
-                        .mat-select-trigger
+                        bottom: 1em;
+                    }
+                }
+            }
+            
+            .mat-form-field-wrapper
+            {
+                padding-bottom: 0;
+                
+                .mat-form-field-flex
+                {
+                    .mat-form-field-infix
+                    {
+                        border-top: 1em solid transparent;
+                        padding: calc(var(--space-sm) * 1.5) 0 calc(var(--space-sm) * 1.5) 0;
+                        
+                        mat-select
                         {
-                            .mat-select-value
+                            .mat-select-trigger
                             {
-                                .mat-select-value-text
+                                .mat-select-value
                                 {
-                                    color: var(--color-structure-12);
-                                    font-weight: var(--font-weight-2);
+                                    .mat-select-value-text
+                                    {
+                                        color: var(--color-structure-12);
+                                        font-weight: var(--font-weight-2);
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-        }
         
-        .mat-form-field-wrapper
-        {
-            .mat-form-field-underline
-            {
-                border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
-                
-                .mat-form-field-ripple
+                .mat-form-field-underline
                 {
-                    background-color: var(--color-active);
+                    border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
+                    bottom: 0em;
+            
+                    .mat-form-field-ripple
+                    {
+                        background-color: var(--color-active);
+                    }
                 }
             }
         }
