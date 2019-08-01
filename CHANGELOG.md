@@ -1,5 +1,5 @@
-<a>unreleased</a>
-# unreleased
+<a name="4.0.0-beta.11"></a>
+# 4.0.0-beta.11 (31.07.2019)
 
 ### Changes
 *  replacing the deprecated method `isNullOrUndefined()` from module util with the own same-named method
