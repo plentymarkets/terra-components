@@ -11,7 +11,7 @@
 
 <div class="table-responsive">
     <context-menu [links]="inputContextMenu"></context-menu>
-    <table class="table data-table" *ngIf="dataAvailableOrRequestPending">
+    <table class="table terra-sticky-table data-table" *ngIf="dataAvailableOrRequestPending">
         <thead>
         <tr>
             <th *ngIf="inputHasCheckboxes" width="{{checkboxColumnWidth}}px">
