@@ -2,7 +2,7 @@
 import * as ts from 'typescript';
 import * as Lint from 'tslint';
 import { isFunctionWithBody } from 'tsutils';
-import { isNullOrUndefined } from '../src/lib/helpers/null-checker';
+import { isNullOrUndefined } from '../src/lib/public-api';
 
 interface MaxFunctionLineCountOptions
 {

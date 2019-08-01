@@ -1,4 +1,4 @@
-import { isNullOrUndefined } from './null-checker';
+import { isNullOrUndefined } from "../public-api";
 
 export class PathHelper
 {
