@@ -378,6 +378,48 @@ mat-form-field
             }
         }
         
+        &.ng-invalid
+        {
+            .mat-form-field-wrapper
+            {
+                .mat-form-field-underline
+                {
+                    .mat-form-field-ripple
+                    {
+                        background-color: var(--color-alert);
+                    }
+                }
+            }
+        }
+    
+        &.mat-form-field-disabled
+        {
+            .mat-form-field-wrapper
+            {
+                .mat-form-field-underline
+                {
+                    border-bottom: inherit;
+                }
+    
+                .mat-form-field-flex
+                {
+                    .mat-form-field-infix
+                    {
+                        .mat-form-field-label-wrapper
+                        {
+                            .mat-form-field-label
+                            {
+                                mat-label
+                                {
+                                    color: var(--color-structure-6);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
         .mat-form-field-wrapper
         {
             padding-bottom: 0;
@@ -400,6 +442,17 @@ mat-form-field
                                     color: var(--color-structure-12);
                                     font-weight: var(--font-weight-2);
                                 }
+                            }
+                        }
+                    }
+    
+                    .mat-form-field-label-wrapper
+                    {
+                        .mat-form-field-label
+                        {
+                            mat-label
+                            {
+                                color: var(--color-structure-7);
                             }
                         }
                     }
