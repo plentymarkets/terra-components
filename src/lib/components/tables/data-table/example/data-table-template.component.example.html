@@ -39,7 +39,6 @@
     <tr [tcTableRow]="row" hasContextMenu [rowData]="row.data" *ngFor="let row of service.rowList; let index = index">
         <td>{{ row.data.id }}</td>
         <td>
-            
             <form (submit)="saveData(row.data)" (focusout)="saveData($event)">
                 <terra-text-input name="value" inputName="Edit value" [(ngModel)]="row.data.value"></terra-text-input>
             </form>
@@ -48,6 +47,9 @@
             <form (submit)="saveData(row.data)" (focusout)="saveData($event)">
                 <terra-text-input name="email" inputName="Edit mail" [(ngModel)]="row.data.mail"></terra-text-input>
             </form>
+        </td>
+        <td>
+            <!-- empty column -->
         </td>
     </tr>
     </tbody>
