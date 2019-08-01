@@ -23,6 +23,7 @@ export class CkEditorDirectiveExample
         // This is needed because the data binding while in source mode do not work as expected
         if(this.ckFull.instance.mode === 'source')
         {
+            // commandId 'source' triggers a toggle to switch between source and wysiwyg mode
             this.ckFull.instance.execCommand( 'source' );
         }
 
