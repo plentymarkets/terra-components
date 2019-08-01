@@ -32,6 +32,9 @@ import { noop } from 'rxjs';
         }
     ]
 })
+/**
+ * @deprecated with 4.x.x. Use '<mat-select>' instead.
+ */
 export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
     @Input()
