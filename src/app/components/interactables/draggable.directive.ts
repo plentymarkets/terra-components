@@ -4,6 +4,7 @@ import {
     EventEmitter,
     Input,
     OnChanges,
+    OnInit,
     Output,
     SimpleChanges
 } from '@angular/core';
@@ -20,40 +21,129 @@ import interact = require('interactjs');
 @Directive({
     selector: '[terraDraggable]'
 })
-export class TerraDraggableDirective implements OnChanges
+export class TerraDraggableDirective implements OnInit, OnChanges
 {
+    /* tslint:disable-next-line:no-input-rename */
     @Input('terraDraggable')
     public options?:DraggableOptions = null;
 
-    @Input('terra-draggable-disabled')
+    @Input()
     public disabled:boolean = false;
 
-    @Input('terra-draggable-grid')
+    @Input()
     public grid:GridOptions = null;
 
-    @Input('terra-draggable-restrict')
+    @Input()
     public restrict:RestrictOptions = null;
 
-    @Input('tera-draggable-inertia')
+    @Input()
     public inertia:boolean | InertiaOptions = false;
 
-    @Input('terra-draggable-data')
+    @Input()
     public dragData:any;
 
+    @Output()
+    public start:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+
+    @Output()
+    public move:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+
+    @Output()
+    public end:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+
+    /* tslint:disable:no-output-on-prefix no-input-rename no-output-rename */
+    /**
+     * @deprecated since 3.x.x. Use disabled instead.
+     */
+    @Input('terra-draggable-disabled')
+    public set draggableDisabled(value:boolean)
+    {
+        console.warn('`terra-draggable-disabled` is deprecated. Please use `disabled` instead.');
+        this.disabled = value;
+    }
+
+    /**
+     * @deprecated since 3.x.x. Use grid instead.
+     */
+    @Input('terra-draggable-grid')
+    public set draggableGrid(value:GridOptions)
+    {
+        console.warn('`terra-draggable-grid` is deprecated. Please use `grid` instead.');
+        this.grid = value;
+    }
+
+    /**
+     * @deprecated since 3.x.x. Use restrict instead.
+     */
+    @Input('terra-draggable-restrict')
+    public set draggableRestrict(value:RestrictOptions)
+    {
+        console.warn('`terra-draggable-restrict` is deprecated. Please use `restrict` instead.');
+        this.restrict = value;
+    }
+
+    /**
+     * @deprecated since 3.x.x. Use inertia instead.
+     */
+    @Input('tera-draggable-inertia')
+    public set draggableInertia(value:boolean | InertiaOptions)
+    {
+        console.warn('`terraDraggable` is deprecated. Please use `options` instead.');
+        this.inertia = value;
+    }
+
+    /**
+     * @deprecated since 3.x.x. Use DragData instead.
+     */
+    @Input('terra-draggable-data')
+    public set draggableDragData(value:any)
+    {
+        console.warn('`terraDraggable` is deprecated. Please use `options` instead.');
+        this.dragData = value;
+    }
+
+    /**
+     * @deprecated since 3.x.x. Use start instead.
+     */
     @Output('terra-draggable-onStart')
     public onStart:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
+    /**
+     * @deprecated since 3.x.x. Use move instead.
+     */
     @Output('terra-draggable-onMove')
     public onMove:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
+    /**
+     * @deprecated since 3.x.x. Use end instead.
+     */
     @Output('terra-draggable-onEnd')
     public onEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+    /* tslint:enable:no-output-on-prefix no-input-rename no-output-rename */
 
     private interactable:Interactable;
 
     constructor(private el:ElementRef)
     {
         this.init();
+    }
+
+    public ngOnInit():void
+    {
+        if(this.onStart.observers.length > 0)
+        {
+            console.warn('`terra-draggable-onStart` is deprecated. Please use `start` instead.');
+        }
+
+        if(this.onMove.observers.length > 0)
+        {
+            console.warn('`terra-draggable-onMove` is deprecated. Please use `move` instead.');
+        }
+
+        if(this.onEnd.observers.length > 0)
+        {
+            console.warn('`terra-draggable-onEnd` is deprecated. Please use `end` instead.');
+        }
     }
 
     public ngOnChanges(changes:SimpleChanges):void

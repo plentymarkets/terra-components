@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { TerraMultiCheckBoxValueInterface } from '../../forms/multi-check-box/data/terra-multi-check-box-value.interface';
 import { isNullOrUndefined } from 'util';
+import { noop } from 'rxjs/util/noop';
 
 @Component({
     selector:  'tc-checkbox-group',
@@ -53,9 +54,9 @@ export class CheckboxGroupComponent implements ControlValueAccessor
 
     protected multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> = [];
 
-    private onTouchedCallback:() => void = ():void => undefined;
+    private onTouchedCallback:() => void = noop;
 
-    private onChangeCallback:(_:Array<any>) => void = (_:Array<any>):void => undefined;
+    private onChangeCallback:(_:Array<any>) => void = noop;
 
     public registerOnChange(fn:any):void
     {

@@ -61,40 +61,6 @@ export class TerraDataTableComponentExample implements OnInit
         this.noResultTextSecondary = 'Add a new entry';
     }
 
-
-    private createHeaderList():Array<TerraDataTableHeaderCellInterface>
-    {
-        return [
-            {
-                caption: 'ID',
-                sortBy:  'id',
-                width:   20
-            },
-            {
-                caption:   'value',
-                sortBy:    'value',
-                width:     20,
-                textAlign: TerraTextAlignEnum.LEFT
-            },
-            {
-                caption: 'email',
-                width:   20
-            },
-            {
-                caption: 'buttons',
-                width:   20
-            }
-        ];
-    }
-
-    private createContextMenu():Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>
-    {
-        return [{
-            title:         'Show alert',
-            clickFunction: (data:TerraDataTableExampleInterface):void => alert(`The rows value is ${data.value}`)
-        }];
-    }
-
     protected addEntry():void
     {
         this.service.addEntry();
@@ -121,4 +87,32 @@ export class TerraDataTableComponentExample implements OnInit
         console.log(selectedRows);
     }
 
+    private createHeaderList():Array<TerraDataTableHeaderCellInterface>
+    {
+        return [
+            {
+                caption: 'ID',
+                sortBy:  'id',
+                width:   20
+            },
+            {
+                caption:   'value',
+                sortBy:    'value',
+                width:     20,
+                textAlign: TerraTextAlignEnum.LEFT
+            },
+            {
+                caption: 'email',
+                width:   20
+            }
+        ];
+    }
+
+    private createContextMenu():Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>
+    {
+        return [{
+            title:         'Show alert',
+            clickFunction: (data:TerraDataTableExampleInterface):void => alert(`The rows value is ${data.value}`)
+        }];
+    }
 }
