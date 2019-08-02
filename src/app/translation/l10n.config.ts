@@ -1,8 +1,10 @@
 import {
     L10nConfig,
+    LogLevel,
     ProviderType,
     StorageStrategy
 } from 'angular-l10n';
+import { DefaultLocale } from 'angular-l10n/src/models/types';
 
 export const l10nConfig:L10nConfig = getL10nConfig();
 
@@ -27,19 +29,19 @@ function getL10nConfig():L10nConfig
         localStorage.setItem('plentymarkets_lang_', lang);
     }
 
-    let prefix:string = null;
+    let defaultLocale:DefaultLocale = lang === 'de' ?
+        { languageCode: 'de', countryCode: 'DE' } :
+        { languageCode: 'en', countryCode: 'GB' };
 
-    // Definitions for i18n
-    if(process.env.ENV === 'production')
-    {
-        prefix = 'app/assets/lang/locale-';
-    }
-    else
-    {
-        prefix = 'src/app/assets/lang/locale-';
-    }
+    let currency:string = lang === 'de' ? 'EUR' : 'GBP';
+
+    let prefix:string = 'assets/lang/locale-';
+    let logLevel:LogLevel = process.env.ENV === 'production' || process.env.ENV === 'test' ? LogLevel.Off : LogLevel.Warn;
 
     return {
+        logger: {
+            level: logLevel
+        },
         locale:      {
             languages: [
                 {
@@ -51,8 +53,11 @@ function getL10nConfig():L10nConfig
                     dir:  'ltr'
                 }
             ],
-            language:  lang,
-            storage:   StorageStrategy.Cookie
+            language:      lang,
+            defaultLocale: defaultLocale,
+            currency:      currency,
+            storage:       StorageStrategy.Local,
+            storageNames: { defaultLocale: 'plentymarkets_lang_' }
         },
         translation: {
             providers:            [

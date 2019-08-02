@@ -1,10 +1,10 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
-import { TerraComponentsModule } from './app/';
+import { AppModule } from './app/app.module';
 
 if(process.env.ENV === 'production')
 {
     enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(TerraComponentsModule);
+platformBrowserDynamic().bootstrapModule(AppModule).catch((err:any) => console.log(err));

@@ -62,7 +62,7 @@ module.exports = {
                     {
                         loader: 'sass-resources-loader',
                         options: {
-                            resources: helpers.root('src/app/styles/_variables.scss')
+                            resources: helpers.root('src/lib/styles/_variables.scss')
                         }
                     }
                 ]
@@ -84,9 +84,9 @@ module.exports = {
                 exclude: [
                     /\.(e2e|spec)\.ts$/,
                     helpers.root('node_modules'),
-                    helpers.root('src/app/assets'),
-                    helpers.root('src/app/models'),
-                    helpers.root('src/app/testing'),
+                    helpers.root('src/assets'),
+                    helpers.root('src/lib/models'),
+                    helpers.root('src/lib/testing'),
                     helpers.root('src/app/translation')
                 ]
             }
@@ -94,7 +94,7 @@ module.exports = {
     },
     plugins: [
         new webpack.ContextReplacementPlugin(
-            /\@angular(\\|\/)core(\\|\/)esm5/,
+            /\@angular(\\|\/)core(\\|\/)fesm5/,
             helpers.root('./src'),
             {}
         ),
@@ -109,18 +109,7 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery",
             "window.jQuery": "jquery",
-            "window.Tether": 'tether',
-            Alert: "exports-loader?Alert!bootstrap/js/dist/alert",
-            Button: "exports-loader?Button!bootstrap/js/dist/button",
-            Carousel: "exports-loader?Carousel!bootstrap/js/dist/carousel",
-            Collapse: "exports-loader?Collapse!bootstrap/js/dist/collapse",
-            Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
-            Modal: "exports-loader?Modal!bootstrap/js/dist/modal",
-            Popover: "exports-loader?Popover!bootstrap/js/dist/popover",
-            Scrollspy: "exports-loader?Scrollspy!bootstrap/js/dist/scrollspy",
-            Tab: "exports-loader?Tab!bootstrap/js/dist/tab",
-            Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
-            Util: "exports-loader?Util!bootstrap/js/dist/util"
+            "window.Tether": 'tether'
         })
     ]
 };
