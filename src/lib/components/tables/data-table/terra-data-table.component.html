@@ -11,7 +11,7 @@
 
 <div class="table-responsive">
     <context-menu [links]="inputContextMenu"></context-menu>
-    <table class="table terra-sticky-table data-table" *ngIf="dataAvailableOrRequestPending">
+    <table floatThead class="table terra-sticky-table data-table" [hidden]="!dataAvailableOrRequestPending">
         <thead>
         <tr>
             <th *ngIf="inputHasCheckboxes" width="{{checkboxColumnWidth}}px">
@@ -118,6 +118,8 @@
         <ng-content select="tbody" *ngIf="useContentBody"></ng-content>
     </table>
     
-    <ng-content *ngIf="!dataAvailableOrRequestPending" select="terra-no-result-notice"></ng-content>
+    <div [hidden]="dataAvailableOrRequestPending">
+        <ng-content select="terra-no-result-notice"></ng-content>
+    </div>
 
 </div>

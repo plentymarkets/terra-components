@@ -17,6 +17,7 @@ import { l10nConfig } from './translation/l10n.config';
 import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
+import { TerraComponentsModule } from '../lib';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -39,6 +40,7 @@ function initL10n(l10nLoader:L10nLoader):Function
         BrowserAnimationsModule,
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
+        TerraComponentsModule,
         TerraComponentsExamplesModule
     ],
     declarations: [AppComponent, ShowcaseComponent],

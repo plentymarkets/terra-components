@@ -1,10 +1,7 @@
 import {
-    AfterContentInit,
     Component,
     ViewEncapsulation
 } from '@angular/core';
-
-require('floatthead/src/jquery.floatThead.js');
 
 /**
  * @description This is a sandbox app which can be used to test out functionality from the TerraComponents library.
@@ -18,16 +15,5 @@ require('floatthead/src/jquery.floatThead.js');
     styles:        [require('./app.component.scss')],
     encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements AfterContentInit
-{
-    public ngAfterContentInit():void
-    {
-        $('#ronny').css('height', '100px');
-        $('#ronny').css('width', '100px');
-        $('#ronny').css('background-color', 'black');
-
-        $('.table.demo0').floatThead({
-            position: 'fixed'
-        });
-    }
-}
+export class AppComponent
+{}
