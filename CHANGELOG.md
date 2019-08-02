@@ -1,3 +1,9 @@
+<a name="4.0.0-beta.12"></a>
+# UNRELEASED
+
+### Feature 
+* **data-table.service** added method to fake pagination.
+
 <a name="4.0.0-beta.11"></a>
 # 4.0.0-beta.11 (31.07.2019)
 
