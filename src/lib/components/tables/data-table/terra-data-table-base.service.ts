@@ -210,7 +210,7 @@ export abstract class TerraDataTableBaseService<T, P>
      */
     protected fakePagination(restCall:Observable<Array<T>>):Observable<TerraPagerInterface<T>>
     {
-        return restCall.map((response:Array<T>) =>
+        return restCall.pipe(map((response:Array<T>) =>
         {
             return {
                 entries:        this.mapEntriesForFakePagination(response),
@@ -222,7 +222,7 @@ export abstract class TerraDataTableBaseService<T, P>
                 lastOnPage:     0,
                 itemsPerPage:   0
             };
-        });
+        }));
     }
 
     /**
