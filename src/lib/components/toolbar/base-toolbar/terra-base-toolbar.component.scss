@@ -12,15 +12,6 @@
     position: relative;
     z-index: var(--toolbar-z-index);
     --select-box-wrapper-margin-bottom: 0;
-
-    &.terra-breadcrumbs-wrapper
-    {
-        background-color: var(--terra-breadcrumbs-wrapper-background-color, var(--color-structure-9));
-        margin: var(--terra-breadcrumbs-wrapper-margin, 0);
-        border-radius: var(--terra-breadcrumbs-wrapper-border-radius, 0 0 var(--border-radius) var(--border-radius));
-        padding: var(--terra-breadcrumbs-wrapper-padding, 0);
-        z-index: var(--terra-breadcrumbs-wrapper-z-index, var(--zIndex-1));
-    }
 }
 
 :host-context(.btn-toolbar .pager) //if pager placed in toolbar, style the toolbar contained in pager like this
