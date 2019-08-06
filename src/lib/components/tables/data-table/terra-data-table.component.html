@@ -11,7 +11,7 @@
 
 <div class="table-responsive">
     <context-menu [links]="inputContextMenu"></context-menu>
-    <table floatThead class="table terra-sticky-table data-table" [hidden]="!dataAvailableOrRequestPending">
+    <table floatThead class="table data-table" [hidden]="!dataAvailableOrRequestPending">
         <thead>
         <tr>
             <th *ngIf="inputHasCheckboxes" width="{{checkboxColumnWidth}}px">
