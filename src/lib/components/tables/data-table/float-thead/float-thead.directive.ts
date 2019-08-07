@@ -16,7 +16,10 @@ import {
 } from '@angular/router';
 import { filter } from 'rxjs/internal/operators';
 import { ActivatedRouteHelper } from '../../../../helpers/index';
-import { Subscription } from 'rxjs';
+import {
+    fromEvent,
+    Subscription
+} from 'rxjs';
 import { isNullOrUndefined } from 'util';
 
 @Directive({
@@ -30,7 +33,9 @@ export class FloatTheadDirective implements OnInit, OnDestroy
     @Input()
     public floatThead:ActivatedRoute;
 
-    private subscription:Subscription;
+    private navigationSubscription:Subscription;
+    private windowSubscription:Subscription;
+    private themeSwitched:boolean;
 
     constructor(private elementRef:ElementRef, private router:Router)
     {
@@ -42,22 +47,43 @@ export class FloatTheadDirective implements OnInit, OnDestroy
         {
             this.initStickyTableHeader();
 
-            this.subscription = this.router.events.pipe(filter((event:RouterEvent) => event instanceof NavigationEnd))
+            this.navigationSubscription = this.router.events.pipe(filter((event:RouterEvent) => event instanceof NavigationEnd))
                                     .subscribe((event:NavigationEnd) =>
                                     {
-                                        if(event.url === ActivatedRouteHelper.getBasePathForActivatedRoute(this.floatThead.snapshot))
+                                        if(event.url === ActivatedRouteHelper.getBasePathForActivatedRoute(this.floatThead.snapshot) &&
+                                           this.themeSwitched)
                                         {
                                             this.initStickyTableHeader();
                                         }
                                     });
+
+            if(window === window.top)
+            {
+                this.windowSubscription = fromEvent(window, 'themeSwitched').subscribe(() =>
+                {
+                    this.themeSwitched = true;
+                });
+            }
+            else
+            {
+                this.windowSubscription = fromEvent(window.parent.window, 'themeSwitched').subscribe(() =>
+                {
+                    this.themeSwitched = true;
+                });
+            }
         }
     }
 
     public ngOnDestroy():void
     {
-        if(!isNullOrUndefined(this.subscription))
+        if(!isNullOrUndefined(this.navigationSubscription))
         {
-            this.subscription.unsubscribe();
+            this.navigationSubscription.unsubscribe();
+        }
+
+        if(!isNullOrUndefined(this.windowSubscription))
+        {
+            this.windowSubscription.unsubscribe();
         }
     }
 
