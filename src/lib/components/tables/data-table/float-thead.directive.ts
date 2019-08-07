@@ -1,5 +1,4 @@
 import {
-    AfterViewInit,
     Directive,
     ElementRef,
     OnInit
@@ -16,7 +15,7 @@ export class FloatTheadDirective implements OnInit
     {
     }
 
-    ngOnInit():void
+    public ngOnInit():void
     {
         this.initStickyTableHeader();
     }
@@ -24,23 +23,23 @@ export class FloatTheadDirective implements OnInit
     public initStickyTableHeader():void
     {
         const tableElement:any = jQuery(this.elementRef.nativeElement);
-        var overflowContainer = tableElement.closest('.overflow-auto');
-        var stickyOffset = overflowContainer.offset().top;
+        const overflowContainer:JQuery<HTMLElement> = tableElement.closest('.overflow-auto');
+        const stickyOffset:number = overflowContainer.offset().top;
 
         if (overflowContainer.length > 0)
         {
             tableElement.floatThead('destroy');
             tableElement.floatThead({
-                responsiveContainer: function($table)
+                responsiveContainer: function(table:JQuery<HTMLElement>):JQuery<HTMLElement>
                                      {
-                                         return $table.closest(".table-responsive");
+                                         return table.closest('.table-responsive');
                                      },
                 position:            'fixed',
                 zIndex:              '2',
                 top:                 stickyOffset
             });
 
-            overflowContainer.scroll(function()
+            overflowContainer.scroll(function():void
             {
                 tableElement.trigger('reflow');
             });
