@@ -41,6 +41,7 @@ gulp.task('compile-ts', function () {
 gulp.task('copy-files', function () {
     return gulp.src(['package.json',
         'README.md',
+        './src/lib/**/floatThead.js',
         config.fileSelectors.allCSS,
         config.fileSelectors.allSCSS,
         config.fileSelectors.allHTML])
