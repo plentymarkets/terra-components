@@ -54,6 +54,7 @@ export class FloatTheadDirective implements OnInit, OnDestroy
                                            this.themeSwitched)
                                         {
                                             this.initStickyTableHeader();
+                                            this.themeSwitched = false;
                                         }
                                     });
 
