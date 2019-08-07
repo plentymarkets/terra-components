@@ -5,8 +5,6 @@ import {
     OnDestroy,
     OnInit
 } from '@angular/core';
-
-require('./floatThead.js');
 import * as jQuery from 'jquery';
 import {
     ActivatedRoute,
@@ -21,6 +19,8 @@ import {
     Subscription
 } from 'rxjs';
 import { isNullOrUndefined } from 'util';
+
+require('./floatThead.js');
 
 @Directive({
     selector: '[floatThead]'
@@ -48,15 +48,15 @@ export class FloatTheadDirective implements OnInit, OnDestroy
             this.initStickyTableHeader();
 
             this.navigationSubscription = this.router.events.pipe(filter((event:RouterEvent) => event instanceof NavigationEnd))
-                                    .subscribe((event:NavigationEnd) =>
-                                    {
-                                        if(event.url === ActivatedRouteHelper.getBasePathForActivatedRoute(this.floatThead.snapshot) &&
-                                           this.themeSwitched)
-                                        {
-                                            this.initStickyTableHeader();
-                                            this.themeSwitched = false;
-                                        }
-                                    });
+                                              .subscribe((event:NavigationEnd) =>
+                                              {
+                                                  if(event.url === ActivatedRouteHelper.getBasePathForActivatedRoute(this.floatThead.snapshot) &&
+                                                     this.themeSwitched)
+                                                  {
+                                                      this.initStickyTableHeader();
+                                                      this.themeSwitched = false;
+                                                  }
+                                              });
 
             if(window === window.top)
             {
