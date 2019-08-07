@@ -2,20 +2,33 @@ import {
     Directive,
     ElementRef,
     Input,
+    OnDestroy,
     OnInit
 } from '@angular/core';
 require('./lib/floatThead.js');
 import * as jQuery from 'jquery';
+import {
+    ActivatedRoute,
+    NavigationEnd,
+    Router,
+    RouterEvent
+} from '@angular/router';
+import { filter } from 'rxjs/internal/operators';
+import { ActivatedRouteHelper } from '../../../helpers';
+import { Subscription } from 'rxjs/index';
+import { isNullOrUndefined } from 'util';
 
 @Directive({
     selector: '[floatThead]'
 })
-export class FloatTheadDirective implements OnInit
+export class FloatTheadDirective implements OnInit, OnDestroy
 {
     @Input()
-    public floatThead:boolean;
+    public floatThead:ActivatedRoute;
 
-    constructor(private elementRef:ElementRef)
+    private subscription:Subscription;
+
+    constructor(private elementRef:ElementRef, private router:Router)
     {
     }
 
@@ -24,6 +37,22 @@ export class FloatTheadDirective implements OnInit
         if(this.floatThead)
         {
             this.initStickyTableHeader();
+
+            this.subscription = this.router.events.pipe(filter((event:RouterEvent) => event instanceof NavigationEnd)).subscribe((event:NavigationEnd) =>
+            {
+                if(event.url === ActivatedRouteHelper.getBasePathForActivatedRoute(this.floatThead.snapshot))
+                {
+                    this.initStickyTableHeader();
+                }
+            });
+        }
+    }
+
+    ngOnDestroy():void
+    {
+        if(!isNullOrUndefined(this.subscription))
+        {
+            this.subscription.unsubscribe();
         }
     }
 
