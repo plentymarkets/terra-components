@@ -80,6 +80,13 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     @Input()
     public inputContextMenu:Array<TerraDataTableContextMenuEntryInterface<T>> = [];
 
+    /**
+     * @description Make table header stick to the top
+     * @default false
+     */
+    @Input()
+    public isSticky:boolean = false;
+
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
     protected readonly refType:{} = TerraHrefTypeEnum;

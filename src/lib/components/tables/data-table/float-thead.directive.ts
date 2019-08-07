@@ -1,6 +1,7 @@
 import {
     Directive,
     ElementRef,
+    Input,
     OnInit
 } from '@angular/core';
 require('./lib/floatThead.js');
@@ -11,13 +12,19 @@ import * as jQuery from 'jquery';
 })
 export class FloatTheadDirective implements OnInit
 {
+    @Input()
+    public floatThead:boolean;
+
     constructor(private elementRef:ElementRef)
     {
     }
 
     public ngOnInit():void
     {
-        this.initStickyTableHeader();
+        if(this.floatThead)
+        {
+            this.initStickyTableHeader();
+        }
     }
 
     public initStickyTableHeader():void
