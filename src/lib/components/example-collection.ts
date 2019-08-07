@@ -51,6 +51,7 @@ import { FilterComponentExample } from './filter/example/filter.component.exampl
 import { CheckboxGroupComponentExample } from './forms/checkbox-group/example/checkbox-group.component.example';
 import { TerraFormComponentExample } from './forms/form/example/terra-form.component.example';
 import { CkEditorDirectiveExample } from './editors/ck-editor/example/ck-editor-directive-example.component';
+import { TerraLoadingSpinnerComponentExample } from './loading-spinner/example/terra-loading-spinner.component.example';
 
 export const examples:Array<Type<any>> = [
     TerraButtonComponentExample,
@@ -104,5 +105,6 @@ export const examples:Array<Type<any>> = [
     FilterComponentExample,
     CheckboxGroupComponentExample,
     TerraFormComponentExample,
-    CkEditorDirectiveExample
+    CkEditorDirectiveExample,
+    TerraLoadingSpinnerComponentExample
 ];
