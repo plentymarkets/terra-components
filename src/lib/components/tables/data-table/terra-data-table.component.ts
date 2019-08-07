@@ -35,6 +35,7 @@ import { TerraBaseTable } from '../terra-base-table';
 import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector:  'terra-data-table',
@@ -82,10 +83,9 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     /**
      * @description Make table header stick to the top
-     * @default false
      */
     @Input()
-    public isSticky:boolean = false;
+    public isSticky:ActivatedRoute;
 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 

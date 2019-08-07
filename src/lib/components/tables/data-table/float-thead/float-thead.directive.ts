@@ -5,7 +5,8 @@ import {
     OnDestroy,
     OnInit
 } from '@angular/core';
-require('./lib/floatThead.js');
+
+require('./floatThead.js');
 import * as jQuery from 'jquery';
 import {
     ActivatedRoute,
@@ -14,8 +15,8 @@ import {
     RouterEvent
 } from '@angular/router';
 import { filter } from 'rxjs/internal/operators';
-import { ActivatedRouteHelper } from '../../../helpers';
-import { Subscription } from 'rxjs/index';
+import { ActivatedRouteHelper } from '../../../../helpers/index';
+import { Subscription } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 
 @Directive({
@@ -23,6 +24,9 @@ import { isNullOrUndefined } from 'util';
 })
 export class FloatTheadDirective implements OnInit, OnDestroy
 {
+    /**
+     * @description provide the `activatedRoute` to subscribe to router event and re-initialize the sticky table header on tab-switch.
+     */
     @Input()
     public floatThead:ActivatedRoute;
 
@@ -38,17 +42,18 @@ export class FloatTheadDirective implements OnInit, OnDestroy
         {
             this.initStickyTableHeader();
 
-            this.subscription = this.router.events.pipe(filter((event:RouterEvent) => event instanceof NavigationEnd)).subscribe((event:NavigationEnd) =>
-            {
-                if(event.url === ActivatedRouteHelper.getBasePathForActivatedRoute(this.floatThead.snapshot))
-                {
-                    this.initStickyTableHeader();
-                }
-            });
+            this.subscription = this.router.events.pipe(filter((event:RouterEvent) => event instanceof NavigationEnd))
+                                    .subscribe((event:NavigationEnd) =>
+                                    {
+                                        if(event.url === ActivatedRouteHelper.getBasePathForActivatedRoute(this.floatThead.snapshot))
+                                        {
+                                            this.initStickyTableHeader();
+                                        }
+                                    });
         }
     }
 
-    ngOnDestroy():void
+    public ngOnDestroy():void
     {
         if(!isNullOrUndefined(this.subscription))
         {
@@ -62,7 +67,7 @@ export class FloatTheadDirective implements OnInit, OnDestroy
         const overflowContainer:JQuery<HTMLElement> = tableElement.closest('.overflow-auto');
         const stickyOffset:number = overflowContainer.offset().top;
 
-        if (overflowContainer.length > 0)
+        if(overflowContainer.length > 0)
         {
             tableElement.floatThead('destroy');
             tableElement.floatThead({
