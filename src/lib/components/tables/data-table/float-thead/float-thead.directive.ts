@@ -67,25 +67,29 @@ export class FloatTheadDirective implements OnInit, OnDestroy
     {
         const tableElement:any = jQuery(this.elementRef.nativeElement);
         const overflowContainer:JQuery<HTMLElement> = tableElement.closest('.overflow-auto');
+
+        if(overflowContainer.length === 0)
+        {
+            console.error('floatThead needs an overflow-auto container. Please add a div with overflow-auto style.');
+            return;
+        }
+
         const stickyOffset:number = overflowContainer.offset().top;
 
-        if(overflowContainer.length > 0)
-        {
-            tableElement.floatThead('destroy');
-            tableElement.floatThead({
-                responsiveContainer: function(table:JQuery<HTMLElement>):JQuery<HTMLElement>
-                                     {
-                                         return table.closest('.table-responsive');
-                                     },
-                position:            'fixed',
-                zIndex:              '2',
-                top:                 stickyOffset
-            });
+        tableElement.floatThead('destroy');
+        tableElement.floatThead({
+            responsiveContainer: function(table:JQuery<HTMLElement>):JQuery<HTMLElement>
+                                 {
+                                     return table.closest('.table-responsive');
+                                 },
+            position:            'fixed',
+            zIndex:              '2',
+            top:                 stickyOffset
+        });
 
-            overflowContainer.scroll(function():void
-            {
-                tableElement.trigger('reflow');
-            });
-        }
+        overflowContainer.scroll(function():void
+        {
+            tableElement.trigger('reflow');
+        });
     }
 }
