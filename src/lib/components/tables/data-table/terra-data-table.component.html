@@ -11,7 +11,7 @@
 
 <div class="table-responsive">
     <context-menu [links]="inputContextMenu"></context-menu>
-    <table [floatThead]="isSticky" class="table data-table" [ngClass]="{'terra-sticky-table': isSticky !== undefined}" [hidden]="!dataAvailableOrRequestPending">
+    <table [floatThead]="isSticky" class="table data-table" [ngClass]="{'terra-sticky-table': isSticky}" [hidden]="!dataAvailableOrRequestPending">
         <thead>
         <tr>
             <th *ngIf="inputHasCheckboxes" width="{{checkboxColumnWidth}}px">
