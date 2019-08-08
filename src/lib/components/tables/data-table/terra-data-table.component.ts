@@ -1,15 +1,12 @@
 import {
-    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ElementRef,
     EventEmitter,
     Input,
     OnChanges,
     OnInit,
-    SimpleChanges,
-    ViewEncapsulation
+    SimpleChanges
 } from '@angular/core';
 import { TerraDataTableContextMenuService } from './context-menu/terra-data-table-context-menu.service';
 import { TerraDataTableBaseService } from './terra-data-table-base.service';
@@ -35,7 +32,6 @@ import { TerraBaseTable } from '../terra-base-table';
 import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector:  'terra-data-table',
@@ -44,7 +40,7 @@ import { ActivatedRoute } from '@angular/router';
     providers: [TerraDataTableContextMenuService],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, AfterViewInit, OnChanges
+export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges
 {
     /**
      * @description Mandatory service that is used to request the table data from the server
@@ -92,7 +88,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     protected readonly refType:{} = TerraHrefTypeEnum;
     protected readonly checkboxColumnWidth:number = 25;
 
-    constructor(private cdr:ChangeDetectorRef, private elementRef:ElementRef)
+    constructor(private cdr:ChangeDetectorRef)
     {
         super();
     }
@@ -124,11 +120,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         ).subscribe(() => this.getResults());
 
         this.inputService.cdr = this.cdr;
-    }
-
-    public ngAfterViewInit():void
-    {
-
     }
 
     /**

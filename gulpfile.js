@@ -39,12 +39,7 @@ gulp.task('compile-ts', function () {
 
 //copy files to dist
 gulp.task('copy-files', function () {
-    return gulp.src(['package.json',
-        'README.md',
-        './src/lib/**/floatThead.js',
-        config.fileSelectors.allCSS,
-        config.fileSelectors.allSCSS,
-        config.fileSelectors.allHTML])
+    return gulp.src(config.filesToCopy)
         .pipe(gulp.dest(config.destinations.tsOutputPath));
 });
 

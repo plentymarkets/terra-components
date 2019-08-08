@@ -1,5 +1,10 @@
 <a>unreleased</a>
 # unreleased
+### Feature 
+* **floatThead** new directive to add a floating table header.
+* **fixedHeader** set to deprecated since the new `floatThead` directive is working.
+* **terra-breadcrumbs** has its own styles now.
+* **terra-base-toolbar** `inputIsBreadcrumbs` set to deprecated since breadcrumbs has own styles now.
 
 ### Bug Fixes
 * **terra-alert** fixed visibility when `terra-overlay` is active.

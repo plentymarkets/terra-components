@@ -9,4 +9,15 @@ import {
     styles:   [require('./terra-base-toolbar.component.scss')]
 })
 export class TerraBaseToolbarComponent
-{}
+{
+    /**
+     * @deprecated breadcrumbs have its own styles now.
+     */
+    @Input()
+    public inputIsBreadcrumbs:boolean;
+
+    constructor()
+    {
+        this.inputIsBreadcrumbs = false;
+    }
+}

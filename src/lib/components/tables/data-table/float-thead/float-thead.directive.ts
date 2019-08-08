@@ -14,16 +14,13 @@ import {
 } from '@angular/router';
 import { filter } from 'rxjs/internal/operators';
 import { ActivatedRouteHelper } from '../../../../helpers/index';
-import {
-    fromEvent,
-    Subscription
-} from 'rxjs';
+import { Subscription } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 
 require('./floatThead.js');
 
 @Directive({
-    selector: '[floatThead]'
+    selector: 'table[floatThead]'
 })
 export class FloatTheadDirective implements OnInit, OnDestroy
 {
@@ -66,7 +63,7 @@ export class FloatTheadDirective implements OnInit, OnDestroy
         }
     }
 
-    public initStickyTableHeader():void
+    private initStickyTableHeader():void
     {
         const tableElement:any = jQuery(this.elementRef.nativeElement);
         const overflowContainer:JQuery<HTMLElement> = tableElement.closest('.overflow-auto');
