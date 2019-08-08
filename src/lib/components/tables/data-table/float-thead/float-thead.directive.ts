@@ -41,7 +41,7 @@ export class FloatTheadDirective implements OnInit, OnDestroy
     {
         if(this.floatThead)
         {
-            this.initStickyTableHeader();
+            this.initStickyTableHeader(true);
 
             this.navigationSubscription = this.router.events.pipe(filter((event:RouterEvent) => event instanceof NavigationEnd))
                                               .subscribe((event:NavigationEnd) =>
@@ -63,7 +63,7 @@ export class FloatTheadDirective implements OnInit, OnDestroy
         }
     }
 
-    private initStickyTableHeader():void
+    private initStickyTableHeader(addScrollEvent?:boolean):void
     {
         const tableElement:any = jQuery(this.elementRef.nativeElement);
         const overflowContainer:JQuery<HTMLElement> = tableElement.closest('.overflow-auto');
@@ -87,9 +87,12 @@ export class FloatTheadDirective implements OnInit, OnDestroy
             top:                 stickyOffset
         });
 
-        overflowContainer.scroll(function():void
+        if(addScrollEvent)
         {
-            tableElement.trigger('reflow');
-        });
+            overflowContainer.scroll(function():void
+            {
+                tableElement.floatThead('reflow');
+            });
+        }
     }
 }
