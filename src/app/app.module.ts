@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { TerraComponentsModule } from '../lib';
+import { RouterModule } from '@angular/router';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -36,6 +37,7 @@ function initL10n(l10nLoader:L10nLoader):Function
  */
 @NgModule({
     imports:   [
+        RouterModule.forRoot([]),
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,

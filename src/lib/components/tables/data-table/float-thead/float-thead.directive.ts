@@ -28,14 +28,15 @@ require('./floatThead.js');
 export class FloatTheadDirective implements OnInit, OnDestroy
 {
     /**
-     * @description provide the `activatedRoute` to subscribe to router event and re-initialize the sticky table header on tab-switch.
+     * @description if set to true the float thead will be applied.
+     * @default false
      */
     @Input()
-    public floatThead:ActivatedRoute;
+    public floatThead:boolean = false;
 
     private navigationSubscription:Subscription;
 
-    constructor(private elementRef:ElementRef, private router:Router)
+    constructor(private elementRef:ElementRef, private router:Router, private activatedRoute:ActivatedRoute)
     {
     }
 
@@ -48,7 +49,8 @@ export class FloatTheadDirective implements OnInit, OnDestroy
             this.navigationSubscription = this.router.events.pipe(filter((event:RouterEvent) => event instanceof NavigationEnd))
                                               .subscribe((event:NavigationEnd) =>
                                               {
-                                                  if(event.url === ActivatedRouteHelper.getBasePathForActivatedRoute(this.floatThead.snapshot))
+                                                  // re-initialize floatThead on tab switch to check header position
+                                                  if(event.url === ActivatedRouteHelper.getBasePathForActivatedRoute(this.activatedRoute.snapshot))
                                                   {
                                                       this.initStickyTableHeader();
                                                   }

@@ -85,7 +85,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
      * @description Make table header stick to the top
      */
     @Input()
-    public isSticky:ActivatedRoute;
+    public isSticky:boolean;
 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
