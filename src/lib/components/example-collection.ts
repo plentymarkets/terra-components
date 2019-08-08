@@ -24,7 +24,7 @@ import { TerraFileInputComponentExample } from './forms/input/file-input/example
 import { TerraCheckboxTreeComponentExample } from './tree/checkbox-tree/example/terra-checkbox-tree.component.example';
 import { TerraToggleComponentExample } from './buttons/toggle/example/terra-toggle.component.example';
 import { TerraSyntaxEditorComponentExample } from './editors/syntax-editor/example/terra-syntax-editor.component.example';
-import { TerraSimpleTableComponentExample } from './tables/simple/example/terra-table-simple.component.example';
+import { TerraSimpleTableComponentExample } from './tables/simple/example/terra-simple-table.component.example';
 import { TerraPagerComponentExample } from './pager/example/terra-pager.component.example';
 import { TerraTaglistComponentExample } from './layouts/taglist/example/terra-taglist.component.example';
 import { TerraNoResultNoticeComponentExample } from './no-result/example/terra-no-result-notice.component.example';
