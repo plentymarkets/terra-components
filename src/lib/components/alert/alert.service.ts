@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { AlertType } from './alert-type.enum';
+import { WindowHelper } from '../../helpers/window.helper';
 
 @Injectable({
     providedIn: 'root'
@@ -76,7 +77,7 @@ export class AlertService
     public close(identifier:string):void
     {
         // check whether the service is used in the root window or in an iframe
-        if(this.isRootWindow)
+        if(WindowHelper.isRootWindow)
         {
             // it is used in the root window -> use EventEmitter to notify the alert panel directly.
             this.closeAlert.emit(identifier);
@@ -98,7 +99,7 @@ export class AlertService
         };
 
         // check whether the service is used in the root window or in an iframe
-        if(this.isRootWindow)
+        if(WindowHelper.isRootWindow)
         {
             // it is used in the root window -> use EventEmitter to notify the alert panel directly.
             this.addAlert.emit(alert);
@@ -121,19 +122,10 @@ export class AlertService
 
     private closeAlertForPlugin(identifier:string):void
     {
-        let event:CustomEvent<string> =  new CustomEvent<string>(this.closeEvent, {
+        let event:CustomEvent<string> = new CustomEvent<string>(this.closeEvent, {
             detail: identifier,
             bubbles: false
         });
         window.parent.window.dispatchEvent(event);
-    }
-
-    /**
-     * checks whether this service is used in the root window, or in the test environment
-     */
-    private get isRootWindow():boolean
-    {
-        // since tests are run in an iframe, we need to check for test environment here to make them work
-        return window === window.parent || process.env.ENV === 'test';
     }
 }

@@ -6,6 +6,7 @@ import {
     Observable,
     Subscriber
 } from 'rxjs';
+import { WindowHelper } from '../../../helpers/window.helper';
 
 /**
  * @author mscharf
@@ -34,7 +35,7 @@ export class TerraLoadingSpinnerService
         if(this.subscriber && !this._isLoading)
         {
             this._isLoading = true;
-            this.subscriber.next(this._isLoading);
+            this.notify(this._isLoading);
         }
     }
 
@@ -65,9 +66,19 @@ export class TerraLoadingSpinnerService
                 // run inside angular zone to detect changes from isLoading to false
                 this.zone.run(() =>
                 {
-                    this.subscriber.next(this._isLoading);
+                    this.notify(this._isLoading);
                 });
             }
         }, 100);
+    }
+
+    private notify(isLoading:boolean):void
+    {
+        this.subscriber.next(isLoading);
+        // also dispatch event to the parent windows if the current one is not the root
+        if(!WindowHelper.isRootWindow)
+        {
+            window.dispatchEvent(new CustomEvent<boolean>('loadingStatus', {detail: isLoading, bubbles: true}));
+        }
     }
 }
