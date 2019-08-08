@@ -34,8 +34,6 @@ export class FloatTheadDirective implements OnInit, OnDestroy
     public floatThead:ActivatedRoute;
 
     private navigationSubscription:Subscription;
-    private windowSubscription:Subscription;
-    private themeSwitched:boolean;
 
     constructor(private elementRef:ElementRef, private router:Router)
     {
@@ -50,28 +48,11 @@ export class FloatTheadDirective implements OnInit, OnDestroy
             this.navigationSubscription = this.router.events.pipe(filter((event:RouterEvent) => event instanceof NavigationEnd))
                                               .subscribe((event:NavigationEnd) =>
                                               {
-                                                  if(event.url === ActivatedRouteHelper.getBasePathForActivatedRoute(this.floatThead.snapshot) &&
-                                                     this.themeSwitched)
+                                                  if(event.url === ActivatedRouteHelper.getBasePathForActivatedRoute(this.floatThead.snapshot))
                                                   {
                                                       this.initStickyTableHeader();
-                                                      this.themeSwitched = false;
                                                   }
                                               });
-
-            if(window === window.top)
-            {
-                this.windowSubscription = fromEvent(window, 'themeSwitched').subscribe(() =>
-                {
-                    this.themeSwitched = true;
-                });
-            }
-            else
-            {
-                this.windowSubscription = fromEvent(window.parent.window, 'themeSwitched').subscribe(() =>
-                {
-                    this.themeSwitched = true;
-                });
-            }
         }
     }
 
@@ -80,11 +61,6 @@ export class FloatTheadDirective implements OnInit, OnDestroy
         if(!isNullOrUndefined(this.navigationSubscription))
         {
             this.navigationSubscription.unsubscribe();
-        }
-
-        if(!isNullOrUndefined(this.windowSubscription))
-        {
-            this.windowSubscription.unsubscribe();
         }
     }
 
