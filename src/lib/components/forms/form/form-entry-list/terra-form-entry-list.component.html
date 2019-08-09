@@ -3,10 +3,14 @@
         <div class="form-list-entry" *ngFor="let control of formArray?.controls; index as i;">
             <div class="form-list-sort">
                 <terra-button
-                    [inputIcon]="'icon-collapse_up'">
+                    [inputIcon]="'icon-collapse_up'"
+                    [inputIsDisabled]="i === 0"
+                    (outputClicked)="moveElement(i, -1)">
                 </terra-button><!--
                 --><terra-button
-                    [inputIcon]="'icon-collapse_down'">
+                    [inputIcon]="'icon-collapse_down'"
+                    [inputIsDisabled]="i + 1 === formArray?.controls.length"
+                    (outputClicked)="moveElement(i, 1)">
                 </terra-button>
             </div>
             <terra-form-entry
