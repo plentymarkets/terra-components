@@ -1,6 +1,9 @@
 <a>unreleased</a>
 # unreleased
 
+### Feature
+* **terra-form** list entries can now be sorted by the user.
+
 ### Bug Fixes
 * **terra-alert** fixed visibility when `terra-overlay` is active.
 
