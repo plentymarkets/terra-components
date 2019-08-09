@@ -1,3 +1,20 @@
+<a>unreleased</a>
+# unreleased
+
+### Bug Fixes
+* **terra-alert** fixed visibility when `terra-overlay` is active.
+
+<a name="4.0.0-beta.11"></a>
+# 4.0.0-beta.11 (31.07.2019)
+
+### Feature 
+* **select-box** added option to set a color for select-box items.
+* **checkbox** added two-way data binding for `isIndeterminate` state.
+
+### Bug Fixes
+* **Path helper** File extensions are converted to lowercase for easier comparison.
+* **multi-checkbox** fixed displaying of indeterminate state.
+
 <a name="4.0.0-beta.9"></a>
 # 4.0.0-beta.9 (24.07.2019)
 

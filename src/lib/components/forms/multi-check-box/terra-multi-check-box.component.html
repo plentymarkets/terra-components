@@ -8,7 +8,7 @@
                     <terra-checkbox type="checkbox"
                                     (click)="$event.stopPropagation()"
                                     [inputIsDisabled]="inputIsDisabled"
-                                    [isIndeterminate]="headerCheckboxIndeterminate"
+                                    [(isIndeterminate)]="headerCheckboxIndeterminate"
                                     [inputCaption]="inputName.toUpperCase()"
                                     [(ngModel)]="headerCheckboxValue"
                                     (ngModelChange)="onHeaderCheckboxChange($event)">
