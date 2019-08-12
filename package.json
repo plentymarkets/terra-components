@@ -26,6 +26,7 @@
 		"test-once": "karma start --single-run --browsers Chrome,Firefox,Safari",
 		"test-headless": "karma start --single-run --browsers ChromeHeadless,FirefoxHeadless",
 		"lint": "NODE_OPTIONS='-r ts-node/register' tslint -p tsconfig.json -c tslint.json -e 'src/**/*.d.ts' -e 'src/**/*.spec.ts' 'src/**/*.ts'",
+		"eslint": "eslint 'src/**/*.ts' --ignore-pattern 'src/**/*.spec.ts'",
 		"reinstall": "rm -rf node_modules/ && npm i"
 	},
 	"peerDependencies": {

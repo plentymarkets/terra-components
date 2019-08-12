@@ -6,11 +6,6 @@
 			true,
 			"spaces"
 		],
-		"label-position": true,
-		"member-access": [
-			true,
-			"check-accessor"
-		],
 		"member-ordering": [
 			true,
 			{
