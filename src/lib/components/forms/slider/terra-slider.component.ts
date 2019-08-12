@@ -18,8 +18,7 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector:  'terra-slider',
     template:  require('./terra-slider.component.html'),

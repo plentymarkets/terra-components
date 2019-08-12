@@ -5,8 +5,7 @@ import {
     Observable,
     Observer
 } from 'rxjs';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 export type UploadQueueUrlFactory = (storageKey:string) => string;
 
 export class TerraUploadQueue

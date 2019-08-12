@@ -11,8 +11,7 @@ import {
 import { Color } from '../../forms/input/color-picker/color.helper';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 import { Language } from 'angular-l10n';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector: 'terra-tag',
     styles:   [require('./terra-tag.component.scss')],

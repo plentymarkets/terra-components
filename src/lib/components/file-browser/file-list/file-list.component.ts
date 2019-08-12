@@ -40,9 +40,7 @@ import { ClipboardHelper } from '../../../helpers/clipboard.helper';
 import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-simple-table-cell.interface';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
-import { isNullOrUndefined } from '../../../public-api';
-
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector:  'terra-file-list',
     template:  require('./file-list.component.html'),

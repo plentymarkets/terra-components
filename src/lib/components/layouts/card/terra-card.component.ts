@@ -6,8 +6,7 @@ import {
     ViewChild
 } from '@angular/core';
 import { StringHelper } from '../../../helpers/string.helper';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector: 'terra-card',
     styles:   [require('./terra-card.component.scss')],

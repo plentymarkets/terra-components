@@ -31,9 +31,7 @@ import { TerraBaseTable } from '../terra-base-table';
 import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
-import { isNullOrUndefined } from '../../../public-api';
-
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector:  'terra-data-table',
     template:  require('./terra-data-table.component.html'),

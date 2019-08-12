@@ -1,6 +1,6 @@
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { PathHelper } from '../../../helpers/path.helper';
-import { isNullOrUndefined } from '../../../public-api';
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 
 export type UploadCallback = (response:string, status:number, headers:{ [key:string]:string }) => void;
 

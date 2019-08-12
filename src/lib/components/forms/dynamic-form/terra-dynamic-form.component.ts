@@ -14,8 +14,7 @@ import { TerraDynamicFormFunctionsHandler } from './handler/terra-dynamic-form-f
 import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Language } from 'angular-l10n';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 export enum TerraHtmlMethods
 {
     GET = 'get',

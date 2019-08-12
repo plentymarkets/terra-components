@@ -19,8 +19,7 @@ import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraNodeTreeConfig } from '../../tree/node-tree/data/terra-node-tree.config';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector:  'terra-category-picker',
     template:  require('./terra-category-picker.component.html'),

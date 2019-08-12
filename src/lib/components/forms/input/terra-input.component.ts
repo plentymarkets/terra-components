@@ -6,8 +6,7 @@ import {
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 export class TerraInputComponent implements ControlValueAccessor
 {
     /**

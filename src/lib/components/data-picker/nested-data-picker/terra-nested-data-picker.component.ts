@@ -23,8 +23,7 @@ import {
     noop,
     Observable
 } from 'rxjs';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector:  'terra-nested-data-picker',
     template:  require('./terra-nested-data-picker.component.html'),

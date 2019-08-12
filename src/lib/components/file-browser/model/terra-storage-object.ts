@@ -4,8 +4,7 @@ import {
 } from './s3-storage-object.interface';
 import { PathHelper } from '../../../helpers/path.helper';
 import { FileTypeHelper } from '../../../helpers/fileType.helper';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 export class TerraStorageObject
 {
     private s3Object:S3StorageObjectInterface;

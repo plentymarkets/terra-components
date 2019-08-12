@@ -17,8 +17,7 @@ import { HtmlLinter } from './helper/html-linter.helper';
 import { HtmlLinterRule } from './helper/html-linter-rule.enum';
 import { HtmlLinterMessageInterface } from './helper/html-linter-message.interface';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector:  'terra-code-editor',
     template:  require('./terra-code-editor.component.html'),

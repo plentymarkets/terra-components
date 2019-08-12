@@ -12,8 +12,7 @@ import { TerraBaseStorageService } from '../../file-browser/terra-base-storage.i
 import { TerraStorageObject } from '../../file-browser/model/terra-storage-object';
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
 import { TerraOverlayButtonInterface } from '../../layouts/overlay/data/terra-overlay-button.interface';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector: 'terra-file-chooser',
     template: require('./terra-file-chooser.component.html'),

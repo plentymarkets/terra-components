@@ -13,8 +13,7 @@ import {
     Language,
     TranslationService
 } from 'angular-l10n';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector: 'terra-image-preview',
     template: require('./image-preview.component.html'),

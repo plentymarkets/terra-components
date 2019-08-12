@@ -15,8 +15,7 @@ import { TranslationService } from 'angular-l10n';
 import { TerraMultiCheckBoxValueInterface } from './data/terra-multi-check-box-value.interface';
 import { throttleTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector:  'terra-multi-check-box',
     styles:    [require('./terra-multi-check-box.component.scss')],

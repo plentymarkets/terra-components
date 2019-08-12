@@ -3,8 +3,7 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 /**
  * @author mkunze
  */

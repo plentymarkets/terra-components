@@ -9,8 +9,7 @@ import {
 } from '@angular/forms';
 import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-multi-check-box-value.interface';
 import { noop } from 'rxjs';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector:  'tc-checkbox-group',
     template:  require('./checkbox-group.component.html'),

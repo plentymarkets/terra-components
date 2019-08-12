@@ -16,8 +16,7 @@ import {
     distinctUntilChanged
 } from 'rxjs/operators';
 import { StringHelper } from '../../../helpers/string.helper';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector: 'terra-node-tree',
     styles:   [require('./terra-node-tree.component.scss')],

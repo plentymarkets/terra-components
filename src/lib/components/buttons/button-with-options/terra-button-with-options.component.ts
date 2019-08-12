@@ -9,8 +9,7 @@ import { TerraButtonInterface } from '../button/data/terra-button.interface';
 import { TerraButtonComponent } from '../button/terra-button.component';
 import { TerraTextAlignEnum } from '../../tables/data-table/enums/terra-text-align.enum';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector: 'terra-button-with-options',
     template: require('./terra-button-with-options.component.html'),

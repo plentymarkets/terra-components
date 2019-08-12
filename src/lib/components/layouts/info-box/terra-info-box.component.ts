@@ -5,8 +5,7 @@ import {
 } from '@angular/core';
 import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector: 'terra-info-box',
     styles:   [require('./terra-info-box.component.scss')],

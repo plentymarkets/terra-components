@@ -11,7 +11,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { noop } from 'rxjs';
-import { isNullOrUndefined } from '../../../public-api';
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 
 @Component({
     selector:  'terra-base-editor',

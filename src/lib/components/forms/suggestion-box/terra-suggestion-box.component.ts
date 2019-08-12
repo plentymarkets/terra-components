@@ -24,8 +24,7 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
 import { TerraBaseData } from '../../data/terra-base.data';
 import { noop } from 'rxjs';
 import { Language } from 'angular-l10n';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 const MAX_LASTLY_USED_ENTRIES:number = 5;
 
 @Component({

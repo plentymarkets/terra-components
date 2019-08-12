@@ -5,8 +5,7 @@ import {
     Output
 } from '@angular/core';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector: 'terra-button',
     styles:   [require('./terra-button.component.scss')],

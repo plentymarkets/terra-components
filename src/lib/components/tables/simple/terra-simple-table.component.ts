@@ -15,8 +15,7 @@ import { Key } from 'ts-keycode-enum';
 import {
     isNull,
 } from 'util';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector: 'terra-simple-table',
     styles:   [require('./terra-simple-table.component.scss')],

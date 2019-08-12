@@ -18,8 +18,7 @@ import {
 } from '@angular/forms';
 import { StringHelper } from '../../../helpers/string.helper';
 import { noop } from 'rxjs';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector:  'terra-select-box',
     styles:    [require('./terra-select-box.component.scss')],

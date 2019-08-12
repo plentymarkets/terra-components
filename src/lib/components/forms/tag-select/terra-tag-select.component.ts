@@ -18,8 +18,7 @@ import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraSuggestionBoxValueInterface } from '../suggestion-box/data/terra-suggestion-box.interface';
 import { TerraTagNameInterface } from '../../layouts/tag/data/terra-tag-name.interface';
 import { Language } from 'angular-l10n';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector:  'terra-tag-select',
     styles:    [require('./terra-tag-select.component.scss')],

@@ -15,8 +15,7 @@ import { UrlHelper } from '../../../helpers/url.helper';
 import { StringHelper } from '../../../helpers/string.helper';
 import { ActivatedRouteHelper } from '../../../helpers/activated-route.helper';
 import { filter } from 'rxjs/operators';
-import { isNullOrUndefined } from '../../../public-api';
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Injectable()
 export class TerraBreadcrumbsService
 {

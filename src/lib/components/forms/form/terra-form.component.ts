@@ -24,9 +24,7 @@ import {
     noop,
     Subscription
 } from 'rxjs';
-import { isNullOrUndefined } from '../../../public-api';
-
-
+import { isNullOrUndefined } from '../../../helpers/null-checker';
 @Component({
     selector:  'terra-form',
     template:  require('./terra-form.component.html'),
