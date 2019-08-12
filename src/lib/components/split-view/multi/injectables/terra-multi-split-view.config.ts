@@ -22,7 +22,7 @@ import { ResolvedDataInterface } from '../interfaces/resolved-data.interface';
 import { ResolverListItemInterface } from '../interfaces/resolve-list-item.interface';
 import { TerraResolvedDataHelper } from '../helpers/terra-resolved-data.helper';
 import { TerraMultiSplitViewHelper } from '../helpers/terra-multi-split-view.helper';
-import { isNullOrUndefined } from '../../../../public-api';
+import { isNullOrUndefined } from '../../../../helpers/null-checker';
 
 /**
  * @deprecated Will be removed in the next major release.

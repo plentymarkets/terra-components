@@ -25,7 +25,7 @@ import {
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { FormEntryContainerDirective } from './form-entry-container.directive';
 import { noop } from 'rxjs';
-import { isNullOrUndefined } from '../../../../public-api';
+import { isNullOrUndefined } from '../../../../helpers/null-checker';
 
 @Component({
     selector:  'terra-form-entry',

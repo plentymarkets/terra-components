@@ -2,7 +2,7 @@ import { TerraNodeInterface } from '../data/terra-node.interface';
 import {
     isNull,
 } from 'util';
-import { isNullOrUndefined } from '../../../../public-api';
+import { isNullOrUndefined } from '../../../../helpers/null-checker';
 
 /**
  * @author mfrank

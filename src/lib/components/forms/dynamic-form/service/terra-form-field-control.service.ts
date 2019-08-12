@@ -8,7 +8,7 @@ import {
     Validators
 } from '@angular/forms';
 import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
-import { isNullOrUndefined } from '../../../../public-api';
+import { isNullOrUndefined } from '../../../../helpers/null-checker';
 
 /**
  * @author mfrank

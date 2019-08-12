@@ -20,7 +20,7 @@ import {
     Subscription
 } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { isNullOrUndefined } from '../../../../public-api';
+import { isNullOrUndefined } from '../../../../helpers/null-checker';
 
 @Directive({
     selector: 'terra-2-col[mobileRouting]'

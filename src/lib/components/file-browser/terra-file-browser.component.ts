@@ -17,7 +17,7 @@ import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface'
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { TerraFileListComponent } from './file-list/file-list.component';
 import { StringHelper } from '../../helpers/string.helper';
-import { isNullOrUndefined } from '../../public-api';
+import { isNullOrUndefined } from '../../helpers/null-checker';
 
 @Component({
     selector:  'terra-file-browser',

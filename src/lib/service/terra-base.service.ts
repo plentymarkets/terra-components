@@ -27,7 +27,7 @@ import {
 } from 'rxjs/operators';
 import { TerraQueryEncoder } from './data/terra-query-encoder';
 import { DispatchHelper } from '../helpers/dispatch.helper';
-import { isNullOrUndefined } from '../public-api';
+import { isNullOrUndefined } from '../helpers/null-checker';
 
 /**
  * @author mfrank

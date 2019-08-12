@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { isNullOrUndefined } from '../public-api';
+import { isNullOrUndefined } from '../helpers/null-checker';
 
 export class ObjectHelper
 {

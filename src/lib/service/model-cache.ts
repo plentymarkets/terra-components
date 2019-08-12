@@ -5,7 +5,7 @@ import {
 import { tap } from 'rxjs/operators';
 import { TerraKeyValueInterface } from '../models';
 import { TerraBaseParameterInterface } from '../components/data/terra-base-parameter.interface';
-import { isNullOrUndefined } from '../public-api';
+import { isNullOrUndefined } from '../helpers/null-checker';
 
 /**
  * @experimental

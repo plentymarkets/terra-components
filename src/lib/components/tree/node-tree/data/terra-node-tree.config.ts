@@ -3,7 +3,7 @@ import { TranslationService } from 'angular-l10n';
 import { Injectable } from '@angular/core';
 import { TerraNodeTreeHelper } from '../helper/terra-node-tree.helper';
 import { ObjectHelper } from '../../../../helpers/object.helper';
-import { isNullOrUndefined } from '../../../../public-api';
+import { isNullOrUndefined } from '../../../../helpers/null-checker';
 
 @Injectable()
 export class TerraNodeTreeConfig<D>

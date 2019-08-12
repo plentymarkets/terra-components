@@ -1,4 +1,4 @@
-import { isNullOrUndefined } from '../public-api';
+import { isNullOrUndefined } from '../helpers/null-checker';
 
 export class StringHelper
 {

@@ -12,7 +12,7 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { isNullOrUndefined } from '../../public-api';
+import { isNullOrUndefined } from '../../helpers/null-checker';
 
 @Component({
     selector: 'terra-dynamic-component-loader',

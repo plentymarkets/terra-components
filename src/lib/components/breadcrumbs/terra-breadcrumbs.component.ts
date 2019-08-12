@@ -3,7 +3,7 @@ import { TerraBreadcrumbsService } from './service/terra-breadcrumbs.service';
 import { ActivatedRoute } from '@angular/router';
 import { TerraBreadcrumb } from './terra-breadcrumb';
 import { TerraBreadcrumbContainer } from './terra-breadcrumb-container';
-import { isNullOrUndefined } from '../../public-api';
+import { isNullOrUndefined } from '../../helpers/null-checker';
 
 @Component({
     selector:  'terra-breadcrumbs',

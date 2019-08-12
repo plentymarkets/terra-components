@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 import { TerraKeyValueInterface } from '../../../../models';
-import { isNullOrUndefined } from '../../../../public-api';
+import { isNullOrUndefined } from '../../../../helpers/null-checker';
 
 export class TerraFormScope
 {

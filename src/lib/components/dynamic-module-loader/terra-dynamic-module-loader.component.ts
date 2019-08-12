@@ -14,7 +14,7 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import { TerraMultiSplitViewInterface } from '../split-view/multi/interfaces/terra-multi-split-view.interface';
-import { isNullOrUndefined } from '../../public-api';
+import { isNullOrUndefined } from '../../helpers/null-checker';
 import { TerraDynamicLoadedComponentInputInterface } from './data/terra-dynamic-loaded-component-input.interface';
 
 @Component({

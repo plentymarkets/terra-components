@@ -17,7 +17,7 @@ import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.co
 import { TerraOverlayButtonInterface } from '../../../layouts/overlay/data/terra-overlay-button.interface';
 import { StringHelper } from '../../../../helpers/string.helper';
 import { Language } from 'angular-l10n';
-import { isNullOrUndefined } from '../../../../public-api';
+import { isNullOrUndefined } from '../../../../helpers/null-checker';
 
 let nextId:number = 0;
 

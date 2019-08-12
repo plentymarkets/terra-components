@@ -2,7 +2,7 @@ import { TerraAlertInterface } from './data/terra-alert.interface';
 import {
     isNull,
 } from 'util';
-import { isNullOrUndefined } from '../../public-api';
+import { isNullOrUndefined } from '../../helpers/null-checker';
 
 /**
  * @author mkunze

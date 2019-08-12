@@ -15,7 +15,7 @@ import { StringHelper } from '../../../../helpers/string.helper';
 import { TerraValidators } from '../../../../validators/validators';
 import { TerraFormFieldHelper } from './terra-form-field.helper';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
-import { isNullOrUndefined } from '../../../../public-api';
+import { isNullOrUndefined } from '../../../../helpers/null-checker';
 
 /**
  * @description This class provides functionality which may be used in relation to the <terra-form> and reactive forms.

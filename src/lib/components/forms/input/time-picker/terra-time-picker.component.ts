@@ -15,7 +15,7 @@ import {
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 import { noop } from 'rxjs';
 import { Language } from 'angular-l10n';
-import { isNullOrUndefined } from '../../../../public-api';
+import { isNullOrUndefined } from '../../../../helpers/null-checker';
 
 @Component({
     selector:  'terra-time-picker',

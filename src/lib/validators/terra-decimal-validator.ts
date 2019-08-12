@@ -2,7 +2,7 @@ import {
     AbstractControl,
     ValidatorFn
 } from '@angular/forms';
-import { isNullOrUndefined } from '../public-api';
+import { isNullOrUndefined } from '../helpers/null-checker';
 
 /**
  * @author mfrank
