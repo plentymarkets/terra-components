@@ -31,11 +31,6 @@
 							"src/styles.scss",
 							"node_modules/bootstrap/scss/bootstrap.scss"
 						],
-						"stylePreprocessorOptions": {
-							"includePaths": [
-								"src/styles"
-							]
-						},
 						"scripts": [],
 						"es5BrowserSupport": true
 					},
@@ -90,11 +85,6 @@
 							"src/styles.scss",
 							"node_modules/bootstrap/scss/bootstrap.scss"
 						],
-						"stylePreprocessorOptions": {
-							"includePaths": [
-								"src/styles"
-							]
-						},
 						"scripts": [],
 						"assets": [
 							"src/favicon.ico",
