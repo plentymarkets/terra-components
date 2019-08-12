@@ -17,12 +17,6 @@ import { l10nConfig } from './translation/l10n.config';
 import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
-import { MatSelectModule } from '@angular/material';
-import {
-    FormsModule,
-    ReactiveFormsModule
-} from '@angular/forms';
-import { TerraComponentsModule } from '../lib';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
