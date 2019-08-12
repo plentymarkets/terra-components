@@ -23,13 +23,11 @@
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "src/tsconfig.app.json",
 						"assets": [
-							"src/assets",
-							{ "glob": "tslint-rules.json", "input": "./", "output": "/" },
-							{ "glob": "*.js", "input": "./lintRules", "output": "/" }
+							"src/assets"
 						],
 						"styles": [
-							"src/styles.scss",
-							"node_modules/bootstrap/scss/bootstrap.scss"
+							"node_modules/bootstrap/scss/bootstrap.scss",
+							"src/styles.scss"
 						],
 						"scripts": [],
 						"es5BrowserSupport": true
@@ -82,12 +80,11 @@
 						"tsConfig": "src/tsconfig.spec.json",
 						"karmaConfig": "karma.conf.js",
 						"styles": [
-							"src/styles.scss",
-							"node_modules/bootstrap/scss/bootstrap.scss"
+							"node_modules/bootstrap/scss/bootstrap.scss",
+							"src/styles.scss"
 						],
 						"scripts": [],
 						"assets": [
-							"src/favicon.ico",
 							"src/assets"
 						],
 						"fileReplacements": [
