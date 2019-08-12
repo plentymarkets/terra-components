@@ -32,6 +32,7 @@ export class FloatTheadDirective implements OnInit, OnDestroy
     public floatThead:boolean = false;
 
     private navigationSubscription:Subscription;
+    private tableElement:any;
 
     constructor(private elementRef:ElementRef, private router:Router, private activatedRoute:ActivatedRoute)
     {
@@ -41,6 +42,8 @@ export class FloatTheadDirective implements OnInit, OnDestroy
     {
         if(this.floatThead)
         {
+            this.tableElement = jQuery(this.elementRef.nativeElement);
+
             this.initStickyTableHeader(true);
 
             this.navigationSubscription = this.router.events.pipe(filter((event:RouterEvent) => event instanceof NavigationEnd))
@@ -65,8 +68,7 @@ export class FloatTheadDirective implements OnInit, OnDestroy
 
     private initStickyTableHeader(addScrollEvent?:boolean):void
     {
-        const tableElement:any = jQuery(this.elementRef.nativeElement);
-        const overflowContainer:JQuery<HTMLElement> = tableElement.closest('.overflow-auto');
+        const overflowContainer:JQuery<HTMLElement> = this.tableElement.closest('.overflow-auto');
 
         if(overflowContainer.length === 0)
         {
@@ -76,9 +78,9 @@ export class FloatTheadDirective implements OnInit, OnDestroy
 
         const stickyOffset:number = overflowContainer.offset().top;
 
-        tableElement.floatThead('destroy');
-        tableElement.floatThead({
-            responsiveContainer: function(table:JQuery<HTMLElement>):JQuery<HTMLElement>
+        this.tableElement.floatThead('destroy');
+        this.tableElement.floatThead({
+            responsiveContainer: (table:JQuery<HTMLElement>):JQuery<HTMLElement> =>
                                  {
                                      return table.closest('.table-responsive');
                                  },
@@ -89,9 +91,9 @@ export class FloatTheadDirective implements OnInit, OnDestroy
 
         if(addScrollEvent)
         {
-            overflowContainer.scroll(function():void
+            overflowContainer.on('scroll', ():void =>
             {
-                tableElement.floatThead('reflow');
+                this.tableElement.floatThead('reflow');
             });
         }
     }
