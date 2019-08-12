@@ -1,3 +1,9 @@
+<a>unreleased</a>
+# unreleased
+
+### Bug Fixes
+* **terra-alert** fixed visibility when `terra-overlay` is active.
+
 <a name="4.0.0-beta.11"></a>
 # 4.0.0-beta.11 (31.07.2019)
 
