@@ -6,7 +6,7 @@ import {
     Observable,
     of
 } from 'rxjs';
-import { isNullOrUndefined } from '../../../../../public-api';
+import { isNullOrUndefined } from '../../../../../helpers/null-checker';
 
 @Injectable()
 export class NestedPickerExampleService extends TerraNestedDataPickerBaseService<{}>
