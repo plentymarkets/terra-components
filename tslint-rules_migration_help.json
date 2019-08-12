@@ -2,9 +2,6 @@
 	"rules": {
 		"restrict-leading-underscore": true,
 		"get-set": true,
-		"curly": true,
-		"eofline": true,
-		"forin": true,
 		"indent": [
 			true,
 			"spaces"
