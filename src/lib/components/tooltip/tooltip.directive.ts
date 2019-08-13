@@ -20,6 +20,9 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     @Input()
     public tooltip:string;
 
+    private _disabled:boolean;
+    private tooltipEl:any;
+
     /**
      * @deprecated since v4. The placement is calculated automatically now.
      * @param placement
@@ -38,9 +41,6 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     {
         this._disabled = disabled;
     }
-
-    private _disabled:boolean;
-    private tooltipEl:any;
 
     constructor(private elementRef:ElementRef)
     {
