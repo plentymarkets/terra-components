@@ -11,7 +11,7 @@ import {
 export class TerraBaseToolbarComponent
 {
     /**
-     * @deprecated breadcrumbs have its own styles now.
+     * @deprecated since v4. Breadcrumbs have its own styles now.
      */
     @Input()
     public inputIsBreadcrumbs:boolean;
