@@ -9,6 +9,9 @@ import { l10nConfig } from '../../../../app/translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { By } from '@angular/platform-browser';
+import { AllowedColors } from './data/allowed.colors.enum';
+import { DebugElement } from '@angular/core';
 
 /**
  * @author mfrank
@@ -30,7 +33,8 @@ describe('TerraSelectBoxComponent:', () =>
 
     let listBoxValue3:TerraSelectBoxValueInterface = {
         caption: 'Value 03',
-        value:   3
+        value:   3,
+        color:   AllowedColors.add
     };
 
     let listBoxValues:Array<TerraSelectBoxValueInterface> = [listBoxValue1,
@@ -66,5 +70,14 @@ describe('TerraSelectBoxComponent:', () =>
     it('should create an instance', () =>
     {
         expect(component).toBeTruthy();
+    });
+    // TODO test does not work properly
+    xit('should set color for caption', () =>
+    {
+        component.inputListBoxValues.push(listBoxValue3);
+        fixture.detectChanges();
+        let selectBoxDE:DebugElement = fixture.debugElement.query(By.css('div.select-box'));
+        let spanElement:DebugElement = selectBoxDE.query(By.css('span'));
+        expect(spanElement.styles['color']).toBe('var(--color-group-add)');
     });
 });

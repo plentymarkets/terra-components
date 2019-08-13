@@ -110,6 +110,12 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     @Output()
     public valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
+    /**
+     * @description Emits the current isIndeterminate state when it has changed.
+     */
+    @Output()
+    public isIndeterminateChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+
     public isValid:boolean = true;
 
     /**
@@ -138,6 +144,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     public onChange(value:boolean):void
     {
         this.onChangeCallback(value);
+        this.updateIntermediateState(false);
         this.valueChange.emit(value);
     }
 
@@ -155,7 +162,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
                 value = false;
             }
 
-            this._isIndeterminate = false;
+            this.updateIntermediateState(false);
             this.innerValue = value;
 
             if(this.notifyOnChanges)
@@ -183,5 +190,11 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     public registerOnTouched(fn:() => void):void
     {
         this.onTouchedCallback = fn;
+    }
+
+    private updateIntermediateState(newState:boolean):void
+    {
+        this._isIndeterminate = newState;
+        this.isIndeterminateChange.emit(this.isIndeterminate);
     }
 }

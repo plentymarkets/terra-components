@@ -1,6 +1,7 @@
 <ng-content select="terra-group-function"></ng-content>
 
-<terra-pager *ngIf="inputHasPager && dataAvailableOrRequestPending"
+<terra-pager *ngIf="inputHasPager"
+             [hidden]="!dataAvailableOrRequestPending"
              [inputPagingSize]="inputService?.pagingSizes"
              [inputDefaultPagingSize]="inputService?.defaultPagingSize"
              [inputPagingData]="inputService?.pagingData"

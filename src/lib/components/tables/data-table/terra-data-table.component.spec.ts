@@ -24,7 +24,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraDataTableServiceExample } from './example/terra-data-table.service.example';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
-import { DebugElement } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    DebugElement,
+} from '@angular/core';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { TableRowComponent } from './table-row/table-row.component';
@@ -67,6 +71,10 @@ describe('TerraDataTableComponent', () =>
                 TerraDataTableServiceExample,
                 TerraLoadingSpinnerService
             ]
+        }).overrideComponent(TerraDataTableComponent, {
+            set: new Component({
+                changeDetection: ChangeDetectionStrategy.Default
+            })
         }).compileComponents();
     }));
 
@@ -109,7 +117,7 @@ describe('TerraDataTableComponent', () =>
                 let pagerDE:DebugElement = fixture.nativeElement.querySelector('terra-pager');
                 expect(service.rowList).toBeDefined();
                 expect(service.rowList.length).toEqual(0);
-                expect(pagerDE).toBeNull();
+                expect(pagerDE.attributes.hasOwnProperty('hidden')).toBe(true);
             });
 
             it('should show the pager if #inputHasPager is set and data is available', async(() =>
@@ -121,7 +129,7 @@ describe('TerraDataTableComponent', () =>
                 let pagerDE:DebugElement = fixture.debugElement.query(By.css('terra-pager'));
                 expect(service.rowList).toBeDefined();
                 expect(service.rowList.length).toBeGreaterThan(0);
-                expect(pagerDE).toBeTruthy();
+                expect(pagerDE.attributes.hasOwnProperty('hidden')).toBe(false);
             }));
 
             it(`should hide the pager if #inputHasPager is not set`, () =>

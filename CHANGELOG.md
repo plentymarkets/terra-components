@@ -1,13 +1,80 @@
-# Unreleased Changes
+<a name="4.0.0"></a>
+# 4.0.0 (13.08.2019)
+
+### Breaking Changes
+* **build** removed app folder. Content has been moved to its root. Imports from `@plentymarkets/terra-components/app/**` need to be changed to `@plentymarkets/terra-components/**`.
+* **TerraComponentsModule** removed `forRoot()` and `forChild()` methods since all services use tree-shakable providers now. Import `TerraComponentsModule` in any Module where a provided component, pipe or directive is needed.
+* **bootstrap** updated from 4.0.0-alpha.4 to 4.3.1
+* Updated [angular](https://github.com/angular/angular) to v7, [rxjs](https://github.com/ReactiveX/rxjs) to v6 and [angular-l10n](https://github.com/robisim74/angular-l10n) to v7 and made them peer dependencies. Please visit https://update.angular.io to figure out how to update your app to angular v7.
+* Updated several other dependencies including
+	- [ngx-bootstrap](https://github.com/valor-software/ngx-bootstrap)
+	- [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quill)
+	- [TypeScript](https://github.com/microsoft/TypeScript)
+	- ...
+* **TerraConverterHelper** instead of a `defaultLocale` you now need to pass an instance of the [angular-l10n](https://github.com/robisim74/angular-l10n)'s `LocaleService` as argument to `convertAndFormatSize()` and `getLocaleDecimalValue()`
+
+### Features 
+* **select-box** added option to set a color for select-box items.
+* **checkbox** added two-way data binding for `isIndeterminate` state.
+* **data-table** changed `ChangeDetectionStrategy` from `default` to `onPush`
+* **tcCkEditor** New directive to provide a full config for the ckeditor4.
+* **ck-editor-presets** Config presets for the ckeditor4.
+* **terra-cards** restyling
+* **fonts** plentyicon-font moved to aws S3
+* **tslint** add new linting rules
+* **terra-category-picker** allow to accept `null` values
+* **terra-checkbox** allow to accept `null` values
+
 ### Bug Fixes
-* **checkbox** added missing paddings to checkboxes and radioboxes
+* **terra-alert** fixed visibility when `terra-overlay` is active.
+* **Path helper** File extensions are converted to lowercase for easier comparison.
+* **multi-checkbox** fixed displaying of indeterminate state.
+* **select-box** added default blank space for input name to prevent wrong positioning of selected entry
+* **global styles** refactored global style handling. They are now included in the `styles.scss`.
+* **theme-core** removed border-radius to improve performance.
+* **terra-button** added styles to swap icons on a labeled button (icon on the right side).
+* **terra-portlet** adjusted paddings.
+* **Tooltip** fixed tooltip position when `container="'body'"`.
+* **terra-portlet** fixed orientation of the collapsed icon.
+* **http-interceptors** fix logging errors to console. 
+* **draggable** allow `terraDraggable` input to be aliased.
+
+<a name="4.0.0-beta.11"></a>
+# 4.0.0-beta.11 (31.07.2019)
+
+### Feature 
+* **select-box** added option to set a color for select-box items.
+* **checkbox** added two-way data binding for `isIndeterminate` state.
+
+### Bug Fixes
+* **Path helper** File extensions are converted to lowercase for easier comparison.
+* **multi-checkbox** fixed displaying of indeterminate state.
+
+<a name="4.0.0-beta.9"></a>
+# 4.0.0-beta.9 (24.07.2019)
+
+### Feature
+* **data-table** changed `ChangeDetectionStrategy` from `default` to `onPush`
+
+### Bug Fixes
+* **select-box** added default blank space for input name to prevent wrong positioning of selected entry
+* **global styles** refactored global style handling. They are now included in the `styles.scss`.
+
+<a name="4.0.0-beta.8"></a>
+# 4.0.0-beta.8 (17.07.2019)
+
+### Bug Fixes
+* **theme-core** removed border-radius to improve performance.
+* **checkbox** added missing paddings to checkboxes and radioboxes.
+* **input** fixed color and paddings in disabled inputs.
+* **button** fixed missing spaces for multiple buttons next to each other.
 
 <a name="4.0.0-beta.7"></a>
 # 4.0.0-beta.7 (05.07.2019)
 
 ### Bug Fixes
-* **terra-button** added styles to swap icons on a labeled button (icon on the right side)
-* **terra-portlet** adjusted paddings
+* **terra-button** added styles to swap icons on a labeled button (icon on the right side).
+* **terra-portlet** adjusted paddings.
 
 ### Breaking Changes
 * **build** removed app folder. Content has been moved to its root. Imports from `@plentymarkets/terra-components/app/**` need to be changed to `@plentymarkets/terra-components/**`.
@@ -73,7 +140,7 @@
 ### Features
 * **tslint** add new linting rules
 * **terra-category-picker** allow to accept 'Null' values
-* **terra-cacheckbox** allow to accept 'Null' values
+* **terra-checkbox** allow to accept 'Null' values
 
 ### Bug Fixes
 * **http-interceptors** fix logging errors to console. 

@@ -9,9 +9,6 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 @Component({
     selector:  'terra-note-editor',
     template:  require('./terra-note-editor.component.html'),
-    styles:    [
-        require('./terra-note-editor.component.glob.scss').toString()
-    ],
     providers: [{
         provide:     NG_VALUE_ACCESSOR,
         useExisting: TerraNoteEditorComponent,

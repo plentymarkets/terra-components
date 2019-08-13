@@ -1,4 +1,6 @@
 import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     EventEmitter,
     Input,
@@ -37,6 +39,7 @@ import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/ter
     template:  require('./terra-data-table.component.html'),
     styles:    [require('./terra-data-table.component.scss')],
     providers: [TerraDataTableContextMenuService],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges
 {
@@ -80,6 +83,11 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     protected readonly refType:{} = TerraHrefTypeEnum;
     protected readonly checkboxColumnWidth:number = 25;
 
+    constructor(private cdr:ChangeDetectorRef)
+    {
+        super();
+    }
+
     protected get rowList():Array<TerraDataTableRowInterface<T>>
     {
         return !isNullOrUndefined(this.inputService) ? this.inputService.rowList : [];
@@ -105,6 +113,8 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
             tap((header:TerraDataTableHeaderCellInterface) => this.changeSortingColumn(header)),
             debounceTime(400)
         ).subscribe(() => this.getResults());
+
+        this.inputService.cdr = this.cdr;
     }
 
     /**

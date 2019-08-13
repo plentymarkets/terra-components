@@ -144,14 +144,19 @@ input[type="search"]::-webkit-search-decoration
     
     input[disabled]
     {
-        color: var(--color-structure-5);
         background-color: var(--color-structure-2);
-        padding-left: var(--input-wrapper-padding-left, var(--space-md));
+        color: var(--color-structure-8);
+        padding: var(--input-disabled-padding, var(--input-disabled-padding-default));
+        
+        &:only-child //has no label
+        {
+            padding-left: var(--space-md);
+        }
         
         + label
         {
+            padding: var(--label-disabled-padding, var(--label-disabled-padding-default));
             cursor: not-allowed;
-            padding-left: var(--input-wrapper-padding-left, var(--space-md));
         }
     }
     
@@ -248,6 +253,7 @@ textarea
     &:disabled
     {
         background-color: var(--color-structure-2);
+        color: var(--color-structure-8);
         cursor: not-allowed;
         border-bottom: var(--input-wrapper-border, (1px solid var(--border-color)));
         

@@ -131,7 +131,7 @@ body
         
         //////////// Others //////////
         
-        --border-radius: 2px;
+        --border-radius: none;
         --box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
         
         --zIndex-1: 100;
@@ -143,6 +143,7 @@ body
         --zIndex-7: 700;
         --zIndex-8: 800;
         --zIndex-9: 900;
+        --zIndex-10: 1060;      // set a level over the overlay modal which has 1050
         
         //////////// Animations //////////
         
@@ -169,7 +170,10 @@ body
         --input-padding-default: var(--space-lg) 0 0 0;
         --input-isEmpty-padding-default: var(--input-padding-default);
         --input-isSmall-padding-default: 0 var(--space-md) 0 30%;
+        --input-disabled-padding-default: var(--space-lg) 0 0 var(--space-md);
+        
         --label-padding-default: var(--space-xs) 0 0 0;
+        --label-disabled-padding-default: var(--space-xs) 0 0 var(--space-md);
         --label-width-default: 100%;
         --textarea-label-padding-default: var(--space-xs) 0 0 0;
         --textarea-padding-default: 0;
