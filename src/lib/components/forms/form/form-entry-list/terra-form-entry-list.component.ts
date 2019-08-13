@@ -173,6 +173,26 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
         }
     }
 
+    protected moveElement(index:number, movement:number = 1):void
+    {
+        if(index >= 0 &&
+           index < this.formArray.length &&
+           index + movement >= 0 &&
+           index + movement < this.formArray.length &&
+           movement !== 0)
+        {
+            const control:AbstractControl = this.formArray.at(index);
+            const scope:TerraFormScope = this.childScopes[index];
+
+            this.formArray.removeAt(index);
+            this.childScopes.splice(index, 1);
+
+            this.formArray.insert(index + movement, control);
+            this.childScopes.splice(index + movement, 0, scope);
+
+        }
+    }
+
     protected onElementValueChanged(idx:number, value:any):void
     {
         // TODO: implement

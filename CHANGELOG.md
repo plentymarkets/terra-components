@@ -31,6 +31,9 @@
 * **terra-category-picker** allow to accept `null` values
 * **terra-checkbox** allow to accept `null` values
 
+### Feature
+* **terra-form** list entries can now be sorted by the user.
+
 ### Bug Fixes
 * **terra-alert** fixed visibility when `terra-overlay` is active.
 * **Path helper** File extensions are converted to lowercase for easier comparison.
