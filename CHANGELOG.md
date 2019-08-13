@@ -1,6 +1,6 @@
 <a>unreleased</a>
 # unreleased
-* **terra-select-box** set as deprecated. Can be replaced by using the [angular material select.](https://material.angular.io/components/select/overview)
+* **terra-select-box** set as deprecated. Can be replaced by using the [angular material select](https://material.angular.io/components/select/overview).
 
 ### Bug Fixes
 * **terra-alert** fixed visibility when `terra-overlay` is active.
