@@ -66,6 +66,34 @@ mat-form-field
                         background-color: var(--color-alert);
                     }
                 }
+                
+                .mat-form-field-subscript-wrapper
+                {
+                    .mat-error
+                    {
+                        color: var(--color-alert);
+                    }
+                }
+            }
+            
+            .mat-form-field-flex
+            {
+                .mat-form-field-infix
+                {
+                    mat-select
+                    {
+                        .mat-select-trigger
+                        {
+                            .mat-select-value
+                            {
+                                .mat-select-value-text
+                                {
+                                    color: var(--color-alert);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         
