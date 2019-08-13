@@ -20,7 +20,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     @Input()
     public tooltip:string;
 
-    private _disabled:boolean;
+    private _isDisabled:boolean;
     private tooltipEl:any;
 
     /**
@@ -39,7 +39,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     @Input()
     public set isDisabled(disabled:boolean)
     {
-        this._disabled = disabled;
+        this._isDisabled = disabled;
     }
 
     constructor(private elementRef:ElementRef)
@@ -103,7 +103,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     {
         if(!isNullOrUndefined(this.tooltipEl))
         {
-            if(this._disabled)
+            if(this._isDisabled)
             {
                 this.tooltipEl.disable();
             }
