@@ -1,4 +1,10 @@
 <a name="4.0.0"></a>
+# Unreleased Changes
+
+### Bug Fixes
+* **transitions** removed all transitions and transition delays to improve performance
+
+<a name="4.0.0"></a>
 # 4.0.0 (13.08.2019)
 
 ### Breaking Changes
