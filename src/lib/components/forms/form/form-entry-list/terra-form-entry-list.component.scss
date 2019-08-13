@@ -24,7 +24,7 @@
 .form-list-sort
 {
     position: relative;
-    width: 36px;
+    width: 17px;
     
     > terra-button
     {
@@ -47,3 +47,20 @@
         }
     }
 }
+
+:host-context(.theme-compact)
+{
+    .form-list-sort
+    {
+        width: 42px;
+        
+        > terra-button:last-child
+        {
+            top: 0;
+            left: 21px;
+        }
+    }
+}
+
+
+
