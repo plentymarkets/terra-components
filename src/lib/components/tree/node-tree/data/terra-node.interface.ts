@@ -98,7 +98,7 @@ export interface TerraNodeInterface<D>
     tooltip?:string;
 
     /**
-     * @deprecated not used anymore since the new tooltip directive exists.
+     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
      * @description  set a tooltip placement for the node. default will be 'right'. Other values: 'left', 'top', 'bottom'
      */
     tooltipPlacement?:string;

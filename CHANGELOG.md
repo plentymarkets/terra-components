@@ -1,3 +1,9 @@
+<a name="4.0.x"></a>
+# UNRELEASED
+
+### Features
+* **tooltip** new tooltip directive featuring [tippy.js](https://atomiks.github.io/tippyjs/)
+
 <a name="4.0.0"></a>
 # 4.0.0 (13.08.2019)
 

@@ -10,7 +10,7 @@ export interface TerraSimpleTableCellInterface
     buttonList?:Array<TerraButtonInterface>;
     tooltipText?:string;
     /**
-     * @deprecated not used anymore since the new tooltip directive exists.
+     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
      */
     tooltipPlacement?:string;
     buttonListAlignRight?:boolean;

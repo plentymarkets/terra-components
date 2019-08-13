@@ -21,13 +21,13 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     public tooltip:string;
 
     /**
-     * @deprecated since the placement is calculated automatically now
+     * @deprecated since v4. The placement is calculated automatically now.
      * @param placement
      */
     @Input()
     public set placement(placement:string)
     {
-        // is not used anymore
+        console.warn('`placement` is deprecated since v4. The placement is calculated automatically now.');
     }
 
     /**
