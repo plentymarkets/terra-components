@@ -5,6 +5,12 @@
 * **tooltip** new tooltip directive featuring [tippy.js](https://atomiks.github.io/tippyjs/)
 
 <a name="4.0.0"></a>
+# Unreleased Changes
+
+### Bug Fixes
+* **transitions** removed all transitions and transition delays to improve performance
+
+<a name="4.0.0"></a>
 # 4.0.0 (13.08.2019)
 
 ### Breaking Changes
@@ -30,6 +36,9 @@
 * **tslint** add new linting rules
 * **terra-category-picker** allow to accept `null` values
 * **terra-checkbox** allow to accept `null` values
+
+### Feature
+* **terra-form** list entries can now be sorted by the user.
 
 ### Bug Fixes
 * **terra-alert** fixed visibility when `terra-overlay` is active.
