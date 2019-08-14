@@ -33,18 +33,26 @@ import {
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { TableRowComponent } from './table-row/table-row.component';
-import Spy = jasmine.Spy;
 import { FloatTheadDirective } from './float-thead/float-thead.directive';
+import { MockRouter } from '../../../testing/mock-router';
+import Spy = jasmine.Spy;
+import {
+    ActivatedRoute,
+    Router
+} from '@angular/router';
+import { MockActivatedRoute } from '../../../testing/mock-activated-route';
 
 describe('TerraDataTableComponent', () =>
 {
     let component:TerraDataTableComponent<any, any>;
     let fixture:ComponentFixture<TerraDataTableComponent<any, any>>;
+    let router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
+                FloatTheadDirective,
                 TerraDataTableComponent,
                 TerraButtonComponent,
                 TerraPagerComponent,
@@ -58,8 +66,7 @@ describe('TerraDataTableComponent', () =>
                 TerraNumberInputComponent,
                 TerraSelectBoxComponent,
                 TableRowComponent,
-                TerraLabelTooltipDirective,
-                FloatTheadDirective
+                TerraLabelTooltipDirective
             ],
             imports:      [
                 TooltipModule.forRoot(),
@@ -72,7 +79,15 @@ describe('TerraDataTableComponent', () =>
             ],
             providers:    [
                 TerraDataTableServiceExample,
-                TerraLoadingSpinnerService
+                TerraLoadingSpinnerService,
+                {
+                    provide:  Router,
+                    useValue: router
+                },
+                {
+                    provide:  ActivatedRoute,
+                    useClass: MockActivatedRoute
+                }
             ]
         }).overrideComponent(TerraDataTableComponent, {
             set: new Component({

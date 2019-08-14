@@ -2,6 +2,7 @@
 # unreleased
 
 ### Features
+* **terra-select-box** set as deprecated. Can be replaced by using the [angular material select](https://material.angular.io/components/select/overview).
 * **floatThead** new directive to add a floating table header.
 * **fixedHeader** set to deprecated since the new `floatThead` directive is working.
 * **terra-breadcrumbs** has its own styles now.
