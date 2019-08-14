@@ -1,25 +1,28 @@
-.terra-sticky-table thead
+.terra-sticky-table
 {
-    background: var(--table-head-background-color, var(--color-structure-9));
-    color: var(--table-head-color, var(--color-structure-0));
-    border: none;
-}
-
-.terra-sticky-table thead th
-{
-    padding: var(--table-head-th-padding, var(--space-md));
-    transition: padding var(--transition-lg);
-    border: none;
-}
-
-.terra-sticky-table thead th span
-{
-    font-size: var(--font-size-3);
-    font-weight: var(--font-weight-2);
-    -webkit-font-smoothing: antialiased;
-    display: inline-block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    vertical-align: middle;
+    thead
+    {
+        background: var(--table-head-background-color, var(--color-structure-9));
+        color: var(--table-head-color, var(--color-structure-0));
+        border: none;
+    
+        th
+        {
+            padding: var(--table-head-th-padding, var(--space-md));
+            transition: padding var(--transition-lg);
+            border: none;
+            
+            span
+            {
+                font-size: var(--font-size-3);
+                font-weight: var(--font-weight-2);
+                -webkit-font-smoothing: antialiased;
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                vertical-align: middle;
+            }
+        }
+    }
 }
