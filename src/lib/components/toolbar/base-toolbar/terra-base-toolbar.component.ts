@@ -16,6 +16,13 @@ export class TerraBaseToolbarComponent
     @Input()
     public inputIsBreadcrumbs:boolean;
 
+    /**
+     * @description makes toolbar stick to the top while scrolling
+     */
+    @Input()
+    public inputIsSticky:boolean = true;
+
+
     constructor()
     {
         this.inputIsBreadcrumbs = false;
