@@ -32,6 +32,9 @@ import { noop } from 'rxjs';
         }
     ]
 })
+/**
+ * @deprecated since v4. Use '<mat-select>' instead. See {@link https://material.angular.io/components/select/overview}
+ */
 export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
     @Input()
