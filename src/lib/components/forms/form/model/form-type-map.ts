@@ -14,6 +14,7 @@ import { TerraColorPickerComponent } from '../../input/color-picker/terra-color-
 import { TerraNoteEditorComponent } from '../../../editors/note-editor/terra-note-editor.component';
 import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-code-editor.component';
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
+import { TerraPortletComponent } from '../../../..';
 
 /**
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
@@ -89,5 +90,13 @@ export class FormTypeMap
             name: 'inputHeaderLabel'
         },
         component: TerraCodeEditorComponent
+    };
+
+    // CONTAINER TYPES
+    public readonly portlet:TerraFormTypeInterface = {
+        inputMap: {
+            name: 'inputPortletHeader'
+        },
+        component: TerraPortletComponent
     };
 }
