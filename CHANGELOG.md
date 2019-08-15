@@ -1,5 +1,5 @@
 <a name="4.1.1"></a>
-# 4.1.0 (15.08.2019)
+# 4.1.1 (15.08.2019)
 
 ### Bug Fixes
 * **multi-split-view** fixed breadcrumb styles.
