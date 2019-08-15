@@ -1,3 +1,8 @@
+# not released
+
+### Features
+* **terra-form** can now handle structural components to wrap nested form fields.
+
 <a name="4.1.0"></a>
 # 4.1.0 (14.08.2019)
 
