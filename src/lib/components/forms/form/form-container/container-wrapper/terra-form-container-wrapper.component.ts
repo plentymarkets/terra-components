@@ -29,7 +29,7 @@ import { isNullOrUndefined } from 'util';
  */
 @Component({
     selector: 'terra-form-container-wrapper',
-    template: require('./terra-form-custom-container.component.html')
+    template: require('./terra-form-container-wrapper.component.html')
 })
 export class TerraFormContainerWrapperComponent implements OnInit, OnChanges
 {
