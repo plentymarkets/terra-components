@@ -1,3 +1,9 @@
+<a name="4.1.2"></a>
+# 4.1.2 (16.08.2019)
+
+### Bug Fixes
+* **mat-select** increased z-index of the cdk-overlay.
+
 <a name="4.1.1"></a>
 # 4.1.1 (15.08.2019)
 
