@@ -8,21 +8,14 @@ import {
     OnChanges,
     OnDestroy,
     OnInit,
-    SimpleChanges,
-    Type,
-    ViewChild,
+    SimpleChanges
 } from '@angular/core';
 import {
     TerraFormContainerComponent,
-    TerraFormFieldInterface,
     TerraFormScope,
-    TerraPortletComponent,
-    TerraTextInputComponent,
+    TerraPortletComponent
 } from '../../../../..';
-import { FormEntryContainerDirective } from '../../form-entry/form-entry-container.directive';
-import { TerraFormTypeInterface } from '../../model/terra-form-type.interface';
 import { FormGroup } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
 import { TerraFormEntryBase } from '../../form-entry/terra-form-entry.base';
 
 /**
@@ -61,8 +54,8 @@ export class TerraFormContainerWrapperComponent extends TerraFormEntryBase imple
         this.innerComponentRef = this.componentFactoryResolver
                                   .resolveComponentFactory(TerraFormContainerComponent)
                                   .create(this.injector);
-        this.app.attachView(this.innerComponentRef.hostView);
 
+        this.app.attachView(this.innerComponentRef.hostView);
         this.passInputProperties();
 
         this.initComponent(TerraPortletComponent, [[this.innerComponentRef.location.nativeElement]]);
@@ -74,8 +67,8 @@ export class TerraFormContainerWrapperComponent extends TerraFormEntryBase imple
      */
     public ngOnChanges(changes:SimpleChanges):void
     {
-        super.ngOnChanges(changes);
-        this.passInputProperties();
+         this.passInputProperties();
+         super.ngOnChanges(changes);
     }
 
     /**
@@ -100,6 +93,7 @@ export class TerraFormContainerWrapperComponent extends TerraFormEntryBase imple
             this.innerComponentRef.instance.inputFormGroup = this.inputFormGroup;
             this.innerComponentRef.instance.inputFormFields = this.inputFormField.children;
             this.innerComponentRef.instance.inputIsDisabled = this.inputIsDisabled;
+            this.innerComponentRef.changeDetectorRef.detectChanges();
         }
     }
 }

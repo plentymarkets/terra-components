@@ -5,7 +5,7 @@ import {
     Input,
     OnChanges,
     OnDestroy,
-    OnInit,
+    OnInit
 } from '@angular/core';
 import {
     isFunction,
