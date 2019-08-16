@@ -6,6 +6,7 @@ import {
     Injector,
     Input,
     OnChanges,
+    OnDestroy,
     OnInit,
     SimpleChanges,
     Type,
@@ -22,6 +23,7 @@ import { FormEntryContainerDirective } from '../../form-entry/form-entry-contain
 import { TerraFormTypeInterface } from '../../model/terra-form-type.interface';
 import { FormGroup } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
+import { TerraFormEntryBase } from '../../form-entry/terra-form-entry.base';
 
 /**
  * Wraps custom components around terra-form-container component.
@@ -31,149 +33,73 @@ import { isNullOrUndefined } from 'util';
     selector: 'terra-form-container-wrapper',
     template: require('./terra-form-container-wrapper.component.html')
 })
-export class TerraFormContainerWrapperComponent implements OnInit, OnChanges
+export class TerraFormContainerWrapperComponent extends TerraFormEntryBase implements OnInit, OnChanges, OnDestroy
 {
     @Input()
     public inputScope:TerraFormScope;
 
     @Input()
-    public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
-
-    @Input()
-    public inputFormGroupName:string;
-
-    @Input()
-    public inputIsDisabled:boolean = false;
-
-    @Input()
     public inputFormGroup:FormGroup;
 
-    @Input()
-    public inputFormField:TerraFormFieldInterface;
+    private innerComponentRef:ComponentRef<TerraFormContainerComponent>;
 
-    @ViewChild(FormEntryContainerDirective)
-    private container:FormEntryContainerDirective;
-
-    private componentInstance:any;
-    private innerComponent:ComponentRef<TerraFormContainerComponent>;
-
-    constructor(private componentFactoryResolver:ComponentFactoryResolver, private injector:Injector, private app:ApplicationRef)
+    constructor(
+        private injector:Injector,
+        private app:ApplicationRef,
+        componentFactoryResolver:ComponentFactoryResolver)
     {
+        super(componentFactoryResolver);
     }
 
+    /**
+     * Implementation of the OnInit life cycle hook.
+     * @description Create instance of inner form container component and wrap it in dynamic structural component
+     */
     public ngOnInit():void
     {
-        this.initComponent();
-    }
-
-    public ngOnChanges(changes:SimpleChanges):void
-    {
-        this.passInputProperties();
-    }
-
-    private initComponent():void
-    {
         // create instance of nested TerraFormContainerComponent
-        this.innerComponent = this.componentFactoryResolver
+        this.innerComponentRef = this.componentFactoryResolver
                                   .resolveComponentFactory(TerraFormContainerComponent)
                                   .create(this.injector);
-        this.app.attachView(this.innerComponent.hostView);
+        this.app.attachView(this.innerComponentRef.hostView);
+
         this.passInputProperties();
 
-        // determine control type to be used as container for nested form fields
-        let controlType:Type<any> = TerraPortletComponent;
-        if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
-        {
-            if(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)
-            {
-                controlType = <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
-            }
-            else
-            {
-                controlType = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
-            }
-        }
+        this.initComponent(TerraPortletComponent, [[this.innerComponentRef.location.nativeElement]]);
+    }
 
-        // create instance of container component and pass inner TerraFormContainerComponent as projected node
-        let componentRef:ComponentRef<any> = this.container.viewContainerRef.createComponent(
-            this.componentFactoryResolver.resolveComponentFactory(controlType),
-            undefined,
-            undefined,
-            [[this.innerComponent.location.nativeElement]]
-        );
-        this.componentInstance = componentRef.instance;
-        this.bindInputProperties();
+    /**
+     * Implementation of the OnChanges life cycle hook.
+     * @description Pass input properties to inner form container component.
+     */
+    public ngOnChanges(changes:SimpleChanges):void
+    {
+        super.ngOnChanges(changes);
+        this.passInputProperties();
+    }
+
+    /**
+     * Implementation of the OnDestroy life cycle hook.
+     * @description Destroys the component that has been created dynamically.
+     */
+    public ngOnDestroy():void
+    {
+        super.ngOnDestroy();
+        if(this.componentRef)
+        {
+            this.innerComponentRef.destroy();
+        }
     }
 
     private passInputProperties():void
     {
-        if(this.innerComponent)
+        if(this.innerComponentRef)
         {
-            this.innerComponent.instance.inputScope = this.inputScope;
-            this.innerComponent.instance.inputControlTypeMap = this.inputControlTypeMap;
-            this.innerComponent.instance.inputFormGroup = this.inputFormGroup;
-            this.innerComponent.instance.inputFormFields = this.inputFormField.children;
-            this.innerComponent.instance.inputIsDisabled = this.inputIsDisabled;
-            this.innerComponent.changeDetectorRef.detectChanges();
+            this.innerComponentRef.instance.inputScope = this.inputScope;
+            this.innerComponentRef.instance.inputControlTypeMap = this.inputControlTypeMap;
+            this.innerComponentRef.instance.inputFormGroup = this.inputFormGroup;
+            this.innerComponentRef.instance.inputFormFields = this.inputFormField.children;
+            this.innerComponentRef.instance.inputIsDisabled = this.inputIsDisabled;
         }
-    }
-
-    private bindInputProperties():void
-    {
-        if(!isNullOrUndefined(this.componentInstance))
-        {
-            let inputMap:{ [key:string]:string } = {};
-            if(!(this.inputControlTypeMap[this.inputFormField.type] instanceof Type))
-            {
-                inputMap = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).inputMap;
-            }
-
-            if(!isNullOrUndefined(this.inputFormField.options))
-            {
-                Object.keys(this.inputFormField.options).forEach((optionKey:string) =>
-                {
-                    this.performInputBindings(inputMap, optionKey);
-                });
-            }
-
-            if(inputMap.hasOwnProperty('isDisabled'))
-            {
-                this.componentInstance[inputMap['isDisabled']] = this.inputIsDisabled;
-            }
-            else
-            {
-                this.componentInstance['inputIsDisabled'] = this.inputIsDisabled;
-            }
-        }
-    }
-
-    private performInputBindings(inputMap:{ [key:string]:string }, optionKey:string):void
-    {
-        if(inputMap.hasOwnProperty(optionKey)
-           && Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, inputMap[optionKey]))
-        {
-            this.componentInstance[inputMap[optionKey]] = this.inputFormField.options[optionKey];
-        }
-        else if(Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, optionKey))
-        {
-            this.componentInstance[optionKey] = this.inputFormField.options[optionKey];
-        }
-        else
-        {
-            let prefixedOptionKey:string = this.transformInputPropertyName(optionKey);
-            if(Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, prefixedOptionKey))
-            {
-                this.componentInstance[prefixedOptionKey] = this.inputFormField.options[optionKey];
-            }
-            else
-            {
-                console.warn('Cannot assign property ' + optionKey + ' on ' + this.componentInstance.constructor.name);
-            }
-        }
-    }
-
-    private transformInputPropertyName(propertyName:string):string
-    {
-        return 'input' + propertyName.charAt(0).toUpperCase() + propertyName.substr(1);
     }
 }
