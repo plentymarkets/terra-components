@@ -1,7 +1,20 @@
-# not released
+<a name="unreleased"></a>
+# 4.X.X (DD.MM.2019)
 
 ### Features
 * **terra-form** can now handle structural components to wrap nested form fields.
+
+<a name="4.1.2"></a>
+# 4.1.2 (16.08.2019)
+
+### Bug Fixes
+* **mat-select** increased z-index of the cdk-overlay.
+
+<a name="4.1.1"></a>
+# 4.1.1 (15.08.2019)
+
+### Bug Fixes
+* **multi-split-view** fixed breadcrumb styles.
 
 <a name="4.1.0"></a>
 # 4.1.0 (14.08.2019)

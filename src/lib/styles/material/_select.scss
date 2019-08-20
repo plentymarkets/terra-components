@@ -104,6 +104,7 @@
 
 .cdk-overlay-container
 {
+    z-index: var(--zIndex-10);
     .cdk-overlay-connected-position-bounding-box
     {
         .cdk-overlay-pane
