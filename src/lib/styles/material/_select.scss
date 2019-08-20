@@ -23,11 +23,11 @@
         {
             .mat-form-field-wrapper
             {
-                padding-bottom: .75em;
+                // padding-bottom: .75em;
                 
                 .mat-form-field-underline
                 {
-                    bottom: 1em;
+                    // bottom: 1em;
                 }
             }
         }
@@ -39,14 +39,15 @@
         
         .mat-form-field-wrapper
         {
-            padding-bottom: 0;
+            // padding-bottom: 0;
             
             .mat-form-field-flex
             {
                 .mat-form-field-infix
                 {
-                    border-top: 1em solid transparent;
-                    padding: calc(var(--space-sm) * 1.5) 0 calc(var(--space-sm) * 1.5) 0;
+                    // border-top: 1em solid transparent;
+                    // padding: calc(var(--space-sm) * 1.5) 0 calc(var(--space-sm) * 1.5) 0;
+                    padding: 4px 0;
                     
                     mat-select
                     {
@@ -67,8 +68,8 @@
             
             .mat-form-field-underline
             {
-                border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
-                bottom: 0;
+                // border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
+                // bottom: 0;
             }
         }
     
@@ -95,7 +96,7 @@
             {
                 .mat-form-field-underline
                 {
-                    border-bottom: inherit;
+                    // border-bottom: inherit;
                 }
             }
         }
