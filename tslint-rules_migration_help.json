@@ -6,34 +6,8 @@
 			true,
 			"spaces"
 		],
-		"member-ordering": [
-			true,
-			{
-				"order": [
-					"public-static-field",
-					"protected-static-field",
-					"private-static-field",
-					"public-instance-field",
-					"protected-instance-field",
-					"private-instance-field",
-					"constructor",
-					"public-instance-method",
-					"protected-instance-method",
-					"private-instance-method"
-				],
-				"alphabetize": false
-			}
-		],
-		"no-arg": true,
-		"no-bitwise": true,
-		"no-console": [
-			true,
-			"debug",
-			"info",
-			"time",
-			"timeEnd",
-			"trace"
-		],
+
+
 		"no-construct": true,
 		"no-debugger": true,
 		"no-duplicate-super": true,
