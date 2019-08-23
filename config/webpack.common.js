@@ -9,7 +9,8 @@ module.exports = {
     entry: {
         'polyfills': './src/polyfills.ts',
         'vendor': './src/vendor.ts',
-        'app': './src/main.ts'
+        'app': './src/main.ts',
+        'style': './node_modules/@angular/material/prebuilt-themes/indigo-pink.css'
     },
     resolve: {
         extensions: ['.ts', '.js', '.html']
@@ -41,8 +42,14 @@ module.exports = {
                 exclude: [helpers.root('src/index.html')]
             },
             {
+                test: /\.css$/,
+                loaders: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
                 test: /\.scss$/,
-                exclude: [/\.glob\.scss$/],
                 loaders: [
                     'raw-loader',
                     'postcss-loader',
@@ -58,15 +65,6 @@ module.exports = {
                             resources: helpers.root('src/lib/styles/_variables.scss')
                         }
                     }
-                ]
-            },
-            {
-                test: /\.glob\.scss$/,
-                loaders: [
-                    'style-loader',
-                    'css-loader',
-                    'postcss-loader',
-                    'sass-loader'
                 ]
             },
             {

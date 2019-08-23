@@ -1,4 +1,6 @@
 import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     EventEmitter,
     Input,
@@ -31,12 +33,12 @@ import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 
-
 @Component({
     selector:  'terra-data-table',
     template:  require('./terra-data-table.component.html'),
     styles:    [require('./terra-data-table.component.scss')],
     providers: [TerraDataTableContextMenuService],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges
 {
@@ -75,10 +77,21 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     @Input()
     public inputContextMenu:Array<TerraDataTableContextMenuEntryInterface<T>> = [];
 
+    /**
+     * @description Make table header stick to the top
+     */
+    @Input()
+    public isSticky:boolean;
+
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
     protected readonly refType:{} = TerraHrefTypeEnum;
     protected readonly checkboxColumnWidth:number = 25;
+
+    constructor(private cdr:ChangeDetectorRef)
+    {
+        super();
+    }
 
     protected get rowList():Array<TerraDataTableRowInterface<T>>
     {
@@ -105,6 +118,8 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
             tap((header:TerraDataTableHeaderCellInterface) => this.changeSortingColumn(header)),
             debounceTime(400)
         ).subscribe(() => this.getResults());
+
+        this.inputService.cdr = this.cdr;
     }
 
     /**
