@@ -80,7 +80,6 @@ export const exportedComponents:Array<Type<any>> = [
     TerraRadioButtonComponent,
     TerraSelectBoxComponent,
     TerraBaseToolbarComponent,
-    TerraIndicatorComponent,
     TerraPagerComponent,
     TerraIndicatorComponent,
     TerraInfoBoxComponent,
