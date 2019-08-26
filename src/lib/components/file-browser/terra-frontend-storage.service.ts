@@ -15,7 +15,7 @@ import {
     from,
     Observable
 } from 'rxjs';
-import { AlertService } from '../..';
+import { AlertService } from '../alert/alert.service';
 
 @Injectable({
     providedIn: 'root'
