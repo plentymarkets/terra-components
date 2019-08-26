@@ -22,14 +22,17 @@
         {
             color: var(--color-structure-7);
         }
-    
-        &.mat-form-field-can-float
+        
+        &.mat-form-field-appearance-legacy
         {
             &.mat-form-field-can-float
             {
-                .mat-form-field-label
+                &.mat-form-field-should-float
                 {
-                    text-transform: uppercase;
+                    .mat-form-field-label
+                    {
+                        text-transform: uppercase;
+                    }
                 }
             }
         }
