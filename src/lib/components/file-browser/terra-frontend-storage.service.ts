@@ -222,7 +222,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
             }
         });
 
-        item.onError((error:any) =>
+        item.onError(() =>
         {
             this.cleanStorageList(item);
         });
