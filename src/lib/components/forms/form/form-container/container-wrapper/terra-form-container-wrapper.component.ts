@@ -28,9 +28,17 @@ import { TerraFormEntryBase } from '../../form-entry/terra-form-entry.base';
 })
 export class TerraFormContainerWrapperComponent extends TerraFormEntryBase implements OnInit, OnChanges, OnDestroy
 {
+    /**
+     * @description The scope of the inner form elements. Will be passed through to inner form container.
+     * @see TerraFormContainerComponent.inputScope
+     */
     @Input()
     public inputScope:TerraFormScope;
 
+    /**
+     * @description The form group of the inner form container.
+     * @see TerraFormContainerComponent.inputFormGroup
+     */
     @Input()
     public inputFormGroup:FormGroup;
 
