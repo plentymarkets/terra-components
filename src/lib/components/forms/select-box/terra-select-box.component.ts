@@ -55,6 +55,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input()
     public inputTooltipText:string;
 
+    /**
+     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
+     */
     @Input()
     public inputTooltipPlacement:string;
 
@@ -72,9 +75,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     protected selectedValue:TerraSelectBoxValueInterface;
     protected tmpSelectedValue:TerraSelectBoxValueInterface;
     protected hasLabel:boolean;
-    protected isTooltipDisabled:boolean;
-    protected helperTooltip:string;
-    protected isHelperTooltipDisabled:boolean;
 
     private _value:number | string;
     private _toggleOpen:boolean;

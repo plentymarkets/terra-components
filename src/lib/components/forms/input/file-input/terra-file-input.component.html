@@ -18,7 +18,7 @@
                  placement="{{inputTooltipPlacement}}"
                  tooltip="{{inputTooltipText}}"
                  [ngClass]="{'error': !isValid, 'disabled': isDisabled}">
-                
+
                 <input #valueInput
                        id="{{id}}"
                        type="text"
@@ -33,13 +33,8 @@
                        required
                        (click)="valueInput.select()">
             </div>
-            <label terraLabelTooltip
-                   [nameOfInput]="inputName"
-                   [tooltipTextOfInput]="inputTooltipText"
-                   [(tooltipOfInputDisabled)]="isTooltipDisabled"
-                   [(tooltipText)]="helperTooltip"
-                   [(tooltipDisabled)]="isHelperTooltipDisabled"
-                   [tooltip]="helperTooltip"
+            <label [tooltip]="inputName"
+                   [onlyEllipsisTooltip]="true"
                    htmlFor="{{id}}">{{inputName}}
                 <span *ngIf="inputIsRequired">*</span>
             </label>
@@ -60,9 +55,9 @@
                       [inputTooltipPlacement]="'left'"
                       (outputClicked)="resetValue()">
         </terra-button>
-    
+
     </div>
-    
+
     <terra-overlay #previewOverlay [inputOverlayTitle]="getFilename(value)" class="preview-overlay">
         <span *ngIf="isWebImage(value)" [style.background-image]="'url(' + value + ')'"></span>
     </terra-overlay>

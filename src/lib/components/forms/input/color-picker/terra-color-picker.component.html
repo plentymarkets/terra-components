@@ -1,8 +1,7 @@
 <div class="input-wrapper"
-    placement="{{inputTooltipPlacement}}"
-    tooltip="{{inputTooltipText}}"
+    [tooltip]="inputTooltipText"
     [ngClass]="{'error': !isValid, 'disabled': isDisabled}">
-    
+
     <input type="text"
         [(ngModel)]="color"
         pattern="{{regex}}"
@@ -10,16 +9,11 @@
            autocomplete="off"
         [disabled]="isDisabled"
         [required]="inputIsRequired"
-        placeholder="{{inputPlaceholder}}">
-    <label terraLabelTooltip
-        [nameOfInput]="inputName"
-        [tooltipTextOfInput]="inputTooltipText"
-        [(tooltipOfInputDisabled)]="isTooltipDisabled"
-        [(tooltipText)]="helperTooltip"
-        [(tooltipDisabled)]="isHelperTooltipDisabled"
-        [tooltip]="helperTooltip">{{inputName}}
+        placeholder="{{inputIsRequired ? inputName + '*' : inputName}}">
+    <label [tooltip]="inputName"
+        [onlyEllipsisTooltip]="true">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
-    
+
     </label>
     <input type="color"
         [(ngModel)]="color"

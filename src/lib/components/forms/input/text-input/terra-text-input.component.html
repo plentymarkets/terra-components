@@ -1,8 +1,7 @@
 <div class="input-wrapper"
-     placement="{{inputTooltipPlacement}}"
-     tooltip="{{inputTooltipText}}"
+     [tooltip]="inputTooltipText"
      [ngClass]="{'error': !isValid, 'isSmall': inputIsSmall}">
-    
+
     <input id="{{id}}"
            [type]="inputIsPassword?'password':'text'"
            [(ngModel)]="value"
@@ -18,13 +17,8 @@
            [readonly]="inputIsReadonly"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
            required>
-    <label terraLabelTooltip
-           [nameOfInput]="inputName"
-           [tooltipTextOfInput]="inputTooltipText"
-           [(tooltipOfInputDisabled)]="isTooltipDisabled"
-           [(tooltipText)]="helperTooltip"
-           [(tooltipDisabled)]="isHelperTooltipDisabled"
-           [tooltip]="helperTooltip"
+    <label [tooltip]="inputName"
+           [onlyEllipsisTooltip]="true"
            *ngIf="(innerValue || innerValue === 0) && inputName" htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>

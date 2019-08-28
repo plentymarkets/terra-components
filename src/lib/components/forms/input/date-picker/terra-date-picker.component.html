@@ -1,6 +1,6 @@
 <div class="input-wrapper"
      [ngClass]="{'error': !inputIsValid, 'disabled': inputIsDisabled}">
-    
+
     <my-date-picker #viewChildMyDatePicker
                     id="{{id}}"
                     class="date-picker"
@@ -10,11 +10,8 @@
                     [options]="datePickerOptions"
                     (inputFocusBlur)="onFocusOrBlur($event)">
     </my-date-picker>
-    <label terraLabelTooltip
-           [nameOfInput]="inputName"
-           [(tooltipText)]="helperTooltip"
-           [(tooltipDisabled)]="isHelperTooltipDisabled"
-           [tooltip]="helperTooltip"
+    <label [tooltip]="inputName"
+           [onlyEllipsisTooltip]="true"
            htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>

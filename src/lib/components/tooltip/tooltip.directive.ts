@@ -17,8 +17,17 @@ import { isNullOrUndefined } from 'util';
 })
 export class TooltipDirective implements OnInit, OnDestroy, OnChanges
 {
+    /**
+     * @description The tooltip text.
+     */
     @Input()
     public tooltip:string;
+
+    /**
+     * @description Show the tooltip only when ellipsis is present.
+     */
+    @Input()
+    public onlyEllipsisTooltip:boolean = false;
 
     private _isDisabled:boolean;
     private tooltipEl:any;
@@ -40,6 +49,8 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     public set isDisabled(disabled:boolean)
     {
         this._isDisabled = disabled;
+
+        this.handleTooltipState();
     }
 
     constructor(private elementRef:ElementRef)
@@ -49,17 +60,15 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     public ngOnInit():void
     {
         this.tooltipEl = tippy(this.elementRef.nativeElement, {
-            content: this.tooltip,
-            trigger: 'manual',
-            arrow:   true,
+            content:  this.tooltip,
+            trigger:  'manual',
+            arrow:    true,
             boundary: 'window'
         });
 
         if(isNullOrUndefined(this.tooltip) || this.tooltip.length === 0)
         {
             this.isDisabled = true;
-
-            this.handleTooltipState();
         }
     }
 
@@ -87,6 +96,11 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
         event.stopPropagation();
         if(!isNullOrUndefined(this.tooltipEl))
         {
+            if(this.onlyEllipsisTooltip)
+            {
+                this.checkIfEllipsis();
+            }
+
             this.tooltipEl.show(0);
         }
     }
@@ -112,5 +126,24 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
                 this.tooltipEl.enable();
             }
         }
+    }
+
+    private checkIfEllipsis():void
+    {
+        let curOverflow:string = this.elementRef.nativeElement.style.overflow;
+
+        // 'hide' overflow to get correct scrollWidth
+        if(!curOverflow || curOverflow === 'visible')
+        {
+            this.elementRef.nativeElement.style.overflow = 'hidden';
+        }
+
+        // check if is overflowing
+        let isOverflowing:boolean = this.elementRef.nativeElement.clientWidth < this.elementRef.nativeElement.scrollWidth;
+
+        // 'reset' overflow to initial state
+        this.elementRef.nativeElement.style.overflow = curOverflow;
+
+        this.isDisabled = !isOverflowing;
     }
 }
