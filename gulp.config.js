@@ -9,9 +9,18 @@ module.exports = function () {
         allLang: './src/assets/lang/**/*'
     };
 
+    var filesToCopy = [
+        'package.json',
+        'README.md',
+        './src/lib/**/floatThead.js',
+        fileSelectors.allCSS,
+        fileSelectors.allSCSS,
+        fileSelectors.allHTML
+    ];
+
     var sources = {
         tslintRules: './tslint-rules.json',
-        customLintRules : './lintRules/**/*Rule.ts',
+        customLintRules: './lintRules/**/*Rule.ts',
         dist: 'dist/**/*.*'
     };
 
@@ -29,6 +38,7 @@ module.exports = function () {
 
 
     var config = {
+        filesToCopy: filesToCopy,
         fileSelectors: fileSelectors,
         sources: sources,
         destinations: destinations,
