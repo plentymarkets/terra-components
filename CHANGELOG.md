@@ -1,3 +1,10 @@
+<a name="unreleased"></a>
+# unreleased
+
+### Bug Fixes
+* **terra-file-browser** added error message if the upload file is too large.
+
+
 <a name="4.1.2"></a>
 # 4.1.2 (16.08.2019)
 
