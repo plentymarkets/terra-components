@@ -81,7 +81,10 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
 
         if(changes.hasOwnProperty('tooltip'))
         {
-            this.tooltipEl.content = this.tooltip;
+            if(!isNullOrUndefined(this.tooltipEl))
+            {
+                this.tooltipEl.content = this.tooltip;
+            }
         }
     }
 
