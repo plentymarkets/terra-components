@@ -17,21 +17,6 @@
 			"check-else",
 			"check-whitespace"
 		],
-
-
-
-		"typedef": [
-			true,
-			"call-signature",
-			"arrow-call-signature",
-			"parameter",
-			"arrow-parameter",
-			"property-declaration",
-			"variable-declaration",
-			"member-variable-declaration",
-			"object-destructuring",
-			"array-destructuring"
-		],
 		"typedef-whitespace": [
 			true,
 			{
@@ -63,6 +48,9 @@
 			"check-separator",
 			"check-typecast"
 		],
+
+
+
 
 		"component-class-suffix": [true, "Component", "ComponentExample", "DirectiveExample"],
 		"component-max-inline-declarations": [
