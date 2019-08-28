@@ -11,11 +11,9 @@ import {
     ViewChild
 } from '@angular/core';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
-import {
-    TerraFormFieldInterface,
-    TerraTextInputComponent
-} from '../../../..';
 import { FormEntryContainerDirective } from './form-entry-container.directive';
+import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
+import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 
 export class TerraFormEntryBase implements OnChanges, OnDestroy
 {

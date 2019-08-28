@@ -10,13 +10,11 @@ import {
     OnInit,
     SimpleChanges
 } from '@angular/core';
-import {
-    TerraFormContainerComponent,
-    TerraFormScope,
-    TerraPortletComponent
-} from '../../../../..';
 import { FormGroup } from '@angular/forms';
 import { TerraFormEntryBase } from '../../form-entry/terra-form-entry.base';
+import { TerraFormScope } from '../../model/terra-form-scope.data';
+import { TerraFormContainerComponent } from '../terra-form-container.component';
+import { TerraPortletComponent } from '../../../../layouts/portlet/terra-portlet.component';
 
 /**
  * Wraps custom components around terra-form-container component.

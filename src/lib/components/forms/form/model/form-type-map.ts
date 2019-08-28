@@ -14,7 +14,7 @@ import { TerraColorPickerComponent } from '../../input/color-picker/terra-color-
 import { TerraNoteEditorComponent } from '../../../editors/note-editor/terra-note-editor.component';
 import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-code-editor.component';
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
-import { TerraPortletComponent } from '../../../..';
+import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 
 /**
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
