@@ -78,6 +78,11 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
         {
             this.handleTooltipState();
         }
+
+        if(changes.hasOwnProperty('tooltip'))
+        {
+            this.tooltipEl.content = this.tooltip;
+        }
     }
 
     @HostListener('mouseout', ['$event'])
