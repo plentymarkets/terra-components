@@ -24,7 +24,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     public tooltip:string;
 
     /**
-     * @description Show the tooltip only when ellipsis is present.
+     * @description Show the tooltip only when ellipsis is present. Default false.
      */
     @Input()
     public onlyEllipsisTooltip:boolean = false;
