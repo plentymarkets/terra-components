@@ -16,7 +16,7 @@ import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 @Directive({
     selector: '[tcTooltip]'
 })
-export class TooltipDirective implements OnInit, OnDestroy, OnChanges
+export class TooltipDirective implements OnDestroy, OnChanges
 {
     /**
      * @description The tooltip text.
@@ -32,7 +32,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
 
     private _isDisabled:boolean;
     private tooltipEl:any;
-    private _placement:string = TerraPlacementEnum.TOP;
+    private _placement:string;
 
     /**
      * @deprecated since v4. The placement is calculated automatically now.
@@ -42,6 +42,11 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     public set placement(placement:string)
     {
         console.warn('`placement` is deprecated since v4. The placement is calculated automatically now.');
+
+        if(isNullOrUndefined(placement))
+        {
+            placement = TerraPlacementEnum.TOP;
+        }
 
         this._placement = placement;
     }
@@ -61,22 +66,6 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     {
     }
 
-    public ngOnInit():void
-    {
-        this.tooltipEl = tippy(this.elementRef.nativeElement, {
-            content:   this.tcTooltip,
-            trigger:   'manual',
-            arrow:     true,
-            boundary:  'window',
-            placement: this._placement as Placement
-        });
-
-        if(isNullOrUndefined(this.tcTooltip) || this.tcTooltip.length === 0)
-        {
-            this.isDisabled = true;
-        }
-    }
-
     public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes.hasOwnProperty('isDisabled'))
@@ -84,11 +73,41 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
             this.handleTooltipState();
         }
 
-        if(changes.hasOwnProperty('tooltip'))
+        if(changes.hasOwnProperty('tcTooltip'))
+        {
+            if(isNullOrUndefined(this.tooltipEl))
+            {
+                if(isNullOrUndefined(this._placement))
+                {
+                    this._placement = TerraPlacementEnum.TOP;
+                }
+
+                this.tooltipEl = tippy(this.elementRef.nativeElement, {
+                    content:   this.tcTooltip,
+                    trigger:   'manual',
+                    arrow:     true,
+                    boundary:  'window',
+                    placement: this._placement as Placement
+                });
+
+                if(isNullOrUndefined(this.tcTooltip) || this.tcTooltip.length === 0)
+                {
+                    this.isDisabled = true;
+                }
+            }
+            else
+            {
+                this.tooltipEl.setContent(this.tcTooltip);
+            }
+        }
+
+        if(changes.hasOwnProperty('placement'))
         {
             if(!isNullOrUndefined(this.tooltipEl))
             {
-                this.tooltipEl.content = this.tcTooltip;
+                this.tooltipEl.set({
+                    placement: this._placement as Placement
+                });
             }
         }
     }
