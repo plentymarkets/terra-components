@@ -15,8 +15,8 @@
     <div class="input-group">
         <div class="input-group-text">
             <div class="input-wrapper"
-                 placement="{{inputTooltipPlacement}}"
-                 tooltip="{{inputTooltipText}}"
+                 [placement]="inputTooltipPlacement"
+                 [tcTooltip]="inputTooltipText"
                  [ngClass]="{'error': !isValid, 'disabled': isDisabled}">
 
                 <input #valueInput
@@ -33,7 +33,7 @@
                        required
                        (click)="valueInput.select()">
             </div>
-            <label [tooltip]="inputName"
+            <label [tcTooltip]="inputName"
                    [onlyEllipsisTooltip]="true"
                    htmlFor="{{id}}">{{inputName}}
                 <span *ngIf="inputIsRequired">*</span>

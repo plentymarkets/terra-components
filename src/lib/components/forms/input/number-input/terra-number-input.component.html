@@ -1,6 +1,6 @@
 <div class="input-wrapper"
-     placement="{{inputTooltipPlacement}}"
-     tooltip="{{inputTooltipText}}"
+     [placement]="inputTooltipPlacement"
+     [tcTooltip]="inputTooltipText"
      [ngClass]="{'error': !isValid, 'disabled': inputIsDisabled, 'isSmall': inputIsSmall}">
 
     <input id="{{id}}"
@@ -16,7 +16,7 @@
            max="{{inputMaxValue}}"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
            [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0 }">
-    <label [tooltip]="inputName"
+    <label [tcTooltip]="inputName"
            [onlyEllipsisTooltip]="true"
            *ngIf="innerValue || innerValue === 0" htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>

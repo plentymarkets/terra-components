@@ -12,7 +12,8 @@
             </th>
             <th *ngFor="let header of inputHeaderList"
                 width="{{header.width}}"
-                [tooltip]="header.tooltipText"
+                [tcTooltip]="header.tooltipText"
+                [placement]="header.tooltipPlacement"
                 [ngStyle]="{ 'text-align': getTextAlign(header) }">
                 <span>{{header.caption}}</span>
             </th>
@@ -33,7 +34,8 @@
             </td>
             <ng-container *ngFor="let cell of row.cellList; let i = index">
                 <td width="{{ inputHeaderList[i].width }}"
-                    [tooltip]="cell.tooltipText"
+                    [tcTooltip]="cell.tooltipText"
+                    [placement]="cell.tooltipPlacement"
                     [ngStyle]="{ 'text-align': getTextAlign(inputHeaderList[i]) }">
                     <span [ngClass]="cell.icon"></span>
                     <span [innerHTML]="cell.caption"></span>

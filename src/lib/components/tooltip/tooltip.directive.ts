@@ -9,11 +9,12 @@ import {
     SimpleChanges
 } from '@angular/core';
 
-import tippy from 'tippy.js';
+import tippy, { Placement } from 'tippy.js';
 import { isNullOrUndefined } from 'util';
+import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 
 @Directive({
-    selector: '[tooltip]'
+    selector: '[tcTooltip]'
 })
 export class TooltipDirective implements OnInit, OnDestroy, OnChanges
 {
@@ -21,7 +22,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
      * @description The tooltip text.
      */
     @Input()
-    public tooltip:string;
+    public tcTooltip:string;
 
     /**
      * @description Show the tooltip only when ellipsis is present. Default false.
@@ -31,6 +32,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
 
     private _isDisabled:boolean;
     private tooltipEl:any;
+    private _placement:string = TerraPlacementEnum.TOP;
 
     /**
      * @deprecated since v4. The placement is calculated automatically now.
@@ -40,6 +42,8 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     public set placement(placement:string)
     {
         console.warn('`placement` is deprecated since v4. The placement is calculated automatically now.');
+
+        this._placement = placement;
     }
 
     /**
@@ -60,13 +64,14 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
     public ngOnInit():void
     {
         this.tooltipEl = tippy(this.elementRef.nativeElement, {
-            content:  this.tooltip,
-            trigger:  'manual',
-            arrow:    true,
-            boundary: 'window'
+            content:   this.tcTooltip,
+            trigger:   'manual',
+            arrow:     true,
+            boundary:  'window',
+            placement: this._placement as Placement
         });
 
-        if(isNullOrUndefined(this.tooltip) || this.tooltip.length === 0)
+        if(isNullOrUndefined(this.tcTooltip) || this.tcTooltip.length === 0)
         {
             this.isDisabled = true;
         }
@@ -83,7 +88,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges
         {
             if(!isNullOrUndefined(this.tooltipEl))
             {
-                this.tooltipEl.content = this.tooltip;
+                this.tooltipEl.content = this.tcTooltip;
             }
         }
     }

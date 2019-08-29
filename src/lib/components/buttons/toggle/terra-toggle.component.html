@@ -1,13 +1,13 @@
 <terra-button
-    tooltip="{{inputTooltipText}}"
-    placement="{{inputTooltipPlacement}}"
+    [tcTooltip]="inputTooltipText"
+    [placement]="inputTooltipPlacement"
     [hidden]="inputIsHidden"
     [inputIsDisabled]="inputIsDisabled"
     [inputIcon]="inputIcon"
     [inputIsSmall]="inputIsSmall"
     [inputIsLarge]="inputIsLarge"
     (click)="toggle()">
-    
+
     <div btn-inner class="toggle-wrapper"
          [ngClass]="{'active':isActive,
                 'sm': inputIsSmall,

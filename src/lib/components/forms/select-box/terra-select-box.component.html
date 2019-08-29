@@ -1,6 +1,6 @@
 <div class="select-box-wrapper"
-     placement="{{inputTooltipPlacement}}"
-     [tooltip]="inputTooltipText"
+     [tcTooltip]="inputTooltipText"
+     [placement]="inputTooltipPlacement"
      [ngClass]="{
                   'error': !isValid,
                   'disabled': inputIsDisabled,
@@ -13,7 +13,7 @@
      (keydown)="onKeyDown($event)"
      (blur)="onBlur()">
 
-    <label [tooltip]="inputName"
+    <label [tcTooltip]="inputName"
            [onlyEllipsisTooltip]="true"
            htmlFor="{{inputName}}">
         {{inputName}}

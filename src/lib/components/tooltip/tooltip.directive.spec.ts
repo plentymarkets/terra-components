@@ -12,7 +12,7 @@ import { By } from '@angular/platform-browser';
 import { TooltipDirective } from './tooltip.directive';
 
 @Component({
-    template: `<label [tooltip]="'Test'">test</label>`
+    template: `<label [tcTooltip]="'Test'">test</label>`
 })
 class TooltipDirectiveHostComponent
 {

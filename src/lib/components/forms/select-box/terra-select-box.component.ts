@@ -111,7 +111,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         };
 
         this.isInit = false;
-        this.inputTooltipPlacement = 'top';
         this.inputIsSmall = false;
         this.inputOpenOnTop = false;
     }

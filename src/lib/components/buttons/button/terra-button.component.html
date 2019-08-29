@@ -1,5 +1,6 @@
 <div class="btn-handler"
-     [tooltip]="inputTooltipText"
+     [tcTooltip]="inputTooltipText"
+     [placement]="inputTooltipPlacement"
      [ngClass]="{'float-right': inputIsAlignRight,
                  'disabled': inputIsDisabled}"
      (click)="click($event)">

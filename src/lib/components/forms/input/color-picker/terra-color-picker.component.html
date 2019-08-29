@@ -1,5 +1,6 @@
 <div class="input-wrapper"
-    [tooltip]="inputTooltipText"
+    [tcTooltip]="inputTooltipText"
+    [placement]="inputTooltipPlacement"
     [ngClass]="{'error': !isValid, 'disabled': isDisabled}">
 
     <input type="text"
@@ -10,7 +11,7 @@
         [disabled]="isDisabled"
         [required]="inputIsRequired"
         placeholder="{{inputIsRequired ? inputName + '*' : inputName}}">
-    <label [tooltip]="inputName"
+    <label [tcTooltip]="inputName"
         [onlyEllipsisTooltip]="true">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
 
