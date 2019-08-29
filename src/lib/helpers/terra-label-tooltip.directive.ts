@@ -10,7 +10,7 @@ import {
 import { StringHelper } from './string.helper';
 
 /**
- * @deprecated Please set {@link TooltipDirective#onlyEllipsisTooltip} tu true to get the same Result.
+ * @deprecated Please set {@link TooltipDirective#onlyEllipsisTooltip} to true to get the same Result.
  */
 @Directive(
     {
