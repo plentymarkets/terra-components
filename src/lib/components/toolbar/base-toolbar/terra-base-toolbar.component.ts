@@ -20,7 +20,7 @@ export class TerraBaseToolbarComponent
      * @description makes toolbar stick to the top while scrolling
      */
     @Input()
-    public inputIsSticky:boolean;
+    public isSticky:boolean;
 
 
     constructor()
