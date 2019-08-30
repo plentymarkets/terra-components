@@ -8,8 +8,7 @@ import { By } from '@angular/platform-browser';
 import { TerraOverlayComponent } from './terra-overlay.component';
 import {
     ModalDirective,
-    ModalModule,
-    TooltipModule
+    ModalModule
 } from 'ngx-bootstrap';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import {
@@ -17,6 +16,7 @@ import {
     mockButtonTwo
 } from '../../../testing/mock-buttons';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
 
 describe('TerraOverlayComponent', () =>
 {
@@ -30,12 +30,11 @@ describe('TerraOverlayComponent', () =>
     {
         TestBed.configureTestingModule({
             imports:      [
-                TooltipModule.forRoot(),
                 ModalModule.forRoot()
             ],
-            declarations: [
-                TerraButtonComponent,
-                TerraOverlayComponent
+            declarations: [TooltipDirective,
+                           TerraButtonComponent,
+                           TerraOverlayComponent
             ]
         }).compileComponents();
     }));

@@ -6,7 +6,6 @@ import {
 } from '@angular/core/testing';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../app/translation/l10n.config';
-import { TooltipModule } from 'ngx-bootstrap';
 import { HttpModule } from '@angular/http';
 import { TerraPagerComponent } from '../../pager/terra-pager.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
@@ -36,6 +35,7 @@ import { TableRowComponent } from './table-row/table-row.component';
 import { FloatTheadDirective } from './float-thead/float-thead.directive';
 import { MockRouter } from '../../../testing/mock-router';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import {
     ActivatedRoute,
     Router
@@ -52,6 +52,7 @@ describe('TerraDataTableComponent', () =>
     {
         TestBed.configureTestingModule({
             declarations: [
+                TooltipDirective,
                 FloatTheadDirective,
                 TerraDataTableComponent,
                 TerraButtonComponent,
@@ -69,7 +70,6 @@ describe('TerraDataTableComponent', () =>
                 TerraLabelTooltipDirective
             ],
             imports:      [
-                TooltipModule.forRoot(),
                 CommonModule,
                 FormsModule,
                 HttpModule,

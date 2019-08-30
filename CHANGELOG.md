@@ -1,9 +1,11 @@
-<a name="unreleased"></a>
-# unreleased
+<a name="4.1.x"></a>
+# UNRELEASED
+
+### Features
+* **tooltip** new tooltip directive featuring [tippy.js](https://atomiks.github.io/tippyjs/)
 
 ### Bug Fixes
 * **terra-file-browser** added error message if the upload file is too large.
-
 
 <a name="4.1.2"></a>
 # 4.1.2 (16.08.2019)
