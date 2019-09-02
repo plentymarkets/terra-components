@@ -47,6 +47,9 @@ export class TerraToggleComponent implements ControlValueAccessor
     @Input()
     public inputTooltipText:string;
 
+    /**
+     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
+     */
     @Input()
     public inputTooltipPlacement:TerraPlacementEnum;
 

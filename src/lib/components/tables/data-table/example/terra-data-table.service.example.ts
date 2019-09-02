@@ -80,16 +80,19 @@ export class TerraDataTableServiceExample extends TerraDataTableBaseService<Terr
     {
         let cellList:Array<TerraDataTableCellInterface> = [
             {
-                data: entry.id
+                data: entry.id,
+                tooltipText: String(entry.id)
             },
             {
-                data: entry.value
+                data: entry.value,
+                tooltipText: '<button>click</button>'
             },
             {
                 data: {
                     type:  TerraHrefTypeEnum.email,
                     value: 'example-mail@host.com'
-                }
+                },
+                tooltipText: 'example-mail@host.com'
             },
             {
                 data: [{

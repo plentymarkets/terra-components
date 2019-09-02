@@ -39,29 +39,29 @@ body
     direction: ltr;
 }
 
-.tooltip
+.tippy-tooltip
 {
     font-size: var(--font-size-2);
     opacity: 1 !important;
     
-    &.top .tooltip-arrow
+    &.tippy-arrow
     {
         border-top-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
     }
-    &.left .tooltip-arrow
+    &.tippy-arrow
     {
         border-left-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
     }
-    &.bottom .tooltip-arrow
+    &.tippy-arrow
     {
         border-bottom-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
     }
-    &.right .tooltip-arrow
+    &.tippy-arrow
     {
         border-right-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
     }
     
-    .tooltip-inner
+    .tippy-inner
     {
         background-color: var(--tooltip-background-color, var(--color-structure-12));
         color: var(--tooltip-color, var(--color-structure-12));

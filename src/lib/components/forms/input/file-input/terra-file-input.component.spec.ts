@@ -9,10 +9,7 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import {
-    ModalModule,
-    TooltipModule
-} from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../../app/translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
@@ -41,6 +38,7 @@ import { TerraFileBrowserService } from '../../../file-browser/terra-file-browse
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
 import { TerraInfoComponent } from '../../../info/terra-info.component';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 
 describe('TerraFileInputComponent', () =>
 {
@@ -53,27 +51,26 @@ describe('TerraFileInputComponent', () =>
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [
-                TerraFileListComponent,
-                TerraFileBrowserComponent,
-                TerraFileChooserComponent,
-                TerraFileInputComponent,
-                TerraImagePreviewComponent,
-                TerraButtonComponent,
-                TerraOverlayComponent,
-                TerraThreeColumnsContainerComponent,
-                TerraSimpleTableComponent,
-                TerraPortletComponent,
-                TerraInfoComponent,
-                TerraTextInputComponent,
-                TerraCheckboxComponent,
-                TerraBaseToolbarComponent,
-                TerraNodeComponent,
-                TerraNodeTreeComponent,
-                TerraLabelTooltipDirective
+            declarations: [TooltipDirective,
+                           TerraFileListComponent,
+                           TerraFileBrowserComponent,
+                           TerraFileChooserComponent,
+                           TerraFileInputComponent,
+                           TerraImagePreviewComponent,
+                           TerraButtonComponent,
+                           TerraOverlayComponent,
+                           TerraThreeColumnsContainerComponent,
+                           TerraSimpleTableComponent,
+                           TerraPortletComponent,
+                           TerraInfoComponent,
+                           TerraTextInputComponent,
+                           TerraCheckboxComponent,
+                           TerraBaseToolbarComponent,
+                           TerraNodeComponent,
+                           TerraNodeTreeComponent,
+                           TerraLabelTooltipDirective
             ],
             imports:      [
-                TooltipModule.forRoot(),
                 ModalModule.forRoot(),
                 FormsModule,
                 ReactiveFormsModule,

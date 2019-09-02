@@ -1,11 +1,8 @@
 <div class="input-wrapper"
-     placement="{{inputTooltipPlacement}}"
-     tooltip="{{inputTooltipText}}"
-     [isDisabled]="isTooltipDisabled"
-     [ngClass]="{'error': !isValid, 'disabled': inputIsDisabled, 'isSmall': inputIsSmall}"
-     container="body"
-     [adaptivePosition]="false">
-    
+     [placement]="inputTooltipPlacement"
+     [tcTooltip]="inputTooltipText"
+     [ngClass]="{'error': !isValid, 'disabled': inputIsDisabled, 'isSmall': inputIsSmall}">
+
     <input id="{{id}}"
            type="number"
            [(ngModel)]="value"
@@ -19,17 +16,8 @@
            max="{{inputMaxValue}}"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
            [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0 }">
-    <label terraLabelTooltip
-           [nameOfInput]="inputName"
-           [tooltipTextOfInput]="inputTooltipText"
-           [(tooltipOfInputDisabled)]="isTooltipDisabled"
-           [(tooltipText)]="helperTooltip"
-           [(tooltipDisabled)]="isHelperTooltipDisabled"
-           [placement]="inputTooltipPlacement"
-           [tooltip]="helperTooltip"
-           [isDisabled]="isHelperTooltipDisabled"
-           [container]="'body'"
-           [adaptivePosition]="false"
+    <label [tcTooltip]="inputName"
+           [onlyEllipsisTooltip]="true"
            *ngIf="innerValue || innerValue === 0" htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>

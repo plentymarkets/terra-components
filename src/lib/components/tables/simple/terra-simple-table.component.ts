@@ -95,16 +95,6 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         }
     }
 
-    protected checkTooltipPlacement(placement:string):string
-    {
-        if(isNull(placement) || placement === '')
-        {
-            return 'top';
-        }
-
-        return placement;
-    }
-
     protected onHeaderCheckboxChange():void
     {
         this.outputHeaderCheckBoxChanged.emit(!this.headerCheckbox.checked);

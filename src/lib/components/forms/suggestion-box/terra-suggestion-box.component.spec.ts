@@ -11,7 +11,6 @@ import {
     TestBed
 } from '@angular/core/testing';
 
-import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../app/translation/l10n.config';
 import { TerraSuggestionBoxComponent } from './terra-suggestion-box.component';
@@ -22,6 +21,7 @@ import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { TerraTextInputComponent } from '../input/text-input/terra-text-input.component';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
 
 describe('TerraSuggestionBoxComponent', () =>
 {
@@ -35,18 +35,16 @@ describe('TerraSuggestionBoxComponent', () =>
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [
-                TerraSuggestionBoxComponent,
-                TerraTextInputComponent,
-                TerraLabelTooltipDirective
+            declarations: [TooltipDirective,
+                           TerraSuggestionBoxComponent,
+                           TerraTextInputComponent,
+                           TerraLabelTooltipDirective
             ],
             imports:      [
-                TooltipModule.forRoot(),
                 FormsModule,
                 HttpModule,
                 HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig),
-                TooltipModule.forRoot()
+                LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
                 {

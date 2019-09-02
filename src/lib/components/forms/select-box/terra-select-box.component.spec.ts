@@ -3,12 +3,12 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../app/translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { AllowedColors } from './data/allowed.colors.enum';
 import { DebugElement } from '@angular/core';
@@ -44,12 +44,11 @@ describe('TerraSelectBoxComponent:', () =>
     {
         TestBed.configureTestingModule(
             {
-                declarations: [
-                    TerraSelectBoxComponent,
-                    TerraLabelTooltipDirective
+                declarations: [TooltipDirective,
+                               TerraSelectBoxComponent,
+                               TerraLabelTooltipDirective
                 ],
                 imports:      [
-                    TooltipModule.forRoot(),
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)
                 ]
