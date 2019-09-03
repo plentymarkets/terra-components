@@ -137,16 +137,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         }
     }
 
-    protected checkTooltipPlacement(placement:string):string // TODO: pipe?
-    {
-        if(!StringHelper.isNullUndefinedOrEmpty(placement))
-        {
-            return placement;
-        }
-
-        return TerraPlacementEnum.TOP;
-    }
-
     protected get dataAvailableOrRequestPending():boolean
     {
         return this.isTableDataAvailable || (!isNullOrUndefined(this.inputService) && this.inputService.requestPending);

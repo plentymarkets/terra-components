@@ -42,19 +42,6 @@ describe('TerraInputComponent', () =>
         expect(component.isValid).toBe(false);
     });
 
-    it('should have TooltipPlacement.TOP as default', () =>
-    {
-        expect(component.inputTooltipPlacement).toBe(TerraPlacementEnum.TOP);
-    });
-
-    it('should have TooltipPlacement.BOTTOM` when changed to `TerraPlacementEnum.BOTTOM` and not `TerraPlacementEnum.TOP', () =>
-    {
-        component.inputTooltipPlacement = TerraPlacementEnum.BOTTOM;
-
-        expect(component.inputTooltipPlacement).not.toBe(TerraPlacementEnum.TOP);
-        expect(component.inputTooltipPlacement).toBe(TerraPlacementEnum.BOTTOM);
-    });
-
     it('should not be small as default', () =>
     {
         expect(component.inputIsSmall).toBe(false);

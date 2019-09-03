@@ -3,7 +3,7 @@ button, html [type="button"], [type="reset"], [type="submit"]
     -webkit-appearance: none !important;
 }
 
-button:focus
+button:focus, .btn:focus, .btn.focus
 {
     outline: none !important;
     box-shadow: none;
@@ -136,7 +136,7 @@ button:focus
     transition: height var(--transition-lg), line-height var(--transition-lg), padding var(--transition-lg), background-color var(--transition-sm);
     
     &:hover,
-    &:focus
+    &:focus:not(.node)
     {
         background-color: var(--color-structure-11);
         background-clip: padding-box;

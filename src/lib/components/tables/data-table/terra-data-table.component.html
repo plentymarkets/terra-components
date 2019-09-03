@@ -27,18 +27,14 @@
                     [ngStyle]="{ 'text-align': getTextAlign(header) }"
                     [class.sortable]="isSortable(header)"
                     (click)="columnHeaderClicked.emit(header)">
-                    <span [container]="'body'"
-                          [adaptivePosition]="false"
-                          [placement]="checkTooltipPlacement(header.tooltipPlacement)"
-                          [tooltip]="header.tooltipText"
-                          [isDisabled]="!header.tooltipText || header.tooltipText.length == 0">
+                    <span [tcTooltip]="header.tooltipText"
+                          [placement]="header.tooltipPlacement">
                           {{header.caption}}
-                        
                         <span
                             [ngClass]="{'icon-table_sort': isUnsorted(header),'icon-sort_asc': isSortedAsc(header),'icon-sort_desc': isSortedDesc(header)}">
                         </span>
                     </span>
-                
+
                 </th>
             </ng-template>
         </tr>
@@ -46,35 +42,28 @@
         <tbody *ngIf="!useContentBody">
         <tr *ngFor="let row of rowList" [tcTableRow]="row" hasContextMenu [rowData]="row.data">
             <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
-                <ng-template #tdTooltip>
-                    <div [innerHTML]="cell.tooltipText"></div>
-                </ng-template>
-                
                 <td *ngIf="!cell.isHidden"
                     [ngSwitch]="getCellDataType(cell.data)"
                     [ngStyle]="{ 'text-align': getTextAlign(inputHeaderList[i]) }"
-                    [tooltip]="tdTooltip"
-                    [container]="'body'"
-                    [adaptivePosition]="false"
-                    [isDisabled]="!cell.tooltipText || cell.tooltipText.length == 0"
-                    [placement]="checkTooltipPlacement(cell.tooltipPlacement)">
-                    
+                    [tcTooltip]="cell.tooltipText"
+                    [placement]="cell.tooltipPlacement">
+
                     <ng-container *ngSwitchCase="'string'">
                         <span>{{cell.data}}</span>
                     </ng-container>
-                    
+
                     <ng-container *ngSwitchCase="'number'">
                         <span>{{cell.data}}</span>
                         <!-- <span>{{cell.data | number}}</span> TODO: The pipe should be used here! Figure out how. -->
                     </ng-container>
-                    
+
                     <ng-container *ngSwitchCase="'TerraDataTableTextInterface'">
                             <span [ngStyle]="{color: cell.data.color}">
                                 <span *ngIf="cell.data.icon" [ngClass]="cell.data.icon"></span>
                                 <span> {{cell.data.caption}} </span>
                             </span>
                     </ng-container>
-                    
+
                     <ng-container *ngSwitchCase="'TerraRefTypeInterface'">
                         <a *ngIf="cell.data.type === refType.email || cell.data.type === refType.phone"
                            href="{{cell.data.type}}:{{cell.data.value}}"
@@ -90,7 +79,7 @@
                             {{cell.data.caption || cell.data.value}}
                         </a>
                     </ng-container>
-                    
+
                     <ng-container *ngSwitchCase="'buttons'" class="btn-group">
                         <ng-template ngFor let-button [ngForOf]="cell.data">
                             <terra-button *ngIf="!button.isHidden"
@@ -98,7 +87,7 @@
                                           [inputIcon]="button.icon"
                                           [inputIsActive]="button.isActive"
                                           [inputIsDisabled]="button.isDisabled"
-                                          [inputTooltipPlacement]="checkTooltipPlacement(button.tooltipPlacement)"
+                                          [inputTooltipPlacement]="button.tooltipPlacement"
                                           [inputCaption]="button.caption"
                                           [inputIsSmall]="true"
                                           [inputTooltipText]="button.tooltipText"
@@ -106,7 +95,7 @@
                             </terra-button>
                         </ng-template>
                     </ng-container>
-                    
+
                     <ng-container *ngSwitchCase="'tags'">
                         <terra-taglist [inputTagList]="cell.data"></terra-taglist>
                     </ng-container>
@@ -114,10 +103,10 @@
             </ng-template>
         </tr>
         </tbody>
-        
+
         <ng-content select="tbody" *ngIf="useContentBody"></ng-content>
     </table>
-    
+
     <div [hidden]="dataAvailableOrRequestPending">
         <ng-content select="terra-no-result-notice"></ng-content>
     </div>

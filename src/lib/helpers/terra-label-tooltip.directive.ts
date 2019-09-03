@@ -9,6 +9,9 @@ import {
 } from '@angular/core';
 import { StringHelper } from './string.helper';
 
+/**
+ * @deprecated Please set {@link TooltipDirective#onlyEllipsisTooltip} to true to get the same Result.
+ */
 @Directive(
     {
         selector: '[terraLabelTooltip]'
