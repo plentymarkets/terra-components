@@ -2,42 +2,10 @@
 	"rules": {
 		"restrict-leading-underscore": true,
 		"get-set": true,
-		"indent": [
-			true,
-			"spaces"
-		],
-		"no-duplicate-super": true,
-		"no-duplicate-variable": true,
-		"no-string-literal": false,
-		"object-literal-sort-keys": false,
-		"one-line": [
-			false,
-			"check-open-brace",
-			"check-catch",
-			"check-else",
-			"check-whitespace"
-		],
-		"typedef-whitespace": [
-			true,
-			{
-				"call-signature": "nospace",
-				"index-signature": "nospace",
-				"parameter": "nospace",
-				"property-declaration": "nospace",
-				"variable-declaration": "nospace"
-			},
-			{
-				"call-signature": "nospace",
-				"index-signature": "nospace",
-				"parameter": "nospace",
-				"property-declaration": "nospace",
-				"variable-declaration": "nospace"
-			}
-		],
+
 		"variable-name": [
 			true,
 			"ban-keywords",
-			"check-format",
 			"allow-leading-underscore"
 		],
 		"whitespace": [
