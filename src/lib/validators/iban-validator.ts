@@ -1,7 +1,6 @@
 import {
     AbstractControl,
-    ValidationErrors,
-    ValidatorFn
+    ValidationErrors
 } from '@angular/forms';
 import * as IBAN from 'iban';
 
