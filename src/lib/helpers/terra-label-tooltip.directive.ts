@@ -12,11 +12,9 @@ import { StringHelper } from './string.helper';
 /**
  * @deprecated Please set {@link TooltipDirective#onlyEllipsisTooltip} to true to get the same Result.
  */
-@Directive(
-    {
+@Directive({
         selector: '[terraLabelTooltip]'
-    }
-)
+})
 export class TerraLabelTooltipDirective implements OnInit
 {
     @Input()
