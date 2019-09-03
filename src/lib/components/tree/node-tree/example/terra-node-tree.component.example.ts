@@ -20,7 +20,6 @@ export class TerraNodeTreeComponentExample implements OnInit
 {
     private nodeCounter:number = 0;
 
-
     constructor(private nodeTreeConfig:TerraNodeTreeConfig<ExampleTreeData>)
     {
     }
