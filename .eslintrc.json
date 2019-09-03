@@ -22,7 +22,11 @@
 		"@typescript-eslint"
 	],
 	"rules": {
+		"brace-style": ["error", "allman", { "allowSingleLine": true }],
+		"camelcase": "error",
+		"constructor-super": "error",
 		"curly": ["error", "all"],
+		"eol-last": ["error", "always"],
 		"eqeqeq": "error",
 		"guard-for-in": "error",
 		"max-classes-per-file": ["error", 1],
@@ -54,19 +58,20 @@
 		"@typescript-eslint/class-name-casing": "error",
 		"@typescript-eslint/explicit-member-accessibility": ["error", { "accessibility": "explicit", "overrides": { "constructors": "no-public"} }],
 		"@typescript-eslint/member-ordering": ["error", { "default":  ["public-field", "protected-field", "private-field", "constructor", "public-method", "protected-method", "private-method"] }],
-		"@typescript-eslint/no-explicit-any": "error",
+		"@typescript-eslint/no-explicit-any": "warn",
 		"@typescript-eslint/no-unused-vars": "error",
 		"@typescript-eslint/no-use-before-define": "error",
 		"@typescript-eslint/type-annotation-spacing": ["error", { "before": false, "after": false, "overrides": { "arrow": { "before": true, "after": true }} }],
 		"@typescript-eslint/typedef": ["error", { "arrayDestructuring": true, "arrowParameter": true, "memberVariableDeclaration": true, "objectDestructuring": true, "parameter": true, "propertyDeclaration": true, "variableDeclaration": true }]
-//		"indent": "off",
-//		"@typescript-eslint/indent": [ "error", 4, {
-//			"FunctionDeclaration": {"parameters":"first"},
-//			"FunctionExpression": {"parameters":"first"},
-//			"CallExpression": {"arguments": "first"},
-//			"ArrayExpression": "first",
-//			"ObjectExpression": "first",
-//			"SwitchCase": 1
-//		}]
 	}
 }
+// https://github.com/typescript-eslint/typescript-eslint/issues/880
+//		"@typescript-eslint/indent": [ "error", 4, {
+//			"FunctionDeclaration": {"parameters":"off"},
+//			"FunctionExpression": {"parameters":"off"},
+//			"CallExpression": {"arguments": "off"},
+//			"ArrayExpression": "first",
+//			"ObjectExpression": "off",
+//			"SwitchCase": 1,
+//			"MemberExpression": 1
+//		}],
