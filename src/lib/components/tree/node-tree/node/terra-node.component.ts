@@ -37,16 +37,16 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
 
     public ngOnInit():void
     {
-        if(this.inputNode.tooltip)
-        {
-            this.tooltip = this.inputNode.tooltip;
-        }
-        else
+        if(isNullOrUndefined(this.inputNode.tooltip))
         {
             this.tooltip = this.inputNode.name;
         }
+        else
+        {
+            this.tooltip = this.inputNode.tooltip;
+        }
 
-        if(this.inputNode.tooltipPlacement)
+        if(!isNullOrUndefined(this.inputNode.tooltipPlacement))
         {
             this.tooltipPlacement = this.inputNode.tooltipPlacement;
         }
