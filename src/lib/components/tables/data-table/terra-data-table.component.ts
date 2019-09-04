@@ -81,7 +81,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
      * @description makes table header stick to the top while scrolling
      */
     @Input()
-    public isSticky:boolean;
+    public isSticky:boolean = true;
 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
