@@ -58,7 +58,28 @@ export const listWithChildren:TerraFormFieldInterface = {
     }
 };
 
+export const containerCompontent:TerraFormFieldInterface = {
+    type: 'portlet',
+    options:      {
+        name: 'Portlet'
+    },
+    children:     {
+        childSelect: select,
+        childText:   {
+            type:         'text',
+            isVisible:    'wrappedContainer.childSelect === "option2"',
+            defaultValue: '',
+            options:      {
+                name:     'Text',
+                required: false
+            }
+        },
+        childNumber: numberControl,
+    }
+};
+
 export const formFields:TerraKeyValueInterface<TerraFormFieldInterface> = {
-    listWithChildren: listWithChildren
+    listWithChildren: listWithChildren,
+    wrappedContainer: containerCompontent
 };
 
