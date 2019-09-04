@@ -21,6 +21,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { noop } from 'rxjs';
+import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 
 @Component({
     selector:  'terra-form-container',
@@ -40,7 +41,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     public inputScope:TerraFormScope;
 
     @Input()
-    public inputControlTypeMap:{ [key:string]:Type<any> } = {};
+    public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
 
     @Input()
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
