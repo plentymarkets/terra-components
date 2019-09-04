@@ -1,7 +1,8 @@
 <a name="4.1.x"></a>
-# UNRELEASED
+# 4.1.X (DD.MM.2019)
 
 ### Features
+* **terra-form** can now handle structural components to wrap nested form fields.
 * **tooltip** new tooltip directive featuring [tippy.js](https://atomiks.github.io/tippyjs/)
 
 ### Bug Fixes
