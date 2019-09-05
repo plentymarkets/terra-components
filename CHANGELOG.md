@@ -1,3 +1,9 @@
+<a name="unreleased"></a>
+### Unreleased 4.X.X (DD.09.2019)
+
+### Feature
+* **nav-bar** add scss variables
+
 <a name="4.2.1"></a>
 # 4.2.1 (04.09.2019)
 
