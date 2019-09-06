@@ -1,5 +1,4 @@
 import {
-    ComponentRef,
     Directive,
     ElementRef,
     EmbeddedViewRef,
@@ -9,20 +8,12 @@ import {
     OnDestroy,
     SimpleChanges,
     TemplateRef,
-    ViewContainerRef,
-    ViewRef
+    ViewContainerRef
 } from '@angular/core';
 
 import tippy, { Placement } from 'tippy.js';
 import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
-
-export class ContentRef
-{
-    constructor(public nodes:Array<any>, public viewRef?:ViewRef, public componentRef?:ComponentRef<any>)
-    {
-    }
-}
 
 @Directive({
     selector: '[tcTooltip]'
@@ -94,11 +85,11 @@ export class TooltipDirective implements OnDestroy, OnChanges
                 // example found here: https://netbasal.com/create-advanced-components-in-angular-e0655df5dde6
                 if(this.tcTooltip instanceof TemplateRef)
                 {
-                    let content:ContentRef = this.getContentRef();
+                    const viewRef:EmbeddedViewRef<any> = this.containerRef.createEmbeddedView(this.tcTooltip, {});
 
                     let div:HTMLElement = document.createElement('div');
 
-                    content.nodes.forEach((node:HTMLElement) =>
+                    viewRef.rootNodes.forEach((node:HTMLElement) =>
                     {
                         div.append(node);
                     });
@@ -221,19 +212,5 @@ export class TooltipDirective implements OnDestroy, OnChanges
         this.elementRef.nativeElement.style.overflow = curOverflow;
 
         this.isDisabled = !isOverflowing;
-    }
-
-    private getContentRef():ContentRef
-    {
-        if(!this.tcTooltip)
-        {
-            return new ContentRef([]);
-        }
-        else if(this.tcTooltip instanceof TemplateRef)
-        {
-            const viewRef:EmbeddedViewRef<any> = this.containerRef.createEmbeddedView(this.tcTooltip, {});
-
-            return new ContentRef(viewRef.rootNodes, viewRef);
-        }
     }
 }

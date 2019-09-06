@@ -1,5 +1,8 @@
 # Unreleased Changes
 
+#Feature
+* **tcTooltip** Support templates as tooltip. Added examples.
+
 ### Bug Fixes
 
 * **toggle-button** fix tooltip
