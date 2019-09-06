@@ -26,7 +26,6 @@ import {
     Subscription
 } from 'rxjs';
 
-
 @Component({
     selector:  'terra-form',
     template:  require('./terra-form.component.html'),
