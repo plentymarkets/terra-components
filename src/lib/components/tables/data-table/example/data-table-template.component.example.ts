@@ -17,6 +17,7 @@ export class DataTableTemplateComponentExample extends TerraDataTableComponentEx
 
     protected saveData(value:any):void
     {
+        console.log(value);
         alert('A saving event should be called now instead of an alert.');
     }
 }
