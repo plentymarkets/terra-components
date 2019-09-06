@@ -12,11 +12,6 @@ export class TerraPortletComponentExample implements OnInit
 {
     public portletButtonList:Array<TerraButtonInterface> = [];
 
-    private static buttonClickFunction():void
-    {
-        alert('button clicked');
-    }
-
     public ngOnInit():void
     {
         this.portletButtonList.push(
@@ -28,5 +23,10 @@ export class TerraPortletComponentExample implements OnInit
                 icon:          'icon-edit',
                 clickFunction: ():void => TerraPortletComponentExample.buttonClickFunction()
             });
+    }
+
+    private static buttonClickFunction():void
+    {
+        alert('button clicked');
     }
 }
