@@ -8,6 +8,7 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
+import { noop } from 'rxjs';
 
 /**
  * @author mfrank
@@ -40,6 +41,9 @@ export class TerraRadioButtonComponent implements ControlValueAccessor
     public inputIsUncheckable:boolean;
 
     public value:any;
+
+    private onTouchedCallback:() => void = noop;
+    private onChangeCallback:(_:any) => void = noop;
 
     constructor()
     {
@@ -83,8 +87,4 @@ export class TerraRadioButtonComponent implements ControlValueAccessor
     {
         this.onTouchedCallback = fn;
     }
-
-    private onTouchedCallback:() => void = ():void => undefined;
-
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 }
