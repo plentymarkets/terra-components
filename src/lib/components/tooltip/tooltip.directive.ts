@@ -6,7 +6,6 @@ import {
     Input,
     OnChanges,
     OnDestroy,
-    OnInit,
     SimpleChanges,
     TemplateRef
 } from '@angular/core';
