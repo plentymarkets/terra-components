@@ -21,3 +21,8 @@
 <br>
 
 <span [tcTooltip]="'No template used <br> only HTML'">No template used</span>
+<br>
+
+<div style="width: 100px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap"
+      [tcTooltip]="'Tooltip shown only when ellipsis'"
+      [onlyEllipsisTooltip]="true">Ellipsis tooltip showing when text is too long</div>
