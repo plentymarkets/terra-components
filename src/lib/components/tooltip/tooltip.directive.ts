@@ -1,12 +1,14 @@
 import {
     Directive,
     ElementRef,
+    EmbeddedViewRef,
     HostListener,
     Input,
     OnChanges,
     OnDestroy,
     OnInit,
-    SimpleChanges
+    SimpleChanges,
+    TemplateRef
 } from '@angular/core';
 
 import tippy, { Placement } from 'tippy.js';
@@ -22,7 +24,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
      * @description The tooltip text.
      */
     @Input()
-    public tcTooltip:string;
+    public tcTooltip:string | TemplateRef<any>;
 
     /**
      * @description Show the tooltip only when ellipsis is present. Default false.
@@ -82,15 +84,40 @@ export class TooltipDirective implements OnDestroy, OnChanges
                     this._placement = TerraPlacementEnum.TOP;
                 }
 
+                let tooltip:string | Element;
+                let tooltipIsEmpty:boolean = true;
+
+                if(this.tcTooltip instanceof TemplateRef)
+                {
+                    const viewRef:EmbeddedViewRef<any> = this.tcTooltip.createEmbeddedView({});
+
+                    let div:HTMLElement = document.createElement('div');
+
+                    viewRef.rootNodes.forEach((node:HTMLElement) =>
+                    {
+                        div.append(node);
+                    });
+
+                    tooltip = div;
+
+                    tooltipIsEmpty = div.innerHTML.length === 0;
+                }
+                else if(typeof this.tcTooltip === 'string')
+                {
+                    tooltip = this.tcTooltip;
+
+                    tooltipIsEmpty = tooltip.length === 0;
+                }
+
                 this.tooltipEl = tippy(this.elementRef.nativeElement, {
-                    content:   this.tcTooltip,
+                    content:   tooltip,
                     trigger:   'manual',
                     arrow:     true,
                     boundary:  'window',
                     placement: this._placement as Placement
                 });
 
-                if(isNullOrUndefined(this.tcTooltip) || this.tcTooltip.length === 0)
+                if(isNullOrUndefined(this.tcTooltip) || tooltipIsEmpty)
                 {
                     this.isDisabled = true;
                 }
