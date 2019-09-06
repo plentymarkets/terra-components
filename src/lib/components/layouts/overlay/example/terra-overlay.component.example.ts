@@ -7,7 +7,6 @@ import { TerraOverlayComponent } from '../terra-overlay.component';
 import { TerraOverlayButtonInterface } from '../data/terra-overlay-button.interface';
 import { TerraAlertComponent } from '../../../alert/terra-alert.component';
 
-
 @Component({
     selector: 'terra-overlay-example',
     template: require('./terra-overlay.component.example.html')
