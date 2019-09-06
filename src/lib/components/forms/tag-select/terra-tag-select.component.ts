@@ -19,6 +19,7 @@ import { TerraSuggestionBoxValueInterface } from '../suggestion-box/data/terra-s
 import { isNullOrUndefined } from 'util';
 import { TerraTagNameInterface } from '../../layouts/tag/data/terra-tag-name.interface';
 import { Language } from 'angular-l10n';
+import { noop } from 'rxjs';
 
 @Component({
     selector:  'terra-tag-select',
@@ -54,6 +55,9 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
     protected selectedTags:Array<TerraTagInterface> = [];
 
     private tagList:Array<TerraTagInterface>;
+
+    private onTouchedCallback:() => void = noop;
+    private onChangeCallback:(_:any) => void = noop;
 
     public ngOnInit():void
     {
@@ -166,8 +170,4 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
             }
         }
     }
-
-    private onTouchedCallback:() => void = ():void => undefined;
-
-    private onChangeCallback:(_:any) => void = ():void => undefined;
 }
