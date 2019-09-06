@@ -225,5 +225,3 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
         }
     }
 }
-
-
