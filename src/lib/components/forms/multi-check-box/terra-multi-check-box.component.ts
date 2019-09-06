@@ -15,7 +15,10 @@ import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { TerraMultiCheckBoxValueInterface } from './data/terra-multi-check-box-value.interface';
 import { throttleTime } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import {
+    noop,
+    Subject
+} from 'rxjs';
 
 @Component({
     selector:  'terra-multi-check-box',
@@ -60,6 +63,9 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
 
     private changedCheckboxes$:Subject<Array<TerraMultiCheckBoxValueInterface>> = new Subject<Array<TerraMultiCheckBoxValueInterface>>();
     private readonly langPrefix:string = 'terraMultiCheckBox';
+
+    private onTouchedCallback:() => void = noop;
+    private onChangeCallback:(_:any) => void = noop;
 
     constructor(private translation:TranslationService)
     {}
@@ -173,8 +179,4 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
             this.headerCheckboxIndeterminate = true;
         }
     }
-
-    private onTouchedCallback:() => void = ():void => undefined;
-
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
 }
