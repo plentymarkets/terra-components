@@ -10,7 +10,6 @@ import { TerraSimpleTableRowInterface } from '../row/terra-simple-table-row.inte
 import { TerraSimpleTableCellInterface } from '../cell/terra-simple-table-cell.interface';
 import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.interface';
 
-
 @Component({
     selector: 'terra-simple-table-example',
     template: require('./terra-simple-table.component.example.html'),
@@ -27,7 +26,7 @@ export class TerraSimpleTableComponentExample implements OnInit
     private _headerList:Array<TerraSimpleTableHeaderCellInterface> = [];
     private _rowList:Array<TerraSimpleTableRowInterface<any>> = [];
 
-    public constructor(viewContainerRef:ViewContainerRef)
+    constructor(viewContainerRef:ViewContainerRef)
     {
         // You need this small hack in order to catch application root view container ref
         this.viewContainerRef = viewContainerRef;
