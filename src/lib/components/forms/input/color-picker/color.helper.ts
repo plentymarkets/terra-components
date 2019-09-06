@@ -22,17 +22,6 @@ export type ColorHSL = { h:number, s:number, l:number };
  */
 export class Color
 {
-    public static random():Color
-    {
-        let rgb:ColorRGB = {
-            r: Math.floor(Math.random() * 255),
-            g: Math.floor(Math.random() * 255),
-            b: Math.floor(Math.random() * 255)
-        };
-
-        return new Color(rgb);
-    }
-
     private r:number = 0;
     private g:number = 0;
     private b:number = 0;
@@ -63,6 +52,17 @@ export class Color
                 return;
             }
         }
+    }
+
+    public static random():Color
+    {
+        let rgb:ColorRGB = {
+            r: Math.floor(Math.random() * 255),
+            g: Math.floor(Math.random() * 255),
+            b: Math.floor(Math.random() * 255)
+        };
+
+        return new Color(rgb);
     }
 
     /**
