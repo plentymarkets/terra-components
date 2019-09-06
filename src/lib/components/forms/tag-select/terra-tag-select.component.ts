@@ -169,5 +169,5 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
 
     private onTouchedCallback:() => void = ():void => undefined;
 
-    private onChangeCallback:(_:any) => void = (selectedTagsList:Array<TerraTagInterface>):void => undefined;
+    private onChangeCallback:(_:any) => void = ():void => undefined;
 }
