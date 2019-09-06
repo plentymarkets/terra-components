@@ -1,6 +1,5 @@
 import { TerraButtonInterface } from '../components/buttons/button/data/terra-button.interface';
 
-/* eslint-disable no-console */
 export const mockButtonOne:TerraButtonInterface =
     {
         caption:       'Mock button one',
@@ -22,7 +21,6 @@ export const mockButtonTwo:TerraButtonInterface =
                               console.log('mock button two clicked');
                           }
     };
-/* eslint-enable no-console */
 
 export const buttonList:Array<TerraButtonInterface> = [mockButtonOne,
                                                        mockButtonTwo];
