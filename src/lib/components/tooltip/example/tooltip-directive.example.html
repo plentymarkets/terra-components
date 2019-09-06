@@ -13,4 +13,11 @@
 <span [tcTooltip]="template2">Template 2 is shown</span>
 <br>
 
+<ng-template #template3>
+    {{tooltip}}
+</ng-template>
+
+<span [tcTooltip]="template3">Template 3 is shown</span>
+<br>
+
 <span [tcTooltip]="'No template used <br> only HTML'">No template used</span>

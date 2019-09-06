@@ -1,4 +1,5 @@
 import {
+    ComponentRef,
     Directive,
     ElementRef,
     EmbeddedViewRef,
@@ -7,12 +8,21 @@ import {
     OnChanges,
     OnDestroy,
     SimpleChanges,
-    TemplateRef
+    TemplateRef,
+    ViewContainerRef,
+    ViewRef
 } from '@angular/core';
 
 import tippy, { Placement } from 'tippy.js';
 import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
+
+export class ContentRef
+{
+    constructor(public nodes:Array<any>, public viewRef?:ViewRef, public componentRef?:ComponentRef<any>)
+    {
+    }
+}
 
 @Directive({
     selector: '[tcTooltip]'
@@ -63,7 +73,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
         this.handleTooltipState();
     }
 
-    constructor(private elementRef:ElementRef)
+    constructor(private elementRef:ElementRef, private containerRef:ViewContainerRef)
     {
     }
 
@@ -76,55 +86,62 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
         if(changes.hasOwnProperty('tcTooltip'))
         {
-            let tooltip:string | Element;
-            let tooltipIsEmpty:boolean = true;
-
-            // example found here: https://netbasal.com/create-advanced-components-in-angular-e0655df5dde6
-            if(this.tcTooltip instanceof TemplateRef)
+            if(!isNullOrUndefined(changes['tcTooltip'].currentValue))
             {
-                const viewRef:EmbeddedViewRef<any> = this.tcTooltip.createEmbeddedView({});
+                let tooltip:string | Element;
+                let tooltipIsEmpty:boolean = true;
 
-                let div:HTMLElement = document.createElement('div');
-
-                viewRef.rootNodes.forEach((node:HTMLElement) =>
+                // example found here: https://netbasal.com/create-advanced-components-in-angular-e0655df5dde6
+                if(this.tcTooltip instanceof TemplateRef)
                 {
-                    div.append(node);
-                });
+                    let content:ContentRef = this.getContentRef();
 
-                tooltip = div;
+                    let div:HTMLElement = document.createElement('div');
 
-                tooltipIsEmpty = div.innerHTML.length === 0;
-            }
-            else if(typeof this.tcTooltip === 'string')
-            {
-                tooltip = this.tcTooltip;
+                    content.nodes.forEach((node:HTMLElement) =>
+                    {
+                        div.append(node);
+                    });
 
-                tooltipIsEmpty = tooltip.length === 0;
-            }
+                    tooltip = div;
 
-            if(isNullOrUndefined(this.tooltipEl))
-            {
-                if(isNullOrUndefined(this._placement))
+                    tooltipIsEmpty = div.innerHTML.length === 0;
+                }
+                else if(typeof this.tcTooltip === 'string')
                 {
-                    this._placement = TerraPlacementEnum.TOP;
+                    tooltip = this.tcTooltip;
+
+                    tooltipIsEmpty = tooltip.length === 0;
                 }
 
-                this.tooltipEl = tippy(this.elementRef.nativeElement, {
-                    content:   tooltip,
-                    trigger:   'manual',
-                    arrow:     true,
-                    boundary:  'window',
-                    placement: this._placement as Placement
-                });
-
-                if(isNullOrUndefined(this.tcTooltip) || tooltipIsEmpty)
+                if(isNullOrUndefined(this.tooltipEl))
                 {
-                    this.isDisabled = true;
+                    if(isNullOrUndefined(this._placement))
+                    {
+                        this._placement = TerraPlacementEnum.TOP;
+                    }
+
+                    this.tooltipEl = tippy(this.elementRef.nativeElement, {
+                        content:   tooltip,
+                        trigger:   'manual',
+                        arrow:     true,
+                        boundary:  'window',
+                        placement: this._placement as Placement
+                    });
+
+                    if(tooltipIsEmpty)
+                    {
+                        this.isDisabled = true;
+                    }
+                }
+                else
+                {
+                    this.tooltipEl.setContent(tooltip);
                 }
             }
             else
             {
-                this.tooltipEl.setContent(tooltip);
+                this.isDisabled = true;
             }
         }
 
@@ -204,5 +221,19 @@ export class TooltipDirective implements OnDestroy, OnChanges
         this.elementRef.nativeElement.style.overflow = curOverflow;
 
         this.isDisabled = !isOverflowing;
+    }
+
+    private getContentRef():ContentRef
+    {
+        if(!this.tcTooltip)
+        {
+            return new ContentRef([]);
+        }
+        else if(this.tcTooltip instanceof TemplateRef)
+        {
+            const viewRef:EmbeddedViewRef<any> = this.containerRef.createEmbeddedView(this.tcTooltip, {});
+
+            return new ContentRef(viewRef.rootNodes, viewRef);
+        }
     }
 }
