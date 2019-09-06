@@ -21,6 +21,7 @@ import { TerraComponentsModule } from '../lib';
 import { RouterModule } from '@angular/router';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -38,7 +39,7 @@ function initL10n(l10nLoader:L10nLoader):Function
  * NOTE: It is not publicly accessible either.
  */
 @NgModule({
-    imports:   [
+    imports: [
         RouterModule.forRoot([]),
         BrowserModule,
         BrowserAnimationsModule,
@@ -46,7 +47,8 @@ function initL10n(l10nLoader:L10nLoader):Function
         LocalizationModule.forRoot(l10nConfig),
         TerraComponentsExamplesModule,
         DragDropModule,
-        MatTableModule
+        MatTableModule,
+        MatSortModule
     ],
     declarations: [AppComponent, ShowcaseComponent],
     providers: [
