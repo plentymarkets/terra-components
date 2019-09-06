@@ -1,4 +1,3 @@
-import { TerraPagerParameterInterface } from '../../pager/data/terra-pager.parameter.interface';
 import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 import { TerraDataTableSortOrderEnum } from './enums/terra-data-table-sort-order.enum';
