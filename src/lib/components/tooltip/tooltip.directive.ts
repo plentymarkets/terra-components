@@ -77,36 +77,37 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
         if(changes.hasOwnProperty('tcTooltip'))
         {
+            let tooltip:string | Element;
+            let tooltipIsEmpty:boolean = true;
+
+            // example found here: https://netbasal.com/create-advanced-components-in-angular-e0655df5dde6
+            if(this.tcTooltip instanceof TemplateRef)
+            {
+                const viewRef:EmbeddedViewRef<any> = this.tcTooltip.createEmbeddedView({});
+
+                let div:HTMLElement = document.createElement('div');
+
+                viewRef.rootNodes.forEach((node:HTMLElement) =>
+                {
+                    div.append(node);
+                });
+
+                tooltip = div;
+
+                tooltipIsEmpty = div.innerHTML.length === 0;
+            }
+            else if(typeof this.tcTooltip === 'string')
+            {
+                tooltip = this.tcTooltip;
+
+                tooltipIsEmpty = tooltip.length === 0;
+            }
+
             if(isNullOrUndefined(this.tooltipEl))
             {
                 if(isNullOrUndefined(this._placement))
                 {
                     this._placement = TerraPlacementEnum.TOP;
-                }
-
-                let tooltip:string | Element;
-                let tooltipIsEmpty:boolean = true;
-
-                if(this.tcTooltip instanceof TemplateRef)
-                {
-                    const viewRef:EmbeddedViewRef<any> = this.tcTooltip.createEmbeddedView({});
-
-                    let div:HTMLElement = document.createElement('div');
-
-                    viewRef.rootNodes.forEach((node:HTMLElement) =>
-                    {
-                        div.append(node);
-                    });
-
-                    tooltip = div;
-
-                    tooltipIsEmpty = div.innerHTML.length === 0;
-                }
-                else if(typeof this.tcTooltip === 'string')
-                {
-                    tooltip = this.tcTooltip;
-
-                    tooltipIsEmpty = tooltip.length === 0;
                 }
 
                 this.tooltipEl = tippy(this.elementRef.nativeElement, {
@@ -124,7 +125,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
             }
             else
             {
-                this.tooltipEl.setContent(this.tcTooltip);
+                this.tooltipEl.setContent(tooltip);
             }
         }
 
