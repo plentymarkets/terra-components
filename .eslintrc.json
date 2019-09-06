@@ -63,7 +63,21 @@
 		"@typescript-eslint/no-use-before-define": "error",
 		"@typescript-eslint/type-annotation-spacing": ["error", { "before": false, "after": false, "overrides": { "arrow": { "before": true, "after": true }} }],
 		"@typescript-eslint/typedef": ["error", { "arrayDestructuring": true, "arrowParameter": true, "memberVariableDeclaration": true, "objectDestructuring": true, "parameter": true, "propertyDeclaration": true, "variableDeclaration": true }]
-	}
+	},
+	"overrides": [
+		{
+			"files": ["src/lib/testing/**/*.ts"],
+			"rules": {
+				"no-console": ["error", { "allow": ["warn", "error", "log"] }]
+			}
+		},
+		{
+			"files": ["**/*.example.ts"],
+			"rules": {
+				"no-console": ["error", { "allow": ["warn", "error", "log"] }]
+			}
+		}
+	]
 }
 // https://github.com/typescript-eslint/typescript-eslint/issues/880
 //		"@typescript-eslint/indent": [ "error", 4, {
