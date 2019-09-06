@@ -11,6 +11,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { StringHelper } from '../../../../helpers/string.helper';
+import { noop } from 'rxjs';
 
 let nextId:number = 0;
 
@@ -48,6 +49,9 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
 
     private _value:any;
     private readonly id:string;
+
+    private touchedCallback:() => void = noop;
+    private changeCallback:(_:any) => void = noop;
 
     constructor()
     {
@@ -124,8 +128,4 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
     {
         this.touchedCallback = fn;
     }
-
-    private touchedCallback:() => void = ():void => undefined;
-
-    private changeCallback:(_:any) => void = (_:any):void => undefined;
 }
