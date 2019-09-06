@@ -1,3 +1,5 @@
+/* eslint-disable */
+// Adding disable only because of the deprecated state of the component!
 import {
     AfterViewChecked,
     AfterViewInit,
