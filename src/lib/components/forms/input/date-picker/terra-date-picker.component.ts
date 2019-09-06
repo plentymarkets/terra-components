@@ -17,6 +17,7 @@ import {
 } from 'mydatepicker';
 import { isNullOrUndefined } from 'util';
 import moment = require('moment');
+import { noop } from 'rxjs';
 
 let nextId:number = 0;
 
@@ -73,19 +74,23 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     @Input()
     public inputDisplayDateFormat:string;
 
-    @ViewChild('viewChildMyDatePicker') public viewChildMyDatePicker:MyDatePicker;
+    @ViewChild('viewChildMyDatePicker')
+    public viewChildMyDatePicker:MyDatePicker;
 
     /**
      * @description a unique string identifier for the specific input instance.
      */
+    protected id:string;
 
     protected currentLocale:string;
-    protected id:string;
     protected datePickerOptions:IMyOptions;
     protected helperTooltip:string;
     protected isHelperTooltipDisabled:boolean;
 
     private _value:IMyDateModel;
+
+    private onTouchedCallback:() => void = noop;
+    private onChangeCallback:(_:any) => void = noop;
 
     constructor()
     {
@@ -201,15 +206,5 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
             openSelectorOnInputClick: false,
             dateFormat:               this.inputDisplayDateFormat,
         };
-    }
-
-    private onTouchedCallback:() => void = () =>
-    {
-        /* */
-    }
-
-    private onChangeCallback:(_:any) => void = (_) =>
-    {
-        /* */
     }
 }
