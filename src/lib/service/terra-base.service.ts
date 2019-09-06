@@ -1,4 +1,5 @@
 /* eslint-disable */
+// Adding disable only because of the deprecated state of the component!
 import {
     Headers,
     Http,
@@ -33,8 +34,6 @@ import { DispatchHelper } from '../helpers/dispatch.helper';
  * @author mfrank
  * @deprecated since v3.14.0. Use angular's [HttpClient](https://angular.io/guide/http) instead.
  */
-// Please keep the todo comments until TerraBaseService refactoring
-// TODO TerraBaseService<D> or maybe TerraBaseService<D extends BaseData>
 export class TerraBaseService
 {
     public headers:Headers;
