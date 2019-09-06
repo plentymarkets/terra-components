@@ -1,4 +1,3 @@
-/* tslint:disable:restrict-leading-underscore max-file-line-count */
 /* eslint-disable */
 import {
     Headers,
