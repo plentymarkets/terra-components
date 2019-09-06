@@ -20,8 +20,6 @@ import {
     isNullOrUndefined
 } from 'util';
 import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
-import { StringHelper } from '../../../helpers/string.helper';
-import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraHrefTypeEnum } from './enums/terra-href-type.enum';
 import {
     debounceTime,
