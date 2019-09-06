@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import {
     ActivatedRoute,
-    Data,
     NavigationEnd,
     Router,
     RouterEvent
@@ -57,7 +56,7 @@ export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
             }
         });
 
-        this.dataSub = this.route.data.subscribe((data:Data) =>
+        this.dataSub = this.route.data.subscribe(() =>
         {
             this.basePath = this.router.url;
         });
