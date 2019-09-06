@@ -5,8 +5,7 @@ import {
     Input,
     OnChanges,
     OnInit,
-    Output,
-    SimpleChanges
+    Output
 } from '@angular/core';
 import * as Interact from 'interactjs';
 import { DropEvent } from './dropEvent.interface';
@@ -53,7 +52,6 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
 
     @Output()
     public drop:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
-
 
     /* tslint:disable:no-output-on-prefix no-input-rename no-output-rename */
     /**
@@ -163,7 +161,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
         }
     }
 
-    public ngOnChanges(changes:SimpleChanges):void
+    public ngOnChanges():void
     {
         this.init();
     }
