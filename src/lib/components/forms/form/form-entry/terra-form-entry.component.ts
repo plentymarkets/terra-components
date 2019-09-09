@@ -83,8 +83,6 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
         });
     }
 
-
-
     /**
      * Part of the implementation of the ControlValueAccessor interface
      * @description Registers a given callback method that will be called whenever the form field represented by the dynamically created
@@ -124,6 +122,4 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
     {
         return !isNullOrUndefined(this.inputFormField.children);
     }
-
-
 }
