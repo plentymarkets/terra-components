@@ -34,7 +34,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
     private _isDisabled:boolean;
     private tooltipEl:any;
-    private _placement:string;
+    private _placement:string = TerraPlacementEnum.TOP;
 
     /**
      * @deprecated since v4. The placement is calculated automatically now.
@@ -107,11 +107,6 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
                 if(isNullOrUndefined(this.tooltipEl))
                 {
-                    if(isNullOrUndefined(this._placement))
-                    {
-                        this._placement = TerraPlacementEnum.TOP;
-                    }
-
                     this.tooltipEl = tippy(this.elementRef.nativeElement, {
                         content:   tooltip,
                         trigger:   'manual',
