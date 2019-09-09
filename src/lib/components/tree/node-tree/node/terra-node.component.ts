@@ -8,6 +8,7 @@ import { TerraNodeInterface } from '../data/terra-node.interface';
 import { TerraNodeTreeConfig } from '../data/terra-node-tree.config';
 import { isNullOrUndefined } from 'util';
 import { Language } from 'angular-l10n';
+import { TerraPlacementEnum } from '../../../../helpers/enums/terra-placement.enum';
 
 @Component({
     selector: 'terra-node',
@@ -31,9 +32,24 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
     @Language()
     protected lang:string;
 
+    protected tooltip:string;
+    protected tooltipPlacement:string = TerraPlacementEnum.RIGHT;
+
     public ngOnInit():void
     {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
+        if(isNullOrUndefined(this.inputNode.tooltip))
+        {
+            this.tooltip = this.inputNode.name;
+        }
+        else
+        {
+            this.tooltip = this.inputNode.tooltip;
+        }
+
+        if(!isNullOrUndefined(this.inputNode.tooltipPlacement))
+        {
+            this.tooltipPlacement = this.inputNode.tooltipPlacement;
+        }
     }
 
     public ngOnDestroy():void

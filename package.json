@@ -1,6 +1,6 @@
 {
 	"name": "@plentymarkets/terra-components",
-	"version": "4.1.2",
+	"version": "4.3.0",
 	"homepage": "https://github.com/plentymarkets/terra-components#readme",
 	"author": "plentymarkets",
 	"description": "plentymarkets terra components",
@@ -87,6 +87,7 @@
 		"angular-l10n": "7.2.0",
 		"angular2-template-loader": "^0.6.2",
 		"autoprefixer": "^9.6.0",
+		"circular-dependency-plugin": "^5.2.0",
 		"ckeditor4-angular": "^1.0.0-beta",
 		"codelyzer": "^5.1.0",
 		"copy-webpack-plugin": "^5.0.3",

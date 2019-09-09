@@ -1,7 +1,26 @@
-<a name="4.1.x"></a>
-# UNRELEASED
+# Unreleased Changes
+
+### Bug Fixes
+
+* **toggle-button** fix tooltip
+
+<a name="4.3.0"></a>
+# 4.3.0 (05.09.2019)
+
+### Feature
+* **nav-bar** add css variables
+
+<a name="4.2.1"></a>
+# 4.2.1 (04.09.2019)
 
 ### Features
+* **icon** new icon 'shaking_hands'
+
+<a name="4.2.0"></a>
+# 4.2.0 (04.09.2019)
+
+### Features
+* **terra-form** can now handle structural components to wrap nested form fields.
 * **tooltip** new tooltip directive featuring [tippy.js](https://atomiks.github.io/tippyjs/)
 
 ### Bug Fixes
