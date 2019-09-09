@@ -45,7 +45,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
     {
         console.warn('`placement` is deprecated since v4. The placement is calculated automatically now.');
 
-        if(isNullOrUndefined(placement))
+        if(!placement)
         {
             placement = TerraPlacementEnum.TOP;
         }
@@ -77,7 +77,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
         if(changes.hasOwnProperty('tcTooltip'))
         {
-            if(!isNullOrUndefined(changes['tcTooltip'].currentValue))
+            if(changes['tcTooltip'].currentValue)
             {
                 let tooltip:string | Element;
                 let tooltipIsEmpty:boolean = true;
@@ -105,7 +105,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
                     tooltipIsEmpty = tooltip.length === 0;
                 }
 
-                if(isNullOrUndefined(this.tooltipEl))
+                if(!this.tooltipEl)
                 {
                     this.tooltipEl = tippy(this.elementRef.nativeElement, {
                         content:   tooltip,
@@ -134,7 +134,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
         if(changes.hasOwnProperty('placement'))
         {
-            if(!isNullOrUndefined(this.tooltipEl))
+            if(this.tooltipEl)
             {
                 this.tooltipEl.set({
                     placement: this._placement as Placement
@@ -147,7 +147,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
     public onMouseOut(event:MouseEvent):void
     {
         event.stopPropagation();
-        if(!isNullOrUndefined(this.tooltipEl))
+        if(this.tooltipEl)
         {
             this.tooltipEl.hide(0);
         }
@@ -157,7 +157,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
     public onMouseOver(event:MouseEvent):void
     {
         event.stopPropagation();
-        if(!isNullOrUndefined(this.tooltipEl))
+        if(this.tooltipEl)
         {
             if(this.onlyEllipsisTooltip)
             {
@@ -170,7 +170,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
     public ngOnDestroy():void
     {
-        if(!isNullOrUndefined(this.tooltipEl))
+        if(this.tooltipEl)
         {
             this.tooltipEl.destroy();
         }
@@ -178,7 +178,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
     private handleTooltipState():void
     {
-        if(!isNullOrUndefined(this.tooltipEl))
+        if(this.tooltipEl)
         {
             if(this._isDisabled)
             {
