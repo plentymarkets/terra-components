@@ -1,4 +1,8 @@
-# Unreleased Changes
+<a name="4.3.1"></a>
+# 4.3.1 (09.09.2019)
+
+#Feature
+* **tcTooltip** Support templates as tooltip. Added examples.
 
 ### Bug Fixes
 
