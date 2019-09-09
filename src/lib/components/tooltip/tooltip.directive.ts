@@ -115,15 +115,15 @@ export class TooltipDirective implements OnDestroy, OnChanges
                         hideOnClick: false,
                         placement: this._placement as Placement
                     });
-
-                    if(tooltipIsEmpty)
-                    {
-                        this.isDisabled = true;
-                    }
                 }
                 else
                 {
                     this.tooltipEl.setContent(tooltip);
+                }
+
+                if(tooltipIsEmpty)
+                {
+                    this.isDisabled = true;
                 }
             }
             else
