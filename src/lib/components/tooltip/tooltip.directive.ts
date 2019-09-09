@@ -117,6 +117,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
                         trigger:   'manual',
                         arrow:     true,
                         boundary:  'window',
+                        hideOnClick: false,
                         placement: this._placement as Placement
                     });
 

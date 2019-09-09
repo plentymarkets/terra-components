@@ -26,3 +26,7 @@
 <div style="width: 100px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap"
       [tcTooltip]="'Tooltip shown only when ellipsis'"
       [onlyEllipsisTooltip]="true">Ellipsis tooltip showing when text is too long</div>
+
+<terra-toggle (activated)="tooltip = tooltipText1"
+              (deactivated)="tooltip = tooltipText2"
+              [inputTooltipText]="tooltip"></terra-toggle>
