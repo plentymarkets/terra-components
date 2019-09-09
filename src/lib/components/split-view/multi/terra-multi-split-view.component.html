@@ -1,14 +1,20 @@
 <div *ngIf="inputShowBreadcrumbs" class="terra-breadcrumbs-wrapper main-breadcrumbs">
-    <ul class="terra-breadcrumbs">
-        <ng-template ngFor let-module [ngForOf]="modules" let-index="index">
-            <li class="module{{index}}"
+    <ul class="terra-breadcrumbs breadcrumbs-overflow-auto">
+        <ng-template ngFor let-module [ngForOf]="modules" let-index="index" let-last="last">
+            <li class="module{{index}} terra-breadcrumb-container"
+                #breadcrumbContainer
                 *ngIf="!isNullOrUndefined(module.currentSelectedView.url) && this.inputHasRouting; else falsyTemplate"
                 [routerLink]="componentRoute + module.currentSelectedView.url">
-                <div class="{{ module.identifier }}"
-                     [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
-                    <span class="ellipsis">{{module.currentSelectedView.name}}</span>
-                    <a class="icon-caret" *ngIf="module.views.length > 1">
-                        <ul class="context-menu">
+                <div class="{{ module.identifier }} terra-breadcrumb-wrapper">
+                    <a class="terra-breadcrumb"
+                       [tcTooltip]="module.currentSelectedView.name"
+                       [onlyEllipsisTooltip]="true"
+                       [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
+                        {{module.currentSelectedView.name}}
+                    </a>
+                    <a class="icon-caret" *ngIf="module.views.length > 1"
+                       (mouseenter)="calculatePosition(breadcrumbContainer, contextMenu)">
+                        <ul class="context-menu" [ngStyle]="{'left': mouseLeft}" #contextMenu>
                             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                                 <li [routerLink]="componentRoute + view.url">
                                     <a class="{{ view.mainComponentName + '_' + i }} ">
@@ -20,16 +26,19 @@
                         </ul>
                     </a>
                 </div>
-                <a class="icon-next"></a>
             </li>
             <ng-template #falsyTemplate>
-                <li class="module{{index}}"
-                    (click)="handleBreadCrumbClick(module.currentSelectedView, $event)">
-                    <div class="{{ module.identifier }}"
-                         [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
-                        <span class="ellipsis">{{module.currentSelectedView.name}}</span>
-                        <a class="icon-caret" *ngIf="module.views.length > 1">
-                            <ul class="context-menu">
+                <li class="module{{index}} terra-breadcrumb-container"
+                    (click)="handleBreadCrumbClick(module.currentSelectedView, $event)"
+                    #noRoutingBcContainer>
+                    <div class="{{ module.identifier }} terra-breadcrumb-wrapper">
+                        <a class="terra-breadcrumb"
+                           [ngClass]="{'active': inputConfig.currentSelectedView === module.currentSelectedView}">
+                            {{module.currentSelectedView.name}}
+                        </a>
+                        <a class="icon-caret" *ngIf="module.views.length > 1"
+                           (mouseenter)="calculatePosition(noRoutingBcContainer, noRoutingContextMenu)">
+                            <ul class="context-menu" [ngStyle]="{'left': mouseLeft}" #noRoutingContextMenu>
                                 <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                                     <li>
                                         <a class="{{ view.mainComponentName + '_' + i }} "
@@ -42,9 +51,11 @@
                             </ul>
                         </a>
                     </div>
-                    <a class="icon-next"></a>
                 </li>
             </ng-template>
+            <li class="terra-breadcrumb-container" *ngIf="!last">
+                <a class="terra-breadcrumb icon-next"></a>
+            </li>
         </ng-template>
     </ul>
 </div>
