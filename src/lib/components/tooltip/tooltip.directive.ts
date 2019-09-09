@@ -1,12 +1,14 @@
 import {
     Directive,
     ElementRef,
+    EmbeddedViewRef,
     HostListener,
     Input,
     OnChanges,
     OnDestroy,
-    OnInit,
-    SimpleChanges
+    SimpleChanges,
+    TemplateRef,
+    ViewContainerRef
 } from '@angular/core';
 
 import tippy, { Placement } from 'tippy.js';
@@ -22,7 +24,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
      * @description The tooltip text.
      */
     @Input()
-    public tcTooltip:string;
+    public tcTooltip:string | TemplateRef<any>;
 
     /**
      * @description Show the tooltip only when ellipsis is present. Default false.
@@ -32,7 +34,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
     private _isDisabled:boolean;
     private tooltipEl:any;
-    private _placement:string;
+    private _placement:string = TerraPlacementEnum.TOP;
 
     /**
      * @deprecated since v4. The placement is calculated automatically now.
@@ -43,7 +45,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
     {
         console.warn('`placement` is deprecated since v4. The placement is calculated automatically now.');
 
-        if(isNullOrUndefined(placement))
+        if(!placement)
         {
             placement = TerraPlacementEnum.TOP;
         }
@@ -62,7 +64,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
         this.handleTooltipState();
     }
 
-    constructor(private elementRef:ElementRef)
+    constructor(private elementRef:ElementRef, private containerRef:ViewContainerRef)
     {
     }
 
@@ -75,35 +77,64 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
         if(changes.hasOwnProperty('tcTooltip'))
         {
-            if(isNullOrUndefined(this.tooltipEl))
+            if(changes['tcTooltip'].currentValue)
             {
-                if(isNullOrUndefined(this._placement))
+                let tooltip:string | Element;
+                let tooltipIsEmpty:boolean = true;
+
+                // example found here: https://netbasal.com/create-advanced-components-in-angular-e0655df5dde6
+                if(this.tcTooltip instanceof TemplateRef)
                 {
-                    this._placement = TerraPlacementEnum.TOP;
+                    const viewRef:EmbeddedViewRef<any> = this.containerRef.createEmbeddedView(this.tcTooltip, {});
+
+                    let div:HTMLElement = document.createElement('div');
+
+                    viewRef.rootNodes.forEach((node:HTMLElement) =>
+                    {
+                        div.append(node);
+                    });
+
+                    tooltip = div;
+
+                    tooltipIsEmpty = div.innerHTML.length === 0;
+                }
+                else if(typeof this.tcTooltip === 'string')
+                {
+                    tooltip = this.tcTooltip;
+
+                    tooltipIsEmpty = tooltip.length === 0;
                 }
 
-                this.tooltipEl = tippy(this.elementRef.nativeElement, {
-                    content:   this.tcTooltip,
-                    trigger:   'manual',
-                    arrow:     true,
-                    boundary:  'window',
-                    placement: this._placement as Placement
-                });
+                if(!this.tooltipEl)
+                {
+                    this.tooltipEl = tippy(this.elementRef.nativeElement, {
+                        content:   tooltip,
+                        trigger:   'manual',
+                        arrow:     true,
+                        boundary:  'window',
+                        hideOnClick: false,
+                        placement: this._placement as Placement
+                    });
+                }
+                else
+                {
+                    this.tooltipEl.setContent(tooltip);
+                }
 
-                if(isNullOrUndefined(this.tcTooltip) || this.tcTooltip.length === 0)
+                if(tooltipIsEmpty)
                 {
                     this.isDisabled = true;
                 }
             }
             else
             {
-                this.tooltipEl.setContent(this.tcTooltip);
+                this.isDisabled = true;
             }
         }
 
         if(changes.hasOwnProperty('placement'))
         {
-            if(!isNullOrUndefined(this.tooltipEl))
+            if(this.tooltipEl)
             {
                 this.tooltipEl.set({
                     placement: this._placement as Placement
@@ -116,7 +147,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
     public onMouseOut(event:MouseEvent):void
     {
         event.stopPropagation();
-        if(!isNullOrUndefined(this.tooltipEl))
+        if(this.tooltipEl)
         {
             this.tooltipEl.hide(0);
         }
@@ -126,7 +157,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
     public onMouseOver(event:MouseEvent):void
     {
         event.stopPropagation();
-        if(!isNullOrUndefined(this.tooltipEl))
+        if(this.tooltipEl)
         {
             if(this.onlyEllipsisTooltip)
             {
@@ -139,7 +170,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
     public ngOnDestroy():void
     {
-        if(!isNullOrUndefined(this.tooltipEl))
+        if(this.tooltipEl)
         {
             this.tooltipEl.destroy();
         }
@@ -147,7 +178,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
     private handleTooltipState():void
     {
-        if(!isNullOrUndefined(this.tooltipEl))
+        if(this.tooltipEl)
         {
             if(this._isDisabled)
             {
