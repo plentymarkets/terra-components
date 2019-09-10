@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../helpers/enums/terra-placement.enum';
 
-
 @Component({
     selector: 'terra-button-example',
     styles:   [require('./terra-button.component.example.scss')],
