@@ -6,7 +6,6 @@ import {
     Input,
     OnChanges,
     OnDestroy,
-    SimpleChanges,
     Type,
     ViewChild
 } from '@angular/core';
