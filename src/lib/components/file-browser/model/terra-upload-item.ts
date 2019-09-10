@@ -13,7 +13,6 @@ export class TerraUploadItem
 
     public get filename():string
     {
-        let filenames:Array<string> = this.file.name.split('.');
         return this.uploadService.prepareKey(this.file.name, true);
     }
 
