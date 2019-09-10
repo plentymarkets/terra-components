@@ -10,10 +10,10 @@ import {
  */
 export class TerraAlertComponent
 {
+    public alerts:Array<TerraAlertInterface> = [];
+
     private static instance:TerraAlertComponent = null;
     private static isCreating:boolean = false;
-
-    public alerts:Array<TerraAlertInterface> = [];
 
     constructor()
     {
