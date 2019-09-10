@@ -6,8 +6,6 @@ import {
 } from 'angular-l10n';
 import { DefaultLocale } from 'angular-l10n/src/models/types';
 
-export const l10nConfig:L10nConfig = getL10nConfig();
-
 function getL10nConfig():L10nConfig
 {
     let langInLocalStorage:string = localStorage.getItem('plentymarkets_lang_');
@@ -72,3 +70,5 @@ function getL10nConfig():L10nConfig
         }
     };
 }
+
+export const l10nConfig:L10nConfig = getL10nConfig();
