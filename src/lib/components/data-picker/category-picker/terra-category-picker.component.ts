@@ -300,7 +300,6 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         return categoryDetail;
     }
 
-
     private getCategoriesByParent():void
     {
         this.inputCategoryService.requestCategoryData(null, 1).subscribe((data:TerraPagerInterface<CategoryDataInterface>) =>
