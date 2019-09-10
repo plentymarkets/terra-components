@@ -42,7 +42,6 @@ import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-si
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
 
-
 @Component({
     selector:  'terra-file-list',
     template:  require('./file-list.component.html'),
@@ -369,7 +368,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         );
         this.showNewDirectoryPrompt = false;
         this._newDirectoryName = null;
-        this.activeStorageService.createDirectory(path).subscribe((response:any) =>
+        this.activeStorageService.createDirectory(path).subscribe(() =>
         {
             this.selectNode.emit(this.currentStorageRoot);
         });
