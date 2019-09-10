@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 
-
 @Component({
     selector: 'terra-button-with-options-example',
     styles:   [require('./terra-button-with-options.component.example.scss')],
