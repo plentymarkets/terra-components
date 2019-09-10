@@ -218,7 +218,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     private checkCodeFormat():Promise<boolean>
     {
-        return new Promise((resolve:Function, reject:Function):void =>
+        return new Promise((resolve:Function):void =>
         {
             // store current editor value temporarily
             const tmpValue:string = this.editorContent;
