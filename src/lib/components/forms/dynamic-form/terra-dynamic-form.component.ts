@@ -12,7 +12,6 @@ import { isNullOrUndefined } from 'util';
 import { TerraFormFieldControlService } from './service/terra-form-field-control.service';
 import { TerraFormFieldBase } from './data/terra-form-field-base';
 import { TerraDynamicFormFunctionsHandler } from './handler/terra-dynamic-form-functions.handler';
-import { TerraDynamicFormService } from './service/terra-dynamic-form.service';
 import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Language } from 'angular-l10n';
