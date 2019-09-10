@@ -180,7 +180,6 @@ export class TerraUploadQueue
             listener.next(progress || 0);
         });
 
-
         this.status.next({
             filesTotal:    this.items.length,
             filesUploaded: filesUploaded.length,
