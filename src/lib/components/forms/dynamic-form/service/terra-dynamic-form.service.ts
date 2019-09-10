@@ -1,3 +1,5 @@
+/* eslint-disable */
+// Adding disable only because of the experimental state of the service!
 import { Injectable } from '@angular/core';
 import { TerraBaseService } from '../../../../service/terra-base.service';
 import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/terra-loading-spinner.service';
@@ -9,6 +11,7 @@ import {
 
 /**
  * @author mfrank
+ * @experimental Do not use!
  */
 @Injectable({
     providedIn: 'root'
