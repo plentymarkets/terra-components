@@ -20,5 +20,3 @@ export class TerraFormFieldCheckBox extends TerraFormFieldBase<boolean>
         this.type = options['type'] || '';
     }
 }
-
-
