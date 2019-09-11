@@ -1,1 +1,9 @@
-<tc-showcase></tc-showcase>
+<h4>Basic mat-select</h4>
+<mat-form-field>
+    <mat-label>Favorite food</mat-label>
+    <mat-select>
+        <mat-option *ngFor="let food of (foods | matSort: 'value')" [value]="food.value">
+            {{food.viewValue}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
