@@ -68,7 +68,8 @@ function initL10n(l10nLoader:L10nLoader):Function
             deps:       [CompilerFactory]
         }
     ],
-    bootstrap:    [AppComponent]
+    bootstrap:    [AppComponent
+    ]
 })
 export class AppModule
 {}
