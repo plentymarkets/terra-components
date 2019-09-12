@@ -14,10 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { l10nConfig } from './translation/l10n.config';
-import {
-    AppComponent,
-    MatSortPipe
-} from './app.component';
+import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { TerraComponentsModule } from '../lib';
@@ -40,17 +37,21 @@ function initL10n(l10nLoader:L10nLoader):Function
  * NOTE: It is not publicly accessible either.
  */
 @NgModule({
-    imports: [
+    imports:      [
         RouterModule.forRoot([]),
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
         TerraComponentsExamplesModule,
-        MatSelectModule
+        MatSelectModule,
+        TerraComponentsModule
     ],
-    declarations: [AppComponent, ShowcaseComponent, MatSortPipe],
-    providers: [
+    declarations: [
+        AppComponent,
+        ShowcaseComponent
+    ],
+    providers:    [
         {
             provide:  COMPILER_OPTIONS,
             useValue: {},
@@ -73,7 +74,7 @@ function initL10n(l10nLoader:L10nLoader):Function
             deps:       [CompilerFactory]
         }
     ],
-    bootstrap: [AppComponent]
+    bootstrap:    [AppComponent]
 })
 export class AppModule
 {}

@@ -29,15 +29,28 @@ export class TerraSelectBoxComponentExample implements OnInit
                 caption: 'german'
             }
         );
+
         this.coloredSelectBoxValueList.push(
             {
-                value: true,
-                caption: 'webshop 1'
+                value:   1,
+                caption: 'Ziege'
             },
             {
-                value: true,
-                caption: 'webshop 2',
-                color: AllowedColors.add
+                value:   2,
+                caption: 'Elefant'
+            },
+            {
+                value:   3,
+                caption: 'Bär',
+                color:   AllowedColors.add
+            },
+            {
+                value:   4,
+                caption: 'Hirsch'
+            },
+            {
+                value:   5,
+                caption: 'Biene'
             }
         );
     }
