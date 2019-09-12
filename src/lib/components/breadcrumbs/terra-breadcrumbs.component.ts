@@ -15,9 +15,6 @@ export class TerraBreadcrumbsComponent
 {
     protected mouseLeft:string = '0px';
 
-    protected helperTooltip:string;
-    protected isHelperTooltipDisabled:boolean;
-
     constructor(public readonly breadcrumbsService:TerraBreadcrumbsService,
                 private activatedRoute:ActivatedRoute)
     {

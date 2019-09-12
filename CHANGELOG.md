@@ -6,6 +6,7 @@
 
 ### Bug Fixes
 
+* **multi-split-view** using styles of terra-breadcrumbs now
 * **toggle-button** fix tooltip
 
 <a name="4.3.0"></a>
