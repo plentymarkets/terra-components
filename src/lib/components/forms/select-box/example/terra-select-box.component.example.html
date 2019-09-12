@@ -12,6 +12,10 @@
     <terra-select-box
         inputName="select with color"
         [inputListBoxValues]="coloredSelectBoxValueList"
+        [sortDesc]="sortDesc"
         [(ngModel)]="selectedWebstore">
     </terra-select-box>
 </terra-portlet>
+
+
+<terra-button (outputClicked)="toggleSortOrder()" [inputCaption]="'Invert Sort Order'"></terra-button>

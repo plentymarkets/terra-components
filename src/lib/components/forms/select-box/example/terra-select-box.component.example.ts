@@ -17,6 +17,8 @@ export class TerraSelectBoxComponentExample implements OnInit
     protected selectedValue:string;
     protected selectedWebstore:boolean;
 
+    public sortDesc:boolean= false;
+
     public ngOnInit():void
     {
         this.selectBoxValueList.push(
@@ -53,5 +55,10 @@ export class TerraSelectBoxComponentExample implements OnInit
                 caption: 'Biene'
             }
         );
+    }
+
+    public toggleSortOrder():void
+    {
+        this.sortDesc = !this.sortDesc;
     }
 }

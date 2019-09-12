@@ -64,6 +64,12 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input()
     public inputListBoxValues:Array<TerraSelectBoxValueInterface>;
 
+    @Input()
+    public disableSorting:boolean = false;
+
+    @Input()
+    public sortDesc:boolean = false;
+
     /**
      * @deprecated use ngModelChange instead
      */

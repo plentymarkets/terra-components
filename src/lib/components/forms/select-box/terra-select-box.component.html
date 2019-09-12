@@ -37,7 +37,7 @@
         <span *ngIf="selectedValue; then selectedValueActiveTemplate else firstInListActiveTemplate"></span>
         
         <ng-template #selectedValueActiveTemplate>
-            <span *ngFor="let item of (inputListBoxValues | matSort: 'caption' ); let index=index;"
+            <span *ngFor="let item of (inputListBoxValues | matSort: 'caption' : sortDesc ); let index=index;"
                   (click)="select(item)"
                   [ngClass]="{active: item.value === selectedValue?.value, selected: item.value === tmpSelectedValue?.value}">
                 <span class="{{item.icon}}" *ngIf="item.icon"></span>
@@ -46,7 +46,7 @@
         </ng-template>
         
         <ng-template #firstInListActiveTemplate>
-            <span *ngFor="let item of (inputListBoxValues | matSort: 'caption'); let index=index;"
+            <span *ngFor="let item of (inputListBoxValues | matSort: 'caption' : sortDesc); let index=index;"
                   #renderedListBoxValues
                   (click)="select(item)"
                   [ngClass]="{active: item.value === inputListBoxValues[0]?.value, selected: item.value === tmpSelectedValue?.value}">
