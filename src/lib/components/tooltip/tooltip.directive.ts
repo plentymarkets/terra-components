@@ -12,8 +12,9 @@ import {
 } from '@angular/core';
 
 import tippy, { Placement } from 'tippy.js';
-import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Directive({
     selector: '[tcTooltip]'
@@ -35,6 +36,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
     private _isDisabled:boolean;
     private tooltipEl:any;
     private _placement:string = TerraPlacementEnum.TOP;
+    private navigationSubscription:Subscription;
 
     /**
      * @deprecated since v4. The placement is calculated automatically now.
@@ -64,7 +66,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
         this.handleTooltipState();
     }
 
-    constructor(private elementRef:ElementRef, private containerRef:ViewContainerRef)
+    constructor(private elementRef:ElementRef, private containerRef:ViewContainerRef, private router:Router)
     {
     }
 
@@ -108,18 +110,23 @@ export class TooltipDirective implements OnDestroy, OnChanges
                 if(!this.tooltipEl)
                 {
                     this.tooltipEl = tippy(this.elementRef.nativeElement, {
-                        content:   tooltip,
-                        trigger:   'manual',
-                        arrow:     true,
-                        boundary:  'window',
+                        content:     tooltip,
+                        trigger:     'manual',
+                        arrow:       true,
+                        boundary:    'window',
                         hideOnClick: false,
-                        placement: this._placement as Placement
+                        placement:   this._placement as Placement
                     });
                 }
                 else
                 {
                     this.tooltipEl.setContent(tooltip);
                 }
+
+                this.navigationSubscription = this.router.events.subscribe(() =>
+                {
+                    this.tooltipEl.hide(0);
+                });
 
                 if(tooltipIsEmpty)
                 {
@@ -173,6 +180,11 @@ export class TooltipDirective implements OnDestroy, OnChanges
         if(this.tooltipEl)
         {
             this.tooltipEl.destroy();
+        }
+
+        if(this.navigationSubscription)
+        {
+            this.navigationSubscription.unsubscribe();
         }
     }
 
