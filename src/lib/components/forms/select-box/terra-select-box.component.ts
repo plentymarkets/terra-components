@@ -152,14 +152,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         }
     }
 
-    private sortListBoxValues():void
-    {
-        if(!this.disableSorting && this.inputListBoxValues && this.inputListBoxValues.length > 0)
-        {
-            this.inputListBoxValues = SelectBoxSortHelper.sortArray(this.inputListBoxValues, 'caption', this.sortDesc);
-        }
-    }
-
     public registerOnChange(fn:(_:any) => void):void
     {
         this.onChangeCallback = fn;
@@ -311,6 +303,14 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     protected onBlur():void
     {
         this.toggleOpen = false;
+    }
+
+    private sortListBoxValues():void
+    {
+        if(!this.disableSorting && this.inputListBoxValues && this.inputListBoxValues.length > 0)
+        {
+            this.inputListBoxValues = SelectBoxSortHelper.sortArray(this.inputListBoxValues, 'caption', this.sortDesc);
+        }
     }
 
     /**

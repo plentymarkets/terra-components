@@ -12,12 +12,12 @@ import { AllowedColors } from '../data/allowed.colors.enum';
 })
 export class TerraSelectBoxComponentExample implements OnInit
 {
+    public sortDesc:boolean = false;
+
     protected selectBoxValueList:Array<TerraSelectBoxValueInterface> = [];
     protected coloredSelectBoxValueList:Array<TerraSelectBoxValueInterface> = [];
     protected selectedValue:string;
     protected selectedWebstore:boolean;
-
-    public sortDesc:boolean = false;
 
     public ngOnInit():void
     {
