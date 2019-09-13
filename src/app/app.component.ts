@@ -1,13 +1,11 @@
 import {
     Component,
-    Pipe,
-    PipeTransform,
     ViewEncapsulation
 } from '@angular/core';
 
 export interface Food
 {
-    value:string;
+    value:number;
     viewValue:string;
 }
 
@@ -27,19 +25,19 @@ export class AppComponent
 {
     foods:Food[] = [
         {
-            value:     'steak-0',
+            value:     99,
             viewValue: 'Steak'
         },
         {
-            value:     'pizza-1',
+            value:     22,
             viewValue: 'Pizza'
         },
         {
-            value:     'ziyad',
+            value:     1,
             viewValue: 'ziyad'
         },
         {
-            value:     'tacos-2',
+            value:     4,
             viewValue: 'Tacos'
         }
     ];

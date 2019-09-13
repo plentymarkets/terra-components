@@ -19,6 +19,7 @@ import {
 import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
 import { noop } from 'rxjs';
+import { SelectBoxSortHelper } from '../../../helpers/select-box-sort.helper';
 
 @Component({
     selector:  'terra-select-box',
@@ -127,6 +128,8 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this._toggleOpen = false;
         this.hasLabel = !StringHelper.isNullUndefinedOrEmpty(this.inputName);
         this.isInit = true;
+
+        this.sortListBoxValues();
     }
 
     /**
@@ -141,6 +144,19 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
            && !this.inputListBoxValues.find((x:TerraSelectBoxValueInterface):boolean => this.selectedValue === x))
         {
             this.select(this.inputListBoxValues[0]);
+        }
+
+        if(changes['sortDesc'] || changes['inputListBoxValues'])
+        {
+            this.sortListBoxValues();
+        }
+    }
+
+    private sortListBoxValues():void
+    {
+        if(!this.disableSorting && this.inputListBoxValues && this.inputListBoxValues.length > 0)
+        {
+            this.inputListBoxValues = SelectBoxSortHelper.sortArray(this.inputListBoxValues, 'caption', this.sortDesc);
         }
     }
 
@@ -207,50 +223,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             if(!this.inputIsDisabled)
             {
                 this.isValid = false;
-
-                // if(this.inputIsRequired && (isNullOrUndefined(this.value) || this.value.length == 0))
-                // {
-                //    let emptyMessage:string;
-                //
-                //    if(!this.inputEmptyMessage || this.inputEmptyMessage.length == 0)
-                //    {
-                //        //// TODO i18n
-                //        // emptyMessage = 'Mach eine Eingabe!';
-                //
-                //    }
-                //    else
-                //    {
-                //        emptyMessage = this.inputEmptyMessage;
-                //
-                //        this.alert.addAlert({
-                //                                 msg:              emptyMessage,
-                //                                 closable:         true,
-                //                                 type:             'danger',
-                //                                 dismissOnTimeout: 0
-                //                             });
-                //    }
-                // }
-                // else if(!isNullOrUndefined(this.value) && this.value.length > 0)
-                // {
-                //    let invalidMessage:string;
-                //
-                //    if(!this.inputInvalidMessage || this.inputInvalidMessage.length == 0)
-                //    {
-                //        //// TODO i18n
-                //        // invalidMessage = 'Eingabe ungültig!';
-                //    }
-                //    else
-                //    {
-                //        invalidMessage = this.inputInvalidMessage;
-                //
-                //        this.alert.addAlert({
-                //                                 msg:              invalidMessage,
-                //                                 closable:         true,
-                //                                 type:             'danger',
-                //                                 dismissOnTimeout: 0
-                //                             });
-                //    }
-                // }
             }
         }
     }

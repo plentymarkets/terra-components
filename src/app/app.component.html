@@ -2,7 +2,7 @@
 <mat-form-field>
     <mat-label>Favorite food</mat-label>
     <mat-select>
-        <mat-option *ngFor="let food of (foods | matSort: 'value')" [value]="food.value">
+        <mat-option *ngFor="let food of (foods | selectSort:'value' : false)" [value]="food.value">
             {{food.viewValue}}
         </mat-option>
     </mat-select>

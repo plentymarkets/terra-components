@@ -21,7 +21,7 @@ import { TerraInteractModule } from './components/interactables/interact.module'
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { HttpModule } from '@angular/http';
-import { SortingPipe } from './pipes/sorting.pipe';
+import { SelectSortPipe } from './pipes/select-sort.pipe';
 
 @NgModule({
     imports: [
@@ -42,7 +42,7 @@ import { SortingPipe } from './pipes/sorting.pipe';
     declarations:    [
         ...components,
         ...directives,
-        SortingPipe
+        SelectSortPipe
     ],
     entryComponents: [
         ...exportedComponents
@@ -50,7 +50,7 @@ import { SortingPipe } from './pipes/sorting.pipe';
     exports:         [
         ...exportedComponents,
         ...directives,
-        SortingPipe
+        SelectSortPipe
     ]
 })
 export class TerraComponentsModule
