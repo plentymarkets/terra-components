@@ -1,3 +1,9 @@
+<a name="4.3.2"></a>
+# UNRELEASED
+
+### Bug Fixes
+* **tcTooltip** hide tooltip when routing
+
 <a name="4.3.1"></a>
 # 4.3.1 (09.09.2019)
 
