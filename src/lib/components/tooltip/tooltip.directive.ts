@@ -66,7 +66,9 @@ export class TooltipDirective implements OnDestroy, OnChanges
         this.handleTooltipState();
     }
 
-    constructor(private elementRef:ElementRef, private containerRef:ViewContainerRef, private router:Router)
+    constructor(private elementRef:ElementRef,
+                private containerRef:ViewContainerRef,
+                private router:Router)
     {
     }
 
@@ -107,21 +109,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
                     tooltipIsEmpty = tooltip.length === 0;
                 }
 
-                if(!this.tooltipEl)
-                {
-                    this.tooltipEl = tippy(this.elementRef.nativeElement, {
-                        content:     tooltip,
-                        trigger:     'manual',
-                        arrow:       true,
-                        boundary:    'window',
-                        hideOnClick: false,
-                        placement:   this._placement as Placement
-                    });
-                }
-                else
-                {
-                    this.tooltipEl.setContent(tooltip);
-                }
+                this.initTooltip(tooltip);
 
                 this.navigationSubscription = this.router.events.subscribe(() =>
                 {
@@ -220,5 +208,28 @@ export class TooltipDirective implements OnDestroy, OnChanges
         this.elementRef.nativeElement.style.overflow = curOverflow;
 
         this.isDisabled = !isOverflowing;
+    }
+
+    /**
+     * initialize the tippy element
+     * @param tooltip
+     */
+    private initTooltip(tooltip:string | Element):void
+    {
+        if(!this.tooltipEl)
+        {
+            this.tooltipEl = tippy(this.elementRef.nativeElement, {
+                content:     tooltip,
+                trigger:     'manual',
+                arrow:       true,
+                boundary:    'window',
+                hideOnClick: false,
+                placement:   this._placement as Placement
+            });
+        }
+        else
+        {
+            this.tooltipEl.setContent(tooltip);
+        }
     }
 }
