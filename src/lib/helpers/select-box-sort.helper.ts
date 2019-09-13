@@ -15,7 +15,7 @@ export class SelectBoxSortHelper
         });
     }
 
-    private static internalSort(a:any, b:any, sortingKey:string, sortDesc:boolean)
+    private static internalSort(a:any, b:any, sortingKey:string, sortDesc:boolean):any
     {
         switch(typeof a[sortingKey])
         {
