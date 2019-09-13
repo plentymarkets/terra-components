@@ -50,7 +50,10 @@ export class TerraButtonComponent
     @Input()
     public inputTooltipText:string;
 
-    /** @description Set the tooltip placement (bottom, top, left, right). Default top.*/
+    /**
+     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
+     * @description Set the tooltip placement (bottom, top, left, right). Default top.
+     * */
     @Input()
     public inputTooltipPlacement:TerraPlacementEnum;
 
@@ -92,11 +95,8 @@ export class TerraButtonComponent
     @Output()
     public outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
 
-    protected currentTooltipPlacement:string;
-
     constructor()
     {
-        this.inputTooltipPlacement = TerraPlacementEnum.TOP;
         this.inputType = 'button';
         this.inputIsActive = false;
         this.inputIsFlagged = false;
@@ -106,7 +106,6 @@ export class TerraButtonComponent
         this.inputIsDisabled = false;
         this.inputIsHighlighted = false;
         this.inputIsMajor = false;
-        this.currentTooltipPlacement = this.inputTooltipPlacement;
     }
 
     protected click(event:Event):void
@@ -114,27 +113,6 @@ export class TerraButtonComponent
         if(isNullOrUndefined(this.inputIsDisabled) || this.inputIsDisabled === false)
         {
             this.outputClicked.emit(event);
-        }
-    }
-
-    protected setTooltipPlacement(event:MouseEvent):void
-    {
-        if(isNullOrUndefined(this.inputTooltipText))
-        {
-            return;
-        }
-
-        let minimalDistanceToWindowEdge:number = 100;
-
-        this.currentTooltipPlacement = this.inputTooltipPlacement;
-
-        if(window.innerWidth - event.clientX < minimalDistanceToWindowEdge)
-        {
-            this.currentTooltipPlacement = TerraPlacementEnum.LEFT;
-        }
-        else if(event.clientX < minimalDistanceToWindowEdge)
-        {
-            this.currentTooltipPlacement = TerraPlacementEnum.RIGHT;
         }
     }
 }

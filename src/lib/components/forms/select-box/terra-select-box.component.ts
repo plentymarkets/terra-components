@@ -31,6 +31,9 @@ import { noop } from 'rxjs';
         }
     ]
 })
+/**
+ * @deprecated since v4. Use '<mat-select>' instead. See {@link https://material.angular.io/components/select/overview}
+ */
 export class TerraSelectBoxComponent implements OnInit, OnChanges
 {
     @Input()
@@ -51,6 +54,9 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input()
     public inputTooltipText:string;
 
+    /**
+     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
+     */
     @Input()
     public inputTooltipPlacement:string;
 
@@ -68,9 +74,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     protected selectedValue:TerraSelectBoxValueInterface;
     protected tmpSelectedValue:TerraSelectBoxValueInterface;
     protected hasLabel:boolean;
-    protected isTooltipDisabled:boolean;
-    protected helperTooltip:string;
-    protected isHelperTooltipDisabled:boolean;
 
     private _value:number | string;
     private _toggleOpen:boolean;
@@ -107,7 +110,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         };
 
         this.isInit = false;
-        this.inputTooltipPlacement = 'top';
         this.inputIsSmall = false;
         this.inputOpenOnTop = false;
     }

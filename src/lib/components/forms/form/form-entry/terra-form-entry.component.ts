@@ -1,30 +1,22 @@
 import {
     Component,
-    ComponentFactory,
     ComponentFactoryResolver,
-    ComponentRef,
     Input,
     OnChanges,
     OnDestroy,
-    OnInit,
-    SimpleChanges,
-    Type,
-    ViewChild
+    OnInit
 } from '@angular/core';
-import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import {
     isFunction,
     isNullOrUndefined
 } from 'util';
-import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 import {
     ControlValueAccessor,
     FormControl,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
-import { FormEntryContainerDirective } from './form-entry-container.directive';
 import { noop } from 'rxjs';
+import { TerraFormEntryBase } from './terra-form-entry.base';
 
 @Component({
     selector:  'terra-form-entry',
@@ -38,49 +30,21 @@ import { noop } from 'rxjs';
         }
     ]
 })
-export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, ControlValueAccessor
+export class TerraFormEntryComponent extends TerraFormEntryBase implements OnInit, OnChanges, OnDestroy, ControlValueAccessor
 {
-    /**
-     * @description Specification of the formField that should be displayed.
-     */
-    @Input()
-    public inputFormField:TerraFormFieldInterface;
-
     /**
      * @description FormControl instance corresponding to the given formField.
      */
     @Input()
     public inputFormControl:FormControl;
 
-    /**
-     * @description Map of supported control types. If the given formField's type is not supported, a TerraTextInputComponent instance is
-     *     rendered by default.
-     *     Please note: All of the control types contained in this map have to implement the ControlValueAccessor interface.
-     * @default {} - an empty map. Hence, not a single control type is supported and the default type TerraTextInputComponent will be
-     *     rendered as well.
-     */
-    @Input()
-    public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
-
-    /**
-     * @description May be used to disable/enable the form field.
-     * @default false
-     */
-    @Input()
-    public inputIsDisabled:boolean = false;
-
-    private componentFactory:ComponentFactory<any>; // TODO: this has access to the inputs/outputs.. maybe use this for property binding purposes
-    private componentRef:ComponentRef<any>;
-    private componentInstance:any;
-
     private onChangeCallback:(_:any) => void = noop;
     private onTouchedCallback:() => void = noop;
 
-    @ViewChild(FormEntryContainerDirective)
-    private container:FormEntryContainerDirective;
-
-    constructor(private componentFactoryResolver:ComponentFactoryResolver)
-    {}
+    constructor(componentFactoryResolver:ComponentFactoryResolver)
+    {
+        super(componentFactoryResolver);
+    }
 
     /**
      * Implementation of the OnInit life cycle hook.
@@ -90,7 +54,24 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
      */
     public ngOnInit():void
     {
-        this.initComponent();
+        if(!this.hasChildren)
+        {
+            this.initComponent();
+
+            if(isFunction(this.componentInstance.registerOnChange) &&
+               isFunction(this.componentInstance.registerOnTouched))
+            {
+                this.componentInstance.registerOnChange((value:any):void => this.onChangeCallback(value));
+                this.componentInstance.registerOnTouched(():void => this.onTouchedCallback());
+            }
+            else
+            {
+                console.error(
+                    'Cannot bind component ' + this.getControlType().name + ' to dynamic form. ' +
+                    'Bound components needs to implement the ControlValueAccessor interface.'
+                );
+            }
+        }
 
         this.inputFormControl.statusChanges.subscribe((status:string) =>
         {
@@ -101,27 +82,7 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         });
     }
 
-    /**
-     * Implementation of the OnChanges life cycle hook.
-     * @description Updates the input bindings of the dynamically created component instance.
-     * @param changes
-     */
-    public ngOnChanges(changes:SimpleChanges):void
-    {
-        this.bindInputProperties();
-    }
 
-    /**
-     * Implementation of the OnDestroy life cycle hook.
-     * @description Destroys the component that has been created dynamically.
-     */
-    public ngOnDestroy():void
-    {
-        if(!isNullOrUndefined(this.componentRef))
-        {
-            this.componentRef.destroy();
-        }
-    }
 
     /**
      * Part of the implementation of the ControlValueAccessor interface
@@ -158,106 +119,10 @@ export class TerraFormEntryComponent implements OnInit, OnChanges, OnDestroy, Co
         }
     }
 
-    private initComponent():void
-    {
-        if(!this.hasChildren)
-        {
-            let controlType:Type<any> = TerraTextInputComponent;
-            if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
-            {
-                if(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)
-                {
-                    controlType = <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
-                }
-                else
-                {
-                    controlType = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
-                }
-            }
-
-            this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(controlType);
-            this.componentRef = this.container.viewContainerRef.createComponent(this.componentFactory);
-            this.componentInstance = this.componentRef.instance;
-
-            this.bindInputProperties();
-
-            if(isFunction(this.componentInstance.registerOnChange) &&
-               isFunction(this.componentInstance.registerOnTouched))
-            {
-                this.componentInstance.registerOnChange((value:any):void => this.onChangeCallback(value));
-                this.componentInstance.registerOnTouched(():void => this.onTouchedCallback());
-            }
-            else
-            {
-                console.error(
-                    'Cannot bind component ' + controlType.name + ' to dynamic form. ' +
-                    'Bound components needs to implement the ControlValueAccessor interface.'
-                );
-            }
-        }
-    }
-
-    private bindInputProperties():void
-    {
-        if(!isNullOrUndefined(this.componentInstance))
-        {
-            let inputMap:{ [key:string]:string } = {};
-            if(!(this.inputControlTypeMap[this.inputFormField.type] instanceof Type))
-            {
-                inputMap = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).inputMap;
-            }
-
-            if(!isNullOrUndefined(this.inputFormField.options))
-            {
-                Object.keys(this.inputFormField.options).forEach((optionKey:string) =>
-                {
-                    this.performInputBindings(inputMap, optionKey);
-                });
-            }
-
-            if(inputMap.hasOwnProperty('isDisabled'))
-            {
-                this.componentInstance[inputMap['isDisabled']] = this.inputIsDisabled;
-            }
-            else
-            {
-                this.componentInstance['inputIsDisabled'] = this.inputIsDisabled;
-            }
-        }
-    }
-
     protected get hasChildren():boolean
     {
         return !isNullOrUndefined(this.inputFormField.children);
     }
 
-    private performInputBindings(inputMap:{ [key:string]:string }, optionKey:string):void
-    {
-        if(inputMap.hasOwnProperty(optionKey)
-           && Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, inputMap[optionKey]))
-        {
-            this.componentInstance[inputMap[optionKey]] = this.inputFormField.options[optionKey];
-        }
-        else if(Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, optionKey))
-        {
-            this.componentInstance[optionKey] = this.inputFormField.options[optionKey];
-        }
-        else
-        {
-            let prefixedOptionKey:string = this.transformInputPropertyName(optionKey);
-            if(Reflect.getMetadata('design:type', this.componentInstance.constructor.prototype, prefixedOptionKey))
-            {
-                this.componentInstance[prefixedOptionKey] = this.inputFormField.options[optionKey];
-            }
-            else
-            {
-                console.warn('Cannot assign property ' + optionKey + ' on ' + this.componentInstance.constructor.name);
-            }
-        }
-    }
 
-    private transformInputPropertyName(propertyName:string):string
-    {
-        return 'input' + propertyName.charAt(0).toUpperCase() + propertyName.substr(1);
-    }
 }

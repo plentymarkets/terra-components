@@ -5,12 +5,12 @@ import {
 } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
-import { TooltipModule } from 'ngx-bootstrap';
 import { l10nConfig } from '../../../../../app/translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
+import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 
 describe('Component: TerraColorPickerComponent', () =>
 {
@@ -24,10 +24,10 @@ describe('Component: TerraColorPickerComponent', () =>
     {
         TestBed.configureTestingModule(
             {
-                declarations: [TerraColorPickerComponent,
+                declarations: [TooltipDirective,
+                               TerraColorPickerComponent,
                                TerraLabelTooltipDirective],
                 imports:      [
-                    TooltipModule.forRoot(),
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)
                 ]

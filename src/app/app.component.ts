@@ -16,4 +16,5 @@ import {
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent
-{}
+{
+}

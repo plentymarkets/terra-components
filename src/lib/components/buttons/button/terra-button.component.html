@@ -1,13 +1,6 @@
-<ng-template #tooltipTemplate>
-    <div [innerHtml]="inputTooltipText"></div>
-</ng-template>
-<div [isDisabled]="!inputTooltipText"
-     class="btn-handler"
-     [tooltip]="tooltipTemplate"
-     [placement]="currentTooltipPlacement"
-     [adaptivePosition]="false"
-     [container]="'body'"
-     (mouseenter)="setTooltipPlacement($event)"
+<div class="btn-handler"
+     [tcTooltip]="inputTooltipText"
+     [placement]="inputTooltipPlacement"
      [ngClass]="{'float-right': inputIsAlignRight,
                  'disabled': inputIsDisabled}"
      (click)="click($event)">

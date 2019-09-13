@@ -15,6 +15,7 @@ import {
     from,
     Observable
 } from 'rxjs';
+import { AlertService } from '../alert/alert.service';
 
 @Injectable({
     providedIn: 'root'
@@ -43,7 +44,10 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
     private metadataCache:{ [storageKey:string]:TerraImageMetadata } = {};
 
-    constructor(terraLoadingSpinnerService:TerraLoadingSpinnerService, http:Http, translation:TranslationService)
+    constructor(terraLoadingSpinnerService:TerraLoadingSpinnerService,
+                http:Http,
+                private translation:TranslationService,
+                private alertService:AlertService)
     {
         super(terraLoadingSpinnerService, http, '/rest/storage/frontend/file');
         this.name = translation.translate('terraFileBrowser.myFiles');
@@ -198,31 +202,37 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
             );
         });
 
-        item.onSuccess((response:string) =>
+        item.onSuccess((response:string, status:number) =>
         {
-            let s3Data:any = JSON.parse(response);
-            this.storageListSubject.next(
-                this._storageList.insertObject({
-                    eTag:         s3Data.eTag,
-                    key:          s3Data.key,
-                    lastModified: (new Date()).toISOString(),
-                    size:         file.size,
-                    publicUrl:    s3Data.publicUrl,
-                    storageClass: 'STANDARD'
-                })
-            );
+            if(status === 413)
+            {
+                this.cleanStorageList(item);
+                this.alertService.error(this.translation.translate('terraFileBrowser.error.tooLargePayload'));
+            }
+            else
+            {
+                let s3Data:any = JSON.parse(response);
+                this.storageListSubject.next(
+                    this._storageList.insertObject({
+                        eTag:         s3Data.eTag,
+                        key:          s3Data.key,
+                        lastModified: (new Date()).toISOString(),
+                        size:         file.size,
+                        publicUrl:    s3Data.publicUrl,
+                        storageClass: 'STANDARD'
+                    })
+                );
+            }
         });
 
         item.onError(() =>
         {
-            this._storageList.root.removeChild(item.pathname);
-            this.storageListSubject.next(this._storageList);
+            this.cleanStorageList(item);
         });
 
         item.onCancel(() =>
         {
-            this._storageList.root.removeChild(item.pathname);
-            this.storageListSubject.next(this._storageList);
+            this.cleanStorageList(item);
         });
 
         this.queue.add(item);
@@ -230,6 +240,12 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         this.queue.startUpload();
 
         return item;
+    }
+
+    private cleanStorageList(item:any):void
+    {
+        this._storageList.root.removeChild(item.pathname);
+        this.storageListSubject.next(this._storageList);
     }
 
     private initStorageList(continuationToken?:string):void

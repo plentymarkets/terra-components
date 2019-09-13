@@ -52,8 +52,11 @@ import { CheckboxGroupComponentExample } from './forms/checkbox-group/example/ch
 import { TerraFormComponentExample } from './forms/form/example/terra-form.component.example';
 import { CkEditorDirectiveExample } from './editors/ck-editor/example/ck-editor-directive-example.component';
 import { TerraFileBrowserComponentExample } from './file-browser/example/terra-file-browser.component.example';
+import { TerraLoadingSpinnerComponentExample } from './loading-spinner/example/terra-loading-spinner.component.example';
+import { TooltipDirectiveExample } from './tooltip/example/tooltip-directive.example';
 
 export const examples:Array<Type<any>> = [
+    TooltipDirectiveExample,
     TerraButtonComponentExample,
     TerraAlertComponentExample,
     TerraCardComponentExample,
@@ -106,5 +109,6 @@ export const examples:Array<Type<any>> = [
     CheckboxGroupComponentExample,
     TerraFormComponentExample,
     CkEditorDirectiveExample,
-    TerraFileBrowserComponentExample
+    TerraFileBrowserComponentExample,
+    TerraLoadingSpinnerComponentExample
 ];

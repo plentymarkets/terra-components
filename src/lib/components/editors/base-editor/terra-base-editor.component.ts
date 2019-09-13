@@ -44,7 +44,10 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     @Input()
     public tooltipText:string;
 
-    /** @description Set the tooltip placement (bottom, top, left, right). Default top.*/
+    /**
+     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
+     * @description Set the tooltip placement (bottom, top, left, right). Default top.
+     * */
     @Input()
     public tooltipPlacement:TerraPlacementEnum;
 
@@ -72,7 +75,6 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
 
     public ngOnInit():void
     {
-        this.tooltipPlacement = isNullOrUndefined(this.tooltipPlacement) ? TerraPlacementEnum.TOP : this.tooltipPlacement;
         this.inputMinHeight = isNullOrUndefined(this.inputMinHeight) ? '100px' : this.inputMinHeight;
         // overwrite default placeholder if input is defined
         if(this.inputPlaceholder)

@@ -69,7 +69,7 @@ export class TerraDataTableComponentExample implements OnInit
 
     protected addEntries():void
     {
-        for(let i:number = 0; i < 50; i++)
+        for(let i:number = 0; i < 500; i++)
         {
             this.service.addEntry();
         }
