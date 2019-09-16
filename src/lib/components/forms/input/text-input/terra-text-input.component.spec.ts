@@ -15,6 +15,7 @@ import { DebugElement } from '@angular/core';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
+import { MockRouter } from '../../../../testing/mock-router';
 
 describe('Component: TerraTextInputComponent', () =>
 {
@@ -23,6 +24,7 @@ describe('Component: TerraTextInputComponent', () =>
     let inputElement:HTMLInputElement;
     let inputDebugElement:DebugElement;
     const testString:string = 'test';
+    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
