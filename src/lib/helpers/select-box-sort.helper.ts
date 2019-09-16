@@ -24,12 +24,15 @@ export class SelectBoxSortHelper
 
     private static internalSort(a:any, b:any, sortingKey:string, sortDesc:boolean):any
     {
-        switch(typeof a[sortingKey])
+        switch(typeof a)
         {
             case 'number':
-                return sortDesc ? b[sortingKey] - a[sortingKey] : a[sortingKey] - b[sortingKey];
+                return sortDesc ? b - a : a - b;
             case 'string':
-                return sortDesc ? b[sortingKey].localeCompare(a[sortingKey]) : a[sortingKey].localeCompare(b[sortingKey]);
+                return sortDesc ? b.localeCompare(a) : a.localeCompare(b);
+            case 'object':
+                return sortDesc ? SelectBoxSortHelper.internalSort(a[sortingKey], b[sortingKey], sortingKey, sortDesc)
+                    : SelectBoxSortHelper.internalSort(b[sortingKey], a[sortingKey], sortingKey, sortDesc);
         }
     }
 }
