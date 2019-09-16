@@ -20,6 +20,7 @@ import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
 import { noop } from 'rxjs';
 import { SelectBoxSortHelper } from '../../../helpers/select-box-sort.helper';
+import { SortDirectionEnum } from '../../../helpers/enums/sort-direction.enum';
 
 @Component({
     selector:  'terra-select-box',
@@ -69,7 +70,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     public disableSorting:boolean = false;
 
     @Input()
-    public sortDesc:boolean = false;
+    public sortDesc:SortDirectionEnum = 'asc';
 
     /**
      * @deprecated use ngModelChange instead
@@ -307,7 +308,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         if(!this.disableSorting)
         {
-            this.inputListBoxValues = SelectBoxSortHelper.sortArray(this.inputListBoxValues, 'caption', this.sortDesc);
+            this.inputListBoxValues = SelectBoxSortHelper.sortArray(this.inputListBoxValues, this.sortDesc, 'caption');
         }
     }
 
