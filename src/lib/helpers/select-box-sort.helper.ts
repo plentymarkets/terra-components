@@ -9,10 +9,17 @@ export class SelectBoxSortHelper
             sortDesc = false;
         }
 
-        return sortingList.sort((a:any, b:any) =>
+        if(!isNullOrUndefined(sortingList))
         {
-            return SelectBoxSortHelper.internalSort(a, b, sortingKey, sortDesc);
-        });
+            return sortingList.sort((a:any, b:any) =>
+            {
+                return SelectBoxSortHelper.internalSort(a, b, sortingKey, sortDesc);
+            });
+        }
+        else
+        {
+            return [];
+        }
     }
 
     private static internalSort(a:any, b:any, sortingKey:string, sortDesc:boolean):any

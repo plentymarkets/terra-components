@@ -305,7 +305,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 
     private sortListBoxValues():void
     {
-        if(!this.disableSorting && this.inputListBoxValues && this.inputListBoxValues.length > 0)
+        if(!this.disableSorting)
         {
             this.inputListBoxValues = SelectBoxSortHelper.sortArray(this.inputListBoxValues, 'caption', this.sortDesc);
         }
