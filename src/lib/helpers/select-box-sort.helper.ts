@@ -21,9 +21,9 @@ export class SelectBoxSortHelper
         switch(typeof a)
         {
             case 'number':
-                return sortDesc === 'asc' ? b - a : a - b;
+                return sortDesc === 'asc' ? a - b : b - a;
             case 'string':
-                return sortDesc === 'asc' ? b.localeCompare(a) : a.localeCompare(b);
+                return sortDesc === 'asc' ? a.localeCompare(b) : b.localeCompare(a);
             case 'object':
                 return SelectBoxSortHelper.internalSort(a[sortingKey], b[sortingKey], sortDesc, sortingKey);
         }
