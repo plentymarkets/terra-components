@@ -128,8 +128,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this._toggleOpen = false;
         this.hasLabel = !StringHelper.isNullUndefinedOrEmpty(this.inputName);
         this.isInit = true;
-
-        this.sortListBoxValues();
     }
 
     /**
