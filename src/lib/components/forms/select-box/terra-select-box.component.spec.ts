@@ -97,7 +97,7 @@ describe('TerraSelectBoxComponent:', () =>
             inputListBoxValues: new SimpleChange([], component.inputListBoxValues, false)
         });
 
-        expect(spy).toHaveBeenCalledWith(component.inputListBoxValues, 'caption', component.sortDesc);
+        expect(spy).toHaveBeenCalledWith(component.inputListBoxValues, component.sortDesc, 'caption');
         expect(component.inputListBoxValues).toEqual([listBoxValue1, listBoxValue2, listBoxValue3]);
     });
 
