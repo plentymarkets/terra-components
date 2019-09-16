@@ -10,7 +10,6 @@ import { TerraButtonComponent } from '../../buttons/button/terra-button.componen
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { RouterModule } from '@angular/router';
 
 describe('Component: TerraGroupFunctionComponent', () =>
 {
@@ -25,7 +24,6 @@ describe('Component: TerraGroupFunctionComponent', () =>
                            TerraButtonComponent
             ],
             imports:      [
-                RouterModule.forRoot([]),
                 NoopAnimationsModule,
                 HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)

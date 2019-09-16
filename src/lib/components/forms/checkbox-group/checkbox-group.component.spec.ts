@@ -13,7 +13,6 @@ import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { RouterModule } from '@angular/router';
 
 describe('Component: CheckboxGroupComponent', () =>
 {
@@ -45,7 +44,6 @@ describe('Component: CheckboxGroupComponent', () =>
                                TerraMultiCheckBoxComponent,
                                TerraCheckboxComponent],
                 imports:      [
-                    RouterModule.forRoot([]),
                     HttpClientModule,
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)

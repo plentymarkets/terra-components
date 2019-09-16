@@ -19,7 +19,6 @@ import { TerraButtonComponent } from '../../../buttons/button/terra-button.compo
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { By } from '@angular/platform-browser';
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
-import { RouterModule } from '@angular/router';
 
 describe('TerraDoubleInputComponent', () =>
 {
@@ -38,7 +37,6 @@ describe('TerraDoubleInputComponent', () =>
                            TerraLabelTooltipDirective
             ],
             imports:      [
-                RouterModule.forRoot([]),
                 FormsModule,
                 LocalizationModule.forRoot(l10nConfig)
             ]

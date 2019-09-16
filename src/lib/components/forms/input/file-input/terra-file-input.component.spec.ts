@@ -39,7 +39,6 @@ import { TerraStorageObject } from '../../../file-browser/model/terra-storage-ob
 import { TerraInfoComponent } from '../../../info/terra-info.component';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
-import { RouterModule } from '@angular/router';
 
 describe('TerraFileInputComponent', () =>
 {
@@ -72,7 +71,6 @@ describe('TerraFileInputComponent', () =>
                            TerraLabelTooltipDirective
             ],
             imports:      [
-                RouterModule.forRoot([]),
                 ModalModule.forRoot(),
                 FormsModule,
                 ReactiveFormsModule,

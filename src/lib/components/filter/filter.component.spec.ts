@@ -18,7 +18,6 @@ import { TerraLabelTooltipDirective } from '../../helpers/terra-label-tooltip.di
 import { TerraInfoComponent } from '../info/terra-info.component';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../tooltip/tooltip.directive';
-import { RouterModule } from '@angular/router';
 
 describe('FilterComponent:', () =>
 {
@@ -38,7 +37,6 @@ describe('FilterComponent:', () =>
                            FilterComponent
             ],
             imports:      [
-                RouterModule.forRoot([]),
                 BrowserAnimationsModule,
                 HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
