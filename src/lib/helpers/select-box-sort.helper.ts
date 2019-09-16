@@ -31,8 +31,7 @@ export class SelectBoxSortHelper
             case 'string':
                 return sortDesc ? b.localeCompare(a) : a.localeCompare(b);
             case 'object':
-                return sortDesc ? SelectBoxSortHelper.internalSort(a[sortingKey], b[sortingKey], sortingKey, sortDesc)
-                    : SelectBoxSortHelper.internalSort(b[sortingKey], a[sortingKey], sortingKey, sortDesc);
+                return SelectBoxSortHelper.internalSort(a[sortingKey], b[sortingKey], sortingKey, sortDesc);
         }
     }
 }
