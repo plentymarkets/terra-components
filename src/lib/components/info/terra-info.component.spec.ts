@@ -8,6 +8,7 @@ import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../app/translation/l10n.config';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 import { TooltipDirective } from '../tooltip/tooltip.directive';
+import { RouterModule } from '@angular/router';
 
 describe('TerraInfoComponent:', () =>
 {
@@ -21,6 +22,7 @@ describe('TerraInfoComponent:', () =>
                            TerraInfoComponent
             ],
             imports:      [
+                RouterModule.forRoot([]),
                 LocalizationModule.forRoot(l10nConfig)
             ]
         }).compileComponents();

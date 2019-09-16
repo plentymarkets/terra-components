@@ -38,7 +38,8 @@ import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import {
     ActivatedRoute,
-    Router
+    Router,
+    RouterModule
 } from '@angular/router';
 import { MockActivatedRoute } from '../../../testing/mock-activated-route';
 
@@ -70,6 +71,7 @@ describe('TerraDataTableComponent', () =>
                 TerraLabelTooltipDirective
             ],
             imports:      [
+                RouterModule.forRoot([]),
                 CommonModule,
                 FormsModule,
                 HttpModule,

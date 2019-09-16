@@ -15,6 +15,7 @@ import {
     EventEmitter
 } from '@angular/core';
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { RouterModule } from '@angular/router';
 
 describe('TerraMultiCheckBoxComponent:', () =>
 {
@@ -31,6 +32,7 @@ describe('TerraMultiCheckBoxComponent:', () =>
                                TerraMultiCheckBoxComponent
                 ],
                 imports:      [
+                    RouterModule.forRoot([]),
                     HttpClientModule,
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)

@@ -20,6 +20,7 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 import { TerraInfoComponent } from '../../info/terra-info.component';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { RouterModule } from '@angular/router';
 
 describe('TerraPortletComponent', () =>
 {
@@ -39,6 +40,7 @@ describe('TerraPortletComponent', () =>
                            TerraInfoComponent
             ],
             imports:      [
+                RouterModule.forRoot([]),
                 FormsModule,
                 BrowserAnimationsModule,
                 LocalizationModule.forRoot(l10nConfig)

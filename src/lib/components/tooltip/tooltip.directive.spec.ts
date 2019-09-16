@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TooltipDirective } from './tooltip.directive';
+import { RouterModule } from '@angular/router';
 
 @Component({
     template: `<label [tcTooltip]="'Test'">test</label>`
@@ -31,7 +32,8 @@ describe('TooltipDirective', () =>
             declarations: [
                 TooltipDirective,
                 TooltipDirectiveHostComponent
-            ]
+            ],
+            imports: [RouterModule.forRoot([])]
         }).compileComponents();
     }));
 

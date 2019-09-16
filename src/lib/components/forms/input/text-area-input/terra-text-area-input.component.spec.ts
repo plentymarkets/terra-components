@@ -20,6 +20,7 @@ import { MockElementRef } from '../../../../testing/mock-element-ref';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { RouterModule } from '@angular/router';
 
 describe('TerraTextAreaInputComponent', () =>
 {
@@ -38,6 +39,7 @@ describe('TerraTextAreaInputComponent', () =>
                 TerraLabelTooltipDirective
             ],
             imports:      [
+                RouterModule.forRoot([]),
                 FormsModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],

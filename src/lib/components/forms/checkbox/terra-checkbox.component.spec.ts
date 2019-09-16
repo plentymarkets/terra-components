@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.component';
+import { RouterModule } from '@angular/router';
 
 describe('Component: TerraCheckboxComponent', () =>
 {
@@ -20,7 +21,9 @@ describe('Component: TerraCheckboxComponent', () =>
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
                            TerraCheckboxComponent],
-            imports: [FormsModule]
+            imports: [
+                RouterModule.forRoot([]),
+                FormsModule]
         }).compileComponents();
     });
 

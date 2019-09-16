@@ -15,6 +15,7 @@ import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../app/translation/l10n.config';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../tooltip/tooltip.directive';
+import { RouterModule } from '@angular/router';
 
 describe('Component: TerraStopwatchComponent', () =>
 {
@@ -32,6 +33,7 @@ describe('Component: TerraStopwatchComponent', () =>
                 TooltipDirective
             ],
             imports:      [
+                RouterModule.forRoot([]),
                 FormsModule,
                 HttpModule,
                 HttpClientModule,

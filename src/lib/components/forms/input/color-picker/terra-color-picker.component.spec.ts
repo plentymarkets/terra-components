@@ -11,6 +11,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { RouterModule } from '@angular/router';
 
 describe('Component: TerraColorPickerComponent', () =>
 {
@@ -28,6 +29,7 @@ describe('Component: TerraColorPickerComponent', () =>
                                TerraColorPickerComponent,
                                TerraLabelTooltipDirective],
                 imports:      [
+                    RouterModule.forRoot([]),
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)
                 ]

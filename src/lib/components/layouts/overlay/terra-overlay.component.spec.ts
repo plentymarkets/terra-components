@@ -17,6 +17,7 @@ import {
 } from '../../../testing/mock-buttons';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { RouterModule } from '@angular/router';
 
 describe('TerraOverlayComponent', () =>
 {
@@ -30,6 +31,7 @@ describe('TerraOverlayComponent', () =>
     {
         TestBed.configureTestingModule({
             imports:      [
+                RouterModule.forRoot([]),
                 ModalModule.forRoot()
             ],
             declarations: [TooltipDirective,
