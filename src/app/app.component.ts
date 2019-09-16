@@ -3,12 +3,6 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 
-export interface Food
-{
-    value:number;
-    viewValue:string;
-}
-
 /**
  * @description This is a sandbox app which can be used to test out functionality from the TerraComponents library.
  * By default, it displays all the examples provided by the library.
@@ -23,22 +17,4 @@ export interface Food
 })
 export class AppComponent
 {
-    foods:Food[] = [
-        {
-            value:     99,
-            viewValue: 'Steak'
-        },
-        {
-            value:     22,
-            viewValue: 'Pizza'
-        },
-        {
-            value:     1,
-            viewValue: 'ziyad'
-        },
-        {
-            value:     4,
-            viewValue: 'Tacos'
-        }
-    ];
 }
