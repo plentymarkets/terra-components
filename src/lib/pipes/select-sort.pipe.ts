@@ -8,8 +8,8 @@ import { SortDirectionEnum } from '../helpers/enums/sort-direction.enum';
 @Pipe({name: 'selectSort'})
 export class SelectSortPipe implements PipeTransform
 {
-    public transform(sortingList:Array<any>, sortDesc?:SortDirectionEnum, sortingKey?:string):Array<any>
+    public transform(sortingList:Array<any>, sortDirection?:SortDirectionEnum, sortingKey?:string):Array<any>
     {
-        return SelectBoxSortHelper.sortArray(sortingList, sortDesc, sortingKey);
+        return SelectBoxSortHelper.sortArray(sortingList, sortDirection, sortingKey);
     }
 }
