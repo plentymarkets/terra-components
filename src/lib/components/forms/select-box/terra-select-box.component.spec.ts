@@ -12,7 +12,6 @@ import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { AllowedColors } from './data/allowed.colors.enum';
 import { DebugElement } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 /**
  * @author mfrank
@@ -50,7 +49,6 @@ describe('TerraSelectBoxComponent:', () =>
                                TerraLabelTooltipDirective
                 ],
                 imports:      [
-                    RouterModule.forRoot([]),
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)
                 ]
