@@ -12,6 +12,7 @@ import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.i
 import { DebugElement } from '@angular/core';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { RouterModule } from '@angular/router';
 
 export const dataTableStub:Partial<TerraDataTableComponent<any, any>> =
     {
@@ -40,6 +41,7 @@ describe('Component: TableRowComponent', () =>
                            TerraCheckboxComponent,
             ],
             imports:      [
+                RouterModule.forRoot([]),
                 FormsModule
             ],
             providers:    [

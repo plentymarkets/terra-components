@@ -20,6 +20,7 @@ import { TerraButtonComponent } from '../../../buttons/button/terra-button.compo
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { RouterModule } from '@angular/router';
 
 describe('TerraNumberInputComponent', () =>
 {
@@ -38,6 +39,7 @@ describe('TerraNumberInputComponent', () =>
                            TerraLabelTooltipDirective
             ],
             imports:      [
+                RouterModule.forRoot([]),
                 FormsModule,
                 LocalizationModule.forRoot(l10nConfig)
             ]

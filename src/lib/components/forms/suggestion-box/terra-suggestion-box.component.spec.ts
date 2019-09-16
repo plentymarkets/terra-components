@@ -22,6 +22,7 @@ import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.in
 import { TerraTextInputComponent } from '../input/text-input/terra-text-input.component';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { RouterModule } from '@angular/router';
 
 describe('TerraSuggestionBoxComponent', () =>
 {
@@ -41,6 +42,7 @@ describe('TerraSuggestionBoxComponent', () =>
                            TerraLabelTooltipDirective
             ],
             imports:      [
+                RouterModule.forRoot([]),
                 FormsModule,
                 HttpModule,
                 HttpClientModule,
