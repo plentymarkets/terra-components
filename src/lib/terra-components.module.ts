@@ -21,10 +21,10 @@ import { TerraInteractModule } from './components/interactables/interact.module'
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { HttpModule } from '@angular/http';
-import { SelectSortPipe } from './pipes/select-sort.pipe';
+import { pipes } from './pipes/pipe-collection';
 
 @NgModule({
-    imports: [
+    imports:         [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -42,7 +42,7 @@ import { SelectSortPipe } from './pipes/select-sort.pipe';
     declarations:    [
         ...components,
         ...directives,
-        SelectSortPipe
+        ...pipes
     ],
     entryComponents: [
         ...exportedComponents
@@ -50,7 +50,7 @@ import { SelectSortPipe } from './pipes/select-sort.pipe';
     exports:         [
         ...exportedComponents,
         ...directives,
-        SelectSortPipe
+        ...pipes
     ]
 })
 export class TerraComponentsModule
