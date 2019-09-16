@@ -11,7 +11,12 @@ import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface'
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { AllowedColors } from './data/allowed.colors.enum';
-import { DebugElement } from '@angular/core';
+import {
+    DebugElement,
+    SimpleChange
+} from '@angular/core';
+import { SelectBoxSortHelper } from '../../../helpers/select-box-sort.helper';
+import Spy = jasmine.Spy;
 
 /**
  * @author mfrank
@@ -37,16 +42,16 @@ describe('TerraSelectBoxComponent:', () =>
         color:   AllowedColors.add
     };
 
-    let listBoxValues:Array<TerraSelectBoxValueInterface> = [listBoxValue1,
-                                                             listBoxValue2];
+    const listBoxValues:Array<TerraSelectBoxValueInterface> = [listBoxValue1, listBoxValue2];
 
     beforeEach(() =>
     {
         TestBed.configureTestingModule(
             {
-                declarations: [TooltipDirective,
-                               TerraSelectBoxComponent,
-                               TerraLabelTooltipDirective
+                declarations: [
+                    TooltipDirective,
+                    TerraSelectBoxComponent,
+                    TerraLabelTooltipDirective
                 ],
                 imports:      [
                     FormsModule,
@@ -71,6 +76,7 @@ describe('TerraSelectBoxComponent:', () =>
     {
         expect(component).toBeTruthy();
     });
+
     // TODO test does not work properly
     xit('should set color for caption', () =>
     {
@@ -79,5 +85,34 @@ describe('TerraSelectBoxComponent:', () =>
         let selectBoxDE:DebugElement = fixture.debugElement.query(By.css('div.select-box'));
         let spanElement:DebugElement = selectBoxDE.query(By.css('span'));
         expect(spanElement.styles['color']).toBe('var(--color-group-add)');
+    });
+
+    it(`should enable sorting by default`, () =>
+    {
+        const spy:Spy = spyOn(SelectBoxSortHelper, 'sortArray').and.callThrough();
+        expect(component.disableSorting).toBe(false);
+        component.inputListBoxValues = [listBoxValue2, listBoxValue3, listBoxValue1];
+
+        component.ngOnChanges({
+            inputListBoxValues: new SimpleChange([], component.inputListBoxValues, false)
+        });
+
+        expect(spy).toHaveBeenCalledWith(component.inputListBoxValues, 'caption', component.sortDesc);
+        expect(component.inputListBoxValues).toEqual([listBoxValue1, listBoxValue2, listBoxValue3]);
+    });
+
+    it(`should not sort #inputListBoxValues if #disableSorting is true`, () =>
+    {
+        const spy:Spy = spyOn(SelectBoxSortHelper, 'sortArray').and.callThrough();
+        component.inputListBoxValues = [listBoxValue1, listBoxValue2];
+        component.disableSorting = true;
+
+        component.ngOnChanges({
+            disableSorting:     new SimpleChange(false, true, false),
+            inputListBoxValues: new SimpleChange([], component.inputListBoxValues, false)
+        });
+
+        expect(spy).not.toHaveBeenCalled();
+        expect(component.inputListBoxValues).toEqual([listBoxValue1, listBoxValue2]);
     });
 });
