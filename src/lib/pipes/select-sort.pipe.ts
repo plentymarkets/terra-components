@@ -3,12 +3,13 @@ import {
     PipeTransform
 } from '@angular/core';
 import { SelectBoxSortHelper } from '../helpers/select-box-sort.helper';
+import { SortDirectionEnum } from '../helpers/enums/sort-direction.enum';
 
 @Pipe({name: 'selectSort'})
 export class SelectSortPipe implements PipeTransform
 {
-    public transform(sortingList:Array<any>, sortingKey?:string, sortDesc?:boolean):Array<any>
+    public transform(sortingList:Array<any>, sortDesc?:SortDirectionEnum, sortingKey?:string):Array<any>
     {
-        return SelectBoxSortHelper.sortArray(sortingList, sortingKey, sortDesc);
+        return SelectBoxSortHelper.sortArray(sortingList, sortDesc, sortingKey);
     }
 }

@@ -1,37 +1,31 @@
 import { isNullOrUndefined } from 'util';
+import { SortDirectionEnum } from './enums/sort-direction.enum';
 
 export class SelectBoxSortHelper
 {
-    public static sortArray(sortingList:Array<any>, sortingKey:string, sortDesc?:boolean):Array<any>
+    public static sortArray(sortingList:Array<any>, sortDesc:SortDirectionEnum = 'asc', sortingKey?:string):Array<any>
     {
-        if(isNullOrUndefined(sortDesc))
-        {
-            sortDesc = false;
-        }
-
-        if(!isNullOrUndefined(sortingList))
-        {
-            return sortingList.sort((a:any, b:any) =>
-            {
-                return SelectBoxSortHelper.internalSort(a, b, sortingKey, sortDesc);
-            });
-        }
-        else
+        if(isNullOrUndefined(sortingList))
         {
             return [];
         }
+
+        return sortingList.sort((a:any, b:any) =>
+        {
+            return SelectBoxSortHelper.internalSort(a, b, sortDesc, sortingKey);
+        });
     }
 
-    private static internalSort(a:any, b:any, sortingKey:string, sortDesc:boolean):any
+    private static internalSort(a:any, b:any, sortDesc:SortDirectionEnum, sortingKey:string):any
     {
         switch(typeof a)
         {
             case 'number':
-                return sortDesc ? b - a : a - b;
+                return sortDesc === 'asc' ? b - a : a - b;
             case 'string':
-                return sortDesc ? b.localeCompare(a) : a.localeCompare(b);
+                return sortDesc === 'asc' ? b.localeCompare(a) : a.localeCompare(b);
             case 'object':
-                return SelectBoxSortHelper.internalSort(a[sortingKey], b[sortingKey], sortingKey, sortDesc);
+                return SelectBoxSortHelper.internalSort(a[sortingKey], b[sortingKey], sortDesc, sortingKey);
         }
     }
 }
