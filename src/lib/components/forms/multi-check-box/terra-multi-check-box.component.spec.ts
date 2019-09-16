@@ -15,11 +15,14 @@ import {
     EventEmitter
 } from '@angular/core';
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../testing/mock-router';
 
 describe('TerraMultiCheckBoxComponent:', () =>
 {
     let component:TerraMultiCheckBoxComponent;
     let fixture:ComponentFixture<TerraMultiCheckBoxComponent>;
+    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -34,7 +37,12 @@ describe('TerraMultiCheckBoxComponent:', () =>
                     HttpClientModule,
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)
-                ]
+                ],
+                providers:    [
+                    {
+                        provide:  Router,
+                        useValue: router
+                    }]
             }
         ).compileComponents();
     });

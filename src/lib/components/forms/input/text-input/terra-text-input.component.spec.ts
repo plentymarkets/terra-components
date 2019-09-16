@@ -14,6 +14,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
 
 describe('Component: TerraTextInputComponent', () =>
 {
@@ -34,7 +35,12 @@ describe('Component: TerraTextInputComponent', () =>
                     HttpClientModule,
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)
-                ]
+                ],
+                providers:    [
+                    {
+                        provide:  Router,
+                        useValue: router
+                    }]
             }
         ).compileComponents();
     });
