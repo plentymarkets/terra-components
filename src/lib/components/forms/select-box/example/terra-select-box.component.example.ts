@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { TerraSelectBoxValueInterface } from '../data/terra-select-box.interface';
 import { AllowedColors } from '../data/allowed.colors.enum';
+import { SortDirectionEnum } from '../../../../helpers/enums/sort-direction.enum';
 
 @Component({
     selector: 'terra-select-box-example',
@@ -12,7 +13,7 @@ import { AllowedColors } from '../data/allowed.colors.enum';
 })
 export class TerraSelectBoxComponentExample implements OnInit
 {
-    public sortDesc:boolean = false;
+    public sortDirection:SortDirectionEnum = 'asc';
 
     protected selectBoxValueList:Array<TerraSelectBoxValueInterface> = [];
     protected coloredSelectBoxValueList:Array<TerraSelectBoxValueInterface> = [];
@@ -59,7 +60,7 @@ export class TerraSelectBoxComponentExample implements OnInit
 
     public toggleSortOrder():void
     {
-        this.sortDesc = !this.sortDesc;
+        this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     }
 
     public add():void

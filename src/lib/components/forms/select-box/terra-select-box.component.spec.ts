@@ -97,7 +97,7 @@ describe('TerraSelectBoxComponent:', () =>
             inputListBoxValues: new SimpleChange([], component.inputListBoxValues, false)
         });
 
-        expect(spy).toHaveBeenCalledWith(component.inputListBoxValues, component.sortDesc, 'caption');
+        expect(spy).toHaveBeenCalledWith(component.inputListBoxValues, component.sortDirection, 'caption');
         expect(component.inputListBoxValues).toEqual([listBoxValue1, listBoxValue2, listBoxValue3]);
     });
 
@@ -114,5 +114,25 @@ describe('TerraSelectBoxComponent:', () =>
 
         expect(spy).not.toHaveBeenCalled();
         expect(component.inputListBoxValues).toEqual([listBoxValue1, listBoxValue2]);
+    });
+
+    it(`should sort #inputListBoxValues depending on the #sortDirection prop`, () =>
+    {
+        const spy:Spy = spyOn(SelectBoxSortHelper, 'sortArray').and.callThrough();
+        component.inputListBoxValues = [listBoxValue3, listBoxValue1, listBoxValue2];
+
+        component.ngOnChanges({
+            inputListBoxValues: new SimpleChange([], component.inputListBoxValues, false)
+        });
+
+        expect(component.inputListBoxValues).toEqual([listBoxValue1, listBoxValue2, listBoxValue3]);
+
+        component.sortDirection = 'desc';
+        component.ngOnChanges({
+            sortDirection: new SimpleChange('asc', 'desc', false)
+        });
+
+        expect(spy).toHaveBeenCalledWith(component.inputListBoxValues, component.sortDirection, 'caption');
+        expect(component.inputListBoxValues).toEqual([listBoxValue3, listBoxValue2, listBoxValue1]);
     });
 });

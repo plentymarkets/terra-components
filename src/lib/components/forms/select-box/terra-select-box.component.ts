@@ -70,7 +70,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     public disableSorting:boolean = false;
 
     @Input()
-    public sortDesc:SortDirectionEnum = 'asc';
+    public sortDirection:SortDirectionEnum = 'asc';
 
     /**
      * @deprecated use ngModelChange instead
@@ -145,7 +145,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
             this.select(this.inputListBoxValues[0]);
         }
 
-        if(changes['sortDesc'] || changes['inputListBoxValues'])
+        if(changes['sortDirection'] || changes['inputListBoxValues'])
         {
             this.sortListBoxValues();
         }
@@ -308,7 +308,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     {
         if(!this.disableSorting)
         {
-            this.inputListBoxValues = SelectBoxSortHelper.sortArray(this.inputListBoxValues, this.sortDesc, 'caption');
+            this.inputListBoxValues = SelectBoxSortHelper.sortArray(this.inputListBoxValues, this.sortDirection, 'caption');
         }
     }
 
