@@ -9,6 +9,6 @@ export class SelectSortPipe implements PipeTransform
 {
     public transform(sortingList:Array<any>, sortingKey?:string, sortDesc?:boolean):Array<any>
     {
-        return SelectBoxSortHelper.sortArray(sortingList, sortingKey);
+        return SelectBoxSortHelper.sortArray(sortingList, sortingKey, sortDesc);
     }
 }
