@@ -2,7 +2,6 @@ import {
     Component,
     OnInit
 } from '@angular/core';
-import { Food } from '../../../../app/app.component';
 
 export interface Food
 {
