@@ -7,7 +7,7 @@ describe('SelectSortPipe:', () =>
 {
     const pipe:SelectSortPipe = new SelectSortPipe();
 
-    it(`should call the SelectBoxSortHelper's #sortArray method and pass on the given arguments`, () =>
+    it(`should call the SortHelper's #sortArray method and pass on the given arguments`, () =>
     {
         const spy:Spy = spyOn(SortHelper, 'sortArray');
         const list:Array<any> = [];
