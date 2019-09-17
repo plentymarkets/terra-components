@@ -21,7 +21,7 @@ import { TerraInteractModule } from './components/interactables/interact.module'
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { HttpModule } from '@angular/http';
-import { pipes } from './pipes/pipe-collection';
+import { pipes } from './pipes';
 
 @NgModule({
     imports:         [
