@@ -1,6 +1,7 @@
 import { SelectSortPipe } from './select-sort.pipe';
 import { SelectBoxSortHelper } from '../helpers/select-box-sort.helper';
 import Spy = jasmine.Spy;
+import { SortDirectionEnum } from '../helpers/enums/sort-direction.enum';
 
 describe('SelectSortPipe:', () =>
 {
@@ -11,8 +12,8 @@ describe('SelectSortPipe:', () =>
         const spy:Spy = spyOn(SelectBoxSortHelper, 'sortArray');
         const list:Array<any> = [];
         const key:string = '';
-        const order:boolean = true;
-        pipe.transform(list, key, order);
-        expect(spy).toHaveBeenCalledWith(list, key, order);
+        const direction:SortDirectionEnum = 'asc';
+        pipe.transform(list, direction, key );
+        expect(spy).toHaveBeenCalledWith(list, key, direction);
     });
 });
