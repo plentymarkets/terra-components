@@ -37,16 +37,16 @@ describe('TerraSelectBoxComponent:', () =>
         color:   AllowedColors.add
     };
 
-    const listBoxValues:Array<TerraSelectBoxValueInterface> = [listBoxValue1, listBoxValue2];
+    let listBoxValues:Array<TerraSelectBoxValueInterface> = [listBoxValue1,
+                                                             listBoxValue2];
 
     beforeEach(() =>
     {
         TestBed.configureTestingModule(
             {
-                declarations: [
-                    TooltipDirective,
-                    TerraSelectBoxComponent,
-                    TerraLabelTooltipDirective
+                declarations: [TooltipDirective,
+                               TerraSelectBoxComponent,
+                               TerraLabelTooltipDirective
                 ],
                 imports:      [
                     FormsModule,
@@ -71,7 +71,6 @@ describe('TerraSelectBoxComponent:', () =>
     {
         expect(component).toBeTruthy();
     });
-
     // TODO test does not work properly
     xit('should set color for caption', () =>
     {
