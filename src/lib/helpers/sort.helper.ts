@@ -6,6 +6,12 @@ import { SortDirectionEnum } from './enums/sort-direction.enum';
  */
 export class SortHelper
 {
+    /**
+     * @description Sorts a list of numbers, strings, or objects in a given sorting direction.
+     * @param sortingList
+     * @param sortDirection
+     * @param sortingKey - a string that identifies the property the list of objects should be sorted by
+     */
     public static sortArray(sortingList:Array<any>, sortDirection:SortDirectionEnum = 'asc', sortingKey?:string):Array<any>
     {
         if(isNullOrUndefined(sortingList))
