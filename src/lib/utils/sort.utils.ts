@@ -1,5 +1,4 @@
 import { SortDirectionEnum } from '../helpers/enums/sort-direction.enum';
-import { noop } from 'rxjs';
 
 export function sortNumber(sortDirection:SortDirectionEnum):(a:number, b:number) => number
 {
