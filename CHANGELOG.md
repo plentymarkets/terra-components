@@ -1,5 +1,9 @@
-<a name="4.3.2"></a>
-# UNRELEASED
+<a name="4.4.0"></a>
+# 4.4.0 (XX.XX.2019)
+
+### Features
+* **selectSort** new pipe for sorting lists of available options for a select box.
+* **SortHelper** new class that provides functionality to sort lists of numbers, strings and objects.
 
 ### Bug Fixes
 * **tcTooltip** hide tooltip when routing
