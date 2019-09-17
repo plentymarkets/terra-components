@@ -6,21 +6,28 @@ import {
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.component';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 describe('Component: TerraCheckboxComponent', () =>
 {
     let component:TerraCheckboxComponent;
     let fixture:ComponentFixture<TerraCheckboxComponent>;
+    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
                            TerraCheckboxComponent],
-            imports: [FormsModule]
+            imports: [FormsModule],
+            providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                }]
         }).compileComponents();
     });
 

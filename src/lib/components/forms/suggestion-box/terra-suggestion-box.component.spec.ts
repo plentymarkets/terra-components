@@ -22,6 +22,8 @@ import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.in
 import { TerraTextInputComponent } from '../input/text-input/terra-text-input.component';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../testing/mock-router';
 
 describe('TerraSuggestionBoxComponent', () =>
 {
@@ -31,6 +33,7 @@ describe('TerraSuggestionBoxComponent', () =>
         caption: '1',
         value:   1
     };
+    const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
@@ -47,6 +50,10 @@ describe('TerraSuggestionBoxComponent', () =>
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                },
                 {
                     provide:  ElementRef,
                     useClass: MockElementRef

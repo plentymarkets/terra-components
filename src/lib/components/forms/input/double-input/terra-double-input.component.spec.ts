@@ -19,6 +19,8 @@ import { TerraButtonComponent } from '../../../buttons/button/terra-button.compo
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { By } from '@angular/platform-browser';
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../../testing/mock-router';
 
 describe('TerraDoubleInputComponent', () =>
 {
@@ -27,6 +29,7 @@ describe('TerraDoubleInputComponent', () =>
     let debugElement:DebugElement;
     let inputElement:HTMLInputElement;
     const testValue:number = 3.2;
+    const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
@@ -39,7 +42,12 @@ describe('TerraDoubleInputComponent', () =>
             imports:      [
                 FormsModule,
                 LocalizationModule.forRoot(l10nConfig)
-            ]
+            ],
+            providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                }]
         }).compileComponents();
     }));
 
