@@ -16,7 +16,7 @@ export class SelectBoxSortHelper
         });
     }
 
-    private static internalSort(a:any, b:any, sortDirection:SortDirectionEnum, sortingKey:string):any
+    private static internalSort(a:any, b:any, sortDirection:SortDirectionEnum, sortingKey:string):number
     {
         switch(typeof a)
         {
