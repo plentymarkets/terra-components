@@ -6,7 +6,7 @@ import {
     sortObject
 } from '../utils/sort.utils';
 
-type primitve = 'string' | 'number' | 'objcet';
+type primitives = 'string' | 'number' | 'object';
 
 function isNumberArray(val:unknown):val is Array<number>
 {
