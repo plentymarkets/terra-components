@@ -14,6 +14,6 @@ describe('SelectSortPipe:', () =>
         const key:string = '';
         const direction:SortDirectionEnum = 'asc';
         pipe.transform(list, direction, key );
-        expect(spy).toHaveBeenCalledWith(list, key, direction);
+        expect(spy).toHaveBeenCalledWith(list, direction, key);
     });
 });
