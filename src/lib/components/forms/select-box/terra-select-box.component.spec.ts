@@ -12,6 +12,8 @@ import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { AllowedColors } from './data/allowed.colors.enum';
 import { DebugElement } from '@angular/core';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../testing/mock-router';
 
 /**
  * @author mfrank
@@ -39,6 +41,7 @@ describe('TerraSelectBoxComponent:', () =>
 
     let listBoxValues:Array<TerraSelectBoxValueInterface> = [listBoxValue1,
                                                              listBoxValue2];
+    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -51,7 +54,12 @@ describe('TerraSelectBoxComponent:', () =>
                 imports:      [
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)
-                ]
+                ],
+                providers:    [
+                    {
+                        provide:  Router,
+                        useValue: router
+                    }]
             }
         ).compileComponents();
     });
