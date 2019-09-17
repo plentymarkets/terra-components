@@ -30,7 +30,7 @@ export class MatSelectComponentExample implements OnInit
             },
             {
                 value:     1,
-                viewValue: 'ziyad'
+                viewValue: 'Burger'
             },
             {
                 value:     4,
