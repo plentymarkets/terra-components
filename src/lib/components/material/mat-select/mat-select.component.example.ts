@@ -10,7 +10,7 @@ export interface Food
 }
 
 @Component({
-    selector: 'terra-mat-select-example',
+    selector: 'tc-mat-select-example',
     template: require('./mat-select.component.example.html'),
 })
 export class MatSelectComponentExample implements OnInit
