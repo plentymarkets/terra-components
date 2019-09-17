@@ -13,6 +13,8 @@ import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../testing/mock-router';
 
 describe('Component: CheckboxGroupComponent', () =>
 {
@@ -34,6 +36,7 @@ describe('Component: CheckboxGroupComponent', () =>
             value:   2
         }
     ];
+    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -47,7 +50,12 @@ describe('Component: CheckboxGroupComponent', () =>
                     HttpClientModule,
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)
-                ]
+                ],
+                providers:    [
+                    {
+                        provide:  Router,
+                        useValue: router
+                    }]
             }
         ).compileComponents();
     });
@@ -88,7 +96,8 @@ describe('Component: CheckboxGroupComponent', () =>
     {
         let writeValueSpy:Spy = spyOn(multicheckboxComponent, 'writeValue');
         component.checkboxValues = checkboxValues;
-        component.writeValue([0, 2]);
+        component.writeValue([0,
+                              2]);
         fixture.detectChanges();
 
         fixture.whenStable().then(() =>

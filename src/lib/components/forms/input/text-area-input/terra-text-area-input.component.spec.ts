@@ -20,6 +20,8 @@ import { MockElementRef } from '../../../../testing/mock-element-ref';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../../testing/mock-router';
 
 describe('TerraTextAreaInputComponent', () =>
 {
@@ -28,6 +30,7 @@ describe('TerraTextAreaInputComponent', () =>
     let debugElement:DebugElement;
     let inputElement:HTMLInputElement;
     const testString:string = 'test';
+    const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
@@ -42,6 +45,10 @@ describe('TerraTextAreaInputComponent', () =>
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                },
                 {
                     provide:  ElementRef,
                     useClass: MockElementRef
