@@ -2,8 +2,10 @@ import {
     Pipe,
     PipeTransform
 } from '@angular/core';
-import { SortHelper } from '../helpers/sort.helper';
-import { SortDirectionEnum } from '../helpers/enums/sort-direction.enum';
+import {
+    SortDirectionEnum,
+    SortHelper
+} from '../helpers';
 
 /**
  * @description A pipe for sorting arrays in the template.

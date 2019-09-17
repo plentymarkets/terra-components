@@ -11,10 +11,12 @@ export { TerraPdfHelper } from './terra-pdf.helper';
 export { TerraDownloadHelper } from './download.helper';
 export { UrlHelper } from './url.helper';
 export { StringHelper } from './string.helper';
+export { SortHelper } from './sort.helper';
 
 // enums
 export { TerraButtonColorEnum } from './enums/button-color.enum';
 export { TerraPlacementEnum } from './enums/terra-placement.enum';
+export { SortDirectionEnum } from './enums/sort-direction.enum';
 
 // misc
 export { TerraRegex } from './regex/terra-regex';
