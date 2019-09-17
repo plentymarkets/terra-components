@@ -13,6 +13,13 @@ import { SortDirectionEnum } from '../helpers/enums/sort-direction.enum';
 @Pipe({name: 'selectSort'})
 export class SelectSortPipe implements PipeTransform
 {
+    /**
+     * Implementation of the PipeTransform interface.
+     * @description Sorts a list of numbers, strings, or objects in a given sorting direction.
+     * @param sortingList
+     * @param sortDirection
+     * @param sortingKey - a string that identifies the property the list of objects should be sorted by
+     */
     public transform(sortingList:Array<any>, sortDirection?:SortDirectionEnum, sortingKey?:string):Array<any>
     {
         return SortHelper.sortArray(sortingList, sortDirection, sortingKey);
