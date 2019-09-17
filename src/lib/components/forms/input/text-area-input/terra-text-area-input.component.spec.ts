@@ -18,8 +18,8 @@ import { TerraTextAreaInputComponent } from './terra-text-area-input.component';
 import { By } from '@angular/platform-browser';
 import { MockElementRef } from '../../../../testing/mock-element-ref';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import Spy = jasmine.Spy;
 
 describe('TerraTextAreaInputComponent', () =>
 {

@@ -12,7 +12,6 @@ import {
 } from '@angular/core';
 
 import tippy, { Placement } from 'tippy.js';
-import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 
 @Directive({

@@ -15,8 +15,8 @@ import {
     mockButtonOne,
     mockButtonTwo
 } from '../../../testing/mock-buttons';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import Spy = jasmine.Spy;
 
 describe('TerraOverlayComponent', () =>
 {

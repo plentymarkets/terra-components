@@ -24,7 +24,6 @@ import { UrlHelper } from '../../../helpers/url.helper';
 import { TerraMultiSplitViewRoutes } from './interfaces/terra-multi-split-view-routes';
 import { TerraMultiSplitViewBreadcrumbsService } from './injectables/terra-multi-split-view-breadcrumbs.service';
 import { filter } from 'rxjs/operators';
-import { TerraBreadcrumbContainer } from '../../breadcrumbs/terra-breadcrumb-container';
 
 let nextSplitViewId:number = 0;
 

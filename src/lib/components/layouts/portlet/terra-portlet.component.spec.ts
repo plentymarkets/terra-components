@@ -18,8 +18,8 @@ import { TerraPortletComponent } from './terra-portlet.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraInfoComponent } from '../../info/terra-info.component';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import Spy = jasmine.Spy;
 
 describe('TerraPortletComponent', () =>
 {
