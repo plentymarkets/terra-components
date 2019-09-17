@@ -5,6 +5,11 @@ import {
 import { SelectBoxSortHelper } from '../helpers/select-box-sort.helper';
 import { SortDirectionEnum } from '../helpers/enums/sort-direction.enum';
 
+/**
+ * @description A pipe for sorting arrays in the template.
+ * NOTE: This is a pure pipe. Adding new elements to the array using #push() or removing elements using #splice() will not
+ * force the view to be re-rendered.
+ */
 @Pipe({name: 'selectSort'})
 export class SelectSortPipe implements PipeTransform
 {
