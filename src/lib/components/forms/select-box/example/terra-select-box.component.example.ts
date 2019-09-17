@@ -54,12 +54,4 @@ export class TerraSelectBoxComponentExample implements OnInit
             }
         );
     }
-
-    public add():void
-    {
-        this.coloredSelectBoxValueList.push({
-            value:   'asd',
-            caption: 'aaaaaaa'
-        });
-    }
 }
